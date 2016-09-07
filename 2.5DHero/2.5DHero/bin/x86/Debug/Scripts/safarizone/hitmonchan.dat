@@ -1,0 +1,4 @@
+version=2
+@pokemon.cry(107)
+@text.show(Hitmonchan: CHAN!)
+:end

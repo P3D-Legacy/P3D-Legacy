@@ -1,0 +1,102 @@
+Pokémon created by Nintendo, Game Freak and The Pokémon Company / Creatures Inc.
+
+Pokémon3D staff
+created by Kolben Games
+Trademark (TM) 2012 - 2014
+	Team Kolben
+		Nils Drescher
+		Andrew Leach
+		Marc Boisvert-Dupras
+		Grant Garrett
+		Jason Houston
+		Daniel Billing
+		Benjamin Smith
+		Hunter Graves
+
+	Director
+		Nils Drescher
+
+	Programming
+		Nils Drescher
+		Jason Houston
+		Benjamin Smith
+
+	Graphic Design
+		Nils Drescher
+		Benjamin Smith
+		"Godeken"
+		Caleb Coleman
+		Robert Nobbmann
+		Manuel Lampe
+		Miguel Nunez
+		Grant Garrett
+		"Anvil555"
+
+	Map Design
+		Nils Drescher
+		Benjamin Smith
+		Hunter Graves
+		Manuel Lampe
+		Rovert Nobbmann
+		Maximilian Schröder
+		Jan Mika Eine
+		Jason Houston
+
+	Actionscript
+		Nils Drescher
+		Benjamin Smith
+		Hunter Graves
+		Andrew Leach
+		Jason Houston
+
+	Script System Development
+		Nils Drescher
+		Benjamin Smith
+		Hunter Graves
+
+	KolbenWindowWidget Development & LUA implementation
+		Jason Houston
+
+	Launcher Programming
+		Nils Drescher
+		Daniel Billing
+		"ThuxCommix"
+
+	Server application Programming
+		Nils Drescher
+
+	Website Host/Server maintenance
+		Daniel Billing
+		Daniel Laube
+
+	GameJolt Service/API Programming
+		David DeCarmine
+		Nils Drescher
+
+	Debug Testing
+		Jan Mika Eine Tim Drescher
+		Daniel Steinborn
+		Andrew Leach
+		Marc Boisvert-Dupras
+		Matt Chambers
+		Hunter Graves
+		Benjamin Smith
+		William Hunn
+		Torben Carrington
+		"oXFantaXo"
+
+	Special Thanks
+		"MunchingOrange"
+		"TheFlamingSpade"
+		"SlyFoxHound"
+		"ArsenioDev"
+		"TrUShade"
+		"Isaaking6"
+		Davey Van Raaij
+		Diego López
+		The GameJolt team
+		The AppSharp team
+		The Smogon University Team
+
+Gen 6 Pokémon sprite art:
+	Smogon University (http://www.smogon.com/forums/threads/xy-sprite-project-read-1st-post-the-face-of-the-metagame.3486712/)

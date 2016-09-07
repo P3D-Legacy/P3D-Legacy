@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Nilllzz
+TrainerClass|Developer
+Money|1000
+IntroMessage|
+OutroMessage|Quack?
+DefeatMessage|
+TextureID|nilllzz
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|54,30
+Pokemon2|
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|0
+IntroSequence|Green,Violet
+IntroType|11

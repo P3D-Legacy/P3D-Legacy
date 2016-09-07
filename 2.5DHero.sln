@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "2.5DHero", "2.5DHero\2.5DHero\2.5DHero.vbproj", "{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2.5DHeroContent", "2.5DHero\2.5DHeroContent\2.5DHeroContent.contentproj", "{A2B85213-D17F-44BC-83C7-D7DDBB35B8E3}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://kolben.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = 2.5DHero\\2.5DHero\\2.5DHero.vbproj
+		SccProjectName1 = 2.5DHero/2.5DHero
+		SccLocalPath1 = 2.5DHero\\2.5DHero
+		SccProjectUniqueName2 = 2.5DHero\\2.5DHeroContent\\2.5DHeroContent.contentproj
+		SccProjectName2 = 2.5DHero/2.5DHeroContent
+		SccLocalPath2 = 2.5DHero\\2.5DHeroContent
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Debug|x86.ActiveCfg = Debug|x86
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Debug|x86.Build.0 = Debug|x86
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Release|Any CPU.ActiveCfg = Release|x86
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Release|x86.ActiveCfg = Release|x86
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Release|x86.Build.0 = Release|x86
+		{A2B85213-D17F-44BC-83C7-D7DDBB35B8E3}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A2B85213-D17F-44BC-83C7-D7DDBB35B8E3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A2B85213-D17F-44BC-83C7-D7DDBB35B8E3}.Debug|x86.ActiveCfg = Debug|x86
+		{A2B85213-D17F-44BC-83C7-D7DDBB35B8E3}.Release|Any CPU.ActiveCfg = Release|x86
+		{A2B85213-D17F-44BC-83C7-D7DDBB35B8E3}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A2B85213-D17F-44BC-83C7-D7DDBB35B8E3}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

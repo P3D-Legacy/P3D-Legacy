@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Darkfire
+TrainerClass|Developer
+Money|6000
+IntroMessage|
+OutroMessage|
+DefeatMessage|
+TextureID|darkfire
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|{"Pokemon"[596]}{"Experience"[205379]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Galvantula]}{"Level"[69]}{"OT"[00000]}{"Ability"[14]}{"Status"[]}{"Nature"[10]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[564,40,40]}{"Attack2"[405,10,10]}{"Attack3"[87,15,15]}{"Attack4"[521,20,20]}{"EVs"[4,0,0,212,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon2|{"Pokemon"[612]}{"Experience"[283726]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Haxorus]}{"Level"[71]}{"OT"[00000]}{"Ability"[104]}{"Status"[]}{"Nature"[13]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[200,10,10]}{"Attack2"[89,5,5]}{"Attack3"[398,15,15]}{"Attack4"[337,5,5]}{"EVs"[0,252,0,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon3|{"Pokemon"[598]}{"Experience"[205379]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Ferrothorn]}{"Level"[69]}{"OT"[00000]}{"Ability"[160]}{"Status"[]}{"Nature"[2]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[438,5,5]}{"Attack2"[360,10,10]}{"Attack3"[73,20,20]}{"Attack4"[182,30,30]}{"EVs"[252,172,84,0,0,0]}{"IVs"[31,31,31,31,31,0]}{"AdditionalData"[]}
+Pokemon4|{"Pokemon"[609]}{"Experience"[246681]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Chandelure]}{"Level"[73]}{"OT"[00000]}{"Ability"[18]}{"Status"[]}{"Nature"[0]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[126,15,15]}{"Attack2"[247,10,10]}{"Attack3"[412,15,15]}{"Attack4"[271,10,10]}{"EVs"[0,0,0,252,4,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon5|{"Pokemon"[625]}{"Experience"[216000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[102]}{"ItemData"[]}{"NickName"[Bisharp]}{"Level"[70]}{"OT"[00000]}{"Ability"[128]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[282,5,5]}{"Attack2"[389,20,20]}{"Attack3"[442,20,20]}{"Attack4"[14,30,30]}{"EVs"[4,0,252,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon6|{"Pokemon"[645]}{"Experience"[270000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Landorus]}{"Level"[70]}{"OT"[00000]}{"Ability"[22]}{"Status"[]}{"Nature"[13]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[89,5,5]}{"Attack2"[153,15,15]}{"Attack3"[369,5,5]}{"Attack4"[444,20,20]}{"EVs"[0,252,24,0,0,232]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Items|14,14
+Gender|0
+AI|0
+IntroSequence|Green,Violet
+IntroType|11

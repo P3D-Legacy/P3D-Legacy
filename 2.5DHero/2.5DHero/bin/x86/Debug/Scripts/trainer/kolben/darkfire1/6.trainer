@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Name
+TrainerClass|Develo
+Money|1000
+IntroMessage|
+OutroMessage|
+DefeatMessage|
+TextureID|Sprite
+Region|Johto
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|{"Pokemon"[663]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[506]}{"ItemData"[]}{"NickName"[]}{"Level"[100]}{"OT"[00000]}{"Ability"[177]}{"Status"[]}{"Nature"[23]}{"CatchLocation"[]}{"CatchTrainer"[Name]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[339,5,5]}{"Attack2"[413,10,10]}{"Attack3"[355,5,5]}{"Attack4"[261,10,10]}{"EVs"[248,0,0,0,252,8]}{"IVs"[31,31,31,30,31,31]}{"AdditionalData"[]}
+Pokemon2|{"Pokemon"[700]}{"Experience"[1000000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[146]}{"ItemData"[]}{"NickName"[Sylveon]}{"Level"[100]}{"OT"[00000]}{"Ability"[56]}{"Status"[]}{"Nature"[5]}{"CatchLocation"[]}{"CatchTrainer"[Name]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[347,15,15]}{"Attack2"[226,5,5]}{"Attack3"[273,20,20]}{"Attack4"[1,15,15]}{"EVs"[252,0,244,0,0,12]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon3|{"Pokemon"[706]}{"Experience"[1250000]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Goodra]}{"Level"[100]}{"OT"[00000]}{"Ability"[157]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[]}{"CatchTrainer"[Name]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[406,10,10]}{"Attack2"[126,15,15]}{"Attack3"[188,10,10]}{"Attack4"[330,30,30]}{"EVs"[240,0,0,252,0,16]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon4|{"Pokemon"[658]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Greninja]}{"Level"[100]}{"OT"[00000]}{"Ability"[67]}{"Status"[]}{"Nature"[10]}{"CatchLocation"[]}{"CatchTrainer"[Name]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[56,15,15]}{"Attack2"[58,5,5]}{"Attack3"[326,15,15]}{"Attack4"[399,15,15]}{"EVs"[4,0,0,252,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon5|{"Pokemon"[709]}{"Experience"[1000000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[2009]}{"ItemData"[]}{"NickName"[Trevenant]}{"Level"[100]}{"OT"[00000]}{"Ability"[139]}{"Status"[]}{"Nature"[23]}{"CatchLocation"[]}{"CatchTrainer"[Name]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[73,20,20]}{"Attack2"[532,15,15]}{"Attack3"[164,1,1]}{"Attack4"[261,10,10]}{"EVs"[252,4,0,0,252,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon6|{"Pokemon"[660]}{"Experience"[1000000]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Diggersby]}{"Level"[100]}{"OT"[00000]}{"Ability"[53]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Name]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[255]}{"isShiny"[0]}{"Attack1"[216,15,15]}{"Attack2"[89,5,5]}{"Attack3"[528,10,10]}{"Attack4"[369,5,5]}{"EVs"[4,252,0,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Items|
+Gender|-1
+AI|0
+IntroSequence|Blue,Blue
+IntroType|0

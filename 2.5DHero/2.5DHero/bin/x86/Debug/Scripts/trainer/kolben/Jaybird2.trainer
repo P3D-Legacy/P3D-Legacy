@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Jaybird
+TrainerClass|Pokémon Trainer
+Money|5000
+IntroMessage|
+OutroMessage|Mooooooooooo?
+DefeatMessage|
+TextureID|9
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|{"Pokemon"[134]}{"Experience"[1000000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[146]}{"ItemData"[]}{"NickName"[Vaporeon]}{"Level"[70]}{"OT"[00000]}{"Ability"[11]}{"Status"[]}{"Nature"[5]}{"CatchLocation"[]}{"CatchTrainer"[Jaybird]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[1]}{"Attack1"[503,15,15]}{"Attack2"[58,5,5]}{"Attack3"[182,30,30]}{"Attack4"[273,20,20]}{"EVs"[252,0,252,4,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon2|{"Pokemon"[251]}{"Experience"[1059860]}{"Gender"[2]}{"EggSteps"[0]}{"Item"[146]}{"ItemData"[]}{"NickName"[Celebi]}{"Level"[70]}{"OT"[00000]}{"Ability"[30]}{"Status"[]}{"Nature"[23]}{"CatchLocation"[]}{"CatchTrainer"[Jaybird]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[86,10,10]}{"Attack2"[369,5,5]}{"Attack3"[428,15,15]}{"Attack4"[105,30,30]}{"EVs"[252,0,0,0,220,36]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon3|{"Pokemon"[715]}{"Experience"[1000000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[82]}{"ItemData"[]}{"NickName"[Noivern]}{"Level"[68]}{"OT"[00000]}{"Ability"[151]}{"Status"[]}{"Nature"[11]}{"CatchLocation"[]}{"CatchTrainer"[Jaybird]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[403,15,15]}{"Attack2"[434,15,15]}{"Attack3"[369,5,5]}{"Attack4"[53,30,30]}{"EVs"[0,4,0,252,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon4|{"Pokemon"[429]}{"Experience"[800000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Mismagius]}{"Level"[68]}{"OT"[00000]}{"Ability"[26]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[]}{"CatchTrainer"[Jaybird]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[347,15,15]}{"Attack2"[220,5,5]}{"Attack3"[412,15,15]}{"Attack4"[247,10,10]}{"EVs"[4,0,0,252,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon5|{"Pokemon"[181]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[512]}{"ItemData"[]}{"NickName"[Ampharos]}{"Level"[72]}{"OT"[00000]}{"Ability"[9]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[]}{"CatchTrainer"[Jaybird]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[406,10,10]}{"Attack2"[97,30,30]}{"Attack3"[435,15,15]}{"Attack4"[521,20,20]}{"EVs"[252,0,0,252,0,4]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon6|{"Pokemon"[663]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[506]}{"ItemData"[]}{"NickName"[Talonflame]}{"Level"[71]}{"OT"[00000]}{"Ability"[177]}{"Status"[]}{"Nature"[13]}{"CatchLocation"[]}{"CatchTrainer"[Jaybird]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[394,10,10]}{"Attack2"[413,10,10]}{"Attack3"[369,5,5]}{"Attack4"[355,5,5]}{"EVs"[4,252,0,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Items|14,14
+Gender|0
+AI|0
+IntroSequence|Green,Violet
+IntroType|11

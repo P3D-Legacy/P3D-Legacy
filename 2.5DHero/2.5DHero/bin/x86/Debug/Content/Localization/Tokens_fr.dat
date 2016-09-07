@@ -1,0 +1,641 @@
+language_name,Français
+---
+MainMenuScreen:
+main_menu_continue,Continue
+main_menu_load_game,Charger partie
+main_menu_new_game,Nouvelle partie
+main_menu_quit_game,Quitter
+LoadScreen:
+load_menu_name,Nom  
+load_menu_badges,Badges
+load_menu_location,Lieu
+load_menu_time,Temps
+load_menu_back,Retour
+load_menu_load,Charger
+load_menu_delete,Supprimer
+DeleteScreen:
+delete_menu_delete_confirm,Do you really want to delete the save
+delete_menu_delete,Supprimer
+delete_menu_cancel,Annuler
+LanguageScreen:
+language_menu_apply,Appliquer
+language_menu_back,Retour
+---
+Pausescreen:
+pause_menu_title,Menu
+pause_menu_back_to_game,Retour au jeu
+pause_menu_disconnect,déconnexion
+pause_menu_quit_to_menu,Quitter
+---
+IngameMenu:
+game_menu_pokedex,Pokédex
+game_menu_party,Pokémon
+game_menu_bag,Sac
+game_menu_trainer_card,<playername>
+game_menu_save,Sauvegarder
+game_menu_options,Options
+game_menu_exit,Sortir du Menu
+---
+InventoryScreen:
+inventory_menu_bag,Sac
+inventory_menu_backadvice,Appuyer sur E pour sortir
+inventory_menu_items,Objet
+inventory_menu_description,Description
+---
+NewGameScreen:
+new_game_oak_1,Bonjour!~Désolé de l'attente!*Bienvenu dans le monde~des POkéMON!*Mon nom est CHEN.~Mais on m'appelle le~PROF.POKéMON*Ce monde est peuplé de créature appelées POKéMON.
+new_game_oak_2*Humains et POKéMON vivent~en parfaite harmonie....~Certain jouent avec les~Pokémon,~d'autre font des combats~avec eux.*Mais il reste encore~beaucoup à apprendre sur~nos amis les POkéMON.~De nombreux mystères planent~à leur sujet.*Et c'est pourquoi j'étudie~les POKéMON tous les jours.*Heu....c'est quoi ton nom déjà?
+new_game_oak_3,~ta quête est sur le point~de commencer?*Joies et périls paveront ta route....~Un monde de rêve, de danger et de POKéMON~t'attend!En avant!*A plus tard!
+new_game_oak_weird_name_1,Bon! donc ton nom est~
+new_game_oak_weird_name_2,!*Hum c'est un~nom bizzare.
+new_game_oak_known_name_1,Bon! donc ton nom est~
+new_game_oak_known_name_2,!*Hm je suis sur d'avoir~entendu ce nom avant.
+new_game_oak_same_name_1,Hey nous avons le même nom.*Mon nom est aussi~
+new_game_oak_same_name_2,!
+new_game_oak_name_1,Bon! donc ton nom est~
+new_game_oak_name_2,!
+new_game_your_name,Ton nom
+new_game_choose_skin,Choisis ton personnage
+new_game_name_too_short,Ce nom est trop court
+---
+MapScreen:
+map_screen_cities,Ville
+map_screen_routes,Routes
+map_screen_places,Places
+---
+PokedexScreen:
+pokedex_screen_seen,Vu
+pokedex_screen_obtained,Obtenu
+pokedex_screen_rare,Rare
+pokedex_screen_backadvice,Appuie sur E pour sortir
+---
+PokemonScreen:
+pokemon_screen_choose_a_pokemon,Choisie un Pokémon
+pokemon_screen_backadvice,Appuie sur E pour sortir
+pokemon_screen_item_give,Donner
+pokemon_screen_item_take,Prendre
+pokemon_screen_item_back,Annuler
+pokemon_screen_doesnt_hold_item,~ne tien pas d'objet.
+pokemon_screen_take_item_1,Prend 
+pokemon_screen_take_item_2, depuis~
+pokemon_screen_take_item_3,~et le met dans le~
+pokemon_screen_take_item_4, sac!
+pokemon_screen_give_item_1,Donne 
+pokemon_screen_give_item_2, à~
+pokemon_screen_give_item_3,
+pokemon_screen_give_item_4,~et le met 
+pokemon_screen_give_item_5,~dans l'inventaire.
+pokemon_screen_summary,Sommaire
+pokemon_screen_switch,Changer
+pokemon_screen_item,Objet
+pokemon_screen_back,Retour
+pokemon_screen_EMPTY,VIDE
+---
+Pokemon Status Screen:
+All pages:
+poke_status_screen_nature,Nature
+poke_status_screen_backadvice,Appuie sur E pour sortir
+poke_status_screen_closeadvice,Appuie sur E pour fermer le menu
+poke_status_screen_number,# 
+Page 1:
+poke_status_screen_all_exp,All Exp
+poke_status_screen_nxt_lv,Prochain NV.
+poke_status_screen_stats_page,Stats page
+Page 2:
+poke_status_screen_OT,ID
+poke_status_screen_Item,Objet
+poke_status_screen_no_item,Pas d'objet
+poke_status_screen_ability,Capacités
+poke_status_screen_details_page,Détails
+Page 3:
+poke_status_screen_power,Puissance
+poke_status_screen_accuracy,Précision
+poke_status_screen_moves_page,Page des Attaques
+---
+Trainer Card Screen:
+trainer_screen_trainer_card,Carte de dresseur
+trainer_screen_name,Nom
+trainer_screen_points,Points
+trainer_screen_money,Argent
+trainer_screen_pokedex,Pokédex
+trainer_screen_time,Temps
+trainer_screen_collected_badges,Collection de badges
+trainer_screen_badge,badge
+trainer_screen_backadvice,Appuie sur E pour sortir
+trainer_screen_empty_badge,???
+---
+Save Screen:
+save_screen_title,Veux-tu sauvergarder ta progression?
+save_screen_name,Nom
+save_screen_badges,Badges
+save_screen_money,Argent
+save_screen_time,Temps
+save_screen_yes,Oui
+save_screen_no,Non
+save_screen_success,Sauvegarde réussi!
+---
+Options Screen:
+option_screen_title,Options
+option_screen_warning,Les options ne sont pas encore sauvegarder. Descend et choisis "Sauver les options".
+option_screen_backadvice,Appuie sur E pour sortir
+option_screen_description,Description
+option_screen_textspeed,Vitesse du texte
+option_screen_textspeed_description,Change la vitesse de défilement du texte.
+option_screen_fov,FOV
+option_screen_fov_description,Le champs de vue. Plus la valeur est grande,~plus on peut voire loin.~Attention: Une trop grande valeur peut causer des ralentissements du jeu.
+option_screen_mousespeed,Vitesse de la souris
+option_screen_mousespeed_description,La vitesse de la souris fait varier la vitesse à lequel la caméra se déplace.
+option_screen_volume,Volume
+option_screen_volume_description,Volume de la musique de fond.~Ce changement concerne tout les sauvegardes.
+option_screen_render_distance,Distance de vue
+option_screen_render_distance_tiny,Minuscule
+option_screen_render_distance_short,Cour
+option_screen_render_distance_normal,Normal
+option_screen_render_distance_far,Loin
+option_screen_render_distance_extreme,Extreme
+option_screen_render_distance_description,La distance de vue détermine,~la distance que l'on peut voire.~En réduissant la distance, cela augmente le nombre de FPS.
+option_screen_graphics,Graphique
+option_screen_graphics_fancy,Lent
+option_screen_graphics_fast,Rapide
+option_screen_graphics_description,Affiche ou non les objets au loin.~En réduisant cette option, cela permet d'augmenter le nombre de FPS.~Ce réglage est pour toute les sauvegardes du jeu.
+option_screen_offset_map_quality,Offset map quality
+option_screen_offset_map_off,Off
+option_screen_offset_map_quality_description,Régle la qualité du offset maps.~Les détails et les raffraichisements du offset maps augmente avec la valeur.~Régle la valeur sur 0 pour prévenir les lag du au mode OFFSET MAPs.
+option_screen_animations_in_battle,Animations durant les combats
+option_screen_animations_in_battle_no,Non
+option_screen_animations_in_battle_attacks_off,Animations désactivés
+option_screen_animations_in_battle_yes,Oui
+option_screen_animations_in_battle_description,Détermine si le jeu affiche les animations des attaques ou pas.
+option_screen_difficulty,Difficulté
+option_screen_difficulty_description,Régle le niveau de difficulté du jeu.
+option_screen_battle_style,Choix de bataille
+option_screen_battle_style_shift,Non
+option_screen_battle_style_set,oui
+option_screen_battle_style_description,Choix de bataille non: Le jeu ne demande pas si vous voulez changer de POKéMON après un ennemie K.O! Choix de bataille Oui: Vous pouvez changer de POKéMON après avoir vaincu un POKéMON adverse.
+option_screen_reset_options,Options par défaut.
+option_screen_reset_options_description,Remise à défaut de toute les options.
+option_screen_save_options,Sauver les options.
+option_screen_save_options_description,Sauve les options et ferme le menu.
+option_screen_close_menu,Fermer le menu.
+option_screen_close_menu_description,Ferme le menu mais ne sauve pas les options.
+---
+Item Detail Screen:
+item_detail_screen_use,Utiliser
+item_detail_screen_give,Donner
+item_detail_screen_trash,Jeter
+item_detail_screen_back,Retour
+item_detail_screen_give_item,Donner
+---
+Apricorn Screen:
+apricorn_screen_apricorns,Noigrume
+apricorn_screen_producing,Je fabrique des Balls en ce moment.~Reviens plus tard.
+apricorn_screen_backadvice,Appuie sur E pour sortir
+apricorn_screen_choose_apricorns,Choisis les Noigrumes que tu veux transformer en Balls.
+apricorn_screen_ok,OK
+apricorn_screen_clear,Tout enlever
+apricorn_screen_take,Prendre
+apricorn_screen_ready,J'ai fini. Voici le résultat de mon travail:
+apricorn_screen_obtain, obtient
+---
+Network Screen:
+network_screen_isonline,Vous êtes déjà dans une partie en ligne! ~Fermer la connexion pour~lancer une nouvelle partie ou se connecter encore!~~~Appuie sur E pour sortir!
+network_screen_header,Partie en Co-Op
+network_screen_main_header,Tu peux soit héberger ou rejoindre une partie pour jouer avec tes amis
+network_screen_main_join,Rejoindre
+network_screen_main_host,Héberger
+network_screen_main_close,Fermer
+network_screen_join_header,Joindre une partie:~Entre l'IP de la machine qui accueille la partie.
+network_screen_join_cancel,Annuler
+network_screen_join_join,Rejoindre
+network_screen_host_header,Héberger une partie:~tu es sur le point d'ouvrir la partie~en ligne pour que tes amis te rejoigne.
+network_screen_host_cancel,Annuler
+network_screen_host_host,Héberger
+---
+Donation screen:
+donation_screen_donators,Donateur
+donation_screen_backadvice,Appuie sur E pour sortir
+---
+Blackout Screen:
+black_out_screen_line1,Tu n'as plus de POKéMON en Forme!
+black_out_screen_line2,Tu sera transporter 
+black_out_screen_line3,au plus proche centre POKéMON
+black_out_screen_line4,pour soigner les blessures
+black_out_screen_line5,de tes POKéMON.
+---
+Badges:
+badge_Boulder,Roche
+badge_Cascade,Cascade
+badge_Thunder,Foudre
+badge_Rainbow,Prisme
+badge_Soul,âme
+badge_Marsh,Marais
+badge_Volcano,Volcan
+badge_Earth,Terre
+badge_Zephyr,Zéphyr
+badge_Hive,Essaim
+badge_Plain,Plaine
+badge_Fog,Brume
+badge_Storm,Choc
+badge_Mineral,Minéral
+badge_Glacier,Glacier
+badge_Rising,Lever
+---
+Regions:
+Johto,Johto
+Kanto,Kanto
+---
+Places:
+Places_???,???
+
+Towns:
+Places_New Bark Town,Bourg Geon
+Places_Cherrygrove City,Ville Griotte
+Places_Violet City,Mauville
+Places_Azalea Town,Ecorcia
+Places_Goldenrod City,Doublonville
+Places_Ecruteak City,Rosalia
+Places_Olivine City,Oliville
+Places_Cianwood City,Irisia
+Places_Mahogany Town,Acajou
+Places_Blackthorn City,Ébènelle
+Places_Lavender Town,Lavandia
+
+Special Houses:
+Places_Gate,Porte
+Places_Pokemon Center,Centre Pokémon
+Places_Pokemon Mart,Magasin Pokémon
+Places_Elms Lab,Labo du Prof.Orme
+Places_Azalea Town Gym,Arène d'Ecorcia
+Places_Violet City Gym,Arène de Mauville
+Places_Your House,Ta maison
+Places_Your Room,Ta chambre
+
+Dungeons:
+Places_Ilex Forest,Bois aux chênes
+Places_Dark Cave,Antre noir
+Places_Ruins of Alph,Ruines Alpha
+Places_Slowpoke Well,Puit Ramoloss
+Places_Sprout Tower,Tour chétiflor
+Places_Union Cave,Cave Jumelle
+Places_Mt. Mortar,Mont Creuset
+Places_Bell Tower,Tour Carillon
+Places_Burned Tower,Tour Cendrée
+Places_Glitter Lighthouse,Phare
+Places_Ice Path,Route de glace
+Places_National Park,Parc naturel
+Places_Whirl Islands,Tourb'Îles
+Places_Lake of Rage,Lac Colère
+
+Routes:
+Places_Route 1,Route 1
+Places_Route 2,Route 2
+Places_Route 3,Route 3
+Places_Route 4,Route 4
+Places_Route 5,Route 5
+Places_Route 6,Route 6
+Places_Route 7,Route 7
+Places_Route 8,Route 8
+Places_Route 9,Route 9
+Places_Route 10,Route 10
+Places_Route 11,Route 11
+Places_Route 12,Route 12
+Places_Route 13,Route 13
+Places_Route 14,Route 14
+Places_Route 15,Route 15
+Places_Route 16,Route 16
+Places_Route 17,Route 17
+Places_Route 18,Route 18
+Places_Route 19,Route 19
+Places_Route 20,Route 20
+Places_Route 21,Route 21
+Places_Route 22,Route 22
+Places_Route 23,Route 23
+Places_Route 24,Route 24
+Places_Route 25,Route 25
+Places_Route 26,Route 26
+Places_Route 27,Route 27
+Places_Route 28,Route 28
+Places_Route 29,Route 29
+Places_Route 30,Route 30
+Places_Route 31,Route 31
+Places_Route 32,Route 32
+Places_Route 33,Route 33
+Places_Route 34,Route 34
+Places_Route 35,Route 35
+Places_Route 36,Route 36
+Places_Route 37,Route 37
+Places_Route 38,Route 38
+Places_Route 39,Route 39
+Places_Route 40,Route 40
+Places_Route 41,Route 41
+Places_Route 42,Route 42
+Places_Route 43,Route 43
+Places_Route 44,Route 44
+Places_Route 45,Route 45
+Places_Route 46,Route 46
+---
+Item categories:
+item_category_Standard,Standard
+item_category_Medicine,Soins
+item_category_Machines,Machines
+item_category_Pokéballs,Pokéballs
+item_category_Plants,Plantes
+item_category_KeyItems,Objets cléfs
+---
+GameMessages:
+game_message_screenshot,Screenshot sauvergardé
+game_message_screenshot_failed,Screenshot non pris
+game_message_fullscreen_on,Mode pleine écran
+game_message_fullscreen_off,Mode fenêtré
+game_message_third_person_on,Mode troisième personne.
+game_message_third_person_off,Mode première personne.
+game_message_free_camera_on,Mouvements libres de la caméra activé.
+game_message_free_camera_off,Mouvement libress de la caméra désactivé.
+game_message_music_on,Musique activé.
+game_message_music_off,Musique désactivé.
+---
+Online:
+game_message_close_connection,Tu as fermé la partie en CO-OP.
+game_message_disconncet,Tu t'es déconnecté de la partie en ligne.
+game_message_cannot_connect_client_1,Impossible de rejoindre (
+game_message_cannot_connect_client_2,)!
+game_message_client_connect_1,Tu rejoins la partie (
+game_message_client_connect_2,)!
+game_message_client_host_closed_1,L'hôte (
+game_message_client_host_closed_2,) a fermé la connection.
+game_message_client_outdated_newer_version,t'as version du jeu n'est pas compatible avec la version de ton ami.
+game_message_host_session_started,tu (host)à commencer une partie en CO-OP.
+game_message_host_outdated_newer_version,t'as version du jeu n'est pas compatible avec la version de ton ami.
+game_message_host_client_accept,Un jour à rejoins la partie!
+game_message_host_client_disconnect,Le serveur est déconnecter, la partie en CO-OP prend fin.
+---
+General:
+HP,HP
+PP,PP
+Lv.,Lv.
+Level,Niveau
+Attack,Attaque
+Defense,Défense
+Special_Attack,Spécial Attaque
+Special_Defense,Spécial Défense
+Speed,Vitesse
+---
+Pokemon:
+pokemon_name_Bulbasaur,Bulbasaur
+pokemon_name_Ivysaur,Herbizarre
+pokemon_name_Venusaur,Florizarre
+pokemon_name_Charmander,Salameche
+pokemon_name_Charmeleon,Reptincelle
+pokemon_name_Charizard,Dracaufeu
+pokemon_name_Squirtle,Carapuce
+pokemon_name_Wartortle,Carabaffe
+pokemon_name_Blastoise,Tortank
+pokemon_name_Caterpie,Chenipan
+pokemon_name_Metapod,Chrysacier
+pokemon_name_Butterfree,Papilusion
+pokemon_name_Weedle,Aspicot
+pokemon_name_Kakuna,Coconfort
+pokemon_name_Beedrill,Dardargnan
+pokemon_name_Pidgey,Roucoul
+pokemon_name_Pidgeotto,Roucoups
+pokemon_name_Pidgeot,Roucarnage
+pokemon_name_Rattata,Rattata
+pokemon_name_Raticate,Rattatac
+pokemon_name_Spearow,Piafabec
+pokemon_name_Fearow,Rapasdepic
+pokemon_name_Ekans,Abo
+pokemon_name_Arbok,Arbok
+pokemon_name_Pikachu,Pikachu
+pokemon_name_Raichu,Raichu
+pokemon_name_Sandshrew,Sabelette
+pokemon_name_Sandshlash,SAblaireau
+pokemon_name_Nidoran,Nidoran
+pokemon_name_Nidorina,Nidorina
+pokemon_name_Nidoqueen,Nidoqueen
+pokemon_name_Nidorino,Nidorino
+pokemon_name_Nidoking,Nidoking
+pokemon_name_Clefairy,Mélofée
+pokemon_name_Clefable,Mélodelfe
+pokemon_name_Vulpix,Goupix
+pokemon_name_Ninetails,Feunard
+pokemon_name_Jigglypuff,Roudoudou
+pokemon_name_Wigglytuff,Grodoudou
+pokemon_name_Zubat,Nosferapti
+pokemon_name_Golbat,Nosferalto
+pokemon_name_Oddish,Mysterbe
+pokemon_name_Gloom,Ortide
+pokemon_name_Vileplume,Rafflesia
+pokemon_name_Paras,Paras
+pokemon_name_Parasect,Parasect
+pokemon_name_Venonat,Mimitoss
+pokemon_name_Venomoth,Aeromite
+pokemon_name_Diglett,Taupiqueur
+pokemon_name_Dugtrio,Triopiquer
+pokemon_name_Meowth,Miaous
+pokemon_name_Persian,Persian
+pokemon_name_Psyduck,Psykokwak
+pokemon_name_Golduck,Akwakwak
+pokemon_name_Mankey,Ferosinge
+pokemon_name_Primeape,Colossinge
+pokemon_name_Growlithe,Caninos
+pokemon_name_Arcanine,Arcanin
+pokemon_name_Poliwag,Ptitard
+pokemon_name_Poliwhirl,Tetarte
+pokemon_name_Poliwrath,Tartard
+pokemon_name_Abra,Abra
+pokemon_name_Kadabra,Kadabra
+pokemon_name_Alakazam,Alakazam
+pokemon_name_Machop,Machoc
+pokemon_name_Machoke,Machopeur
+pokemon_name_Machamp,Mackogneur
+pokemon_name_Bellsprout,Chetiflor
+pokemon_name_Weepinbell,Boustiflor
+pokemon_name_Victreebel,Empoflor
+pokemon_name_Tentacool,Tentacool
+pokemon_name_Tentacruel,Tentacruel
+pokemon_name_Geodude,Racaillou
+pokemon_name_Graveler,Gravalanch
+pokemon_name_Golem,Golem
+pokemon_name_Ponyta,Ponyta
+pokemon_name_Rapidash,Galopa
+pokemon_name_Slowpoke,Ramoloss
+pokemon_name_Slowbro,Flagadoss
+pokemon_name_Magnemite,Magneti
+pokemon_name_Magneton,Magneton
+pokemon_name_Farfetch'd,Carnapoireau
+pokemon_name_Doduo,Doduo
+pokemon_name_Dodrio,Dodrio
+pokemon_name_Seel,Otaria
+pokemon_name_Dewgong,Lamantine
+pokemon_name_Grimer,Tadmorv
+pokemon_name_Muk,Grotadmorv
+pokemon_name_Shellder,Kokiyas
+pokemon_name_Cloyster,Crustabri
+pokemon_name_Gastly,Fantominus
+pokemon_name_Haunter,Spectrum
+pokemon_name_Gengar,Ectoplasma
+pokemon_name_Onix,Onix
+pokemon_name_Drowzee,Soporifik
+pokemon_name_Hypno,Hypnomade
+pokemon_name_Krabby,Krabby
+pokemon_name_Kingler,Kraboss
+pokemon_name_Voltorb,Voltorbe
+pokemon_name_Electrode,Electrode
+pokemon_name_Exeggcute,Noeunoeuf
+pokemon_name_Exeggutor,Noadkoko
+pokemon_name_Cubone,Osselait
+pokemon_name_Marowak,Ossatueru
+pokemon_name_Hitmonlee,Kicklee
+pokemon_name_Hitmonchan,Tygnon
+pokemon_name_Lickitung,Excelangue
+pokemon_name_Koffing,Smogo
+pokemon_name_Weezing,Smogogo
+pokemon_name_Rhyhorn,Rhinocorne
+pokemon_name_Rhydon,Rhinoferos
+pokemon_name_Chansey,Leveinard
+pokemon_name_Tangela,saquedeneu
+pokemon_name_Kangaskhan,Kangourex
+pokemon_name_Horsea,Hypotrempe
+pokemon_name_Seedra,Hypocean
+pokemon_name_Goldeen,Poissirene
+pokemon_name_Seaking,Possoroy
+pokemon_name_Staryu,Stari
+pokemon_name_Starmie,Staross
+pokemon_name_Mr. Mime,Mr.Mime
+pokemon_name_Scyther,Insecateur
+pokemon_name_Jynx,Lippoutou
+pokemon_name_Electabuzz,Elektec
+pokemon_name_Magmar,Magmar
+pokemon_name_Pinsir,Scarabrute
+pokemon_name_Tauros,Tauros
+pokemon_name_Magikarp,Magicarpe
+pokemon_name_Gyarados,Leviator
+pokemon_name_Lapras,Lokhlass
+pokemon_name_Ditto,Metamorph
+pokemon_name_Eevee,Evoli
+pokemon_name_Vaporeon,Aquali
+pokemon_name_Jolteon,Voltali
+pokemon_name_Flareon,Pyroli
+pokemon_name_Porygon,Porygon
+pokemon_name_Omanyte,Amonita
+pokemon_name_Omastar,Amonistar
+pokemon_name_Kabuto,Kabuto
+pokemon_name_Kabutops,Kabutops
+pokemon_name_Aerodactyl,Ptera
+pokemon_name_Snorlax,Ronflex
+pokemon_name_Articuno,Artikodin
+pokemon_name_Zapdos,Electhor
+pokemon_name_Moltres,Sulfura
+pokemon_name_Dratini,Minidraco
+pokemon_name_Dragonair,Draco
+pokemon_name_Dragonite,Dracolosse
+pokemon_name_Mewtwo,Mewtwo
+pokemon_name_Mew,Mew
+pokemon_name_Chikorita,Germignon
+pokemon_name_Bayleef,Macronium
+pokemon_name_Meganium,Meganium
+pokemon_name_Cyndaquil,Hericendre
+pokemon_name_Quilava,Feurison
+pokemon_name_Typhlosion,Typhlosion
+pokemon_name_Totodile,Kaiminus
+pokemon_name_Croconaw,Crocodil
+pokemon_name_Feraligatr,Aligatueur
+pokemon_name_Sentret,Founitte
+pokemon_name_Furret,Fouinar
+pokemon_name_Hoothoot,Hoothoot
+pokemon_name_Noctowl,Noarfang
+pokemon_name_Ledyba,Coxy
+pokemon_name_Ledian,Coxyclaque
+pokemon_name_Spinarak,Mimigal
+pokemon_name_Ariados,Migalos
+pokemon_name_Crobat,Nostenfer
+pokemon_name_Chinchou,Loupio
+pokemon_name_Lanturn,Lanturn
+pokemon_name_Pichu,Pichu
+pokemon_name_Cleffa,Melo
+pokemon_name_Igglybuff,Toudoudou
+pokemon_name_Togepi,Togepi
+pokemon_name_Togetic,Togetic
+pokemon_name_Natu,Natu
+pokemon_name_Xatu,Xatu
+pokemon_name_Mareep,Wattouat
+pokemon_name_Flaaffy,Lainergie
+pokemon_name_Ampharos,Pharamp
+pokemon_name_Bellossom,Joliflor
+pokemon_name_Marill,Marill
+pokemon_name_Azumarill,Azumarill
+pokemon_name_Sudowoodo,Simularbre
+pokemon_name_Politoed,Tarpaud
+pokemon_name_Hoppip,Granivol
+pokemon_name_Skiploom,Floravol
+pokemon_name_Jumpluff,Cotovil
+pokemon_name_Aipom,Capumain
+pokemon_name_Sunkern,Tournegrin
+pokemon_name_Sunflora,Héliatronc
+pokemon_name_Yanma,Yanma
+pokemon_name_Wooper,Axoloto
+pokemon_name_Quagsire,Maraistre
+pokemon_name_Espeon,Mentali
+pokemon_name_Umbreon,Noctali
+pokemon_name_Murkrow,Cornebre
+pokemon_name_Slowking,Roigada
+pokemon_name_Misdreavus,Feuforeve
+pokemon_name_Unown,Zarbi
+pokemon_name_Wobbuffet,Qulbutoke
+pokemon_name_Girafarig,Girafarig
+pokemon_name_Pineco,Pomdepik
+pokemon_name_Forretress,Foretress
+pokemon_name_Dunsparce,Insolourdo
+pokemon_name_Gligar,Scorplane
+pokemon_name_Steelix,Steelix
+pokemon_name_Snubbull,Snubbull
+pokemon_name_Granbull,Granbull
+pokemon_name_Qwilfish,Qwilfish
+pokemon_name_Scizor,Cizavox
+pokemon_name_Shuckle,caratroc
+pokemon_name_Heracross,Scarhino
+pokemon_name_Sneasel,Farfuret
+pokemon_name_Teddiursa,Teddiursa
+pokemon_name_Ursaring,Ursaring
+pokemon_name_Slugma,Limagma
+pokemon_name_Magcargo,Volcaropod
+pokemon_name_Swinub,Marcacrin
+pokemon_name_Piloswine,Cochignon
+pokemon_name_Corsola,Corayon
+pokemon_name_Remoraid,Remoraid
+pokemon_name_Octillery,Octillery
+pokemon_name_Delibird,Cadoizo
+pokemon_name_Mantine,MDemanta
+pokemon_name_Skarmory,Airmure
+pokemon_name_Houndour,Malosse
+pokemon_name_Houndoom,Demolosse
+pokemon_name_Kingdra,Hyporoi
+pokemon_name_Phanpy,Phanpy
+pokemon_name_Donphan,Donphan
+pokemon_name_Porygon2,Porygon2
+pokemon_name_Stantler,Cerfrousse
+pokemon_name_Smeargle,Queulorior
+pokemon_name_Tyrogue,Debugant
+pokemon_name_Hitmontop,Kapoera
+pokemon_name_Smoochum,Lippouti
+pokemon_name_Elekid,Elekid
+pokemon_name_Magby,Magby
+pokemon_name_Miltank,Ecremeuh
+pokemon_name_Blissey,Leuphorie
+pokemon_name_Raikou,Raikou
+pokemon_name_Entei,Entei
+pokemon_name_Suicune,Suicune
+pokemon_name_Larvitar,Embrylex
+pokemon_name_Pupitar,Ymphect
+pokemon_name_Tyranitar,Tyranocif
+pokemon_name_Lugia,Lugia
+pokemon_name_Ho-Oh,Ho-Oh
+pokemon_name_Celebi,Celebi
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Story translation:
+---
+New Bark Town:
+---
+barktown.dat:
+---
+barktown_player_house,<playername>'s House
