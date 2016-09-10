@@ -16,7 +16,7 @@
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Hidden Power"
-            Me.Description = "A unique attack that varies in type and intensity depending on the Pokémon using it."
+            Me.Description = "A unique attack that varies in type depending on the Pokémon using it."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
