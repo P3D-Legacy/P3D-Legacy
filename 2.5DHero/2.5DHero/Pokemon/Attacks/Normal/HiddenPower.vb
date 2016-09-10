@@ -11,7 +11,7 @@
             Me.OriginalPP = 15
             Me.CurrentPP = 15
             Me.MaxPP = 15
-            Me.Power = 70
+            Me.Power = 60
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
