@@ -60,6 +60,7 @@
             BattleScreen.Battle.LowerStat(own, own, BattleScreen, "Special Defense", 1, "", "move:shellsmash")
             BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 2, "", "move:shellsmash")
             BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Special Attack", 2, "", "move:shellsmash")
+            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Speed", 2, "", "move:shellsmash")
         End Sub
 
     End Class
