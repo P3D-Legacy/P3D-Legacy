@@ -7,7 +7,7 @@ Namespace BattleSystem.Moves.Water
         Public Sub New()
             '#Definitions
             Me.Type = New Element(Element.Types.Water)
-            Me.ID = 503
+            Me.ID = 592
             Me.OriginalPP = 5
             Me.CurrentPP = 5
             Me.MaxPP = 5
