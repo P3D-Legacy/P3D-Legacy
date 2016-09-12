@@ -460,7 +460,7 @@ Public Class JoinServerScreen
                     Dim Stream As NetworkStream = client.GetStream()
 
                     Dim streamr As StreamReader = New StreamReader(Stream)
-                    Dim streamw As StreamWriter = New StreamWriter(Stream)
+                    Dim streamw As StreamWriterLock = New StreamWriterLock(Stream)
 
                     streamw.WriteLine(New Servers.Package(Servers.Package.PackageTypes.ServerDataRequest, -1, Servers.Package.ProtocolTypes.TCP, "r").ToString())
                     streamw.Flush()

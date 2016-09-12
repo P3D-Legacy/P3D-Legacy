@@ -604,7 +604,7 @@ Namespace GameJolt
                 request.ContentType = "application/x-www-form-urlencoded"
                 request.ServicePoint.Expect100Continue = False
 
-                Dim writer As StreamWriter = New StreamWriter(request.GetRequestStream())
+                Dim writer As StreamWriterLock = New StreamWriterLock(request.GetRequestStream())
                 writer.Write(post)
                 writer.Close()
                 Dim response As HttpWebResponse = CType(request.GetResponse(), HttpWebResponse)

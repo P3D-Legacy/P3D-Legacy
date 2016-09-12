@@ -14,7 +14,7 @@ Namespace Servers
 
         Private _stream As NetworkStream
         Private _streamReader As StreamReader
-        Private _streamWriter As StreamWriter
+        Private _streamWriter As StreamWriterLock
 
         Private _receiveThread As Threading.Thread
 
@@ -69,7 +69,7 @@ Namespace Servers
                     'Send GameData package first:
                     Me._stream = Me._client.GetStream()
                     Me._streamReader = New StreamReader(Me._stream)
-                    Me._streamWriter = New StreamWriter(Me._stream)
+                    Me._streamWriter = New StreamWriterLock(Me._stream)
 
                     Core.ServersManager.PlayerManager.Reset()
                     Dim initialPlayerData As String = Core.ServersManager.PlayerManager.CreatePlayerDataPackage().ToString()
