@@ -67,6 +67,7 @@
                     End If
                 Next
             End If
+            i = i-1
             Return i
         End Function
 

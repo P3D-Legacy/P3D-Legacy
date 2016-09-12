@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Stealth Rock"
-            Me.Description = "he user lays a trap of levitating stones around the opposing team. The trap hurts opposing Pokémon that switch into battle."
+            Me.Description = "The user lays a trap of levitating stones around the opposing team. The trap hurts opposing Pokémon that switch into battle."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.AllFoes

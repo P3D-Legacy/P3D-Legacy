@@ -64,18 +64,22 @@
             End If
         End Sub
 
+        Public Overrides Function GetAccuracy(own As Boolean, BattleScreen As BattleScreen) As Integer
+            If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then
+                Return 100
+            ElseIf BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
+                Return 50
+            Else
+                Return Me.Accuracy
+            End If
+        End Function
+
         Public Overrides Function GetUseAccEvasion(own As Boolean, BattleScreen As BattleScreen) As Boolean
             If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then
                 Return False
+            Else
+                Return True
             End If
-            Return True
-        End Function
-
-        Public Overrides Function GetAccuracy(own As Boolean, BattleScreen As BattleScreen) As Integer
-            If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
-                Return 50
-            End If
-            Return Me.Accuracy
         End Function
 
     End Class

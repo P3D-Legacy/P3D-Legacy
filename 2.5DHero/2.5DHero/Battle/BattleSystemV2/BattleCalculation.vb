@@ -131,9 +131,11 @@
             Dim speed As Integer = CInt(p.Speed * GetMultiplierFromStat(p.StatSpeed)) 'Calculate the speed's basic value from the speed and the speed stat
 
             If own = True Then
-                If Core.Player.Badges.Contains(3) = True Then
-                    speed = CInt(speed + (speed * (1 / 8))) 'Add 1/8 of the speed if the player has the 3rd badge
-                End If
+               If BattleScreen.IsPVPBattle = False Then  
+                 If Core.Player.Badges.Contains(3) = True Then
+                        speed = CInt(speed + (speed * (1 / 8))) 'Add 1/8 of the speed if the player has the 3rd badge and it's not a PvP battle
+                    End If
+                End If    
             End If
 
             If p.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Paralyzed And p.Ability.Name.ToLower() <> "quick feet" Then
