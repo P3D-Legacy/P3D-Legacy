@@ -31,6 +31,11 @@
 
                 Case "getspecies"
 
+                Case "getname"
+                    Dim number As Integer = int(argument)
+                    If Pokemon.PokemonDataExists(number)
+                        return Pokemon.GetPokemonByID(number).GetName()
+                    End If
             End Select
 
             Return DEFAULTNULL
