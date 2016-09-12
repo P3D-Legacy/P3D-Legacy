@@ -94,6 +94,7 @@
         Public OwnLastMove As Attack = Nothing 'Last move used
         Public OwnSpikes As Integer = 0 'Trap move counter
         Public OwnStealthRock As Integer = 0 'Trap move counter
+        Public OwnStickyWeb As Integer = 0 'Trap move counter
         Public OwnToxicSpikes As Integer = 0 'Trap move counter
         Public OwnMist As Integer = 0 'Mist move counter
         Public OwnGuardSpec As Integer = 0 'Guard spec item counter
@@ -111,6 +112,7 @@
         'Opp stuff
         Public OppSpikes As Integer = 0
         Public OppStealthRock As Integer = 0
+        Public OppStickyWeb As Integer = 0
         Public OppToxicSpikes As Integer = 0
         Public OppMist As Integer = 0
         Public OppGuardSpec As Integer = 0
