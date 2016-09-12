@@ -1288,8 +1288,8 @@
                     returnMove = New Moves.Fire.FirePledge()
                 Case 520
                     returnMove = New Moves.Grass.GrassPledge()
-                    'Case 521
-                    'Volt Switch
+                Case 521
+                    returnMove = New Moves.Electric.VoltSwitch()
                 Case 522
                     returnMove = New Moves.Bug.StruggleBug()
                 Case 523
@@ -1430,8 +1430,8 @@
                     returnMove = New Moves.Normal.Confide()
                     'Case 591
                     'Diamond Storm
-                    'Case 592
-                    'Steam Eruption
+                Case 592
+                    returnMove = New Moves.water.SteamEruption()
                     'Case 593
                     'Hyperspace Hole
                 Case 594
