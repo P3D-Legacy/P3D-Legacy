@@ -5516,8 +5516,9 @@ endthisround:
                     End If
                 End If
 
+                'Spikes
                 If spikeAffected = True Then
-                    If .FieldEffects.OppSpikes > 0 And (p.Ability.Name.ToLower() <> "magic guard" Or .FieldEffects.CanUseAbility(True, BattleScreen, 1) = False) = True Then
+                    If .FieldEffects.OppSpikes > 0 And (p.Ability.Name.ToLower() <> "magic guard" Or BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen, 1) = False) Then
                         Dim spikeDamage As Double = 1D
                         Select Case .FieldEffects.OppSpikes
                             Case 1
@@ -5530,7 +5531,18 @@ endthisround:
                         ReduceHP(CInt(spikeDamage), True, False, BattleScreen, "The Spikes hurt " & p.GetDisplayName() & "!", "spikes")
                     End If
                 End If
+                
+                'Sticky Web
+                If spikeAffected = True Then
+                    If .FieldEffects.OppStickyWeb > 0 Then
+                        
+                        LowerStat(True, True, BattleScreen, "Speed", 1, "Sticky web lowered its speed.", "sticky web")
+    
 
+                    End If
+                End If
+
+                'Toxic Spikes
                 If spikeAffected = True Then
                     If .FieldEffects.OppToxicSpikes > 0 And p.Status = Pokemon.StatusProblems.None And p.Type1.Type <> Element.Types.Poison And p.Type2.Type <> Element.Types.Poison Then
                         Select Case .FieldEffects.OppToxicSpikes
@@ -5547,7 +5559,8 @@ endthisround:
                         End If
                     End If
                 End If
-
+                
+                'Stealth Rock
                 If rockAffected = True Then
                     If .FieldEffects.OppStealthRock > 0 And (p.Ability.Name.ToLower() <> "magic guard" Or BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen, 1) = False) Then
                         Dim rocksDamage As Double = 1D
