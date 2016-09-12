@@ -4871,6 +4871,7 @@ endthisround:
                             loseHP = currHP
                         End If
                         
+                        Dim addHP As Integer = loseHP
                         If Not .OwnPokemon.Item Is Nothing Then
                             If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
