@@ -44,6 +44,12 @@
         Me.CanChooseFainted = canChooseFainted
 
         MainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
+        BorderTexture1 = TextureManager.TextureRectangle(MainTexture, New Rectangle(0, 0, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
+        BorderTexture2 = TextureManager.TextureRectangle(MainTexture, New Rectangle(0, 128, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
+        BorderTexture3 = TextureManager.TextureRectangle(MainTexture, New Rectangle(48, 0, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
+        BorderTexture4 = TextureManager.TextureRectangle(MainTexture, New Rectangle(48, 48, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
+        BorderTexture5 = TextureManager.TextureRectangle(MainTexture, New Rectangle(0, 0, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
+
 
         Me.index = Player.Temp.PokemonScreenIndex
         Me.ChoosePokemon = ChoosePokemon
@@ -173,10 +179,8 @@
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
 
-        Dim CanvasTexture As Texture2D = TextureManager.TextureRectangle(MainTexture, New Rectangle(0, 0, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
-
-        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(60, 100, 800, 480))
-        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(60, 100, 480, 64))
+        Canvas.DrawImageBorder(BorderTexture1, 2, New Rectangle(60, 100, 800, 480))
+        Canvas.DrawImageBorder(BorderTexture1, 2, New Rectangle(60, 100, 480, 64))
         Core.SpriteBatch.DrawString(FontManager.InGameFont, Me.Title, New Vector2(142, 132), Color.Black)
         Core.SpriteBatch.Draw(Item.Texture, New Rectangle(78, 124, 48, 48), Color.White)
 
@@ -207,10 +211,8 @@
         TextBox.Draw()
     End Sub
 
+    Dim BorderTexture1 As Texture2D
     Private Sub DrawEmptyTile(ByVal i As Integer)
-        Dim BorderTexture As Texture2D
-        BorderTexture = TextureManager.TextureRectangle(MainTexture, New Rectangle(0, 0, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
-
         Dim p As Vector2
         Select Case i
             Case 0, 2, 4
@@ -222,29 +224,33 @@
         p.Y += 180
 
         With Core.SpriteBatch
-            .Draw(BorderTexture, New Rectangle(CInt(p.X), CInt(p.Y), 32, 96), New Rectangle(0, 0, 16, 48), Color.White)
+            .Draw(BorderTexture1, New Rectangle(CInt(p.X), CInt(p.Y), 32, 96), New Rectangle(0, 0, 16, 48), Color.White)
             For x = p.X + 32 To p.X + 288 Step 32
-                .Draw(BorderTexture, New Rectangle(CInt(x), CInt(p.Y), 32, 96), New Rectangle(16, 0, 16, 48), Color.White)
+                .Draw(BorderTexture1, New Rectangle(CInt(x), CInt(p.Y), 32, 96), New Rectangle(16, 0, 16, 48), Color.White)
             Next
-            .Draw(BorderTexture, New Rectangle(CInt(p.X) + 320, CInt(p.Y), 32, 96), New Rectangle(32, 0, 16, 48), Color.White)
+            .Draw(BorderTexture1, New Rectangle(CInt(p.X) + 320, CInt(p.Y), 32, 96), New Rectangle(32, 0, 16, 48), Color.White)
 
             .DrawString(FontManager.MiniFont, "EMPTY", New Vector2(CInt(p.X + 72), CInt(p.Y + 18)), Color.Black)
         End With
     End Sub
 
+    Dim BorderTexture2 As Texture2D
+    Dim BorderTexture3 As Texture2D
+    Dim BorderTexture4 As Texture2D
+    Dim BorderTexture5 As Texture2D
     Private Sub DrawPokemonTile(ByVal i As Integer, ByVal Pokemon As Pokemon)
         Dim BorderTexture As Texture2D
         If i = index Then
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
-                BorderTexture = TextureManager.TextureRectangle(MainTexture, New Rectangle(0, 128, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
+                BorderTexture = BorderTexture2
             Else
-                BorderTexture = TextureManager.TextureRectangle(MainTexture, New Rectangle(48, 0, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
+                BorderTexture = BorderTexture3
             End If
         Else
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
-                BorderTexture = TextureManager.TextureRectangle(MainTexture, New Rectangle(48, 48, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
+                BorderTexture = BorderTexture4
             Else
-                BorderTexture = TextureManager.TextureRectangle(MainTexture, New Rectangle(0, 0, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
+                BorderTexture = BorderTexture5
             End If
         End If
 
@@ -350,6 +356,14 @@
         Me.LearnAttack = a
         Me.LearnType = learnType
         Me.moveLearnArg = arg
+    End Sub
+
+    Protected Overrides Sub Finalize()
+        BorderTexture1.Dispose()
+        BorderTexture2.Dispose()
+        BorderTexture3.Dispose()
+        BorderTexture4.Dispose()
+        BorderTexture5.Dispose()
     End Sub
 
 End Class

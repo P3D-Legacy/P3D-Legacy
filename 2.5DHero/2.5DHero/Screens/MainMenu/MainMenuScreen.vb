@@ -77,6 +77,11 @@
         GetPacks()
 
         GameJolt.Emblem.ClearOnlineSpriteCache()
+        Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
+        texture1 = TextureManager.GetTexture("GUI\Logos\P3D")
+        texture2 = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
+        texture3 = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(48, 0, 48, 48), "")
+        texture4 = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
     End Sub
 
     Private Sub GetPacks(Optional ByVal reload As Boolean = False)
@@ -228,7 +233,6 @@
         Camera.Update()
         Level.Update()
         SkyDome.Update()
-        Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
 
         If Core.GameInstance.IsActive = True Then
             Select Case Me.menuIndex
@@ -264,6 +268,11 @@
     Dim blurEffect As Effect
 
 #Region "MainMenu"
+
+    Dim texture1 As Texture2D
+    Dim texture2 As Texture2D
+    Dim texture3 As Texture2D
+    Dim texture4 As Texture2D
 
     Public Overrides Sub Draw()
         'Core.GraphicsDevice.SetRenderTarget(renderTarget)
@@ -308,7 +317,7 @@
         End Select
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, GameController.DEVELOPER_NAME, New Vector2(7, Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(GameController.DEVELOPER_NAME).Y - 1), Color.Black)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, GameController.DEVELOPER_NAME, New Vector2(4, Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(GameController.DEVELOPER_NAME).Y - 4), Color.White)
-        Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Logos\P3D"), New Rectangle(CInt(Core.ScreenSize.Width / 2) - 260, 40, 500, 110), Color.White)
+        Core.SpriteBatch.DrawInterface(texture1, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 260, 40, 500, 110), Color.White)
 
         If Core.GameOptions.ShowDebug = 0 Then
             Dim s As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION
@@ -336,12 +345,12 @@
             End Select
 
             If i = mainmenuIndex Then
-                CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
+                CanvasTexture = texture2
             Else
                 If i < 2 And Saves.Count = 0 Or i = 0 And System.IO.Directory.Exists(GameController.GamePath & "\Save\autosave") = False Then
-                    CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(48, 0, 48, 48), "")
+                    CanvasTexture = texture3
                 Else
-                    CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
+                    CanvasTexture = texture4
                 End If
             End If
 

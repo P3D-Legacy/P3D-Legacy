@@ -80,6 +80,9 @@
         Me.Index = 0
         TextBox.reDelay = 0
         skinTexture = TextureManager.TextureRectangle(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))
+        texture0 = TextureManager.GetTexture("GUI\Menus\Menu")
+        texture1 = TextureManager.TextureRectangle(texture0, New Rectangle(112, 12, 1, 1))
+        texture2 = TextureManager.TextureRectangle(texture0, New Rectangle(113, 12, 1, 1))
 
         MusicManager.PlayMusic("nomusic")
     End Sub
@@ -204,6 +207,10 @@
         Index += 1
     End Sub
 
+    Dim texture0 As Texture2D
+    Dim texture1 As Texture2D
+    Dim texture2 As Texture2D
+
     Public Overrides Sub Draw()
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), currentBackColor)
 
@@ -236,9 +243,7 @@
 
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("new_game_choose_skin") & ":" & vbNewLine & skinNames(SkinIndex), New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
 
-                Dim sTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu")
-
-                Canvas.DrawScrollBar(New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), startSkins.Count, 1, SkinIndex, New Size(128, 4), True, TextureManager.TextureRectangle(sTexture, New Rectangle(112, 12, 1, 1)), TextureManager.TextureRectangle(sTexture, New Rectangle(113, 12, 1, 1)))
+                Canvas.DrawScrollBar(New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), startSkins.Count, 1, SkinIndex, New Size(128, 4), True, texture1, texture2)
         End Select
     End Sub
 
@@ -546,4 +551,9 @@
         Return Localization.GetString("new_game_oak_name_1") & name & Localization.GetString("new_game_oak_name_2")
     End Function
 
+    Protected Overrides Sub Finalize()
+        texture0.Dispose()
+        texture1.Dispose()
+        texture2.Dispose()
+    End Sub
 End Class

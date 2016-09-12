@@ -21,6 +21,8 @@
         End If
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
+        Me.CanvasTexture1 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 48, 48, 48))
+        Me.CanvasTexture2 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
 
         If Core.Player.IsGamejoltSave = True Then
             Me.canCreateAutosave = False
@@ -87,9 +89,9 @@
 
 #Region "MainMenu"
 
+    Dim CanvasTexture1 As Texture2D
+    Dim CanvasTexture2 As Texture2D
     Private Sub DrawMenu()
-        Dim CanvasTexture As Texture2D
-
         For i = 0 To 1
             Dim Text As String = ""
             Select Case i
@@ -100,12 +102,11 @@
             End Select
 
             If i = mainIndex Then
-                CanvasTexture = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 48, 48, 48))
+                Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
             Else
-                CanvasTexture = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
+                Canvas.DrawImageBorder(CanvasTexture2, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
             End If
 
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
             Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10, 256 + i * 128), Color.Black)
         Next
     End Sub
@@ -177,8 +178,6 @@
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 7, CInt(Core.ScreenSize.Height / 6.8) + 3 + 110), Color.Black)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 10, CInt(Core.ScreenSize.Height / 6.8) + 110), Color.White)
 
-        Dim CanvasTexture As Texture2D
-
         For i = 0 To 1
             Dim Text As String = ""
             Dim x As Integer = 0
@@ -192,12 +191,11 @@
             End Select
 
             If i = quitIndex Then
-                CanvasTexture = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 48, 48, 48))
+                Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180 + x, 320, 320, 64), True)
             Else
-                CanvasTexture = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
+                Canvas.DrawImageBorder(CanvasTexture2, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180 + x, 320, 320, 64), True)
             End If
 
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180 + x, 320, 320, 64), True)
             Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + x, 356), Color.Black)
         Next
     End Sub
@@ -281,4 +279,8 @@
         MusicManager.ForceVolumeUpdate()
     End Sub
 
+    Protected Overrides Sub Finalize()
+        CanvasTexture1.Dispose()
+        CanvasTexture2.Dispose()
+    End Sub
 End Class

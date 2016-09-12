@@ -15,6 +15,8 @@
         mainTexture = TextureManager.GetTexture("House", New Rectangle(83, 98, 10, 12))
 
         Me.scrollTexture = TextureManager.GetTexture("GUI\Menus\Menu")
+        texture1 = TextureManager.TextureRectangle(scrollTexture, New Rectangle(112, 12, 1, 1))
+        texture2 = TextureManager.TextureRectangle(scrollTexture, New Rectangle(113, 12, 1, 1))
 
         Dim l As New List(Of String)
         Dim oldL As List(Of String) = DonatorList.ToList()
@@ -44,6 +46,9 @@
         End If
     End Sub
 
+    Dim texture1 As Texture2D
+    Dim texture2 As Texture2D
+
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
         Core.SpriteBatch.Draw(mainTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 285, 0, 570, 680), Color.White)
@@ -59,13 +64,18 @@
         Next
 
         If DonatorList.Count > 13 Then
-            Canvas.DrawScrollBar(New Vector2(CInt(Core.windowSize.Width / 2) + 180, 100), DonatorList.Count, 13, OffsetY, New Size(4, 500), False, TextureManager.TextureRectangle(scrollTexture, New Rectangle(112, 12, 1, 1)), TextureManager.TextureRectangle(scrollTexture, New Rectangle(113, 12, 1, 1)))
+            Canvas.DrawScrollBar(New Vector2(CInt(Core.windowSize.Width / 2) + 180, 100), DonatorList.Count, 13, OffsetY, New Size(4, 500), False, texture1, texture2)
         End If
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2) - 180, 100), Color.Black)
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2) - 285, 0, 570, 57), New Color(56, 56, 56))
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("donation_screen_donators") & ": ", New Vector2(CInt(Core.windowSize.Width / 2) - FontManager.MainFont.MeasureString("Donators:").X / 2, 20), Color.White)
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("donation_screen_backadvice"), New Vector2(CInt(Core.windowSize.Width / 2) - FontManager.MainFont.MeasureString("Press E to close").X / 2, 640), Color.White)
+    End Sub
+
+    Protected Overrides Sub Finalize()
+        texture1.Dispose()
+        texture2.Dispose()
     End Sub
 
 End Class

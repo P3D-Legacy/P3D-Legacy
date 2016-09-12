@@ -18,6 +18,7 @@
 
     Public Sub New(ByVal currentScreen As Screen, ByVal p As Pokemon, ByVal OldStats() As Integer)
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
+        CanvasTexture1 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
         Me.PreScreen = currentScreen
         Me.Identification = Identifications.BattleGrowStatsScreen
 
@@ -32,14 +33,13 @@
         Me.OldStats = OldStats
     End Sub
 
+    Dim CanvasTexture1 As Texture2D
     Public Overrides Sub Draw()
         PreScreen.Draw()
 
-        Dim CanvasTexture As Texture2D = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
-
         Dim p As New Vector2(Core.windowSize.Width - (544), 32)
 
-        Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X), CInt(p.Y), 480, 352))
+        Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(CInt(p.X), CInt(p.Y), 480, 352))
 
         Core.SpriteBatch.Draw(Pokemon.GetMenuTexture(), New Rectangle(CInt(p.X + 20), CInt(p.Y + 20), 64, 64), Color.White)
         Core.SpriteBatch.DrawString(FontManager.InGameFont, Pokemon.GetDisplayName(), New Vector2(p.X + 90, p.Y + 32), Color.Black)
@@ -97,4 +97,7 @@
         End If
     End Sub
 
+    Protected Overrides Sub Finalize()
+        CanvasTexture1.Dispose()
+    End Sub
 End Class
