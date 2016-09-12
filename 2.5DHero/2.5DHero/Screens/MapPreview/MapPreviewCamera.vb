@@ -81,7 +81,7 @@
 
         Pitch += -RotationSpeed * dy
 
-        Pitch = MathHelper.Clamp(Pitch, -1.5, 1.5)
+        Pitch = MathHelper.Clamp(Pitch, -1.5f, 1.5f)
     End Sub
 
     Private Sub MoveCamera()

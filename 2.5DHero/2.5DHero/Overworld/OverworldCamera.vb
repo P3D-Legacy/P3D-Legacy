@@ -503,7 +503,7 @@
     End Sub
 
     Private Sub ClampPitch()
-        Pitch = MathHelper.Clamp(Pitch, -1.5, 1.5)
+        Pitch = MathHelper.Clamp(Pitch, -1.5f, 1.5f)
     End Sub
 
     'Changes the camera's pitch so you can see the stuff that is in front of you. Used when textboxes appear.

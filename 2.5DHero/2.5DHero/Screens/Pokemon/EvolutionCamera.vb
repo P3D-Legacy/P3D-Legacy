@@ -32,7 +32,7 @@
     Public Overrides Sub Update()
         Me.Ray = createRay()
 
-        Pitch = MathHelper.Clamp(Pitch, -1.5, 1.5)
+        Pitch = MathHelper.Clamp(Pitch, -1.5f, 1.5f)
 
         ScrollThirdPerson()
 
