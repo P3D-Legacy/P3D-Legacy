@@ -1374,8 +1374,8 @@
                     'Belch
                     'Case 563
                     'Rototiller
-                    'Case 564
-                    'Sticky Web
+                Case 564
+                    returnMove = New Moves.Bug.StickyWeb()
                     'Case 565
                     'Fell Stinger
                     'Case 566
