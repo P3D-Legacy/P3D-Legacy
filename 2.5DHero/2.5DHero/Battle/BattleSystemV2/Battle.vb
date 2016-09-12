@@ -4146,12 +4146,12 @@ endthisround:
                     End If
                 End If
 
-                If .FieldEffects.OwnLeechSeed > 0 Then 'LeechSeed
+                If .FieldEffects.OwnLeechSeed > 0 Then 'LeechSeed (Own pokemon seeded)
                     If .OwnPokemon.HP > 0 And .OppPokemon.HP > 0 And .OppPokemon.HP < .OppPokemon.MaxHP Then
                         Dim loseHP As Integer = CInt(Math.Ceiling( .OwnPokemon.MaxHP / 8))
                         Dim currHP As Integer = .OwnPokemon.HP
                         
-                        If loseHP > currHP
+                        If loseHP > currHP Then
                             loseHP = currHP
                         End If
                         
@@ -4858,11 +4858,15 @@ endthisround:
                     End If
                 End If
 
-                If .FieldEffects.OppLeechSeed > 0 Then 'LeechSeed
-                    If .OppPokemon.HP > 0 And .OwnPokemon.HP > 0 And .OwnPokemon.HP < .OppPokemon.MaxHP Then
-                        Dim loseHP As Integer = CInt(Math.Ceiling( .OppPokemon.HP / 8))
-
-                        Dim addHP As Integer = loseHP
+                If .FieldEffects.OppLeechSeed > 0 Then 'LeechSeed (opponent seeded)
+                    If .OppPokemon.HP > 0 And .OwnPokemon.HP > 0 And .OwnPokemon.HP < .OwnPokemon.MaxHP Then
+                        Dim loseHP As Integer = CInt(Math.Ceiling( .OppPokemon.MaxHP / 8))
+                        Dim currHP As Integer = .OppPokemon.HP
+                        
+                        If loseHP > currHP Then
+                            loseHP = currHP
+                        End If
+                        
                         If Not .OwnPokemon.Item Is Nothing Then
                             If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
