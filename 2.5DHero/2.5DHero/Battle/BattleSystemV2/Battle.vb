@@ -2659,9 +2659,9 @@ endthisround:
             End If
 
             If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                Dim val_aux As Integer = val
-                val = 0
-                Return LowerStat(own, own, BattleScreen, Stat, val_aux, message & vbNewLine & "Contrary reverted the stat change!", "contrary")
+                If cause <> "contrary" Then
+                    Return LowerStat(own, own, BattleScreen, Stat, val, message & vbNewLine & "Contrary reverted the stat change!", "contrary")
+                End If        
             End If
 
             If p.Ability.Name.ToLower() = "simple" Then
@@ -2864,9 +2864,9 @@ endthisround:
             End If
 
             If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                Dim val_aux2 As Integer = val
-                val = 0
-                Return RaiseStat(own, own, BattleScreen, Stat, val_aux2, message & vbNewLine & "Contrary reverted the stat change!", "contrary")
+                If cause <> "contrary" Then
+                    Return RaiseStat(own, own, BattleScreen, Stat, val, message & vbNewLine & "Contrary reverted the stat change!", "contrary")
+                End If
             End If
 
             If p.Ability.Name.ToLower() = "simple" Then
