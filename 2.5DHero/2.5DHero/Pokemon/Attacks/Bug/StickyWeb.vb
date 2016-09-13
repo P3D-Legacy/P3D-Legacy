@@ -10,7 +10,7 @@ Namespace BattleSystem.Moves.Bug
             Me.ID = 564
             Me.OriginalPP = 20
             Me.CurrentPP = 20
-            Me.MaxPP = 32
+            Me.MaxPP = 20
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
