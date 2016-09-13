@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Bug
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Spikes"
+            Me.Name = "Sticky Web"
             Me.Description = "The user weaves a sticky net around the opposing team, which lowers their Speed stat upon switching into battle."
             Me.CriticalChance = 0
             Me.IsHMMove = False
