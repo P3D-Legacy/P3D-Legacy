@@ -1640,6 +1640,18 @@
             If p.Ability.Name.ToLower() = "normalize" Then
                 Return New Element(Element.Types.Normal)
             End If
+            
+            If Me.Type.Type = Element.Types.Normal Then
+                If p.Ability.Name.ToLower() = "pixilate" Then
+                    Return New Element(Element.Types.Fairy)
+                End If
+                If p.Ability.Name.ToLower() = "refrigerate" Then
+                    Return New Element(Element.Types.Ice)
+                End If
+                If p.Ability.Name.ToLower() = "aerilate" Then
+                    Return New Element(Element.Types.Flying)
+                End If
+            End If    
 
             Return Me.Type
         End Function
