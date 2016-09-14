@@ -36,7 +36,7 @@
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = False
+            Me.HasSecondaryEffect = True
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
