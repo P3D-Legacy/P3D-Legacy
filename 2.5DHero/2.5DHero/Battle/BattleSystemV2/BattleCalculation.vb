@@ -1184,7 +1184,7 @@
                             End If
                         End If
                     Case "guts"
-                        If p.Status = Pokemon.StatusProblems.Paralyzed Or p.Status = Pokemon.StatusProblems.Poison Or p.Status = Pokemon.StatusProblems.Burn Or p.Status = Pokemon.StatusProblems.Sleep Then
+                        If p.Status = Pokemon.StatusProblems.Paralyzed Or p.Status = Pokemon.StatusProblems.Poison Or p.Status = Pokemon.StatusProblems.Burn Or p.Status = Pokemon.StatusProblems.Sleep Or p.Status = Pokemon.StatusProblems.BadPoison Then
                             AM = 1.5F
                         End If
                     Case "hustle"
@@ -1200,7 +1200,7 @@
                             End If
                         End If
                     Case "toxic boost"
-                        If Op.Status = Pokemon.StatusProblems.Poison Or Op.Status = Pokemon.StatusProblems.BadPoison Then
+                        If p.Status = Pokemon.StatusProblems.Poison Or p.Status = Pokemon.StatusProblems.BadPoison Then
                             AM = 1.5F
                         End If
                     Case "defeatist"
