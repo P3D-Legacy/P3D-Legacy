@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Grass
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Petal Blizzard"
-            Me.Description = "The user sets off an earthquake that strikes those around it."
+            Me.Description = "The user stirs up a violent petal blizzard and attacks everything around it."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentTargets
