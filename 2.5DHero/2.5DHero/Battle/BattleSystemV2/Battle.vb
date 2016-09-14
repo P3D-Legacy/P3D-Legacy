@@ -1857,7 +1857,7 @@ EndSleepCheck:
                                             GainHP(CInt(AllDamage / 8), own, own, BattleScreen, p.GetDisplayName() & " gains some HP due to the Shell Bell.", "shellbell")
                                         End If
                                     Case "life orb"
-                                        If p.Ability.ToLower <> "magic guard" Then
+                                        If p.Ability.Name.ToLower() = "magic guard" Then
                                             ReduceHP(CInt(p.MaxHP / 10), own, own, BattleScreen, p.GetDisplayName() & " loses HP due to Life Orb.", "lifeorb")
                                         End If
                                 End Select
