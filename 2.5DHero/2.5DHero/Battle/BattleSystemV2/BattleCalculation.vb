@@ -10,11 +10,15 @@
             Dim oppPriority As Integer = oppAttack.Priority
 
             If ownPokemon.Ability.Name.ToLower() = "prankster" Then
-                ownPriority += 1
+                If ownAttack.Category = Attack.Categories.Status Then
+                    ownPriority += 1
+                End If
             End If
 
             If oppPokemon.Ability.Name.ToLower() = "prankster" Then
-                oppPriority += 1
+                If oppAttack.Category = Attack.Categories.Status Then
+                    oppPriority += 1
+                End If
             End If
 
             If ownPokemon.Ability.Name.ToLower() = "gale wings" And ownAttack.Type.Type = Element.Types.Flying Then
