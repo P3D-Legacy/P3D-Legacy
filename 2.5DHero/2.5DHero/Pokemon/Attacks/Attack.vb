@@ -1591,8 +1591,11 @@
             If Me.IsGameModeMove = True Then
                 AttackSpecialFunctions.ExecuteAttackFunction(Me, own, BattleScreen)
             Else
-                'DO NOTHING HERE
+                'DO NOTHING HERE (will do secondary effect if moves overrides it)
             End If
+        End Sub
+        Public Overridable Sub DoMoveRecoil(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+                'DO NOTHING HERE (will do recoil if moves overrides it)
         End Sub
 
         ''' <summary>
