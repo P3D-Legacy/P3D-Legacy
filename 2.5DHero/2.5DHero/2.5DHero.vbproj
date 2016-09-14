@@ -149,6 +149,7 @@
     <Compile Include="Network\Servers\Server.vb" />
     <Compile Include="Network\Servers\ServerConnection.vb" />
     <Compile Include="Network\Servers\ServersManager.vb" />
+    <Compile Include="Network\Servers\StreamWriterLock.vb" />
     <Compile Include="Network\UrlEncoder.vb" />
     <Compile Include="Overworld\OverworldCamera.vb" />
     <Compile Include="Overworld\OverworldStorage.vb" />
@@ -157,6 +158,7 @@
     <Compile Include="Player\PlayerTemp.vb" />
     <Compile Include="Player\SaveGameHelpers.vb" />
     <Compile Include="Pokemon\Attacks\AttackSpecialFunctions.vb" />
+    <Compile Include="Pokemon\Attacks\Bug\StickyWeb.vb" />
     <Compile Include="Pokemon\Attacks\Bug\UTurn.vb" />
     <Compile Include="Pokemon\Attacks\Bug\QuiverDance.vb" />
     <Compile Include="Pokemon\Attacks\Bug\Steamroller.vb" />
@@ -164,6 +166,7 @@
     <Compile Include="Pokemon\Attacks\Dark\Fling.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Assurance.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Embargo.vb" />
+    <Compile Include="Pokemon\Attacks\Dark\FoulPlay.vb" />
     <Compile Include="Pokemon\Attacks\Dark\KnockOff.vb" />
     <Compile Include="Pokemon\Attacks\Dark\HoneClaws.vb" />
     <Compile Include="Pokemon\Attacks\Dark\NightDaze.vb" />
@@ -172,6 +175,7 @@
     <Compile Include="Pokemon\Attacks\Dragon\DualChop.vb" />
     <Compile Include="Pokemon\Attacks\Electric\ElectroBall.vb" />
     <Compile Include="Pokemon\Attacks\Electric\Electroweb.vb" />
+    <Compile Include="Pokemon\Attacks\Electric\VoltSwitch.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\DrainPunch.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\LowSweep.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\Revenge.vb" />
@@ -199,6 +203,7 @@
     <Compile Include="Pokemon\Attacks\Ground\SandTomb.vb" />
     <Compile Include="Pokemon\Attacks\Ground\MudBomb.vb" />
     <Compile Include="Pokemon\Attacks\Ground\MudSport.vb" />
+    <Compile Include="Pokemon\Attacks\Ice\FreezeDry.vb" />
     <Compile Include="Pokemon\Attacks\Ice\IcicleCrash.vb" />
     <Compile Include="Pokemon\Attacks\Ice\IceBall.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Feint.vb" />
@@ -253,6 +258,7 @@
     <Compile Include="Pokemon\Attacks\Water\Dive.vb" />
     <Compile Include="Pokemon\Attacks\Water\RazorShell.vb" />
     <Compile Include="Pokemon\Attacks\Water\Scald.vb" />
+    <Compile Include="Pokemon\Attacks\Water\SteamEruption.vb" />
     <Compile Include="Pokemon\Attacks\Water\WaterSport.vb" />
     <Compile Include="Pokemon\Items\KeyItems\OldSeaMap.vb" />
     <Compile Include="Pokemon\Items\KeyItems\ShinyCharm.vb" />
