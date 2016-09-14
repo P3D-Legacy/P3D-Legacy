@@ -1392,8 +1392,8 @@
                     'Forest's Curse
                 Case 572
                     returnMove = New Moves.Grass.PetalBlizzard()
-                    'Case 573
-                    'Freeze-Dry
+                Case 573
+                    returnMove = New Moves.Ice.FreezeDry()
                 Case 574
                     returnMove = New Moves.Fairy.DisarmingVoice()
                     'Case 575
