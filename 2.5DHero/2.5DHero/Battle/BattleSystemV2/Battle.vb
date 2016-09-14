@@ -2718,7 +2718,7 @@ endthisround:
                 End If
             End If
             
-            ***SHOW STAT INCREASE ANIMATION HERE***
+            '***SHOW STAT INCREASE ANIMATION HERE***
             
             Dim printMessage As String = p.GetDisplayName() & "'s " & statString
             Select Case val
@@ -2966,7 +2966,7 @@ endthisround:
                 End If
             End If
 
-            ***SHOW STAT DECREASE ANIMATION HERE***
+            '***SHOW STAT DECREASE ANIMATION HERE***
 
             Dim printMessage As String = p.GetDisplayName() & "'s " & statString
             Select Case val
