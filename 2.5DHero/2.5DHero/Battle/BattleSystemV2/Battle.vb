@@ -2715,7 +2715,9 @@ endthisround:
                     val = 6 - statC
                 End If
             End If
-
+            
+            ***SHOW STAT INCREASE ANIMATION HERE***
+            
             Dim printMessage As String = p.GetDisplayName() & "'s " & statString
             Select Case val
                 Case 2
@@ -2884,8 +2886,38 @@ endthisround:
                     End If
                 End If
             End If
-
+            
+            
+            
             Dim statString As String = Stat.ToLower()
+            
+             Select Case statString
+                Case "attack"
+                    If p.Ability.Name.ToLower() = "hyper cutter" And from <> own Then
+                        If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            BattleScreen.BattleQuery.Add(New TextQueryObject("Hyper Cutter prevented attack drop!"))
+                            Return False
+                        End If
+                    End If
+                  
+                Case "defense"
+                    If p.Ability.Name.ToLower() = "big pecks" And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        BattleScreen.BattleQuery.Add(New TextQueryObject("Big Pecks prevented defense drop!"))
+                        Return False
+                    End If
+               
+                Case "accuracy"
+                    If p.Ability.Name.ToLower() = "keen eye" And from <> own Then
+                        If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            BattleScreen.BattleQuery.Add(New TextQueryObject("Keen Eye prevented accuracy drop!"))
+                            Return False
+                        End If
+                    End If
+                End Select    
+            
             Select Case statString
                 Case "spdefense"
                     statString = "special defense"
@@ -2932,6 +2964,8 @@ endthisround:
                 End If
             End If
 
+            ***SHOW STAT DECREASE ANIMATION HERE***
+
             Dim printMessage As String = p.GetDisplayName() & "'s " & statString
             Select Case val
                 Case 2
@@ -2954,14 +2988,6 @@ endthisround:
 
             Select Case statString
                 Case "attack"
-                    If p.Ability.Name.ToLower() = "hyper cutter" And from <> own Then
-                        If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
-                            BattleScreen.BattleQuery.Add(New TextQueryObject("Hyper Cutter prevented attack drop!"))
-                            Return False
-                        End If
-                    End If
-
                     p.StatAttack -= val
 
                     Me.ChangeCameraAngel(1, own, BattleScreen)
@@ -2977,12 +3003,6 @@ endthisround:
 
                     Return True
                 Case "defense"
-                    If p.Ability.Name.ToLower() = "big pecks" And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
-                        BattleScreen.BattleQuery.Add(New TextQueryObject("Big Pecks prevented defense drop!"))
-                        Return False
-                    End If
-
                     p.StatDefense -= val
 
                     Me.ChangeCameraAngel(1, own, BattleScreen)
@@ -3058,14 +3078,6 @@ endthisround:
 
                     Return True
                 Case "accuracy"
-                    If p.Ability.Name.ToLower() = "keen eye" And from <> own Then
-                        If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
-                            BattleScreen.BattleQuery.Add(New TextQueryObject("Keen Eye prevented accuracy drop!"))
-                            Return False
-                        End If
-                    End If
-
                     p.Accuracy -= val
 
                     Me.ChangeCameraAngel(1, own, BattleScreen)
