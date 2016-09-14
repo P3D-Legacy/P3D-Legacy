@@ -36,7 +36,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = False
             Me.ImmunityAffected = False
-            Me.HasSecondaryEffect = False
+            Me.HasSecondaryEffect = True
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
