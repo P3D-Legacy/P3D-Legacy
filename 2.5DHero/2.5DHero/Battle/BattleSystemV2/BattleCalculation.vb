@@ -574,6 +574,13 @@
             Dim Type2 As Single = ReverseTypeEffectiveness(Element.GetElementMultiplier(move.GetAttackType(own, BattleScreen), op.Type2))
             Dim effectiveness As Single = Type1 * Type2
 
+            'Freeze Dry
+            If move.ID = 573 Then 
+                If op.Type1 = Element.Types.Water Or op.Type2 = Element.Types.Water Then
+                    effectiveness *= 4
+                End If
+            End If
+            
             Dim hasIronBall As Boolean = False
             If Not p.Item Is Nothing Then
                 If p.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
