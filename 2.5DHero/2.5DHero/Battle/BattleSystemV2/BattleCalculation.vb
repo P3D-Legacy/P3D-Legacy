@@ -1170,8 +1170,13 @@
             Dim IM As Single = 1.0F
 
             If Attack.Category = Attack.Categories.Physical Then
-                AStat = Attack.GetUseAttackStat(p)
-                ASM = GetMultiplierFromStat(p.StatAttack)
+                If Attack.ID = 492 Then
+                    AStat = Attack.GetUseAttackStat(Op) 'When the move is Foul Play
+                    ASM = GetMultiplierFromStat(Op.StatAttack)
+                Else
+                    AStat = Attack.GetUseAttackStat(p)
+                    ASM = GetMultiplierFromStat(p.StatAttack)
+                End If
 
                 If BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
                     If Op.Ability.Name.ToLower() = "unaware" Then

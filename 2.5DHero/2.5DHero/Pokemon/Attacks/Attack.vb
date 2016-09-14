@@ -1230,8 +1230,8 @@
                     returnMove = New Moves.Fighting.LowSweep()
                 Case 491
                     returnMove = New Moves.Poison.AcidSpray()
-                    'Case 492
-                    'Foul Play
+                Case 492
+                    returnMove = New Moves.Dark.FoulPlay()
                     'Case 493
                     'Simple Beam
                     'Case 494
