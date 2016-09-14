@@ -1431,7 +1431,7 @@
                     'Case 591
                     'Diamond Storm
                 Case 592
-                    returnMove = New Moves.water.SteamEruption()
+                    returnMove = New Moves.Water.SteamEruption()
                     'Case 593
                     'Hyperspace Hole
                 Case 594
