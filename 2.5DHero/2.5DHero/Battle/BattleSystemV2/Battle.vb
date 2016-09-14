@@ -5970,7 +5970,7 @@ endthisround:
                 If spikeAffected = True Then
                     If .FieldEffects.OwnSpikes > 0 And p.Ability.Name.ToLower() <> "magic guard" Then
                         Dim spikeDamage As Double = 1D
-                        Select Case .FieldEffects.OppSpikes
+                        Select Case .FieldEffects.OwnSpikes
                             Case 1
                                 spikeDamage = (p.MaxHP / 100) * 12.5D
                             Case 2
