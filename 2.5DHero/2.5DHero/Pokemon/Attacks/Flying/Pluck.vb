@@ -37,7 +37,7 @@ Namespace BattleSystem.Moves.Flying
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
             Me.RemovesFrozen = False
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
