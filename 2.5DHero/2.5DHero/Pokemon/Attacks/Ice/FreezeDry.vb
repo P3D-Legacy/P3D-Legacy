@@ -7,7 +7,7 @@ Namespace BattleSystem.Moves.Ice
         Public Sub New()
             '#Definitions
             Me.Type = New Element(Element.Types.Ice)
-            Me.ID = 58
+            Me.ID = 573
             Me.OriginalPP = 20
             Me.CurrentPP = 20
             Me.MaxPP = 20
@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Ice
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Ice Beam"
+            Me.Name = "Freeze Dry"
             Me.Description = "The user rapidly cools the target. This may also leave the target frozen. This move is super effective on Water types."
             Me.CriticalChance = 1
             Me.IsHMMove = False
@@ -67,7 +67,7 @@ Namespace BattleSystem.Moves.Ice
 
             Dim chance As Integer = GetEffectChance(0, own, BattleScreen)
             If Core.Random.Next(0, 100) < chance Then
-                BattleScreen.Battle.InflictFreeze(Not own, own, BattleScreen, "", "move:icebeam")
+                BattleScreen.Battle.InflictFreeze(Not own, own, BattleScreen, "", "move:freezedry")
             End If
         End Sub
 
