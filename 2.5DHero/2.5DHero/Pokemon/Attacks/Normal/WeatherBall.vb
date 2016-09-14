@@ -71,9 +71,12 @@ Namespace BattleSystem.Moves.Normal
             Return Me.Type
         End Function
 
+        'Temporary 
         Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
-            If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Or BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Or BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Or BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
+            If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Or BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
                 Return CInt(Me.Power * 2)
+            Else If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Or BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then
+                Return CInt(Me.Power * 3)
             Else
                 Return Me.Power
             End If
