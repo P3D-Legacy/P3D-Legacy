@@ -78,11 +78,11 @@
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then
-                BattleScreen.FieldEffects.OwnProtectCounter += 1
+                BattleScreen.FieldEffects.OwnProtectMovesCount += 1
 
                 BattleScreen.FieldEffects.OwnDetectCounter = 1
             Else
-                BattleScreen.FieldEffects.OppProtectCounter += 1
+                BattleScreen.FieldEffects.OppProtectMovesCount += 1
 
                 BattleScreen.FieldEffects.OppDetectCounter = 1
             End If
