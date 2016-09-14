@@ -40,7 +40,7 @@
             Me.HasSecondaryEffect = True
 
             Me.IsHealingMove = False
-            Me.IsRecoilMove = False
+            Me.IsRecoilMove = True
             Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
