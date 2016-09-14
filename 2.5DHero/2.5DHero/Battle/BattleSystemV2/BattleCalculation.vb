@@ -1485,12 +1485,12 @@
             Mod1 = BRN * RL * TVT * SR * FF
 
             'CH
-            Dim CH As Integer = 1
+            Dim CH As Single = 1.0F
             If Critical = True Then
                 If p.Ability.Name.ToLower() = "sniper" Then
-                    CH = 3
+                    CH = 2.25
                 Else
-                    CH = 2
+                    CH = 1.5
                 End If
             End If
 
