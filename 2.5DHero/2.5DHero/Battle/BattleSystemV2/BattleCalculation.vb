@@ -576,7 +576,7 @@
 
             'Freeze Dry
             If move.ID = 573 Then 
-                If op.Type1 = Element.Types.Water Or op.Type2 = Element.Types.Water Then
+                If op.Type1.Type = Element.Types.Water Or op.Type2.Type = Element.Types.Water Then
                     effectiveness *= 4
                 End If
             End If
