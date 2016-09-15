@@ -2979,15 +2979,7 @@ endthisround:
                     printMessage &= " slightly fell."
             End Select
 
-            If val > 0 Then
-                If p.Ability.Name.ToLower() = "defiant" And from <> own Then
-                    RaiseStat(own, own, BattleScreen, "Attack", 2, p.GetDisplayName() & "'s Defiant raised its attack!", "defiant")
-                End If
 
-                If p.Ability.Name.ToLower() = "competitive" And from <> own Then
-                    RaiseStat(own, own, BattleScreen, "Special Attack", 2, p.GetDisplayName() & "'s Competitive raised its Special Attack!", "competitive")
-                End If
-            End If
 
             Select Case statString
                 Case "attack"
@@ -3093,7 +3085,17 @@ endthisround:
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
+                    
+                If val > 0 Then
+                    If p.Ability.Name.ToLower() = "defiant" And from <> own Then
+                        RaiseStat(own, own, BattleScreen, "Attack", 2, p.GetDisplayName() & "'s Defiant raised its attack!", "defiant")
+                    End If
 
+                    If p.Ability.Name.ToLower() = "competitive" And from <> own Then
+                        RaiseStat(own, own, BattleScreen, "Special Attack", 2, p.GetDisplayName() & "'s Competitive raised its Special Attack!", "competitive")
+                    End If
+                 End If
+                    
                     Return True
             End Select
 
