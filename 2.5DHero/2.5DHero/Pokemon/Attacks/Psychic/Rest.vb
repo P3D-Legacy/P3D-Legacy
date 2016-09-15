@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Psychic
+Namespace BattleSystem.Moves.Psychic
 
     Public Class Rest
 
@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Rest"
-            Me.Description = "The user goes to sleep for two turns. It fully restores the user’s HP and heals any status problem."
+            Me.Description = "The user goes to sleep for two turns. It fully restores the user�s HP and heals any status problem."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.Self
@@ -37,7 +37,7 @@
             Me.UseEffectiveness = False
             Me.ImmunityAffected = False
             Me.RemovesFrozen = False
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = True
             Me.IsRecoilMove = False

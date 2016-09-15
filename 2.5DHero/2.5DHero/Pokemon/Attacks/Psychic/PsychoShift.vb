@@ -37,7 +37,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.UseEffectiveness = False
             Me.ImmunityAffected = False
             Me.RemovesFrozen = False
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
