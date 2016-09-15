@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Normal
+Namespace BattleSystem.Moves.Normal
 
     Public Class Block
 

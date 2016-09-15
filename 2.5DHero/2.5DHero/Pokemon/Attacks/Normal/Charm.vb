@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Normal
+Namespace BattleSystem.Moves.Normal
 
     Public Class Charm
 
@@ -36,7 +36,7 @@
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = False
             Me.ImmunityAffected = False
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
