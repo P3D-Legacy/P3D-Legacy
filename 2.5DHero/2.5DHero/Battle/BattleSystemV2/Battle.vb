@@ -1626,7 +1626,8 @@ EndSleepCheck:
                                         moveUsed.MoveHits(own, BattleScreen)
                                     End If
                                 End If
-
+                                moveUsed.MoveRecoil(own, BattleScreen)
+                                
                                 If op.HP > 0 Then
                                     If own = True Then
                                         If BattleScreen.FieldEffects.OppRageCounter > 0 Then
