@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Water
+Namespace BattleSystem.Moves.Water
 
     Public Class Clamp
 
@@ -36,7 +36,7 @@
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
