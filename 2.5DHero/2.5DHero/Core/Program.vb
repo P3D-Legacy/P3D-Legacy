@@ -26,7 +26,7 @@ Module Program
                 Catch ex As Exception
                     _gameCrashed = True
                     Dim informationItem As New Logger.ErrorInformation(ex)
-
+                    Logger.LogCrash(ex)
                     Logger.Log(Logger.LogTypes.ErrorMessage, "The game crashed with error ID: " & informationItem.ErrorIDString & " (" & ex.Message & ")")
                 End Try
             End If
