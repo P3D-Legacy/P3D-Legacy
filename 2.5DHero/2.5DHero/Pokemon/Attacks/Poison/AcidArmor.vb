@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Poison
+Namespace BattleSystem.Moves.Poison
 
     Public Class AcidArmor
 
@@ -37,7 +37,7 @@
             Me.UseEffectiveness = False
             Me.ImmunityAffected = False
             Me.RemovesFrozen = False
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False

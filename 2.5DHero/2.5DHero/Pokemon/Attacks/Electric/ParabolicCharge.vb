@@ -36,7 +36,7 @@ Namespace BattleSystem.Moves.Electric
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = True

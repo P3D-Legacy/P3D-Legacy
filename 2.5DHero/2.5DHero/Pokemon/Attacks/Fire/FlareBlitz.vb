@@ -40,7 +40,7 @@
             Me.HasSecondaryEffect = True
 
             Me.IsHealingMove = False
-            Me.IsRecoilMove = False
+            Me.IsRecoilMove = True
             Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
@@ -62,7 +62,9 @@
             If Core.Random.Next(0, 100) < chance Then
                 BattleScreen.Battle.InflictBurn(Not own, own, BattleScreen, "", "move:flareblitz")
             End If
-
+        End Sub
+        
+        Public Overrides Sub MoveRecoil(own As Boolean, BattleScreen As BattleScreen)
             Dim lastDamage As Integer = BattleScreen.FieldEffects.OwnLastDamage
             If own = False Then
                 lastDamage = BattleScreen.FieldEffects.OppLastDamage

@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Poison
+Namespace BattleSystem.Moves.Poison
 
     Public Class PoisonGas
 
@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Poison Gas"
-            Me.Description = "A cloud of poison gas is sprayed in the face of opposing Pokémon. It may poison those hit."
+            Me.Description = "A cloud of poison gas is sprayed in the face of opposing Pok�mon. It may poison those hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentFoes
@@ -36,7 +36,7 @@
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = False
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = False

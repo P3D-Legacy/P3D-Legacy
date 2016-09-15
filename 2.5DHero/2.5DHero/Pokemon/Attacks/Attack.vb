@@ -1591,8 +1591,12 @@
             If Me.IsGameModeMove = True Then
                 AttackSpecialFunctions.ExecuteAttackFunction(Me, own, BattleScreen)
             Else
-                'DO NOTHING HERE
+                'DO NOTHING HERE (will do secondary effect if moves overrides it)
             End If
+        End Sub
+
+        Public Overridable Sub MoveRecoil(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING HERE (will do recoil if moves overrides it)
         End Sub
 
         ''' <summary>
@@ -1640,7 +1644,7 @@
             If p.Ability.Name.ToLower() = "normalize" Then
                 Return New Element(Element.Types.Normal)
             End If
-            
+
             If Me.Type.Type = Element.Types.Normal Then
                 If p.Ability.Name.ToLower() = "pixilate" Then
                     Return New Element(Element.Types.Fairy)
@@ -1651,7 +1655,7 @@
                 If p.Ability.Name.ToLower() = "aerilate" Then
                     Return New Element(Element.Types.Flying)
                 End If
-            End If    
+            End If
 
             Return Me.Type
         End Function

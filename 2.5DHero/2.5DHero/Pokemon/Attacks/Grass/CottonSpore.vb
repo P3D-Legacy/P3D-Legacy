@@ -42,7 +42,7 @@
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
             Me.IsSoundMove = False
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = False

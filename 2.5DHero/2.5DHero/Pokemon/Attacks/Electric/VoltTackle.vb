@@ -59,13 +59,15 @@ Namespace BattleSystem.Moves.Electric
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim lastDamage As Integer = BattleScreen.FieldEffects.OwnLastDamage
             Dim chance As Integer = GetEffectChance(0, own, BattleScreen)
 
             If Core.Random.Next(0, 100) < chance Then
                 BattleScreen.Battle.InflictParalysis(Not own, own, BattleScreen, "", "move:volttackle")
             End If
-
+        End Sub
+        
+         Public Overrides Sub MoveRecoil(own As Boolean, BattleScreen As BattleScreen)
+            Dim lastDamage As Integer = BattleScreen.FieldEffects.OwnLastDamage
             If own = False Then
                 lastDamage = BattleScreen.FieldEffects.OppLastDamage
             End If

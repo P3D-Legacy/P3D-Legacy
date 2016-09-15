@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Normal
+Namespace BattleSystem.Moves.Normal
 
     Public Class DoubleEdge
 
@@ -55,7 +55,7 @@
             Me.AIField2 = AIField.Recoil
         End Sub
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+        Public Overrides Sub MoveRecoil(own As Boolean, BattleScreen As BattleScreen)
             Dim lastDamage As Integer = BattleScreen.FieldEffects.OwnLastDamage
             If own = False Then
                 lastDamage = BattleScreen.FieldEffects.OppLastDamage

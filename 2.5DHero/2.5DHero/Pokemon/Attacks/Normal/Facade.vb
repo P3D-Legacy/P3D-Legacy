@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Normal
+Namespace BattleSystem.Moves.Normal
 
     Public Class Facade
 
@@ -53,12 +53,12 @@
         End Sub
 
         Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
-            Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim p As Pokemon = BattleScreen.OwnPokemon
             If own = False Then
-                op = BattleScreen.OwnPokemon
+                p = BattleScreen.OppPokemon
             End If
 
-            If op.Status <> Pokemon.StatusProblems.None And op.Status <> Pokemon.StatusProblems.Fainted Then
+            If p.Status <> Pokemon.StatusProblems.None And p.Status <> Pokemon.StatusProblems.Fainted Then
                 Return Me.Power * 2
             Else
                 Return Me.Power
