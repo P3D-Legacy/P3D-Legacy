@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Rock
+Namespace BattleSystem.Moves.Rock
 
     Public Class Rollout
 
@@ -36,7 +36,7 @@
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
