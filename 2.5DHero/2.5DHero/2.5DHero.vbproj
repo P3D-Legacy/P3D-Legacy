@@ -1699,13 +1699,13 @@
     <MonoGameContentReference Include="..\2.5DHeroContent\Content.mgcb">
       <Link>Content\Content.mgcb</Link>
     </MonoGameContentReference>
-    <None Include="Content\*\*.dat">
+    <None Include="Content\**\*.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="maps\*\*.dat">
+    <None Include="maps\**\*.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Scripts\*\*.dat">
+    <None Include="Scripts\**\*.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="credits.txt">
