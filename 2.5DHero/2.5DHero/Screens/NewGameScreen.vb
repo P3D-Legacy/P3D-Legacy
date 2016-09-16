@@ -552,7 +552,6 @@
     End Function
 
     Protected Overrides Sub Finalize()
-        texture0.Dispose()
         texture1.Dispose()
         texture2.Dispose()
     End Sub
