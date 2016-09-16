@@ -326,11 +326,4 @@
         ChangeBag()
     End Sub
 
-    Protected Overrides Sub Finalize()
-        texture1.Dispose()
-        texture2.Dispose()
-        texture3.Dispose()
-        texture4.Dispose()
-    End Sub
-
 End Class

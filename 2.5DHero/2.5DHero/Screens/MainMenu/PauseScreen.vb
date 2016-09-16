@@ -279,8 +279,4 @@
         MusicManager.ForceVolumeUpdate()
     End Sub
 
-    Protected Overrides Sub Finalize()
-        CanvasTexture1.Dispose()
-        CanvasTexture2.Dispose()
-    End Sub
 End Class

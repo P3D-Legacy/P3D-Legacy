@@ -97,7 +97,4 @@
         End If
     End Sub
 
-    Protected Overrides Sub Finalize()
-        CanvasTexture1.Dispose()
-    End Sub
 End Class

@@ -36,7 +36,7 @@ Public Class GameController
     ''' The name of the developer that appears on the title screen.
     ''' </summary>
     ''' <remarks></remarks>
-    Public Const DEVELOPER_NAME As String = "Kolben Games"
+    Public Const DEVELOPER_NAME As String = "P3D Team"
 
     ''' <summary>
     ''' If the Debug Mode is active.
@@ -60,8 +60,8 @@ Public Class GameController
         Window.AllowUserResizing = True
         AddHandler Window.ClientSizeChanged, AddressOf Window_ClientSizeChanged
 
-        Dim gameForm As Form = CType(Form.FromHandle(Window.Handle), Form)
-        gameForm.MinimumSize = New System.Drawing.Size(600, 360)
+        'Dim gameForm As Form = CType(Form.FromHandle(Window.Handle), Form)
+        'gameForm.MinimumSize = New System.Drawing.Size(600, 360)
 
         FPSMonitor = New FPSMonitor()
 
