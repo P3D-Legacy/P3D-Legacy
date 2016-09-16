@@ -1599,6 +1599,7 @@
     <Compile Include="Screens\TransitionScreen.vb" />
     <Compile Include="Screens\WindowScreen.vb" />
     <Compile Include="Scripting.V3\ApiClasses\ApiClass.vb" />
+    <Compile Include="Scripting.V3\ApiClasses\Battle.vb" />
     <Compile Include="Scripting.V3\ScriptInputType.vb" />
     <Compile Include="Scripting.V3\ScriptManager.vb" />
     <Compile Include="Scripting.V3\ScriptStartFlag.vb" />
