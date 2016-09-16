@@ -33,7 +33,7 @@
                                 Else
                                     value = currentValue & value
                                 End If
-                            Case "-", "minus", "substract", "substraction"
+                            Case "-", "minus", "subtract", "subtraction"
                                 value = dbl(currentValue.Replace(".", GameController.DecSeparator) & "-" & value.Replace(".", GameController.DecSeparator)).ToString()
                             Case "*", "multiply", "multiplication"
                                 value = dbl(currentValue.Replace(".", GameController.DecSeparator) & "*" & value.Replace(".", GameController.DecSeparator)).ToString()
