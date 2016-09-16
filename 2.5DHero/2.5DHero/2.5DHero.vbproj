@@ -1598,6 +1598,7 @@
     <Compile Include="Screens\TrainerScreen.vb" />
     <Compile Include="Screens\TransitionScreen.vb" />
     <Compile Include="Screens\WindowScreen.vb" />
+    <Compile Include="Scripting.V3\ApiClasses\ApiClass.vb" />
     <Compile Include="Scripting.V3\ScriptInputType.vb" />
     <Compile Include="Scripting.V3\ScriptManager.vb" />
     <Compile Include="Scripting.V3\ScriptStartFlag.vb" />
@@ -1694,6 +1695,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PokemonIcon.ico" />
+    <Compile Include="Scripting.V3\ApiClasses\ApiClassAttribute.vb" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\2.5DHeroContent\Content.mgcb">
@@ -1729,6 +1731,9 @@
     <Import Include="Microsoft.Xna.Framework.Content" />
     <Import Include="Microsoft.Xna.Framework.Media" />
     <Import Include="Microsoft.Xna.Framework.Audio" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripting.V3\Prototypes\" />
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">

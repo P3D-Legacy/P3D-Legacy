@@ -1,6 +1,9 @@
-﻿Imports System.Threading.Tasks
+﻿Imports System.Reflection
+Imports System.Threading.Tasks
+Imports net.Pokemon3D.Game.Scripting.V3.ApiClasses
 Imports Pokemon3D.Scripting
 Imports Pokemon3D.Scripting.Adapters
+Imports Pokemon3D.Scripting.Types
 
 Namespace Scripting.V3
 
@@ -16,7 +19,7 @@ Namespace Scripting.V3
 
         Public Shared ReadOnly Property Instance As ScriptManager
             Get
-                If IsNothing(_instance) Then
+                If _instance Is Nothing Then
                     _instance = New ScriptManager()
                 End If
 
@@ -31,6 +34,9 @@ Namespace Scripting.V3
         Private _activeProcessorCount As Integer = 0
         Private _unlockCamera As Boolean = False
 
+        Private _prototypeBuffer As List(Of SObject)
+        Private _apiClasses As Dictionary(Of String, MethodInfo())
+
         Public Property IsInSightScript As Boolean
 
         Public ReadOnly Property IsActive As Boolean
@@ -39,7 +45,7 @@ Namespace Scripting.V3
             End Get
         End Property
 
-        Public Sub StartScript(ByVal input As String, ByVal inputType As ScriptInputType, ByVal flags As ScriptStartFlag)
+        Public Sub StartScript(input As String, inputType As ScriptInputType, flags As ScriptStartFlag)
             Dim checkDelay As Boolean = flags.HasFlag(ScriptStartFlag.CheckDelay)
             Dim resetInSight = flags.HasFlag(ScriptStartFlag.ResetInSight)
 
@@ -61,7 +67,7 @@ Namespace Scripting.V3
             _reDelay = 1.0F
         End Sub
 
-        Private Sub StartScriptFromFile(ByVal input As String)
+        Private Sub StartScriptFromFile(input As String)
             Logger.Debug($"Start script (ID: {input})")
             _scriptName = $"Type: Script; Input: {input}"
 
@@ -76,7 +82,7 @@ Namespace Scripting.V3
             End If
         End Sub
 
-        Private Sub StartScriptFromText(ByVal input As String)
+        Private Sub StartScriptFromText(input As String)
             Logger.Debug($"Start Script (Text: {input})")
             _scriptName = $"Type: Text; Input: {input}"
 
@@ -84,7 +90,7 @@ Namespace Scripting.V3
 
         End Sub
 
-        Private Sub StartScriptFromRaw(ByVal input As String)
+        Private Sub StartScriptFromRaw(input As String)
             Dim activator As String = Environment.StackTrace.Split(vbNewLine)(3)
             activator = activator.Remove(activator.IndexOf("("))
 
@@ -94,7 +100,7 @@ Namespace Scripting.V3
             Dim data As String = input
         End Sub
 
-        Private Sub RunScript(ByVal source As String)
+        Private Sub RunScript(source As String)
             _unlockCamera = True
             _activeProcessorCount += 1
             Task.Run(Sub()
@@ -121,9 +127,58 @@ Namespace Scripting.V3
         End Sub
 
         Private Function CreateProcessor() As ScriptProcessor
-            Dim processor = New ScriptProcessor()
+            If _prototypeBuffer Is Nothing Then
+                InitializePrototypeBuffer()
+            End If
+
+            Dim processor = New ScriptProcessor(_prototypeBuffer)
+
+            ScriptContextManipulator.SetCallbackExecuteMethod(processor, AddressOf ExecuteMethod)
+
             Return processor
         End Function
+
+        Private Function ExecuteMethod(processor As ScriptProcessor, className As String, methodName As String, parameters As SObject()) As SObject
+            If _apiClasses Is Nothing Then
+                InitializeApiClasses()
+            End If
+
+            If _apiClasses.ContainsKey(className) Then
+                Dim method = _apiClasses(className).FirstOrDefault(Function(m As MethodInfo)
+                                                                       Return m.Name = methodName
+                                                                   End Function)
+                If method IsNot Nothing Then
+                    Dim result = method.Invoke(Nothing, New Object() {processor, parameters})
+                    Return TryCast(result, SObject)
+                End If
+
+            End If
+
+            Return ScriptInAdapter.GetUndefined(processor)
+        End Function
+
+        Private Sub InitializePrototypeBuffer()
+            _prototypeBuffer = New List(Of SObject)()
+            Dim processor = New ScriptProcessor()
+
+            For Each o As Type In GetType(ScriptManager).Assembly.GetTypes().Where(Function(t As Type)
+                                                                                       Return t.GetCustomAttributes(GetType(ScriptPrototypeAttribute), True).Length > 0
+                                                                                   End Function)
+                _prototypeBuffer.Add(ScriptInAdapter.Translate(processor, o))
+            Next
+        End Sub
+
+        Private Sub InitializeApiClasses()
+            _apiClasses = New Dictionary(Of String, MethodInfo())()
+
+            For Each o As Type In GetType(ScriptManager).Assembly.GetTypes().Where(Function(t As Type)
+                                                                                       Return t.IsSubclassOf(GetType(ApiClass)) AndAlso
+                                                                                              t.GetCustomAttributes(GetType(ApiClassAttribute), True).Length > 0
+                                                                                   End Function)
+                Dim attr = CType(o.GetCustomAttribute(GetType(ApiClassAttribute)), ApiClassAttribute)
+                _apiClasses.Add(attr.ClassName, o.GetMethods(BindingFlags.Public Or BindingFlags.Static))
+            Next
+        End Sub
 
         Public Sub Update()
             If Not IsActive Then
