@@ -13,12 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Fonts/BMP/miniFont.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:TextureFormat=Compressed
-/build:Fonts/BMP/miniFont.spritefont
-
 #begin Songs/intro/barktown.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -925,30 +919,6 @@
 /processorParam:TextureFormat=Color
 /build:Textures/NPC/7.png
 
-#begin Fonts/BMP/InGame.bmp
-/importer:TextureImporter
-/processor:FontTextureProcessor
-/processorParam:FirstCharacter= 
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Color
-/build:Fonts/BMP/InGame.bmp
-
-#begin Fonts/BMP/chatFont.bmp
-/importer:TextureImporter
-/processor:FontTextureProcessor
-/processorParam:FirstCharacter= 
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Color
-/build:Fonts/BMP/chatFont.bmp
-
-#begin Fonts/BMP/mainFont.bmp
-/importer:TextureImporter
-/processor:FontTextureProcessor
-/processorParam:FirstCharacter= 
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Color
-/build:Fonts/BMP/mainFont.bmp
-
 #begin Textures/NPC/Hilbert.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1398,14 +1368,6 @@
 /processor:SongProcessor
 /processorParam:Quality=Low
 /build:Songs/johto_trainer.mp3
-
-#begin Fonts/BMP/Unown.bmp
-/importer:TextureImporter
-/processor:FontTextureProcessor
-/processorParam:FirstCharacter= 
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Color
-/build:Fonts/BMP/Unown.bmp
 
 #begin Songs/trainer_defeat.mp3
 /importer:Mp3Importer
@@ -28827,14 +28789,6 @@
 /processorParam:Quality=Low
 /build:Sounds/pickup.mp3
 
-#begin Fonts/BMP/TextFont.png
-/importer:TextureImporter
-/processor:FontTextureProcessor
-/processorParam:FirstCharacter= 
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Color
-/build:Fonts/BMP/TextFont.png
-
 #begin Sounds/PC/pc_logon.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -38213,14 +38167,6 @@
 /processorParam:TextureFormat=Color
 /build:Textures/TVs/Yellow.png
 
-#begin Fonts/BMP/Braille.bmp
-/importer:TextureImporter
-/processor:FontTextureProcessor
-/processorParam:FirstCharacter=
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Color
-/build:Fonts/BMP/Braille.bmp
-
 #begin GUI/Battle/Interface.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -38604,4 +38550,58 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Pokemon/Overworld/Shiny/592.png
+
+#begin Fonts/BMP/Braille.png
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Fonts/BMP/Braille.png
+
+#begin Fonts/BMP/InGame.png
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Fonts/BMP/InGame.png
+
+#begin Fonts/BMP/mainFont.png
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Fonts/BMP/mainFont.png
+
+#begin Fonts/BMP/miniFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Fonts/BMP/miniFont.spritefont
+
+#begin Fonts/BMP/TextFont.png
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Fonts/BMP/TextFont.png
+
+#begin Fonts/BMP/Unown.png
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Fonts/BMP/Unown.png
+
+#begin Fonts/BMP/chatFont.png
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Fonts/BMP/chatFont.png
 
