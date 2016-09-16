@@ -60,8 +60,8 @@ Public Class GameController
         Window.AllowUserResizing = True
         AddHandler Window.ClientSizeChanged, AddressOf Window_ClientSizeChanged
 
-        Dim gameForm As Form = CType(Form.FromHandle(Window.Handle), Form)
-        gameForm.MinimumSize = New System.Drawing.Size(600, 360)
+        'Dim gameForm As Form = CType(Form.FromHandle(Window.Handle), Form)
+        'gameForm.MinimumSize = New System.Drawing.Size(600, 360)
 
         FPSMonitor = New FPSMonitor()
 
