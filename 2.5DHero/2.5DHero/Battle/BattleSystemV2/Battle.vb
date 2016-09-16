@@ -909,24 +909,28 @@
                         Else
                             BattleScreen.FieldEffects.OppLastMove = moveUsed
                         End If
-                        GoTo EndSleepCheck
                     Else
                         CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " woke up!", "sleepturns")
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Sleep Talk failed!"))
-                        GoTo endthisround
+                        Return
+                    End If
+                Else
+                    If (own AndAlso BattleScreen.FieldEffects.OwnLastMove.ID = 214) OrElse (Not own AndAlso BattleScreen.FieldEffects.OppLastMove.ID = 214) Then
+                        If own Then
+                            BattleScreen.FieldEffects.OwnLastMove = moveUsed
+                        Else
+                            BattleScreen.FieldEffects.OppLastMove = moveUsed
+                        End If
+                    Else
+                        If sleepTurns > 0 Then
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fast asleep."))
+                            Return
+                        Else
+                            CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " woke up!", "sleepturns")
+                        End If
                     End If
                 End If
-
-                ' Original Sleep code, just incase the sleep talk is buggy, can revert it back.
-                If sleepTurns > 0 Then
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fast asleep."))
-                    GoTo endthisround
-                Else
-                    CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " woke up!", "sleepturns")
-                End If
             End If
-
-EndSleepCheck:
 
             If p.Ability.Name.ToLower() = "truant" Then
                 Dim truantTurn As Integer = BattleScreen.FieldEffects.OwnTruantRound
