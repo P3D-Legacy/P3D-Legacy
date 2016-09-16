@@ -551,8 +551,4 @@
         Return Localization.GetString("new_game_oak_name_1") & name & Localization.GetString("new_game_oak_name_2")
     End Function
 
-    Protected Overrides Sub Finalize()
-        texture1.Dispose()
-        texture2.Dispose()
-    End Sub
 End Class

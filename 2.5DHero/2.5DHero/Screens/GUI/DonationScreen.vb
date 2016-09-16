@@ -73,9 +73,4 @@
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("donation_screen_backadvice"), New Vector2(CInt(Core.windowSize.Width / 2) - FontManager.MainFont.MeasureString("Press E to close").X / 2, 640), Color.White)
     End Sub
 
-    Protected Overrides Sub Finalize()
-        texture1.Dispose()
-        texture2.Dispose()
-    End Sub
-
 End Class

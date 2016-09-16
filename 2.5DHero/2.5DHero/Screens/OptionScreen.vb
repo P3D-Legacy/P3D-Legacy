@@ -541,11 +541,6 @@
             End If
         End Sub
 
-        Protected Overrides Sub Finalize()
-            texture1.Dispose()
-            texture2.Dispose()
-        End Sub
-
     End Class
 
     Class CommandButton
@@ -625,11 +620,6 @@
                     OnClickTrigger(Me)
                 End If
             End If
-        End Sub
-
-        Protected Overrides Sub Finalize()
-            texture1.Dispose()
-            texture2.Dispose()
         End Sub
 
     End Class
@@ -812,9 +802,5 @@
     End Class
 
 #End Region
-
-    Protected Overrides Sub Finalize()
-            texture1.Dispose()
-    End Sub
 
 End Class
