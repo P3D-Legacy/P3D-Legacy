@@ -16,6 +16,7 @@
     </MonoGameContentBuilderExe>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>PokemonIcon.ico</ApplicationIcon>
