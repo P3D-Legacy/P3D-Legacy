@@ -1,4 +1,4 @@
-Namespace BattleSystem.Moves.Fighting
+﻿Namespace BattleSystem.Moves.Fighting
 
     Public Class SacredSword
 
@@ -49,6 +49,9 @@ Namespace BattleSystem.Moves.Fighting
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
+            
+            'Sacred Sword interaction with evasion
+            Me.UseOppEvasion = False
             '#End
         End Sub
 
