@@ -1604,6 +1604,7 @@
     <Compile Include="Scripting.V3\ParamHelper.vb" />
     <Compile Include="Scripting.V3\Prototypes\TrainerWrapper.vb" />
     <Compile Include="Scripting.V3\Prototypes\TypeContract.vb" />
+    <Compile Include="Scripting.V3\Prototypes\Vector3Wrapper.vb" />
     <Compile Include="Scripting.V3\ScriptInputType.vb" />
     <Compile Include="Scripting.V3\ScriptManager.vb" />
     <Compile Include="Scripting.V3\ScriptStartFlag.vb" />
@@ -1701,6 +1702,7 @@
   <ItemGroup>
     <Content Include="PokemonIcon.ico" />
     <Compile Include="Scripting.V3\ApiClasses\ApiClassAttribute.vb" />
+    <Compile Include="Scripting.V3\Prototypes\CameraWrapper.vb" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\2.5DHeroContent\Content.mgcb">
