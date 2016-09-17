@@ -116,7 +116,11 @@
     End Sub
 
     Public Overrides Sub Update()
-        Core.GameInstance.IsMouseVisible = False
+        If Index = 5 Then
+            Core.GameInstance.IsMouseVisible = True
+        Else
+            Core.GameInstance.IsMouseVisible = False
+        End If
 
         If ProfAlpha < 255 And Index = 0 Then
             ProfAlpha += 2
@@ -134,7 +138,6 @@
                         UpdateTransition(False)
                     Case 5
                         UpdateTextbox()
-                        Core.GameInstance.IsMouseVisible = True
                     Case 7
                         UpdateTransition(True)
                     Case 9
