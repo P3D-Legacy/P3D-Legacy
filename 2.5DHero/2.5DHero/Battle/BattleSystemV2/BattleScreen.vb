@@ -1075,13 +1075,21 @@ nextIndex:
 
         Public Sub SendInNewTrainerPokemon(ByVal index As Integer)
             Dim i As Integer = index
-
+            
             If i = -1 Then
-                i = Core.Random.Next(0, Trainer.Pokemons.Count)
-                While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted Or OppPokemonIndex = i Or Trainer.Pokemons(i).HP <= 0
-                    i = Core.Random.Next(0, Trainer.Pokemons.Count)
-                End While
-            End If
+                If IsPvPBattle Then
+                    While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse OppPokemonIndex = i OrElse Trainer.Pokemons(i).HP <= 0
+                        i += 1
+                    End While
+            
+                Else
+                    i = Core.Random.Next(0, Trainer.Pokemons.count)
+                    While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse OppPokemonIndex = i OrElse Trainer.Pokemons(i).HP <= 0
+                        i = Core.Random.Next(0, Trainer.Pokemons.count)
+                    End While
+                End If
+            End If    
+            
 
             OppPokemonIndex = i
             OppPokemon = Trainer.Pokemons(i)
