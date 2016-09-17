@@ -185,10 +185,10 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="encounterTrainer")>
         Public Shared Function EncounterTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, {GetType(String)}) Then
+            If TypeContract.Ensure(parameters, {GetType(TrainerWrapper)}) Then
 
-                Dim trainerFile = CType(parameters(0), String)
-                Dim t = New Trainer(trainerFile)
+                Dim wrapper = CType(parameters(0), TrainerWrapper)
+                Dim t = New Trainer(wrapper.file)
 
                 If Not t.IsBeaten() Then
 
