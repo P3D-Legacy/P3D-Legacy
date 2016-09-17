@@ -1601,6 +1601,7 @@
     <Compile Include="Scripting.V3\ApiClasses\ApiClass.vb" />
     <Compile Include="Scripting.V3\ApiClasses\BattleSystem.vb" />
     <Compile Include="Scripting.V3\Prototypes\Battle.vb" />
+    <Compile Include="Scripting.V3\Prototypes\ParamHelper.vb" />
     <Compile Include="Scripting.V3\Prototypes\TypeContract.vb" />
     <Compile Include="Scripting.V3\ScriptInputType.vb" />
     <Compile Include="Scripting.V3\ScriptManager.vb" />
