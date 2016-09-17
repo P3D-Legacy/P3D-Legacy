@@ -1294,8 +1294,8 @@
                     returnMove = New Moves.Bug.StruggleBug()
                 Case 523
                     returnMove = New Moves.Ground.Bulldoze()
-                    'Case 524
-                    'Frost breath
+                Case 524
+                    returnMove = New Moves.Ice.FrostBreath
                 Case 525
                     returnMove = New Moves.Dragon.DragonTail()
                 Case 526
@@ -1347,7 +1347,7 @@
                     'Case 549
                     'Glaciate
                     'Case 550
-                    'Bolt Stirike
+                    'Bolt Strike
                     'Case 551
                     'Blue Flare
                 Case 552
