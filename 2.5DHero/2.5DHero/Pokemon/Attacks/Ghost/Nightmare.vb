@@ -73,7 +73,7 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            If op.Status <> Pokemon.StatusProblems.Sleep Then
+            If op.Status = Pokemon.StatusProblems.Sleep Then
                 If own = True Then
                     BattleScreen.FieldEffects.OppNightmare = 1
                 Else
