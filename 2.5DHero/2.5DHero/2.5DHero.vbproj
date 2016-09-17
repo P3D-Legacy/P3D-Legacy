@@ -1599,6 +1599,7 @@
     <Compile Include="Screens\TransitionScreen.vb" />
     <Compile Include="Screens\WindowScreen.vb" />
     <Compile Include="Scripting.V3\ApiClasses\ApiClass.vb" />
+    <Compile Include="Scripting.V3\ApiClasses\Chat.vb" />
     <Compile Include="Scripting.V3\ApiClasses\Text.vb" />
     <Compile Include="Scripting.V3\Prototypes\Battle.vb" />
     <Compile Include="Scripting.V3\ParamHelper.vb" />
