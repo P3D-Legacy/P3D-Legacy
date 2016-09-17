@@ -5,7 +5,7 @@ Namespace Scripting.V3.ApiClasses
 
     Friend MustInherit Class ApiClass
 
-        Protected Shared Function EnsureTypeContract(parameters As SObject(), typeContract As Type(), netObjects As Object(), Optional optionalCount As Integer = 0) As Boolean
+        Protected Shared Function EnsureTypeContract(parameters As SObject(), typeContract As Type(), ByRef netObjects As Object(), Optional optionalCount As Integer = 0) As Boolean
 
             If parameters.Length + optionalCount >= typeContract.Length Then
 
@@ -18,6 +18,8 @@ Namespace Scripting.V3.ApiClasses
                     If i < typeContract.Length AndAlso Not typeContract(i) = netObjects(i).GetType() Then
                         Return False
                     End If
+
+                    i += 1
                 End While
 
                 Return True

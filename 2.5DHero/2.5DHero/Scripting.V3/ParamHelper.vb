@@ -1,4 +1,4 @@
-﻿Namespace Scripting.V3.Prototypes
+﻿Namespace Scripting.V3
 
     Friend NotInheritable Class ParamHelper
 
@@ -12,7 +12,7 @@
         ''' <summary>
         ''' Grabs the next item from the parameter stack and advances the stack.
         ''' </summary>
-        Public Function Grab(Of T)(Optional defaultValue As T = Nothing) As T
+        Public Function Pop(Of T)(Optional defaultValue As T = Nothing) As T
 
             If HasEnded() Then Return defaultValue
 
@@ -41,6 +41,13 @@
         ''' </summary>
         Public Function HasEnded() As Boolean
             Return _index = _parameters.Length
+        End Function
+
+        ''' <summary>
+        ''' Returns the amount of items still on the stack.
+        ''' </summary>
+        Public Function GetStackSize() As Integer
+            Return _parameters.Length - _index
         End Function
 
     End Class

@@ -4,7 +4,7 @@
     Friend Enum ScriptStartFlag
 
         None = 0
-        CheckDelay = 1
+        SkipDelayCheck = 1
         ResetInSight = 2
 
     End Enum

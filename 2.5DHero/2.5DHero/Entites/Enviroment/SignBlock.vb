@@ -34,20 +34,26 @@
         End Select
 
         If canRead = True Then
-            Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
-            If oScreen.ActionScript.IsReady = True Then
-                SoundManager.PlaySound("select")
-                Select Case Me.ActionValue
-                    Case 0, 3
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
-                    Case 1
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
-                    Case 2
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", vbNewLine), 2)
-                    Case Else
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
-                End Select
+
+            Dim scriptManager = Scripting.V3.ScriptManager.Instance
+            If Not scriptManager.IsActive Then
+                scriptManager.StartScript("using Text; Text.show(""Hello World"");", Scripting.V3.ScriptInputType.Raw, Scripting.V3.ScriptStartFlag.None)
             End If
+
+            'Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
+            'If oScreen.ActionScript.IsReady = True Then
+            '    SoundManager.PlaySound("select")
+            '    Select Case Me.ActionValue
+            '        Case 0, 3
+            '            oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
+            '        Case 1
+            '            oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
+            '        Case 2
+            '            oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", vbNewLine), 2)
+            '        Case Else
+            '            oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
+            '    End Select
+            'End If
         End If
     End Sub
 

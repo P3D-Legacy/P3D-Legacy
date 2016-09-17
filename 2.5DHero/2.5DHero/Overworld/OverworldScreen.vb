@@ -224,6 +224,7 @@ Public Class OverworldScreen
             End If
 
             ActionScript.Update() 'Update the action script.
+            Scripting.V3.ScriptManager.Instance.Update()
         Else 'Dialogues are showing:
             'Update some parts of the camera:
             If Camera.Name = "Overworld" Then

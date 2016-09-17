@@ -48,14 +48,14 @@ Namespace Scripting.V3
         End Property
 
         Public Sub StartScript(input As String, inputType As ScriptInputType, flags As ScriptStartFlag)
-            Dim checkDelay As Boolean = flags.HasFlag(ScriptStartFlag.CheckDelay)
+            Dim skipDelayCheck As Boolean = flags.HasFlag(ScriptStartFlag.SkipDelayCheck)
             Dim resetInSight = flags.HasFlag(ScriptStartFlag.ResetInSight)
 
             If resetInSight Then
                 IsInSightScript = False
             End If
 
-            If Not checkDelay OrElse _reDelay = 0.0F Then
+            If skipDelayCheck OrElse _reDelay = 0.0F Then
                 Select Case inputType
                     Case ScriptInputType.File
                         StartScriptFromFile(input)

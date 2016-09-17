@@ -33,10 +33,10 @@ Namespace Scripting.V3.Prototypes
 
                 Dim helper = New ParamHelper(parameters)
 
-                Dim data = helper.Grab(Of String)
+                Dim data = helper.Pop(Of String)
 
-                Dim musicLoop As String = helper.Grab("")
-                Dim introType As Integer = helper.Grab(Core.Random.Next(0, 10))
+                Dim musicLoop As String = helper.Pop("")
+                Dim introType As Integer = helper.Pop(Core.Random.Next(0, 10))
 
                 Dim p As Pokemon = Nothing
 
@@ -69,8 +69,8 @@ Namespace Scripting.V3.Prototypes
 
                 Dim helper = New ParamHelper(parameters)
 
-                Dim id = helper.Grab(Of Integer)
-                Dim level = helper.Grab(Of Integer)
+                Dim id = helper.Pop(Of Integer)
+                Dim level = helper.Pop(Of Integer)
 
                 Dim p As Pokemon = Nothing
 
@@ -82,13 +82,13 @@ Namespace Scripting.V3.Prototypes
 
                 If Not helper.HasEnded() Then
 
-                    Dim shiny = helper.Grab(Of Boolean)
+                    Dim shiny = helper.Pop(Of Boolean)
                     p.IsShiny = shiny
 
                 End If
 
-                musicLoop = helper.Grab("")
-                introType = helper.Grab(Core.Random.Next(0, 10))
+                musicLoop = helper.Pop("")
+                introType = helper.Pop(Core.Random.Next(0, 10))
 
                 Dim method As Integer = 0
                 If Screen.Level.Surfing = True Then
