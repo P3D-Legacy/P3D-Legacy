@@ -1344,8 +1344,6 @@
                     'Relic Song
                 Case 548
                     returnMove = New Moves.Fighting.SecretSword()
-                    'Case 548
-                    'Secret Sword
                     'Case 549
                     'Glaciate
                     'Case 550
