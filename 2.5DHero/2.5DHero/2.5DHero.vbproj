@@ -1599,7 +1599,9 @@
     <Compile Include="Screens\TransitionScreen.vb" />
     <Compile Include="Screens\WindowScreen.vb" />
     <Compile Include="Scripting.V3\ApiClasses\ApiClass.vb" />
-    <Compile Include="Scripting.V3\ApiClasses\Battle.vb" />
+    <Compile Include="Scripting.V3\ApiClasses\BattleSystem.vb" />
+    <Compile Include="Scripting.V3\Prototypes\Battle.vb" />
+    <Compile Include="Scripting.V3\Prototypes\TypeContract.vb" />
     <Compile Include="Scripting.V3\ScriptInputType.vb" />
     <Compile Include="Scripting.V3\ScriptManager.vb" />
     <Compile Include="Scripting.V3\ScriptStartFlag.vb" />
@@ -1733,9 +1735,7 @@
     <Import Include="Microsoft.Xna.Framework.Media" />
     <Import Include="Microsoft.Xna.Framework.Audio" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripting.V3\Prototypes\" />
-  </ItemGroup>
+  <ItemGroup />
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
     <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows,$(AssemblySearchPaths)">

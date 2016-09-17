@@ -75,8 +75,9 @@ Namespace Scripting.V3
             Security.FileValidation.CheckFileValid(path, False, "ActionScript.vb")
 
             If File.Exists(path) Then
-                Dim data = File.ReadAllText(path)
+                Dim source = File.ReadAllText(path)
 
+                RunScript(source)
             Else
                 Logger.Log(Logger.LogTypes.ErrorMessage, $"ActionScript.vb: The script file ""{path}"" doesn't exist!")
             End If
@@ -86,8 +87,9 @@ Namespace Scripting.V3
             Logger.Debug($"Start Script (Text: {input})")
             _scriptName = $"Type: Text; Input: {input}"
 
-            Dim data As String = $"using text;text.show({input});"
+            Dim source As String = $"using text;text.show({input});"
 
+            RunScript(source)
         End Sub
 
         Private Sub StartScriptFromRaw(input As String)
@@ -97,7 +99,9 @@ Namespace Scripting.V3
             Logger.Debug($"Start Script (DirectInput; {activator})")
             _scriptName = $"Type: Direct; Input: {input}"
 
-            Dim data As String = input
+            Dim source As String = input
+
+            RunScript(source)
         End Sub
 
         Private Sub RunScript(source As String)
