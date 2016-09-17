@@ -1331,6 +1331,11 @@
                     End Select
                 End If
             End If
+            
+            'Critical hit interaction with attack stat change
+            If ASM < 1.0F AndAlso Critical = True Then
+                ASM = 1.0F
+            End If
 
             Atk = CInt(Math.Floor(AStat * ASM * AM * IM))
             'DEF
@@ -1410,7 +1415,16 @@
                     End If
                 End If
             End If
-
+            
+            If DSM > 1.0F AndAlso Critical = True Then
+                DSM = 1.0F
+            End If
+            
+            'Sacred Sword ignores defense stat changes
+            If Attack.ID = 533 Then
+                DSM = 1.0F
+            End If
+            
             Def = CInt(Math.Floor(DStat * DSM * DMod * SX))
 
             If Def <= 0 Then
