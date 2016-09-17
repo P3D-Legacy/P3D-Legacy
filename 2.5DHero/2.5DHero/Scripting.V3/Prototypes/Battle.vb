@@ -2,7 +2,7 @@
 
 Namespace Scripting.V3.Prototypes
 
-    <ScriptPrototype(VariableName:="battle")>
+    <ScriptPrototype(VariableName:="Battle")>
     Friend NotInheritable Class Battle
 
         <ScriptVariable>
@@ -234,6 +234,13 @@ Namespace Scripting.V3.Prototypes
             End If
 
             Return Nothing
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="wonLast", IsStatic:=True)>
+        Public Shared Function WonLast(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Return BattleSystem.Battle.Won
 
         End Function
 
