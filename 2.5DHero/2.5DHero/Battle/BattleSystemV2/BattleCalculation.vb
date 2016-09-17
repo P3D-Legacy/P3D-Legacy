@@ -322,7 +322,7 @@
             Dim ACC As Integer = accuracy - evasion
             ACC = ACC.Clamp(-6, 6)
 
-            Dim ACCM As Single = GetMultiplierFromStat(ACC)
+            Dim ACCM As Single = GetMultiplierFromAccEvasion(ACC)
 
             If UsedAttack.GetUseAccEvasion(own, BattleScreen) = False Then
                 ACCM = 1.0F
@@ -1816,7 +1816,39 @@
                     Return 1.0F
             End Select
         End Function
-
+        
+        Public Shared Function GetMultiplierFromAccEvasion(ByVal StatValue As Integer) As Single
+            Select Case StatValue
+                Case -6
+                    Return CSng(3 / 9)
+                Case -5
+                    Return CSng(3 / 8)
+                Case -4
+                    Return CSng(3 / 7)
+                Case -3
+                    Return CSng(3 / 6)
+                Case -2
+                    Return CSng(3 / 5)
+                Case -1
+                    Return CSng(3 / 4)
+                Case 0
+                    Return CSng(3 / 3)
+                Case 1
+                    Return CSng(4 / 3)
+                Case 2
+                    Return CSng(5 / 3)
+                Case 3
+                    Return CSng(6 / 3)
+                Case 4
+                    Return CSng(7 / 3)
+                Case 5
+                    Return CSng(8 / 3)
+                Case 6
+                    Return CSng(9 / 3)
+                Case Else
+                    Return 1.0F
+            End Select
+        End Function
     End Class
 
 End Namespace
