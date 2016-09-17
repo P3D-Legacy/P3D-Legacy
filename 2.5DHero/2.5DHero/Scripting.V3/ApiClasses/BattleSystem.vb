@@ -4,7 +4,7 @@ Imports Pokemon3D.Scripting.Types
 
 Namespace Scripting.V3.ApiClasses
 
-    <ApiClass("battleSystem")>
+    <ApiClass("BattleSystem")>
     Friend NotInheritable Class BattleSystem
 
         Inherits ApiClass

@@ -1,4 +1,5 @@
 ﻿Imports System.Reflection
+Imports System.Threading
 Imports System.Threading.Tasks
 Imports net.Pokemon3D.Game.Scripting.V3.ApiClasses
 Imports Pokemon3D.Scripting
@@ -33,6 +34,7 @@ Namespace Scripting.V3
         Private _scriptName As String
         Private _activeProcessorCount As Integer = 0
         Private _unlockCamera As Boolean = False
+        Private _waitFrames As Integer = 0
 
         Private _prototypeBuffer As List(Of SObject)
         Private _apiClasses As Dictionary(Of String, MethodInfo())
@@ -185,6 +187,10 @@ Namespace Scripting.V3
         End Sub
 
         Public Sub Update()
+            If _waitFrames > 0 Then
+                _waitFrames -= 1
+            End If
+
             If Not IsActive Then
                 If _unlockCamera Then
                     _unlockCamera = False
@@ -201,6 +207,18 @@ Namespace Scripting.V3
                     End If
                 End If
             End If
+        End Sub
+
+        Public Shared Sub WaitUntil(condition As Func(Of Boolean))
+            SpinWait.SpinUntil(condition)
+        End Sub
+
+        Public Sub WaitFrames(Optional frames As Integer = 1)
+            _waitFrames += frames
+
+            SpinWait.SpinUntil(Function()
+                                   Return _waitFrames = 0
+                               End Function)
         End Sub
 
     End Class

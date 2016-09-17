@@ -1,14 +1,13 @@
-﻿Imports System.Threading
-Imports Pokemon3D.Scripting.Adapters
+﻿Imports Pokemon3D.Scripting.Adapters
 Imports Pokemon3D.Scripting.Types
 
 Namespace Scripting.V3.ApiClasses
 
     Friend MustInherit Class ApiClass
 
-        Protected Shared Function EnsureTypeContract(parameters As SObject(), typeContract As Type(), netObjects As Object()) As Boolean
+        Protected Shared Function EnsureTypeContract(parameters As SObject(), typeContract As Type(), netObjects As Object(), Optional optionalCount As Integer = 0) As Boolean
 
-            If parameters.Length >= typeContract.Length Then
+            If parameters.Length + optionalCount >= typeContract.Length Then
 
                 netObjects = New Object(parameters.Length - 1) {}
                 Dim i = 0
@@ -28,10 +27,6 @@ Namespace Scripting.V3.ApiClasses
             End If
 
         End Function
-
-        Protected Shared Sub BlockThreadUntilCondition(condition As Func(Of Boolean))
-            SpinWait.SpinUntil(condition)
-        End Sub
 
     End Class
 
