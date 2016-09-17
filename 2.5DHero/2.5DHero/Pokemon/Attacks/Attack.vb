@@ -1312,8 +1312,8 @@
                     returnMove = New Moves.Psychic.HeartStamp()
                 Case 532
                     returnMove = New Moves.Grass.HornLeech()
-                    'Case 533
-                    'Sacred Sword
+                Case 533
+                    returnMove = New Moves.Fighting.SacredSword()
                 Case 534
                     returnMove = New Moves.Water.RazorShell()
                 Case 535
