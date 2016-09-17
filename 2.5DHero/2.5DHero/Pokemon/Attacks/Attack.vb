@@ -1076,8 +1076,8 @@
                     returnMove = New Moves.Flying.BraveBird()
                 Case 414
                     returnMove = New Moves.Ground.EarthPower()
-                    'Case 415
-                    'Switcheroo
+                Case 415
+                    returnMove = New.Moves.Dark.Switcheroo()
                 Case 416
                     returnMove = New Moves.Normal.GigaImpact()
                 Case 417
