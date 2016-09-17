@@ -72,29 +72,9 @@ Namespace Scripting.V3.ApiClasses
 
         End Function
 
-        Public Shared Function setColorRGB(processor As ScriptProcessor, parameters As SObject()) As SObject
-
-            Dim netObjects = New Object(2) {}
-            If EnsureTypeContract(parameters, {GetType(Integer), GetType(Integer), GetType(Integer), GetType(Integer)}, netObjects, 1) Then
-
-                Dim helper = New ParamHelper(netObjects)
-
-                Dim r = helper.Pop(Of Integer)
-                Dim g = helper.Pop(Of Integer)
-                Dim b = helper.Pop(Of Integer)
-                Dim a = helper.Pop(255)
-
-                Screen.TextBox.TextColor = New Color(r, g, b, a)
-
-            End If
-
-            Return ScriptInAdapter.GetUndefined(processor)
-
-        End Function
-
         Public Shared Function setColor(processor As ScriptProcessor, parameters As SObject()) As SObject
 
-            Dim netObjects = New Object(0) {}
+            Dim netObjects As Object() = Nothing
             If EnsureTypeContract(parameters, {GetType(String)}, netObjects) Then
 
                 Dim colorType = CType(netObjects(0), String)
@@ -107,6 +87,17 @@ Namespace Scripting.V3.ApiClasses
                     Case Else 'Try to convert the input color name into a color: (https://msdn.microsoft.com/en-us/library/system.drawing.knowncolor%28v=vs.110%29.aspx)
                         Screen.TextBox.TextColor = Drawing.Color.FromName(colorType).ToXNA()
                 End Select
+
+            ElseIf EnsureTypeContract(parameters, {GetType(Integer), GetType(Integer), GetType(Integer), GetType(Integer)}, netObjects, 1) Then
+
+                Dim helper = New ParamHelper(netObjects)
+
+                Dim r = helper.Pop(Of Integer)
+                Dim g = helper.Pop(Of Integer)
+                Dim b = helper.Pop(Of Integer)
+                Dim a = helper.Pop(255)
+
+                Screen.TextBox.TextColor = New Color(r, g, b, a)
 
             End If
 
