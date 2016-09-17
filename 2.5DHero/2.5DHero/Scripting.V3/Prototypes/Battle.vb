@@ -5,26 +5,70 @@ Namespace Scripting.V3.Prototypes
     <ScriptPrototype(VariableName:="battle")>
     Friend NotInheritable Class Battle
 
+        <ScriptVariable>
+        Public canRun As Boolean = True
+
+        <ScriptVariable>
+        Public canCatch As Boolean = True
+
+        <ScriptVariable>
+        Public canBlackout As Boolean = True
+
+        <ScriptVariable>
+        Public canReceiveExp As Boolean = True
+
+        <ScriptVariable>
+        Public canUseItems As Boolean = True
+
+        <ScriptVariable>
+        Public frontierTrainer As Integer = -1
+
+        <ScriptVariable>
+        Public isDiveBattle As Boolean = False
+
+        <ScriptVariable>
+        Public isInverseBattle As Boolean = False
+
+        <ScriptVariable>
+        Public customBattleMusic As String = ""
+
+        <ScriptVariable>
+        Public hiddenAbilityChance As Integer = 0
+
+        Private Shared Sub ApplyValues(This As Battle)
+            BattleSystem.BattleScreen.CanRun = This.canRun
+            BattleSystem.BattleScreen.CanCatch = This.canCatch
+            BattleSystem.BattleScreen.CanBlackout = This.canBlackout
+            BattleSystem.BattleScreen.CanReceiveEXP = This.canReceiveExp
+            BattleSystem.BattleScreen.CanUseItems = This.canUseItems
+            BattleSystem.BattleScreen.DiveBattle = This.isDiveBattle
+            BattleSystem.BattleScreen.IsInverseBattle = This.isInverseBattle
+            BattleSystem.BattleScreen.CustomBattleMusic = This.customBattleMusic
+
+            Trainer.FrontierTrainer = This.frontierTrainer
+            Screen.Level.HiddenAbilityChance = This.hiddenAbilityChance
+        End Sub
+
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="reset")>
-        Public Shared Function Reset(This As Object, parameters As Object()) As Object
+        Public Shared Function Reset(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            BattleSystem.BattleScreen.ResetVars()
+            objLink.SetMember("canRun", True)
+            objLink.SetMember("canCatch", True)
+            objLink.SetMember("canBlackout", True)
+            objLink.SetMember("canReceiveExp", True)
+            objLink.SetMember("canUseItems", True)
+            objLink.SetMember("frontierTrainer", -1)
+            objLink.SetMember("isDiveBattle", False)
+            objLink.SetMember("isInverseBattle", False)
+            objLink.SetMember("customBattleMusic", "")
+            objLink.SetMember("hiddenAbilityChance", 0)
+
             Return Nothing
 
         End Function
 
-        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="canRun")>
-        Public Shared Function SetCanRun(This As Object, parameters As Object()) As Object
-
-            If TypeContract.Ensure(parameters, {GetType(Boolean)}) Then
-                BattleSystem.BattleScreen.CanRun = CType(parameters(0), Boolean)
-            End If
-            Return Nothing
-
-        End Function
-
-        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="battleWildData")>
-        Public Shared Function BattleWildData(This As Object, parameters As Object()) As Object
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startWildData")>
+        Public Shared Function StartWildData(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             'optional:
             '{pokemondata},             [musicloop],    [introtype]
@@ -48,6 +92,9 @@ Namespace Scripting.V3.Prototypes
                 End If
 
                 Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, 1)
+
+                ApplyValues(CType(This, Battle))
+
                 Dim b As New BattleSystem.BattleScreen(p, Core.CurrentScreen, method)
                 Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, introType, musicLoop))
 
@@ -59,8 +106,8 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
-        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="battleWild")>
-        Public Shared Function BattleWild(This As Object, parameters As Object()) As Object
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startWild")>
+        Public Shared Function StartWild(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             'ID,    Level,  [shiny],    [musicloop],    [introtype]
             'int    int     -1 or bool  string          int
@@ -77,7 +124,7 @@ Namespace Scripting.V3.Prototypes
                 Dim musicLoop As String
                 Dim introType As Integer
 
-                p = Pokemon.GetPokemonByID(ID)
+                p = Pokemon.GetPokemonByID(id)
                 p.Generate(level, True)
 
                 If Not helper.HasEnded() Then
@@ -96,6 +143,9 @@ Namespace Scripting.V3.Prototypes
                 End If
 
                 Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, 1)
+
+                ApplyValues(CType(This, Battle))
+
                 Dim b As New BattleSystem.BattleScreen(p, Core.CurrentScreen, method)
                 Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, introType, musicLoop))
 
@@ -106,8 +156,8 @@ Namespace Scripting.V3.Prototypes
             Return Nothing
         End Function
 
-        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="battleTrainer")>
-        Public Shared Function BattleTrainer(This As Object, parameters As Object()) As Object
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startTrainer")>
+        Public Shared Function StartTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(String)}) Then
 
@@ -118,6 +168,8 @@ Namespace Scripting.V3.Prototypes
                 If Screen.Level.Surfing = True Then
                     method = 2
                 End If
+
+                ApplyValues(CType(This, Battle))
 
                 Dim b As New BattleSystem.BattleScreen(t, Core.CurrentScreen, method)
                 Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, t, t.GetIniMusicName(), t.IntroType))
@@ -131,7 +183,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="encounterTrainer")>
-        Public Shared Function EncounterTrainer(This As Object, parameters As Object()) As Object
+        Public Shared Function EncounterTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(String)}) Then
 
@@ -161,6 +213,8 @@ Namespace Scripting.V3.Prototypes
                     If Screen.Level.Surfing = True Then
                         method = 2
                     End If
+
+                    ApplyValues(CType(This, Battle))
 
                     Dim b As New BattleSystem.BattleScreen(t, Core.CurrentScreen, method)
                     Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, t, t.GetIniMusicName(), t.IntroType))
