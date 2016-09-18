@@ -81,24 +81,46 @@
                         'check ingrain set up:
                         If ingrain <= 0 Then
 
-                            If BattleScreen.IsTrainerBattle = True Or BattleScreen.IsPVPBattle = True Or BattleScreen.IsRemoteBattle = True Then
-                                If own = True Then
-                                    If BattleScreen.Trainer.CountUseablePokemon > 1 Then
-                                        BattleScreen.Battle.SwitchOutOpp(BattleScreen, -1, "")
+                            If BattleCalculation.CanSwitch(BattleScreen, Not own) = True Then
+                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " got scared away!"))
+                                If BattleScreen.IsPVPBattle = True Or BattleScreen.IsTrainerBattle = True Or BattleScreen.IsRemoteBattle = True Then
+                                    'trainer battle
+                                    If own = True Then
+                                        If BattleScreen.Trainer.CountUseablePokemon > 1 Then
+                                            Dim i As Integer = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.count)
+                                            While BattleScreen.Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OppPokemonIndex = i OrElse BattleScreen.Trainer.Pokemons(i).HP <= 0
+                                                i = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.count)
+                                            End While
+                                            BattleScreen.Battle.SwitchOutOpp(BattleScreen, i, "")
+                                        Else
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                                        End If
+                                    Else
+                                        If Core.Player.CountFightablePokemon > 1 Then
+                                             Dim i As Integer = Core.Random.Next(0, Core.Player.Pokemons.Count)
+                                            While Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OwnPokemonIndex = i OrElse Core.Player.Pokemons(i).HP <= 0
+                                                i = Core.Random.Next(0, Core.Player.Pokemons.Count)
+                                            End While
+                                            BattleScreen.Battle.SwitchOutOwn(BattleScreen, i, -1)
+                                        Else
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                                        End If
                                     End If
                                 Else
-                                    If Core.Player.CountFightablePokemon > 1 Then
-                                        BattleScreen.Battle.SwitchOutOwn(BattleScreen, -1, -1)
+                                    'wild battle
+
+                                    If own = True Then
+                                        BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
+                                    Else
+                                        If Core.Player.CountFightablePokemon > 1 Then
+                                            BattleScreen.Battle.SwitchOutOwn(BattleScreen, -1, -1)
+                                        Else
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                                        End If
                                     End If
                                 End If
                             Else
-                                If own = True Then
-                                    BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
-                                Else
-                                    If Core.Player.CountFightablePokemon > 1 Then
-                                        BattleScreen.Battle.SwitchOutOwn(BattleScreen, -1, -1)
-                                    End If
-                                End If
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                             End If
                         End If
                     End If
