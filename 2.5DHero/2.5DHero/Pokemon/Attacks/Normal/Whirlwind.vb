@@ -73,7 +73,11 @@
                     'trainer battle
                     If own = True Then
                         If BattleScreen.Trainer.CountUseablePokemon > 1 Then
-                            BattleScreen.Battle.SwitchOutOpp(BattleScreen, -1, "")
+                            Dim i As Integer = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.count)
+                            While BattleScreen.Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OppPokemonIndex = i OrElse BattleScreen.Trainer.Pokemons(i).HP <= 0
+                                i = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.count)
+                            End While
+                            BattleScreen.Battle.SwitchOutOpp(BattleScreen, i, "")
                         Else
                             BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                         End If
