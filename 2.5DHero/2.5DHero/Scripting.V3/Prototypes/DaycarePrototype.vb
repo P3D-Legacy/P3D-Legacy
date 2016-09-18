@@ -106,8 +106,8 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
-        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="length")>
-        Public Shared Function GetLength(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="pokemonCount")>
+        Public Shared Function GetPokemonCount(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim daycareId = CType(This, DaycarePrototype).daycareId
 

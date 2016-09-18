@@ -2,8 +2,8 @@
 
     Friend Class TypeContract
 
-        Public Shared Function Ensure(objects As Object(), typeContract As Type) As Boolean
-            Return Ensure(objects, {typeContract})
+        Public Shared Function Ensure(objects As Object(), typeContract As Type, Optional optionalCount As Integer = 0) As Boolean
+            Return Ensure(objects, {typeContract}, optionalCount)
         End Function
 
         Public Shared Function Ensure(objects As Object(), typeContract As Type(), Optional optionalCount As Integer = 0) As Boolean

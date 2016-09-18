@@ -74,6 +74,13 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="getLegendaryIds")>
+        Public Shared Function GetLegendaryIds(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Return Pokemon.Legendaries
+
+        End Function
+
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="getSprite")>
         Public Shared Function GetOverworldSprite(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
@@ -208,6 +215,277 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="isEgg")>
+        Public Shared Function GetIsEgg(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.IsEgg()
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="nature")>
+        Public Shared Function GetNature(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.Nature.ToString()
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="nature")>
+        Public Shared Function SetNature(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(Integer)) Then
+
+                Dim p = GetPokemon(This)
+                p.Nature = Pokemon.ConvertIDToNature(CType(parameters(0), Integer))
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="friendship")>
+        Public Shared Function GetFriendship(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.Friendship
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="friendship")>
+        Public Shared Function SetFriendship(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(Integer)) Then
+
+                Dim p = GetPokemon(This)
+                p.Friendship = CType(parameters(0), Integer)
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="ot")>
+        Public Shared Function GetOT(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.OT
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="ot")>
+        Public Shared Function SetOT(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(String)) Then
+
+                Dim p = GetPokemon(This)
+                p.OT = CType(parameters(0), String)
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="catchTrainer")>
+        Public Shared Function GetCatchTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.CatchTrainerName
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="catchTrainer")>
+        Public Shared Function SetCatchTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(String)) Then
+
+                Dim p = GetPokemon(This)
+                p.CatchTrainerName = CType(parameters(0), String)
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="catchMethod")>
+        Public Shared Function GetCatchMethod(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.CatchMethod
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="catchMethod")>
+        Public Shared Function SetCatchMethod(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(String)) Then
+
+                Dim p = GetPokemon(This)
+                p.CatchMethod = CType(parameters(0), String)
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="catchLocation")>
+        Public Shared Function GetCatchLocation(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.CatchLocation
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="catchLocation")>
+        Public Shared Function SetCatchLocation(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(String)) Then
+
+                Dim p = GetPokemon(This)
+                p.CatchLocation = CType(parameters(0), String)
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="catchBall")>
+        Public Shared Function GetCatchBall(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return New ItemPrototype(p.CatchBall.ID, p.CatchBall.AdditionalData)
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="catchBall")>
+        Public Shared Function SetCatchBall(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(ItemPrototype)) Then
+
+                Dim p = GetPokemon(This)
+                p.CatchBall = ItemPrototype.ToItem(parameters(0))
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="item")>
+        Public Shared Function GetItem(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+
+            If p.Item IsNot Nothing Then
+                Return New ItemPrototype(p.Item.ID, p.Item.AdditionalData)
+            Else
+                Return Nothing
+            End If
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="item")>
+        Public Shared Function SetItem(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(ItemPrototype)) Then
+
+                Dim p = GetPokemon(This)
+
+                If parameters(0) Is Nothing Then
+                    p.Item = Nothing
+                Else
+
+                    Dim item = CType(parameters(0), ItemPrototype)
+                    p.Item = ItemPrototype.ToItem(item)
+
+                End If
+
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="gender")>
+        Public Shared Function GetGender(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.Gender
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="gender")>
+        Public Shared Function SetGender(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(String)) Then
+
+                Dim p = GetPokemon(This)
+                Dim newGender As Pokemon.Genders
+
+                If [Enum].TryParse(CType(parameters(0), String), newGender) Then
+
+                    p.Gender = newGender
+                    SaveData(This, objLink, p)
+
+                End If
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="ability")>
+        Public Shared Function GetAbility(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return New AbilityPrototype(p.Ability.ID)
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="ability")>
+        Public Shared Function SetAbility(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(AbilityPrototype)) Then
+
+                Dim p = GetPokemon(This)
+                p.Ability = AbilityPrototype.ToAbility(parameters(0))
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="types")>
+        Public Shared Function GetTypes(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+
+            If p.Type2.Type = Element.Types.Blank Then
+                Return {p.Type1.Type.ToString()}
+            Else
+                Return {p.Type1.Type.ToString(), p.Type2.Type.ToString()}
+            End If
+
+        End Function
+
 #Region "Stats"
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="stats")>
@@ -223,6 +501,128 @@ Namespace Scripting.V3.Prototypes
                 .spAtk = p.SpAttack,
                 .spDef = p.SpDefense,
                 .speed = p.Speed
+            }
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="EVs")>
+        Public Shared Function GetEVs(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return New With
+            {
+                .hp = p.EVHP,
+                .atk = p.EVAttack,
+                .def = p.EVDefense,
+                .spAtk = p.EVSpAttack,
+                .spDef = p.EVSpDefense,
+                .speed = p.EVSpeed
+            }
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="setEV")>
+        Public Shared Function SetEV(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, {GetType(String), GetType(Integer)}) Then
+
+                Dim p = GetPokemon(This)
+
+                Dim evType = CType(parameters(0), String).ToLowerInvariant()
+                Dim evValue = CType(parameters(1), Integer)
+
+                Select Case evType.ToLower()
+                    Case "hp"
+                        p.EVHP = evValue
+                        SaveData(This, objLink, p)
+                    Case "atk"
+                        p.EVAttack = evValue
+                        SaveData(This, objLink, p)
+                    Case "def"
+                        p.EVDefense = evValue
+                        SaveData(This, objLink, p)
+                    Case "spatk"
+                        p.EVSpAttack = evValue
+                        SaveData(This, objLink, p)
+                    Case "spdef"
+                        p.EVSpDefense = evValue
+                        SaveData(This, objLink, p)
+                    Case "speed"
+                        p.EVSpeed = evValue
+                        SaveData(This, objLink, p)
+                End Select
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="setIV")>
+        Public Shared Function SetIV(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, {GetType(String), GetType(Integer)}) Then
+
+                Dim p = GetPokemon(This)
+
+                Dim ivType = CType(parameters(0), String).ToLowerInvariant()
+                Dim ivValue = CType(parameters(1), Integer)
+
+                Select Case ivType.ToLower()
+                    Case "hp"
+                        p.IVHP = ivValue
+                        SaveData(This, objLink, p)
+                    Case "atk"
+                        p.IVAttack = ivValue
+                        SaveData(This, objLink, p)
+                    Case "def"
+                        p.IVDefense = ivValue
+                        SaveData(This, objLink, p)
+                    Case "spatk"
+                        p.IVSpAttack = ivValue
+                        SaveData(This, objLink, p)
+                    Case "spdef"
+                        p.IVSpDefense = ivValue
+                        SaveData(This, objLink, p)
+                    Case "speed"
+                        p.IVSpeed = ivValue
+                        SaveData(This, objLink, p)
+                End Select
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="giveEVs")>
+        Public Shared Function GetGiveEVs(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return New With
+            {
+                .hp = p.GiveEVHP,
+                .atk = p.GiveEVAttack,
+                .def = p.GiveEVDefense,
+                .spAtk = p.GiveEVSpAttack,
+                .spDef = p.GiveEVSpDefense,
+                .speed = p.GiveEVSpeed
+            }
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="IVs")>
+        Public Shared Function GetIVs(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return New With
+            {
+                .hp = p.IVHP,
+                .atk = p.IVAttack,
+                .def = p.IVDefense,
+                .spAtk = p.IVSpAttack,
+                .spDef = p.IVSpDefense,
+                .speed = p.IVSpeed
             }
 
         End Function
@@ -250,7 +650,174 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="exp")>
+        Public Shared Function GetExp(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.Experience
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="exp")>
+        Public Shared Function SetExp(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(Integer)) Then
+
+                Dim p = GetPokemon(This)
+                p.Experience = CType(parameters(0), Integer)
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="heal")>
+        Public Shared Function Heal(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(Integer), 1) Then
+
+                Dim p = GetPokemon(This)
+                Dim hp = New ParamHelper(parameters).Pop(p.MaxHP)
+                p.Heal(hp)
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
 #End Region
+
+#Region "Moves"
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="getMoves")>
+        Public Shared Function GetMoves(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.Attacks.Select(Function(a As BattleSystem.Attack)
+                                        Return New MovePrototype(a.ID)
+                                    End Function).ToArray()
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="removeMoveAt")>
+        Public Shared Function RemoveMoveAt(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(Integer)) Then
+
+                Dim p = GetPokemon(This)
+                Dim moveIndex = CType(parameters(0), Integer)
+
+                If p.Attacks.Count > moveIndex Then
+                    p.Attacks.RemoveAt(moveIndex)
+                    SaveData(This, objLink, p)
+                End If
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="clearMoves")>
+        Public Shared Function ClearMoves(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            p.Attacks.Clear()
+            SaveData(This, objLink, p)
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="addMove")>
+        Public Shared Function AddMove(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(MovePrototype)) Then
+
+                Dim p = GetPokemon(This)
+                If p.Attacks.Count < 4 Then
+
+                    Dim move = CType(parameters(0), MovePrototype)
+                    p.Attacks.Add(MovePrototype.ToAttack(move))
+                    SaveData(This, objLink, p)
+
+                End If
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+#End Region
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="reload")>
+        Public Shared Function ReloadDefinitions(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            p.ReloadDefinitions()
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="status")>
+        Public Shared Function GetStatus(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.Status
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="status")>
+        Public Shared Function SetStatus(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(String)) Then
+
+                Dim p = GetPokemon(This)
+                Dim newStatus As Pokemon.StatusProblems
+
+                If [Enum].TryParse(CType(parameters(0), String), newStatus) Then
+
+                    p.Status = newStatus
+                    SaveData(This, objLink, p)
+
+                End If
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="canEvolve")>
+        Public Shared Function CanEvolve(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(String)) Then
+
+                Dim helper = New ParamHelper(parameters)
+
+                Dim triggerStr = helper.Pop("LevelUp")
+                Dim trigger As EvolutionCondition.EvolutionTrigger
+
+                If Not [Enum].TryParse(triggerStr, trigger) Then
+                    trigger = EvolutionCondition.EvolutionTrigger.LevelUp
+                End If
+
+                Dim evolutionArg = helper.Pop("")
+
+                Dim p = GetPokemon(This)
+                Return p.CanEvolve(trigger, evolutionArg)
+
+            End If
+
+            Return False
+
+        End Function
 
     End Class
 

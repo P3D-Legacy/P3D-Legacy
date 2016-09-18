@@ -2,16 +2,16 @@
 
 Namespace Scripting.V3.Prototypes
 
-    <ScriptPrototype(VariableName:="Move")>
-    Friend NotInheritable Class MovePrototype
+    <ScriptPrototype(VariableName:="Ability")>
+    Friend NotInheritable Class AbilityPrototype
 
         <ScriptVariable>
         Public id As Integer = 0
 
-        Public Shared Function ToAttack(This As Object) As BattleSystem.Attack
+        Public Shared Function ToAbility(This As Object) As Ability
 
-            Dim moveId = CType(This, MovePrototype).id
-            Return BattleSystem.Attack.GetAttackByID(moveId)
+            Dim abilityId = CType(This, AbilityPrototype).id
+            Return Ability.GetAbilityByID(abilityId)
 
         End Function
 
@@ -29,14 +29,6 @@ Namespace Scripting.V3.Prototypes
             End If
 
             Return NetUndefined.Instance
-
-        End Function
-
-        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="name")>
-        Public Shared Function GetName(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
-
-            Dim attack = ToAttack(This)
-            Return attack.Name
 
         End Function
 

@@ -1601,9 +1601,11 @@
     <Compile Include="Scripting.V3\ApiClasses\ApiClass.vb" />
     <Compile Include="Scripting.V3\ApiClasses\Chat.vb" />
     <Compile Include="Scripting.V3\ApiClasses\Text.vb" />
+    <Compile Include="Scripting.V3\Prototypes\AbilityPrototype.vb" />
     <Compile Include="Scripting.V3\Prototypes\BattlePrototype.vb" />
     <Compile Include="Scripting.V3\ParamHelper.vb" />
     <Compile Include="Scripting.V3\Prototypes\DaycarePrototype.vb" />
+    <Compile Include="Scripting.V3\Prototypes\ItemPrototype.vb" />
     <Compile Include="Scripting.V3\Prototypes\PokemonPrototype.vb" />
     <Compile Include="Scripting.V3\Prototypes\TrainerPrototype.vb" />
     <Compile Include="Scripting.V3\Prototypes\TypeContract.vb" />
