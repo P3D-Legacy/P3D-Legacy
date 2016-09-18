@@ -82,7 +82,7 @@ Namespace BattleSystem.Moves.Fighting
                         If ingrain <= 0 Then
 
                             If BattleCalculation.CanSwitch(BattleScreen, Not own) = True Then
-                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " got pushed away!"))
+                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " got thrown away!"))
                                 If BattleScreen.IsPVPBattle = True Or BattleScreen.IsTrainerBattle = True Or BattleScreen.IsRemoteBattle = True Then
                                     'trainer battle
                                     If own = True Then
