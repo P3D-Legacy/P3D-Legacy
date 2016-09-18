@@ -56,33 +56,33 @@ Namespace BattleSystem.Moves.Fighting
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim op As Pokemon = BattleScreen.OppPokemon
-            If own = False Then
-                op = BattleScreen.OwnPokemon
+            Dim p As Pokemon = BattleScreen.OwnPokemon    'p is the phazed pokemon
+            If own = True Then
+                p = BattleScreen.OppPokemon
             End If
 
             'Not fainted:
-            If op.HP > 0 And op.Status <> Pokemon.StatusProblems.Fainted Then
-                Dim substitude As Integer = BattleScreen.FieldEffects.OppSubstitute
-                If own = False Then
-                    substitude = BattleScreen.FieldEffects.OwnSubstitute
+            If p.HP > 0 And p.Status <> Pokemon.StatusProblems.Fainted Then
+                Dim substitude As Integer = BattleScreen.FieldEffects.OwnSubstitute
+                If own = True Then
+                    substitude = BattleScreen.FieldEffects.OppSubstitute
                 End If
 
                 'substitute:
                 If substitude <= 0 Then
 
                     'suction cups ability:
-                    If op.Ability.Name.ToLower() <> "suction cups" Then
-                        Dim ingrain As Integer = BattleScreen.FieldEffects.OppIngrain
-                        If own = False Then
-                            ingrain = BattleScreen.FieldEffects.OwnIngrain
+                    If p.Ability.Name.ToLower() <> "suction cups" Then
+                        Dim ingrain As Integer = BattleScreen.FieldEffects.OwnIngrain
+                        If own = True Then
+                            ingrain = BattleScreen.FieldEffects.OppIngrain
                         End If
 
                         'check ingrain set up:
                         If ingrain <= 0 Then
 
                             If BattleCalculation.CanSwitch(BattleScreen, Not own) = True Then
-                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " got thrown away!"))
+                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " got pushed away!"))
                                 If BattleScreen.IsPVPBattle = True Or BattleScreen.IsTrainerBattle = True Or BattleScreen.IsRemoteBattle = True Then
                                     'trainer battle
                                     If own = True Then
