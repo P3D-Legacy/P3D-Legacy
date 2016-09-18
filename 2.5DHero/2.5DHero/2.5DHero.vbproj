@@ -494,6 +494,7 @@
     <Compile Include="Pokemon\Attacks\Fighting\AuraSphere.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\BrickBreak.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\BulkUp.vb" />
+    <Compile Include="Pokemon\Attacks\Fighting\CircleThrow.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\CloseCombat.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\Counter.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\CrossChop.vb" />
