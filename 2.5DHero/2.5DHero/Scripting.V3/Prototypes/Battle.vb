@@ -67,24 +67,19 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
-        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startWildData")>
-        Public Shared Function StartWildData(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startWild")>
+        Public Shared Function StartWild(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            'optional:
-            '{pokemondata},             [musicloop],    [introtype]
-
-            If TypeContract.Ensure(parameters, {GetType(String), GetType(String), GetType(Integer)}, 2) Then
+            If TypeContract.Ensure(parameters, {GetType(PokemonWrapper), GetType(String), GetType(Integer)}, 2) Then
 
                 Dim helper = New ParamHelper(parameters)
 
-                Dim data = helper.Pop(Of String)
+                Dim wrapper = helper.Pop(Of PokemonWrapper)
 
                 Dim musicLoop As String = helper.Pop("")
                 Dim introType As Integer = helper.Pop(Core.Random.Next(0, 10))
 
-                Dim p As Pokemon = Nothing
-
-                p = Pokemon.GetPokemonByData(data)
+                Dim p = PokemonWrapper.GetPokemon(wrapper)
 
                 Dim method As Integer = 0
                 If Screen.Level.Surfing = True Then
@@ -102,56 +97,6 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
-
-        End Function
-
-        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startWild")>
-        Public Shared Function StartWild(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
-
-            'ID,    Level,  [shiny],    [musicloop],    [introtype]
-            'int    int     -1 or bool  string          int
-
-            If TypeContract.Ensure(parameters, {GetType(Integer), GetType(Integer), GetType(Boolean), GetType(String), GetType(Integer)}, 3) Then
-
-                Dim helper = New ParamHelper(parameters)
-
-                Dim id = helper.Pop(Of Integer)
-                Dim level = helper.Pop(Of Integer)
-
-                Dim p As Pokemon = Nothing
-
-                Dim musicLoop As String
-                Dim introType As Integer
-
-                p = Pokemon.GetPokemonByID(id)
-                p.Generate(level, True)
-
-                If Not helper.HasEnded() Then
-
-                    Dim shiny = helper.Pop(Of Boolean)
-                    p.IsShiny = shiny
-
-                End If
-
-                musicLoop = helper.Pop("")
-                introType = helper.Pop(Core.Random.Next(0, 10))
-
-                Dim method As Integer = 0
-                If Screen.Level.Surfing = True Then
-                    method = 2
-                End If
-
-                Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, 1)
-
-                ApplyValues(CType(This, Battle))
-
-                Dim b As New BattleSystem.BattleScreen(p, Core.CurrentScreen, method)
-                Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, introType, musicLoop))
-
-                ScriptManager.Instance.WaitFrames(1)
-
-            End If
 
             Return Nothing
         End Function
@@ -159,10 +104,10 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startTrainer")>
         Public Shared Function StartTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, {GetType(String)}) Then
+            If TypeContract.Ensure(parameters, GetType(TrainerWrapper)) Then
 
-                Dim trainerFile = CType(parameters(0), String)
-                Dim t As New Trainer(trainerFile)
+                Dim wrapper = CType(parameters(0), TrainerWrapper)
+                Dim t = New Trainer(wrapper.file)
 
                 Dim method As Integer = 0
                 If Screen.Level.Surfing = True Then
@@ -185,7 +130,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="encounterTrainer")>
         Public Shared Function EncounterTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, {GetType(TrainerWrapper)}) Then
+            If TypeContract.Ensure(parameters, GetType(TrainerWrapper)) Then
 
                 Dim wrapper = CType(parameters(0), TrainerWrapper)
                 Dim t = New Trainer(wrapper.file)

@@ -1603,6 +1603,8 @@
     <Compile Include="Scripting.V3\ApiClasses\Text.vb" />
     <Compile Include="Scripting.V3\Prototypes\Battle.vb" />
     <Compile Include="Scripting.V3\ParamHelper.vb" />
+    <Compile Include="Scripting.V3\Prototypes\DaycareWrapper.vb" />
+    <Compile Include="Scripting.V3\Prototypes\PokemonWrapper.vb" />
     <Compile Include="Scripting.V3\Prototypes\TrainerWrapper.vb" />
     <Compile Include="Scripting.V3\Prototypes\TypeContract.vb" />
     <Compile Include="Scripting.V3\Prototypes\Vector3Wrapper.vb" />
