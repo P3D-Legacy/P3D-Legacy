@@ -63,7 +63,7 @@ Namespace Scripting.V3.Prototypes
             objLink.SetMember("customBattleMusic", "")
             objLink.SetMember("hiddenAbilityChance", 0)
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -97,8 +97,8 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
+            Return NetUndefined.Instance
 
-            Return Nothing
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startTrainer")>
@@ -123,7 +123,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -178,7 +178,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 

@@ -86,7 +86,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -111,7 +111,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -136,7 +136,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -161,7 +161,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -182,7 +182,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -203,7 +203,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -227,7 +227,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -251,7 +251,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -275,7 +275,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -285,7 +285,7 @@ Namespace Scripting.V3.Prototypes
             GetCamera().SetupFocus(OverworldCamera.CameraFocusTypes.Player, -1)
             UpdateCamera(True)
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -299,7 +299,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
@@ -313,7 +313,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 

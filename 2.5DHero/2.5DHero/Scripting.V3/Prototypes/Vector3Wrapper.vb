@@ -31,7 +31,7 @@ Namespace Scripting.V3.Prototypes
 
             End If
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
