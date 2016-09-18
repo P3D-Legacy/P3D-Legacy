@@ -1264,8 +1264,8 @@
                     'Sky Drop
                 Case 508
                     returnMove = New Moves.Steel.ShiftGear()
-                    'Case 509
-                    'Circle Throw
+                Case 509
+                    returnMove = New Moves.Fighting.CircleThrow()
                     'Case 510
                     'Incinerate
                     'Case 511
