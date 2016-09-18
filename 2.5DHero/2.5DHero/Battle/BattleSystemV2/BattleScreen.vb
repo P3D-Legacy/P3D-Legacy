@@ -1078,6 +1078,7 @@ nextIndex:
             
             If i = -1 Then
                 If IsPvPBattle Then
+                    i = 0
                     While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse OppPokemonIndex = i OrElse Trainer.Pokemons(i).HP <= 0
                         i += 1
                     End While
