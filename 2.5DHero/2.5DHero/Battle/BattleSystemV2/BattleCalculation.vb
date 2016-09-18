@@ -1346,7 +1346,7 @@
             Dim SX As Single = 1.0F
             Dim DMod As Single = 1.0F
 
-            If Attack.Category = Attack.Categories.Physical Then
+            If Attack.Category = Attack.Categories.Physical OrElse Attack.ID = 473 OrElse Attack.ID = 548 Then 'Psyshock and Secret Sword.
                 DStat = Attack.GetUseDefenseStat(Op)
                 DSM = GetMultiplierFromStat(Op.StatDefense)
 
