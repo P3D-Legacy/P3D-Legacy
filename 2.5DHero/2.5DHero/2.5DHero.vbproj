@@ -446,6 +446,7 @@
     <Compile Include="Pokemon\Attacks\Dark\Pursuit.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Snarl.vb" />
     <Compile Include="Pokemon\Attacks\Dark\SuckerPunch.vb" />
+    <Compile Include="Pokemon\Attacks\Dark\Switcheroo.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Taunt.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Thief.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Torment.vb" />
@@ -516,6 +517,8 @@
     <Compile Include="Pokemon\Attacks\Fighting\Ride.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\RockSmash.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\RollingKick.vb" />
+    <Compile Include="Pokemon\Attacks\Fighting\SacredSword.vb" />
+    <Compile Include="Pokemon\Attacks\Fighting\SecretSword.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\SeismicToss.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\SkyUppercut.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\Submission.vb" />
@@ -644,6 +647,7 @@
     <Compile Include="Pokemon\Attacks\Ice\Blizzard.vb" />
     <Compile Include="Pokemon\Attacks\Ice\FreezeDry.vb" />
     <Compile Include="Pokemon\Attacks\Ice\FreezeShock.vb" />
+    <Compile Include="Pokemon\Attacks\Ice\FrostBreath.vb" />
     <Compile Include="Pokemon\Attacks\Ice\Hail.vb" />
     <Compile Include="Pokemon\Attacks\Ice\Haze.vb" />
     <Compile Include="Pokemon\Attacks\Ice\IceBall.vb" />
