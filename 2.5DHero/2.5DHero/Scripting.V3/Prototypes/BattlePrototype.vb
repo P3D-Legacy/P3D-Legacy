@@ -3,7 +3,7 @@
 Namespace Scripting.V3.Prototypes
 
     <ScriptPrototype(VariableName:="Battle")>
-    Friend NotInheritable Class Battle
+    Friend NotInheritable Class BattlePrototype
 
         <ScriptVariable>
         Public canRun As Boolean = True
@@ -35,7 +35,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptVariable>
         Public hiddenAbilityChance As Integer = 0
 
-        Private Shared Sub ApplyValues(This As Battle)
+        Private Shared Sub ApplyValues(This As BattlePrototype)
             BattleSystem.BattleScreen.CanRun = This.canRun
             BattleSystem.BattleScreen.CanCatch = This.canCatch
             BattleSystem.BattleScreen.CanBlackout = This.canBlackout
@@ -70,16 +70,16 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startWild")>
         Public Shared Function StartWild(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, {GetType(PokemonWrapper), GetType(String), GetType(Integer)}, 2) Then
+            If TypeContract.Ensure(parameters, {GetType(PokemonPrototype), GetType(String), GetType(Integer)}, 2) Then
 
                 Dim helper = New ParamHelper(parameters)
 
-                Dim wrapper = helper.Pop(Of PokemonWrapper)
+                Dim wrapper = helper.Pop(Of PokemonPrototype)
 
                 Dim musicLoop As String = helper.Pop("")
                 Dim introType As Integer = helper.Pop(Core.Random.Next(0, 10))
 
-                Dim p = PokemonWrapper.GetPokemon(wrapper)
+                Dim p = PokemonPrototype.GetPokemon(wrapper)
 
                 Dim method As Integer = 0
                 If Screen.Level.Surfing = True Then
@@ -88,7 +88,7 @@ Namespace Scripting.V3.Prototypes
 
                 Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, 1)
 
-                ApplyValues(CType(This, Battle))
+                ApplyValues(CType(This, BattlePrototype))
 
                 Dim b As New BattleSystem.BattleScreen(p, Core.CurrentScreen, method)
                 Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, introType, musicLoop))
@@ -114,7 +114,7 @@ Namespace Scripting.V3.Prototypes
                     method = 2
                 End If
 
-                ApplyValues(CType(This, Battle))
+                ApplyValues(CType(This, BattlePrototype))
 
                 Dim b As New BattleSystem.BattleScreen(t, Core.CurrentScreen, method)
                 Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, t, t.GetIniMusicName(), t.IntroType))
@@ -159,7 +159,7 @@ Namespace Scripting.V3.Prototypes
                         method = 2
                     End If
 
-                    ApplyValues(CType(This, Battle))
+                    ApplyValues(CType(This, BattlePrototype))
 
                     Dim b As New BattleSystem.BattleScreen(t, Core.CurrentScreen, method)
                     Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, t, t.GetIniMusicName(), t.IntroType))

@@ -8,6 +8,10 @@ Namespace Scripting.V3.Prototypes
         <ScriptVariable(VariableName:="file")>
         Public file As String = ""
 
+        Public Sub New(file As String)
+            Me.file = file
+        End Sub
+
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
         Public Shared Function Constructor(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 

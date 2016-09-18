@@ -1601,13 +1601,13 @@
     <Compile Include="Scripting.V3\ApiClasses\ApiClass.vb" />
     <Compile Include="Scripting.V3\ApiClasses\Chat.vb" />
     <Compile Include="Scripting.V3\ApiClasses\Text.vb" />
-    <Compile Include="Scripting.V3\Prototypes\Battle.vb" />
+    <Compile Include="Scripting.V3\Prototypes\BattlePrototype.vb" />
     <Compile Include="Scripting.V3\ParamHelper.vb" />
-    <Compile Include="Scripting.V3\Prototypes\DaycareWrapper.vb" />
-    <Compile Include="Scripting.V3\Prototypes\PokemonWrapper.vb" />
-    <Compile Include="Scripting.V3\Prototypes\TrainerWrapper.vb" />
+    <Compile Include="Scripting.V3\Prototypes\DaycarePrototype.vb" />
+    <Compile Include="Scripting.V3\Prototypes\PokemonPrototype.vb" />
+    <Compile Include="Scripting.V3\Prototypes\TrainerPrototype.vb" />
     <Compile Include="Scripting.V3\Prototypes\TypeContract.vb" />
-    <Compile Include="Scripting.V3\Prototypes\Vector3Wrapper.vb" />
+    <Compile Include="Scripting.V3\Prototypes\Vector3Prototype.vb" />
     <Compile Include="Scripting.V3\ScriptInputType.vb" />
     <Compile Include="Scripting.V3\ScriptManager.vb" />
     <Compile Include="Scripting.V3\ScriptStartFlag.vb" />
@@ -1705,7 +1705,8 @@
   <ItemGroup>
     <Content Include="PokemonIcon.ico" />
     <Compile Include="Scripting.V3\ApiClasses\ApiClassAttribute.vb" />
-    <Compile Include="Scripting.V3\Prototypes\CameraWrapper.vb" />
+    <Compile Include="Scripting.V3\Prototypes\CameraPrototype.vb" />
+    <Compile Include="Scripting.V3\Prototypes\MovePrototype.vb" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="..\2.5DHeroContent\Content.mgcb">

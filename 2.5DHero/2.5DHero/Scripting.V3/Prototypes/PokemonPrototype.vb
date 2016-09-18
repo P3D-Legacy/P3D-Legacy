@@ -3,7 +3,7 @@
 Namespace Scripting.V3.Prototypes
 
     <ScriptPrototype(VariableName:="Pokemon")>
-    Friend NotInheritable Class PokemonWrapper
+    Friend NotInheritable Class PokemonPrototype
 
         ' When a Pokémon from the player's party is referenced, use its index in the list to have a reference instead of shallow copy.
         Private Const PLAYER_POKEMON_PREFIX As String = "PLAYER_POKEMON_"
@@ -13,7 +13,7 @@ Namespace Scripting.V3.Prototypes
 
         Public Shared Function GetPokemon(This As Object) As Pokemon
 
-            Dim pokemonData = CType(This, PokemonWrapper).data
+            Dim pokemonData = CType(This, PokemonPrototype).data
 
             If pokemonData.StartsWith(PLAYER_POKEMON_PREFIX) Then
 
@@ -30,13 +30,17 @@ Namespace Scripting.V3.Prototypes
 
         Private Shared Sub SaveData(This As Object, objLink As ScriptObjectLink, p As Pokemon)
 
-            If Not CType(This, PokemonWrapper).data.StartsWith(PLAYER_POKEMON_PREFIX) Then
+            If Not CType(This, PokemonPrototype).data.StartsWith(PLAYER_POKEMON_PREFIX) Then
 
                 Dim newData = p.GetSaveData()
                 objLink.SetMember("data", newData)
 
             End If
 
+        End Sub
+
+        Public Sub New(data As String)
+            Me.data = data
         End Sub
 
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
@@ -171,6 +175,82 @@ Namespace Scripting.V3.Prototypes
             Return p.Level
 
         End Function
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="cry")>
+        Public Shared Function PlayCry(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            p.PlayCry()
+            Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="additionalData")>
+        Public Shared Function GetAdditionalData(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.AdditionalData
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="additionalData")>
+        Public Shared Function SetAdditionalData(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(String)) Then
+
+                Dim p = GetPokemon(This)
+                p.AdditionalData = CType(parameters(0), String)
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+#Region "Stats"
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="stats")>
+        Public Shared Function GetStats(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return New With
+            {
+                .hp = p.HP,
+                .maxHp = p.MaxHP,
+                .atk = p.Attack,
+                .def = p.Defense,
+                .spAtk = p.SpAttack,
+                .spDef = p.SpDefense,
+                .speed = p.Speed
+            }
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="hp")>
+        Public Shared Function GetHP(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim p = GetPokemon(This)
+            Return p.HP
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="hp")>
+        Public Shared Function SetHP(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            If TypeContract.Ensure(parameters, GetType(Integer)) Then
+
+                Dim p = GetPokemon(This)
+                p.HP = CType(parameters(0), Integer)
+                SaveData(This, objLink, p)
+
+            End If
+
+            Return NetUndefined.Instance
+
+        End Function
+
+#End Region
 
     End Class
 

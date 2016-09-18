@@ -3,10 +3,14 @@
 Namespace Scripting.V3.Prototypes
 
     <ScriptPrototype(VariableName:="Daycare")>
-    Friend NotInheritable Class DaycareWrapper
+    Friend NotInheritable Class DaycarePrototype
 
         <ScriptVariable(VariableName:="daycareId")>
         Public daycareId As Integer
+
+        Public Sub New(daycareId As Integer)
+            Me.daycareId = daycareId
+        End Sub
 
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
         Public Shared Function Constructor(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
@@ -25,13 +29,13 @@ Namespace Scripting.V3.Prototypes
         Public Shared Function IndexerGet(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim pokemonIndex = CType(parameters(0), Integer)
-            Dim daycareId = CType(This, DaycareWrapper).daycareId
+            Dim daycareId = CType(This, DaycarePrototype).daycareId
 
             For Each line As String In Core.Player.DaycareData.SplitAtNewline()
                 If line.StartsWith(daycareId.ToString() & "|" & pokemonIndex.ToString() & "|") Then
 
                     Dim data = line.Remove(0, line.IndexOf("{"))
-                    Return New PokemonWrapper() With {.data = data}
+                    Return New PokemonPrototype(data)
 
                 End If
             Next
@@ -46,7 +50,7 @@ Namespace Scripting.V3.Prototypes
             If TypeContract.Ensure(parameters, {GetType(Integer)}) Then
 
                 Dim pokemonIndex = CType(parameters(0), Integer)
-                Dim daycareId = CType(This, DaycareWrapper).daycareId
+                Dim daycareId = CType(This, DaycarePrototype).daycareId
 
                 For Each line As String In Core.Player.DaycareData.SplitAtNewline()
                     If line.StartsWith(daycareId.ToString() & "|" & pokemonIndex.ToString() & "|") Then
@@ -72,7 +76,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="canBreed")>
         Public Shared Function GetCanBreed(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim daycareId = CType(This, DaycareWrapper).daycareId
+            Dim daycareId = CType(This, DaycarePrototype).daycareId
             Return Daycare.CanBreed(daycareId)
 
         End Function
@@ -80,7 +84,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="hasEgg")>
         Public Shared Function GetHasEgg(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim daycareId = CType(This, DaycareWrapper).daycareId
+            Dim daycareId = CType(This, DaycarePrototype).daycareId
 
             Return Core.Player.DaycareData.SplitAtNewline().Any(Function(line As String)
                                                                     Return line.StartsWith(daycareId.ToString() & "|Egg|")
@@ -105,7 +109,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="length")>
         Public Shared Function GetLength(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim daycareId = CType(This, DaycareWrapper).daycareId
+            Dim daycareId = CType(This, DaycarePrototype).daycareId
 
             Return GetDaycarePokemonCount(daycareId)
 
@@ -114,7 +118,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="takeEgg")>
         Public Shared Function TakeEgg(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim daycareId = CType(This, DaycareWrapper).daycareId
+            Dim daycareId = CType(This, DaycarePrototype).daycareId
 
             Dim newData As String = ""
             Dim eggPokemon As Pokemon = Nothing
@@ -136,7 +140,7 @@ Namespace Scripting.V3.Prototypes
             Else
 
                 Core.Player.DaycareData = newData
-                Return New PokemonWrapper() With {.data = eggPokemon.GetSaveData()}
+                Return New PokemonPrototype(eggPokemon.GetSaveData())
 
             End If
 
@@ -147,7 +151,7 @@ Namespace Scripting.V3.Prototypes
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then
 
-                Dim daycareId = CType(This, DaycareWrapper).daycareId
+                Dim daycareId = CType(This, DaycarePrototype).daycareId
                 Dim pokemonIndex = CType(parameters(0), Integer)
                 Dim newData As String = ""
                 Dim takenPokemon As Pokemon = Nothing
@@ -176,7 +180,7 @@ Namespace Scripting.V3.Prototypes
                 Else
 
                     Core.Player.DaycareData = newData
-                    Return New PokemonWrapper() With {.data = takenPokemon.GetSaveData()}
+                    Return New PokemonPrototype(takenPokemon.GetSaveData())
 
                 End If
 
@@ -189,12 +193,12 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="putPokemon")>
         Public Shared Function PutPokemon(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, {GetType(Integer), GetType(PokemonWrapper)}) Then
+            If TypeContract.Ensure(parameters, {GetType(Integer), GetType(PokemonPrototype)}) Then
 
-                Dim daycareId = CType(This, DaycareWrapper).daycareId
+                Dim daycareId = CType(This, DaycarePrototype).daycareId
                 Dim daycareIndex As Integer = CType(parameters(0), Integer)
-                Dim wrapper = CType(parameters(1), PokemonWrapper)
-                Dim pokemonData = PokemonWrapper.GetPokemon(wrapper).GetSaveData()
+                Dim wrapper = CType(parameters(1), PokemonPrototype)
+                Dim pokemonData = PokemonPrototype.GetPokemon(wrapper).GetSaveData()
 
                 If Core.Player.DaycareData <> "" Then
                     Core.Player.DaycareData &= vbNewLine
@@ -211,7 +215,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="cleanData")>
         Public Shared Function CleanData(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim daycareId = CType(This, DaycareWrapper).daycareId
+            Dim daycareId = CType(This, DaycarePrototype).daycareId
             Dim newData As String = ""
 
             Dim lines As New List(Of String)
@@ -251,7 +255,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="clear")>
         Public Shared Function Clear(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim daycareId = CType(This, DaycareWrapper).daycareId
+            Dim daycareId = CType(This, DaycarePrototype).daycareId
             Dim newData As String = ""
 
             For Each line As String In Core.Player.DaycareData.SplitAtNewline()
@@ -272,7 +276,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="call")>
         Public Shared Function CallPhone(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim daycareId = CType(This, DaycareWrapper).daycareId
+            Dim daycareId = CType(This, DaycarePrototype).daycareId
             Daycare.TriggerCall(daycareId)
             Return NetUndefined.Instance
 

@@ -3,7 +3,7 @@
 Namespace Scripting.V3.Prototypes
 
     <ScriptPrototype(VariableName:="Camera")>
-    Friend NotInheritable Class CameraWrapper
+    Friend NotInheritable Class CameraPrototype
 
         Private Shared Function GetCamera() As OverworldCamera
 
@@ -62,13 +62,7 @@ Namespace Scripting.V3.Prototypes
         Public Shared Function GetPosition(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim position = GetCamera().ThirdPersonOffset
-
-            Return New Vector3Wrapper() With
-            {
-                .x = position.X,
-                .y = position.Y,
-                .z = position.Z
-            }
+            Return New Vector3Wrapper(position)
 
         End Function
 
