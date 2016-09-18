@@ -50,7 +50,7 @@ Namespace BattleSystem.Moves.Ice
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
-
+        End Sub
     End Class
 
 End Namespace
