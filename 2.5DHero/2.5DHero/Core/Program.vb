@@ -8,6 +8,9 @@ Module Program
     ''' The main entry point for the application.
     ''' </summary>
     Sub Main(ByVal args As String())
+        Dim sm = Scripting.V3.ScriptManager.Instance
+        sm.StartScript("var daycare = new Daycare(0); var test = daycare[1];", Scripting.V3.ScriptInputType.Raw, Scripting.V3.ScriptStartFlag.None)
+
         Debug.Print(" ")
         Debug.Print("PROGRAM EXECUTION STARTED")
         Debug.Print("STACK TRACE ENTRY                   | MESSAGE")
