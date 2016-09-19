@@ -841,6 +841,7 @@
                     If moveUsed.IsDamagingMove = True Then
                         p.AdditionalData = "blade"
                         p.ReloadDefinitions()
+                        p.CalculateStats()
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into Blade Forme!"))
@@ -849,6 +850,7 @@
                     If moveUsed.ID = 588 Then
                         p.AdditionalData = ""
                         p.ReloadDefinitions()
+                        p.CalculateStats()
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into Shield Forme!"))
