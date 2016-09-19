@@ -1,5 +1,6 @@
-﻿Namespace Items.Stones
+Namespace Items.Stones
 
+    <Item(262, "Sticky Rock")>
     Public Class StickyRock
 
         Inherits Item

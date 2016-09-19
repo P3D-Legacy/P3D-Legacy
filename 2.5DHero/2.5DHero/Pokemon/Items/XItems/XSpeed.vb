@@ -1,5 +1,6 @@
-﻿Namespace Items.XItems
+Namespace Items.XItems
 
+    <Item(52, "X Speed")>
     Public Class XSpeed
 
         Inherits Item

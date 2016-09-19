@@ -1,5 +1,6 @@
-﻿Namespace Items.Wings
+Namespace Items.Wings
 
+    <Item(259, "Swift Wing")>
     Public Class SwiftWing
 
         Inherits WingItem

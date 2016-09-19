@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
     'LOL Uri Gella is raging about this one
+    <Item(96, "Twisted Spoon")>
     Public Class TwistedSpoon
 
         Inherits Item

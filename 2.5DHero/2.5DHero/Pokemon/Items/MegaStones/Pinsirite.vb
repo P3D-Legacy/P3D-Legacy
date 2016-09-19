@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Pinsir.
     ''' </summary>
+    <Item(531, "Pinsirite")>
     Public Class Pinsirite
 
         Inherits MegaStone

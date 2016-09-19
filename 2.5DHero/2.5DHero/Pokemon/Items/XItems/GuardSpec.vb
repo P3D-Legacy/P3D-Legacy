@@ -1,5 +1,6 @@
-﻿Namespace Items.XItems
+Namespace Items.XItems
 
+    <Item(68, "Guard Spec.")>
     Public Class GuardSpec
 
         Inherits Item

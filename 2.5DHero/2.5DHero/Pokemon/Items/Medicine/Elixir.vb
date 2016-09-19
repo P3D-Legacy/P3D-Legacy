@@ -1,5 +1,6 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(65, "Elixir")>
     Public Class Elixir
 
         Inherits Item

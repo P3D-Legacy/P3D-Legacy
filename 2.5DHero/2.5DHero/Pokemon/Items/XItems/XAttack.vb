@@ -1,5 +1,6 @@
-﻿Namespace Items.XItems
+Namespace Items.XItems
 
+    <Item(49, "X Attack")>
     Public Class XAttack
 
         Inherits Item

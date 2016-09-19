@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(103, "Slowpoketail")>
     Public Class SlowPokeTail
 
         Inherits Item

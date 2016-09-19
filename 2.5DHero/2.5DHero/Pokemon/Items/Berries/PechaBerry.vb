@@ -1,11 +1,12 @@
 Namespace Items.Berries
 
+    <Item(2002, "Pecha")>
     Public Class PechaBerry
 
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2002, "Pecha", 10800, "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from poisoning on its own in battle.", "4.0cm", "Very Soft", 2, 3)
+            MyBase.New(2002, "Pecha", 10800, "A Berry to be consumed by Pokï¿½mon. If a Pokï¿½mon holds one, it can recover from poisoning on its own in battle.", "4.0cm", "Very Soft", 2, 3)
 
             Me.Spicy = 0
             Me.Dry = 0

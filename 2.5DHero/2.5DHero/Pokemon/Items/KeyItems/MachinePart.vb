@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(128, "Machine Part")>
     Public Class MachinePart
 
         Inherits Item

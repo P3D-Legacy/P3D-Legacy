@@ -1,5 +1,6 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(7, "Lava Cookie")>
     Public Class LavaCookie
 
         Inherits Item

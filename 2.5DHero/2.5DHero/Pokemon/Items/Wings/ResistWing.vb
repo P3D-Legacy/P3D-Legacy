@@ -1,5 +1,6 @@
-﻿Namespace Items.Wings
+Namespace Items.Wings
 
+    <Item(256, "Resist Wing")>
     Public Class ResistWing
 
         Inherits WingItem

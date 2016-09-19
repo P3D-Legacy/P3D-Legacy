@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Latios.
     ''' </summary>
+    <Item(543, "Latiosite")>
     Public Class Latiosite
 
         Inherits MegaStone

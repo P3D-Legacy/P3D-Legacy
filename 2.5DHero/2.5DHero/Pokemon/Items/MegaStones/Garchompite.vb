@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Garchompite.
     ''' </summary>
+    <Item(518, "Garchompite")>
     Public Class Garchompite
 
         Inherits MegaStone

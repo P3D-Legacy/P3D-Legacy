@@ -1,5 +1,6 @@
-﻿Namespace Items.Stones
+Namespace Items.Stones
 
+    <Item(112, "Everstone")>
     Public Class Everstone
 
         Inherits Item

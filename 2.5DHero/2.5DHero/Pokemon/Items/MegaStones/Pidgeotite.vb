@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Pidgeot.
     ''' </summary>
+    <Item(546, "Pidgeotite")>
     Public Class Pidgeotite
 
         Inherits MegaStone

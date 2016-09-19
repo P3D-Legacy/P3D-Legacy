@@ -1,5 +1,6 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(38, "Full Heal")>
     Public Class FullHeal
 
         Inherits Item

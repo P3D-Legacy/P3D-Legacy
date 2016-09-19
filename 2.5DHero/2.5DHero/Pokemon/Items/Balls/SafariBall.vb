@@ -1,5 +1,6 @@
-﻿Namespace Items.Balls
+Namespace Items.Balls
 
+    <Item(181, "Safari Ball")>
     Public Class SafariBall
 
         Inherits Item

@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Tyranitar.
     ''' </summary>
+    <Item(533, "Tyranitarite")>
     Public Class Tyranitarite
 
         Inherits MegaStone

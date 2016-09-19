@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Aerodactyl.
     ''' </summary>
+    <Item(509, "Aerodactylite")>
     Public Class Aerodactylite
 
         Inherits MegaStone

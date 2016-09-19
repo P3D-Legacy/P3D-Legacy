@@ -1,5 +1,6 @@
-﻿Namespace Items.XItems
+Namespace Items.XItems
 
+    <Item(50, "X Sp. Def")>
     Public Class XSpDef
 
         Inherits Item

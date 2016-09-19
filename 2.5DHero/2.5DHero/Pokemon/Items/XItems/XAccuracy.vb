@@ -1,5 +1,6 @@
-﻿Namespace Items.XItems
+Namespace Items.XItems
 
+    <Item(33, "X Accuracy")>
     Public Class XAccuracy
 
         Inherits Item

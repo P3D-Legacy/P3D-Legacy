@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(11, "Ice Heal")>
     Public Class IceHeal
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Ice Heal", 250, ItemTypes.Medicine, 11, 1, 1, New Rectangle(216, 0, 24, 24), "A spray-type medicine for freezing. It can be used once to defrost a Pokémon that has been frozen solid.")

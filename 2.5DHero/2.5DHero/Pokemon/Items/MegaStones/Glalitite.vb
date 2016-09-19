@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Glalie.
     ''' </summary>
+    <Item(541, "Glalitite")>
     Public Class Glalitite
 
         Inherits MegaStone

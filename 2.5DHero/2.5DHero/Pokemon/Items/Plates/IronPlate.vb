@@ -1,5 +1,6 @@
-﻿Namespace Items.Plates
+Namespace Items.Plates
 
+    <Item(274, "Iron Plate")>
     Public Class IronPlate
 
         Inherits PlateItem

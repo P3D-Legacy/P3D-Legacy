@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Lucario.
     ''' </summary>
+    <Item(525, "Lucarionite")>
     Public Class Lucarionite
 
         Inherits MegaStone

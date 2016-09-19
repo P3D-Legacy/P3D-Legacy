@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Sceptile.
     ''' </summary>
+    <Item(549, "Sceptilite")>
     Public Class Sceptilite
 
         Inherits MegaStone

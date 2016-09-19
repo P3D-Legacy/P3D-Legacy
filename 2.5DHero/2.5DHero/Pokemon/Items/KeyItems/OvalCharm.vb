@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(241, "Oval Charm")>
     Public Class OvalCharm
 
         Inherits Item

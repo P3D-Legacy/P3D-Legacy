@@ -1,6 +1,6 @@
 ﻿Namespace Items
 
-    Public Class TechMachine
+    Public MustInherit Class TechMachine
 
         Inherits Item
 

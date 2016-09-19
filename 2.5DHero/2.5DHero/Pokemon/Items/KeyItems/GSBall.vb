@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(115, "GS Ball")>
     Public Class GSBall
 
         Inherits Item

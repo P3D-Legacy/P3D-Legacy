@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(14, "Full Restore")>
     Public Class FullRestore
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Full Restore", 3000, ItemTypes.Medicine, 14, 1, 0, New Rectangle(288, 0, 24, 24), "A medicine that can be used to fully restore the HP of a single Pokémon and heal any status conditions it has.")

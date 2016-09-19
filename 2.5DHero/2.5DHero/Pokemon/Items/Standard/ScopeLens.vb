@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(140, "Scope Lens")>
     Public Class ScopeLens
 
         Inherits Item

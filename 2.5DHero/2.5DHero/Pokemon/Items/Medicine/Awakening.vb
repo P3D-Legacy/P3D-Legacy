@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(12, "Awakening")>
     Public Class Awakening
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Awakening", 250, ItemTypes.Medicine, 12, 1, 1, New Rectangle(240, 0, 24, 24), "A spray-type medicine used against sleep. It can be used once to rouse a Pokémon from the clutches of sleep.")

@@ -3,7 +3,7 @@ Namespace Items
     ''' <summary>
     ''' The base class for all Mega Stone items.
     ''' </summary>
-    Public Class MegaStone
+    Public MustInherit Class MegaStone
 
         Inherits Item
 

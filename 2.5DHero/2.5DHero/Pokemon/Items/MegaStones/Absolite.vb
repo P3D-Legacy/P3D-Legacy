@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Absol.
     ''' </summary>
+    <Item(508, "Absolite")>
     Public Class Absolite
 
         Inherits MegaStone

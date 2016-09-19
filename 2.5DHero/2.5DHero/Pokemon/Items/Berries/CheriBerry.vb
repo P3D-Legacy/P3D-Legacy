@@ -1,11 +1,12 @@
 Namespace Items.Berries
 
+    <Item(2000, "Cheri")>
     Public Class CheriBerry
 
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2000, "Cheri", 10800, "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from paralysis on its own in battle.", "2.0cm", "Soft", 2, 3)
+            MyBase.New(2000, "Cheri", 10800, "A Berry to be consumed by Pokï¿½mon. If a Pokï¿½mon holds one, it can recover from paralysis on its own in battle.", "2.0cm", "Soft", 2, 3)
 
             Me.Spicy = 10
             Me.Dry = 0

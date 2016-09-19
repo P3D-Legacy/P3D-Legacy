@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Gengar.
     ''' </summary>
+    <Item(520, "Gengarite")>
     Public Class Gengarite
 
         Inherits MegaStone

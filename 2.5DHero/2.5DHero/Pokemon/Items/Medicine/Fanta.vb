@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(266, "Fanta")>
     Public Class Fanta
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Fanta", 750, ItemTypes.Medicine, 266, 1, 0, New Rectangle(48, 264, 24, 24), "Fizzzzzz. When consumed, it restores 250 HP to an injured Pokémon.")

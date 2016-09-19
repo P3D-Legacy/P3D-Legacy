@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(138, "Charcoal")>
     Public Class Charcoal
 
         Inherits Item

@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(95, "Mystic Water")>
     Public Class MysticWater
 
         Inherits Item

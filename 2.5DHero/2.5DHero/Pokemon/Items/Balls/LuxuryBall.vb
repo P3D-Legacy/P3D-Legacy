@@ -1,5 +1,6 @@
-﻿Namespace Items.Balls
+Namespace Items.Balls
 
+    <Item(174, "Luxury Ball")>
     Public Class LuxuryBall
 
         Inherits Item

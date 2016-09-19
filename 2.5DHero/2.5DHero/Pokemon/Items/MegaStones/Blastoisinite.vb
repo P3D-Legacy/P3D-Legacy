@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Blastoise.
     ''' </summary>
+    <Item(514, "Blastoisinite")>
     Public Class Blastoisinite
 
         Inherits MegaStone

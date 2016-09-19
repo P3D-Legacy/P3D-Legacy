@@ -1,8 +1,9 @@
-﻿Namespace Items.Vitamins
+Namespace Items.Vitamins
 
+    <Item(31, "Calcium")>
     Public Class Calcium
 
-        Inherits Items.VitaminItem
+        Inherits VitaminItem
 
         Public Sub New()
             MyBase.New("Calcium", 9800, ItemTypes.Medicine, 31, 1, 1, New Rectangle(168, 24, 24, 24), "A nutritious drink for Pokémon. When consumed, it raises the base Sp. Atk stat of a single Pokémon.")

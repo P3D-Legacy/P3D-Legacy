@@ -1,5 +1,6 @@
-﻿Namespace Items.Plates
+Namespace Items.Plates
 
+    <Item(278, "Sky Plate")>
     Public Class SkyPlate
 
         Inherits PlateItem

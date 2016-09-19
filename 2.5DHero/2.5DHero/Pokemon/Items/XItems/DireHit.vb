@@ -1,5 +1,6 @@
-﻿Namespace Items.XItems
+Namespace Items.XItems
 
+    <Item(44, "Dire Hit")>
     Public Class DireHit
 
         Inherits Item

@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(74, "Zoom Lens")>
     Public Class ZoomLens
 
         Inherits Item

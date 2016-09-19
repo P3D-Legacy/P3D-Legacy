@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(82, "King's Rock")>
     Public Class KingsRock
 
         Inherits Item

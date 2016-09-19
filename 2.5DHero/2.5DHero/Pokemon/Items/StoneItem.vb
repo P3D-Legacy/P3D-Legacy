@@ -1,6 +1,6 @@
 Namespace Items
 
-    Public Class StoneItem
+    Public MustInherit Class StoneItem
 
         Inherits Item
 

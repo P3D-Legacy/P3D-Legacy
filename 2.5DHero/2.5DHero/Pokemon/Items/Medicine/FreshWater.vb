@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(46, "Fresh Water")>
     Public Class FreshWater
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Fresh Water", 200, ItemTypes.Medicine, 46, 1, 0, New Rectangle(0, 48, 24, 24), "Water with a high mineral content. When consumed, it restores 50 HP to an injured Pokémon.")

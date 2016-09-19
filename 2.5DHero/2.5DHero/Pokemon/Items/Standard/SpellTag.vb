@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(113, "Spell Tag")>
     Public Class SpellTag
 
         Inherits Item

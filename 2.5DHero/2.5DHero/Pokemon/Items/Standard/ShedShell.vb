@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(154, "Shed Shell")>
     Public Class ShedShell
 
         Inherits Item

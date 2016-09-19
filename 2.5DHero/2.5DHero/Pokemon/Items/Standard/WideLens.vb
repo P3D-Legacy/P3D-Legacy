@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(171, "Wide Lens")>
     Public Class WideLens
 
         Inherits Item

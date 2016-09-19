@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(506, "Life Orb")>
     Public Class LifeOrb
 
         Inherits Item

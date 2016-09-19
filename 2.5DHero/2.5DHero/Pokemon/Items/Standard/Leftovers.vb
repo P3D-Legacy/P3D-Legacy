@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(146, "Leftovers")>
     Public Class Leftovers
 
         Inherits Item

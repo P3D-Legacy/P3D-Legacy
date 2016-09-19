@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(185, "Dubious Disc")>
     Public Class DubiousDisc
 
         Inherits Item

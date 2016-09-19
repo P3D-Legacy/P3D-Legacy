@@ -1,5 +1,6 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(156, "Sacred Ash")>
     Public Class SacredAsh
 
         Inherits Item

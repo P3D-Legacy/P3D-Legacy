@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(125, "HardStone")>
     Public Class HardStone
 
         Inherits Item

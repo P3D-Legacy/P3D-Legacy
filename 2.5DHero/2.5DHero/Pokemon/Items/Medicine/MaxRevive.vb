@@ -1,5 +1,6 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(40, "Max Revive")>
     Public Class MaxRevive
 
         Inherits Item

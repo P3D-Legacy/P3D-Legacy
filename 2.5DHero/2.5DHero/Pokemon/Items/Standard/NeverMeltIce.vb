@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(107, "Never-Melt Ice")>
     Public Class NeverMeltIce
 
         Inherits Item

@@ -1,5 +1,6 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(21, "Max Elixir")>
     Public Class MaxElixir
 
         Inherits Item

@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(10, "Burn Heal")>
     Public Class BurnHeal
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Burn Heal", 250, ItemTypes.Medicine, 10, 1, 1, New Rectangle(192, 0, 24, 24), "A spray-type medicine for treating burns. It can be used once to heal a Pokemon suffering from a burn.")

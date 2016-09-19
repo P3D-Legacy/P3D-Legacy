@@ -1,5 +1,6 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(62, "PP Up")>
     Public Class PPUp
 
         Inherits Item

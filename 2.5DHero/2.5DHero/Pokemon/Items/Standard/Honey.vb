@@ -1,5 +1,6 @@
-﻿Namespace Items.Plants
+Namespace Items.Plants
 
+    <Item(253, "Honey")>
     Public Class Honey
 
         Inherits Item

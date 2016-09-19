@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(94, "CleanseTag")>
     Public Class CleanseTag
 
         Inherits Item

@@ -1,6 +1,6 @@
 ﻿Namespace Items
 
-    Public Class Berry
+    Public MustInherit Class Berry
 
         Inherits MedicineItem
 

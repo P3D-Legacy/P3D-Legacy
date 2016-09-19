@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(47, "Soda Pop")>
     Public Class SodaPop
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Soda Pop", 300, ItemTypes.Medicine, 47, 1, 0, New Rectangle(24, 48, 24, 24), "A highly carbonated soda drink. When consumed, it restores 60 HP to an injured Pokémon.")

@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(57, "Exp Share")>
     Public Class ExpShare
 
         Inherits Item

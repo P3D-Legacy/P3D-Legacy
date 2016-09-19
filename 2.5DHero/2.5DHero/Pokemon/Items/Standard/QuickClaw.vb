@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(73, "Quick Claw")>
     Public Class QuickClaw
 
         Inherits Item

@@ -1,5 +1,6 @@
-﻿Namespace Items.Plates
+Namespace Items.Plates
 
+    <Item(283, "Zap Plate")>
     Public Class ZapPlate
 
         Inherits PlateItem

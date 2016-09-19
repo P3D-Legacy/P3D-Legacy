@@ -1,5 +1,6 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(63, "Ether")>
     Public Class Ether
 
         Inherits Item

@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(118, "Thick Club")>
     Public Class ThickClub
 
         Inherits Item

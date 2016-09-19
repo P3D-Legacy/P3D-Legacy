@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(147, "White Flute")>
     Public Class WhiteFlute
 
         Inherits Item

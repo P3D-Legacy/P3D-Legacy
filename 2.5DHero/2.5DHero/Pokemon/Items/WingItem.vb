@@ -3,7 +3,7 @@ Namespace Items
     ''' <summary>
     ''' Represents a Wing Item.
     ''' </summary>
-    Public Class WingItem
+    Public MustInherit Class WingItem
 
         Inherits Item
 

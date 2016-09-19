@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Blaziken.
     ''' </summary>
+    <Item(515, "Blazikenite")>
     Public Class Blazikenite
 
         Inherits MegaStone

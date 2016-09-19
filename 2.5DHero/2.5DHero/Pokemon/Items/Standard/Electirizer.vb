@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(120, "Electirizer")>
     Public Class Electirizer
 
         Inherits Item

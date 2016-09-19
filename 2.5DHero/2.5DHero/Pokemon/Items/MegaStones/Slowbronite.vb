@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Slowbro.
     ''' </summary>
+    <Item(551, "Slowbronite")>
     Public Class Slowbronite
 
         Inherits MegaStone

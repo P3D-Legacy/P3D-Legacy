@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(176, "Grip Claw")>
     Public Class GripClaw
 
         Inherits Item

@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Altaria.
     ''' </summary>
+    <Item(535, "Altarianite")>
     Public Class Altarianite
 
         Inherits MegaStone

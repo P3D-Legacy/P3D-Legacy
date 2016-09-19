@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(265, "Tri-Pass")>
     Public Class TriPass
 
         Inherits Item

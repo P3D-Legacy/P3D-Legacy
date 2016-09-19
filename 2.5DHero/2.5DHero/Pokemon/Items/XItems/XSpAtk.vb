@@ -1,5 +1,6 @@
-﻿Namespace Items.XItems
+Namespace Items.XItems
 
+    <Item(53, "X Sp. Atk.")>
     Public Class XSpecial
 
         Inherits Item

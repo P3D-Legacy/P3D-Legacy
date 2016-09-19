@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Kangaskhan.
     ''' </summary>
+    <Item(524, "Kangaskhanite")>
     Public Class Kangaskhanite
 
         Inherits MegaStone

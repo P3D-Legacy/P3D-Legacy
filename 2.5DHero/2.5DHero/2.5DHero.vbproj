@@ -1036,6 +1036,7 @@
     <Compile Include="Pokemon\Items\Berry.vb" />
     <Compile Include="Pokemon\Items\FileItem.vb" />
     <Compile Include="Pokemon\Items\Item.vb" />
+    <Compile Include="Pokemon\Items\ItemAttribute.vb" />
     <Compile Include="Pokemon\Items\KeyItems\BasementKey.vb" />
     <Compile Include="Pokemon\Items\KeyItems\Bicycle.vb" />
     <Compile Include="Pokemon\Items\KeyItems\BlueCard.vb" />

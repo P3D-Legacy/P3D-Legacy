@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(54, "Coin Case")>
     Public Class CoinCase
 
         Inherits Item

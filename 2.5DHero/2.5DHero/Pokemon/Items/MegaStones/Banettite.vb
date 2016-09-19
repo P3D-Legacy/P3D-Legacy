@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Banette.
     ''' </summary>
+    <Item(513, "Banettite")>
     Public Class Banettite
 
         Inherits MegaStone

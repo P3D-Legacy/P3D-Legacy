@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(108, "Magnet")>
     Public Class Magnet
 
         Inherits Item

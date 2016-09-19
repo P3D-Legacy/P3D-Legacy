@@ -1,11 +1,12 @@
 Namespace Items.Berries
 
+    <Item(2005, "Leppa")>
     Public Class LeppaBerry
 
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2005, "Leppa", 14400, "A Berry to be consumed by a Pokémon. If a Pokémon holds one, it can restore 10 PP to a depleted move during battle.", "2.8cm", "Very Hard", 2, 3)
+            MyBase.New(2005, "Leppa", 14400, "A Berry to be consumed by a Pokï¿½mon. If a Pokï¿½mon holds one, it can restore 10 PP to a depleted move during battle.", "2.8cm", "Very Hard", 2, 3)
 
             Me.Spicy = 10
             Me.Dry = 0

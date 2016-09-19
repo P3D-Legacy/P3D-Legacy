@@ -1,5 +1,6 @@
 Namespace Items.Berries
 
+    <Item(2019, "Pinap")>
     Public Class PinapBerry
 
         Inherits Berry

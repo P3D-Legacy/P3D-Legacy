@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(175, "SquirtBottle")>
     Public Class Squirtbottle
 
         Inherits Item

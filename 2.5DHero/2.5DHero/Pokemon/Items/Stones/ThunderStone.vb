@@ -1,8 +1,9 @@
-﻿Namespace Items.Stones
+Namespace Items.Stones
 
+    <Item(23, "Thunder Stone")>
     Public Class ThunderStone
 
-        Inherits Items.StoneItem
+        Inherits StoneItem
 
         Public Sub New()
             MyBase.New("Thunder Stone", 2100, ItemTypes.Standard, 23, 1, 0, New Rectangle(0, 24, 24, 24), "A peculiar stone that can make certain species of Pokémon evolve. It has a distinct thunderbolt pattern.")

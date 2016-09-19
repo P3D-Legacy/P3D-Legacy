@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(16, "Hyper Potion")>
     Public Class HyperPotion
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Hyper Potion", 1200, ItemTypes.Medicine, 16, 1, 0, New Rectangle(336, 0, 24, 24), "A spray-type medicine for treating wounds. It can be used to restore 200 HP to an injured Pokémon.")

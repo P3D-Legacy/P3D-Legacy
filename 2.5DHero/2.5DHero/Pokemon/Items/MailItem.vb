@@ -3,7 +3,7 @@ Namespace Items
     ''' <summary>
     ''' The basic item that represents a Mail Item.
     ''' </summary>
-    Public Class MailItem
+    Public MustInherit Class MailItem
 
         Inherits Item
 

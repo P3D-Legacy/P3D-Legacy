@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Manectric.
     ''' </summary>
+    <Item(526, "Manectite")>
     Public Class Manectite
 
         Inherits MegaStone

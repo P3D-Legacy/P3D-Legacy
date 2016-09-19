@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(130, "Lost Item")>
     Public Class LostItem
 
         Inherits Item

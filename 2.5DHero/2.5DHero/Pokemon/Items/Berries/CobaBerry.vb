@@ -1,5 +1,6 @@
 Namespace Items.Berries
 
+    <Item(2043, "Coba")>
     Public Class CobaBerry
 
         Inherits Berry

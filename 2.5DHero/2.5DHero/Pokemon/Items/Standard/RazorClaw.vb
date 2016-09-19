@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(184, "Razor Claw")>
     Public Class RazorClaw
 
         Inherits Item

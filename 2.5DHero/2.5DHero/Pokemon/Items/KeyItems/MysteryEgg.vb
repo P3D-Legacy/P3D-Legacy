@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(69, "Mystery Egg")>
     Public Class MysteryEgg
 
         Inherits Item

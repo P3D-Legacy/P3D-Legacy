@@ -139,7 +139,7 @@
                         End If
                 End Select
 
-                p.OriginalItem = CType(p.Item.Copy(), Item)
+                p.OriginalItem = Item.GetItemByID(p.Item.ID)
                 p.Item = Nothing
             End If
         End Sub

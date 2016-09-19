@@ -1,5 +1,6 @@
-﻿Namespace Items.Apricorns
+Namespace Items.Apricorns
 
+    <Item(97, "White Apricorn")>
     Public Class WhtApricorn
 
         Inherits Item

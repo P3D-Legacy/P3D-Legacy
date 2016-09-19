@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(173, "Pearl String")>
     Public Class PearlString
 
         Inherits Item

@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(134, "Pass")>
     Public Class Pass
 
         Inherits Item

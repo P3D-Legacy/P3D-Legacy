@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(285, "Old Sea Map")>
     Public Class OldSeaMap
 
         Inherits Item

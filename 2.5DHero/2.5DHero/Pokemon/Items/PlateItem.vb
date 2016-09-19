@@ -3,7 +3,7 @@ Namespace Items
     ''' <summary>
     ''' The base item for all Arceus plates.
     ''' </summary>
-    Public Class PlateItem
+    Public MustInherit Class PlateItem
 
         Inherits Item
 

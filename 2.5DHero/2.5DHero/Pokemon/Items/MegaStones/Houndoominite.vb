@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Houndoomin.
     ''' </summary>
+    <Item(523, "Houndoominite")>
     Public Class Houndoominite
 
         Inherits MegaStone

@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(105, "Stick")>
     Public Class Stick
 
         Inherits Item

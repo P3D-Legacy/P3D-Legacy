@@ -1,5 +1,6 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(502, "PP Max")>
     Public Class PPMax
 
         Inherits Item

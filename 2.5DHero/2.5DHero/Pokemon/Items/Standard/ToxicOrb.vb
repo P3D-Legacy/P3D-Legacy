@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(505, "Toxic Orb")>
     Public Class ToxicOrb
 
         Inherits Item

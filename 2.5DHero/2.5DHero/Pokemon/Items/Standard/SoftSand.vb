@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(76, "Soft Sand")>
     Public Class SoftSand
 
         Inherits Item

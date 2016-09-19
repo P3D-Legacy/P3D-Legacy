@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Steelix.
     ''' </summary>
+    <Item(552, "Steelixite")>
     Public Class Steelixite
 
         Inherits MegaStone

@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(151, "Dragon Scale")>
     Public Class DragonScale
 
         Inherits Item

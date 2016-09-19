@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(83, "Prism Scale")>
     Public Class PrismScale
 
         Inherits Item

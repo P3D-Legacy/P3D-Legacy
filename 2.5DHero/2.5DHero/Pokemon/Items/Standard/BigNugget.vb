@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(189, "Big Nugget")>
     Public Class BigNugget
 
         Inherits Item

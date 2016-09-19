@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Audino.
     ''' </summary>
+    <Item(536, "Audinite")>
     Public Class Audinite
 
         Inherits MegaStone

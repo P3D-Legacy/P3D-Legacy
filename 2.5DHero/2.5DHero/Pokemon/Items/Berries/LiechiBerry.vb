@@ -1,11 +1,12 @@
 Namespace Items.Berries
 
+    <Item(2052, "Liechi")>
     Public Class LiechiBerry
 
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2052, "Liechi", 86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Attack stat will increase when it's in a pinch.", "11.1cm", "Very Hard", 1, 2)
+            MyBase.New(2052, "Liechi", 86400, "A Berry to be consumed by Pokï¿½mon. If a Pokï¿½mon holds one, its Attack stat will increase when it's in a pinch.", "11.1cm", "Very Hard", 1, 2)
 
             Me.Spicy = 30
             Me.Dry = 10

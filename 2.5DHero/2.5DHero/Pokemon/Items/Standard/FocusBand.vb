@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(119, "Focus Band")>
     Public Class FocusBand
 
         Inherits Item

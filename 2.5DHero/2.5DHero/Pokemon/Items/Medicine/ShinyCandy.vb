@@ -3,6 +3,7 @@ Namespace Items.Medicine
     ''' <summary>
     ''' Not in the game...
     ''' </summary>
+    <Item(501, "Shiny Candy")>
     Public Class ShinyCandy
 
         Inherits Item

@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(190, "Heart Scale")>
     Public Class HeartScale
         Inherits Item
 

@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(264, "Sea Incense")>
     Public Class SeaIncense
 
         Inherits Item

@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(114, "RageCandyBar")>
     Public Class RageCandyBar
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("RageCandyBar", 300, ItemTypes.Medicine, 114, 1, 0, New Rectangle(360, 96, 24, 24), "A famous Mahogany Town candy tourists like to buy and take home. It restores the HP of one Pokémon by 20 points.")

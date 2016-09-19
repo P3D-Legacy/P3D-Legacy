@@ -1,5 +1,6 @@
-﻿Namespace Items.Apricorns
+Namespace Items.Apricorns
 
+    <Item(101, "Pink Apricorn")>
     Public Class PnkApricorn
 
         Inherits Item

@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(155, "Quick Powder")>
     Public Class QuickPowder
 
         Inherits Item

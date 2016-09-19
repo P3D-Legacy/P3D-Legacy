@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Sharpedo.
     ''' </summary>
+    <Item(550, "Sharpedonite")>
     Public Class Sharpedonite
 
         Inherits MegaStone

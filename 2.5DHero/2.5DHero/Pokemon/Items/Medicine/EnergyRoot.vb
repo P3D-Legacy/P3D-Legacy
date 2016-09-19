@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(122, "Energy Root")>
     Public Class EnergyRoot
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Energy Root", 800, ItemTypes.Medicine, 122, 1, 0, New Rectangle(24, 120, 24, 24), "An extremely bitter medicinal root. When consumed, it restores 200 HP to an injured Pokémon.")

@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(178, "Rainbow Wing")>
     Public Class RainbowWing
 
         Inherits Item

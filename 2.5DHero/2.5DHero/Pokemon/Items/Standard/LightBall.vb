@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(163, "Light Ball")>
     Public Class LightBall
 
         Inherits Item

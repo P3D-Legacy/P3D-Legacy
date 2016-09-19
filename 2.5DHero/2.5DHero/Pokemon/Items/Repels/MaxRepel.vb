@@ -1,5 +1,6 @@
-﻿Namespace Items.Repels
+Namespace Items.Repels
 
+    <Item(43, "Max Repel")>
     Public Class MaxRepel
 
         Inherits Item

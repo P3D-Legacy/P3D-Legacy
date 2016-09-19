@@ -1,5 +1,6 @@
-﻿Namespace Items.Plants
+Namespace Items.Plants
 
+    <Item(87, "Big Mushroom")>
     Public Class BigMushroom
 
         Inherits Item

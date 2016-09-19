@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(116, "Blue Card")>
     Public Class BlueCard
 
         Inherits Item

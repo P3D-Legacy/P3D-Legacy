@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(77, "Sharp Beak")>
     Public Class SharpBeak
 
         Inherits Item

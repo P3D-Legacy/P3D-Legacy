@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(139, "Berry Juice")>
     Public Class BerryJuice
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Berry Juice", 100, ItemTypes.Medicine, 139, 1, 0, New Rectangle(360, 120, 24, 24), "A 100 percent pure juice made of Berries. When consumed, it restores 20 HP to an injured Pokémon.")

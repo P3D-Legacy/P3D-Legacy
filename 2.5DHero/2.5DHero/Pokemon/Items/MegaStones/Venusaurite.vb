@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Venusaur.
     ''' </summary>
+    <Item(534, "Venusaurite")>
     Public Class Venusaurite
 
         Inherits MegaStone

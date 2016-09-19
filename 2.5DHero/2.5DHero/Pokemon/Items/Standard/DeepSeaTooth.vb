@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(167, "DeepSeaTooth")>
     Public Class DeepSeaTooth
 
         Inherits Item

@@ -1,5 +1,6 @@
-﻿Namespace Items.Repels
+Namespace Items.Repels
 
+    <Item(20, "Repel")>
     Public Class Repel
 
         Inherits Item

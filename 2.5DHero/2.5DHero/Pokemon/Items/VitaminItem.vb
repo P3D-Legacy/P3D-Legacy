@@ -3,7 +3,7 @@ Namespace Items
     ''' <summary>
     ''' Represents a Vitamin Item.
     ''' </summary>
-    Public Class VitaminItem
+    Public MustInherit Class VitaminItem
 
         Inherits Item
 

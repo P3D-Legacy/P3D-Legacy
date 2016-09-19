@@ -1,11 +1,12 @@
 Namespace Items.Berries
 
+    <Item(2006, "Oran")>
     Public Class OranBerry
 
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2006, "Oran", 10800, "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can restore its own HP by 10 points during battle.", "3.5cm", "Super Hard", 2, 3)
+            MyBase.New(2006, "Oran", 10800, "A Berry to be consumed by Pokï¿½mon. If a Pokï¿½mon holds one, it can restore its own HP by 10 points during battle.", "3.5cm", "Super Hard", 2, 3)
 
             Me.Spicy = 10
             Me.Dry = 10

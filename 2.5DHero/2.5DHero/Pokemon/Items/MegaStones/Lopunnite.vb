@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' The Mega Stone for Lopunnite.
     ''' </summary>
+    <Item(544, "Lopunnite")>
     Public Class Lopunnite
 
         Inherits MegaStone

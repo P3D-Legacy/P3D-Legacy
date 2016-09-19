@@ -1,8 +1,9 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
+    <Item(121, "Energy Powder")>
     Public Class EnergyPowder
 
-        Inherits Items.MedicineItem
+        Inherits MedicineItem
 
         Public Sub New()
             MyBase.New("Energy Powder", 500, ItemTypes.Medicine, 121, 1, 0, New Rectangle(0, 120, 24, 24), "A bitter medicine powder. When consumed, it restores 50 HP to an injured Pokémon.")

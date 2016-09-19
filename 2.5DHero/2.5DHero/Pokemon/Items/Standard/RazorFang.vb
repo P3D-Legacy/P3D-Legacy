@@ -1,5 +1,6 @@
-﻿Namespace Items.Standard
+Namespace Items.Standard
 
+    <Item(183, "Razor Fang")>
     Public Class RazorFang
 
         Inherits Item

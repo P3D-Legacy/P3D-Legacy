@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' A Mega Stone for Charizard.
     ''' </summary>
+    <Item(516, "Charizardite X")>
     Public Class CharizarditeX
 
         Inherits MegaStone

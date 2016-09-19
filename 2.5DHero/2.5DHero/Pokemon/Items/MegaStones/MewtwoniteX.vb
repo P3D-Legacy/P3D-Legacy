@@ -3,6 +3,7 @@ Namespace Items.MegaStones
     ''' <summary>
     ''' A Mega Stone for Mewtwo.
     ''' </summary>
+    <Item(529, "Mewtwonite X")>
     Public Class MewtwoniteX
 
         Inherits MegaStone

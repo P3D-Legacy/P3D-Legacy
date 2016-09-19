@@ -1,5 +1,6 @@
-﻿Namespace Items.KeyItems
+Namespace Items.KeyItems
 
+    <Item(66, "Red Scale")>
     Public Class RedScale
 
         Inherits Item

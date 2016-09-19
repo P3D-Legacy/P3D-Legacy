@@ -1,5 +1,6 @@
-﻿Namespace Items.Machines
+Namespace Items.Machines
 
+    <Item(197, "TM 07")>
     Public Class TM07
 
         Inherits TechMachine
