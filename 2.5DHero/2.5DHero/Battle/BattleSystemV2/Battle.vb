@@ -1511,7 +1511,7 @@
                                 If substitute = 0 Then
                                     Dim endure As Integer = BattleScreen.FieldEffects.OppEndure
                                     If own = False Then
-                                        endure = BattleScreen.FieldEffects.OppEndure
+                                        endure = BattleScreen.FieldEffects.OwnEndure
                                     End If
 
                                     Dim endureWorked As Boolean = False
