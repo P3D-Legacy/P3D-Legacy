@@ -146,6 +146,7 @@
     <Compile Include="Entites\Other\OwnPlayer.vb" />
     <Compile Include="Entites\Other\Particle.vb" />
     <Compile Include="Exceptions\InvalidEntityTypeException.vb" />
+    <Compile Include="Extensions\EnumExtensions.vb" />
     <Compile Include="Global Interfaces\ICopyAble.vb" />
     <Compile Include="Global Interfaces\IDrawAble.vb" />
     <Compile Include="Global Interfaces\IFocusAble.vb" />
@@ -402,6 +403,8 @@
     <Compile Include="Pokemon\Abilities\WonderSkin.vb" />
     <Compile Include="Pokemon\Abilities\ZenMode.vb" />
     <Compile Include="Pokemon\Attacks\Attack.vb" />
+    <Compile Include="Pokemon\Attacks\AttackEnum.vb" />
+    <Compile Include="Pokemon\Attacks\AttackList.vb" />
     <Compile Include="Pokemon\Attacks\AttackSpecialFunctions.vb" />
     <Compile Include="Pokemon\Attacks\Bug\AttackOrder.vb" />
     <Compile Include="Pokemon\Attacks\Bug\BugBite.vb" />
