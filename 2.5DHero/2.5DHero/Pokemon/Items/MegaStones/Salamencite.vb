@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Salamence.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Salamencite
 
         Inherits MegaStone

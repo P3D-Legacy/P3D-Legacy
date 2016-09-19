@@ -1,4 +1,4 @@
-﻿Namespace XmlLevel
+Namespace XmlLevel
 
     Public Class XmlEntityRenderer
 
@@ -156,7 +156,6 @@
         ''' <summary>
         ''' This sub applies all the shading effects done by weather and daytime to the model, if rendered.
         ''' </summary>
-        ''' <remarks></remarks>
         Private Sub ApplyRenderModelEffect() 'Call this function before the model gets rendered.
             For Each mesh As ModelMesh In Me._renderModel.Meshes
                 For Each part As ModelMeshPart In mesh.MeshParts

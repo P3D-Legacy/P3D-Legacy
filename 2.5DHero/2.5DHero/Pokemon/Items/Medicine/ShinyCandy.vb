@@ -1,9 +1,8 @@
-﻿Namespace Items.Medicine
+Namespace Items.Medicine
 
     ''' <summary>
     ''' Not in the game...
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class ShinyCandy
 
         Inherits Item

@@ -22,7 +22,6 @@
         ''' Handles received data.
         ''' </summary>
         ''' <param name="data">The data to work with.</param>
-        ''' <remarks></remarks>
         Public Shared Function HandleData(ByVal data As String) As List(Of JoltValue)
             'Old system:
             If data.Contains("data:""" & vbNewLine) = True Then

@@ -1,4 +1,4 @@
-﻿Imports System.Reflection
+Imports System.Reflection
 
 Namespace Security
 
@@ -44,7 +44,6 @@ Namespace Security
         ''' <summary>
         ''' The exception that gets thrown when the system detects mismatching hash values.
         ''' </summary>
-        ''' <remarks></remarks>
         Private Class MismatchingHashValuesException
 
             Inherits Exception

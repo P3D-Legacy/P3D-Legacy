@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Swampert.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Swampertite
 
         Inherits MegaStone

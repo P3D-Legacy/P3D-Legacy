@@ -1,7 +1,6 @@
-﻿''' <summary>
+''' <summary>
 ''' Class that contains a SpriteFont with its corresponding name.
 ''' </summary>
-''' <remarks></remarks>
 Public Class FontContainer
 
     Private _spriteFont As SpriteFont
@@ -12,7 +11,6 @@ Public Class FontContainer
     ''' </summary>
     ''' <param name="FontName">The name of the Font.</param>
     ''' <param name="Font">The SpriteFont.</param>
-    ''' <remarks></remarks>
     Public Sub New(ByVal FontName As String, ByVal Font As SpriteFont)
         Me._fontName = FontName
         Me._spriteFont = Font
@@ -28,9 +26,6 @@ Public Class FontContainer
     ''' <summary>
     ''' Returns the name of the Font.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property FontName() As String
         Get
             Return Me._fontName
@@ -40,9 +35,6 @@ Public Class FontContainer
     ''' <summary>
     ''' The SpriteFont.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property SpriteFont() As SpriteFont
         Get
             Return Me._spriteFont

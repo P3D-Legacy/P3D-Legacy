@@ -1,7 +1,6 @@
 ﻿''' <summary>
 ''' The screen to display the default Overworld gameplay.
 ''' </summary>
-''' <remarks>Inherits Screen.</remarks>
 Public Class OverworldScreen
 
     Inherits Screen
@@ -19,7 +18,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' The delay until the XBOX buttons get shown since the player last pressed a button.
     ''' </summary>
-    ''' <remarks></remarks>
     Private ShowControlsDelay As Single = 4.0F
 
 #End Region
@@ -29,9 +27,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' Array of Title objects to be rendered on the screen.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property Titles() As List(Of Title)
         Get
             Return Me._titles
@@ -41,9 +36,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' The ActionScript instance that controls the scripts.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property ActionScript() As ActionScript
         Get
             Return Me._actionScript
@@ -53,9 +45,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' Checks if the player encountered a trainer.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property TrainerEncountered() As Boolean
         Get
             Return Me._trainerEncountered
@@ -68,9 +57,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' Fade progress value for the black screen fade.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property FadeValue() As Integer
         Get
             Return _fadeValue
@@ -83,8 +69,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' The Fishing Rod that should be rendered on the screen.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>-1 = No Rod, 0 = Old Rod, 1 = Good Rod, 2 = Super Rod</remarks>
     Public Shared Property DrawRodID() As Integer
         Get
@@ -100,7 +84,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' Returns information about the Overworld Screen.
     ''' </summary>
-    ''' <returns></returns>
     ''' <remarks>Implements the GetScreenStatus method.</remarks>
     Public Overrides Function GetScreenStatus() As String
         Dim s As String = "IsSurfing=" & Level.Surfing.ToString() & vbNewLine &
@@ -115,7 +98,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' Creates a new instance of the OverworldScreen.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub New()
         'Set default information:
         Me.Identification = Identifications.OverworldScreen
@@ -158,7 +140,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' Updates the OverworldScreen.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Overrides Sub Update()
         'If the MapScript has a value loaded from the MapScript map tag and there is no script running, start that script:
         If LevelLoader.MapScript <> "" And ActionScript.IsReady = True Then
@@ -275,7 +256,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' Updates the delay of the XBOX button render.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub UpdateShowControlDelay()
         If Me.ShowControlsDelay > 0.0F Then
             'If any Gamepad is connected, countdown the delay.
@@ -296,7 +276,6 @@ Public Class OverworldScreen
     ''' Handles PVP and Trade requests incoming from other players via Servers and prompts the accept screens.
     ''' </summary>
     ''' <returns>True, if no requests are in the queue, False otherwise.</returns>
-    ''' <remarks></remarks>
     Private Function HandleServerRequests() As Boolean
         If GameJolt.PokegearScreen.BattleRequestData <> -1 Then 'A Servers ID from another player is set here.
             If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.BattleRequestData) = True Then 'If the player still exists on the server.
@@ -423,7 +402,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' Update all title objects in the _titles array.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub UpdateTitles()
         For Each t As Title In Me._titles
             t.Update()
@@ -437,7 +415,6 @@ Public Class OverworldScreen
     ''' <summary>
     ''' A class to display text on the OverworldScreen.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Title
 
         Private _text As String = "Sample Text"
@@ -450,8 +427,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' The text to be displayed on the screen.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
         ''' <remarks>The default is "Sample Text".</remarks>
         Public Property Text() As String
             Get
@@ -465,8 +440,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' The color of the text on the screen.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
         ''' <remarks>The default is White (255,255,255). No transparency is suppoorted.</remarks>
         Public Property TextColor() As Color
             Get
@@ -480,8 +453,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' The scale of the text.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
         ''' <remarks>The default is x10.</remarks>
         Public Property Scale() As Single
             Get
@@ -495,8 +466,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' The position of the text on the screen.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
         ''' <remarks>The default is 0,0 - This position gets ignored when IsCentered is set to True.</remarks>
         Public Property Position() As Vector2
             Get
@@ -510,8 +479,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' This determines if the text is always centered on the screen.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
         ''' <remarks>The default is True. If this is set to True, the Position Property is getting ignored.</remarks>
         Public Property IsCentered() As Boolean
             Get
@@ -525,8 +492,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' The delay in ticksx10 until the text fades from the screen.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
         ''' <remarks>The default is 20.</remarks>
         Public Property Delay() As Single
             Get
@@ -540,7 +505,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' Creates a new instance of the Title class and assigns the default values to all properties.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub New()
             '//Empty constructor.
         End Sub
@@ -554,7 +518,6 @@ Public Class OverworldScreen
         ''' <param name="Scale">The scale of the text.</param>
         ''' <param name="Position">The position of the text on the screen.</param>
         ''' <param name="IsCentered">If the text should always get centered on the screen.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal Text As String, ByVal Delay As Single, ByVal TextColor As Color, ByVal Scale As Single, ByVal Position As Vector2, ByVal IsCentered As Boolean)
             Me._text = Text
             Me._delay = Delay
@@ -567,7 +530,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' Renders the text on the screen.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub Draw()
             Dim p As Vector2 = Vector2.Zero
 
@@ -590,7 +552,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' Updates the Title object.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub Update()
             If Me._delay > 0.0F Then
                 Me._delay -= 0.1F
@@ -603,9 +564,6 @@ Public Class OverworldScreen
         ''' <summary>
         ''' Returns, if the title object faded from the screen.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property IsReady() As Boolean
             Get
                 Return Me._delay = 0.0F

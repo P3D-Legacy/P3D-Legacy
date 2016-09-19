@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' Used to convert strings into various types.
 ''' </summary>
 Public Class ScriptConversion
@@ -11,8 +11,6 @@ Public Class ScriptConversion
     ''' <summary>
     ''' Converts an expression into a <see cref="Double"/>.
     ''' </summary>
-    ''' <param name="expression"></param>
-    ''' <returns></returns>
     Public Shared Function ToDouble(ByVal expression As Object) As Double
         Dim input As String = expression.ToString()
         Dim retError As Boolean = False
@@ -36,8 +34,6 @@ Public Class ScriptConversion
     ''' <summary>
     ''' If the input can be evaluated into a number.
     ''' </summary>
-    ''' <param name="expression"></param>
-    ''' <returns></returns>
     Public Shared Function IsArithmeticExpression(ByVal expression As Object) As Boolean
         Dim retError As Boolean = False
         Dim postfix As String = ToPostfix(expression.ToString(), retError)
@@ -53,7 +49,6 @@ Public Class ScriptConversion
     ''' Evaluates a math expression in the postfix notation. Example: 2 3 +
     ''' </summary>
     ''' <param name="input">The postfix string.</param>
-    ''' <returns></returns>
     Private Shared Function EvaluatePostfix(ByVal input As String, Optional ByRef hasError As Boolean = False) As Double
         Dim stack As New List(Of Double)
         Dim tokens As List(Of Char) = input.ToCharArray().ToList()
@@ -129,7 +124,6 @@ Public Class ScriptConversion
     ''' Converts an infix notation to postfix notation.
     ''' </summary>
     ''' <param name="input">The infix notation. Example: 2+3</param>
-    ''' <returns></returns>
     Private Shared Function ToPostfix(ByVal input As String, Optional ByRef hasError As Boolean = False) As String
         If input.Trim().StartsWith("-") Then
             input = "0" & input
@@ -211,7 +205,6 @@ Public Class ScriptConversion
     ''' If the token is a number or part of one.
     ''' </summary>
     ''' <param name="token">The token.</param>
-    ''' <returns></returns>
     Private Shared Function IsNumber(ByVal token As Char) As Boolean
         Return "0123456789.,".ToCharArray().Contains(token)
     End Function
@@ -220,7 +213,6 @@ Public Class ScriptConversion
     ''' If the token is an operator.
     ''' </summary>
     ''' <param name="token">The token.</param>
-    ''' <returns></returns>
     Private Shared Function IsOperator(ByVal token As Char) As Boolean
         Return "+-*/^%".ToCharArray().Contains(token)
     End Function
@@ -229,7 +221,6 @@ Public Class ScriptConversion
     ''' Returns the precedence for an operator.
     ''' </summary>
     ''' <param name="[Operator]">The operator.</param>
-    ''' <returns></returns>
     Private Shared Function GetPrecedence(ByVal [Operator] As Char) As Integer
         Select Case [Operator]
             Case "+"c, "-"c
@@ -247,7 +238,6 @@ Public Class ScriptConversion
     ''' Returns if an operator has a Left or Right Associativity.
     ''' </summary>
     ''' <param name="[Operator]">The operator</param>
-    ''' <returns></returns>
     Private Shared Function GetAssociativity(ByVal [Operator] As Char) As Associativity
         Select Case [Operator]
             Case "^"c
@@ -260,9 +250,6 @@ Public Class ScriptConversion
     ''' <summary>
     ''' Tries to convert a single number into a <see cref="Double"/>.
     ''' </summary>
-    ''' <param name="expression"></param>
-    ''' <param name="hasError"></param>
-    ''' <returns></returns>
     Private Shared Function InternalToDouble(ByVal expression As String, Optional ByRef hasError As Boolean = False) As Double
         expression = expression.Replace(".", My.Application.Culture.NumberFormat.NumberDecimalSeparator)
 
@@ -284,7 +271,6 @@ Public Class ScriptConversion
     ''' Converts an expression into an <see cref="Integer"/>.
     ''' </summary>
     ''' <param name="expression">The expression to convert.</param>
-    ''' <returns></returns>
     Public Shared Function ToInteger(ByVal expression As Object) As Integer
         Return CInt(Math.Round(ToDouble(expression)))
     End Function
@@ -293,7 +279,6 @@ Public Class ScriptConversion
     ''' Converts an expression to a <see cref="Single"/>.
     ''' </summary>
     ''' <param name="expression">The expression to convert.</param>
-    ''' <returns></returns>
     Public Shared Function ToSingle(ByVal expression As Object) As Single
         Return CSng(ToDouble(expression))
     End Function
@@ -302,7 +287,6 @@ Public Class ScriptConversion
     ''' Converts an expression into a <see cref="Boolean"/>.
     ''' </summary>
     ''' <param name="expression">The expression to convert.</param>
-    ''' <returns></returns>
     Public Shared Function ToBoolean(ByVal expression As Object) As Boolean
         Select Case expression.ToString().ToLower()
             Case "true", "1"
@@ -316,7 +300,6 @@ Public Class ScriptConversion
     ''' Performs a check if an expression is a valid <see cref="Boolean"/>.
     ''' </summary>
     ''' <param name="expression">The expression to perform the check on.</param>
-    ''' <returns></returns>
     Public Shared Function IsBoolean(ByVal expression As Object) As Boolean
         Dim s As String = expression.ToString()
         Dim validBools() As String = {"0", "1", "true", "false"}

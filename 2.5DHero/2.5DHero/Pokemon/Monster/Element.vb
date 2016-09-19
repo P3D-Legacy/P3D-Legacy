@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' Represents the Element of a Pokémon or move type.
 ''' </summary>
 Public Class Element
@@ -34,7 +34,6 @@ Public Class Element
     ''' <summary>
     ''' The Type of this Element.
     ''' </summary>
-    ''' <returns></returns>
     Public Property Type As Types
         Get
             Return Me._type
@@ -155,7 +154,6 @@ Public Class Element
     ''' </summary>
     ''' <param name="AttackElement">The attacking element.</param>
     ''' <param name="DefenseElement">The defending element.</param>
-    ''' <returns></returns>
     Public Shared Function GetElementMultiplier(ByVal AttackElement As Element, ByVal DefenseElement As Element) As Single
         Dim a As Element = AttackElement
         Dim d As Element = DefenseElement
@@ -876,7 +874,6 @@ Public Class Element
     ''' <summary>
     ''' Returns the rectangle from the texture "GUI\Menus\Types" that represents the Type of this Element.
     ''' </summary>
-    ''' <returns></returns>
     Public Function GetElementImage() As Rectangle
         Dim r As New Rectangle(0, 0, 0, 0)
 

@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Abomasnow.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Abomasite
 
         Inherits MegaStone

@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Steelix.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Steelixite
 
         Inherits MegaStone

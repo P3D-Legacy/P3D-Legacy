@@ -1,4 +1,4 @@
-﻿Namespace XmlLevel
+Namespace XmlLevel
 
     Public Class XmlEntity
 
@@ -16,8 +16,6 @@
         ''' </summary>
         ''' <typeparam name="T">The type of the property value.</typeparam>
         ''' <param name="Name">The name of the property.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function GetPropertyValue(Of T)(ByVal Name As String) As T
             If _storedProperties.ContainsKey(Name.ToLower()) = True Then
                 Return CType(_storedProperties(Name.ToLower()), T)
@@ -33,8 +31,6 @@
         ''' Returns a property of this entity based on its name.
         ''' </summary>
         ''' <param name="Name">The name of the property.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Private Function GetProperty(ByVal Name As String) As XmlProperty
             For i = 0 To Me._properties.Count - 1
                 If Me._properties(i).Name.ToLower() = Name.ToLower() Then
@@ -54,7 +50,6 @@
         ''' <typeparam name="T">The type of the propertie's value</typeparam>
         ''' <param name="Name">The name of the property.</param>
         ''' <param name="Value">The new value of the property.</param>
-        ''' <remarks></remarks>
         Public Sub SetPropertyValue(Of T)(ByVal Name As String, ByVal Value As T)
             If _storedProperties.ContainsKey(Name.ToLower()) = True Then
                 _storedProperties(Name.ToLower()) = Value
@@ -69,7 +64,6 @@
         ''' </summary>
         ''' <param name="Name">The name of the property.</param>
         ''' <param name="Value">The value of the property.</param>
-        ''' <remarks></remarks>
         Public Sub AddProperty(ByVal Name As String, ByVal Value As String)
             Dim defaultProperty As XmlProperty = XmlProperty.GetDefaultProperty(Name)
             Me._properties.Add(New XmlProperty(Name, Value, defaultProperty.Type))
@@ -97,8 +91,6 @@
         ''' Checks if this entity has the requested PropertyListener.
         ''' </summary>
         ''' <param name="AssociatedPropertyName">The name of the PropertyListener.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function HasPropertyListener(ByVal AssociatedPropertyName As String) As Boolean
             For Each PropertyListener As XmlPropertyListener In Me._propertyListeners
                 If PropertyListener.AssociatedPropertyName.ToLower() = AssociatedPropertyName.ToLower() Then
@@ -112,7 +104,6 @@
         ''' Adds a PropertyListener to the list of PropertyListeners.
         ''' </summary>
         ''' <param name="PropertyListener">The PropertyListener to add.</param>
-        ''' <remarks></remarks>
         Public Sub AddPropertyListener(ByVal PropertyListener As XmlPropertyListener)
             Me._propertyListeners.Add(PropertyListener)
         End Sub
@@ -121,9 +112,6 @@
         ''' Returns if a property with a specific name exists for this entity.
         ''' </summary>
         ''' <param name="PropertyName">The name of the property.</param>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property PropertyExists(ByVal PropertyName As String) As Boolean
             Get
                 For Each p As XmlProperty In Me._properties
@@ -138,8 +126,6 @@
         ''' <summary>
         ''' Returns a list of names of the properties of this entity.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function GetPropertyNameList() As List(Of String)
             Dim ll As New List(Of String)
 

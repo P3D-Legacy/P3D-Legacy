@@ -3,7 +3,6 @@
     ''' <summary>
     ''' Represents a Pokémon's move.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Attack
 
         Implements ICopyAble
@@ -29,7 +28,6 @@
         ''' <summary>
         ''' The target for an attack.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Enum Targets
             OneAdjacentTarget 'One adjacent target, excluding itself.
             OneAdjacentFoe 'One adjacent foe.
@@ -242,8 +240,6 @@
         ''' Returns a new instance of AttackV2 based on the input ID.
         ''' </summary>
         ''' <param name="ID">The ID of the Move to return.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared Function GetAttackByID(ByVal ID As Integer) As Attack
             Dim returnMove As Attack
 
@@ -1535,7 +1531,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Sub PreAttack(ByVal Own As Boolean, ByVal BattleScreen As BattleScreen)
             'DO NOTHING HERE
         End Sub
@@ -1545,7 +1540,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Function MoveFailBeforeAttack(ByVal Own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
             'DO NOTHING HERE
             Return False
@@ -1556,7 +1550,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Function GetBasePower(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
             Return Me.Power
         End Function
@@ -1566,7 +1559,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen) As Integer
             Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen)
         End Function
@@ -1576,7 +1568,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Function GetTimesToAttack(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
             Return Me.TimesToAttack
         End Function
@@ -1586,7 +1577,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Sub MoveHits(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If Me.IsGameModeMove = True Then
                 AttackSpecialFunctions.ExecuteAttackFunction(Me, own, BattleScreen)
@@ -1604,7 +1594,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Sub MoveMisses(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             'DO NOTHING HERE
         End Sub
@@ -1614,7 +1603,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Sub MoveProtectedDetected(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             'DO NOTHING HERE
         End Sub
@@ -1624,7 +1612,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Sub MoveHasNoEffect(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             'DO NOTHING HERE
         End Sub
@@ -1634,7 +1621,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Function GetAttackType(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Element
             Dim p As Pokemon = BattleScreen.OwnPokemon
             If own = False Then
@@ -1665,7 +1651,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Function GetAccuracy(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
             Return Me.Accuracy
         End Function
@@ -1675,7 +1660,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Function DeductPP(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
             Return True
         End Function
@@ -1685,7 +1669,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Function GetUseAccEvasion(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
             Return Me.UseAccEvasion
         End Function
@@ -1695,7 +1678,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Sub MoveSelected(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             'DO NOTHING
         End Sub
@@ -1705,7 +1687,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Sub BeforeDealingDamage(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             'DO NOTHING
         End Sub
@@ -1715,7 +1696,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Sub AbsorbedBySubstitute(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             'DO NOTHING
         End Sub
@@ -1725,7 +1705,6 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Overridable Sub MoveFailsSoundproof(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             'DO NOTHING
         End Sub
@@ -1734,7 +1713,6 @@
         ''' Returns the attack stat of a Pokémon (Physical or Special).
         ''' </summary>
         ''' <param name="p">The Pokémon that used the move.</param>
-        ''' <remarks></remarks>
         Public Overridable Function GetUseAttackStat(ByVal p As Pokemon) As Integer
             If Me.Category = Categories.Physical Then
                 Return p.Attack
@@ -1747,7 +1725,6 @@
         ''' Returns the defense stat of a Pokémon (Physical or Special).
         ''' </summary>
         ''' <param name="p">The Pokémon that used the move.</param>
-        ''' <remarks></remarks>
         Public Overridable Function GetUseDefenseStat(ByVal p As Pokemon) As Integer
             If Me.Category = Categories.Physical Then
                 Return p.Defense
@@ -1760,7 +1737,6 @@
         ''' If the AI is allowed to use this move.
         ''' </summary>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Function AIUseMove(ByVal BattleScreen As BattleScreen) As Boolean
             Return True
         End Function
@@ -1792,8 +1768,6 @@
         ''' <summary>
         ''' Returns a copy of this move.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function Copy() As Object Implements ICopyAble.Copy
             Dim m As Attack
 
@@ -1816,8 +1790,6 @@
         ''' Builds an instance of AttackV2 with PP and MaxPP set.
         ''' </summary>
         ''' <param name="InputData">Data in the format "ID,MaxPP,CurrentPP"</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared Function ConvertStringToAttack(ByVal InputData As String) As Attack
             If InputData <> "" Then
                 Dim Data() As String = InputData.Split(CChar(","))
@@ -1837,8 +1809,6 @@
         ''' <summary>
         ''' Raises the PP of the move by one stage.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function RaisePP() As Boolean
             Select Case Me.OriginalPP
                 Case 5
@@ -1907,8 +1877,6 @@
         ''' <summary>
         ''' Returns the texture representing the category of this move.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function GetDamageCategoryImage() As Texture2D
             Dim r As New Rectangle(0, 0, 0, 0)
 
@@ -1927,8 +1895,6 @@
         ''' <summary>
         ''' Returns a saveable string.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Overrides Function ToString() As String
             Return Me.OriginalID.ToString() & "," & Me.MaxPP.ToString() & "," & Me.CurrentPP.ToString()
         End Function

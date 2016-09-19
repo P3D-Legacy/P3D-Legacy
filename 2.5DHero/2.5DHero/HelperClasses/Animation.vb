@@ -1,8 +1,6 @@
 ﻿''' <summary>
 ''' A class which can display an animation.
-''' Version: 1.0.0.0 (12.06.2012)
 ''' </summary>
-''' <remarks></remarks>
 Public Class Animation
 
     Inherits BasicObject
@@ -161,7 +159,6 @@ Public Class Animation
     ''' <summary>
     ''' Starts the animation.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Start()
         _Running = PlayMode.Playing
     End Sub
@@ -169,7 +166,6 @@ Public Class Animation
     ''' <summary>
     ''' Stopps the animation and returns to start.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Stopp()
         _Running = PlayMode.Stopped
         CurrentRow = StartRow
@@ -179,7 +175,6 @@ Public Class Animation
     ''' <summary>
     ''' Returns to start and starts the animation afterwards.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Restart()
         _Running = PlayMode.Playing
         CurrentRow = StartRow
@@ -189,7 +184,6 @@ Public Class Animation
     ''' <summary>
     ''' Pauses the animation.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Pause()
         _Running = PlayMode.Paused
     End Sub

@@ -1,4 +1,4 @@
-﻿Public Class ChatScreen
+Public Class ChatScreen
 
     Inherits Screen
 
@@ -895,7 +895,6 @@
     ''' <summary>
     ''' Return sub for the Delegate controller input request screen.
     ''' </summary>
-    ''' <param name="input"></param>
     Public Sub GetControllerInput(ByVal input As String)
         Me.currentText = input
     End Sub
@@ -903,7 +902,6 @@
     ''' <summary>
     ''' Inserts a new message to the NewMessages query.
     ''' </summary>
-    ''' <param name="chatMessage"></param>
     Public Shared Sub InsertNewMessage(ByVal chatMessage As Chat.ChatMessage)
         Select Case chatMessage.MessageType
             Case Chat.ChatMessage.MessageTypes.CommandMessage
@@ -929,7 +927,6 @@
     ''' <summary>
     ''' Enters a new PM chat.
     ''' </summary>
-    ''' <param name="newPMChatName"></param>
     Private Sub EnterPMChat(ByVal newPMChatName As String)
         If PMChats.Keys.Contains(newPMChatName) = False Then
             PMChats.Add(newPMChatName, False)
@@ -941,7 +938,6 @@
     ''' <summary>
     ''' Called when the client receives a PM message from the server.
     ''' </summary>
-    ''' <param name="chatMessage"></param>
     Public Shared Sub ReceivedPMMessage(ByVal chatMessage As Chat.ChatMessage)
         If PMChats.Keys.Contains(chatMessage.Sender) = False Then
             PMChats.Add(chatMessage.Sender, True)

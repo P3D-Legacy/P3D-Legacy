@@ -225,10 +225,6 @@
         ''' <summary>
         ''' Outcome: 0=true/>1=false:1=sleeptalk/snore 2=other move 3=start sleep 4=X wont obey 5=X wont obey 6=X turned away 7=X is loafing around 8=X pretended to not notice
         ''' </summary>
-        ''' <param name="UsedAttack"></param>
-        ''' <param name="BattleScreen"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared Function ObedienceCheck(ByVal UsedAttack As Attack, BattleScreen As BattleScreen) As Integer
             Dim p As Pokemon = BattleScreen.OwnPokemon
 
@@ -1782,8 +1778,6 @@
         ''' Calculates the usable multiplier from a stat reduction/raise.
         ''' </summary>
         ''' <param name="StatValue">The relative stat reduction/raise of the stat.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared Function GetMultiplierFromStat(ByVal StatValue As Integer) As Single
             Select Case StatValue
                 Case -6

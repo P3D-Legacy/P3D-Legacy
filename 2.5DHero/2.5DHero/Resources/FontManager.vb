@@ -1,4 +1,4 @@
-﻿Public Class FontManager
+Public Class FontManager
 
     Private Shared FontList As New Dictionary(Of String, FontContainer)
 
@@ -56,8 +56,6 @@
     ''' Looks to see if a font is loaded. Code that uses this should generally check for a return of nothing, indicating the font does not exist.
     ''' </summary>
     ''' <param name="fontName">The name of the font.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetFont(ByVal fontName As String) As SpriteFont
         If FontList.ContainsKey(fontname.ToLower()) = True Then
             Return FontList(fontname.ToLower()).SpriteFont
@@ -69,8 +67,6 @@
     ''' Looks to see if a FontContainer is loaded. Code that uses this should generally check for a return of nothing, indicating the font does not exist.
     ''' </summary>
     ''' <param name="fontName">The name of the font.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetFontContainer(ByVal fontName As String) As FontContainer
         If FontList.ContainsKey(fontName.ToLower()) = True Then
             Return FontList(fontName.ToLower())

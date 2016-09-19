@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Gyarados.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Gyaradosite
 
         Inherits MegaStone

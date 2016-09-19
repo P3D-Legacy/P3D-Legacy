@@ -1463,7 +1463,6 @@ nextIndex:
         ''' <summary>
         ''' Use this to download the sprites for the players.
         ''' </summary>
-        ''' <remarks></remarks>
         Private Sub DownloadOnlineSprites()
             If Core.Player.IsGamejoltSave = True Then
                 Dim t As New Threading.Thread(AddressOf DownloadSprites)

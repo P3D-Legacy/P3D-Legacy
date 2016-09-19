@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' A class that helps with saving the game.
 ''' </summary>
 Public Class SaveGameHelpers
@@ -12,7 +12,6 @@ Public Class SaveGameHelpers
     ''' <summary>
     ''' If the game encountered any errors while uploading data.
     ''' </summary>
-    ''' <returns></returns>
     Public Shared ReadOnly Property EncounteredErrors() As Boolean
         Get
             Return _failedSaveParts > 0
@@ -22,7 +21,6 @@ Public Class SaveGameHelpers
     ''' <summary>
     ''' If the download check has already started.
     ''' </summary>
-    ''' <returns></returns>
     Public Shared ReadOnly Property StartedDownloadCheck() As Boolean
         Get
             Return _startedDownloadCheck
@@ -32,7 +30,6 @@ Public Class SaveGameHelpers
     ''' <summary>
     ''' Increments the value that counts the upload parts and starts the download check if the upload is finished.
     ''' </summary>
-    ''' <param name="result"></param>
     Public Shared Sub AddGameJoltSaveCounter(ByVal result As String)
         _savingProgress += 1
 
@@ -51,7 +48,6 @@ Public Class SaveGameHelpers
     ''' <summary>
     ''' Increments the counter once the data files have been uploaded and starts the download check if the upload is finished.
     ''' </summary>
-    ''' <param name="result"></param>
     Public Shared Sub CompleteGameJoltSave(ByVal result As String)
         _savingProgress += GameJolt.GamejoltSave.SAVEFILECOUNT
 
@@ -70,7 +66,6 @@ Public Class SaveGameHelpers
     ''' <summary>
     ''' If saving the GameJolt save to the GameJolt server is finished (with checks).
     ''' </summary>
-    ''' <returns></returns>
     Public Shared ReadOnly Property GameJoltSaveDone() As Boolean
         Get
             If _tempGJSave Is Nothing Then
@@ -147,7 +142,6 @@ Public Class SaveGameHelpers
     ''' This makes "PlayTime" the only part of the entire save that could get corrupted and passed on undetected (I believe this is impossible to even happen).
     ''' </summary>
     ''' <param name="input">The player data.</param>
-    ''' <returns></returns>
     Private Shared Function GetTimeFixedPlayerData(ByVal input As String) As String
         Dim inputArr As String() = input.Split({vbNewLine}, StringSplitOptions.None)
         Dim output As String = ""

@@ -74,7 +74,6 @@ Namespace Servers
         ''' <summary>
         ''' Updates the ServersManager and sends the player data package if needed.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub Update()
             If JoinServerScreen.Online = True And ConnectScreen.Connected = True Then
                 If Me._PlayerManager.HasNewPlayerData() = True Then

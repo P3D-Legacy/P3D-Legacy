@@ -1,7 +1,6 @@
-﻿''' <summary>
+''' <summary>
 ''' A class that manages the collection of entities to represent a map.
 ''' </summary>
-''' <remarks></remarks>
 Public Class Level
 
 #Region "Fields"
@@ -13,13 +12,11 @@ Public Class Level
     ''' <summary>
     ''' Stores warp data for warping to a new map.
     ''' </summary>
-    ''' <remarks></remarks>
     Public WarpData As WarpDataStruct
 
     ''' <summary>
     ''' Stores temporary Pokémon encounter data.
     ''' </summary>
-    ''' <remarks></remarks>
     Public PokemonEncounterData As PokemonEcounterDataStruct
 
     'Level states:
@@ -85,9 +82,6 @@ Public Class Level
     ''' <summary>
     ''' The Terrain of this level.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property Terrain() As Terrain
         Get
             Return Me._terrain
@@ -97,9 +91,6 @@ Public Class Level
     ''' <summary>
     ''' A RouteSign on the top left corner of the screen to display the map's name.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property RouteSign() As RouteSign
         Get
             Return Me._routeSign
@@ -109,9 +100,6 @@ Public Class Level
     ''' <summary>
     ''' Indicates wether the player is surfing.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Surfing() As Boolean
         Get
             Return _isSurfing
@@ -124,9 +112,6 @@ Public Class Level
     ''' <summary>
     ''' Indicates wether the player is riding.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Riding() As Boolean
         Get
             Return Me._isRiding
@@ -139,9 +124,6 @@ Public Class Level
     ''' <summary>
     ''' Indicates wether the player used Strength already.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property UsedStrength() As Boolean
         Get
             Return Me._usedStrength
@@ -154,9 +136,6 @@ Public Class Level
     ''' <summary>
     ''' The reference to the active OwnPlayer instance.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OwnPlayer() As OwnPlayer
         Get
             Return Me._ownPlayer
@@ -169,9 +148,6 @@ Public Class Level
     ''' <summary>
     ''' The reference to the active OverworldPokemon instance.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OverworldPokemon() As OverworldPokemon
         Get
             Return Me._ownOverworldPokemon
@@ -184,9 +160,6 @@ Public Class Level
     ''' <summary>
     ''' The array of entities composing the map.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Entities() As List(Of Entity)
         Get
             Return Me._entities
@@ -199,9 +172,6 @@ Public Class Level
     ''' <summary>
     ''' The array of floors the player can move on.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Floors() As List(Of Entity)
         Get
             Return Me._floors
@@ -214,9 +184,6 @@ Public Class Level
     ''' <summary>
     ''' The array of shaders that add specific lighting to the map.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Shaders() As List(Of Shader)
         Get
             Return Me._shaders
@@ -229,9 +196,6 @@ Public Class Level
     ''' <summary>
     ''' The array of players on the server to render.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property NetworkPlayers() As List(Of NetworkPlayer)
         Get
             Return Me._networkPlayers
@@ -244,9 +208,6 @@ Public Class Level
     ''' <summary>
     ''' The array of Pokémon on the server to render.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property NetworkPokemon() As List(Of NetworkPokemon)
         Get
             Return Me._networkPokemon
@@ -259,9 +220,6 @@ Public Class Level
     ''' <summary>
     ''' The array of entities the offset maps are composed of.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OffsetmapEntities() As List(Of Entity)
         Get
             Return Me._offsetMapEntities
@@ -274,9 +232,6 @@ Public Class Level
     ''' <summary>
     ''' The array of floors the offset maps are composed of.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OffsetmapFloors() As List(Of Entity)
         Get
             Return Me._offsetMapFloors
@@ -289,8 +244,6 @@ Public Class Level
     ''' <summary>
     ''' The name of the current map.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>This name gets displayed on the RouteSign.</remarks>
     Public Property MapName() As String
         Get
@@ -304,8 +257,6 @@ Public Class Level
     ''' <summary>
     ''' The default background music for this level.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>Doesn't play for surfing, riding and radio.</remarks>
     Public Property MusicLoop() As String
         Get
@@ -319,8 +270,6 @@ Public Class Level
     ''' <summary>
     ''' The file this level got loaded from.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>The path is relative to the \maps\ or \GameMode\[gamemode]\maps\ path.</remarks>
     Public Property LevelFile() As String
         Get
@@ -334,9 +283,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the player can use the move Teleport.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property CanTeleport As Boolean
         Get
             Return Me._canTeleport
@@ -349,9 +295,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the player can use the move Dig or an Escape Rope.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property CanDig As Boolean
         Get
             Return Me._canDig
@@ -364,9 +307,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the player can use the move Fly.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property CanFly As Boolean
         Get
             Return Me._canFly
@@ -379,8 +319,6 @@ Public Class Level
     ''' <summary>
     ''' The type of Ride the player can use on this map.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>0 = Depends on CanDig and CanFly, 1 = True, 2 = False</remarks>
     Public Property RideType As Integer
         Get
@@ -394,8 +332,6 @@ Public Class Level
     ''' <summary>
     ''' The Weather on this map.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>For the weather, look at the WeatherTypes enumeration in World.vb</remarks>
     Public Property WeatherType As Integer
         Get
@@ -409,9 +345,6 @@ Public Class Level
     ''' <summary>
     ''' The environment type for this map.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property EnvironmentType As Integer
         Get
             Return Me._environmentType
@@ -424,9 +357,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the player can encounter wild Pokémon in the Grass entities.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property WildPokemonGrass As Boolean
         Get
             Return Me._wildPokemonGrass
@@ -439,9 +369,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the player can encounter wild Pokémon on every floor tile.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property WildPokemonFloor As Boolean
         Get
             Return Me._wildPokemonFloor
@@ -454,9 +381,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the player can encounter wild Pokémon while surfing.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property WildPokemonWater As Boolean
         Get
             Return Me._wildPokemonWater
@@ -469,9 +393,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the map is dark, and needs to be lightened up by Flash.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IsDark As Boolean
         Get
             Return Me._isDark
@@ -484,9 +405,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the Overworld Pokémon is visible.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property ShowOverworldPokemon As Boolean
         Get
             Return Me._showOverworldPokemon
@@ -499,9 +417,6 @@ Public Class Level
     ''' <summary>
     ''' The amount of walked steps on this map.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property WalkedSteps As Integer
         Get
             Return Me._walkedSteps
@@ -514,8 +429,6 @@ Public Class Level
     ''' <summary>
     ''' The region this map is assigned to.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>The default is "Johto".</remarks>
     Public Property CurrentRegion As String
         Get
@@ -529,9 +442,6 @@ Public Class Level
     ''' <summary>
     ''' Chance of a Hidden Ability being on a wild pokemon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property HiddenAbilityChance As Integer
         Get
             Return Me._hiddenabilitychance
@@ -544,9 +454,6 @@ Public Class Level
     ''' <summary>
     ''' The LightingType of this map. More information in the Level\UpdateLighting.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property LightingType As Integer
         Get
             Return Me._lightingType
@@ -559,9 +466,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the map is a part of the SafariZone. This changes the Battle Menu and the MenuScreen.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IsSafariZone As Boolean
         Get
             Return Me._isSafariZone
@@ -574,9 +478,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the map is a part of the BugCatchingContest. This changes the Battle Menu and the MenuScreen.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IsBugCatchingContest As Boolean
         Get
             Return Me._isBugCatchingContest
@@ -589,8 +490,6 @@ Public Class Level
     ''' <summary>
     ''' Holds data for the Bug Catching Contest.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>Composed of 3 values, separated by ",": 0 = script location for ending the contest, 1 = script location for selecting the remaining balls item, 2 = Menu Item name for the remaining balls item.</remarks>
     Public Property BugCatchingContestData As String
         Get
@@ -604,8 +503,6 @@ Public Class Level
     ''' <summary>
     ''' Used to modify the Battle Map camera position.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>Data: MapName,x,y,z OR Mapname OR x,y,z OR empty</remarks>
     Public Property BattleMapData() As String
         Get
@@ -619,9 +516,6 @@ Public Class Level
     ''' <summary>
     ''' The instance of the World class, handling time, season and weather based operations.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property World() As World
         Get
             Return Me._world
@@ -634,9 +528,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the radio is currently activated.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IsRadioOn() As Boolean
         Get
             Return Me._isRadioOn
@@ -649,9 +540,6 @@ Public Class Level
     ''' <summary>
     ''' The currently selected radio station. If possible, this will replace the MusicLoop.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property SelectedRadioStation() As GameJolt.PokegearScreen.RadioStation
         Get
             Return Me._selectedRadioStation
@@ -664,9 +552,6 @@ Public Class Level
     ''' <summary>
     ''' Allowed radio channels on this map.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property AllowedRadioChannels() As List(Of Decimal)
         Get
             Return Me._radioChannels
@@ -679,9 +564,6 @@ Public Class Level
     ''' <summary>
     ''' Handles wild Pokémon encounters.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property PokemonEncounter() As PokemonEncounter
         Get
             Return Me._pokemonEncounter
@@ -691,9 +573,6 @@ Public Class Level
     ''' <summary>
     ''' The backdrop renderer of this level.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property BackdropRenderer() As BackdropRenderer
         Get
             Return _backdropRenderer
@@ -707,72 +586,60 @@ Public Class Level
     ''' <summary>
     ''' A structure to store warp data in.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Structure WarpDataStruct
         ''' <summary>
         ''' The destination map file.
         ''' </summary>
-        ''' <remarks></remarks>
         Public WarpDestination As String
 
         ''' <summary>
         ''' The position to warp the player to.
         ''' </summary>
-        ''' <remarks></remarks>
         Public WarpPosition As Vector3
 
         ''' <summary>
         ''' The check to see if the player should get warped next tick.
         ''' </summary>
-        ''' <remarks></remarks>
         Public DoWarpInNextTick As Boolean
 
         ''' <summary>
         ''' Amount of 90° rotations counter clockwise.
         ''' </summary>
-        ''' <remarks></remarks>
         Public WarpRotations As Integer
 
         ''' <summary>
         ''' The correct camera yaw to set the camera to after the warping.
         ''' </summary>
-        ''' <remarks></remarks>
         Public CorrectCameraYaw As Single
 
         ''' <summary>
         ''' If the warp action got triggered by a warp block.
         ''' </summary>
-        ''' <remarks></remarks>
         Public IsWarpBlock As Boolean
     End Structure
 
     ''' <summary>
     ''' A structure to store wild pokémon encounter data in.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Structure PokemonEcounterDataStruct
         ''' <summary>
         ''' The assumed position the player will be in when encounterning the Pokémon.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Position As Vector3
 
         ''' <summary>
         ''' Wether the player encountered a Pokémon.
         ''' </summary>
-        ''' <remarks></remarks>
         Public EncounteredPokemon As Boolean
 
         ''' <summary>
         ''' The encounter method.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Method As Spawner.EncounterMethods
 
         ''' <summary>
         ''' The link to the .poke file used to spawn the Pokémon in.
         ''' </summary>
-        ''' <remarks></remarks>
         Public PokeFile As String
     End Structure
 
@@ -781,7 +648,6 @@ Public Class Level
     ''' <summary>
     ''' Creates a new instance of the Level class.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub New()
         Me._routeSign = New RouteSign()
         Me.WarpData = New WarpDataStruct()
@@ -797,7 +663,6 @@ Public Class Level
     ''' <summary>
     ''' Initializes the offset map update cycle.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub StartOffsetMapUpdate()
         If Not Me._offsetTimer Is Nothing Then
             Me._offsetTimer.Stop()
@@ -823,7 +688,6 @@ Public Class Level
     ''' Loads a level from a levelfile.
     ''' </summary>
     ''' <param name="Levelpath">The path to load the level from. Start with "|" to prevent loading a levelfile.</param>
-    ''' <remarks></remarks>
     Public Sub Load(ByVal Levelpath As String)
         'Create a parameter array to pass over to the LevelLoader.
         Dim params As New List(Of Object)
@@ -853,7 +717,6 @@ Public Class Level
     ''' <summary>
     ''' Renders the level.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Draw()
         Me._backdropRenderer.Draw()
 
@@ -894,7 +757,6 @@ Public Class Level
     ''' <summary>
     ''' Updates the level's logic.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Update()
         Me._backdropRenderer.Update()
 
@@ -922,7 +784,6 @@ Public Class Level
     ''' <summary>
     ''' Updates all entities on the map and offset map and sorts the enumarations.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub UpdateEntities()
         'Update and remove entities:
         If LevelLoader.IsBusy = False Then
@@ -962,7 +823,6 @@ Public Class Level
     ''' <summary>
     ''' Sorts the entity enumerations.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub SortEntities()
         If LevelLoader.IsBusy = False Then
             Entities = (From f In Entities Order By f.CameraDistance Descending).ToList()
@@ -972,7 +832,6 @@ Public Class Level
     ''' <summary>
     ''' Sorts and updates offset map entities.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub UpdateOffsetMap()
         Me._isUpdatingOffsetMaps = True
         If Core.GameOptions.LoadOffsetMaps > 0 Then
@@ -1021,7 +880,6 @@ Public Class Level
     ''' <summary>
     ''' Renders offset map entities.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub RenderOffsetMap()
         'Render floors:
         For i = 0 To Me.OffsetmapFloors.Count - 1
@@ -1047,7 +905,6 @@ Public Class Level
     ''' <summary>
     ''' Draws the flash overlay to the screen.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub DrawFlashOverlay()
         Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Overworld\flash_overlay"), New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), Color.White)
     End Sub
@@ -1055,7 +912,6 @@ Public Class Level
     ''' <summary>
     ''' Handles warp events for the player.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub UpdatePlayerWarp()
         If WarpData.DoWarpInNextTick = True Then 'If a warp event got scheduled.
             'Disable wild Pokémon:
@@ -1175,8 +1031,6 @@ Public Class Level
     ''' <summary>
     ''' Returns a list of all NPCs on the map.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetNPCs() As List(Of NPC)
         Dim reList As New List(Of NPC)
 
@@ -1194,7 +1048,6 @@ Public Class Level
     ''' </summary>
     ''' <param name="ID">The ID of the NPC to return from the level.</param>
     ''' <returns>Returns either a matching NPC or Nothing.</returns>
-    ''' <remarks></remarks>
     Public Function GetNPC(ByVal ID As Integer) As NPC
         For Each NPC As NPC In GetNPCs()
             If NPC.NPCID = ID Then
@@ -1208,9 +1061,6 @@ Public Class Level
     ''' <summary>
     ''' Returns an NPC based on the entity ID.
     ''' </summary>
-    ''' <param name="ID"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetEntity(ByVal ID As Integer) As Entity
         If ID = -1 Then
             Throw New Exception("-1 is the default value for NOT having an ID, therefore is not a valid ID.")
@@ -1228,7 +1078,6 @@ Public Class Level
     ''' <summary>
     ''' Checks all NPCs on the map for if the player is in their line of sight.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub CheckTrainerSights()
         For Each Entity As Entity In Entities
             If Entity.EntityID = "NPC" Then
@@ -1243,8 +1092,6 @@ Public Class Level
     ''' <summary>
     ''' Determines wether the player can use Ride on this map.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function CanRide() As Boolean
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then 'Always true for Sandboxmode and Debug mode.
             Return True
@@ -1267,8 +1114,6 @@ Public Class Level
     ''' <summary>
     ''' Wether the player can move based on the entity around him.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function CanMove() As Boolean
         For Each e As Entity In Me.Entities
             If e.Position.X = Screen.Camera.Position.X And e.Position.Z = Screen.Camera.Position.Z And CInt(e.Position.Y) = CInt(Screen.Camera.Position.Y) Then

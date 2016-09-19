@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Absol.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Absolite
 
         Inherits MegaStone

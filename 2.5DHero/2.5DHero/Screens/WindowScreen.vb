@@ -1,7 +1,6 @@
-﻿''' <summary>
+''' <summary>
 ''' A generic class for a screen with a window GUI.
 ''' </summary>
-''' <remarks></remarks>
 Public MustInherit Class WindowScreen
 
     Inherits Screen
@@ -47,7 +46,6 @@ Public MustInherit Class WindowScreen
     ''' <summary>
     ''' Draws the gradients and window.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Overrides Sub Draw()
         'Gradients:
         If _drawingGradient = True Then
@@ -131,7 +129,6 @@ Public MustInherit Class WindowScreen
     ''' <summary>
     ''' Updates the fade in of the gradients.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Overrides Sub Update()
         If Me._drawingGradient = False And IsDrawingGradients = False Then
             Me._drawingGradient = True

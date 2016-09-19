@@ -477,8 +477,6 @@
     ''' <summary>
     ''' Returns the offset from the 0,0,0 center of the position of the entity.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Private Function GetCenter() As Vector3
         If CreatedWorld = False Or CreateWorldEveryFrame = True Then
             Dim v As Vector3 = Vector3.Zero '(Me.ViewBox.Min - Me.Position) + (Me.ViewBox.Max - Me.Position)

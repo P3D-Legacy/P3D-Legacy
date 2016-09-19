@@ -1,4 +1,4 @@
-﻿Public Class TextureManager
+Public Class TextureManager
 
     Public Shared DefaultTexture As Texture2D
 
@@ -12,8 +12,6 @@
     ''' Returns a texture.
     ''' </summary>
     ''' <param name="Name">The name of the texture.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetTexture(ByVal Name As String) As Texture2D
         Dim cContent As ContentManager = ContentPackManager.GetContentManager(Name, ".xnb,.png")
 
@@ -73,8 +71,6 @@
     ''' <param name="Name">The name of the texture.</param>
     ''' <param name="r">The rectangle to get the texture from.</param>
     ''' <param name="TexturePath">The texturepath to load a texture from.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetTexture(ByVal Name As String, ByVal r As Rectangle, ByVal TexturePath As String) As Texture2D
         Dim tSource As TextureSource = ContentPackManager.GetTextureReplacement(TexturePath & Name, r)
 
@@ -128,8 +124,6 @@
     ''' </summary>
     ''' <param name="Name">The name of the texture.</param>
     ''' <param name="r">The rectangle to get from the texture.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetTexture(ByVal Name As String, ByVal r As Rectangle) As Texture2D
         Return GetTexture(Name, r, "Textures\")
     End Function

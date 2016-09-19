@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Aggron.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Aggronite
 
         Inherits MegaStone

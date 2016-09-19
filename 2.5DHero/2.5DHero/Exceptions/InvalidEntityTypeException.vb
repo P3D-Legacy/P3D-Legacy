@@ -3,7 +3,6 @@
     ''' <summary>
     ''' An exception to be thrown when an entity conversion encounters a type error.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class InvalidEntityTypeException
 
         Inherits Exception

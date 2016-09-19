@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Beedrill.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Beedrillite
 
         Inherits MegaStone

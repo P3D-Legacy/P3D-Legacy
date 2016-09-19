@@ -1,7 +1,6 @@
-﻿''' <summary>
+''' <summary>
 ''' This class handles all actions regarding badge loading and displaying.
 ''' </summary>
-''' <remarks></remarks>
 Public Class Badge
 
     Public Enum HMMoves
@@ -22,7 +21,6 @@ Public Class Badge
     ''' <summary>
     ''' This describes one badge loaded by a GameMode with ID, Name, Texture and Arguments
     ''' </summary>
-    ''' <remarks></remarks>
     Private Class BadgeDeclaration
 
         Public ID As Integer = 0
@@ -90,7 +88,6 @@ Public Class Badge
     ''' <summary>
     ''' Loads the badges. Only use after the GameMode got set.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Shared Sub Load()
         Badges.Clear()
 
@@ -110,8 +107,6 @@ Public Class Badge
     ''' Gets the badge name.
     ''' </summary>
     ''' <param name="ID">The ID of the badge.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetBadgeName(ByVal ID As Integer) As String
         For Each b As BadgeDeclaration In Badges
             If b.ID = ID Then
@@ -125,8 +120,6 @@ Public Class Badge
     ''' Gets the badge texture.
     ''' </summary>
     ''' <param name="ID">The ID of the badge.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetBadgeTexture(ByVal ID As Integer) As Texture2D
         For Each b As BadgeDeclaration In Badges
             If b.ID = ID Then
@@ -139,8 +132,6 @@ Public Class Badge
     ''' <summary>
     ''' Gets the highest level cap the player can use traded Pokémon on.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetLevelCap() As Integer
         Dim trainerBadges As List(Of Integer) = Core.Player.Badges
         Dim highestCap As Integer = 10
@@ -156,8 +147,6 @@ Public Class Badge
     ''' Checks if the player is able to perform a certain HM move.
     ''' </summary>
     ''' <param name="HM">The HM move the player tries to use.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function CanUseHMMove(ByVal HM As HMMoves) As Boolean
         Dim trainerBadges As List(Of Integer) = Core.Player.Badges
         For Each b As BadgeDeclaration In Badges
@@ -172,8 +161,6 @@ Public Class Badge
     ''' Gets the region.
     ''' </summary>
     ''' <param name="index">The index of the region in the badges enumeration.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetRegion(ByVal index As Integer) As String
         Dim regions As New List(Of String)
         For Each b As BadgeDeclaration In Badges
@@ -192,8 +179,6 @@ Public Class Badge
     ''' Gets the amount of badges in a certain region.
     ''' </summary>
     ''' <param name="region">The region to count the badges.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetBadgesCount(ByVal region As String) As Integer
         Dim c As Integer = 0
         For Each b As BadgeDeclaration In Badges
@@ -207,8 +192,6 @@ Public Class Badge
     ''' <summary>
     ''' Returns the amount of regions that exists in total.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetRegionCount() As Integer
         Dim regions As New List(Of String)
         For Each b As BadgeDeclaration In Badges
@@ -224,8 +207,6 @@ Public Class Badge
     ''' </summary>
     ''' <param name="region">The region this badge is from.</param>
     ''' <param name="index">The index of this badge.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetBadgeID(ByVal region As String, ByVal index As Integer) As Integer
         Dim cBadges As New List(Of BadgeDeclaration)
         For Each b As BadgeDeclaration In Badges
@@ -244,8 +225,6 @@ Public Class Badge
     ''' Checks if the player has a certain badge.
     ''' </summary>
     ''' <param name="BadgeID">The Badge ID to check for.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function PlayerHasBadge(ByVal BadgeID As Integer) As Boolean
         Return Core.Player.Badges.Contains(BadgeID)
     End Function

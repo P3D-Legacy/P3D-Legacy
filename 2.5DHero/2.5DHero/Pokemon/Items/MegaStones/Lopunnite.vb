@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Lopunnite.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Lopunnite
 
         Inherits MegaStone

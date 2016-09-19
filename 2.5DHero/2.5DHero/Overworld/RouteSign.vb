@@ -1,7 +1,6 @@
 ﻿''' <summary>
 ''' The sign displaying the current location in the world.
 ''' </summary>
-''' <remarks></remarks>
 Public Class RouteSign
 
     Private _positionY As Single = -60
@@ -12,8 +11,6 @@ Public Class RouteSign
     ''' <summary>
     ''' Sets the values of the RouteSign and displays it on the screen.
     ''' </summary>
-    ''' <param name="newText"></param>
-    ''' <remarks></remarks>
     Public Sub Setup(ByVal newText As String)
         'Only if the text is different from last time the RouteSign showed up, display the RouteSign.
         If newText.ToLower() <> Me._text.ToLower() Then
@@ -26,7 +23,6 @@ Public Class RouteSign
     ''' <summary>
     ''' Hides the RouteSign.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Hide()
         Me._show = False
     End Sub
@@ -34,7 +30,6 @@ Public Class RouteSign
     ''' <summary>
     ''' Update the RouteSign.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Update()
         If Me._delay > 0.0F Then
             If Me._positionY < 5.0F Then
@@ -57,7 +52,6 @@ Public Class RouteSign
     ''' <summary>
     ''' Renders the RouteSign.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Draw()
         If Me._show = True Then
             Dim placeString As String = Localization.GetString("Places_" & Me._text, Me._text)

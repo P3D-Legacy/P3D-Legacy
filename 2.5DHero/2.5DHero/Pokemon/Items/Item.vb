@@ -1,7 +1,6 @@
-﻿''' <summary>
+''' <summary>
 ''' An item the player stores in their inventory.
 ''' </summary>
-''' <remarks></remarks>
 Public Class Item
 
     ''Implement the interface to allow the copy of an item instance.
@@ -10,47 +9,38 @@ Public Class Item
     ''' <summary>
     ''' The type of item. This is also the bag they get sorted into.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum ItemTypes
         ''' <summary>
         ''' The default item category for misc. items.
         ''' </summary>
-        ''' <remarks></remarks>
         Standard
         ''' <summary>
         ''' Medicine items that restore Pokémon.
         ''' </summary>
-        ''' <remarks></remarks>
         Medicine
         ''' <summary>
         ''' Plants, like berries and apricorns.
         ''' </summary>
-        ''' <remarks></remarks>
         Plants
         ''' <summary>
         ''' All Poké Balls.
         ''' </summary>
-        ''' <remarks></remarks>
         Pokéballs
         ''' <summary>
         ''' TMs and HMs.
         ''' </summary>
-        ''' <remarks></remarks>
         Machines
         ''' <summary>
         ''' Keyitems of the game.
         ''' </summary>
-        ''' <remarks></remarks>
         KeyItems
         ''' <summary>
         ''' Mail items.
         ''' </summary>
-        ''' <remarks></remarks>
         Mail
         ''' <summary>
         ''' Items to be used in battle.
         ''' </summary>
-        ''' <remarks></remarks>
         BattleItems
     End Enum
 
@@ -94,9 +84,6 @@ Public Class Item
     ''' <summary>
     ''' The singular item name.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property Name() As String
         Get
             Return Me._name
@@ -106,9 +93,6 @@ Public Class Item
     ''' <summary>
     ''' The ID of the item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property ID() As Integer
         Get
             Return Me._id
@@ -118,9 +102,6 @@ Public Class Item
     ''' <summary>
     ''' The plural name of the item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property PluralName() As String
         Get
             Return Me._pluralName
@@ -130,9 +111,6 @@ Public Class Item
     ''' <summary>
     ''' The price of this item if the player purchases it in exchange for PokéDollars. This halves when selling an item to the store.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property PokéDollarPrice() As Integer
         Get
             Return Me._pokeDollarPrice
@@ -142,9 +120,6 @@ Public Class Item
     ''' <summary>
     ''' The price of this item if the player purchases it exchange for BattlePoints.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property BattlePointsPrice() As Integer
         Get
             Return Me._battlePointsPrice
@@ -154,9 +129,6 @@ Public Class Item
     ''' <summary>
     ''' The type of this item. This also controls in which bag this item gets sorted.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property ItemType() As ItemTypes
         Get
             Return Me._itemType
@@ -166,9 +138,6 @@ Public Class Item
     ''' <summary>
     ''' The default catch multiplier if the item gets used as a Pokéball.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property CatchMultiplier() As Single
         Get
             Return Me._catchMultiplier
@@ -178,9 +147,6 @@ Public Class Item
     ''' <summary>
     ''' The maximum amount of this item type (per ID) that can be stored in the bag.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property MaxStack() As Integer
         Get
             Return Me._maxStack
@@ -190,9 +156,6 @@ Public Class Item
     ''' <summary>
     ''' A value that can be used to sort items in the bag after. Lower values make items appear closer to the top.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property SortValue() As Integer
         Get
             Return Me._sortValue
@@ -202,9 +165,6 @@ Public Class Item
     ''' <summary>
     ''' The texture of this item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property Texture() As Texture2D
         Get
             Return Me._texture
@@ -214,9 +174,6 @@ Public Class Item
     ''' <summary>
     ''' The bag description of this item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property Description() As String
         Get
             Return Me._description
@@ -226,9 +183,6 @@ Public Class Item
     ''' <summary>
     ''' The additional data that is stored with this item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property AdditionalData() As String
         Get
             Return Me._additionalData
@@ -241,9 +195,6 @@ Public Class Item
     ''' <summary>
     ''' The damage the Fling move does when this item is attached to a Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property FlingDamage() As Integer
         Get
             Return Me._flingDamage
@@ -253,9 +204,6 @@ Public Class Item
     ''' <summary>
     ''' If this item can be traded in for money.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property CanBeTraded() As Boolean
         Get
             Return Me._canBeTraded
@@ -265,9 +213,6 @@ Public Class Item
     ''' <summary>
     ''' If this item can be given to a Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property CanBeHold() As Boolean
         Get
             Return Me._canBeHold
@@ -277,9 +222,6 @@ Public Class Item
     ''' <summary>
     ''' If this item can be used from the bag.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property CanBeUsed() As Boolean
         Get
             Return Me._canBeUsed
@@ -289,9 +231,6 @@ Public Class Item
     ''' <summary>
     ''' If this item can be used in battle.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property CanBeUsedInBattle() As Boolean
         Get
             Return Me._canBeUsedInBattle
@@ -301,9 +240,6 @@ Public Class Item
     ''' <summary>
     ''' If this item can be tossed in the bag.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property CanBeTossed() As Boolean
         Get
             Return Me._canBeTossed
@@ -313,9 +249,6 @@ Public Class Item
     ''' <summary>
     ''' If this item requires the player to select a Pokémon to use the item on in battle.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property BattleSelectPokemon() As Boolean
         Get
             Return Me._requiresPokemonSelectInBattle
@@ -325,9 +258,6 @@ Public Class Item
     ''' <summary>
     ''' If this item is a Pokéball item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property IsBall() As Boolean
         Get
             Return Me._isBall
@@ -337,9 +267,6 @@ Public Class Item
     ''' <summary>
     ''' If this item is a Berry item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property IsBerry() As Boolean
         Get
             Return Me._isBerry
@@ -349,9 +276,6 @@ Public Class Item
     ''' <summary>
     ''' If this item is a Healing item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property IsHealingItem() As Boolean
         Get
             Return Me._isHealingItem
@@ -361,9 +285,6 @@ Public Class Item
     ''' <summary>
     ''' If this item is a Mail item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property IsMail() As Boolean
         Get
             Return Me._isMail
@@ -373,9 +294,6 @@ Public Class Item
     ''' <summary>
     ''' If this item is a Mega Stone.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property IsMegaStone() As Boolean
         Get
             Return Me._isMegaStone
@@ -385,9 +303,6 @@ Public Class Item
     ''' <summary>
     ''' If this item is a Plate.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property IsPlate() As Boolean
         Get
             Return Me._isPlate
@@ -397,7 +312,6 @@ Public Class Item
     ''' <summary>
     ''' The color for player dialogues.
     ''' </summary>
-    ''' <returns></returns>
     Public Shared ReadOnly Property PlayerDialogueColor() As Color
         Get
             Return New Color(0, 128, 227)
@@ -417,7 +331,6 @@ Public Class Item
     ''' <param name="SortValue">The SortValue of this Item.</param>
     ''' <param name="TextureRectangle">The TextureRectangle from the "Items\ItemSheet" texture.</param>
     ''' <param name="Description">The description of this Item.</param>
-    ''' <remarks></remarks>
     Public Sub New(ByVal Name As String, ByVal Price As Integer, ByVal ItemType As ItemTypes, ByVal ID As Integer, ByVal CatchMultiplier As Single, ByVal SortValue As Integer, ByVal TextureRectangle As Rectangle, ByVal Description As String)
         Me.Initialize(Name, Price, ItemType, ID, CatchMultiplier, SortValue, TextureRectangle, Description)
     End Sub
@@ -425,7 +338,6 @@ Public Class Item
     ''' <summary>
     ''' Creates a new instance of the Item class without setting any properties.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub New()
         'Empty Constructor//
     End Sub
@@ -441,7 +353,6 @@ Public Class Item
     ''' <param name="SortValue">The SortValue of this Item.</param>
     ''' <param name="TextureRectangle">The TextureRectangle from the "Items\ItemSheet" texture.</param>
     ''' <param name="Description">The description of this Item.</param>
-    ''' <remarks></remarks>
     Protected Sub Initialize(ByVal Name As String, ByVal Price As Integer, ByVal ItemType As ItemTypes, ByVal ID As Integer, ByVal CatchMultiplier As Single, ByVal SortValue As Integer, ByVal TextureRectangle As Rectangle, ByVal Description As String)
         Me._name = Name
         Me._pluralName = Name & "s" 'Default plural name with "s" at the end.
@@ -463,7 +374,6 @@ Public Class Item
     ''' <summary>
     ''' The item gets used from the bag.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Overridable Sub Use()
         Logger.Debug("PLACEHOLDER FOR ITEM USE")
     End Sub
@@ -472,8 +382,6 @@ Public Class Item
     ''' A method that gets used when the item is applied to a Pokémon. Returns True if the action was successful.
     ''' </summary>
     ''' <param name="PokeIndex">The Index of the Pokémon in party.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Overridable Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
         If PokeIndex < 0 Or PokeIndex > 5 Then
             Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -486,8 +394,6 @@ Public Class Item
     ''' <summary>
     ''' Tries to remove a single item of this item type from the player's bag and returns a message which changes depending on if the item that got removed was the last one of its kind.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function RemoveItem() As String
         Core.Player.Inventory.RemoveItem(Me.ID, 1)
         If Core.Player.Inventory.GetItemAmount(Me.ID) = 0 Then
@@ -500,8 +406,6 @@ Public Class Item
     ''' Returns an item instance based on the passed in ID.
     ''' </summary>
     ''' <param name="ID">The desired item's ID.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetItemByID(ByVal ID As Integer) As Item
         'Check if the ID is available in the FileItem list.
         'Free Slots: 
@@ -1657,7 +1561,6 @@ Public Class Item
     ''' Returns an item based on its name.
     ''' </summary>
     ''' <param name="name">The name of the item.</param>
-    ''' <returns></returns>
     ''' <remarks>This method is not as performant on initial use as the GetItemByID method.</remarks>
     Public Shared Function GetItemByName(ByVal name As String) As Item
         'Check if the name is available in the FileItem list.
@@ -1692,8 +1595,6 @@ Public Class Item
     ''' <summary>
     ''' Creates a new instance of the Item instance based on its ID.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function Copy() As Object Implements ICopyAble.Copy
         Return Item.GetItemByID(Me.ID)
     End Function

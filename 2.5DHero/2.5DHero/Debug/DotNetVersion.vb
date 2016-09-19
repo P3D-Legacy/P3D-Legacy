@@ -1,14 +1,11 @@
 ﻿''' <summary>
 ''' A class to supply .Net installation information.
 ''' </summary>
-''' <remarks></remarks>
 Public Class DotNetVersion
 
     ''' <summary>
     ''' Returns .Net installation information.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetInstalled() As String
         Dim output As String = ""
 

@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Glalie.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Glalitite
 
         Inherits MegaStone

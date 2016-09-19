@@ -1,4 +1,4 @@
-﻿Imports System.Runtime.CompilerServices
+Imports System.Runtime.CompilerServices
 
 Module Extensions
 
@@ -531,8 +531,6 @@ Module Extensions
     ''' <summary>
     ''' Inverts the Color.
     ''' </summary>
-    ''' <param name="c"></param>
-    ''' <returns></returns>
     <Extension()>
     Public Function Invert(ByVal c As Color) As Color
         Return New Color(255 - c.R, 255 - c.G, 255 - c.B, c.A)
@@ -551,8 +549,6 @@ Module Extensions
     ''' <summary>
     ''' Converts a System.Drawing.Color into a Xna.Framework.Color.
     ''' </summary>
-    ''' <param name="c"></param>
-    ''' <returns></returns>
     <Extension()>
     Public Function ToXNA(ByVal c As Drawing.Color) As Color
         Return New Color(c.R, c.G, c.B, c.A)
@@ -561,8 +557,6 @@ Module Extensions
     ''' <summary>
     ''' Converts a Xna.Framework.Color into a System.Drawing.Color.
     ''' </summary>
-    ''' <param name="c"></param>
-    ''' <returns></returns>
     <Extension()>
     Public Function ToDrawing(ByVal c As Color) As Drawing.Color
         Return Drawing.Color.FromArgb(c.R, c.G, c.B, c.A)

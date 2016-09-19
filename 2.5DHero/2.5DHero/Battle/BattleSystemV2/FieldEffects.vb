@@ -284,8 +284,6 @@
         ''' <param name="own">Which Pokémon?</param>
         ''' <param name="BattleScreen">The BattleScreen reference.</param>
         ''' <param name="CheckType">0: Supression abilities, 1: GastroAcid, 2: both</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function CanUseAbility(ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal CheckType As Integer = 0) As Boolean
             If CheckType = 0 Or CheckType = 2 Then
                 Dim p As Pokemon = BattleScreen.OppPokemon

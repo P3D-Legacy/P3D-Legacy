@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Sableye.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Sablenite
 
         Inherits MegaStone

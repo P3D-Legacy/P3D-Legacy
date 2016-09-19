@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' A class to access the dump of variables of an object.
 ''' </summary>
 Public Class ObjectDump
@@ -21,7 +21,6 @@ Public Class ObjectDump
     ''' <summary>
     ''' Creates a new instance of the ObjectDump class and performs a dump on the passed object.
     ''' </summary>
-    ''' <param name="obj"></param>
     Public Sub New(ByVal obj As Object)
         CreateDump(obj)
     End Sub

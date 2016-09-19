@@ -3,7 +3,6 @@
     ''' <summary>
     ''' A class to execute GameMode attack functions.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class AttackSpecialFunctions
 
         ''' <summary>
@@ -12,7 +11,6 @@
         ''' <param name="Move">The move containing the attack function.</param>
         ''' <param name="own">Own toggle.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        ''' <remarks></remarks>
         Public Shared Sub ExecuteAttackFunction(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             Dim functions() As String = Move.GameModeFunction.Split(CChar(","))
 

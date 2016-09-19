@@ -10,7 +10,6 @@
     ''' <summary>
     ''' The Network ID of the player
     ''' </summary>
-    ''' <remarks></remarks>
     Public NetworkID As Integer = 0
 
     Public faceRotation As Integer

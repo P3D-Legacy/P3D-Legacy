@@ -1,7 +1,6 @@
-﻿''' <summary>
+''' <summary>
 ''' A class to handle wild Pokémon encounters.
 ''' </summary>
-''' <remarks></remarks>
 Public Class PokemonEncounter
 
 #Region "Fields and Constants"
@@ -17,7 +16,6 @@ Public Class PokemonEncounter
     ''' Creates a new instance of the PokemonEncounter class.
     ''' </summary>
     ''' <param name="levelReference">The reference to the level instance.</param>
-    ''' <remarks></remarks>
     Public Sub New(ByVal levelReference As Level)
         Me._levelReference = levelReference
     End Sub
@@ -32,7 +30,6 @@ Public Class PokemonEncounter
     ''' <param name="Position">The position the encounter should happen.</param>
     ''' <param name="Method">The method of the encounter.</param>
     ''' <param name="pokeFile">The source .poke file. If left empty, the game will assume the levelfile as source .poke file.</param>
-    ''' <remarks></remarks>
     Public Sub TryEncounterWildPokemon(ByVal Position As Vector3, ByVal Method As Spawner.EncounterMethods, ByVal pokeFile As String)
         With Me._levelReference
 
@@ -106,7 +103,6 @@ Public Class PokemonEncounter
     ''' <summary>
     ''' Triggers a battle with a wild Pokémon if the requirements are met.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub TriggerBattle()
         'If the encounter check is true.
         If Me._levelReference.PokemonEncounterData.EncounteredPokemon = True And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then

@@ -1,10 +1,8 @@
-﻿Public Class Shedinja
+Public Class Shedinja
 
     ''' <summary>
     ''' Generates a new Shedinja based on the Nincada that evolved into Ninjask.
     ''' </summary>
-    ''' <param name="Ninjask"></param>
-    ''' <remarks></remarks>
     Public Shared Function GenerateNew(ByVal Ninjask As Pokemon) As Pokemon
         Dim p As Pokemon = Pokemon.GetPokemonByID(292)
         p.Generate(20, True)
@@ -44,10 +42,6 @@
     ''' <summary>
     ''' Checks if the Pokémon that just evolved can additionally spawn a Shedinja.
     ''' </summary>
-    ''' <param name="EvolvedPokemon"></param>
-    ''' <param name="Trigger"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function CanEvolveInto(ByVal EvolvedPokemon As Pokemon, ByVal Trigger As EvolutionCondition.EvolutionTrigger) As Boolean
         If EvolvedPokemon.Number = 291 And Trigger = EvolutionCondition.EvolutionTrigger.LevelUp Then
             If Core.Player.Pokemons.Count < 6 Then

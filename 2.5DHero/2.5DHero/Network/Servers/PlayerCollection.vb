@@ -1,18 +1,15 @@
-﻿Namespace Servers
+Namespace Servers
 
     ''' <summary>
     ''' Contains all connected players.
     ''' </summary>
-    ''' <remarks>Inherits from List(of )</remarks>
     Public Class PlayerCollection
 
-        Inherits System.Collections.Generic.List(Of Player)
+        Inherits List(Of Player)
 
         ''' <summary>
         ''' Removes all players from the collection that have the specified name.
         ''' </summary>
-        ''' <param name="Name"></param>
-        ''' <remarks></remarks>
         Public Sub RemoveByName(ByVal Name As String)
             For i = 0 To Me.Count - 1
                 If i <= Me.Count - 1 Then

@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Latios.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Latiosite
 
         Inherits MegaStone

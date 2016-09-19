@@ -1,9 +1,8 @@
-﻿Namespace Items
+Namespace Items
 
     ''' <summary>
     ''' The base class for all Mega Stone items.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class MegaStone
 
         Inherits Item

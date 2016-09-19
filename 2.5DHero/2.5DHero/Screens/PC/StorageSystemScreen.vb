@@ -1,4 +1,4 @@
-﻿Public Class StorageSystemScreen
+Public Class StorageSystemScreen
 
     Inherits Screen
 
@@ -1510,9 +1510,6 @@
     ''' <summary>
     ''' Adds a pokemon to the next free spot and returns the index of that box
     ''' </summary>
-    ''' <param name="p"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function DepositPokemon(ByVal p As Pokemon, Optional ByVal BoxIndex As Integer = -1) As Integer
         p.FullRestore()
 

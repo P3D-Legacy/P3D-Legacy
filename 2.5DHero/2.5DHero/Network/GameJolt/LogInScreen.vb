@@ -448,8 +448,6 @@ Namespace GameJolt
         ''' <summary>
         ''' This gets called from all GameJolt screens. If the player is no longer connected to GameJolt, it opens up the login screen.
         ''' </summary>
-        ''' <param name="SetToScreen"></param>
-        ''' <remarks></remarks>
         Public Shared Sub KickFromOnlineScreen(ByVal SetToScreen As Screen)
             If Core.Player.IsGameJoltSave = True AndAlso GameJolt.API.LoggedIn = False Then
                 Core.SetScreen(New GameJolt.LogInScreen(SetToScreen))

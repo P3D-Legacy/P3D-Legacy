@@ -3,7 +3,6 @@
     ''' <summary>
     ''' Renders the debug information.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Shared Sub Draw()
         If Core.CurrentScreen.CanDrawDebug = True Then
             Dim isDebugString As String = ""
@@ -56,9 +55,6 @@
     ''' <summary>
     ''' The amount of vertices rendered in the last frame.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property DrawnVertices() As Integer
         Get
             Return _drawnVertices
@@ -71,9 +67,6 @@
     ''' <summary>
     ''' The maximum amount of vertices that are present in the current scene.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property MaxVertices() As Integer
         Get
             Return _maxVertices
@@ -86,9 +79,6 @@
     ''' <summary>
     ''' The distance of the vertex to the camera, that is the furthest away from the camera.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property MaxDistance() As Integer
         Get
             Return _maxDistance

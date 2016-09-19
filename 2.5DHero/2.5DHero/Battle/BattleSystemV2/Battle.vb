@@ -25,10 +25,6 @@
         ''' <summary>
         ''' Returns the move of a Pokémon with a specified ID.
         ''' </summary>
-        ''' <param name="Pokemon"></param>
-        ''' <param name="MoveID"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Private Function GetPokemonMoveFromID(ByVal Pokemon As Pokemon, ByVal MoveID As Integer) As Attack
             For Each a As Attack In Pokemon.Attacks
                 If a.ID = MoveID Then
@@ -41,8 +37,6 @@
         ''' <summary>
         ''' If the battle is a remote battle, then start this function once client input is received.
         ''' </summary>
-        ''' <param name="BattleScreen"></param>
-        ''' <remarks></remarks>
         Public Sub StartMultiTurnAction(ByVal BattleScreen As BattleScreen)
             'Recharge:
             If BattleScreen.FieldEffects.OwnRecharge > 0 Then
@@ -1942,9 +1936,6 @@ endthisround:
         ''' Faints a Pokémon.
         ''' </summary>
         ''' <param name="own">true: faints own, false: faints opp</param>
-        ''' <param name="BattleScreen"></param>
-        ''' <param name="message"></param>
-        ''' <remarks></remarks>
         Public Sub FaintPokemon(ByVal own As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String)
             Dim p As Pokemon = BattleScreen.OwnPokemon
             If own = False Then
@@ -3710,7 +3701,6 @@ endthisround:
         ''' <param name="own">If the code comes from the own player or not.</param>
         ''' <param name="BattleScreen">Battlescreen reference</param>
         ''' <param name="AddPVP">If the call should get added the PVP list or the own queue.</param>
-        ''' <remarks></remarks>
         Public Sub ChangeCameraAngel(ByVal direction As Integer, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal AddPVP As Boolean = False)
             Dim q As CameraQueryObject = Nothing
 
@@ -3757,9 +3747,8 @@ endthisround:
         ''' <summary>
         ''' Ends a round (or a complete round)
         ''' </summary>
-        ''' <param name="BattleScreen">Battlescreen LOL</param>
+        ''' <param name="BattleScreen">Battlescreen</param>
         ''' <param name="type">0=complete;1=own;2=opp</param>
-        ''' <remarks></remarks>
         Public Sub EndRound(ByVal BattleScreen As BattleScreen, ByVal type As Integer)
             With BattleScreen
                 Select Case type

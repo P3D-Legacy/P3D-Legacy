@@ -1,7 +1,6 @@
 ﻿''' <summary>
 ''' Represents the player's inventory.
 ''' </summary>
-''' <remarks></remarks>
 Public Class PlayerInventory
 
     Inherits List(Of ItemContainer)
@@ -42,9 +41,6 @@ Public Class PlayerInventory
     ''' <summary>
     ''' Returns a character that represents the item's pocket icon.
     ''' </summary>
-    ''' <param name="Item"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetItemPocketChar(ByVal Item As Item) As String
         Select Case Item.ItemType
             Case Item.ItemTypes.Standard
@@ -73,7 +69,6 @@ Public Class PlayerInventory
     ''' </summary>
     ''' <param name="ID">The ID of the item.</param>
     ''' <param name="Amount">Amount of items to add.</param>
-    ''' <remarks></remarks>
     Public Sub AddItem(ByVal ID As Integer, ByVal Amount As Integer)
         Dim newItem As Item = net.Pokemon3D.Game.Item.GetItemByID(ID)
 
@@ -92,7 +87,6 @@ Public Class PlayerInventory
     ''' </summary>
     ''' <param name="ID">The ID of the item to remove.</param>
     ''' <param name="Amount">The amount of items to remove.</param>
-    ''' <remarks></remarks>
     Public Sub RemoveItem(ByVal ID As Integer, ByVal Amount As Integer)
         If Amount > 0 Then
             For Each c As ItemContainer In Me
@@ -112,7 +106,6 @@ Public Class PlayerInventory
     ''' Removes all items of an ID from the inventory.
     ''' </summary>
     ''' <param name="ID">The ID of the item.</param>
-    ''' <remarks></remarks>
     Public Sub RemoveItem(ByVal ID As Integer)
         Dim Amount As Integer = Me.GetItemAmount(ID)
         If Amount > 0 Then
@@ -124,8 +117,6 @@ Public Class PlayerInventory
     ''' Returns the count of the item in the inventory.
     ''' </summary>
     ''' <param name="ID">The ID of the item to be counted.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetItemAmount(ByVal ID As Integer) As Integer
         For Each c As ItemContainer In Me
             If c.ItemID = ID Then
@@ -139,9 +130,6 @@ Public Class PlayerInventory
     ''' <summary>
     ''' If the player has the Running Shoes in their inventory.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property HasRunningShoes() As Boolean
         Get
             If Core.Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
@@ -161,8 +149,6 @@ Public Class PlayerInventory
     ''' </summary>
     ''' <param name="Item">The Item to store in the inventory.</param>
     ''' <param name="Amount">The amount.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetMessageReceive(ByVal Item As Item, ByVal Amount As Integer) As String
         Dim Message As String = ""
         If Amount = 1 Then

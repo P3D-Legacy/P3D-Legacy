@@ -1,9 +1,8 @@
-﻿Namespace Items
+Namespace Items
 
     ''' <summary>
     ''' The base item for all Arceus plates.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class PlateItem
 
         Inherits Item

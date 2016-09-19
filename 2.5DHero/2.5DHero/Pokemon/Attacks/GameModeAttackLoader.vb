@@ -3,7 +3,6 @@
     ''' <summary>
     ''' Provides an interface to load additional GameMode moves.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class GameModeAttackLoader
 
         'The default relative path to load moves from (Content folder).
@@ -34,7 +33,6 @@
         ''' Loads a move from a file.
         ''' </summary>
         ''' <param name="file">The file to load the move from.</param>
-        ''' <remarks></remarks>
         Private Shared Sub LoadMove(ByVal file As String)
             Dim move As New Attack() 'Load the default Pound move.
             move.IsGameModeMove = True
@@ -201,7 +199,6 @@
         ''' </summary>
         ''' <param name="ID">The ID of the custom move.</param>
         ''' <returns>Returns a move or nothing.</returns>
-        ''' <remarks></remarks>
         Public Shared Function GetAttackByID(ByVal ID As Integer) As Attack
             For Each m As Attack In LoadedMoves
                 If m.ID = ID Then

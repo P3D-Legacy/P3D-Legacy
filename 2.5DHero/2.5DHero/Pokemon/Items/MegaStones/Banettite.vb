@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Banette.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Banettite
 
         Inherits MegaStone

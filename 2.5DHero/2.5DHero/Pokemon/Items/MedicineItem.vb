@@ -1,9 +1,8 @@
-﻿Namespace Items
+Namespace Items
 
     ''' <summary>
     ''' Represents a Medicine Item.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class MedicineItem
 
         Inherits Item
@@ -19,7 +18,6 @@
         ''' <param name="SortValue">The SortValue of this Item.</param>
         ''' <param name="TextureRectangle">The TextureRectangle from the "Items\ItemSheet" texture.</param>
         ''' <param name="Description">The description of this Item.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal Name As String, ByVal Price As Integer, ByVal ItemType As ItemTypes, ByVal ID As Integer, ByVal CatchMultiplier As Single, ByVal SortValue As Integer, ByVal TextureRectangle As Rectangle, ByVal Description As String)
             MyBase.New(Name, Price, ItemType, ID, CatchMultiplier, SortValue, TextureRectangle, Description)
         End Sub
@@ -29,8 +27,6 @@
         ''' </summary>
         ''' <param name="PokeIndex">The index of the Pokémon in the player's party.</param>
         ''' <param name="HP">The HP that should be healed.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function HealPokemon(ByVal PokeIndex As Integer, ByVal HP As Integer) As Boolean
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -77,8 +73,6 @@
         ''' Tries to cure a Pokémon from Poison.
         ''' </summary>
         ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function CurePoison(ByVal PokeIndex As Integer) As Boolean
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -116,8 +110,6 @@
         ''' Tries to wake a Pokémon up from Sleep.
         ''' </summary>
         ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function WakeUp(ByVal PokeIndex As Integer) As Boolean
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -155,8 +147,6 @@
         ''' Tries to heal a Pokémon from Burn.
         ''' </summary>
         ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function HealBurn(ByVal PokeIndex As Integer) As Boolean
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -194,8 +184,6 @@
         ''' Tries to heal a Pokémon from Ice.
         ''' </summary>
         ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function HealIce(ByVal PokeIndex As Integer) As Boolean
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")
@@ -235,8 +223,6 @@
         ''' Tries to heal a Pokémon from Paralysis.
         ''' </summary>
         ''' <param name="PokeIndex">The index of a Pokémon in the player's party.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function HealParalyze(ByVal PokeIndex As Integer) As Boolean
             If PokeIndex < 0 Or PokeIndex > 5 Then
                 Throw New ArgumentOutOfRangeException("PokeIndex", PokeIndex, "The index for a Pokémon in a player's party can only be between 0 and 5.")

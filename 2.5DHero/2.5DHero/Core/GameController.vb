@@ -3,7 +3,6 @@ Imports System.Windows.Forms
 ''' <summary>
 ''' Controls the game's main workflow.
 ''' </summary>
-''' <remarks></remarks>
 Public Class GameController
 
     Inherits Microsoft.Xna.Framework.Game
@@ -11,43 +10,36 @@ Public Class GameController
     ''' <summary>
     ''' The current version of the game.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Const GAMEVERSION As String = "0.53.3"
 
     ''' <summary>
     ''' The number of released iterations of the game.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Const RELEASEVERSION As String = "90"
 
     ''' <summary>
     ''' The development stage the game is in.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Const GAMEDEVELOPMENTSTAGE As String = "Indev"
 
     ''' <summary>
     ''' The name of the game.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Const GAMENAME As String = "Pokémon 3D"
 
     ''' <summary>
     ''' The name of the developer that appears on the title screen.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Const DEVELOPER_NAME As String = "P3D Team"
 
     ''' <summary>
     ''' If the Debug Mode is active.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Const IS_DEBUG_ACTIVE As Boolean = False
 
     ''' <summary>
     ''' If the game should set the GameJolt online version to the current online version.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Const UPDATEONLINEVERSION As Boolean = False
 
     Public Graphics As GraphicsDeviceManager
@@ -135,10 +127,10 @@ Public Class GameController
     End Sub
 
     Private Shared GameHacked As Boolean = False 'Temp value that stores if a hacking file was detected at game start.
+
     ''' <summary>
     ''' If the player hacked any instance of Pokémon3D at some point.
     ''' </summary>
-    ''' <returns></returns>
     Public Shared ReadOnly Property Hacker() As Boolean
         Get
             Return GameHacked
@@ -148,7 +140,6 @@ Public Class GameController
     ''' <summary>
     ''' The path to the game folder.
     ''' </summary>
-    ''' <returns></returns>
     Public Shared ReadOnly Property GamePath() As String
         Get
             Return My.Application.Info.DirectoryPath

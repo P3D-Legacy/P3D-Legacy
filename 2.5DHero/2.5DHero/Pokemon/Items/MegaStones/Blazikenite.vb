@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Blaziken.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Blazikenite
 
         Inherits MegaStone

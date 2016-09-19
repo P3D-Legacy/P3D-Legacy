@@ -1,4 +1,4 @@
-﻿Namespace ScriptVersion2
+Namespace ScriptVersion2
 
     Partial Class ScriptCommander
 
@@ -13,7 +13,6 @@
         ''' <summary>
         ''' If the script finished executing. If false, the script will get executed next frame.
         ''' </summary>
-        ''' <returns></returns>
         Private Shared Property IsReady As Boolean
             Get
                 Return ScriptV2.IsReady
@@ -26,7 +25,6 @@
         ''' <summary>
         ''' A value to indicate if the script has been started last frame. Not automatically set. Sometimes needed for when a script runs longer than one frame.
         ''' </summary>
-        ''' <returns></returns>
         Private Shared Property Started As Boolean
             Get
                 Return ScriptV2.started
@@ -39,7 +37,6 @@
         ''' <summary>
         ''' If the ScriptController can execute the next script in the same frame once this finishes.
         ''' </summary>
-        ''' <returns></returns>
         Private Shared Property CanContinue() As Boolean
             Get
                 Return ScriptV2.CanContinue
@@ -149,8 +146,6 @@
         ''' <summary>
         ''' Generates a script line that gets inserted infront of the current script to turn the player into the correct orientation.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Private Shared Function InsertSpin(ByVal inputString As String) As Boolean
             If ActionScript.TempSpin = True Then
                 If ActionScript.TempInputDirection > -1 Then

@@ -7,7 +7,6 @@ Namespace Servers
     ''' <summary>
     ''' Manages all Servers connection related operations.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class ServerConnection
 
         Private _client As TcpClient
@@ -23,9 +22,6 @@ Namespace Servers
         ''' <summary>
         ''' Returns the current connection status.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property Connected() As Boolean
             Get
                 If _client Is Nothing Then
@@ -39,7 +35,6 @@ Namespace Servers
         ''' Connects to a server.
         ''' </summary>
         ''' <param name="Server">The server to connect to.</param>
-        ''' <remarks></remarks>
         Public Sub Connect(ByVal Server As Server)
             Dim t As New Threading.Thread(AddressOf InternalConnect)
             t.IsBackground = True
@@ -95,7 +90,6 @@ Namespace Servers
         ''' <summary>
         ''' Aborts the threads and closes any open streams.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub Abort()
             Logger.Debug("ServerConnection.vb: Aborting threads and streams...")
             Me._ConnectionOpen = False
@@ -130,7 +124,6 @@ Namespace Servers
         ''' <summary>
         ''' Disconnects the player from the server and opens the main menu.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub Disconnect()
             Me.Disconnect("", "")
         End Sub
@@ -140,7 +133,6 @@ Namespace Servers
         ''' </summary>
         ''' <param name="Header">The header to display on the ConnectScreen.</param>
         ''' <param name="Message">The Message to display on the ConnectScreen.</param>
-        ''' <remarks></remarks>
         Public Sub Disconnect(ByVal Header As String, ByVal Message As String)
             If Me._ConnectionOpen = True Then
                 Logger.Debug("Disconnect; Header: " & Header & "; Message: " & Message)
@@ -161,7 +153,6 @@ Namespace Servers
         ''' <summary>
         ''' Start the ping thread.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub StartPing()
             Me.StopPing()
             Me.LastPingTime = Date.Now
@@ -178,7 +169,6 @@ Namespace Servers
         ''' <summary>
         ''' Stopping the ping thread.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub StopPing()
             Try
                 Me.PingTimer.Stop()
@@ -188,7 +178,6 @@ Namespace Servers
         ''' <summary>
         ''' Sends a ping package to the connected server.
         ''' </summary>
-        ''' <remarks></remarks>
         Private Sub InternalPing()
             Try
                 If DateDiff(DateInterval.Second, Me.LastPingTime, Date.Now) >= 10 Then
@@ -236,8 +225,6 @@ Namespace Servers
         ''' <summary>
         ''' Send a package object to the server.
         ''' </summary>
-        ''' <param name="Package"></param>
-        ''' <remarks></remarks>
         Public Sub SendPackage(ByVal Package As Package)
             If _ConnectionOpen = True And Me._client.Connected = True Then
                 Threading.ThreadPool.QueueUserWorkItem(New Threading.WaitCallback(AddressOf InternalSendPackage), Package)
@@ -270,7 +257,6 @@ Namespace Servers
         ''' <summary>
         ''' Start the listen thread that receives packages from the server.
         ''' </summary>
-        ''' <remarks></remarks>
         Private Sub StartListen()
             If Not Me._receiveThread Is Nothing AndAlso Me._receiveThread.IsAlive = True Then
                 Try
@@ -285,7 +271,6 @@ Namespace Servers
         ''' <summary>
         ''' Listen to the server (TCP).
         ''' </summary>
-        ''' <remarks></remarks>
         Private Sub InternalListen()
             While Me._client.Connected
                 Try
@@ -311,7 +296,6 @@ Namespace Servers
         ''' <summary>
         ''' Stops listening to the TCP and UDP ports.
         ''' </summary>
-        ''' <remarks></remarks>
         Private Sub StopListen()
             Try
                 If Not Me._receiveThread Is Nothing Then

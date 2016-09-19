@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' Handles text input from the keyboard.
 ''' </summary>
 Public Class KeyboardInput
@@ -444,7 +444,6 @@ Public Class KeyboardInput
         ''' <summary>
         ''' Returns the selected text.
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property SelectedText() As String
             Get
                 If Me._selectionLength <= 0 Then

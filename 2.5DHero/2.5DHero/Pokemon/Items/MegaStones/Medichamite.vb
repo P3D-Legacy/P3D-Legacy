@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Medicham.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Medichamite
 
         Inherits MegaStone

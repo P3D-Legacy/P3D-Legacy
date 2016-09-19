@@ -1,4 +1,4 @@
-﻿Public Class ModelManager
+Public Class ModelManager
 
     Shared ModelList As New Dictionary(Of String, Model)
 
@@ -21,7 +21,6 @@
     ''' And because there's no other way to properly do this, we access its Protected method MemberwiseClone (inherited from Object) via reflection.
     ''' </summary>
     ''' <param name="m">The model to copy.</param>
-    ''' <returns></returns>
     Private Shared Function CreateShallowCopy(ByVal m As Model) As Model
         Dim memberWiseCloneMethod As Reflection.MethodInfo = m.GetType().GetMethod("MemberwiseClone", Reflection.BindingFlags.NonPublic Or 'I AM SO SORRY!!!
                                                                                               Reflection.BindingFlags.Instance Or

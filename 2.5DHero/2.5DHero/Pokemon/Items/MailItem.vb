@@ -1,9 +1,8 @@
-﻿Namespace Items
+Namespace Items
 
     ''' <summary>
     ''' The basic item that represents a Mail Item.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class MailItem
 
         Inherits Item
@@ -27,7 +26,6 @@
         ''' <param name="ID">The ID of the Item.</param>
         ''' <param name="TextureRectangle">The TextureRectangle of the Item.</param>
         ''' <param name="Description">The Description of the Item.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal Name As String, ByVal Price As Integer, ByVal ID As Integer, ByVal TextureRectangle As Rectangle, ByVal Description As String)
             MyBase.New(Name, Price, ItemTypes.Mail, ID, 1.0F, 0, TextureRectangle, Description)
 

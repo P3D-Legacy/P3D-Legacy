@@ -89,8 +89,6 @@
         ''' Returns if a Pokémon likes this berry based on its flavour.
         ''' </summary>
         ''' <param name="p">The Pokémon to test this berry for.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function PokemonLikes(ByVal p As Pokemon) As Boolean
             Select Case p.Nature
                 Case Pokemon.Natures.Lonely

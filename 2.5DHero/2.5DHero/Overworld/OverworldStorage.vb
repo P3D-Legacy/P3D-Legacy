@@ -1,7 +1,6 @@
-﻿''' <summary>
+''' <summary>
 ''' Provides variables to store an overworld instance.
 ''' </summary>
-''' <remarks></remarks>
 Public Class OverworldStorage
 
     Public OverworldScreen As Screen
@@ -13,7 +12,6 @@ Public Class OverworldStorage
     ''' <summary>
     ''' Uses the currently active Overworld screen and active level/camera/effect/skydome instances.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub SetToCurrentEnvironment()
         Dim s As Screen = Core.CurrentScreen
         While s.Identification <> Screen.Identifications.OverworldScreen And Not s.PreScreen Is Nothing

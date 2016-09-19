@@ -3,7 +3,6 @@
     ''' <summary>
     ''' This class enables content creators to create own items with own images, functions and stats.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class FileItem
 
         Inherits Item
@@ -14,9 +13,6 @@
         ''' <summary>
         ''' Returns the item of the FileItem class.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property Item() As Item
             Get
                 Return Me
@@ -26,9 +22,6 @@
         ''' <summary>
         ''' Returns if the FileItem is generated in a valid state.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property IsValid() As Boolean
             Get
                 Return Me._isValid
@@ -38,9 +31,6 @@
         ''' <summary>
         ''' This is the script binding that represents the script that gets executed once the item gets used.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Property ScriptBinding() As String
             Get
                 Return Me._scriptBinding
@@ -53,7 +43,6 @@
         ''' <summary>
         ''' Iniztializes a new FileItem class.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub New(ByVal data As String)
             data = data.Remove(0, 1)
             data = data.Remove(data.Length - 1, 1)

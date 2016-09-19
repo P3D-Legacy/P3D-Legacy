@@ -1,4 +1,4 @@
-﻿Public Class EvolutionCondition
+Public Class EvolutionCondition
 
     Public Enum ConditionTypes
         Level
@@ -98,8 +98,6 @@
     ''' <param name="p">The Pokémon to get the evolution from.</param>
     ''' <param name="trigger">The trigger that triggered the evolution.</param>
     ''' <param name="arg">An argument (for example Item ID)</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function EvolutionNumber(ByVal p As Pokemon, ByVal trigger As EvolutionTrigger, ByVal arg As String) As Integer
         If trigger = EvolutionTrigger.LevelUp Or trigger = EvolutionTrigger.Trading Then
             If Not p.Item Is Nothing Then

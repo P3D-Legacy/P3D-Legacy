@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' Represents a Pokémon.
 ''' </summary>
 Public Class Pokemon
@@ -6,7 +6,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Defines which Pokémon in the default GameMode are considered "legendary".
     ''' </summary>
-    ''' <remarks></remarks>
     Public Shared ReadOnly Legendaries() As Integer = {144, 145, 146, 150, 151, 243, 244, 245, 249, 250, 251, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 716, 717, 718, 719, 720, 721}
 
 #Region "Events"
@@ -20,7 +19,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The different experience types a Pokémon can have.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum ExperienceTypes
         Fast
         MediumFast
@@ -31,7 +29,6 @@ Public Class Pokemon
     ''' <summary>
     ''' EggGroups a Pokémon can have to define its breeding compatibility.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum EggGroups
         Monster
         Water1
@@ -55,7 +52,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Genders of a Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum Genders
         Male
         Female
@@ -65,7 +61,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The status problems a Pokémon can have.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum StatusProblems
         None
         Burn
@@ -80,7 +75,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The volatile status a Pokémon can have.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum VolatileStatus
         Confusion
         Flinch
@@ -91,7 +85,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Different natures of a Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum Natures
         Hardy
         Lonely
@@ -123,7 +116,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Ways to change the Friendship value of a Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum FriendShipCauses
         Walking
         LevelUp
@@ -144,9 +136,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the name to reference to the animation/model of this Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property AnimationName() As String
         Get
             Return PokemonForms.GetAnimationName(Me)
@@ -588,9 +577,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The HP of this Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property HP() As Integer
         Get
             Return Me._HP
@@ -604,9 +590,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The maximal HP of this Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property MaxHP() As Integer
         Get
             Return Me._maxHP
@@ -620,9 +603,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Attack of this Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Attack() As Integer
         Get
             Return Me._attack
@@ -636,9 +616,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Defense of this Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Defense() As Integer
         Get
             Return Me._defense
@@ -652,9 +629,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Special Attack of this Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property SpAttack() As Integer
         Get
             Return Me._SpAttack
@@ -668,9 +642,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Special Defense of this Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property SpDefense() As Integer
         Get
             Return Me._SpDefense
@@ -684,9 +655,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Speed of this Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Speed() As Integer
         Get
             Return Me._speed
@@ -711,9 +679,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The HP EV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property EVHP() As Integer
         Get
             Return Me._EVHP
@@ -728,9 +693,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Attack EV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property EVAttack() As Integer
         Get
             Return Me._EVAttack
@@ -745,9 +707,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Defense EV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property EVDefense() As Integer
         Get
             Return Me._EVDefense
@@ -762,9 +721,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Special Attack EV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property EVSpAttack() As Integer
         Get
             Return Me._EVSpAttack
@@ -779,9 +735,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Special Defense EV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property EVSpDefense() As Integer
         Get
             Return Me._EVSpDefense
@@ -796,9 +749,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Speed EV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property EVSpeed() As Integer
         Get
             Return Me._EVSpeed
@@ -824,9 +774,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The HP IV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IVHP() As Integer
         Get
             Return Me._IVHP
@@ -840,9 +787,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Attack IV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IVAttack() As Integer
         Get
             Return Me._IVAttack
@@ -856,9 +800,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Defense IV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IVDefense() As Integer
         Get
             Return Me._IVDefense
@@ -872,9 +813,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Special Attack IV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IVSpAttack() As Integer
         Get
             Return Me._IVSpAttack
@@ -888,9 +826,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Special Defense IV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IVSpDefense() As Integer
         Get
             Return Me._IVSpDefense
@@ -904,9 +839,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Speed IV this Pokémon got.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IVSpeed() As Integer
         Get
             Return Me._IVSpeed
@@ -961,8 +893,6 @@ Public Class Pokemon
     ''' Returns if this Pokémon is affected by a Volatile Status effect.
     ''' </summary>
     ''' <param name="VolatileStatus">The Volatile Status effect to test for.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function HasVolatileStatus(ByVal VolatileStatus As VolatileStatus) As Boolean
         Return Me._volatiles.Contains(VolatileStatus)
     End Function
@@ -971,7 +901,6 @@ Public Class Pokemon
     ''' Affects this Pokémon with a Volatile Status.
     ''' </summary>
     ''' <param name="VolatileStatus">The Volatile Status to affect this Pokémon with.</param>
-    ''' <remarks></remarks>
     Public Sub AddVolatileStatus(ByVal VolatileStatus As VolatileStatus)
         If Me._volatiles.Contains(VolatileStatus) = False Then
             Me._volatiles.Add(VolatileStatus)
@@ -982,7 +911,6 @@ Public Class Pokemon
     ''' Removes a Volatile Status effect this Pokémon is affected by.
     ''' </summary>
     ''' <param name="VolatileStatus">The Volatile Status effect to remove.</param>
-    ''' <remarks></remarks>
     Public Sub RemoveVolatileStatus(ByVal VolatileStatus As VolatileStatus)
         If Me._volatiles.Contains(VolatileStatus) = True Then
             Me._volatiles.Remove(VolatileStatus)
@@ -992,7 +920,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Clears all Volatile Status effects affecting this Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub ClearAllVolatiles()
         Me._volatiles.Clear()
     End Sub
@@ -1018,7 +945,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Resets the temp storages of the Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub ResetTemp()
         _volatiles.Clear()
 
@@ -1110,9 +1036,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Pokémon's original primary type.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OriginalType1() As Element
         Get
             Return Me._originalType1
@@ -1127,9 +1050,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Pokémon's original secondary type.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OriginalType2() As Element
         Get
             Return Me._originalType2
@@ -1144,9 +1064,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Pokémon's original national Pokédex number.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OriginalNumber() As Integer
         Get
             Return Me._originalNumber
@@ -1161,9 +1078,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Pokémon's original shiny state.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OriginalShiny() As Integer
         Get
             Return Me._originalShiny
@@ -1178,9 +1092,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Pokémon's original stats.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OriginalStats() As Integer()
         Get
             Return Me._originalStats
@@ -1195,9 +1106,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Pokémon's original ability.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OriginalAbility() As Ability
         Get
             Return Me._originalAbility
@@ -1212,9 +1120,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Pokémon's original hold item.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OriginalItem() As Item
         Get
             Return Me._originalItem
@@ -1229,9 +1134,6 @@ Public Class Pokemon
     ''' <summary>
     ''' The Pokémon's original moveset.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OriginalMoves() As List(Of BattleSystem.Attack)
         Get
             Return Me._originalMoves
@@ -1246,9 +1148,6 @@ Public Class Pokemon
     ''' <summary>
     ''' If this Pokémon has been using the Transform move (or any other move/ability that causes similar effects).
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IsTransformed() As Boolean
         Get
             Return Me._isTransformed
@@ -1279,7 +1178,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Empties the cached textures.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub ClearTextures()
         Textures.Clear()
         Textures.AddRange({Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing})
@@ -1291,7 +1189,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Creates a new instance of the Pokémon class.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub New()
         MyBase.New()
         Me.ClearTextures()
@@ -1301,8 +1198,6 @@ Public Class Pokemon
     ''' Returns a new Pokémon class instance.
     ''' </summary>
     ''' <param name="Number">The number of the Pokémon in the national Pokédex.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetPokemonByID(ByVal Number As Integer) As Pokemon
         Return GetPokemonByID(Number, "")
     End Function
@@ -1316,9 +1211,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Checks if a requested Pokémon data file exists.
     ''' </summary>
-    ''' <param name="Number"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function PokemonDataExists(ByVal Number As Integer) As Boolean
         Return System.IO.File.Exists(GameModeManager.GetPokemonDataFilePath(Number.ToString() & ".dat"))
     End Function
@@ -1327,8 +1219,6 @@ Public Class Pokemon
     ''' Returns a new Pokémon class instance defined by data.
     ''' </summary>
     ''' <param name="InputData">The data that defines the Pokémon.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetPokemonByData(ByVal InputData As String) As Pokemon
         Dim Tags As New Dictionary(Of String, String)
         Dim Data() As String = InputData.Split(CChar("}"))
@@ -1365,7 +1255,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Loads definition data from the data files and empties the temp textures.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub ReloadDefinitions()
         Me.LoadDefinitions(Me.Number, Me.AdditionalData)
         Me.ClearTextures()
@@ -1376,7 +1265,6 @@ Public Class Pokemon
     ''' </summary>
     ''' <param name="Number">The number of the Pokémon in the national Pokédex.</param>
     ''' <param name="AdditionalData">The additional data.</param>
-    ''' <remarks></remarks>
     Public Sub LoadDefinitions(ByVal Number As Integer, ByVal AdditionalData As String)
         Dim path As String = PokemonForms.GetPokemonDataFile(Number, AdditionalData)
         Security.FileValidation.CheckFileValid(path, False, "Pokemon.vb")
@@ -1597,7 +1485,6 @@ Public Class Pokemon
     ''' Applies data to the Pokémon.
     ''' </summary>
     ''' <param name="InputData">The input data.</param>
-    ''' <remarks></remarks>
     Public Sub LoadData(ByVal InputData As String)
         Dim loadedHP As Boolean = False
 
@@ -1734,8 +1621,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the save data from the Pokémon.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetSaveData() As String
         Dim SaveGender As Integer = 0
         If Me.Gender = Genders.Female Then
@@ -1849,7 +1734,6 @@ Public Class Pokemon
     ''' </summary>
     ''' <param name="newLevel">The level to set the Pokémon's level to.</param>
     ''' <param name="SetParameters">If the parameters like Nature and Ability should be set. Otherwise, it just loads the attacks and sets the level.</param>
-    ''' <remarks></remarks>
     Public Sub Generate(ByVal newLevel As Integer, ByVal SetParameters As Boolean)
         Me.Level = 0
 
@@ -2027,8 +1911,6 @@ Public Class Pokemon
     ''' Converts an EggGroup ID string to the EggGroup enum item.
     ''' </summary>
     ''' <param name="ID">The ID string.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function ConvertIDToEggGroup(ByVal ID As String) As EggGroups
         Select Case ID.ToLower()
             Case "monster"
@@ -2074,8 +1956,6 @@ Public Class Pokemon
     ''' Converts a Nature ID to a Nature enum item.
     ''' </summary>
     ''' <param name="ID">The nature ID.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function ConvertIDToNature(ByVal ID As Integer) As Natures
         Select Case ID
             Case 0
@@ -2138,7 +2018,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Generates a new individual value for this Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub GenerateIndividualValue()
         Dim chars As String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 
@@ -2153,7 +2032,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the Display Name of this Pokémon.
     ''' </summary>
-    ''' <returns></returns>
     ''' <remarks>Returns "Egg" when the Pokémon is in an egg. Returns the properly translated name if it exists. Returns the nickname if set.</remarks>
     Public Function GetDisplayName() As String
         If Me.EggSteps > 0 Then
@@ -2174,8 +2052,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the properly translated name of a Pokémon if defined in the language files.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetName() As String
         If Localization.TokenExists("pokemon_name_" & Me.Name) = True Then
             Return Localization.GetString("pokemon_name_" & Me.Name)
@@ -2187,9 +2063,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the English name of the Pokémon.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property OriginalName As String
         Get
             Return Me.Name
@@ -2206,7 +2079,6 @@ Public Class Pokemon
     ''' </summary>
     ''' <param name="Exp">The amount of EXP.</param>
     ''' <param name="LearnRandomAttack">If the Pokémon should learn an attack if it could learn one at level up.</param>
-    ''' <remarks></remarks>
     Public Sub GetExperience(ByVal Exp As Integer, ByVal LearnRandomAttack As Boolean)
         Me.Experience += Exp
         While Me.Experience >= NeedExperience(Me.Level + 1)
@@ -2219,7 +2091,6 @@ Public Class Pokemon
     ''' Rasies the Pokémon's level by one.
     ''' </summary>
     ''' <param name="LearnRandomAttack">If one attack of the Pokémon should be replaced by an attack potentially learned on the new level.</param>
-    ''' <remarks></remarks>
     Public Sub LevelUp(ByVal LearnRandomAttack As Boolean)
         Me.Level += 1
 
@@ -2241,7 +2112,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Recalculates all stats for this Pokémon using its current EVs, IVs and level.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub CalculateStats()
         Me.MaxHP = CalcStatus(Me.Level, True, Me.BaseHP, Me.EVHP, Me.IVHP, "HP")
         Me.Attack = CalcStatus(Me.Level, False, Me.BaseAttack, Me.EVAttack, Me.IVAttack, "Attack")
@@ -2260,8 +2130,6 @@ Public Class Pokemon
     ''' <param name="EVStat">The EV stat of the Pokémon.</param>
     ''' <param name="IVStat">The IV stat of the Pokémon.</param>
     ''' <param name="StatName">The name of the stat.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Private Function CalcStatus(ByVal calcLevel As Integer, ByVal DoHP As Boolean, ByVal baseStat As Integer, ByVal EVStat As Integer, ByVal IVStat As Integer, ByVal StatName As String) As Integer
         If DoHP = True Then
             If Me.Number = 292 Then
@@ -2278,7 +2146,6 @@ Public Class Pokemon
     ''' Replaces a random move of the Pokémon by one that it learns on a given level.
     ''' </summary>
     ''' <param name="learnLevel">The level the Pokémon learns the desired move on.</param>
-    ''' <remarks></remarks>
     Public Sub LearnAttack(ByVal learnLevel As Integer)
         If AttackLearns.ContainsKey(learnLevel) = True Then
             Dim a As BattleSystem.Attack = AttackLearns(learnLevel)
@@ -2301,8 +2168,6 @@ Public Class Pokemon
     ''' Returns the EXP needed for the given level.
     ''' </summary>
     ''' <param name="EXPLevel">The level this function should return the exp amount for.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function NeedExperience(ByVal EXPLevel As Integer) As Integer
         Dim n As Integer = EXPLevel
         Dim i As Integer = 0
@@ -2330,8 +2195,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the cummulative PP count of all moves.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function CountPP() As Integer
         Dim AllPP As Integer = 0
         For Each Attack As BattleSystem.Attack In Attacks
@@ -2343,7 +2206,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Fully heals this Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub FullRestore()
         Me.Status = StatusProblems.None
         Me.Heal(Me.MaxHP)
@@ -2359,7 +2221,6 @@ Public Class Pokemon
     ''' Heals the Pokémon.
     ''' </summary>
     ''' <param name="HealHP">The amount of HP to heal the Pokémon by.</param>
-    ''' <remarks></remarks>
     Public Sub Heal(ByVal HealHP As Integer)
         Me.HP = (Me.HP + HealHP).Clamp(0, Me.MaxHP)
     End Sub
@@ -2368,7 +2229,6 @@ Public Class Pokemon
     ''' Changes the Friendship value of this Pokémon.
     ''' </summary>
     ''' <param name="cause">The cause as to why the Friendship value should change.</param>
-    ''' <remarks></remarks>
     Public Sub ChangeFriendShip(ByVal cause As FriendShipCauses)
         Dim add As Integer = 0
 
@@ -2465,8 +2325,6 @@ Public Class Pokemon
     ''' 8=normal overworld
     ''' 9=shiny overworld
     ''' 10=normal,front,animation</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Private Function GetTexture(ByVal index As Integer) As Texture2D
         If Textures(index) Is Nothing Then
             Select Case index
@@ -2509,8 +2367,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the Overworld texture of this Pokémon.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetOverworldTexture() As Texture2D
         If Me.IsShiny = False Then
             Return Me.GetTexture(8)
@@ -2523,8 +2379,6 @@ Public Class Pokemon
     ''' Returns the Menu Texture of this Pokémon.
     ''' </summary>
     ''' <param name="CanGetEgg">If the texture returned can represent the Pokémon in its egg.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetMenuTexture(ByVal CanGetEgg As Boolean) As Texture2D
         If Me.EggSteps > 0 And CanGetEgg = True Then
             Return GetTexture(5)
@@ -2536,8 +2390,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the Menu Texture of this Pokémon.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetMenuTexture() As Texture2D
         Return GetMenuTexture(True)
     End Function
@@ -2546,8 +2398,6 @@ Public Class Pokemon
     ''' Returns the display texture of this Pokémon.
     ''' </summary>
     ''' <param name="FrontView">If this Pokémon should be viewed from the front.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetTexture(ByVal FrontView As Boolean) As Texture2D
         If FrontView = True Then
             If Me.IsEgg() = True Then
@@ -2575,8 +2425,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns properties to display models on a 2D GUI. Data structure: scale sng,posX sng,posY sng,posZ sng,roll sng
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetModelProperties() As Tuple(Of Single, Single, Single, Single, Single)
         Dim scale As Single = CSng(0.6 / Me.PokedexEntry.Height)
         Dim x As Single = 0.0F
@@ -2710,8 +2558,6 @@ Public Class Pokemon
     ''' </summary>
     ''' <param name="trigger">The trigger of the evolution.</param>
     ''' <param name="argument">An argument that specifies the evolution.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function CanEvolve(ByVal trigger As EvolutionCondition.EvolutionTrigger, ByVal argument As String) As Boolean
         Dim n As Integer = EvolutionCondition.EvolutionNumber(Me, trigger, argument)
         If n = 0 Then
@@ -2725,8 +2571,6 @@ Public Class Pokemon
     ''' </summary>
     ''' <param name="trigger">The trigger of the evolution.</param>
     ''' <param name="argument">An argument that specifies the evolution.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function GetEvolutionID(ByVal trigger As EvolutionCondition.EvolutionTrigger, ByVal argument As String) As Integer
         Return EvolutionCondition.EvolutionNumber(Me, trigger, argument)
     End Function
@@ -2736,7 +2580,6 @@ Public Class Pokemon
     ''' </summary>
     ''' <param name="Ball">The Pokéball this Pokémon got captured in.</param>
     ''' <param name="Method">The capture method.</param>
-    ''' <remarks></remarks>
     Public Sub SetCatchInfos(ByVal Ball As Item, ByVal Method As String)
         Me.CatchLocation = Screen.Level.MapName
         Me.CatchTrainerName = Core.Player.Name
@@ -2750,8 +2593,6 @@ Public Class Pokemon
     ''' Checks if the Pokémon is of a certain type.
     ''' </summary>
     ''' <param name="CheckType">The type to check.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function IsType(ByVal CheckType As Element.Types) As Boolean
         If Type1.Type = CheckType Or Type2.Type = CheckType Then
             Return True
@@ -2762,7 +2603,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Plays the cry of this Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub PlayCry()
         Dim Pitch As Single = 0.0F
         Dim percent As Integer = 100
@@ -2787,8 +2627,6 @@ Public Class Pokemon
     ''' Checks if this Pokémon knows a certain move.
     ''' </summary>
     ''' <param name="Move">The move to check for.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function KnowsMove(ByVal Move As BattleSystem.Attack) As Boolean
         For Each a As BattleSystem.Attack In Me.Attacks
             If a.ID = Move.ID Then
@@ -2802,8 +2640,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Checks if this Pokémon is inside an Egg.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function IsEgg() As Boolean
         If Me.EggSteps > 0 Then
             Return True
@@ -2815,7 +2651,6 @@ Public Class Pokemon
     ''' Adds Effort values (EV) to this Pokémon after defeated another Pokémon, if possible.
     ''' </summary>
     ''' <param name="DefeatedPokemon">The defeated Pokémon.</param>
-    ''' <remarks></remarks>
     Public Sub GainEffort(ByVal DefeatedPokemon As Pokemon)
         Dim allEV As Integer = EVHP + EVAttack + EVDefense + EVSpeed + EVSpAttack + EVSpDefense
         If allEV < 510 Then
@@ -2868,8 +2703,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns if this Pokémon knows an HM move.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function HasHMMove() As Boolean
         For Each m As BattleSystem.Attack In Me.Attacks
             If m.IsHMMove = True Then
@@ -2882,8 +2715,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns if this Pokémon is fully evolved.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function IsFullyEvolved() As Boolean
         Return Me.EvolutionConditions.Count = 0
     End Function
@@ -2891,9 +2722,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Checks if this Pokémon has a Hidden Ability assigend to it.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property HasHiddenAbility() As Boolean
         Get
             Return Not Me.HiddenAbility Is Nothing
@@ -2903,9 +2731,6 @@ Public Class Pokemon
     ''' <summary>
     ''' Checks if the Pokémon has its Hidden Ability set as its current ability.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property IsUsingHiddenAbility() As Boolean
         Get
             If HasHiddenAbility() = True Then

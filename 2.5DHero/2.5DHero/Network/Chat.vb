@@ -130,8 +130,6 @@
     ''' <summary>
     ''' Writes the message into the chat and returns True, if the message was a command. Only sends non-command messages to servers.
     ''' </summary>
-    ''' <param name="chatMessage"></param>
-    ''' <remarks></remarks>
     Public Shared Sub WriteLine(ByVal chatMessage As ChatMessage)
         Logger.Log(Logger.LogTypes.Entry, "Chat.vb: " & chatMessage.Message)
 

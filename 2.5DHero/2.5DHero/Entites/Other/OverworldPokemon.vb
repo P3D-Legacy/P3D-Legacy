@@ -1,4 +1,4 @@
-﻿Public Class OverworldPokemon
+Public Class OverworldPokemon
 
     Inherits Entity
 
@@ -116,7 +116,6 @@
     ''' <summary>
     ''' If the OverworldPokémon should be rendered.
     ''' </summary>
-    ''' <returns></returns>
     Public Function IsVisible() As Boolean
         If CBool(GameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
             If Screen.Level.ShowOverworldPokemon = True Then

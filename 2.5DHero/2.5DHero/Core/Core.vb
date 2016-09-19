@@ -204,7 +204,6 @@
     ''' <summary>
     ''' Intended for rendering 3D models on top of sprites.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub Render()
         CurrentScreen.Render()
     End Sub

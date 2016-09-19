@@ -5,7 +5,6 @@ Namespace Servers
     ''' <summary>
     ''' Manages all local player related operations.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class PlayerManager
 
         Private _receivedWorldData As Boolean = False 'If this client received the server's world data.

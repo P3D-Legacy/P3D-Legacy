@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Heracross.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Heracronite
 
         Inherits MegaStone

@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Blastoise.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Blastoisinite
 
         Inherits MegaStone

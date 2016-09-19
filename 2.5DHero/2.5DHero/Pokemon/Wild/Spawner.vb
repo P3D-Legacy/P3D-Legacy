@@ -1,9 +1,8 @@
-﻿Public Class Spawner
+Public Class Spawner
 
     ''' <summary>
     ''' Methods to encounter a wild Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum EncounterMethods As Integer
         Land = 0
         Headbutt = 1
@@ -20,8 +19,6 @@
     ''' </summary>
     ''' <param name="LevelFile">The levelfile that contains this Pokémon</param>
     ''' <param name="Method">The encounter method.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetPokemon(ByVal LevelFile As String, ByVal Method As EncounterMethods, Optional ByVal CanEncounterRoaming As Boolean = True, Optional ByVal InputPokeFile As String = "") As Pokemon
         If CanEncounterRoaming = True Then
             Dim roamingPokemon As RoamingPokemon = CheckForRoaming(LevelFile, Method)

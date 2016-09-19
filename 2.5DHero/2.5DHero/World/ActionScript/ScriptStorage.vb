@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' Storage space for scripts.
 ''' Used with @storage and the storage construct.
 ''' </summary>
@@ -17,7 +17,6 @@ Public Class ScriptStorage
     ''' </summary>
     ''' <param name="type">The type of the storage content.</param>
     ''' <param name="name">The name of the storage content.</param>
-    ''' <returns></returns>
     Public Shared Function GetObject(ByVal type As String, ByVal name As String) As Object
         Select Case type.ToLower()
             Case "pokemon"
@@ -123,7 +122,6 @@ Public Class ScriptStorage
     ''' Counts the content entries.
     ''' </summary>
     ''' <param name="type">The type of the content entires to count or empty for all entires.</param>
-    ''' <returns></returns>
     Public Shared Function Count(ByVal type As String) As Integer
         If type = "" Then
             Return Pokemons.Count + Strings.Count + Integers.Count + Booleans.Count + Items.Count

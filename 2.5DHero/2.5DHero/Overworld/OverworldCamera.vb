@@ -1,4 +1,4 @@
-﻿Public Class OverworldCamera
+Public Class OverworldCamera
 
     Inherits Camera
 
@@ -36,7 +36,6 @@
     ''' <summary>
     ''' Usually true, but if the player walks against an entitity that forces him to move up, set this to false so that the visual/audio feedback of walking against something don't appear.
     ''' </summary>
-    ''' <returns></returns>
     Public Property DidWalkAgainst() As Boolean
         Get
             Return _didWalkAgainst
@@ -132,7 +131,6 @@
     ''' <summary>
     ''' If the camera is pointing straight north, east, south or west.
     ''' </summary>
-    ''' <returns></returns>
     Public Function IsPointingToNormalDirection() As Boolean
         Return (Yaw = 0F Or Yaw = MathHelper.Pi * 0.5F Or Yaw = MathHelper.Pi Or Yaw = MathHelper.Pi * 1.5F)
     End Function

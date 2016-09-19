@@ -1,8 +1,6 @@
 ﻿''' <summary>
 ''' This is the BasicObject class for each Graphics-Component.
-''' Version: 1.0.0.2 (17.07.2012)
 ''' </summary>
-''' <remarks></remarks>
 Public MustInherit Class BasicObject
 
 #Region "Fields"
@@ -17,13 +15,11 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' Use the random-function to create randomized values.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Random As New System.Random()
 
     ''' <summary>
     ''' You can store a value in the Tag.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Tag As New Object
 
 #End Region
@@ -33,9 +29,6 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' The visual texture of the object.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Texture As Texture2D
         Get
             Return _Texture
@@ -48,9 +41,6 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' Height of the object.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Height As Integer
         Get
             Return _Height
@@ -63,9 +53,6 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' Width of the object.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Width As Integer
         Get
             Return _Width
@@ -78,9 +65,6 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' The position if the object in the window in pixels
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Position As Vector2
         Get
             Return _Position
@@ -93,9 +77,6 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' A visible parameter which can be used to toggle object's visibility.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Visible As Boolean
         Get
             Return _Visible
@@ -108,9 +89,6 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' Shows that you can dispose this object in the next Unload-Method.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property DisposeReady As Boolean
         Get
             Return _DisposeReady
@@ -123,9 +101,6 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' Returns a rectangle created by position, width and height of this object.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Rectangle As Rectangle
         Get
             Return New Rectangle(CInt(Position.X), CInt(Position.Y), Width, Height)
@@ -140,9 +115,6 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' The size of this object (width and height)
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Size As Size
         Get
             Return New Size(Me.Width, Me.Height)
@@ -162,7 +134,6 @@ Public MustInherit Class BasicObject
     ''' <param name="Width">The width  of this object (x-axis)</param>
     ''' <param name="Height">The height of this object (y-axis)</param>
     ''' <param name="Position">The position of this object.</param>
-    ''' <remarks></remarks>
     Public Sub New(ByVal Texture As Texture2D, ByVal Width As Integer, ByVal Height As Integer, ByVal Position As Vector2)
         Me._Texture = Texture
         Me._Width = Width
@@ -173,7 +144,6 @@ Public MustInherit Class BasicObject
     ''' <summary>
     ''' Makes the object invisible and ready for disposing.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Remove()
         DisposeReady = True
         Visible = False

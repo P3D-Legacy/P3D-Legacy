@@ -1,9 +1,8 @@
-﻿Namespace Items
+Namespace Items
 
     ''' <summary>
     ''' Represents a Wing Item.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class WingItem
 
         Inherits Item
@@ -19,7 +18,6 @@
         ''' <param name="SortValue">The SortValue of this Item.</param>
         ''' <param name="TextureRectangle">The TextureRectangle from the "Items\ItemSheet" texture.</param>
         ''' <param name="Description">The description of this Item.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal Name As String, ByVal Price As Integer, ByVal ItemType As ItemTypes, ByVal ID As Integer, ByVal CatchMultiplier As Single, ByVal SortValue As Integer, ByVal TextureRectangle As Rectangle, ByVal Description As String)
             MyBase.New(Name, Price, ItemType, ID, CatchMultiplier, SortValue, TextureRectangle, Description)
 
@@ -40,8 +38,6 @@
         ''' </summary>
         ''' <param name="stat">An integer representing the stat that should be upped by the Wing.</param>
         ''' <param name="p">The Pokémon that the Wing should be used on.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Protected Function CanUseWing(ByVal stat As Integer, ByVal p As Pokemon) As Boolean
             If stat < 255 Then
                 Dim allStats As Integer = p.EVAttack + p.EVDefense + p.EVSpAttack + p.EVSpDefense + p.EVHP + p.EVSpeed

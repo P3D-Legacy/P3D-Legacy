@@ -1,4 +1,4 @@
-﻿Namespace ScriptVersion2
+Namespace ScriptVersion2
 
     Partial Class ScriptComparer
 
@@ -33,7 +33,6 @@
         ''' Evaluates a script comparison between two expressions.
         ''' </summary>
         ''' <param name="inputString">The string containing the expression to compare.</param>
-        ''' <returns></returns>
         Public Shared Function EvaluateScriptComparison(ByVal inputString As String) As Boolean
             Return EvaluateScriptComparison(inputString, False)
         End Function
@@ -43,7 +42,6 @@
         ''' </summary>
         ''' <param name="inputString">The string containing the expression to compare.</param>
         ''' <param name="caseSensitive">If the case of the strings should be evaluated.</param>
-        ''' <returns></returns>
         Public Shared Function EvaluateScriptComparison(ByVal inputString As String, ByVal caseSensitive As Boolean) As Boolean
             Dim comparer As String = "="
 
@@ -157,7 +155,6 @@
         ''' <para>The complete construct. Example: &lt;mainclass.subclass(argument)&gt;.</para>
         ''' <para>If a &lt;not&gt; is put directly in front of the construct, the result will be negated.</para>
         ''' </param>
-        ''' <returns></returns>
         Public Shared Function EvaluateConstruct(ByVal construct As Object) As Object
             If TryCast(construct, String) <> Nothing Then
                 If CStr(construct) = "" Then
@@ -240,7 +237,6 @@
         ''' Returns a SubClass and Argument as Pair.
         ''' </summary>
         ''' <param name="inputString">The string to deconstruct. Example: command(argument)</param>
-        ''' <returns></returns>
         Public Shared Function GetSubClassArgumentPair(ByVal inputString As String) As PairValue
             Dim p As New PairValue
 
@@ -266,7 +262,6 @@
         ''' </summary>
         ''' <param name="mainClass">The main class of the contruct.</param>
         ''' <param name="subClass">The sub class of the construct.</param>
-        ''' <returns></returns>
         Private Shared Function GetConstructReturnValue(ByVal mainClass As String, ByVal subClass As String) As Object
             Select Case mainClass.ToLower()
                 Case "pokemon"
@@ -317,7 +312,6 @@
         ''' Returns a string for a boolean.
         ''' </summary>
         ''' <param name="bool">The boolean to convert.</param>
-        ''' <returns></returns>
         Public Shared Function ReturnBoolean(ByVal bool As Boolean) As String
             If bool = True Then
                 Return "true"

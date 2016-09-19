@@ -1,4 +1,4 @@
-﻿Public Class PokemonForms
+Public Class PokemonForms
 
     Private Shared _pokemonList As New List(Of PokemonForm)
 
@@ -15,9 +15,6 @@
     ''' <summary>
     ''' Returns the initial Additional Data, if it needs to be set at generation time of the Pokémon.
     ''' </summary>
-    ''' <param name="P"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetInitialAdditionalData(ByVal P As Pokemon) As String
         For Each listP In _pokemonList
             If listP.IsNumber(P.Number) = True Then
@@ -31,9 +28,6 @@
     ''' <summary>
     ''' Returns the Animation Name of the Pokémon, the path to its Sprite/Model files.
     ''' </summary>
-    ''' <param name="P"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetAnimationName(ByVal P As Pokemon) As String
         For Each listP In _pokemonList
             If listP.IsNumber(P.Number) = True Then
@@ -47,9 +41,6 @@
     ''' <summary>
     ''' Returns the grid coordinates of the Pokémon's menu sprite.
     ''' </summary>
-    ''' <param name="P"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
         For Each listP In _pokemonList
             If listP.IsNumber(P.Number) = True Then
@@ -71,9 +62,6 @@
     ''' <summary>
     ''' Returns the size of the Pokémon's menu sprite.
     ''' </summary>
-    ''' <param name="P"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetMenuImageSize(ByVal P As Pokemon) As Size
         For Each listP In _pokemonList
             If listP.IsNumber(P.Number) = True Then
@@ -87,9 +75,6 @@
     ''' <summary>
     ''' Returns the addition to the Pokémon's overworld sprite name.
     ''' </summary>
-    ''' <param name="P"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetOverworldAddition(ByVal P As Pokemon) As String
         For Each listP In _pokemonList
             If listP.IsNumber(P.Number) = True Then
@@ -103,9 +88,6 @@
     ''' <summary>
     ''' Returns the path to the Pokémon's overworld sprite.
     ''' </summary>
-    ''' <param name="P"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetOverworldSpriteName(ByVal P As Pokemon) As String
         Dim path As String = "Pokemon\Overworld\Normal\"
         If P.IsShiny = True Then
@@ -120,8 +102,6 @@
     ''' </summary>
     ''' <param name="Number">The number of the Pokémon.</param>
     ''' <param name="AdditionalData">The additional data of the Pokémon.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetPokemonDataFile(ByVal Number As Integer, ByVal AdditionalData As String) As String
         Dim FileName As String = GameModeManager.GetPokemonDataFilePath(Number.ToString() & ".dat")
 

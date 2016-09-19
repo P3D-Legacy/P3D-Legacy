@@ -1,4 +1,4 @@
-﻿Namespace Items
+Namespace Items
 
     Public Class StoneItem
 
@@ -15,7 +15,6 @@
         ''' <param name="SortValue">The SortValue of this Item.</param>
         ''' <param name="TextureRectangle">The TextureRectangle from the "Items\ItemSheet" texture.</param>
         ''' <param name="Description">The description of this Item.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal Name As String, ByVal Price As Integer, ByVal ItemType As ItemTypes, ByVal ID As Integer, ByVal CatchMultiplier As Single, ByVal SortValue As Integer, ByVal TextureRectangle As Rectangle, ByVal Description As String)
             MyBase.New(Name, Price, ItemType, ID, CatchMultiplier, SortValue, TextureRectangle, Description)
 

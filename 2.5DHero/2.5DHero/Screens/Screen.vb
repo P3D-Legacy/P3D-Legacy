@@ -1,13 +1,11 @@
-﻿''' <summary>
+''' <summary>
 ''' The base class for all screens in the game.
 ''' </summary>
-''' <remarks></remarks>
 Public MustInherit Class Screen
 
     ''' <summary>
     ''' The ID for a screen.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum Identifications
         MainMenuScreen
         OverworldScreen
@@ -103,9 +101,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' A global camera instance, that carries over screen instances.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property Camera() As Camera
         Get
             Return _globalCamera
@@ -118,9 +113,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' A global level instance, that carries over screen instances.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property Level() As Level
         Get
             Return _globalLevel
@@ -133,9 +125,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' A global BasicEffect instance, that carries over screen instances.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property Effect() As BasicEffect
         Get
             Return _globalBasicEffect
@@ -148,9 +137,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' A global SkyDome instance, that carries over screen instances.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property SkyDome() As SkyDome
         Get
             Return _globalSkyDome
@@ -163,9 +149,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' A global TextBox instance, that carries over screen instances.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property TextBox() As TextBox
         Get
             Return _globalTextBox
@@ -178,9 +161,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' A global ChooseBox instance, that carries over screen instances.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property ChooseBox() As ChooseBox
         Get
             Return _globalChooseBox
@@ -193,9 +173,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' A global PokemonImageView instance, that carries over screen instances.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Property PokemonImageView() As PokemonImageView
         Get
             Return _globalPokemonImageView
@@ -223,9 +200,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' A value to store the screen that underlies the current screen in.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property PreScreen() As Screen
         Get
             Return Me._preScreen
@@ -238,9 +212,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' The ID of the screen.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Identification() As Identifications
         Get
             Return Me._identification
@@ -253,8 +224,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Wether the mouse is visible on the screen.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>The default value is "False".</remarks>
     Public Property MouseVisible() As Boolean
         Get
@@ -268,8 +237,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Wether the game can be paused when pressing Escape.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>The default value is "True".</remarks>
     Public Property CanBePaused() As Boolean
         Get
@@ -283,8 +250,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Wether the game can be muted by pressing M (default).
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>The default value is "True".</remarks>
     Public Property CanMuteMusic() As Boolean
         Get
@@ -298,8 +263,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Wether the ChatScreen can be opened by pressing T (default).
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>The default value is "True".</remarks>
     Public Property CanChat() As Boolean
         Get
@@ -313,8 +276,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Wether a screenshot can be taken by pressing F2 (default).
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>The default value is "True".</remarks>
     Public Property CanTakeScreenshot() As Boolean
         Get
@@ -328,8 +289,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Wether the debug information can be drawn on the screen.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>The default value is "True".</remarks>
     Public Property CanDrawDebug() As Boolean
         Get
@@ -343,8 +302,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Wether the game can switch its fullscreen state by pressing F11 (default).
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
     ''' <remarks>The default value is "True".</remarks>
     Public Property CanGoFullscreen() As Boolean
         Get
@@ -371,7 +328,6 @@ Public MustInherit Class Screen
     ''' <param name="CanTakeScreenshot">Sets if the F2 button (default) can take a screenshot.</param>
     ''' <param name="CanDrawDebug">Sets if the debug information can be drawn on this screen.</param>
     ''' <param name="CanGoFullscreen">Sets if the F11 button (default) can sets the game to fullscreen (or back).</param>
-    ''' <remarks></remarks>
     Private Sub Setup(ByVal Identification As Identifications, ByVal MouseVisible As Boolean, ByVal CanBePaused As Boolean, ByVal CanMuteMusic As Boolean, ByVal CanChat As Boolean, ByVal CanTakeScreenshot As Boolean, ByVal CanDrawDebug As Boolean, ByVal CanGoFullscreen As Boolean)
         Me.Identification = Identification
         Me.MouseVisible = MouseVisible
@@ -394,7 +350,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' The base render function of the screen. Used to render models above sprites.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Overridable Overloads Sub Render()
 
     End Sub
@@ -426,8 +381,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Returns if this screen instance is the currently active screen (set in the global Basic.CurrentScreen).
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Function IsCurrentScreen() As Boolean
         If Core.CurrentScreen.Identification = Me.Identification Then 'If the screen stored in the CurrentScreen field has the same ID as this screen, return true.
             Return True
@@ -455,7 +408,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' An event that is getting raised when the Escape button is getting pressed. The PauseScreen is getting brought up if the CanBePaused field is set to true.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Overridable Sub EscapePressed()
         'If the game can be paused on this screen, open the PauseScreen.
         If Core.CurrentScreen.CanBePaused = True Then
@@ -493,7 +445,6 @@ Public MustInherit Class Screen
     ''' </summary>
     ''' <param name="Descriptions">The button types and descriptions.</param>
     ''' <param name="Position">The position to draw the buttons.</param>
-    ''' <remarks></remarks>
     Friend Sub DrawGamePadControls(ByVal Descriptions As Dictionary(Of Microsoft.Xna.Framework.Input.Buttons, String), ByVal Position As Vector2)
         'Only if a Gamepad is connected and the screen is active, render the buttons:
         If GamePad.GetState(PlayerIndex.One).IsConnected = True And Core.GameOptions.GamePadEnabled = True And Me.IsCurrentScreen() = True Then
@@ -553,8 +504,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Returns the screen status of the current screen. Override this function to return a screen state.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Overridable Function GetScreenStatus() As String
         '// Return the generic "not implemented" message:
         Return "Screen state not implemented for screen class: " & Me.Identification.ToString()
@@ -563,7 +512,6 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Returns the minimum size for the screen size to display a large interface before switching to the small size.
     ''' </summary>
-    ''' <returns></returns>
     ''' <remarks>The default size is 800x620 pixels.</remarks>
     Public Overridable Function GetScreenScaleMinimum() As Size
         '// Default size: 800x620 pixels.

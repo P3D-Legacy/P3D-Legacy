@@ -1,4 +1,4 @@
-﻿Public Class KeyBindings
+Public Class KeyBindings
 
     Public Shared ForwardMoveKey As Keys = Keys.W
     Public Shared LeftMoveKey As Keys = Keys.A
@@ -106,7 +106,6 @@
     ''' Converts the name of a key to the actual Key class.
     ''' </summary>
     ''' <param name="keyStr">The key name to convert.</param>
-    ''' <returns></returns>
     ''' <remarks>The default is Keys.None.</remarks>
     Public Shared Function GetKey(ByVal keyStr As String) As Keys
         For Each k As Keys In [Enum].GetValues(GetType(Keys))
@@ -122,7 +121,6 @@
     ''' Returns the name of a key.
     ''' </summary>
     ''' <param name="key">The key to get the name for.</param>
-    ''' <returns></returns>
     ''' <remarks>Returns String.Empty by default.</remarks>
     Public Shared Function GetKeyName(ByVal key As Keys) As String
         Return key.ToString()
@@ -230,8 +228,6 @@
     ''' <summary>
     ''' Creates the default keyboard.dat file.
     ''' </summary>
-    ''' <param name="force"></param>
-    ''' <remarks></remarks>
     Public Shared Sub CreateKeySave(ByVal force As Boolean)
         If IO.Directory.Exists(GameController.GamePath & "\Save") = True Then
             If IO.File.Exists(GameController.GamePath & "\Save\Keyboard.dat") = False Or force = True Then
@@ -268,7 +264,6 @@
     ''' <summary>
     ''' Saves the current keyboard configuration to the keyboard.dat file.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Shared Sub SaveKeys()
         If IO.Directory.Exists(GameController.GamePath & "\Save") = True Then
             Dim s As String = "[ForwardMove]=" & GetKeyName(ForwardMoveKey) & vbNewLine &
@@ -314,8 +309,6 @@
     ''' <param name="MaxLength">The maximum length of the text. -1 means infinite length.</param>
     ''' <param name="TriggerShift">Checks if the Shift variant of a key gets considered.</param>
     ''' <param name="TriggerAlt">Checks if the Alt variant of a key gets considered.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetInput(ByVal WhiteKeys() As Keys, ByVal BlackKeys() As Keys, Optional ByRef Text As String = "", Optional ByVal MaxLength As Integer = -1, Optional ByVal TriggerShift As Boolean = True, Optional ByVal TriggerAlt As Boolean = True) As String
         Dim Keys() As Keys = KeyBoardHandler.GetPressedKeys()
         For Each Key As Keys In Keys
@@ -382,8 +375,6 @@
     ''' <param name="WhiteKeys">The key whitelist.</param>
     ''' <param name="BlackKeys">The key blacklist.</param>
     ''' <param name="Key">The key to be checked.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Private Shared Function KeyBlocked(ByVal WhiteKeys() As Keys, ByVal BlackKeys() As Keys, ByVal Key As Keys) As Boolean
         Dim MapWhite As Boolean = WhiteKeys.Length > 0
         Dim MapBlack As Boolean = BlackKeys.Length > 0
@@ -405,8 +396,6 @@
     ''' <param name="MaxLength">The maximum length of the text. -1 means infinite length.</param>
     ''' <param name="TriggerShift">Checks if the Shift variant of a key gets considered.</param>
     ''' <param name="TriggerAlt">Checks if the Alt variant of a key gets considered.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetInput(Optional ByRef Text As String = "", Optional ByVal MaxLength As Integer = -1, Optional ByVal TriggerShift As Boolean = True, Optional ByVal TriggerAlt As Boolean = True) As String
         Return GetInput({},
                         {Keys.Enter, Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Tab, Keys.Delete, Keys.Home, Keys.End, Keys.Escape},
@@ -423,8 +412,6 @@
     ''' <param name="MaxLength">The maximum length of the text. -1 means infinite length.</param>
     ''' <param name="TriggerShift">Checks if the Shift variant of a key gets considered.</param>
     ''' <param name="TriggerAlt">Checks if the Alt variant of a key gets considered.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetNameInput(Optional ByRef Text As String = "", Optional ByVal MaxLength As Integer = -1, Optional ByVal TriggerShift As Boolean = True, Optional ByVal TriggerAlt As Boolean = True) As String
         Return GetInput({Keys.NumPad0, Keys.NumPad1, Keys.NumPad2, Keys.NumPad3, Keys.NumPad4, Keys.NumPad5, Keys.NumPad6, Keys.NumPad7, Keys.NumPad8, Keys.NumPad9, Keys.Space, Keys.D1, Keys.D2, Keys.D3, Keys.D4, Keys.D5, Keys.D6, Keys.D7, Keys.D8, Keys.D9, Keys.D0, Keys.Back, Keys.A, Keys.B, Keys.C, Keys.D, Keys.E, Keys.F, Keys.G, Keys.H, Keys.I, Keys.J, Keys.K, Keys.L, Keys.M, Keys.N, Keys.O, Keys.P, Keys.Q, Keys.R, Keys.S, Keys.T, Keys.U, Keys.V, Keys.W, Keys.X, Keys.Y, Keys.Z},
                         {},

@@ -1,4 +1,4 @@
-﻿Public Class ActionScript
+Public Class ActionScript
 
     Public Scripts As New List(Of Script)
 
@@ -21,8 +21,6 @@
     ''' <summary>
     ''' Returns the current ScriptLevel based on the script index.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function CSL() As ScriptLevel
         Return ScriptLevels(ScriptLevelIndex)
     End Function
@@ -100,7 +98,6 @@ nextScript:
     ''' </summary>
     ''' <param name="Input">The input string</param>
     ''' <param name="InputType">Type of information; 0: Script path, 1: Text, 2: Direct input</param>
-    ''' <remarks></remarks>
     Public Sub StartScript(ByVal Input As String, ByVal InputType As Integer, Optional ByVal CheckDelay As Boolean = True, Optional ByVal ResetInsight As Boolean = True)
         ScriptLevelIndex += 1
 
@@ -557,8 +554,6 @@ nextScript:
     ''' Returns the Value and Type of a Register with value. {Value,Type}
     ''' </summary>
     ''' <param name="Name">The name of the register.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetRegisterValue(ByVal Name As String) As Object()
         Dim registers() As String = Core.Player.RegisterData.Split(CChar(","))
         For Each line As String In registers

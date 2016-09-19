@@ -1,7 +1,6 @@
-﻿''' <summary>
+''' <summary>
 ''' Defines and handles terrain definitions for a map.
 ''' </summary>
-''' <remarks></remarks>
 Public Class Terrain
 
 #Region "Enums"
@@ -9,7 +8,6 @@ Public Class Terrain
     ''' <summary>
     ''' A terrain type defined in the Terrain tag of a map.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Enum TerrainTypes
         Plain
         Sand
@@ -40,9 +38,6 @@ Public Class Terrain
     ''' <summary>
     ''' The terrain type of this Terrain instance.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property TerrainType() As TerrainTypes
         Get
             Return Me._terrainType
@@ -60,7 +55,6 @@ Public Class Terrain
     ''' Creates a new instance of the Terrain class and sets an initial TerrainType.
     ''' </summary>
     ''' <param name="InitialTerrainType">The TerrainType for this instance.</param>
-    ''' <remarks></remarks>
     Public Sub New(ByVal InitialTerrainType As TerrainTypes)
         Me._terrainType = InitialTerrainType
     End Sub
@@ -73,8 +67,6 @@ Public Class Terrain
     ''' Converts a Terrain name to the correct Terrain class instance.
     ''' </summary>
     ''' <param name="input">The Terrain name.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function FromString(ByVal input As String) As Terrain.TerrainTypes
         Select Case input.ToLower()
             Case "plain"
@@ -119,8 +111,6 @@ Public Class Terrain
     ''' </summary>
     ''' <param name="value1">The first Terrain instance.</param>
     ''' <param name="value2">The second Terrain instance.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Operator =(ByVal value1 As Terrain, ByVal value2 As Terrain) As Boolean
         Return value1.TerrainType = value2.TerrainType
     End Operator
@@ -130,8 +120,6 @@ Public Class Terrain
     ''' </summary>
     ''' <param name="value1">The first Terrain instance.</param>
     ''' <param name="value2">The second Terrain instance.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Operator <>(ByVal value1 As Terrain, ByVal value2 As Terrain) As Boolean
         Return Not value1 = value2
     End Operator

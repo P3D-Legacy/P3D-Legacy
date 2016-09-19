@@ -1,7 +1,6 @@
-﻿''' <summary>
+''' <summary>
 ''' A class to handle entity lighting.
 ''' </summary>
-''' <remarks></remarks>
 Public Class Lighting
 
 #Region "Enums"
@@ -31,7 +30,6 @@ Public Class Lighting
     ''' </summary>
     ''' <param name="refEffect">A reference to the BasicEffect that should receive the lighting update.</param>
     ''' <param name="ForceLighting">Checks, if the lighting update on the effect should be forced.</param>
-    ''' <remarks></remarks>
     Public Shared Sub UpdateLighting(ByRef refEffect As BasicEffect, Optional ByVal ForceLighting As Boolean = False)
         If Core.GameOptions.LightingEnabled = True Or ForceLighting = True Then 'Only update the lighting if either the currently loaded level instance allows this, or it's getting forced.
             'Set default parameters:

@@ -1,4 +1,4 @@
-﻿Public Class GameModeManager
+Public Class GameModeManager
 
     Private Shared GameModeList As New List(Of GameMode)
     Private Shared GameModePointer As Integer = 0
@@ -7,7 +7,6 @@
     ''' <summary>
     ''' Loads (or reloads) the list of GameModes. The pointer also gets reset.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Shared Sub LoadGameModes()
         GameModeList.Clear()
         GameModePointer = 0
@@ -37,7 +36,6 @@
     ''' <summary>
     ''' Creates the GameModes directory.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Shared Sub CreateGameModesFolder()
         If System.IO.Directory.Exists(GameController.GamePath & "\GameModes") = False Then
             System.IO.Directory.CreateDirectory(GameController.GamePath & "\GameModes")
@@ -48,7 +46,6 @@
     ''' Sets the GameModePointer to a new item.
     ''' </summary>
     ''' <param name="GameModeDirectoryName">The directory resembeling the new GameMode.</param>
-    ''' <remarks></remarks>
     Public Shared Sub SetGameModePointer(ByVal GameModeDirectoryName As String)
         For i = 0 To GameModeList.Count - 1
             Dim GameMode As GameMode = GameModeList(i)
@@ -64,9 +61,6 @@
     ''' <summary>
     ''' Returns the amount of loaded GameModes.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared ReadOnly Property GameModeCount() As Integer
         Get
             Return GameModeList.Count
@@ -76,9 +70,6 @@
     ''' <summary>
     ''' Checks if a GameMode exists.
     ''' </summary>
-    ''' <param name="GameModePath"></param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GameModeExists(ByVal GameModePath As String) As Boolean
         For Each GameMode As GameMode In GameModeList
             If GameMode.DirectoryName = GameModePath Then
@@ -93,7 +84,6 @@
     ''' Adds a GameMode to the list.
     ''' </summary>
     ''' <param name="Path">The path of the GameMode directory.</param>
-    ''' <remarks></remarks>
     Private Shared Sub AddGameMode(ByVal Path As String)
         Dim newGameMode As New GameMode(Path & "\GameMode.dat")
         If newGameMode.IsValid = True Then
@@ -104,7 +94,6 @@
     ''' <summary>
     ''' Creates the default Kolben GameMode.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Shared Sub CreateKolbenMode()
         Dim doCreateKolbenMode As Boolean = False
         If System.IO.Directory.Exists(GameController.GamePath & "\GameModes\Kolben") = True Then
@@ -131,9 +120,6 @@
     ''' <summary>
     ''' Returns the currently active GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared ReadOnly Property ActiveGameMode() As GameMode
         Get
             If GameModeList.Count - 1 >= GameModePointer Then
@@ -146,8 +132,6 @@
     ''' <summary>
     ''' Returns the GameRules of the currently active GameMode.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetGameRules() As List(Of GameMode.GameRule)
         Return ActiveGameMode.GameRules
     End Function
@@ -156,8 +140,6 @@
     ''' Returns the Value of a chosen GameRule from the currently active GameMode.
     ''' </summary>
     ''' <param name="RuleName">The RuleName to search for.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetGameRuleValue(ByVal RuleName As String, ByVal DefaultValue As String) As String
 start:
         Dim rules As List(Of GameMode.GameRule) = GetGameRules()
@@ -177,8 +159,6 @@ start:
     ''' Returns the correct map path to load a map from.
     ''' </summary>
     ''' <param name="levelfile">The levelfile containing the map.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetMapPath(ByVal levelFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
             Return GameController.GamePath & GameMode.DefaultMapPath & levelFile
@@ -199,8 +179,6 @@ start:
     ''' Returns the correct script file path to load a script from.
     ''' </summary>
     ''' <param name="scriptFile">The file that contains the script information.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetScriptPath(ByVal scriptFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
             Return GameController.GamePath & GameMode.DefaultScriptPath & scriptFile
@@ -221,8 +199,6 @@ start:
     ''' Returns the correct poke file path to load a Wild Pokémon Definition from.
     ''' </summary>
     ''' <param name="pokeFile">The file that contains the Wild Pokémon Definitions.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetPokeFilePath(ByVal pokeFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
             Return GameController.GamePath & GameMode.DefaultPokeFilePath & pokeFile
@@ -243,8 +219,6 @@ start:
     ''' Returns the correct Pokémon data file path to load a Pokémon from.
     ''' </summary>
     ''' <param name="PokemonDataFile">The file which contains the Pokémon information.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetPokemonDataFilePath(ByVal PokemonDataFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
             Return GameController.GamePath & GameMode.DefaultPokemonDataPath & PokemonDataFile
@@ -273,8 +247,6 @@ start:
     ''' Returns the correct Content file path to load content from.
     ''' </summary>
     ''' <param name="ContentFile">The stub file path to the Content file.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetContentFilePath(ByVal ContentFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
             Return GameController.GamePath & GameMode.DefaultContentPath & ContentFile
@@ -290,7 +262,6 @@ start:
     ''' <summary>
     ''' Loads the FileItems for the loaded player file.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Shared Sub LoadFileItems()
         If Not Core.Player Is Nothing Then
             Core.Player.FileItems.Clear()
@@ -317,8 +288,6 @@ start:
     ''' Checks if a map file exists either in the active GameMode or the default GameMode.
     ''' </summary>
     ''' <param name="levelFile">The map file to look for.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function MapFileExists(ByVal levelFile As String) As Boolean
         Dim path As String = GameController.GamePath & ActiveGameMode.MapPath & levelFile
         Dim defaultPath As String = GameController.GamePath & GameMode.DefaultMapPath & levelFile
@@ -333,8 +302,6 @@ start:
     ''' Checks if a Content file exists either in the active GameMode or the default GameMode.
     ''' </summary>
     ''' <param name="contentFile">The Content file to look for.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function ContentFileExists(ByVal contentFile As String) As Boolean
         Dim path As String = GameController.GamePath & ActiveGameMode.ContentPath & contentFile
         Dim defaultPath As String = GameController.GamePath & GameMode.DefaultContentPath & contentFile
@@ -357,9 +324,6 @@ Public Class GameMode
     ''' <summary>
     ''' Is this GameMode loaded correctly?
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property IsValid() As Boolean
         Get
             If _loaded = True Then
@@ -381,9 +345,6 @@ Public Class GameMode
     ''' <summary>
     ''' The name of the directory this GameMode is placed in. Not the full path.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property DirectoryName() As String
         Get
             If _usedFileName <> "" Then
@@ -399,9 +360,6 @@ Public Class GameMode
     ''' <summary>
     ''' The name of the directory this GameMode is placed in.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property Path() As String
         Get
             If _usedFileName <> "" Then
@@ -417,7 +375,6 @@ Public Class GameMode
     ''' Create a new GameMode.
     ''' </summary>
     ''' <param name="FileName">The file the gamemode should load from.</param>
-    ''' <remarks></remarks>
     Public Sub New(ByVal FileName As String)
         Load(FileName)
     End Sub
@@ -443,7 +400,6 @@ Public Class GameMode
     ''' <param name="SkinColors">The skin colors for the new GameMode. Must be the same amount as SkinFiles and SkinNames.</param>
     ''' <param name="SkinFiles">The skin files for the new GameMode. Must be the same amount as SkinColors and SkinNames.</param>
     ''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
-    ''' <remarks></remarks>
     Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule),
                    ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String))
         Me._name = Name
@@ -476,8 +432,6 @@ Public Class GameMode
     ''' <summary>
     ''' This loads the GameMode.
     ''' </summary>
-    ''' <param name="FileName"></param>
-    ''' <remarks></remarks>
     Private Sub Load(ByVal FileName As String)
         If System.IO.File.Exists(FileName) = True Then
             Dim Data() As String = System.IO.File.ReadAllLines(FileName)
@@ -596,7 +550,6 @@ Public Class GameMode
     ''' <summary>
     ''' Reload the GameMode from an already used file.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Reload()
         Load(Me._usedFileName)
     End Sub
@@ -605,7 +558,6 @@ Public Class GameMode
     ''' Reload the GameMode.
     ''' </summary>
     ''' <param name="FileName">Use this file to reload the GameMode from.</param>
-    ''' <remarks></remarks>
     Public Sub Reload(ByVal FileName As String)
         Load(FileName)
     End Sub
@@ -613,8 +565,6 @@ Public Class GameMode
     ''' <summary>
     ''' Returns the default Kolben Game Mode.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetKolbenGameMode() As GameMode
         Dim SkinColors As List(Of Color) = {New Color(248, 176, 32), New Color(248, 216, 88), New Color(56, 88, 200), New Color(216, 96, 112), New Color(56, 88, 152), New Color(239, 90, 156)}.ToList()
         Dim SkinFiles As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
@@ -644,7 +594,6 @@ Public Class GameMode
     ''' Export this GameMode to a file.
     ''' </summary>
     ''' <param name="File">The file this GameMode should get exported to.</param>
-    ''' <remarks></remarks>
     Public Sub SaveToFile(ByVal File As String)
         Dim s As String = "Name|" & Me._name & vbNewLine &
             "Description|" & Me._description & vbNewLine &
@@ -756,9 +705,6 @@ Public Class GameMode
     ''' <summary>
     ''' The name of this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Name() As String
         Get
             Return Me._name
@@ -771,9 +717,6 @@ Public Class GameMode
     ''' <summary>
     ''' The Description of the GameMode. This may contain multiple lines.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Description() As String
         Get
             Return Me._description
@@ -786,9 +729,6 @@ Public Class GameMode
     ''' <summary>
     ''' The version of the GameMode. Warning: This doesn't have to be a number!
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Version() As String
         Get
             Return Me._version
@@ -801,9 +741,6 @@ Public Class GameMode
     ''' <summary>
     ''' The author of the GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Author() As String
         Get
             Return Me._author
@@ -816,9 +753,6 @@ Public Class GameMode
     ''' <summary>
     ''' The MapPath used from this GameMode to load maps from.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property MapPath() As String
         Get
             Return Me._mapPath.Replace("$Mode", "\GameModes\" & Me.DirectoryName)
@@ -831,9 +765,6 @@ Public Class GameMode
     ''' <summary>
     ''' The ScriptPath from this GameMode to load scripts from.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property ScriptPath() As String
         Get
             Return Me._scriptPath.Replace("$Mode", "\GameModes\" & Me.DirectoryName)
@@ -846,9 +777,6 @@ Public Class GameMode
     ''' <summary>
     ''' The .poke file directory from this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property PokeFilePath() As String
         Get
             Return Me._pokeFilePath.Replace("$Mode", "\GameModes\" & Me.DirectoryName)
@@ -861,9 +789,6 @@ Public Class GameMode
     ''' <summary>
     ''' The Pokemon-Datapath to load Pokemon data from.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property PokemonDataPath() As String
         Get
             Return Me._pokemonDataPath.Replace("$Mode", "\GameModes\" & Me.DirectoryName)
@@ -876,9 +801,6 @@ Public Class GameMode
     ''' <summary>
     ''' The content path to load images, sounds and music from.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property ContentPath() As String
         Get
             Return Me._contentPath.Replace("$Mode", "\GameModes\" & Me.DirectoryName)
@@ -891,9 +813,6 @@ Public Class GameMode
     ''' <summary>
     ''' The localizations path to load additional tokens from. Tokens that are already existing get overritten.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property LocalizationsPath() As String
         Get
             Return Me._localizationsPath.Replace("$Mode", "\GameModes\" & Me.DirectoryName)
@@ -906,9 +825,6 @@ Public Class GameMode
     ''' <summary>
     ''' The GameRules that apply to this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property GameRules() As List(Of GameRule)
         Get
             Return Me._gameRules
@@ -938,9 +854,6 @@ Public Class GameMode
     ''' <summary>
     ''' The start map for this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property StartMap() As String
         Get
             Return Me._startMap
@@ -953,9 +866,6 @@ Public Class GameMode
     ''' <summary>
     ''' The start position for this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property StartPosition() As Vector3
         Get
             Return Me._startPosition
@@ -968,9 +878,6 @@ Public Class GameMode
     ''' <summary>
     ''' The start rotation for this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property StartRotation() As Single
         Get
             Return Me._startRotation
@@ -983,9 +890,6 @@ Public Class GameMode
     ''' <summary>
     ''' The start location name for this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property StartLocationName() As String
         Get
             Return Me._startLocationName
@@ -998,9 +902,6 @@ Public Class GameMode
     ''' <summary>
     ''' The dialogue said in the intro of the game. Split in 3 different texts: intro dialogue, after Pokémon jumped out, after name + character choose.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property StartDialogue() As String
         Get
             Return Me._startDialogue
@@ -1013,9 +914,6 @@ Public Class GameMode
     ''' <summary>
     ''' The default background color in the intro sequence.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property StartColor() As Color
         Get
             Return Me._startColor
@@ -1028,9 +926,6 @@ Public Class GameMode
     ''' <summary>
     ''' The Pokémon that appear on the new game screen for this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property PokemonAppear() As String
         Get
             Return Me._pokemonAppear
@@ -1056,9 +951,6 @@ Public Class GameMode
     ''' <summary>
     ''' The Pokémon range that will appear on the new game screen for this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public ReadOnly Property PokemonRange() As Integer()
         Get
             Return Me._pokemonRange
@@ -1068,9 +960,6 @@ Public Class GameMode
     ''' <summary>
     ''' The intro music that plays on the new game screen for this GameMode.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property IntroMusic() As String
         Get
             Return Me._introMusic
@@ -1083,9 +972,6 @@ Public Class GameMode
     ''' <summary>
     ''' The skin colors for this GameMode. Must be the same amount as SkinFiles and SkinNames.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property SkinColors() As List(Of Color)
         Get
             Return Me._skinColors
@@ -1098,9 +984,6 @@ Public Class GameMode
     ''' <summary>
     ''' The skin files for this GameMode. Must be the same amount as SkinNames and SkinColors.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property SkinFiles() As List(Of String)
         Get
             Return Me._skinFiles
@@ -1113,9 +996,6 @@ Public Class GameMode
     ''' <summary>
     ''' The skin names for this GameMode. Must be the same amount as SkinFiles and SkinColors.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property SkinNames() As List(Of String)
         Get
             Return Me._skinNames
@@ -1137,7 +1017,6 @@ Public Class GameMode
         ''' </summary>
         ''' <param name="Name">The name of the game rule.</param>
         ''' <param name="Value">The value of the game rule.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal Name As String, ByVal Value As String)
             Me._ruleName = Name
             Me._ruleValue = Value
@@ -1146,9 +1025,6 @@ Public Class GameMode
         ''' <summary>
         ''' The name of this GameRule.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Property RuleName() As String
             Get
                 Return _ruleName
@@ -1161,9 +1037,6 @@ Public Class GameMode
         ''' <summary>
         ''' The Value of this GameRule.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Property RuleValue() As String
             Get
                 Return Me._ruleValue

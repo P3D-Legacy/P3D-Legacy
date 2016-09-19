@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' A class to name Pokémon and other objects (namely the rival).
 ''' </summary>
 ''' <remarks>Inherits from screen.</remarks>
@@ -22,7 +22,6 @@ Public Class NameObjectScreen
     ''' Handles the NameAccept event which fires if the object gets renamed.
     ''' </summary>
     ''' <param name="Name">The new name of the object</param>
-    ''' <remarks></remarks>
     Public Delegate Sub DNameAcceptEventHandler(ByVal Name As String)
 
     Private _acceptName As DNameAcceptEventHandler
@@ -32,7 +31,6 @@ Public Class NameObjectScreen
     ''' </summary>
     ''' <param name="CurrentScreen">The currently active screen.</param>
     ''' <param name="Pokemon">The Pokémon reference to rename.</param>
-    ''' <remarks></remarks>
     Public Sub New(ByVal CurrentScreen As Screen, ByVal Pokemon As Pokemon)
         'Set default values:
         Me.Identification = Identifications.NameObjectScreen
@@ -232,7 +230,6 @@ Public Class NameObjectScreen
     ''' This function replaces characters in the string with nothing if the characters aren't allowed in the name.
     ''' </summary>
     ''' <param name="text">The name string.</param>
-    ''' <returns></returns>
     ''' <remarks>Only numbers and alphabetic characters are allowed (0-9, a-z, A-Z)</remarks>
     Private Function ReplaceInvalidChars(ByVal text As String) As String
         'Creating the char array.

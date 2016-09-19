@@ -24,7 +24,6 @@
             ''' <summary>
             ''' Not used anymore, use GameData instead.
             ''' </summary>
-            ''' <remarks></remarks>
             PlayData = 1
 
             PrivateMessage = 2
@@ -81,9 +80,6 @@
         ''' <summary>
         ''' The PackageType of this Package.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property PackageType() As PackageTypes
             Get
                 Return CType(Me._packageType, PackageTypes)
@@ -93,9 +89,6 @@
         ''' <summary>
         ''' The Origin ID of this Package.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property Origin() As Integer
             Get
                 Return Me._origin
@@ -105,9 +98,6 @@
         ''' <summary>
         ''' The DataItems of this Package.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property DataItems() As List(Of String)
             Get
                 Return Me._dataItems
@@ -117,9 +107,6 @@
         ''' <summary>
         ''' Returns if the data used to create this Package was valid.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property IsValid() As Boolean
             Get
                 Return Me._isValid
@@ -129,9 +116,6 @@
         ''' <summary>
         ''' The protocol version of this package.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property ProtocolVersion() As String
             Get
                 Return Me._protocolVersion
@@ -141,9 +125,6 @@
         ''' <summary>
         ''' The protocol type (TCP or UDP) this package is using when sending data.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Property ProtocolType() As ProtocolTypes
             Get
                 Return Me._protocolType
@@ -161,7 +142,6 @@
         ''' Creates a new instance of the Package class.
         ''' </summary>
         ''' <param name="ByteArray">The raw Package data as bytes.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal ByteArray As Byte())
             Me.New(System.Text.Encoding.ASCII.GetString(ByteArray))
         End Sub
@@ -170,7 +150,6 @@
         ''' Creates a new instance of the Package class.
         ''' </summary>
         ''' <param name="FullData">The raw Package data.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal FullData As String)
             Try
                 If FullData.Contains("|") = False Then
@@ -254,7 +233,6 @@
         ''' <param name="Origin">The Origin computer ID of the new Package.</param>
         ''' <param name="ProtocolType">The ProtocolType this package is going to use.</param>
         ''' <param name="DataItems">An array of DataItems the Package contains.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal PackageType As PackageTypes, ByVal Origin As Integer, ByVal ProtocolType As ProtocolTypes, ByVal DataItems As List(Of String))
             Me._protocolVersion = ServersManager.PROTOCOLVERSION
             Me._packageType = PackageType
@@ -269,7 +247,6 @@
         ''' <param name="PackageType">The PackageType of the new Package.</param>
         ''' <param name="Origin">The Origin computer ID of the new Package.</param>
         ''' <param name="ProtocolType">The ProtocolType this package is going to use.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal PackageType As PackageTypes, ByVal Origin As Integer, ByVal ProtocolType As ProtocolTypes)
             Me._protocolVersion = ServersManager.PROTOCOLVERSION
             Me._packageType = PackageType
@@ -282,7 +259,6 @@
         ''' </summary>
         ''' <param name="PackageType">The PackageType of the new Package.</param>
         ''' <param name="ProtocolType">The ProtocolType this package is going to use.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal PackageType As PackageTypes, ByVal ProtocolType As ProtocolTypes)
             Me._protocolVersion = ServersManager.PROTOCOLVERSION
             Me._packageType = PackageType
@@ -297,7 +273,6 @@
         ''' <param name="Origin">The Origin computer ID of the new Package.</param>
         ''' <param name="ProtocolType">The ProtocolType this package is going to use.</param>
         ''' <param name="DataItem">The single Data Item to create the package with.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal Packagetype As PackageTypes, ByVal Origin As Integer, ByVal ProtocolType As ProtocolTypes, ByVal DataItem As String)
             Me.New(Packagetype, Origin, ProtocolType, {DataItem}.ToList())
         End Sub
@@ -309,8 +284,6 @@
         ''' <summary>
         ''' Returns the raw Package data from the members of this instance.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Overrides Function ToString() As String
             Dim outputStr As String = Me._protocolVersion & "|" & CInt(Me._packageType).ToString() & "|" & Me._origin.ToString() & "|" & Me._dataItems.Count
 
@@ -330,7 +303,6 @@
         ''' <summary>
         ''' Gives this package to the PackageHandler.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub Handle()
             PackageHandler.HandlePackage(Me)
         End Sub
@@ -338,8 +310,6 @@
         ''' <summary>
         ''' Returns a byte array of the data of this package.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function GetByteArray() As Byte()
             Return System.Text.Encoding.ASCII.GetBytes(Me.ToString())
         End Function

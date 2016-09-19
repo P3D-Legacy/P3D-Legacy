@@ -3,7 +3,6 @@
     ''' <summary>
     ''' Represents a Pokémon in battle.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class PokemonProfile
 
         ''' <summary>
@@ -11,7 +10,6 @@
         ''' </summary>
         ''' <param name="Target">The Position on the battle field.</param>
         ''' <param name="Pokemon">The reference to the Pokémon in the party.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal Target As PokemonTarget, ByVal Pokemon As Pokemon)
             Me._fieldPosition = Target
             Me._pokemon = Pokemon
@@ -23,9 +21,6 @@
         ''' <summary>
         ''' The Pokémon reference class instance that is associated with this profile.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property Pokémon As Pokemon
             Get
                 Return Me._pokemon
@@ -35,9 +30,6 @@
         ''' <summary>
         ''' The position of this Pokémon on the field.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property FieldPosition As PokemonTarget
             Get
                 Return Me._fieldPosition
@@ -59,450 +51,363 @@
         ''' <summary>
         ''' The amount of damage this Pokémon took in the last attack.
         ''' </summary>
-        ''' <remarks></remarks>
         Public LastDamageTaken As Integer = 0
         ''' <summary>
         ''' The counter that indicates how many turns this Pokémon has been in battle.
         ''' </summary>
-        ''' <remarks></remarks>
         Public TurnsInBattle As Integer = 0
         ''' <summary>
         ''' If this Pokémon directly damaged an opponent last turn.
         ''' </summary>
-        ''' <remarks></remarks>
         Public DealtDamageThisTurn As Boolean = False
         ''' <summary>
         ''' List of used moves (IDs)
         ''' </summary>
-        ''' <remarks></remarks>
         Public UsedMoves As New List(Of Integer)
         ''' <summary>
         ''' An item this Pokémon possibly lost in battle.
         ''' </summary>
-        ''' <remarks></remarks>
         Public LostItem As Item = Nothing
         ''' <summary>
         ''' If this Pokémon Mega Evolved in this battle.
         ''' </summary>
-        ''' <remarks></remarks>
         Public MegaEvolved As Boolean = False
         ''' <summary>
         ''' The last move this Pokémon used.
         ''' </summary>
-        ''' <remarks></remarks>
         Public LastMove As Attack = Nothing
         ''' <summary>
         ''' The turn number this Pokémon last used a move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public LastTurnMoved As Integer = 0
 
         ''' <summary>
         ''' Trigger, if the Pokémon wants to switch out but another one used Pursuit on it.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Pursuit As Boolean = False
 
         ''' <summary>
         ''' The turns until the Pokémon wakes up.
         ''' </summary>
-        ''' <remarks></remarks>
         Public SleepTurns As Integer = 0
         ''' <summary>
         ''' Round counter for toxic.
         ''' </summary>
-        ''' <remarks></remarks>
         Public ToxicRound As Integer = 0
         ''' <summary>
         ''' Rounds until Yawn affects the Pokémon.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Yawn As Integer = 0
         ''' <summary>
         ''' Turns until confusion runs out.
         ''' </summary>
-        ''' <remarks></remarks>
         Public ConfusionTurns As Integer = 0
 
         ''' <summary>
         ''' The Truant ability counter. When this is 1, the Pokémon won't move this round.
         ''' </summary>
-        ''' <remarks></remarks>
         Public TruantRound As Integer = 0 '
 
         ''' <summary>
         ''' Turns True if Imprison was used on this Pokémon.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Imprisoned As Boolean = False
         ''' <summary>
         ''' Taunt move counter, if true, Pokémon cannot use status moves.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Taunted As Integer = 0
         ''' <summary>
         ''' If the Pokémon is affected by Embargo.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Embargo As Integer = 0
         ''' <summary>
         ''' Rounds until Encore wears off.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Encore As Integer = 0
         ''' <summary>
         ''' The move reference that the encored Pokémon has to use.
         ''' </summary>
-        ''' <remarks></remarks>
         Public EncoreMove As Attack = Nothing
         ''' <summary>
         ''' Rounds until Torment wears off.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Torment As Integer = 0
         ''' <summary>
         ''' The move that the Pokémon is forced to use.
         ''' </summary>
-        ''' <remarks></remarks>
         Public TormentMoveID As Integer = -1
         ''' <summary>
         ''' The move chosen for Choice Items.
         ''' </summary>
-        ''' <remarks></remarks>
         Public ChoiceMove As Attack = Nothing
         ''' <summary>
         ''' Turns true when the Pokémon is affected by Gastro Acid.
         ''' </summary>
-        ''' <remarks></remarks>
         Public GastroAcid As Integer = 0
 
         ''' <summary>
         ''' The counter for the rage move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Rage As Integer = 0
         ''' <summary>
         ''' Checks if Defense Curl was used.
         ''' </summary>
-        ''' <remarks></remarks>
         Public DefenseCurl As Integer = 0
         ''' <summary>
         ''' Charge move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Charge As Integer = 0
         ''' <summary>
         ''' Indicates if minimize got used.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Minimize As Integer = 0
         ''' <summary>
         ''' Counter for Bide
         ''' </summary>
-        ''' <remarks></remarks>
         Public Bide As Integer = 0
         ''' <summary>
         ''' Stores all the damage that the Pokémon will deal with Bide.
         ''' </summary>
-        ''' <remarks></remarks>
         Public BideDamage As Integer = 0
         ''' <summary>
         ''' Doubles effect probability for four turns.
         ''' </summary>
-        ''' <remarks></remarks>
         Public WaterPledge As Integer = 0
 
         ''' <summary>
         ''' The counter for the Uproar move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Uproar As Integer = 0
         ''' <summary>
         ''' The Outrage move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Outrage As Integer = 0
         ''' <summary>
         ''' The Thrash move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Thrash As Integer = 0
         ''' <summary>
         ''' The Petal Dance move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public PetalDance As Integer = 0
         ''' <summary>
         ''' Rollout move counter
         ''' </summary>
-        ''' <remarks></remarks>
         Public Rollout As Integer = 0
         ''' <summary>
         ''' Iceball move counter
         ''' </summary>
-        ''' <remarks></remarks>
         Public IceBall As Integer = 0
         ''' <summary>
         ''' Recharge counter for moves like Hyperbeam.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Recharge As Integer = 0
         ''' <summary>
         ''' Razor Wind move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public RazorWind As Integer = 0
         ''' <summary>
         ''' Skull bash Move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public SkullBash As Integer = 0
         ''' <summary>
         ''' Sky Attack move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public SkyAttack As Integer = 0
         ''' <summary>
         ''' Solar beam move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public SolarBeam As Integer = 0
         ''' <summary>
         ''' Ice Burn move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public IceBurn As Integer = 0
         ''' <summary>
         ''' Freeze Shock move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public FreezeShock As Integer = 0
         ''' <summary>
         ''' Fly move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Fly As Integer = 0
         ''' <summary>
         ''' Dig move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Dig As Integer = 0
         ''' <summary>
         ''' Bounce move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Bounce As Integer = 0
         ''' <summary>
         ''' Dive move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Dive As Integer = 0
         ''' <summary>
         ''' Shadow Force move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public ShadowForce As Integer = 0
         ''' <summary>
         ''' Sky Drop move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public SkyDrop As Integer = 0
 
         ''' <summary>
         ''' Turns this Pokémon is trapped in Wrap.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Wrap As Integer = 0
         ''' <summary>
         ''' Turns this Pokémon is trapped in Whirlpool.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Whirlpool As Integer = 0
         ''' <summary>
         ''' Turns this Pokémon is trapped in Bind.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Bind As Integer = 0
         ''' <summary>
         ''' Turns this Pokémon is trapped in Clamp.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Clamp As Integer = 0
         ''' <summary>
         ''' Turns this Pokémon is trapped in FireSpin.
         ''' </summary>
-        ''' <remarks></remarks>
         Public FireSpin As Integer = 0
         ''' <summary>
         ''' Turns this Pokémon is trapped in MagmaStorm.
         ''' </summary>
-        ''' <remarks></remarks>
         Public MagmaStorm As Integer = 0
         ''' <summary>
         ''' Turns this Pokémon is trapped in SandTomb.
         ''' </summary>
-        ''' <remarks></remarks>
         Public SandTomb As Integer = 0
 
         ''' <summary>
         ''' Focus Energy move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public FocusEnergy As Integer = 0
         ''' <summary>
         ''' Lucky Chant move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public LuckyChant As Integer = 0
         ''' <summary>
         ''' Counter for the Lock On and Mind Reader move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public LockedOn As Integer = 0
         ''' <summary>
         ''' Counter for the Fury Cutter move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public FuryCutter As Integer = 0
         ''' <summary>
         ''' Counter for the Stockpile move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public StockPile As Integer = 0
         ''' <summary>
         ''' Magic Coat move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public MagicCoat As Integer = 0
         ''' <summary>
         ''' Roost counter, set to flying type.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Roost As Integer = 0
         ''' <summary>
         ''' Destiny Bond move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public DestinyBond As Integer = 0
 
         ''' <summary>
         ''' Endure move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Endure As Integer = 0
         ''' <summary>
         ''' Protect move counter
         ''' </summary>
-        ''' <remarks></remarks>
         Public Protect As Integer = 0
         ''' <summary>
         ''' Detect move counter
         ''' </summary>
-        ''' <remarks></remarks>
         Public Detect As Integer = 0
         ''' <summary>
         ''' Indicates how much HP the substitute has left.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Substitute As Integer = 0
         ''' <summary>
         ''' Counts the consecutive uses of Protect like moves.
         ''' </summary>
-        ''' <remarks></remarks>
         Public ProtectMoveCounter As Integer = 0
         ''' <summary>
         ''' King's Shield move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public KingsShield As Integer = 0
 
         ''' <summary>
         ''' Ingrain move counter.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Ingrain As Integer = 0
         ''' <summary>
         ''' Counter for the Magnet Rise move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public MagnetRise As Integer = 0
         ''' <summary>
         ''' Counter for the Aqua Ring move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public AquaRing As Integer = 0
         ''' <summary>
         ''' If the Pokémon is affected by Nightmare.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Nightmare As Integer = 0
         ''' <summary>
         ''' If the Pokémon is affected by Curse.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Cursed As Integer = 0
         ''' <summary>
         ''' Turns until Perish Song faints Pokémon.
         ''' </summary>
-        ''' <remarks></remarks>
         Public PerishSong As Integer = 0
         ''' <summary>
         ''' Counter for moves like Spider Web.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Trapped As Integer = 0
         ''' <summary>
         ''' Counter for the Foresight move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Foresight As Integer = 0
         ''' <summary>
         ''' Counter for the Odor Sleught move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public OdorSleught As Integer = 0
         ''' <summary>
         ''' Counter for the Miracle Eye move.
         ''' </summary>
-        ''' <remarks></remarks>
         Public MiracleEye As Integer = 0
         ''' <summary>
         ''' Halves this Pokémon's speed for four turns.
         ''' </summary>
-        ''' <remarks></remarks>
         Public GrassPledge As Integer = 0
         ''' <summary>
         ''' Deals damage of 1/8 HP at the end of turn for four turns.
         ''' </summary>
-        ''' <remarks></remarks>
         Public FirePledge As Integer = 0
 
         ''' <summary>
         ''' If Leech Seed got used on this Pokémon
         ''' </summary>
-        ''' <remarks></remarks>
         Public LeechSeed As Integer = 0
         ''' <summary>
         ''' The target the leech seed HP gets sent to.
         ''' </summary>
-        ''' <remarks></remarks>
         Public LeechSeedTarget As PokemonTarget = Nothing
 
         ''' <summary>
         ''' Counter for the Metronome item.
         ''' </summary>
-        ''' <remarks></remarks>
         Public MetronomeItemCount As Integer = 0
 
         ''' <summary>
         ''' Raises critical Hit ratio, Lansat Berry trigger
         ''' </summary>
-        ''' <remarks></remarks>
         Public LansatBerry As Integer = 0
         ''' <summary>
         ''' Raises attack speed when Custap berry got eaten.
         ''' </summary>
-        ''' <remarks></remarks>
         Public CustapBerry As Integer = 0
 
 #End Region
@@ -511,7 +416,6 @@
         ''' Resets the fields to their default values when a new Pokémon gets switched in.
         ''' </summary>
         ''' <param name="BatonPassed">If the Pokémon got switched in using Baton Pass.</param>
-        ''' <remarks></remarks>
         Public Sub ResetFields(ByVal BatonPassed As Boolean)
             Me.SleepTurns = 0
             Me.TruantRound = 0
@@ -592,13 +496,11 @@
     ''' <summary>
     ''' Represents a position on the battle field by targeting the Pokémon.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class PokemonTarget
 
         ''' <summary>
         ''' The positions on the battle field a Pokémon can get targeted on.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Enum Targets
             OwnLeft
             OwnCenter
@@ -614,7 +516,6 @@
         ''' Creates a new instance of a Pokémon Target.
         ''' </summary>
         ''' <param name="t">The Target type of this Pokémon Target.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal t As Targets)
             Me._target = t
         End Sub
@@ -623,7 +524,6 @@
         ''' Creates a new instance of a Pokémon Target.
         ''' </summary>
         ''' <param name="s">The Target type of this Pokémon Target.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal s As String)
             Select Case s.ToLower()
                 Case "ownleft"
@@ -644,9 +544,6 @@
         ''' <summary>
         ''' The target of this PokémonTarget.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property Target() As Targets
             Get
                 Return Me._target
@@ -664,9 +561,6 @@
         ''' <summary>
         ''' Creates a target set to Own Left.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared ReadOnly Property OwnLeft() As PokemonTarget
             Get
                 Return New PokemonTarget(Targets.OwnLeft)
@@ -676,9 +570,6 @@
         ''' <summary>
         ''' Creates a target set to Own Center.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared ReadOnly Property OwnCenter() As PokemonTarget
             Get
                 Return New PokemonTarget(Targets.OwnCenter)
@@ -688,9 +579,6 @@
         ''' <summary>
         ''' Creates a target set to Own Right.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared ReadOnly Property OwnRight() As PokemonTarget
             Get
                 Return New PokemonTarget(Targets.OwnRight)
@@ -700,9 +588,6 @@
         ''' <summary>
         ''' Creates a target set to Opp Left.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared ReadOnly Property OppLeft() As PokemonTarget
             Get
                 Return New PokemonTarget(Targets.OppLeft)
@@ -712,9 +597,6 @@
         ''' <summary>
         ''' Creates a target set to Opp Center.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared ReadOnly Property OppCenter() As PokemonTarget
             Get
                 Return New PokemonTarget(Targets.OppCenter)
@@ -724,9 +606,6 @@
         ''' <summary>
         ''' Creates a target set to Opp Right.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared ReadOnly Property OppRight() As PokemonTarget
             Get
                 Return New PokemonTarget(Targets.OppRight)
@@ -736,7 +615,6 @@
         ''' <summary>
         ''' Reverses the sides of the target (Own => Opp; Opp => Own)
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub Reverse()
             Select Case Me._target
                 Case Targets.OwnLeft
@@ -757,8 +635,6 @@
         ''' <summary>
         ''' Returns a string that represents the target.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Overrides Function ToString() As String
             Return Me._target.ToString()
         End Function
@@ -866,8 +742,6 @@
         ''' </summary>
         ''' <param name="BattleScreen">The reference to the BattleScreen.</param>
         ''' <param name="l">The list of Pokémon targets.</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared Function GetValidPokemonTargets(ByVal BattleScreen As BattleScreen, ByVal l As List(Of PokemonTarget)) As List(Of PokemonTarget)
             Dim returnList As New List(Of PokemonTarget)
 
@@ -883,9 +757,6 @@
         ''' <summary>
         ''' If the Pokémon target is on the own side of the field.
         ''' </summary>
-        ''' <value></value>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public ReadOnly Property IsOwn() As Boolean
             Get
                 Select Case Me._target

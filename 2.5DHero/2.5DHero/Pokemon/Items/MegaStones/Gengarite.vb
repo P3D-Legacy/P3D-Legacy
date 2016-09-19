@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Gengar.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Gengarite
 
         Inherits MegaStone

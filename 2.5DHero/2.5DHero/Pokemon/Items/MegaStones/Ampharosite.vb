@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Ampharos.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Ampharosite
 
         Inherits MegaStone

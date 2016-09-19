@@ -1,4 +1,4 @@
-﻿Imports System.Text
+Imports System.Text
 
 ''' <summary>
 ''' <para>Because the 4.0 client .net Framework does not contain the System.Web assembly, we need to implement the only function we
@@ -11,7 +11,6 @@ Public Class UrlEncoder
     ''' Returns the URL encoded string of an URL that properly escapes special characters.
     ''' </summary>
     ''' <param name="str">The string to encode.</param>
-    ''' <returns></returns>
     Public Shared Function Encode(ByVal str As String) As String
         If str Is Nothing Then
             Return Nothing

@@ -1,4 +1,4 @@
-﻿Public Class TradeScreen
+Public Class TradeScreen
 
     Inherits Screen
 
@@ -80,7 +80,6 @@
     ''' <summary>
     ''' Contains definitions for an item that can be traded in a store.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Structure TradeItem
 
         ''' <summary>
@@ -89,7 +88,6 @@
         ''' <param name="ItemID">The ID of the Item.</param>
         ''' <param name="Price">The Price of the Item. Leave -1 for automatic Price.</param>
         ''' <param name="Amount">The Amount of the Item available in the store. Leave -1 for infinite.</param>
-        ''' <remarks></remarks>
         Public Sub New(ByVal ItemID As Integer, ByVal Amount As Integer, ByVal Price As Integer, ByVal Currency As Currencies)
             Me.ItemID = ItemID
             Me.Amount = Amount
@@ -114,8 +112,6 @@
         ''' <summary>
         ''' Returns the Item that is associated with this TradeItem instance.
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function GetItem() As Item
             Return Item.GetItemByID(Me.ItemID)
         End Function
@@ -140,7 +136,6 @@
     ''' </summary>
     ''' <param name="currentScreen">The screen that is the current active screen.</param>
     ''' <param name="storeString">The string defining what the store sells. Format: {ItemID|Amount|Price}</param>
-    ''' <remarks></remarks>
     Public Sub New(ByVal currentScreen As Screen, ByVal storeString As String, ByVal canBuy As Boolean, ByVal canSell As Boolean, ByVal currencyIndicator As String)
         Me.PreScreen = currentScreen
 
@@ -186,7 +181,6 @@
     ''' Sets the currency from the currency indicator string.
     ''' </summary>
     ''' <param name="currencyIndicator">The currency indicator.</param>
-    ''' <remarks></remarks>
     Private Sub SetCurrency(ByVal currencyIndicator As String)
         Select Case currencyIndicator.ToLower()
             Case "p", "pokedollar", "pokédollar", "poke", "poké", "poke dollar", "poké dollar", "money"
@@ -253,7 +247,6 @@
     ''' <summary>
     ''' Updates the main screen.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub UpdateMain()
         Me.Title = "Store"
 
@@ -306,7 +299,6 @@
     ''' <summary>
     ''' Event when clicking on the Buy button.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub ButtonMainBuy()
         Me.MenuState = MenuStates.BuyItemsCategory
         Me.Cursor = 0
@@ -317,7 +309,6 @@
     ''' <summary>
     ''' Event when clicking on the Sell button.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub ButtonMainSell()
         Me.MenuState = MenuStates.SellItemsCategory
         Me.Cursor = 0
@@ -328,7 +319,6 @@
     ''' <summary>
     ''' Event when clicking on the Exit button.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub ButtonMainExit()
         Core.SetScreen(New TransitionScreen(Core.CurrentScreen, Me.PreScreen, Color.White, False))
     End Sub
@@ -336,7 +326,6 @@
     ''' <summary>
     ''' Draw the main screen.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub DrawMain()
         Dim y As Integer = 100
         For Each b As String In mainMenuButtons
@@ -350,7 +339,6 @@
     ''' <summary>
     ''' Draw the cursor on the main screen.
     ''' </summary>
-    ''' <remarks></remarks>
     Private Sub DrawMainCursor()
         Dim cPosition As Vector2 = New Vector2(380, 100 + Me.Cursor * 96 - 42)
 
@@ -1202,7 +1190,6 @@
     ''' <param name="Width">The width of the button in 64px steps. 5 is default.</param>
     ''' <param name="Text">The text to be displayed on the button.</param>
     ''' <param name="TextOffset">The offset on the text on the button. 16 is default.</param>
-    ''' <remarks></remarks>
     Private Sub DrawButton(ByVal Position As Vector2, ByVal Width As Integer, ByVal Text As String, ByVal TextOffset As Integer, Optional ByVal Image As Texture2D = Nothing)
         Core.SpriteBatch.Draw(Me.texture, New Rectangle(CInt(Position.X), CInt(Position.Y), 64, 64), New Rectangle(16, 16, 16, 16), Color.White)
         Core.SpriteBatch.Draw(Me.texture, New Rectangle(CInt(Position.X) + 64, CInt(Position.Y), 64 * Width, 64), New Rectangle(32, 16, 16, 16), Color.White)

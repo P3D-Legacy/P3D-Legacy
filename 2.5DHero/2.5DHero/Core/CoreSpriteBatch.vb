@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' A wrapper class for the default SpriteBatch class which extends certain functions of the original class to allow easy screen sizing.
 ''' </summary>
 Public Class CoreSpriteBatch
@@ -38,7 +38,6 @@ Public Class CoreSpriteBatch
     ''' <summary>
     ''' If the SpriteBatch is running.
     ''' </summary>
-    ''' <returns></returns>
     Public ReadOnly Property Running() As Boolean
         Get
             Return Me._running
@@ -306,7 +305,6 @@ Public Class CoreSpriteBatch
     ''' <summary>
     ''' The scale of the interface depending on the window size.
     ''' </summary>
-    ''' <returns></returns>
     Public ReadOnly Property InterfaceScale() As Double
         Get
             If Core.windowSize.Height < Core.CurrentScreen.GetScreenScaleMinimum().Height Or Core.windowSize.Width < Core.CurrentScreen.GetScreenScaleMinimum().Width Then

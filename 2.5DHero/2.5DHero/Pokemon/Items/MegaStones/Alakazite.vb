@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Alakazam.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Alakazite
 
         Inherits MegaStone

@@ -1,9 +1,8 @@
-﻿Namespace Items.MegaStones
+Namespace Items.MegaStones
 
     ''' <summary>
     ''' The Mega Stone for Manectric.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Manectite
 
         Inherits MegaStone

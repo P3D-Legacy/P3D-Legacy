@@ -1,4 +1,4 @@
-﻿Public Class World
+Public Class World
 
     Private Shared _regionWeather As Weathers = Weathers.Clear
     Private Shared _regionWeatherSet As Boolean = False
@@ -896,8 +896,6 @@ endsub:
     ''' <summary>
     ''' Returns the region weather and gets the server weather if needed.
     ''' </summary>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function GetCurrentRegionWeather() As Weathers
         If NeedServerObject() = True Then
             Return ServerWeather

@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' This class serves the only purpose to convert a key form the Keys enumeration to an actual Char that the key represents on the currently loaded keyboard layout.
 ''' </summary>
 Public Class KeyCharConverter
@@ -1100,7 +1100,6 @@ Public Class KeyCharConverter
     ''' Returns chars representing the keys pressed on a keyboard.
     ''' </summary>
     ''' <param name="key">The key. Returns nothing when no keypress was detected.</param>
-    ''' <returns></returns>
     Public Shared Function GetCharFromKey(key As Keys) As Char?
         Return GetCharFromKey(CType(key, Windows.Forms.Keys))
     End Function
@@ -1109,7 +1108,6 @@ Public Class KeyCharConverter
     ''' Returns chars representing the keys pressed on a keyboard.
     ''' </summary>
     ''' <param name="key">The key. Returns nothing when no keypress was detected.</param>
-    ''' <returns></returns>
     Public Shared Function GetCharFromKey(key As Windows.Forms.Keys) As Char?
         Dim ch As Char? = Nothing
 

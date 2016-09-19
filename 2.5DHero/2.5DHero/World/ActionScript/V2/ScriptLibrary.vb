@@ -1,4 +1,4 @@
-﻿Namespace ScriptVersion2
+Namespace ScriptVersion2
 
     Public Class ScriptLibrary
 
@@ -9,7 +9,6 @@
         ''' <summary>
         ''' Call this at the initialize phase of the game. Fills the library with the script content.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Shared Sub InitializeLibrary()
             Dim sw As New Stopwatch()
             sw.Start()
@@ -961,9 +960,6 @@
             ''' <summary>
             ''' The data type needed for this argument.
             ''' </summary>
-            ''' <value></value>
-            ''' <returns></returns>
-            ''' <remarks></remarks>
             Public ReadOnly Property ArgumentType() As ArgumentTypes
                 Get
                     Return Me._type
@@ -973,9 +969,6 @@
             ''' <summary>
             ''' The name of this argument.
             ''' </summary>
-            ''' <value></value>
-            ''' <returns></returns>
-            ''' <remarks></remarks>
             Public ReadOnly Property Name() As String
                 Get
                     Return Me._name
@@ -985,9 +978,6 @@
             ''' <summary>
             ''' Specifies if this argument is optional for the command or construct.
             ''' </summary>
-            ''' <value></value>
-            ''' <returns></returns>
-            ''' <remarks></remarks>
             Public ReadOnly Property IsOptional() As Boolean
                 Get
                     Return Me._isOptional
@@ -997,9 +987,6 @@
             ''' <summary>
             ''' Returns the default value for the argument if it is optional.
             ''' </summary>
-            ''' <value></value>
-            ''' <returns></returns>
-            ''' <remarks></remarks>
             Public ReadOnly Property DefaultValue() As String
                 Get
                     Return Me._defaultValue
@@ -1032,8 +1019,6 @@
         ''' Gets the help content for a script command or construct.
         ''' </summary>
         ''' <param name="inputCommand">class.subclass</param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Shared Function GetHelpContent(ByVal inputCommand As String, ByVal pageSize As Integer) As String
             If inputCommand.ToLower().StartsWith("constructs") Then
                 Dim list As New List(Of String)

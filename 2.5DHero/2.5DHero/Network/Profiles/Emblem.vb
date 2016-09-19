@@ -3,7 +3,6 @@
     ''' <summary>
     ''' A class to handle emblem rendering and management.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class Emblem
 
 #Region "Enumrations"
@@ -11,7 +10,6 @@
         ''' <summary>
         ''' The names of male trainer types.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Enum MaleEmblemSpriteType
             Preschooler = 0
             SchoolKid = 1
@@ -38,7 +36,6 @@
         ''' <summary>
         ''' The names of female trainer types.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Enum FemaleEmblemSpriteType
             Preschooler = 0
             SchoolKid = 1
@@ -65,7 +62,6 @@
         ''' <summary>
         ''' The sprites of male trainers.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Enum MaleEmblemSprites
             NN40 = 0
             NN42 = 1
@@ -92,7 +88,6 @@
         ''' <summary>
         ''' The sprites of female trainers.
         ''' </summary>
-        ''' <remarks></remarks>
         Public Enum FemaleEmblemSprites
             NN41 = 0
             NN43 = 1
@@ -129,7 +124,6 @@
         ''' <param name="Position">The position on the screen.</param>
         ''' <param name="Scale">The scale of the emblem.</param>
         ''' <param name="SpriteTexture">An alternative sprite to draw.</param>
-        ''' <remarks></remarks>
         Public Shared Sub Draw(ByVal Name As String, ByVal ID As String, ByVal Points As Integer, ByVal Gender As String, ByVal EmblemBackground As String, ByVal Position As Vector2, ByVal Scale As Single, ByVal SpriteTexture As Texture2D)
             Draw(Name, ID, Points, Gender, EmblemBackground, Position, Scale, SpriteTexture, Nothing)
         End Sub
@@ -146,7 +140,6 @@
         ''' <param name="Scale">The scale of the emblem.</param>
         ''' <param name="SpriteTexture">An alternative sprite to draw.</param>
         ''' <param name="PokemonList">A list of 0-6 Pokémon to render below the player information.</param>
-        ''' <remarks></remarks>
         Public Shared Sub Draw(ByVal Name As String, ByVal ID As String, ByVal Points As Integer, ByVal Gender As String, ByVal EmblemBackground As String, ByVal Position As Vector2, ByVal Scale As Single, ByVal SpriteTexture As Texture2D, ByVal PokemonList As List(Of Pokemon))
             'Generate OT:
             Dim OT As String = ID

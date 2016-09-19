@@ -1,4 +1,4 @@
-﻿Namespace GameJolt
+Namespace GameJolt
 
     Public Class GamejoltSave
 
@@ -45,7 +45,6 @@
         ''' <summary>
         ''' Apricorn data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Apricorns() As String
             Get
                 Return Me._apricorns
@@ -55,7 +54,6 @@
         ''' <summary>
         ''' Berry data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Berries() As String
             Get
                 Return Me._berries
@@ -65,7 +63,6 @@
         ''' <summary>
         ''' Box data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Box() As String
             Get
                 Return Me._box
@@ -75,7 +72,6 @@
         ''' <summary>
         ''' Daycare data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Daycare() As String
             Get
                 Return Me._daycare
@@ -85,7 +81,6 @@
         ''' <summary>
         ''' ItemData data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property ItemData() As String
             Get
                 Return Me._itemData
@@ -95,7 +90,6 @@
         ''' <summary>
         ''' Item data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Items() As String
             Get
                 Return Me._items
@@ -105,7 +99,6 @@
         ''' <summary>
         ''' NPC data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property NPC() As String
             Get
                 Return Me._NPC
@@ -115,7 +108,6 @@
         ''' <summary>
         ''' Option data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Options() As String
             Get
                 Return Me._options
@@ -125,7 +117,6 @@
         ''' <summary>
         ''' Party data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Party() As String
             Get
                 Return Me._party
@@ -135,7 +126,6 @@
         ''' <summary>
         ''' Player data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Player() As String
             Get
                 Return Me._player
@@ -145,7 +135,6 @@
         ''' <summary>
         ''' Pokedex data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Pokedex() As String
             Get
                 Return Me._pokedex
@@ -155,7 +144,6 @@
         ''' <summary>
         ''' Register data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Register() As String
             Get
                 Return Me._register
@@ -165,7 +153,6 @@
         ''' <summary>
         ''' HallOfFame data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property HallOfFame() As String
             Get
                 Return Me._hallOfFame
@@ -175,7 +162,6 @@
         ''' <summary>
         ''' SecretBase data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property SecretBase() As String
             Get
                 Return Me._secretBase
@@ -185,7 +171,6 @@
         ''' <summary>
         ''' RoamingPokemon data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property RoamingPokemon() As String
             Get
                 Return Me._roamingPokemon
@@ -195,7 +180,6 @@
         ''' <summary>
         ''' Statistics data
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property Statistics() As String
             Get
                 Return Me._statistics
@@ -266,7 +250,6 @@
         ''' <summary>
         ''' Indicates if the download finished.
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property DownloadFinished() As Boolean
             Get
                 Return DownloadProgress() = TotalDownloadItems()
@@ -276,7 +259,6 @@
         ''' <summary>
         ''' Returns the amount of downloaded items.
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property DownloadProgress() As Integer
             Get
                 Dim c As Integer = 0
@@ -295,7 +277,6 @@
         ''' <summary>
         ''' The total files to download from the server.
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property TotalDownloadItems() As Integer
             Get
                 Return SAVEFILECOUNT + EXTRADATADOWNLOADCOUNT
@@ -305,7 +286,6 @@
         ''' <summary>
         ''' If the download of this save failed at some point.
         ''' </summary>
-        ''' <returns></returns>
         Public ReadOnly Property DownloadFailed() As Boolean
             Get
                 Return Me._downloadFailed

@@ -1,8 +1,6 @@
 ﻿''' <summary>
 ''' This class can show a message ingame.
-''' Version: 1.0.0.1 (22.06.2012)
 ''' </summary>
-''' <remarks></remarks>
 Public Class GameMessage
 
     Inherits BasicObject
@@ -37,9 +35,6 @@ Public Class GameMessage
     ''' <summary>
     ''' The duretion in milliseconds this message will be displayed.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Duration As Single
         Get
             Return _Duration
@@ -52,9 +47,6 @@ Public Class GameMessage
     ''' <summary>
     ''' The backgroundcolor the texture will be colored with.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property BackgroundColor As Color
         Get
             Return _BackgroundColor
@@ -67,9 +59,6 @@ Public Class GameMessage
     ''' <summary>
     ''' The rectangle from the texture to be drawn.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property TextureRectangle As Rectangle
         Get
             Return _TextureRectangle
@@ -82,9 +71,6 @@ Public Class GameMessage
     ''' <summary>
     ''' Shows the message in fullscreen (overides size and dock)
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Fullscreen As Boolean
         Get
             Return _Fullscreen
@@ -97,9 +83,6 @@ Public Class GameMessage
     ''' <summary>
     ''' Docks the message at a side of the window (overides size)
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Dock As DockStyles
         Get
             Return _Dock
@@ -112,9 +95,6 @@ Public Class GameMessage
     ''' <summary>
     ''' The text that will be displayed.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property Text As String
         Get
             Return _Text
@@ -127,9 +107,6 @@ Public Class GameMessage
     ''' <summary>
     ''' The position the text is drawn (relative to message-position)
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property TextPosition As Vector2
         Get
             Return _TextPosition
@@ -151,9 +128,6 @@ Public Class GameMessage
     ''' <summary>
     ''' The color for the text.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property TextColor As Color
         Get
             Return _TextColor
@@ -166,9 +140,6 @@ Public Class GameMessage
     ''' <summary>
     ''' If this value is true, the duretion has no effect on the visibility of this message.
     ''' </summary>
-    ''' <value></value>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Property ShowAlways As Boolean
         Get
             Return _showAlways
@@ -206,7 +177,6 @@ Public Class GameMessage
     ''' <param name="Text">The actual text to be displayed.</param>
     ''' <param name="SpriteFont">The spritefont, the text will be drawn with.</param>
     ''' <param name="TextColor">The color the text will be drawn in.</param>
-    ''' <remarks></remarks>
     Public Sub SetupText(ByVal Text As String, ByVal SpriteFont As SpriteFont, ByVal TextColor As Color)
         Me._Text = Text
         Me._spriteFont = SpriteFont
@@ -216,7 +186,6 @@ Public Class GameMessage
     ''' <summary>
     ''' Updates the message (required!)
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Update()
         If _showAlways = False Then
             If _Duration > CSng(0) Then
@@ -256,7 +225,6 @@ Public Class GameMessage
     ''' <summary>
     ''' Draw the message.
     ''' </summary>
-    ''' <remarks></remarks>
     Public Sub Draw()
         If Visible = True Then
             If _Fullscreen = True Then
@@ -281,9 +249,6 @@ Public Class GameMessage
     ''' <summary>
     ''' Actual drawing stuff.
     ''' </summary>
-    ''' <param name="drawSize"></param>
-    ''' <param name="drawPosition"></param>
-    ''' <remarks></remarks>
     Private Sub DrawMe(ByVal drawSize As Size, ByVal drawPosition As Vector2)
         Core.SpriteBatch.DrawInterface(Me.Texture, New Rectangle(CInt(drawPosition.X), CInt(drawPosition.Y), drawSize.Width, drawSize.Height), TextureRectangle, New Color(_BackgroundColor.R, _BackgroundColor.G, _BackgroundColor.B, Me._alpha))
         Core.SpriteBatch.DrawInterfaceString(_spriteFont, Me._Text, LinkVector2(Me.Position, Me._TextPosition, 1), New Color(Me._TextColor.R, Me._TextColor.G, Me._TextColor.B, Me._alpha))
@@ -298,7 +263,6 @@ Public Class GameMessage
     ''' </summary>
     ''' <param name="Duration">The time span the message will appear on the screen.</param>
     ''' <param name="graphics">The graphics device the message will be drawn on.</param>
-    ''' <remarks></remarks>
     Public Sub ShowMessage(ByVal Duration As Single, ByVal graphics As GraphicsDevice)
         Me._Duration = Duration
         Me.Visible = True

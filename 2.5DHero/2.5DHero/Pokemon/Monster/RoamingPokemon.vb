@@ -1,4 +1,4 @@
-﻿Public Class RoamingPokemon
+Public Class RoamingPokemon
 
     Public WorldID As Integer = -1
     Public LevelFile As String = ""
@@ -69,8 +69,6 @@
     ''' Removes the Pokemon from the list of roaming Pokemon. The Pokemon has to hold the data as Tag.
     ''' </summary>
     ''' <param name="p">The Pokemon containing the Tag.</param>
-    ''' <returns></returns>
-    ''' <remarks></remarks>
     Public Shared Function RemoveRoamingPokemon(ByVal p As RoamingPokemon) As String
         Dim compareData As String = p.CompareData()
 
