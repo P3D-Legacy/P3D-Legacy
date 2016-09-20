@@ -6,7 +6,7 @@ Namespace Items.Plates
         Inherits PlateItem
 
         Public Sub New()
-            MyBase.New("Draco Plate", 267, Element.Types.Dragon)
+            MyBase.New(Element.Types.Dragon)
         End Sub
 
     End Class

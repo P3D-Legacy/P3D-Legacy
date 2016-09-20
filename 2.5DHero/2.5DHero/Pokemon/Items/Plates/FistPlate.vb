@@ -6,7 +6,7 @@ Namespace Items.Plates
         Inherits PlateItem
 
         Public Sub New()
-            MyBase.New("Fist Plate", 270, Element.Types.Fighting)
+            MyBase.New(Element.Types.Fighting)
         End Sub
 
     End Class

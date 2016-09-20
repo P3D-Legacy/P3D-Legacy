@@ -6,7 +6,7 @@ Namespace Items.Plates
         Inherits PlateItem
 
         Public Sub New()
-            MyBase.New("Pixie Plate", 277, Element.Types.Fairy)
+            MyBase.New(Element.Types.Fairy)
         End Sub
 
     End Class
