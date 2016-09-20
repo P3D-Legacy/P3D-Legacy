@@ -5,11 +5,13 @@ Namespace Items.Plants
 
         Inherits Item
 
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(264, 240, 24, 24)
+            MyBase.New("Honey", 100, ItemTypes.Plants, 253, 1, 0, New Rectangle(264, 240, 24, 24), "Honey produced by a Pokémon.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
         End Sub
 
     End Class

@@ -5,11 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(288, 24, 24, 24)
+            MyBase.New("Nugget", 10000, ItemTypes.Standard, 36, 1, 0, New Rectangle(288, 24, 24, 24), "A nugget of the purest gold that gives off a lustrous gleam in direct light. It can be sold at a high price to shops.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
         End Sub
 
     End Class

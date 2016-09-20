@@ -5,11 +5,13 @@ Namespace Items.Plants
 
         Inherits Item
 
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(264, 72, 24, 24)
+            MyBase.New("Tiny Mushroom", 500, ItemTypes.Plants, 86, 1, 72, New Rectangle(264, 72, 24, 24), "A very small and rare mushroom. It's popular with a certain class of collectors and sought out by them.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
         End Sub
 
     End Class

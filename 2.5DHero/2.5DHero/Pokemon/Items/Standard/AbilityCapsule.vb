@@ -5,10 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(0, 240, 24, 24)
+            MyBase.New("Ability Capsule", 1000, ItemTypes.Standard, 187, 1, 1, New Rectangle(0, 240, 24, 24), "A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = True
+            Me._canBeUsedInBattle = False
         End Sub
 
         Public Overrides Sub Use()

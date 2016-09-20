@@ -5,11 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(336, 144, 24, 24)
+            MyBase.New("Up-Grade", 2100, ItemTypes.Standard, 172, 1, 0, New Rectangle(336, 144, 24, 24), "A transparent device somehow filled with all sorts of data. It was produced by Silph Co.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
         End Sub
 
     End Class

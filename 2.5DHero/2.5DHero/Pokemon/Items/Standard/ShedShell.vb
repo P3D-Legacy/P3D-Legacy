@@ -5,12 +5,15 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property FlingDamage As Integer = 10
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(72, 216, 24, 24)
+            MyBase.New("Shed Shell", 100, ItemTypes.Standard, 154, 1, 1, New Rectangle(72, 216, 24, 24), "A tough, discarded carapace to be held by a Pokémon. It enables the holder to switch with a waiting Pokémon in battle.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
+
+            Me._flingDamage = 10
         End Sub
 
     End Class

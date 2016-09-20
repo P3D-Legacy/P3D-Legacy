@@ -5,12 +5,15 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property FlingDamage As Integer = 70
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(192, 72, 24, 24)
+            MyBase.New("Poison Barb", 100, ItemTypes.Standard, 81, 1, 0, New Rectangle(192, 72, 24, 24), "An item to be held by a Pokémon. This small, poisonous barb boosts the power of Poison-type moves.")
+
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
+            Me._canBeTraded = True
+            Me._canBeHold = True
+
+            Me._flingDamage = 70
         End Sub
 
     End Class

@@ -5,11 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(432, 72, 24, 24)
+            MyBase.New("CleanseTag", 200, ItemTypes.Standard, 94, 1, 0, New Rectangle(432, 72, 24, 24), "An item to be held by a Pokémon. It helps keep wild Pokémon away if the holder is the head of the party.")
+
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
+            Me._canBeTraded = True
+            Me._canBeHold = True
         End Sub
 
     End Class
