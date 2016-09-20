@@ -1049,6 +1049,7 @@
     <Compile Include="Pokemon\Items\KeyItems\GoodRod.vb" />
     <Compile Include="Pokemon\Items\KeyItems\GSBall.vb" />
     <Compile Include="Pokemon\Items\KeyItems\ItemFinder.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\KeyItem.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LostItem.vb" />
     <Compile Include="Pokemon\Items\KeyItems\MachinePart.vb" />
     <Compile Include="Pokemon\Items\KeyItems\MysteryEgg.vb" />

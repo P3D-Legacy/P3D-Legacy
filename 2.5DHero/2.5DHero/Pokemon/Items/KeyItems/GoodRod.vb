@@ -3,15 +3,13 @@ Namespace Items.KeyItems
     <Item(59, "Good Rod")>
     Public Class GoodRod
 
-        Inherits Item
+        Inherits KeyItem
+
+        Public Overrides ReadOnly Property Description As String = "A new, good-quality fishing rod. Use it by any body of water to fish for wild aquatic Pokémon."
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = True
 
         Public Sub New()
-            MyBase.New("Good Rod", 1337, ItemTypes.KeyItems, 59, 1, 0, New Rectangle(264, 48, 24, 24), "A new, good-quality fishing rod. Use it by any body of water to fish for wild aquatic Pokémon.")
-
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = False
-            Me._canBeHold = False
+            _textureRectangle = New Rectangle(264, 48, 24, 24)
         End Sub
 
         Public Overrides Sub Use()

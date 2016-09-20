@@ -3,15 +3,12 @@ Namespace Items.KeyItems
     <Item(175, "SquirtBottle")>
     Public Class Squirtbottle
 
-        Inherits Item
+        Inherits KeyItem
+
+        Public Overrides ReadOnly Property Description As String = "A bottle used for watering plants in Loamy Soil."
 
         Public Sub New()
-            MyBase.New("SquirtBottle", 9800, ItemTypes.KeyItems, 175, 1, 0, New Rectangle(360, 144, 24, 24), "A bottle used for watering plants in Loamy Soil.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = False
-            Me._canBeHold = False
+            _textureRectangle = New Rectangle(360, 144, 24, 24)
         End Sub
 
     End Class

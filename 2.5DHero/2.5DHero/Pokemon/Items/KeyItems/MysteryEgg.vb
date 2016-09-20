@@ -3,15 +3,12 @@ Namespace Items.KeyItems
     <Item(69, "Mystery Egg")>
     Public Class MysteryEgg
 
-        Inherits Item
+        Inherits KeyItem
+
+        Public Overrides ReadOnly Property Description As String = "A mysterious Egg obtained from Mr. Pokémon. What's in the Egg is unknown."
 
         Public Sub New()
-            MyBase.New("Mystery Egg", 9800, ItemTypes.KeyItems, 69, 1, 0, New Rectangle(0, 72, 24, 24), "A mysterious Egg obtained from Mr. Pokémon. What's in the Egg is unknown.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = False
-            Me._canBeHold = False
+            _textureRectangle = New Rectangle(0, 72, 24, 24)
         End Sub
 
     End Class
