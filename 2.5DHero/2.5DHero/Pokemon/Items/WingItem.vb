@@ -10,6 +10,7 @@ Namespace Items
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Medicine
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property FlingDamage As Integer = 20
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 3000
 
         Public Overrides Sub Use()
             Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True))

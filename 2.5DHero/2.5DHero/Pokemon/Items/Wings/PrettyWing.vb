@@ -5,13 +5,13 @@ Namespace Items.Wings
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Pretty Wing", 200, ItemTypes.Standard, 260, 1.0F, 0, New Rectangle(432, 240, 24, 24), "Though this feather is beautiful, it's just a regular feather and has no effect on Pokémon.")
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property Description As String = "Though this feather is beautiful, it's just a regular feather and has no effect on Pokémon."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
 
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
+        Public Sub New()
+            _textureRectangle = New Rectangle(432, 240, 24, 24)
         End Sub
 
     End Class

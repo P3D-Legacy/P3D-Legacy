@@ -5,8 +5,10 @@ Namespace Items.Wings
 
         Inherits WingItem
 
+        Public Overrides ReadOnly Property Description As String = "An item for use on a Pokémon. It slightly increases the base Attack stat of a single Pokémon."
+
         Public Sub New()
-            MyBase.New("Muscle Wing", 3000, ItemTypes.Medicine, 255, 1.0F, 0, New Rectangle(312, 240, 24, 24), "An item for use on a Pokémon. It slightly increases the base Attack stat of a single Pokémon.")
+            _textureRectangle = New Rectangle(312, 240, 24, 24)
         End Sub
 
         Public Overrides Function UseOnPokemon(PokeIndex As Integer) As Boolean
