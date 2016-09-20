@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2054, "Salac", 86400, "A Berry to be held by Pok�mon. If a Pok�mon holds one, its Speed stat will increase when it's in a pinch. ", "9.4cm", "Very Hard", 1, 2)
+            MyBase.New(2054, "Salac", 86400, "A Berry to be held by Pokémon. If a Pokémon holds one, its Speed stat will increase when it's in a pinch. ", "9.4cm", "Very Hard", 1, 2)
 
             Me.Spicy = 0
             Me.Dry = 0
