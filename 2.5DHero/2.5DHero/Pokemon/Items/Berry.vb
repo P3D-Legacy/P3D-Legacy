@@ -38,6 +38,7 @@
         Public Overrides ReadOnly Property FlingDamage As Integer = 10
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Plants
         Public Overrides ReadOnly Property SortValue As Integer
+        Public Overrides ReadOnly Property Description As String
 
         Public Sub New(ByVal PhaseTime As Integer, ByVal Description As String, ByVal Size As String, ByVal Firmness As String, ByVal minBerries As Integer, ByVal maxBerries As Integer)
             SortValue = ID - 1999
@@ -56,7 +57,8 @@
                 y += 32
             End While
 
-            _textureSource = "Berries"
+            _Description = Description
+            _textureSource = "Textures\Berries"
             _textureRectangle = New Rectangle(x, y, 32, 32)
         End Sub
 
