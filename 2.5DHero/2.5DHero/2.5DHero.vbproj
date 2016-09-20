@@ -1389,6 +1389,7 @@
     <Compile Include="Pokemon\Items\Plates\ZapPlate.vb" />
     <Compile Include="Pokemon\Items\Repels\MaxRepel.vb" />
     <Compile Include="Pokemon\Items\Repels\Repel.vb" />
+    <Compile Include="Pokemon\Items\Repels\RepelItem.vb" />
     <Compile Include="Pokemon\Items\Repels\SuperRepel.vb" />
     <Compile Include="Pokemon\Items\Standard\AbilityCapsule.vb" />
     <Compile Include="Pokemon\Items\Standard\AmuletCoin.vb" />
