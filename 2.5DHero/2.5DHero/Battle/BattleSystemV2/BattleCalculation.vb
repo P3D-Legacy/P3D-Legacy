@@ -904,7 +904,7 @@
             Dim UA As Single = 1.0F
             Dim FA As Single = 1.0F
 
-            'IT
+            'IT (Item attack power modifier)
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
                 Select Case p.Item.Name.ToLower()
                     Case "muscle band"
@@ -1007,7 +1007,7 @@
                         End If
                 End Select
             End If
-            'CHG
+            'CHG (If used Charge)
             Dim lastMove As Attack = BattleScreen.FieldEffects.OwnLastMove
             If Own = False Then
                 lastMove = BattleScreen.FieldEffects.OppLastMove
@@ -1025,7 +1025,7 @@
             If BattleScreen.FieldEffects.WaterSport > 0 And Attack.Type.Type = Element.Types.Fire Then
                 WS = 0.5F
             End If
-            'UA
+            'UA (User Ability)
             Select Case p.Ability.Name.ToLower()
                 Case "rivalry"
                     If p.Gender <> Pokemon.Genders.Genderless And Op.Gender <> Pokemon.Genders.Genderless Then
@@ -1122,7 +1122,8 @@
                 Case Else
                     UA = 1.0F
             End Select
-
+            
+            'FA (Foe ability)
             Select Case Op.Ability.Name.ToLower()
                 Case "thick fat"
                     If BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
