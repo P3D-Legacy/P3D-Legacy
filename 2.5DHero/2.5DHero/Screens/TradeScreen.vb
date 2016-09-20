@@ -14,7 +14,7 @@ Public Class TradeScreen
     End Enum
 
     Private MenuState As MenuStates = MenuStates.MainPage
-    Private CurrentCategory As Item.ItemTypes = Item.ItemTypes.Medicine
+    Private CurrentCategory As Items.ItemTypes = Items.ItemTypes.Medicine
 
     Private MainCursor As Integer = 0
     Private CategoryCursor As Integer = 0
@@ -98,7 +98,7 @@ Public Class TradeScreen
                 If Currency = Currencies.BattlePoints Then
                     Me.Price = i.BattlePointsPrice
                 ElseIf Currency = Currencies.Pokédollar Then
-                    Me.Price = i.PokéDollarPrice
+                    Me.Price = i.PokeDollarPrice
                 End If
             Else
                 Me.Price = Price
@@ -350,7 +350,7 @@ Public Class TradeScreen
 
 #Region "BuyCategoryScreen"
 
-    Private loadedBuyCategories As New List(Of Item.ItemTypes)
+    Private loadedBuyCategories As New List(Of Items.ItemTypes)
 
     Private Sub LoadBuyCategoriesItems()
         Me.loadedBuyCategories.Clear()
@@ -361,7 +361,7 @@ Public Class TradeScreen
                 loadedBuyCategories.Add(item.ItemType)
             End If
         Next
-        Me.loadedBuyCategories = (From c As Item.ItemTypes In Me.loadedBuyCategories Order By CInt(c)).ToList()
+        Me.loadedBuyCategories = (From c As Items.ItemTypes In Me.loadedBuyCategories Order By CInt(c)).ToList()
     End Sub
 
     Private Sub UpdateBuyCategory()
@@ -760,7 +760,7 @@ Public Class TradeScreen
 
 #Region "SellCatetoryScreen"
 
-    Private loadedSellCategories As New List(Of Item.ItemTypes)
+    Private loadedSellCategories As New List(Of Items.ItemTypes)
 
     Private Sub LoadSellCategoryItems()
         Me.loadedSellCategories.Clear()
@@ -771,7 +771,7 @@ Public Class TradeScreen
                 loadedSellCategories.Add(i.ItemType)
             End If
         Next
-        Me.loadedSellCategories = (From c As Item.ItemTypes In Me.loadedSellCategories Order By CInt(c)).ToList()
+        Me.loadedSellCategories = (From c As Items.ItemTypes In Me.loadedSellCategories Order By CInt(c)).ToList()
     End Sub
 
     Private Sub UpdateSellCategory()
@@ -1220,24 +1220,24 @@ Public Class TradeScreen
         Core.SpriteBatch.DrawString(Font, Text, New Vector2(Position.X + Height + 10, Position.Y + textY), Color.White)
     End Sub
 
-    Private Function GetItemTypeTexture(ByVal itemType As Item.ItemTypes) As Texture2D
+    Private Function GetItemTypeTexture(ByVal itemType As Items.ItemTypes) As Texture2D
         Dim i As Integer = 0
         Select Case itemType
-            Case Item.ItemTypes.Standard
+            Case Items.ItemTypes.Standard
                 i = 0
-            Case Item.ItemTypes.Medicine
+            Case Items.ItemTypes.Medicine
                 i = 1
-            Case Item.ItemTypes.Machines
+            Case Items.ItemTypes.Machines
                 i = 2
-            Case Item.ItemTypes.Pokéballs
+            Case Items.ItemTypes.Pokéballs
                 i = 3
-            Case Item.ItemTypes.Plants
+            Case Items.ItemTypes.Plants
                 i = 4
-            Case Item.ItemTypes.Mail
+            Case Items.ItemTypes.Mail
                 i = 5
-            Case Item.ItemTypes.BattleItems
+            Case Items.ItemTypes.BattleItems
                 i = 6
-            Case Item.ItemTypes.KeyItems
+            Case Items.ItemTypes.KeyItems
                 i = 7
         End Select
 

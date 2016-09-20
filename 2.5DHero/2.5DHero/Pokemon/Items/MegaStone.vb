@@ -7,28 +7,20 @@ Namespace Items
 
         Inherits Item
 
-        Private _megaPokemonNumber As Integer = 0
+        Public ReadOnly Property MegaPokemonNumber As Integer
 
-        Public Sub New(ByVal Name As String, ByVal ID As Integer, ByVal TextureRectangle As Rectangle, ByVal MegaPokemonName As String, ByVal MegaPokemonNumber As Integer)
-            MyBase.New(Name, 100, ItemTypes.Standard, ID, 1.0F, 0, TextureRectangle, "One variety of the mysterious Mega Stones. Have " & MegaPokemonName & " hold it, and this stone will enable it to Mega Evolve during battle.")
+        Public Overrides ReadOnly Property Description As String
+        Public Overrides ReadOnly Property CanBeTossed As Boolean = False
+        Public Overrides ReadOnly Property CanBeTraded As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
-            Me._texture = TextureManager.GetTexture("Items\MegaStones", TextureRectangle, "")
+        Public Sub New(ByVal MegaPokemonName As String, ByVal MegaPokemonNumber As Integer)
+            Description = "One variety of the mysterious Mega Stones. Have " & MegaPokemonName & " hold it, and this stone will enable it to Mega Evolve during battle."
+            _textureSource = "Items\MegaStones"
 
-            Me._canBeHold = True
-            Me._canBeTossed = False
-            Me._canBeTraded = False
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-
-            Me._isMegaStone = True
-            Me._megaPokemonNumber = MegaPokemonNumber
+            MegaPokemonNumber = MegaPokemonNumber
         End Sub
-
-        Public ReadOnly Property MegaPokemonNumber() As Integer
-            Get
-                Return Me._megaPokemonNumber
-            End Get
-        End Property
 
     End Class
 

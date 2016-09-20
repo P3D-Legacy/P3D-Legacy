@@ -14,43 +14,36 @@
         Public CanTeachWhenFullyEvolved As Boolean = False
         Public CanTeachWhenGender As Boolean = False
 
-        Public Sub New(ByVal ID As Integer, ByVal IsTM As Boolean, ByVal Price As Integer, ByVal AttackID As Integer)
-            Me.New(ID, IsTM, Price, AttackID, (ID - 190))
-        End Sub
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeHold As Boolean = False
+        Public Overrides ReadOnly Property CanBeTraded As Boolean = True
+        Public Overrides ReadOnly Property CanBeTossed As Boolean = True
+        Public Overrides ReadOnly Property SortValue As Integer
+        Public Overrides ReadOnly Property Description As String
+        Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Machines
 
-        Public Sub New(ByVal ID As Integer, ByVal IsTM As Boolean, ByVal Price As Integer, ByVal AttackID As Integer, ByVal NameNumber As Integer)
-            MyBase.New("TM " & NameNumber.ToString(), Price, ItemTypes.Machines, ID, 1.0F, ID - 191, New Rectangle(0, 0, 1, 1), "DUMMY")
-            If _name.Length = 4 Then
-                _name = "TM 0" & NameNumber.ToString()
-            End If
-
+        Public Sub New(ByVal IsTM As Boolean, ByVal AttackID As Integer)
             Attack = BattleSystem.Attack.GetAttackByID(AttackID)
             Me.IsTM = IsTM
-            _canBeUsedInBattle = False
             TechID = ID - 190
             HiddenID = ID - 242
-            _canBeHold = False
 
             If Me.IsTM = False Then
-                _name = "HM " & (Me.ID - 242).ToString()
-                If Name.Length = 4 Then
-                    _name = "HM 0" & (Me.ID - 242).ToString()
-                End If
-                _canBeTraded = False
-                _canBeTossed = False
+                _CanBeTraded = False
+                _CanBeTossed = False
 
                 'Sets the sortvalue to something very low so the HMs will always be in first place:
-                _sortValue = -100000 + NameNumber
+                _SortValue = -100000 + ID
             Else
-                _sortValue = NameNumber
+                _SortValue = ID
             End If
 
-            _description = "Teaches """ & Attack.Name & """ to a Pokémon."
+            _Description = "Teaches """ & Attack.Name & """ to a Pokémon."
 
-            SetTexture()
+            SetTextureRectangle()
         End Sub
 
-        Private Sub SetTexture()
+        Private Sub SetTextureRectangle()
             Dim r As New Rectangle(144, 168, 24, 24)
 
             Select Case Attack.Type.Type
@@ -92,7 +85,7 @@
                     r = New Rectangle(192, 168, 24, 24)
             End Select
 
-            _texture = TextureManager.GetTexture("Items\ItemSheet", r, "")
+            _textureRectangle = r
         End Sub
 
         Public Overrides Sub Use()

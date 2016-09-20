@@ -52,7 +52,7 @@
             Dim ID As Integer = 0
             Dim Name As String = ""
             Dim Price As Integer = 0
-            Dim ItemType As Item.ItemTypes = net.Pokemon3D.Game.Item.ItemTypes.Standard
+            Dim ItemType As Items.ItemTypes = Game.Items.ItemTypes.Standard
             Dim CatchMultiplier As Single = 0.0F
             Dim SortValue As Integer = 0
             Dim Description As String = ""
@@ -84,21 +84,21 @@
 
                 Select Case dataArr(3).ToLower()
                     Case "standard"
-                        ItemType = net.Pokemon3D.Game.Item.ItemTypes.Standard
+                        ItemType = ItemTypes.Standard
                     Case "medicine"
-                        ItemType = net.Pokemon3D.Game.Item.ItemTypes.Medicine
+                        ItemType = ItemTypes.Medicine
                     Case "plants"
-                        ItemType = net.Pokemon3D.Game.Item.ItemTypes.Plants
+                        ItemType = ItemTypes.Plants
                     Case "pokeballs", "pokéballs"
-                        ItemType = net.Pokemon3D.Game.Item.ItemTypes.Pokéballs
+                        ItemType = ItemTypes.Pokéballs
                     Case "machines"
-                        ItemType = net.Pokemon3D.Game.Item.ItemTypes.Machines
+                        ItemType = ItemTypes.Machines
                     Case "keyitems", "keyitem"
-                        ItemType = net.Pokemon3D.Game.Item.ItemTypes.KeyItems
+                        ItemType = ItemTypes.KeyItems
                     Case "mail"
-                        ItemType = net.Pokemon3D.Game.Item.ItemTypes.Mail
+                        ItemType = ItemTypes.Mail
                     Case "battleitems"
-                        ItemType = net.Pokemon3D.Game.Item.ItemTypes.BattleItems
+                        ItemType = ItemTypes.BattleItems
                     Case Else
                         Logger.Log(Logger.LogTypes.ErrorMessage, "FileItem.vb: The field for ""ItemType"" did not contain an ItemType data type.")
                         Me._isValid = False
