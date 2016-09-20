@@ -5,12 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 500
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(72, 168, 24, 24)
+            MyBase.New("Prism Scale", 500, ItemTypes.Standard, 83, 1, 1, New Rectangle(72, 168, 24, 24), "A mysterious scale that causes a certain Pokémon to evolve. It shines in rainbow colors.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
         End Sub
 
     End Class

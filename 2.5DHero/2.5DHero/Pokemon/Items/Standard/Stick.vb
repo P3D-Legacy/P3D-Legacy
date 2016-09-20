@@ -5,13 +5,15 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
-        Public Overrides ReadOnly Property FlingDamage As Integer = 60
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(168, 96, 24, 24)
+            MyBase.New("Stick", 200, ItemTypes.Standard, 105, 1, 0, New Rectangle(168, 96, 24, 24), "An item to be held by Farfetch'd. It is a very long and stiff stalk of leek that boosts the critical-hit ratio.")
+
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
+            Me._canBeTraded = True
+            Me._canBeHold = True
+
+            Me._flingDamage = 60
         End Sub
 
     End Class

@@ -5,12 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 120000
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(24, 216, 24, 24)
+            MyBase.New("Comet Shard", 120000, ItemTypes.Standard, 149, 1, 0, New Rectangle(24, 216, 24, 24), "A shard which fell to the ground when a comet approached. A maniac will buy it for a high price.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
         End Sub
 
     End Class

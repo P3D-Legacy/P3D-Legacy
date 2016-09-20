@@ -5,12 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1000
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(288, 48, 24, 24)
+            MyBase.New("Silver Leaf", 1000, ItemTypes.Standard, 60, 1, 0, New Rectangle(288, 48, 24, 24), "A strange, silver-colored leaf.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
         End Sub
 
     End Class

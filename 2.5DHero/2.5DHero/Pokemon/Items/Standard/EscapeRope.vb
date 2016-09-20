@@ -5,11 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 550
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(408, 0, 24, 24)
+            MyBase.New("Escape Rope", 550, ItemTypes.Standard, 19, 1, 0, New Rectangle(408, 0, 24, 24), "A long and durable rope. Use it to escape instantly from a cave or a dungeon.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = True
+            Me._canBeUsedInBattle = False
         End Sub
 
         Public Overrides Sub Use()

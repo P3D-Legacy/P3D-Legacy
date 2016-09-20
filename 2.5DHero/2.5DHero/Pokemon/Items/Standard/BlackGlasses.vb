@@ -5,12 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(96, 96, 24, 24)
+            MyBase.New("Black Glasses", 100, ItemTypes.Standard, 102, 1, 0, New Rectangle(96, 96, 24, 24), "An item to be held by a Pokemon. A pair of shady-looking glasses that boost the power of Dark-type moves.")
+
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
+            Me._canBeTraded = True
+            Me._canBeHold = True
         End Sub
 
     End Class

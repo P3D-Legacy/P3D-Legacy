@@ -5,12 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 3000
-        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
-
         Public Sub New()
-            _textureRectangle = New Rectangle(216, 48, 24, 24)
+            MyBase.New("Exp Share", 3000, ItemTypes.Standard, 57, 1, 0, New Rectangle(216, 48, 24, 24), "An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.")
+
+            Me._canBeHold = True
+            Me._canBeTraded = True
+            Me._canBeUsed = False
+            Me._canBeUsedInBattle = False
         End Sub
 
     End Class
