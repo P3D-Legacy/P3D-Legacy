@@ -6,7 +6,7 @@ Public Class WatmelBerry
     Inherits Berry
 
     Public Sub New()
-            MyBase.New(2032, "Watmel", 64800, "Pokéblock ingredient. Plant in loamy soil to grow Watmel.", "25.0cm", "Soft", 1, 2)
+            MyBase.New(64800, "Pokéblock ingredient. Plant in loamy soil to grow Watmel.", "25.0cm", "Soft", 1, 2)
 
         Me.Spicy = 0
         Me.Dry = 0

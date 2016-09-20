@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2063, "Rowap", 86400, "If held by a Pokémon and a special attack lands, the attacker takes damage. ", "13.2cm", "Very Soft", 1, 5)
+            MyBase.New(86400, "If held by a Pokémon and a special attack lands, the attacker takes damage. ", "13.2cm", "Very Soft", 1, 5)
 
             Me.Spicy = 10
             Me.Dry = 0

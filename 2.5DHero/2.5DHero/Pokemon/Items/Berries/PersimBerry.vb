@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2007, "Persim", 14400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from confusion on its own in battle.", "4.7cm", "Hard", 2, 3)
+            MyBase.New(14400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can recover from confusion on its own in battle.", "4.7cm", "Hard", 2, 3)
 
             Me.Spicy = 10
             Me.Dry = 10

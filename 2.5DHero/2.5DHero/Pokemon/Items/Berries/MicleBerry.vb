@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2060, "Micle", 86400, "If held by a Pokémon, it raises the accuracy of a move just once in a pinch.", "4.1cm", "Soft", 1, 5)
+            MyBase.New(86400, "If held by a Pokémon, it raises the accuracy of a move just once in a pinch.", "4.1cm", "Soft", 1, 5)
 
             Me.Spicy = 0
             Me.Dry = 40

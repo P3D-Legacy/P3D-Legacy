@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2057, "Lansat", 86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, its critical-hit ratio will increase when it's in a pinch.", "9.7cm", "Soft", 1, 2)
+            MyBase.New(86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, its critical-hit ratio will increase when it's in a pinch.", "9.7cm", "Soft", 1, 2)
 
             Me.Spicy = 30
             Me.Dry = 10

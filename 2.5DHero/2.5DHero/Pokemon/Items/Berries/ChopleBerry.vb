@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2040, "Chople", 64800, "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fighting-type attack.", "7.7cm", "Soft", 1, 5)
+            MyBase.New(64800, "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Fighting-type attack.", "7.7cm", "Soft", 1, 5)
 
             Me.Spicy = 15
             Me.Dry = 0
