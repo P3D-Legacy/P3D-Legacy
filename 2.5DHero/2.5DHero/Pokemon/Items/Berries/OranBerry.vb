@@ -5,6 +5,8 @@ Namespace Items.Berries
 
         Inherits Berry
 
+        Public Overrides ReadOnly Property IsHealingItem As Boolean = True
+
         Public Sub New()
             MyBase.New(10800, "A Berry to be consumed by Pokémon. If a Pokémon holds one, it can restore its own HP by 10 points during battle.", "3.5cm", "Super Hard", 2, 3)
 
@@ -16,8 +18,6 @@ Namespace Items.Berries
 
             Me.Type = Element.Types.Poison
             Me.Power = 60
-
-            Me._isHealingItem = True
         End Sub
 
         Public Overrides Sub Use()
