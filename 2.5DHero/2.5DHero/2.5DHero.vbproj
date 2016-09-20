@@ -938,6 +938,7 @@
     <Compile Include="Pokemon\Attacks\Water\WaterSpout.vb" />
     <Compile Include="Pokemon\Attacks\Water\Whirlpool.vb" />
     <Compile Include="Pokemon\Attacks\Water\Withdraw.vb" />
+    <Compile Include="Pokemon\Items\Apricorns\Apricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\BlkApricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\BluApricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\GrnApricorn.vb" />
