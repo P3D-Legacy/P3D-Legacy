@@ -946,6 +946,7 @@
     <Compile Include="Pokemon\Items\Apricorns\RedApricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\WhtApricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\YlwApricorn.vb" />
+    <Compile Include="Pokemon\Items\Balls\BallItem.vb" />
     <Compile Include="Pokemon\Items\Balls\CherishBall.vb" />
     <Compile Include="Pokemon\Items\Balls\DiveBall.vb" />
     <Compile Include="Pokemon\Items\Balls\DuskBall.vb" />

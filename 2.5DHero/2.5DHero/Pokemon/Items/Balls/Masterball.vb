@@ -3,14 +3,14 @@ Namespace Items.Balls
     <Item(1, "Masterball")>
     Public Class Masterball
 
-        Inherits Item
+        Inherits BallItem
+
+        Public Overrides ReadOnly Property Description As String = "The best Pokéball with the ultimate level of performance. With it, you will catch any wild Pokémon without fail."
+        Public Overrides ReadOnly Property CanBeTraded As Boolean = False
+        Public Overrides ReadOnly Property CatchMultiplier As Single = 255.0F
 
         Public Sub New()
-            MyBase.New("Masterball", 0, ItemTypes.Pokéballs, 1, 255, 3, New Rectangle(0, 0, 24, 24), "The best Pokéball with the ultimate level of performance. With it, you will catch any wild Pokémon without fail.")
-
-            Me._isBall = True
-            Me._canBeUsed = False
-            Me._canBeTraded = False
+            _textureRectangle = New Rectangle(0, 0, 24, 24)
         End Sub
 
     End Class

@@ -135,14 +135,18 @@ Public MustInherit Class Item
     Public Overridable ReadOnly Property BattleSelectPokemon As Boolean = True
 
     ''' <summary>
-    ''' If this item is a Pokéball item.
-    ''' </summary>
-    Public Overridable ReadOnly Property IsBall As Boolean = False
-
-    ''' <summary>
     ''' If this item is a Healing item.
     ''' </summary>
     Public Overridable ReadOnly Property IsHealingItem As Boolean = False
+
+    ''' <summary>
+    ''' If this item is a Pokéball item.
+    ''' </summary>
+    Public Overridable ReadOnly Property IsBall As Boolean
+        Get
+            Return [GetType]().IsSubclassOf(GetType(Items.Balls.BallItem))
+        End Get
+    End Property
 
     ''' <summary>
     ''' If this item is a Berry item.

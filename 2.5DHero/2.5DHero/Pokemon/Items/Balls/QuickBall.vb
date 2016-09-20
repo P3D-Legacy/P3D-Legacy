@@ -3,13 +3,12 @@ Namespace Items.Balls
     <Item(129, "Quick Ball")>
     Public Class QuickBall
 
-        Inherits Item
+        Inherits BallItem
+
+        Public Overrides ReadOnly Property Description As String = "A somewhat different Pokéball that has a more successful catch rate if used at the start of a wild encounter."
 
         Public Sub New()
-            MyBase.New("Quick Ball", 1000, ItemTypes.Pokéballs, 129, 1, 0, New Rectangle(120, 168, 24, 24), "A somewhat different Pokéball that has a more successful catch rate if used at the start of a wild encounter.")
-
-            Me._isBall = True
-            Me._canBeUsed = False
+            _textureRectangle = New Rectangle(120, 168, 24, 24)
         End Sub
 
     End Class
