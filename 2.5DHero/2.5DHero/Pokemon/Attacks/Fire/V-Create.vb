@@ -1,6 +1,6 @@
 Namespace BattleSystem.Moves.Fire
 
-    Public Class V-Create
+    Public Class VCreate
 
         Inherits Attack
 
