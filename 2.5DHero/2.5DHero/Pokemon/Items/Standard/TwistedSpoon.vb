@@ -5,13 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Twisted Spoon", 100, ItemTypes.Standard, 96, 1, 0, New Rectangle(480, 72, 24, 24), "An item to be held by a Pokémon. It is a spoon imbued with telekinetic power that boosts Psychic-type moves.")
+        Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. It is a spoon imbued with telekinetic power that boosts Psychic-type moves."
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 100
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = True
-            Me._canBeHold = True
+        Public Sub New()
+            _textureRectangle = New Rectangle(480, 72, 24, 24)
         End Sub
 
     End Class

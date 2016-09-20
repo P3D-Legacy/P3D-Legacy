@@ -5,13 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Exp Share", 3000, ItemTypes.Standard, 57, 1, 0, New Rectangle(216, 48, 24, 24), "An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling.")
+        Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling."
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 3000
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
+        Public Sub New()
+            _textureRectangle = New Rectangle(216, 48, 24, 24)
         End Sub
 
     End Class

@@ -5,15 +5,14 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. It is a durable stone that boosts the power of Rock-type moves."
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 100
+        Public Overrides ReadOnly Property FlingDamage As Integer = 100
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+
         Public Sub New()
-            MyBase.New("HardStone", 100, ItemTypes.Standard, 125, 1, 0, New Rectangle(96, 120, 24, 24), "An item to be held by a Pokémon. It is a durable stone that boosts the power of Rock-type moves.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._flingDamage = 100
+            _textureRectangle = New Rectangle(96, 120, 24, 24)
         End Sub
 
     End Class
