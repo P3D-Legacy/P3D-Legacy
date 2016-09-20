@@ -5,15 +5,12 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property FlingDamage As Integer = 40
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+
         Public Sub New()
-            MyBase.New("Lucky Punch", 10, ItemTypes.Standard, 30, 1, 0, New Rectangle(144, 24, 24, 24), "An item to be held by Chansey. This pair of lucky boxing gloves will boost Chansey's critical-hit ratio.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._flingDamage = 40
+            _textureRectangle = New Rectangle(144, 24, 24, 24)
         End Sub
 
     End Class

@@ -5,15 +5,12 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property FlingDamage As Integer = 10
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+
         Public Sub New()
-            MyBase.New("Reaper Cloth", 2100, ItemTypes.Standard, 84, 1, 1, New Rectangle(96, 168, 24, 24), "A cloth imbued with horrifyingly strong spiritual energy. It's loved by a certain Pokémon.")
-
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-
-            Me._flingDamage = 10
+            _textureRectangle = New Rectangle(96, 168, 24, 24)
         End Sub
 
     End Class

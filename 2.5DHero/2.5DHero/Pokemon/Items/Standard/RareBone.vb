@@ -5,13 +5,11 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Rare Bone", 30000, ItemTypes.Standard, 109, 1, 0, New Rectangle(456, 96, 24, 24), "A rare bone that is extremely valuable for the study of Pokémon archeology. It can be sold for a high price to shops.")
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
+        Public Sub New()
+            _textureRectangle = New Rectangle(456, 96, 24, 24)
         End Sub
 
     End Class

@@ -5,15 +5,12 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property FlingDamage As Integer = 80
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+
         Public Sub New()
-            MyBase.New("Sticky Barb", 200, ItemTypes.Standard, 70, 1, 0, New Rectangle(24, 168, 24, 24), "An item to be held by a Pokémon. It damages the holder every turn and may latch on to Pokémon that touch the holder.")
-
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-
-            Me._flingDamage = 80
+            _textureRectangle = New Rectangle(24, 168, 24, 24)
         End Sub
 
     End Class
