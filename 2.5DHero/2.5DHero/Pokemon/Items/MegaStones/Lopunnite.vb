@@ -9,7 +9,8 @@ Namespace Items.MegaStones
         Inherits MegaStone
 
         Public Sub New()
-            MyBase.New("Lopunnite", 544, New Rectangle(216, 72, 24, 24), "Lopunny", 428)
+            MyBase.New("Lopunny", 428)
+            _textureRectangle = New Rectangle(216, 72, 24, 24)
         End Sub
 
     End Class
