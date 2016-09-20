@@ -5,15 +5,12 @@ Namespace Items.Medicine
 
         Inherits MedicineItem
 
+        Public Overrides ReadOnly Property IsHealingItem As Boolean = True
+        Public Overrides ReadOnly Property Description As String = "A famous Mahogany Town candy tourists like to buy and take home. It restores the HP of one Pokémon by 20 points."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 300
+
         Public Sub New()
-            MyBase.New("RageCandyBar", 300, ItemTypes.Medicine, 114, 1, 0, New Rectangle(360, 96, 24, 24), "A famous Mahogany Town candy tourists like to buy and take home. It restores the HP of one Pokémon by 20 points.")
-
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._isHealingItem = True
+            _textureRectangle = New Rectangle(360, 96, 24, 24)
         End Sub
 
         Public Overrides Sub Use()

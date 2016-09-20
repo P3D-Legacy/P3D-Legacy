@@ -5,13 +5,11 @@ Namespace Items.Medicine
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Lava Cookie", 200, ItemTypes.Medicine, 7, 1, 1, New Rectangle(192, 192, 24, 24), "Lavaridge Town's local specialty. It can be used once to heal all the status conditions of a Pokemon.")
+        Public Overrides ReadOnly Property Description As String = "Lavaridge Town's local specialty. It can be used once to heal all the status conditions of a Pokemon."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
 
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
+        Public Sub New()
+            _textureRectangle = New Rectangle(192, 192, 24, 24)
         End Sub
 
         Public Overrides Sub Use()

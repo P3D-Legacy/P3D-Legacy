@@ -5,15 +5,12 @@ Namespace Items.Medicine
 
         Inherits MedicineItem
 
+        Public Overrides ReadOnly Property IsHealingItem As Boolean = True
+        Public Overrides ReadOnly Property Description As String = "A medicine that can be used to fully restore the HP of a single Pokémon and heal any status conditions it has."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 3000
+
         Public Sub New()
-            MyBase.New("Full Restore", 3000, ItemTypes.Medicine, 14, 1, 0, New Rectangle(288, 0, 24, 24), "A medicine that can be used to fully restore the HP of a single Pokémon and heal any status conditions it has.")
-
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._isHealingItem = True
+            _textureRectangle = New Rectangle(288, 0, 24, 24)
         End Sub
 
         Public Overrides Sub Use()
