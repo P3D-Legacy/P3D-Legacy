@@ -1342,10 +1342,10 @@
                     returnMove = New Moves.Fighting.SecretSword()
                     'Case 549
                     'Glaciate
-                    'Case 550
-                    'Bolt Strike
-                    'Case 551
-                    'Blue Flare
+                Case 550
+                    returnMove = New Moves.Electric.BoltStrike()
+                Case 551
+                    returnMove = New Moves.Fire.BlueFlare()
                 Case 552
                     returnMove = New Moves.Fire.FieryDance()
                 Case 553
@@ -1356,8 +1356,8 @@
                     returnMove = New Moves.Dark.Snarl()
                 Case 556
                     returnMove = New Moves.Ice.IcicleCrash()
-                    'Case 557
-                    'V-Create
+                Case 557
+                    returnMove = New Moves.Fire.V-Create()
                 Case 558
                     returnMove = New Moves.Fire.FusionFlare()
                 Case 559
