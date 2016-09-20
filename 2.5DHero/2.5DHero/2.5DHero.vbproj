@@ -461,6 +461,7 @@
     <Compile Include="Pokemon\Attacks\Dragon\DualChop.vb" />
     <Compile Include="Pokemon\Attacks\Dragon\Outrage.vb" />
     <Compile Include="Pokemon\Attacks\Dragon\Twister.vb" />
+    <Compile Include="Pokemon\Attacks\Electric\BoltStrike.vb" />
     <Compile Include="Pokemon\Attacks\Electric\Charge.vb" />
     <Compile Include="Pokemon\Attacks\Electric\Chargebeam.vb" />
     <Compile Include="Pokemon\Attacks\Electric\Discharge.vb" />
@@ -530,6 +531,7 @@
     <Compile Include="Pokemon\Attacks\Fighting\WakeUpSlap.vb" />
     <Compile Include="Pokemon\Attacks\Fire\BlastBurn.vb" />
     <Compile Include="Pokemon\Attacks\Fire\BlazeKick.vb" />
+    <Compile Include="Pokemon\Attacks\Fire\BlueFlare.vb" />
     <Compile Include="Pokemon\Attacks\Fire\Ember.vb" />
     <Compile Include="Pokemon\Attacks\Fire\Eruption.vb" />
     <Compile Include="Pokemon\Attacks\Fire\FieryDance.vb" />
@@ -554,6 +556,7 @@
     <Compile Include="Pokemon\Attacks\Fire\SacredFire.vb" />
     <Compile Include="Pokemon\Attacks\Fire\SearingShot.vb" />
     <Compile Include="Pokemon\Attacks\Fire\SunnyDay.vb" />
+    <Compile Include="Pokemon\Attacks\Fire\V-Create.vb" />
     <Compile Include="Pokemon\Attacks\Fire\Will-O-Wisp.vb" />
     <Compile Include="Pokemon\Attacks\Flying\Acrobatics.vb" />
     <Compile Include="Pokemon\Attacks\Flying\AerialAce.vb" />
