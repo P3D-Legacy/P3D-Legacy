@@ -8,6 +8,12 @@ Namespace Items
         Inherits Item
 
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Medicine
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 9800
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+
+        Public Overrides Sub Use()
+            Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True))
+        End Sub
 
         ''' <summary>
         ''' Checks if a Vitamin can be used on a Pokémon.
