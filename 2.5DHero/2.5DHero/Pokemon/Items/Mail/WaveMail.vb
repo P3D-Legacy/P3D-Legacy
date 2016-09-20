@@ -5,8 +5,10 @@ Namespace Items.Mail
 
         Inherits MailItem
 
+        Public Overrides ReadOnly Property Description As String = "A Wailmer-print Mail to be held by a Pokémon."
+
         Public Sub New()
-            MyBase.New("Wave Mail", 50, 311, New Rectangle(240, 456, 24, 24), "A Wailmer-print Mail to be held by a Pokémon.")
+            _textureRectangle = New Rectangle(240, 456, 24, 24)
         End Sub
 
     End Class

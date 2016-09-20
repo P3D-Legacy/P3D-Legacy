@@ -20,6 +20,7 @@ Namespace Items
 
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Mail
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 50
 
         Public Shared Function GetMailDataFromString(ByVal s As String) As MailData
             If s.Contains("|") = True Then
