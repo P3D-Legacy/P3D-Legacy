@@ -6,7 +6,7 @@ Namespace Items.Plates
         Inherits PlateItem
 
         Public Sub New()
-            MyBase.New("Toxic Plate", 282, Element.Types.Poison)
+            MyBase.New(Element.Types.Poison)
         End Sub
 
     End Class

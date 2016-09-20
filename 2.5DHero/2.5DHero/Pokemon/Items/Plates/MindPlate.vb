@@ -6,7 +6,7 @@ Namespace Items.Plates
         Inherits PlateItem
 
         Public Sub New()
-            MyBase.New("Mind Plate", 276, Element.Types.Psychic)
+            MyBase.New(Element.Types.Psychic)
         End Sub
 
     End Class

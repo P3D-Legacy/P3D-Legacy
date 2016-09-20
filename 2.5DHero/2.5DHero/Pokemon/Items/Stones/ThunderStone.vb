@@ -5,8 +5,10 @@ Namespace Items.Stones
 
         Inherits StoneItem
 
+        Public Overrides ReadOnly Property Description As String = "A peculiar stone that can make certain species of Pokémon evolve. It has a distinct thunderbolt pattern."
+
         Public Sub New()
-            MyBase.New("Thunder Stone", 2100, ItemTypes.Standard, 23, 1, 0, New Rectangle(0, 24, 24, 24), "A peculiar stone that can make certain species of Pokémon evolve. It has a distinct thunderbolt pattern.")
+            _textureRectangle = New Rectangle(0, 24, 24, 24)
         End Sub
 
     End Class

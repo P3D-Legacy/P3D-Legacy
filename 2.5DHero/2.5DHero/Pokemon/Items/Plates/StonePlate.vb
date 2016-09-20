@@ -6,7 +6,7 @@ Namespace Items.Plates
         Inherits PlateItem
 
         Public Sub New()
-            MyBase.New("Stone Plate", 281, Element.Types.Rock)
+            MyBase.New(Element.Types.Rock)
         End Sub
 
     End Class

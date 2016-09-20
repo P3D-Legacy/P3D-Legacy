@@ -3,13 +3,12 @@ Namespace Items.Balls
     <Item(80, "Net Ball")>
     Public Class NetBall
 
-        Inherits Item
+        Inherits BallItem
+
+        Public Overrides ReadOnly Property Description As String = "A somewhat different Pokéball that is more effective when attempting to catch Water- or Bug-type Pokémon."
 
         Public Sub New()
-            MyBase.New("Net Ball", 1000, ItemTypes.Pokéballs, 80, 1, 0, New Rectangle(48, 168, 24, 24), "A somewhat different Pokéball that is more effective when attempting to catch Water- or Bug-type Pokémon.")
-
-            Me._isBall = True
-            Me._canBeUsed = False
+            _textureRectangle = New Rectangle(48, 168, 24, 24)
         End Sub
 
     End Class

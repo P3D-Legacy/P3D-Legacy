@@ -5,15 +5,12 @@ Namespace Items.Medicine
 
         Inherits MedicineItem
 
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 500
+        Public Overrides ReadOnly Property Description As String = "A bitter medicine powder. When consumed, it restores 50 HP to an injured Pokémon."
+        Public Overrides ReadOnly Property IsHealingItem As Boolean = True
+
         Public Sub New()
-            MyBase.New("Energy Powder", 500, ItemTypes.Medicine, 121, 1, 0, New Rectangle(0, 120, 24, 24), "A bitter medicine powder. When consumed, it restores 50 HP to an injured Pokémon.")
-
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._isHealingItem = True
+            _textureRectangle = New Rectangle(0, 120, 24, 24)
         End Sub
 
         Public Overrides Sub Use()
@@ -25,11 +22,11 @@ Namespace Items.Medicine
         End Sub
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
-            Dim r As Boolean = HealPokemon(PokeIndex, 50)
-            If r = True Then
+            Dim success As Boolean = HealPokemon(PokeIndex, 50)
+            If success Then
                 Core.Player.Pokemons(PokeIndex).ChangeFriendShip(Pokemon.FriendShipCauses.EnergyPowder)
             End If
-            Return r
+            Return success
         End Function
 
     End Class

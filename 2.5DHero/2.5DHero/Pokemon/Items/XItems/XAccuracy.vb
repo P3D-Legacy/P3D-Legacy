@@ -3,17 +3,13 @@ Namespace Items.XItems
     <Item(33, "X Accuracy")>
     Public Class XAccuracy
 
-        Inherits Item
+        Inherits XItem
+
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 950
+        Public Overrides ReadOnly Property Description As String = "An item that boosts the accuracy of a Pokémon during a battle. It wears off once the Pokémon is withdrawn."
 
         Public Sub New()
-            MyBase.New("X Accuracy", 950, ItemTypes.BattleItems, 33, 1, 0, New Rectangle(216, 24, 24, 24), "An item that boosts the accuracy of a Pokémon during a battle. It wears off once the Pokémon is withdrawn.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._requiresPokemonSelectInBattle = False
+            _textureRectangle = New Rectangle(216, 24, 24, 24)
         End Sub
 
         Public Overrides Function UseOnPokemon(PokeIndex As Integer) As Boolean

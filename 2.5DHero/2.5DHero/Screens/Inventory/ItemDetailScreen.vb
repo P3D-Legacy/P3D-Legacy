@@ -192,7 +192,7 @@
         If Item.CanBeHold = True Then
             MenuItems.Add(Localization.GetString("item_detail_screen_give"))
         End If
-        If Item.ItemType <> net.Pokemon3D.Game.Item.ItemTypes.KeyItems And Item.CanBeTossed = True Then
+        If Item.ItemType <> Game.Items.ItemTypes.KeyItems And Item.CanBeTossed = True Then
             MenuItems.Add(Localization.GetString("item_detail_screen_trash"))
         End If
         MenuItems.Add(Localization.GetString("item_detail_screen_back"))

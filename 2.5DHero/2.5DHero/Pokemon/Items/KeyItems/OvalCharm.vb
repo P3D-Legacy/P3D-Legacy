@@ -3,15 +3,12 @@ Namespace Items.KeyItems
     <Item(241, "Oval Charm")>
     Public Class OvalCharm
 
-        Inherits Item
+        Inherits KeyItem
+
+        Public Overrides ReadOnly Property Description As String = "An oval charm said to increase the chance of Pokémon Eggs being found at the Day Care."
 
         Public Sub New()
-            MyBase.New("Oval Charm", 9800, ItemTypes.KeyItems, 241, 1, 0, New Rectangle(96, 264, 24, 24), "An oval charm said to increase the chance of Pokémon Eggs being found at the Day Care.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = False
-            Me._canBeHold = False
+            _textureRectangle = New Rectangle(96, 264, 24, 24)
         End Sub
 
     End Class

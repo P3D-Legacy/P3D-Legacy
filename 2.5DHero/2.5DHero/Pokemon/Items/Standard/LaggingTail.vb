@@ -5,15 +5,14 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual."
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 200
+        Public Overrides ReadOnly Property FlingDamage As Integer = 10
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+
         Public Sub New()
-            MyBase.New("Lagging Tail", 200, ItemTypes.Standard, 142, 1, 0, New Rectangle(432, 192, 24, 24), "An item to be held by a Pokémon. It is tremendously heavy and makes the holder move slower than usual.")
-
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-
-            Me._flingDamage = 10
+            _textureRectangle = New Rectangle(432, 192, 24, 24)
         End Sub
 
     End Class

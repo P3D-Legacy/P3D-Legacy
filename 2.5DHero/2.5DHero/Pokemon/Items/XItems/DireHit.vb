@@ -3,17 +3,13 @@ Namespace Items.XItems
     <Item(44, "Dire Hit")>
     Public Class DireHit
 
-        Inherits Item
+        Inherits XItem
+
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 650
+        Public Overrides ReadOnly Property Description As String = "An item that raises the critical-hit ratio greatly. It can be used only once and wears off if the Pokémon is withdrawn."
 
         Public Sub New()
-            MyBase.New("Dire Hit", 650, ItemTypes.BattleItems, 44, 1, 0, New Rectangle(480, 24, 24, 24), "An item that raises the critical-hit ratio greatly. It can be used only once and wears off if the Pokémon is withdrawn.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._requiresPokemonSelectInBattle = False
+            _textureRectangle = New Rectangle(480, 24, 24, 24)
         End Sub
 
         Public Overrides Function UseOnPokemon(PokeIndex As Integer) As Boolean

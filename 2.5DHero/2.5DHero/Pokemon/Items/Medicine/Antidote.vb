@@ -5,13 +5,11 @@ Namespace Items.Medicine
 
         Inherits MedicineItem
 
-        Public Sub New()
-            MyBase.New("Antidote", 100, ItemTypes.Medicine, 9, 1, 1, New Rectangle(168, 0, 24, 24), "A spray-type medicine for poisoning. It can be used once to lift the effects of being poisoned from a Pokémon.")
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
+        Public Overrides ReadOnly Property Description As String = "A spray-type medicine for poisoning. It can be used once to lift the effects of being poisoned from a Pokémon."
 
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
+        Public Sub New()
+            _textureRectangle = New Rectangle(168, 0, 24, 24)
         End Sub
 
         Public Overrides Sub Use()

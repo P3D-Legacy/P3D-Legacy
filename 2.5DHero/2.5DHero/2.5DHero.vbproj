@@ -941,6 +941,7 @@
     <Compile Include="Pokemon\Attacks\Water\WaterSpout.vb" />
     <Compile Include="Pokemon\Attacks\Water\Whirlpool.vb" />
     <Compile Include="Pokemon\Attacks\Water\Withdraw.vb" />
+    <Compile Include="Pokemon\Items\Apricorns\Apricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\BlkApricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\BluApricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\GrnApricorn.vb" />
@@ -948,6 +949,7 @@
     <Compile Include="Pokemon\Items\Apricorns\RedApricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\WhtApricorn.vb" />
     <Compile Include="Pokemon\Items\Apricorns\YlwApricorn.vb" />
+    <Compile Include="Pokemon\Items\Balls\BallItem.vb" />
     <Compile Include="Pokemon\Items\Balls\CherishBall.vb" />
     <Compile Include="Pokemon\Items\Balls\DiveBall.vb" />
     <Compile Include="Pokemon\Items\Balls\DuskBall.vb" />
@@ -1037,9 +1039,9 @@
     <Compile Include="Pokemon\Items\Berries\WikiBerry.vb" />
     <Compile Include="Pokemon\Items\Berries\YacheBerry.vb" />
     <Compile Include="Pokemon\Items\Berry.vb" />
-    <Compile Include="Pokemon\Items\FileItem.vb" />
     <Compile Include="Pokemon\Items\Item.vb" />
     <Compile Include="Pokemon\Items\ItemAttribute.vb" />
+    <Compile Include="Pokemon\Items\ItemType.vb" />
     <Compile Include="Pokemon\Items\KeyItems\BasementKey.vb" />
     <Compile Include="Pokemon\Items\KeyItems\Bicycle.vb" />
     <Compile Include="Pokemon\Items\KeyItems\BlueCard.vb" />
@@ -1049,6 +1051,7 @@
     <Compile Include="Pokemon\Items\KeyItems\GoodRod.vb" />
     <Compile Include="Pokemon\Items\KeyItems\GSBall.vb" />
     <Compile Include="Pokemon\Items\KeyItems\ItemFinder.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\KeyItem.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LostItem.vb" />
     <Compile Include="Pokemon\Items\KeyItems\MachinePart.vb" />
     <Compile Include="Pokemon\Items\KeyItems\MysteryEgg.vb" />
@@ -1388,6 +1391,7 @@
     <Compile Include="Pokemon\Items\Plates\ZapPlate.vb" />
     <Compile Include="Pokemon\Items\Repels\MaxRepel.vb" />
     <Compile Include="Pokemon\Items\Repels\Repel.vb" />
+    <Compile Include="Pokemon\Items\Repels\RepelItem.vb" />
     <Compile Include="Pokemon\Items\Repels\SuperRepel.vb" />
     <Compile Include="Pokemon\Items\Standard\AbilityCapsule.vb" />
     <Compile Include="Pokemon\Items\Standard\AmuletCoin.vb" />
@@ -1508,6 +1512,7 @@
     <Compile Include="Pokemon\Items\XItems\XAccuracy.vb" />
     <Compile Include="Pokemon\Items\XItems\XAttack.vb" />
     <Compile Include="Pokemon\Items\XItems\XDefend.vb" />
+    <Compile Include="Pokemon\Items\XItems\XItem.vb" />
     <Compile Include="Pokemon\Items\XItems\XSpAtk.vb" />
     <Compile Include="Pokemon\Items\XItems\XSpDef.vb" />
     <Compile Include="Pokemon\Items\XItems\XSpeed.vb" />

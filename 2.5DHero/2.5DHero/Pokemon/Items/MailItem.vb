@@ -18,24 +18,9 @@ Namespace Items
             Dim MailRead As Boolean
         End Structure
 
-        ''' <summary>
-        ''' Creates a new instance of the Mail Item class.
-        ''' </summary>
-        ''' <param name="Name">The name of the Mail.</param>
-        ''' <param name="Price">The price when purchased.</param>
-        ''' <param name="ID">The ID of the Item.</param>
-        ''' <param name="TextureRectangle">The TextureRectangle of the Item.</param>
-        ''' <param name="Description">The Description of the Item.</param>
-        Public Sub New(ByVal Name As String, ByVal Price As Integer, ByVal ID As Integer, ByVal TextureRectangle As Rectangle, ByVal Description As String)
-            MyBase.New(Name, Price, ItemTypes.Mail, ID, 1.0F, 0, TextureRectangle, Description)
-
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._isMail = True
-        End Sub
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Mail
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 50
 
         Public Shared Function GetMailDataFromString(ByVal s As String) As MailData
             If s.Contains("|") = True Then

@@ -5,11 +5,11 @@ Namespace Items.Machines
 
         Inherits TechMachine
 
-        Public Sub New()
-            MyBase.New(196, True, 3000, 92)
-            CanTeachAlways = True
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 32
 
-            Me._battlePointsPrice = 32
+        Public Sub New()
+            MyBase.New(True, 3000, 92)
+            CanTeachAlways = True
         End Sub
 
     End Class

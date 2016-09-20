@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2062, "Jaboca", 86400, "If held by a Pokémon, and if a foe's physical attack lands, the foe also takes damage.", "3.3cm", "Soft", 1, 5)
+            MyBase.New(86400, "If held by a Pokémon, and if a foe's physical attack lands, the foe also takes damage.", "3.3cm", "Soft", 1, 5)
 
             Me.Spicy = 0
             Me.Dry = 0
