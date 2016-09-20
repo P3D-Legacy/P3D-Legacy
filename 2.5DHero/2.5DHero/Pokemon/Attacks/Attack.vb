@@ -1357,7 +1357,7 @@
                 Case 556
                     returnMove = New Moves.Ice.IcicleCrash()
                 Case 557
-                    returnMove = New Moves.Fire.V-Create()
+                    returnMove = New Moves.Fire.VCreate()
                 Case 558
                     returnMove = New Moves.Fire.FusionFlare()
                 Case 559
