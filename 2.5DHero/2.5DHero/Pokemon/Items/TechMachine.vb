@@ -21,12 +21,14 @@
         Public Overrides ReadOnly Property SortValue As Integer
         Public Overrides ReadOnly Property Description As String
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Machines
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer
 
-        Public Sub New(ByVal IsTM As Boolean, ByVal AttackID As Integer)
+        Public Sub New(ByVal IsTM As Boolean, ByVal Price As Integer, ByVal AttackID As Integer)
             Attack = BattleSystem.Attack.GetAttackByID(AttackID)
             Me.IsTM = IsTM
             TechID = ID - 190
             HiddenID = ID - 242
+            PokeDollarPrice = Price
 
             If Me.IsTM = False Then
                 _CanBeTraded = False

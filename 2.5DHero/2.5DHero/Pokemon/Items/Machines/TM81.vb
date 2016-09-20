@@ -6,7 +6,7 @@ Namespace Items.Machines
         Inherits TechMachine
 
         Public Sub New()
-            MyBase.New(381, True, 5000, 143, 81)
+            MyBase.New(True, 5000, 143, 81)
         End Sub
 
     End Class

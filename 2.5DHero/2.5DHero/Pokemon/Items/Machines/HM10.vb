@@ -6,9 +6,7 @@ Namespace Items.Machines
         Inherits TechMachine
 
         Public Sub New()
-            MyBase.New(252, False, 100, 291)
-
-            Me._name = "HM 10"
+            MyBase.New(False, 100, 291)
         End Sub
 
     End Class
