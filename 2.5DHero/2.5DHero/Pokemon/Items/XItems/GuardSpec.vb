@@ -3,17 +3,13 @@ Namespace Items.XItems
     <Item(68, "Guard Spec.")>
     Public Class GuardSpec
 
-        Inherits Item
+        Inherits XItem
+
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 700
+        Public Overrides ReadOnly Property Description As String = "An item that prevents stat reduction among the Trainer's party Pokémon for five turns after it is used in battle."
 
         Public Sub New()
-            MyBase.New("Guard Spec.", 700, ItemTypes.BattleItems, 68, 1, 0, New Rectangle(408, 24, 24, 24), "An item that prevents stat reduction among the Trainer's party Pokémon for five turns after it is used in battle.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._requiresPokemonSelectInBattle = False
+            _textureRectangle = New Rectangle(408, 24, 24, 24)
         End Sub
 
         Public Overrides Function UseOnPokemon(PokeIndex As Integer) As Boolean

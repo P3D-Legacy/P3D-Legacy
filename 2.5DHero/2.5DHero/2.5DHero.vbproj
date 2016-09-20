@@ -1510,6 +1510,7 @@
     <Compile Include="Pokemon\Items\XItems\XAccuracy.vb" />
     <Compile Include="Pokemon\Items\XItems\XAttack.vb" />
     <Compile Include="Pokemon\Items\XItems\XDefend.vb" />
+    <Compile Include="Pokemon\Items\XItems\XItem.vb" />
     <Compile Include="Pokemon\Items\XItems\XSpAtk.vb" />
     <Compile Include="Pokemon\Items\XItems\XSpDef.vb" />
     <Compile Include="Pokemon\Items\XItems\XSpeed.vb" />
