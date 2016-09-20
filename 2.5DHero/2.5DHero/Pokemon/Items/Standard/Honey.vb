@@ -5,13 +5,13 @@ Namespace Items.Plants
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Honey", 100, ItemTypes.Plants, 253, 1, 0, New Rectangle(264, 240, 24, 24), "Honey produced by a Pokémon.")
+        Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Plants
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
+        Public Sub New()
+            _textureRectangle = New Rectangle(264, 240, 24, 24)
         End Sub
 
     End Class

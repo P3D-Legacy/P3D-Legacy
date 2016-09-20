@@ -5,13 +5,12 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Pink Bow", 100, ItemTypes.Standard, 104, 1, 0, New Rectangle(144, 96, 24, 24), "Powers up Fairy-type moves.")
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = True
-            Me._canBeHold = True
+        Public Sub New()
+            _textureRectangle = New Rectangle(144, 96, 24, 24)
         End Sub
 
     End Class

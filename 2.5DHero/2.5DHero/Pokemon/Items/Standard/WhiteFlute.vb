@@ -5,13 +5,12 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("White Flute", 500, ItemTypes.Standard, 147, 1, 0, New Rectangle(456, 192, 24, 24), "A white flute made from blown glass. Its melody makes wild Pokémon more likely to appear.")
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 500
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = True
-            Me._canBeHold = True
+        Public Sub New()
+            _textureRectangle = New Rectangle(456, 192, 24, 24)
         End Sub
 
     End Class

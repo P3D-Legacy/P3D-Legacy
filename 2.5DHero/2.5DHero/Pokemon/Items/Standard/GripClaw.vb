@@ -5,15 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
+        Public Overrides ReadOnly Property FlingDamage As Integer = 90
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+
         Public Sub New()
-            MyBase.New("Grip Claw", 200, ItemTypes.Standard, 176, 1, 1, New Rectangle(168, 216, 24, 24), "A Pokémon hold item that extends the duration of multiturn attacks like Bind and Wrap.")
-
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-
-            Me._flingDamage = 90
+            _textureRectangle = New Rectangle(168, 216, 24, 24)
         End Sub
 
     End Class

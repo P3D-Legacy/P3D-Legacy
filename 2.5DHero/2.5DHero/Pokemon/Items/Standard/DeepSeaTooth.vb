@@ -5,15 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
+        Public Overrides ReadOnly Property FlingDamage As Integer = 90
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+
         Public Sub New()
-            MyBase.New("DeepSeaTooth", 200, ItemTypes.Standard, 167, 1, 1, New Rectangle(312, 216, 24, 24), "An item to be held by Clamperl. This fang gleams a sharp silver and raises the holder's Sp. Atk stat.")
-
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-
-            Me._flingDamage = 90
+            _textureRectangle = New Rectangle(312, 216, 24, 24)
         End Sub
 
     End Class
