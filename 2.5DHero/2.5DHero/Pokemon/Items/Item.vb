@@ -247,13 +247,6 @@ Public MustInherit Class Item
     ''' </summary>
     ''' <param name="ID">The desired item's ID.</param>
     Public Shared Function GetItemByID(ByVal ID As Integer) As Item
-        'Check if the ID is available in the FileItem list.
-        For Each f As FileItem In Core.Player.FileItems
-            If f.Item.ID = ID Then
-                Return f.Item
-            End If
-        Next
-
         If _itemBuffer Is Nothing Then
             LoadItemBuffer()
         End If
@@ -273,13 +266,6 @@ Public MustInherit Class Item
     ''' </summary>
     ''' <param name="name">The name of the item.</param>
     Public Shared Function GetItemByName(ByVal name As String) As Item
-        'Check if the name is available in the FileItem list.
-        For Each FileItem As Items.FileItem In Core.Player.FileItems
-            If FileItem.Item.Name.ToLower() = name.ToLower() Then
-                Return FileItem.Item
-            End If
-        Next
-
         Dim type = _itemBuffer.FirstOrDefault(Function(itemTypePair)
                                                   Return itemTypePair.Key.Name.ToLowerInvariant() = name.ToLowerInvariant()
                                               End Function).Value

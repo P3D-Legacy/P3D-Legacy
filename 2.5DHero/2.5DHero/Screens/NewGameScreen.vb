@@ -47,7 +47,6 @@
             ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
         Next
 
-        GameModeManager.LoadFileItems()
         BattleSystem.GameModeAttackLoader.Load()
 
         Localization.ReloadGameModeTokens()

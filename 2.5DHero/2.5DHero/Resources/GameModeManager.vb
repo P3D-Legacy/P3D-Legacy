@@ -260,31 +260,6 @@ start:
     End Function
 
     ''' <summary>
-    ''' Loads the FileItems for the loaded player file.
-    ''' </summary>
-    Public Shared Sub LoadFileItems()
-        If Not Core.Player Is Nothing Then
-            Core.Player.FileItems.Clear()
-
-            If ActiveGameMode.IsDefaultGamemode = False Then
-                Dim path As String = GameController.GamePath & ActiveGameMode.ContentPath & "\Data\items.dat"
-                If System.IO.File.Exists(path) = True Then
-                    Dim c() As String = System.IO.File.ReadAllLines(path)
-                    For Each line As String In c
-                        If line.StartsWith("{") = True And line.EndsWith("}") = True Then
-                            Dim fileItem As New Items.FileItem(line)
-
-                            If fileItem.IsValid = True Then
-                                Core.Player.FileItems.Add(fileItem)
-                            End If
-                        End If
-                    Next
-                End If
-            End If
-        End If
-    End Sub
-
-    ''' <summary>
     ''' Checks if a map file exists either in the active GameMode or the default GameMode.
     ''' </summary>
     ''' <param name="levelFile">The map file to look for.</param>
