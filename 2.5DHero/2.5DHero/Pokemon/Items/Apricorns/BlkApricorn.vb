@@ -3,13 +3,12 @@ Namespace Items.Apricorns
     <Item(99, "Black Apricorn")>
     Public Class BlkApricorn
 
-        Inherits Item
+        Inherits Apricorn
+
+        Public Overrides ReadOnly Property Description As String = "A black Apricorn It has an indescribable scent."
 
         Public Sub New()
-            MyBase.New("Black Apricorn", 100, ItemTypes.Plants, 99, 1, 71, New Rectangle(48, 96, 24, 24), "A black Apricorn It has an indescribable scent.")
-
-            Me._canBeUsedInBattle = False
-            Me._canBeUsed = False
+            _textureRectangle = New Rectangle(48, 96, 24, 24)
         End Sub
 
     End Class

@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2059, "Enigma", 86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, being hit by a supereffective attack will restore its HP.", "15.5cm", "Hard", 1, 2)
+            MyBase.New(86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, being hit by a supereffective attack will restore its HP.", "15.5cm", "Hard", 1, 2)
 
             Me.Spicy = 40
             Me.Dry = 10

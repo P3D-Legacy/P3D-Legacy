@@ -3,15 +3,13 @@ Namespace Items.KeyItems
     <Item(55, "Itemfinder")>
     Public Class ItemFinder
 
-        Inherits Item
+        Inherits KeyItem
+
+        Public Overrides ReadOnly Property Description As String = "It checks for unseen items in the area and makes noise and lights when it finds something."
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = True
 
         Public Sub New()
-            MyBase.New("Itemfinder", 138, ItemTypes.KeyItems, 55, 1, 0, New Rectangle(192, 48, 24, 24), "It checks for unseen items in the area and makes noise and lights when it finds something.")
-
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = False
-            Me._canBeHold = False
+            _textureRectangle = New Rectangle(192, 48, 24, 24)
         End Sub
 
         Public Overrides Sub Use()

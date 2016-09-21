@@ -5,15 +5,14 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property Description As String = "A transparent device overflowing with dubious data. Its producer is unknown."
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 2100
+        Public Overrides ReadOnly Property FlingDamage As Integer = 50
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+
         Public Sub New()
-            MyBase.New("Dubious Disc", 2100, ItemTypes.Standard, 185, 1, 0, New Rectangle(0, 168, 24, 24), "A transparent device overflowing with dubious data. Its producer is unknown.")
-
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-
-            Me._flingDamage = 50
+            _textureRectangle = New Rectangle(0, 168, 24, 24)
         End Sub
 
     End Class

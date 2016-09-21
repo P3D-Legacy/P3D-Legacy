@@ -5,13 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Black Sludge", 200, ItemTypes.Standard, 182, 1, 0, New Rectangle(432, 144, 24, 24), "A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types.")
+        Public Overrides ReadOnly Property Description As String = "A held item that gradually restores the HP of Poison-type Pokémon. It inflicts damage on all other types."
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 200
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
+        Public Sub New()
+            _textureRectangle = New Rectangle(432, 144, 24, 24)
         End Sub
 
     End Class

@@ -350,7 +350,6 @@
     Public LastPokemonPosition As Vector3 = New Vector3(999, 999, 999)
     Public PokeFiles As New List(Of String)
     Public EarnedAchievements As New List(Of String)
-    Public FileItems As New List(Of Items.FileItem)
     Public PokegearModules As New List(Of Integer)
     Public PhoneContacts As New List(Of String)
     Public Mails As New List(Of Items.MailItem.MailData)
@@ -510,7 +509,6 @@
             GameModeManager.SetGameModePointer(GameMode)
         End If
 
-        GameModeManager.LoadFileItems()
         BattleSystem.GameModeAttackLoader.Load()
 
         If IsGameJoltSave = True Then
@@ -1832,7 +1830,6 @@
             Badges.Clear()
             PokeFiles.Clear()
             EarnedAchievements.Clear()
-            FileItems.Clear()
             PokegearModules.Clear()
             PhoneContacts.Clear()
             Mails.Clear()

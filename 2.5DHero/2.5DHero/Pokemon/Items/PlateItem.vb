@@ -7,18 +7,16 @@ Namespace Items
 
         Inherits Item
 
-        Public Sub New(ByVal Name As String, ByVal ID As Integer, ByVal Type As Element.Types)
-            MyBase.New(Name, 1000, ItemTypes.Standard, ID, 1.0F, 0, New Rectangle(0, 0, 24, 24), "An item to be held by a Pokémon. It's a stone tablet that boosts the power of " & Type.ToString() & "-type moves.")
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Standard
+        Public Overrides ReadOnly Property Description As String
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1000
 
-            Me._texture = TextureManager.GetTexture("Items\Plates", GetTextureRectangle(Type), "")
-
-            Me._canBeHold = True
-            Me._canBeTossed = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-
-            Me._isPlate = True
+        Public Sub New(ByVal Type As Element.Types)
+            Description = "An item to be held by a Pokémon. It's a stone tablet that boosts the power of " & Type.ToString() & "-type moves."
+            _textureSource = "Items\Plates"
+            _textureRectangle = GetTextureRectangle(Type)
         End Sub
 
         Private Function GetTextureRectangle(ByVal Type As Element.Types) As Rectangle

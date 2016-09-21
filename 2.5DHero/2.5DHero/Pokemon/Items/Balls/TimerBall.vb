@@ -3,13 +3,13 @@ Namespace Items.Balls
     <Item(150, "Timer Ball")>
     Public Class TimerBall
 
-        Inherits Item
+        Inherits BallItem
+
+        Public Overrides ReadOnly Property Description As String = "A somewhat different Pokéball that becomes progressively more effective the more turns that are taken in battle."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 150
 
         Public Sub New()
-            MyBase.New("Timer Ball", 1000, ItemTypes.Pokéballs, 150, 1, 0, New Rectangle(336, 216, 24, 24), "A somewhat different Pokéball that becomes progressively more effective the more turns that are taken in battle.")
-
-            Me._isBall = True
-            Me._canBeUsed = False
+            _textureRectangle = New Rectangle(336, 216, 24, 24)
         End Sub
 
     End Class

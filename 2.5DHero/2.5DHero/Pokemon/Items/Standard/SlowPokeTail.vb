@@ -5,13 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Slowpoketail", 9800, ItemTypes.Standard, 103, 1, 0, New Rectangle(120, 96, 24, 24), "A very tasty tail of something. It sells for a high price.")
+        Public Overrides ReadOnly Property Description As String = "A very tasty tail of something. It sells for a high price."
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 9800
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
+        Public Sub New()
+            _textureRectangle = New Rectangle(120, 96, 24, 24)
         End Sub
 
     End Class

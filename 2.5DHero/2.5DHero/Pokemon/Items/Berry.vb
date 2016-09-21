@@ -34,8 +34,14 @@
         Public Type As Element.Types
         Public Power As Integer = 60
 
-        Public Sub New(ByVal ID As Integer, ByVal Name As String, ByVal PhaseTime As Integer, ByVal Description As String, ByVal Size As String, ByVal Firmness As String, ByVal minBerries As Integer, ByVal maxBerries As Integer)
-            MyBase.New(Name, 100, ItemTypes.Plants, ID, 1, ID - 1999, New Rectangle(0, 0, 32, 32), Description)
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
+        Public Overrides ReadOnly Property FlingDamage As Integer = 10
+        Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Plants
+        Public Overrides ReadOnly Property SortValue As Integer
+        Public Overrides ReadOnly Property Description As String
+
+        Public Sub New(ByVal PhaseTime As Integer, ByVal Description As String, ByVal Size As String, ByVal Firmness As String, ByVal minBerries As Integer, ByVal maxBerries As Integer)
+            SortValue = ID - 1999
 
             Me.PhaseTime = PhaseTime
             Me.Size = Size
@@ -43,8 +49,6 @@
             BerryIndex = Me.ID - 2000
             Me.minBerries = minBerries
             Me.maxBerries = maxBerries
-            _pokeDollarPrice = 100
-            _flingDamage = 10
 
             Dim x As Integer = BerryIndex * 128
             Dim y As Integer = 0
@@ -53,10 +57,9 @@
                 y += 32
             End While
 
-            Dim r As New Rectangle(x, y, 32, 32)
-            _texture = TextureManager.GetTexture("Berries", r)
-
-            _isBerry = True
+            _Description = Description
+            _textureSource = "Textures\Berries"
+            _textureRectangle = New Rectangle(x, y, 32, 32)
         End Sub
 
         Public ReadOnly Property Flavour() As Flavours

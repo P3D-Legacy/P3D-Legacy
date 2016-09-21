@@ -3,15 +3,12 @@ Namespace Items.KeyItems
     <Item(66, "Red Scale")>
     Public Class RedScale
 
-        Inherits Item
+        Inherits KeyItem
+
+        Public Overrides ReadOnly Property Description As String = "A scale from the red Gyarados. It glows red like a flame."
 
         Public Sub New()
-            MyBase.New("Red Scale", 9800, ItemTypes.KeyItems, 66, 1, 0, New Rectangle(432, 48, 24, 24), "A scale from the red Gyarados. It glows red like a flame.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = False
-            Me._canBeHold = False
+            _textureRectangle = New Rectangle(432, 48, 24, 24)
         End Sub
 
     End Class

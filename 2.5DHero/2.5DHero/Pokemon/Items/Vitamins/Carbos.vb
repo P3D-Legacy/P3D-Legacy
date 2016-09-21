@@ -5,17 +5,10 @@ Namespace Items.Vitamins
 
         Inherits VitaminItem
 
+        Public Overrides ReadOnly Property Description As String = "A nutritious drink for Pokémon. When consumed, it raises the base Speed stat of a single Pokémon."
+
         Public Sub New()
-            MyBase.New("Carbos", 9800, ItemTypes.Medicine, 29, 1, 1, New Rectangle(120, 24, 24, 24), "A nutritious drink for Pokémon. When consumed, it raises the base Speed stat of a single Pokémon.")
-
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = False
-        End Sub
-
-        Public Overrides Sub Use()
-            Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True))
+            _textureRectangle = New Rectangle(120, 24, 24, 24)
         End Sub
 
         Public Overrides Function UseOnPokemon(PokeIndex As Integer) As Boolean

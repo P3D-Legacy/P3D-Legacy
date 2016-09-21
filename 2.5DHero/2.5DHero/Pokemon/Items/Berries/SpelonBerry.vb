@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2030, "Spelon", 64800, "Pokéblock ingredient." & vbNewLine & "Plant in loamy soil to grow Spelon.", "13.2cm", "Soft", 1, 2)
+            MyBase.New(64800, "Pokéblock ingredient." & vbNewLine & "Plant in loamy soil to grow Spelon.", "13.2cm", "Soft", 1, 2)
 
             Me.Spicy = 30
             Me.Dry = 10

@@ -3,47 +3,6 @@ Imports System.Runtime.CompilerServices
 Module Extensions
 
     <Extension()>
-    Public Function IsNumericList(Of T)(ByVal l As List(Of T)) As Boolean
-        For Each O As T In l
-            If IsNumeric(O.ToString().Replace(".", GameController.DecSeparator)) = False Then
-                Return False
-            End If
-        Next
-        Return True
-    End Function
-
-    <Extension()>
-    Public Function IsBooleanicList(Of T)(ByVal l As List(Of T)) As Boolean
-        For Each O As T In l
-            If O.ToString() <> "0" And O.ToString() <> "1" And O.ToString().ToLower() <> "true" And O.ToString().ToLower() <> "false" And GetType(Boolean) <> O.GetType Then
-                Return False
-            End If
-        Next
-        Return True
-    End Function
-
-    <Extension()>
-    Public Function DeleteDuplicates(Of T)(ByVal l As List(Of T)) As List(Of T)
-        Dim copyList As New List(Of T)
-        For Each lI As T In l
-            If copyList.Contains(lI) = False Then
-                copyList.Add(lI)
-            End If
-        Next
-        Return copyList
-    End Function
-
-    <Extension()>
-    Public Function ContainsToLower(Of T)(ByVal l As List(Of T), ByVal s As String) As Boolean
-        For Each Item As T In l
-            If Item.ToString().ToLower() = s.ToLower() Then
-                Return True
-            End If
-        Next
-        Return False
-    End Function
-
-    <Extension()>
     Public Sub Move(Of T)(ByRef l As List(Of T), ByVal moveItemIndex As Integer, ByVal destinationIndex As Integer)
         Dim i As T = l(moveItemIndex)
         l.RemoveAt(moveItemIndex)
@@ -107,44 +66,6 @@ Module Extensions
     End Function
 
     <Extension()>
-    Public Function SetSplit(ByVal fullString As String, ByVal valueIndex As Integer, ByVal newValue As String, ByVal replace As Boolean) As String
-        Return SetSplit(fullString, valueIndex, newValue, ",", replace)
-    End Function
-
-    <Extension()>
-    Public Function SetSplit(ByVal fullString As String, ByVal valueIndex As Integer, ByVal newValue As String, ByVal seperator As String) As String
-        Return SetSplit(fullString, valueIndex, newValue, seperator, True)
-    End Function
-
-    <Extension()>
-    Public Function SetSplit(ByVal fullString As String, ByVal valueIndex As Integer, ByVal newValue As String) As String
-        Return SetSplit(fullString, valueIndex, newValue, ",", True)
-    End Function
-
-    <Extension()>
-    Public Function RemoveSplit(ByVal fullString As String, ByVal valueIndex As Integer, ByVal separator As String) As String
-        If fullString.Contains(separator) = False Then
-            Return ""
-        End If
-
-        Dim s() As String = fullString.Split(CChar(separator))
-
-        Dim rString As String = ""
-
-        For x = 0 To s.Count - 1
-            If x <> valueIndex Then
-                If rString <> "" Then
-                    rString &= separator
-                End If
-
-                rString &= s(x)
-            End If
-        Next
-
-        Return rString
-    End Function
-
-    <Extension()>
     Public Function CountSplits(ByVal fullString As String, ByVal seperator As String) As Integer
         Dim i As Integer = 0
         If fullString.Contains(seperator) = True Then
@@ -174,45 +95,6 @@ Module Extensions
         End If
         Return i
     End Function
-
-    <Extension()>
-    Public Function CountSeperators(ByVal fullstring As String) As Integer
-        Return CountSeperators(fullstring, ",")
-    End Function
-
-    <Extension()>
-    Public Sub Print(ByVal s As String)
-        Logger.Debug(s)
-    End Sub
-
-    <Extension()>
-    Public Sub Print(ByVal i As Integer)
-        Logger.Debug(i.ToString())
-    End Sub
-
-    <Extension()>
-    Public Sub Print(ByVal l As Long)
-        Logger.Debug(l.ToString())
-    End Sub
-
-    <Extension()>
-    Public Sub Print(ByVal s As Single)
-        Logger.Debug(s.ToString())
-    End Sub
-
-    <Extension()>
-    Public Sub Print(Of T)(ByVal Array() As T)
-        Dim s As String = "{"
-        For i = 0 To Array.Length - 1
-            If i <> 0 Then
-                s &= ", "
-            End If
-
-            s &= Array(i).ToString()
-        Next
-        s &= "}"
-        Logger.Debug(s)
-    End Sub
 
     <Extension()>
     Public Function ArrayToString(Of T)(ByVal Array() As T, Optional ByVal NewLine As Boolean = False) As String
@@ -255,21 +137,8 @@ Module Extensions
     End Function
 
     <Extension()>
-    Public Function ToList(ByVal s As String, ByVal Seperator As String) As List(Of String)
-        Return s.Replace(vbNewLine, Seperator).Split(CChar(Seperator)).ToList()
-    End Function
-
-    <Extension()>
     Public Function ToPositive(ByVal i As Integer) As Integer
         If i < 0 Then
-            i *= -1
-        End If
-        Return i
-    End Function
-
-    <Extension()>
-    Public Function ToNegative(ByVal i As Integer) As Integer
-        If i > 0 Then
             i *= -1
         End If
         Return i
@@ -552,14 +421,6 @@ Module Extensions
     <Extension()>
     Public Function ToXNA(ByVal c As Drawing.Color) As Color
         Return New Color(c.R, c.G, c.B, c.A)
-    End Function
-
-    ''' <summary>
-    ''' Converts a Xna.Framework.Color into a System.Drawing.Color.
-    ''' </summary>
-    <Extension()>
-    Public Function ToDrawing(ByVal c As Color) As Drawing.Color
-        Return Drawing.Color.FromArgb(c.R, c.G, c.B, c.A)
     End Function
 
 End Module

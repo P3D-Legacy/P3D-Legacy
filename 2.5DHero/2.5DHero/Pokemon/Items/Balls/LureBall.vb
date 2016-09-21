@@ -3,13 +3,13 @@ Namespace Items.Balls
     <Item(160, "Lure Ball")>
     Public Class LureBall
 
-        Inherits Item
+        Inherits BallItem
+
+        Public Overrides ReadOnly Property Description As String = "A Pokéball for catching Pokémon hooked by a Rod when fishing."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 150
 
         Public Sub New()
-            MyBase.New("Lure Ball", 150, ItemTypes.Pokéballs, 160, 1, 5, New Rectangle(120, 144, 24, 24), "A Pokéball for catching Pokémon hooked by a Rod when fishing. ")
-
-            Me._isBall = True
-            Me._canBeUsed = False
+            _textureRectangle = New Rectangle(120, 144, 24, 24)
         End Sub
 
     End Class

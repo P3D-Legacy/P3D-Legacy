@@ -3,13 +3,13 @@ Namespace Items.Balls
     <Item(186, "Heal Ball")>
     Public Class HealBall
 
-        Inherits Item
+        Inherits BallItem
+
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 300
+        Public Overrides ReadOnly Property Description As String = "A remedial Pokéball that restores the HP of a Pokémon caught with it and eliminiates any status conditions. "
 
         Public Sub New()
-            MyBase.New("Heal Ball", 300, ItemTypes.Pokéballs, 186, 1, 0, New Rectangle(456, 216, 24, 24), "A remedial Pokéball that restores the HP of a Pokémon caught with it and eliminiates any status conditions. ")
-
-            Me._isBall = True
-            Me._canBeUsed = False
+            _textureRectangle = New Rectangle(456, 216, 24, 24)
         End Sub
 
     End Class

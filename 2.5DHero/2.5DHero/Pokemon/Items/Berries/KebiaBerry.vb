@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2041, "Kebia", 64800, "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Poison-type attack.", "8.9cm", "Hard", 1, 5)
+            MyBase.New(64800, "If held by a Pokémon, this Berry will lessen the damage taken from one supereffective Poison-type attack.", "8.9cm", "Hard", 1, 5)
 
             Me.Spicy = 0
             Me.Dry = 15

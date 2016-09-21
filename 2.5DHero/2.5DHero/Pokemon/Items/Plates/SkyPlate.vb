@@ -6,7 +6,7 @@ Namespace Items.Plates
         Inherits PlateItem
 
         Public Sub New()
-            MyBase.New("Sky Plate", 278, Element.Types.Flying)
+            MyBase.New(Element.Types.Flying)
         End Sub
 
     End Class

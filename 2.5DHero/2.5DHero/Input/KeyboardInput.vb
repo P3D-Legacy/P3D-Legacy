@@ -215,10 +215,6 @@ Public Class KeyboardInput
     ''' </summary>
     Public Class Textbox
 
-        Implements IUpdateAble
-        Implements IDrawAble
-        Implements IFocusAble
-
         Private _text As String = String.Empty
 
         Dim _inputHandler As New KeyboardInput()
@@ -368,7 +364,7 @@ Public Class KeyboardInput
 
 #Region "Update"
 
-        Public Sub Update() Implements IUpdateAble.Update
+        Public Sub Update()
             If Me._isFocused = True Then
                 If Controls.CtrlPressed() = True Then
                     'Select All (Ctrl + A)
@@ -474,7 +470,7 @@ Public Class KeyboardInput
 
 #Region "Rendering"
 
-        Public Sub Draw() Implements IDrawAble.Draw
+        Public Sub Draw()
             Dim contentHeight As Integer = Me._height
             If contentHeight < 0 Then
                 contentHeight = CInt(Me._font.MeasureString(TESTFORHEIGHTCHARS).Y) + 2
@@ -508,18 +504,18 @@ Public Class KeyboardInput
 
 #Region "Focus"
 
-        Public Sub Focus() Implements IFocusAble.Focus
+        Public Sub Focus()
             Me._isFocused = True
         End Sub
 
-        Public Sub DeFocus() Implements IFocusAble.DeFocus
+        Public Sub DeFocus()
             Me._isFocused = False
 
             Me._selectionStart = 0
             Me._selectionLength = 0
         End Sub
 
-        Public Function IsFocused() As Boolean Implements IFocusAble.IsFocused
+        Public Function IsFocused() As Boolean
             Return Me._isFocused
         End Function
 

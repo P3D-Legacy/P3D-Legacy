@@ -95,10 +95,10 @@ Public Class ObjectDump
             If listDump <> "" Then
                 listDump &= ", "
             End If
-            If valueArray(i) Is Nothing Then
+            If valueArray.GetValue(i) Is Nothing Then
                 listDump &= "Nothing"
             Else
-                listDump &= valueArray(i).ToString()
+                listDump &= valueArray.GetValue(i).ToString()
             End If
         Next
         listDump = "{" & listDump & "}"
@@ -119,10 +119,10 @@ Public Class ObjectDump
             If listDump <> "" Then
                 listDump &= ", "
             End If
-            If valueArray(i) Is Nothing Then
+            If valueArray.GetValue(i) Is Nothing Then
                 listDump &= "Nothing"
             Else
-                listDump &= valueArray(i).ToString()
+                listDump &= valueArray.GetValue(i).ToString()
             End If
         Next
         listDump = "{" & listDump & "}"

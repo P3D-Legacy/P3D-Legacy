@@ -5,15 +5,14 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. This incense has a curious aroma that boosts the power of Water-type moves."
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 9800
+        Public Overrides ReadOnly Property FlingDamage As Integer = 10
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+
         Public Sub New()
-            MyBase.New("Sea Incense", 9800, ItemTypes.Standard, 264, 1, 0, New Rectangle(24, 264, 24, 24), "An item to be held by a Pokémon. This incense has a curious aroma that boosts the power of Water-type moves.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._flingDamage = 10
+            _textureRectangle = New Rectangle(24, 264, 24, 24)
         End Sub
 
     End Class

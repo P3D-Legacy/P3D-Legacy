@@ -5,15 +5,12 @@ Namespace Items.Medicine
 
         Inherits Item
 
+        Public Overrides ReadOnly Property Description As String = "A candy that is packed with energy. When consumed, it will instantly raise the level of a single Pokémon by one."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 4800
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 48
+
         Public Sub New()
-            MyBase.New("Rare Candy", 4800, ItemTypes.Medicine, 32, 1, 1, New Rectangle(192, 24, 24, 24), "A candy that is packed with energy. When consumed, it will instantly raise the level of a single Pokémon by one.")
-
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._battlePointsPrice = 48
+            _textureRectangle = New Rectangle(192, 24, 24, 24)
         End Sub
 
         Public Overrides Sub Use()

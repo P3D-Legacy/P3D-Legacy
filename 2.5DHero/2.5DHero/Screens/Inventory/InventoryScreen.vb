@@ -5,7 +5,7 @@
     Dim index(8) As Integer
     Dim scrollIndex(8) As Integer
     Dim bagIndex As Integer = 0
-    Dim bagIdentifier As Item.ItemTypes
+    Dim bagIdentifier As Items.ItemTypes
 
     Dim Items As New Dictionary(Of Item, Integer)
     Dim cItems As New Dictionary(Of Item, Integer)
@@ -174,21 +174,21 @@
     Private Sub ChangeBag()
         Select Case bagIndex
             Case 0
-                bagIdentifier = Item.ItemTypes.Standard
+                bagIdentifier = Game.Items.ItemTypes.Standard
             Case 1
-                bagIdentifier = Item.ItemTypes.Medicine
+                bagIdentifier = Game.Items.ItemTypes.Medicine
             Case 2
-                bagIdentifier = Item.ItemTypes.Machines
+                bagIdentifier = Game.Items.ItemTypes.Machines
             Case 3
-                bagIdentifier = Item.ItemTypes.Pokéballs
+                bagIdentifier = Game.Items.ItemTypes.Pokéballs
             Case 4
-                bagIdentifier = Item.ItemTypes.Plants
+                bagIdentifier = Game.Items.ItemTypes.Plants
             Case 5
-                bagIdentifier = Item.ItemTypes.Mail
+                bagIdentifier = Game.Items.ItemTypes.Mail
             Case 6
-                bagIdentifier = Item.ItemTypes.BattleItems
+                bagIdentifier = Game.Items.ItemTypes.BattleItems
             Case 7
-                bagIdentifier = Item.ItemTypes.KeyItems
+                bagIdentifier = Game.Items.ItemTypes.KeyItems
         End Select
 
         cItems.Clear()

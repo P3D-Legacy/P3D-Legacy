@@ -3,15 +3,12 @@ Namespace Items.KeyItems
     <Item(127, "Card Key")>
     Public Class CardKey
 
-        Inherits Item
+        Inherits KeyItem
+
+        Public Overrides ReadOnly Property Description As String = "A card key that opens a shutter in the Radio Tower."
 
         Public Sub New()
-            MyBase.New("Card Key", 9800, ItemTypes.KeyItems, 127, 1, 0, New Rectangle(144, 120, 24, 24), "A card key that opens a shutter in the Radio Tower.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = False
-            Me._canBeHold = False
+            _textureRectangle = New Rectangle(144, 120, 24, 24)
         End Sub
 
     End Class

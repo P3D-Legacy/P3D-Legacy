@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2028, "Rabuta", 21600, "Pokéblock ingredient. Plant in loamy soil to grow Rabuta.", "22.6cm", "Soft", 2, 4)
+            MyBase.New(21600, "Pokéblock ingredient. Plant in loamy soil to grow Rabuta.", "22.6cm", "Soft", 2, 4)
 
             Me.Spicy = 0
             Me.Dry = 0

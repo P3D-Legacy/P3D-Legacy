@@ -5,13 +5,11 @@ Namespace Items.Medicine
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Max Elixir", 4500, ItemTypes.Medicine, 21, 1, 1, New Rectangle(456, 0, 24, 24), "This medicine can fully restore the PP of all of the moves that have been learned by a Pokémon.")
+        Public Overrides ReadOnly Property Description As String = "This medicine can fully restore the PP of all of the moves that have been learned by a Pokémon."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 4500
 
-            Me._canBeUsed = True
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
+        Public Sub New()
+            _textureRectangle = New Rectangle(456, 0, 24, 24)
         End Sub
 
         Public Overrides Sub Use()

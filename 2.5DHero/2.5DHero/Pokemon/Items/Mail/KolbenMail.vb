@@ -5,13 +5,15 @@ Namespace Items.Mail
 
         Inherits MailItem
 
-        Public Sub New()
-            MyBase.New("Kolben Mail", 2674, 336, New Rectangle(360, 480, 24, 24), "Stationery featuring a print of the Kolben Logo. It is given to Pokémon with a special meaning.")
+        Public Overrides ReadOnly Property Description As String = "Stationery featuring a print of the Kolben Logo. It is given to Pokémon with a special meaning."
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeTraded As Boolean = False
+        Public Overrides ReadOnly Property CanBeHold As Boolean = False
+        Public Overrides ReadOnly Property CanBeTossed As Boolean = False
 
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = False
-            Me._canBeHold = False
+        Public Sub New()
+            _textureRectangle = New Rectangle(360, 480, 24, 24)
         End Sub
 
     End Class

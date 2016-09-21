@@ -6,7 +6,7 @@ Namespace Items.Plates
         Inherits PlateItem
 
         Public Sub New()
-            MyBase.New("Splash Plate", 279, Element.Types.Water)
+            MyBase.New(Element.Types.Water)
         End Sub
 
     End Class

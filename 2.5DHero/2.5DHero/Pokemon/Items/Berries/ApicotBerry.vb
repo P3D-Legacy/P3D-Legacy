@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2056, "Apicot", 86400, "A Berry to be consumed by Pok�mon. If a Pok�mon holds one, its Sp. Def stat will increase when it's in a pinch.", "7.6cm", "Very Hard", 1, 2)
+            MyBase.New(86400, "A Berry to be consumed by Pokémon. If a Pokémon holds one, its Sp. Def stat will increase when it's in a pinch.", "7.6cm", "Very Hard", 1, 2)
 
             Me.Spicy = 10
             Me.Dry = 30

@@ -3,14 +3,14 @@ Namespace Items.Balls
     <Item(181, "Safari Ball")>
     Public Class SafariBall
 
-        Inherits Item
+        Inherits BallItem
+
+        Public Overrides ReadOnly Property Description As String = "A special Pokéball that is used only in the Great Marsh and the Safari Zone. It is decorated in a camouflage pattern."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
+        Public Overrides ReadOnly Property CatchMultiplier As Single = 1.5F
 
         Public Sub New()
-            MyBase.New("Safari Ball", 200, ItemTypes.Pokéballs, 181, 1.5F, 0, New Rectangle(72, 144, 24, 24), "A special Pokéball that is used only in the Great Marsh and the Safari Zone. It is decorated in a camouflage pattern.")
-
-            Me._isBall = True
-            Me._canBeUsed = False
-            Me._canBeTraded = False
+            _textureRectangle = New Rectangle(72, 144, 24, 24)
         End Sub
 
     End Class

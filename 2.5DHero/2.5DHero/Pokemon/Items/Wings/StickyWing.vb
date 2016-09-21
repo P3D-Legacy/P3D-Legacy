@@ -5,15 +5,14 @@ Namespace Items.Wings
 
         Inherits Item
 
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property Description As String = "It's a feather that sticks to other feathers, but it's just a regular feather and has no effect on Pokémon."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
+        Public Overrides ReadOnly Property FlingDamage As Integer = 20
+
         Public Sub New()
-            MyBase.New("Sticky Wing", 200, ItemTypes.Standard, 261, 1.0F, 0, New Rectangle(456, 240, 24, 24), "It's a feather that sticks to other feathers, but it's just a regular feather and has no effect on Pokémon.")
-
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-
-            Me._flingDamage = 20
+            _textureRectangle = New Rectangle(456, 240, 24, 24)
         End Sub
 
     End Class

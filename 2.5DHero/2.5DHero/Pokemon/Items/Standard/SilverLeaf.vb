@@ -5,13 +5,13 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Sub New()
-            MyBase.New("Silver Leaf", 1000, ItemTypes.Standard, 60, 1, 0, New Rectangle(288, 48, 24, 24), "A strange, silver-colored leaf.")
+        Public Overrides ReadOnly Property Description As String = "A strange, silver-colored leaf."
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 1000
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
+        Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
-            Me._canBeHold = True
-            Me._canBeTraded = True
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
+        Public Sub New()
+            _textureRectangle = New Rectangle(288, 48, 24, 24)
         End Sub
 
     End Class

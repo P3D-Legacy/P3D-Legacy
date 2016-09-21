@@ -1,14 +1,12 @@
 Namespace Items.Machines
 
-    <Item(243, "HM 01")>
+    <Item(243, "HM 05")>
     Public Class HM05
 
         Inherits TechMachine
 
         Public Sub New()
-            MyBase.New(243, False, 100, 148)
-
-            Me._name = "HM 05"
+            MyBase.New(False, 100, 148)
         End Sub
 
     End Class

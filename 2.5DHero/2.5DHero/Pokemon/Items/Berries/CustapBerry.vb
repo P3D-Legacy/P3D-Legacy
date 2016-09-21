@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2061, "Custap", 86400, "If held by a Pokémon, it gets to move first just once in a pinch.", "26.7cm", "Super Hard", 1, 5)
+            MyBase.New(86400, "If held by a Pokémon, it gets to move first just once in a pinch.", "26.7cm", "Super Hard", 1, 5)
 
             Me.Spicy = 0
             Me.Dry = 0

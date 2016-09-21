@@ -6,7 +6,7 @@ Namespace Items.Berries
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(2024, "Grepa", 10800, "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Sp. Def.", "14.9cm", "Soft", 2, 6)
+            MyBase.New(10800, "A Berry to be consumed by Pokémon. Using it on a Pokémon makes it more friendly but lowers its base Sp. Def.", "14.9cm", "Soft", 2, 6)
 
             Me.Spicy = 0
             Me.Dry = 10

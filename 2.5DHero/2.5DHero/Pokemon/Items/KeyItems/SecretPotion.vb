@@ -3,15 +3,12 @@ Namespace Items.KeyItems
     <Item(67, "SecretPotion")>
     Public Class SecretPotion
 
-        Inherits Item
+        Inherits KeyItem
+
+        Public Overrides ReadOnly Property Description As String = "A fantastic medicine dispensed by the pharmacy in Cianwood City. It fully heals a Pokémon of any ailment."
 
         Public Sub New()
-            MyBase.New("SecretPotion", 138, ItemTypes.KeyItems, 67, 1, 0, New Rectangle(456, 48, 24, 24), "A fantastic medicine dispensed by the pharmacy in Cianwood City. It fully heals a Pokémon of any ailment.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = False
-            Me._canBeTraded = False
-            Me._canBeHold = False
+            _textureRectangle = New Rectangle(456, 48, 24, 24)
         End Sub
 
     End Class

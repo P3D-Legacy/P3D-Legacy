@@ -278,7 +278,7 @@
                     PlayerStatistics.Track("TMs/HMs used", 1)
                     If Core.Player.DifficultyMode > 0 Then
                         Dim TechMachine As Item = Item.GetItemByID(Me.MachineItemID)
-                        If TechMachine.ItemType = Item.ItemTypes.Machines Then
+                        If TechMachine.ItemType = Items.ItemTypes.Machines Then
                             If CType(TechMachine, Items.TechMachine).IsTM = True Then
                                 Core.Player.Inventory.RemoveItem(Me.MachineItemID, 1)
                             End If

@@ -3,17 +3,13 @@ Namespace Items.XItems
     <Item(49, "X Attack")>
     Public Class XAttack
 
-        Inherits Item
+        Inherits XItem
+
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 500
+        Public Overrides ReadOnly Property Description As String = "An item that boosts the Attack stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn."
 
         Public Sub New()
-            MyBase.New("X Attack", 500, ItemTypes.BattleItems, 49, 1, 0, New Rectangle(72, 48, 24, 24), "An item that boosts the Attack stat of a Pokémon during a battle. It wears off once the Pokémon is withdrawn.")
-
-            Me._canBeUsed = False
-            Me._canBeUsedInBattle = True
-            Me._canBeTraded = True
-            Me._canBeHold = True
-
-            Me._requiresPokemonSelectInBattle = False
+            _textureRectangle = New Rectangle(72, 48, 24, 24)
         End Sub
 
         Public Overrides Function UseOnPokemon(PokeIndex As Integer) As Boolean
