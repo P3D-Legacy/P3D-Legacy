@@ -819,8 +819,11 @@
 
         Public Function Match(ByVal p As Pokemon) As Boolean
             If MapFiles.Count > 0 Then
-                If MapFiles.ContainsToLower(Screen.Level.LevelFile) = False Then
+                If MapFiles.Any(Function(m As String)
+                                    Return m.ToLowerInvariant() = Screen.Level.LevelFile.ToLowerInvariant()
+                                End Function) Then
                     Return False
+
                 End If
             End If
 

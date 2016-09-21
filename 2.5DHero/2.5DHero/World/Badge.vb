@@ -164,7 +164,7 @@ Public Class Badge
     Public Shared Function GetRegion(ByVal index As Integer) As String
         Dim regions As New List(Of String)
         For Each b As BadgeDeclaration In Badges
-            If regions.ContainsToLower(b.Region) = False Then
+            If regions.Any(Function(m As String) m.ToLowerInvariant() = b.Region.ToLowerInvariant()) Then
                 regions.Add(b.Region)
             End If
         Next
@@ -195,7 +195,7 @@ Public Class Badge
     Public Shared Function GetRegionCount() As Integer
         Dim regions As New List(Of String)
         For Each b As BadgeDeclaration In Badges
-            If regions.ContainsToLower(b.Region) = False Then
+            If regions.Any(Function(m As String) m.ToLowerInvariant() = b.Region.ToLowerInvariant()) Then
                 regions.Add(b.Region)
             End If
         Next
