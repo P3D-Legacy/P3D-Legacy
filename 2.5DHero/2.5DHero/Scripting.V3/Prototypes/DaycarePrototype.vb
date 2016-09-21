@@ -8,6 +8,8 @@ Namespace Scripting.V3.Prototypes
         <ScriptVariable(VariableName:="daycareId")>
         Public daycareId As Integer
 
+        Public Sub New() : End Sub
+
         Public Sub New(daycareId As Integer)
             Me.daycareId = daycareId
         End Sub

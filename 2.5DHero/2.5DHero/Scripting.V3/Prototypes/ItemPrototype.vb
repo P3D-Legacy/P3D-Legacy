@@ -21,6 +21,8 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
+        Public Sub New() : End Sub
+
         Public Sub New(id As Integer, data As String)
             Me.id = id
             Me.data = data

@@ -8,6 +8,8 @@ Namespace Scripting.V3.Prototypes
         <ScriptVariable(VariableName:="file")>
         Public file As String = ""
 
+        Public Sub New() : End Sub
+
         Public Sub New(file As String)
             Me.file = file
         End Sub

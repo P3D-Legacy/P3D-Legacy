@@ -39,6 +39,8 @@ Namespace Scripting.V3.Prototypes
 
         End Sub
 
+        Public Sub New() : End Sub
+
         Public Sub New(data As String)
             Me.data = data
         End Sub

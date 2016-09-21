@@ -18,6 +18,8 @@ Namespace Scripting.V3.Prototypes
         <ScriptVariable(VariableName:="z")>
         Public z As Double = 0D
 
+        Public Sub New() : End Sub
+
         Public Sub New(x As Double, y As Double, z As Double)
             Me.x = x
             Me.y = y
