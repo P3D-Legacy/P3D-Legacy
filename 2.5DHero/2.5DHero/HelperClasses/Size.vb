@@ -26,9 +26,4 @@
         Me._Height = Height
     End Sub
 
-    Public Sub Input(ByVal Width As Integer, ByVal Height As Integer)
-        Me._Width = Width
-        Me._Height = Height
-    End Sub
-
 End Class

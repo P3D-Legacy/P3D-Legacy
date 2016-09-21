@@ -12,16 +12,6 @@ Public MustInherit Class BasicObject
     Private _Visible As Boolean = True
     Private _DisposeReady As Boolean = False
 
-    ''' <summary>
-    ''' Use the random-function to create randomized values.
-    ''' </summary>
-    Public Random As New System.Random()
-
-    ''' <summary>
-    ''' You can store a value in the Tag.
-    ''' </summary>
-    Public Tag As New Object
-
 #End Region
 
 #Region "Properties"
@@ -99,20 +89,6 @@ Public MustInherit Class BasicObject
     End Property
 
     ''' <summary>
-    ''' Returns a rectangle created by position, width and height of this object.
-    ''' </summary>
-    Public Property Rectangle As Rectangle
-        Get
-            Return New Rectangle(CInt(Position.X), CInt(Position.Y), Width, Height)
-        End Get
-        Set(value As Rectangle)
-            Me.Position = New Vector2(value.X, value.Y)
-            Me.Width = value.Width
-            Me.Height = value.Height
-        End Set
-    End Property
-
-    ''' <summary>
     ''' The size of this object (width and height)
     ''' </summary>
     Public Property Size As Size
@@ -139,14 +115,6 @@ Public MustInherit Class BasicObject
         Me._Width = Width
         Me._Height = Height
         Me._Position = Position
-    End Sub
-
-    ''' <summary>
-    ''' Makes the object invisible and ready for disposing.
-    ''' </summary>
-    Public Sub Remove()
-        DisposeReady = True
-        Visible = False
     End Sub
 
 End Class
