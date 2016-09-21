@@ -5,8 +5,6 @@
     ''' </summary>
     Public Class Attack
 
-        Implements ICopyAble
-
 #Region "Fields"
 
         Public Const MOVE_COUNT As Integer = 560
@@ -1488,7 +1486,7 @@
                     'Try to load a GameMode move.
                     Dim gameModeMove As Attack = GameModeAttackLoader.GetAttackByID(ID)
                     If Not gameModeMove Is Nothing And GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
-                        returnMove = CType(gameModeMove.Copy(), Attack)
+                        returnMove = gameModeMove.Copy()
                     Else
                         returnMove = New Moves.Normal.Pound()
                         returnMove.IsDefaultMove = True
@@ -1768,7 +1766,7 @@
         ''' <summary>
         ''' Returns a copy of this move.
         ''' </summary>
-        Public Function Copy() As Object Implements ICopyAble.Copy
+        Public Function Copy() As Attack
             Dim m As Attack
 
             If Me.IsGameModeMove = True Then

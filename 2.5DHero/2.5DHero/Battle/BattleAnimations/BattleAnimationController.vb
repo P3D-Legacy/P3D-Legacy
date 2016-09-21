@@ -2,9 +2,6 @@
 
     Public Class BattleAnimationController
 
-        Implements IUpdateAble
-        Implements IDrawAble
-
         Private _battleScreenInstance As BattleScreen
 
         'Background:
@@ -22,11 +19,11 @@
             Me.DeApplyShader()
         End Sub
 
-        Public Sub Update() Implements IUpdateAble.Update
+        Public Sub Update()
 
         End Sub
 
-        Public Sub Draw() Implements IDrawAble.Draw
+        Public Sub Draw()
 
         End Sub
 

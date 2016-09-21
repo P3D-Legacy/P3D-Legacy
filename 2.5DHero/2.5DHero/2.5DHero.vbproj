@@ -109,7 +109,6 @@
     <Compile Include="Dialogues\PokemonImageView.vb" />
     <Compile Include="Dialogues\TextBox.vb" />
     <Compile Include="Entites\Entity.vb" />
-    <Compile Include="Entites\EntityGroup.vb" />
     <Compile Include="Entites\Enviroment\AllSidesObject.vb" />
     <Compile Include="Entites\Enviroment\ApricornPlant.vb" />
     <Compile Include="Entites\Enviroment\BerryPlant.vb" />
@@ -137,7 +136,6 @@
     <Compile Include="Entites\Enviroment\Water.vb" />
     <Compile Include="Entites\Enviroment\Waterfall.vb" />
     <Compile Include="Entites\Enviroment\Whirlpool.vb" />
-    <Compile Include="Entites\OcclusionCulling.vb" />
     <Compile Include="Entites\Other\MessageBulb.vb" />
     <Compile Include="Entites\Other\NetworkPlayer.vb" />
     <Compile Include="Entites\Other\NetworkPokemon.vb" />
@@ -145,11 +143,6 @@
     <Compile Include="Entites\Other\OverworldPokemon.vb" />
     <Compile Include="Entites\Other\OwnPlayer.vb" />
     <Compile Include="Entites\Other\Particle.vb" />
-    <Compile Include="Exceptions\InvalidEntityTypeException.vb" />
-    <Compile Include="Global Interfaces\ICopyAble.vb" />
-    <Compile Include="Global Interfaces\IDrawAble.vb" />
-    <Compile Include="Global Interfaces\IFocusAble.vb" />
-    <Compile Include="Global Interfaces\IUpdateAble.vb" />
     <Compile Include="HelperClasses\Animation.vb" />
     <Compile Include="HelperClasses\BasicObject.vb" />
     <Compile Include="HelperClasses\Camera.vb" />
