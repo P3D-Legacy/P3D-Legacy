@@ -832,7 +832,7 @@
                 End If
 
                 With BattleScreen.FieldEffects
-                    If .OwnWrap > 0 Or .OwnBind > 0 Or .OwnClamp > 0 Or .OwnFireSpin > 0 Or .OwnMagmaStorm > 0 Or .OwnSandTomb > 0 Or .OwnWhirlpool > 0 Then
+                    If .OwnWrap > 0 Or .OwnBind > 0 Or .OwnClamp > 0 Or .OwnFireSpin > 0 Or .OwnMagmaStorm > 0 Or .OwnSandTomb > 0 Or .OwnWhirlpool > 0 Or .OwnInfestation > 0 Then
                         Return False
                     End If
                 End With
@@ -861,7 +861,7 @@
                 End If
 
                 With BattleScreen.FieldEffects
-                    If .OppWrap > 0 Or .OppBind > 0 Or .OppClamp > 0 Or .OppFireSpin > 0 Or .OppMagmaStorm > 0 Or .OppSandTomb > 0 Or .OppWhirlpool > 0 Then
+                    If .OppWrap > 0 Or .OppBind > 0 Or .OppClamp > 0 Or .OppFireSpin > 0 Or .OppMagmaStorm > 0 Or .OppSandTomb > 0 Or .OppWhirlpool > 0 Or .OppInfestation > 0 Then
                         Return False
                     End If
                 End With

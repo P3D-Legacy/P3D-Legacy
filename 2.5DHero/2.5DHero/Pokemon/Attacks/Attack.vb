@@ -1464,8 +1464,8 @@
                     returnMove = New Moves.Electric.Nuzzle()
                     'Case 610
                     'Hold Back
-                    'Case 611
-                    'Infestation
+                Case 611
+                    returnMove = New Moves.Bug.Infestation()
                 Case 612
                     returnMove = New Moves.Fighting.PowerUpPunch()
                 Case 613

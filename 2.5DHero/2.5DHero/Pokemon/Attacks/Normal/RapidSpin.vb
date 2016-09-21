@@ -66,6 +66,8 @@ Namespace BattleSystem.Moves.Normal
                     .OppToxicSpikes = 0
                     .OwnWhirlpool = 0
                     .OwnWrap = 0
+                    .OwnInfestation = 0
+                    .OppStickyWeb = 0
                 Else
                     .OppBind = 0
                     .OppClamp = 0
@@ -78,6 +80,8 @@ Namespace BattleSystem.Moves.Normal
                     .OwnToxicSpikes = 0
                     .OppWhirlpool = 0
                     .OppWrap = 0
+                    .OppInfestation = 0
+                    .OwnStickyWeb = 0
                 End If
             End With
         End Sub

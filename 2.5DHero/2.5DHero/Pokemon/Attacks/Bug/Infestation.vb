@@ -1,22 +1,22 @@
-﻿Namespace BattleSystem.Moves.Normal
+Namespace BattleSystem.Moves.Bug
 
-    Public Class Wrap
+    Public Class Infestation
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Normal)
-            Me.ID = 35
+            Me.Type = New Element(Element.Types.Bug)
+            Me.ID = 611
             Me.OriginalPP = 20
             Me.CurrentPP = 20
             Me.MaxPP = 20
-            Me.Power = 15
-            Me.Accuracy = 90
-            Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Wrap"
-            Me.Description = "A long body or vines are used to wrap and squeeze the target for four to five turns."
+            Me.Power = 20
+            Me.Accuracy = 100
+            Me.Category = Categories.Special
+            Me.ContestCategory = ContestCategories.Cute
+            Me.Name = "Infestation"
+            Me.Description = "The target is infested and attacked for four to five turns. The target can't flee during this time."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
@@ -29,7 +29,7 @@
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
-            Me.MirrorMoveAffected = True
+            Me.MirrorMoveAffected = False
             Me.KingsrockAffected = True
             Me.CounterAffected = True
 
@@ -75,14 +75,14 @@
             End If
 
             If own = True Then
-                If BattleScreen.FieldEffects.OppWrap = 0 Then
-                    BattleScreen.FieldEffects.OppWrap = turns
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " was wrapped by " & p.GetDisplayName() & "!"))
+                If BattleScreen.FieldEffects.OppInfestation = 0 Then
+                    BattleScreen.FieldEffects.OppInfestation = turns
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " was trapped by " & p.GetDisplayName() & "!"))
                 End If
             Else
-                If BattleScreen.FieldEffects.OwnWrap = 0 Then
-                    BattleScreen.FieldEffects.OwnWrap = turns
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " was wrapped by " & p.GetDisplayName() & "!"))
+                If BattleScreen.FieldEffects.OwnInfestation = 0 Then
+                    BattleScreen.FieldEffects.OwnInfestation = turns
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " was trapped by " & p.GetDisplayName() & "!"))
                 End If
             End If
         End Sub

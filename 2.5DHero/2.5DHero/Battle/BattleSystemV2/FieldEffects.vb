@@ -81,6 +81,7 @@
         Public OwnFireSpin As Integer = 0
         Public OwnMagmaStorm As Integer = 0
         Public OwnSandTomb As Integer = 0
+        Public OwnInfestation As Integer = 0
         Public OwnUsedMoves As New List(Of Integer)
         Public OwnMagicCoat As Integer = 0
         Public OwnLostItem As Item = Nothing
@@ -215,6 +216,7 @@
         Public OppFireSpin As Integer = 0
         Public OppMagmaStorm As Integer = 0
         Public OppSandTomb As Integer = 0
+        Public OppInfestation As Integer = 0
 
         Public OppUsedMoves As New List(Of Integer)
 

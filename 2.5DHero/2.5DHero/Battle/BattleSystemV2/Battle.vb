@@ -4216,10 +4216,10 @@ endthisround:
                         If .FieldEffects.OwnWrap = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Wrap!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OwnPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OwnPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
@@ -4230,10 +4230,10 @@ endthisround:
                         If .FieldEffects.OwnWhirlpool = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Whirlpool!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OwnPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OwnPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Whirlpool!", "whirlpool")
@@ -4244,10 +4244,10 @@ endthisround:
                         If .FieldEffects.OwnSandTomb = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Sand Tomb!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OwnPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OwnPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Sand Tomb!", "sandtomb")
@@ -4258,10 +4258,10 @@ endthisround:
                         If .FieldEffects.OwnBind = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Bind!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OwnPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OwnPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Bind!", "bind")
@@ -4272,10 +4272,10 @@ endthisround:
                         If .FieldEffects.OwnClamp = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Clamp!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OwnPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OwnPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Clamp!", "clamp")
@@ -4286,10 +4286,10 @@ endthisround:
                         If .FieldEffects.OwnFireSpin = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Fire Spin!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OwnPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OwnPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Fire Spin!", "firespin")
@@ -4300,15 +4300,29 @@ endthisround:
                         If .FieldEffects.OwnMagmaStorm = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Magma Storm!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OwnPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OwnPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Magma Storm!", "magmastorm")
                         End If
                     End If
+                    If .FieldEffects.OwnInfestation > 0 Then 'Infestation
+                        .FieldEffects.OwnInfestation -= 1
+                        If .FieldEffects.OwnInfestation = 0 Then
+                            .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Infestation!"))
+                        Else
+                            Dim multiHP As Integer = CInt( .OwnPokemon.MaxHP / 8)
+                            If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                    multiHP = CInt( .OwnPokemon.MaxHP / 6)
+                                End If
+                            End If
+                            ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Infestation!", "infestation")
+                        End If
+                    End If                    
                 End If
 
                 'Own bad dreams
@@ -4928,10 +4942,10 @@ endthisround:
                         If .FieldEffects.OppWrap = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Wrap!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
@@ -4942,10 +4956,10 @@ endthisround:
                         If .FieldEffects.OppWhirlpool = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Whirlpool!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Whirlpool!", "whirlpool")
@@ -4956,10 +4970,10 @@ endthisround:
                         If .FieldEffects.OppSandTomb = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Sand Tomb!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Sand Tomb!", "sandtomb")
@@ -4970,10 +4984,10 @@ endthisround:
                         If .FieldEffects.OppBind = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Bind!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Bind!", "bind")
@@ -4984,10 +4998,10 @@ endthisround:
                         If .FieldEffects.OppClamp = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Clamp!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Clamp!", "clamp")
@@ -4998,10 +5012,10 @@ endthisround:
                         If .FieldEffects.OppFireSpin = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Fire Spin!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Fire Spin!", "firespin")
@@ -5012,15 +5026,29 @@ endthisround:
                         If .FieldEffects.OppMagmaStorm = 0 Then
                             .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Magma Storm!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 16)
+                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 8)
+                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Magma Storm!", "magmastorm")
                         End If
                     End If
+                    If .FieldEffects.OppInfestation > 0 Then 'Infestation
+                        .FieldEffects.OppInfestation -= 1
+                        If .FieldEffects.OppInfestation = 0 Then
+                            .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Infestation!"))
+                        Else
+                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
+                                End If
+                            End If
+                            ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Infestation!", "infestation")
+                        End If
+                    End If                    
                 End If
 
                 'Opp bad dreams
@@ -5415,6 +5443,7 @@ endthisround:
                     .OwnFireSpin = 0
                     .OwnMagmaStorm = 0
                     .OwnSandTomb = 0
+                    .OwnInfestation = 0
 
                     .OwnBideCounter = 0
                     .OwnBideDamage = 0
@@ -5851,6 +5880,7 @@ endthisround:
                     .OppFireSpin = 0
                     .OppMagmaStorm = 0
                     .OppSandTomb = 0
+                    .OppInfestation = 0
 
                     .OppBideCounter = 0
                     .OppBideDamage = 0
