@@ -58,7 +58,6 @@
     <Compile Include="Battle\BattleAnimations\BARotation.vb" />
     <Compile Include="Battle\BattleAnimations\BASize.vb" />
     <Compile Include="Battle\BattleAnimations\BattleAnimation3D.vb" />
-    <Compile Include="Battle\BattleAnimations\BattleAnimationController.vb" />
     <Compile Include="Battle\BattleStats.vb" />
     <Compile Include="Battle\BattleSystemV2\Battle.vb" />
     <Compile Include="Battle\BattleSystemV2\BattleAnimationScreenV2.vb" />
