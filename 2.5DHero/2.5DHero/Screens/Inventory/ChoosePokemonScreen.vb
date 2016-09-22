@@ -358,4 +358,21 @@
         Me.moveLearnArg = arg
     End Sub
 
+    Protected Overrides Sub Finalize()
+        If BorderTexture1 IsNot Nothing
+            BorderTexture1.Dispose()
+        End If
+        If BorderTexture2 IsNot Nothing
+            BorderTexture2.Dispose()
+        End If
+        If BorderTexture3 IsNot Nothing
+            BorderTexture3.Dispose()
+        End If
+        If BorderTexture4 IsNot Nothing
+            BorderTexture4.Dispose()
+        End If
+        If BorderTexture5 IsNot Nothing
+            BorderTexture5.Dispose()
+        End If
+    End Sub
 End Class

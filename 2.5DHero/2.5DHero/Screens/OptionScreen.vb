@@ -541,6 +541,14 @@
             End If
         End Sub
 
+        Protected Overrides Sub Finalize()
+        If texture1 IsNot Nothing
+            texture1.Dispose()
+        End If
+        If texture2 IsNot Nothing
+            texture2.Dispose()
+        End If
+    End Sub
     End Class
 
     Class CommandButton
@@ -622,6 +630,14 @@
             End If
         End Sub
 
+        Protected Overrides Sub Finalize()
+            If texture1 IsNot Nothing
+                texture1.Dispose()
+            End If
+            If texture2 IsNot Nothing
+                texture2.Dispose()
+            End If
+        End Sub
     End Class
 
     Class ScrollBar
@@ -803,4 +819,9 @@
 
 #End Region
 
+    Protected Overrides Sub Finalize()
+        If texture1 IsNot Nothing
+            texture1.Dispose()
+        End If
+    End Sub
 End Class

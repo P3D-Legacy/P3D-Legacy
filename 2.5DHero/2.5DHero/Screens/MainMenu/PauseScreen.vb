@@ -279,4 +279,12 @@
         MusicManager.ForceVolumeUpdate()
     End Sub
 
+    Protected Overrides Sub Finalize()
+        If CanvasTexture1 IsNot Nothing
+            CanvasTexture1.Dispose()
+        End If
+        If CanvasTexture2 IsNot Nothing
+            CanvasTexture2.Dispose()
+        End If
+    End Sub
 End Class

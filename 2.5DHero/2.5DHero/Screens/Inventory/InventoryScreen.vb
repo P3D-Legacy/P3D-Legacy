@@ -326,4 +326,18 @@
         ChangeBag()
     End Sub
 
+    Protected Overrides Sub Finalize()
+        If texture1 IsNot Nothing
+            texture1.Dispose()
+        End If
+        If texture2 IsNot Nothing
+            texture2.Dispose()
+        End If
+        If texture3 IsNot Nothing
+            texture3.Dispose()
+        End If
+        If texture4 IsNot Nothing
+            texture4.Dispose()
+        End If
+    End Sub
 End Class

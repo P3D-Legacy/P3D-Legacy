@@ -252,6 +252,12 @@
             Core.SpriteBatch.Draw(Me.Texture, r, Color.White)
         End Sub
 
+
+        Protected Overrides Sub Finalize()
+            If Texture IsNot Nothing
+                Texture.Dispose()
+            End If
+        End Sub
     End Structure
 
     Shared gradientConfigs As New List(Of GradientConfiguration)
@@ -282,4 +288,9 @@
         Core.SpriteBatch.Draw(Canvas, startPoint, Nothing, Color, CSng(angle), Vector2.Zero, New Vector2(CSng(length), CSng(width)), SpriteEffects.None, 0)
     End Sub
 
+    Protected Overrides Sub Finalize()
+        If Canvas IsNot Nothing
+            Canvas.Dispose()
+        End If
+    End Sub
 End Class

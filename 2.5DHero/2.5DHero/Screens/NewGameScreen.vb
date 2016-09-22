@@ -553,4 +553,12 @@
         Return Localization.GetString("new_game_oak_name_1") & name & Localization.GetString("new_game_oak_name_2")
     End Function
 
+    Protected Overrides Sub Finalize()
+        If texture1 IsNot Nothing
+            texture1.Dispose()
+        End If
+        If texture2 IsNot Nothing
+            texture2.Dispose()
+        End If
+    End Sub
 End Class

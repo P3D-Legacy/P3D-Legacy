@@ -195,4 +195,12 @@
         End If
     End Sub
 
+    Protected Overrides Sub Finalize()
+        If CanvasTexture1 IsNot Nothing
+            CanvasTexture1.Dispose()
+        End If
+        If charTexture IsNot Nothing
+            charTexture.Dispose()
+        End If
+    End Sub
 End Class

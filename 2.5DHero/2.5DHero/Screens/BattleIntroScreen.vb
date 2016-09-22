@@ -522,4 +522,9 @@
         Return startTime + duration < Date.Now
     End Function
 
+    Protected Overrides Sub Finalize()
+        If blurTexture IsNot Nothing
+            blurTexture.Dispose()
+        End If
+    End Sub
 End Class

@@ -216,4 +216,9 @@
         End If
     End Sub
 
+    Protected Overrides Sub Finalize()
+        If texture1 IsNot Nothing
+            texture1.Dispose()
+        End If
+    End Sub
 End Class

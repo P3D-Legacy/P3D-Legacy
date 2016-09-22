@@ -198,4 +198,12 @@
         MenuItems.Add(Localization.GetString("item_detail_screen_back"))
     End Sub
 
+    Protected Overrides Sub Finalize()
+        If CanvasTexture1 IsNot Nothing
+            CanvasTexture1.Dispose()
+        End If
+        If CanvasTexture2 IsNot Nothing
+            CanvasTexture2.Dispose()
+        End If
+    End Sub
 End Class
