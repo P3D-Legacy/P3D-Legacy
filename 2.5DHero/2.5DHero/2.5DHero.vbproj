@@ -1051,6 +1051,7 @@
     <Compile Include="Pokemon\Items\KeyItems\MysteryEgg.vb" />
     <Compile Include="Pokemon\Items\KeyItems\OldRod.vb" />
     <Compile Include="Pokemon\Items\KeyItems\OldSeaMap.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\EmptySeaMap.vb" />
     <Compile Include="Pokemon\Items\KeyItems\OvalCharm.vb" />
     <Compile Include="Pokemon\Items\KeyItems\Pass.vb" />
     <Compile Include="Pokemon\Items\KeyItems\RainbowPass.vb" />
