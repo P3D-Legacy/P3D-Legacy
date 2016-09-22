@@ -367,6 +367,7 @@
         CanMuteMusic = False
 
         If ControllerHandler.ButtonPressed(Buttons.X) = True Then
+            'It will leak
             Core.SetScreen(New InputScreen(Core.CurrentScreen, "Player", InputScreen.InputModes.Name, Me.CurrentText, 14, {TextureManager.TextureRectangle(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))}.ToList(), AddressOf Me.ConfirmInput))
         Else
             KeyBindings.GetNameInput(Me.CurrentText, 14)

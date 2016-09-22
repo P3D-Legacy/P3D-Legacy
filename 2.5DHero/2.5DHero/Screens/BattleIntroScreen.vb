@@ -190,6 +190,7 @@
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
                 If Not t Is Nothing Then
                     Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
+                    'It will leak
                     t3 = TextureManager.TextureRectangle(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
             End If
@@ -252,6 +253,7 @@
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
                 If Not t Is Nothing Then
                     Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
+                    'It will leak
                     t3 = TextureManager.TextureRectangle(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
             End If

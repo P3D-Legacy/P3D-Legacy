@@ -385,7 +385,10 @@
                     c = Color.Gray
                 End If
 
-                Core.SpriteBatch.Draw(Route.getTexture(objectsTexture, isSelected), Route.getRectangle(mapOffset), c)
+                ' Plz Fix It Aragaz Plz
+                Dim texture = Route.getTexture(objectsTexture, isSelected)
+                Core.SpriteBatch.Draw(texture, Route.getRectangle(mapOffset), c)
+                texture.Dispose()
             Next
         End If
 
@@ -401,7 +404,10 @@
                     c = Color.Gray
                 End If
 
-                Core.SpriteBatch.Draw(City.getTexture(objectsTexture, isSelected), City.getRectangle(mapOffset), c)
+                ' Plz Fix It Aragaz Plz
+                Dim texture = City.getTexture(objectsTexture, isSelected)
+                Core.SpriteBatch.Draw(texture, City.getRectangle(mapOffset), c)
+                texture.Dispose()
             Next
         End If
 
@@ -417,7 +423,10 @@
                     c = Color.Gray
                 End If
 
-                Core.SpriteBatch.Draw(Place.getTexture(objectsTexture, isSelected), Place.getRectangle(mapOffset), c)
+                ' Plz Fix It Aragaz Plz
+                Dim texture = Place.getTexture(objectsTexture, isSelected)
+                Core.SpriteBatch.Draw(texture, Place.getRectangle(mapOffset), c)
+                texture.Dispose()
             Next
         End If
 
@@ -643,6 +652,7 @@
             Return New Rectangle(CInt(Me.getPosition().X + offset.X), CInt(Me.getPosition().Y + offset.Y), sizeX, sizeY)
         End Function
 
+        ' It will leak
         Public Function getTexture(ByVal FullTexture As Texture2D, ByVal isSelected As Boolean) As Texture2D
             If Me.T Is Nothing Or isSelected = True Then
                 Dim r As Rectangle
@@ -794,6 +804,7 @@
             Return New Rectangle(CInt(Me.getPosition().X + PositionOffset.X + offset.X), CInt(Me.getPosition().Y + PositionOffset.Y + offset.Y), CInt(sizeX), CInt(sizeY))
         End Function
 
+        'It will leak
         Public Function getTexture(ByVal FullTexture As Texture2D, ByVal isSelected As Boolean) As Texture2D
             If Me.T Is Nothing Or isSelected = True Then
                 Dim r As Rectangle
@@ -943,6 +954,7 @@
             Return New Rectangle(CInt(Me.getPosition().X + PositionOffset.X + offset.X), CInt(Me.getPosition().Y + PositionOffset.Y + offset.Y), CInt(sizeX), CInt(sizeY))
         End Function
 
+        'It will leak
         Public Function getTexture(ByVal FullTexture As Texture2D, ByVal isSelected As Boolean) As Texture2D
             If Me.T Is Nothing Or isSelected = True Then
                 Dim r As Rectangle

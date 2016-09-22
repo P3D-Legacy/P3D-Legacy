@@ -1220,6 +1220,7 @@ Public Class TradeScreen
         Core.SpriteBatch.DrawString(Font, Text, New Vector2(Position.X + Height + 10, Position.Y + textY), Color.White)
     End Sub
 
+    ' It will leak.
     Private Function GetItemTypeTexture(ByVal itemType As Items.ItemTypes) As Texture2D
         Dim i As Integer = 0
         Select Case itemType
