@@ -139,6 +139,17 @@ Public Class PokemonEncounter
                         End If
                     End If
 
+                     'Pure Incense Lowers the chance of encountering wild Pokémon if held by first Pokémon in party.
+                    If Core.Player.Pokemons(0).Level >= Pokemon.Level Then
+                        If Not Core.Player.Pokemons(0).Item Is Nothing Then
+                            If Core.Player.Pokemons(0).Item.ID = 291 Then
+                                If Core.Random.Next(0, 3) = 0 Then
+                                    Exit Sub
+                                End If
+                            End If
+                        End If
+                    End If
+
                     'Register wild Pokémon in the Pokédex.
                     Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, 1)
 
