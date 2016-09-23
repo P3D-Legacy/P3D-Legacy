@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. This incense has a curious aroma that boosts the power of Water-type moves."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 9800
+        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 9600
         Public Overrides ReadOnly Property FlingDamage As Integer = 10
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
