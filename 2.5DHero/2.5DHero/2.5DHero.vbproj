@@ -1041,6 +1041,7 @@
     <Compile Include="Pokemon\Items\KeyItems\CardKey.vb" />
     <Compile Include="Pokemon\Items\KeyItems\CoinCase.vb" />
     <Compile Include="Pokemon\Items\KeyItems\CrystalWing.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\EmptySeaMap.vb" />
     <Compile Include="Pokemon\Items\KeyItems\GoodRod.vb" />
     <Compile Include="Pokemon\Items\KeyItems\GSBall.vb" />
     <Compile Include="Pokemon\Items\KeyItems\ItemFinder.vb" />
@@ -1050,7 +1051,6 @@
     <Compile Include="Pokemon\Items\KeyItems\MysteryEgg.vb" />
     <Compile Include="Pokemon\Items\KeyItems\OldRod.vb" />
     <Compile Include="Pokemon\Items\KeyItems\OldSeaMap.vb" />
-    <Compile Include="Pokemon\Items\KeyItems\EmptySeaMap.vb" />
     <Compile Include="Pokemon\Items\KeyItems\OvalCharm.vb" />
     <Compile Include="Pokemon\Items\KeyItems\Pass.vb" />
     <Compile Include="Pokemon\Items\KeyItems\RainbowPass.vb" />
@@ -1409,6 +1409,7 @@
     <Compile Include="Pokemon\Items\Standard\EscapeRope.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpShare.vb" />
     <Compile Include="Pokemon\Items\Standard\FocusBand.vb" />
+    <Compile Include="Pokemon\Items\Standard\FullIncense.vb" />
     <Compile Include="Pokemon\Items\Standard\GoldLeaf.vb" />
     <Compile Include="Pokemon\Items\Standard\GripClaw.vb" />
     <Compile Include="Pokemon\Items\Standard\HardStone.vb" />
@@ -1416,9 +1417,11 @@
     <Compile Include="Pokemon\Items\Standard\Honey.vb" />
     <Compile Include="Pokemon\Items\Standard\KingsRock.vb" />
     <Compile Include="Pokemon\Items\Standard\LaggingTail.vb" />
+    <Compile Include="Pokemon\Items\Standard\LaxIncense.vb" />
     <Compile Include="Pokemon\Items\Standard\Leftovers.vb" />
     <Compile Include="Pokemon\Items\Standard\LifeOrb.vb" />
     <Compile Include="Pokemon\Items\Standard\LightBall.vb" />
+    <Compile Include="Pokemon\Items\Standard\LuckIncense.vb" />
     <Compile Include="Pokemon\Items\Standard\LuckyEgg.vb" />
     <Compile Include="Pokemon\Items\Standard\LuckyPunch.vb" />
     <Compile Include="Pokemon\Items\Standard\Magmarizer.vb" />
@@ -1439,12 +1442,15 @@
     <Compile Include="Pokemon\Items\Standard\PolkadotBow.vb" />
     <Compile Include="Pokemon\Items\Standard\PrismScale.vb" />
     <Compile Include="Pokemon\Items\Standard\Protector.vb" />
+    <Compile Include="Pokemon\Items\Standard\PureIncense.vb" />
     <Compile Include="Pokemon\Items\Standard\QuickClaw.vb" />
     <Compile Include="Pokemon\Items\Standard\QuickPowder.vb" />
     <Compile Include="Pokemon\Items\Standard\RareBone.vb" />
     <Compile Include="Pokemon\Items\Standard\RazorClaw.vb" />
     <Compile Include="Pokemon\Items\Standard\RazorFang.vb" />
     <Compile Include="Pokemon\Items\Standard\ReaperCloth.vb" />
+    <Compile Include="Pokemon\Items\Standard\RockIncense.vb" />
+    <Compile Include="Pokemon\Items\Standard\RoseIncense.vb" />
     <Compile Include="Pokemon\Items\Standard\Sachet.vb" />
     <Compile Include="Pokemon\Items\Standard\ScopeLens.vb" />
     <Compile Include="Pokemon\Items\Standard\SeaIncense.vb" />

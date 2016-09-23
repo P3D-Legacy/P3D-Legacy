@@ -101,6 +101,30 @@
                         End If
                 End Select
 
+                Dim Full As Integer = 0 'Uses effect of Full Incense
+                If Not ownPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                    If ownPokemon.Item.Name = "Full Incense" Then
+                        Full += 1
+                    End If
+                End If
+                If Not oppPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                    If oppPokemon.Item.Name = "Full Incense" Then
+                        Full += 10
+                    End If
+                End If
+                Select Case Full
+                    Case 1
+                        Return False 'Your Full incense effect works > You go last
+                    Case 10
+                        Return True 'Opponents full incense effect works > He goes last
+                    Case 11
+                        If Core.Random.Next(0, 2) = 0 Then 'Both full incense works. > Random determination.
+                            Return True
+                        Else
+                            Return False
+                        End If
+                End Select
+
                 If ownPokemon.Ability.Name.ToLower() = "stall" And oppPokemon.Ability.Name.ToLower() <> "stall" Then
                     Return False
                 End If
@@ -953,7 +977,7 @@
                         If Attack.Type.Type = Element.Types.Dragon Then
                             IT = 1.2F
                         End If
-                    Case 125, 281 'Hard Stone, Stone Plate
+                    Case 125, 281, 286 'Hard Stone, Stone Plate, Rock Incense
                         If Attack.Type.Type = Element.Types.Rock Then
                             IT = 1.2F
                         End If
@@ -965,7 +989,7 @@
                         If Attack.Type.Type = Element.Types.Steel Then
                             IT = 1.2F
                         End If
-                    Case 117, 275 'Miracle Seed, Meadow Plate
+                    Case 117, 275, 287 'Miracle Seed, Meadow Plate, Rose Incense
                         If Attack.Type.Type = Element.Types.Grass Then
                             IT = 1.2F
                         End If
