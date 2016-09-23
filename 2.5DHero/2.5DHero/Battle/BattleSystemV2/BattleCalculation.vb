@@ -112,7 +112,7 @@
                         Full += 10
                     End If
                 End If
-                Select Case Tail
+                Select Case Full
                     Case 1
                         Return False 'Your Full incense effect works > You go last
                     Case 10
