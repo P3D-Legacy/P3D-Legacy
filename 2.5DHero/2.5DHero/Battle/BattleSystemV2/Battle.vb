@@ -1612,7 +1612,7 @@
 
                             If effectiveness <> 0 Then
                                 Dim canUseEffect As Boolean = True
-                                If op.Ability.Name.ToLower() = "shield dust" Then
+                                If op.Ability.Name.ToLower() = "shield dust" And moveUsed.HasSecondaryEffect = True Then
                                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                                         canUseEffect = False
                                     End If
