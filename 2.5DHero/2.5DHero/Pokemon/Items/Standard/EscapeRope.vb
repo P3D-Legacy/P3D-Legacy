@@ -5,8 +5,8 @@ Namespace Items.Standard
 
         Inherits Item
 
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 550
         Public Overrides ReadOnly Property Description As String = "A long and durable rope. Use it to escape instantly from a cave or a dungeon."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 550
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
         Public Sub New()
