@@ -3755,6 +3755,14 @@ endthisround:
             With BattleScreen
                 Select Case type
                     Case 0 'Complete round
+                        'The fastest pokemon ends its round first
+                        If BattleCalculation.MovesFirst(BattleScreen) = True Then
+                            EndRoundOwn(BattleScreen)
+                            EndRoundOpp(BattleScreen)
+                        Else
+                            EndRoundOpp(BattleScreen)
+                            EndRoundOwn(BattleScreen)
+                        End If
                         .FieldEffects.Rounds += 1
                         If .FieldEffects.WeatherRounds > 0 Then
                             .FieldEffects.WeatherRounds -= 1
@@ -3870,9 +3878,9 @@ endthisround:
 
                         StartRound(BattleScreen)
                     Case 1 'Own round
-                        EndRoundOwn(BattleScreen)
+                        EndTurnOwn(BattleScreen)
                     Case 2 'Opp round
-                        EndRoundOpp(BattleScreen)
+                        EndTurnOpp(BattleScreen)
                 End Select
             End With
         End Sub
@@ -3888,12 +3896,7 @@ endthisround:
             End If
         End Function
 
-        Private Sub EndRoundOwn(ByVal BattleScreen As BattleScreen)
-            If Me.PlayerWonBattle(BattleScreen) = True Then
-                Exit Sub
-            End If
-            ChangeCameraAngel(0, True, BattleScreen)
-
+        Private Sub EndTurnOwn(ByVal BattleScreen As BattleScreen)
             With BattleScreen
                 'Turn count
                 .FieldEffects.OwnPokemonTurns += 1
@@ -3910,7 +3913,88 @@ endthisround:
                 If .FieldEffects.OwnCharge > 0 Then
                     .FieldEffects.OwnCharge -= 1 'Sets charge to 0
                 End If
+                If .OwnPokemon.HP > 0 Then
+                    If Not .OwnPokemon.Item Is Nothing Then
+                        If .OwnPokemon.Item.Name.ToLower() = "mental herb" Then
+                            Dim usedMentalHerb As Boolean = False
+                            If .OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
+                                .OwnPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
+                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the infatuation" & vbNewLine & "due to Mental Herb!"))
+                                usedMentalHerb = True
+                            End If
+                            If .FieldEffects.OwnTaunt > 0 Then
+                                .FieldEffects.OwnTaunt = 0
+                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the taunt" & vbNewLine & "due to Mental Herb!"))
+                                usedMentalHerb = True
+                            End If
+                            If .FieldEffects.OwnEncore > 0 Then
+                                .FieldEffects.OwnEncore = 0
+                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the encore" & vbNewLine & "due to Mental Herb!"))
+                                usedMentalHerb = True
+                            End If
+                            If .FieldEffects.OwnTorment > 0 Then
+                                .FieldEffects.OwnTorment = 0
+                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the torment" & vbNewLine & "due to Mental Herb!"))
+                                usedMentalHerb = True
+                            End If
+                            'Remove disable
+                            If usedMentalHerb = True Then
+                                .OwnPokemon.Item = Nothing
+                            End If
+                        End If
+                        If .OwnPokemon.Item.Name.ToLower() = "white herb" Then
+                            Dim hasNegativeStats As Boolean = False
+                            With .OwnPokemon
+                                If .StatAttack < 0 Then
+                                    .StatAttack = 0
+                                    hasNegativeStats = True
+                                End If
+                                If .StatDefense < 0 Then
+                                    .StatDefense = 0
+                                    hasNegativeStats = True
+                                End If
+                                If .StatSpAttack < 0 Then
+                                    .StatSpAttack = 0
+                                    hasNegativeStats = True
+                                End If
+                                If .StatSpDefense < 0 Then
+                                    .StatSpDefense = 0
+                                    hasNegativeStats = True
+                                End If
+                                If .StatSpeed < 0 Then
+                                    .StatSpeed = 0
+                                    hasNegativeStats = True
+                                End If
+                                If .Accuracy < 0 Then
+                                    .Accuracy = 0
+                                    hasNegativeStats = True
+                                End If
+                                If .Evasion < 0 Then
+                                    .Evasion = 0
+                                    hasNegativeStats = True
+                                End If
+                            End With
+                            If hasNegativeStats = True Then
+                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " negative stats got healed due to White Herb!"))
+                                .OwnPokemon.Item = Nothing
+                            End If
+                        End If
+                    End If
+                End If
 
+                .FieldEffects.OwnPokemonDamagedLastTurn = .FieldEffects.OwnPokemonDamagedThisTurn
+                .FieldEffects.OwnPokemonDamagedThisTurn = False
+            End With
+        End Sub
+
+
+        Private Sub EndRoundOwn(ByVal BattleScreen As BattleScreen)
+            If Me.PlayerWonBattle(BattleScreen) = True Then
+                Exit Sub
+            End If
+            ChangeCameraAngel(0, True, BattleScreen)
+
+            With BattleScreen
                 If .FieldEffects.OwnReflect > 0 Then 'Stop reflect
                     .FieldEffects.OwnReflect -= 1
                     If .FieldEffects.OwnReflect = 0 Then
@@ -4104,7 +4188,29 @@ endthisround:
                         End If
                     End If
                 End If
+                If .FieldEffects.OppLeechSeed > 0 Then 'LeechSeed (opponent seeded)
+                    If .OppPokemon.HP > 0 And .OwnPokemon.HP > 0 And .OwnPokemon.HP < .OwnPokemon.MaxHP Then
+                        Dim loseHP As Integer = CInt(Math.Ceiling(.OppPokemon.MaxHP / 8))
+                        Dim currHP As Integer = .OppPokemon.HP
 
+                        If loseHP > currHP Then
+                            loseHP = currHP
+                        End If
+
+                        Dim addHP As Integer = loseHP
+                        If Not .OwnPokemon.Item Is Nothing Then
+                            If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                                addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
+                            End If
+                        End If
+
+                        ReduceHP(loseHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " lost HP due to Leech Seed!", "leechseed")
+
+                        If .FieldEffects.OwnHealBlock = 0 Then
+                            GainHP(addHP, True, True, BattleScreen, "", "leechseed")
+                        End If
+                    End If
+                End If
                 If .OwnPokemon.HP > 0 Then
                     If .OwnPokemon.Ability.Name.ToLower() = "poison heal" Then
                         If .FieldEffects.OppHealBlock = 0 Then
@@ -4158,34 +4264,9 @@ endthisround:
 
                 If .FieldEffects.OwnCurse > 0 Then 'Curse
                     If .OwnPokemon.HP > 0 Then
-                        ReduceHP(CInt( .OwnPokemon.MaxHP / 4), True, False, BattleScreen, "The curse haunted " & .OwnPokemon.GetDisplayName() & "!", "curse")
+                        ReduceHP(CInt(.OwnPokemon.MaxHP / 4), True, False, BattleScreen, "The curse haunted " & .OwnPokemon.GetDisplayName() & "!", "curse")
                     End If
                 End If
-
-                If .FieldEffects.OwnLeechSeed > 0 Then 'LeechSeed (Own pokemon seeded)
-                    If .OwnPokemon.HP > 0 And .OppPokemon.HP > 0 And .OppPokemon.HP < .OppPokemon.MaxHP Then
-                        Dim loseHP As Integer = CInt(Math.Ceiling( .OwnPokemon.MaxHP / 8))
-                        Dim currHP As Integer = .OwnPokemon.HP
-                        
-                        If loseHP > currHP Then
-                            loseHP = currHP
-                        End If
-                        
-                        Dim addHP As Integer = loseHP
-                        If Not .OppPokemon.Item Is Nothing Then
-                            If .OppPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
-                            End If
-                        End If
-
-                        ReduceHP(loseHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " lost HP due to Leech Seed!", "leechseed")
-
-                        If .FieldEffects.OppHealBlock = 0 Then
-                            GainHP(addHP, False, False, BattleScreen, "", "leechseed")
-                        End If
-                    End If
-                End If
-
                 'Water/Fire/Grass pledge:
                 If .FieldEffects.OwnWaterPledge > 0 Then
                     .FieldEffects.OwnWaterPledge -= 1
@@ -4542,39 +4623,58 @@ endthisround:
                         End If
                     End If
                 End If
+            End With
+        End Sub
 
-                If .OwnPokemon.HP > 0 Then
-                    If Not .OwnPokemon.Item Is Nothing Then
-                        If .OwnPokemon.Item.Name.ToLower() = "mental herb" Then
+        Private Sub EndTurnOpp(ByVal BattleScreen As BattleScreen)
+            With BattleScreen
+                'Turn count
+                .FieldEffects.OppPokemonTurns += 1
+
+                .FieldEffects.OppLockOn = 0 'Reset lock on
+
+                'Remove temp pursuit counter:
+                .FieldEffects.OppPursuit = False
+
+                If .FieldEffects.OppSleepTurns > 0 Then 'Sleep turns
+                    .FieldEffects.OppSleepTurns -= 1
+                End If
+
+                If .FieldEffects.OppCharge > 0 Then
+                    .FieldEffects.OppCharge -= 1 'Sets charge to 0
+                End If
+                If .OppPokemon.HP > 0 Then
+                    If Not .OppPokemon.Item Is Nothing Then
+                        If .OppPokemon.Item.Name.ToLower() = "mental herb" Then
                             Dim usedMentalHerb As Boolean = False
-                            If .OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
-                                .OwnPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
-                                .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " got healed from the infatuation" & vbNewLine & "due to Mental Herb!"))
+                            If .OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
+                                .OppPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the infatuation" & vbNewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
-                            If .FieldEffects.OwnTaunt > 0 Then
-                                .FieldEffects.OwnTaunt = 0
-                                .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " got healed from the taunt" & vbNewLine & "due to Mental Herb!"))
+                            If .FieldEffects.OppTaunt > 0 Then
+                                .FieldEffects.OppTaunt = 0
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the taunt" & vbNewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
-                            If .FieldEffects.OwnEncore > 0 Then
-                                .FieldEffects.OwnEncore = 0
-                                .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " got healed from the encore" & vbNewLine & "due to Mental Herb!"))
+                            If .FieldEffects.OppEncore > 0 Then
+                                .FieldEffects.OppEncore = 0
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the encore" & vbNewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
-                            If .FieldEffects.OwnTorment > 0 Then
-                                .FieldEffects.OwnTorment = 0
-                                .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " got healed from the torment" & vbNewLine & "due to Mental Herb!"))
+                            If .FieldEffects.OppTorment > 0 Then
+                                .FieldEffects.OppTorment = 0
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the torment" & vbNewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
                             'Remove disable
                             If usedMentalHerb = True Then
-                                .OwnPokemon.Item = Nothing
+                                .OppPokemon.Item = Nothing
                             End If
                         End If
-                        If .OwnPokemon.Item.Name.ToLower() = "white herb" Then
+                        If .OppPokemon.Item.Name.ToLower() = "white herb" Then
                             Dim hasNegativeStats As Boolean = False
-                            With .OwnPokemon
+                            With .OppPokemon
                                 If .StatAttack < 0 Then
                                     .StatAttack = 0
                                     hasNegativeStats = True
@@ -4605,15 +4705,14 @@ endthisround:
                                 End If
                             End With
                             If hasNegativeStats = True Then
-                                .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " negative stats got healed due to White Herb!"))
-                                .OwnPokemon.Item = Nothing
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " negative stats got healed" & vbNewLine & "due to White Herb!"))
+                                .OppPokemon.Item = Nothing
                             End If
                         End If
                     End If
                 End If
-
-                .FieldEffects.OwnPokemonDamagedLastTurn = .FieldEffects.OwnPokemonDamagedThisTurn
-                .FieldEffects.OwnPokemonDamagedThisTurn = False
+                .FieldEffects.OppPokemonDamagedLastTurn = .FieldEffects.OppPokemonDamagedThisTurn
+                .FieldEffects.OppPokemonDamagedThisTurn = False
             End With
         End Sub
 
@@ -4621,22 +4720,6 @@ endthisround:
             ChangeCameraAngel(0, True, BattleScreen)
 
             With BattleScreen
-                'Turn count
-                .FieldEffects.OppPokemonTurns += 1
-
-                .FieldEffects.OppLockOn = 0 'Reset lock on
-
-                'Remove temp pursuit counter:
-                .FieldEffects.OppPursuit = False
-
-                If .FieldEffects.OppSleepTurns > 0 Then 'Sleep turns
-                    .FieldEffects.OppSleepTurns -= 1
-                End If
-
-                If .FieldEffects.OppCharge > 0 Then
-                    .FieldEffects.OppCharge -= 1 'Sets charge to 0
-                End If
-
                 If .FieldEffects.OppReflect > 0 Then 'Stop reflect
                     .FieldEffects.OppReflect -= 1
                     If .FieldEffects.OppReflect = 0 Then
@@ -4691,7 +4774,7 @@ endthisround:
                     If .FieldEffects.OppWish = 0 Then
                         If .FieldEffects.OwnHealBlock = 0 Then
                             If .OppPokemon.HP < .OppPokemon.MaxHP And .OppPokemon.HP > 0 Then
-                                GainHP(CInt( .OppPokemon.MaxHP / 2), False, False, BattleScreen, "A wish came true!", "wish")
+                                GainHP(CInt(.OppPokemon.MaxHP / 2), False, False, BattleScreen, "A wish came true!", "wish")
                             End If
                         End If
                     End If
@@ -4702,9 +4785,9 @@ endthisround:
                 If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
                     If .OppPokemon.Type1.Type <> Element.Types.Ground And .OppPokemon.Type2.Type <> Element.Types.Ground And .OppPokemon.Type1.Type <> Element.Types.Steel And .OppPokemon.Type2.Type <> Element.Types.Steel And .OppPokemon.Type1.Type <> Element.Types.Rock And .OppPokemon.Type2.Type <> Element.Types.Rock Then
                         Dim sandAbilities() As String = {"sand veil", "sand rush", "sand force", "overcoat", "magic guard"}
-                        If sandAbilities.Contains( .OppPokemon.Ability.Name.ToLower()) = False Then
+                        If sandAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
                             If .OppPokemon.HP > 0 Then
-                                Dim sandHP As Integer = CInt( .OppPokemon.MaxHP / 16)
+                                Dim sandHP As Integer = CInt(.OppPokemon.MaxHP / 16)
                                 ReduceHP(sandHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took damage from the sandstorm!", "sandstorm")
                             End If
                         End If
@@ -4715,9 +4798,9 @@ endthisround:
                 If .FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
                     If .OppPokemon.Type1.Type <> Element.Types.Ice And .OppPokemon.Type2.Type <> Element.Types.Ice Then
                         Dim hailAbilities() As String = {"ice body", "snow cloak", "overcoat", "magic guard"}
-                        If hailAbilities.Contains( .OppPokemon.Ability.Name.ToLower()) = False Then
+                        If hailAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
                             If .OppPokemon.HP > 0 Then
-                                Dim hailHP As Integer = CInt( .OppPokemon.MaxHP / 16)
+                                Dim hailHP As Integer = CInt(.OppPokemon.MaxHP / 16)
                                 ReduceHP(hailHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took damage from the hailstorm!", "sandstorm")
                             End If
                         End If
@@ -4730,15 +4813,15 @@ endthisround:
                     Select Case .OppPokemon.Ability.Name.ToLower()
                         Case "dry skin"
                             If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
-                                HPChange = -CInt( .OppPokemon.MaxHP / 8)
+                                HPChange = -CInt(.OppPokemon.MaxHP / 8)
                                 HPMessage = "Dry Skin"
                             ElseIf .FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then
-                                HPChange = CInt( .OppPokemon.MaxHP / 8)
+                                HPChange = CInt(.OppPokemon.MaxHP / 8)
                                 HPMessage = "Dry Skin"
                             End If
                         Case "rain dish"
                             If .FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then
-                                HPChange = CInt( .OppPokemon.MaxHP / 16)
+                                HPChange = CInt(.OppPokemon.MaxHP / 16)
                                 HPMessage = "Rain Dish"
                             End If
                         Case "hydration"
@@ -4749,7 +4832,7 @@ endthisround:
                             End If
                         Case "ice body"
                             If .FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
-                                HPChange = CInt( .OppPokemon.MaxHP / 16)
+                                HPChange = CInt(.OppPokemon.MaxHP / 16)
                                 HPMessage = "Ice Body"
                             End If
                     End Select
@@ -4789,7 +4872,7 @@ endthisround:
                 If .OppPokemon.Ability.Name.ToLower() = "shed skin" And .OppPokemon.HP > 0 Then 'Shed skin effect
                     If .OppPokemon.Status = Pokemon.StatusProblems.BadPoison Or .OppPokemon.Status = Pokemon.StatusProblems.Poison Or .OppPokemon.Status = Pokemon.StatusProblems.Paralyzed Or .OppPokemon.Status = Pokemon.StatusProblems.Freeze Or .OppPokemon.Status = Pokemon.StatusProblems.Burn Or .OppPokemon.Status = Pokemon.StatusProblems.Sleep Then
                         If Core.Random.Next(0, 100) < 33 Then
-                            .BattleQuery.Add( .FocusOppPokemon())
+                            .BattleQuery.Add(.FocusOppPokemon())
                             CureStatusProblem(False, False, BattleScreen, .OppPokemon.GetDisplayName() & "'s Shed Skin cured its status problem.", "shedskin")
                         End If
                     End If
@@ -4811,11 +4894,11 @@ endthisround:
                     If .OppPokemon.Item.Name.ToLower() = "black sludge" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                         If .OppPokemon.Type1.Type = Element.Types.Poison Or .OppPokemon.Type2.Type = Element.Types.Poison Then
                             If .OppPokemon.HP < .OppPokemon.MaxHP And .OppPokemon.HP > 0 Then
-                                GainHP(CInt( .OppPokemon.MaxHP / 16), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " gained HP from Black Sludge!", "blacksludge")
+                                GainHP(CInt(.OppPokemon.MaxHP / 16), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " gained HP from Black Sludge!", "blacksludge")
                             End If
                         Else
                             If .OppPokemon.HP > 0 Then
-                                ReduceHP(CInt( .OppPokemon.MaxHP / 8), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " lost HP due to Black Sludge!", "blacksludge")
+                                ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " lost HP due to Black Sludge!", "blacksludge")
                             End If
                         End If
                     End If
@@ -4825,36 +4908,58 @@ endthisround:
                     If .FieldEffects.OwnHealBlock = 0 Then
                         If Not .OppPokemon.Item Is Nothing Then 'Leftovers
                             If .OppPokemon.Item.Name.ToLower() = "leftovers" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                GainHP(CInt( .OppPokemon.MaxHP / 16), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " restored some HP from Leftovers!", "leftovers")
+                                GainHP(CInt(.OppPokemon.MaxHP / 16), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " restored some HP from Leftovers!", "leftovers")
                             End If
                         End If
                     End If
                 End If
+                If .FieldEffects.OwnLeechSeed > 0 Then 'LeechSeed (Own pokemon seeded)
+                    If .OwnPokemon.HP > 0 And .OppPokemon.HP > 0 And .OppPokemon.HP < .OppPokemon.MaxHP Then
+                        Dim loseHP As Integer = CInt(Math.Ceiling(.OwnPokemon.MaxHP / 8))
+                        Dim currHP As Integer = .OwnPokemon.HP
 
+                        If loseHP > currHP Then
+                            loseHP = currHP
+                        End If
+
+                        Dim addHP As Integer = loseHP
+                        If Not .OppPokemon.Item Is Nothing Then
+                            If .OppPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                                addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
+                            End If
+                        End If
+
+                        ReduceHP(loseHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " lost HP due to Leech Seed!", "leechseed")
+
+                        If .FieldEffects.OppHealBlock = 0 Then
+                            GainHP(addHP, False, False, BattleScreen, "", "leechseed")
+                        End If
+                    End If
+                End If
                 If .OppPokemon.HP > 0 Then
                     If .OppPokemon.Ability.Name.ToLower() = "poison heal" Then
                         If .FieldEffects.OwnHealBlock = 0 Then
                             If .OppPokemon.Status = Pokemon.StatusProblems.Poison Then
-                                GainHP(CInt( .OppPokemon.MaxHP / 8), False, False, BattleScreen, "Poison Heal healed " & .OppPokemon.GetDisplayName() & ".", "poison")
+                                GainHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "Poison Heal healed " & .OppPokemon.GetDisplayName() & ".", "poison")
                             End If
 
                             If .OppPokemon.Status = Pokemon.StatusProblems.BadPoison Then
                                 .FieldEffects.OppPoisonCounter += 1
-                                GainHP(CInt( .OppPokemon.MaxHP / 8), False, False, BattleScreen, "Poison Heal healed " & .OppPokemon.GetDisplayName() & ".", "poison")
+                                GainHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "Poison Heal healed " & .OppPokemon.GetDisplayName() & ".", "poison")
                             End If
                         End If
                     Else
                         If .OppPokemon.Ability.Name.ToLower() <> "magic guard" Then
                             If .OppPokemon.Status = Pokemon.StatusProblems.Poison Then 'Opp Poison
                                 BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_poison", False))
-                                ReduceHP(CInt( .OppPokemon.MaxHP / 8), False, False, BattleScreen, "The poison hurt " & .OppPokemon.GetDisplayName() & ".", "poison")
+                                ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "The poison hurt " & .OppPokemon.GetDisplayName() & ".", "poison")
                             End If
 
                             If .OppPokemon.Status = Pokemon.StatusProblems.BadPoison Then 'Opp Toxic
                                 .FieldEffects.OppPoisonCounter += 1
-                                Dim multiplier As Double = ( .FieldEffects.OppPoisonCounter / 16)
+                                Dim multiplier As Double = (.FieldEffects.OppPoisonCounter / 16)
                                 BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_poison", False))
-                                ReduceHP(CInt( .OppPokemon.MaxHP * multiplier), False, False, BattleScreen, "The toxic hurt " & .OppPokemon.GetDisplayName() & ".", "badpoison")
+                                ReduceHP(CInt(.OppPokemon.MaxHP * multiplier), False, False, BattleScreen, "The toxic hurt " & .OppPokemon.GetDisplayName() & ".", "badpoison")
                             End If
                         End If
                     End If
@@ -4863,9 +4968,9 @@ endthisround:
                 If .OppPokemon.HP > 0 Then 'Burn
                     If .OppPokemon.Status = Pokemon.StatusProblems.Burn Then
                         If .OppPokemon.Ability.Name.ToLower() <> "water veil" And .OppPokemon.Ability.Name.ToLower() <> "magic guard" Then
-                            Dim reduceAmount As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            Dim reduceAmount As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If .OppPokemon.Ability.Name.ToLower() = "heatproof" Then
-                                reduceAmount = CInt( .OppPokemon.MaxHP / 16)
+                                reduceAmount = CInt(.OppPokemon.MaxHP / 16)
                             End If
 
                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_ember", False))
@@ -4876,7 +4981,7 @@ endthisround:
 
                 If .FieldEffects.OppNightmare > 0 Then 'Nightmare
                     If .OppPokemon.Status = Pokemon.StatusProblems.Sleep And .OppPokemon.HP > 0 Then
-                        ReduceHP(CInt( .OppPokemon.MaxHP / 4), False, True, BattleScreen, "The nightmare haunted " & .OppPokemon.GetDisplayName() & "!", "nightmare")
+                        ReduceHP(CInt(.OppPokemon.MaxHP / 4), False, True, BattleScreen, "The nightmare haunted " & .OppPokemon.GetDisplayName() & "!", "nightmare")
                     Else
                         .FieldEffects.OwnNightmare = 0
                     End If
@@ -4884,31 +4989,7 @@ endthisround:
 
                 If .FieldEffects.OppCurse > 0 Then 'Curse
                     If .OppPokemon.HP > 0 Then
-                        ReduceHP(CInt( .OppPokemon.MaxHP / 4), False, True, BattleScreen, "The curse haunted " & .OppPokemon.GetDisplayName() & "!", "curse")
-                    End If
-                End If
-
-                If .FieldEffects.OppLeechSeed > 0 Then 'LeechSeed (opponent seeded)
-                    If .OppPokemon.HP > 0 And .OwnPokemon.HP > 0 And .OwnPokemon.HP < .OwnPokemon.MaxHP Then
-                        Dim loseHP As Integer = CInt(Math.Ceiling( .OppPokemon.MaxHP / 8))
-                        Dim currHP As Integer = .OppPokemon.HP
-                        
-                        If loseHP > currHP Then
-                            loseHP = currHP
-                        End If
-                        
-                        Dim addHP As Integer = loseHP
-                        If Not .OwnPokemon.Item Is Nothing Then
-                            If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
-                            End If
-                        End If
-
-                        ReduceHP(loseHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " lost HP due to Leech Seed!", "leechseed")
-
-                        If .FieldEffects.OwnHealBlock = 0 Then
-                            GainHP(addHP, True, True, BattleScreen, "", "leechseed")
-                        End If
+                        ReduceHP(CInt(.OppPokemon.MaxHP / 4), False, True, BattleScreen, "The curse haunted " & .OppPokemon.GetDisplayName() & "!", "curse")
                     End If
                 End If
 
@@ -4931,7 +5012,7 @@ endthisround:
                         BattleScreen.BattleQuery.Add(New TextQueryObject("The fiery sea faded!"))
                     Else
                         If .OppPokemon.HP > 0 Then
-                            ReduceHP(CInt( .OppPokemon.MaxHP / 8), False, True, BattleScreen, "The firey sea hurt " & .OppPokemon.GetDisplayName() & "!", "firepledge")
+                            ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, True, BattleScreen, "The firey sea hurt " & .OppPokemon.GetDisplayName() & "!", "firepledge")
                         End If
                     End If
                 End If
@@ -4940,12 +5021,12 @@ endthisround:
                     If .FieldEffects.OppWrap > 0 Then 'Wrap
                         .FieldEffects.OppWrap -= 1
                         If .FieldEffects.OppWrap = 0 Then
-                            .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Wrap!"))
+                            .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " was freed from Wrap!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
+                                    multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
@@ -4954,12 +5035,12 @@ endthisround:
                     If .FieldEffects.OppWhirlpool > 0 Then 'Whirlpool
                         .FieldEffects.OppWhirlpool -= 1
                         If .FieldEffects.OppWhirlpool = 0 Then
-                            .BattleQuery.Add(New TextQueryObject( .OwnPokemon.GetDisplayName() & " was freed from Whirlpool!"))
+                            .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " was freed from Whirlpool!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
+                                    multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Whirlpool!", "whirlpool")
@@ -4968,12 +5049,12 @@ endthisround:
                     If .FieldEffects.OppSandTomb > 0 Then 'Sand Tomb
                         .FieldEffects.OppSandTomb -= 1
                         If .FieldEffects.OppSandTomb = 0 Then
-                            .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Sand Tomb!"))
+                            .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " was freed from Sand Tomb!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
+                                    multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Sand Tomb!", "sandtomb")
@@ -4982,12 +5063,12 @@ endthisround:
                     If .FieldEffects.OppBind > 0 Then 'Bind
                         .FieldEffects.OppBind -= 1
                         If .FieldEffects.OppBind = 0 Then
-                            .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Bind!"))
+                            .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " was freed from Bind!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
+                                    multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Bind!", "bind")
@@ -4996,12 +5077,12 @@ endthisround:
                     If .FieldEffects.OppClamp > 0 Then 'Clamp
                         .FieldEffects.OppClamp -= 1
                         If .FieldEffects.OppClamp = 0 Then
-                            .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Clamp!"))
+                            .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " was freed from Clamp!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
+                                    multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Clamp!", "clamp")
@@ -5010,12 +5091,12 @@ endthisround:
                     If .FieldEffects.OppFireSpin > 0 Then 'Fire Spin
                         .FieldEffects.OppFireSpin -= 1
                         If .FieldEffects.OppFireSpin = 0 Then
-                            .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Fire Spin!"))
+                            .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " was freed from Fire Spin!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
+                                    multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Fire Spin!", "firespin")
@@ -5024,12 +5105,12 @@ endthisround:
                     If .FieldEffects.OppMagmaStorm > 0 Then 'Magma Storm
                         .FieldEffects.OppMagmaStorm -= 1
                         If .FieldEffects.OppMagmaStorm = 0 Then
-                            .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Magma Storm!"))
+                            .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " was freed from Magma Storm!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
+                                    multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Magma Storm!", "magmastorm")
@@ -5038,22 +5119,22 @@ endthisround:
                     If .FieldEffects.OppInfestation > 0 Then 'Infestation
                         .FieldEffects.OppInfestation -= 1
                         If .FieldEffects.OppInfestation = 0 Then
-                            .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " was freed from Infestation!"))
+                            .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " was freed from Infestation!"))
                         Else
-                            Dim multiHP As Integer = CInt( .OppPokemon.MaxHP / 8)
+                            Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
-                                    multiHP = CInt( .OppPokemon.MaxHP / 6)
+                                    multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Infestation!", "infestation")
                         End If
-                    End If                    
+                    End If
                 End If
 
                 'Opp bad dreams
                 If .OwnPokemon.Ability.Name.ToLower() = "bad dreams" And .OppPokemon.HP > 0 And .OppPokemon.Status = Pokemon.StatusProblems.Sleep Then
-                    ReduceHP(CInt( .OppPokemon.MaxHP / 8), False, True, BattleScreen, "The bad dreams haunted" & .OppPokemon.GetDisplayName() & "!", "baddreams")
+                    ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, True, BattleScreen, "The bad dreams haunted" & .OppPokemon.GetDisplayName() & "!", "baddreams")
                 End If
 
                 If .FieldEffects.OppOutrage > 0 And .OppPokemon.HP > 0 Then 'Outrage
@@ -5078,7 +5159,7 @@ endthisround:
                 If .FieldEffects.OppUproar > 0 And .OppPokemon.HP > 0 Then 'Uproar
                     .FieldEffects.OppUproar -= 1
                     If .FieldEffects.OppUproar = 0 Then
-                        .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & "'s uproar stopped."))
+                        .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & "'s uproar stopped."))
                     End If
                 End If
 
@@ -5088,7 +5169,7 @@ endthisround:
                 If .FieldEffects.OppEncore > 0 And .OppPokemon.HP > 0 Then 'Encore
                     .FieldEffects.OppEncore -= 1
                     If .FieldEffects.OppEncore = 0 Then
-                        .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & "'s encore stopped."))
+                        .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & "'s encore stopped."))
                     End If
                 End If
 
@@ -5116,7 +5197,7 @@ endthisround:
                 If .FieldEffects.OppEmbargo > 0 And .OppPokemon.HP > 0 Then 'Embargo
                     .FieldEffects.OppEmbargo -= 1
                     If .FieldEffects.OppEmbargo = 0 Then
-                        .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " is not under the Embargo effect anymore."))
+                        .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " is not under the Embargo effect anymore."))
                     End If
                 End If
 
@@ -5137,7 +5218,7 @@ endthisround:
                     .FieldEffects.OppFutureSightTurns -= 1
                     If .FieldEffects.OppFutureSightTurns = 0 Then
                         If .OwnPokemon.HP > 0 Then
-                            ReduceHP( .FieldEffects.OppFutureSightDamage, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & "took the " & futureSight & " attack!", futureSight.Replace(" ", "").ToLower())
+                            ReduceHP(.FieldEffects.OppFutureSightDamage, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & "took the " & futureSight & " attack!", futureSight.Replace(" ", "").ToLower())
                         Else
                             .BattleQuery.Add(New TextQueryObject("The " & futureSight & " failed!"))
                         End If
@@ -5147,9 +5228,9 @@ endthisround:
                 If .FieldEffects.OppPerishSongCount > 0 Then 'Perish Song
                     .FieldEffects.OppPerishSongCount -= 1
                     If .OppPokemon.HP > 0 Then
-                        BattleScreen.BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & "'s Perish Count is at " & .FieldEffects.OppPerishSongCount.ToString() & "!"))
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & "'s Perish Count is at " & .FieldEffects.OppPerishSongCount.ToString() & "!"))
                         If .FieldEffects.OppPerishSongCount = 0 Then
-                            ReduceHP( .OppPokemon.HP, False, True, BattleScreen, "", "move:perishsong")
+                            ReduceHP(.OppPokemon.HP, False, True, BattleScreen, "", "move:perishsong")
                             Me.FaintPokemon(False, BattleScreen, .OppPokemon.GetDisplayName() & " fainted due to Perish Song!")
                         End If
                     End If
@@ -5267,78 +5348,6 @@ endthisround:
                         End If
                     End If
                 End If
-
-                If .OppPokemon.HP > 0 Then
-                    If Not .OppPokemon.Item Is Nothing Then
-                        If .OppPokemon.Item.Name.ToLower() = "mental herb" Then
-                            Dim usedMentalHerb As Boolean = False
-                            If .OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
-                                .OppPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
-                                .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " got healed from the infatuation" & vbNewLine & "due to Mental Herb!"))
-                                usedMentalHerb = True
-                            End If
-                            If .FieldEffects.OppTaunt > 0 Then
-                                .FieldEffects.OppTaunt = 0
-                                .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " got healed from the taunt" & vbNewLine & "due to Mental Herb!"))
-                                usedMentalHerb = True
-                            End If
-                            If .FieldEffects.OppEncore > 0 Then
-                                .FieldEffects.OppEncore = 0
-                                .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " got healed from the encore" & vbNewLine & "due to Mental Herb!"))
-                                usedMentalHerb = True
-                            End If
-                            If .FieldEffects.OppTorment > 0 Then
-                                .FieldEffects.OppTorment = 0
-                                .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " got healed from the torment" & vbNewLine & "due to Mental Herb!"))
-                                usedMentalHerb = True
-                            End If
-                            'Remove disable
-                            If usedMentalHerb = True Then
-                                .OppPokemon.Item = Nothing
-                            End If
-                        End If
-                        If .OppPokemon.Item.Name.ToLower() = "white herb" Then
-                            Dim hasNegativeStats As Boolean = False
-                            With .OppPokemon
-                                If .StatAttack < 0 Then
-                                    .StatAttack = 0
-                                    hasNegativeStats = True
-                                End If
-                                If .StatDefense < 0 Then
-                                    .StatDefense = 0
-                                    hasNegativeStats = True
-                                End If
-                                If .StatSpAttack < 0 Then
-                                    .StatSpAttack = 0
-                                    hasNegativeStats = True
-                                End If
-                                If .StatSpDefense < 0 Then
-                                    .StatSpDefense = 0
-                                    hasNegativeStats = True
-                                End If
-                                If .StatSpeed < 0 Then
-                                    .StatSpeed = 0
-                                    hasNegativeStats = True
-                                End If
-                                If .Accuracy < 0 Then
-                                    .Accuracy = 0
-                                    hasNegativeStats = True
-                                End If
-                                If .Evasion < 0 Then
-                                    .Evasion = 0
-                                    hasNegativeStats = True
-                                End If
-                            End With
-                            If hasNegativeStats = True Then
-                                .BattleQuery.Add(New TextQueryObject( .OppPokemon.GetDisplayName() & " negative stats got healed" & vbNewLine & "due to White Herb!"))
-                                .OppPokemon.Item = Nothing
-                            End If
-                        End If
-                    End If
-                End If
-
-                .FieldEffects.OppPokemonDamagedLastTurn = .FieldEffects.OppPokemonDamagedThisTurn
-                .FieldEffects.OppPokemonDamagedThisTurn = False
             End With
         End Sub
 

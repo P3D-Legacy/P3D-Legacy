@@ -2,6 +2,24 @@
 
     Public Class BattleCalculation
 
+        Public Shared Function MovesFirst(ByVal BattleScreen As BattleScreen) As Boolean
+            'Determine strike first with speed:
+            Dim ownSpeed As Integer = DetermineBattleSpeed(True, BattleScreen)
+            Dim oppSpeed As Integer = DetermineBattleSpeed(False, BattleScreen)
+
+            If ownSpeed > oppSpeed Then 'Faster than opponent
+                Return True
+            ElseIf ownSpeed < oppSpeed Then 'Slower than opponent
+                Return False
+            Else 'Speed is equal, decide randomly
+                If Core.Random.Next(0, 2) = 0 Then
+                    Return True
+                Else
+                    Return False
+                End If
+            End If
+        End Function
+
         Public Shared Function AttackFirst(ByVal ownAttack As Attack, ByVal oppAttack As Attack, ByVal BattleScreen As BattleScreen) As Boolean
             Dim ownPokemon As Pokemon = BattleScreen.OwnPokemon
             Dim oppPokemon As Pokemon = BattleScreen.OppPokemon
