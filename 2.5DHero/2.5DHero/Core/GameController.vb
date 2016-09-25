@@ -35,7 +35,11 @@ Public Class GameController
     ''' <summary>
     ''' If the Debug Mode is active.
     ''' </summary>
+#If DEBUG Or DEBUGNOCONTENT Then
+    Public Const IS_DEBUG_ACTIVE As Boolean = True
+#Else
     Public Const IS_DEBUG_ACTIVE As Boolean = False
+#End If
 
     ''' <summary>
     ''' If the game should set the GameJolt online version to the current online version.
