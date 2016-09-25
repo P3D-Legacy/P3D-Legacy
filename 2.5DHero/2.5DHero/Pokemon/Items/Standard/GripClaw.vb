@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "A Pokémon hold item that extends the duration of multiturn attacks like Bind and Wrap."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 200
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
         Public Overrides ReadOnly Property FlingDamage As Integer = 90
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False

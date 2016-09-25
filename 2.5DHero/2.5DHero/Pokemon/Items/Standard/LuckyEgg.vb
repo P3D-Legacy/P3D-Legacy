@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. It is an egg filled with happiness that earns extra Exp. Points in battle."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 100
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

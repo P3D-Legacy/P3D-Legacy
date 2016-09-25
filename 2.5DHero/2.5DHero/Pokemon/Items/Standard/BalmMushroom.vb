@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "A rare mushroom which gives off a nice fragrance. A maniac will buy it for a high price."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 50000
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 50000
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

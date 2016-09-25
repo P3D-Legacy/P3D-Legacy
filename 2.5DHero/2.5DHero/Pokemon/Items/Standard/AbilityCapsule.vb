@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "A capsule that allows a Pokémon with two Abilities to switch between these Abilities when it is used."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 1000
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1000
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
         Public Sub New()

@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. This belt helps the wearer to focus and boosts the power of Fighting-type moves."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 100
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

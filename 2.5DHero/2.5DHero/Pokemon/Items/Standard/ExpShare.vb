@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. The holder gets a share of a battle's Exp. Points without battling."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 3000
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 3000
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

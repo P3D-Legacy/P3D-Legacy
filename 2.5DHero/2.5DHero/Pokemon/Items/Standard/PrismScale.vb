@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "A mysterious scale that causes a certain Pokémon to evolve. It shines in rainbow colors."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 500
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 500
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

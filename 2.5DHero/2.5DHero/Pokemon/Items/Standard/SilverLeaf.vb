@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "A strange, silver-colored leaf."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 1000
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1000
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

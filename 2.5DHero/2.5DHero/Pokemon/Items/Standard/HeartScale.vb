@@ -5,7 +5,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "A pretty, heart-shaped scale that is extremely rare. It glows faintly with all of the colors of the rainbow."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 100
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

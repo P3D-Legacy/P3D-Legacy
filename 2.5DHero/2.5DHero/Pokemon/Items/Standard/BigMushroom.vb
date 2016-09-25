@@ -7,7 +7,7 @@ Namespace Items.Plants
 
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Plants
         Public Overrides ReadOnly Property Description As String = "A very large and rare mushroom. It's popular with a certain class of collectors and sought out by them."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 5000
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 5000
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

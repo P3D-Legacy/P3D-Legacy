@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "A rare bone that is extremely valuable for the study of Pokémon archeology. It can be sold for a high price to shops."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 30000
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 30000
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

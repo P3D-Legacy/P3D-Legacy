@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "An item to be held by Ditto. Extremely fine yet hard, this odd powder boosts the Defense stat."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 10
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 10
         Public Overrides ReadOnly Property FlingDamage As Integer = 10
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False

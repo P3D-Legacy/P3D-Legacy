@@ -7,7 +7,7 @@ Namespace Items.Standard
 
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.BattleItems
         Public Overrides ReadOnly Property Description As String = "A doll that attracts the attention of a Pokémon. It guarantees escape from any battle with wild Pokémon."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 1000
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1000
         Public Overrides ReadOnly Property BattleSelectPokemon As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

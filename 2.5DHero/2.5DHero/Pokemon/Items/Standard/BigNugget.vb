@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "A big nugget of pure gold that gives off a lustrous gleam. It can be sold at a high price to shops."
-        Public Overrides ReadOnly Property BattlePointsPrice As Integer = 20000
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 20000
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
