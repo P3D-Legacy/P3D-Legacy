@@ -371,7 +371,13 @@
             End If
         End If
 
-        CameraDistance = Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition)
+        If Me.GetType = GetType(Particle)
+            CameraDistance = Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition) - 1000000
+        Else
+            CameraDistance = Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition)
+        End If
+
+        
 
         If Me.DropUpdateUnlessDrawn = True And Me.DrawnLastFrame = False And Me.Visible = True And ActionScriptActive = False Then
             Exit Sub

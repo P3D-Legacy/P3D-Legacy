@@ -826,7 +826,6 @@ Public Class Level
     Public Sub SortEntities()
         If LevelLoader.IsBusy = False Then
             Entities = (From f In Entities Order By f.CameraDistance Descending).ToList()
-            Entities = (From f In Entities Order By f.GetType Is GetType(Particle) Ascending).ToList()
         End If
     End Sub
 
