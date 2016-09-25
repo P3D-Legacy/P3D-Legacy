@@ -355,6 +355,10 @@
         Return Me.Position + Me.GetCenter()
     End Function
 
+    Protected Overridable Function CalculateCameraDistance(CPosition As Vector3) as Single
+        Return Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition)
+    End Function
+
     Public Overridable Sub UpdateEntity()
         Dim CPosition As Vector3 = Screen.Camera.Position
         Dim ActionScriptActive As Boolean = False
@@ -371,12 +375,8 @@
             End If
         End If
 
-        If Me.GetType = GetType(Particle)
-            CameraDistance = Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition) - 1000000
-        Else
-            CameraDistance = Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition)
-        End If
 
+        CameraDistance = CalculateCameraDistance(CPosition)
         
 
         If Me.DropUpdateUnlessDrawn = True And Me.DrawnLastFrame = False And Me.Visible = True And ActionScriptActive = False Then

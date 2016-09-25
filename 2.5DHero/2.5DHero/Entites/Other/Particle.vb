@@ -87,6 +87,10 @@
         End Select
     End Sub
 
+    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
+        Return Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition) - 1000000
+    End Function
+
     Public Overrides Sub UpdateEntity()
         If Me.Rotation.Y <> Screen.Camera.Yaw Then
             Me.Rotation.Y = Screen.Camera.Yaw
