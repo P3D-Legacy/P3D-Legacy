@@ -432,7 +432,7 @@
         Public Shared PCBoxIndex As Integer = 0
         Public Shared StorageSystemCursorPosition As New Vector2(1, 0)
         Public Shared OptionScreenIndex As Integer = 0
-        Public Shared MapSwitch(2) As Boolean
+        Public Shared MapSwitch(3) As Boolean
         Public Shared LastPosition As Vector3
         Public Shared IsInBattle As Boolean = False
         Public Shared BeforeBattlePosition As Vector3 = New Vector3(0)
@@ -461,7 +461,7 @@
         Temp.PCBoxIndex = 0
         Temp.OptionScreenIndex = 0
         Temp.IsInBattle = False
-        For i = 0 To 2
+        For i = 0 To 3
             Temp.MapSwitch(i) = True
         Next
         Temp.PokedexModeIndex = 0

@@ -16,13 +16,15 @@
     Dim cities As New List(Of City)
     Dim routes As New List(Of Route)
     Dim places As New List(Of Place)
+    Dim RoamingPoke As New List(Of Roaming)
 
     Dim objectsTexture As Texture2D
     Dim mapTexture As Texture2D
     Dim texture As Texture2D
 
     Dim hoverText As String = ""
-    Dim drawObjects(2) As Boolean
+    Dim pokehoverText As String = ""
+    Dim drawObjects(3) As Boolean
     Dim backgroundOffset As Single = 0.0F
 
     Dim CursorPosition As New Vector2(0)
@@ -71,7 +73,7 @@
         mapOffsetX = 100
         mapOffsetY = 40
 
-        For i = 0 To 2
+        For i = 0 To 3
             Me.drawObjects(i) = True
         Next
     End Sub
@@ -83,6 +85,10 @@
         Me.routes.Clear()
         Me.places.Clear()
         Me.cities.Clear()
+        Me.RoamingPoke.Clear()
+
+        Dim TempPoke As New List(Of Roaming)
+        Dim RoamingPokeName As New List(Of String)
 
         Dim path As String = GameModeManager.GetScriptPath("worldmap\" & Me.currentRegion & ".dat")
         Security.FileValidation.CheckFileValid(path, False, "MapScreen.vb")
@@ -223,8 +229,32 @@
                             places.Add(New Place(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), PlaceSize, "", Nothing))
                         End If
                 End Select
+
+                If String.IsNullOrWhiteSpace(Core.Player.RoamingPokemonData) = False Then
+                    If Core.Player.RoamingPokemonData.Length > 0 AndAlso Core.Player.RoamingPokemonData.Contains("|") Then
+                        For Each Pokes As String In Core.Player.RoamingPokemonData.SplitAtNewline
+                            'PokémonID,Level,regionID,startLevelFile,MusicLoop,PokemonData
+                            Dim TempData() As String = Pokes.Split(CChar("|"))
+                            Dim MapFiles() As String = Tags("mapfiles").Split(CChar(","))
+                            Dim PokeCurrentLocation As String = TempData(3)
+                            If MapFiles.Contains(PokeCurrentLocation) Then
+                                TempPoke.Add(New Roaming(CInt(TempData(0)), CInt(Tags("position").Split(CChar(","))(0)), CInt(Tags("position").Split(CChar(","))(1)), Tags("name")))
+                            End If
+                            If RoamingPokeName Is Nothing OrElse RoamingPokeName.Contains(Pokemon.GetPokemonByID(CInt(TempData(0))).GetName) = False Then
+                                RoamingPokeName.Add(Pokemon.GetPokemonByID(CInt(TempData(0))).GetName)
+                            End If
+                        Next
+                    End If
+                End If
             End If
         Next
+
+        If TempPoke.Count > 0 And RoamingPokeName.Count > 0 Then
+            For Each Pokes As String In RoamingPokeName
+                Dim MapObject As Roaming = (From p As Roaming In TempPoke Where p.Name = Pokes Order By p.Distance Ascending).ElementAt(TempPoke(0).getSkipIndex)
+                RoamingPoke.Add(MapObject)
+            Next
+        End If
     End Sub
 
     Public Overrides Sub Update()
@@ -276,7 +306,18 @@
         Dim cursorPoint As New Point(CInt(CursorPosition.X), CInt(CursorPosition.Y))
 
         Me.hoverText = ""
-        If drawObjects(2) = True Then
+        Me.pokehoverText = ""
+
+        If hoverText = "" And pokehoverText = "" And drawObjects(3) = True Then
+            For Each Poke As Roaming In RoamingPoke
+                If Poke.getRectangle(mapOffset).Contains(cursorPoint) = True Then
+                    pokehoverText = Poke.Name
+                    hoverText = Poke.Location
+                    Exit For
+                End If
+            Next
+        End If
+        If hoverText = "" And pokehoverText = "" And drawObjects(2) = True Then
             For Each Place As Place In places
                 If Place.getRectangle(mapOffset).Contains(cursorPoint) = True Then
                     If Controls.Accept(True, True, True) = True Then
@@ -287,7 +328,7 @@
                 End If
             Next
         End If
-        If hoverText = "" And drawObjects(0) = True Then
+        If hoverText = "" And pokehoverText = "" And drawObjects(0) = True Then
             For Each City As City In cities
                 If City.getRectangle(mapOffset).Contains(cursorPoint) = True Then
                     If Controls.Accept(True, True, True) = True Then
@@ -298,7 +339,7 @@
                 End If
             Next
         End If
-        If hoverText = "" And drawObjects(1) = True Then
+        If hoverText = "" And pokehoverText = "" And drawObjects(1) = True Then
             For Each Route As Route In routes
                 If Route.getRectangle(mapOffset).Contains(cursorPoint) = True Then
                     If Controls.Accept(True, True, True) = True Then
@@ -342,7 +383,7 @@
     End Sub
 
     Private Sub UpdateSwitch()
-        For i = 0 To 2
+        For i = 0 To 3
             Dim r As New Rectangle(Core.windowSize.Width - 170, 100 + i * 30, 90, 30)
             If Controls.Accept(True, True, True) = True Then
                 If r.Contains(New Point(CInt(MouseHandler.MousePosition.X), CInt(MouseHandler.MousePosition.Y))) = True Then
@@ -430,7 +471,17 @@
             Next
         End If
 
-        If Me.hoverText <> "" Then
+        If drawObjects(3) = True Then
+            For Each Pokes As Roaming In RoamingPoke
+                Dim c As Color = Color.White
+                Core.SpriteBatch.Draw(Pokes.getTexture(objectsTexture), Pokes.getRectangle(mapOffset), c)
+            Next
+        End If
+
+        If Me.hoverText <> "" And Me.pokehoverText <> "" Then
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32, Me.CursorPosition.Y - 29), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
+        ElseIf Me.hoverText <> "" And Me.pokehoverText = "" Then
             Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32, Me.CursorPosition.Y - 29), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
         End If
@@ -472,6 +523,14 @@
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 160, 24, 24), r, New Color(255, 255, 255, 220))
         Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 137, 163), Color.Black)
         Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 140, 160), Color.White)
+        'Roaming:
+        r = New Rectangle(111, 64, 17, 16)
+        If drawObjects(3) = False Then
+            r = New Rectangle(111, 80, 17, 16)
+        End If
+        Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 190, 24, 24), r, New Color(255, 255, 255, 220))
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 137, 193), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 140, 190), Color.White)
     End Sub
 
     Private Sub DrawCursor()
@@ -1007,4 +1066,66 @@
 
     End Class
 
+    Public Class Roaming
+
+        Public ID As Integer
+        Public Name As String
+        Public Location As String
+        Public PositionX As Integer
+        Public PositionY As Integer
+        Public Distance As Double
+
+        Dim T As Texture2D = Nothing
+
+        Public Sub New(ByVal ID As Integer, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal Location As String)
+            Me.ID = ID
+            Me.Name = Pokemon.GetPokemonByID(ID).GetName
+            Me.PositionX = PositionX
+            Me.PositionY = PositionY
+            Me.Location = Location
+            Me.Distance = Math.Pow(Math.Pow(PositionX, 2) + Math.Pow(PositionY, 2), 0.5) ' (x^2 + y^2)^0.5
+        End Sub
+
+        Public Function getPosition() As Vector2
+            Return New Vector2(Me.PositionX * MapScreen.RasterSize, Me.PositionY * MapScreen.RasterSize)
+        End Function
+
+        Public Function getRectangle(ByVal offset As Vector2) As Rectangle
+            Dim sizeX As Integer = 1
+            Dim sizeY As Integer = 1
+
+            sizeX *= MapScreen.RasterSize
+            sizeY *= MapScreen.RasterSize
+
+            Return New Rectangle(CInt(Me.getPosition().X + offset.X), CInt(Me.getPosition().Y + offset.Y), sizeX, sizeY)
+        End Function
+
+        Public Function getTexture(ByVal FullTexture As Texture2D) As Texture2D
+            Dim Texture As Texture2D = TextureManager.GetTexture("GUI\PokemonMenu")
+            Dim IndexX As Integer = 0
+            Dim IndexY As Integer = 0
+            Dim SizeX As Integer = 32
+            Dim SizeY As Integer = 32
+
+            IndexY = CInt(Math.Floor(ID / 33))
+            IndexX = (ID - (IndexY * 32)) - 1
+
+            T = TextureManager.TextureRectangle(Texture, New Rectangle(IndexX * 32, IndexY * 32, SizeX, SizeY))
+
+            Return T
+        End Function
+
+        Public Function getSkipIndex() As Integer
+            Select Case Location
+                Case "Route 31", "Route 37", "Route 42"
+                    Return 0
+                Case "Route 29", "Route 30", "Route 33", "Route 34", "Route 35", "Route 36", "Route 38", "Route 39", "Route 44"
+                    Return 1
+                Case "Route 32", "Route 45"
+                    Return 2
+                Case Else
+                    Return 0
+            End Select
+        End Function
+    End Class
 End Class
