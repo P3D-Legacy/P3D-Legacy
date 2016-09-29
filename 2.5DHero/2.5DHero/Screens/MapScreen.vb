@@ -251,8 +251,11 @@
 
         If TempPoke.Count > 0 And RoamingPokeName.Count > 0 Then
             For Each Pokes As String In RoamingPokeName
-                Dim MapObject As Roaming = (From p As Roaming In TempPoke Where p.Name = Pokes Order By p.Distance Ascending).ElementAt(TempPoke(0).getSkipIndex)
-                RoamingPoke.Add(MapObject)
+                Dim MapObject As List(Of Roaming) = (From p As Roaming In TempPoke Where p.Name = Pokes Order By p.Distance Ascending).ToList()
+
+                If MapObject IsNot Nothing AndAlso Not MapObject.Count = 0 Then
+                    RoamingPoke.Add(MapObject.ElementAt(MapObject(0).getSkipIndex))
+                End If
             Next
         End If
     End Sub
