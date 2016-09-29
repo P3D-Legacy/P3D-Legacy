@@ -954,13 +954,16 @@ nextIndex:
 
             'Shift the Roaming Pokemon.
             If RoamingBattle = True Then
-                If FieldEffects.RoamingFled = False Then
+                If FieldEffects.RoamingFled = False AndAlso Battle.Fled = False Then
                     Core.Player.RoamingPokemonData = RoamingPokemon.RemoveRoamingPokemon(RoamingPokemonStorage)
                 Else
                     Core.Player.RoamingPokemonData = RoamingPokemon.ReplaceRoamingPokemon(RoamingPokemonStorage)
                 End If
                 RoamingPokemon.ShiftRoamingPokemon(RoamingPokemonStorage.WorldID)
             End If
+
+            'Reverse this variable temp >
+            Battle.Fled = False
 
             'Add the Pokefile to the visited pokefiles list.
             If IsTrainerBattle = False Then

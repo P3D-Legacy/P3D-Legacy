@@ -661,6 +661,7 @@
                 BattleScreen.BattleQuery.Add(New TextQueryObject("Got away safely!"))
                 BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                 Battle.Won = True
+                Battle.Fled = True
             Else
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())

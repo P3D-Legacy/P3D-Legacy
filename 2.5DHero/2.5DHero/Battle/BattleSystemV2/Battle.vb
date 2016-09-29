@@ -3,6 +3,7 @@
     Public Class Battle
 
         Public Shared Won As Boolean = False
+        Public Shared Fled As Boolean = False
 
 #Region "StartRound"
 
