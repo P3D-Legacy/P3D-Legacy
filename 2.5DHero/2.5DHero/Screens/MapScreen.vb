@@ -16,7 +16,7 @@
     Dim cities As New List(Of City)
     Dim routes As New List(Of Route)
     Dim places As New List(Of Place)
-    'Dim RoamingPoke As New List(Of Roaming)
+    Dim RoamingPoke As New List(Of Roaming)
 
     Dim objectsTexture As Texture2D
     Dim mapTexture As Texture2D
@@ -1083,7 +1083,7 @@
             Me.PositionX = PositionX
             Me.PositionY = PositionY
             Me.Location = Location
-            Me.Distance = (2).xRoot((PositionX * 2) + (PositionY * 2))
+            Me.Distance = Math.Pow(Math.Pow(PositionX, 2) + Math.Pow(PositionY, 2), 0.5) ' (x^2 + y^2)^0.5
         End Sub
 
         Public Function getPosition() As Vector2
