@@ -15,11 +15,11 @@ Namespace Items
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
-        Public Sub New(ByVal MegaPokemonName As String, ByVal MegaPokemonNumber As Integer)
+        Public Sub New(ByVal MegaPokemonName As String, ByVal _megaPokemonNumber As Integer)
             Description = "One variety of the mysterious Mega Stones. Have " & MegaPokemonName & " hold it, and this stone will enable it to Mega Evolve during battle."
             _textureSource = "Items\MegaStones"
 
-            MegaPokemonNumber = MegaPokemonNumber
+            MegaPokemonNumber = _megaPokemonNumber
         End Sub
 
     End Class

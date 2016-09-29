@@ -75,7 +75,7 @@
                 Return i
             Else
                 Dim i As Integer = 0
-                While BattleScreen.Trainer.Pokemons(i).HP <= 0 Or BattleScreen.Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted Or i = BattleScreen.OwnPokemonIndex Or BattleScreen.Trainer.Pokemons(i).IsEgg() = True
+                While BattleScreen.Trainer.Pokemons(i).HP <= 0 Or BattleScreen.Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted Or i = BattleScreen.OppPokemonIndex Or BattleScreen.Trainer.Pokemons(i).IsEgg() = True
                     i += 1
                 End While
                 Return i

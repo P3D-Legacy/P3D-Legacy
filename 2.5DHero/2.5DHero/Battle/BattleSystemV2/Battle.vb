@@ -402,6 +402,49 @@
         Public SelectedMoveOwn As Boolean = True
         Public SelectedMoveOpp As Boolean = True
 
+        'Does the MegaEvolution
+        Sub DoMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
+
+            Dim p As Pokemon = BattleScreen.OwnPokemon
+            If own = False Then
+                p = BattleScreen.OppPokemon
+            End If
+            'Transform a Pokemon into it's Mega Evolution
+            If p.AdditionalData = "" Then
+                p.AdditionalData = "mega"
+                p.ReloadDefinitions()
+                p.CalculateStatsBarSpeed()
+                p.LoadMegaAbility()
+                Me.ChangeCameraAngel(1, own, BattleScreen)
+                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
+                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " has Mega Evolved!"))
+            End If
+        End Sub
+
+        'Checks if any pokemon is mega evolving, order based on speed
+        Sub MegaEvolCheck(ByVal BattleScreen As BattleScreen)
+            If BattleCalculation.MovesFirst(BattleScreen) = True Then
+                If BattleScreen.IsMegaEvolvingOwn = True Then
+                    DoMegaEvolution(BattleScreen, True)
+                End If
+                If BattleScreen.IsMegaEvolvingOpp = True Then
+                    DoMegaEvolution(BattleScreen, False)
+                End If
+            Else
+                If BattleScreen.IsMegaEvolvingOpp = True Then
+                    DoMegaEvolution(BattleScreen, False)
+                End If
+                If BattleScreen.IsMegaEvolvingOwn = True Then
+                    DoMegaEvolution(BattleScreen, True)
+                End If
+
+            End If
+            BattleScreen.IsMegaEvolvingOwn = False
+            BattleScreen.IsMegaEvolvingOpp = False
+        End Sub
+
+
+
         Public Sub InitializeRound(ByVal BattleScreen As BattleScreen, ByVal OwnStep As RoundConst)
             If BattleHasEnded(BattleScreen) = True Then
                 Exit Sub
@@ -410,9 +453,13 @@
             Dim OppStep As RoundConst = GetOppStep(BattleScreen, OwnStep)
             If OwnStep.StepType = RoundConst.StepTypes.Move Then
                 OwnStep = GetAttack(BattleScreen, True, CType(OwnStep.Argument, Attack))
+            Else
+                BattleScreen.IsMegaEvolvingOwn = False
             End If
             If OppStep.StepType = RoundConst.StepTypes.Move Then
                 OppStep = GetAttack(BattleScreen, False, CType(OppStep.Argument, Attack))
+            Else
+                BattleScreen.IsMegaEvolvingOpp = False
             End If
 
             'Move,Move
@@ -426,7 +473,10 @@
                 If SelectedMoveOwn = True Then ownMove.MoveSelected(True, BattleScreen)
                 If SelectedMoveOpp = True Then oppMove.MoveSelected(False, BattleScreen)
 
+                MegaEvolCheck(BattleScreen)
                 Dim first As Boolean = BattleCalculation.AttackFirst(ownMove, oppMove, BattleScreen)
+                BattleScreen.OppPokemon.CalculateStats()
+                BattleScreen.OwnPokemon.CalculateStats()
 
                 If first = True Then
                     DoAttackRound(BattleScreen, first, ownMove)
@@ -443,6 +493,10 @@
 
             'Move,Text
             If OwnStep.StepType = RoundConst.StepTypes.Move And OppStep.StepType = RoundConst.StepTypes.Text Then
+                MegaEvolCheck(BattleScreen)
+                BattleScreen.OppPokemon.CalculateStats()
+                BattleScreen.OwnPokemon.CalculateStats()
+
                 ChangeCameraAngel(0, True, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                 EndRound(BattleScreen, 2)
@@ -458,6 +512,10 @@
 
             'Move,Item
             If OwnStep.StepType = RoundConst.StepTypes.Move And OppStep.StepType = RoundConst.StepTypes.Item Then
+                MegaEvolCheck(BattleScreen)
+                BattleScreen.OppPokemon.CalculateStats()
+                BattleScreen.OwnPokemon.CalculateStats()
+
                 OpponentUseItem(BattleScreen, CInt(CStr(OppStep.Argument).Split(CChar(","))(0)), CInt(CStr(OppStep.Argument).Split(CChar(","))(1)))
                 EndRound(BattleScreen, 2)
 
@@ -470,6 +528,10 @@
 
             'Move,Switch
             If OwnStep.StepType = RoundConst.StepTypes.Move And OppStep.StepType = RoundConst.StepTypes.Switch Then
+                MegaEvolCheck(BattleScreen)
+                BattleScreen.OppPokemon.CalculateStats()
+                BattleScreen.OwnPokemon.CalculateStats()
+
                 If CType(OwnStep.Argument, Attack).ID = 228 Then 'Pursuit is used by own pokemon and opponent tries to switch.
                     BattleScreen.FieldEffects.OwnPursuit = True
                     BattleScreen.FieldEffects.OwnUsedMoves.Add(CType(OwnStep.Argument, Attack).ID)
@@ -494,6 +556,10 @@
 
             'Move,Flee
             If OwnStep.StepType = RoundConst.StepTypes.Move And OppStep.StepType = RoundConst.StepTypes.Flee Then
+                MegaEvolCheck(BattleScreen)
+                BattleScreen.OppPokemon.CalculateStats()
+                BattleScreen.OwnPokemon.CalculateStats()
+
                 BattleScreen.FieldEffects.OwnUsedMoves.Add(CType(OwnStep.Argument, Attack).ID)
                 Dim ownMove As Attack = CType(OwnStep.Argument, Attack)
 
@@ -521,6 +587,10 @@
 
             'Text,Move
             If OwnStep.StepType = RoundConst.StepTypes.Text And OppStep.StepType = RoundConst.StepTypes.Move Then
+                MegaEvolCheck(BattleScreen)
+                BattleScreen.OppPokemon.CalculateStats()
+                BattleScreen.OwnPokemon.CalculateStats()
+
                 ChangeCameraAngel(0, True, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OwnStep.Argument)))
                 EndRound(BattleScreen, 1)
@@ -587,6 +657,10 @@
 
             'Switch,Move
             If OwnStep.StepType = RoundConst.StepTypes.Switch And OppStep.StepType = RoundConst.StepTypes.Move Then
+                MegaEvolCheck(BattleScreen)
+                BattleScreen.OppPokemon.CalculateStats()
+                BattleScreen.OwnPokemon.CalculateStats()
+
                 If BattleCalculation.CanSwitch(BattleScreen, True) = True Then
                     If CType(OppStep.Argument, Attack).ID = 228 Then 'Opp uses pursuit while own tries to switch.
                         BattleScreen.FieldEffects.OppPursuit = True
@@ -711,6 +785,10 @@
 
             'Item,Move
             If OwnStep.StepType = RoundConst.StepTypes.Item And OppStep.StepType = RoundConst.StepTypes.Move Then
+                MegaEvolCheck(BattleScreen)
+                BattleScreen.OppPokemon.CalculateStats()
+                BattleScreen.OwnPokemon.CalculateStats()
+
                 EndRound(BattleScreen, 1)
 
                 Dim oppMove As Attack = CType(OppStep.Argument, Attack)
@@ -3755,6 +3833,7 @@ endthisround:
             With BattleScreen
                 Select Case type
                     Case 0 'Complete round
+                        .BattleMenu._mainMenuItemList.Clear()
                         'The fastest pokemon ends its round first
                         If BattleCalculation.MovesFirst(BattleScreen) = True Then
                             EndRoundOwn(BattleScreen)
@@ -6227,6 +6306,21 @@ endthisround:
         End Enum
 
         Public Sub EndBattle(ByVal reason As EndBattleReasons, ByVal BattleScreen As BattleScreen, ByVal AddPVP As Boolean)
+
+            'Reverts battle only Pokemon formes.
+            Dim str As String = ""
+            Dim p As Pokemon = Core.Player.Pokemons(0)
+            For i = 0 To Core.Player.Pokemons.Count - 1
+                p = Core.Player.Pokemons(i)
+                str = p.AdditionalData.ToLower()
+                If str = "mega" OrElse str = "blade" Then
+                    p.AdditionalData = PokemonForms.GetInitialAdditionalData(p)
+                    p.ReloadDefinitions()
+                    p.CalculateStats()
+                    p.RestoreAbility()
+                End If
+            Next
+
             If AddPVP = True Then
                 Select Case reason
                     Case EndBattleReasons.WinTrainer 'Lost

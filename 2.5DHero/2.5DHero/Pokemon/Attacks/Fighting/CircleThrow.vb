@@ -89,7 +89,7 @@ Namespace BattleSystem.Moves.Fighting
                                         If BattleScreen.Trainer.CountUseablePokemon > 1 Then
                                             Dim i As Integer = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.count)
                                             While BattleScreen.Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OppPokemonIndex = i OrElse BattleScreen.Trainer.Pokemons(i).HP <= 0
-                                                i = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.count)
+                                                i = Core.Random.Next(0, BattleScreen.Trainer.Pokemons.Count - 1)
                                             End While
                                             BattleScreen.Battle.SwitchOutOpp(BattleScreen, i, "")
                                         Else
@@ -99,7 +99,7 @@ Namespace BattleSystem.Moves.Fighting
                                         If Core.Player.CountFightablePokemon > 1 Then
                                              Dim i As Integer = Core.Random.Next(0, Core.Player.Pokemons.Count)
                                             While Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OwnPokemonIndex = i OrElse Core.Player.Pokemons(i).HP <= 0
-                                                i = Core.Random.Next(0, Core.Player.Pokemons.Count)
+                                                i = Core.Random.Next(0, Core.Player.Pokemons.Count - 1)
                                             End While
                                             BattleScreen.Battle.SwitchOutOwn(BattleScreen, i, -1)
                                         Else

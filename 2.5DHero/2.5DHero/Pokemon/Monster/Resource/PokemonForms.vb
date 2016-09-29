@@ -9,7 +9,9 @@ Public Class PokemonForms
                                New Deoxys(),
                                New Burmy(), New Shellos(), New Gastrodon(), New Rotom(), New Dialga(), New Arceus(),
                                New Basculin(), New Deerling(), New Sawsbuck(), New Frillish(), New Jellicent(), New Tornadus(), New Thundurus(), New Landorus(), New Kyurem(),
-                               New Aegislash()})
+                               New Aegislash(),
+                               New Ampharos()})
+
     End Sub
 
     ''' <summary>
@@ -237,6 +239,30 @@ Public Class PokemonForms
 
     End Class
 
+    'Placeholder for Mega Ampharos
+    Private Class Ampharos
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(181)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(9, 29)
+                Case Else
+                    Return New Vector2(20, 5)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
     Private Class Unown
 
         Inherits PokemonForm
@@ -281,15 +307,30 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(208)
         End Sub
-
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
-            Return New Vector2(11, 26)
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(29, 28)
+                Case Else
+                    Return New Vector2(11, 26)
+            End Select
         End Function
-
         Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Return New Size(35, 32)
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Size(39, 32)
+                Case Else
+                    Return New Size(35, 32)
+            End Select
         End Function
-
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
     End Class
 
     Private Class Deoxys

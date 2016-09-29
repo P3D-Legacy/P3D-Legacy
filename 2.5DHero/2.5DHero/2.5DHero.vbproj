@@ -1711,6 +1711,7 @@
     <None Include="Content\**\*.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Pokemon\Data\181_mega.dat" />
     <None Include="maps\**\*.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

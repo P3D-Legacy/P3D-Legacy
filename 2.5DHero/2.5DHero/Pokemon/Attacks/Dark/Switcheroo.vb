@@ -83,13 +83,15 @@ Namespace BattleSystem.Moves.Dark
                                 Else
                                     If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
                                         BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                                    Else
-                                        Dim i1 As Item = p.Item
-                                        Dim i2 As Item = op.Item
-
-                                        p.Item = i2
-                                        op.Item = i1
-                                        BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " switched items with " & op.GetDisplayName() & "."))
+                                        If p.Item.IsMegaStone OrElse op.Item.IsMegaStone Then
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                                        Else
+                                            Dim i1 As Item = p.Item
+                                            Dim i2 As Item = op.Item
+                                            p.Item = i2
+                                            op.Item = i1
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " switched items with " & op.GetDisplayName() & "."))
+                                        End If
                                     End If
                                 End If
                             End If

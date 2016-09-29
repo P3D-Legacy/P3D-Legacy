@@ -136,6 +136,8 @@ Public Class Pokemon
     ''' <summary>
     ''' Returns the name to reference to the animation/model of this Pokémon.
     ''' </summary>
+    Public AbilityTag As New List(Of Integer)
+
     Public ReadOnly Property AnimationName() As String
         Get
             Return PokemonForms.GetAnimationName(Me)
@@ -1026,6 +1028,16 @@ Public Class Pokemon
         Me.CalculateStats()
     End Sub
 
+    'Just use these subs when doing/reverting mega evolutions.
+    Public NormalAbility As Ability = New Abilities.Stench
+    Public Sub LoadMegaAbility()
+        NormalAbility = Ability
+        Me.Ability = NewAbilities(0)
+    End Sub
+    Public Sub RestoreAbility()
+        Me.Ability = NormalAbility
+    End Sub
+
 #End Region
 
 #Region "OriginalStats"
@@ -1268,6 +1280,7 @@ Public Class Pokemon
     Public Sub LoadDefinitions(ByVal Number As Integer, ByVal AdditionalData As String)
         Dim path As String = PokemonForms.GetPokemonDataFile(Number, AdditionalData)
         Security.FileValidation.CheckFileValid(path, False, "Pokemon.vb")
+        NewAbilities.Clear()
 
         Dim Data() As String = System.IO.File.ReadAllLines(path)
 
@@ -1316,7 +1329,11 @@ Public Class Pokemon
                     Me.IsGenderless = CBool(Value)
                 Case "devolution"
                     Me.Devolution = CInt(Value)
-                Case "ability1", "ability2", "ability"
+                Case "ability1", "ability"
+                    If Value <> "Nothing" Then
+                        Me.NewAbilities.Add(Ability.GetAbilityByID(CInt(Value)))
+                    End If
+                Case "ability2"
                     If Value <> "Nothing" Then
                         Me.NewAbilities.Add(Ability.GetAbilityByID(CInt(Value)))
                     End If
@@ -1538,6 +1555,7 @@ Public Class Pokemon
                     Me.OT = tagValue
                 Case "ability"
                     Me.Ability = net.Pokemon3D.Game.Ability.GetAbilityByID(CInt(tagValue))
+                    Me.NormalAbility = Ability
                 Case "status"
                     Select Case tagValue
                         Case "BRN"
@@ -2112,12 +2130,17 @@ Public Class Pokemon
     ''' <summary>
     ''' Recalculates all stats for this Pokémon using its current EVs, IVs and level.
     ''' </summary>
-    Public Sub CalculateStats()
+    ''' 
+    Public Sub CalculateStatsBarSpeed()
         Me.MaxHP = CalcStatus(Me.Level, True, Me.BaseHP, Me.EVHP, Me.IVHP, "HP")
         Me.Attack = CalcStatus(Me.Level, False, Me.BaseAttack, Me.EVAttack, Me.IVAttack, "Attack")
         Me.Defense = CalcStatus(Me.Level, False, Me.BaseDefense, Me.EVDefense, Me.IVDefense, "Defense")
         Me.SpAttack = CalcStatus(Me.Level, False, Me.BaseSpAttack, Me.EVSpAttack, Me.IVSpAttack, "SpAttack")
         Me.SpDefense = CalcStatus(Me.Level, False, Me.BaseSpDefense, Me.EVSpDefense, Me.IVSpDefense, "SpDefense")
+    End Sub
+
+    Public Sub CalculateStats()
+        CalculateStatsBarSpeed()
         Me.Speed = CalcStatus(Me.Level, False, Me.BaseSpeed, Me.EVSpeed, Me.IVSpeed, "Speed")
     End Sub
 
@@ -2743,5 +2766,4 @@ Public Class Pokemon
     Public Overrides Function ToString() As String
         Return GetSaveData()
     End Function
-
 End Class

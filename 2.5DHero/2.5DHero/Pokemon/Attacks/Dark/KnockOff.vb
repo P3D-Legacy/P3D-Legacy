@@ -67,7 +67,9 @@
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
-
+            If op.Item.IsMegaStone = True Then
+                Exit Sub
+            End If
             If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, "", "", True) = True Then
                 op.OriginalItem = Item.GetItemByID(op.Item.ID)
                 op.OriginalItem.AdditionalData = op.Item.AdditionalData

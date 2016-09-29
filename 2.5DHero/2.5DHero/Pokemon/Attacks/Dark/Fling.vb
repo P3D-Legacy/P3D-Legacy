@@ -86,7 +86,9 @@
             If own = False Then
                 p = BattleScreen.OppPokemon
             End If
-
+            If p.Item.IsMegaStone = True Then
+                Exit Sub
+            End If
             If Not p.Item Is Nothing Then
                 'Clear prior effect chances to add the chance depending on the item.
                 Me.EffectChances.Clear()

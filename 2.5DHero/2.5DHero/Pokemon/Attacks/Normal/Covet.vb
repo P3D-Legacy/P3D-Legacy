@@ -62,7 +62,9 @@ Namespace BattleSystem.Moves.Normal
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
-
+            If op.Item.IsMegaStone = True Then
+                Exit Sub
+            End If
             Dim canSteal As Boolean = True
             If op.Ability.Name.ToLower() = "multitype" Then
                 canSteal = False

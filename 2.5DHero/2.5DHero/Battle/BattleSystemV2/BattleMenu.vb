@@ -297,7 +297,7 @@
 
         Private _mainMenuIndex As Integer = 0
         Private _mainMenuNextIndex As Integer = 0
-        Private _mainMenuItemList As New List(Of MainMenuItem)
+        Public _mainMenuItemList As New List(Of MainMenuItem)
         Private _mainMenuTeamPreviewAlpha As Integer = 0
         Private _mainMenuTeamPreviewLastIndex As Integer = -1
 
@@ -612,13 +612,14 @@
         End Sub
 
         Private Sub MainMenuAddMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal Index As Integer)
+            Dim PokeIndex As Integer = BattleScreen.OwnPokemonIndex
             If BattleScreen.FieldEffects.OwnMegaEvolved = False Then
-                If Not Core.Player.Pokemons(0).Item Is Nothing Then
-                    If Core.Player.Pokemons(0).Item.IsMegaStone = True Then
-                        Dim megaStone = CType(Core.Player.Pokemons(0).Item, Items.MegaStone)
+                If Not Core.Player.Pokemons(PokeIndex).Item Is Nothing Then
+                    If Core.Player.Pokemons(PokeIndex).Item.IsMegaStone = True Then
+                        Dim megaStone = CType(Core.Player.Pokemons(PokeIndex).Item, Items.MegaStone)
 
-                        If megaStone.MegaPokemonNumber = Core.Player.Pokemons(0).Number Then
-                            'm_MainMenuItemList.Add(New MainMenuItem(0, "Mega Evolve!", Index, Nothing))
+                        If megaStone.MegaPokemonNumber = Core.Player.Pokemons(PokeIndex).Number Then
+                            _mainMenuItemList.Add(New MainMenuItem(0, "Mega Evolve!", Index, AddressOf MainMenuMegaEvolve))
                         End If
                     End If
                 End If
@@ -722,6 +723,14 @@
             BattleScreen.Battle.InitializeRound(BattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = "Threw a Bait at " & BattleScreen.OppPokemon.GetDisplayName() & "!"})
         End Sub
 
+        Private Sub MainMenuMegaEvolve(ByVal BattleScreen As BattleScreen)
+            BattleScreen.IsMegaEvolvingOwn = True
+            For i = 0 To Core.Player.Pokemons.Count - 1
+                If Core.Player.Pokemons(i).AdditionalData = "mega" Then
+                    BattleScreen.IsMegaEvolvingOwn = False
+                End If
+            Next
+        End Sub
 #End Region
 
 #Region "MoveMenu"

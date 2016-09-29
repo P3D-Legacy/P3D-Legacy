@@ -37,6 +37,9 @@
         Public OwnPokemon As Pokemon
         Public OppPokemon As Pokemon
 
+        Public IsMegaEvolvingOwn As Boolean = False
+        Public IsMegaEvolvingOpp As Boolean = False
+
         Public OppPokemonNPC As NPC
         Public OwnPokemonNPC As NPC
         Public OwnTrainerNPC As NPC
