@@ -427,9 +427,10 @@
                 End If
 
                 ' Plz Fix It Aragaz Plz
-                Dim texture = Route.getTexture(objectsTexture, isSelected)
-                Core.SpriteBatch.Draw(texture, Route.getRectangle(mapOffset), c)
-                texture.Dispose()
+                'Dim texture = Route.getTexture(objectsTexture, isSelected)
+                'Core.SpriteBatch.Draw(texture, Route.getRectangle(mapOffset), c)
+                'texture.Dispose()
+                Core.SpriteBatch.Draw(Route.getTexture(objectsTexture, isSelected), Route.getRectangle(mapOffset), c)
             Next
         End If
 
@@ -446,9 +447,10 @@
                 End If
 
                 ' Plz Fix It Aragaz Plz
-                Dim texture = City.getTexture(objectsTexture, isSelected)
-                Core.SpriteBatch.Draw(texture, City.getRectangle(mapOffset), c)
-                texture.Dispose()
+                'Dim texture = City.getTexture(objectsTexture, isSelected)
+                'Core.SpriteBatch.Draw(texture, City.getRectangle(mapOffset), c)
+                'texture.Dispose()
+                Core.SpriteBatch.Draw(City.getTexture(objectsTexture, isSelected), City.getRectangle(mapOffset), c)
             Next
         End If
 
@@ -465,9 +467,10 @@
                 End If
 
                 ' Plz Fix It Aragaz Plz
-                Dim texture = Place.getTexture(objectsTexture, isSelected)
-                Core.SpriteBatch.Draw(texture, Place.getRectangle(mapOffset), c)
-                texture.Dispose()
+                'Dim texture = Place.getTexture(objectsTexture, isSelected)
+                'Core.SpriteBatch.Draw(texture, Place.getRectangle(mapOffset), c)
+                'texture.Dispose()
+                Core.SpriteBatch.Draw(Place.getTexture(objectsTexture, isSelected), Place.getRectangle(mapOffset), c)
             Next
         End If
 
