@@ -230,17 +230,17 @@
                         End If
                 End Select
 
-                If String.IsNullOrWhiteSpace(Core.Player.RoamingPokemonData) = False Then
+                If Not String.IsNullOrWhiteSpace(Core.Player.RoamingPokemonData) Then
                     If Core.Player.RoamingPokemonData.Length > 0 AndAlso Core.Player.RoamingPokemonData.Contains("|") Then
                         For Each Pokes As String In Core.Player.RoamingPokemonData.SplitAtNewline
                             'PokémonID,Level,regionID,startLevelFile,MusicLoop,PokemonData
-                            Dim TempData() As String = Pokes.Split(CChar("|"))
-                            Dim MapFiles() As String = Tags("mapfiles").Split(CChar(","))
+                            Dim TempData() As String = Pokes.Split("|")
+                            Dim MapFiles() As String = Tags("mapfiles").Split(",")
                             Dim PokeCurrentLocation As String = TempData(3)
                             If MapFiles.Contains(PokeCurrentLocation) Then
-                                TempPoke.Add(New Roaming(CInt(TempData(0)), CInt(Tags("position").Split(CChar(","))(0)), CInt(Tags("position").Split(CChar(","))(1)), Tags("name")))
+                                TempPoke.Add(New Roaming(CInt(TempData(0)), CInt(Tags("position").Split(",")(0)), CInt(Tags("position").Split(",")(1)), Tags("name")))
                             End If
-                            If RoamingPokeName Is Nothing OrElse RoamingPokeName.Contains(Pokemon.GetPokemonByID(CInt(TempData(0))).GetName) = False Then
+                            If RoamingPokeName Is Nothing OrElse Not RoamingPokeName.Contains(Pokemon.GetPokemonByID(CInt(TempData(0))).GetName) Then
                                 RoamingPokeName.Add(Pokemon.GetPokemonByID(CInt(TempData(0))).GetName)
                             End If
                         Next
@@ -252,7 +252,6 @@
         If TempPoke.Count > 0 And RoamingPokeName.Count > 0 Then
             For Each Pokes As String In RoamingPokeName
                 Dim MapObject As List(Of Roaming) = (From p As Roaming In TempPoke Where p.Name = Pokes Order By p.Distance Ascending).ToList()
-
                 If MapObject IsNot Nothing AndAlso Not MapObject.Count = 0 Then
                     RoamingPoke.Add(MapObject.ElementAt(MapObject(0).getSkipIndex))
                 End If
@@ -476,8 +475,7 @@
 
         If drawObjects(3) = True Then
             For Each Pokes As Roaming In RoamingPoke
-                Dim c As Color = Color.White
-                Core.SpriteBatch.Draw(Pokes.getTexture(objectsTexture), Pokes.getRectangle(mapOffset), c)
+                Core.SpriteBatch.Draw(Pokes.getTexture(), Pokes.getRectangle(mapOffset), Color.White)
             Next
         End If
 
@@ -1086,7 +1084,7 @@
             Me.PositionX = PositionX
             Me.PositionY = PositionY
             Me.Location = Location
-            Me.Distance = Math.Pow(Math.Pow(PositionX, 2) + Math.Pow(PositionY, 2), 0.5) ' (x^2 + y^2)^0.5
+            Me.Distance = Math.Pow(Math.Pow(PositionX, 2) + Math.Pow(PositionY, 2), 0.5)
         End Sub
 
         Public Function getPosition() As Vector2
@@ -1103,7 +1101,7 @@
             Return New Rectangle(CInt(Me.getPosition().X + offset.X), CInt(Me.getPosition().Y + offset.Y), sizeX, sizeY)
         End Function
 
-        Public Function getTexture(ByVal FullTexture As Texture2D) As Texture2D
+        Public Function getTexture() As Texture2D
             Dim Texture As Texture2D = TextureManager.GetTexture("GUI\PokemonMenu")
             Dim IndexX As Integer = 0
             Dim IndexY As Integer = 0

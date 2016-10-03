@@ -189,7 +189,7 @@
         End Sub
 
         Private Sub DeleteHostQuery(ByVal BattleScreen As BattleScreen)
-            If BattleScreen.IsRemoteBattle = True Then
+            If BattleScreen.IsRemoteBattle Then
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.TempPVPBattleQuery.Clear()
             End If
@@ -200,14 +200,14 @@
             SelectedMoveOwn = True
             SelectedMoveOpp = True
 
-            If BattleScreen.IsRemoteBattle = False Then
+            If Not BattleScreen.IsRemoteBattle Then
                 StartMultiTurnAction(BattleScreen)
             End If
 
             'Going to menu:
             BattleScreen.BattleQuery.Add(New ToggleMenuQueryObject(False))
 
-            If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
+            If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
                 BattleScreen.BattleQuery.Add(New TriggerNewRoundPVPQueryObject())
 
                 BattleScreen.SendHostQuery()
@@ -219,9 +219,9 @@
         End Sub
 
         Public Function GetOppStep(ByVal BattleScreen As BattleScreen, ByVal OwnStep As RoundConst) As RoundConst
-            If BattleScreen.RoamingBattle = True Then
+            If BattleScreen.RoamingBattle Then
                 BattleScreen.FieldEffects.RoamingFled = False
-                If BattleCalculation.CanSwitch(BattleScreen, False) = True Then
+                If BattleCalculation.CanSwitch(BattleScreen, False) Then
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Flee, .Argument = BattleScreen.OppPokemon.GetDisplayName() & " fled!"}
                 End If
             End If
@@ -337,25 +337,25 @@
             End If
 
             'PVP action:
-            If BattleScreen.IsRemoteBattle = True And BattleScreen.IsHost = True Then
+            If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
                 BattleScreen.OppStatistics.Turns += 1
                 BattleScreen.OwnStatistics.Turns += 1
-                If BattleScreen.ReceivedInput.StartsWith("MOVE|") = True Then
+                If BattleScreen.ReceivedInput.StartsWith("MOVE|") Then
                     BattleScreen.OppStatistics.Moves += 1
                     Dim moveID As Integer = CInt(BattleScreen.ReceivedInput.Remove(0, 5))
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, moveID)}
-                ElseIf BattleScreen.ReceivedInput.StartsWith("SWITCH|") = True Then
+                ElseIf BattleScreen.ReceivedInput.StartsWith("SWITCH|") Then
                     BattleScreen.OppStatistics.Switches += 1
                     Dim switchID As Integer = CInt(BattleScreen.ReceivedInput.Remove(0, 7))
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Switch, .Argument = switchID.ToString()}
-                ElseIf BattleScreen.ReceivedInput.StartsWith("TEXT|") = True Then
+                ElseIf BattleScreen.ReceivedInput.StartsWith("TEXT|") Then
                     Dim text As String = BattleScreen.ReceivedInput.Remove(0, 5)
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = text}
                 End If
             End If
 
             'AI move here:
-            If BattleScreen.IsTrainerBattle = True And BattleScreen.IsRemoteBattle = False Then
+            If BattleScreen.IsTrainerBattle AndAlso Not BattleScreen.IsRemoteBattle Then
                 Return TrainerAI.GetAIMove(BattleScreen, OwnStep)
             Else
                 Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = BattleScreen.OppPokemon.Attacks(Core.Random.Next(0, BattleScreen.OppPokemon.Attacks.Count))}
@@ -407,7 +407,7 @@
         Sub DoMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
 
             Dim p As Pokemon = BattleScreen.OwnPokemon
-            If own = False Then
+            If Not own Then
                 p = BattleScreen.OppPokemon
             End If
             'Transform a Pokemon into it's Mega Evolution
@@ -424,18 +424,18 @@
 
         'Checks if any pokemon is mega evolving, order based on speed
         Sub MegaEvolCheck(ByVal BattleScreen As BattleScreen)
-            If BattleCalculation.MovesFirst(BattleScreen) = True Then
-                If BattleScreen.IsMegaEvolvingOwn = True Then
+            If BattleCalculation.MovesFirst(BattleScreen) Then
+                If BattleScreen.IsMegaEvolvingOwn Then
                     DoMegaEvolution(BattleScreen, True)
                 End If
-                If BattleScreen.IsMegaEvolvingOpp = True Then
+                If BattleScreen.IsMegaEvolvingOpp Then
                     DoMegaEvolution(BattleScreen, False)
                 End If
             Else
-                If BattleScreen.IsMegaEvolvingOpp = True Then
+                If BattleScreen.IsMegaEvolvingOpp Then
                     DoMegaEvolution(BattleScreen, False)
                 End If
-                If BattleScreen.IsMegaEvolvingOwn = True Then
+                If BattleScreen.IsMegaEvolvingOwn Then
                     DoMegaEvolution(BattleScreen, True)
                 End If
 
@@ -447,7 +447,7 @@
 
 
         Public Sub InitializeRound(ByVal BattleScreen As BattleScreen, ByVal OwnStep As RoundConst)
-            If BattleHasEnded(BattleScreen) = True Then
+            If BattleHasEnded(BattleScreen) Then
                 Exit Sub
             End If
 
@@ -479,7 +479,7 @@
                 BattleScreen.OppPokemon.CalculateStats()
                 BattleScreen.OwnPokemon.CalculateStats()
 
-                If first = True Then
+                If first Then
                     DoAttackRound(BattleScreen, first, ownMove)
                     EndRound(BattleScreen, 1)
                     DoAttackRound(BattleScreen, Not first, oppMove)
@@ -909,15 +909,15 @@
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
 
-            If own = False Then
+            If Not own Then
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
 
             'Transform Aegislash with Stance Change ability.
-            If p.Ability.Name.ToLower() = "stance change" And p.Number = 681 Then
+            If p.Ability.Name.ToLower() = "stance change" AndAlso p.Number = 681 Then
                 If p.AdditionalData = "" Then
-                    If moveUsed.IsDamagingMove = True Then
+                    If moveUsed.IsDamagingMove Then
                         p.AdditionalData = "blade"
                         p.ReloadDefinitions()
                         p.CalculateStats()
@@ -938,7 +938,7 @@
             End If
 
             'Turn count
-            If own = True Then
+            If own Then
                 BattleScreen.FieldEffects.OwnTurnCounts += 1
             Else
                 BattleScreen.FieldEffects.OppTurnCounts += 1
@@ -946,7 +946,7 @@
 
             'Reset Destiny Bond:
             If moveUsed.ID <> 194 Then
-                If own = True Then
+                If own Then
                     BattleScreen.FieldEffects.OwnDestinyBond = False
                 Else
                     BattleScreen.FieldEffects.OppDestinyBond = False
@@ -954,7 +954,7 @@
             End If
 
             If p.HP <= 0 Then
-                GoTo endthisround
+                Exit Sub
             End If
 
             Dim q As CameraQueryObject = CType(BattleScreen.FocusBattle(), CameraQueryObject) : q.ApplyCurrentCamera = True : BattleScreen.BattleQuery.Add(q)
@@ -966,13 +966,13 @@
                 Else
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_ice1", False))
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is frozen solid!"))
-                    GoTo endthisround
+                    Exit Sub
                 End If
             End If
 
             If p.Status = Pokemon.StatusProblems.Sleep Then
                 Dim sleepTurns As Integer = BattleScreen.FieldEffects.OwnSleepTurns
-                If own = False Then
+                If Not own Then
                     sleepTurns = BattleScreen.FieldEffects.OppSleepTurns
                 End If
 
@@ -987,7 +987,7 @@
                     Else
                         CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " woke up!", "sleepturns")
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Sleep Talk failed!"))
-                        Return
+                        Exit Sub
                     End If
                 Else
                     If (own AndAlso BattleScreen.FieldEffects.OwnLastMove.ID = 214) OrElse (Not own AndAlso BattleScreen.FieldEffects.OppLastMove.ID = 214) Then
@@ -999,7 +999,7 @@
                     Else
                         If sleepTurns > 0 Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fast asleep."))
-                            Return
+                            Exit Sub
                         Else
                             CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " woke up!", "sleepturns")
                         End If
@@ -1009,18 +1009,18 @@
 
             If p.Ability.Name.ToLower() = "truant" Then
                 Dim truantTurn As Integer = BattleScreen.FieldEffects.OwnTruantRound
-                If own = False Then
+                If Not own Then
                     truantTurn = BattleScreen.FieldEffects.OppTruantRound
                 End If
                 If truantTurn = 1 Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " loafes around."))
-                    GoTo endthisround
+                    Exit Sub
                 End If
             End If
 
             If moveUsed.Disabled > 0 Then
                 BattleScreen.BattleQuery.Add(New TextQueryObject(moveUsed.Name & " is disabled!"))
-                GoTo endthisround
+                Exit Sub
             End If
 
             Dim imprisoned As Integer = BattleScreen.FieldEffects.OwnImprison
@@ -1037,7 +1037,7 @@
                 Next
                 If hasMove = True Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move is sealed by " & op.GetDisplayName() & "!"))
-                    GoTo endthisround
+                    Exit Sub
                 End If
             End If
 
@@ -1048,7 +1048,7 @@
             If healBlock > 0 Then
                 If moveUsed.IsHealingMove = True Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " was prevented from healing!"))
-                    GoTo endthisround
+                    Exit Sub
                 End If
             End If
 
@@ -1057,7 +1057,7 @@
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " prevented the sound-based move with Cacophony!"))
                         moveUsed.MoveFailsSoundproof(own, BattleScreen)
-                        GoTo endthisround
+                        Exit Sub
                     End If
                 End If
 
@@ -1065,13 +1065,13 @@
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " prevented the sound-based move with Soundproof!"))
                         moveUsed.MoveFailsSoundproof(own, BattleScreen)
-                        GoTo endthisround
+                        Exit Sub
                     End If
                 End If
 
                 If op.Ability.Name.ToLower() = "sturdy" And moveUsed.IsOneHitKOMove = True Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Sturdy prevented any damage from the 1-Hit-KO move."))
-                    GoTo endthisround
+                    Exit Sub
                 End If
             End If
 
@@ -1093,7 +1093,7 @@
                         Dim a As Attack = New ConfusionAttack()
                         Dim damage As Integer = BattleCalculation.CalculateDamage(a, False, True, True, BattleScreen)
                         ReduceHP(damage, own, own, BattleScreen, p.GetDisplayName() & " hurt itself in confusion.", "confusiondamage")
-                        GoTo endthisround
+                        Exit Sub
                     End If
                 End If
             End If
@@ -1116,7 +1116,7 @@
                 If p.Ability.Name.ToLower() = "steadfast" Then
                     RaiseStat(own, Not own, BattleScreen, "Speed", 1, "", "steadfast")
                 End If
-                GoTo endthisround
+                Exit Sub
             End If
 
             Dim taunt As Integer = BattleScreen.FieldEffects.OwnTaunt
@@ -1126,7 +1126,7 @@
             If taunt > 0 Then
                 If moveUsed.Category = Attack.Categories.Status Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " move was prevented due to Taunt!"))
-                    GoTo endthisround
+                    Exit Sub
                 End If
             End If
 
@@ -1134,7 +1134,7 @@
             If gravity > 0 Then
                 If moveUsed.DisabledWhileGravity = True Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " move was prevented due to Gravity!"))
-                    GoTo endthisround
+                    Exit Sub
                 End If
             End If
 
@@ -1142,7 +1142,7 @@
                 If p.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
                     If Core.Random.Next(0, 2) = 0 Then
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is in love with " & op.GetDisplayName() & "!"))
-                        GoTo endthisround
+                        Exit Sub
                     End If
                 End If
             End If
@@ -1151,7 +1151,7 @@
                 If Core.Random.Next(0, 4) = 0 Then
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_thundershock2", False))
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fully paralyzed!" & vbNewLine & "It cannot move!"))
-                    GoTo endthisround
+                    Exit Sub
                 End If
             End If
 
@@ -1173,29 +1173,29 @@
                     Select Case ObedienceCheck
                         Case 1
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " ignores orders while asleep!"))
-                            GoTo endthisround
+                            Exit Sub
                         Case 2
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " ignores orders!"))
                             moveUsed = CType(GetAttack(BattleScreen, own, p.Attacks(Core.Random.Next(0, p.Attacks.Count))).Argument, Attack)
-                            GoTo endthisround
+                            Exit Sub
                         Case 3
                             InflictSleep(own, own, BattleScreen, -1, p.GetDisplayName() & " began to nap!", "obeynap")
-                            GoTo endthisround
+                            Exit Sub
                         Case 4
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " won't obey!"))
-                            GoTo endthisround
+                            Exit Sub
                         Case 5
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " won't obey!"))
-                            GoTo endthisround
+                            Exit Sub
                         Case 6
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " turned away!"))
-                            GoTo endthisround
+                            Exit Sub
                         Case 7
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is loafing around!"))
-                            GoTo endthisround
+                            Exit Sub
                         Case 8
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " pretended to not notice!"))
-                            GoTo endthisround
+                            Exit Sub
                     End Select
                 End If
             End If
@@ -1223,7 +1223,7 @@
             If moveUsed.Target <> Attack.Targets.Self And moveUsed.Target <> Attack.Targets.All Then
                 If op.HP <= 0 Or op.Status = Pokemon.StatusProblems.Fainted Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject("But there was no target..."))
-                    GoTo endthisround
+                    Exit Sub
                 End If
             End If
 
@@ -1459,7 +1459,7 @@
 
                             If protectWorks = True Then
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
-                                GoTo endthisround
+                                Exit Sub
                             End If
                         End If
 
@@ -1477,7 +1477,7 @@
 
                             If detectWorks = True Then
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
-                                GoTo endthisround
+                                Exit Sub
                             End If
                         End If
 
@@ -1500,7 +1500,7 @@
                                     Me.LowerStat(own, Not own, BattleScreen, "Attack", 2, "", "move:kingsshield")
                                 End If
 
-                                GoTo endthisround
+                                Exit Sub
                             End If
                         End If
                     End If
@@ -1520,7 +1520,7 @@
                         ChangeCameraAngel(2, own, BattleScreen)
                         If op.Ability.Name.ToLower() = "wonder guard" And effectiveness <= 1.0F And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True And moveUsed.IsWonderGuardAffected = True Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "s Wonder Guard blocked the attack!"))
-                            GoTo endthisround
+                            Exit Sub
                         End If
 
                         Dim Hits As Integer = 0
@@ -1706,7 +1706,7 @@
                                     End If
                                 End If
                                 moveUsed.MoveRecoil(own, BattleScreen)
-                                
+
                                 If op.HP > 0 Then
                                     If own = True Then
                                         If BattleScreen.FieldEffects.OppRageCounter > 0 Then
@@ -2009,8 +2009,6 @@
                 End If
                 moveUsed.MoveMisses(own, BattleScreen)
             End If
-
-endthisround:
         End Sub
 
         ''' <summary>
