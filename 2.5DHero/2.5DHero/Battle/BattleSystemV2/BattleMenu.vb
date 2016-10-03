@@ -564,6 +564,11 @@
             End If
 
             UpdateMenuOptions(_mainMenuIndex, _mainMenuNextIndex, _mainMenuItemList.Count)
+            If BattleScreen.ClearMenuTime = True Then
+                _mainMenuItemList.Clear()
+                BattleScreen.ClearMenuTime = False
+            End If
+
         End Sub
 
         Private Sub CreateMainMenuItems(ByVal BattleScreen As BattleScreen)

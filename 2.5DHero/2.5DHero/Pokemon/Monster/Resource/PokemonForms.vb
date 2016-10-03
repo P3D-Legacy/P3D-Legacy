@@ -4,13 +4,12 @@ Public Class PokemonForms
 
     Public Shared Sub Initialize()
         _pokemonList.Clear()
-        _pokemonList.AddRange({New Nidoran(),
-                               New Pichu(), New Unown(), New Steelix(),
-                               New Deoxys(),
-                               New Burmy(), New Shellos(), New Gastrodon(), New Rotom(), New Dialga(), New Arceus(),
-                               New Basculin(), New Deerling(), New Sawsbuck(), New Frillish(), New Jellicent(), New Tornadus(), New Thundurus(), New Landorus(), New Kyurem(),
-                               New Aegislash(),
-                               New Ampharos()})
+        _pokemonList.AddRange({New Charizard(), New Beedrill(), New Pidgeot(), New Nidoran(), New Alakazam(), New Slowbro(), New Gengar(),
+                               New Pichu(), New Unown(), New Ampharos(), New Steelix(), New Scizor(), New Heracross(), New Tyranitar(),
+                               New Sceptile(), New Blaziken(), New Swampert(), New Gardevoir(), New Aggron(), New Medicham(), New Camerupt(), New Altaria(), New Banette(), New Absol(), New Metagross(), New Kyogre(), New Groudon(), New Deoxys(),
+                               New Burmy(), New Shellos(), New Gastrodon(), New Lopunny(), New Garchomp(), New Lucario(), New Abomasnow(), New Gallade(), New Rotom(), New Dialga(), New Arceus(),
+                               New Audino(), New Basculin(), New Deerling(), New Sawsbuck(), New Frillish(), New Jellicent(), New Tornadus(), New Thundurus(), New Landorus(), New Kyurem(),
+                               New Aegislash(), New Diancie()})
 
     End Sub
 
@@ -186,6 +185,143 @@ Public Class PokemonForms
         End Function
 
     End Class
+    Private Class Charizard
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(6)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega_x"
+                    Return New Vector2(7, 29)
+                Case "mega_y"
+                    Return New Vector2(18, 29)
+                Case Else
+                    Return New Vector2(5, 0)
+            End Select
+        End Function
+        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
+            Select Case P.AdditionalData
+                Case "mega_x"
+                    Return New Size(40, 32)
+                Case "mega_y"
+                    Return New Size(38, 32)
+                Case Else
+                    Return New Size(35, 32)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega_x"
+                    Return "_mega_x"
+                Case "mega_y"
+                    Return "_mega_y"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega_x"
+                    Return P.OriginalName & "_mega_x"
+                Case "mega_y"
+                    Return P.OriginalName & "_mega_y"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega_x"
+                    Return "_mega_x"
+                Case "mega_y"
+                    Return "_mega_y"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Beedrill
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(15)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(15, 26)
+                Case Else
+                    Return New Vector2(14, 0)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Pidgeot
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(18)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(16, 26)
+                Case Else
+                    Return New Vector2(17, 0)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
 
     Private Class Nidoran
 
@@ -203,6 +339,126 @@ Public Class PokemonForms
             End If
         End Function
 
+    End Class
+
+    Private Class Alakazam
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(65)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(27, 29)
+                Case Else
+                    Return New Vector2(0, 2)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Slowbro
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(80)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(18, 26)
+                Case Else
+                    Return New Vector2(15, 2)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Gengar
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(94)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(21, 29)
+                Case Else
+                    Return New Vector2(29, 2)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
     End Class
 
     Private Class Pichu
@@ -239,7 +495,6 @@ Public Class PokemonForms
 
     End Class
 
-    'Placeholder for Mega Ampharos
     Private Class Ampharos
         Inherits PokemonForm
         Public Sub New()
@@ -255,6 +510,23 @@ Public Class PokemonForms
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
             Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -327,6 +599,685 @@ Public Class PokemonForms
             Select Case AdditionalData.ToLower()
                 Case "mega"
                     Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Scizor
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(212)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(1, 29)
+                Case Else
+                    Return New Vector2(19, 6)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Heracross
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(214)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(2, 29)
+                Case Else
+                    Return New Vector2(21, 6)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Tyranitar
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(248)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(5, 29)
+                Case Else
+                    Return New Vector2(23, 7)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Sceptile
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(254)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(0, 26)
+                Case Else
+                    Return New Vector2(29, 7)
+            End Select
+        End Function
+        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Size(37, 32)
+                Case Else
+                    Return New Size(35, 32)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Blaziken
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(257)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(15, 29)
+                Case Else
+                    Return New Vector2(0, 8)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Swampert
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(260)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(31, 28)
+                Case Else
+                    Return New Vector2(3, 8)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Gardevoir
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(282)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(12, 29)
+                Case Else
+                    Return New Vector2(25, 8)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Aggron
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(306)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(30, 29)
+                Case Else
+                    Return New Vector2(17, 9)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Medicham
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(308)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(16, 29)
+                Case Else
+                    Return New Vector2(19, 9)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Camerupt
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(323)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(21, 26)
+                Case Else
+                    Return New Vector2(2, 10)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Altaria
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(334)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(22, 26)
+                Case Else
+                    Return New Vector2(13, 10)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Banette
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(354)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(23, 29)
+                Case Else
+                    Return New Vector2(1, 11)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Absol
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(359)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(6, 29)
+                Case Else
+                    Return New Vector2(6, 11)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Metagross
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(376)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(30, 27)
+                Case Else
+                    Return New Vector2(23, 11)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Kyogre
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(382)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "primal"
+                    Return New Vector2(30, 25)
+                Case Else
+                    Return New Vector2(29, 11)
+            End Select
+        End Function
+        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Size(36, 32)
+                Case Else
+                    Return New Size(35, 32)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "primal"
+                    Return "_primal"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "primal"
+                    Return P.OriginalName & "_primal"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "primal"
+                    Return "_primal"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Groudon
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(383)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "primal"
+                    Return New Vector2(28, 25)
+                Case Else
+                    Return New Vector2(30, 11)
+            End Select
+        End Function
+        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Size(36, 32)
+                Case Else
+                    Return New Size(35, 32)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "primal"
+                    Return "_primal"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "primal"
+                    Return P.OriginalName & "_primal"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "primal"
+                    Return "_primal"
                 Case Else
                     Return ""
             End Select
@@ -473,6 +1424,206 @@ Public Class PokemonForms
             End If
         End Function
 
+    End Class
+
+    Private Class Lopunny
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(428)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(25, 26)
+                Case Else
+                    Return New Vector2(11, 13)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Garchomp
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(445)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(10, 29)
+                Case Else
+                    Return New Vector2(28, 13)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Lucario
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(448)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(17, 29)
+                Case Else
+                    Return New Vector2(31, 13)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Abomasnow
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(460)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(25, 29)
+                Case Else
+                    Return New Vector2(11, 14)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+    End Class
+
+    Private Class Gallade
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(475)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(26, 26)
+                Case Else
+                    Return New Vector2(26, 14)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
     End Class
 
     Private Class Rotom
@@ -646,6 +1797,46 @@ Public Class PokemonForms
             Return typeAddition
         End Function
 
+    End Class
+
+    Private Class Audino
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(531)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(27, 26)
+                Case Else
+                    Return New Vector2(18, 16)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
     End Class
 
     Private Class Basculin
@@ -1075,6 +2266,46 @@ Public Class PokemonForms
             End Select
         End Function
 
+    End Class
+
+    Private Class Diancie
+        Inherits PokemonForm
+        Public Sub New()
+            MyBase.New(719)
+        End Sub
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Vector2(25, 25)
+                Case Else
+                    Return New Vector2(14, 22)
+            End Select
+        End Function
+        Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
+            Select Case AdditionalData.ToLower()
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return P.OriginalName & "_mega"
+                Case Else
+                    Return P.OriginalName
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "_mega"
+                Case Else
+                    Return ""
+            End Select
+        End Function
     End Class
 
 #End Region

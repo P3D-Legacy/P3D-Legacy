@@ -6,6 +6,7 @@
 
 #Region "BattleValues"
 
+        Public ClearMenuTime As Boolean = False
         Public Shared CanCatch As Boolean = True
         Public Shared CanRun As Boolean = True
         Public Shared CanBlackout As Boolean = True
