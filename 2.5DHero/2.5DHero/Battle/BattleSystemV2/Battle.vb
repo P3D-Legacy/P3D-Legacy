@@ -3832,7 +3832,6 @@
             With BattleScreen
                 Select Case type
                     Case 0 'Complete round
-                        .BattleMenu._mainMenuItemList.Clear()
                         'The fastest pokemon ends its round first
                         If BattleCalculation.MovesFirst(BattleScreen) = True Then
                             EndRoundOwn(BattleScreen)

@@ -297,7 +297,7 @@
 
         Private _mainMenuIndex As Integer = 0
         Private _mainMenuNextIndex As Integer = 0
-        Public _mainMenuItemList As New List(Of MainMenuItem)
+        Private _mainMenuItemList As New List(Of MainMenuItem)
         Private _mainMenuTeamPreviewAlpha As Integer = 0
         Private _mainMenuTeamPreviewLastIndex As Integer = -1
 
