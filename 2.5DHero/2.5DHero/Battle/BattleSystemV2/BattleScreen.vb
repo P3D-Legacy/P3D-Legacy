@@ -939,7 +939,7 @@ nextIndex:
             For Each p As Pokemon In Core.Player.Pokemons
                 str = p.AdditionalData.ToLower()
                 Select Case str
-                    Case "mega", "mega_x", "mega_y", "primal"
+                    Case "mega", "mega_x", "mega_y", "primal", "blade"
                         p.AdditionalData = PokemonForms.GetInitialAdditionalData(p)
                         p.ReloadDefinitions()
                         p.CalculateStats()
