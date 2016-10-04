@@ -1711,7 +1711,38 @@
     <None Include="Content\**\*.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Pokemon\Data\15_mega.dat" />
     <None Include="Content\Pokemon\Data\181_mega.dat" />
+    <None Include="Content\Pokemon\Data\18_mega.dat" />
+    <None Include="Content\Pokemon\Data\212_mega.dat" />
+    <None Include="Content\Pokemon\Data\214_mega.dat" />
+    <None Include="Content\Pokemon\Data\248_mega.dat" />
+    <None Include="Content\Pokemon\Data\254_mega.dat" />
+    <None Include="Content\Pokemon\Data\257_mega.dat" />
+    <None Include="Content\Pokemon\Data\260_mega.dat" />
+    <None Include="Content\Pokemon\Data\282_mega.dat" />
+    <None Include="Content\Pokemon\Data\306_mega.dat" />
+    <None Include="Content\Pokemon\Data\308_mega.dat" />
+    <None Include="Content\Pokemon\Data\323_mega.dat" />
+    <None Include="Content\Pokemon\Data\334_mega.dat" />
+    <None Include="Content\Pokemon\Data\354_mega.dat" />
+    <None Include="Content\Pokemon\Data\359_mega.dat" />
+    <None Include="Content\Pokemon\Data\376_mega.dat" />
+    <None Include="Content\Pokemon\Data\382_primal.dat" />
+    <None Include="Content\Pokemon\Data\383_primal.dat" />
+    <None Include="Content\Pokemon\Data\428_mega.dat" />
+    <None Include="Content\Pokemon\Data\445_mega.dat" />
+    <None Include="Content\Pokemon\Data\448_mega.dat" />
+    <None Include="Content\Pokemon\Data\460_mega.dat" />
+    <None Include="Content\Pokemon\Data\475_mega.dat" />
+    <None Include="Content\Pokemon\Data\531_mega.dat" />
+    <None Include="Content\Pokemon\Data\65_mega.dat" />
+    <None Include="Content\Pokemon\Data\6_mega_x.dat" />
+    <None Include="Content\Pokemon\Data\6_mega_y.dat" />
+    <None Include="Content\Pokemon\Data\719.dat" />
+    <None Include="Content\Pokemon\Data\719_mega.dat" />
+    <None Include="Content\Pokemon\Data\80_mega.dat" />
+    <None Include="Content\Pokemon\Data\94_mega.dat" />
     <None Include="maps\**\*.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

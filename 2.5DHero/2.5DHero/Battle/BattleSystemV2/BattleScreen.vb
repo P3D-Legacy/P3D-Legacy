@@ -934,8 +934,17 @@ nextIndex:
 #End Region
 
         Public Sub EndBattle(ByVal blackout As Boolean)
-            'Call the EndBattle function of the abilities.
+            Dim str As String = ""
+            'Call the EndBattle function of the abilities and Reverts battle only Pokemon formes.
             For Each p As Pokemon In Core.Player.Pokemons
+                str = p.AdditionalData.ToLower()
+                Select Case str
+                    Case "mega", "mega_x", "mega_y", "primal"
+                        p.AdditionalData = PokemonForms.GetInitialAdditionalData(p)
+                        p.ReloadDefinitions()
+                        p.CalculateStats()
+                        p.RestoreAbility()
+                End Select
                 If Not p.Ability Is Nothing Then
                     p.Ability.EndBattle(p)
                 End If
@@ -1049,7 +1058,7 @@ nextIndex:
                 For Each p As Pokemon In Core.Player.Pokemons
                     If p.Number = 213 Then
                         If Not p.Item Is Nothing Then
-                            If p.Item.isBerry = True Then
+                            If p.Item.IsBerry = True Then
                                 If Core.Random.Next(0, 3) = 0 Then
                                     p.Item = Item.GetItemByID(139)
                                 End If

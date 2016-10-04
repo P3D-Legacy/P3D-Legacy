@@ -6297,21 +6297,6 @@
         End Enum
 
         Public Sub EndBattle(ByVal reason As EndBattleReasons, ByVal BattleScreen As BattleScreen, ByVal AddPVP As Boolean)
-
-            'Reverts battle only Pokemon formes.
-            Dim str As String = ""
-            Dim p As Pokemon = Core.Player.Pokemons(0)
-            For i = 0 To Core.Player.Pokemons.Count - 1
-                p = Core.Player.Pokemons(i)
-                str = p.AdditionalData.ToLower()
-                If str = "mega" OrElse str = "blade" Then
-                    p.AdditionalData = PokemonForms.GetInitialAdditionalData(p)
-                    p.ReloadDefinitions()
-                    p.CalculateStats()
-                    p.RestoreAbility()
-                End If
-            Next
-
             If AddPVP = True Then
                 Select Case reason
                     Case EndBattleReasons.WinTrainer 'Lost

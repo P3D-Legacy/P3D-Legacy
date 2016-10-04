@@ -732,9 +732,14 @@
         Private Sub MainMenuMegaEvolve(ByVal BattleScreen As BattleScreen)
             BattleScreen.IsMegaEvolvingOwn = True
             For i = 0 To Core.Player.Pokemons.Count - 1
-                If Core.Player.Pokemons(i).AdditionalData = "mega" Then
-                    BattleScreen.IsMegaEvolvingOwn = False
-                End If
+
+                Dim _additionalData As String = Core.Player.Pokemons(i).AdditionalData
+                Select Case _additionalData
+                    Case "mega", "mega_x", "mega_y"
+                        BattleScreen.IsMegaEvolvingOwn = False
+                    Case Else
+                        'do nothing
+                End Select
             Next
         End Sub
 #End Region

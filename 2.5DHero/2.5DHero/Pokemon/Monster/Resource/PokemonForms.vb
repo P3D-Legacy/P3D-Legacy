@@ -32,7 +32,16 @@ Public Class PokemonForms
     Public Shared Function GetAnimationName(ByVal P As Pokemon) As String
         For Each listP In _pokemonList
             If listP.IsNumber(P.Number) = True Then
-                Return listP.GetAnimationName(P)
+                Dim _name As String = listP.GetAnimationName(P).ToLower()
+                If _name.StartsWith("mega ") Then
+                    _name = _name.Remove(0, 5)
+                    If _name.EndsWith(" x_mega_x") OrElse _name.EndsWith(" y_mega_y") Then
+                        _name = _name.Remove(_name.Length - 9, 2)
+                    End If
+                ElseIf _name.StartsWith("primal ") Then
+                        _name = _name.Remove(0, 7)
+                End If
+                Return _name
             End If
         Next
        
