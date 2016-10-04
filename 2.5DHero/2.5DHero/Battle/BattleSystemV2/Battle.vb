@@ -340,16 +340,19 @@
             If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
                 BattleScreen.OppStatistics.Turns += 1
                 BattleScreen.OwnStatistics.Turns += 1
-                If BattleScreen.ReceivedInput.StartsWith("MOVE|") Then
+                If BattleScreen.ReceivedInput.StartsWith("MOVE|") OrElse BattleScreen.ReceivedInput.StartsWith("MEGA|") Then
                     BattleScreen.OppStatistics.Moves += 1
+                    If BattleScreen.ReceivedInput.StartsWith("MEGA|") Then
+                        BattleScreen.IsMegaEvolvingOpp = True
+                    End If
                     Dim moveID As Integer = CInt(BattleScreen.ReceivedInput.Remove(0, 5))
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, moveID)}
-                ElseIf BattleScreen.ReceivedInput.StartsWith("SWITCH|") Then
-                    BattleScreen.OppStatistics.Switches += 1
-                    Dim switchID As Integer = CInt(BattleScreen.ReceivedInput.Remove(0, 7))
-                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Switch, .Argument = switchID.ToString()}
-                ElseIf BattleScreen.ReceivedInput.StartsWith("TEXT|") Then
-                    Dim text As String = BattleScreen.ReceivedInput.Remove(0, 5)
+                        Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, moveID)}
+                    ElseIf BattleScreen.ReceivedInput.StartsWith("SWITCH|") Then
+                        BattleScreen.OppStatistics.Switches += 1
+                        Dim switchID As Integer = CInt(BattleScreen.ReceivedInput.Remove(0, 7))
+                        Return New RoundConst() With {.StepType = RoundConst.StepTypes.Switch, .Argument = switchID.ToString()}
+                    ElseIf BattleScreen.ReceivedInput.StartsWith("TEXT|") Then
+                        Dim text As String = BattleScreen.ReceivedInput.Remove(0, 5)
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = text}
                 End If
             End If

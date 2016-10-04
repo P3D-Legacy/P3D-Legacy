@@ -821,7 +821,11 @@
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                BattleScreen.SendClientCommand("MOVE|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString())
+                If BattleScreen.IsMegaEvolvingOwn Then
+                    BattleScreen.SendClientCommand("MEGA|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString())
+                Else
+                    BattleScreen.SendClientCommand("MOVE|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString())
+                End If
             Else
                 BattleScreen.OwnStatistics.Moves += 1
                 BattleScreen.BattleQuery.Clear()
