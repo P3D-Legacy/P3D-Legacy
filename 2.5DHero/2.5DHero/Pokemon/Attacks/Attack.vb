@@ -1026,8 +1026,8 @@
                     returnMove = New Moves.Psychic.HeartSwap()
                 Case 392
                     returnMove = New Moves.Water.AquaRing()
-                    'Case 393
-                    'Magnet Rise
+                Case 393
+                    returnMove = New Moves.Electric.MagnetRise()
                 Case 394
                     returnMove = New Moves.Fire.FlareBlitz()
                 Case 395
@@ -1106,8 +1106,8 @@
                     returnMove = New Moves.Normal.RockClimb()
                 Case 432
                     returnMove = New Moves.Flying.Defog()
-                    'Case 433
-                    'Trick Room
+                Case 433
+                    returnMove = New Moves.Psychic.TrickRoom()
                 Case 434
                     returnMove = New Moves.Dragon.DracoMeteor()
                 Case 435
@@ -1158,8 +1158,8 @@
                     returnMove = New Moves.Rock.HeadSmash()
                 Case 458
                     returnMove = New Moves.Normal.DoubleHit()
-                    'Case 459
-                    'Roar of Time
+                Case 459
+                    returnMove = New Moves.Dragon.RoarOfTime()
                     'Case 460
                     'Spacial Rend
                     'Case 461
@@ -1190,8 +1190,8 @@
                     returnMove = New Moves.Psychic.Psyshock()
                 Case 474
                     returnMove = New Moves.Poison.Venoshock()
-                    'Case 475
-                    'Automatize
+                Case 475
+                    returnMove = New Moves.Steel.Autotomize()
                     'Case 476
                     'Rage Powder
                     'Case 477

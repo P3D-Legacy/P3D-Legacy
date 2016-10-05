@@ -451,6 +451,7 @@
     <Compile Include="Pokemon\Attacks\Dark\Taunt.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Thief.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Torment.vb" />
+    <Compile Include="Pokemon\Attacks\Dragon\RoarOfTime.vb" />
     <Compile Include="Pokemon\Attacks\Dragon\DracoMeteor.vb" />
     <Compile Include="Pokemon\Attacks\Dragon\DragonBreath.vb" />
     <Compile Include="Pokemon\Attacks\Dragon\DragonClaw.vb" />
@@ -471,6 +472,7 @@
     <Compile Include="Pokemon\Attacks\Electric\Electroweb.vb" />
     <Compile Include="Pokemon\Attacks\Electric\Flash.vb" />
     <Compile Include="Pokemon\Attacks\Electric\FusionBolt.vb" />
+    <Compile Include="Pokemon\Attacks\Electric\MagnetRise.vb" />
     <Compile Include="Pokemon\Attacks\Electric\Nuzzle.vb" />
     <Compile Include="Pokemon\Attacks\Electric\ParabolicCharge.vb" />
     <Compile Include="Pokemon\Attacks\Electric\ShockWave.vb" />
@@ -843,6 +845,7 @@
     <Compile Include="Pokemon\Attacks\Psychic\Amnesia.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\Barrier.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\CalmMind.vb" />
+    <Compile Include="Pokemon\Attacks\Psychic\TrickRoom.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\Confusion.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\CosmicPower.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\DreamEater.vb" />
@@ -896,6 +899,7 @@
     <Compile Include="Pokemon\Attacks\Rock\StoneEdge.vb" />
     <Compile Include="Pokemon\Attacks\Special\ConfusionAttack.vb" />
     <Compile Include="Pokemon\Attacks\Steel\BulletPunch.vb" />
+    <Compile Include="Pokemon\Attacks\Steel\Autotomize.vb" />
     <Compile Include="Pokemon\Attacks\Steel\DoomDesire.vb" />
     <Compile Include="Pokemon\Attacks\Steel\FlashCannon.vb" />
     <Compile Include="Pokemon\Attacks\Steel\GearGrind.vb" />

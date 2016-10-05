@@ -150,21 +150,26 @@
                     Return True
                 End If
 
+                Dim _first As Boolean = False
                 'Determine strike first with speed:
                 Dim ownSpeed As Integer = DetermineBattleSpeed(True, BattleScreen)
                 Dim oppSpeed As Integer = DetermineBattleSpeed(False, BattleScreen)
 
                 If ownSpeed > oppSpeed Then 'Faster than opponent
-                    Return True
+                    _first = True
                 ElseIf ownSpeed < oppSpeed Then 'Slower than opponent
-                    Return False
+                    _first = False
                 Else 'Speed is equal, decide randomly
                     If Core.Random.Next(0, 2) = 0 Then
-                        Return True
+                        _first = True
                     Else
-                        Return False
+                        _first = False
                     End If
                 End If
+                If BattleScreen.FieldEffects.TrickRoom > 0 Then
+                    _first = Not _first
+                End If
+                Return _first
             End If
         End Function
 
@@ -621,31 +626,34 @@
                     effectiveness *= 4
                 End If
             End If
-            
-            Dim hasIronBall As Boolean = False
-            If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                    hasIronBall = True
+
+            Dim _targetHasIronBall As Boolean = False
+            If Not op.Item Is Nothing Then
+                If op.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    _targetHasIronBall = True
                 End If
             End If
 
-            If op.Ability.Name.ToLower() = "levitate" And move.GetAttackType(own, BattleScreen).Type = Element.Types.Ground And BattleScreen.FieldEffects.Gravity = 0 And hasIronBall = False Then
+            If op.Ability.Name.ToLower() = "levitate" And move.GetAttackType(own, BattleScreen).Type = Element.Types.Ground And BattleScreen.FieldEffects.Gravity = 0 And _targetHasIronBall = False Then
                 If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                     effectiveness = 0.0F
                 End If
             End If
 
-            Dim ingrain As Integer = BattleScreen.FieldEffects.OwnIngrain
+            Dim ingrain As Integer = BattleScreen.FieldEffects.OppIngrain
             If own = False Then
-                ingrain = BattleScreen.FieldEffects.OppIngrain
+                ingrain = BattleScreen.FieldEffects.OwnIngrain
             End If
-            If BattleScreen.FieldEffects.Gravity = 0 And ingrain = 0 And hasIronBall = False Then
-                Dim magnetRise As Integer = BattleScreen.FieldEffects.OppMagnetRise
-                If own = False Then
-                    magnetRise = BattleScreen.FieldEffects.OwnMagnetRise
-                End If
-                If magnetRise > 0 Then
-                    effectiveness = 0.0F
+
+            If move.GetAttackType(own, BattleScreen).Type = Element.Types.Ground Then
+                If BattleScreen.FieldEffects.Gravity = 0 And ingrain = 0 And _targetHasIronBall = False Then
+                    Dim magnetRise As Integer = BattleScreen.FieldEffects.OppMagnetRise
+                    If own = False Then
+                        magnetRise = BattleScreen.FieldEffects.OwnMagnetRise
+                    End If
+                    If magnetRise > 0 Then
+                        effectiveness = 0.0F
+                    End If
                 End If
             End If
 

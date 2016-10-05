@@ -3846,7 +3846,7 @@
                         If .FieldEffects.TrickRoom > 0 Then
                             .FieldEffects.TrickRoom -= 1
                             If .FieldEffects.TrickRoom = 0 Then
-                                .BattleQuery.Add(New TextQueryObject("Trickroom got reverted!"))
+                                .BattleQuery.Add(New TextQueryObject("The dimensions have returned to normal."))
                             End If
                         End If
                         If .FieldEffects.Gravity > 0 Then
