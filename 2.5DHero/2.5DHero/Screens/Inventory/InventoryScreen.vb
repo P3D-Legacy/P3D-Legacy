@@ -11,6 +11,7 @@
     Dim cItems As New Dictionary(Of Item, Integer)
 
     Dim mainTexture As Texture2D
+    Dim texture As Texture2D
 
     Public Delegate Sub DoStuff(ByVal ItemID As Integer)
     Dim ReturnItem As DoStuff
@@ -32,10 +33,7 @@
         Me.Identification = Identifications.InventoryScreen
         Me.PreScreen = currentScreen
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
-        texture1 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
-        texture2 = TextureManager.TextureRectangle(mainTexture, New Rectangle(112, 12, 1, 1))
-        texture3 = TextureManager.TextureRectangle(mainTexture, New Rectangle(113, 12, 1, 1))
-        texture4 = TextureManager.TextureRectangle(mainTexture, New Rectangle(48, 0, 48, 48))
+        Me.texture = TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48))
 
         Me.ReturnItem = DoStuff
         Me.AllowedPages = AllowedPages
@@ -233,20 +231,15 @@
         ChangeBag()
     End Sub
 
-    Dim texture1 As Texture2D
-    Dim texture2 As Texture2D
-    Dim texture3 As Texture2D
-    Dim texture4 As Texture2D
-
 
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
 
-        Canvas.DrawImageBorder(texture1, 2, New Rectangle(60, 100, 800, 480))
-        Canvas.DrawImageBorder(texture1, 2, New Rectangle(572, 100, 288, 64))
-        Canvas.DrawImageBorder(texture1, 2, New Rectangle(60, 516, 480, 64))
-        Canvas.DrawImageBorder(texture1, 2, New Rectangle(572, 196, 288, 384))
-        Canvas.DrawImageBorder(texture1, 2, New Rectangle(620, 420, 192, 64))
+        Canvas.DrawImageBorder(texture, 2, New Rectangle(60, 100, 800, 480))
+        Canvas.DrawImageBorder(texture, 2, New Rectangle(572, 100, 288, 64))
+        Canvas.DrawImageBorder(texture, 2, New Rectangle(60, 516, 480, 64))
+        Canvas.DrawImageBorder(texture, 2, New Rectangle(572, 196, 288, 384))
+        Canvas.DrawImageBorder(texture, 2, New Rectangle(620, 420, 192, 64))
 
         Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\BagPack"), New Rectangle(592, 126, 48, 48), New Rectangle(24 * bagIndex, 150, 24, 24), Color.White)
 
@@ -254,7 +247,7 @@
         Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("inventory_menu_backadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(Localization.GetString("inventory_menu_backadvice")).X - 330, 580), Color.DarkGray)
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("inventory_menu_items") & ":" & vbNewLine & Localization.GetString("item_category_" & Me.bagIdentifier.ToString()), New Vector2(640, 446), Color.Black)
 
-        Canvas.DrawScrollBar(New Vector2(555, 120), cItems.Count, 6, scrollIndex(bagIndex), New Size(4, 390), False, texture2, texture3)
+        Canvas.DrawScrollBar(New Vector2(555, 120), cItems.Count, 6, scrollIndex(bagIndex), New Size(4, 390), False, TextureManager.GetTexture(mainTexture, New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(mainTexture, New Rectangle(113, 12, 1, 1)))
 
         For i As Integer = 0 To cItems.Keys.Count - 1
             Dim Item As Item = cItems.Keys(i)
@@ -264,9 +257,9 @@
 
                     Dim BorderTexture As Texture2D
                     If i = index(bagIndex) Then
-                        BorderTexture = texture4
+                        BorderTexture = TextureManager.GetTexture(mainTexture, New Rectangle(48, 0, 48, 48))
                     Else
-                        BorderTexture = texture1
+                        BorderTexture = texture
                     End If
 
                     Canvas.DrawImageBorder(BorderTexture, 1, New Rectangle(CInt(p.X), CInt(p.Y + (i + scrollIndex(bagIndex)) * 70), 320, 32))
@@ -314,7 +307,7 @@
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Sortmode: """ & displayMode & """", New Vector2(638, 522), Color.Gray)
         End If
 
-        Canvas.DrawScrollBar(New Vector2(630, 405), 8, 1, bagIndex, New Size(200, 4), True, texture2, texture3)
+        Canvas.DrawScrollBar(New Vector2(630, 405), 8, 1, bagIndex, New Size(200, 4), True, TextureManager.GetTexture(mainTexture, New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(mainTexture, New Rectangle(113, 12, 1, 1)))
     End Sub
 
     Public Overrides Sub ChangeTo()
@@ -326,18 +319,4 @@
         ChangeBag()
     End Sub
 
-    Protected Overrides Sub Finalize()
-        If texture1 IsNot Nothing
-            texture1.Dispose()
-        End If
-        If texture2 IsNot Nothing
-            texture2.Dispose()
-        End If
-        If texture3 IsNot Nothing
-            texture3.Dispose()
-        End If
-        If texture4 IsNot Nothing
-            texture4.Dispose()
-        End If
-    End Sub
 End Class

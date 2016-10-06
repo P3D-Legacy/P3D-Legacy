@@ -21,8 +21,6 @@
         End If
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
-        Me.CanvasTexture1 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 48, 48, 48))
-        Me.CanvasTexture2 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
 
         If Core.Player.IsGamejoltSave = True Then
             Me.canCreateAutosave = False
@@ -89,8 +87,6 @@
 
 #Region "MainMenu"
 
-    Dim CanvasTexture1 As Texture2D
-    Dim CanvasTexture2 As Texture2D
     Private Sub DrawMenu()
         For i = 0 To 1
             Dim Text As String = ""
@@ -102,9 +98,9 @@
             End Select
 
             If i = mainIndex Then
-                Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
+                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
             Else
-                Canvas.DrawImageBorder(CanvasTexture2, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
+                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
             End If
 
             Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10, 256 + i * 128), Color.Black)
@@ -191,9 +187,9 @@
             End Select
 
             If i = quitIndex Then
-                Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180 + x, 320, 320, 64), True)
+                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180 + x, 320, 320, 64), True)
             Else
-                Canvas.DrawImageBorder(CanvasTexture2, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180 + x, 320, 320, 64), True)
+                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180 + x, 320, 320, 64), True)
             End If
 
             Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + x, 356), Color.Black)
@@ -277,14 +273,5 @@
     Public Overrides Sub ChangeFrom()
         MusicManager.MasterVolume *= 4
         MusicManager.ForceVolumeUpdate()
-    End Sub
-
-    Protected Overrides Sub Finalize()
-        If CanvasTexture1 IsNot Nothing
-            CanvasTexture1.Dispose()
-        End If
-        If CanvasTexture2 IsNot Nothing
-            CanvasTexture2.Dispose()
-        End If
     End Sub
 End Class

@@ -428,10 +428,7 @@
                     c = Color.Gray
                 End If
 
-                ' Plz Fix It Aragaz Plz
-                Dim texture = Route.getTexture(objectsTexture, isSelected)
-                Core.SpriteBatch.Draw(texture, Route.getRectangle(mapOffset), c)
-                texture.Dispose()
+                Core.SpriteBatch.Draw(Route.getTexture(objectsTexture, isSelected), Route.getRectangle(mapOffset), c)
             Next
         End If
 
@@ -447,10 +444,7 @@
                     c = Color.Gray
                 End If
 
-                ' Plz Fix It Aragaz Plz
-                Dim texture = City.getTexture(objectsTexture, isSelected)
-                Core.SpriteBatch.Draw(texture, City.getRectangle(mapOffset), c)
-                texture.Dispose()
+                Core.SpriteBatch.Draw(City.getTexture(objectsTexture, isSelected), City.getRectangle(mapOffset), c)
             Next
         End If
 
@@ -466,18 +460,13 @@
                     c = Color.Gray
                 End If
 
-                ' Plz Fix It Aragaz Plz
-                Dim texture = Place.getTexture(objectsTexture, isSelected)
-                Core.SpriteBatch.Draw(texture, Place.getRectangle(mapOffset), c)
-                texture.Dispose()
+                Core.SpriteBatch.Draw(Place.getTexture(objectsTexture, isSelected), Place.getRectangle(mapOffset), c)
             Next
         End If
 
         If drawObjects(3) = True Then
             For Each Pokes As Roaming In RoamingPoke
-                Dim text = Pokes.getTexture()
-                Core.SpriteBatch.Draw(text, Pokes.getRectangle(mapOffset), Color.White)
-                text.Dispose()
+                Core.SpriteBatch.Draw(Pokes.getTexture(), Pokes.getRectangle(mapOffset), Color.White)
             Next
         End If
 
@@ -714,7 +703,6 @@
             Return New Rectangle(CInt(Me.getPosition().X + offset.X), CInt(Me.getPosition().Y + offset.Y), sizeX, sizeY)
         End Function
 
-        ' It will leak
         Public Function getTexture(ByVal FullTexture As Texture2D, ByVal isSelected As Boolean) As Texture2D
             If Me.T Is Nothing Or isSelected = True Then
                 Dim r As Rectangle
@@ -736,7 +724,7 @@
                     Case CitySize.Large
                         r = New Rectangle(0 + modX, 36, 36, 24)
                 End Select
-                Me.T = TextureManager.TextureRectangle(FullTexture, r)
+                Me.T = TextureManager.GetTexture(FullTexture, r)
             End If
 
             Return Me.T
@@ -866,8 +854,7 @@
             Return New Rectangle(CInt(Me.getPosition().X + PositionOffset.X + offset.X), CInt(Me.getPosition().Y + PositionOffset.Y + offset.Y), CInt(sizeX), CInt(sizeY))
         End Function
 
-        'It will leak
-        Public Function getTexture(ByVal FullTexture As Texture2D, ByVal isSelected As Boolean) As Texture2D
+        Public Function getTexture(ByVal FullTexture As Texture2D, ByVal isSelected As Boolean)  As Texture2D
             If Me.T Is Nothing Or isSelected = True Then
                 Dim r As Rectangle
 
@@ -911,7 +898,7 @@
                         r = New Rectangle(16 + modX, 16 + y, 8, 8)
                 End Select
 
-                Me.T = TextureManager.TextureRectangle(FullTexture, r)
+                Me.T = TextureManager.GetTexture(FullTexture, r)
             End If
 
             Return Me.T
@@ -1016,7 +1003,6 @@
             Return New Rectangle(CInt(Me.getPosition().X + PositionOffset.X + offset.X), CInt(Me.getPosition().Y + PositionOffset.Y + offset.Y), CInt(sizeX), CInt(sizeY))
         End Function
 
-        'It will leak
         Public Function getTexture(ByVal FullTexture As Texture2D, ByVal isSelected As Boolean) As Texture2D
             If Me.T Is Nothing Or isSelected = True Then
                 Dim r As Rectangle
@@ -1041,7 +1027,7 @@
                     Case PlaceSizes.Large
                         r = New Rectangle(12 + modX, 0 + y, 28, 20)
                 End Select
-                Me.T = TextureManager.TextureRectangle(FullTexture, r)
+                Me.T = TextureManager.GetTexture(FullTexture, r)
             End If
 
             Return Me.T
@@ -1113,7 +1099,7 @@
             IndexY = CInt(Math.Floor(ID / 33))
             IndexX = (ID - (IndexY * 32)) - 1
 
-            T = TextureManager.TextureRectangle(Texture, New Rectangle(IndexX * 32, IndexY * 32, SizeX, SizeY))
+            T = TextureManager.GetTexture(Texture, New Rectangle(IndexX * 32, IndexY * 32, SizeX, SizeY))
 
             Return T
         End Function

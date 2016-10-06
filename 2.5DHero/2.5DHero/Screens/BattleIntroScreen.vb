@@ -180,7 +180,6 @@
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
         Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\" & Trainer.VSImageOrigin, New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), Trainer.VSImageSize.Width, Trainer.VSImageSize.Height), "")
         Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, 64, 32, 32))
-        Dim t3Disp = false
         Dim t4 As Texture2D = Nothing
         If Trainer.DoubleTrainer = True Then
             t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, 64, 32, 32))
@@ -191,9 +190,7 @@
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
                 If Not t Is Nothing Then
                     Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
-                    'It will leak
-                    t3 = TextureManager.TextureRectangle(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
-                    t3Disp = true
+                    t3 = TextureManager.GetTexture(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
             End If
         End If
@@ -222,10 +219,6 @@
             Core.SpriteBatch.Draw(t3, New Rectangle(Core.windowSize.Width - 310, CInt(Core.windowSize.Height / 2 - 230), 256, 256), Color.White)
         End If
         Core.SpriteBatch.Draw(t2, New Rectangle(420 - CInt(CInt(1.29 * value) / 3), CInt(Core.windowSize.Height / 2 - 20) - CInt(CInt(1 * value) / 3), CInt(1.12 * CInt(value / 1.5F)), 1 * CInt(value / 1.5F)), Color.White)
-
-        If t3Disp Then
-            t3.Dispose()
-        End If
     End Sub
 
     Private Function ReplaceIntroName(ByVal Name As String) As String
@@ -249,7 +242,6 @@
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
         Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), 61, 54), "")
         Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, 64, 32, 32))
-        Dim t3Disp = false
         Dim t4 As Texture2D = Nothing
         If Trainer.DoubleTrainer = True Then
             t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, 64, 32, 32))
@@ -260,9 +252,7 @@
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
                 If Not t Is Nothing Then
                     Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
-                    'It will leak
-                    t3 = TextureManager.TextureRectangle(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
-                    t3Disp = true
+                    t3 = TextureManager.GetTexture(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
             End If
         End If
@@ -288,10 +278,6 @@
                 tWidth = CInt(FontManager.InGameFont.MeasureString(Trainer.Name).X * 3.0F)
                 Core.SpriteBatch.DrawString(FontManager.InGameFont, Trainer.Name, New Vector2((Core.windowSize.Width - (textPosition - 300)).Clamp(CInt(Core.windowSize.Width / 2 - tWidth / 2), Core.windowSize.Width), Core.windowSize.Height - 180), Color.White, 0.0F, New Vector2(0), 3.0F, SpriteEffects.None, 0.0F)
             End If
-        End If
-
-        If t3Disp Then
-            t3.Dispose()
         End If
     End Sub
 
@@ -536,9 +522,9 @@
         Return startTime + duration < Date.Now
     End Function
 
-    Protected Overrides Sub Finalize()
-        If blurTexture IsNot Nothing
-            blurTexture.Dispose()
-        End If
-    End Sub
+    'Protected Overrides Sub Finalize()
+    '    If blurTexture IsNot Nothing
+    '        blurTexture.Dispose()
+    '    End If
+    'End Sub
 End Class

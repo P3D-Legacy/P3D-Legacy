@@ -34,7 +34,6 @@ Public Class OverworldPokemon
         Me.DropUpdateUnlessDrawn = False
     End Sub
 
-    Dim dispTex As Boolean = false
     Private Sub ChangeTexture()
         If Me.Texture Is Nothing Then
             Me.Texture = PokemonReference.GetOverworldTexture()
@@ -63,9 +62,8 @@ Public Class OverworldPokemon
         If r <> lastRectangle Then
             lastRectangle = r
 
-            Dim t As Texture2D = TextureManager.TextureRectangle(Me.Texture, r, 1)
+            Dim t As Texture2D = TextureManager.GetTexture(Me.Texture, r, 1)
             Textures(0) = t
-            dispTex = true
         End If
     End Sub
 
@@ -271,9 +269,4 @@ Public Class OverworldPokemon
         Me.ChangeTexture()
     End Sub
 
-    Protected Overrides Sub Finalize()
-        If Textures(0) IsNot Nothing And dispTex
-            Textures(0).Dispose()
-        End If
-    End Sub
 End Class

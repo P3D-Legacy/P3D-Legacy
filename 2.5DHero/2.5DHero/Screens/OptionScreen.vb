@@ -63,16 +63,12 @@
         Me.PreferMultiSampling = Core.GraphicsManager.PreferMultiSampling
 
         InitializeControls()
-
-        texture1 = TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48))
     End Sub
-
-    Dim texture1 As Texture2D
 
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
 
-        Canvas.DrawImageBorder(texture1, 2, New Rectangle(60, 100, 800, 480))
+        Canvas.DrawImageBorder(TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 800, 480))
 
         Core.SpriteBatch.DrawString(FontManager.InGameFont, Me.CurrentPath, New Vector2(80, 130), Color.Black)
         If savedOptions = False Then
@@ -487,9 +483,6 @@
 
         Public Sub New(ByVal TriggerSub As OnToggle)
             Me.OnToggleTrigger = TriggerSub
-
-            texture1 = TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 48, 48, 48))
-            texture2 = TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48))
         End Sub
 
         Public Sub New(ByVal Position As Vector2, ByVal Size As Integer, ByVal Text As String, ByVal Toggled As Boolean, ByVal TriggerSub As OnToggle)
@@ -503,19 +496,14 @@
             Me._toggled = Toggled
             Me.OnToggleTrigger = TriggerSub
             Me.Settings = Settings
-
-            texture1 = TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 48, 48, 48))
-            texture2 = TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48))
         End Sub
 
-        Dim texture1 As Texture2D
-        Dim texture2 As Texture2D
 
         Public Overrides Sub Draw()
             If _toggled = True Then
-                Canvas.DrawImageBorder(texture1, 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
+                Canvas.DrawImageBorder(TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
             Else
-                Canvas.DrawImageBorder(texture2, 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
+                Canvas.DrawImageBorder(TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
             End If
 
             Dim t As String = Me.Text
@@ -540,15 +528,6 @@
                 End If
             End If
         End Sub
-
-        Protected Overrides Sub Finalize()
-        If texture1 IsNot Nothing
-            texture1.Dispose()
-        End If
-        If texture2 IsNot Nothing
-            texture2.Dispose()
-        End If
-    End Sub
     End Class
 
     Class CommandButton
@@ -591,9 +570,6 @@
 
         Public Sub New(ByVal ClickSub As OnClick)
             Me.OnClickTrigger = ClickSub
-
-            texture1 = TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(48, 0, 48, 48))
-            texture2 = TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48))
         End Sub
 
         Public Sub New(ByVal Position As Vector2, ByVal Size As Integer, ByVal Text As String, ByVal ClickSub As OnClick)
@@ -601,20 +577,15 @@
             Me._size = Size
             Me._text = Text
             Me.OnClickTrigger = ClickSub
-
-            texture1 = TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(48, 0, 48, 48))
-            texture2 = TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48))
         End Sub
 
-        Dim texture1 As Texture2D
-        Dim texture2 As Texture2D
 
         Public Overrides Sub Draw()
             Dim r As New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, Me._size * 32 + 32, 96)
             If r.Contains(MouseHandler.MousePosition) = True Then
-                Canvas.DrawImageBorder(texture1, 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
+                Canvas.DrawImageBorder(TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(48, 0, 48, 48)), 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
             Else
-                Canvas.DrawImageBorder(texture2, 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
+                Canvas.DrawImageBorder(TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
             End If
 
             Core.SpriteBatch.DrawString(FontManager.InGameFont, Me._text, New Vector2(CInt(_position.X) + CInt(((Me._size * 32 + 20) / 2) - (FontManager.InGameFont.MeasureString(Me._text).X / 2)), CInt(_position.Y) + 32 + YScroll), Color.Black)
@@ -627,15 +598,6 @@
                 If net.Pokemon3D.Game.Controls.Accept(True, False, False) = True Then
                     OnClickTrigger(Me)
                 End If
-            End If
-        End Sub
-
-        Protected Overrides Sub Finalize()
-            If texture1 IsNot Nothing
-                texture1.Dispose()
-            End If
-            If texture2 IsNot Nothing
-                texture2.Dispose()
             End If
         End Sub
     End Class
@@ -818,10 +780,4 @@
     End Class
 
 #End Region
-
-    Protected Overrides Sub Finalize()
-        If texture1 IsNot Nothing
-            texture1.Dispose()
-        End If
-    End Sub
 End Class

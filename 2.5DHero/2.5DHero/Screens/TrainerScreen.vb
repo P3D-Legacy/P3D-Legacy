@@ -12,7 +12,6 @@
         Me.PreScreen = currentScreen
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
-        CanvasTexture1 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
 
         If Screen.Level.Surfing = True Then
             Me.charTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempSurfSkin)
@@ -26,7 +25,7 @@
 
         Dim frameSize As Size = New Size(CInt(Me.charTexture.Width / 3), CInt(Me.charTexture.Height / 4))
 
-        Me.charTexture = TextureManager.TextureRectangle(Me.charTexture, New Rectangle(0, frameSize.Width * 2, frameSize.Width, frameSize.Height))
+        Me.charTexture = TextureManager.GetTexture(Me.charTexture, New Rectangle(0, frameSize.Width * 2, frameSize.Width, frameSize.Height))
 
         Dim hasKanto As Boolean = True
         For i = 1 To 8
@@ -49,12 +48,10 @@
         End If
     End Sub
 
-    Dim CanvasTexture1 As Texture2D
-
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
 
-        Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(60, 100, 800, 480))
+        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 800, 480))
         DrawHeader()
         DrawContent()
         DrawBadges()
@@ -63,7 +60,7 @@
     End Sub
 
     Private Sub DrawHeader()
-        Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(60, 100, 480, 64))
+        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 480, 64))
         Core.SpriteBatch.Draw(mainTexture, New Rectangle(78, 124, 60, 48), New Rectangle(108, 112, 20, 16), Color.White)
         Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("trainer_screen_trainer_card"), New Vector2(154, 132), Color.Black)
     End Sub
@@ -116,7 +113,7 @@
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, "$" & .Money & vbNewLine & vbNewLine & Pokedex.CountEntries(Core.Player.PokedexData, {2, 3}) & " /" & Pokedex.CountEntries(Core.Player.PokedexData, {1, 2, 3}) & vbNewLine & vbNewLine & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(700, 220), Color.DarkBlue)
             End With
         Else
-            Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(572, 100, 288, 288))
+            Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(572, 100, 288, 288))
 
             Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("trainer_screen_name") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_points") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_money") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_pokedex") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_time") & ": ", New Vector2(108, 220), Color.Black)
 
@@ -131,7 +128,7 @@
             Core.SpriteBatch.Draw(charTexture, New Rectangle(601, 126, 256, 256), Color.White)
         End If
 
-        Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(60, 420, 800, 160))
+        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 420, 800, 160))
     End Sub
 
     Private Sub DrawBadges()
@@ -192,15 +189,6 @@
 
         If Controls.Dismiss() = True Then
             Core.SetScreen(Me.PreScreen)
-        End If
-    End Sub
-
-    Protected Overrides Sub Finalize()
-        If CanvasTexture1 IsNot Nothing
-            CanvasTexture1.Dispose()
-        End If
-        If charTexture IsNot Nothing
-            charTexture.Dispose()
         End If
     End Sub
 End Class

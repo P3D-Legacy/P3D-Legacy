@@ -19,8 +19,6 @@
         Me.canUse = canUse
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
-        CanvasTexture1 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
-        CanvasTexture2 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 48, 48, 48))
     End Sub
 
     Public Overrides Sub Draw()
@@ -36,10 +34,8 @@
         TextBox.Draw()
     End Sub
 
-    Dim CanvasTexture1 As Texture2D
-    Dim CanvasTexture2 As Texture2D
     Private Sub DrawItem()
-        Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 84, 64, 128, 128))
+        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 84, 64, 128, 128))
 
         Core.SpriteBatch.Draw(Item.Texture, New Rectangle(CInt(Core.windowSize.Width / 2) - 56, 96, 96, 96), Color.White)
     End Sub
@@ -51,9 +47,9 @@
             Dim Text As String = MenuItems(i)
 
             If i = index Then
-                CanvasTexture = CanvasTexture2
+                CanvasTexture = TextureManager.GetTexture(mainTexture, New Rectangle(0, 48, 48, 48))
             Else
-                CanvasTexture = CanvasTexture1
+                CanvasTexture = TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48))
             End If
 
             Dim offSetX As Integer = 0
@@ -196,14 +192,5 @@
             MenuItems.Add(Localization.GetString("item_detail_screen_trash"))
         End If
         MenuItems.Add(Localization.GetString("item_detail_screen_back"))
-    End Sub
-
-    Protected Overrides Sub Finalize()
-        If CanvasTexture1 IsNot Nothing
-            CanvasTexture1.Dispose()
-        End If
-        If CanvasTexture2 IsNot Nothing
-            CanvasTexture2.Dispose()
-        End If
     End Sub
 End Class

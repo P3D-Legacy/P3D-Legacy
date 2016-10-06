@@ -15,13 +15,11 @@
         Me.PreScreen = currentScreen
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
-        CanvasTexture1 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
         ChooseBox.Show({Localization.GetString("save_screen_yes"), Localization.GetString("save_screen_no")}, 0, {})
 
         SaveGameHelpers.ResetSaveCounter()
     End Sub
 
-    Dim CanvasTexture1 As Texture2D
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
 
@@ -29,7 +27,7 @@
             GameJolt.Emblem.Draw(GameJolt.API.username, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem, New Vector2(CSng(Core.windowSize.Width / 2 - 256), 30), 4, Core.GameJoltSave.DownloadedSprite)
         End If
 
-        Canvas.DrawImageBorder(CanvasTexture1, 2, New Rectangle(168, 168, 640, 320))
+        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(168, 168, 640, 320))
 
         With Core.SpriteBatch
             If saveSessionFailed = True Then
@@ -124,12 +122,6 @@
                 ChooseBox.Showing = False
                 Core.SetScreen(Me.PreScreen)
             End If
-        End If
-    End Sub
-
-    Protected Overrides Sub Finalize()
-        If CanvasTexture1 IsNot Nothing
-            CanvasTexture1.Dispose()
         End If
     End Sub
 End Class

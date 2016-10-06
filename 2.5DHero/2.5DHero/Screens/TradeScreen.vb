@@ -439,9 +439,7 @@ Public Class TradeScreen
                 If i <= Me.loadedBuyCategories.Count - 1 Then
                     Dim p As Integer = i - Scroll
 
-                    Dim texture As Texture2D = GetItemTypeTexture(Me.loadedBuyCategories(i))
-                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedBuyCategories(i).ToString(), 16, texture)
-                    texture.Dispose()
+                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedBuyCategories(i).ToString(), 16, GetItemTypeTexture(Me.loadedBuyCategories(i)))
                 End If
             Next
 
@@ -851,9 +849,7 @@ Public Class TradeScreen
                 If i <= Me.loadedSellCategories.Count - 1 Then
                     Dim p As Integer = i - Scroll
 
-                    Dim texture As Texture2D = GetItemTypeTexture(Me.loadedSellCategories(i))
-                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedSellCategories(i).ToString(), 16, texture)
-                    texture.Dispose()
+                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedSellCategories(i).ToString(), 16, GetItemTypeTexture(Me.loadedSellCategories(i)))
                 End If
             Next
 
@@ -1224,7 +1220,6 @@ Public Class TradeScreen
         Core.SpriteBatch.DrawString(Font, Text, New Vector2(Position.X + Height + 10, Position.Y + textY), Color.White)
     End Sub
 
-    ' It will leak.
     Private Function GetItemTypeTexture(ByVal itemType As Items.ItemTypes) As Texture2D
         Dim i As Integer = 0
         Select Case itemType
@@ -1246,7 +1241,7 @@ Public Class TradeScreen
                 i = 7
         End Select
 
-        Return TextureManager.TextureRectangle(TextureManager.GetTexture("GUI\Menus\BagPack"), New Rectangle(i * 24, 150, 24, 24))
+        Return TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\BagPack"), New Rectangle(i * 24, 150, 24, 24))
     End Function
 
     Private Function GetCurrencyAmount() As Integer

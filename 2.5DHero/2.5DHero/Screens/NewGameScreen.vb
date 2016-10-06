@@ -78,10 +78,7 @@
         TextBox.Showing = False
         Me.Index = 0
         TextBox.reDelay = 0
-        skinTexture = TextureManager.TextureRectangle(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))
-        texture0 = TextureManager.GetTexture("GUI\Menus\Menu")
-        texture1 = TextureManager.TextureRectangle(texture0, New Rectangle(112, 12, 1, 1))
-        texture2 = TextureManager.TextureRectangle(texture0, New Rectangle(113, 12, 1, 1))
+        skinTexture = TextureManager.GetTexture(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))
 
         MusicManager.PlayMusic("nomusic")
     End Sub
@@ -209,9 +206,6 @@
         Index += 1
     End Sub
 
-    Dim texture0 As Texture2D
-    Dim texture1 As Texture2D
-    Dim texture2 As Texture2D
 
     Public Overrides Sub Draw()
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), currentBackColor)
@@ -245,7 +239,7 @@
 
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("new_game_choose_skin") & ":" & vbNewLine & skinNames(SkinIndex), New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
 
-                Canvas.DrawScrollBar(New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), startSkins.Count, 1, SkinIndex, New Size(128, 4), True, texture1, texture2)
+                Canvas.DrawScrollBar(New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), startSkins.Count, 1, SkinIndex, New Size(128, 4), True, TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(113, 12, 1, 1)))
         End Select
     End Sub
 
@@ -355,7 +349,7 @@
         SkinIndex = CInt(MathHelper.Clamp(SkinIndex, 0, startSkins.Count - 1))
 
         If sIndex <> SkinIndex Then
-            skinTexture = TextureManager.TextureRectangle(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))
+            skinTexture = TextureManager.GetTexture(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))
         End If
 
         If Controls.Accept() = True Then
@@ -367,11 +361,7 @@
         CanMuteMusic = False
 
         If ControllerHandler.ButtonPressed(Buttons.X) = True Then
-            'It will leak
-            Core.SetScreen(New InputScreen(Core.CurrentScreen, "Player", InputScreen.InputModes.Name, Me.CurrentText, 14,
-                            {
-                                TextureManager.TextureRectangle(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)),New Rectangle(0, 64, 32, 32))
-                            }.ToList(), AddressOf Me.ConfirmInput))
+            Core.SetScreen(New InputScreen(Core.CurrentScreen, "Player", InputScreen.InputModes.Name, Me.CurrentText, 14, {TextureManager.GetTexture(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)),New Rectangle(0, 64, 32, 32))}.ToList(), AddressOf Me.ConfirmInput))
         Else
             KeyBindings.GetNameInput(Me.CurrentText, 14)
 
@@ -556,16 +546,4 @@
 
         Return Localization.GetString("new_game_oak_name_1") & name & Localization.GetString("new_game_oak_name_2")
     End Function
-
-    Protected Overrides Sub Finalize()
-        If texture1 IsNot Nothing
-            texture1.Dispose()
-        End If
-        If texture2 IsNot Nothing
-            texture2.Dispose()
-        End If
-        If skinTexture IsNot Nothing
-            skinTexture.Dispose()
-        End If     
-    End Sub
 End Class

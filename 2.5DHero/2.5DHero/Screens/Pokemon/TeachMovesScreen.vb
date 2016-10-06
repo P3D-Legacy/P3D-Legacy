@@ -48,7 +48,6 @@
         LearnedMove = False
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
-        texture1 = TextureManager.TextureRectangle(mainTexture, New Rectangle(0, 0, 48, 48))
     End Sub
 
     Public Sub New(ByVal currentScreen As Screen, ByVal PokemonIndex As Integer, ByVal MovesList() As BattleSystem.Attack)
@@ -107,10 +106,9 @@
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
     End Sub
 
-    Dim texture1 As Texture2D
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
-        Canvas.DrawImageBorder(texture1, 2, New Rectangle(60, 100, 800, 480))
+        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 800, 480))
 
         Core.SpriteBatch.Draw(Pokemon.GetTexture(True), New Rectangle(80, 100, 128, 128), Color.White)
 
@@ -216,9 +214,4 @@
         End If
     End Sub
 
-    Protected Overrides Sub Finalize()
-        If texture1 IsNot Nothing
-            texture1.Dispose()
-        End If
-    End Sub
 End Class

@@ -425,14 +425,5 @@
     End Class
 
 
-    Protected Overrides Sub Finalize()
-        If Sprites IsNot Nothing And Sprites.Count > 1
-            For Each sprite in Sprites
-                If sprite IsNot Nothing
-                    sprite.Dispose()
-                End If
-            Next
-        End If
-    End Sub
 
 End Class

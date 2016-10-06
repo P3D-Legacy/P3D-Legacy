@@ -15,8 +15,6 @@
         mainTexture = TextureManager.GetTexture("House", New Rectangle(83, 98, 10, 12))
 
         Me.scrollTexture = TextureManager.GetTexture("GUI\Menus\Menu")
-        texture1 = TextureManager.TextureRectangle(scrollTexture, New Rectangle(112, 12, 1, 1))
-        texture2 = TextureManager.TextureRectangle(scrollTexture, New Rectangle(113, 12, 1, 1))
 
         Dim l As New List(Of String)
         Dim oldL As List(Of String) = DonatorList.ToList()
@@ -46,8 +44,6 @@
         End If
     End Sub
 
-    Dim texture1 As Texture2D
-    Dim texture2 As Texture2D
 
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
@@ -64,7 +60,7 @@
         Next
 
         If DonatorList.Count > 13 Then
-            Canvas.DrawScrollBar(New Vector2(CInt(Core.windowSize.Width / 2) + 180, 100), DonatorList.Count, 13, OffsetY, New Size(4, 500), False, texture1, texture2)
+            Canvas.DrawScrollBar(New Vector2(CInt(Core.windowSize.Width / 2) + 180, 100), DonatorList.Count, 13, OffsetY, New Size(4, 500), False, TextureManager.GetTexture(scrollTexture, New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(scrollTexture, New Rectangle(113, 12, 1, 1)))
         End If
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2) - 180, 100), Color.Black)
@@ -73,12 +69,4 @@
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("donation_screen_backadvice"), New Vector2(CInt(Core.windowSize.Width / 2) - FontManager.MainFont.MeasureString("Press E to close").X / 2, 640), Color.White)
     End Sub
 
-    Protected Overrides Sub Finalize()
-        If texture1 IsNot Nothing
-            texture1.Dispose()
-        End If
-        If texture2 IsNot Nothing
-            texture2.Dispose()
-        End If
-    End Sub
 End Class

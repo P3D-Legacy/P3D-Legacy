@@ -113,7 +113,6 @@
         End If
     End Sub
 
-    Dim dispTex As Boolean = false
     Public Sub ChangeTexture()
         If Not Me.Texture Is Nothing Then
             Dim r As New Rectangle(0, 0, 0, 0)
@@ -147,9 +146,8 @@
                 Core.Player.Skin = SkinName
 
                 Try
-                    Dim t As Texture2D = TextureManager.TextureRectangle(Me.Texture, r, 1)
+                    Dim t As Texture2D = TextureManager.GetTexture(Me.Texture, r, 1)
                     Textures(0) = t
-                    dispTex = true
                 Catch
                     Logger.Log(Logger.LogTypes.Warning, "OwnPlayer.vb: Error assigning a new texture to the player.")
                 End Try
@@ -207,9 +205,4 @@
         Return OwnPlayer.AnimationDelayLenght
     End Function
 
-    Protected Overrides Sub Finalize()
-        If Textures(0) IsNot Nothing And dispTex
-            Textures(0).Dispose()
-        End If
-    End Sub
 End Class

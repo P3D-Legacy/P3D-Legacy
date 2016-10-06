@@ -97,7 +97,6 @@
         Return True
     End Function
 
-    Dim dispTex As Boolean = false
     Private Sub ChangeTexture()
         If Me.Texture Is Nothing Then
             Dim path As String = Me.PokemonTexture.Replace("[POKEMON|N]", "Pokemon\Overworld\Normal\").Replace("[POKEMON|S]", "Pokemon\Overworld\Shiny\")
@@ -134,9 +133,7 @@
         If r <> lastRectangle Then
             lastRectangle = r
 
-            Dim t As Texture2D = TextureManager.TextureRectangle(Me.Texture, r, 1)
-            Textures(0) = t
-            dispTex = true
+            Textures(0) = TextureManager.GetTexture(Me.Texture, r, 1)
         End If
     End Sub
 
@@ -173,12 +170,6 @@
                 End If
             End If
         Catch : End Try
-    End Sub
-
-    Protected Overrides Sub Finalize()
-        If Textures(0) IsNot Nothing And dispTex
-            Textures(0).Dispose()
-        End If
     End Sub
 
 End Class
