@@ -175,6 +175,9 @@
                 'GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _vertices.Count, 0, Indicies.Count)
                 GraphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _vertices.Count)
             Next
+
+            vBuffer.Dispose()
+            iBuffer.Dispose()
         End Sub
 
         Private Function GetDiffuseColor() As Vector4
