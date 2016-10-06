@@ -439,7 +439,9 @@ Public Class TradeScreen
                 If i <= Me.loadedBuyCategories.Count - 1 Then
                     Dim p As Integer = i - Scroll
 
-                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedBuyCategories(i).ToString(), 16, GetItemTypeTexture(Me.loadedBuyCategories(i)))
+                    Dim texture As Texture2D = GetItemTypeTexture(Me.loadedBuyCategories(i))
+                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedBuyCategories(i).ToString(), 16, texture)
+                    texture.Dispose()
                 End If
             Next
 
@@ -849,7 +851,9 @@ Public Class TradeScreen
                 If i <= Me.loadedSellCategories.Count - 1 Then
                     Dim p As Integer = i - Scroll
 
-                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedSellCategories(i).ToString(), 16, GetItemTypeTexture(Me.loadedSellCategories(i)))
+                    Dim texture As Texture2D = GetItemTypeTexture(Me.loadedSellCategories(i))
+                    DrawButton(New Vector2(100, 100 + p * 96), 5, Me.loadedSellCategories(i).ToString(), 16, texture)
+                    texture.Dispose()
                 End If
             Next
 

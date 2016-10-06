@@ -368,7 +368,10 @@
 
         If ControllerHandler.ButtonPressed(Buttons.X) = True Then
             'It will leak
-            Core.SetScreen(New InputScreen(Core.CurrentScreen, "Player", InputScreen.InputModes.Name, Me.CurrentText, 14, {TextureManager.TextureRectangle(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))}.ToList(), AddressOf Me.ConfirmInput))
+            Core.SetScreen(New InputScreen(Core.CurrentScreen, "Player", InputScreen.InputModes.Name, Me.CurrentText, 14,
+                            {
+                                TextureManager.TextureRectangle(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)),New Rectangle(0, 64, 32, 32))
+                            }.ToList(), AddressOf Me.ConfirmInput))
         Else
             KeyBindings.GetNameInput(Me.CurrentText, 14)
 
@@ -561,5 +564,8 @@
         If texture2 IsNot Nothing
             texture2.Dispose()
         End If
+        If skinTexture IsNot Nothing
+            skinTexture.Dispose()
+        End If     
     End Sub
 End Class

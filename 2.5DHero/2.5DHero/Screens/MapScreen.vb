@@ -475,7 +475,9 @@
 
         If drawObjects(3) = True Then
             For Each Pokes As Roaming In RoamingPoke
-                Core.SpriteBatch.Draw(Pokes.getTexture(), Pokes.getRectangle(mapOffset), Color.White)
+                Dim text = Pokes.getTexture()
+                Core.SpriteBatch.Draw(text, Pokes.getRectangle(mapOffset), Color.White)
+                text.Dispose()
             Next
         End If
 
