@@ -225,6 +225,7 @@
         Return 1
     End Function
 
+    Dim dispTex As Boolean = false
     Private Sub ChangeTexture()
         If Not Me.Texture Is Nothing Then
             Dim r As New Rectangle(0, 0, 0, 0)
@@ -271,8 +272,9 @@
             If r <> lastRectangle Then
                 lastRectangle = r
 
-                Dim t As Texture2D = net.Pokemon3D.Game.TextureManager.TextureRectangle(Me.Texture, r, 1)
+                Dim t As Texture2D = TextureManager.TextureRectangle(Me.Texture, r, 1)
                 Textures(0) = t
+                dispTex = true
             End If
         End If
     End Sub
@@ -747,4 +749,9 @@
 
 #End Region
 
+    Protected Overrides Sub Finalize()
+        If Textures(0) IsNot Nothing And dispTex
+            Textures(0).Dispose()
+        End If
+    End Sub
 End Class

@@ -16,7 +16,7 @@
     Dim AnimationDelay As Single = AnimationDelayLenght
 
     Public Sub New(ByVal pos As Vector3, ByVal PokemonTexture As String, ByVal visible As Boolean)
-        MyBase.New(pos.X, pos.Y, pos.Z, "NetworkPokemon", {net.Pokemon3D.Game.TextureManager.DefaultTexture}, {0, 0}, False, 0, New Vector3(0.9F), BaseModel.BillModel, 0, "", New Vector3(1))
+        MyBase.New(pos.X, pos.Y, pos.Z, "NetworkPokemon", {TextureManager.DefaultTexture}, {0, 0}, False, 0, New Vector3(0.9F), BaseModel.BillModel, 0, "", New Vector3(1))
 
         Me.Visible = visible
 
@@ -97,10 +97,11 @@
         Return True
     End Function
 
+    Dim dispTex As Boolean = false
     Private Sub ChangeTexture()
         If Me.Texture Is Nothing Then
             Dim path As String = Me.PokemonTexture.Replace("[POKEMON|N]", "Pokemon\Overworld\Normal\").Replace("[POKEMON|S]", "Pokemon\Overworld\Shiny\")
-            Me.Texture = net.Pokemon3D.Game.TextureManager.GetTexture(path)
+            Me.Texture = TextureManager.GetTexture(path)
         End If
 
         Dim r As New Rectangle(0, 0, 0, 0)
@@ -133,8 +134,9 @@
         If r <> lastRectangle Then
             lastRectangle = r
 
-            Dim t As Texture2D = net.Pokemon3D.Game.TextureManager.TextureRectangle(Me.Texture, r, 1)
+            Dim t As Texture2D = TextureManager.TextureRectangle(Me.Texture, r, 1)
             Textures(0) = t
+            dispTex = true
         End If
     End Sub
 
@@ -171,6 +173,12 @@
                 End If
             End If
         Catch : End Try
+    End Sub
+
+    Protected Overrides Sub Finalize()
+        If Textures(0) IsNot Nothing And dispTex
+            Textures(0).Dispose()
+        End If
     End Sub
 
 End Class
