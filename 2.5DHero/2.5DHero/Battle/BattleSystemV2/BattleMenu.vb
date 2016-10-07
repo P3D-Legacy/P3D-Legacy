@@ -318,8 +318,14 @@
             Private ClickAction As D_MainMenuClick
 
             Public Sub New(ByVal IconIndex As Integer, ByVal Text As String, ByVal Index As Integer, ByVal ClickAction As D_MainMenuClick)
-                Me.IconUnselected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(IconIndex * 24, 56, 24, 24), "")
-                Me.IconSelected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(IconIndex * 24, 80, 24, 24), "")
+                If IconIndex > 4 Then
+                    Me.IconUnselected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(160 + (IconIndex - 5) * 24, 56, 24, 24), "")
+                    Me.IconSelected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(160 + (IconIndex - 5) * 24, 80, 24, 24), "")
+                Else
+                    Me.IconUnselected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(IconIndex * 24, 56, 24, 24), "")
+                    Me.IconSelected = TextureManager.GetTexture("GUI\Battle\Interface", New Rectangle(IconIndex * 24, 80, 24, 24), "")
+                End If
+
                 Me.IconFading = 0
 
                 Me.Text = Text
@@ -568,7 +574,6 @@
                 _mainMenuItemList.Clear()
                 BattleScreen.ClearMenuTime = False
             End If
-
         End Sub
 
         Private Sub CreateMainMenuItems(ByVal BattleScreen As BattleScreen)
@@ -624,7 +629,7 @@
                         Dim megaStone = CType(Core.Player.Pokemons(PokeIndex).Item, Items.MegaStone)
 
                         If megaStone.MegaPokemonNumber = Core.Player.Pokemons(PokeIndex).Number Then
-                            _mainMenuItemList.Add(New MainMenuItem(0, "Mega Evolve!", Index, AddressOf MainMenuMegaEvolve))
+                            _mainMenuItemList.Add(New MainMenuItem(5, "Mega Evolve!", Index, AddressOf MainMenuMegaEvolve))
                         End If
                     End If
                 End If
@@ -730,6 +735,13 @@
         End Sub
 
         Private Sub MainMenuMegaEvolve(ByVal BattleScreen As BattleScreen)
+            _retractMenu = True
+            _nextMenuState = MenuStates.Moves
+
+            BattleScreen.BattleQuery.Clear()
+            Dim q As New CameraQueryObject(New Vector3(11, 0.5F, 14.0F), New Vector3(11, 0.5F, 14.0F), Screen.Camera.Speed, Screen.Camera.Speed, -(CSng(MathHelper.PiOver4) + 0.3F), -(CSng(MathHelper.PiOver4) + 0.3F), -0.3F, -0.3F, 0.04F, 0.04F)
+            BattleScreen.BattleQuery.AddRange({q})
+
             BattleScreen.IsMegaEvolvingOwn = True
             For i = 0 To Core.Player.Pokemons.Count - 1
 
@@ -791,6 +803,8 @@
 
                     Dim q As New CameraQueryObject(fQ.StartPosition, Screen.Camera.Position, 0.06F, 0.06F, fQ.StartYaw, Screen.Camera.Yaw, fQ.TargetPitch, Screen.Camera.Pitch, 0.06F, 0.06F)
                     BattleScreen.BattleQuery.Insert(0, q)
+
+                    BattleScreen.IsMegaEvolvingOwn = False
                 End If
 
                 If BattleScreen.BattleQuery.Count = 0 Then
