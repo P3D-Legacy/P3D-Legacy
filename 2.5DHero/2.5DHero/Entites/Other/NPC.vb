@@ -54,20 +54,20 @@
 
         ApplyNPCData()
 
-        Select Case Movement
-            Case "Pokeball"
+        Select Case Movement.ToLower()
+            Case "pokeball"
                 Me.Movement = Movements.Pokeball
-            Case "Still"
+            Case "still"
                 Me.Movement = Movements.Still
-            Case "Looking"
+            Case "looking"
                 Me.Movement = Movements.Looking
-            Case "FacePlayer"
+            Case "faceplayer"
                 Me.Movement = Movements.FacePlayer
-            Case "Walk"
+            Case "walk"
                 Me.Movement = Movements.Walk
-            Case "Straight"
+            Case "straight"
                 Me.Movement = Movements.Straight
-            Case "Turning"
+            Case "turning"
                 Me.Movement = Movements.Turning
         End Select
 
