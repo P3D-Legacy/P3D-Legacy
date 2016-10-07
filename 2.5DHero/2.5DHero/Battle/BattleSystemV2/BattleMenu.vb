@@ -622,14 +622,16 @@
         End Sub
 
         Private Sub MainMenuAddMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal Index As Integer)
+            For i = 0 To Core.Player.Pokemons.Count - 1
+            Dim _str As String = Core.Player.Pokemons(i).AdditionalData
+                Select Case _str
+                    Case "mega", "mega_x", "mega_y"
+                        Exit Sub
+                    Case Else
+                    'do nothing
+                End Select
+            Next
             Dim PokeIndex As Integer = BattleScreen.OwnPokemonIndex
-            Dim _str As String = Core.Player.Pokemons(PokeIndex).AdditionalData
-            Select Case _str
-                Case "mega", "mega_x", "mega_y"
-                    Exit Sub
-                Case Else
-                'do nothing
-            End Select
             If BattleScreen.FieldEffects.OwnMegaEvolved = False Then
                 If Not Core.Player.Pokemons(PokeIndex).Item Is Nothing Then
                     If Core.Player.Pokemons(PokeIndex).Item.IsMegaStone = True Then
