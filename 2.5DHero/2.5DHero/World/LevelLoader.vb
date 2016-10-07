@@ -500,17 +500,17 @@
                 If line.EndsWith("}") = True Then
                     Dim addLine As Boolean = False
                     Select Case True
-                        Case line.StartsWith("{""Entity""{ENT[")
+                        Case line.Trim(" "c, Chr(9)).StartsWith("{""Entity""{ENT[")
                             addLine = True
-                        Case line.StartsWith("{""Floor""{ENT[")
+                        Case line.Trim(" "c, Chr(9)).StartsWith("{""Floor""{ENT[")
                             addLine = True
-                        Case line.StartsWith("{""EntityField""{ENT[")
+                        Case line.Trim(" "c, Chr(9)).StartsWith("{""EntityField""{ENT[")
                             addLine = True
-                        Case line.StartsWith("{""NPC""{NPC[")
+                        Case line.Trim(" "c, Chr(9)).StartsWith("{""NPC""{NPC[")
                             If addNPC = True Then
                                 addLine = True
                             End If
-                        Case line.StartsWith("{""Shader""{SHA[")
+                        Case line.Trim(" "c, Chr(9)).StartsWith("{""Shader""{SHA[")
                             addLine = True
                     End Select
 
