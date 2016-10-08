@@ -1464,7 +1464,9 @@ Public Class Pokemon
                     Dim chance As Integer = CInt(Value.GetSplit(0))
                     Dim itemID As Integer = CInt(Value.GetSplit(1))
 
-                    WildItems.Add(chance, itemID)
+                    If Not WildItems.ContainsKey(chance) Then
+                        WildItems.Add(chance, itemID)
+                    End If
                 Case "tradevalue"
                     Me.TradeValue = CInt(Value)
             End Select
