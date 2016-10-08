@@ -31,9 +31,15 @@
             End If
             Screen.TextBox.Show(t, {Me})
             SoundManager.PlaySound("select")
-        Else
+        ElseIf diveUp = 1 Then
             'Up
             Dim t As String = "Light shines down from~the surface.*Do you want to~use Dive?%Yes|No%"
+
+            Screen.TextBox.Show(t, {Me})
+            SoundManager.PlaySound("select")
+        ElseIf diveUp = 2 Then
+            'Up
+            Dim t As String = "The boat's shadow is casted~upon the ocean floor.*Do you want to~use Dive?%Yes|No%"
 
             Screen.TextBox.Show(t, {Me})
             SoundManager.PlaySound("select")
@@ -44,7 +50,6 @@
         If result = 0 Then
             If diveUp = 0 Then
                 'Down
-
                 Dim s As String = "version=2" & vbNewLine &
                     "@text.show(" & GetDivePokemon() & "~used Dive!)" & vbNewLine &
                     "@screen.fadeout" & vbNewLine &
@@ -57,13 +62,26 @@
                     ":end"
 
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
-            Else
+            ElseIf diveUp = 1 Then
                 'Up
-
                 Dim s As String = "version=2" & vbNewLine &
                     "@text.show(" & GetDivePokemon() & "~used Dive!)" & vbNewLine &
                     "@player.setmovement(0,0.5,0)" & vbNewLine &
                     "@player.move(8)" & vbNewLine &
+                    "@player.resetmovement" & vbNewLine &
+                    "@screen.fadeout" & vbNewLine &
+                    "@player.warp(" & Me.AdditionalValue & ")" & vbNewLine &
+                    "@level.update" & vbNewLine &
+                    "@screen.fadein" & vbNewLine &
+                    ":end"
+
+                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+            ElseIf diveUp = 2 Then
+                'Up
+                Dim s As String = "version=2" & vbNewLine &
+                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & vbNewLine &
+                    "@player.setmovement(0,0.5,0)" & vbNewLine &
+                    "@player.move(6)" & vbNewLine &
                     "@player.resetmovement" & vbNewLine &
                     "@screen.fadeout" & vbNewLine &
                     "@player.warp(" & Me.AdditionalValue & ")" & vbNewLine &
