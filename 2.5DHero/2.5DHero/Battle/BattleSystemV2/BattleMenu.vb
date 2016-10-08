@@ -622,13 +622,17 @@
         End Sub
 
         Private Sub MainMenuAddMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal Index As Integer)
+            If _mainMenuIndex >= 3 Then
+                _mainMenuIndex = 0
+            End If
+
             For i = 0 To Core.Player.Pokemons.Count - 1
-            Dim _str As String = Core.Player.Pokemons(i).AdditionalData
+                Dim _str As String = Core.Player.Pokemons(i).AdditionalData
                 Select Case _str
                     Case "mega", "mega_x", "mega_y"
                         Exit Sub
                     Case Else
-                    'do nothing
+                        'do nothing
                 End Select
             Next
             Dim PokeIndex As Integer = BattleScreen.OwnPokemonIndex
