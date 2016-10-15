@@ -55,7 +55,7 @@ technique Texture
 	{
 		// TODO: set renderstates here.
 
-		VertexShader = compile vs_4_0 VertexShaderFunction();
-		PixelShader = compile ps_4_0 TextureShaderFunction();
+		VertexShader = compile vs_2_0 VertexShaderFunction();
+		PixelShader = compile ps_2_0 TextureShaderFunction();
 	}
 }

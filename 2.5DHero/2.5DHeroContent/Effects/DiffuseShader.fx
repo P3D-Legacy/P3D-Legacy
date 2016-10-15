@@ -69,7 +69,7 @@ technique Texture
 {
     pass Pass1
     {
-        VertexShader = compile vs_4_0 VertexShaderFunction();
-        PixelShader = compile ps_4_0 PixelShaderFunction();
+        VertexShader = compile vs_2_0 VertexShaderFunction();
+        PixelShader = compile ps_2_0 PixelShaderFunction();
     }
 }

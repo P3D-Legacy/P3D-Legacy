@@ -203,8 +203,8 @@ technique Simple
 
 	pass Pass0
 	{
-		VertexShader = compile vs_4_0 SimpleVertexShader();
-		PixelShader = compile ps_4_0 SimplePixelShader();
+		VertexShader = compile vs_2_0 SimpleVertexShader();
+		PixelShader = compile ps_2_0 SimplePixelShader();
 	}
 }
 
@@ -212,8 +212,8 @@ technique Spotlight
 {
 	pass Pass0
 	{
-		VertexShader = compile vs_4_0 SimpleVertexShader();
-		PixelShader = compile ps_4_0 SpotlightPixelShader();
+		VertexShader = compile vs_2_0 SimpleVertexShader();
+		PixelShader = compile ps_2_0 SpotlightPixelShader();
 	}
 }
 
@@ -221,7 +221,7 @@ technique Greyscale
 {
 	pass Pass0
 	{
-		PixelShader = compile ps_4_0 GrayscalePixelShader();
+		PixelShader = compile ps_2_0 GrayscalePixelShader();
 	}
 }
 
@@ -229,7 +229,7 @@ technique GaussianBlur
 {
 	pass Pass0
 	{
-		PixelShader = compile ps_4_0 GaussianPixelShader();
+		PixelShader = compile ps_2_0 GaussianPixelShader();
 	}
 }
 
@@ -237,7 +237,7 @@ technique TexturedLight
 {
 	pass Pass0
 	{
-		VertexShader = compile vs_4_0 SimpleVertexShader();
-		PixelShader = compile ps_4_0 TexturedSpotlightPixelShader();
+		VertexShader = compile vs_2_0 SimpleVertexShader();
+		PixelShader = compile ps_2_0 TexturedSpotlightPixelShader();
 	}
 }

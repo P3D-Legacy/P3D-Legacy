@@ -148,8 +148,8 @@ technique Toon
 	// model will get drawn normally, and draw over the top most of this, leaving only an outline.
 	pass Pass1
 	{
-		VertexShader = compile vs_4_0 OutlineVertexShader();
-		PixelShader = compile ps_4_0 OutlinePixelShader();
+		VertexShader = compile vs_1_1 OutlineVertexShader();
+		PixelShader = compile ps_2_0 OutlinePixelShader();
 		CullMode = CW;
 	}
 
@@ -157,8 +157,8 @@ technique Toon
 	// color the model with certain colors, giving us the cel/toon effect that we are looking for.
 	pass Pass2
 	{
-		VertexShader = compile vs_4_0 CelVertexShader();
-		PixelShader = compile ps_4_0 CelPixelShader();
+		VertexShader = compile vs_1_1 CelVertexShader();
+		PixelShader = compile ps_2_0 CelPixelShader();
 		CullMode = CCW;
 	}
 }
