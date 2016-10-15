@@ -467,7 +467,15 @@
     End Function
 
     Public Shared Sub ForceVolumeUpdate()
+    #If WINDOWS Then
+        Try
+            MediaPlayer.Volume = Volume * MasterVolume
+        Catch ex As NullReferenceException
+           ' song changed while changing volume
+        End Try
+    #Else
         MediaPlayer.Volume = Volume * MasterVolume
+    #End If
         LastVolume = Volume * MasterVolume
     End Sub
 
