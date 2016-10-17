@@ -519,7 +519,7 @@
     End Sub
 
     Private Function SongOver() As Boolean
-        Return startTime + duration < Date.Now
+        Return startTime + duration < DateAdd(DateInterval.Second, +1, Date.Now)
     End Function
 
     'Protected Overrides Sub Finalize()

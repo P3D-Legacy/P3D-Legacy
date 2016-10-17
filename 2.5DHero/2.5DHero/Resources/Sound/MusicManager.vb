@@ -15,7 +15,7 @@
         FadeOutSpeed = 0.0F
         FadeOut = False
         FadeIn = False
-        MediaPlayer.IsRepeating = True
+        MediaPlayer.IsRepeating = False
     End Sub
 
     Class CSong
@@ -211,14 +211,14 @@
                 lastSong = SongList(SongList.Count - 1)
             End If
         End If
-
+        MediaPlayer.IsRepeating = True
         If SearchForIntro = True And lastSong.ToLower() <> Song.ToLower() Then
             If SongFiles.Keys.Contains("intro\" & Song.ToLower()) = True Then
                 If SongFiles("intro\" & Song.ToLower()).Origin = SongFiles(Song.ToLower()).Origin Then
-                    IntroEndTime = Date.Now + SongFiles("intro\" & Song.ToLower()).Song.Duration
+                    IntroEndTime = DateAdd(DateInterval.Second, -1, Date.Now) + SongFiles("intro\" & Song.ToLower()).Song.Duration
 
                     PlayMusic("intro\" & Song.ToLower(), NewFadeInSpeed, NewFadeOutSpeed)
-
+                    MediaPlayer.IsRepeating = False
                     IntroContinue = Song
                     IntroStarted = True
                     If NewFadeInSpeed > 0.0F And NewFadeOutSpeed > 0.0F Then
@@ -354,7 +354,8 @@
 
             If IntroStarted = True Then
                 If Date.Now >= IntroEndTime Then
-                    PlayTrack(IntroContinue)
+                    PlayTrack(IntroContinue)  'Plays the loop that follows the intro
+                    MediaPlayer.IsRepeating = True
                 End If
             End If
         End If
@@ -381,7 +382,7 @@
 
                 If FadeIntoIntro = True Then
                     IntroStarted = True
-                    IntroEndTime = Date.Now + SongFiles(NextSong).Song.Duration
+                    IntroEndTime = DateAdd(DateInterval.Second, -1, Date.Now) + SongFiles(NextSong).Song.Duration
                     FadeIntoIntro = False
                 End If
 
