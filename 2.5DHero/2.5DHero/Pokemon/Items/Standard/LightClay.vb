@@ -1,6 +1,6 @@
 ﻿Namespace Items.Standard
 
-    <Item(514, "Light Clay")>
+    <Item(297, "Light Clay")>
     Public Class LightClay
 
         Inherits Item

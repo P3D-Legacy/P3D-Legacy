@@ -1,6 +1,6 @@
 ﻿Namespace Items.Standard
 
-    <Item(511, "Heat Rock")>
+    <Item(294, "Heat Rock")>
     Public Class HeatRock
 
         Inherits Item

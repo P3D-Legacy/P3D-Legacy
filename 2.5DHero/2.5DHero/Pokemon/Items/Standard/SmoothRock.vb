@@ -1,6 +1,6 @@
 ﻿Namespace Items.Standard
 
-    <Item(512, "Smooth Rock")>
+    <Item(295, "Smooth Rock")>
     Public Class SmoothRock
 
         Inherits Item
