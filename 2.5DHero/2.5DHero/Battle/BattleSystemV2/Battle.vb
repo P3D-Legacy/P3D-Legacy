@@ -430,9 +430,9 @@
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
                 BattleScreen.BattleQuery.Add(New TextQueryObject(_base & " has Mega Evolved!"))
+                TriggerAbilityEffect(BattleScreen, own)
             End If
         End Sub
-
         'Checks if any pokemon is mega evolving, order based on speed
         Sub MegaEvolCheck(ByVal BattleScreen As BattleScreen)
             If BattleCalculation.MovesFirst(BattleScreen) Then
@@ -3700,6 +3700,149 @@
             End If
         End Sub
 
+        Public Sub TriggerAbilityEffect(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
+            With BattleScreen
+                Dim p, op As Pokemon
+                If own Then
+                    p = .OwnPokemon
+                    op = .OppPokemon
+                Else
+                    p = .OppPokemon
+                    op = .OwnPokemon
+                End If
+                If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen, 1) = True Then
+                    Select Case p.Ability.Name.ToLower()
+                        Case "drizzle"
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Rain, 10000, BattleScreen, "Drizzle makes it rain!", "drizzle")
+                        Case "cloud nine"
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
+                        Case "intimidate"
+                            LowerStat(True, False, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
+                        Case "trace"
+                            If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
+                                p.OriginalAbility = p.Ability
+                                p.Ability = op.Ability
+                                .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copied the ability " & op.Ability.Name & " from " & op.GetDisplayName() & "!"))
+                            End If
+                        Case "sand stream"
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Sandstorm, 10000, BattleScreen, "Sand Stream creates a sandstorm!", "sandstream")
+                        Case "forecast"
+                            ApplyForecast(BattleScreen)
+                        Case "drought"
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Sunny, 10000, BattleScreen, "The sunlight turned harsh!", "drought")
+                        Case "air lock"
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "airlock")
+                        Case "download"
+                            If op.Defense < op.SpDefense Then
+                                RaiseStat(False, False, BattleScreen, "Attack", 1, "Download analyzed the foe!", "download")
+                            Else
+                                RaiseStat(False, False, BattleScreen, "Special Attack", 1, "Download analyzed the foe!", "download")
+                            End If
+                        Case "mold breaker"
+                            .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " breakes the mold!"))
+                        Case "turbo blaze"
+                            .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is radiating a blazing aura!"))
+                        Case "teravolt"
+                            .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is radiating a bursting aura!"))
+                        Case "anticipation"
+                            Dim doShudder As Boolean = False
+                            'Check every move if it is: super effective/1hitko/explosion/selfdestruct
+                            If doShudder = True Then
+                                .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " makes " & p.GetDisplayName() & " shudder!"))
+                            End If
+                        Case "forewarn"
+                            Dim moves As New List(Of Attack)
+                            'Add attacks with highest base power here
+                            Dim move As Attack = Nothing
+                            If moves.Count > 1 Then
+                                move = moves(Core.Random.Next(0, moves.Count))
+                            ElseIf moves.Count = 1 Then
+                                move = moves(0)
+                            End If
+                            If Not move Is Nothing Then
+                                .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " makes " & p.GetDisplayName() & " shudder!"))
+                            End If
+                        Case "snow warning"
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Hailstorm, 10000, BattleScreen, "Snow Warning summoned a hailstorm!", "snowwarning")
+                        Case "frisk"
+                            If Not op.Item Is Nothing Then
+                                .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " is holding " & op.Item.Name & "."))
+                            End If
+                        Case "multitype"
+                            p.OriginalType1 = p.Type1
+                            p.OriginalType2 = p.Type2
+
+                            p.Type1 = New Element(Element.Types.Normal)
+                            p.Type2 = New Element(Element.Types.Blank)
+
+                            If Not p.Item Is Nothing Then
+                                Dim changeType As Boolean = False
+                                Dim newType As Element = Nothing
+
+                                Select Case p.Item.Name.ToLower()
+                                    Case "draco plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Dragon)
+                                    Case "dread plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Dark)
+                                    Case "earth plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Ground)
+                                    Case "fist plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Fighting)
+                                    Case "flame plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Fire)
+                                    Case "icicle plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Ice)
+                                    Case "insect plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Bug)
+                                    Case "iron plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Steel)
+                                    Case "meadow plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Grass)
+                                    Case "mind plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Psychic)
+                                    Case "sky plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Flying)
+                                    Case "splash plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Water)
+                                    Case "spooky plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Ghost)
+                                    Case "stone plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Rock)
+                                    Case "toxic plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Poison)
+                                    Case "zap plate"
+                                        changeType = True
+                                        newType = New Element(Element.Types.Electric)
+                                End Select
+
+                                If changeType = True Then
+                                    p.Type1 = newType
+                                    p.Type2 = New Element(Element.Types.Blank)
+                                End If
+                            End If
+
+                            .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & "!"))
+                        Case "imposter"
+                            'Doing the ditto stuff!
+                    End Select
+                End If
+            End With
+        End Sub
         Private Sub ApplyForecast(ByVal BattleScreen As BattleScreen)
             With BattleScreen
                 Dim p As Pokemon = .OwnPokemon
@@ -5720,137 +5863,7 @@
                     End If
                 End If
 
-                If BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen, 1) = True Then
-                    Select Case p.Ability.Name.ToLower()
-                        Case "drizzle"
-                            ChangeWeather(True, True, BattleWeather.WeatherTypes.Rain, 10000, BattleScreen, "Drizzle makes it rain!", "drizzle")
-                        Case "cloud nine"
-                            ChangeWeather(True, True, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
-                        Case "intimidate"
-                            LowerStat(False, True, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
-                        Case "trace"
-                            If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
-                                p.OriginalAbility = p.Ability
-                                p.Ability = op.Ability
-                                .AddToQuery(InsertIndex, New TextQueryObject(p.GetDisplayName() & " copied the ability " & op.Ability.Name & " from " & op.GetDisplayName() & "!"))
-                            End If
-                        Case "sand stream"
-                            ChangeWeather(True, True, BattleWeather.WeatherTypes.Sandstorm, 10000, BattleScreen, "Sand Stream creates a sandstorm!", "sandstream")
-                        Case "forecast"
-                            ApplyForecast(BattleScreen)
-                        Case "drought"
-                            ChangeWeather(True, True, BattleWeather.WeatherTypes.Sunny, 10000, BattleScreen, "The sunlight turned harsh!", "drought")
-                        Case "air lock"
-                            ChangeWeather(True, True, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "airlock")
-                        Case "download"
-                            If op.Defense < op.SpDefense Then
-                                RaiseStat(True, True, BattleScreen, "Attack", 1, "Download analysed the foe!", "download")
-                            Else
-                                RaiseStat(True, True, BattleScreen, "Special Attack", 1, "Download analysed the foe!", "download")
-                            End If
-                        Case "mold breaker"
-                            .AddToQuery(InsertIndex, New TextQueryObject(p.GetDisplayName() & " breakes the mold!"))
-                        Case "turbo blaze"
-                            .AddToQuery(InsertIndex, New TextQueryObject(p.GetDisplayName() & " is radiating a blazing aura!"))
-                        Case "teravolt"
-                            .AddToQuery(InsertIndex, New TextQueryObject(p.GetDisplayName() & " is radiating a bursting aura!"))
-                        Case "anticipation"
-                            Dim doShudder As Boolean = False
-                            'Check every move if it is: super effective/1hitko/explosion/selfdestruct
-                            If doShudder = True Then
-                                .AddToQuery(InsertIndex, New TextQueryObject(op.GetDisplayName() & " makes " & p.GetDisplayName() & " shudder!"))
-                            End If
-                        Case "forewarn"
-                            Dim moves As New List(Of Attack)
-                            'Add attacks with highest base power here
-                            Dim move As Attack = Nothing
-                            If moves.Count > 1 Then
-                                move = moves(Core.Random.Next(0, moves.Count))
-                            ElseIf moves.Count = 1 Then
-                                move = moves(0)
-                            End If
-                            If Not move Is Nothing Then
-                                .AddToQuery(InsertIndex, New TextQueryObject(op.GetDisplayName() & " makes " & p.GetDisplayName() & " shudder!"))
-                            End If
-                        Case "snow warning"
-                            ChangeWeather(True, True, BattleWeather.WeatherTypes.Hailstorm, 10000, BattleScreen, "Snow Warning summoned a hailstorm!", "snowwarning")
-                        Case "frisk"
-                            If Not op.Item Is Nothing Then
-                                .AddToQuery(InsertIndex, New TextQueryObject(op.GetDisplayName() & " is holding " & op.Item.Name & "."))
-                            End If
-                        Case "multitype"
-                            p.OriginalType1 = p.Type1
-                            p.OriginalType2 = p.Type2
-
-                            p.Type1 = New Element(Element.Types.Normal)
-                            p.Type2 = New Element(Element.Types.Blank)
-
-                            If Not p.Item Is Nothing Then
-                                Dim changeType As Boolean = False
-                                Dim newType As Element = Nothing
-
-                                Select Case p.Item.Name.ToLower()
-                                    Case "draco plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Dragon)
-                                    Case "dread plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Dark)
-                                    Case "earth plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Ground)
-                                    Case "fist plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Fighting)
-                                    Case "flame plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Fire)
-                                    Case "icicle plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Ice)
-                                    Case "insect plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Bug)
-                                    Case "iron plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Steel)
-                                    Case "meadow plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Grass)
-                                    Case "mind plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Psychic)
-                                    Case "sky plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Flying)
-                                    Case "splash plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Water)
-                                    Case "spooky plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Ghost)
-                                    Case "stone plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Rock)
-                                    Case "toxic plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Poison)
-                                    Case "zap plate"
-                                        changeType = True
-                                        newType = New Element(Element.Types.Electric)
-                                End Select
-
-                                If changeType = True Then
-                                    p.Type1 = newType
-                                    p.Type2 = New Element(Element.Types.Blank)
-                                End If
-                            End If
-
-                            .AddToQuery(InsertIndex, New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & "!"))
-                        Case "imposter"
-                            'Doing the ditto stuff!
-                    End Select
-                End If
+                TriggerAbilityEffect(BattleScreen, True)
 
                 If .OwnPokemon.Status = Pokemon.StatusProblems.Sleep Then
                     .FieldEffects.OwnSleepTurns = Core.Random.Next(1, 4)
@@ -6141,135 +6154,7 @@
                     End If
                 End If
 
-                Select Case p.Ability.Name.ToLower()
-                    Case "drizzle"
-                        ChangeWeather(False, False, BattleWeather.WeatherTypes.Rain, 10000, BattleScreen, "Drizzle makes it rain!", "drizzle")
-                    Case "cloud nine"
-                        ChangeWeather(False, False, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
-                    Case "intimidate"
-                        LowerStat(True, False, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
-                    Case "trace"
-                        If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
-                            p.OriginalAbility = p.Ability
-                            p.Ability = op.Ability
-                            .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copied the ability " & op.Ability.Name & " from " & op.GetDisplayName() & "!"))
-                        End If
-                    Case "sand stream"
-                        ChangeWeather(False, False, BattleWeather.WeatherTypes.Sandstorm, 10000, BattleScreen, "Sand Stream creates a sandstorm!", "sandstream")
-                    Case "forecast"
-                        ApplyForecast(BattleScreen)
-                    Case "drought"
-                        ChangeWeather(False, False, BattleWeather.WeatherTypes.Sunny, 10000, BattleScreen, "The sunlight turned harsh!", "drought")
-                    Case "air lock"
-                        ChangeWeather(False, False, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "airlock")
-                    Case "download"
-                        If op.Defense < op.SpDefense Then
-                            RaiseStat(False, False, BattleScreen, "Attack", 1, "Download analysed the foe!", "download")
-                        Else
-                            RaiseStat(False, False, BattleScreen, "Special Attack", 1, "Download analysed the foe!", "download")
-                        End If
-                    Case "mold breaker"
-                        .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " breakes the mold!"))
-                    Case "turbo blaze"
-                        .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is radiating a blazing aura!"))
-                    Case "teravolt"
-                        .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is radiating a bursting aura!"))
-                    Case "anticipation"
-                        Dim doShudder As Boolean = False
-                        'Check every move if it is: super effective/1hitko/explosion/selfdestruct
-                        If doShudder = True Then
-                            .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " makes " & p.GetDisplayName() & " shudder!"))
-                        End If
-                    Case "forewarn"
-                        Dim moves As New List(Of Attack)
-                        'Add attacks with highest base power here
-                        Dim move As Attack = Nothing
-                        If moves.Count > 1 Then
-                            move = moves(Core.Random.Next(0, moves.Count))
-                        ElseIf moves.Count = 1 Then
-                            move = moves(0)
-                        End If
-                        If Not move Is Nothing Then
-                            .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " makes " & p.GetDisplayName() & " shudder!"))
-                        End If
-                    Case "snow warning"
-                        ChangeWeather(False, False, BattleWeather.WeatherTypes.Hailstorm, 10000, BattleScreen, "Snow Warning summoned a hailstorm!", "snowwarning")
-                    Case "frisk"
-                        If Not op.Item Is Nothing Then
-                            .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " is holding " & op.Item.Name & "."))
-                        End If
-                    Case "multitype"
-                        p.OriginalType1 = p.Type1
-                        p.OriginalType2 = p.Type2
-
-                        p.Type1 = New Element(Element.Types.Normal)
-                        p.Type2 = New Element(Element.Types.Blank)
-
-                        If Not p.Item Is Nothing Then
-                            Dim changeType As Boolean = False
-                            Dim newType As Element = Nothing
-
-                            Select Case p.Item.Name.ToLower()
-                                Case "draco plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Dragon)
-                                Case "dread plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Dark)
-                                Case "earth plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Ground)
-                                Case "fist plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Fighting)
-                                Case "flame plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Fire)
-                                Case "icicle plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Ice)
-                                Case "insect plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Bug)
-                                Case "iron plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Steel)
-                                Case "meadow plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Grass)
-                                Case "mind plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Psychic)
-                                Case "sky plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Flying)
-                                Case "splash plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Water)
-                                Case "spooky plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Ghost)
-                                Case "stone plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Rock)
-                                Case "toxic plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Poison)
-                                Case "zap plate"
-                                    changeType = True
-                                    newType = New Element(Element.Types.Electric)
-                            End Select
-
-                            If changeType = True Then
-                                p.Type1 = newType
-                                p.Type2 = New Element(Element.Types.Blank)
-                            End If
-                        End If
-
-                        .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & "!"))
-                    Case "imposter"
-                        'Doing the ditto stuff!
-                End Select
+                TriggerAbilityEffect(BattleScreen, False)
 
                 If .OppPokemon.Status = Pokemon.StatusProblems.Sleep Then
                     .FieldEffects.OppSleepTurns = Core.Random.Next(1, 4)
