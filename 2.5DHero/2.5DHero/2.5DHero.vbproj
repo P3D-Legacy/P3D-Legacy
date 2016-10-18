@@ -647,7 +647,7 @@
     <Compile Include="Pokemon\Attacks\Ground\MudShot.vb" />
     <Compile Include="Pokemon\Attacks\Ground\MudSport.vb" />
     <Compile Include="Pokemon\Attacks\Ground\Sand-Attack.vb" />
-    <Compile Include="Pokemon\Attacks\Ground\Sandstorm.vb" />
+    <Compile Include="Pokemon\Attacks\Rock\Sandstorm.vb" />
     <Compile Include="Pokemon\Attacks\Ground\SandTomb.vb" />
     <Compile Include="Pokemon\Attacks\Ground\Spikes.vb" />
     <Compile Include="Pokemon\Attacks\Ice\AuroraBeam.vb" />
@@ -1410,6 +1410,11 @@
     <Compile Include="Pokemon\Items\Standard\BlackSludge.vb" />
     <Compile Include="Pokemon\Items\Standard\BrickPiece.vb" />
     <Compile Include="Pokemon\Items\Standard\Charcoal.vb" />
+    <Compile Include="Pokemon\Items\Standard\SmoothRock.vb" />
+    <Compile Include="Pokemon\Items\Standard\IcyRock.vb" />
+    <Compile Include="Pokemon\Items\Standard\LightClay.vb" />
+    <Compile Include="Pokemon\Items\Standard\HeatRock.vb" />
+    <Compile Include="Pokemon\Items\Standard\DampRock.vb" />
     <Compile Include="Pokemon\Items\Standard\CleanseTag.vb" />
     <Compile Include="Pokemon\Items\Standard\CometShard.vb" />
     <Compile Include="Pokemon\Items\Standard\DeepSeaScale.vb" />

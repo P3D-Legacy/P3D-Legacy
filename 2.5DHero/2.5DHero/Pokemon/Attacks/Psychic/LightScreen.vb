@@ -60,15 +60,7 @@ Namespace BattleSystem.Moves.Psychic
             If own = False Then
                 p = BattleScreen.OppPokemon
             End If
-
-            Dim turns As Integer = 6
-
-            If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "light clay" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                    turns = 9
-                End If
-            End If
-
+            Dim turns As Integer = BattleCalculation.FieldEffectTurns(BattleScreen, own, Me.Name.ToLower())
             If own = True Then
                 If BattleScreen.FieldEffects.OwnLightScreen = 0 Then
                     BattleScreen.FieldEffects.OwnLightScreen = turns

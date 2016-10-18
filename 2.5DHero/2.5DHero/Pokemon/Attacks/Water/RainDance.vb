@@ -56,7 +56,8 @@
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.ChangeWeather(own, own, BattleWeather.WeatherTypes.Rain, 5, BattleScreen, "It started to rain!", "move:raindance")
+            Dim turns As Integer = BattleCalculation.FieldEffectTurns(BattleScreen, own, Me.Name.ToLower())
+            BattleScreen.Battle.ChangeWeather(own, own, BattleWeather.WeatherTypes.Rain, turns, BattleScreen, "It started to rain!", "move:raindance")
         End Sub
 
     End Class

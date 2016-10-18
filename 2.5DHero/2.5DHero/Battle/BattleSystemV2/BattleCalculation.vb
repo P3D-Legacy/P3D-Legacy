@@ -2,6 +2,42 @@
 
     Public Class BattleCalculation
 
+        Public Shared Function FieldEffectTurns(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, Optional ByVal moveName As String = "") As Integer
+            Dim turns As Integer = 5
+            Dim p As Pokemon
+            If own Then
+                p = BattleScreen.OwnPokemon
+            Else
+                p = BattleScreen.OppPokemon
+            End If
+            Dim ability As String = p.Ability.Name.ToLower()
+            If BattleScreen.FieldEffects.CanUseItem(own) = True Then
+                Select Case p.Item.Name.ToLower()
+                    Case "damp rock"
+                        If ability = "drizzle" Or moveName = "rain dance" Then
+                            turns = 8
+                        End If
+                    Case "heat rock"
+                        If ability = "drought" Or moveName = "sunny day" Then
+                            turns = 8
+                        End If
+                    Case "smooth rock"
+                        If ability = "sand stream" Or moveName = "sandstorm" Then
+                            turns = 8
+                        End If
+                    Case "icy rock"
+                        If ability = "snow warning" Or moveName = "hail" Then
+                            turns = 8
+                        End If
+                    Case "light clay"
+                        If moveName = "light screen" Or moveName = "reflect" Then
+                            turns = 8
+                        End If
+                End Select
+            End If
+            Return turns
+        End Function
+
         Public Shared Function MovesFirst(ByVal BattleScreen As BattleScreen) As Boolean
             'Determine strike first with speed:
             Dim ownSpeed As Integer = DetermineBattleSpeed(True, BattleScreen)

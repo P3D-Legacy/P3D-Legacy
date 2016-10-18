@@ -3710,10 +3710,11 @@
                     p = .OppPokemon
                     op = .OwnPokemon
                 End If
+                Dim turns As Integer = BattleCalculation.FieldEffectTurns(BattleScreen, own)
                 If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen, 1) = True Then
                     Select Case p.Ability.Name.ToLower()
                         Case "drizzle"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Rain, 10000, BattleScreen, "Drizzle makes it rain!", "drizzle")
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Rain, turns, BattleScreen, "Drizzle makes it rain!", "drizzle")
                         Case "cloud nine"
                             ChangeWeather(False, False, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
                         Case "intimidate"
@@ -3725,11 +3726,11 @@
                                 .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copied the ability " & op.Ability.Name & " from " & op.GetDisplayName() & "!"))
                             End If
                         Case "sand stream"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Sandstorm, 10000, BattleScreen, "Sand Stream creates a sandstorm!", "sandstream")
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Sandstorm, turns, BattleScreen, "Sand Stream creates a sandstorm!", "sandstream")
                         Case "forecast"
                             ApplyForecast(BattleScreen)
                         Case "drought"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Sunny, 10000, BattleScreen, "The sunlight turned harsh!", "drought")
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Sunny, turns, BattleScreen, "The sunlight turned harsh!", "drought")
                         Case "air lock"
                             ChangeWeather(False, False, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "airlock")
                         Case "download"
@@ -3763,7 +3764,7 @@
                                 .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " makes " & p.GetDisplayName() & " shudder!"))
                             End If
                         Case "snow warning"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Hailstorm, 10000, BattleScreen, "Snow Warning summoned a hailstorm!", "snowwarning")
+                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Hailstorm, turns, BattleScreen, "Snow Warning summoned a hailstorm!", "snowwarning")
                         Case "frisk"
                             If Not op.Item Is Nothing Then
                                 .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " is holding " & op.Item.Name & "."))
