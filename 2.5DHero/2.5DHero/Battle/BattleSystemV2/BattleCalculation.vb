@@ -11,7 +11,7 @@
                 p = BattleScreen.OppPokemon
             End If
             Dim ability As String = p.Ability.Name.ToLower()
-            If BattleScreen.FieldEffects.CanUseItem(own) = True Then
+            If p.Item IsNot Nothing AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True Then
                 Select Case p.Item.Name.ToLower()
                     Case "damp rock"
                         If ability = "drizzle" Or moveName = "rain dance" Then
