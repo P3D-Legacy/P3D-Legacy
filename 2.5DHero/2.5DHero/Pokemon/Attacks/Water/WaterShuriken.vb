@@ -13,7 +13,7 @@ Namespace BattleSystem.Moves.Water
             Me.MaxPP = 20
             Me.Power = 15
             Me.Accuracy = 100
-            Me.Category = Categories.Physical
+            Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Water Shuriken"
             Me.Description = "The user hits the target with throwing stars two to five times in a row. This move always goes first."
