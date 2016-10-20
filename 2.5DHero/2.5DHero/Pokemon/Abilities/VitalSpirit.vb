@@ -5,7 +5,7 @@ Namespace Abilities
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(72, "Vital Spirit", "Prevents the Pokémon from falling asleep.")
+            MyBase.New(72, "Vital Spirit", "The PokÃ©mon is full of vitality, and that prevents it from falling asleep.")
         End Sub
 
     End Class
