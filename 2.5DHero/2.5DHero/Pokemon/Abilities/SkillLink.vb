@@ -5,7 +5,7 @@ Namespace Abilities
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(92, "Skill Link", "Increases the frequency of multi-strike moves.")
+            MyBase.New(92, "Skill Link", "Maximizes the number of times multi-strike moves hit.")
         End Sub
 
     End Class
