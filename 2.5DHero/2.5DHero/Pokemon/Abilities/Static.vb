@@ -5,7 +5,7 @@ Namespace Abilities
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(9, "Static", "Contact with the Pokémon may cause paralysis.")
+            MyBase.New(9, "Static", "The PokÃ©mon is charged with static electricity, so contact with it may cause paralysis.")
         End Sub
 
     End Class
