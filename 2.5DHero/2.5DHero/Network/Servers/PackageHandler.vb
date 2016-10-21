@@ -203,7 +203,15 @@
         End Sub
 
         Private Shared Sub HandleBattleOffer(ByVal p As Package)
-            PVPLobbyScreen.ReceiveOppTeam(p.DataItems(0))
+            'Remove the whole "if" when server API is updated.
+            If p.DataItems(0).Length = 1 Then
+                PVPLobbyScreen.ReceiveBattleStart(CInt(p.DataItems(0)))
+            Else
+                PVPLobbyScreen.ReceiveOppTeam(p.DataItems(0))
+            End If
+
+            'PVPLobbyScreen.ReceiveOppTeam(p.DataItems(0))
+
         End Sub
 
         Private Shared Sub HandleBattleQuit(ByVal p As Package)
@@ -229,7 +237,7 @@
         End Sub
 
         Private Shared Sub HandleBattleStart(ByVal p As Package)
-            PVPLobbyScreen.ReceiveBattleStart()
+            PVPLobbyScreen.ReceiveBattleStart(CInt(p.DataItems(0)))
         End Sub
 
         Private Shared Sub HandleBattleHostData(ByVal p As Package)

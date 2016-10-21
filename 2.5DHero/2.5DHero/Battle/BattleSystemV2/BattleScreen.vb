@@ -2,7 +2,12 @@
 
     Public Class BattleScreen
 
+
         Inherits Screen
+
+
+        Public Shared OwnLeadIndex As Integer = 0
+        Public Shared OppLeadIndex As Integer = 0
 
 #Region "BattleValues"
 
@@ -337,6 +342,12 @@
                 End If
             Next
             Me.OwnPokemon = Core.Player.Pokemons(meIndex)
+            If IsPVPBattle Then
+                OwnPokemon = Core.Player.Pokemons(OwnLeadIndex)
+                OwnPokemonIndex = OwnLeadIndex
+                OppPokemon = Trainer.Pokemons(OppLeadIndex)
+                OppPokemonIndex = OppLeadIndex
+            End If
 
             Me.IsTrainerBattle = True
             Me.ParticipatedPokemon.Add(meIndex)
@@ -421,8 +432,8 @@
 
             Me.BattleQuery.AddRange({cq, q, q1, q2, q22, q3, q31, q4})
 
-            Battle.SwitchInOwn(Me, meIndex, True, -1)
-            Battle.SwitchInOpp(Me, True, 0)
+            Battle.SwitchInOwn(Me, meIndex, True, OwnPokemonIndex)
+            Battle.SwitchInOpp(Me, True, OppPokemonIndex)
 
             Me.BattleQuery.AddRange({cq1, q5, cq2})
 
@@ -1070,6 +1081,8 @@ nextIndex:
                 ResetVars()
                 Core.SetScreen(New TransitionScreen(Me, New BlackOutScreen(Me), Color.Black, False))
             End If
+            OwnLeadIndex = 0
+            OppLeadIndex = 0
         End Sub
 
         Public Sub ChangeSavedScreen()

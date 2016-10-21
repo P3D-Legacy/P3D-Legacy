@@ -3,6 +3,7 @@
     Inherits Screen
 
     Private PokemonList As New List(Of Pokemon)
+    Private AltPokemonList As New List(Of Pokemon)
 
     Public Shared Selected As Integer = -1
     Public Shared Exited As Boolean = False
@@ -29,7 +30,7 @@
     Public LearnAttack As BattleSystem.Attack
     Public LearnType As Integer = 0
 
-    Public Sub New(ByVal currentScreen As Screen, ByVal Item As Item, ByVal ChoosePokemon As DoStuff, ByVal Title As String, ByVal canExit As Boolean, ByVal canChooseFainted As Boolean, ByVal canChooseEgg As Boolean)
+    Public Sub New(ByVal currentScreen As Screen, ByVal Item As Item, ByVal ChoosePokemon As DoStuff, ByVal Title As String, ByVal canExit As Boolean, ByVal canChooseFainted As Boolean, ByVal canChooseEgg As Boolean, Optional ByVal _pokemonList As List(Of Pokemon) = Nothing)
         Me.PreScreen = currentScreen
         Me.Identification = Identifications.ChoosePokemonScreen
 
@@ -50,6 +51,7 @@
 
         Me.index = Player.Temp.PokemonScreenIndex
         Me.ChoosePokemon = ChoosePokemon
+        Me.AltPokemonList = _pokemonList
 
         GetPokemonList()
     End Sub
@@ -63,10 +65,15 @@
     End Sub
 
     Private Sub GetPokemonList()
-        Me.PokemonList.Clear()
-        For Each p As Pokemon In Core.Player.Pokemons
-            Me.PokemonList.Add(Pokemon.GetPokemonByData(p.GetSaveData()))
-        Next
+        If AltPokemonList IsNot Nothing Then
+            For Each p As Pokemon In AltPokemonList
+                Me.PokemonList.Add(Pokemon.GetPokemonByData(p.GetSaveData()))
+            Next
+        Else
+            For Each p As Pokemon In Core.Player.Pokemons
+                Me.PokemonList.Add(Pokemon.GetPokemonByData(p.GetSaveData()))
+            Next
+        End If
     End Sub
 
     Public Overrides Sub Update()

@@ -1575,6 +1575,7 @@
     <Compile Include="Screens\BattleIntroScreen.vb" />
     <Compile Include="Screens\Battle\BattleCatchScreen.vb" />
     <Compile Include="Screens\Battle\BattleGrowStatsScreen.vb" />
+    <Compile Include="Screens\Battle\LeadPokemonInfoScreen.vb" />
     <Compile Include="Screens\Battle\BattlePokemonInfoScreen.vb" />
     <Compile Include="Screens\Battle\BlackOutScreen.vb" />
     <Compile Include="Screens\Credits\CreditsCamera.vb" />
