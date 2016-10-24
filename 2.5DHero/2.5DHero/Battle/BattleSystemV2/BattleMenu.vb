@@ -560,6 +560,10 @@
         End Sub
 
         Private Sub UpdateMainMenu(ByVal BattleScreen As BattleScreen)
+            If BattleScreen.ClearMenuTime = True Then
+                _mainMenuItemList.Clear()
+                BattleScreen.ClearMenuTime = False
+            End If
             If _mainMenuItemList.Count = 0 Then
                 CreateMainMenuItems(BattleScreen)
             End If
@@ -570,10 +574,6 @@
             End If
 
             UpdateMenuOptions(_mainMenuIndex, _mainMenuNextIndex, _mainMenuItemList.Count)
-            If BattleScreen.ClearMenuTime = True Then
-                _mainMenuItemList.Clear()
-                BattleScreen.ClearMenuTime = False
-            End If
         End Sub
 
         Private Sub CreateMainMenuItems(ByVal BattleScreen As BattleScreen)

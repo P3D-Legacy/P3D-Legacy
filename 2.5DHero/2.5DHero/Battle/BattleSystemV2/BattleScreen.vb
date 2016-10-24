@@ -823,6 +823,8 @@ nextIndex:
                     ClientWaitForData = False
                     ReceivedPokemonData = False
                     BattleMenu.Reset()
+                    ClearMenuTime = True
+                    BattleMenu.Update(Me)
                 End If
             End If
             If Me.IsHost = False And Me.LockData <> "{}" And ReceivedPokemonData = False And ClientWaitForData = False And IsRemoteBattle = True Then
