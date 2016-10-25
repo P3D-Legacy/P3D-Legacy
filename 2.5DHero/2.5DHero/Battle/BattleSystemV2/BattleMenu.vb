@@ -850,6 +850,7 @@
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
                 If BattleScreen.IsMegaEvolvingOwn Then
                     BattleScreen.SendClientCommand("MEGA|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString())
+                    BattleScreen.IsMegaEvolvingOwn = False
                 Else
                     BattleScreen.SendClientCommand("MOVE|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString())
                 End If
