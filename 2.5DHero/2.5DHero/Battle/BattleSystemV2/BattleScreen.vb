@@ -5,7 +5,12 @@
 
         Inherits Screen
 
+        'Used for after fainting switching
+        Public Shared OwnFaint As Boolean = False
+        Public Shared OppFaint As Boolean = False
 
+
+        'Used for lead picking in PvP Battles
         Public Shared OwnLeadIndex As Integer = 0
         Public Shared OppLeadIndex As Integer = 0
 
@@ -1270,6 +1275,8 @@ nextIndex:
                         Battle.Won = True
                         EndBattle(False)
                         PVPLobbyScreen.BattleSuccessful = False
+                        OwnFaint = False
+                        OppFaint = False
                         Return False
                     End If
                 Else
@@ -1279,6 +1286,8 @@ nextIndex:
                     Battle.Won = False
                     EndBattle(False)
                     PVPLobbyScreen.BattleSuccessful = False
+                    OwnFaint = False
+                    OppFaint = False
                     Return False
                 End If
             End If
@@ -1369,6 +1378,21 @@ nextIndex:
             Dim newQueries As New List(Of String)
             Dim tempData As String = ""
             Dim cData As String = data
+            Dim s As Screen = Core.CurrentScreen
+            While Not s.PreScreen Is Nothing And s.Identification <> Identifications.BattleScreen
+                s = s.PreScreen
+            End While
+            If s.Identification = Identifications.BattleScreen Then
+                If data = "-HostFainted-" Then
+                    OppFaint = True
+                    Exit Sub
+                End If
+                If data = "-ClientFainted-" Then
+                    OwnFaint = True
+                    Exit Sub
+                End If
+            End If
+
 
             While cData.Length > 0
                 If cData(0).ToString() = "|" AndAlso tempData(tempData.Length - 1).ToString() = "}" Then
@@ -1385,10 +1409,7 @@ nextIndex:
                 tempData = ""
             End If
 
-            Dim s As Screen = Core.CurrentScreen
-            While Not s.PreScreen Is Nothing And s.Identification <> Identifications.BattleScreen
-                s = s.PreScreen
-            End While
+
 
             If s.Identification = Identifications.BattleScreen Then
                 CType(s, BattleScreen).BattleQuery.Clear()

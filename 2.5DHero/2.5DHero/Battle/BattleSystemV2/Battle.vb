@@ -206,14 +206,12 @@
             End If
 
             'Going to menu:
-            BattleScreen.BattleQuery.Add(New ToggleMenuQueryObject(False))
-
             If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
                 BattleScreen.BattleQuery.Add(New TriggerNewRoundPVPQueryObject())
 
                 BattleScreen.SendHostQuery()
             End If
-
+            BattleScreen.BattleQuery.Add(New ToggleMenuQueryObject(False))
             For i = 0 To 99
                 BattleScreen.InsertCasualCameramove()
             Next
@@ -4072,10 +4070,20 @@
 
                         If .OwnPokemon.Status = Pokemon.StatusProblems.Fainted Or .OwnPokemon.HP <= 0 Then
                             .OwnPokemon.Status = Pokemon.StatusProblems.Fainted
+                            BattleScreen.OwnFaint = True
+                            If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
+                                Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData,
+                                    Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {BattleScreen.PartnerNetworkID.ToString(), "-HostFainted-"}.ToList()))
+                            End If
                             SwitchOutOwn(BattleScreen, -1, -1)
                         End If
                         If .OppPokemon.Status = Pokemon.StatusProblems.Fainted Or .OppPokemon.HP <= 0 Then
                             .OppPokemon.Status = Pokemon.StatusProblems.Fainted
+                            BattleScreen.OppFaint = True
+                            If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
+                                Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData,
+                                    Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {BattleScreen.PartnerNetworkID.ToString(), "-ClientFainted-"}.ToList()))
+                            End If
                             If BattleScreen.IsTrainerBattle = True Then
                                 If BattleScreen.Trainer.HasBattlePokemon() = True Then
                                     BattleScreen.FieldEffects.DefeatedTrainerPokemon = True
@@ -5683,7 +5691,11 @@
                 BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, 2, -1, -1, -1, -1))
 
                 If Core.Player.CountFightablePokemon > 0 Then
-                    SwitchInOwn(BattleScreen, SwitchInIndex, False, InsertIndex, message)
+                    If BattleScreen.OwnFaint Then
+                        'Next pokemon sent by the player is decided via menu.
+                    Else
+                        SwitchInOwn(BattleScreen, SwitchInIndex, False, InsertIndex, message)
+                    End If
                 Else
                     If BattleScreen.IsTrainerBattle = True Then
                         EndBattle(EndBattleReasons.LooseTrainer, BattleScreen, False)
@@ -6000,7 +6012,11 @@
                     End If
                     BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 2, -1, -1, -1, -1))
 
-                    SwitchInOpp(BattleScreen, False, index)
+                    If BattleScreen.IsRemoteBattle And BattleScreen.OppFaint Then
+                        'Next pokemon is selected by the opponent.
+                    Else
+                        SwitchInOpp(BattleScreen, False, index)
+                    End If
                 Else
                     GainEXP(BattleScreen)
 
@@ -6187,6 +6203,8 @@
         End Enum
 
         Public Sub EndBattle(ByVal reason As EndBattleReasons, ByVal BattleScreen As BattleScreen, ByVal AddPVP As Boolean)
+            BattleSystem.BattleScreen.OwnFaint = False
+            BattleSystem.BattleScreen.OppFaint = False
             If AddPVP = True Then
                 Select Case reason
                     Case EndBattleReasons.WinTrainer 'Lost

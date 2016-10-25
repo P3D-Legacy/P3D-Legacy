@@ -603,6 +603,8 @@
             MusicManager.PlayMusic("lobby", False)
             Core.Player.Pokemons.Clear()
             Core.Player.Pokemons.AddRange(TempOriginalTeam.ToArray())
+            BattleSystem.BattleScreen.OwnFaint = False
+            BattleSystem.BattleScreen.OppFaint = False
         End If
     End Sub
 
@@ -655,6 +657,8 @@
         Else
             PlayerStatistics.Track("PVP Losses", 1)
         End If
+        BattleSystem.BattleScreen.OwnFaint = False
+        BattleSystem.BattleScreen.OppFaint = False
     End Sub
 
     Private Sub DrawBattleResults()

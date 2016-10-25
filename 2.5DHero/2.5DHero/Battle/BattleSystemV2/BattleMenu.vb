@@ -271,7 +271,7 @@
             End If
         End Sub
 
-        Public Sub Update(ByVal BattleScreen As BattleScreen)
+        Public Sub Update(ByRef BattleScreen As BattleScreen)
             Select Case MenuState
                 Case MenuStates.Main
                     UpdateMainMenu(BattleScreen)
@@ -559,11 +559,13 @@
             Next
         End Sub
 
-        Private Sub UpdateMainMenu(ByVal BattleScreen As BattleScreen)
+        Private Sub UpdateMainMenu(ByRef BattleScreen As BattleScreen)
+
             If BattleScreen.ClearMenuTime = True Then
                 _mainMenuItemList.Clear()
                 BattleScreen.ClearMenuTime = False
             End If
+
             If _mainMenuItemList.Count = 0 Then
                 CreateMainMenuItems(BattleScreen)
             End If
@@ -576,9 +578,8 @@
             UpdateMenuOptions(_mainMenuIndex, _mainMenuNextIndex, _mainMenuItemList.Count)
         End Sub
 
-        Private Sub CreateMainMenuItems(ByVal BattleScreen As BattleScreen)
+        Private Sub CreateMainMenuItems(ByRef BattleScreen As BattleScreen)
             _mainMenuItemList.Clear()
-
             Select Case BattleScreen.BattleMode
                 Case BattleSystem.BattleScreen.BattleModes.Safari
                     Dim safariBallText As String = "Safari Ball x" & Core.Player.Inventory.GetItemAmount(181).ToString()
@@ -603,15 +604,33 @@
                     _mainMenuItemList.Add(New MainMenuItem(3, "Run", 3, AddressOf MainMenuRun))
 
                 Case BattleSystem.BattleScreen.BattleModes.Standard
-                    _mainMenuItemList.Add(New MainMenuItem(0, "Battle", 0, AddressOf MainMenuOpenBattleMenu))
-                    _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
-                    _mainMenuItemList.Add(New MainMenuItem(2, "Bag", 2, AddressOf MainMenuOpenBag))
-
-                    If BattleScreen.IsTrainerBattle = False Then
-                        _mainMenuItemList.Add(New MainMenuItem(3, "Run", 3, AddressOf MainMenuRun))
-                        MainMenuAddMegaEvolution(BattleScreen, 4)
+                    If BattleScreen.OwnFaint Then
+                        _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 0, AddressOf MainMenuOpenPokemon))
+                        BattleScreen.OwnFaint = False
+                    ElseIf BattleScreen.OppFaint And BattleScreen.IsRemoteBattle Then
+                        If BattleScreen.IsHost Then
+                            BattleScreen.BattleQuery.Clear()
+                            BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+                            BattleScreen.OppFaint = False
+                            BattleScreen.Battle.InitializeRound(BattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = "The client sends the next pokemon!"})
+                        Else
+                            BattleScreen.OwnStatistics.Switches += 1
+                            BattleScreen.BattleQuery.Clear()
+                            BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+                            BattleScreen.SendClientCommand("TEXT|" & "The host sends the next pokemon!")
+                        End If
+                        BattleScreen.OppFaint = False
                     Else
-                        MainMenuAddMegaEvolution(BattleScreen, 3)
+                        _mainMenuItemList.Add(New MainMenuItem(0, "Battle", 0, AddressOf MainMenuOpenBattleMenu))
+                        _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
+                        _mainMenuItemList.Add(New MainMenuItem(2, "Bag", 2, AddressOf MainMenuOpenBag))
+
+                        If BattleScreen.IsTrainerBattle = False Then
+                            _mainMenuItemList.Add(New MainMenuItem(3, "Run", 3, AddressOf MainMenuRun))
+                            MainMenuAddMegaEvolution(BattleScreen, 4)
+                        Else
+                            MainMenuAddMegaEvolution(BattleScreen, 3)
+                        End If
                     End If
 
                 Case BattleSystem.BattleScreen.BattleModes.PVP
