@@ -65,6 +65,7 @@
     End Sub
 
     Private Sub GetPokemonList()
+        Me.PokemonList.Clear()
         If AltPokemonList IsNot Nothing Then
             For Each p As Pokemon In AltPokemonList
                 Me.PokemonList.Add(Pokemon.GetPokemonByData(p.GetSaveData()))
