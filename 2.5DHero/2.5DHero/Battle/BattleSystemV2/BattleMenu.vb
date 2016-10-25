@@ -606,12 +606,13 @@
                 Case BattleSystem.BattleScreen.BattleModes.Standard
                     If BattleScreen.OwnFaint Then
                         _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 0, AddressOf MainMenuOpenPokemon))
-                        BattleScreen.OwnFaint = False
+                        If BattleScreen.IsRemoteBattle AndAlso Not BattleScreen.IsHost Then
+                            BattleScreen.OwnFaint = False
+                        End If
                     ElseIf BattleScreen.OppFaint And BattleScreen.IsRemoteBattle Then
                         If BattleScreen.IsHost Then
                             BattleScreen.BattleQuery.Clear()
                             BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                            BattleScreen.OppFaint = False
                             BattleScreen.Battle.InitializeRound(BattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = "The client sends the next pokemon!"})
                         Else
                             BattleScreen.OwnStatistics.Switches += 1

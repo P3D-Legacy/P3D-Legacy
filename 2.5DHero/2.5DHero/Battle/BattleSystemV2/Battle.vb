@@ -229,110 +229,117 @@
                 Return BattleCalculation.SafariRound(BattleScreen)
             End If
 
-            If BattleScreen.FieldEffects.OppRecharge > 0 Then
-                SelectedMoveOpp = False
-                BattleScreen.FieldEffects.OppRecharge -= 1
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = BattleScreen.OppPokemon.GetDisplayName() & " needs to recharge!"}
+            'Own after fainting switching in non remote battles.
+            If (Not BattleScreen.IsRemoteBattle) AndAlso BattleScreen.OwnFaint Then
+                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = "You have sent your next Pokemon!"}
             End If
 
-            'Rollout
-            If BattleScreen.FieldEffects.OppRolloutCounter > 0 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 205)}
-            End If
+            If Not BattleScreen.IsAfterFaint Then
+                If BattleScreen.FieldEffects.OppRecharge > 0 Then
+                    SelectedMoveOpp = False
+                    BattleScreen.FieldEffects.OppRecharge -= 1
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = BattleScreen.OppPokemon.GetDisplayName() & " needs to recharge!"}
+                End If
 
-            'IceBall
-            If BattleScreen.FieldEffects.OppIceBallCounter > 0 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 301)}
-            End If
+                'Rollout
+                If BattleScreen.FieldEffects.OppRolloutCounter > 0 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 205)}
+                End If
 
-            'Fly:
-            If BattleScreen.FieldEffects.OppFlyCounter >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 19)}
-            End If
+                'IceBall
+                If BattleScreen.FieldEffects.OppIceBallCounter > 0 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 301)}
+                End If
 
-            'Dig:
-            If BattleScreen.FieldEffects.OppDigCounter >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 91)}
-            End If
+                'Fly:
+                If BattleScreen.FieldEffects.OppFlyCounter >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 19)}
+                End If
 
-            'Outrage:
-            If BattleScreen.FieldEffects.OppOutrage >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 200)}
-            End If
+                'Dig:
+                If BattleScreen.FieldEffects.OppDigCounter >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 91)}
+                End If
 
-            'Thrash:
-            If BattleScreen.FieldEffects.OppThrash >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 37)}
-            End If
+                'Outrage:
+                If BattleScreen.FieldEffects.OppOutrage >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 200)}
+                End If
 
-            'Petal Dance:
-            If BattleScreen.FieldEffects.OppPetalDance >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 80)}
-            End If
+                'Thrash:
+                If BattleScreen.FieldEffects.OppThrash >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 37)}
+                End If
 
-            'Bounce:
-            If BattleScreen.FieldEffects.OppBounceCounter >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 340)}
-            End If
+                'Petal Dance:
+                If BattleScreen.FieldEffects.OppPetalDance >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 80)}
+                End If
 
-            'Dive:
-            If BattleScreen.FieldEffects.OppDiveCounter = 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 291)}
-            End If
+                'Bounce:
+                If BattleScreen.FieldEffects.OppBounceCounter >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 340)}
+                End If
 
-            ''Shadow Force:
-            'If BattleScreen.FieldEffects.OppShadowForceCounter = 1 Then
-            '    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = (19).ToString()}
-            'End If
+                'Dive:
+                If BattleScreen.FieldEffects.OppDiveCounter = 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 291)}
+                End If
 
-            ''Sky Drop:
-            'If BattleScreen.FieldEffects.OppSkyDropCounter = 1 Then
-            '    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = (19).ToString()}
-            'End If
+                ''Shadow Force:
+                'If BattleScreen.FieldEffects.OppShadowForceCounter = 1 Then
+                '    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = (19).ToString()}
+                'End If
 
-            'Solar Beam:
-            If BattleScreen.FieldEffects.OppSolarBeam >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 76)}
-            End If
+                ''Sky Drop:
+                'If BattleScreen.FieldEffects.OppSkyDropCounter = 1 Then
+                '    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = (19).ToString()}
+                'End If
 
-            'Sky Attack:
-            If BattleScreen.FieldEffects.OppSkyAttackCounter >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 143)}
-            End If
+                'Solar Beam:
+                If BattleScreen.FieldEffects.OppSolarBeam >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 76)}
+                End If
 
-            'Skull Bash:
-            If BattleScreen.FieldEffects.OppSkullBashCounter >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 130)}
-            End If
+                'Sky Attack:
+                If BattleScreen.FieldEffects.OppSkyAttackCounter >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 143)}
+                End If
 
-            'RazorWind:
-            If BattleScreen.FieldEffects.OppRazorWindCounter >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 13)}
-            End If
+                'Skull Bash:
+                If BattleScreen.FieldEffects.OppSkullBashCounter >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 130)}
+                End If
 
-            'Uproar:
-            If BattleScreen.FieldEffects.OppUproar >= 1 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 253)}
-            End If
+                'RazorWind:
+                If BattleScreen.FieldEffects.OppRazorWindCounter >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 13)}
+                End If
 
-            'Bide:
-            If BattleScreen.FieldEffects.OppBideCounter > 0 Then
-                SelectedMoveOpp = False
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 117)}
+                'Uproar:
+                If BattleScreen.FieldEffects.OppUproar >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 253)}
+                End If
+
+                'Bide:
+                If BattleScreen.FieldEffects.OppBideCounter > 0 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 117)}
+                End If
             End If
 
             'PVP action:
@@ -355,7 +362,6 @@
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = text}
                 End If
             End If
-
             'AI move here:
             If BattleScreen.IsTrainerBattle AndAlso Not BattleScreen.IsRemoteBattle Then
                 Return TrainerAI.GetAIMove(BattleScreen, OwnStep)
@@ -457,11 +463,16 @@
 
 
         Public Sub InitializeRound(ByVal BattleScreen As BattleScreen, ByVal OwnStep As RoundConst)
+            If BattleScreen.OwnFaint OrElse BattleScreen.OppFaint Then
+                BattleScreen.IsAfterFaint = True
+            End If
             If BattleHasEnded(BattleScreen) Then
                 Exit Sub
             End If
 
             Dim OppStep As RoundConst = GetOppStep(BattleScreen, OwnStep)
+            BattleScreen.OwnFaint = False '''
+            BattleScreen.OppFaint = False '''
             If OwnStep.StepType = RoundConst.StepTypes.Move Then
                 OwnStep = GetAttack(BattleScreen, True, CType(OwnStep.Argument, Attack))
             Else
@@ -3978,96 +3989,98 @@
                             EndRoundOpp(BattleScreen)
                             EndRoundOwn(BattleScreen)
                         End If
-                        .FieldEffects.Rounds += 1
-                        If .FieldEffects.WeatherRounds > 0 Then
-                            .FieldEffects.WeatherRounds -= 1
-                            If .FieldEffects.WeatherRounds = 0 Then
-                                .FieldEffects.Weather = BattleWeather.WeatherTypes.Clear
-                                .BattleQuery.Add(New TextQueryObject("The weather became clear again!"))
+                        If BattleScreen.IsAfterFaint = False Then
+                            .FieldEffects.Rounds += 1
+                            If .FieldEffects.WeatherRounds > 0 Then
+                                .FieldEffects.WeatherRounds -= 1
+                                If .FieldEffects.WeatherRounds = 0 Then
+                                    .FieldEffects.Weather = BattleWeather.WeatherTypes.Clear
+                                    .BattleQuery.Add(New TextQueryObject("The weather became clear again!"))
+                                End If
+                            End If
+                            If .FieldEffects.TrickRoom > 0 Then
+                                .FieldEffects.TrickRoom -= 1
+                                If .FieldEffects.TrickRoom = 0 Then
+                                    .BattleQuery.Add(New TextQueryObject("The dimensions have returned to normal."))
+                                End If
+                            End If
+                            If .FieldEffects.Gravity > 0 Then
+                                .FieldEffects.Gravity -= 1
+                                If .FieldEffects.Gravity = 0 Then
+                                    .BattleQuery.Add(New TextQueryObject("Gravity became normal again!"))
+                                End If
+                            End If
+
+                            'Water Sport
+                            If .FieldEffects.WaterSport > 0 Then
+                                .FieldEffects.WaterSport -= 1
+                                If .FieldEffects.WaterSport = 0 Then
+                                    .BattleQuery.Add(New TextQueryObject("Water Sport's effect ended."))
+                                End If
+                            End If
+
+                            'Mud Sport
+                            If .FieldEffects.MudSport > 0 Then
+                                .FieldEffects.MudSport -= 1
+                                If .FieldEffects.MudSport = 0 Then
+                                    .BattleQuery.Add(New TextQueryObject("Mud Sport's effect ended."))
+                                End If
+                            End If
+
+                            'Remove flinch:
+                            If .OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Flinch) = True Then
+                                .OwnPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Flinch)
+                            End If
+                            If .OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Flinch) = True Then
+                                .OppPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Flinch)
+                            End If
+
+                            'Revert roost types:
+                            If .FieldEffects.OwnRoostUsed = True Then
+                                .OwnPokemon.Type1 = .OwnPokemon.OriginalType1
+                                .OwnPokemon.Type2 = .OwnPokemon.OriginalType2
+
+                                .FieldEffects.OwnRoostUsed = False
+                            End If
+                            If .FieldEffects.OppRoostUsed = True Then
+                                .OppPokemon.Type1 = .OppPokemon.OriginalType1
+                                .OppPokemon.Type2 = .OppPokemon.OriginalType2
+
+                                .FieldEffects.OppRoostUsed = False
+                            End If
+
+                            'Clear learned attack counter:
+                            LearnMovesQueryObject.ClearCache()
+
+                            'Remove Magical Coat:
+                            .FieldEffects.OwnMagicCoat = 0
+                            .FieldEffects.OppMagicCoat = 0
+
+                            'Reset Detect/Protect
+                            .FieldEffects.OwnDetectCounter = 0 'Reset protect and detect
+                            .FieldEffects.OwnProtectCounter = 0
+                            .FieldEffects.OwnKingsShieldCounter = 0
+
+                            If .FieldEffects.OwnEndure > 0 Then 'Stop endure
+                                .FieldEffects.OwnEndure = 0
+                            End If
+
+                            .FieldEffects.OppDetectCounter = 0 'Reset protect and detect
+                            .FieldEffects.OppProtectCounter = 0
+                            .FieldEffects.OppKingsShieldCounter = 0
+
+                            If .FieldEffects.OppEndure > 0 Then 'Stop endure
+                                .FieldEffects.OppEndure = 0
+                            End If
+
+                            If .FieldEffects.OwnProtectMovesCount > 0 AndAlso Not .FieldEffects.OwnLastMove Is Nothing AndAlso .FieldEffects.OwnLastMove.IsProtectMove = False Then
+                                .FieldEffects.OwnProtectMovesCount = 0
+                            End If
+                            If .FieldEffects.OppProtectMovesCount > 0 AndAlso Not .FieldEffects.OppLastMove Is Nothing AndAlso .FieldEffects.OppLastMove.IsProtectMove = False Then
+                                .FieldEffects.OppProtectMovesCount = 0
                             End If
                         End If
-                        If .FieldEffects.TrickRoom > 0 Then
-                            .FieldEffects.TrickRoom -= 1
-                            If .FieldEffects.TrickRoom = 0 Then
-                                .BattleQuery.Add(New TextQueryObject("The dimensions have returned to normal."))
-                            End If
-                        End If
-                        If .FieldEffects.Gravity > 0 Then
-                            .FieldEffects.Gravity -= 1
-                            If .FieldEffects.Gravity = 0 Then
-                                .BattleQuery.Add(New TextQueryObject("Gravity became normal again!"))
-                            End If
-                        End If
-
-                        'Water Sport
-                        If .FieldEffects.WaterSport > 0 Then
-                            .FieldEffects.WaterSport -= 1
-                            If .FieldEffects.WaterSport = 0 Then
-                                .BattleQuery.Add(New TextQueryObject("Water Sport's effect ended."))
-                            End If
-                        End If
-
-                        'Mud Sport
-                        If .FieldEffects.MudSport > 0 Then
-                            .FieldEffects.MudSport -= 1
-                            If .FieldEffects.MudSport = 0 Then
-                                .BattleQuery.Add(New TextQueryObject("Mud Sport's effect ended."))
-                            End If
-                        End If
-
-                        'Remove flinch:
-                        If .OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Flinch) = True Then
-                            .OwnPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Flinch)
-                        End If
-                        If .OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Flinch) = True Then
-                            .OppPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Flinch)
-                        End If
-
-                        'Revert roost types:
-                        If .FieldEffects.OwnRoostUsed = True Then
-                            .OwnPokemon.Type1 = .OwnPokemon.OriginalType1
-                            .OwnPokemon.Type2 = .OwnPokemon.OriginalType2
-
-                            .FieldEffects.OwnRoostUsed = False
-                        End If
-                        If .FieldEffects.OppRoostUsed = True Then
-                            .OppPokemon.Type1 = .OppPokemon.OriginalType1
-                            .OppPokemon.Type2 = .OppPokemon.OriginalType2
-
-                            .FieldEffects.OppRoostUsed = False
-                        End If
-
-                        'Clear learned attack counter:
-                        LearnMovesQueryObject.ClearCache()
-
-                        'Remove Magical Coat:
-                        .FieldEffects.OwnMagicCoat = 0
-                        .FieldEffects.OppMagicCoat = 0
-
-                        'Reset Detect/Protect
-                        .FieldEffects.OwnDetectCounter = 0 'Reset protect and detect
-                        .FieldEffects.OwnProtectCounter = 0
-                        .FieldEffects.OwnKingsShieldCounter = 0
-
-                        If .FieldEffects.OwnEndure > 0 Then 'Stop endure
-                            .FieldEffects.OwnEndure = 0
-                        End If
-
-                        .FieldEffects.OppDetectCounter = 0 'Reset protect and detect
-                        .FieldEffects.OppProtectCounter = 0
-                        .FieldEffects.OppKingsShieldCounter = 0
-
-                        If .FieldEffects.OppEndure > 0 Then 'Stop endure
-                            .FieldEffects.OppEndure = 0
-                        End If
-
-                        If .FieldEffects.OwnProtectMovesCount > 0 AndAlso Not .FieldEffects.OwnLastMove Is Nothing AndAlso .FieldEffects.OwnLastMove.IsProtectMove = False Then
-                            .FieldEffects.OwnProtectMovesCount = 0
-                        End If
-                        If .FieldEffects.OppProtectMovesCount > 0 AndAlso Not .FieldEffects.OppLastMove Is Nothing AndAlso .FieldEffects.OppLastMove.IsProtectMove = False Then
-                            .FieldEffects.OppProtectMovesCount = 0
-                        End If
-
+                        BattleScreen.IsAfterFaint = False
                         If .OwnPokemon.Status = Pokemon.StatusProblems.Fainted Or .OwnPokemon.HP <= 0 Then
                             .OwnPokemon.Status = Pokemon.StatusProblems.Fainted
                             BattleScreen.OwnFaint = True
@@ -4219,7 +4232,9 @@
                 Exit Sub
             End If
             ChangeCameraAngel(0, True, BattleScreen)
-
+            If BattleScreen.IsAfterFaint = True Then
+                Exit Sub
+            End If
             With BattleScreen
                 If .FieldEffects.OwnReflect > 0 Then 'Stop reflect
                     .FieldEffects.OwnReflect -= 1
@@ -4944,7 +4959,9 @@
 
         Private Sub EndRoundOpp(ByVal BattleScreen As BattleScreen)
             ChangeCameraAngel(0, True, BattleScreen)
-
+            If BattleScreen.IsAfterFaint = True Then
+                Exit Sub
+            End If
             With BattleScreen
                 If .FieldEffects.OppReflect > 0 Then 'Stop reflect
                     .FieldEffects.OppReflect -= 1
@@ -6205,6 +6222,7 @@
         Public Sub EndBattle(ByVal reason As EndBattleReasons, ByVal BattleScreen As BattleScreen, ByVal AddPVP As Boolean)
             BattleSystem.BattleScreen.OwnFaint = False
             BattleSystem.BattleScreen.OppFaint = False
+            BattleSystem.BattleScreen.IsAfterFaint = False
             If AddPVP = True Then
                 Select Case reason
                     Case EndBattleReasons.WinTrainer 'Lost

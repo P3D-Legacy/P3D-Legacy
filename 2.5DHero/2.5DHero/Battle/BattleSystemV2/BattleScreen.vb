@@ -8,6 +8,7 @@
         'Used for after fainting switching
         Public Shared OwnFaint As Boolean = False
         Public Shared OppFaint As Boolean = False
+        Public Shared IsAfterFaint As Boolean = False 'Is after faint switching round
 
 
         'Used for lead picking in PvP Battles
@@ -118,6 +119,9 @@
             Me.IsTrainerBattle = False
             Me.MouseVisible = False
             Me.PVPGameJoltID = ""
+            IsAfterFaint = False
+            OppFaint = False
+            OwnFaint = False
         End Sub
 
         Public Sub New(ByVal Trainer As Trainer, ByVal OverworldScreen As Screen, ByVal defaultMapType As Integer)
@@ -127,6 +131,9 @@
             Me.IsTrainerBattle = True
             Me.MouseVisible = False
             Me.PVPGameJoltID = ""
+            IsAfterFaint = False
+            OppFaint = False
+            OwnFaint = False
         End Sub
 
 #Region "Initialize"
@@ -1449,7 +1456,13 @@ nextIndex:
             End While
 
             CType(s, BattleScreen).BattleMenu.Visible = False
-            CType(s, BattleScreen).Battle.StartMultiTurnAction(CType(s, BattleScreen))
+
+            'prevents multi turn action to take place in an after fainting switching turn
+            If Not (OppFaint And CType(s, BattleScreen).IsRemoteBattle) Then
+                CType(s, BattleScreen).Battle.StartMultiTurnAction(CType(s, BattleScreen))
+            Else
+                CType(s, BattleScreen).BattleMenu.Visible = True
+            End If
         End Sub
 
         Public Sub SendEndRoundData()
