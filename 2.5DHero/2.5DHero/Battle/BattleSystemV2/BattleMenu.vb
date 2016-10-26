@@ -642,6 +642,12 @@
         End Sub
 
         Private Sub MainMenuAddMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal Index As Integer)
+
+            'Checks if the player has the Mega Bracelet.
+            If Not (Core.Player.Inventory.GetItemAmount(576) > 0) Then
+                Exit Sub
+            End If
+
             If _mainMenuIndex >= 3 Then
                 _mainMenuIndex = 0
             End If

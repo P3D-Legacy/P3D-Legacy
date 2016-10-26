@@ -1055,6 +1055,7 @@
     <Compile Include="Pokemon\Items\KeyItems\CrystalWing.vb" />
     <Compile Include="Pokemon\Items\KeyItems\EmptySeaMap.vb" />
     <Compile Include="Pokemon\Items\KeyItems\GoodRod.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\MegaBracelet.vb" />
     <Compile Include="Pokemon\Items\KeyItems\GSBall.vb" />
     <Compile Include="Pokemon\Items\KeyItems\ItemFinder.vb" />
     <Compile Include="Pokemon\Items\KeyItems\KeyItem.vb" />
