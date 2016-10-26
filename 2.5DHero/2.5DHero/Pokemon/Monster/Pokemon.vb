@@ -2372,11 +2372,23 @@ Public Class Pokemon
 
                     Textures(index) = net.Pokemon3D.Game.TextureManager.GetTexture("GUI\PokemonMenu" & shiny, New Rectangle(CInt(v.X) * 32, CInt(v.Y) * 32, s.Width, s.Height), "")
                 Case 5
-                    Textures(index) = EggCreator.CreateEggSprite(Me, net.Pokemon3D.Game.TextureManager.GetTexture("GUI\PokemonMenu", New Rectangle(992, 992, 32, 32), ""), net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Templates\Menu"))
+                    If Me.Number = 490 Then
+                        Textures(index) = net.Pokemon3D.Game.TextureManager.GetTexture("GUI\PokemonMenu", New Rectangle(928, 992, 32, 32), "")
+                    Else
+                        Textures(index) = EggCreator.CreateEggSprite(Me, net.Pokemon3D.Game.TextureManager.GetTexture("GUI\PokemonMenu", New Rectangle(992, 992, 32, 32), ""), net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Templates\Menu"))
+                    End If
                 Case 6
-                    Textures(index) = EggCreator.CreateEggSprite(Me, net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Egg_front"), net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Templates\Front"))
+                    If Me.Number = 490 Then
+                        Textures(index) = net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Egg_manaphy_front")
+                    Else
+                        Textures(index) = EggCreator.CreateEggSprite(Me, net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Egg_front"), net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Templates\Front"))
+                    End If
                 Case 7
-                    Textures(index) = EggCreator.CreateEggSprite(Me, net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Egg_back"), net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Templates\Back"))
+                    If Me.Number = 490 Then
+                        Textures(index) = net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Egg_manaphy_back")
+                    Else
+                        Textures(index) = EggCreator.CreateEggSprite(Me, net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Egg_back"), net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Egg\Templates\Back"))
+                    End If
                 Case 8
                     Dim addition As String = PokemonForms.GetOverworldAddition(Me)
                     Textures(index) = net.Pokemon3D.Game.TextureManager.GetTexture("Pokemon\Overworld\Normal\" & Me.Number & addition)
