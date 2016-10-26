@@ -814,7 +814,7 @@
             Else
                 UseStruggle(BattleScreen)
 
-                If _moveMenuItemList.Count = 0 Or _moveMenuCreatedID <> BattleScreen.OwnPokemon.IndividualValue Then
+                If _moveMenuItemList.Count = 0 Or _moveMenuCreatedID <> BattleScreen.OwnPokemon.IndividualValue Or BattleScreen.IsChoiced Then
                     If _moveMenuCreatedID <> BattleScreen.OwnPokemon.IndividualValue Then
                         _moveMenuIndex = 0
                     End If

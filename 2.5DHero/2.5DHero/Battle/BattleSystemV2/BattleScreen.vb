@@ -17,6 +17,7 @@
 
 #Region "BattleValues"
 
+        Public IsChoiced As Boolean = False
         Public ClearMenuTime As Boolean = False
         Public Shared CanCatch As Boolean = True
         Public Shared CanRun As Boolean = True
