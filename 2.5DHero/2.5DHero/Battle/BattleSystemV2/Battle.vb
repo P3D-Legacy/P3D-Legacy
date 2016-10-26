@@ -6298,7 +6298,7 @@
             If BattleScreen.IsPVPBattle = False And BattleScreen.CanReceiveEXP = True Then
                 Dim expPokemon As New List(Of Integer)
                 For Each i As Integer In BattleScreen.ParticipatedPokemon
-                    If Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted And Core.Player.Pokemons(i).Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) And Core.Player.Pokemons(i).IsEgg() = False Then
+                    If Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted And Core.Player.Pokemons(i).IsEgg() = False Then
                         expPokemon.Add(i)
                     End If
                 Next
