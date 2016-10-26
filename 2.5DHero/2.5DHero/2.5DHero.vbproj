@@ -1401,6 +1401,13 @@
     <Compile Include="Pokemon\Items\Repels\RepelItem.vb" />
     <Compile Include="Pokemon\Items\Repels\SuperRepel.vb" />
     <Compile Include="Pokemon\Items\Standard\AbilityCapsule.vb" />
+    <Compile Include="Pokemon\Items\Standard\PowerAnklet.vb" />
+    <Compile Include="Pokemon\Items\Standard\PowerBracer.vb" />
+    <Compile Include="Pokemon\Items\Standard\PowerBelt.vb" />
+    <Compile Include="Pokemon\Items\Standard\PowerLens.vb" />
+    <Compile Include="Pokemon\Items\Standard\PowerBand.vb" />
+    <Compile Include="Pokemon\Items\Standard\PowerWeight.vb" />
+    <Compile Include="Pokemon\Items\Standard\MachoBrace.vb" />
     <Compile Include="Pokemon\Items\Standard\AmuletCoin.vb" />
     <Compile Include="Pokemon\Items\Standard\BalmMushroom.vb" />
     <Compile Include="Pokemon\Items\Standard\BigMushroom.vb" />
