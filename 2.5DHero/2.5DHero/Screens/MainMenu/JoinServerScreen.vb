@@ -42,7 +42,7 @@ Public Class JoinServerScreen
         Me.ServerList.Add(localServer)
 
         If System.IO.File.Exists(GameController.GamePath & "\Save\server_list.dat") = False Then
-            System.IO.File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", "Official Pokémon3D Server,karp.pokemon3d.net:15124")
+            System.IO.File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", "Official Pokémon3D Server,karp.pokemon3d.net:15124" & vbNewLine & "AGN Server,p3d.aggressivegaming.org:15124")
         End If
 
         If LoadOnlineServers = True Then
@@ -411,6 +411,7 @@ Public Class JoinServerScreen
             'TTL: 10000 ticks, usually at 60 Hz => 10000/60 seconds
             While sw.ElapsedMilliseconds < 10000 And Me.Pinged = False
                 'wait for server connection in main thread.
+                Threading.Thread.Sleep(1)
             End While
 
             sw.Stop()
@@ -440,7 +441,6 @@ Public Class JoinServerScreen
 
         Private Sub StartPing()
             Dim sw As New Stopwatch()
-            sw.Start()
 
             Try
                 Dim client As New TcpClient()
@@ -454,6 +454,7 @@ Public Class JoinServerScreen
                     End If
                 Next
 
+                sw.Start()
                 client.Connect(connectIP, CInt(Me.Port))
 
                 If client.Connected = True Then
@@ -468,6 +469,8 @@ Public Class JoinServerScreen
                     Dim p As New Servers.Package(streamr.ReadLine())
                     If p.IsValid = True Then
                         If p.PackageType = Servers.Package.PackageTypes.ServerInfoData Then
+                            sw.Stop()
+
                             CurrentPlayersOnline = CInt(p.DataItems(0))
                             MaxPlayersOnline = CInt(p.DataItems(1))
                             Name = p.DataItems(2)
@@ -500,7 +503,6 @@ Public Class JoinServerScreen
             End Try
             Me.Pinged = True
 
-            sw.Stop()
             Me.PingResult = CInt(sw.ElapsedMilliseconds)
         End Sub
 
