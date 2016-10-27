@@ -1,0 +1,1158 @@
+language_name,Lithuanian
+---
+MainMenuScreen:
+main_menu_continue,Tęsti Žaidimą
+main_menu_load_game,Ankstesnis Žaidimas
+main_menu_new_game,Naujas Žaidimas
+main_menu_quit_game,Išeiti iš Žaidimo
+LoadScreen:
+load_menu_name,Vardas
+load_menu_badges,Ženkliukai
+load_menu_location,Vietovė
+load_menu_time,Laikas
+load_menu_back,Atgal
+load_menu_load,Pakrauti
+load_menu_delete,Ištrinti
+load_menu_gamemode,GameMode
+DeleteScreen:
+delete_menu_delete_confirm,Ar iš tikrųjų norite ištrinti savo išsaugotą žaidimą.
+delete_menu_delete,Ištrinti
+delete_menu_cancel,Atšaukti
+LanguageScreen:
+language_menu_apply,Patvirtinti
+language_menu_back,Atgal
+PacksScreen:
+pack_menu_up,Į Viršų
+pack_menu_down,Į Apačią
+pack_menu_toggle_on,Įjungti
+pack_menu_toggle_off,Išjungti
+pack_menu_information,Informacija
+pack_menu_enabled,Įjungta
+pack_menu_apply,Patvirtinti
+pack_menu_back,Atgal
+pack_menu_songs,Dainos
+pack_menu_sounds,Garsai
+pack_menu_textures,Tekstūros
+pack_menu_name,Pavadinimas
+pack_menu_version,Versija
+pack_menu_by,Pavadinimas
+pack_menu_content,Turinys
+pack_menu_description,Aprašymas
+---
+GameModeMenu:
+gamemode_menu_name,Pavadinimas
+gamemode_menu_description,Aprašymas
+gamemode_menu_version,Versija
+gamemode_menu_author,Autorius
+gamemode_menu_contentpath,ContentPath
+gamemode_menu_create,Sukurti
+gamemode_menu_back,Atgal
+---
+Pausescreen:
+pause_menu_title,Žaidimo meniu
+pause_menu_back_to_game,Grįžti į žaidimą
+pause_menu_disconnect,Atjungti
+pause_menu_quit_to_menu,Išeiti į meniu
+pause_menu_autosave_fail,Nepavyko automatiškai išsaugti žaidimo.
+pause_menu_yes,Taip
+pause_menu_no,Ne
+pause_menu_confirmation,Ar tikrai norite išjungti esamą žaidimą? Neišsaugotas prograsas bus prarastas.
+---
+IngameMenu:
+game_menu_pokedex,Pokedeksas
+game_menu_party,Pokemonai
+game_menu_bag,Kuprinė/Rankinė
+game_menu_trainer_card,<playername>
+game_menu_save,Išsaugoti Žaidimą
+game_menu_options,Nustatymai
+game_menu_exit,Išeiti iš Meniu
+---
+InventoryScreen:
+inventory_menu_bag,Kuprinė/Rankinė
+inventory_menu_backadvice,PASPAUDE E GRĮŠITE ATGAL
+inventory_menu_items,Daiktai
+inventory_menu_description,Aprašymas
+---
+NewGameScreen:
+new_game_oak_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call
+new_game_oak_2,Pokémon.*People and Pokémon live~together by supporting~each other.~Some people play with~Pokémon,~some battle with them.*But we don't know~everything about~Pokémon yet.~There are still many~mysteries to solve.*That's why I study~Pokémon every day.*Now, what did you~say your name was?
+new_game_oak_3,~are you ready?*Your very own~Pokémon story is about~to unfold.*You'll face fun~times and tough~challenges.~A world of dreams and~adventures with Pokémon~awaits!*Let's go!*I'll be seeing~you later!
+new_game_oak_weird_name_1,Right! So your name is~
+new_game_oak_weird_name_2,!*Hm that is a~weird name.
+new_game_oak_known_name_1,Right! So your name is~
+new_game_oak_known_name_2,!*Hm I am sure I~heard this name before.
+new_game_oak_same_name_1,Hey we got the~same names.*My name is also~
+new_game_oak_same_name_2,!
+new_game_oak_name_1,Right! So your name is~
+new_game_oak_name_2,!
+new_game_your_name,Your name
+new_game_choose_skin,Choose skin
+new_game_name_too_short,This name is too short
+---
+MapScreen:
+map_screen_cities,Miestai
+map_screen_routes,Maršrutai
+map_screen_places,Vietovės
+map_screen_roaming,Klajokliai
+---
+PokedexScreen:
+pokedex_screen_seen,Matyti
+pokedex_screen_obtained,Pagauti
+pokedex_screen_rare,Retas
+pokedex_screen_backadvice,PASPAUDE E GRĮŠITE ATGAL
+---
+PokemonScreen:
+pokemon_screen_choose_a_pokemon,Pasirinkite Pokemoną
+pokemon_screen_backadvice,PASPAUDE E GRĮŠITE ATGAL
+pokemon_screen_item_give,Duoti
+pokemon_screen_item_take,Atsiimti
+pokemon_screen_item_back,Atgal
+pokemon_screen_doesnt_hold_item,~neturi jokio daikto.
+pokemon_screen_take_item_1,Atsiėmiai 
+pokemon_screen_take_item_2, iš~
+pokemon_screen_take_item_3,~ir pasidėjai~
+pokemon_screen_take_item_4, į kuprinę/rankinę!
+pokemon_screen_give_item_1,Daviai 
+pokemon_screen_give_item_2, ~
+pokemon_screen_give_item_3,
+pokemon_screen_give_item_4,~ir pasidėjai 
+pokemon_screen_give_item_5,~atgal į kuprinę/rankinę.
+pokemon_screen_summary,Suvestinė
+pokemon_screen_switch,Pozicija
+pokemon_screen_item,Daiktas
+pokemon_screen_back,Atgal
+pokemon_screen_EMPTY,TUŠČIA
+---
+Pokemon Status Screen:
+All pages:
+poke_status_screen_nature,Prigimtis
+poke_status_screen_backadvice,PASPAUDE E GRĮŠITE ATGAL
+poke_status_screen_closeadvice,PASPAUSKITE E, KAD UŽDARYTI
+poke_status_screen_number,# 
+Page 1:
+poke_status_screen_all_exp,Visa Turima Patirtis
+poke_status_screen_nxt_lv,Kitas Lygis Už.
+poke_status_screen_stats_page,Statistikos puslapis
+Page 2:
+poke_status_screen_OT,1-sis Treneris
+poke_status_screen_Item,Daiktas
+poke_status_screen_no_item,neturi daikto
+poke_status_screen_ability,Sugebėjimas
+poke_status_screen_details_page,Detalių puslapis
+Page 3:
+poke_status_screen_power,Jėga
+poke_status_screen_accuracy,Taiklumas
+poke_status_screen_moves_page,Atakų puslapis
+---
+Trainer Card Screen:
+trainer_screen_trainer_card,Trenerio Kortelė
+trainer_screen_name,Vardas
+trainer_screen_points,Taškai
+trainer_screen_money,Pinigai
+trainer_screen_pokedex,Pokedeksas
+trainer_screen_time,Laikas
+trainer_screen_collected_badges,Surinkti ženkliukai
+trainer_screen_badge, ženkliukas
+trainer_screen_backadvice,PASPAUDE E GRĮŠITE ATGAL
+trainer_screen_empty_badge,???
+---
+Save Screen:
+save_screen_title,Ar norite išsaugoti žaidimą?
+save_screen_name,Vardas
+save_screen_badges,Ženkliukai
+save_screen_money,Pinigai
+save_screen_time,Laikas
+save_screen_yes,Taip
+save_screen_no,Ne
+save_screen_success,Žaidimas išsaugotas.
+---
+Options Screen:
+option_screen_title,Nustatymai
+option_screen_warning,Options aren't saved yet, scroll down and choose "Save options."
+option_screen_backadvice,PASPAUDE E GRĮŠITE ATGAL
+option_screen_description,Aprašymas
+option_screen_textspeed,Teksto greitis
+option_screen_textspeed_description,The speed the textbox shows up and~displays the text
+option_screen_fov,Regos Laukas
+option_screen_fov_description,The field of view. The higher the value is,~the more you can see.~Warning: Too large value can cause lags in larger maps.
+option_screen_mousespeed,Pelės Jautrumas
+option_screen_mousespeed_description,The Mousespeed sets the speed on which the~mouse can rotate the view.
+option_screen_volume,Garsas
+option_screen_volume_description,The volume of the background music.~This settings is for all save states.
+option_screen_render_distance,RenderDistance
+option_screen_render_distance_tiny,Tiny
+option_screen_render_distance_short,Short
+option_screen_render_distance_normal,Normal
+option_screen_render_distance_far,Far
+option_screen_render_distance_extreme,Extreme
+option_screen_render_distance_description,The renderdistance determines,~how far you can see.~By turning this down, you can improve your FPS.
+option_screen_graphics,Graphics
+option_screen_graphics_fancy,Fancy
+option_screen_graphics_fast,Fast
+option_screen_graphics_description,Affects if some objects are rendered~or not. By turning this down, you can improve your FPS.~This settings is for all save states.
+option_screen_offset_map_quality,Offset map quality
+option_screen_offset_map_off,Off
+option_screen_offset_map_quality_description,Sets the quality of the offset maps.~The details and update frequency of offset maps increase with this value.~Set this value to 0 to prevent the game from loading offset maps.
+option_screen_animations_in_battle,Animations in battle
+option_screen_animations_in_battle_no,No
+option_screen_animations_in_battle_attacks_off,Attacks off
+option_screen_animations_in_battle_yes,Yes
+option_screen_animations_in_battle_description,Determines if the game shows battle animations.
+option_screen_difficulty,Difficulty
+option_screen_difficulty_description,Difficulty mode~Sets the level of difficulty.
+option_screen_battle_style,BattleStyle
+option_screen_battle_style_shift,Shift
+option_screen_battle_style_set,Set
+option_screen_battle_style_description,Battle Style~Set: You are not asked to switch out your Pokémon~Shift: You can switch out your Pokémon after defeating an opponent.
+option_screen_view_bobbing,View bobbing
+option_screen_view_bobbing_description,Turns camera shaking on or off.
+option_screen_reset_options,Reset options.
+option_screen_reset_options_description,Resets all options.
+option_screen_save_options,Save options.
+option_screen_save_options_description,Save the options and close the menu.
+option_screen_close_menu,Close menu.
+option_screen_close_menu_description,Close the menu and do not save~the changes.
+---
+Item Detail Screen:
+item_detail_screen_use,Naudoti
+item_detail_screen_give,Duoti
+item_detail_screen_trash,Išmesti
+item_detail_screen_back,Atgal
+item_detail_screen_give_item,Duoti
+---
+Apricorn Screen:
+apricorn_screen_apricorns,Aprikornai
+apricorn_screen_producing,Aš šiuo momentu gaminu rutulius.~Grįžkite vėliau.
+apricorn_screen_backadvice,PASPAUDE E GRĮŠITE ATGAL
+apricorn_screen_choose_apricorns,Pasirinkite Aprikornus iš kūrių norite, kad pagaminčiau Poke rutulių
+apricorn_screen_ok,GERAI
+apricorn_screen_clear,Išvalyti
+apricorn_screen_take,Paimti
+apricorn_screen_ready,Aš baigiau gaminti Poke rutulius. Štai mano darbo vaisiai:
+apricorn_screen_obtain, gauti
+---
+Daycare Screen:
+daycare_screen_daycare,Vaikų Darželis
+daycare_screen_money, / Pinigai: 
+daycare_screen_deposit,Indėlis
+daycare_screen_grown,Auginamas: 
+daycare_screen_lv, / Lv. 
+daycare_screen_costs, / Užmokestis:
+daycare_screen_pokedollar, Poke Pinigai
+daycare_screen_withdraw,Atsiimti
+daycare_screen_backadvice,PASPAUDE E GRĮŠITE ATGAL
+daycare_screen_pokemon_choose_header,Įduotas Pokemonas
+Egg,Kiaušinis
+---
+Network Screen:
+network_screen_isonline,You are in a co-op game already! Please close the connection~to open a new game or connect again!~~~Press E to go back!
+network_screen_header,Co-Op Gameplay
+network_screen_main_header,You can either join a game or host a~new one to play together with a friend.
+network_screen_main_join,Prisijungti
+network_screen_main_host,Pakurti
+network_screen_main_close,Uždaryto
+network_screen_join_header,Join a game:~Enter the IP address of the hosted game.
+network_screen_join_cancel,Atšaukti
+network_screen_join_join,Prisijungti
+network_screen_host_header,Host a game:~You are about to open your~game for other players in your network.
+network_screen_host_cancel,Atšaukti
+network_screen_host_host,Pakurti
+---
+Donation screen:
+donation_screen_donators,Aukotojai
+donation_screen_backadvice,Paspauskite e, kad uždaryti
+---
+Blackout Screen:
+black_out_screen_line1,Jūsų visi Pokemonai jau be samonės.
+black_out_screen_line2,Jūs būsite nuveštas
+black_out_screen_line3,į artimiausią Pokemonų Centrą
+black_out_screen_line4,siekiant užkirsti kelią tolesnei žalai
+black_out_screen_line5,jūsų Pokemonams.
+---
+Battle:
+---
+main:
+battle_main_trainer_sent_out_1, sent out~
+battle_main_trainer_sent_out_2,.
+battle_main_trainer_sent_out_3, is about~to send out~
+battle_main_trainer_sent_out_4,!~Do you want to switch~your Pokémon?
+battle_main_trainer_sent_out_5,Yes
+battle_main_trainer_sent_out_6,No
+battle_main_choose_pokemon,Choose Pokémon
+battle_main_wild_appear_1,Lauikinis 
+battle_main_wild_appear_2,~pasirodė!
+battle_main_trainer_intro_1, and~
+battle_main_trainer_intro_2, want~to battle!
+battle_main_trainer_intro_3, wants~to battle!
+battle_main_intro_1,GO! 
+battle_main_intro_2,!
+battle_main_trainer_defeat_1,~was defeated!
+battle_main_trainer_defeat_2, and~
+battle_main_trainer_defeat_3,~were defeated!
+battle_main_trainer_defeat_4, got 
+battle_main_trainer_defeat_5,~PokéDollars for winning!
+---
+attackTurn:
+battle_attack_poison_damage,~buvo sužeistas nuodų!
+battle_attack_curse_damage,~is afflicted by the curse!
+battle_attack_fire_damage,~buvo sužeistas, nes dega!
+battle_attack_trainer_item_1, panaudojo~
+battle_attack_trainer_item_2,!
+battle_attack_asleep, greitai~užmigo.
+battle_attack_woke_up, prabudo!
+battle_attack_paralyzed, yra paralyžiuotas!~Negali pajudėti!
+battle_attack_frozen_free, is no~longer frozen!
+battle_attack_frozen, is frozen~solid!
+battle_attack_flinched, išgasdintas!
+battle_attack_no_longer_confused, nebėra~sumišęs!
+battle_attack_confused, yra~sumišęs.
+battle_attack_hit_self_confusion, hits itself~in confusion!
+battle_attack_no_PP_left, has~no PP left!*
+battle_attack_used, panaudojo 
+---
+Badges:
+badge_Boulder,Riedulio
+badge_Cascade,Kaskados
+badge_Thunder,Žaibo
+badge_Rainbow,Vaivorekštės
+badge_Soul,Sielos
+badge_Marsh,Pelkės
+badge_Volcano,Vulkano
+badge_Earth,Žemės
+badge_Zephyr,Zefyro
+badge_Hive,Avilio
+badge_Plain,Lygumos
+badge_Fog,Rūko
+badge_Storm,Audros
+badge_Mineral,Mineralo
+badge_Glacier,Ledyno
+badge_Rising,Iškilimo
+---
+Regions:
+Johto,Džotas
+Kanto,Kantas
+Hoenn,Kauptukas
+---
+Places:
+Places_???,???
+
+Towns:
+Places_New Bark Town,Naujosios Žievės Miestelis
+Places_Cherrygrove City,Vyšsnių Giraitės Miestas
+Places_Violet City,Žibuoklės Miestas
+Places_Azalea Town,Azalijos Miestelis
+Places_Goldenrod City,Auksinės Lazdelės Miestas
+Places_Ecruteak City,Ekrutikos Miestas
+Places_Olivine City,Olivinis Miestas
+Places_Cianwood City,Rąstmeždių Miestas
+Places_Mahogany Town,Raudonmedžio Miestelis
+Places_Blackthorn City,Erškėčių Miestas
+Places_Pallet Town,Paletės Miestelis
+Places_Viridian City,Pradmenų Miestas
+Places_Saffron City,Šafrano Miestas
+Places_Pewter City,Alavinių Indų Miestas
+Places_Cerulean City,Žydrasis Miestas
+Places_Celadon City,Jūros Spalvos Miestas
+Places_Vermilion City,Cinoberio Miestas
+Places_Fuchsia City,Fuksijos Miestas
+Places_Cinnabar Island,Gyvsidabrio Sala
+Places_Lavender Town,Levandos Miestelis
+Places_One Island,Pirmoji Sala
+Places_Two Island,Antroji Sala
+Places_Three Island,Trečioji Sala
+Places_Four Island,Ketvirtoji Sala
+Places_Five Island,Penktoji Sala
+Places_Six Island,Šeštoji Sala
+Places_Seven Island,Septintoji Sala
+Places_Littleroot Town,Šaknelės Miestelis
+Places_Oldale Town,Senojo Klonio Miestelis
+Places_Petalburg City,Žiedlapio Miestas
+Places_Rustboro City,Rūdžborio Miestas
+Places_Dewford Town,Braidančios Rasos Miestelis
+Places_Staleport City,Šiferio Uosto Miestas
+Places_Mauville City,Draugiškas Miestas
+Places_Verdanturf Town,Vėjo Durpių Miestelis
+Places_Fallarbor Town,Krentančių Lapų Miestelis
+Places_Lavaridge Town,Lavos Keteros Miestelis
+Places_Fortree City,Medžių Forto Miestas
+Places_Lilycove City,Lelyjos Įlankėlės Miestas
+Places_Mossdeep City,Gilios Pelkės Miestas
+Places_Sootopolis City,Sotopolio Miestas
+Places_Pacifidlog Town,Ramiojo Vandenyno Rąstų Miestelis
+Places_Ever Grande City,Visados Didis Miestas
+Places_Twinleaf Town,Dvilapis Miestelis
+Places_Sandgem Town,Smėlėto Perlo Miestelis
+Places_Jubilife City,Pažengęs Miestas
+Places_Oreburgh City,Nedidelis Rūdos Miestas
+Places_Floaroma Town,Gėlių Aromato Miestelis
+Places_Eterna City,Amžinasis Miestas
+Places_Hearthome City,Širdies Vidaus Miestas
+Places_Solaceon Town,Ramybės Miestelis
+Places_Veilstone City,Akmens Šydo Miestas
+Places_Pastoria City,Prašalinės Upės Miestas
+Places_Celestic Town,Dangiškasis Miestelis
+Places_Canalave City,Skalaujančio Kanalo Miestas
+Places_Snowpoint City,Sniego Taško Miestas
+Places_Sunyshore City,Saulėtos Pakrantės Miestas
+Places_Pokémon League,Pokemonų Lyga
+Places_Fight Area,Kovos Zona
+Places_Survival Area,Išgyvenimo Zona
+Places_Resort Area,Poilsiavietė
+
+Special Houses:
+Places_Gate,Vartai
+Places_Pokemon Center,Pokemonų Centras
+Places_Pokemon Mart,Pokemonų Parduotuvė
+Places_Elms lab,Beržo Labaratorija
+Places_Azalea Town Gym,Azalijos Gimnastikos Salė
+Places_Violet City Gym,Žibuoklės Gimnastikos Salė
+Places_Goldenrod City Gym,Auksinės Lazdelės Gimnastikos Salė
+Places_Ecruteak City Gym,Ekrutikos Gimnastikos Salė
+Places_Cianwood City Gym,Rąstmedžių Gimnastikos Salė
+Places_Olivine City Gym,Olivinio Gimnastikos Salė
+Places_Mahogany City Gym,Raudonmedžio Gimnastikos Salė
+Places_Blackthorn City Gym,Erškėčių Gimnastikos Salė
+Places_Your House,Jūsų Namas
+Places_Your Room,Jūsų Kambarys
+Places_Daycare,Vaikų Darželis
+Places_League Reception Gate,Lygos Registratūra
+Places_Pewter City Gym,Alavinių Indų Gimnastikos Salė
+Places_Cerulean City Gym,Žydrojo Gimnastikos Salė
+Places_Vermilion City Gym,Cinoberio Gimnastikos Salė
+Places_Celadon City Gym,Jūros Spalvos Gimnastikos Salė
+Places_Fuchsania City Gym,Fuksijos Gimnastikos Salė
+Places_Saffron City Gym,Šafrano Gimnastikos Salė
+Places_Cinnabar City Gym,Gyvsidabrio Gimnastikos Salė
+Places_Viridian City Gym,Pradmenų Gimnastikos Salė
+Places_Dance Theater,Šokių Tetras
+Places_Lighthouse,Švyturys
+Places_Team Rocket HQ,Raketos Komandos Būstinė
+Places_Radio Tower,Auksinės Lazdelės Radijo Bokštas
+Places_Lavender Radio Tower,Levandos Radijo Bokštas
+Places_Petalburg City Gym,Žiedlapio Gimnastikos Salė
+Places_Rustboro City Gym,Rūdžborio Gimnastikos Salė
+Places_Dewford Town Gym,Braidančios Rasos Gimnastikos Salė
+Places_Mauville City Gym,Draugiško Gimnastikos Salė
+Places_Lavaridge Town Gym,Lavos Keteros Gimnastikos Salė
+Places_Fortree City Gym,Medžių Forto Gimnastikos Salė
+Places_Mossdeep City Gym,Gilios Pelkės Gimnastikos Salė
+Places_Sootopolis City Gym,Sotopolio Gimnastikos Salė
+Places_Hotel Grand Lake,Viešbutis Didysis Ežeras
+Places_Oreburgh City Gym,Nedidelis Rūdos Gimnastikos Salė
+Places_Eterna City Gym,Ažinasis Gimnastikos Salė
+Places_Hearthome City Gym,Širdies Vidaus Gimnastikos Salė
+Places_Veilstone City Gym,Akmens Šydo Gimnastikos Salė
+Places_Pastoria City Gym,Prašalinės Upės Gimnastikos Salė
+Places_Canalave City Gym,Skalaujančio Kanalo Gimnastikos Salė
+Places_Snowpoint City Gym,Sniego Taško Gimnastikos Salė
+Places_Sunyshore City Gym,Saulėtos Pakrantės Gimnastikos Salė
+
+Dungeons:
+Places_Ilex Forest,Vabždžių Miškas
+Places_Dark Cave,Tamsos Urvas
+Places_Ruins of Alph,Alfos Griuvėsiai
+Places_Slowpoke Well,Lėtapėdžio Šulinys
+Places_Sprout Tower,Daigų Bošktas
+Places_Union Cave,Sąjungos Urvas
+Places_Mt. Mortar,Skiedinio Kalnas
+Places_Tin Tower,Alavo Bokštas
+Places_Tin Tower Peak,Alavo Bokšto Viršūnė
+Places_Burned Tower,Sudegęs Bokštas
+Places_Glitter Lighthouse,Blizgučių Švyturys
+Places_Ice Path,Ledo Perėja
+Places_National Park,Nacionalinis Parkas
+Places_Whirl Islands,Sūkurio Salos
+Places_Lake of Rage,Įniršio Ežeras
+Places_Underground,Požemis
+Places_Dragon's Den,Drakonų Irštva
+Places_Tohjo Falls,Todžio Krioklys
+Places_Victory Road,Pergalės Kelias
+Places_Mt. Silver,Sidabro Kalnas
+Places_Indigo Plateau,Indigo Plienaukštė
+Places_Safari Zone,Safaris
+Places_Viridian Forest,Pradmenų Miškas
+Places_Cerulean Cave,Žydrasis Urvas
+Places_Power Plant,Elektrinė
+Places_Rock Tunnel,Akmenų Tunelis
+Places_Seafoam Islands,Seafoam Islands
+Places_Pal Park,Bičiulių Parkas
+Places_Diglett's Cave,Digletų Urvas
+Places_Mt. Moon,Mėnulio Kalnas
+Places_Mt. Ember,Žarijų Kalnas
+Places_Three Isle Path,Trečiosios Salos Perėja
+Places_Berry Forest,Vaisių Miškas
+Places_Icefall Cave,Užšalusio Krioklio Urvas
+Places_Lost Cave,Dingęs Urvas
+Places_Trainer Tower,Trenerio Bokštas
+Places_Altering Cave,Modifikuotas Urvas
+Places_Pattern Bush,Raštų Krūmas
+Places_Dotted Hole,Taškuota Skylė
+Places_Ancient Ruins,Senoviniai Griuvėsiai
+Places_Millenial Star Tower,Tūkstantmečio Kometos Bokštas
+Places_Kolben Tower,Stūmoklio Bokštas
+Places_Petalburg Woods,Žiedlapio Miškai
+Places_Rusturf Tunnel,Nykstančių Durpių Tunelis
+Places_Granite Cave,Granito Urvas
+Places_New Mauville,Naujesis Draugiškumas
+Places_Mt. Chimney,Kamino Kalnas
+Places_Seafloor Cavern,Jūros Dugno Kaverna
+Places_Meteor Falls,Meteorų Kriokliai
+Places_Shoal Cave,Seklumos Urvas
+Places_Mt. Pyre,Kremacijos Laužo Kalnas
+Places_Jagged Pass, Dantyta Perėja
+Places_Abandoned Ship,Apleistas Laivas
+Places_Desert Underpass,Apleistas Tunelis
+Places_Mirage Tower,Miražo Bokštas
+Places_Lake Verity,Tiesos Ežeras
+Places_Eterna Forest,Ažinasis Miškas
+Places_Mt. Coronet,Vainikėlio Kalnas
+Places_Solaceon Ruins,Ramybės Griūvėsiai
+Places_Lake Valor,Drąsos Ežeras
+Places_Great Marsh,Didžioji Pelkė
+Places_Lake Acuity,Išklausimo Ežeras
+Places_Snowpoint Temple,Sniego Taško Šventykla
+Places_Sendoff Spring,Išlydėjimo Versmė
+Places_Stark Mountain,Atšiaurus Kalnas
+
+Routes:
+Places_Route 1,1-sis Maršrutas
+Places_Route 2,2-sis Maršrutas
+Places_Route 3,3-sis Maršrutas
+Places_Route 4,4-sis Maršrutas
+Places_Route 5,5-sis Maršrutas
+Places_Route 6,6-sis Maršrutas
+Places_Route 7,7-sis Maršrutas
+Places_Route 8,8-sis Maršrutas
+Places_Route 9,9-sis Maršrutas
+Places_Route 10,10-sis Maršrutas
+Places_Route 11,11-sis Maršrutas
+Places_Route 12,12-sis Maršrutas
+Places_Route 13,13-sis Maršrutas
+Places_Route 14,14-sis Maršrutas
+Places_Route 15,15-sis Maršrutas
+Places_Route 16,16-sis Maršrutas
+Places_Route 17,17-sis Maršrutas
+Places_Route 18,18-sis Maršrutas
+Places_Route 19,19-sis Maršrutas
+Places_Route 20,20-sis Maršrutas
+Places_Route 21,21-sis Maršrutas
+Places_Route 22,22-sis Maršrutas
+Places_Route 23,23-sis Maršrutas
+Places_Route 24,24-sis Maršrutas
+Places_Route 25,25-sis Maršrutas
+Places_Route 26,26-sis Maršrutas
+Places_Route 27,27-sis Maršrutas
+Places_Route 28,28-sis Maršrutas
+Places_Route 29,29-sis Maršrutas
+Places_Route 30,30-sis Maršrutas
+Places_Route 31,31-sis Maršrutas
+Places_Route 32,32-sis Maršrutas
+Places_Route 33,33-sis Maršrutas
+Places_Route 34,34-sis Maršrutas
+Places_Route 35,35-sis Maršrutas
+Places_Route 36,36-sis Marštutas
+Places_Route 37,37-sis Maršrutas
+Places_Route 38,38-sis Maršrutas
+Places_Route 39,39-sis Maršrutas
+Places_Route 40,40-sis Maršrutas
+Places_Route 41,41-sis Maršrutas
+Places_Route 42,42-sis Maršrutas
+Places_Route 43,43-sis Maršrutas
+Places_Route 44,44-sis Maršrutas
+Places_Route 45,45-sis Maršrutas
+Places_Route 46,46-sis Maršrutas
+Places_Route 47,47-sis Maršrutas
+Places_Route 48,48-sis Maršrutas
+Places_Route 101,101-sis Maršrutas
+Places_Route 102,102-sis Maršrutas
+Places_Route 103,103-sis Maršrutas
+Places_Route 104,104-sis Maršrutas
+Places_Route 105,105-sis Maršrutas
+Places_Route 106,106-sis Maršrutas
+Places_Route 107,107-sis Maršrutas
+Places_Route 108,108-sis Maršrutas
+Places_Route 109,109-sis Maršrutas
+Places_Route 110,110-sis Maršrutas
+Places_Route 111,111-sis Maršrutas
+Places_Route 112,112-sis Maršrutas
+Places_Route 113,113-sis Maršrutas
+Places_Route 114,114-sis Maršrutas
+Places_Route 115,115-sis Maršrutas
+Places_Route 116,116-sis Maršrutas
+Places_Route 117,117-sis Maršrutas
+Places_Route 118,118-sis Maršrutas
+Places_Route 119,119-sis Maršrutas
+Places_Route 120,120-sis Maršrutas
+Places_Route 121,121-sis Maršrutas
+Places_Route 122,122-sis Maršrutas
+Places_Route 123,123-sis Maršrutas
+Places_Route 124,124-sis Maršrutas
+Places_Route 125,125-sis Maršrutas
+Places_Route 126,126-sis Maršrutas
+Places_Route 127,127-sis Maršrutas
+Places_Route 128,128-sis Maršrutas
+Places_Route 129,129-sis Maršrutas
+Places_Route 130,130-sis Maršrutas
+Places_Route 131,131-sis Maršrutas
+Places_Route 132,132-sis Maršrutas
+Places_Route 133,133-sis Maršrutas
+Places_Route 134,134-sis Maršrutas
+Places_Route 201,201-sis Maršrutas
+Places_Route 202,202-sis Maršrutas
+Places_Route 203,203-sis Maršrutas
+Places_Route 204,204-sis Maršrutas
+Places_Route 205,205-sis Maršrutas
+Places_Route 206,206-sis Maršrutas
+Places_Route 207,207-sis Maršrutas
+Places_Route 208,208-sis Maršrutas
+Places_Route 209,209-sis Maršrutas
+Places_Route 210,210-sis Maršrutas
+Places_Route 211,211-sis Maršrutas
+Places_Route 212,212-sis Maršrutas
+Places_Route 213,213-sis Maršrutas
+Places_Route 214,214-sis Maršrutas
+Places_Route 215,215-sis Maršrutas
+Places_Route 216,216-sis Maršrutas
+Places_Route 217,217-sis Maršrutas
+Places_Route 218,218-sis Maršrutas
+Places_Route 219,219-sis Maršrutas
+Places_Route 220,220-sis Maršrutas
+Places_Route 221,221-sis Maršrutas
+Places_Route 222,222-sis Maršrutas
+Places_Route 223,223-sis Maršrutas
+Places_Route 224,224-sis Maršrutas
+Places_Route 225,225-sis Maršrutas
+Places_Route 226,226-sis Maršrutas
+Places_Route 227,227-sis Maršrutas
+Places_Route 228,228-sis Maršrutas
+Places_Route 229,229-sis Maršrutas
+Places_Route 230,230-sis Maršrutas
+
+Places_Treasure Beach,Lobių Paplūdimys
+Places_Kindle Road,Liepsnojantis Kelias
+Places_Cape Brink,Kyšulio Kraštas
+Places_Three Isle Port,Trečiosios Salos Uostas
+Places_Bond Bridge,Ryšio Tiltas
+Places_Five Isle Meadow,Penktosios Salos Pieva
+Places_Memorial Pillar,Memorialinis Ramstis
+Places_Water Labyrinth,Vandens Laberintas
+Places_Resort Gorgeous,Puikus Kurortas
+Places_Water Path,Vandens Perėja
+Places_Grass Path,Žolės Perėja
+Places_Outcast Island,Tremtinių Sala
+Places_Ruin Valley,Pražūties Slėnis
+Places_Canyon Entrance,Kanjono Įėjimas
+Places_Sevault Canyon,Septynskliaustis Kanjonas
+Places_Tanoby Ruins,Tanobio Griuvėsiai
+Places_Safari Zone Gate,Safario Vartai
+Places_S.S. Aqua,Garlaivis Akva
+Places_Elite 4,Elitinis Ketvirtas
+Places_Indigo Plateau,Indigo Plienaukštė
+Places_Twirl Forest,Besisukantis Miškas
+Places_Berry Vista,Šiltnamis
+Places_Battle Frontier,Kovų Siena
+Places_Battle Tower,Kovų Bokštas
+Places_Battle Factory,Kovų Faktorius
+Places_Rocket Warehouse,Raketos Komandos Sandėlis
+
+---
+Item categories:
+item_category_Standard,Standartiniai Daiktai
+item_category_Medicine,Medikamentai
+item_category_Machines,Atakos
+item_category_Pokéballs,Poke Rutuliai
+item_category_Plants,Augalai
+item_category_KeyItems,Raktiniai Daiktai
+item_category_BattleItems,Kovos Daiktai
+item_category_Mail,Laiškai
+---
+GameMessages:
+game_message_screenshot,Ekrano fotografija išsaugota kaip 
+game_message_screenshot_failed,Negali nufotografuoti ekrano
+game_message_fullscreen_on,Viso ekrano rėžimas įjungtas
+game_message_fullscreen_off,Viso ekrano rėžimas išjungtas
+game_message_third_person_on,Trečiojo asmens rėžimas įjungtas.
+game_message_third_person_off,Trečiojo asmens rėžimas išjungtas.
+game_message_free_camera_on,Laisvos kameros rėžimas įjungtas.
+game_message_free_camera_off,Laisvos kameros rėžimas išjungtas.
+game_message_music_on,Muzika įjungta
+game_message_music_off,Muzika išjungta
+game_message_continue_autosave,Continued save state:
+---
+Online:
+game_message_close_connection,Jūs uždarėte kooperatyvinį žaidimą.
+game_message_disconncet,Jūs praradote ryšį su serveriu.
+game_message_cannot_connect_client_1,Negalite susijunkti su serveriu (
+game_message_cannot_connect_client_2,)!
+game_message_client_connect_1,Jūs prisijungite prie žaidimo (
+game_message_client_connect_2,)!
+game_message_client_host_closed_1,Serveris (
+game_message_client_host_closed_2,) uždarė jungtį.
+game_message_client_outdated_newer_version,Jūs turite pasenusę arba naujesnę žaidimo versiją.
+game_message_host_session_started,Jūs (host) pradėjote kooperatyvinę sesiją.
+game_message_host_outdated_newer_version,Klijanto žaidimo versiją netitinka serverio.
+game_message_host_client_accept,Klijantas prisijungė prie žaidimo!
+game_message_host_client_disconnect,Klijantas prarado ryšį! Kooperatyvi sesija buvo uždaryta.
+---
+General:
+HP,Gyvybės
+PP,PP
+Lv.,Lv.
+Level,Lygis
+Attack,Ataka
+Defense,Gynyba
+Special_Attack,Specialioji Ataka
+Special_Defense,Specialiojo Gynyba
+Speed,Greitis
+---
+Pokemon:
+pokemon_name_Bulbasaur,Balbazauras
+pokemon_name_Ivysaur,Avizauras
+pokemon_name_Venusaur,Venuzauras
+pokemon_name_Charmander,Žavingasis
+pokemon_name_Charmeleon,Žavelijonas
+pokemon_name_Charizard,Žavizardas
+pokemon_name_Squirtle,Švirkšlys
+pokemon_name_Wartortle,Karvėžlys
+pokemon_name_Blastoise,Blastoizas
+pokemon_name_Caterpie,Katerpis
+pokemon_name_Metapod,Metapodas
+pokemon_name_Butterfree,Drugelaisvis
+pokemon_name_Weedle,Vydla
+pokemon_name_Kakuna,Kakuna
+pokemon_name_Beedrill,Bitrilė
+pokemon_name_Pidgey,Pidžis
+pokemon_name_Pidgeotto,Pidžeototas
+pokemon_name_Pidgeot,Pidžeotas
+pokemon_name_Rattata,Ratata
+pokemon_name_Raticate,Ratikeitas
+pokemon_name_Spearow,Žeberklas
+pokemon_name_Fearow,Jiečius
+pokemon_name_Ekans,Ekansas
+pokemon_name_Arbok,Arbokas
+pokemon_name_Pikachu,Pikačiu
+pokemon_name_Raichu,Raičiu
+pokemon_name_Sandshrew,Smėlius
+pokemon_name_Sandslash,Žvyrius
+pokemon_name_Nidoran,Nidoranas
+pokemon_name_Nidorina,Nidorina
+pokemon_name_Nidoqueen,Nidokvyna
+pokemon_name_Nidorino,Nidorinas
+pokemon_name_Nidoking,Nidokingas
+pokemon_name_Clefairy,Klefėja
+pokemon_name_Clefable,Klefablė
+pokemon_name_Vulpix,Vulpiksas
+pokemon_name_Ninetales,Devinuodegė
+pokemon_name_Jigglypuff,Džiglipafas
+pokemon_name_Wigglytuff,Viglitafas
+pokemon_name_Zubat,Zubatas
+pokemon_name_Golbat,Golbatas
+pokemon_name_Oddish,Odišas
+pokemon_name_Gloom,Glūmius
+pokemon_name_Vileplume,Vilaplamas
+pokemon_name_Paras,Paras
+pokemon_name_Parasect,Parasektas
+pokemon_name_Venonat,Venonatas
+pokemon_name_Venomoth,Venomotas
+pokemon_name_Diglett,Digletas
+pokemon_name_Dugtrio,Dugtrijus
+pokemon_name_Meowth,Miau
+pokemon_name_Persian,Persijanas
+pokemon_name_Psyduck,Psyantis
+pokemon_name_Golduck,Auksantis
+pokemon_name_Mankey,Beždžionė
+pokemon_name_Primeape,Puikioji Beždžionė
+pokemon_name_Growlithe,Graulitas
+pokemon_name_Arcanine,Arkaninas
+pokemon_name_Poliwag,Polivagas
+pokemon_name_Poliwhirl,Polivirlas
+pokemon_name_Poliwrath,Polivratas
+pokemon_name_Abra,Abra
+pokemon_name_Kadabra,Kadabra
+pokemon_name_Alakazam,Alakazamas
+pokemon_name_Machop,Mačiopas
+pokemon_name_Machoke,Mačiokas
+pokemon_name_Machamp,Mačiampas
+pokemon_name_Bellsprout,Belsprautas
+pokemon_name_Weepinbell,Vipinbelas
+pokemon_name_Victreebel,Viktribelas
+pokemon_name_Tentacool,Tentakūlas
+pokemon_name_Tentacruel,Tentakrūlas
+pokemon_name_Geodude,Geodūdas
+pokemon_name_Graveler,Graveleris
+pokemon_name_Golem,Golemas
+pokemon_name_Ponyta,Ponitas
+pokemon_name_Rapidash,Rapidašas
+pokemon_name_Slowpoke,Lėtapėdis
+pokemon_name_Slowbro,Lėčius
+pokemon_name_Magnemite,Magnemitas
+pokemon_name_Magneton,Magnetonas
+pokemon_name_Farfetch'd,Farfečas
+pokemon_name_Doduo,Dodvijus
+pokemon_name_Dodrio,Dodrijus
+pokemon_name_Seel,Sylas
+pokemon_name_Dewgong,Devgongas
+pokemon_name_Grimer,Purvius
+pokemon_name_Muk,Makas
+pokemon_name_Shellder,Kriauklius
+pokemon_name_Cloyster,Kriaukliaratis
+pokemon_name_Gastly,Gaslis
+pokemon_name_Haunter,Haunteris
+pokemon_name_Gengar,Gengaras
+pokemon_name_Onix,Oniksas
+pokemon_name_Drowzee,Trauzius
+pokemon_name_Hypno,Hipnas
+pokemon_name_Krabby,Krabis
+pokemon_name_Kingler,Kingleris
+pokemon_name_Voltorb,Voltorbas
+pokemon_name_Electrode,Elektrodas
+pokemon_name_Exeggcute,Exeggcute
+pokemon_name_Exeggutor,Exeggutor
+pokemon_name_Cubone,Kauliukas
+pokemon_name_Marowak,Marovakas
+pokemon_name_Hitmonlee,Hitmonlis
+pokemon_name_Hitmonchan,Hitmončanas
+pokemon_name_Lickitung,Laižaležuvis
+pokemon_name_Koffing,Kofingas
+pokemon_name_Weezing,Vyzingas
+pokemon_name_Rhyhorn,Rhyhornas
+pokemon_name_Rhydon,Rhydonas
+pokemon_name_Chansey,Šansė
+pokemon_name_Tangela,Krūmius
+pokemon_name_Kangaskhan,Kangaskhanas
+pokemon_name_Horsea,Horsėja
+pokemon_name_Seadra,Jūdra
+pokemon_name_Goldeen,Goldynė
+pokemon_name_Seaking,Sykingas
+pokemon_name_Staryu,Starijus
+pokemon_name_Starmie,Starmis
+pokemon_name_Mr. Mime,Ponas Mimas
+pokemon_name_Scyther,Skaiferis
+pokemon_name_Jynx,Džingsas
+pokemon_name_Electabuzz,Elektobazas
+pokemon_name_Magmar,Magmaras
+pokemon_name_Pinsir,Pinsiras
+pokemon_name_Tauros,Tauras
+pokemon_name_Magikarp,Madžikarpis
+pokemon_name_Gyarados,Giearadas
+pokemon_name_Lapras,Laprasas
+pokemon_name_Ditto,Ditas
+pokemon_name_Eevee,Įvis
+pokemon_name_Vaporeon,Vaporeonas
+pokemon_name_Jolteon,Džiolteonas
+pokemon_name_Flareon,Flareonas
+pokemon_name_Porygon,Porygonas
+pokemon_name_Omanyte,Omanitas
+pokemon_name_Omastar,Omastaras
+pokemon_name_Kabuto,Kabutas
+pokemon_name_Kabutops,Kabutopsas
+pokemon_name_Aerodactyl,Aerodaktilis
+pokemon_name_Snorlax,Knarklius
+pokemon_name_Articuno,Artikūnas
+pokemon_name_Zapdos,Zaptosas
+pokemon_name_Moltres,Moltresas
+pokemon_name_Dratini,Dratinis
+pokemon_name_Dragonair,Dragoneris
+pokemon_name_Dragonite,Dragonitas
+pokemon_name_Mewtwo,Mewtwo
+pokemon_name_Mew,Mew
+pokemon_name_Chikorita,Čikorita
+pokemon_name_Bayleef,Beilapas
+pokemon_name_Meganium,Meganiumas
+pokemon_name_Cyndaquil,Sindakvilas
+pokemon_name_Quilava,Kvilava
+pokemon_name_Typhlosion,Typhlosionas
+pokemon_name_Totodile,Totodailas
+pokemon_name_Croconaw,Krokonavas
+pokemon_name_Feraligatr,Feraligatorius
+pokemon_name_Sentret,Sentritas
+pokemon_name_Furret,Furetas
+pokemon_name_Hoothoot,Ūūtas
+pokemon_name_Noctowl,Naktaulas
+pokemon_name_Ledyba,Ledyba
+pokemon_name_Ledian,Ledijana
+pokemon_name_Spinarak,Spinarakas
+pokemon_name_Ariados,Arijada
+pokemon_name_Crobat,Krobatas
+pokemon_name_Chinchou,Chinchou
+pokemon_name_Lanturn,Lanturnas
+pokemon_name_Pichu,Pičiu
+pokemon_name_Cleffa,Klefa
+pokemon_name_Igglybuff,Iglibufas
+pokemon_name_Togepi,Togepis
+pokemon_name_Togetic,Togetikas
+pokemon_name_Natu,Natu
+pokemon_name_Xatu,Ksatu
+pokemon_name_Mareep,Marypas
+pokemon_name_Flaaffy,Flafis
+pokemon_name_Ampharos,Amfara
+pokemon_name_Bellossom,Žiedelė
+pokemon_name_Marill,Marilė
+pokemon_name_Azumarill,Azumarilė
+pokemon_name_Sudowoodo,Sadomedis
+pokemon_name_Politoed,Politodas
+pokemon_name_Hoppip,Hopipas
+pokemon_name_Skiploom,Skiploom
+pokemon_name_Jumpluff,Džumplafas
+pokemon_name_Aipom,Aipomas
+pokemon_name_Sunkern,Saulelė
+pokemon_name_Sunflora,Saulagėlė
+pokemon_name_Yanma,Yanma
+pokemon_name_Wooper,Vuperis
+pokemon_name_Quagsire,Kvaksiras
+pokemon_name_Espeon,Espeonas
+pokemon_name_Umbreon,Umbreonas
+pokemon_name_Murkrow,Murkraunas
+pokemon_name_Slowking,Lėtakaralius
+pokemon_name_Misdreavus,Misdreavus
+pokemon_name_Unown,Ženklas
+pokemon_name_Wobbuffet,Vobofetas
+pokemon_name_Girafarig,Žirafarigas
+pokemon_name_Pineco,Konkorėžius
+pokemon_name_Forretress,Foretresas
+pokemon_name_Dunsparce,Dansparsas
+pokemon_name_Gligar,Gligaras
+pokemon_name_Steelix,Plieniksas
+pokemon_name_Snubbull,Snobulė
+pokemon_name_Granbull,Granbulė
+pokemon_name_Qwilfish,Kvilažuvė
+pokemon_name_Scizor,Žirklius
+pokemon_name_Shuckle,Shuckle
+pokemon_name_Heracross,Herakrosas
+pokemon_name_Sneasel,Sneasel
+pokemon_name_Teddiursa,Tedimeškis
+pokemon_name_Ursaring,Lokingas
+pokemon_name_Slugma,Slugma
+pokemon_name_Magcargo,Makargas
+pokemon_name_Swinub,Svinubas
+pokemon_name_Piloswine,Pilosvinas
+pokemon_name_Corsola,Korsola
+pokemon_name_Remoraid,Remoraidas
+pokemon_name_Octillery,Oktileris
+pokemon_name_Delibird,Delibirdas
+pokemon_name_Mantine,Mantine
+pokemon_name_Skarmory,Skarmoris
+pokemon_name_Houndour,Houndūras
+pokemon_name_Houndoom,Haundūmas
+pokemon_name_Kingdra,Kingdra
+pokemon_name_Phanpy,Phampis
+pokemon_name_Donphan,Donfanas
+pokemon_name_Porygon2,Porygonas2
+pokemon_name_Stantler,Stantleris
+pokemon_name_Smeargle,Smeargle
+pokemon_name_Tyrogue,Tyrogue
+pokemon_name_Hitmontop,Hitmontopas
+pokemon_name_Smoochum,Smoochum
+pokemon_name_Elekid,Elekidas
+pokemon_name_Magby,Magbis
+pokemon_name_Miltank,Pienelis
+pokemon_name_Blissey,Nevėkšla
+pokemon_name_Raikou,Raikou
+pokemon_name_Entei,Entėjus
+pokemon_name_Suicune,Suicune
+pokemon_name_Larvitar,Larvitaras
+pokemon_name_Pupitar,Pupitaras
+pokemon_name_Tyranitar,Tyranitaras
+pokemon_name_Lugia,Lugija
+pokemon_name_Ho-Oh,Ho-Oh
+pokemon_name_Celebi,Celebis
+pokemon_name_Treecko,Trykas
+pokemon_name_Grovyle,Grovailas
+pokemon_name_Sceptile,Skeptilijus
+pokemon_name_Torchic,Torčikas
+pokemon_name_Combusken,Kombuškenas
+pokemon_name_Blaziken,Karštuolis
+pokemon_name_Mudkip,Madkipas
+pokemon_name_Marshtomp,Marštompas
+pokemon_name_Swampert,Svampertas
+pokemon_name_Poochyena,Pučihiena
+pokemon_name_Mightyena,Maitiena
+pokemon_name_Zigzagoon,Zigzagūnas
+pokemon_name_Linoone,Linūnas
+pokemon_name_Wurmple,Kirmius
+pokemon_name_Silcoon,Šilkūnas
+pokemon_name_Beautifly,Gražuolis
+pokemon_name_Cascoon,Kaskūnas
+pokemon_name_Dustox,Dustoksas
+pokemon_name_Lotad,Plūdžius
+pokemon_name_Lombre,Lombrius
+pokemon_name_Ludicolo,Ludikolas
+pokemon_name_Seedot,Gilius
+pokemon_name_Nuzleaf,Nuzlyfas
+pokemon_name_Shiftry,Šriftris
+pokemon_name_Taillow,Uodegutis
+pokemon_name_Swellow,Svelovas
+pokemon_name_Wingull,Vingulas
+pokemon_name_Pelipper,Peliperis
+pokemon_name_Ralts,Raltsė
+pokemon_name_Kirlia,Kirija
+pokemon_name_Gardevoir,Gardevorija
+pokemon_name_Surskit,Surskitas
+pokemon_name_Masquerain,Maskiurinas
+pokemon_name_Shroomish,Grybius
+pokemon_name_Breloom,Brelūmas
+pokemon_name_Slakoth,Tinginėlis
+pokemon_name_Vigoroth,Vigorotas
+pokemon_name_Slaking,Tinginys
+pokemon_name_Nincada,Ninkada
+pokemon_name_Whismur,Višmuras
+pokemon_name_Loudred,Rėksnius
+pokemon_name_Exploud,Eksplaudas
+pokemon_name_Makuhita,Makuhita
+pokemon_name_Hariyama,Harijama
+pokemon_name_Azurill,Azurilė
+pokemon_name_Nosepass,Nosius
+pokemon_name_Skitty,Skitė
+pokemon_name_Delcatty,Delikitė
+pokemon_name_Aron,Aronas
+pokemon_name_Lairon,Laironas
+pokemon_name_Aggron,Agronas
+pokemon_name_Meditite,Medititas
+pokemon_name_Medicham,Medičampas
+pokemon_name_Roselia,Rozelija
+pokemon_name_Numel,Numelis
+pokemon_name_Camerupt,Kameruptas
+pokemon_name_Spoink,Spoinkas
+pokemon_name_Grumpig,Grumpigas
+pokemon_name_Spinda,Spinda
+pokemon_name_Trapinch,Spąsčius
+pokemon_name_Vibrava,Vibrius
+pokemon_name_Flygon,Flaigonas
+pokemon_name_Cacnea,Kasnėja
+pokemon_name_Cacturne,Kakturena
+pokemon_name_Altaria,Altarija
+pokemon_name_Zangoose,Zangūsas
+pokemon_name_Corphish,Korfišas
+pokemon_name_Crawdaunt,Kravdauntas
+pokemon_name_Feebas,Fybas
+pokemon_name_Milotic,Milotika
+pokemon_name_Kacleon,Kakleonas
+pokemon_name_Dusclops,Vienaakis
+pokemon_name_Tropius,Tropius
+pokemon_name_Absol,Absolas
+pokemon_name_Wynaut,Vinautas
+pokemon_name_Snorunt,Snorantas
+pokemon_name_Glalie,Glalėjus
+pokemon_name_Spheal,Spgydžius
+pokemon_name_Sealeo,Jūrliūtas
+pokemon_name_Walrein,Valreinas
+pokemon_name_Clamperl,Gnybtperlė
+pokemon_name_Relicanth,Relikantas
+pokemon_name_Bagon,Bagonas
+pokemon_name_Shelgon,Šelgonas
+pokemon_name_Salamence,Salamancas
+pokemon_name_Beldum,Beldumas
+pokemon_name_Metang,Metangas
+pokemon_name_Metagross,Metagrosas
+pokemon_name_Latias,Latija
+pokemon_name_Latios,Latijus
+pokemon_name_Jirachi,Džiračis
+pokemon_name_Turtwig,Turtvigas
+pokemon_name_Grotle,Grotlas
+pokemon_name_Torterra,Tortera
+pokemon_name_Chimchar,Čimčaras
+pokemon_name_Monferno,Monfernas
+pokemon_name_Infernape,Inferneipas
+pokemon_name_Piplup,Piplupas
+pokemon_name_Prinplup,Prinplupas
+pokemon_name_Empoleon,Empoleonas
+pokemon_name_Starly,Starlis
+pokemon_name_Staravia,Staravija
+pokemon_name_Staraptor,Staraptorius
+pokemon_name_Shinx,Šinksas
+pokemon_name_Luxio,Luksijus
+pokemon_name_Luxray,Luksrėjus
+pokemon_name_Budew,Daigelė
+pokemon_name_Roserade,Rožėradė
+pokemon_name_Floatzel,Floatzelis
+pokemon_name_Ambipom,Ambipomas
+pokemon_name_Chingling,Činglingas
+pokemon_name_Stunky,Smirdžius
+pokemon_name_Skuntank,Skuntankas
+pokemon_name_Bronzor,Bronzius
+pokemon_name_Bronzong,Bronzongas
+pokemon_name_Mime Jr.,Mimas Jaunesnysis
+pokemon_name_Gible,Giblas
+pokemon_name_Gabite,Gabitas
+pokemon_name_Riolu,Riolas
+pokemon_name_Lucario,Lukarijus
+pokemon_name_Skorupi,Skorupis
+pokemon_name_Drapion,Drapijonas
+pokemon_name_Electivire,Elektrolaidžius
+pokemon_name_Magmortar,Magmortaras
+pokemon_name_Togekiss,Togekis
+pokemon_name_Leafeon,Lyfeonas
+pokemon_name_Glaceon,Glaceonas
+pokemon_name_Mamoswine,Mamosvinas
+pokemon_name_Gallade,Galadas
+pokemon_name_Probopass,Apželtanosius
+pokemon_name_Froslass,Šaltukė
+pokemon_name_Rotom,Rotomas
+pokemon_name_Snivy,Šnaivė
+pokemon_name_Servine,Servina
+pokemon_name_Serperior,Serpiriora
+pokemon_name_Tepig,Tepigas
+pokemon_name_Pignite,Pignitas
+pokemon_name_Emboar,Emošernis
+pokemon_name_Oshawott,Ošavotas
+pokemon_name_Dewott,Devotas
+pokemon_name_Samurott,Samurotas
+pokemon_name_Pidove,Pidovas
+pokemon_name_Tranquill,Trankvilas
+pokemon_name_Unfezant,Unfezantas
+pokemon_name_Blitzle,Blitslė
+pokemon_name_Zebstrika,Zebstrika
+pokemon_name_Roggenrola,Rogenrolas
+pokemon_name_Boldore,Boldoras
+pokemon_name_Gigalith,Gigalitas
+pokemon_name_Excadrill,Ekskadrilis
+pokemon_name_Leavanny,Lyvanyja
+pokemon_name_Basculin,Baskulinas
+pokemon_name_Sandile,Smėldilis
+pokemon_name_Krokorok,Krokorokas
+pokemon_name_Krookodile,Krokodilis
+pokemon_name_Darumaka,Darumakas
+pokemon_name_Darmanitan,Darmanitanas
+pokemon_name_Maractus,Maraktusė
+pokemon_name_Dwebble,Dveblas
+pokemon_name_Crustle,Pilius
+pokemon_name_Scraggy,Skregis
+pokemon_name_Scrafty,Skraftis
+pokemon_name_Trubbish,Šiukšlius
+pokemon_name_Garbodor,Šiukšlėnas
+pokemon_name_Axew,Kirvius
+pokemon_name_Durant,Durantas
+pokemon_name_Deino,Deinas
+pokemon_name_Larvesta,Larvesta
+pokemon_name_Volcarona,Volkarona
+pokemon_name_Meloetta,Melodita
+pokemon_name_Chespin,Čespinas
+pokemon_name_Quilladin,Kviladinas
+pokemon_name_Chesnaught,Riešutkietis
+pokemon_name_Fennekin,Fenekinė
+pokemon_name_Braixen,Braiksena
+pokemon_name_Delphox,Delfoksė
+pokemon_name_Froakie,Varlius
+pokemon_name_Frogadier,Varlėnas
+pokemon_name_Greninja,Grenindzė
+pokemon_name_Fletchling,Flečlingas
+pokemon_name_Fletchinder,Flečinderis
+pokemon_name_Talonflame,Talonliepsnius
+pokemon_name_Vivillon,Vivilijona
+pokemon_name_Pancham,Pandžius
+pokemon_name_Inkay,Inkis
+pokemon_name_Malamar,Malamaras
+pokemon_name_Sylveon,Silveonas
+pokemon_name_Klefki,Raktčius
+pokemon_name_Noibat,Noibatas
+pokemon_name_Noivern,Noivernas
+pokemon_name_Litten,Mačiukas
+pokemon_name_Tsareena,Carina
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Story translation:
+---
+New Bark Town:
+---
+barktown.dat:
+---
+barktown_player_house,<playername>'s House
