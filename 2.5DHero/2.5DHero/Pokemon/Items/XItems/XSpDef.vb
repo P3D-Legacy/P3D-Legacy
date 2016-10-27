@@ -27,10 +27,10 @@ Namespace Items.XItems
                 Dim p As Pokemon = CType(s, BattleSystem.BattleScreen).OwnPokemon
 
                 If p.StatSpDefense < 6 Then
-                    p.StatSpDefense += 1
+                    p.StatSpDefense += 2
 
                     Screen.TextBox.Show("Boosted " & p.GetDisplayName() & "'s~Special Defense!" & RemoveItem(), {}, False, False)
-                    PlayerStatistics.Track("[53]Status booster used", 1)
+                    PlayerStatistics.Track("[53]Status booster used", 2)
 
                     Return True
                 End If
