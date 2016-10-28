@@ -1,48 +1,22 @@
-﻿Imports Pokemon3D.Scripting.Adapters
+﻿Option Strict On
+Imports Pokemon3D.Scripting.Adapters
 
 Namespace Scripting.V3.Prototypes
 
     <ScriptPrototype(VariableName:="Pokemon")>
     Friend NotInheritable Class PokemonPrototype
 
-        ' When a Pokémon from the player's party is referenced, use its index in the list to have a reference instead of shallow copy.
-        Private Const PLAYER_POKEMON_PREFIX As String = "PLAYER_POKEMON_"
-
-        <ScriptVariable(VariableName:="data")>
-        Public data As String = ""
+        <Reference>
+        Public ref As Pokemon
 
         Public Shared Function GetPokemon(This As Object) As Pokemon
-
-            Dim pokemonData = CType(This, PokemonPrototype).data
-
-            If pokemonData.StartsWith(PLAYER_POKEMON_PREFIX) Then
-
-                Dim index = CInt(pokemonData.Remove(0, PLAYER_POKEMON_PREFIX.Length))
-                Return Core.Player.Pokemons(index)
-
-            Else
-
-                Return Pokemon.GetPokemonByData(pokemonData)
-
-            End If
-
+            Return CType(This, PokemonPrototype).ref
         End Function
-
-        Private Shared Sub SaveData(This As Object, objLink As ScriptObjectLink, p As Pokemon)
-
-            If Not CType(This, PokemonPrototype).data.StartsWith(PLAYER_POKEMON_PREFIX) Then
-
-                Dim newData = p.GetSaveData()
-                objLink.SetMember("data", newData)
-
-            End If
-
-        End Sub
 
         Public Sub New() : End Sub
 
-        Public Sub New(data As String)
-            Me.data = data
+        Public Sub New(p As Pokemon)
+            ref = p
         End Sub
 
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
@@ -50,11 +24,7 @@ Namespace Scripting.V3.Prototypes
 
             If parameters.Length = 1 AndAlso TypeContract.Ensure(parameters, GetType(String)) Then
 
-                objLink.SetMember("data", CType(parameters(0), String))
-
-            ElseIf parameters.Length = 1 AndAlso TypeContract.Ensure(parameters, GetType(Integer)) Then
-
-                objLink.SetMember("data", PLAYER_POKEMON_PREFIX & CType(parameters(0), Integer).ToString())
+                Dim p = Pokemon.GetPokemonByData(CType(parameters(0), String))
 
             ElseIf parameters.Length >= 2 AndAlso TypeContract.Ensure(parameters, {GetType(Integer), GetType(Integer), GetType(String)}, 1) Then
 
@@ -76,7 +46,7 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
-        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="getLegendaryIds")>
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="getLegendaryIds", IsStatic:=True)>
         Public Shared Function GetLegendaryIds(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return Pokemon.Legendaries
@@ -130,7 +100,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.NickName = CType(parameters(0), String)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -161,7 +130,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.IsShiny = CType(parameters(0), Boolean)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -209,7 +177,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.AdditionalData = CType(parameters(0), String)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -240,7 +207,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.Nature = Pokemon.ConvertIDToNature(CType(parameters(0), Integer))
-                SaveData(This, objLink, p)
 
             End If
 
@@ -263,7 +229,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.Friendship = CType(parameters(0), Integer)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -286,7 +251,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.OT = CType(parameters(0), String)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -309,7 +273,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.CatchTrainerName = CType(parameters(0), String)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -332,7 +295,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.CatchMethod = CType(parameters(0), String)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -355,7 +317,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.CatchLocation = CType(parameters(0), String)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -367,7 +328,7 @@ Namespace Scripting.V3.Prototypes
         Public Shared Function GetCatchBall(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
-            Return New ItemPrototype(p.CatchBall.ID, p.CatchBall.AdditionalData)
+            Return New ItemPrototype(p.CatchBall)
 
         End Function
 
@@ -378,7 +339,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.CatchBall = ItemPrototype.ToItem(parameters(0))
-                SaveData(This, objLink, p)
 
             End If
 
@@ -392,7 +352,7 @@ Namespace Scripting.V3.Prototypes
             Dim p = GetPokemon(This)
 
             If p.Item IsNot Nothing Then
-                Return New ItemPrototype(p.Item.ID, p.Item.AdditionalData)
+                Return New ItemPrototype(p.Item)
             Else
                 Return Nothing
             End If
@@ -414,8 +374,6 @@ Namespace Scripting.V3.Prototypes
                     p.Item = ItemPrototype.ToItem(item)
 
                 End If
-
-                SaveData(This, objLink, p)
 
             End If
 
@@ -442,7 +400,6 @@ Namespace Scripting.V3.Prototypes
                 If [Enum].TryParse(CType(parameters(0), String), newGender) Then
 
                     p.Gender = newGender
-                    SaveData(This, objLink, p)
 
                 End If
 
@@ -456,7 +413,7 @@ Namespace Scripting.V3.Prototypes
         Public Shared Function GetAbility(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
-            Return New AbilityPrototype(p.Ability.ID)
+            Return New AbilityPrototype(p.Ability)
 
         End Function
 
@@ -466,8 +423,7 @@ Namespace Scripting.V3.Prototypes
             If TypeContract.Ensure(parameters, GetType(AbilityPrototype)) Then
 
                 Dim p = GetPokemon(This)
-                p.Ability = AbilityPrototype.ToAbility(parameters(0))
-                SaveData(This, objLink, p)
+                p.Ability = AbilityPrototype.GetAbility(parameters(0))
 
             End If
 
@@ -536,22 +492,16 @@ Namespace Scripting.V3.Prototypes
                 Select Case evType.ToLower()
                     Case "hp"
                         p.EVHP = evValue
-                        SaveData(This, objLink, p)
                     Case "atk"
                         p.EVAttack = evValue
-                        SaveData(This, objLink, p)
                     Case "def"
                         p.EVDefense = evValue
-                        SaveData(This, objLink, p)
                     Case "spatk"
                         p.EVSpAttack = evValue
-                        SaveData(This, objLink, p)
                     Case "spdef"
                         p.EVSpDefense = evValue
-                        SaveData(This, objLink, p)
                     Case "speed"
                         p.EVSpeed = evValue
-                        SaveData(This, objLink, p)
                 End Select
 
             End If
@@ -573,22 +523,16 @@ Namespace Scripting.V3.Prototypes
                 Select Case ivType.ToLower()
                     Case "hp"
                         p.IVHP = ivValue
-                        SaveData(This, objLink, p)
                     Case "atk"
                         p.IVAttack = ivValue
-                        SaveData(This, objLink, p)
                     Case "def"
                         p.IVDefense = ivValue
-                        SaveData(This, objLink, p)
                     Case "spatk"
                         p.IVSpAttack = ivValue
-                        SaveData(This, objLink, p)
                     Case "spdef"
                         p.IVSpDefense = ivValue
-                        SaveData(This, objLink, p)
                     Case "speed"
                         p.IVSpeed = ivValue
-                        SaveData(This, objLink, p)
                 End Select
 
             End If
@@ -644,7 +588,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.HP = CType(parameters(0), Integer)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -667,7 +610,6 @@ Namespace Scripting.V3.Prototypes
 
                 Dim p = GetPokemon(This)
                 p.Experience = CType(parameters(0), Integer)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -683,7 +625,6 @@ Namespace Scripting.V3.Prototypes
                 Dim p = GetPokemon(This)
                 Dim hp = New ParamHelper(parameters).Pop(p.MaxHP)
                 p.Heal(hp)
-                SaveData(This, objLink, p)
 
             End If
 
@@ -700,7 +641,7 @@ Namespace Scripting.V3.Prototypes
 
             Dim p = GetPokemon(This)
             Return p.Attacks.Select(Function(a As BattleSystem.Attack)
-                                        Return New MovePrototype(a.ID)
+                                        Return New MovePrototype(a)
                                     End Function).ToArray()
 
         End Function
@@ -715,7 +656,6 @@ Namespace Scripting.V3.Prototypes
 
                 If p.Attacks.Count > moveIndex Then
                     p.Attacks.RemoveAt(moveIndex)
-                    SaveData(This, objLink, p)
                 End If
 
             End If
@@ -729,7 +669,6 @@ Namespace Scripting.V3.Prototypes
 
             Dim p = GetPokemon(This)
             p.Attacks.Clear()
-            SaveData(This, objLink, p)
 
             Return NetUndefined.Instance
 
@@ -744,8 +683,7 @@ Namespace Scripting.V3.Prototypes
                 If p.Attacks.Count < 4 Then
 
                     Dim move = CType(parameters(0), MovePrototype)
-                    p.Attacks.Add(MovePrototype.ToAttack(move))
-                    SaveData(This, objLink, p)
+                    p.Attacks.Add(MovePrototype.GetAttack(move))
 
                 End If
 
@@ -786,7 +724,6 @@ Namespace Scripting.V3.Prototypes
                 If [Enum].TryParse(CType(parameters(0), String), newStatus) Then
 
                     p.Status = newStatus
-                    SaveData(This, objLink, p)
 
                 End If
 

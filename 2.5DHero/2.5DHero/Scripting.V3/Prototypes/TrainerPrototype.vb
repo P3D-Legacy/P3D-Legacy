@@ -1,9 +1,10 @@
-﻿Imports Pokemon3D.Scripting.Adapters
+﻿Option Strict On
+Imports Pokemon3D.Scripting.Adapters
 
 Namespace Scripting.V3.Prototypes
 
     <ScriptPrototype(VariableName:="Trainer")>
-    Friend NotInheritable Class TrainerWrapper
+    Friend NotInheritable Class TrainerPrototype
 
         <ScriptVariable(VariableName:="file")>
         Public file As String = ""
@@ -31,7 +32,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="defeatMessage")>
         Public Shared Function GetDefeatMessage(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim wrapper = CType(This, TrainerWrapper)
+            Dim wrapper = CType(This, TrainerPrototype)
             Dim trainer = New Trainer(wrapper.file)
 
             Return trainer.DefeatMessage
@@ -41,7 +42,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="introMessage")>
         Public Shared Function GetIntroMessage(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim wrapper = CType(This, TrainerWrapper)
+            Dim wrapper = CType(This, TrainerPrototype)
             Dim trainer = New Trainer(wrapper.file)
 
             Return trainer.IntroMessage
@@ -51,7 +52,7 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="outroMessage")>
         Public Shared Function GetOutroMessage(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            Dim wrapper = CType(This, TrainerWrapper)
+            Dim wrapper = CType(This, TrainerPrototype)
             Dim trainer = New Trainer(wrapper.file)
 
             Return trainer.OutroMessage

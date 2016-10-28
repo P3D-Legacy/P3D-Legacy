@@ -1,4 +1,5 @@
-﻿Imports Pokemon3D.Scripting.Adapters
+﻿Option Strict On
+Imports Pokemon3D.Scripting.Adapters
 
 Namespace Scripting.V3.Prototypes
 
@@ -37,7 +38,9 @@ Namespace Scripting.V3.Prototypes
                 If line.StartsWith(daycareId.ToString() & "|" & pokemonIndex.ToString() & "|") Then
 
                     Dim data = line.Remove(0, line.IndexOf("{"))
-                    Return New PokemonPrototype(data)
+                    Dim p = Pokemon.GetPokemonByData(data)
+
+                    Return New PokemonPrototype(p)
 
                 End If
             Next
@@ -142,7 +145,7 @@ Namespace Scripting.V3.Prototypes
             Else
 
                 Core.Player.DaycareData = newData
-                Return New PokemonPrototype(eggPokemon.GetSaveData())
+                Return New PokemonPrototype(eggPokemon)
 
             End If
 
@@ -182,7 +185,7 @@ Namespace Scripting.V3.Prototypes
                 Else
 
                     Core.Player.DaycareData = newData
-                    Return New PokemonPrototype(takenPokemon.GetSaveData())
+                    Return New PokemonPrototype(takenPokemon)
 
                 End If
 

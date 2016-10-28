@@ -1,4 +1,5 @@
-﻿Imports Pokemon3D.Scripting.Adapters
+﻿Option Strict On
+Imports Pokemon3D.Scripting.Adapters
 
 Namespace Scripting.V3.Prototypes
 
@@ -62,17 +63,17 @@ Namespace Scripting.V3.Prototypes
         Public Shared Function GetPosition(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim position = GetCamera().ThirdPersonOffset
-            Return New Vector3Wrapper(position)
+            Return New Vector3Prototype(position)
 
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="position", IsStatic:=True)>
         Public Shared Function SetPosition(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, {GetType(Vector3Wrapper)}) Then
+            If TypeContract.Ensure(parameters, {GetType(Vector3Prototype)}) Then
 
                 Dim camera = GetCamera()
-                Dim v3 = CType(parameters(0), Vector3Wrapper)
+                Dim v3 = CType(parameters(0), Vector3Prototype)
 
                 camera.ThirdPersonOffset = v3.ToVector3()
 

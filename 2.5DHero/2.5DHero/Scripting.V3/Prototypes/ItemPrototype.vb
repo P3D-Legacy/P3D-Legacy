@@ -1,54 +1,44 @@
-﻿Imports Pokemon3D.Scripting.Adapters
+﻿Option Strict On
+Imports Pokemon3D.Scripting.Adapters
 
 Namespace Scripting.V3.Prototypes
 
     <ScriptPrototype(VariableName:="Item")>
     Friend NotInheritable Class ItemPrototype
 
-        <ScriptVariable>
-        Public id As Integer = 0
-
-        <ScriptVariable>
-        Public data As String = ""
+        <Reference>
+        Public ref As Item
 
         Public Shared Function ToItem(This As Object) As Item
-
-            Dim itemId = CType(This, ItemPrototype).id
-            Dim resultItem = Item.GetItemByID(itemId)
-            resultItem.AdditionalData = CType(This, ItemPrototype).data
-
-            Return resultItem
-
+            Return CType(This, ItemPrototype).ref
         End Function
 
         Public Sub New() : End Sub
 
-        Public Sub New(id As Integer, data As String)
-            Me.id = id
-            Me.data = data
+        Public Sub New(item As Item)
+            ref = item
         End Sub
 
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
         Public Shared Function Constructor(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-
             If TypeContract.Ensure(parameters, {GetType(Integer), GetType(String)}, 1) Then
 
                 Dim helper = New ParamHelper(parameters)
 
-                objLink.SetMember("id", helper.Pop(Of Integer))
-                objLink.SetMember("data", helper.Pop(""))
+                Dim itemRef = Item.GetItemByID(helper.Pop(Of Integer))
+                itemRef.AdditionalData = helper.Pop("")
+
+                objLink.SetReference(NameOf(ref), itemRef)
 
             ElseIf TypeContract.Ensure(parameters, {GetType(String), GetType(String)}, 1) Then
 
                 Dim helper = New ParamHelper(parameters)
-                Dim namedItem = Item.GetItemByName(helper.Pop(Of String))
 
-                If namedItem IsNot Nothing Then
-                    objLink.SetMember("id", namedItem.ID)
-                End If
+                Dim itemRef = Item.GetItemByName(helper.Pop(Of String))
+                itemRef.AdditionalData = helper.Pop("")
 
-                objLink.SetMember("data", helper.Pop(""))
+                objLink.SetReference(NameOf(ref), itemRef)
 
             End If
 

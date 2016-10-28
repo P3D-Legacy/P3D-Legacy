@@ -1,4 +1,6 @@
-﻿Namespace Scripting.V3.Prototypes
+﻿Option Strict On
+
+Namespace Scripting.V3.Prototypes
 
     Friend Class TypeContract
 

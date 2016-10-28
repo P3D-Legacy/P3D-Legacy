@@ -1,15 +1,16 @@
-﻿Imports Pokemon3D.Scripting.Adapters
+﻿Option Strict On
+Imports Pokemon3D.Scripting.Adapters
 
 Namespace Scripting.V3.Prototypes
 
     <ScriptPrototype(VariableName:="Entity")>
     Friend NotInheritable Class EntityPrototype
 
-        <ScriptVariable>
-        Public id As Integer = -1
+        <Reference>
+        Public ref As Entity
 
         Public Shared Function GetEntity(This As Object) As Entity
-            Return Screen.Level.GetEntity(CType(This, EntityPrototype).id)
+            Return CType(This, EntityPrototype).ref
         End Function
 
 #Region "Position"
@@ -18,17 +19,17 @@ Namespace Scripting.V3.Prototypes
         Public Shared Function GetPosition(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim entity = GetEntity(This)
-            Return New Vector3Wrapper(entity.Position)
+            Return New Vector3Prototype(entity.Position)
 
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="position")>
         Public Shared Function SetPosition(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, GetType(Vector3Wrapper)) Then
+            If TypeContract.Ensure(parameters, GetType(Vector3Prototype)) Then
 
                 Dim entity = GetEntity(This)
-                entity.Position = CType(parameters(0), Vector3Wrapper).ToVector3()
+                entity.Position = CType(parameters(0), Vector3Prototype).ToVector3()
 
             End If
 
@@ -97,8 +98,6 @@ Namespace Scripting.V3.Prototypes
         End Function
 
 #End Region
-
-
 
     End Class
 

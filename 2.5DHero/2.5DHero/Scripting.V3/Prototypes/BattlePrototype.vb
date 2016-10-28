@@ -1,4 +1,5 @@
-﻿Imports Pokemon3D.Scripting.Adapters
+﻿Option Strict On
+Imports Pokemon3D.Scripting.Adapters
 
 Namespace Scripting.V3.Prototypes
 
@@ -104,9 +105,9 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startTrainer")>
         Public Shared Function StartTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, GetType(TrainerWrapper)) Then
+            If TypeContract.Ensure(parameters, GetType(TrainerPrototype)) Then
 
-                Dim wrapper = CType(parameters(0), TrainerWrapper)
+                Dim wrapper = CType(parameters(0), TrainerPrototype)
                 Dim t = New Trainer(wrapper.file)
 
                 Dim method As Integer = 0
@@ -130,9 +131,9 @@ Namespace Scripting.V3.Prototypes
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="encounterTrainer")>
         Public Shared Function EncounterTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, GetType(TrainerWrapper)) Then
+            If TypeContract.Ensure(parameters, GetType(TrainerPrototype)) Then
 
-                Dim wrapper = CType(parameters(0), TrainerWrapper)
+                Dim wrapper = CType(parameters(0), TrainerPrototype)
                 Dim t = New Trainer(wrapper.file)
 
                 If Not t.IsBeaten() Then

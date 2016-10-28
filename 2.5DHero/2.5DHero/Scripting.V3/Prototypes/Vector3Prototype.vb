@@ -1,9 +1,10 @@
-﻿Imports Pokemon3D.Scripting.Adapters
+﻿Option Strict On
+Imports Pokemon3D.Scripting.Adapters
 
 Namespace Scripting.V3.Prototypes
 
     <ScriptPrototype(VariableName:="Vector3")>
-    Friend NotInheritable Class Vector3Wrapper
+    Friend NotInheritable Class Vector3Prototype
 
         Public Function ToVector3() As Vector3
             Return New Vector3(CType(x, Single), CType(y, Single), CType(z, Single))
