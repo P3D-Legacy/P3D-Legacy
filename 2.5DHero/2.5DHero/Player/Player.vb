@@ -567,6 +567,42 @@
 
         Entity.MakeShake = Name.ToLower() = "drunknilllzz"
 
+        ''' Indev 0.54 Removal List
+        ''' 1. All Mega Stones. [ID: 507 - 553]
+        If Not ActionScript.IsRegistered("PokemonIndev054Update") Then
+            ' Check Inventory.
+            For i As Integer = 507 To 553 Step +1
+                Inventory.RemoveItem(i)
+            Next
+
+            ' Check Party Pokemon.
+            For Each Pokemon As Pokemon In Pokemons
+                If Pokemon.Item IsNot Nothing AndAlso Pokemon.Item.ID >= 507 AndAlso Pokemon.Item.ID <= 553 Then
+                    Pokemon.Item = Nothing
+                End If
+            Next
+
+            ' Check PC Boxes.
+            Dim TempBoxData As New List(Of String)
+            TempBoxData.AddRange(BoxData.SplitAtNewline())
+
+            For Each item As String In TempBoxData
+                If Not item.StartsWith("BOX") Then
+                    Dim TempString As String = item.Remove(item.IndexOf("{"))
+                    Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
+
+                    If TempPokemon.Item IsNot Nothing AndAlso TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553 Then
+                        TempPokemon.Item = Nothing
+                    End If
+
+                    item = TempString & TempPokemon.ToString()
+                End If
+            Next
+
+            BoxData = String.Join(vbNewLine, TempBoxData)
+            ActionScript.RegisterID("PokemonIndev054Update")
+        End If
+
         loadedSave = True
     End Sub
 
