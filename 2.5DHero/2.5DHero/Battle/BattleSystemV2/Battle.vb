@@ -3657,28 +3657,30 @@
                         Exit Sub
                     End If
 
-                    If Not p.Item Is Nothing Then
-                        If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                            Select Case p.Item.Name.ToLower()
-                                Case "damp rock"
-                                    If newWeather = BattleWeather.WeatherTypes.Rain Then
-                                        weatherRounds += 3
-                                    End If
-                                Case "heat rock"
-                                    If newWeather = BattleWeather.WeatherTypes.Sunny Then
-                                        weatherRounds += 3
-                                    End If
-                                Case "icy rock"
-                                    If newWeather = BattleWeather.WeatherTypes.Hailstorm Then
-                                        weatherRounds += 3
-                                    End If
-                                Case "smooth rock"
-                                    If newWeather = BattleWeather.WeatherTypes.Sandstorm Then
-                                        weatherRounds += 3
-                                    End If
-                            End Select
-                        End If
-                    End If
+                    'Redundant with BattleCalculation.FieldEffectTurns
+
+                    'If Not p.Item Is Nothing Then
+                    '    If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    '        Select Case p.Item.Name.ToLower()
+                    '            Case "damp rock"
+                    '                If newWeather = BattleWeather.WeatherTypes.Rain Then
+                    '                    weatherRounds += 3
+                    '                End If
+                    '            Case "heat rock"
+                    '                If newWeather = BattleWeather.WeatherTypes.Sunny Then
+                    '                    weatherRounds += 3
+                    '                End If
+                    '            Case "icy rock"
+                    '                If newWeather = BattleWeather.WeatherTypes.Hailstorm Then
+                    '                    weatherRounds += 3
+                    '                End If
+                    '            Case "smooth rock"
+                    '                If newWeather = BattleWeather.WeatherTypes.Sandstorm Then
+                    '                    weatherRounds += 3
+                    '                End If
+                    '        End Select
+                    '    End If
+                    'End If
 
                     BattleScreen.FieldEffects.Weather = newWeather
                     BattleScreen.FieldEffects.WeatherRounds = weatherRounds
