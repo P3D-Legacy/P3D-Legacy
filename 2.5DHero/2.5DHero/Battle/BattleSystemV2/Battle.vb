@@ -3850,6 +3850,52 @@
                             .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & "!"))
                         Case "imposter"
                             'Doing the ditto stuff!
+                            ChangeCameraAngel(1, own, BattleScreen)
+                            If op.IsTransformed = False Then
+                                'Save old stats:
+                                p.OriginalNumber = p.Number
+                                p.OriginalType1 = New Element(p.Type1.Type)
+                                p.OriginalType2 = New Element(p.Type2.Type)
+                                p.OriginalStats = {p.Attack, p.Defense, p.SpAttack, p.SpDefense, p.Speed}
+                                p.OriginalShiny = CInt(p.IsShiny.ToNumberString())
+                                p.OriginalMoves = New List(Of BattleSystem.Attack)
+                                p.OriginalMoves.AddRange(p.Attacks.ToArray())
+                                p.OriginalAbility = Ability.GetAbilityByID(p.Ability.ID)
+
+                                'Apply new stats:
+                                p.Number = op.Number
+
+                                p.Type1 = New Element(op.Type1.Type)
+                                p.Type2 = New Element(op.Type2.Type)
+
+                                p.Attack = op.Attack
+                                p.Defense = op.Defense
+                                p.SpAttack = op.SpAttack
+                                p.SpDefense = op.SpDefense
+                                p.Speed = op.Speed
+
+                                p.StatAttack = op.StatAttack
+                                p.StatDefense = op.StatDefense
+                                p.StatSpAttack = op.StatSpAttack
+                                p.StatSpDefense = op.StatSpDefense
+                                p.StatSpeed = op.StatSpeed
+
+                                p.IsShiny = op.IsShiny
+
+                                p.Attacks.Clear()
+                                p.Attacks.AddRange(op.Attacks.ToArray())
+
+                                p.Ability = Ability.GetAbilityByID(op.Ability.ID)
+
+                                p.IsTransformed = True
+
+                                'Apply new image to sprite:
+                                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into " & op.OriginalName & "!"))
+                            Else
+                                'Fails
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("imposter failed!"))
+                            End If
                     End Select
                 End If
             End With
@@ -5609,7 +5655,15 @@
                         .AddToQuery(InsertIndex, New TextQueryObject(.OwnPokemon.GetDisplayName() & "'s status problem got healed by Natural Cure"))
                     End If
                 End If
-
+                'Regenerator ability heals 1/3 of it's max HP
+                If .OwnPokemon.Ability.Name.ToLower() = "regenerator" Then
+                    If Not (.OwnPokemon.Status = Pokemon.StatusProblems.Fainted Or .OwnPokemon.HP = 0) Then
+                        Dim restoreHP = CInt(.OwnPokemon.MaxHP / 3)
+                        If restoreHP > 0 And .OwnPokemon.HP < .OwnPokemon.MaxHP And .OwnPokemon.HP > 0 Then
+                            BattleScreen.Battle.GainHP(restoreHP, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & "'s HP was restored!", "ability:regenerator")
+                        End If
+                    End If
+                End If
                 'save baton pass stuff:
                 If .FieldEffects.OwnUsedBatonPass = True Then
                     .FieldEffects.OwnBatonPassStats = New List(Of Integer)
@@ -5920,7 +5974,15 @@
                         .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & "'s status problem got healed by Natural Cure"))
                     End If
                 End If
-
+                'Regenerator ability heals 1/3 of it's max HP
+                If .OppPokemon.Ability.Name.ToLower() = "regenerator" Then
+                    If Not (.OppPokemon.Status = Pokemon.StatusProblems.Fainted Or .OppPokemon.HP = 0) Then
+                        Dim restoreHP = CInt(.OppPokemon.MaxHP / 3)
+                        If restoreHP > 0 And .OppPokemon.HP < .OppPokemon.MaxHP And .OppPokemon.HP > 0 Then
+                            BattleScreen.Battle.GainHP(restoreHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & "'s HP was restored!", "ability:regenerator")
+                        End If
+                    End If
+                End If
                 'save baton pass stuff:
                 If .FieldEffects.OppUsedBatonPass = True Then
                     .FieldEffects.OppBatonPassStats = New List(Of Integer)
