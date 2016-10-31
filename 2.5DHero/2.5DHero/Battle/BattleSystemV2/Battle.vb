@@ -470,7 +470,7 @@
                 Exit Sub
             End If
 
-            Dim OppStep As RoundConst = GetOppStep(BattleScreen, OwnStep)
+            OppStep = GetOppStep(BattleScreen, OwnStep)
             BattleScreen.OwnFaint = False '''
             BattleScreen.OppFaint = False '''
             If OwnStep.StepType = RoundConst.StepTypes.Move Then
@@ -1341,7 +1341,19 @@
                 If moveUsed.MoveFailBeforeAttack(own, BattleScreen) = True Then
                     moveWorks = False
                 End If
-
+                If moveUsed.Name.ToLower = "sucker punch" Then
+                    If own Then
+                        If OppStep.StepType <> RoundConst.StepTypes.Move OrElse CType(OppStep.Argument, Attack).Category = Attack.Categories.Status Then
+                            moveWorks = False
+                            BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed!"))
+                        End If
+                    Else
+                        If OwnStep.StepType <> RoundConst.StepTypes.Move OrElse CType(OwnStep.Argument, Attack).Category = Attack.Categories.Status Then
+                            moveWorks = False
+                            BattleScreen.BattleQuery.Add(New TextQueryObject("But it failed!"))
+                        End If
+                    End If
+                End If
                 If op.Ability.Name.ToLower() = "volt absorb" And moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Electric And moveWorks = True And moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
