@@ -72,14 +72,30 @@
         End Function
 
         Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
-            Dim p As Pokemon = BattleScreen.OwnPokemon
-            If own = False Then
-                p = BattleScreen.OppPokemon
+            Dim avgTeamBaseAttack As Double = 0.0D
+            Dim pokemonCounter As Integer = 0
+            If own Then
+                For Each pokemon As Pokemon In Core.Player.Pokemons
+                    If (Not pokemon.IsEgg) AndAlso pokemon.Status <> Pokemon.StatusProblems.Fainted And pokemon.HP > 0 Then
+                        avgTeamBaseAttack += (pokemon.BaseAttack / 10)
+                        pokemonCounter += 1
+                    End If
+                Next
+            Else
+                For Each pokemon As Pokemon In BattleScreen.Trainer.Pokemons
+                    If (Not pokemon.IsEgg) AndAlso pokemon.Status <> Pokemon.StatusProblems.Fainted And pokemon.HP > 0 Then
+                        avgTeamBaseAttack += (pokemon.BaseAttack / 10)
+                        pokemonCounter += 1
+                    End If
+                Next
             End If
-
-            Return CInt(Math.Ceiling(p.Attack / 10)) + 5
+            If pokemonCounter <> 0 Then
+                avgTeamBaseAttack = avgTeamBaseAttack / pokemonCounter
+            Else
+                avgTeamBaseAttack = 10 'should never meet this case.
+            End If
+            Return CInt(avgTeamBaseAttack) + 5
         End Function
-
     End Class
 
 End Namespace
