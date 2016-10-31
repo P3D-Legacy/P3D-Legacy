@@ -1401,6 +1401,7 @@
     <Compile Include="Pokemon\Items\Repels\RepelItem.vb" />
     <Compile Include="Pokemon\Items\Repels\SuperRepel.vb" />
     <Compile Include="Pokemon\Items\Standard\AbilityCapsule.vb" />
+    <Compile Include="Pokemon\Items\Standard\Eviolite.vb" />
     <Compile Include="Pokemon\Items\Standard\PowerAnklet.vb" />
     <Compile Include="Pokemon\Items\Standard\PowerBracer.vb" />
     <Compile Include="Pokemon\Items\Standard\PowerBelt.vb" />

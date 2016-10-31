@@ -1489,6 +1489,12 @@
                             If p.Number = 366 Then
                                 DMod = 2.0F
                             End If
+                        Case "assault vest"
+                            DMod = 1.5F
+                        Case "eviolite"
+                            If p.IsFullyEvolved = False Then
+                                DMod = 1.5F
+                            End If
                     End Select
                 End If
 
