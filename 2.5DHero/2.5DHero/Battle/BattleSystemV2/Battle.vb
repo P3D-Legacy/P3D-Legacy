@@ -1261,73 +1261,74 @@
 
             If lockon > 0 Then
                 DoesNotMiss = True
-            Else
-                If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'Dig check
-                    Dim dig As Integer = BattleScreen.FieldEffects.OppDigCounter
-                    If own = False Then
-                        dig = BattleScreen.FieldEffects.OwnDigCounter
-                    End If
+            End If
 
-                    If dig > 0 And moveUsed.CanHitUnderground = False Then
-                        DoesNotMiss = False
-                    End If
+            If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'Dig check
+                Dim dig As Integer = BattleScreen.FieldEffects.OppDigCounter
+                If own = False Then
+                    dig = BattleScreen.FieldEffects.OwnDigCounter
                 End If
 
-                If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'Fly check
-                    Dim fly As Integer = BattleScreen.FieldEffects.OppFlyCounter
-                    If own = False Then
-                        fly = BattleScreen.FieldEffects.OwnFlyCounter
-                    End If
-
-                    If fly > 0 And moveUsed.CanHitInMidAir = False Then
-                        DoesNotMiss = False
-                    End If
-                End If
-
-                If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'bounce check
-                    Dim bounce As Integer = BattleScreen.FieldEffects.OppBounceCounter
-                    If own = False Then
-                        bounce = BattleScreen.FieldEffects.OwnBounceCounter
-                    End If
-
-                    If bounce > 0 And moveUsed.CanHitInMidAir = False Then
-                        DoesNotMiss = False
-                    End If
-                End If
-
-                If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'dive check
-                    Dim dive As Integer = BattleScreen.FieldEffects.OppDiveCounter
-                    If own = False Then
-                        dive = BattleScreen.FieldEffects.OwnDiveCounter
-                    End If
-
-                    If dive > 0 And moveUsed.CanHitInMidAir = False Then
-                        DoesNotMiss = False
-                    End If
-                End If
-
-                If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'shadowforce check
-                    Dim shadowforce As Integer = BattleScreen.FieldEffects.OppShadowForceCounter
-                    If own = False Then
-                        shadowforce = BattleScreen.FieldEffects.OwnShadowForceCounter
-                    End If
-
-                    If shadowforce > 0 Then
-                        DoesNotMiss = False
-                    End If
-                End If
-
-                If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'sky drop check
-                    Dim skydrop As Integer = BattleScreen.FieldEffects.OppSkyDropCounter
-                    If own = False Then
-                        skydrop = BattleScreen.FieldEffects.OwnSkyDropCounter
-                    End If
-
-                    If skydrop > 0 And moveUsed.CanHitInMidAir = False Then
-                        DoesNotMiss = False
-                    End If
+                If dig > 0 And moveUsed.CanHitUnderground = False Then
+                    DoesNotMiss = False
                 End If
             End If
+
+            If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'Fly check
+                Dim fly As Integer = BattleScreen.FieldEffects.OppFlyCounter
+                If own = False Then
+                    fly = BattleScreen.FieldEffects.OwnFlyCounter
+                End If
+
+                If fly > 0 And moveUsed.CanHitInMidAir = False Then
+                    DoesNotMiss = False
+                End If
+            End If
+
+            If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'bounce check
+                Dim bounce As Integer = BattleScreen.FieldEffects.OppBounceCounter
+                If own = False Then
+                    bounce = BattleScreen.FieldEffects.OwnBounceCounter
+                End If
+
+                If bounce > 0 And moveUsed.CanHitInMidAir = False Then
+                    DoesNotMiss = False
+                End If
+            End If
+
+            If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'dive check
+                Dim dive As Integer = BattleScreen.FieldEffects.OppDiveCounter
+                If own = False Then
+                    dive = BattleScreen.FieldEffects.OwnDiveCounter
+                End If
+
+                If dive > 0 And moveUsed.CanHitInMidAir = False Then
+                    DoesNotMiss = False
+                End If
+            End If
+
+            If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'shadowforce check
+                Dim shadowforce As Integer = BattleScreen.FieldEffects.OppShadowForceCounter
+                If own = False Then
+                    shadowforce = BattleScreen.FieldEffects.OwnShadowForceCounter
+                End If
+
+                If shadowforce > 0 Then
+                    DoesNotMiss = False
+                End If
+            End If
+
+            If DoesNotMiss = True And moveUsed.Target <> Attack.Targets.Self Then 'sky drop check
+                Dim skydrop As Integer = BattleScreen.FieldEffects.OppSkyDropCounter
+                If own = False Then
+                    skydrop = BattleScreen.FieldEffects.OwnSkyDropCounter
+                End If
+
+                If skydrop > 0 And moveUsed.CanHitInMidAir = False Then
+                    DoesNotMiss = False
+                End If
+            End If
+
 
             If DoesNotMiss = True Then
                 Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(own, moveUsed, BattleScreen)
