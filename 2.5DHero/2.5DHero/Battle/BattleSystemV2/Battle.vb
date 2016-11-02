@@ -995,7 +995,7 @@
                         Exit Sub
                     End If
                 Else
-                    If (own AndAlso BattleScreen.FieldEffects.OwnLastMove.ID = 214) OrElse (Not own AndAlso BattleScreen.FieldEffects.OppLastMove.ID = 214) Then
+                    If (own AndAlso BattleScreen.FieldEffects.OwnLastMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OwnLastMove.ID = 214) OrElse (Not own AndAlso BattleScreen.FieldEffects.OppLastMove IsNot Nothing AndAlso BattleScreen.FieldEffects.OppLastMove.ID = 214) Then
                         If own Then
                             BattleScreen.FieldEffects.OwnLastMove = moveUsed
                         Else
