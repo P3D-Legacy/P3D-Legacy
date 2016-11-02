@@ -470,7 +470,9 @@
                 Exit Sub
             End If
 
-            OppStep = GetOppStep(BattleScreen, OwnStep)
+            Dim OppStep = GetOppStep(BattleScreen, OwnStep)
+            Me.OwnStep = OwnStep
+            Me.OppStep = OppStep
             BattleScreen.OwnFaint = False '''
             BattleScreen.OppFaint = False '''
             If OwnStep.StepType = RoundConst.StepTypes.Move Then
