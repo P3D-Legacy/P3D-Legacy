@@ -2590,7 +2590,7 @@
                 Else
                     If p.Ability.Name.ToLower() = "immunity" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
-                        BattleScreen.BattleQuery.Add(New TextQueryObject("Immunity prevented the sleep."))
+                        BattleScreen.BattleQuery.Add(New TextQueryObject("Immunity prevented the poison."))
                         Return False
                     Else
                         Dim safeGuard As Integer = BattleScreen.FieldEffects.OwnSafeguard
@@ -2716,6 +2716,18 @@
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                             BattleScreen.BattleQuery.Add(New TextQueryObject("The Persim Berry cured the confusion of " & p.GetDisplayName() & "!"))
+                            If own = True Then
+                                BattleScreen.FieldEffects.OwnConfusionTurns = 0
+                            Else
+                                BattleScreen.FieldEffects.OppConfusionTurns = 0
+                            End If
+                            p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
+                        End If
+                    ElseIf p.Item.Name.ToLower() = "lum" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                        If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
+                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject("The Lum Berry cured the confusion of " & p.GetDisplayName() & "!"))
                             If own = True Then
                                 BattleScreen.FieldEffects.OwnConfusionTurns = 0
                             Else
