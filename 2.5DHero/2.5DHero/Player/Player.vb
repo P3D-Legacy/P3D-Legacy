@@ -569,15 +569,17 @@
 
         ''' Indev 0.54 Removal List
         ''' 1. All Mega Stones. [ID: 507 - 553]
+        ''' 2. Shiny Candy [ID: 501]
         If Not ActionScript.IsRegistered("PokemonIndev054Update") Then
             ' Check Inventory.
+            Inventory.RemoveItem(501)
             For i As Integer = 507 To 553 Step +1
                 Inventory.RemoveItem(i)
             Next
 
             ' Check Party Pokemon.
             For Each Pokemon As Pokemon In Pokemons
-                If Pokemon.Item IsNot Nothing AndAlso Pokemon.Item.ID >= 507 AndAlso Pokemon.Item.ID <= 553 Then
+                If Pokemon.Item IsNot Nothing AndAlso (Pokemon.Item.ID >= 501 OrElse (Pokemon.Item.ID >= 507 AndAlso Pokemon.Item.ID <= 553)) Then
                     Pokemon.Item = Nothing
                 End If
             Next
@@ -592,7 +594,7 @@
                         Dim TempString As String = item.Remove(item.IndexOf("{"))
                         Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-                        If TempPokemon.Item IsNot Nothing AndAlso TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553 Then
+                        If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
                             TempPokemon.Item = Nothing
                         End If
 
@@ -613,7 +615,7 @@
                         Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
                         Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-                        If TempPokemon.Item IsNot Nothing AndAlso TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553 Then
+                        If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
                             TempPokemon.Item = Nothing
                         End If
 
