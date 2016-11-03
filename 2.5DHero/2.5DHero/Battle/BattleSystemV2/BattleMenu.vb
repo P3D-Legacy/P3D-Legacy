@@ -924,6 +924,7 @@
                         Else
                             If TempBattleScreen.OwnPokemonIndex <> PokeIndex Then
                                 If TempBattleScreen.IsRemoteBattle = True And TempBattleScreen.IsHost = False Then
+                                    BattleScreen.OppFaint = False
                                     TempBattleScreen.OwnStatistics.Switches += 1
                                     TempBattleScreen.BattleQuery.Clear()
                                     TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())

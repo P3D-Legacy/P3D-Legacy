@@ -463,13 +463,12 @@
 
 
         Public Sub InitializeRound(ByVal BattleScreen As BattleScreen, ByVal OwnStep As RoundConst)
-            If BattleScreen.OwnFaint OrElse BattleScreen.OppFaint Then
-                BattleScreen.IsAfterFaint = True
-            End If
             If BattleHasEnded(BattleScreen) Then
                 Exit Sub
             End If
-
+            If BattleScreen.OwnFaint OrElse BattleScreen.OppFaint Then
+                BattleScreen.IsAfterFaint = True
+            End If
             Dim OppStep = GetOppStep(BattleScreen, OwnStep)
             Me.OwnStep = OwnStep
             Me.OppStep = OppStep
