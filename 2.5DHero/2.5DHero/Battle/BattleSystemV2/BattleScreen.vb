@@ -8,7 +8,7 @@
         'Used for after fainting switching
         Public Shared OwnFaint As Boolean = False
         Public Shared OppFaint As Boolean = False
-        Public Shared IsAfterFaint As Boolean = False 'Is after faint switching round
+
 
 
         'Used for lead picking in PvP Battles
@@ -120,7 +120,7 @@
             Me.IsTrainerBattle = False
             Me.MouseVisible = False
             Me.PVPGameJoltID = ""
-            IsAfterFaint = False
+
             OppFaint = False
             OwnFaint = False
         End Sub
@@ -132,7 +132,7 @@
             Me.IsTrainerBattle = True
             Me.MouseVisible = False
             Me.PVPGameJoltID = ""
-            IsAfterFaint = False
+
             OppFaint = False
             OwnFaint = False
         End Sub
@@ -1468,7 +1468,7 @@ nextIndex:
 
         Public Sub SendEndRoundData()
             Dim lockData As String = "{}"
-            Dim oppStep As Battle.RoundConst = Battle.GetOppStep(Me, Nothing)
+            Dim oppStep As Battle.RoundConst = Battle.GetOppStep(Me, Battle.OwnStep)
             If Battle.SelectedMoveOpp = False Then
                 If oppStep.StepType = BattleSystem.Battle.RoundConst.StepTypes.Move Then
                     lockData = "{" & CType(oppStep.Argument, Attack).ID.ToString() & "}"

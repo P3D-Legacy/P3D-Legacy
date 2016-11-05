@@ -5,6 +5,8 @@
         Public Shared Won As Boolean = False
         Public Shared Fled As Boolean = False
 
+
+        Public IsAfterFaint As Boolean = False
 #Region "StartRound"
 
         Public Structure RoundConst
@@ -197,6 +199,9 @@
         End Sub
 
         Public Sub StartRound(ByVal BattleScreen As BattleScreen)
+            If BattleScreen.OwnFaint OrElse BattleScreen.OppFaint Then
+                IsAfterFaint = True
+            End If
             BattleScreen.BattleMenu.MenuState = BattleMenu.MenuStates.Main
             SelectedMoveOwn = True
             SelectedMoveOpp = True
@@ -234,7 +239,7 @@
                 Return New RoundConst() With {.StepType = RoundConst.StepTypes.Text, .Argument = "You have sent your next Pokemon!"}
             End If
 
-            If Not BattleScreen.IsAfterFaint Then
+            If Not IsAfterFaint Then
                 If BattleScreen.FieldEffects.OppRecharge > 0 Then
                     SelectedMoveOpp = False
                     BattleScreen.FieldEffects.OppRecharge -= 1
@@ -465,9 +470,6 @@
         Public Sub InitializeRound(ByVal BattleScreen As BattleScreen, ByVal OwnStep As RoundConst)
             If BattleHasEnded(BattleScreen) Then
                 Exit Sub
-            End If
-            If BattleScreen.OwnFaint OrElse BattleScreen.OppFaint Then
-                BattleScreen.IsAfterFaint = True
             End If
             Dim OppStep = GetOppStep(BattleScreen, OwnStep)
             Me.OwnStep = OwnStep
@@ -4063,7 +4065,7 @@
                             EndRoundOpp(BattleScreen)
                             EndRoundOwn(BattleScreen)
                         End If
-                        If BattleScreen.IsAfterFaint = False Then
+                        If IsAfterFaint = False Then
                             .FieldEffects.Rounds += 1
                             If .FieldEffects.WeatherRounds > 0 Then
                                 .FieldEffects.WeatherRounds -= 1
@@ -4154,7 +4156,7 @@
                                 .FieldEffects.OppProtectMovesCount = 0
                             End If
                         End If
-                        BattleScreen.IsAfterFaint = False
+                        IsAfterFaint = False
                         If .OwnPokemon.Status = Pokemon.StatusProblems.Fainted Or .OwnPokemon.HP <= 0 Then
                             .OwnPokemon.Status = Pokemon.StatusProblems.Fainted
                             BattleScreen.OwnFaint = True
@@ -4306,7 +4308,7 @@
                 Exit Sub
             End If
             ChangeCameraAngel(0, True, BattleScreen)
-            If BattleScreen.IsAfterFaint = True Then
+            If IsAfterFaint = True Then
                 Exit Sub
             End If
             With BattleScreen
@@ -5033,7 +5035,7 @@
 
         Private Sub EndRoundOpp(ByVal BattleScreen As BattleScreen)
             ChangeCameraAngel(0, True, BattleScreen)
-            If BattleScreen.IsAfterFaint = True Then
+            If IsAfterFaint = True Then
                 Exit Sub
             End If
             With BattleScreen
@@ -6312,7 +6314,7 @@
         Public Sub EndBattle(ByVal reason As EndBattleReasons, ByVal BattleScreen As BattleScreen, ByVal AddPVP As Boolean)
             BattleSystem.BattleScreen.OwnFaint = False
             BattleSystem.BattleScreen.OppFaint = False
-            BattleSystem.BattleScreen.IsAfterFaint = False
+            IsAfterFaint = False
             If AddPVP = True Then
                 Select Case reason
                     Case EndBattleReasons.WinTrainer 'Lost
