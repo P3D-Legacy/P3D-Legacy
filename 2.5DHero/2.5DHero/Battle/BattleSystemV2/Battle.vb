@@ -5785,6 +5785,17 @@
                     .OwnBideDamage = 0
 
                     .OwnRoostUsed = False
+
+                    'Opp stuff that depends on own pokemon presence
+                    .OppTrappedCounter = 0
+                    .OppWrap = 0
+                    .OppWhirlpool = 0
+                    .OppBind = 0
+                    .OppClamp = 0
+                    .OppFireSpin = 0
+                    .OppMagmaStorm = 0
+                    .OppSandTomb = 0
+                    .OppInfestation = 0
                 End With
 
                 .OwnPokemon.Ability.SwitchOut(.OwnPokemon)
@@ -6104,6 +6115,18 @@
                     .OppBideDamage = 0
 
                     .OppRoostUsed = False
+
+                    'Own stuff that depends on opp pokemon presence
+                    .OwnTrappedCounter = 0
+                    .OwnWrap = 0
+                    .OwnWhirlpool = 0
+                    .OwnBind = 0
+                    .OwnClamp = 0
+                    .OwnFireSpin = 0
+                    .OwnMagmaStorm = 0
+                    .OwnSandTomb = 0
+                    .OwnInfestation = 0
+
                 End With
             End With
 
