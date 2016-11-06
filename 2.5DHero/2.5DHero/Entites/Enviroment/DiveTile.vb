@@ -39,7 +39,7 @@
             SoundManager.PlaySound("select")
         ElseIf diveUp = 2 Then
             'Up
-            Dim t As String = "The boat's shadow is casted~upon the ocean floor.*Do you want to~use Dive?%Yes|No%"
+            Dim t As String = "The boat's shadow is cast~upon the ocean floor.*Do you want to~use Dive?%Yes|No%"
 
             Screen.TextBox.Show(t, {Me})
             SoundManager.PlaySound("select")
