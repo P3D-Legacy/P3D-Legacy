@@ -9,7 +9,7 @@ Public Class PokemonForms
                                New Sceptile(), New Blaziken(), New Swampert(), New Gardevoir(), New Aggron(), New Medicham(), New Camerupt(), New Altaria(), New Banette(), New Absol(), New Metagross(), New Kyogre(), New Groudon(), New Deoxys(),
                                New Burmy(), New Shellos(), New Gastrodon(), New Lopunny(), New Garchomp(), New Lucario(), New Abomasnow(), New Gallade(), New Rotom(), New Dialga(), New Arceus(),
                                New Audino(), New Basculin(), New Deerling(), New Sawsbuck(), New Frillish(), New Jellicent(), New Tornadus(), New Thundurus(), New Landorus(), New Kyurem(),
-                               New Aegislash(), New Diancie()})
+                               New Pyroar(), New Aegislash(), New Diancie()})
 
     End Sub
 
@@ -2220,6 +2220,51 @@ Public Class PokemonForms
             End Select
         End Function
 
+    End Class
+
+    Private Class Pyroar
+
+        Inherits PokemonForm
+
+        Public Sub New()
+            MyBase.New(668)
+        End Sub
+
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+            Select Case P.Gender
+                Case Pokemon.Genders.Male
+                    Return New Vector2(27, 20)
+                Case Else
+                    Return New Vector2(27, 31)
+            End Select
+        End Function
+
+        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
+            Select Case P.Gender
+                Case Pokemon.Genders.Male
+                    Return New Size(32, 32)
+                Case Else
+                    Return New Size(32, 32)
+            End Select
+        End Function
+
+        Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
+            Select Case P.Gender
+                Case Pokemon.Genders.Male
+                    Return P.OriginalName & "_male"
+                Case Else
+                    Return P.OriginalName & "_female"
+            End Select
+        End Function
+
+        Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
+            Select Case P.Gender
+                Case Pokemon.Genders.Male
+                    Return "_male"
+                Case Else
+                    Return "_female"
+            End Select
+        End Function
     End Class
 
     Private Class Aegislash
