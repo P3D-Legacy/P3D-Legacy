@@ -110,6 +110,9 @@ Public Class ChatScreen
             If KeyBoardHandler.KeyPressed(Keys.C) = True Then
                 Me.Copy()
             End If
+            If KeyBoardHandler.KeyPressed(Keys.X) = True Then
+                Me.Cut()
+            End If
             If KeyBoardHandler.KeyPressed(Keys.V) = True Then
                 If System.Windows.Forms.Clipboard.ContainsText() = True Then
                     Dim t As String = System.Windows.Forms.Clipboard.GetText().Replace(vbNewLine, " ")
@@ -159,6 +162,23 @@ Public Class ChatScreen
                 System.Windows.Forms.Clipboard.SetText(Me.currentText.Substring(Me.SelectionStart, Me.SelectionLength))
             Catch ex As Exception
                 Logger.Log(Logger.LogTypes.Warning, "ChatScreen.vb: An error occurred while copying text to the clipboard (""" & Me.currentText.Substring(Me.SelectionStart, Me.SelectionLength) & """).")
+            End Try
+        End If
+    End Sub
+
+    Private Sub Cut()
+        If Me.SelectionLength > 0 Then
+            Try
+                Dim DefaultSelection As Integer = Selection
+                System.Windows.Forms.Clipboard.SetText(Me.currentText.Substring(Me.SelectionStart, Me.SelectionLength))
+                currentText = currentText.Remove(SelectionStart, SelectionLength)
+                If Selection = SelectionStart + SelectionLength Then
+                    Selection -= SelectionLength
+                End If
+                SelectionStart = 0
+                SelectionLength = 0
+            Catch ex As Exception
+                Logger.Log(Logger.LogTypes.Warning, "ChatScreen.vb: An error occurred while cutting text to the clipboard (""" & Me.currentText.Substring(Me.SelectionStart, Me.SelectionLength) & """).")
             End Try
         End If
     End Sub
