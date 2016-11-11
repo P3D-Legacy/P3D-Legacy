@@ -19,7 +19,7 @@
     Public Overrides Sub Initialize()
         MyBase.Initialize()
 
-        WaterAnimation = New Animation(net.Pokemon3D.Game.TextureManager.GetTexture("Textures\Routes"), 1, 3, 16, 16, 9, 13, 0)
+        WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Routes"), 1, 3, 16, 16, 9, 13, 0)
 
         CreateWaterTextureTemp()
     End Sub
@@ -31,52 +31,52 @@
             If textureData.Count >= 5 Then
                 Dim r As New Rectangle(CInt(textureData(1)), CInt(textureData(2)), CInt(textureData(3)), CInt(textureData(4)))
                 Dim texturePath As String = textureData(0)
-                Me.waterFallTextureName = texturePath
-                If Waterfall.WaterfallTexturesTemp.ContainsKey(texturePath & "_0") = False Then
-                    Waterfall.WaterfallTexturesTemp.Add(texturePath & "_0", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterfallTexturesTemp.Add(texturePath & "_1", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterfallTexturesTemp.Add(texturePath & "_2", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y, r.Width, r.Height)))
+                Me.waterFallTextureName = AdditionalValue
+                If Waterfall.WaterfallTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
+                    Waterfall.WaterfallTexturesTemp.Add(AdditionalValue & "_0", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterfallTexturesTemp.Add(AdditionalValue & "_1", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterfallTexturesTemp.Add(AdditionalValue & "_2", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y, r.Width, r.Height)))
                 End If
             Else
                 If Waterfall.WaterfallTexturesTemp.ContainsKey("_0") = False Then
-                    Waterfall.WaterfallTexturesTemp.Add("_0", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(0, 192, 16, 16)))
-                    Waterfall.WaterfallTexturesTemp.Add("_1", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(16, 192, 16, 16)))
-                    Waterfall.WaterfallTexturesTemp.Add("_2", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(32, 192, 16, 16)))
+                    Waterfall.WaterfallTexturesTemp.Add("_0", TextureManager.GetTexture("Routes", New Rectangle(0, 192, 16, 16)))
+                    Waterfall.WaterfallTexturesTemp.Add("_1", TextureManager.GetTexture("Routes", New Rectangle(16, 192, 16, 16)))
+                    Waterfall.WaterfallTexturesTemp.Add("_2", TextureManager.GetTexture("Routes", New Rectangle(32, 192, 16, 16)))
                 End If
             End If
 
             If textureData.Count >= 10 Then
                 Dim r As New Rectangle(CInt(textureData(6)), CInt(textureData(7)), CInt(textureData(8)), CInt(textureData(9)))
                 Dim texturePath As String = textureData(5)
-                Me.waterTextureName = texturePath
-                If Waterfall.WaterTexturesTemp.ContainsKey(texturePath & "_0") = False Then
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_0", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_1", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_2", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_3", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 3, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_4", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 4, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_5", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 5, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_6", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 6, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_7", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 7, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_8", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 8, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_9", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 9, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_10", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 10, r.Y, r.Width, r.Height)))
-                    Waterfall.WaterTexturesTemp.Add(texturePath & "_11", net.Pokemon3D.Game.TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 11, r.Y, r.Width, r.Height)))
+                Me.waterTextureName = AdditionalValue
+                If Waterfall.WaterTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_0", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_1", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_2", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_3", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 3, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_4", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 4, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_5", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 5, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_6", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 6, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_7", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 7, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_8", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 8, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_9", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 9, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_10", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 10, r.Y, r.Width, r.Height)))
+                    Waterfall.WaterTexturesTemp.Add(AdditionalValue & "_11", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 11, r.Y, r.Width, r.Height)))
                 End If
             Else
                 If Waterfall.WaterTexturesTemp.ContainsKey("_0") = False Then
-                    Waterfall.WaterTexturesTemp.Add("_0", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(0, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_1", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(20, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_2", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(40, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_3", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(60, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_4", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(80, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_5", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(100, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_6", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(120, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_7", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(140, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_8", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(160, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_9", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(180, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_10", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(200, 220, 20, 20)))
-                    Waterfall.WaterTexturesTemp.Add("_11", net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(220, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_0", TextureManager.GetTexture("Routes", New Rectangle(0, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_1", TextureManager.GetTexture("Routes", New Rectangle(20, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_2", TextureManager.GetTexture("Routes", New Rectangle(40, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_3", TextureManager.GetTexture("Routes", New Rectangle(60, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_4", TextureManager.GetTexture("Routes", New Rectangle(80, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_5", TextureManager.GetTexture("Routes", New Rectangle(100, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_6", TextureManager.GetTexture("Routes", New Rectangle(120, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_7", TextureManager.GetTexture("Routes", New Rectangle(140, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_8", TextureManager.GetTexture("Routes", New Rectangle(160, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_9", TextureManager.GetTexture("Routes", New Rectangle(180, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_10", TextureManager.GetTexture("Routes", New Rectangle(200, 220, 20, 20)))
+                    Waterfall.WaterTexturesTemp.Add("_11", TextureManager.GetTexture("Routes", New Rectangle(220, 220, 20, 20)))
                 End If
             End If
 
