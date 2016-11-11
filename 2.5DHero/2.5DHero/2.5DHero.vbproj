@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AppDesignerFolder>My Project</AppDesignerFolder>
     <RootNamespace>net.Pokemon3D.Game</RootNamespace>
     <AssemblyName>Pokemon</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -63,7 +63,7 @@
     <Import Include="Microsoft.Xna.Framework.Content" />
     <Import Include="Microsoft.Xna.Framework.Media" />
     <Import Include="Microsoft.Xna.Framework.Audio" />
-    <Compile Include="**\*.vb" Exclude="obj\**\*.vb" />
+    <Compile Include="**\*.vb" Exclude="obj\**\*.vb;Properties\**\*.vb" />
     <Content Include="PokemonIcon.ico" />
     <MonoGameContentReference Include="..\2.5DHeroContent\Content.mgcb">
       <Link>Content\Content.mgcb</Link>
