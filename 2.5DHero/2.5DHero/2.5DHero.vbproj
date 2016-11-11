@@ -63,7 +63,7 @@
     <Import Include="Microsoft.Xna.Framework.Content" />
     <Import Include="Microsoft.Xna.Framework.Media" />
     <Import Include="Microsoft.Xna.Framework.Audio" />
-    <Compile Include="**\*.vb" Exclude="obj\**\*.cs" />
+    <Compile Include="**\*.vb" Exclude="obj\**\*.vb" />
     <Content Include="PokemonIcon.ico" />
     <MonoGameContentReference Include="..\2.5DHeroContent\Content.mgcb">
       <Link>Content\Content.mgcb</Link>
