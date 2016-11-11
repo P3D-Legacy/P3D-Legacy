@@ -14,7 +14,11 @@
         If Screen.Level.Surfing = True Then
             If CInt(Me.Position.X) = CInt(Screen.Camera.Position.X) And CInt(Me.Position.Y) = CInt(Screen.Camera.Position.Y) And CInt(Me.Position.Z) = CInt(Screen.Camera.Position.Z) Then
                 If Controls.Accept(True, True, True) = True Then
-                    Me.StartDive()
+                    If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                        If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady Then
+                            Me.StartDive()
+                        End If
+                    End If
                 End If
             End If
         End If
