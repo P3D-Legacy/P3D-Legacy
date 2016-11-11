@@ -27,7 +27,7 @@
                 Dim r As New Rectangle(CInt(textureData(1)), CInt(textureData(2)), CInt(textureData(3)), CInt(textureData(4)))
                 Dim texturePath As String = textureData(0)
                 Me.waterTextureName = AdditionalValue
-                If Water.WaterTexturesTemp.ContainsKey(texturePath & r.ToString() & "_0") = False Then
+                If Water.WaterTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
                     Water.WaterTexturesTemp.Add(AdditionalValue & "_0", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y, r.Width, r.Height)))
                     Water.WaterTexturesTemp.Add(AdditionalValue & "_1", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y, r.Width, r.Height)))
                     Water.WaterTexturesTemp.Add(AdditionalValue & "_2", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y, r.Width, r.Height)))
