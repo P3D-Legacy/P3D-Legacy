@@ -1040,6 +1040,12 @@
             Screen.Level.BattleMapData = ""
         End If
 
+        If TagExists(Tags, "SurfingBattleMap") = True Then
+            Screen.Level.SurfingBattleMapData = CStr(GetTag(Tags, "SurfingBattleMap"))
+        Else
+            Screen.Level.SurfingBattleMapData = ""
+        End If
+
         Screen.Level.World = New World(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
     End Sub
 

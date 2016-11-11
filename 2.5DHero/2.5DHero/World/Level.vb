@@ -514,6 +514,12 @@ Public Class Level
     End Property
 
     ''' <summary>
+    ''' Used to modify the Battle Map.
+    ''' </summary>
+    ''' <remarks>Data: MapName,x,y,z OR Mapname OR empty</remarks>
+    Public Property SurfingBattleMapData As String
+
+    ''' <summary>
     ''' The instance of the World class, handling time, season and weather based operations.
     ''' </summary>
     Public Property World() As World

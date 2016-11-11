@@ -725,6 +725,7 @@
             Dim levelfile As String = SavedOverworld.Level.LevelFile
             Dim cRegion As String = SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0)
             Dim battleMapData() As String = SavedOverworld.Level.BattleMapData.Split(CChar(","))
+            Dim surfingBattleMapData() As String = SavedOverworld.Level.SurfingBattleMapData.Split(CChar(","))
 
             If Me.IsPVPBattle = True Then
                 levelfile = "pvp.dat"
@@ -741,7 +742,7 @@
                     End Select
                 End If
 
-                If System.IO.File.Exists(GameController.GamePath & "\maps\battle\" & levelfile) = False And System.IO.File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
+                If File.Exists(GameController.GamePath & "\maps\battle\" & levelfile) = False And File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
                     Select Case Me.defaultMapType
                         Case 0
                             levelfile = cRegion & "0.dat"
@@ -754,13 +755,27 @@
                 End If
 
                 If SavedOverworld.Level.Surfing = True Then
-                    levelfile = cRegion & "1.dat"
-                    DiveBattle = True
-                    BattleMapOffset = New Vector3(0)
+                    If SavedOverworld.Level.SurfingBattleMapData <> "" Then
+                        Select Case surfingBattleMapData.Length
+                            Case 1
+                                levelfile = surfingBattleMapData(0)
+                            Case 4
+                                levelfile = surfingBattleMapData(0)
+                                BattleMapOffset = New Vector3(CSng(surfingBattleMapData(1).Replace(".", GameController.DecSeparator)), CSng(surfingBattleMapData(2).Replace(".", GameController.DecSeparator)), CSng(surfingBattleMapData(3).Replace(".", GameController.DecSeparator)))
+                            Case Else
+                                levelfile = cRegion & "1.dat"
+                                BattleMapOffset = New Vector3(0)
+                        End Select
+                        DiveBattle = True
+                    Else
+                        levelfile = cRegion & "1.dat"
+                        DiveBattle = True
+                        BattleMapOffset = New Vector3(0)
+                    End If
                 End If
             End If
 
-            If System.IO.File.Exists(GameController.GamePath & "\maps\battle\" & levelfile) = False And System.IO.File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
+            If File.Exists(GameController.GamePath & "\maps\battle\" & levelfile) = False And File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
                 Select Case Me.defaultMapType
                     Case 0
                         levelfile = "battle0.dat"
@@ -1119,22 +1134,22 @@ nextIndex:
 
         Public Sub SendInNewTrainerPokemon(ByVal index As Integer)
             Dim i As Integer = index
-            
+
             If i = -1 Then
-                If IsPvPBattle Then
+                If IsPVPBattle Then
                     i = 0
                     While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse OppPokemonIndex = i OrElse Trainer.Pokemons(i).HP <= 0
                         i += 1
                     End While
-            
+
                 Else
                     i = Core.Random.Next(0, Trainer.Pokemons.count)
                     While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse OppPokemonIndex = i OrElse Trainer.Pokemons(i).HP <= 0
                         i = Core.Random.Next(0, Trainer.Pokemons.count)
                     End While
                 End If
-            End If    
-            
+            End If
+
 
             OppPokemonIndex = i
             OppPokemon = Trainer.Pokemons(i)
