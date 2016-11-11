@@ -583,6 +583,25 @@
                     If Core.Player.Pokemons.Count - 1 >= PokemonIndex And Core.Player.Pokemons.Count < 6 Then
                         Core.Player.Pokemons.Add(Core.Player.Pokemons(PokemonIndex))
                     End If
+                Case "sendtostorage"
+                    ' @Pokemon.SendToStorage(PokeIndex, [BoxIndex])
+                    Dim Data() As String = argument.Split(CChar(","))
+
+                    If Data.Length = 1 Then
+                        Dim PokemonIndex As Integer = int(Data(0))
+
+                        If Core.Player.Pokemons.Count - 1 >= PokemonIndex Then
+                            StorageSystemScreen.DepositPokemon(Core.Player.Pokemons(PokemonIndex))
+                            Core.Player.Pokemons.RemoveAt(PokemonIndex)
+                        End If
+                    ElseIf Data.Length = 2 Then
+                        Dim PokemonIndex As Integer = int(Data(0))
+
+                        If Core.Player.Pokemons.Count - 1 >= PokemonIndex Then
+                            StorageSystemScreen.DepositPokemon(Core.Player.Pokemons(PokemonIndex), int(Data(1)))
+                            Core.Player.Pokemons.RemoveAt(PokemonIndex)
+                        End If
+                    End If
             End Select
 
             IsReady = True
