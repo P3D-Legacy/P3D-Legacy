@@ -369,6 +369,7 @@
             End If
             'AI move here:
             If BattleScreen.IsTrainerBattle AndAlso Not BattleScreen.IsRemoteBattle Then
+                AI_MegaEvolve(BattleScreen)
                 Return TrainerAI.GetAIMove(BattleScreen, OwnStep)
             Else
                 Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = BattleScreen.OppPokemon.Attacks(Core.Random.Next(0, BattleScreen.OppPokemon.Attacks.Count))}
@@ -415,6 +416,25 @@
 
         Public SelectedMoveOwn As Boolean = True
         Public SelectedMoveOpp As Boolean = True
+
+        Sub AI_MegaEvolve(ByVal BattleScreen As BattleScreen)
+            For i = 0 To BattleScreen.Trainer.Pokemons.Count - 1
+                Dim _str As String = BattleScreen.Trainer.Pokemons(i).AdditionalData
+                Select Case _str
+                    Case "mega", "mega_x", "mega_y"
+                        Exit Sub
+                    Case Else
+                        'do nothing
+                End Select
+            Next
+            Dim p As Pokemon = BattleScreen.OppPokemon
+            If p.Item IsNot Nothing AndAlso p.Item.IsMegaStone = True Then
+                Dim megaStone = CType(p.Item, Items.MegaStone)
+                If p.Number = megaStone.MegaPokemonNumber Then
+                    BattleScreen.IsMegaEvolvingOpp = True
+                End If
+            End If
+        End Sub
 
         'Does the MegaEvolution
         Sub DoMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
