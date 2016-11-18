@@ -932,6 +932,105 @@
         End Sub
 
 #End Region
+        Public Function IsChargingTurn(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal moveUsed As Attack) As Boolean
+            Dim p As Pokemon
+            Dim fly As Integer
+            Dim bounce As Integer
+            Dim dig As Integer
+            Dim dive As Integer
+            Dim skyDrop As Integer
+            Dim shadowForce As Integer
+            Dim skullBash As Integer
+            Dim skyAttack As Integer
+            Dim solarBeam As Integer
+            Dim razorWind As Integer
+            Dim bide As Integer
+
+            If own Then
+                p = BattleScreen.OwnPokemon
+            Else
+                p = BattleScreen.OppPokemon
+            End If
+            With BattleScreen.FieldEffects
+                If own Then
+                    fly = .OwnFlyCounter
+                    bounce = .OwnBounceCounter
+                    dig = .OwnDigCounter
+                    dive = .OwnDiveCounter
+                    skyDrop = .OwnSkyDropCounter
+                    shadowForce = .OwnShadowForceCounter
+                    skullBash = .OwnSkullBashCounter
+                    skyAttack = .OwnSkyAttackCounter
+                    solarBeam = .OwnSolarBeam
+                    razorWind = .OwnRazorWindCounter
+                    bide = .OwnBideCounter
+                Else
+                    fly = .OppFlyCounter
+                    bounce = .OppBounceCounter
+                    dig = .OppDigCounter
+                    dive = .OppDiveCounter
+                    skyDrop = .OppSkyDropCounter
+                    shadowForce = .OppShadowForceCounter
+                    skullBash = .OppSkullBashCounter
+                    skyAttack = .OppSkyAttackCounter
+                    solarBeam = .OppSolarBeam
+                    razorWind = .OppRazorWindCounter
+                    bide = .OppBideCounter
+                End If
+            End With
+
+            If p.Item IsNot Nothing AndAlso p.Item.Name.ToLower() = "power herb" AndAlso BattleScreen.CanUseItems Then
+                Return False
+            End If
+            Select Case moveUsed.Name.ToLower
+                Case "fly"
+                    If fly = 0 Then
+                        Return True
+                    End If
+                Case "bounce"
+                    If bounce = 0 Then
+                        Return True
+                    End If
+                Case "dig"
+                    If dig = 0 Then
+                        Return True
+                    End If
+                Case "dive"
+                    If dive = 0 Then
+                        Return True
+                    End If
+                Case "sky drop"
+                    If skyDrop = 0 Then
+                        Return True
+                    End If
+                Case "shadow force"
+                    If shadowForce = 0 Then
+                        Return True
+                    End If
+                Case "skull bash"
+                    If skullBash = 0 Then
+                        Return True
+                    End If
+                Case "sky attack"
+                    If skyAttack = 0 Then
+                        Return True
+                    End If
+                Case "solar beam"
+                    If solarBeam = 0 And BattleScreen.FieldEffects.Weather <> BattleWeather.WeatherTypes.Sunny Then
+                        Return True
+                    End If
+                Case "razor wind"
+                    If razorWind = 0 Then
+                        Return True
+                    End If
+                Case "bide"
+                    If bide = 0 Or bide = 1 Then
+                        Return True
+                    End If
+                Case Else
+            End Select
+            Return False
+        End Function
 
         Public Sub DoAttackRound(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal moveUsed As Attack)
             Dim p As Pokemon = BattleScreen.OwnPokemon
@@ -1352,6 +1451,9 @@
                 End If
             End If
 
+            If IsChargingTurn(BattleScreen, own, moveUsed) Then
+                DoesNotMiss = True
+            End If
 
             If DoesNotMiss = True Then
                 Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(own, moveUsed, BattleScreen)
