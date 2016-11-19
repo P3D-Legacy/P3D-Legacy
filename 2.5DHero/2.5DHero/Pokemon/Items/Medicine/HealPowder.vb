@@ -5,7 +5,7 @@ Namespace Items.Medicine
 
         Inherits Item
 
-        Public Overrides ReadOnly Property Description As String = "A very bitter medicine powder. When consumed, it heals all of a Pokémon's status conditions."
+        Public Overrides ReadOnly Property Description As String = "A very bitter medicinal powder. It can be used once to heal all the status conditions of a Pokémon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 450
 
         Public Sub New()
