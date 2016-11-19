@@ -5,7 +5,7 @@ Namespace Abilities
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(188, "Parental Bond", "Parent and child each attacks.")
+            MyBase.New(185, "Parental Bond", "Parent and child each attacks.")
         End Sub
 
     End Class
