@@ -1,6 +1,6 @@
 Namespace Abilities
 
-Public Class Aerilate
+        Public Class Aerilate
 
         Inherits Ability
 
