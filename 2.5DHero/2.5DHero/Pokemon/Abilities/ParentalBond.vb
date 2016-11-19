@@ -1,6 +1,6 @@
 Namespace Abilities
 
-    Public Class AuraBreak
+    Public Class ParentalBond
 
         Inherits Ability
 
