@@ -22,9 +22,9 @@ Machines|174,92,244,237,241,173,59,63,196,182,240,202,203,218,76,216,247,189,104
 BaseHP|70
 BaseAttack|60
 BaseDefense|62
-BaseSpAttack|80
+BaseSpAttack|100
 BaseSpDefense|82
-BaseSpeed|60
+BaseSpeed|80
 FPHP|0
 FPAttack|0
 FPDefense|0
