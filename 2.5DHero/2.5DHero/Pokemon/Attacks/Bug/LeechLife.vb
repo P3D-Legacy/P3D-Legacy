@@ -8,10 +8,10 @@
             '#Definitions
             Me.Type = New Element(Element.Types.Bug)
             Me.ID = 141
-            Me.OriginalPP = 15
-            Me.CurrentPP = 15
-            Me.MaxPP = 15
-            Me.Power = 20
+            Me.OriginalPP = 10
+            Me.CurrentPP = 10
+            Me.MaxPP = 10
+            Me.Power = 80
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
