@@ -12,7 +12,7 @@
             Me.CurrentPP = 20
             Me.MaxPP = 20
             Me.Power = 0
-            Me.Accuracy = 100
+            Me.Accuracy = 90
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Thunder Wave"
