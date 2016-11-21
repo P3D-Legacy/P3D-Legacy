@@ -15,6 +15,7 @@ Public Class EvolutionCondition
         DayTime
         InParty
         InPartyType
+        Weather
     End Enum
 
     Public Structure Condition
@@ -63,6 +64,8 @@ Public Class EvolutionCondition
                 c.ConditionType = ConditionTypes.InParty
             Case "inpartytype"
                 c.ConditionType = ConditionTypes.InPartyType
+            Case "weather"
+                c.ConditionType = ConditionTypes.Weather
         End Select
 
         Select Case trigger.ToLower()
@@ -207,6 +210,10 @@ Public Class EvolutionCondition
                                         canEvolve = False
                                     End If
                                 End If
+                            End If
+                        Case ConditionTypes.Weather
+                            If World.GetCurrentRegionWeather().ToString.ToLower <> c.Argument.ToLower Then
+                                canEvolve = False
                             End If
                     End Select
                 Next

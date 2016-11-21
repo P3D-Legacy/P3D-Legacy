@@ -48,4 +48,5 @@ Move|32,34
 Move|38,330
 Move|47,406
 TradeValue|60
-EvolutionCondition|706,Level,50,Level
+EvolutionCondition|706,level,50,level
+EvolutionCondition|706,weather,rain,level
