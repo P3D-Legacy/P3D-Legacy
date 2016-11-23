@@ -2266,7 +2266,7 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 Then
+            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the burn."))
                 Return False
@@ -2362,7 +2362,7 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 Then
+            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the freeze effect."))
                 Return False
@@ -2474,7 +2474,7 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 Then
+            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the paralysis."))
                 Return False
@@ -2577,7 +2577,7 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 Then
+            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the sleep effect."))
                 Return False
@@ -2699,7 +2699,7 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 Then
+            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the poison."))
                 Return False
@@ -2806,8 +2806,15 @@
             End If
 
             Dim confusionTurns As Integer = Core.Random.Next(1, 5)
-
-            If p.Ability.Name.ToLower() = "own tempo" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+            Dim substitute As Integer = BattleScreen.FieldEffects.OwnSubstitute
+            If own = False Then
+                substitute = BattleScreen.FieldEffects.OppSubstitute
+            End If
+            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
+                Me.ChangeCameraAngel(1, own, BattleScreen)
+                BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the confusion."))
+                Return False
+            ElseIf p.Ability.Name.ToLower() = "own tempo" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("Own Tempo prevented the confusion."))
                 Return False
@@ -2884,6 +2891,16 @@
                         Return False
                     End If
                 End If
+            End If
+
+            Dim substitute As Integer = BattleScreen.FieldEffects.OwnSubstitute
+            If own = False Then
+                substitute = BattleScreen.FieldEffects.OppSubstitute
+            End If
+            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
+                Me.ChangeCameraAngel(1, own, BattleScreen)
+                BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the stat change."))
+                Return False
             End If
 
             If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
@@ -3091,6 +3108,16 @@
                         Return False
                     End If
                 End If
+            End If
+
+            Dim substitute As Integer = BattleScreen.FieldEffects.OwnSubstitute
+            If own = False Then
+                substitute = BattleScreen.FieldEffects.OppSubstitute
+            End If
+            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
+                Me.ChangeCameraAngel(1, own, BattleScreen)
+                BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the stat change."))
+                Return False
             End If
 
             If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
@@ -3348,6 +3375,15 @@
             If p.Ability.Name.ToLower() = "oblivious" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("Oblivious prevented the infatuation."))
+                Return False
+            End If
+            Dim substitute As Integer = BattleScreen.FieldEffects.OwnSubstitute
+            If own = False Then
+                substitute = BattleScreen.FieldEffects.OppSubstitute
+            End If
+            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
+                Me.ChangeCameraAngel(1, own, BattleScreen)
+                BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the infatuation."))
                 Return False
             Else
                 Me.ChangeCameraAngel(1, own, BattleScreen)
