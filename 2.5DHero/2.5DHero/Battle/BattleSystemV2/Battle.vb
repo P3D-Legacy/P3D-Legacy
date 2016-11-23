@@ -1033,6 +1033,8 @@
         End Function
 
         Public Sub DoAttackRound(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal moveUsed As Attack)
+            'p: the attacking pokemon
+            'op: the target pokemon
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
 
@@ -1226,10 +1228,10 @@
             End If
 
             If op.HP > 0 And op.Status <> Pokemon.StatusProblems.Fainted Then
-                If Not op.Item Is Nothing Then
-                    If op.Item.Name.ToLower() = "king's rock" Or op.Item.Name.ToLower() = "razor fang" And BattleScreen.FieldEffects.CanUseItem(Not own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not own, BattleScreen) = True Then
+                If Not p.Item Is Nothing Then
+                    If p.Item.Name.ToLower() = "king's rock" Or p.Item.Name.ToLower() = "razor fang" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         If Core.Random.Next(0, 100) < 10 Then
-                            p.AddVolatileStatus(Pokemon.VolatileStatus.Flinch)
+                            op.AddVolatileStatus(Pokemon.VolatileStatus.Flinch)
                         End If
                     End If
                 End If
