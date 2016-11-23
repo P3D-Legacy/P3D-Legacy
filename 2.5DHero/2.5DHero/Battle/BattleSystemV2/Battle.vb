@@ -2645,10 +2645,6 @@
                                                 BattleScreen.BattleQuery.Add(New TextQueryObject(message))
                                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " fell asleep!"))
                                         End Select
-                                        If p.Ability.Name.ToLower() = "synchronize" And from <> own Then
-                                            Me.InflictSleep(Not own, Not own, BattleScreen, SleepTurns, "Synchronize passed over the sleep.", "synchronize")
-                                        End If
-
                                         If Not p.Item Is Nothing Then
                                             If p.Item.Name.ToLower() = "chesto" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:chesto") = True Then
