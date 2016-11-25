@@ -1,4 +1,4 @@
-Imports System.Windows.Forms
+ï»¿Imports System.Windows.Forms
 
 ''' <summary>
 ''' Controls the game's main workflow.
@@ -25,7 +25,7 @@ Public Class GameController
     ''' <summary>
     ''' The name of the game.
     ''' </summary>
-    Public Const GAMENAME As String = "Pokémon 3D"
+    Public Const GAMENAME As String = "PokÃ©mon 3D"
 
     ''' <summary>
     ''' The name of the developer that appears on the title screen.
@@ -133,7 +133,7 @@ Public Class GameController
     Private Shared GameHacked As Boolean = False 'Temp value that stores if a hacking file was detected at game start.
 
     ''' <summary>
-    ''' If the player hacked any instance of Pokémon3D at some point.
+    ''' If the player hacked any instance of PokÃ©mon3D at some point.
     ''' </summary>
     Public Shared ReadOnly Property Hacker() As Boolean
         Get
