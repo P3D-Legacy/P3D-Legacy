@@ -76,7 +76,7 @@
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 If Screen.Camera.Name = "Overworld" Then
                     Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
-                    Me.Position = New Vector3(c.Position.X + 0.01F, c.Position.Y - 0.1F, c.Position.Z + 0.01F)
+                    Me.Position = New Vector3(c.Position.X, c.Position.Y - 0.1F, c.Position.Z)
                 End If
             End If
             If Me.Rotation.Y <> Screen.Camera.Yaw Then
