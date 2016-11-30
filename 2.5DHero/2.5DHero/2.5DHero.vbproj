@@ -40,6 +40,8 @@
     <DebugType>none</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Scripts\underwatercave\rocks\Clipboard Text %2823-10-16, 22.00.44%29.txt" />
+    <None Include="Scripts\kin\nuggetman.dat" />
     <Reference Include="OpenTK">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\DesktopGL\OpenTK.dll</HintPath>
     </Reference>
@@ -68,6 +70,30 @@
     <MonoGameContentReference Include="..\2.5DHeroContent\Content.mgcb">
       <Link>Content\Content.mgcb</Link>
     </MonoGameContentReference>
+    <None Include="maps\battle\underwatercave\main.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\underwatercave\manaphy.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\underwatercave\surface.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\underwatercave\underwater.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\underwatercave\volcano.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\poke\underwatercave\main.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\poke\underwatercave\surface.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\poke\underwatercave\underwater.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="My Project\app.manifest" />
     <None Include="app.config" />
     <None Include="Content\**\*.dat">

@@ -240,22 +240,22 @@
             Dim oppModel As String = GetModelName(False)
 
             If ownModel = "" Then
-                OwnPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(12, 0, 12.5F) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OwnPokemon), 3, WildPokemon.GetDisplayName(), 0, True, "Still", New List(Of Rectangle)}), NPC)
-                OwnPokemonModel = CType(Entity.GetNewEntity("ModelEntity", New Vector3(12, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(MathHelper.Pi * 0.5F, MathHelper.Pi * 0.5F, 0), New Vector3(0.07F), BaseModel.BlockModel, 0, "Models\Bulbasaur\Normal", False, New Vector3(1), 0, "", "", New Vector3(0), Nothing), ModelEntity)
+                OwnPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(12, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OwnPokemon), 3, WildPokemon.GetDisplayName(), 0, True, "Still", New List(Of Rectangle)}), NPC)
+                OwnPokemonModel = CType(Entity.GetNewEntity("ModelEntity", New Vector3(12, -0.5F, 13) + BattleMapOffset, {}, {}, False, New Vector3(MathHelper.Pi * 0.5F, MathHelper.Pi * 0.5F, 0), New Vector3(0.07F), BaseModel.BlockModel, 0, "Models\Bulbasaur\Normal", False, New Vector3(1), 0, "", "", New Vector3(0), Nothing), ModelEntity)
             Else
-                OwnPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(12, 0, 12.5F) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", False, New Vector3(1), 0, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OwnPokemon), 3, WildPokemon.GetDisplayName(), 0, True, "Still", New List(Of Rectangle)}), NPC)
-                OwnPokemonModel = CType(Entity.GetNewEntity("ModelEntity", New Vector3(12, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(MathHelper.Pi * 0.5F, MathHelper.Pi * 0.5F, 0), New Vector3(0.07F), BaseModel.BlockModel, 1, ownModel, True, New Vector3(1), 0, "", "", New Vector3(0), Nothing), ModelEntity)
+                OwnPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(12, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", False, New Vector3(1), 0, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OwnPokemon), 3, WildPokemon.GetDisplayName(), 0, True, "Still", New List(Of Rectangle)}), NPC)
+                OwnPokemonModel = CType(Entity.GetNewEntity("ModelEntity", New Vector3(12, -0.5F, 13) + BattleMapOffset, {}, {}, False, New Vector3(MathHelper.Pi * 0.5F, MathHelper.Pi * 0.5F, 0), New Vector3(0.07F), BaseModel.BlockModel, 1, ownModel, True, New Vector3(1), 0, "", "", New Vector3(0), Nothing), ModelEntity)
             End If
 
             Screen.Level.Entities.Add(OwnPokemonNPC)
             Screen.Level.Entities.Add(OwnPokemonModel)
 
             If oppModel = "" Then
-                OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, 0, 12.5F) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}), NPC)
-                OppPokemonModel = CType(Entity.GetNewEntity("ModelEntity", New Vector3(15, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(MathHelper.Pi * 0.5F, MathHelper.Pi * 1.5F, 0), New Vector3(0.07F), BaseModel.BlockModel, 0, "Models\Bulbasaur\Normal", False, New Vector3(1), 0, "", "", New Vector3(0), Nothing), ModelEntity)
+                OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}), NPC)
+                OppPokemonModel = CType(Entity.GetNewEntity("ModelEntity", New Vector3(15, -0.5F, 13) + BattleMapOffset, {}, {}, False, New Vector3(MathHelper.Pi * 0.5F, MathHelper.Pi * 1.5F, 0), New Vector3(0.07F), BaseModel.BlockModel, 0, "Models\Bulbasaur\Normal", False, New Vector3(1), 0, "", "", New Vector3(0), Nothing), ModelEntity)
             Else
-                OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, 0, 12.5F) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", False, New Vector3(1), 0, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}), NPC)
-                OppPokemonModel = CType(Entity.GetNewEntity("ModelEntity", New Vector3(15, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(MathHelper.Pi * 0.5F, MathHelper.Pi * 1.5F, 0), New Vector3(0.07F), BaseModel.BlockModel, 1, oppModel, True, New Vector3(1), 0, "", "", New Vector3(0), Nothing), ModelEntity)
+                OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", False, New Vector3(1), 0, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}), NPC)
+                OppPokemonModel = CType(Entity.GetNewEntity("ModelEntity", New Vector3(15, -0.5F, 13) + BattleMapOffset, {}, {}, False, New Vector3(MathHelper.Pi * 0.5F, MathHelper.Pi * 1.5F, 0), New Vector3(0.07F), BaseModel.BlockModel, 1, oppModel, True, New Vector3(1), 0, "", "", New Vector3(0), Nothing), ModelEntity)
             End If
 
             Screen.Level.Entities.Add(OppPokemonNPC)
