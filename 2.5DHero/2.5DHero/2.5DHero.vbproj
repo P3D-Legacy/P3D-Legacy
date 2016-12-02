@@ -42,6 +42,9 @@
   <ItemGroup>
     <Content Include="Scripts\underwatercave\rocks\Clipboard Text %2823-10-16, 22.00.44%29.txt" />
     <None Include="Scripts\kin\nuggetman.dat" />
+    <None Include="Scripts\lavender\fuji.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Reference Include="OpenTK">
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\DesktopGL\OpenTK.dll</HintPath>
     </Reference>
