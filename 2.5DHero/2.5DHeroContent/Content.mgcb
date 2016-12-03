@@ -44076,18 +44076,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/NPC/Slowpoke.png
 
-#begin Content/Textures/NPC/Sparkles.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Content/Textures/NPC/Sparkles.png
-
 #begin Content/Textures/NPC/Substitute.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -55247,9 +55235,6 @@
 
 #begin Scripts/underground/switchright.dat
 /copy:Scripts/underground/switchright.dat
-
-#begin Scripts/underwatercave/Cameruptite.dat
-/copy:Scripts/underwatercave/Cameruptite.dat
 
 #begin Scripts/underwatercave/manaphy.dat
 /copy:Scripts/underwatercave/manaphy.dat
