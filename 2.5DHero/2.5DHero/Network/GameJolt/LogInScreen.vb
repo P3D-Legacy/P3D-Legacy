@@ -330,7 +330,7 @@ Namespace GameJolt
         Private Sub VerifyVersion(ByVal result As String)
             Dim list As List(Of GameJolt.API.JoltValue) = GameJolt.API.HandleData(result)
             If CBool(list(0).Value) = True Then
-                If list(1).Value = GameController.GAMEVERSION Or GameController.IS_DEBUG_ACTIVE = True Then
+                If Version.Parse(list(1).Value) <= Version.Parse(GameController.GAMEVERSION) Or GameController.IS_DEBUG_ACTIVE = True Then
                     Dim APICall As New APICall(AddressOf VerifyResult)
                     APICall.VerifyUser(UserName.Text, Token.Text)
                 Else
