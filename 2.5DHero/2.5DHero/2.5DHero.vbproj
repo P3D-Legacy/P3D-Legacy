@@ -183,8 +183,6 @@
     <Compile Include="Network\DownloadTexture2D.vb" />
     <Compile Include="Network\GameJolt\API.vb" />
     <Compile Include="Network\GameJolt\APICall.vb" />
-    <Compile Include="Network\GameJolt\ChannelClient.vb" />
-    <Compile Include="Network\GameJolt\ChannelManager.vb" />
     <Compile Include="Network\GameJolt\GameJoltStatistics.vb" />
     <Compile Include="Network\GameJolt\GTS\GTSInboxScreen.vb" />
     <Compile Include="Network\GameJolt\GTS\GTSMainScreen.vb" />
