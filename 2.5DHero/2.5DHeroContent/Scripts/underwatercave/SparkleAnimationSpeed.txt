@@ -1,0 +1,5 @@
+version=2
+	:if:<Npc.exists(0)>=true
+		@npc.setspeed(0,0.5)
+	:endif
+:end
