@@ -313,7 +313,7 @@ Module Extensions
     <Extension()>
     Public Function SplitAtNewline(ByVal s As String) As String()
         If s.Contains("§") = False Then
-            Return s.Replace(vbNewLine, "§").Split(CChar("§"))
+            Return s.Replace(vbNewLine, "§").Replace(vbLf, "§").Split(CChar("§"))
         Else
             Dim Data As New List(Of String)
 
@@ -323,7 +323,7 @@ Module Extensions
 
             Dim i As Integer = 0
             While s <> "" And i < s.Length
-                If s.Substring(i).StartsWith(vbNewLine) = False Then
+                If s.Substring(i).StartsWith(vbNewLine) = False Or s.Substring(i).StartsWith(vbLf) = False Then
                     i += 1
                 Else
                     Data.Add(s.Substring(0, i))
