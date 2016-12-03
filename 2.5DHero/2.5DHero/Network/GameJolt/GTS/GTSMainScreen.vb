@@ -71,7 +71,7 @@
 
         Private Sub GetVersionData()
             Dim w As New System.Net.WebClient
-            Dim data As String = w.DownloadString("") ' CLASSIFIED
+            Dim data As String = w.DownloadString("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/GTSVersion.dat")
             Dim lines() As String = data.SplitAtNewline()
             GTSVersion = lines(0)
 

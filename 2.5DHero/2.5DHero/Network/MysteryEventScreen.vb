@@ -77,7 +77,7 @@
 
         Try
             Dim w As New System.Net.WebClient
-            Dim data() As String = w.DownloadString("").SplitAtNewline() ' CLASSIFIED
+            Dim data() As String = w.DownloadString("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/Events.txt").SplitAtNewline()
 
             For Each line As String In data
                 If line.Contains("|") = True Then

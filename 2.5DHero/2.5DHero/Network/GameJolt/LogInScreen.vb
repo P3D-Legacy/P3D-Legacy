@@ -436,8 +436,8 @@ Namespace GameJolt
         Private Sub DownloadBanList()
             Try
                 Dim w As New System.Net.WebClient
-                BanList = w.DownloadString("") ' CLASSIFIED
-                BanReasons = w.DownloadString("") ' CLASSIFIED
+                BanList = w.DownloadString("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/banlist.dat")
+                BanReasons = w.DownloadString("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/banreasons.dat")
                 Logger.Log(Logger.LogTypes.Message, "Retrieved ban list data.")
                 Me.DownloadedBanList = True
             Catch ex As Exception
