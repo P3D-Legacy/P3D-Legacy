@@ -55491,3 +55491,13 @@
 /processorParam:TextureFormat=Color
 /build:Content/GUI/GamePad/xboxControllerStart.tga
 
+#begin Scripts/underwatercave/Cameruptite.dat
+/importer:
+/processor:
+/build:Scripts/underwatercave/Cameruptite.dat
+
+#begin Scripts/underwatercave/SparkleAnimationSpeed.txt
+/importer:
+/processor:
+/build:Scripts/underwatercave/SparkleAnimationSpeed.txt
+
