@@ -153,6 +153,10 @@
         End If
     End Sub
 
+    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
+        Return MyBase.CalculateCameraDistance(CPosition) - 0.2f
+    End Function
+
     Public Overrides Sub UpdateEntity()
         If Not WaterAnimation Is Nothing Then
             WaterAnimation.Update(0.01)

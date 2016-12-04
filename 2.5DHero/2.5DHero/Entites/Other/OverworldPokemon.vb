@@ -98,7 +98,7 @@ Public Class OverworldPokemon
     End Sub
 
     Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
-        Return MyBase.CalculateCameraDistance(CPosition) + 0.2f
+        Return MyBase.CalculateCameraDistance(CPosition) - 0.2f
     End Function
 
     Public Overrides Sub UpdateEntity()
@@ -114,7 +114,7 @@ Public Class OverworldPokemon
     Public Overrides Sub Render()
         If Me.IsVisible() = True Then
             Dim state = GraphicsDevice.DepthStencilState
-            GraphicsDevice.DepthStencilState = DepthStencilState.None
+            GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
             Draw(Me.Model, {Me.Textures(0)}, False)
             GraphicsDevice.DepthStencilState = state
         End If
