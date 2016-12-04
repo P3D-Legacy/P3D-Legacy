@@ -448,6 +448,10 @@
         MyBase.Update()
     End Sub
 
+    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
+        Return MyBase.CalculateCameraDistance(CPosition) + 0.2f
+    End Function
+
     Public Overrides Sub UpdateEntity()
         If Me.Rotation.Y <> Screen.Camera.Yaw Then
             Me.Rotation.Y = Screen.Camera.Yaw
@@ -457,7 +461,10 @@
     End Sub
 
     Public Overrides Sub Render()
-        Me.Draw(Me.Model, Textures, True)
+        Dim state = GraphicsDevice.DepthStencilState
+        GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
+        Draw(Me.Model, Me.Textures, True)
+        GraphicsDevice.DepthStencilState = state
     End Sub
 
 #Region "Movement and Camera"

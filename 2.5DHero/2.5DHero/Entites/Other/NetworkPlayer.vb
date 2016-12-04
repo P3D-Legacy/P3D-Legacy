@@ -200,6 +200,10 @@
         End If
     End Sub
 
+    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
+        Return MyBase.CalculateCameraDistance(CPosition) + 0.2f
+    End Function
+
     Public Overrides Sub UpdateEntity()
         If Me.Rotation.Y <> Screen.Camera.Yaw Then
             Me.Rotation.Y = Screen.Camera.Yaw
@@ -240,7 +244,10 @@
                 Me.Draw(Me.Model, Textures, False)
                 If Core.GameOptions.ShowGUI = True Then
                     If Me.NameTexture IsNot Nothing Then
-                        Me.Draw(BaseModel.BillModel, {Me.NameTexture}, False)
+                        Dim state = GraphicsDevice.DepthStencilState
+                        GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
+                        Draw(BaseModel.BillModel, {Me.NameTexture}, False)
+                        GraphicsDevice.DepthStencilState = state
                     End If
                     If Me.BusyType <> "0" Then
                         RenderBubble()

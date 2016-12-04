@@ -31,6 +31,10 @@
         Me.DropUpdateUnlessDrawn = False
     End Sub
 
+    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
+        Return MyBase.CalculateCameraDistance(CPosition) + 0.2f
+    End Function
+
     Public Overrides Sub UpdateEntity()
         If Me.Rotation.Y <> Screen.Camera.Yaw Then
             Me.Rotation.Y = Screen.Camera.Yaw
@@ -66,7 +70,10 @@
                     If IsCorrectScreen() = True Then
                         If Me.PokemonTexture <> "" Then
                             If Not Me.Textures Is Nothing Then
-                                Me.Draw(Me.Model, {Me.Textures(0)}, False)
+                                Dim state = GraphicsDevice.DepthStencilState
+                                GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
+                                Draw(Me.Model, {Me.Textures(0)}, False)
+                                GraphicsDevice.DepthStencilState = state
                             End If
                         End If
                     End If
