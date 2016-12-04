@@ -363,25 +363,27 @@
         Dim CPosition As Vector3 = Screen.Camera.Position
         Dim ActionScriptActive As Boolean = False
 
-        If Not Core.CurrentScreen Is Nothing Then
-            If Screen.Camera.Name.ToLower() = "overworld" Then
-                CPosition = CType(Screen.Camera, OverworldCamera).CPosition
+        SyncLock Screen.Camera
+            If Not Core.CurrentScreen Is Nothing Then
+                If Screen.Camera.Name.ToLower() = "overworld" Then
+                    CPosition = CType(Screen.Camera, OverworldCamera).CPosition
+                End If
+                If Screen.Camera.Name.ToLower() = "battlev2" Then
+                    CPosition = CType(Screen.Camera, BattleSystem.BattleCamera).CPosition
+                End If
+                If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                    ActionScriptActive = Not CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
+                End If
             End If
-            If Screen.Camera.Name.ToLower() = "battlev2" Then
-                CPosition = CType(Screen.Camera, BattleSystem.BattleCamera).CPosition
-            End If
-            If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                ActionScriptActive = Not CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
-            End If
-        End If
+        End SyncLock
 
 
         CameraDistance = CalculateCameraDistance(CPosition)
         
-
         If Me.DropUpdateUnlessDrawn = True And Me.DrawnLastFrame = False And Me.Visible = True And ActionScriptActive = False Then
             Exit Sub
         End If
+        
 
         If Me.Moved > 0.0F And Me.CanMove = True Then
             Me.Moved -= Me.Speed
