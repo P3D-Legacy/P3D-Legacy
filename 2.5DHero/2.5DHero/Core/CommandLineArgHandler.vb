@@ -1,11 +1,19 @@
 ﻿Module CommandLineArgHandler
 
     Private _forceGraphics As Boolean = False
+    Private _nosplash As Boolean = False
 
     Public Sub Initialize(ByVal args() As String)
         If args.Length > 0 Then
-            If args(0) = "-forcegraphics" Then
+            If args.Any(Function(arg As String)
+					 Return arg = "-forcegraphics"
+				     End Function) Then
                 _forceGraphics = True
+            End If
+            If args.Any(Function(arg As String)
+					 Return arg = "-nosplash"
+				     End Function) Then
+                _nosplash = True
             End If
         End If
 
@@ -25,6 +33,12 @@
     Public ReadOnly Property ForceGraphics() As Boolean
         Get
             Return _forceGraphics
+        End Get
+    End Property
+
+        Public ReadOnly Property NoSplash() As Boolean
+        Get
+            Return _nosplash
         End Get
     End Property
 
