@@ -1,4 +1,6 @@
-﻿''' <summary>
+﻿Imports System.Threading
+
+''' <summary>
 ''' The screen to display the default Overworld gameplay.
 ''' </summary>
 Public Class OverworldScreen
@@ -380,6 +382,15 @@ Public Class OverworldScreen
 
         'Set to correct music:
         If TrainerEncountered = False Then
+            Dim x = 0
+            While (x < 100 And String.IsNullOrEmpty(Level.MusicLoop))
+                Thread.Sleep(20)
+                x = x + 1
+            End While
+            If String.IsNullOrEmpty(Level.MusicLoop)
+                Return
+            End If
+
             Dim theme As String = Level.MusicLoop
             If Screen.Level.Surfing = True Then
                 theme = "surf"
