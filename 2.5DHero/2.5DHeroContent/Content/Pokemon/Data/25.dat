@@ -1,4 +1,4 @@
-﻿Name|Pikachu
+Name|Pikachu
 Number|25
 ExperienceType|1
 BaseExperience|105
@@ -52,6 +52,8 @@ Move|42,435
 Move|45,113
 Move|50,87
 EvolutionCondition|26,item,23,item
+EvolutionCondition|26_alolan,item,23,item
+EvolutionCondition|26_alolan,weather,sunny,item
 Item|1,163
 Item|50,2006
 TradeValue|20
