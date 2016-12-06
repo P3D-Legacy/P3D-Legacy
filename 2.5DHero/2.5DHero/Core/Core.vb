@@ -73,7 +73,13 @@
 
         GraphicsDevice.SamplerStates(0) = sampler
         KeyboardInput = New KeyboardInput()
-        SetScreen(New SplashScreen(GameInstance))
+
+        If CommandLineArgHandler.NoSplash = True Then
+            Core.LoadContent()
+            SetScreen(New MainMenuScreen())
+        Else
+            SetScreen(New SplashScreen(GameInstance))
+        End If
     End Sub
 
     Public Sub LoadContent()
