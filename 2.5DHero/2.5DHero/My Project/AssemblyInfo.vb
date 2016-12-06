@@ -5,7 +5,7 @@ Imports System.Runtime.InteropServices
 ' General Information about an assembly is controlled through the following 
 ' set of attributes. Change these attribute values to modify the information
 ' associated with an assembly.
-<Assembly: AssemblyTitle("Pokemon")> 
+<Assembly: AssemblyTitle("Pokémon3D")> 
 <Assembly: AssemblyProduct("Pokémon3D")> 
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("Kolben Games")> 
@@ -31,4 +31,4 @@ Imports System.Runtime.InteropServices
 '      Build Number
 '      Revision
 '
-<Assembly: AssemblyVersion("1.0.0.0")>
+<Assembly: AssemblyVersion("0.5.4.0")>
