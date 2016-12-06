@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports System.Net.Sockets
 Imports System.Net
+Imports System.Security.Cryptography
+Imports System.Text
 
 Namespace Servers
 
@@ -202,7 +204,12 @@ Namespace Servers
         End Sub
 
         Public Sub SendChatMessage(ByVal message As String)
-            If message.ToLower().StartsWith("/pm ") = True Then
+            If message.ToLower().StartsWith("/login ") = True Then
+                Dim password As String = message.Remove(0, 7)
+                Dim hashedPassword As String = BitConverter.ToString(new SHA512Managed().ComputeHash(Encoding.UTF8.GetBytes(password))).Replace("-", "").ToLower()
+                message = "/login " + hashedPassword
+                SendPackage(New Package(Package.PackageTypes.ChatMessage, Core.ServersManager.ID, Package.ProtocolTypes.TCP, message))
+            Else If message.ToLower().StartsWith("/pm ") = True Then
                 message = message.Remove(0, 4)
                 Dim playerName As String = message
                 While Core.ServersManager.PlayerCollection.HasPlayer(playerName) = False And playerName.Contains(" ") = True
