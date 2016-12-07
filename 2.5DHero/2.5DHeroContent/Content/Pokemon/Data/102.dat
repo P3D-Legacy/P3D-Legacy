@@ -52,3 +52,5 @@ Move|47,326
 Move|50,516
 TradeValue|20
 EvolutionCondition|103,item,34,item
+EvolutionCondition|103_alolan,item,34,item
+EvolutionCondition|103_alolan,weather,sunny,item
