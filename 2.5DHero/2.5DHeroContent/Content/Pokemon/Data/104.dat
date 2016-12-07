@@ -46,10 +46,14 @@ Move|23,99
 Move|27,206
 Move|31,37
 Move|33,374
-Move|37,198
+Move|37,707
 Move|41,283
 Move|43,38
 Move|47,514
+Move|51,198
 TradeValue|35
 Item|5,118
 EvolutionCondition|105,Level,28,Level
+EvolutionCondition|105,daytime,1;2,level
+EvolutionCondition|105_alolan,Level,28,Level
+EvolutionCondition|105_alolan,daytime,0;3,level
