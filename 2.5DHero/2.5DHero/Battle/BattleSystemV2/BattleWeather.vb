@@ -8,6 +8,7 @@
         Hailstorm = 4
         Foggy = 5
         Snow = 6
+        Underwater = 7
     End Enum
 
     Public Shared Function GetWorldWeather(ByVal FieldWeather As BattleWeather.WeatherTypes) As World.Weathers
@@ -26,6 +27,8 @@
                 Return World.Weathers.Sunny
             Case WeatherTypes.Snow
                 Return World.Weathers.Snow
+            Case WeatherTypes.Underwater
+                Return World.Weathers.Underwater
             Case Else
                 Return World.Weathers.Clear
         End Select
@@ -47,6 +50,8 @@
                 Return WeatherTypes.Sandstorm
             Case World.Weathers.Sunny
                 Return WeatherTypes.Sunny
+            Case World.Weathers.Underwater
+                Return WeatherTypes.Underwater
             Case Else
                 Return WeatherTypes.Clear
         End Select
