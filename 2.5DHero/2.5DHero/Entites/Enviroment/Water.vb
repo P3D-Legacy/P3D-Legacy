@@ -154,7 +154,7 @@
     End Sub
 
     Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
-        Return MyBase.CalculateCameraDistance(CPosition) - 0.2f
+        Return MyBase.CalculateCameraDistance(CPosition)
     End Function
 
     Public Overrides Sub UpdateEntity()
