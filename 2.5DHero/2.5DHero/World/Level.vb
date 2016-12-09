@@ -887,9 +887,6 @@ Public Class Level
     ''' Renders offset map entities.
     ''' </summary>
     Private Sub RenderOffsetMap()
-        Dim state = GraphicsDevice.DepthStencilState
-        GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
-
         'Render floors:
         For i = 0 To Me.OffsetmapFloors.Count - 1
             If i <= Me.OffsetmapFloors.Count - 1 Then
@@ -909,8 +906,6 @@ Public Class Level
                 End If
             End If
         Next
-
-        GraphicsDevice.DepthStencilState = state
     End Sub
 
     ''' <summary>
