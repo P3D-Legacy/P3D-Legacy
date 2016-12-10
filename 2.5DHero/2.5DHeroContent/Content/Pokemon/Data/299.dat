@@ -54,3 +54,4 @@ Move|50,192
 TradeValue|50
 Item|5,125
 EvolutionCondition|476,location,Mt. Mortar,Level
+EvolutionCondition|476,location,Rock Tunnel,Level
