@@ -1,3 +1,5 @@
+Imports net.Pokemon3D.Game.BattleSystem
+
 Public Class World
 
     Private Shared _regionWeather As Weathers = Weathers.Clear
@@ -767,8 +769,10 @@ endsub:
                 End If
 
                 Dim cameraPosition As Vector3 = Screen.Camera.Position
-                If Screen.Camera.Name = "Overworld" Then
+                If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     cameraPosition = CType(Screen.Camera, OverworldCamera).CPosition
+                ElseIf Core.CurrentScreen.Identification = Screen.Identifications.BattleScreen Then
+                    cameraPosition = CType(Screen.Camera, BattleCamera).CPosition
                 End If
 
                 If Core.Random.Next(0, chance) = 0 Then
