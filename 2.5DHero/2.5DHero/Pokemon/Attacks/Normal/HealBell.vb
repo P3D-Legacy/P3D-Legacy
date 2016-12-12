@@ -19,7 +19,7 @@
             Me.Description = "The user makes a soothing bell chime to heal the status problems of all the party Pokémon."
             Me.CriticalChance = 0
             Me.IsHMMove = False
-            Me.Target = Targets.AllAllies
+            Me.Target = Targets.AllOwn
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End

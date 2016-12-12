@@ -19,7 +19,7 @@
             Me.Description = "The user releases a soothing scent that heals all status conditions affecting the user's party."
             Me.CriticalChance = 0
             Me.IsHMMove = False
-            Me.Target = Targets.AllAllies
+            Me.Target = Targets.AllOwn
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End

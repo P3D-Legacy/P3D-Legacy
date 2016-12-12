@@ -668,6 +668,8 @@
                             Return {OppLeft, OppCenter, OppRight}.ToList()
                         Case Attack.Targets.OneAlly, Attack.Targets.AllAllies
                             Return {OwnCenter, OwnRight}.ToList()
+                        Case Attack.Targets.AllOwn
+                            Return {OwnCenter, OwnRight, OwnLeft}.ToList()
                     End Select
                 Case Targets.OwnCenter
                     Select Case AttackTarget
@@ -677,6 +679,8 @@
                             Return {OppLeft, OppCenter, OppRight}.ToList()
                         Case Attack.Targets.OneAdjacentAlly, Attack.Targets.OneAlly, Attack.Targets.AllAdjacentAllies, Attack.Targets.AllAllies
                             Return {OwnLeft, OwnRight}.ToList()
+                        Case Attack.Targets.AllOwn
+                            Return {OwnCenter, OwnRight, OwnLeft}.ToList()
                     End Select
                 Case Targets.OwnRight
                     Select Case AttackTarget
@@ -692,6 +696,8 @@
                             Return {OppLeft, OppCenter, OppRight}.ToList()
                         Case Attack.Targets.OneAlly, Attack.Targets.AllAllies
                             Return {OwnLeft, OwnCenter}.ToList()
+                        Case Attack.Targets.AllOwn
+                            Return {OwnCenter, OwnRight, OwnLeft}.ToList()
                     End Select
                 Case Targets.OppLeft
                     Select Case AttackTarget
@@ -707,6 +713,8 @@
                             Return {OwnLeft, OwnCenter, OwnRight}.ToList()
                         Case Attack.Targets.OneAlly, Attack.Targets.AllAllies
                             Return {OppCenter, OppRight}.ToList()
+                        Case Attack.Targets.AllOwn
+                            Return {OppCenter, OppRight, OppLeft}.ToList()
                     End Select
                 Case Targets.OppCenter
                     Select Case AttackTarget
@@ -716,6 +724,8 @@
                             Return {OwnLeft, OwnCenter, OwnRight}.ToList()
                         Case Attack.Targets.OneAdjacentAlly, Attack.Targets.OneAlly, Attack.Targets.AllAdjacentAllies, Attack.Targets.AllAllies
                             Return {OppLeft, OppRight}.ToList()
+                        Case Attack.Targets.AllOwn
+                            Return {OppCenter, OppRight, OppLeft}.ToList()
                     End Select
                 Case Targets.OppRight
                     Select Case AttackTarget
@@ -731,6 +741,8 @@
                             Return {OwnLeft, OwnCenter, OwnRight}.ToList()
                         Case Attack.Targets.OneAlly, Attack.Targets.AllAllies
                             Return {OppLeft, OppCenter}.ToList()
+                        Case Attack.Targets.AllOwn
+                            Return {OppCenter, OppRight, OppLeft}.ToList()
                     End Select
             End Select
 

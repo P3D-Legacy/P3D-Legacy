@@ -26,7 +26,7 @@
 
             '#SpecialDefinitions
             Me.MakesContact = False
-            Me.ProtectAffected = False
+            Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
@@ -56,7 +56,25 @@
         End Sub
 
         Public Overrides Function MoveFailBeforeAttack(Own As Boolean, BattleScreen As BattleScreen) As Boolean
-            Return Not BattleScreen.FieldEffects.MovesFirst(Own)
+            If BattleScreen.FieldEffects.MovesFirst(Own) Then
+                Return True
+            End If
+            Dim damage As Integer = BattleScreen.FieldEffects.OwnLastDamage
+            If Own = True Then
+                damage = BattleScreen.FieldEffects.OppLastDamage
+            End If
+            If damage > 0 Then
+                Dim lastMove As Attack = BattleScreen.FieldEffects.OwnLastMove
+                If Own = True Then
+                    lastMove = BattleScreen.FieldEffects.OppLastMove
+                End If
+                If Not lastMove Is Nothing Then
+                    If lastMove.Category = Categories.Special Or lastMove.Category = Categories.Physical Then
+                        Return False
+                    End If
+                End If
+            End If
+            Return True
         End Function
 
         Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen) As Integer

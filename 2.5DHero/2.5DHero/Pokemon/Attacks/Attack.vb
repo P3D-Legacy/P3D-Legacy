@@ -46,6 +46,8 @@
             AllAllies 'All allies, excluding itself.
 
             All 'All Pokémon, including itself
+
+            AllOwn 'All allies, including itself.
         End Enum
 
         Public Enum AIField

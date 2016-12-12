@@ -19,7 +19,7 @@ Namespace BattleSystem.Moves.Flying
             Me.Description = "The user whips up a turbulent whirlwind that ups the Speed stat of the user and its allies for four turns."
             Me.CriticalChance = 1
             Me.IsHMMove = False
-            Me.Target = Targets.AllAllies
+            Me.Target = Targets.AllOwn
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
