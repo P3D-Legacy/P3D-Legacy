@@ -17,6 +17,9 @@
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         Screen.Level.MusicLoop = argument
                     End If
+                Case "forceplay"
+                    MusicManager.IgnoreLastSong()
+                    MusicManager.PlayMusic(argument)
                 Case "setmusicloop"
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         Screen.Level.MusicLoop = argument
