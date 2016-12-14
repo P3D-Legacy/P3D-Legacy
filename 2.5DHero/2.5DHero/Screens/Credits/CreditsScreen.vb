@@ -1,4 +1,4 @@
-﻿Public Class CreditsScreen
+Public Class CreditsScreen
 
     Inherits Screen
 
@@ -58,14 +58,14 @@
         End If
         CreditsPages.Add(New CreditsPage("Team Kolben", Color.White, Color.Black, {"Nils Drescher", "Andrew Leach", "Marc Boisvert-Dupras", "Grant Garrett", "Jason Houston", "Daniel Billing", "Benjamin Smith", "Hunter Graves"}.ToList()))
         CreditsPages.Add(New CreditsPage("Director", Color.White, Color.Black, {"Nils Drescher"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "William Lang"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Open Source Development Team", Color.White, Color.Black, {"Benjamin Smith", "Yong Jian Ming", """Aragas""", """oXFantaXo""", "Jorge Luis Espinoza"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "William Lang", "Benjamin Smith", "Yong Jian Ming", "Jorge Luis Espinoza", """Aragas"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Graphics", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", """Godeken""", "Caleb Coleman", "Robert Nobbmann", "Manuel Lampe", "Miguel Nunez", "Grant Garrett", """Anvil555"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Map design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine", "Jason Houston"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Andrew Leach", "Jason Houston"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Script System development", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Map design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine", "Jason Houston", """oXFantaXo"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Andrew Leach", "Jason Houston", "Yong Jian Ming", """Aragas""" }.ToList()))
+        CreditsPages.Add(New CreditsPage("Script System development", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Yong Jian Ming", """Aragas"""}.ToList()))
         CreditsPages.Add(New CreditsPage("KolbenWindowWidget development", Color.White, Color.Black, {"Jason Houston"}.ToList()))
-        CreditsPages.Add(New CreditsPage("LUA implementation", Color.White, Color.Black, {"Jason Houston"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Launcher programming", Color.White, Color.Black, {"Nils Drescher", "Daniel Billing", """ThuxCommix"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("Launcher programming", Color.White, Color.Black, {"Nils Drescher", "Daniel Billing", """ThuxCommix""", """Aragas"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Pokéditor Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "Hunter Graves"}.ToList()))
         CreditsPages.Add(New CreditsPage("Website Host/Server maintenance", Color.White, Color.Black, {"Daniel Billing", "Daniel Laube"}.ToList()))
         CreditsPages.Add(New CreditsPage("GameJolt Service/API programming", Color.White, Color.Black, {"David DeCarmine", "Nils Drescher"}.ToList()))
