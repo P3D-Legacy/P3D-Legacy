@@ -693,14 +693,6 @@
                 End If
             End If
 
-            If p.Ability.Name.ToLower() = "scrappy" Then
-                If op.Type1.Type = Element.Types.Ghost Or op.Type2.Type = Element.Types.Ghost Then
-                    If effectiveness = 0 Then
-                        effectiveness = 1.0F
-                    End If
-                End If
-            End If
-
             If Not op.Item Is Nothing Then
                 If op.Item.Name.ToLower() = "ring target" And BattleScreen.FieldEffects.CanUseItem(Not own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not own, BattleScreen) = True Then
                     If Type1 = 0 Then
@@ -728,14 +720,24 @@
             End If
 
             If op.IsType(Element.Types.Ghost) = True Then
-                Dim foresight As Integer = BattleScreen.FieldEffects.OppForesight
-                Dim odorSleught As Integer = BattleScreen.FieldEffects.OppOdorSleuth
-                If own = False Then
-                    foresight = BattleScreen.FieldEffects.OwnForesight
-                    odorSleught = BattleScreen.FieldEffects.OwnOdorSleuth
+                Dim CanHitGhost = False
+                Dim Foresight As Integer = 0
+                Dim OdorSleuth As Integer = 0
+                If own Then
+                    Foresight = BattleScreen.FieldEffects.OppForesight
+                    OdorSleuth = BattleScreen.FieldEffects.OppOdorSleuth
+                Else
+                    Foresight = BattleScreen.FieldEffects.OwnForesight
+                    OdorSleuth = BattleScreen.FieldEffects.OwnOdorSleuth
+                End If
+                If Foresight > 0 Or OdorSleuth > 0 Then
+                    CanHitGhost = True
+                End If
+                If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) AndAlso p.Ability.Name.ToLower() = "scrappy" Then
+                    CanHitGhost = True
                 End If
 
-                If foresight > 0 Or odorSleught > 0 Then
+                If CanHitGhost Then
                     If move.Type.Type = Element.Types.Normal Or move.Type.Type = Element.Types.Fighting Then
                         If Type1 = 0.0F Then
                             effectiveness = Type2
@@ -1833,7 +1835,7 @@
             End If
 
             If TypeA < 1.0F Then
-                If p.Ability.Name.ToLower() = "tinted lense" Then
+                If p.Ability.Name.ToLower() = "tinted lens" Then
                     TL = 2.0F
                 End If
             End If
