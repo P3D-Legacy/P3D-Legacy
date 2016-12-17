@@ -719,6 +719,7 @@
                 End If
             End If
 
+
             If op.IsType(Element.Types.Ghost) = True Then
                 Dim CanHitGhost = False
                 Dim Foresight As Integer = 0
