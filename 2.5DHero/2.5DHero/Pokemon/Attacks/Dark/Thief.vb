@@ -59,31 +59,35 @@
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
+
+            'Conditions
+            If op.Item Is Nothing Then
+                Exit Sub
+            End If
             If op.Item.IsMegaStone = True Then
                 Exit Sub
             End If
-            Dim canSteal As Boolean = True
-            If op.Ability.Name.ToLower() = "multitype" Then
-                canSteal = False
+            If op.Ability.Name.ToLower() = "multitype" AndAlso op.Item.Name.ToLower().EndsWith(" plate") Then
+                Exit Sub
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower() = "griseous orb" And op.Number = 487 Then
-                canSteal = False
+            If op.Item.Name.ToLower() = "griseous orb" And op.Number = 487 Then
+                Exit Sub
+            End If
+            If op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+                Exit Sub
             End If
 
-            If canSteal = True Then
-                If p.Item Is Nothing And Not op.Item Is Nothing Then
-                    Dim ItemID As Integer = op.Item.ID
+            If p.Item Is Nothing Then
+                Dim ItemID As Integer = op.Item.ID
 
-                    op.OriginalItem = Item.GetItemByID(op.Item.ID)
-                    op.OriginalItem.AdditionalData = op.Item.AdditionalData
+                op.OriginalItem = Item.GetItemByID(op.Item.ID)
+                op.OriginalItem.AdditionalData = op.Item.AdditionalData
 
-                    If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, "Thief stole the item " & op.Item.Name & " from " & op.GetDisplayName() & "!", "move:thief") = True Then
-                        If own = False Then
-                            BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
-                        End If
-
-                        p.Item = Item.GetItemByID(ItemID)
+                If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, "Thief stole the item " & op.Item.Name & " from " & op.GetDisplayName() & "!", "move:thief") Then
+                    If own = False Then
+                        BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
                     End If
+                    p.Item = Item.GetItemByID(ItemID)
                 End If
             End If
         End Sub

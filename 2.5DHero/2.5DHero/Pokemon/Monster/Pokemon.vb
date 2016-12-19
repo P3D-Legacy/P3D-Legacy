@@ -1017,11 +1017,11 @@ Public Class Pokemon
             Me._originalAbility = Nothing
         End If
 
-        If Not Me._originalItem Is Nothing Then
-            Me.Item = net.Pokemon3D.Game.Item.GetItemByID(Me._originalItem.ID)
-            Me.Item.AdditionalData = Me._originalItem.AdditionalData
-            Me._originalItem = Nothing
-        End If
+        'If Not Me._originalItem Is Nothing Then
+        '    Me.Item = net.Pokemon3D.Game.Item.GetItemByID(Me._originalItem.ID)
+        '    Me.Item.AdditionalData = Me._originalItem.AdditionalData
+        '    Me._originalItem = Nothing
+        'End If
 
         Me.IsTransformed = False
 

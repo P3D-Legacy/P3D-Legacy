@@ -84,7 +84,7 @@
         Public OwnInfestation As Integer = 0
         Public OwnUsedMoves As New List(Of Integer)
         Public OwnMagicCoat As Integer = 0
-        Public OwnLostItem As Item = Nothing
+        Public OwnConsumedItem As Item = Nothing
         Public OwnPursuit As Boolean = False
         Public OwnMegaEvolved As Boolean = False
         Public OwnRoostUsed As Boolean = False 'If roost got used, this is true and will get set false and revert types at the end of a turn.
@@ -194,7 +194,7 @@
         Public OppPokemonDamagedThisTurn As Boolean = False
         Public OppPokemonDamagedLastTurn As Boolean = False
         Public OppMagicCoat As Integer = 0
-        Public OppLostItem As Item = Nothing
+        Public OppConsumedItem As Item = Nothing
         Public OppPursuit As Boolean = False
         Public OppMegaEvolved As Boolean = False
         Public OppRoostUsed As Boolean = False
