@@ -1980,7 +1980,7 @@
                                             RaiseStat(Not own, Not own, BattleScreen, "Speed", 1, "Weak Armor causes the Speed to increase!", "weakarmor")
                                             LowerStat(Not own, Not own, BattleScreen, "Defense", 1, "Weak Armor causes the Defense to decrease!", "weakarmor")
                                         End If
-                                    Case "pickpocket", "magician"
+                                    Case "pickpocket"
                                         If moveUsed.MakesContact = True Then
                                             If Not p.Item Is Nothing And op.Item Is Nothing And substitute = 0 Then
                                                 Dim canSteal As Boolean = True
@@ -2002,8 +2002,8 @@
                                                     p.OriginalItem = Item.GetItemByID(p.Item.ID)
                                                     p.OriginalItem.AdditionalData = p.Item.AdditionalData
 
-                                                    If BattleScreen.Battle.RemoveHeldItem(own, Not own, BattleScreen, p.GetDisplayName() & " stole an item from " & op.GetDisplayName() & "!", op.Ability.Name.ToLower()) Then
-                                                        If own = False Then
+                                                    If BattleScreen.Battle.RemoveHeldItem(own, Not own, BattleScreen, op.GetDisplayName() & " stole an item from " & p.GetDisplayName() & " due to " & op.Ability.Name & "!", op.Ability.Name.ToLower()) Then
+                                                        If own = True Then
                                                             BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
                                                         End If
                                                         op.Item = Item.GetItemByID(ItemID)
@@ -2026,6 +2026,35 @@
                                     Case "moxie"
                                         If KOED = True Then
                                             RaiseStat(own, own, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Moxie got in effect!", "moxie")
+                                        End If
+                                    Case "magician"
+                                        If Not op.Item Is Nothing And p.Item Is Nothing And substitute = 0 Then
+                                            Dim canSteal As Boolean = True
+                                            If op.Item.IsMegaStone = True Then
+                                                canSteal = False
+                                            End If
+                                            If op.Ability.Name.ToLower() = "multitype" AndAlso op.Item.Name.ToLower().EndsWith(" plate") Then
+                                                canSteal = False
+                                            End If
+                                            If op.Item.Name.ToLower() = "griseous orb" And op.Number = 487 Then
+                                                canSteal = False
+                                            End If
+                                            If op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+                                                canSteal = False
+                                            End If
+                                            If canSteal Then
+                                                Dim ItemID As Integer = op.Item.ID
+
+                                                op.OriginalItem = Item.GetItemByID(op.Item.ID)
+                                                op.OriginalItem.AdditionalData = op.Item.AdditionalData
+
+                                                If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " stole an item from " & op.GetDisplayName() & " due to " & p.Ability.Name & "!", p.Ability.Name.ToLower()) Then
+                                                    If own = False Then
+                                                        BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
+                                                    End If
+                                                    p.Item = Item.GetItemByID(ItemID)
+                                                End If
+                                            End If
                                         End If
                                 End Select
                             End If
