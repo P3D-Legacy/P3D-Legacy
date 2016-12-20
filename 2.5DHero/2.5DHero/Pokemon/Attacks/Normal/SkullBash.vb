@@ -122,6 +122,14 @@
             End If
         End Function
 
+        Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnSkullBashCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppSkullBashCounter = 0
+            End If
+        End Sub
+
         Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
             Dim skullBash As Integer = BattleScreen.FieldEffects.OwnSkullBashCounter
             If own = False Then

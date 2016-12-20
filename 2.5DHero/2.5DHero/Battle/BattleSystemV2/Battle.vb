@@ -934,6 +934,7 @@
 #End Region
         Public Function IsChargingTurn(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal moveUsed As Attack) As Boolean
             Dim p As Pokemon
+
             Dim fly As Integer
             Dim bounce As Integer
             Dim dig As Integer

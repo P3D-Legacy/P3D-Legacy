@@ -119,7 +119,13 @@
                 Return False
             End If
         End Function
-
+        Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnFlyCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppFlyCounter = 0
+            End If
+        End Sub
         Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
             Dim fly As Integer = BattleScreen.FieldEffects.OwnFlyCounter
             If own = False Then

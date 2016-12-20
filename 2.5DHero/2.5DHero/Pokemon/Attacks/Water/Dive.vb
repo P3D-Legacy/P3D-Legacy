@@ -111,7 +111,7 @@
                     BattleScreen.FieldEffects.OppDiveCounter = 1
                 End If
 
-                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " burrowed its way underground!"))
+                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " dived into the water!"))
 
                 Return True
             Else
@@ -132,6 +132,18 @@
                 BattleScreen.FieldEffects.OppDiveCounter = 0
             End If
         End Sub
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim Dive As Integer = BattleScreen.FieldEffects.OwnDiveCounter
+            If own = False Then
+                Dive = BattleScreen.FieldEffects.OppDiveCounter
+            End If
+
+            If Dive = 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
 
         Private Sub MoveFails(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then

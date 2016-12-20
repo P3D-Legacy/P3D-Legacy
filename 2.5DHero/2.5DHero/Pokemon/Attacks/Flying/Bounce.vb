@@ -120,6 +120,14 @@
             End If
         End Function
 
+        Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnBounceCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppBounceCounter = 0
+            End If
+        End Sub
+
         Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
             Dim bounce As Integer = BattleScreen.FieldEffects.OwnBounceCounter
             If own = False Then

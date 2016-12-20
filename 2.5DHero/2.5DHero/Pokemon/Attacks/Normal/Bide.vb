@@ -93,6 +93,46 @@
             End If
         End Function
 
+        Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnBideCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppBideCounter = 0
+            End If
+        End Sub
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim bide As Integer = BattleScreen.FieldEffects.OwnBideCounter
+            If own = False Then
+                bide = BattleScreen.FieldEffects.OppBideCounter
+            End If
+
+            If bide = 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
+
+        Private Sub MoveFails(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnBideCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppBideCounter = 0
+            End If
+        End Sub
+
+        Public Overrides Sub MoveMisses(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub AbsorbedBySubstitute(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub MoveProtectedDetected(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
     End Class
 
 End Namespace

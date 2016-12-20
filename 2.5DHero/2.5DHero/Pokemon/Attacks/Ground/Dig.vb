@@ -94,16 +94,15 @@
                 p = BattleScreen.OppPokemon
             End If
 
-            Dim hasToCharge As Boolean = True
             If Not p.Item Is Nothing Then
                 If p.Item.Name.ToLower() = "power herb" And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
                     If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "Power Herb pushed the use of Dig!", "move:dig") = True Then
-                        hasToCharge = False
+                        digCounter = 1
                     End If
                 End If
             End If
 
-            If digCounter = 0 And hasToCharge = True Then
+            If digCounter = 0 Then
                 If Own = True Then
                     BattleScreen.FieldEffects.OwnDigCounter = 1
                 Else
@@ -131,6 +130,39 @@
                 BattleScreen.FieldEffects.OppDigCounter = 0
             End If
         End Sub
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim dig As Integer = BattleScreen.FieldEffects.OwnDigCounter
+            If own = False Then
+                dig = BattleScreen.FieldEffects.OppDigCounter
+            End If
+
+            If dig = 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
+
+        Private Sub MoveFails(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnDigCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppDigCounter = 0
+            End If
+        End Sub
+
+        Public Overrides Sub MoveMisses(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub AbsorbedBySubstitute(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub MoveProtectedDetected(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
 
     End Class
 
