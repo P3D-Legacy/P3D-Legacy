@@ -5030,11 +5030,9 @@
                 End If
 
                 If .FieldEffects.OwnYawn > 0 And .OwnPokemon.HP > 0 Then 'Yawn
-                    If .OwnPokemon.Status <> Pokemon.StatusProblems.Sleep Then
-                        .FieldEffects.OwnYawn = 0
-                        If .OwnPokemon.Status = Pokemon.StatusProblems.None Then
-                            InflictSleep(True, False, BattleScreen, -1, "", "yawn")
-                        End If
+                    .FieldEffects.OwnYawn -= 1
+                    If .OwnPokemon.Status = Pokemon.StatusProblems.None And .FieldEffects.OwnYawn = 0 Then
+                        InflictSleep(True, False, BattleScreen, -1, "", "yawn")
                     End If
                 End If
 
@@ -5758,11 +5756,9 @@
                 End If
 
                 If .FieldEffects.OppYawn > 0 And .OppPokemon.HP > 0 Then 'Yawn
-                    If .OppPokemon.Status <> Pokemon.StatusProblems.Sleep Then
-                        .FieldEffects.OppYawn = 0
-                        If .OppPokemon.Status = Pokemon.StatusProblems.None Then
-                            InflictSleep(False, True, BattleScreen, -1, "", "yawn")
-                        End If
+                    .FieldEffects.OppYawn -= 1
+                    If .OppPokemon.Status = Pokemon.StatusProblems.None And .FieldEffects.OppYawn = 0 Then
+                        InflictSleep(False, True, BattleScreen, -1, "", "yawn")
                     End If
                 End If
 
