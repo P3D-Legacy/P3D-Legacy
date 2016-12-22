@@ -939,8 +939,8 @@
             Dim bounce As Integer
             Dim dig As Integer
             Dim dive As Integer
-            Dim skyDrop As Integer
-            Dim shadowForce As Integer
+            Dim skyDrop As Integer      'not implemented yet
+            Dim shadowForce As Integer  'not implemented yet
             Dim skullBash As Integer
             Dim skyAttack As Integer
             Dim solarBeam As Integer
@@ -1243,6 +1243,7 @@
             If p.HasVolatileStatus(Pokemon.VolatileStatus.Flinch) = True Then
                 p.RemoveVolatileStatus(Pokemon.VolatileStatus.Flinch)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " flinched and couldn't move!"))
+                moveUsed.InflictedFlinch(own, BattleScreen)
                 If p.Ability.Name.ToLower() = "steadfast" Then
                     RaiseStat(own, Not own, BattleScreen, "Speed", 1, "", "steadfast")
                 End If
@@ -1350,7 +1351,18 @@
             End If
 
             'If there's no opponent (opponent is fainted), skip to end of turn:
-            If moveUsed.Target <> Attack.Targets.Self And moveUsed.Target <> Attack.Targets.All Then
+            Dim NoTargetCheck As Boolean = True
+            If moveUsed.ProtectAffected = False Then
+                NoTargetCheck = False
+                Select Case moveUsed.Name.ToLower
+                    Case "accupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
+                        NoTargetCheck = True
+                End Select
+            End If
+            If IsChargingTurn(BattleScreen, own, moveUsed) Then
+                NoTargetCheck = False
+            End If
+            If NoTargetCheck = True Then
                 If op.HP <= 0 Or op.Status = Pokemon.StatusProblems.Fainted Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject("But there was no target..."))
                     Exit Sub
@@ -1392,7 +1404,7 @@
             If moveUsed.ProtectAffected = False Then
                 UseTwoTurnCheck = False
                 Select Case moveUsed.Name.ToLower
-                    Case "psych up", "play nice", "role play"
+                    Case "accupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
                         UseTwoTurnCheck = True
                 End Select
             End If

@@ -64,7 +64,7 @@
             End If
         End Sub
 
-        Private Sub StopMove(own As Boolean, BattleScreen As BattleScreen)
+        Private Sub Interruption(own As Boolean, BattleScreen As BattleScreen)
             Dim p As Pokemon = BattleScreen.OwnPokemon
             If own = False Then
                 p = BattleScreen.OppPokemon
@@ -79,11 +79,23 @@
         End Sub
 
         Public Overrides Sub MoveHasNoEffect(own As Boolean, BattleScreen As BattleScreen)
-            Me.StopMove(own, BattleScreen)
+            Me.Interruption(own, BattleScreen)
         End Sub
 
         Public Overrides Sub MoveFailsSoundproof(own As Boolean, BattleScreen As BattleScreen)
-            Me.StopMove(own, BattleScreen)
+            Me.Interruption(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub MoveProtectedDetected(own As Boolean, BattleScreen As BattleScreen)
+            Interruption(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub InflictedFlinch(own As Boolean, BattleScreen As BattleScreen)
+            Interruption(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub MoveMisses(own As Boolean, BattleScreen As BattleScreen)
+            Interruption(own, BattleScreen)
         End Sub
 
     End Class

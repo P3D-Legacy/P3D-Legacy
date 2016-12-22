@@ -73,13 +73,25 @@
         End Sub
 
         Private Sub Interruption(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            Dim thrash As Integer = 0
+            Dim p As Pokemon
+            If own = True Then
+                thrash = BattleScreen.FieldEffects.OwnThrash
+                p = BattleScreen.OwnPokemon
+            Else
+                thrash = BattleScreen.FieldEffects.OppThrash
+                p = BattleScreen.OppPokemon
+            End If
+
+            If thrash = 1 Then
+                BattleScreen.Battle.InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & "'s Thrash stopped.", "move:thrash")
+            End If
             If own = True Then
                 BattleScreen.FieldEffects.OwnThrash = 0
             Else
                 BattleScreen.FieldEffects.OppThrash = 0
             End If
 
-            BattleScreen.Battle.InflictConfusion(own, own, BattleScreen, "", "move:thrash")
         End Sub
 
         Public Overrides Sub MoveHasNoEffect(own As Boolean, BattleScreen As BattleScreen)
@@ -94,6 +106,9 @@
             Interruption(own, BattleScreen)
         End Sub
 
+        Public Overrides Sub InflictedFlinch(own As Boolean, BattleScreen As BattleScreen)
+            Interruption(own, BattleScreen)
+        End Sub
     End Class
 
 End Namespace

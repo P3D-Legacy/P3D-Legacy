@@ -161,6 +161,9 @@
             MoveFails(own, BattleScreen)
         End Sub
 
+        Public Overrides Sub InflictedFlinch(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
     End Class
 
 End Namespace
