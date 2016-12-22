@@ -5067,7 +5067,7 @@
 
                 'ABILITY SHIT/ITEM SHIT GOES HERE:
 
-                If .OwnPokemon.HP > 0 And .OwnPokemon.Status <> Pokemon.StatusProblems.Burn Then
+                If .OwnPokemon.HP > 0 And .OwnPokemon.Status = Pokemon.StatusProblems.None Then
                     If Not .OwnPokemon.Item Is Nothing Then
                         If .OwnPokemon.Item.Name.ToLower() = "flame orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             InflictBurn(True, True, BattleScreen, "Flame orb inflicts a burn!", "flameorb")
@@ -5075,7 +5075,7 @@
                     End If
                 End If
 
-                If .OwnPokemon.HP > 0 And .OwnPokemon.Status <> Pokemon.StatusProblems.Poison And .OwnPokemon.Status <> Pokemon.StatusProblems.BadPoison Then
+                If .OwnPokemon.HP > 0 And .OwnPokemon.Status = Pokemon.StatusProblems.None Then
                     If Not .OwnPokemon.Item Is Nothing Then
                         If .OwnPokemon.Item.Name.ToLower() = "toxic orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             InflictPoison(True, True, BattleScreen, True, "Toxic orb inflicts a poisoning!", "toxicorb")
