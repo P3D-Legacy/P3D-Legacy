@@ -3991,11 +3991,11 @@
                 If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen, 1) = True Then
                     Select Case p.Ability.Name.ToLower()
                         Case "drizzle"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Rain, turns, BattleScreen, "Drizzle makes it rain!", "drizzle")
+                            ChangeWeather(own, own, BattleWeather.WeatherTypes.Rain, turns, BattleScreen, "Drizzle makes it rain!", "drizzle")
                         Case "cloud nine"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
+                            ChangeWeather(own, own, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
                         Case "intimidate"
-                            LowerStat(True, False, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
+                            LowerStat(Not own, own, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
                         Case "trace"
                             If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
                                 p.OriginalAbility = p.Ability
@@ -4003,18 +4003,18 @@
                                 .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copied the ability " & op.Ability.Name & " from " & op.GetDisplayName() & "!"))
                             End If
                         Case "sand stream"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Sandstorm, turns, BattleScreen, "Sand Stream creates a sandstorm!", "sandstream")
+                            ChangeWeather(own, own, BattleWeather.WeatherTypes.Sandstorm, turns, BattleScreen, "Sand Stream creates a sandstorm!", "sandstream")
                         Case "forecast"
                             ApplyForecast(BattleScreen)
                         Case "drought"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Sunny, turns, BattleScreen, "The sunlight turned harsh!", "drought")
+                            ChangeWeather(own, own, BattleWeather.WeatherTypes.Sunny, turns, BattleScreen, "The sunlight turned harsh!", "drought")
                         Case "air lock"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "airlock")
+                            ChangeWeather(own, own, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "airlock")
                         Case "download"
                             If op.Defense < op.SpDefense Then
-                                RaiseStat(False, False, BattleScreen, "Attack", 1, "Download analyzed the foe!", "download")
+                                RaiseStat(own, own, BattleScreen, "Attack", 1, "Download analyzed the foe!", "download")
                             Else
-                                RaiseStat(False, False, BattleScreen, "Special Attack", 1, "Download analyzed the foe!", "download")
+                                RaiseStat(own, own, BattleScreen, "Special Attack", 1, "Download analyzed the foe!", "download")
                             End If
                         Case "mold breaker"
                             .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " breakes the mold!"))
@@ -4041,7 +4041,7 @@
                                 .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " makes " & p.GetDisplayName() & " shudder!"))
                             End If
                         Case "snow warning"
-                            ChangeWeather(False, False, BattleWeather.WeatherTypes.Hailstorm, turns, BattleScreen, "Snow Warning summoned a hailstorm!", "snowwarning")
+                            ChangeWeather(own, own, BattleWeather.WeatherTypes.Hailstorm, turns, BattleScreen, "Snow Warning summoned a hailstorm!", "snowwarning")
                         Case "frisk"
                             If Not op.Item Is Nothing Then
                                 .BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " is holding " & op.Item.Name & "."))

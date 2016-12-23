@@ -1656,32 +1656,6 @@
                 End If
             End If
 
-            'type1
-            Dim Type1 As Single = Element.GetElementMultiplier(Attack.Type, Op.Type1)
-            If p.Ability.Name.ToLower() = "refrigerate" And Attack.Type.Type = Element.Types.Normal Then
-                Type1 = Element.GetElementMultiplier(New Element(Element.Types.Ice), Op.Type1)
-            End If
-            If p.Ability.Name.ToLower() = "pixilate" And Attack.Type.Type = Element.Types.Normal Then
-                Type1 = Element.GetElementMultiplier(New Element(Element.Types.Fairy), Op.Type1)
-            End If
-            If p.Ability.Name.ToLower() = "aerilate" And Attack.Type.Type = Element.Types.Normal Then
-                Type1 = Element.GetElementMultiplier(New Element(Element.Types.Flying), Op.Type1)
-            End If
-            Type1 = ReverseTypeEffectiveness(Type1)
-
-            'type2
-            Dim Type2 As Single = Element.GetElementMultiplier(Attack.Type, Op.Type2)
-            If p.Ability.Name.ToLower() = "refrigerate" And Attack.Type.Type = Element.Types.Normal Then
-                Type2 = Element.GetElementMultiplier(New Element(Element.Types.Ice), Op.Type2)
-            End If
-            If p.Ability.Name.ToLower() = "pixilate" And Attack.Type.Type = Element.Types.Normal Then
-                Type2 = Element.GetElementMultiplier(New Element(Element.Types.Fairy), Op.Type2)
-            End If
-            If p.Ability.Name.ToLower() = "aerilate" And Attack.Type.Type = Element.Types.Normal Then
-                Type2 = Element.GetElementMultiplier(New Element(Element.Types.Flying), Op.Type2)
-            End If
-            Type2 = ReverseTypeEffectiveness(Type2)
-
             'Mod3
             Dim Mod3 As Single = 1.0F
 
@@ -1690,23 +1664,9 @@
             Dim TL As Single = 1.0F
             Dim TRB As Single = 1.0F
 
-            Dim TypeA As Single = Type1 * Type2
+            Dim effectiveness As Single = CalculateEffectiveness(Attack, BattleScreen, p, Op, Own)
 
-            If Not Op.Item Is Nothing Then
-                If Op.Item.Name.ToLower() = "ring target" And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
-                    If Type1 = 0 Then
-                        TypeA = Type2
-                    End If
-                    If Type2 = 0 Then
-                        TypeA = Type1
-                    End If
-                    If TypeA = 0 Then
-                        TypeA = 1.0F
-                    End If
-                End If
-            End If
-
-            If TypeA > 1.0F Then
+            If effectiveness > 1.0F Then
                 If Op.Ability.Name.ToLower() = "solid rock" Or Op.Ability.Name.ToLower() = "filter" Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
                         SRF = 0.75F
@@ -1835,7 +1795,7 @@
                 End If
             End If
 
-            If TypeA < 1.0F Then
+            If effectiveness < 1.0F Then
                 If p.Ability.Name.ToLower() = "tinted lens" Then
                     TL = 2.0F
                 End If
@@ -1843,7 +1803,7 @@
 
             Mod3 = SRF * EB * TL * TRB
 
-            damage = CInt(Math.Floor((((((((Level * 2 / 5) + 2) * BasePower * Atk / 50) / Def) * Mod1) + 2) * CH * Mod2 * R / 100) * STAB * Type1 * Type2 * Mod3))
+            damage = CInt(Math.Floor((((((((Level * 2 / 5) + 2) * BasePower * Atk / 50) / Def) * Mod1) + 2) * CH * Mod2 * R / 100) * STAB * effectiveness * Mod3))
 
             If p.Ability.Name.ToLower() = "multiscale" And p.HP = p.MaxHP And BattleScreen.FieldEffects.CanUseAbility(Own, BattleScreen) = True Then
                 damage = CInt(damage / 2)

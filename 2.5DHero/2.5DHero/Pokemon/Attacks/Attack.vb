@@ -1634,12 +1634,12 @@
             If Me.Type.Type = Element.Types.Normal Then
                 If p.Ability.Name.ToLower() = "pixilate" Then
                     Return New Element(Element.Types.Fairy)
-                End If
-                If p.Ability.Name.ToLower() = "refrigerate" Then
+                ElseIf p.Ability.Name.ToLower() = "refrigerate" Then
                     Return New Element(Element.Types.Ice)
-                End If
-                If p.Ability.Name.ToLower() = "aerilate" Then
+                ElseIf p.Ability.Name.ToLower() = "aerilate" Then
                     Return New Element(Element.Types.Flying)
+                ElseIf p.Ability.Name.ToLower() = "galvanize" Then
+                    Return New Element(Element.Types.Electric)
                 End If
             End If
 
