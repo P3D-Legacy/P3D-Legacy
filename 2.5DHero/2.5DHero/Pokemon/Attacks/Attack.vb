@@ -1589,6 +1589,14 @@
             'DO NOTHING HERE (will do recoil if moves overrides it)
         End Sub
 
+        Public Overridable Sub MoveRecharge(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING HERE (will do recoil if moves overrides it)
+        End Sub
+
+        Public Overridable Sub MoveSwitch(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING HERE (will do recoil if moves overrides it)
+        End Sub
+
         ''' <summary>
         ''' Event that occurs when the move misses its target.
         ''' </summary>

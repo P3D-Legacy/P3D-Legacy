@@ -199,7 +199,7 @@
         End Sub
 
         Public Sub StartRound(ByVal BattleScreen As BattleScreen)
-            If BattleScreen.OwnFaint OrElse BattleScreen.OppFaint Then
+            If BattleScreen.OwnFaint OrElse (BattleScreen.OppFaint AndAlso BattleScreen.IsRemoteBattle) Then
                 IsAfterFaint = True
             End If
             BattleScreen.BattleMenu.MenuState = BattleMenu.MenuStates.Main
@@ -1873,7 +1873,7 @@
                                     End If
                                 End If
                                 moveUsed.MoveRecoil(own, BattleScreen)
-
+                                moveUsed.MoveRecharge(own, BattleScreen)
                                 If op.HP > 0 Then
                                     If own = True Then
                                         If BattleScreen.FieldEffects.OppRageCounter > 0 Then
