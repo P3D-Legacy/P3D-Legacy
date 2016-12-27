@@ -1447,7 +1447,7 @@
                 End If
 
                 If Attack.Name.ToLower() = "selfdestruct" Or Attack.Name.ToLower() = "explosion" Then
-                    SX = 0.5F
+                    SX = 1.0F
                 End If
 
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
