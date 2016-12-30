@@ -1474,10 +1474,6 @@
                     DSM = 1.0F
                 End If
 
-                If Attack.Name.ToLower() = "selfdestruct" Or Attack.Name.ToLower() = "explosion" Then
-                    SX = 0.5F
-                End If
-
                 If Op.Ability.Name.ToLower() = "flower gift" Then
                     If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
                         DMod = 1.5F
@@ -1487,7 +1483,7 @@
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     Select Case Op.Item.Name.ToLower()
                         Case "soul dew"
-                            If p.Number = 380 Or p.Number = 381 Then
+                            If Op.Number = 380 Or p.Number = 381 Then
                                 DMod = 1.5F
                             End If
                         Case "metal powder"
@@ -1495,13 +1491,13 @@
                                 DMod = 1.5F
                             End If
                         Case "deepseascale"
-                            If p.Number = 366 Then
+                            If Op.Number = 366 Then
                                 DMod = 2.0F
                             End If
                         Case "assault vest"
                             DMod = 1.5F
                         Case "eviolite"
-                            If p.IsFullyEvolved = False Then
+                            If Op.IsFullyEvolved = False Then
                                 DMod = 1.5F
                             End If
                     End Select
