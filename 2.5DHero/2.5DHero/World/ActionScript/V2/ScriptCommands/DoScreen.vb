@@ -24,14 +24,14 @@
 
                     CanContinue = False
                 Case "trade"
-                    Dim storeData As String = CStr(argument.GetSplit(0))
-                    Dim canBuy As Boolean = CBool(argument.GetSplit(1))
-                    Dim canSell As Boolean = CBool(argument.GetSplit(2))
+                    Dim storeData As String = CStr(argument.GetSplit(0))    'e.g. Item ID
+                    Dim canBuy As Boolean = CBool(argument.GetSplit(1))     '
+                    Dim canSell As Boolean = CBool(argument.GetSplit(2))    '
 
                     Dim currencyIndicator As String = "P"
 
                     If argument.CountSplits() > 3 Then
-                        currencyIndicator = argument.GetSplit(3)
+                        currencyIndicator = argument.GetSplit(3)            'p for pokedollars, bp for battle points
                     End If
 
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New TradeScreen(Core.CurrentScreen, storeData, canBuy, canSell, currencyIndicator), Color.Black, False))

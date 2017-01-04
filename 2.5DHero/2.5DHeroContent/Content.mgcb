@@ -49698,6 +49698,9 @@
 #begin Scripts/frontier/frontier_cameraintro.dat
 /copy:Scripts/frontier/frontier_cameraintro.dat
 
+#begin Scripts/frontier/frontier_shop.dat
+/copy:Scripts/frontier/frontier_shop.dat
+
 #begin Scripts/frontier/intro.dat
 /copy:Scripts/frontier/intro.dat
 
