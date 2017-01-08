@@ -459,6 +459,8 @@ Public Class GameMode
                             End If
                         Case "startrotation"
                             Me._startRotation = CSng(Value.Replace(".", GameController.DecSeparator))
+                        Case "startscript"
+                            StartScript = Value
                         Case "startlocationname"
                             Me._startLocationName = Value
                         Case "startdialogue"
@@ -590,6 +592,7 @@ Public Class GameMode
             "StartMap|" & Me._startMap & vbNewLine &
             "StartPosition|" & Me._startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
             "StartRotation|" & Me._startRotation.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
+            "StartScript|" & StartScript & vbNewLine &
             "StartLocationName|" & Me._startLocationName & vbNewLine &
             "StartDialogue|" & Me._startDialogue & vbNewLine &
             "StartColor|" & Me._startColor.R & "," & Me._startColor.G & "," & Me._startColor.B & vbNewLine &
@@ -979,6 +982,11 @@ Public Class GameMode
             Me._skinNames = value
         End Set
     End Property
+
+    ''' <summary>
+    ''' The default gamemode boot up script.
+    ''' </summary>
+    Public Property StartScript As String = ""
 
 #End Region
 

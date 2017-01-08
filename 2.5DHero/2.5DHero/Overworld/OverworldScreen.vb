@@ -81,6 +81,7 @@ Public Class OverworldScreen
         End Set
     End Property
 
+    Public Property GlobalGameModeScriptStarted As Boolean = False
 #End Region
 
     ''' <summary>
@@ -143,6 +144,12 @@ Public Class OverworldScreen
     ''' Updates the OverworldScreen.
     ''' </summary>
     Public Overrides Sub Update()
+        If GameModeManager.ActiveGameMode.StartScript <> "" AndAlso ActionScript.IsReady AndAlso Not GlobalGameModeScriptStarted Then
+            ActionScript.reDelay = 0.0F
+            ActionScript.StartScript(GameModeManager.ActiveGameMode.StartScript, 0)
+            GlobalGameModeScriptStarted = True
+        End If
+
         'If the MapScript has a value loaded from the MapScript map tag and there is no script running, start that script:
         If LevelLoader.MapScript <> "" And ActionScript.IsReady = True Then
             ActionScript.reDelay = 0.0F
