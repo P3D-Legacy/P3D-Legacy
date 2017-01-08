@@ -860,6 +860,21 @@ Public Class OverworldCamera
                 End If
         End Select
 
+        'DebugFeature:
+        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+            If KeyBoardHandler.KeyDown(Keys.LeftAlt) Then
+                If KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) Then
+                    v.X = 0F
+                    v.Y = 1.0F
+                    v.Z = 0F
+                ElseIf KeyBoardHandler.KeyDown(KeyBindings.BackwardMoveKey) Then
+                    v.X = 0F
+                    v.Y = -1.0F
+                    v.Z = 0F
+                End If
+            End If
+        End If
+
         Return v
     End Function
 
