@@ -45072,6 +45072,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Textures/TVs/MarioKart8.png
 
+#begin Content/Textures/TVs/MilkyWay.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/TVs/MilkyWay.png
+
 #begin Content/Textures/TVs/Nyan.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -50286,6 +50298,9 @@
 #begin Scripts/kolben/randomscreen.dat
 /copy:Scripts/kolben/randomscreen.dat
 
+#begin Scripts/kolben/tornado.dat
+/copy:Scripts/kolben/tornado.dat
+
 #begin Scripts/kolben/vendingmachine.dat
 /copy:Scripts/kolben/vendingmachine.dat
 
@@ -53039,6 +53054,9 @@
 
 #begin Scripts/trainer/kolben/nilllzz.trainer
 /copy:Scripts/trainer/kolben/nilllzz.trainer
+
+#begin Scripts/trainer/kolben/tornado.trainer
+/copy:Scripts/trainer/kolben/tornado.trainer
 
 #begin Scripts/trainer/kolben/darkfire1/0.trainer
 /copy:Scripts/trainer/kolben/darkfire1/0.trainer
