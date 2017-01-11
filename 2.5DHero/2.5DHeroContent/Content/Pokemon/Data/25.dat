@@ -34,7 +34,6 @@ CanFly|0
 CanSwim|0
 Pokedex|This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.\Mouse Pokémon\6\0.4\0,148,0
 Scale|0.7
-Move|1,344
 Move|1,39
 Move|1,84
 Move|5,45
@@ -52,6 +51,6 @@ Move|42,435
 Move|45,113
 Move|50,87
 EvolutionCondition|26,item,23,item
-Item|1,163
+Item|5,163
 Item|50,2006
 TradeValue|20

@@ -100,6 +100,11 @@
                     Next
                 Next
             End If
+            'Volt Tackle on Pikachu
+            If (parent1.Item IsNot Nothing AndAlso parent1.Item.Name.ToLower = "light ball") OrElse (parent2.Item IsNot Nothing AndAlso parent2.Item.Name.ToLower = "light ball") Then
+                Dim newAttack As BattleSystem.Attack = BattleSystem.Attack.GetAttackByID(344)
+                EggMoves.Add(newAttack)
+            End If
 
             Dim learnMoves As New List(Of BattleSystem.Attack)
             If EggMoves.Count <= 4 Then
