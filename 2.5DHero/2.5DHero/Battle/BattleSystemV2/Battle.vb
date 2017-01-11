@@ -4450,8 +4450,12 @@
 
         Private Sub EndTurnOwn(ByVal BattleScreen As BattleScreen)
             With BattleScreen
-                'Turn count
+                'Turn count (currently used for Fake Out only)
                 .FieldEffects.OwnPokemonTurns += 1
+                If HasSwitchedInOwn Then
+                    .FieldEffects.OwnPokemonTurns = 0
+                    HasSwitchedInOwn = False
+                End If
 
                 .FieldEffects.OwnLockOn = 0 'Reset lock-on
 
@@ -5180,8 +5184,12 @@
 
         Private Sub EndTurnOpp(ByVal BattleScreen As BattleScreen)
             With BattleScreen
-                'Turn count
+                'Turn count (Currently used for Fake Out only)
                 .FieldEffects.OppPokemonTurns += 1
+                If HasSwitchedInOpp Then
+                    .FieldEffects.OppPokemonTurns = 0
+                    HasSwitchedInOpp = False
+                End If
 
                 .FieldEffects.OppLockOn = 0 'Reset lock on
 
@@ -5906,7 +5914,8 @@
 #End Region
 
 #Region "Switching"
-
+        Dim HasSwitchedInOwn As Boolean = False
+        Dim HasSwitchedInOpp As Boolean = False
         Public Sub SwitchOutOwn(ByVal BattleScreen As BattleScreen, ByVal SwitchInIndex As Integer, ByVal InsertIndex As Integer, Optional ByVal message As String = "")
             With BattleScreen
                 ChangeCameraAngel(1, True, BattleScreen)
@@ -6074,6 +6083,7 @@
         End Sub
 
         Public Sub SwitchInOwn(ByVal BattleScreen As BattleScreen, ByVal NewPokemonIndex As Integer, ByVal FirstTime As Boolean, ByVal InsertIndex As Integer, Optional ByVal message As String = "")
+            HasSwitchedInOwn = True
             If FirstTime = False Then
                 Dim insertMessage As String = message
 
@@ -6422,6 +6432,7 @@
         End Sub
 
         Public Sub SwitchInOpp(ByVal BattleScreen As BattleScreen, ByVal FirstTime As Boolean, ByVal index As Integer)
+            HasSwitchedInOpp = True
             If FirstTime = False Then
                 ChangeCameraAngel(1, False, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Come back, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
