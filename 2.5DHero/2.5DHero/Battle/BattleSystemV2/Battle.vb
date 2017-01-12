@@ -7,6 +7,7 @@
 
 
         Public IsAfterFaint As Boolean = False
+        Public WildHasEscaped As Boolean = False
 #Region "StartRound"
 
         Public Structure RoundConst
@@ -1043,7 +1044,10 @@
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
-
+            If WildHasEscaped Then
+                WildHasEscaped = False
+                Exit Sub
+            End If
             'Transform Aegislash with Stance Change ability.
             If p.Ability.Name.ToLower() = "stance change" AndAlso p.Number = 681 Then
                 If p.AdditionalData = "" Then
