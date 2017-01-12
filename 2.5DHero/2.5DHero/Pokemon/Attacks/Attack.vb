@@ -1727,6 +1727,15 @@
         End Sub
 
         ''' <summary>
+        ''' Event that occurs when a the pokemon has been put to sleep.
+        ''' </summary>
+        ''' <param name="Own">If the own Pokémon used the move.</param>
+        ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
+        Public Overridable Sub IsSleeping(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING
+        End Sub
+
+        ''' <summary>
         ''' Returns the attack stat of a Pokémon (Physical or Special).
         ''' </summary>
         ''' <param name="p">The Pokémon that used the move.</param>

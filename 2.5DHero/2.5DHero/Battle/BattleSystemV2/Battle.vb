@@ -1105,6 +1105,7 @@
             End If
 
             If p.Status = Pokemon.StatusProblems.Sleep Then
+                moveUsed.IsSleeping(own, BattleScreen)
                 Dim sleepTurns As Integer = BattleScreen.FieldEffects.OwnSleepTurns
                 If Not own Then
                     sleepTurns = BattleScreen.FieldEffects.OppSleepTurns
@@ -2747,7 +2748,6 @@
                                                 End If
                                             End If
                                         End If
-
                                         Return True
                                     End If
                                 End If

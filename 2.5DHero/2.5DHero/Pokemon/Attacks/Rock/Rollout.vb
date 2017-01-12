@@ -126,6 +126,9 @@ Namespace BattleSystem.Moves.Rock
             Interruption(own, BattleScreen)
         End Sub
 
+        Public Overrides Sub IsSleeping(own As Boolean, BattleScreen As BattleScreen)
+            Interruption(own, BattleScreen)
+        End Sub
     End Class
 
 End Namespace
