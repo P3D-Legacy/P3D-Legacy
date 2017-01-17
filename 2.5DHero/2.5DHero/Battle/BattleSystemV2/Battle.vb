@@ -1228,6 +1228,7 @@
                         Dim a As Attack = New ConfusionAttack()
                         Dim damage As Integer = BattleCalculation.CalculateDamage(a, False, True, True, BattleScreen)
                         ReduceHP(damage, own, own, BattleScreen, p.GetDisplayName() & " hurt itself in confusion.", "confusiondamage")
+                        moveUsed.HurtItselfInConfusion(own, BattleScreen)
                         Exit Sub
                     End If
                 End If

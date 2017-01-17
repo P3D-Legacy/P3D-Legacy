@@ -169,6 +169,14 @@
         Public Overrides Sub IsSleeping(own As Boolean, BattleScreen As BattleScreen)
             MoveFails(own, BattleScreen)
         End Sub
+
+        Public Overrides Sub HurtItselfInConfusion(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsAttracted(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
     End Class
 
 End Namespace

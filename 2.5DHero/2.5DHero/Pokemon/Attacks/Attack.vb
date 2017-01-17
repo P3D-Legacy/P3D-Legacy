@@ -1727,6 +1727,24 @@
         End Sub
 
         ''' <summary>
+        ''' Event that occurs when the pokemon has hurt itself in confusion.
+        ''' </summary>
+        ''' <param name="Own">If the own Pokémon is confused.</param>
+        ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
+        Public Overridable Sub HurtItselfInConfusion(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING
+        End Sub
+
+        ''' <summary>
+        ''' Event that occurs when the pokemon has falls in love with the opponent.
+        ''' </summary>
+        ''' <param name="Own">If the own Pokémon is in love.</param>
+        ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
+        Public Overridable Sub IsAttracted(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING
+        End Sub
+
+        ''' <summary>
         ''' Event that occurs when a the pokemon has been put to sleep.
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
