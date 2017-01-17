@@ -5,7 +5,7 @@
     Dim mainTexture As Texture2D
     Dim scrollTexture As Texture2D
 
-    Dim DonatorList() As String = {"Steven Sinclair", "Diego López", "Corbin Lair", "Michael Langen", "Diego Lopez", "Sam Schultz", "Tom Bolen", "Lewis Thompson", "William Hafey", "Edward Akus", "Arno Wendorff", "Kim Nay", "Danie Daniels", "Joe Palacios", "Stuart Oxtoby", "Jack Mckenzie", "Michael Cutipa", "The Homies", "Alicia Barfoot", "Maintrain97", "Shinytish", "Michael Molina", "Edward Akus"}
+    Dim DonatorList() As String = {"Many Anonymous Donors", "Username99", "Merder222", "Felipe 2", "Kuro95", "WheresMyTea", "RandomBounty", "NumseFisK", "abcoanon", "SirMarty", "The_Merciless95", "adm0n", "Avaluque", "Duck Tard", "L3_Purr", "Derata", "TheFlipside", "Zippo", "Dirty Harry", "Chaos7777", "Sontee", "PsYcO363", "Sammyinside", "mickeystand1", "Tripsaur", "Fox405", "LoganKnez", "Jehowi", "Sedat", "Mischapus", "PeanutButter", "Nathan Wilson", "Fluffy", "Shou Liengod", "Gorogok", "Yoshina", "Hodsy Beats", "takenbycats", "sorixkhaos", "lordkango", "northway", "bloodeyezack", "gladdy16", "Paradetheday", "Gawerty", "Haydos709", "ShadyGame", "Mikolaj Nowicki", "Koolboyman", "TrainerStan", "carebear", "Bedders", "Matz", "ITAxDarko", "Rhyinn", "arthegon", "bmalfer", "Noah Cloud", "Matti", "Yrael", "Tornado9797", "Wilkojc", "Namu", "SACooper95", "nilllzz", "Nesasio", "beenlord", "Maria", "JohnnyRooks", "Calcifer", "Nyves", "Daniel Saavedra", "DannyM93", "The-amazing-blackstar", "DevoidLight", "OhSnapItsDavid", "Anvil555", "Clanor", "Liamash3", "Daysofthenew690", "Luan Nicholas", "Pushacher19", "Meowth", "DarknessYami", "Gameshark93", "Enethil", "Gnifle", "abovo", "p1neapple", "Destructosaur", "Darkfire", "Tim Dargan", "PrincessKooh", "Tyler Snyder", "hannes3120", "Raa", "Richard Tisher", "Brutalicious", "DarkLink", "Mpilemann", "PerrBearr", "robod", "Davey", "Colin_Mg", "Whitney", "mreh", "zXxLIPSxXz", "Xane", "LeeMan", "ekwilson79", "Darrin Danhauer", "AlessaGarnish", "Sola", "Luffy343", "Masasume", "Grabsak Turnkoff", "Sporkedmango", "Splint", "Mitchmack", "Pegasuraptor", "CrayonDoctor", "Olliewott", "Maizox", "Gamester565", "Michael", "Syrca", "PaperDanie2", "Gamerunner15", "Ashurnasirpal", "edward", "Gusty Glalie", "DracoHouston", "BakaOnibi", "Tj8805", "Lunick", "Karasu416", "Steven Sinclair", "Corbin Lair", "Michael Langen", "Diego López", "Sam Schultz", "Tom Bolen", "Lewis Thompson", "William Hafey", "Edward Akus", "Arno Wendorff", "Kim Nay", "Danie Daniels", "Joe Palacios", "Stuart Oxtoby", "Jack Mckenzie", "Michael Cutipa", "The Homies", "Alicia Barfoot", "Maintrain97", "Shinytish", "Michael Molina", "Edward Akus"}
     Dim OffsetY As Integer = 0
     Const ScrollSpeed As Single = 35.0F
 
@@ -16,16 +16,16 @@
 
         Me.scrollTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
-        Dim l As New List(Of String)
-        Dim oldL As List(Of String) = DonatorList.ToList()
+        ' Dim l As New List(Of String)
+        Dim l As List(Of String) = DonatorList.ToList()
 
-        While oldL.Count > 0
-            Dim i As Integer = Core.Random.Next(0, oldL.Count)
-            l.Add(oldL(i))
-            oldL.RemoveAt(i)
-        End While
+        ' Decided to remove the seemingly unnecessary randomization of the donor list. Re-implement if voted back in. - Tornado9797
 
-        l.Add("Missingno.")
+        ' While oldL.Count > 0
+        '   Dim i As Integer = Core.Random.Next(0, oldL.Count)
+        '   l.Add(oldL(i))
+        '   oldL.RemoveAt(i)
+        ' End While
 
         DonatorList = l.ToArray()
     End Sub
