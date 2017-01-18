@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @npc commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @npc commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoNPC(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -136,8 +136,8 @@
                 Case "spawn"
                     Dim args() As String = argument.Split(CChar(","))
 
-                    'required parameters: position
-                    'optional parameters: actionvalue, additionalvalue, textureid, animateidle, rotation, name, id, movement
+                    ' Required parameters: position
+                    ' Optional parameters: actionvalue, additionalvalue, textureid, animateidle, rotation, name, id, movement
 
                     Dim position As Vector3 = New Vector3(sng(args(0)), sng(args(1)), sng(args(2)))
                     Dim actionValue As Integer = 0

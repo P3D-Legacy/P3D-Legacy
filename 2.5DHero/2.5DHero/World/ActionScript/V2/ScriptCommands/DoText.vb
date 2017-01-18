@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @text commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @text commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoText(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -36,7 +36,7 @@
                                 Screen.TextBox.TextColor = TextBox.PlayerColor
                             Case "defaultcolor", "default"
                                 Screen.TextBox.TextColor = TextBox.DefaultColor
-                            Case Else 'Try to convert the input color name into a color: (https://msdn.microsoft.com/en-us/library/system.drawing.knowncolor%28v=vs.110%29.aspx)
+                            Case Else ' Try to convert the input color name into a color: (https://msdn.microsoft.com/en-us/library/system.drawing.knowncolor%28v=vs.110%29.aspx)
                                 Screen.TextBox.TextColor = Drawing.Color.FromName(args(0)).ToXNA()
                         End Select
                     ElseIf args.Length = 3 Then

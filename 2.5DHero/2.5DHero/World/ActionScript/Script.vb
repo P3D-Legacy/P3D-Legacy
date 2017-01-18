@@ -1,7 +1,7 @@
 ﻿Public Class Script
 
     Public Enum ScriptTypes As Integer
-        'V1:
+        ' V1:
         Move = 0
         MoveAsync = 1
         MovePlayer = 2
@@ -46,7 +46,7 @@
         SwitchEndIf = 39
         SwitchEnd = 40
 
-        'V2:
+        ' V2:
         Command = 100
 
         [if] = 101

@@ -48,8 +48,9 @@ Public Class CreditsScreen
         MediaPlayer.IsRepeating = False
     End Sub
 
+    ' The text that shows during the credits:
     Private Sub InitializeCreditsPages(ByVal ending As String)
-        CreditsPages.Add(New CreditsPage("Pokémon3D staff", Color.White, Color.Black))
+        CreditsPages.Add(New CreditsPage("Pokémon3D Staff", Color.White, Color.Black))
         CreditsPages.Add(New CreditsPage("Pokémon", Color.White, Color.Black, {"made by", "Nintendo", "Game Freak", "The Pokémon Company"}.ToList()))
         If GameModeManager.ActiveGameMode.IsDefaultGamemode = True Then
             CreditsPages.Add(New CreditsPage("Pokémon3D", Color.White, Color.Black, {"Trademark (TM) 2012 - " & COPYRIGHTYEAR, "made by Kolben Games"}.ToList()))
@@ -60,24 +61,25 @@ Public Class CreditsScreen
         CreditsPages.Add(New CreditsPage("Director", Color.White, Color.Black, {"Nils Drescher"}.ToList()))
         CreditsPages.Add(New CreditsPage("Open Source Development Team", Color.White, Color.Black, {"Benjamin Smith", "Yong Jian Ming", """Aragas""", """oXFantaXo""", "Jorge Luis Espinoza"}.ToList()))
         CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "William Lang", "Benjamin Smith", "Yong Jian Ming", "Jorge Luis Espinoza", """Aragas"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Graphics", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", """Godeken""", "Caleb Coleman", "Robert Nobbmann", "Manuel Lampe", "Miguel Nunez", "Grant Garrett", """Anvil555"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Map design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine", "Jason Houston", """oXFantaXo"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", """Godeken""", "Caleb Coleman", "Robert Nobbmann", "Manuel Lampe", "Miguel Nunez", "Grant Garrett", """Anvil555"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine", "Jason Houston", """oXFantaXo"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Andrew Leach", "Jason Houston", "Yong Jian Ming", """Aragas""" }.ToList()))
-        CreditsPages.Add(New CreditsPage("Script System development", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Yong Jian Ming", """Aragas"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("KolbenWindowWidget development", Color.White, Color.Black, {"Jason Houston"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Launcher programming", Color.White, Color.Black, {"Nils Drescher", "Daniel Billing", """ThuxCommix""", """Aragas"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Yong Jian Ming", """Aragas"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("KolbenWindowWidget Development & LUA Implementation", Color.White, Color.Black, {"Jason Houston"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Launcher Programming", Color.White, Color.Black, {"Nils Drescher", "Daniel Billing", """ThuxCommix""", """Aragas"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Pokéditor Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "Hunter Graves"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Website Host/Server maintenance", Color.White, Color.Black, {"Daniel Billing", "Daniel Laube"}.ToList()))
-        CreditsPages.Add(New CreditsPage("GameJolt Service/API programming", Color.White, Color.Black, {"David DeCarmine", "Nils Drescher"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Debug testing", Color.White, Color.Black, {"Jan Mika Eine", "Tim Drescher", "Daniel Steinborn", "Andrew Leach", "Marc Boisvert-Dupras", "Matt Chambers", "Hunter Graves", "Benjamin Smith", "William Hunn", "Torben Carrington", """oXFantaXo""", "Conner Brewster"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Website Host/Server Maintenance", Color.White, Color.Black, {"Daniel Billing", "Daniel Laube"}.ToList()))
+        CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", "Nils Drescher"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Debug Testing", Color.White, Color.Black, {"Jan Mika Eine", "Tim Drescher", "Daniel Steinborn", "Andrew Leach", "Marc Boisvert-Dupras", "Matt Chambers", "Hunter Graves", "Benjamin Smith", "William Hunn", "Torben Carrington", """oXFantaXo""", "Conner Joseph Brewster"}.ToList()))
         CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"""MunchingOrange""", """TheFlamingSpade""", """SlyFoxHound""", """ArsenioDev""", """TrUShade""", """Isaaking6"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt team", "The AppSharp team", "The Smogon University Team"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt Team", "The AppSharp Team", "The Smogon University Team"}.ToList()))
         CreditsPages.Add(New CreditsPage("", Color.White, Color.Black, {"And probably a lot more.", "Especially all the awesome people from", "the pokemon3d.net community.", "Thanks for helping and playing this great game."}.ToList()))
         CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
         CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
         CreditsPages.Add(New CreditsPage("THE END", Color.White, Color.Black, {"Thank you for playing!"}.ToList()))
     End Sub
 
+    ' Credit camera starting positions:
     Private Sub InitializeCameraLevels(ByVal ending As String)
         Select Case ending.ToLower()
             Case "johto"

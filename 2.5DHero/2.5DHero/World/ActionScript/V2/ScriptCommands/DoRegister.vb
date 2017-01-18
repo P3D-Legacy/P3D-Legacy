@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @register commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @register commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoRegister(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -30,7 +30,7 @@
                     ActionScript.ChangeRegister(args(0), args(1))
                 Case "registertime"
                     Dim args() As String = argument.Split(CChar(","))
-                    '0=register name, 1=value, 2=format
+                    ' 0=register name, 1=value, 2=format
 
                     Dim format As String = "days"
                     Dim isValidFormat As Boolean = True

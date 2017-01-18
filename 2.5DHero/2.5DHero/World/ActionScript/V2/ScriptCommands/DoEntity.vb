@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @entity commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @entity commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoEntity(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -93,7 +93,7 @@
                             Case "setcollision"
                                 ent.Collision = CBool(argument.GetSplit(1))
                             Case "settexture"
-                                'Data structure for the entire argument: entID,textureID,[texturename,x,y,width,height]
+                                ' Data structure for the entire argument: entID,textureID,[texturename,x,y,width,height]
                                 Dim textureID As Integer = int(argument.GetSplit(1))
 
                                 Dim textureData As String = argument.Remove(0, argument.IndexOf("[") + 1)

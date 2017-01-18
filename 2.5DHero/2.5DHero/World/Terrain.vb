@@ -99,7 +99,7 @@ Public Class Terrain
                 Return TerrainTypes.PvPBattle
         End Select
 
-        'Default terrain:
+        ' Default terrain:
         Logger.Log(Logger.LogTypes.Warning, "Terrain.vb: Invalid terrain name: """ & input & """. Returning ""Plains"".")
         Return TerrainTypes.Plain
     End Function

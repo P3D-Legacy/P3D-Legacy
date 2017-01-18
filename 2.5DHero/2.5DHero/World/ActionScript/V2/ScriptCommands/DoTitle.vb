@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @title commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @title commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoTitle(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -19,23 +19,23 @@
                         For i = 0 To args.Count - 1
                             Dim arg As String = args(i)
                             Select Case i
-                                Case 0 'text
+                                Case 0 ' Text
                                     t.Text = arg
-                                Case 1 'delay
+                                Case 1 ' Delay
                                     t.Delay = sng(arg)
-                                Case 2 'R
+                                Case 2 ' Red
                                     t.TextColor = New Color(CByte(int(arg).Clamp(0, 255)), t.TextColor.G, t.TextColor.B)
-                                Case 3 'G
+                                Case 3 ' Green
                                     t.TextColor = New Color(t.TextColor.R, CByte(int(arg).Clamp(0, 255)), t.TextColor.B)
-                                Case 4 'B
+                                Case 4 ' Blue
                                     t.TextColor = New Color(t.TextColor.R, t.TextColor.G, CByte(int(arg).Clamp(0, 255)))
-                                Case 5 'Scale
+                                Case 5 ' Scale
                                     t.Scale = sng(arg)
-                                Case 6 'IsCentered
+                                Case 6 ' IsCentered
                                     t.IsCentered = CBool(arg)
-                                Case 7 'X
+                                Case 7 ' X
                                     t.Position = New Vector2(sng(arg), t.Position.Y)
-                                Case 8 'Y
+                                Case 8 ' Y
                                     t.Position = New Vector2(t.Position.X, sng(arg))
                             End Select
                         Next

@@ -4,7 +4,7 @@ Namespace ScriptVersion2
 
         Shared ScriptV2 As ScriptV2
 
-        Shared Value As String = "" 'Stores a value that the ScriptCommander keeps across script calls and scripts.
+        Shared Value As String = "" ' Stores a value that the ScriptCommander keeps across script calls and scripts.
 
         Public Shared Function Parse(ByVal input As String) As Object
             Return ScriptComparer.EvaluateConstruct(input)
@@ -49,7 +49,7 @@ Namespace ScriptVersion2
         ''' <summary>
         ''' Executes a command.
         ''' </summary>
-        ''' <param name="ScriptV2">The primitive script (v2).</param>
+        ''' <param name="ScriptV2">The primitive script (V2).</param>
         ''' <param name="inputString">The input command.</param>
         Public Shared Sub ExecuteCommand(ByRef ScriptV2 As ScriptV2, ByVal inputString As String)
             ScriptCommander.ScriptV2 = ScriptV2
@@ -141,7 +141,7 @@ Namespace ScriptVersion2
                     Logger.Log(Logger.LogTypes.Message, "ScriptCommander.vb: This class (" & mainClass & ") doesn't exist.")
                     IsReady = True
             End Select
-        End Sub 'crash handle
+        End Sub ' Crash handler.
 
         ''' <summary>
         ''' Generates a script line that gets inserted infront of the current script to turn the player into the correct orientation.
@@ -178,11 +178,11 @@ Namespace ScriptVersion2
         End Sub
 
 
-        '//////////////////////////////////////////////////////////
-        '//
-        '// Shortens the ScriptConversion methods to shorter names.
-        '//
-        '//////////////////////////////////////////////////////////
+        ' //////////////////////////////////////////////////////////
+        ' //
+        ' // Shortens the ScriptConversion methods to shorter names.
+        ' //
+        ' //////////////////////////////////////////////////////////
 
         Private Shared Function int(ByVal expression As Object) As Integer
             Return ScriptConversion.ToInteger(expression)
