@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @radio commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @radio commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoRadio(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -25,7 +25,7 @@
             End Select
 
             IsReady = True
-        End Sub 'crash handle
+        End Sub ' Crash Handler
 
     End Class
 

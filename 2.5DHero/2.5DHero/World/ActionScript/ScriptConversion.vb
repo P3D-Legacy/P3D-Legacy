@@ -46,7 +46,7 @@ Public Class ScriptConversion
     End Function
 
     ''' <summary>
-    ''' Evaluates a math expression in the postfix notation. Example: 2 3 +
+    ''' Evaluates a math expression in the postfix notation. Example: "2 3 +".
     ''' </summary>
     ''' <param name="input">The postfix string.</param>
     Private Shared Function EvaluatePostfix(ByVal input As String, Optional ByRef hasError As Boolean = False) As Double
@@ -123,7 +123,7 @@ Public Class ScriptConversion
     ''' <summary>
     ''' Converts an infix notation to postfix notation.
     ''' </summary>
-    ''' <param name="input">The infix notation. Example: 2+3</param>
+    ''' <param name="input">The infix notation. Example: "2+3".</param>
     Private Shared Function ToPostfix(ByVal input As String, Optional ByRef hasError As Boolean = False) As String
         If input.Trim().StartsWith("-") Then
             input = "0" & input
@@ -139,11 +139,11 @@ Public Class ScriptConversion
             Dim token As Char = tokens(0)
             tokens.RemoveAt(0)
 
-            'Token is a number:
+            ' Token is a number:
             If IsNumber(token) = True Then
                 cNumber &= token.ToString()
             ElseIf cNumber.Length > 0 Then
-                output &= cNumber.ToString() & " " 'Add to the output
+                output &= cNumber.ToString() & " " ' Add to the output.
                 cNumber = ""
             End If
 
@@ -152,7 +152,7 @@ Public Class ScriptConversion
                 cNumber = ""
             End If
 
-            'Token is an operator
+            ' Token is an operator:
             If IsOperator(token) = True Then
                 Dim o1 As Char = token
 
@@ -163,11 +163,11 @@ Public Class ScriptConversion
 
                 stack.Insert(0, o1)
             End If
-            'Token is a left parenthesis
+            ' Token is a left parenthesis:
             If token = "("c Then
                 stack.Insert(0, token)
             End If
-            'Token is a right parenthesis
+            ' Token is a right parenthesis:
             If token = ")"c Then
                 If stack.Count > 0 Then
                     While stack.Count > 0

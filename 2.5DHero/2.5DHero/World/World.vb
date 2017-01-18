@@ -412,27 +412,27 @@ endsub:
 
     Public Shared Function GetWeatherFromWeatherType(ByVal WeatherType As Integer) As Weathers
         Select Case WeatherType
-            Case 0 'RegionWeather
+            Case 0 ' Region Weather
                 Return World.GetCurrentRegionWeather()
-            Case 1 'Clear
+            Case 1 ' Clear
                 Return Weathers.Clear
-            Case 2 'Rain
+            Case 2 ' Rain
                 Return Weathers.Rain
-            Case 3 'Snow
+            Case 3 ' Snow
                 Return Weathers.Snow
-            Case 4 'Underwater
+            Case 4 ' Underwater
                 Return Weathers.Underwater
-            Case 5 'Sunny
+            Case 5 ' Sunny
                 Return Weathers.Sunny
-            Case 6 'Fog
+            Case 6 ' Fog
                 Return Weathers.Fog
-            Case 7 'Sandstorm
+            Case 7 ' Sandstorm
                 Return Weathers.Sandstorm
-            Case 8
+            Case 8 ' Ash
                 Return Weathers.Ash
-            Case 9
+            Case 9 ' Blizzard
                 Return Weathers.Blizzard
-            Case 10
+            Case 10 ' Thunderstorm
                 Return Weathers.Thunderstorm
         End Select
         Return Weathers.Clear
@@ -474,31 +474,31 @@ endsub:
         Me.CurrentMapWeather = GetWeatherFromWeatherType(WeatherType)
 
         Select Case EnvironmentType
-            Case 0 'Overworld
+            Case 0 ' Overworld
                 Me.EnvironmentType = EnvironmentTypes.Outside
                 Me.UseLightning = True
-            Case 1 'Day always
+            Case 1 ' Permanent Day
                 Me.EnvironmentType = EnvironmentTypes.Inside
                 Me.UseLightning = False
-            Case 2 'Cave
+            Case 2 ' Cave
                 Me.EnvironmentType = EnvironmentTypes.Cave
                 If WeatherType = 0 Then
                     Me.CurrentMapWeather = Weathers.Clear
                 End If
                 Me.UseLightning = False
-            Case 3 'Night always
+            Case 3 ' Permanent Night
                 Me.EnvironmentType = EnvironmentTypes.Dark
                 If WeatherType = 0 Then
                     Me.CurrentMapWeather = Weathers.Clear
                 End If
                 Me.UseLightning = False
-            Case 4 'Underwater
+            Case 4 ' Underwater
                 Me.EnvironmentType = EnvironmentTypes.Underwater
                 If WeatherType = 0 Then
                     Me.CurrentMapWeather = Weathers.Underwater
                 End If
                 Me.UseLightning = True
-            Case 5 'Forest
+            Case 5 ' Forest
                 Me.EnvironmentType = EnvironmentTypes.Forest
                 Me.UseLightning = True
         End Select
@@ -857,7 +857,7 @@ endsub:
 
     Public Shared ServerSeason As Seasons = Seasons.Spring
     Public Shared ServerWeather As Weathers = Weathers.Clear
-    Public Shared ServerTimeData As String = "0,0,0" 'Format: Hour,Minute,Second
+    Public Shared ServerTimeData As String = "0,0,0" ' Format: Hours,Minutes,Seconds
     Public Shared LastServerDataReceived As Date = Date.Now
 
     Public Shared ReadOnly Property SecondsOfDay() As Integer

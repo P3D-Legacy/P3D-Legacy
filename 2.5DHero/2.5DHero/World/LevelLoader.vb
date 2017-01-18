@@ -23,13 +23,13 @@
     Dim loadOffsetMap As Boolean = True
     Dim offsetMapLevel As Integer = 0
     Dim MapOrigin As String = ""
-    Dim sessionMapsLoaded As New List(Of String) 'Prevents infinite loops when loading more than one offset map level.
+    Dim sessionMapsLoaded As New List(Of String) ' Prevents infinite loops when loading more than one offset map level.
 
-    'Store these so other classes can get them.
+    ' Store these so other classes can get them:
     Private Entities As New List(Of Entity)
     Private Floors As New List(Of Entity)
 
-    'A counter across all LevelLoader instances to count how many instances across the program are active.
+    ' A counter across all LevelLoader instances to count how many instances across the program are active:
     Shared Busy As Integer = 0
 
     Public Shared ReadOnly Property IsBusy() As Boolean
@@ -256,8 +256,8 @@
         timer.Stop()
         Logger.Debug("Map loading time: " & timer.ElapsedTicks & " Ticks; " & timer.ElapsedMilliseconds & " Milliseconds.")
 
-        'Dim xmlLevelLoader As New XmlLevelLoader
-        'xmlLevelLoader.Load(My.Computer.FileSystem.SpecialDirectories.Desktop & "\t.xml", _5DHero.XmlLevelLoader.LevelTypes.Default, Vector3.Zero)
+        ' Dim xmlLevelLoader As New XmlLevelLoader.
+        ' xmlLevelLoader.Load(My.Computer.FileSystem.SpecialDirectories.Desktop & "\t.xml", _5DHero.XmlLevelLoader.LevelTypes.Default, Vector3.Zero)
 
         Busy -= 1
 
@@ -969,7 +969,7 @@
             Screen.Level.WeatherType = 0
         End If
 
-        'It's not my fault I swear. The keyboard was slippy, I was partly sick and there was fog on the road and I couldnt see.
+        ' It's not my fault, I swear. The keyboard was slippy, I was partly sick, and there was fog on the road and I couldn't see.
         Dim lightningExists As Boolean = TagExists(Tags, "Lightning")
         Dim lightingExists As Boolean = TagExists(Tags, "Lighting")
 
@@ -1015,10 +1015,10 @@
                 If CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
                     CType(CurrentScreen, OverworldScreen).ActionScript.reDelay = 0.0F
                     CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(scriptName, 0)
-                Else 'A script intro is playing (fly)
+                Else ' A script intro is playing (such as Fly).
                     MapScript = scriptName
                 End If
-            Else 'Must be a direct save load from the main menu.
+            Else ' Must be a direct save load from the main menu.
                 MapScript = scriptName
             End If
         Else

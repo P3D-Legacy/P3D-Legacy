@@ -37,8 +37,8 @@ Public Class OffsetMap
     Public Sub New(ByVal MapName As String)
         _MapName = MapName
 
-        'Set the identifier:
-        '             Offset map       Map weather                                  Region weather                          Time                    Season
+        ' Set the identifier:
+        '             Offset Map                   Map Weather                             Region Weather                       Time                   Season
         _Identifier = _MapName & "|" & Screen.Level.World.CurrentMapWeather & "|" & World.GetCurrentRegionWeather() & "|" & World.GetTime() & "|" & World.CurrentSeason()
     End Sub
 

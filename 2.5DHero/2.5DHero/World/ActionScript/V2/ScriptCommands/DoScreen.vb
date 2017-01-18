@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @screen commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @screen commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoScreen(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -24,14 +24,14 @@
 
                     CanContinue = False
                 Case "trade"
-                    Dim storeData As String = CStr(argument.GetSplit(0))    'e.g. Item ID
-                    Dim canBuy As Boolean = CBool(argument.GetSplit(1))     '
-                    Dim canSell As Boolean = CBool(argument.GetSplit(2))    '
+                    Dim storeData As String = CStr(argument.GetSplit(0))    ' e.g. Item ID
+                    Dim canBuy As Boolean = CBool(argument.GetSplit(1))     ' 
+                    Dim canSell As Boolean = CBool(argument.GetSplit(2))    ' 
 
                     Dim currencyIndicator As String = "P"
 
                     If argument.CountSplits() > 3 Then
-                        currencyIndicator = argument.GetSplit(3)            'p for pokedollars, bp for battle points
+                        currencyIndicator = argument.GetSplit(3)            ' p for PokéDollars, bp for Battle Points.
                     End If
 
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New TradeScreen(Core.CurrentScreen, storeData, canBuy, canSell, currencyIndicator), Color.Black, False))
@@ -127,11 +127,11 @@
                     Dim args() As String = argument.Split(CChar(","))
 
                     If args.Length = 1 Then
-                        'Show screen with all tutor moves
+                        ' Show screen with all tutor moves.
 
                         Core.SetScreen(New TeachMovesScreen(Core.CurrentScreen, int(argument)))
                     ElseIf args.Length > 1 Then
-                        'Show screen with all moves listed
+                        ' Show screen with all moves listed.
                         Dim pokeIndex As Integer = int(args(0))
 
                         Dim moves As New List(Of BattleSystem.Attack)

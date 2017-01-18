@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @pokemon commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @pokemon commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoPokemon(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -23,7 +23,7 @@
                         Core.Player.Pokemons.RemoveAt(index)
                     End If
                 Case "add"
-                    'PokemonID,Level,Method,Ball,Location,IsEgg,TrainerName
+                    ' PokemonID,Level,Method,Ball,Location,IsEgg,TrainerName
 
                     If argument.StartsWith("{") = True Or argument.Remove(0, 1).StartsWith(",{") = True Then
                         Dim insertIndex As Integer = Core.Player.Pokemons.Count
@@ -525,7 +525,7 @@
                         Core.Player.Pokemons(Index).CatchLocation = place
                     End If
                 Case "newroaming"
-                    'PokémonID,Level,regionID,startLevelFile,MusicLoop
+                    ' PokémonID,Level,regionID,startLevelFile,MusicLoop
                     Dim data() As String = argument.Split(CChar(","))
                     Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(data(0)))
                     p.Generate(CInt(data(1)), True)

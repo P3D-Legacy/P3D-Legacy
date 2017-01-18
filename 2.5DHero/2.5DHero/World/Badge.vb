@@ -1,5 +1,5 @@
 ''' <summary>
-''' This class handles all actions regarding badge loading and displaying.
+''' This class handles all actions regarding Badge loading and displaying.
 ''' </summary>
 Public Class Badge
 
@@ -19,7 +19,7 @@ Public Class Badge
     Private Shared Badges As New List(Of BadgeDeclaration)
 
     ''' <summary>
-    ''' This describes one badge loaded by a GameMode with ID, Name, Texture and Arguments
+    ''' This describes one Badge loaded by a GameMode with ID, Name, Texture and Arguments.
     ''' </summary>
     Private Class BadgeDeclaration
 
@@ -86,7 +86,7 @@ Public Class Badge
     End Class
 
     ''' <summary>
-    ''' Loads the badges. Only use after the GameMode got set.
+    ''' Loads the Badges. Only use after the GameMode got set.
     ''' </summary>
     Public Shared Sub Load()
         Badges.Clear()
@@ -104,9 +104,9 @@ Public Class Badge
 #Region "GetFunctions"
 
     ''' <summary>
-    ''' Gets the badge name.
+    ''' Gets the Badge name.
     ''' </summary>
-    ''' <param name="ID">The ID of the badge.</param>
+    ''' <param name="ID">The ID of the Badge.</param>
     Public Shared Function GetBadgeName(ByVal ID As Integer) As String
         For Each b As BadgeDeclaration In Badges
             If b.ID = ID Then
@@ -144,9 +144,9 @@ Public Class Badge
     End Function
 
     ''' <summary>
-    ''' Checks if the player is able to perform a certain HM move.
+    ''' Checks if the player is able to perform a certain Hidden Machine move.
     ''' </summary>
-    ''' <param name="HM">The HM move the player tries to use.</param>
+    ''' <param name="HM">The Hidden Machine move the player tries to use.</param>
     Public Shared Function CanUseHMMove(ByVal HM As HMMoves) As Boolean
         Dim trainerBadges As List(Of Integer) = Core.Player.Badges
         For Each b As BadgeDeclaration In Badges
@@ -160,7 +160,7 @@ Public Class Badge
     ''' <summary>
     ''' Gets the region.
     ''' </summary>
-    ''' <param name="index">The index of the region in the badges enumeration.</param>
+    ''' <param name="index">The index of the region in the Badges enumeration.</param>
     Public Shared Function GetRegion(ByVal index As Integer) As String
         Dim regions As New List(Of String)
         For Each b As BadgeDeclaration In Badges
@@ -176,9 +176,9 @@ Public Class Badge
     End Function
 
     ''' <summary>
-    ''' Gets the amount of badges in a certain region.
+    ''' Gets the amount of Badges in a certain region.
     ''' </summary>
-    ''' <param name="region">The region to count the badges.</param>
+    ''' <param name="region">The region to count the Badges.</param>
     Public Shared Function GetBadgesCount(ByVal region As String) As Integer
         Dim c As Integer = 0
         For Each b As BadgeDeclaration In Badges
@@ -203,10 +203,10 @@ Public Class Badge
     End Function
 
     ''' <summary>
-    ''' Gets the ID of a badge.
+    ''' Gets the ID of a Badge.
     ''' </summary>
-    ''' <param name="region">The region this badge is from.</param>
-    ''' <param name="index">The index of this badge.</param>
+    ''' <param name="region">The region this Badge is from.</param>
+    ''' <param name="index">The index of this Badge.</param>
     Public Shared Function GetBadgeID(ByVal region As String, ByVal index As Integer) As Integer
         Dim cBadges As New List(Of BadgeDeclaration)
         For Each b As BadgeDeclaration In Badges
@@ -222,7 +222,7 @@ Public Class Badge
     End Function
 
     ''' <summary>
-    ''' Checks if the player has a certain badge.
+    ''' Checks if the player has a certain Badge.
     ''' </summary>
     ''' <param name="BadgeID">The Badge ID to check for.</param>
     Public Shared Function PlayerHasBadge(ByVal BadgeID As Integer) As Boolean
