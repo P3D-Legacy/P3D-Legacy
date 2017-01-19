@@ -1039,7 +1039,11 @@
             'op: the target pokemon
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
-
+            If own Then
+                BattleScreen.FieldEffects.OwnLastMove = moveUsed
+            Else
+                BattleScreen.FieldEffects.OppLastMove = moveUsed
+            End If
             If Not own Then
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
