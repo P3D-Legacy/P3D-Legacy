@@ -5356,7 +5356,7 @@
                 'Sandstorm
                 If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
                     If .OppPokemon.Type1.Type <> Element.Types.Ground And .OppPokemon.Type2.Type <> Element.Types.Ground And .OppPokemon.Type1.Type <> Element.Types.Steel And .OppPokemon.Type2.Type <> Element.Types.Steel And .OppPokemon.Type1.Type <> Element.Types.Rock And .OppPokemon.Type2.Type <> Element.Types.Rock Then
-                        Dim sandAbilities() As String = {"sand veil", "sand rush", "sand force", "overcoat", "magic guard"}
+                        Dim sandAbilities() As String = {"sand veil", "sand rush", "sand force", "overcoat", "magic guard", "cloud nine"}
                         If sandAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
                             If .OppPokemon.HP > 0 Then
                                 Dim sandHP As Integer = CInt(.OppPokemon.MaxHP / 16)
@@ -5369,7 +5369,7 @@
                 'Hailstorm
                 If .FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
                     If .OppPokemon.Type1.Type <> Element.Types.Ice And .OppPokemon.Type2.Type <> Element.Types.Ice Then
-                        Dim hailAbilities() As String = {"ice body", "snow cloak", "overcoat", "magic guard"}
+                        Dim hailAbilities() As String = {"ice body", "snow cloak", "overcoat", "magic guard", "cloud nine"}
                         If hailAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
                             If .OppPokemon.HP > 0 Then
                                 Dim hailHP As Integer = CInt(.OppPokemon.MaxHP / 16)
