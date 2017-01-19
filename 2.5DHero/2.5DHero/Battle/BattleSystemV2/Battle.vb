@@ -1936,6 +1936,7 @@
                                                     InflictParalysis(own, Not own, BattleScreen, op.GetDisplayName() & "'s Effect Spore affects " & p.GetDisplayName() & "!", "effectspore")
                                                 Else
                                                     InflictSleep(own, Not own, BattleScreen, -1, op.GetDisplayName() & "'s Effect Spore affects " & p.GetDisplayName() & "!", "effectspore")
+                                                    i = TimesToAttack
                                                 End If
                                             End If
                                         End If
