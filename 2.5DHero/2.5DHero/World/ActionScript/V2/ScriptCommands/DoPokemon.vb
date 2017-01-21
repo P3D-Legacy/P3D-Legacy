@@ -433,7 +433,7 @@
                     End If
                 Case "registerhalloffame"
                     Dim count As Integer = -1
-
+                    Dim NewHallOfFameData As String = ""
                     If Core.Player.HallOfFameData <> "" Then
                         Dim data() As String = Core.Player.HallOfFameData.SplitAtNewline()
 
@@ -441,6 +441,13 @@
                             Dim id As Integer = CInt(l.Remove(l.IndexOf(",")))
                             If id > count Then
                                 count = id
+                            End If
+                        Next
+
+                        For Each l As String In data
+                            Dim id As Integer = CInt(l.Remove(l.IndexOf(",")))
+                            If id > (count - 19) OrElse id = 0 Then 'last 20 entries saved, plus the first entry
+                                NewHallOfFameData &= l & vbNewLine
                             End If
                         Next
                     End If
@@ -464,11 +471,8 @@
                         End If
                     Next
 
-                    If Core.Player.HallOfFameData <> "" Then
-                        Core.Player.HallOfFameData &= vbNewLine
-                    End If
-
-                    Core.Player.HallOfFameData &= newData
+                    NewHallOfFameData &= newData
+                    Core.Player.HallOfFameData = NewHallOfFameData
                 Case "setot"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
                     Dim OT As String = argument.GetSplit(1, ",")
