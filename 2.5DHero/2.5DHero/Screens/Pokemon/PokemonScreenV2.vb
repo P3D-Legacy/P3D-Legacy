@@ -26,7 +26,7 @@
         MyBase.Draw()
 
         If FadedIn = True Then
-            'Draw first Pokémon:
+            ' Draw first Pokémon:
             DrawFirstPokemon()
         End If
     End Sub
@@ -36,10 +36,10 @@
 
         Dim topLeft As Vector2 = Me.GetPositionInWindowTopLeft(0, 0)
 
-        'Shadow:
+        ' Shadow:
         Canvas.DrawRectangle(Me.OffsetRectangle(New Rectangle(topLeft.X.ToInteger() + 43, topLeft.Y.ToInteger() + 123, 80 * 3, 32 * 3)), New Color(0, 0, 0, 90))
 
-        'Box:
+        ' Box:
         Core.SpriteBatch.Draw(Me.texture,
                               Me.OffsetRectangle(New Rectangle(topLeft.X.ToInteger() + 40, topLeft.Y.ToInteger() + 120, 80 * 3, 32 * 3)),
                               New Rectangle(48, 16, 80, 32),
@@ -47,24 +47,24 @@
 
         Dim pTexture As Texture2D = poke.GetMenuTexture()
 
-        'Pokemon:
+        ' Pokémon:
         Core.SpriteBatch.Draw(pTexture, Me.OffsetRectangle(New Rectangle(topLeft.X.ToInteger() + 40, topLeft.Y.ToInteger() + 120, pTexture.Width * 2, pTexture.Height * 2)), Color.White)
-        'Name:
+        ' Name:
         Core.SpriteBatch.DrawString(FontManager.MiniFont, poke.GetDisplayName(), Me.OffsetVector(New Vector2(topLeft.X + 108, topLeft.Y + 134)), Color.White, 0.0F, Vector2.Zero, 1.2F, SpriteEffects.None, 0.0F)
-        'Level:
+        ' Level:
         Core.SpriteBatch.DrawString(FontManager.MiniFont, "Lv. " & poke.Level.ToString(), Me.OffsetVector(New Vector2(topLeft.X + 44, topLeft.Y + 188)), Color.White)
 
-        'Item:
+        ' Item:
         If poke.Item IsNot Nothing Then
             Core.SpriteBatch.Draw(poke.Item.Texture, Me.OffsetRectangle(New Rectangle(topLeft.X.ToInteger() + 80, topLeft.Y.ToInteger() + 160, 24, 24)), Color.White)
         End If
 
-        '"HP":
+        ' Hit Points:
         Core.SpriteBatch.Draw(Me.battleTexture,
                               Me.OffsetRectangle(New Rectangle(topLeft.X.ToInteger() + 108, topLeft.Y.ToInteger() + 170, 13 * 2, 6 * 2)),
                               New Rectangle(6, 37, 13, 6),
                               Color.White)
-        'HP bar:
+        ' Hit Points bar:
         Dim HPpercentage As Single = (100.0F / poke.MaxHP) * poke.HP
         Dim HPlength As Integer = CInt(Math.Ceiling(140 / 100 * HPpercentage.Clamp(1, 999)))
 
@@ -100,10 +100,10 @@
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X) + HPlength - 2, CInt(pos.Y), 2, 12), New Rectangle(cX, 37, 1, 6), Color.White)
         End If
 
-        'HP text:
+        ' Hit Points text:
         Core.SpriteBatch.DrawString(FontManager.MiniFont, poke.HP & " / " & poke.MaxHP, Me.OffsetVector(New Vector2(topLeft.X + 140, topLeft.Y + 188)), Color.White)
 
-        'Status:
+        ' Status:
         Dim StatusTexture As Texture2D = BattleStats.GetStatImage(poke.Status)
         If Not StatusTexture Is Nothing Then
             Core.SpriteBatch.Draw(StatusTexture, Me.OffsetRectangle(New Rectangle(CInt(topLeft.X + 235), CInt(topLeft.Y + 192), 38, 12)), Color.White)

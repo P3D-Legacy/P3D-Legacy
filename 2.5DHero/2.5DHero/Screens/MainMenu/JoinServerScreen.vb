@@ -93,7 +93,7 @@ Public Class JoinServerScreen
             Canvas.DrawScrollBar(New Vector2(CSng(Core.ScreenSize.Width / 2 + 266), 100), Me.ServerList.Count, 1, selectIndex, New Size(8, Core.ScreenSize.Height - 300), False, Color.Black, Color.Gray, True)
         End If
 
-        'Draw default first:
+        ' Draw default first:
         For i = 0 To endX
             Dim index As Integer = i + scrollIndex
 
@@ -154,7 +154,7 @@ Public Class JoinServerScreen
         Dim vS As String = "Protocol version: " & Servers.ServersManager.PROTOCOLVERSION
         Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, vS, New Vector2(Core.ScreenSize.Width - FontManager.MiniFont.MeasureString(vS).X - 4, Core.ScreenSize.Height - FontManager.MiniFont.MeasureString(vS).Y - 1), Color.White)
 
-        'Draw player list tooltip after everything else:
+        ' Draw player list tooltip after everything else:
         For i = 0 To endX
             Dim index As Integer = i + scrollIndex
 
@@ -408,9 +408,9 @@ Public Class JoinServerScreen
             Dim sw As New Stopwatch()
             sw.Start()
 
-            'TTL: 10000 ticks, usually at 60 Hz => 10000/60 seconds
+            ' TTL: 10000 ticks, usually at 60 Hz => 10000/60 seconds
             While sw.ElapsedMilliseconds < 10000 And Me.Pinged = False
-                'wait for server connection in main thread.
+                'Wait for server connection in the main thread.
                 Threading.Thread.Sleep(1)
             End While
 
@@ -568,7 +568,7 @@ Public Class JoinServerScreen
                     Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline, New Vector2(CInt(startPos.X) + width - 36 - FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X, CInt(startPos.Y) + 7), Color.LightGray)
                     Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * (4 - GetPingLevel()), 238, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
 
-                    'Ping result tool tip:
+                    ' Ping result tool tip:
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)

@@ -63,7 +63,7 @@ Friend Class SplashScreen
                 Else
                     Core.SetScreen(New MainMenuScreen())
                 End If
-                'Core.SetScreen(New TransitionScreen(Me, New IntroScreen(), Color.Black, False))
+                ' Core.SetScreen(New TransitionScreen(Me, New IntroScreen(), Color.Black, False))
             End If
         End If
 

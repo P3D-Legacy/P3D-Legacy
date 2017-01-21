@@ -16,7 +16,7 @@
     Dim SkinIndex As Integer = 0
     Dim skinTexture As Texture2D
     Dim enterCorrectName As Boolean = False
-    Dim nameMessage As String = "This name is too short"
+    Dim nameMessage As String = "This name is too short."
 
     Dim mainTexture As Texture2D
     Dim pokeTexture As Texture2D

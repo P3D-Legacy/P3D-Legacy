@@ -26,7 +26,7 @@
     End Sub
 
     Private Sub AchievePokedexEmblems()
-        'Eevee:
+        ' Eevee:
         Dim eevee() As Integer = {134, 135, 136, 196, 197, 470, 471}
         Dim hasEevee As Boolean = True
         For Each e As Integer In eevee
@@ -39,7 +39,7 @@
             GameJolt.Emblem.AchieveEmblem("eevee")
         End If
 
-        'Pokedex:
+        ' Pokédex:
         If Core.Player.IsGameJoltSave = True Then
             If Me.Profiles(0).Pokedex.Obtained >= Me.Profiles(0).Pokedex.Count Then
                 GameJolt.Emblem.AchieveEmblem("pokedex")
@@ -394,7 +394,7 @@ Public Class PokedexScreen
         Dim pokeSearchList As New List(Of Integer)
 
         If CHabitat Is Nothing Then
-            'Add any external Pokémon if specified to do so:
+            ' Add any external Pokémon if specified to do so:
             If Profile.Pokedex.IncludeExternalPokemon = True Then
                 For i = 1 To Pokedex.POKEMONCOUNT
                     If Me.Profile.Pokedex.HasPokemon(i, False) = False Then
@@ -1049,7 +1049,7 @@ Public Class PokedexScreen
             Public Daytimes() As Integer
         End Structure
 
-        Dim MergeData() As String = {} 'Temp data storage if needs to merge.
+        Dim MergeData() As String = {} ' Temporary data storage if needs to merge.
 
         Public File As String = ""
         Public Name As String = ""
@@ -1625,18 +1625,18 @@ Public Class PokedexViewScreen
             Return 0
         End If
         If count Mod 2 = 1 Then
-            'count = 7, c = 7
+            ' count = 7, c = 7
             Dim middle As Integer = CInt(Math.Ceiling(count / 2))
-            'middle = 4
+            ' middle = 4
             Dim stat As Integer = c - middle
-            'stat = 3
+            ' stat = 3
             Return stat
         Else
-            'count = 4, c = 1 
+            ' count = 4, c = 1 
             Dim middle As Double = count / 2
-            'middle = 2
+            ' middle = 2
             Dim stat As Double = c - middle - 0.5D
-            'stat = -1.5
+            ' stat = -1.5
             Return stat
         End If
     End Function

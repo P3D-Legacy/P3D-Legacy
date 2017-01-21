@@ -45,11 +45,11 @@
 
         If Delay >= 3.0F Then
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Max HP:      " & OldStats(0).ToString(), New Vector2(p.X + 32, p.Y + 84), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Attack:      " & OldStats(1).ToString(), New Vector2(p.X + 32, p.Y + 124), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Attack:       " & OldStats(1).ToString(), New Vector2(p.X + 32, p.Y + 124), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Defense:     " & OldStats(2).ToString(), New Vector2(p.X + 32, p.Y + 164), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Sp Attack:   " & OldStats(3).ToString(), New Vector2(p.X + 32, p.Y + 204), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Sp Defense:  " & OldStats(4).ToString(), New Vector2(p.X + 32, p.Y + 244), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Speed:       " & OldStats(5).ToString(), New Vector2(p.X + 32, p.Y + 284), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Sp Defense: " & OldStats(4).ToString(), New Vector2(p.X + 32, p.Y + 244), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Speed:        " & OldStats(5).ToString(), New Vector2(p.X + 32, p.Y + 284), Color.Black)
         End If
         If Delay >= 5.0F Then
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "+ " & newMaxHP, New Vector2(p.X + 200, p.Y + 84), Color.Black)

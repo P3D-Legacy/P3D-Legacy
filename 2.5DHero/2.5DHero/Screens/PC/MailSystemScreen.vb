@@ -332,7 +332,7 @@
         Select Case ID
             Case 0
                 T.Name = "Won a GTS competition."
-                T.Description = "You are the winner of a competition that took place at the GTS. It might has been an important competition."
+                T.Description = "You are the winner of a competition that took place at the GTS. It must have been an important competition."
                 TexturePosition = New Vector2(0, 0)
             Case 1
                 T.Name = "Won a GTS competition."

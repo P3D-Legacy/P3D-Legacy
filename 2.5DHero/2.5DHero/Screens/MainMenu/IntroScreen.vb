@@ -40,8 +40,8 @@
                 Me.Update3DMoveIn()
         End Select
 
-        'In the end, do this:
-        ' Core.SetScreen(New MainMenuScreen())
+        ' In the end, do this:
+        'Core.SetScreen(New MainMenuScreen())
     End Sub
 
     Private Sub UpdateRevealPokemon()

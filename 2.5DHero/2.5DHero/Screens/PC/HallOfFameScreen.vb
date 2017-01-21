@@ -267,9 +267,9 @@
         Level.Update()
 
         Select Case menuState
-            Case 0 'Menu updates
+            Case 0 ' Menu updates.
                 Me.UpdateMenu()
-            Case 1 'Menu fade/appear
+            Case 1 ' Menu fade/appear.
                 Me.alpha += (3 * Me.alphaFade)
                 If Me.alpha >= 255 Then
                     Me.alpha = 255
@@ -278,7 +278,7 @@
                     Me.alpha = 0
                     Me.menuState = 2
                 End If
-            Case 2 'Level updates
+            Case 2 ' Level updates.
                 Me.UpdateCamera()
         End Select
 

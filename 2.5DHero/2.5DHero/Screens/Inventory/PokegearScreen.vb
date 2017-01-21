@@ -4,8 +4,8 @@
 
         Inherits Screen
 
-        Public Shared TradeRequestData As Integer = -1 'This data gets set to the network ID of the user that requests a trade.
-        Public Shared BattleRequestData As Integer = -1 'This data gets set to the network ID of the user that requests a battle.
+        Public Shared TradeRequestData As Integer = -1 ' This data gets set to the network ID of the user that requests a trade.
+        Public Shared BattleRequestData As Integer = -1 ' This data gets set to the network ID of the user that requests a battle.
 
         Enum MenuScreens As Integer
             Main = 0
@@ -94,7 +94,7 @@
         End Sub
 
         Private Sub InitializeUserView(ByVal Data() As Object)
-            'Data: NetworkID, GameJoltID, Name, Sprite
+            ' Data: NetworkID, GameJoltID, Name, Sprite
 
             UserEmblem = Nothing
             UserSprite = CType(Data(3), Texture2D)
@@ -107,7 +107,7 @@
         End Sub
 
         Private Sub InitializeTradeRequest(ByVal Data() As Object)
-            'Data: NetworkID of the requester, GameJoltID
+            ' Data: NetworkID of the requester, GameJoltID
 
             menuIndex = MenuScreens.TradeRequest
             Me.TradeRequestNetworkID = CInt(Data(0))
@@ -117,7 +117,7 @@
         End Sub
 
         Private Sub InitializeBattleRequest(ByVal Data() As Object)
-            'Data: NetworkID of the requester, GameJoltID
+            ' Data: NetworkID of the requester, GameJoltID
 
             menuIndex = MenuScreens.BattleRequest
             Me.BattleRequestNetworkID = CInt(Data(0))
@@ -428,7 +428,7 @@
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
 
             If Core.Player.IsGamejoltSave = True Then
-                'Draw own information:
+                ' Draw own information:
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 40), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16 + 304), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
@@ -622,7 +622,7 @@
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
 
             If Core.Player.IsGamejoltSave = True Then
-                'Draw own information:
+                ' Draw own information:
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 40), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16 + 304), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
@@ -1464,11 +1464,11 @@
                 Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Ability", .Description = "You defeated the Frontier Brain of" & vbNewLine & "Battle Tower a second time and you've" & vbNewLine & "your real strength when it comes to battles.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(50, 200, 50, 50), "")})
             Else
                 If ActionScript.IsRegistered("silver ability") = True Then
-                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Ability", .Description = "You defeated the Frontier Brain of" & vbNewLine & "Battle Tower and showed him how" & vbNewLine & "you and your POKéMON really are.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(0, 200, 50, 50), "")})
+                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Ability", .Description = "You defeated the Frontier Brain of" & vbNewLine & "Battle Tower and showed him how" & vbNewLine & "you and your Pokémon really are.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(0, 200, 50, 50), "")})
                 End If
             End If
             If ActionScript.IsRegistered("gold knowledge") = True Then
-                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Knowledge", .Description = "This Emblem displays how great you can" & vbNewLine & "interact with POKéMON and how well" & vbNewLine & "you can adapt your strategy to a new situation.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(150, 200, 50, 50), "")})
+                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Knowledge", .Description = "This Emblem displays how great you can" & vbNewLine & "interact with Pokémon and how well" & vbNewLine & "you can adapt your strategy to a new situation.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(150, 200, 50, 50), "")})
             Else
                 If ActionScript.IsRegistered("silver knowledge") = True Then
                     Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Knowledge", .Description = "Only few trainers achieved this emblem" & vbNewLine & "which shows what strength lies" & vbNewLine & "inside them.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(100, 200, 50, 50), "")})
@@ -1582,7 +1582,7 @@
             End Sub
 
             Public Function CanListen() As Boolean
-                'Need to check: Daytime, Region, Expansion Card, Activation
+                ' Need to check: Daytime, Region, Expansion Card, Activation
 
                 If Me.DayTimes.Contains(World.GetTime) = False Then
                     Return False
@@ -1602,12 +1602,12 @@
                 Next
 
                 Select Case Activation
-                    Case "1" 'needs register in the level channels (only works when minChannel = maxChannel)
+                    Case "1" ' Needs register in the level channels (only works when minChannel = maxChannel)
                         If Screen.Level.AllowedRadioChannels.Contains(Me.ChannelMin) = False Then
                             Return False
                         End If
                     Case "0"
-                        'Channel is always available.
+                        ' Channel is always available.
                 End Select
 
                 If Me.ActivationRegister <> "0" Then
@@ -1667,7 +1667,7 @@
                         If chosenID > -1 Then
                             Dim p As Pokemon = Pokemon.GetPokemonByID(chosenID)
 
-                            output = "Welcome to the POKéDEX Show! Today, we are going to look at the entry of " & p.GetName() & "! Its entry reads:~""" & p.PokedexEntry.Text & """~Wow, that is interesting! Also, " & p.GetName() & " is " & p.PokedexEntry.Height & "m high and weights " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName() & " is part of the " & p.PokedexEntry.Species & " species.~That's all the information we have. Tune in next time!"
+                            output = "Welcome to the Pokédex Show! Today, we are going to look at the entry of " & p.GetName() & "! Its entry reads:~""" & p.PokedexEntry.Text & """~Wow, that is interesting! Also, " & p.GetName() & " is " & p.PokedexEntry.Height & "m high and weights " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName() & " is part of the " & p.PokedexEntry.Species & " species.~That's all the information we have. Tune in next time!"
                         End If
                     Case "[randompokemon]"
                         Dim levels() As String = {"route29.dat", "route30.dat", "route31.dat", "route32.dat", "route33.dat", "route36.dat", "route37.dat", "route38.dat", "route39.dat", "routes\route34.dat", "routes\route35.dat", "routes\route42.dat", "routes\route43.dat", "routes\route44.dat", "routes\route45.dat", "routes\route46.dat"}
@@ -1683,7 +1683,7 @@
                         levelName = levelName.Substring(0, 5) & " " & levelName.Remove(0, 5)
 
                         If Not p Is Nothing Then
-                            output = "Professor Oak's POKéMON Talk! With Mary!~~Professor Oak: " & p.GetName() & " has been spotted on " & levelName & ".~Mary: " & p.GetName() & "! How smart! How inspiring!"
+                            output = "Professor Oak's Pokémon Talk! With Mary!~~Professor Oak: " & p.GetName() & " has been spotted on " & levelName & ".~Mary: " & p.GetName() & "! How smart! How inspiring!"
                         End If
                     Case "[unown]"
                         Dim words() As String = {"doom", "dark", "help", "join us", "stay", "lost", "vanish", "always there", "no eyes"}
