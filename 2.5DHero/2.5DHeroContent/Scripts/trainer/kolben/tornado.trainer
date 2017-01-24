@@ -17,7 +17,7 @@ Pokemon4|{"Pokemon"[178]}{"Experience"[345926]}{"Gender"[1]}{"EggSteps"[0]}{"Ite
 Pokemon5|{"Pokemon"[376]}{"Experience"[376007]}{"Gender"[2]}{"EggSteps"[0]}{"Item"[82]}{"ItemData"[]}{"NickName"[Metagross]}{"Level"[71]}{"OT"[45709]}{"Ability"[29]}{"Status"[]}{"Nature"[21]}{"CatchLocation"[Daycare]}{"CatchTrainer"[JLs]}{"CatchBall"[5]}{"CatchMethod"[obtained at]}{"Friendship"[250]}{"isShiny"[1]}{"Attack1"[390,10,10]}{"Attack2"[428,15,15]}{"Attack3"[89,10,10]}{"Attack4"[334,15,15]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
 Pokemon6|{"Pokemon"[196]}{"Experience"[343408]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[74]}{"ItemData"[]}{"NickName"[Espeon]}{"Level"[70]}{"OT"[29108]}{"Ability"[28]}{"Status"[]}{"Nature"[8]}{"CatchLocation"[Daycare]}{"CatchTrainer"[Smasher]}{"CatchBall"[5]}{"CatchMethod"[obtained at]}{"Friendship"[250]}{"isShiny"[0]}{"Attack1"[428,15,15]}{"Attack2"[28,15,15]}{"Attack3"[94,10,10]}{"Attack4"[129,20,20]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
 Items|
-Gender|2
+Gender|0
 AI|0
 IntroSequence|Green,Violet
 IntroType|11
