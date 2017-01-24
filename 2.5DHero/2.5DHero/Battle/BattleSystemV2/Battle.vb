@@ -6048,6 +6048,10 @@
                     .OppMagmaStorm = 0
                     .OppSandTomb = 0
                     .OppInfestation = 0
+
+                    If BattleScreen.OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) Then
+                        BattleScreen.OppPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
+                    End If
                 End With
 
                 .OwnPokemon.Ability.SwitchOut(.OwnPokemon)
@@ -6380,6 +6384,9 @@
                     .OwnSandTomb = 0
                     .OwnInfestation = 0
 
+                    If BattleScreen.OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) Then
+                        BattleScreen.OwnPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
+                    End If
                 End With
             End With
 
