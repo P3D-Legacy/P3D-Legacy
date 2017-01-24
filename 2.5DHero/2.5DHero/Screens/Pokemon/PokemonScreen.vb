@@ -503,7 +503,7 @@
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"Fly", Core.Player.Pokemons(index)}), Color.White, False))
             End If
         Else
-            TextBox.Show("You cannot fly~from here!", {}, True, False)
+            TextBox.Show("You cannot Fly~from here!", {}, True, False)
         End If
     End Sub
 
@@ -523,7 +523,7 @@
                 Screen.Level.Entities.Remove(e)
             Next
         Else
-            TextBox.Show("There is no grass~to be cut!", {}, True, False)
+            TextBox.Show("There is nothing~to be Cut!", {}, True, False)
         End If
     End Sub
 
@@ -572,7 +572,7 @@
                     MusicManager.PlayMusic("ride", True)
                 End If
             Else
-                TextBox.Show("You cannot ride here!", {}, True, False)
+                TextBox.Show("You cannot Ride here!", {}, True, False)
             End If
         End If
     End Sub
@@ -666,7 +666,7 @@
     End Sub
 
     Private Sub CheckForLegendaryEmblem()
-        'This sub checks if Ho-Oh, Lugia and Suicune are in the player's party.
+        ' This sub checks if Ho-Oh, Lugia and Suicune are in the player's party.
         Dim hasHoOh As Boolean = False
         Dim hasLugia As Boolean = False
         Dim hasSuicune As Boolean = False

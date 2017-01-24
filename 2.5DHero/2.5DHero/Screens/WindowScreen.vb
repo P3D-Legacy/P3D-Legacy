@@ -5,7 +5,7 @@ Public MustInherit Class WindowScreen
 
     Inherits Screen
 
-    'Shared controller to check if any other window screen is drawing a gradient already. If so, don't draw another gradient on top.
+    ' Shared controller to check if any other window screen is drawing a gradient already. If so, don't draw another gradient on top:
     Public Shared IsDrawingGradients As Boolean = False
 
     Const STARTWINDOWSINK As Integer = -35
@@ -16,10 +16,10 @@ Public MustInherit Class WindowScreen
     Private _isCentered As Boolean = False
     Private _texture As Texture2D
     Private _windowElementsX As Integer = 8
-    Private _windowElementsY As Integer = 7 'includes title bar
+    Private _windowElementsY As Integer = 7 ' Includes the title bar.
     Private _textureScale As Single = 5.0F
     Private _title As String = "{WindowTitle}"
-    Private _drawingGradient As Boolean = False 'Checks if this window screen is drawing the gradient.
+    Private _drawingGradient As Boolean = False ' Checks if this window screen is drawing the gradient.
     Private _closing As Boolean = False
 
     Public Sub New(ByVal PreScreen As Screen, ByVal Identification As Identifications, ByVal Title As String)
@@ -66,55 +66,55 @@ Public MustInherit Class WindowScreen
                 startPosition = New Vector2(CSng(Core.windowSize.Width / 2 - windowWidth / 2), CSng(Core.windowSize.Height / 2 - windowHeight / 2))
             End If
 
-            'Frame:
+            ' Frame:
             For x = 0 To _windowElementsX - 1
                 For y = 0 To _windowElementsY - 1
 
-                    'Grab texture and sprite effect:
+                    ' Grab texture and sprite effect:
                     Dim r As New Vector2(0, 64)
                     Dim e As SpriteEffects = SpriteEffects.None
 
-                    If x = 0 And y = 0 Then 'Title, left
+                    If x = 0 And y = 0 Then ' Title, left
                         r = New Vector2(0, 64)
-                    ElseIf x = 1 And y = 0 Then 'Title, left2
+                    ElseIf x = 1 And y = 0 Then ' Title, left2
                         r = New Vector2(16, 64)
-                    ElseIf x > 1 And x < _windowElementsX - 2 And y = 0 Then 'Title, center
+                    ElseIf x > 1 And x < _windowElementsX - 2 And y = 0 Then ' Title, center
                         r = New Vector2(32, 64)
-                    ElseIf x = _windowElementsX - 2 And y = 0 Then 'Title right2
+                    ElseIf x = _windowElementsX - 2 And y = 0 Then ' Title right2
                         r = New Vector2(16, 64)
                         e = SpriteEffects.FlipHorizontally
-                    ElseIf x = _windowElementsX - 1 And y = 0 Then 'Title, right
+                    ElseIf x = _windowElementsX - 1 And y = 0 Then ' Title, right
                         r = New Vector2(0, 64)
                         e = SpriteEffects.FlipHorizontally
-                    ElseIf x = 0 And y = 1 Then 'Window, up left
+                    ElseIf x = 0 And y = 1 Then ' Window, up left
                         r = New Vector2(0, 80)
-                    ElseIf x = _windowElementsX - 1 And y = 1 Then 'Window, up right
+                    ElseIf x = _windowElementsX - 1 And y = 1 Then ' Window, up right
                         r = New Vector2(32, 80)
-                    ElseIf x = 0 And y = _windowElementsY - 1 Then 'Window, down left
+                    ElseIf x = 0 And y = _windowElementsY - 1 Then ' Window, down left
                         r = New Vector2(0, 112)
-                    ElseIf x = _windowElementsX - 1 And y = _windowElementsY - 1 Then 'Window, down right
+                    ElseIf x = _windowElementsX - 1 And y = _windowElementsY - 1 Then ' Window, down right
                         r = New Vector2(32, 112)
-                    ElseIf x > 0 And x < _windowElementsX - 1 And y = 1 Then 'Window, up
+                    ElseIf x > 0 And x < _windowElementsX - 1 And y = 1 Then ' Window, up
                         r = New Vector2(16, 80)
-                    ElseIf x = 0 And y > 1 And y < _windowElementsY - 1 Then 'Window, left
+                    ElseIf x = 0 And y > 1 And y < _windowElementsY - 1 Then ' Window, left
                         r = New Vector2(0, 96)
-                    ElseIf x = _windowElementsX - 1 And y > 1 And y < _windowElementsY - 1 Then 'Window, right
+                    ElseIf x = _windowElementsX - 1 And y > 1 And y < _windowElementsY - 1 Then ' Window, right
                         r = New Vector2(32, 96)
-                    ElseIf x > 0 And x < _windowElementsX - 1 And y = _windowElementsY - 1 Then 'Window, down
+                    ElseIf x > 0 And x < _windowElementsX - 1 And y = _windowElementsY - 1 Then ' Window, down
                         r = New Vector2(16, 112)
-                    Else 'Window, center
+                    Else ' Window, center
                         r = New Vector2(16, 96)
                     End If
 
-                    'Render:
+                    ' Render:
                     Core.SpriteBatch.Draw(Me._texture, New Rectangle(CInt(startPosition.X + x * GetWindowElementSize()), CInt(startPosition.Y + y * GetWindowElementSize()) + _windowSink, GetWindowElementSize(), GetWindowElementSize()), New Rectangle(CInt(r.X), CInt(r.Y), 16, 16), Color.White, 0.0F, Vector2.Zero, e, 0.0F)
                 Next
             Next
 
-            'Title:
-            Dim titleStartX As Integer = CInt(32 * _textureScale + startPosition.X) 'Skip first two panels
+            ' Title:
+            Dim titleStartX As Integer = CInt(32 * _textureScale + startPosition.X) ' Skip the first two panels
             Dim titleStartY As Integer = CInt(startPosition.Y)
-            Dim titleAreaWidth As Integer = CInt((_windowElementsX - 4) * GetWindowElementSize()) 'Width of the window minus two panels on each side.
+            Dim titleAreaWidth As Integer = CInt((_windowElementsX - 4) * GetWindowElementSize()) ' Width of the window minus the two panels on each side.
             Dim titleAreaHeight As Integer = GetWindowElementSize()
             Dim FontSize As Vector2 = FontManager.MainFont.MeasureString(_title)
 

@@ -57,8 +57,8 @@
         SkyDome = New SkyDome()
         Camera = New MainMenuCamera()
 
-        'renderTarget = New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, Core.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24)
-        'blurEffect = Core.Content.Load(Of Effect)("Effects\BlurEffect")
+        ' renderTarget = New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, Core.GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24)
+        ' blurEffect = Core.Content.Load(Of Effect)("Effects\BlurEffect")
 
         Core.Player.Skin = "Hilbert"
         Level = New Level()
@@ -810,7 +810,7 @@
                 Dim downloadProgress As Integer = Core.GameJoltSave.DownloadProgress
                 Dim total As Integer = Core.GameJoltSave.TotalDownloadItems
 
-                Dim downloadtext As String = "Downloading profile"
+                Dim downloadtext As String = "Downloading profile..."
                 Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, downloadtext & LoadingDots.Dots, New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString(downloadtext).X / 2) + 2, 322), Color.Black)
                 Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, downloadtext & LoadingDots.Dots, New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString(downloadtext).X / 2), 320), Color.White)
 
@@ -824,7 +824,7 @@
         End If
 
         If ControllerHandler.IsConnected() = False Then
-            Dim text As String = "Right-Click to quit to the main menu"
+            Dim text As String = "Right-Click to quit to the main menu."
             Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, text, New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString(text).X / 2) + 2, 502), Color.Black)
             Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, text, New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString(text).X / 2), 500), Color.White)
         End If
@@ -1178,15 +1178,15 @@
 
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                         Select Case packsMenuIndex(1)
-                            Case 2 'up
+                            Case 2 ' Up
                                 Me.ButtonUp()
-                            Case 3 'down
+                            Case 3 ' Down
                                 Me.ButtonDown()
-                            Case 4 'toggle
+                            Case 4 ' Toggle
                                 If PackNames.Count > 0 Then
                                     Me.ButtonToggle(PackNames(packsMenuIndex(0)))
                                 End If
-                            Case 5 'packinformation
+                            Case 5 ' ContentPack information
                                 Me.ButtonPackInformation()
                         End Select
                     End If

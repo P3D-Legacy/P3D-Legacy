@@ -34,7 +34,7 @@
                 dateString = day & "-" & month & "-" & year & "_" & hour & "." & minute & "." & second
             End With
 
-            'Date|IsScriptOrigin|Name|Data|ShowOnTimeline
+            ' Date|IsScriptOrigin|Name|Data|ShowOnTimeline
             Core.Player.HistoryData &= dateString & "|" & IsScriptOrigin.ToNumberString() & "|" & Name & "|" & Data & "|" & ShowOnTimeline.ToNumberString()
         End Sub
 

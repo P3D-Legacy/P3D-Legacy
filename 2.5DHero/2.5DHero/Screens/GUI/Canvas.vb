@@ -152,7 +152,7 @@
 
     Private Structure GradientConfiguration
 
-        Private Texture As Texture2D 'Stores the generated texture 
+        Private Texture As Texture2D ' Stores the generated texture
 
         Private Width As Integer
         Private Height As Integer
@@ -213,7 +213,7 @@
                     cA = 255 + cA
                 End If
 
-                If Horizontal = True Then 'left to right gradient
+                If Horizontal = True Then ' Left to right gradiant.
                     Dim c As Color = New Color(cR, cG, cB, cA)
 
                     Dim length As Integer = CInt(Math.Ceiling(stepSize))
@@ -258,7 +258,7 @@
     Shared gradientConfigs As New List(Of GradientConfiguration)
 
     Public Shared Sub DrawGradient(ByVal Rectangle As Rectangle, ByVal fromColor As Color, ByVal toColor As Color, ByVal Horizontal As Boolean, ByVal Steps As Integer)
-        Horizontal = Not Horizontal 'because fuck you.
+        Horizontal = Not Horizontal
 
         Dim gConfig As GradientConfiguration = Nothing
         Dim foundConfig As Boolean = False

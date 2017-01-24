@@ -1,8 +1,8 @@
 Pokémon created by Nintendo, Game Freak and The Pokémon Company / Creatures Inc.
 
-Pokémon3D staff
+Pokémon 3D staff
 created by Kolben Games
-Trademark (TM) 2012 - 2015
+Trademark (TM) 2012 - 2017
 	Team Kolben
 		Nils Drescher
 		Andrew Leach
@@ -22,6 +22,7 @@ Trademark (TM) 2012 - 2015
 		"Aragas"
 		"oXFantaXo" 
 		Jorge Luis Espinoza
+		Conner Joseph Brewster
 
 	Programming
 		Nils Drescher

@@ -24,7 +24,7 @@
 
         Core.SpriteBatch.DrawString(FontManager.InGameFont, "Start a new offline game", New Vector2(CSng(Core.windowSize.Width / 2 - 280), 130), Color.White)
 
-        Dim t As String = "If you start a game in ""Offline Mode"" by pressing the ""New Game"" button, you cannot access online features of Pokémon3D such as Trading and Trainer Customization. Click on the GameJolt button in the lower right corner in order to start a game in ""Online Mode""."
+        Dim t As String = "If you start a game in ""Offline Mode"" by pressing the ""New Game"" button, you cannot access the online features of Pokémon 3D such as trading and trainer customization. Click on the GameJolt button in the lower right corner in order to start a game in ""Online Mode""."
         t = t.CropStringToWidth(FontManager.MainFont, 450)
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - 310) + 50, 240), Color.White)
