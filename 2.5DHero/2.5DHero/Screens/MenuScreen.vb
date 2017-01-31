@@ -14,19 +14,19 @@
 
         Dim newOptions As New List(Of String)
         If Core.Player.hasPokedex = True Then
-            newOptions.Add(Localization.GetString("game_menu_pokedex"))
+            newOptions.Add(OldLocalization.GetString("game_menu_pokedex"))
         End If
 
         If Screen.Level.IsBugCatchingContest = True Then
-            newOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177), Localization.GetString("game_menu_bag"), Localization.GetString("game_menu_trainer_card"), Localization.GetString("End Contest")})
+            newOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177), OldLocalization.GetString("game_menu_bag"), OldLocalization.GetString("game_menu_trainer_card"), OldLocalization.GetString("End Contest")})
         Else
             If Core.Player.Pokemons.Count > 0 Then
-                newOptions.Add(Localization.GetString("game_menu_party"))
+                newOptions.Add(OldLocalization.GetString("game_menu_party"))
             End If
-            newOptions.AddRange({Localization.GetString("game_menu_bag"), Localization.GetString("game_menu_trainer_card"), Localization.GetString("game_menu_save")})
+            newOptions.AddRange({OldLocalization.GetString("game_menu_bag"), OldLocalization.GetString("game_menu_trainer_card"), OldLocalization.GetString("game_menu_save")})
         End If
 
-        newOptions.AddRange({Localization.GetString("game_menu_options"), Localization.GetString("game_menu_exit")})
+        newOptions.AddRange({OldLocalization.GetString("game_menu_options"), OldLocalization.GetString("game_menu_exit")})
         Options = newOptions.ToArray()
 
         Me.index = Player.Temp.MenuIndex
@@ -36,7 +36,7 @@
         PreScreen.Draw()
 
         If Me.IsCurrentScreen() = True Then
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 GameJolt.Emblem.Draw(GameJolt.API.username, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem, New Vector2(CSng(Core.windowSize.Width / 2 - 256), 30), 4, Core.GameJoltSave.DownloadedSprite)
             End If
         End If
@@ -67,21 +67,21 @@
                 Else
                     drawRight = False
                     Select Case nextAction
-                        Case Localization.GetString("game_menu_pokedex")
+                        Case OldLocalization.GetString("game_menu_pokedex")
                             Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PokedexSelectScreen(Me), Color.White, False))
-                        Case Localization.GetString("game_menu_party")
-                            Core.SetScreen(New PokemonScreen(Me, Player.Temp.PokemonScreenIndex))
-                        Case Localization.GetString("game_menu_bag")
+                        Case OldLocalization.GetString("game_menu_party")
+                            Core.SetScreen(New PartyScreen(Me, Player.Temp.PokemonScreenIndex))
+                        Case OldLocalization.GetString("game_menu_bag")
                             Core.SetScreen(New InventoryScreen(Me))
-                        Case Localization.GetString("game_menu_trainer_card")
+                        Case OldLocalization.GetString("game_menu_trainer_card")
                             Core.SetScreen(New TrainerScreen(Me))
                         Case "Pokégear"
                             Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
-                        Case Localization.GetString("game_menu_save")
+                        Case OldLocalization.GetString("game_menu_save")
                             Core.SetScreen(New SaveScreen(Me))
-                        Case Localization.GetString("game_menu_options")
+                        Case OldLocalization.GetString("game_menu_options")
                             Core.SetScreen(New OptionScreen(Me))
-                        Case Localization.GetString("game_menu_exit")
+                        Case OldLocalization.GetString("game_menu_exit")
                             Core.SetScreen(Me.PreScreen)
                         Case Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177)
                             ShowBalls()
@@ -110,7 +110,7 @@
                     End If
 
                     If Controls.Dismiss() = True Then
-                        nextAction = Localization.GetString("game_menu_exit")
+                        nextAction = OldLocalization.GetString("game_menu_exit")
                         drawRight = True
                     End If
 

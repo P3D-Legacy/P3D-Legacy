@@ -310,12 +310,12 @@
 
             If MediaPlayer.IsMuted = True Then
                 MediaPlayer.Pause()
-                Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_off"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_music_off"), 12, FontManager.MainFont, Color.White)
             Else
                 If SongExistFlag = True Then
                     MediaPlayer.Resume()
                 End If
-                Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_on"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_music_on"), 12, FontManager.MainFont, Color.White)
             End If
         End If
     End Sub

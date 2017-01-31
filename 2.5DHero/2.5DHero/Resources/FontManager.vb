@@ -116,4 +116,24 @@ Public Class FontManager
         End Get
     End Property
 
+    Private Shared loadedGameJoltFont As SpriteFont = Nothing
+    Private Shared hasLoadedGameJoltFont As Boolean = False
+
+    Public Shared ReadOnly Property GameJoltFont() As SpriteFont
+        Get
+            If hasLoadedGameJoltFont = True Then
+                While loadedGameJoltFont Is Nothing
+                    'Idle around
+                End While
+                Return loadedGameJoltFont
+            Else
+                hasLoadedGameJoltFont = True
+                loadedGameJoltFont = Content.Load(Of SpriteFont)("SharedResources\Fonts\GameJolt")
+                loadedGameJoltFont.DefaultCharacter = " "c
+                Return loadedGameJoltFont
+            End If
+        End Get
+    End Property
+
+
 End Class

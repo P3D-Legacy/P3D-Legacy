@@ -1,6 +1,7 @@
 ﻿Public Module Core
 
     Public SpriteBatch As CoreSpriteBatch
+    Public FontRenderer As SpriteBatch
     Public GraphicsDevice As GraphicsDevice
     Public GraphicsManager As GraphicsDeviceManager
     Public Content As ContentManager
@@ -36,6 +37,7 @@
         GraphicsDevice = GameInstance.GraphicsDevice
         Content = GameInstance.Content
         SpriteBatch = New CoreSpriteBatch(GraphicsDevice)
+        FontRenderer = New CoreSpriteBatch(GraphicsDevice)
         window = GameInstance.Window
 
         If CommandLineArgHandler.ForceGraphics = True Then
@@ -173,6 +175,7 @@
             SpriteBatch.EndBatch()
         Else
             SpriteBatch.BeginBatch()
+            FontRenderer.Begin()
 
             GraphicsDevice.DepthStencilState = DepthStencilState.Default
 
@@ -202,6 +205,7 @@
             Logger.DrawLog()
 
             SpriteBatch.EndBatch()
+            FontRenderer.End()
 
             Core.Render()
         End If

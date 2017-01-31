@@ -6,7 +6,7 @@ Public MustInherit Class WindowScreen
     Inherits Screen
 
     ' Shared controller to check if any other window screen is drawing a gradient already. If so, don't draw another gradient on top:
-    Public Shared IsDrawingGradients As Boolean = False
+    Public Shared IsDrawingGradientsWindow As Boolean = False
 
     Const STARTWINDOWSINK As Integer = -35
 
@@ -130,9 +130,9 @@ Public MustInherit Class WindowScreen
     ''' Updates the fade in of the gradients.
     ''' </summary>
     Public Overrides Sub Update()
-        If Me._drawingGradient = False And IsDrawingGradients = False Then
+        If Me._drawingGradient = False And IsDrawingGradientsWindow = False Then
             Me._drawingGradient = True
-            IsDrawingGradients = True
+            IsDrawingGradientsWindow = True
         End If
 
         If _closing = True Then
@@ -219,7 +219,7 @@ Public MustInherit Class WindowScreen
     Public Overrides Sub ChangeFrom()
         MyBase.ChangeFrom()
         If Me._drawingGradient = True Then
-            IsDrawingGradients = False
+            IsDrawingGradientsWindow = False
         End If
     End Sub
 

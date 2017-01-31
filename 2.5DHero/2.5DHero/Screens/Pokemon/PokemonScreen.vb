@@ -2,7 +2,7 @@
 
     Inherits Screen
 
-    Dim index As Integer = 0
+    Dim _index As Integer = 0
     Dim MainTexture As Texture2D
     Dim yOffset As Single = 0
     Dim MenuID As Integer = 0
@@ -14,7 +14,7 @@
         Me.PreScreen = currentScreen
         MainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
-        Me.index = PokeIndex
+        Me._index = PokeIndex
 
         If Core.Player.Pokemons.Count = 6 Then
             Dim has100 As Boolean = True
@@ -39,9 +39,9 @@
 
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(60, 100, 800, 480))
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(60, 100, 480, 64))
-        Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("pokemon_screen_choose_a_pokemon"), New Vector2(142, 132), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.InGameFont, OldLocalization.GetString("pokemon_screen_choose_a_pokemon"), New Vector2(142, 132), Color.Black)
         Core.SpriteBatch.Draw(MainTexture, New Rectangle(78, 124, 48, 48), New Rectangle(96, 16, 18, 18), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_screen_backadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(Localization.GetString("pokemon_screen_backadvice")).X - 330, 580), Color.DarkGray)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("pokemon_screen_backadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(OldLocalization.GetString("pokemon_screen_backadvice")).X - 330, 580), Color.DarkGray)
 
         For i = 0 To Core.Player.Pokemons.Count - 1
             DrawPokemonTile(i, Core.Player.Pokemons(i))
@@ -54,7 +54,7 @@
 
         If ChooseBox.Showing = True Then
             Dim Position As New Vector2(0, 0)
-            Select Case Me.index
+            Select Case Me._index
                 Case 0, 2, 4
                     Position = New Vector2(606, 566 - ChooseBox.Options.Count * 48)
                 Case 1, 3, 5
@@ -102,16 +102,15 @@
             Select Case MenuID
                 Case 0
                     Select Case ChooseBox.Options(ChooseBox.index)
-                        Case Localization.GetString("pokemon_screen_summary")
+                        Case OldLocalization.GetString("pokemon_screen_summary")
                             ChooseBox.Showing = False
-                            Core.SetScreen(New PokemonStatusScreen(Me, index, {}, Core.Player.Pokemons(index), True))
-                        Case Localization.GetString("pokemon_screen_switch")
-                            switchIndex = index
+                        Case OldLocalization.GetString("pokemon_screen_switch")
+                            switchIndex = _index
                             ChooseBox.Showing = False
-                        Case Localization.GetString("pokemon_screen_item")
-                            ChooseBox.Show({Localization.GetString("pokemon_screen_item_give"), Localization.GetString("pokemon_screen_item_take"), Localization.GetString("pokemon_screen_item_back")}, 0, {})
+                        Case OldLocalization.GetString("pokemon_screen_item")
+                            ChooseBox.Show({OldLocalization.GetString("pokemon_screen_item_give"), OldLocalization.GetString("pokemon_screen_item_take"), OldLocalization.GetString("pokemon_screen_item_back")}, 0, {})
                             Me.MenuID = 1
-                        Case Localization.GetString("pokemon_screen_back")
+                        Case OldLocalization.GetString("pokemon_screen_back")
                             ChooseBox.Showing = False
                         Case "Flash"
                             Me.UseFlash()
@@ -141,10 +140,10 @@
                 ShowMenu()
             Else
                 Dim p1 As Pokemon = Core.Player.Pokemons(switchIndex)
-                Dim p2 As Pokemon = Core.Player.Pokemons(index)
+                Dim p2 As Pokemon = Core.Player.Pokemons(_index)
 
                 Core.Player.Pokemons(switchIndex) = p2
-                Core.Player.Pokemons(index) = p1
+                Core.Player.Pokemons(_index) = p1
                 switchIndex = -1
 
                 Screen.Level.OverworldPokemon.ForceTextureChange()
@@ -156,28 +155,28 @@
     End Sub
 
     Private Sub TakeItem()
-        If Core.Player.Pokemons(index).IsEgg() = False Then
-            If Core.Player.Pokemons(index).Item Is Nothing Then
-                TextBox.Show(Core.Player.Pokemons(index).GetDisplayName() & Localization.GetString("pokemon_screen_doesnt_hold_item"), {})
+        If Core.Player.Pokemons(_index).IsEgg() = False Then
+            If Core.Player.Pokemons(_index).Item Is Nothing Then
+                TextBox.Show(Core.Player.Pokemons(_index).GetDisplayName() & OldLocalization.GetString("pokemon_screen_doesnt_hold_item"), {})
             Else
-                If Core.Player.Pokemons(index).Item.AdditionalData <> "" Then
+                If Core.Player.Pokemons(_index).Item.AdditionalData <> "" Then
                     TextBox.Show("The Mail was taken~to your inbox on~your PC. You can view~the content there.", {}, False, False)
 
-                    Dim i As Item = Core.Player.Pokemons(index).Item
-                    Core.Player.Pokemons(index).Item = Nothing
+                    Dim i As Item = Core.Player.Pokemons(_index).Item
+                    Core.Player.Pokemons(_index).Item = Nothing
 
                     Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(i.AdditionalData))
 
                     Me.MenuID = 0
                     ChooseBox.Showing = False
                 Else
-                    Dim i As Item = Core.Player.Pokemons(index).Item
+                    Dim i As Item = Core.Player.Pokemons(_index).Item
 
                     Core.Player.Inventory.AddItem(i.ID, 1)
-                    Core.Player.Pokemons(index).Item = Nothing
+                    Core.Player.Pokemons(_index).Item = Nothing
 
                     TextBox.TextColor = TextBox.PlayerColor
-                    TextBox.Show("<playername> took the~item from " & Core.Player.Pokemons(index).GetDisplayName() & "!*" & Core.Player.Inventory.GetMessageReceive(i, 1))
+                    TextBox.Show("<playername> took the~item from " & Core.Player.Pokemons(_index).GetDisplayName() & "!*" & Core.Player.Inventory.GetMessageReceive(i, 1))
 
                     Me.MenuID = 0
                     ChooseBox.Showing = False
@@ -190,7 +189,7 @@
 
     Private Sub GiveItem(ByVal ItemID As Integer)
         Dim Item As Item = Item.GetItemByID(ItemID)
-        Dim Pokemon As Pokemon = Core.Player.Pokemons(index)
+        Dim Pokemon As Pokemon = Core.Player.Pokemons(_index)
 
         If Pokemon.IsEgg() = False Then
             If Item.CanBeHold = True Then
@@ -210,10 +209,10 @@
 
                 TextBox.reDelay = 0.0F
 
-                Dim t As String = Localization.GetString("pokemon_screen_give_item_1") & Item.Name & Localization.GetString("pokemon_screen_give_item_2") & Pokemon.GetDisplayName() & Localization.GetString("pokemon_screen_give_item_3")
+                Dim t As String = OldLocalization.GetString("pokemon_screen_give_item_1") & Item.Name & OldLocalization.GetString("pokemon_screen_give_item_2") & Pokemon.GetDisplayName() & OldLocalization.GetString("pokemon_screen_give_item_3")
                 If Not reItem Is Nothing Then
                     If reItem.AdditionalData = "" Then
-                        t &= Localization.GetString("pokemon_screen_give_item_4") & reItem.Name & Localization.GetString("pokemon_screen_give_item_5")
+                        t &= OldLocalization.GetString("pokemon_screen_give_item_4") & reItem.Name & OldLocalization.GetString("pokemon_screen_give_item_5")
                     Else
                         t &= "*The Mail was taken~to your inbox on~your PC. You can view~the content there."
                     End If
@@ -252,34 +251,34 @@
 
     Private Sub ShowMenu()
         Me.MenuID = 0
-        ChooseBox.Show({Localization.GetString("pokemon_screen_summary"), Localization.GetString("pokemon_screen_switch"), Localization.GetString("pokemon_screen_item"), Localization.GetString("pokemon_screen_back")}, 0, {})
+        ChooseBox.Show({OldLocalization.GetString("pokemon_screen_summary"), OldLocalization.GetString("pokemon_screen_switch"), OldLocalization.GetString("pokemon_screen_item"), OldLocalization.GetString("pokemon_screen_back")}, 0, {})
 
-        If (PokemonHasMove(Core.Player.Pokemons(index), "Cut") = True And Badge.CanUseHMMove(Badge.HMMoves.Cut) = True And Core.Player.Pokemons(index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
+        If (PokemonHasMove(Core.Player.Pokemons(_index), "Cut") = True And Badge.CanUseHMMove(Badge.HMMoves.Cut) = True And Core.Player.Pokemons(_index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
             Dim options As List(Of String) = ChooseBox.Options.ToList()
             options.Insert(1, "Cut")
             ChooseBox.Options = options.ToArray()
         End If
-        If (PokemonHasMove(Core.Player.Pokemons(index), "Flash") = True And Badge.CanUseHMMove(Badge.HMMoves.Flash) = True And Core.Player.Pokemons(index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
+        If (PokemonHasMove(Core.Player.Pokemons(_index), "Flash") = True And Badge.CanUseHMMove(Badge.HMMoves.Flash) = True And Core.Player.Pokemons(_index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
             Dim options As List(Of String) = ChooseBox.Options.ToList()
             options.Insert(1, "Flash")
             ChooseBox.Options = options.ToArray()
         End If
-        If (PokemonHasMove(Core.Player.Pokemons(index), "Ride") = True And Badge.CanUseHMMove(Badge.HMMoves.Ride) = True And Core.Player.Pokemons(index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
+        If (PokemonHasMove(Core.Player.Pokemons(_index), "Ride") = True And Badge.CanUseHMMove(Badge.HMMoves.Ride) = True And Core.Player.Pokemons(_index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
             Dim options As List(Of String) = ChooseBox.Options.ToList()
             options.Insert(1, "Ride")
             ChooseBox.Options = options.ToArray()
         End If
-        If (PokemonHasMove(Core.Player.Pokemons(index), "Dig") = True And Core.Player.Pokemons(index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
+        If (PokemonHasMove(Core.Player.Pokemons(_index), "Dig") = True And Core.Player.Pokemons(_index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
             Dim options As List(Of String) = ChooseBox.Options.ToList()
             options.Insert(1, "Dig")
             ChooseBox.Options = options.ToArray()
         End If
-        If (PokemonHasMove(Core.Player.Pokemons(index), "Teleport") = True And Core.Player.Pokemons(index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
+        If (PokemonHasMove(Core.Player.Pokemons(_index), "Teleport") = True And Core.Player.Pokemons(_index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
             Dim options As List(Of String) = ChooseBox.Options.ToList()
             options.Insert(1, "Teleport")
             ChooseBox.Options = options.ToArray()
         End If
-        If (PokemonHasMove(Core.Player.Pokemons(index), "Fly") = True And Badge.CanUseHMMove(Badge.HMMoves.Fly) = True And Core.Player.Pokemons(index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
+        If (PokemonHasMove(Core.Player.Pokemons(_index), "Fly") = True And Badge.CanUseHMMove(Badge.HMMoves.Fly) = True And Core.Player.Pokemons(_index).IsEgg() = False) OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode Then
             Dim options As List(Of String) = ChooseBox.Options.ToList()
             options.Insert(1, "Fly")
             ChooseBox.Options = options.ToArray()
@@ -288,31 +287,31 @@
 
     Private Sub NavigateMain()
         If Controls.Right(True, False) Then
-            index += 1
+            _index += 1
         End If
         If Controls.Left(True, False) Then
-            index -= 1
+            _index -= 1
         End If
         If Controls.Down(True, False, False) Then
-            index += 2
+            _index += 2
         End If
         If Controls.Up(True, False, False) Then
-            index -= 2
+            _index -= 2
         End If
         If KeyBoardHandler.KeyPressed(Keys.End) = True Then
-            index = 5
+            _index = 5
         End If
         If KeyBoardHandler.KeyPressed(Keys.Home) = True Then
-            index = 0
+            _index = 0
         End If
 
-        If index < 0 Then
-            index = 0
-        ElseIf index > Core.Player.Pokemons.Count - 1 Then
-            index = Core.Player.Pokemons.Count - 1
+        If _index < 0 Then
+            _index = 0
+        ElseIf _index > Core.Player.Pokemons.Count - 1 Then
+            _index = Core.Player.Pokemons.Count - 1
         End If
 
-        Player.Temp.PokemonScreenIndex = Me.index
+        Player.Temp.PokemonScreenIndex = Me._index
     End Sub
 
     Private Sub DrawEmptyTile(ByVal i As Integer)
@@ -336,13 +335,13 @@
             Next
             .Draw(BorderTexture, New Rectangle(CInt(p.X) + 320, CInt(p.Y), 32, 96), New Rectangle(32, 0, 16, 48), Color.White)
 
-            .DrawString(FontManager.MiniFont, Localization.GetString("pokemon_screen_EMPTY"), New Vector2(CInt(p.X + 72), CInt(p.Y + 18)), Color.Black)
+            .DrawString(FontManager.MiniFont, OldLocalization.GetString("pokemon_screen_EMPTY"), New Vector2(CInt(p.X + 72), CInt(p.Y + 18)), Color.Black)
         End With
     End Sub
 
     Private Sub DrawPokemonTile(ByVal i As Integer, ByVal Pokemon As Pokemon)
         Dim BorderTexture As Texture2D
-        If i = index Then
+        If i = _index Then
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
                 BorderTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 128, 48, 48), "")
             Else
@@ -403,7 +402,7 @@
             End If
 
             Dim offset As Single = CSng(Math.Sin(yOffset))
-            If i = index Then
+            If i = _index Then
                 offset *= 3
             End If
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
@@ -433,7 +432,7 @@
             Next
 
             If Pokemon.IsEgg() = False Then
-                .DrawString(FontManager.MiniFont, Localization.GetString("Lv.") & space & Pokemon.Level, New Vector2(CInt(p.X + 14), CInt(p.Y + 64)), Color.Black)
+                .DrawString(FontManager.MiniFont, OldLocalization.GetString("Lv.") & space & Pokemon.Level, New Vector2(CInt(p.X + 14), CInt(p.Y + 64)), Color.Black)
             End If
 
             Dim StatusTexture As Texture2D = BattleStats.GetStatImage(Pokemon.Status)
@@ -446,7 +445,7 @@
     End Sub
 
     Public Overrides Sub ChangeTo()
-        Me.index = Player.Temp.PokemonScreenIndex
+        Me._index = Player.Temp.PokemonScreenIndex
     End Sub
 
     Private Function PokemonHasMove(ByVal p As Pokemon, ByVal moveName As String) As Boolean
@@ -470,7 +469,7 @@
         End If
         If Screen.Level.IsDark = True Then
             Dim s As String = "version=2" & vbNewLine &
-                              "@text.show(" & Core.Player.Pokemons(index).GetDisplayName() & " used~Flash!)" & vbNewLine &
+                              "@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
                               "@environment.toggledarkness" & vbNewLine &
                               "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
                               "@text.show(The area got lit up!)" & vbNewLine &
@@ -479,7 +478,7 @@
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         Else
             Dim s As String = "version=2" & vbNewLine &
-                "@text.show(" & Core.Player.Pokemons(index).GetDisplayName() & " used~Flash!)" & vbNewLine &
+                "@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
                                             "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
                                             "@text.show(The area is already~lit up!)" & vbNewLine &
                                             ":end"
@@ -497,10 +496,10 @@
 
             If Screen.Level.CurrentRegion.Contains(",") = True Then
                 Dim regions As List(Of String) = Screen.Level.CurrentRegion.Split(CChar(",")).ToList()
-                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, regions, 0, {"Fly", Core.Player.Pokemons(index)}), Color.White, False))
+                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, regions, 0, {"Fly", Core.Player.Pokemons(_index)}), Color.White, False))
             Else
                 Dim startRegion As String = Screen.Level.CurrentRegion
-                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"Fly", Core.Player.Pokemons(index)}), Color.White, False))
+                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"Fly", Core.Player.Pokemons(_index)}), Color.White, False))
             End If
         Else
             TextBox.Show("You cannot Fly~from here!", {}, True, False)
@@ -517,8 +516,8 @@
             End If
 
             PlayerStatistics.Track("Cut used", 1)
-            TextBox.Show(Core.Player.Pokemons(index).GetDisplayName() & "~used Cut!", {}, True, False)
-            Core.Player.Pokemons(index).PlayCry()
+            TextBox.Show(Core.Player.Pokemons(_index).GetDisplayName() & "~used Cut!", {}, True, False)
+            Core.Player.Pokemons(_index).PlayCry()
             For Each e As Entity In grassEntities
                 Screen.Level.Entities.Remove(e)
             Next
@@ -554,18 +553,18 @@
                 Core.Player.TempRideSkin = Core.Player.Skin
 
                 Dim skin As String = "[POKEMON|"
-                If Core.Player.Pokemons(index).IsShiny = True Then
+                If Core.Player.Pokemons(_index).IsShiny = True Then
                     skin &= "S]"
                 Else
                     skin &= "N]"
                 End If
-                skin &= Core.Player.Pokemons(index).Number & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(index))
+                skin &= Core.Player.Pokemons(_index).Number & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(_index))
 
                 Screen.Level.OwnPlayer.SetTexture(skin, False)
 
-                SoundManager.PlayPokemonCry(Core.Player.Pokemons(index).Number)
+                SoundManager.PlayPokemonCry(Core.Player.Pokemons(_index).Number)
 
-                TextBox.Show(Core.Player.Pokemons(index).GetDisplayName() & " used~Ride!", {}, True, False)
+                TextBox.Show(Core.Player.Pokemons(_index).GetDisplayName() & " used~Ride!", {}, True, False)
                 PlayerStatistics.Track("Ride used", 1)
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
@@ -588,7 +587,7 @@
             Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
             Dim s As String = "version=2
-@text.show(" & Core.Player.Pokemons(index).GetDisplayName() & " used Dig!)
+@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & " used Dig!)
 @level.wait(20)
 @camera.activatethirdperson
 @camera.reset
@@ -633,7 +632,7 @@
             Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
             Dim s As String = "version=2
-@text.show(" & Core.Player.Pokemons(index).GetDisplayName() & "~used Teleport!)
+@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & "~used Teleport!)
 @level.wait(20)
 @camera.activatethirdperson
 @camera.reset

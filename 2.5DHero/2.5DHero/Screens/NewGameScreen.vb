@@ -49,7 +49,7 @@
 
         BattleSystem.GameModeAttackLoader.Load()
 
-        Localization.ReloadGameModeTokens()
+        OldLocalization.ReloadGameModeTokens()
 
         If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
             MusicManager.LoadMusic(True)
@@ -107,7 +107,7 @@
         End If
         If Me.Dialogues.Count < 3 Then
             Me.Dialogues.Clear()
-            Me.Dialogues.AddRange({Localization.GetString("new_game_oak_1"), Localization.GetString("new_game_oak_2"), Localization.GetString("new_game_oak_3")})
+            Me.Dialogues.AddRange({OldLocalization.GetString("new_game_oak_1"), OldLocalization.GetString("new_game_oak_2"), OldLocalization.GetString("new_game_oak_3")})
         End If
     End Sub
 
@@ -228,16 +228,16 @@
 
         Select Case Index
             Case 5
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("new_game_your_name") & ":", New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("new_game_your_name") & ":", New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
                 DrawTextBox()
 
                 If enterCorrectName = True Then
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("new_game_name_too_short"), New Vector2(TextboxPosition.X, TextboxPosition.Y + 30), Color.DarkRed)
+                    Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("new_game_name_too_short"), New Vector2(TextboxPosition.X, TextboxPosition.Y + 30), Color.DarkRed)
                 End If
             Case 4
                 Canvas.DrawRectangle(New Rectangle(CInt(TextboxPosition.X - 5), CInt(TextboxPosition.Y - 24), 138, 42), New Color(0, 0, 0, 80))
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("new_game_choose_skin") & ":" & vbNewLine & skinNames(SkinIndex), New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("new_game_choose_skin") & ":" & vbNewLine & skinNames(SkinIndex), New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
 
                 Canvas.DrawScrollBar(New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), startSkins.Count, 1, SkinIndex, New Size(128, 4), True, TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(113, 12, 1, 1)))
         End Select
@@ -537,13 +537,13 @@
 
         Select Case True
             Case WeirdNames.Contains(name.ToLower())
-                Return Localization.GetString("new_game_oak_weird_name_1") & name & Localization.GetString("new_game_oak_weird_name_2")
+                Return OldLocalization.GetString("new_game_oak_weird_name_1") & name & OldLocalization.GetString("new_game_oak_weird_name_2")
             Case KnownNames.Contains(name.ToLower())
-                Return Localization.GetString("new_game_oak_known_name_1") & name & Localization.GetString("new_game_oak_known_name_2")
+                Return OldLocalization.GetString("new_game_oak_known_name_1") & name & OldLocalization.GetString("new_game_oak_known_name_2")
             Case OwnNames.Contains(name.ToLower())
-                Return Localization.GetString("new_game_oak_same_name_1") & name & Localization.GetString("new_game_oak_same_name_2")
+                Return OldLocalization.GetString("new_game_oak_same_name_1") & name & OldLocalization.GetString("new_game_oak_same_name_2")
         End Select
 
-        Return Localization.GetString("new_game_oak_name_1") & name & Localization.GetString("new_game_oak_name_2")
+        Return OldLocalization.GetString("new_game_oak_name_1") & name & OldLocalization.GetString("new_game_oak_name_2")
     End Function
 End Class

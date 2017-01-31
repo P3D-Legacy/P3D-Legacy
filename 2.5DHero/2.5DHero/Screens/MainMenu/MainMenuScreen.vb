@@ -46,7 +46,7 @@
         Me.CanBePaused = False
         Me.MouseVisible = True
         Me.CanChat = False
-        Me.currentLanguage = Localization.LanguageSuffix
+        Me.currentLanguage = OldLocalization.LanguageSuffix
 
         Screen.TextBox.Showing = False
         Screen.PokemonImageView.Showing = False
@@ -324,13 +324,13 @@
             Dim Text As String = ""
             Select Case i
                 Case 0
-                    Text = Localization.GetString("main_menu_continue")
+                    Text = OldLocalization.GetString("main_menu_continue")
                 Case 1
-                    Text = Localization.GetString("main_menu_load_game")
+                    Text = OldLocalization.GetString("main_menu_load_game")
                 Case 2
-                    Text = Localization.GetString("main_menu_new_game")
+                    Text = OldLocalization.GetString("main_menu_new_game")
                 Case 3
-                    Text = Localization.GetString("main_menu_quit_game")
+                    Text = OldLocalization.GetString("main_menu_quit_game")
                 Case 7
                     Text = "Play online"
             End Select
@@ -643,11 +643,11 @@
                 End If
             Next
 
-            Me.tempLoadDisplay = Localization.GetString("load_menu_name") & ": " & dispName & vbNewLine &
-                Localization.GetString("load_menu_gamemode") & ": " & dispGameMode & vbNewLine &
-                Localization.GetString("load_menu_badges") & ": " & dispBadges & vbNewLine &
-                Localization.GetString("load_menu_location") & ": " & Localization.GetString("Places_" & dispLocation) & vbNewLine &
-                Localization.GetString("load_menu_time") & ": " & dispPlayTime
+            Me.tempLoadDisplay = OldLocalization.GetString("load_menu_name") & ": " & dispName & vbNewLine &
+                OldLocalization.GetString("load_menu_gamemode") & ": " & dispGameMode & vbNewLine &
+                OldLocalization.GetString("load_menu_badges") & ": " & dispBadges & vbNewLine &
+                OldLocalization.GetString("load_menu_location") & ": " & OldLocalization.GetString("Places_" & dispLocation) & vbNewLine &
+                OldLocalization.GetString("load_menu_time") & ": " & dispPlayTime
         End If
 
         Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, tempLoadDisplay, New Vector2(CInt(Core.ScreenSize.Width / 2) - 252, 416), Color.Black)
@@ -656,11 +656,11 @@
             Dim Text As String = ""
             Select Case i
                 Case 0
-                    Text = Localization.GetString("load_menu_load")
+                    Text = OldLocalization.GetString("load_menu_load")
                 Case 1
-                    Text = Localization.GetString("load_menu_delete")
+                    Text = OldLocalization.GetString("load_menu_delete")
                 Case 2
-                    Text = Localization.GetString("load_menu_back")
+                    Text = OldLocalization.GetString("load_menu_back")
             End Select
 
             If i = loadMenuIndex(1) Then
@@ -944,9 +944,9 @@
             Dim Text As String = ""
             Select Case i
                 Case 0
-                    Text = Localization.GetString("language_menu_apply")
+                    Text = OldLocalization.GetString("language_menu_apply")
                 Case 1
-                    Text = Localization.GetString("language_menu_back")
+                    Text = OldLocalization.GetString("language_menu_back")
             End Select
 
             If i = languageMenuIndex(1) Then
@@ -988,7 +988,7 @@
                                 Core.GameOptions.SaveOptions()
                                 Me.menuIndex = 0
                             Case 1
-                                Localization.Load(currentLanguage)
+                                OldLocalization.Load(currentLanguage)
                                 Me.menuIndex = 0
                         End Select
                     End If
@@ -1008,7 +1008,7 @@
         languageMenuIndex(2) = CInt(MathHelper.Clamp(languageMenuIndex(2), 0, Languages.Count - 4))
 
         If languageMenuIndex(0) <> currentIndex Then
-            Localization.Load(Languages(languageMenuIndex(0)))
+            OldLocalization.Load(Languages(languageMenuIndex(0)))
         End If
 
         If Controls.Right(True, True, False) = True Then
@@ -1027,7 +1027,7 @@
                     Core.GameOptions.SaveOptions()
                     Me.menuIndex = 0
                 Case 1
-                    Localization.Load(currentLanguage)
+                    OldLocalization.Load(currentLanguage)
                     Me.menuIndex = 0
             End Select
         End If
@@ -1071,7 +1071,7 @@
                 Dim textColor As Color = Color.Gray
 
                 If EnabledPackNames.Contains(Name) = True Then
-                    Name &= " (" & Localization.GetString("pack_menu_enabled") & ")"
+                    Name &= " (" & OldLocalization.GetString("pack_menu_enabled") & ")"
                     textColor = Color.Black
                 End If
 
@@ -1090,9 +1090,9 @@
             Dim Text As String = ""
             Select Case i
                 Case 0
-                    Text = Localization.GetString("pack_menu_apply")
+                    Text = OldLocalization.GetString("pack_menu_apply")
                 Case 1
-                    Text = Localization.GetString("pack_menu_back")
+                    Text = OldLocalization.GetString("pack_menu_back")
             End Select
 
             If i = packsMenuIndex(1) Then
@@ -1108,17 +1108,17 @@
             Dim Text As String = ""
             Select Case i
                 Case 2
-                    Text = Localization.GetString("pack_menu_up")
+                    Text = OldLocalization.GetString("pack_menu_up")
                 Case 3
-                    Text = Localization.GetString("pack_menu_down")
+                    Text = OldLocalization.GetString("pack_menu_down")
                 Case 4
                     If isSelectedEnabled = True Then
-                        Text = Localization.GetString("pack_menu_toggle_off")
+                        Text = OldLocalization.GetString("pack_menu_toggle_off")
                     Else
-                        Text = Localization.GetString("pack_menu_toggle_on")
+                        Text = OldLocalization.GetString("pack_menu_toggle_on")
                     End If
                 Case 5
-                    Text = Localization.GetString("pack_menu_information")
+                    Text = OldLocalization.GetString("pack_menu_information")
             End Select
 
             If i = packsMenuIndex(1) Then
@@ -1277,7 +1277,7 @@
             Next
 
             If hasMP3 = True Or hasWMA = True And hasXNB = True Then
-                PInfoContent = Localization.GetString("pack_menu_songs")
+                PInfoContent = OldLocalization.GetString("pack_menu_songs")
             End If
         End If
         If System.IO.Directory.Exists(contentPackPath & "Sounds") = True Then
@@ -1301,7 +1301,7 @@
                     PInfoContent &= ", "
                 End If
 
-                PInfoContent &= Localization.GetString("pack_menu_sounds")
+                PInfoContent &= OldLocalization.GetString("pack_menu_sounds")
             End If
         End If
 
@@ -1324,7 +1324,7 @@
                         PInfoContent &= ", "
                     End If
 
-                    PInfoContent &= Localization.GetString("pack_menu_textures")
+                    PInfoContent &= OldLocalization.GetString("pack_menu_textures")
                     Exit For
                 End If
             End If
@@ -1365,10 +1365,10 @@
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 256, 160, 480, 64), True)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2), 195), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, OldLocalization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(OldLocalization.GetString("pack_menu_name") & ": " & PInfoName).X / 2), 195), Color.Black)
 
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 256, 288, 480, 224), True)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.GetString("pack_menu_version") & ": " & PInfoVersion & vbNewLine & Localization.GetString("pack_menu_by") & ": " & PInfoAuthor & vbNewLine & Localization.GetString("pack_menu_content") & ": " & PInfoContent & vbNewLine & Localization.GetString("pack_menu_description") & ": " & PInfoDescription.Replace("<br>", vbNewLine), New Vector2(CInt(Core.ScreenSize.Width / 2) - 220, 323), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, OldLocalization.GetString("pack_menu_version") & ": " & PInfoVersion & vbNewLine & OldLocalization.GetString("pack_menu_by") & ": " & PInfoAuthor & vbNewLine & OldLocalization.GetString("pack_menu_content") & ": " & PInfoContent & vbNewLine & OldLocalization.GetString("pack_menu_description") & ": " & PInfoDescription.Replace("<br>", vbNewLine), New Vector2(CInt(Core.ScreenSize.Width / 2) - 220, 323), Color.Black)
 
         For i = 0 To 1
             If i = packInfoIndex Then
@@ -1377,17 +1377,17 @@
                 CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
             End If
 
-            Dim Text As String = Localization.GetString("pack_menu_back")
+            Dim Text As String = OldLocalization.GetString("pack_menu_back")
 
             Select Case i
                 Case 0
                     If isEnabled = True Then
-                        Text = Localization.GetString("pack_menu_toggle_off")
+                        Text = OldLocalization.GetString("pack_menu_toggle_off")
                     Else
-                        Text = Localization.GetString("pack_menu_toggle_on")
+                        Text = OldLocalization.GetString("pack_menu_toggle_on")
                     End If
                 Case 1
-                    Text = Localization.GetString("pack_menu_back")
+                    Text = OldLocalization.GetString("pack_menu_back")
             End Select
 
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180 + (200 * i), 550, 128, 64), True)
@@ -1505,15 +1505,15 @@
 
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2 - 352), 172, 704, 96), Color.White, True)
 
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("delete_menu_delete_confirm"), New Vector2(CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("delete_menu_delete_confirm")).X / 2), 200), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, OldLocalization.GetString("delete_menu_delete_confirm"), New Vector2(CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(OldLocalization.GetString("delete_menu_delete_confirm")).X / 2), 200), Color.Black)
 
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, """" & SaveNames(loadMenuIndex(0)) & """ ?", New Vector2(CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("""" & SaveNames(loadMenuIndex(0)) & """ ?").X / 2), 240), Color.Black)
 
         For i = 0 To 1
-            Dim Text As String = Localization.GetString("delete_menu_delete")
+            Dim Text As String = OldLocalization.GetString("delete_menu_delete")
 
             If i = 1 Then
-                Text = Localization.GetString("delete_menu_cancel")
+                Text = OldLocalization.GetString("delete_menu_cancel")
             End If
 
             If i = deleteIndex Then
@@ -1665,11 +1665,11 @@
             Dim dispAuthor As String = GameMode.Author
             Dim dispContentPath As String = GameMode.ContentPath
 
-            Me.tempGameModesDisplay = Localization.GetString("gamemode_menu_name") & ": " & dispName & vbNewLine &
-                Localization.GetString("gamemode_menu_version") & ": " & dispVersion & vbNewLine &
-                Localization.GetString("gamemode_menu_author") & ": " & dispAuthor & vbNewLine &
-                Localization.GetString("gamemode_menu_contentpath") & ": " & dispContentPath & vbNewLine &
-                Localization.GetString("gamemode_menu_description") & ": " & dispDescription
+            Me.tempGameModesDisplay = OldLocalization.GetString("gamemode_menu_name") & ": " & dispName & vbNewLine &
+                OldLocalization.GetString("gamemode_menu_version") & ": " & dispVersion & vbNewLine &
+                OldLocalization.GetString("gamemode_menu_author") & ": " & dispAuthor & vbNewLine &
+                OldLocalization.GetString("gamemode_menu_contentpath") & ": " & dispContentPath & vbNewLine &
+                OldLocalization.GetString("gamemode_menu_description") & ": " & dispDescription
         End If
 
         Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, tempGameModesDisplay, New Vector2(CInt(Core.ScreenSize.Width / 2) - 252, 416), Color.Black)
@@ -1681,13 +1681,13 @@
                 CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
             End If
 
-            Dim Text As String = Localization.GetString("gamemode_menu_back")
+            Dim Text As String = OldLocalization.GetString("gamemode_menu_back")
 
             Select Case i
                 Case 0
-                    Text = Localization.GetString("gamemode_menu_create")
+                    Text = OldLocalization.GetString("gamemode_menu_create")
                 Case 1
-                    Text = Localization.GetString("gamemode_menu_back")
+                    Text = OldLocalization.GetString("gamemode_menu_back")
             End Select
 
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180 + (200 * i), 550, 128, 64), True)

@@ -1,4 +1,4 @@
-﻿Public Class Localization
+﻿Public Class OldLocalization
 
     Public Shared LanguageSuffix As String = "en"
     Public Shared LocalizationTokens As Dictionary(Of String, Token) = New Dictionary(Of String, Token)
@@ -6,7 +6,7 @@
     Public Shared Sub Load(ByVal LanguageSuffix As String)
         LocalizationTokens.Clear()
 
-        Localization.LanguageSuffix = LanguageSuffix
+        OldLocalization.LanguageSuffix = LanguageSuffix
 
         Logger.Debug("Loaded language [" & LanguageSuffix & "]")
 

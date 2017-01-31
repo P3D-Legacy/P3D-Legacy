@@ -471,14 +471,14 @@
         End If
 
         If Me.hoverText <> "" And Me.pokehoverText <> "" Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32, Me.CursorPosition.Y - 29), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & OldLocalization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32, Me.CursorPosition.Y - 29), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & OldLocalization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
         ElseIf Me.hoverText <> "" And Me.pokehoverText = "" Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32, Me.CursorPosition.Y - 29), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 32, Me.CursorPosition.Y - 29), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
         End If
 
-        Dim regionString As String = Localization.GetString(Me.currentRegion(0).ToString().ToUpper() & Me.currentRegion.Remove(0, 1))
+        Dim regionString As String = OldLocalization.GetString(Me.currentRegion(0).ToString().ToUpper() & Me.currentRegion.Remove(0, 1))
         If Me.regions.Count > 1 Then
             regionString &= " (Press the Shift/Shoulder Buttons to switch between regions.)"
         End If
@@ -497,32 +497,32 @@
             r = New Rectangle(116, 0, 12, 12)
         End If
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 100, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 137, 103), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 140, 100), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 137, 103), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 140, 100), Color.White)
         ' Routes:
         r = New Rectangle(104, 12, 12, 12)
         If drawObjects(1) = False Then
             r = New Rectangle(116, 12, 12, 12)
         End If
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 130, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 137, 133), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 140, 130), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 137, 133), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 140, 130), Color.White)
         ' Places:
         r = New Rectangle(104, 24, 12, 12)
         If drawObjects(2) = False Then
             r = New Rectangle(116, 24, 12, 12)
         End If
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 160, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 137, 163), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 140, 160), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 137, 163), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 140, 160), Color.White)
         ' Roaming:
         r = New Rectangle(111, 64, 17, 16)
         If drawObjects(3) = False Then
             r = New Rectangle(111, 80, 17, 16)
         End If
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 190, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 137, 193), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 140, 190), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 137, 193), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("map_screen_roaming"), New Vector2(Core.windowSize.Width - 140, 190), Color.White)
     End Sub
 
     Private Sub DrawCursor()

@@ -231,9 +231,9 @@ Public Class OverworldCamera
                     _freeCameraMode = Not _freeCameraMode
 
                     If _freeCameraMode = False Then
-                        Core.GameMessage.ShowMessage(Localization.GetString("game_message_free_camera_off"), 12, FontManager.MainFont, Color.White)
+                        Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_free_camera_off"), 12, FontManager.MainFont, Color.White)
                     Else
-                        Core.GameMessage.ShowMessage(Localization.GetString("game_message_free_camera_on"), 12, FontManager.MainFont, Color.White)
+                        Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_free_camera_on"), 12, FontManager.MainFont, Color.White)
                     End If
                 End If
             End If
@@ -336,12 +336,12 @@ Public Class OverworldCamera
             If _thirdPerson = True Then
                 Screen.Level.OwnPlayer.Opacity = 1.0F
                 If showMessage = True Then
-                    Core.GameMessage.ShowMessage(Localization.GetString("game_message_third_person_on"), 12, FontManager.MainFont, Color.White)
+                    Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_third_person_on"), 12, FontManager.MainFont, Color.White)
                 End If
             Else
                 Yaw = GetAimYawFromDirection(_playerFacing)
                 If showMessage = True Then
-                    Core.GameMessage.ShowMessage(Localization.GetString("game_message_third_person_off"), 12, FontManager.MainFont, Color.White)
+                    Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_third_person_off"), 12, FontManager.MainFont, Color.White)
                 End If
             End If
         End If

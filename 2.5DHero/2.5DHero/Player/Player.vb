@@ -515,7 +515,7 @@
             SandBoxMode = False
         End If
 
-        Localization.ReloadGameModeTokens()
+        OldLocalization.ReloadGameModeTokens()
 
         If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
             MusicManager.LoadMusic(True)
@@ -555,7 +555,7 @@
 
             Dim outputString As String = newFilePrefix
 
-            Core.GameMessage.ShowMessage(Localization.GetString("game_message_continue_autosave") & " """ & outputString & """", 12, FontManager.MainFont, Color.White)
+            Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_continue_autosave") & " """ & outputString & """", 12, FontManager.MainFont, Color.White)
 
             newFilePrefix = ""
         End If

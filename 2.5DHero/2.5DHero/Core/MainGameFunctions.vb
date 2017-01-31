@@ -107,10 +107,10 @@
                 stream.Dispose()
             End If
 
-            Core.GameMessage.SetupText(Localization.GetString("game_message_screenshot") & fileName, FontManager.MainFont, Color.White)
+            Core.GameMessage.SetupText(OldLocalization.GetString("game_message_screenshot") & fileName, FontManager.MainFont, Color.White)
             Core.GameMessage.ShowMessage(12, Core.GraphicsDevice)
         Catch ex As Exception
-            Logger.Log(Logger.LogTypes.ErrorMessage, "Basic.vb: " & Localization.GetString("game_message_screenshot_failed") & ". More information: " & ex.Message)
+            Logger.Log(Logger.LogTypes.ErrorMessage, "Basic.vb: " & OldLocalization.GetString("game_message_screenshot_failed") & ". More information: " & ex.Message)
         End Try
     End Sub
 
@@ -124,7 +124,7 @@
 
             Core.GraphicsManager.ToggleFullScreen()
 
-            Core.GameMessage.ShowMessage(Localization.GetString("game_message_fullscreen_on"), 12, FontManager.MainFont, Color.White)
+            Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_fullscreen_on"), 12, FontManager.MainFont, Color.White)
         Else
             Core.GraphicsManager.PreferredBackBufferWidth = 1200
             Core.GraphicsManager.PreferredBackBufferHeight = 680
@@ -134,7 +134,7 @@
 
             Core.GraphicsManager.ToggleFullScreen()
 
-            Core.GameMessage.ShowMessage(Localization.GetString("game_message_fullscreen_off"), 12, FontManager.MainFont, Color.White)
+            Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_fullscreen_off"), 12, FontManager.MainFont, Color.White)
         End If
 
         Core.GraphicsManager.ApplyChanges()

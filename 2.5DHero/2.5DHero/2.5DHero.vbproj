@@ -113,6 +113,7 @@
     <Compile Include="Core\Core.vb" />
     <Compile Include="Core\CoreSpriteBatch.vb" />
     <Compile Include="Core\Encryption.vb" />
+    <Compile Include="Core\FileSystem.vb" />
     <Compile Include="Core\GameController.vb" />
     <Compile Include="Core\GameOptions.vb" />
     <Compile Include="Core\MainGameFunctions.vb" />
@@ -163,12 +164,17 @@
     <Compile Include="Entites\Other\OverworldPokemon.vb" />
     <Compile Include="Entites\Other\OwnPlayer.vb" />
     <Compile Include="Entites\Other\Particle.vb" />
+    <Compile Include="Globalization\Classes\LOCAL_InventoryScreen.vb" />
+    <Compile Include="Globalization\Classes\LOCAL_PartyScreen.vb" />
+    <Compile Include="Globalization\Localization.vb" />
+    <Compile Include="Globalization\LocalizationManager.vb" />
+    <Compile Include="Globalization\Translation.vb" />
     <Compile Include="HelperClasses\Animation.vb" />
     <Compile Include="HelperClasses\BasicObject.vb" />
     <Compile Include="HelperClasses\Camera.vb" />
     <Compile Include="HelperClasses\GameMessage.vb" />
     <Compile Include="HelperClasses\LoadingDots.vb" />
-    <Compile Include="HelperClasses\Localization.vb" />
+    <Compile Include="HelperClasses\OldLocalization.vb" />
     <Compile Include="HelperClasses\PlayerStatistics.vb" />
     <Compile Include="HelperClasses\Size.vb" />
     <Compile Include="HelperClasses\TimeHelpers.vb" />
@@ -179,6 +185,13 @@
     <Compile Include="Input\KeyboardInput.vb" />
     <Compile Include="Input\KeyCharConverter.vb" />
     <Compile Include="Input\MouseHandler.vb" />
+    <Compile Include="Input\UI\ColorProvider.vb" />
+    <Compile Include="Input\UI\Controls\Button.vb" />
+    <Compile Include="Input\UI\Controls\Control.vb" />
+    <Compile Include="Input\UI\Controls\ControlList.vb" />
+    <Compile Include="Input\UI\Controls\Textbox.vb" />
+    <Compile Include="Input\UI\MessageBox.vb" />
+    <Compile Include="Input\UI\SelectMenu.vb" />
     <Compile Include="Modules\Extensions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Network\Chat.vb" />
@@ -1603,6 +1616,7 @@
     <Compile Include="Screens\GUI\Canvas.vb" />
     <Compile Include="Screens\GUI\DonationScreen.vb" />
     <Compile Include="Screens\GUI\InputScreen.vb" />
+    <Compile Include="Screens\GUI\ISelectionScreen.vb" />
     <Compile Include="Screens\HistoryScreen.vb" />
     <Compile Include="Screens\Inventory\ApricornScreen.vb" />
     <Compile Include="Screens\Inventory\ChoosePokemonScreen.vb" />
@@ -1637,9 +1651,11 @@
     <Compile Include="Screens\Pokemon\HatchEggScreen.vb" />
     <Compile Include="Screens\Pokemon\LearnAttackScreen.vb" />
     <Compile Include="Screens\Pokemon\NameObjectScreen.vb" />
+    <Compile Include="Screens\Pokemon\PartyScreen.vb" />
     <Compile Include="Screens\Pokemon\PokemonScreen.vb" />
     <Compile Include="Screens\Pokemon\PokemonScreenV2.vb" />
     <Compile Include="Screens\Pokemon\PokemonStatusScreen.vb" />
+    <Compile Include="Screens\Pokemon\SummaryScreen.vb" />
     <Compile Include="Screens\Pokemon\TeachMovesScreen.vb" />
     <Compile Include="Screens\SaveScreen.vb" />
     <Compile Include="Screens\Screen.vb" />
@@ -1717,6 +1733,7 @@
     <Compile Include="World\World.vb" />
     <MonoGameContentReference Include="..\2.5DHeroContent\Content.mgcb" />
   </ItemGroup>
+  <ItemGroup />
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
     <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows,$(AssemblySearchPaths)">

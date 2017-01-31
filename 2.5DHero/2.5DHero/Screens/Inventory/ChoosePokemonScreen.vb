@@ -178,7 +178,7 @@
     Dim mPressed As Boolean = False
     Private Sub ShowMenu()
         Me.MenuID = 0
-        ChooseBox.Show({"Select", Localization.GetString("pokemon_screen_summary"), Localization.GetString("pokemon_screen_back")}, 0, {})
+        ChooseBox.Show({"Select", OldLocalization.GetString("pokemon_screen_summary"), OldLocalization.GetString("pokemon_screen_back")}, 0, {})
     End Sub
 
     Public Overrides Sub Draw()

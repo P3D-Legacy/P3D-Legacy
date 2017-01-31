@@ -1,6 +1,7 @@
 ﻿Public Class Nature
 
     Private Enum StatNames
+        HP
         Attack
         Defense
         SpAttack
@@ -12,16 +13,18 @@
         Dim stat As StatNames = StatNames.Attack
 
         Select Case StatName.ToLower()
+            Case "hp"
+                stat = StatNames.HP
             Case "attack", "atk"
-                Stat = StatNames.Attack
+                stat = StatNames.Attack
             Case "defense", "def"
-                Stat = StatNames.Defense
-            Case "spattack", "spatk", "specialattack"
-                Stat = StatNames.SpAttack
-            Case "spdefense", "spdef", "specialdefense"
-                Stat = StatNames.SpDefense
-            Case "speed"
-                Stat = StatNames.Speed
+                stat = StatNames.Defense
+            Case "spattack", "spatk", "specialattack", "sp. atk"
+                stat = StatNames.SpAttack
+            Case "spdefense", "spdef", "specialdefense", "sp. def"
+                stat = StatNames.SpDefense
+            Case "speed", "spe"
+                stat = StatNames.Speed
         End Select
 
         Select Case Nature

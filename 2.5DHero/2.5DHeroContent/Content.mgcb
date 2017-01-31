@@ -928,6 +928,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/GUI/Menus/pokegear.png
 
+#begin Content/GUI/Menus/PokemonInfo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/GUI/Menus/PokemonInfo.png
+
 #begin Content/GUI/Menus/Types.png
 /importer:TextureImporter
 /processor:TextureProcessor

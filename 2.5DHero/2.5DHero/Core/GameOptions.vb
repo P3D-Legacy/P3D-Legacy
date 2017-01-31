@@ -60,7 +60,7 @@
                         Me.LoadOffsetMaps = CInt(value)
                     Case "language"
                         LanguageFound = True
-                        Localization.Load(value)
+                        OldLocalization.Load(value)
                     Case "contentpack", "contentpacks"
                         ContentPackManager.CreateContentPackFolder()
                         If value <> "" Then
@@ -106,7 +106,7 @@
         Next
 
         If LanguageFound = False Then
-            Localization.Load("en")
+            OldLocalization.Load("en")
         End If
     End Sub
 
@@ -134,7 +134,7 @@
                 "ShowGUI|" & Me.ShowGUI.ToNumberString() & vbNewLine &
                 "GraphicStyle|" & Me.GraphicStyle.ToString() & vbNewLine &
                 "LoadOffsetMaps|" & Me.LoadOffsetMaps.ToString() & vbNewLine &
-                "Language|" & Localization.LanguageSuffix & vbNewLine &
+                "Language|" & OldLocalization.LanguageSuffix & vbNewLine &
                 "ViewBobbing|" & Me.ViewBobbing.ToNumberString() & vbNewLine &
                 "GamePadEnabled|" & Me.GamePadEnabled.ToNumberString() & vbNewLine &
                 "LightningEnabled|" & Me.LightingEnabled.ToNumberString() & vbNewLine &

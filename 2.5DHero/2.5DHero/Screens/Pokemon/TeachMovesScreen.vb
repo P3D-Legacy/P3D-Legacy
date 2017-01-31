@@ -168,7 +168,7 @@
                 c = Color.IndianRed
             End If
 
-            .DrawString(FontManager.MiniFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 130, CInt(p.Y + 58)), c)
+            .DrawString(FontManager.MiniFont, OldLocalization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 130, CInt(p.Y + 58)), c)
 
             .Draw(TextureManager.GetTexture("GUI\Menus\Types", A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X), CInt(p.Y + 54), 48, 16), Color.White)
         End With

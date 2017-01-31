@@ -169,26 +169,26 @@
                 If Me.Pokemon.EggSteps = 0 Then
                     DrawPage1()
                 End If
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_stats_page"), New Vector2(676, 138), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_stats_page"), New Vector2(676, 138), Color.Black)
                 TexturePositionPage = New Vector2(32, 96)
             Case 1
                 DrawPage2()
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_details_page"), New Vector2(676, 138), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_details_page"), New Vector2(676, 138), Color.Black)
                 TexturePositionPage = New Vector2(32, 112)
             Case 2
                 If Me.Pokemon.EggSteps = 0 Then
                     DrawPage3()
                 End If
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_moves_page"), New Vector2(676, 138), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_moves_page"), New Vector2(676, 138), Color.Black)
                 TexturePositionPage = New Vector2(80, 96)
         End Select
 
         Core.SpriteBatch.Draw(MainTexture, New Rectangle(574, 132, 96, 32), New Rectangle(CInt(TexturePositionPage.X), CInt(TexturePositionPage.Y), 48, 16), Color.White)
 
         If Me.AttackToggle = False Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_backadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(Localization.GetString("poke_status_screen_backadvice")).X - 360, 580), Color.DarkGray)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_backadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(OldLocalization.GetString("poke_status_screen_backadvice")).X - 360, 580), Color.DarkGray)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_closeadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(Localization.GetString("poke_status_screen_closeadvice")).X - 360, 580), Color.DarkGray)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_closeadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(OldLocalization.GetString("poke_status_screen_closeadvice")).X - 360, 580), Color.DarkGray)
         End If
     End Sub
 
@@ -265,7 +265,7 @@
                 Core.SpriteBatch.Draw(MainTexture, New Rectangle(180, 376, 12, 20), r, Color.White)
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("Level") & ": " & Me.Pokemon.Level & vbNewLine & Localization.GetString("poke_status_screen_number") & Pokemon.Number & vbNewLine & vbNewLine & Localization.GetString("poke_status_screen_nature") & ":" & vbNewLine & Me.Pokemon.Nature.ToString(), New Vector2(76, 410), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("Level") & ": " & Me.Pokemon.Level & vbNewLine & OldLocalization.GetString("poke_status_screen_number") & Pokemon.Number & vbNewLine & vbNewLine & OldLocalization.GetString("poke_status_screen_nature") & ":" & vbNewLine & Me.Pokemon.Nature.ToString(), New Vector2(76, 410), Color.Black)
 
             Dim StatusTexture As Texture2D = BattleStats.GetStatImage(Pokemon.Status)
             If Not StatusTexture Is Nothing Then
@@ -310,25 +310,25 @@
 
             Dim redText As String = vbNewLine & vbNewLine
             Dim blueText As String = vbNewLine & vbNewLine
-            Dim blackText As String = Localization.GetString("HP") & vbNewLine & vbNewLine
+            Dim blackText As String = OldLocalization.GetString("HP") & vbNewLine & vbNewLine
             For i = 0 To 4
                 Dim statText As String = ""
                 Dim stat As String = ""
                 Select Case i
                     Case 0
-                        statText = Localization.GetString("Attack")
+                        statText = OldLocalization.GetString("Attack")
                         stat = "Attack"
                     Case 1
-                        statText = Localization.GetString("Defense")
+                        statText = OldLocalization.GetString("Defense")
                         stat = "Defense"
                     Case 2
-                        statText = Localization.GetString("Special_Attack")
+                        statText = OldLocalization.GetString("Special_Attack")
                         stat = "SpAttack"
                     Case 3
-                        statText = Localization.GetString("Special_Defense")
+                        statText = OldLocalization.GetString("Special_Defense")
                         stat = "SpDefense"
                     Case 4
-                        statText = Localization.GetString("Speed")
+                        statText = OldLocalization.GetString("Speed")
                         stat = "Speed"
                 End Select
 
@@ -373,7 +373,7 @@
                     barX = CInt((currentExp / NextLvExp) * 150).Clamp(0, 150)
                 End If
 
-                .DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_all_exp") & ": " & Pokemon.Experience & vbNewLine & Localization.GetString("poke_status_screen_nxt_lv") & ": " & NextLvExp - currentExp, New Vector2(240, 504), Color.Black)
+                .DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_all_exp") & ": " & Pokemon.Experience & vbNewLine & OldLocalization.GetString("poke_status_screen_nxt_lv") & ": " & NextLvExp - currentExp, New Vector2(240, 504), Color.Black)
 
                 Dim i As Integer = 0
                 For x = 0 To barX - 1
@@ -407,7 +407,7 @@
         ' Capture Information: 
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 196, 320, 96))
         With Core.SpriteBatch
-            .DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_OT") & ": " & Pokemon.OT & " /" & Pokemon.CatchTrainerName & vbNewLine & vbNewLine & Pokemon.CatchMethod & vbNewLine & Pokemon.CatchLocation, New Vector2(238, 214), Color.DarkBlue)
+            .DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_OT") & ": " & Pokemon.OT & " /" & Pokemon.CatchTrainerName & vbNewLine & vbNewLine & Pokemon.CatchMethod & vbNewLine & Pokemon.CatchLocation, New Vector2(238, 214), Color.DarkBlue)
         End With
 
         ' Item:
@@ -415,10 +415,10 @@
         If Me.Pokemon.EggSteps = 0 Then
             If Not Pokemon.Item Is Nothing Then
                 Core.SpriteBatch.Draw(Pokemon.Item.Texture, New Rectangle(232, 338, 24, 24), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_Item") & ": " & Pokemon.Item.Name, New Vector2(262, 342), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_Item") & ": " & Pokemon.Item.Name, New Vector2(262, 342), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, Pokemon.Item.Description.CropStringToWidth(FontManager.MiniFont, 300), New Vector2(234, 360), Color.Black)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_Item") & ": " & Localization.GetString("poke_status_screen_no_item"), New Vector2(262, 342), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_Item") & ": " & OldLocalization.GetString("poke_status_screen_no_item"), New Vector2(262, 342), Color.Black)
             End If
         End If
 
@@ -426,7 +426,7 @@
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 484, 320, 96))
         If Me.Pokemon.EggSteps = 0 Then
             With Core.SpriteBatch
-                .DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_ability") & ": " & Me.Pokemon.Ability.Name & vbNewLine & vbNewLine & Me.Pokemon.Ability.Description.CropStringToWidth(FontManager.MiniFont, 300), New Vector2(234, 500), Color.Black)
+                .DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_ability") & ": " & Me.Pokemon.Ability.Name & vbNewLine & vbNewLine & Me.Pokemon.Ability.Description.CropStringToWidth(FontManager.MiniFont, 300), New Vector2(234, 500), Color.Black)
             End With
         Else
             With Core.SpriteBatch
@@ -485,7 +485,7 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_power") & ": " & power & vbNewLine & Localization.GetString("poke_status_screen_accuracy") & ": " & acc & vbNewLine & vbNewLine & t, New Vector2(CInt(572 - 300 + AttackPos), 218), Color.Black)
+                .DrawString(FontManager.MiniFont, OldLocalization.GetString("poke_status_screen_power") & ": " & power & vbNewLine & OldLocalization.GetString("poke_status_screen_accuracy") & ": " & acc & vbNewLine & vbNewLine & t, New Vector2(CInt(572 - 300 + AttackPos), 218), Color.Black)
                 .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(572 - 150 + AttackPos), 222, 56, 28), Color.White)
             End With
 
@@ -523,7 +523,7 @@
                 c = Color.IndianRed
             End If
 
-            .DrawString(FontManager.MiniFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(400, CInt(p.Y + 58)), c)
+            .DrawString(FontManager.MiniFont, OldLocalization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(400, CInt(p.Y + 58)), c)
 
             .Draw(TextureManager.GetTexture("GUI\Menus\Types", A.Type.GetElementImage(), ""), New Rectangle(270, CInt(p.Y + 54), 48, 16), Color.White)
         End With
