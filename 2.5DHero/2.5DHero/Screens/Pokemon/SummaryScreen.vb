@@ -52,7 +52,7 @@
 
         _texture = TextureManager.GetTexture("GUI\Menus\General")
 
-        _pageIndex = Player.Temp.PokemonScreenIndex
+        _pageIndex = Player.Temp.PokemonSummaryPageIndex
         _partyIndex = partyIndex
         _party = party
 
@@ -68,7 +68,7 @@
 
         _texture = TextureManager.GetTexture("GUI\Menus\General")
 
-        _pageIndex = Player.Temp.PokemonScreenIndex
+        _pageIndex = Player.Temp.PokemonSummaryPageIndex
         _selectedPokemon = selectedPokemon
 
         SetPointerDest(_partyIndex)

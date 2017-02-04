@@ -424,6 +424,7 @@
 
     Public Structure Temp
         Public Shared PokemonScreenIndex As Integer = 0
+        Public Shared PokemonSummaryPageIndex As Integer = 0
         Public Shared PokemonStatusPageIndex As Integer = 0
         Public Shared BagIndex As Integer = 0
         Public Shared BagSelectIndex As Integer = 0
