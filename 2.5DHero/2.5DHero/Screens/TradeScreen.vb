@@ -14,7 +14,7 @@ Public Class TradeScreen
     End Enum
 
     Private MenuState As MenuStates = MenuStates.MainPage
-    Private CurrentCategory As Items.ItemTypes = Items.ItemTypes.Medicine
+    Private CurrentCategory As Item.ItemTypes = Item.ItemTypes.Medicine
 
     Private MainCursor As Integer = 0
     Private CategoryCursor As Integer = 0
@@ -350,7 +350,7 @@ Public Class TradeScreen
 
 #Region "BuyCategoryScreen"
 
-    Private loadedBuyCategories As New List(Of Items.ItemTypes)
+    Private loadedBuyCategories As New List(Of Item.ItemTypes)
 
     Private Sub LoadBuyCategoriesItems()
         Me.loadedBuyCategories.Clear()
@@ -361,7 +361,7 @@ Public Class TradeScreen
                 loadedBuyCategories.Add(item.ItemType)
             End If
         Next
-        Me.loadedBuyCategories = (From c As Items.ItemTypes In Me.loadedBuyCategories Order By CInt(c)).ToList()
+        Me.loadedBuyCategories = (From c As Item.ItemTypes In Me.loadedBuyCategories Order By CInt(c)).ToList()
     End Sub
 
     Private Sub UpdateBuyCategory()
@@ -760,7 +760,7 @@ Public Class TradeScreen
 
 #Region "SellCatetoryScreen"
 
-    Private loadedSellCategories As New List(Of Items.ItemTypes)
+    Private loadedSellCategories As New List(Of Item.ItemTypes)
 
     Private Sub LoadSellCategoryItems()
         Me.loadedSellCategories.Clear()
@@ -771,7 +771,7 @@ Public Class TradeScreen
                 loadedSellCategories.Add(i.ItemType)
             End If
         Next
-        Me.loadedSellCategories = (From c As Items.ItemTypes In Me.loadedSellCategories Order By CInt(c)).ToList()
+        Me.loadedSellCategories = (From c As Item.ItemTypes In Me.loadedSellCategories Order By CInt(c)).ToList()
     End Sub
 
     Private Sub UpdateSellCategory()
@@ -1220,24 +1220,24 @@ Public Class TradeScreen
         Core.SpriteBatch.DrawString(Font, Text, New Vector2(Position.X + Height + 10, Position.Y + textY), Color.White)
     End Sub
 
-    Private Function GetItemTypeTexture(ByVal itemType As Items.ItemTypes) As Texture2D
+    Private Function GetItemTypeTexture(ByVal itemType As Item.ItemTypes) As Texture2D
         Dim i As Integer = 0
         Select Case itemType
-            Case Items.ItemTypes.Standard
+            Case Item.ItemTypes.Standard
                 i = 0
-            Case Items.ItemTypes.Medicine
+            Case Item.ItemTypes.Medicine
                 i = 1
-            Case Items.ItemTypes.Machines
+            Case Item.ItemTypes.Machines
                 i = 2
-            Case Items.ItemTypes.Pokéballs
+            Case Item.ItemTypes.Pokéballs
                 i = 3
-            Case Items.ItemTypes.Plants
+            Case Item.ItemTypes.Plants
                 i = 4
-            Case Items.ItemTypes.Mail
+            Case Item.ItemTypes.Mail
                 i = 5
-            Case Items.ItemTypes.BattleItems
+            Case Item.ItemTypes.BattleItems
                 i = 6
-            Case Items.ItemTypes.KeyItems
+            Case Item.ItemTypes.KeyItems
                 i = 7
         End Select
 

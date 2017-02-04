@@ -14,6 +14,10 @@
         Core.SpriteBatch.Draw(Canvas, Rectangle, color)
     End Sub
 
+    Public Shared Sub DrawRectangle(ByVal spriteBatch As SpriteBatch, ByVal Rectangle As Rectangle, ByVal color As Color)
+        spriteBatch.Draw(Canvas, Rectangle, color)
+    End Sub
+
     Public Shared Sub DrawRectangle(ByVal Rectangle As Rectangle, ByVal color As Color, ByVal ScaleToScreen As Boolean)
         If ScaleToScreen = True Then
             Core.SpriteBatch.DrawInterface(Canvas, Rectangle, color)
@@ -152,7 +156,7 @@
 
     Private Structure GradientConfiguration
 
-        Private Texture As Texture2D ' Stores the generated texture
+        Private Texture As Texture2D 'Stores the generated texture 
 
         Private Width As Integer
         Private Height As Integer
@@ -174,10 +178,8 @@
 
         Private Sub GenerateTexture()
             Dim uSize As Integer = Me.Height
-            Dim vSize As Integer = Me.Width
             If Horizontal = False Then
                 uSize = Me.Width
-                vSize = Me.Height
             End If
 
             Dim diffR As Integer = CInt(toColor.R) - CInt(fromColor.R)
@@ -213,7 +215,7 @@
                     cA = 255 + cA
                 End If
 
-                If Horizontal = True Then ' Left to right gradiant.
+                If Horizontal = True Then 'left to right gradient
                     Dim c As Color = New Color(cR, cG, cB, cA)
 
                     Dim length As Integer = CInt(Math.Ceiling(stepSize))
@@ -248,32 +250,37 @@
             Return (Me.Width = Width And Me.Height = Height And Me.fromColor = fromColor And Me.toColor = toColor And Me.Horizontal = Horizontal And Me.Steps = Steps)
         End Function
 
-        Public Sub Draw(ByVal r As Rectangle)
-            Core.SpriteBatch.Draw(Me.Texture, r, Color.White)
+        Public Sub Draw(ByVal spriteBatch As SpriteBatch, ByVal r As Rectangle)
+            spriteBatch.Draw(Me.Texture, r, Color.White)
         End Sub
-
 
     End Structure
 
     Shared gradientConfigs As New List(Of GradientConfiguration)
 
     Public Shared Sub DrawGradient(ByVal Rectangle As Rectangle, ByVal fromColor As Color, ByVal toColor As Color, ByVal Horizontal As Boolean, ByVal Steps As Integer)
-        Horizontal = Not Horizontal
+        DrawGradient(Core.SpriteBatch, Rectangle, fromColor, toColor, Horizontal, Steps)
+    End Sub
 
-        Dim gConfig As GradientConfiguration = Nothing
-        Dim foundConfig As Boolean = False
-        For Each g As GradientConfiguration In gradientConfigs
-            If g.IsConfig(Rectangle.Width, Rectangle.Height, fromColor, toColor, Horizontal, Steps) Then
-                gConfig = g
-                foundConfig = True
-                Exit For
+    Public Shared Sub DrawGradient(ByVal spriteBatch As SpriteBatch, ByVal Rectangle As Rectangle, ByVal fromColor As Color, ByVal toColor As Color, ByVal Horizontal As Boolean, ByVal Steps As Integer)
+        If Rectangle.Width > 0 And Rectangle.Height > 0 Then
+            Horizontal = Not Horizontal 'because fuck you.
+
+            Dim gConfig As GradientConfiguration = Nothing
+            Dim foundConfig As Boolean = False
+            For Each g As GradientConfiguration In gradientConfigs
+                If g.IsConfig(Rectangle.Width, Rectangle.Height, fromColor, toColor, Horizontal, Steps) Then
+                    gConfig = g
+                    foundConfig = True
+                    Exit For
+                End If
+            Next
+            If foundConfig = False Then
+                gConfig = New GradientConfiguration(Rectangle.Width, Rectangle.Height, fromColor, toColor, Horizontal, Steps)
+                gradientConfigs.Add(gConfig)
             End If
-        Next
-        If foundConfig = False Then
-            gConfig = New GradientConfiguration(Rectangle.Width, Rectangle.Height, fromColor, toColor, Horizontal, Steps)
-            gradientConfigs.Add(gConfig)
+            gConfig.Draw(spriteBatch, Rectangle)
         End If
-        gConfig.Draw(Rectangle)
     End Sub
 
     Public Shared Sub DrawLine(ByVal Color As Color, ByVal startPoint As Vector2, ByVal endPoint As Vector2, ByVal width As Double)

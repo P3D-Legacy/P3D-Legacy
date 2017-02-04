@@ -5,6 +5,44 @@ Imports net.Pokemon3D.Game.Items
 ''' </summary>
 Public MustInherit Class Item
 
+    ''' <summary>
+    ''' The type of item. This is also the bag they get sorted into.
+    ''' </summary>
+    Public Enum ItemTypes
+        ''' <summary>
+        ''' The default item category for misc. items.
+        ''' </summary>
+        Standard
+        ''' <summary>
+        ''' Medicine items that restore Pokémon.
+        ''' </summary>
+        Medicine
+        ''' <summary>
+        ''' Plants, like berries and apricorns.
+        ''' </summary>
+        Plants
+        ''' <summary>
+        ''' All Poké Balls.
+        ''' </summary>
+        Pokéballs
+        ''' <summary>
+        ''' TMs and HMs.
+        ''' </summary>
+        Machines
+        ''' <summary>
+        ''' Keyitems of the Pokemon3D.
+        ''' </summary>
+        KeyItems
+        ''' <summary>
+        ''' Mail items.
+        ''' </summary>
+        Mail
+        ''' <summary>
+        ''' Items to be used in battle.
+        ''' </summary>
+        BattleItems
+    End Enum
+
     Protected _textureSource As String = "Items\ItemSheet"
     Protected _textureRectangle As Rectangle
     Private _texture As Texture2D

@@ -70,6 +70,35 @@ Public Class PartyScreen
         _menu.Visible = False
     End Sub
 
+    Public Sub New(ByVal currentScreen As Screen)
+        Identification = Identifications.PartyScreen
+        PreScreen = currentScreen
+        IsDrawingGradients = True
+
+        _translation = New Globalization.Classes.LOCAL_PartyScreen()
+
+        _index = Player.Temp.PokemonScreenIndex
+        _texture = TextureManager.GetTexture("GUI\Menus\General")
+        _menuTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
+
+        If _index >= Core.Player.Pokemons.Count Then
+            _index = 0
+        End If
+        _cursorDest = GetBoxPosition(_index)
+        _cursorPosition = _cursorDest
+
+        For i = 0 To Core.Player.Pokemons.Count - 1
+            _pokemonAnimations.Add(New PokemonAnimation())
+        Next
+
+        CheckForLegendaryEmblem()
+        CheckForOverkillEmblem()
+
+        _menu = New UI.SelectMenu({""}.ToList(), 0, Nothing, 0)
+        _menu.Visible = False
+    End Sub
+
+
     Public Overrides Sub Draw()
         PreScreen.Draw()
 
@@ -526,15 +555,13 @@ Public Class PartyScreen
         Select Case selectMenu.SelectedItem
             Case _translation.MENU_ITEM_GIVE
 
-                '''DO NOTHING LOL
+                Dim selScreen As New NewInventoryScreen(Core.CurrentScreen)
+                selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
+                selScreen.CanExit = True
 
-                'Dim selScreen As New NewInventoryScreen(Core.CurrentScreen)
-                'selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
-                'selScreen.CanExit = True
+                AddHandler selScreen.SelectedObject, AddressOf GiveItemHandler
 
-                'AddHandler selScreen.SelectedObject, AddressOf GiveItemHandler
-
-                'Core.SetScreen(selScreen)
+                Core.SetScreen(selScreen)
             Case _translation.MENU_ITEM_TAKE
                 Dim p As Pokemon = Core.Player.Pokemons(_index)
 

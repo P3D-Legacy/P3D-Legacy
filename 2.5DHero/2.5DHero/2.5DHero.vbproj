@@ -1622,6 +1622,7 @@
     <Compile Include="Screens\Inventory\ChoosePokemonScreen.vb" />
     <Compile Include="Screens\Inventory\InventoryScreen.vb" />
     <Compile Include="Screens\Inventory\ItemDetailScreen.vb" />
+    <Compile Include="Screens\Inventory\NewInventoryScreen.vb" />
     <Compile Include="Screens\Inventory\PokegearScreen.vb" />
     <Compile Include="Screens\MainMenu\AddServerScreen.vb" />
     <Compile Include="Screens\MainMenu\ConnectScreen.vb" />
