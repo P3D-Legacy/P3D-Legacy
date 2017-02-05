@@ -567,6 +567,528 @@
 
         Entity.MakeShake = Name.ToLower() = "drunknilllzz"
 
+        ''' Backup Save module
+        ''' 1. Encrypted OverWrite Save.
+        ''' 2. OverWrite Save.
+        ''' 3. Backup Save.
+        If filePrefix = "GAMEJOLTSAVE" AndAlso Core.GameOptions.DLC.Contains("Backup Save") Then
+            If Not Directory.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID) Then
+                Directory.CreateDirectory(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID)
+            End If
+
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Encrypted\Encrypted.dat")) Then
+                Dim Items() As String = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID.ToString() & "\Encrypted\Encrypted.dat").Split(CChar("|"))
+                Dim Hash As String = String.Join("|", Items.Take(16))
+
+                Try
+                    If Items.Count = 17 AndAlso String.Equals(Hash, Encryption.DecryptString(Items.Last, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))) Then
+                        Core.Player.ApricornData = Encryption.DecryptString(Items(0), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        Core.Player.BerryData = Encryption.DecryptString(Items(1), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        Core.Player.BoxData = Encryption.DecryptString(Items(2), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        Core.Player.DaycareData = Encryption.DecryptString(Items(3), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        Core.Player.HallOfFameData = Encryption.DecryptString(Items(4), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        Core.Player.ItemData = Encryption.DecryptString(Items(5), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+
+                        Inventory.Clear()
+                        Mails.Clear()
+                        Dim Data As String = Encryption.DecryptString(Items(6), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        If Not String.IsNullOrWhiteSpace(Data) Then
+                            For Each ItemDat As String In Data.SplitAtNewline()
+                                If Not String.IsNullOrWhiteSpace(ItemDat) Then
+                                    If ItemDat.StartsWith("{") AndAlso ItemDat.EndsWith("}") AndAlso ItemDat.Contains("|") Then
+                                        Dim ItemID As String = ItemDat.Remove(0, ItemDat.IndexOf("{") + 1)
+                                        ItemID = ItemID.Remove(ItemID.IndexOf("}"))
+
+                                        Dim amount As Integer = CInt(ItemID.Remove(0, ItemID.IndexOf("|") + 1))
+                                        ItemID = ItemID.Remove(ItemID.IndexOf("|"))
+
+                                        Inventory.AddItem(CInt(ItemID), amount)
+                                    ElseIf ItemDat.StartsWith("Mail|") Then
+                                        Dim mailData As String = ItemDat.Remove(0, 5)
+                                        Mails.Add(Game.Items.MailItem.GetMailDataFromString(mailData))
+                                    End If
+                                End If
+                            Next
+                        End If
+
+                        Core.Player.NPCData = Encryption.DecryptString(Items(7), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+
+                        Data = Encryption.DecryptString(Items(8), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        For Each Line As String In Data.SplitAtNewline()
+                            If Line.Contains("|") Then
+                                Dim ID As String = Line.Remove(Line.IndexOf("|"))
+                                Dim Value As String = Line.Remove(0, Line.IndexOf("|") + 1)
+                                Select Case ID.ToLower()
+                                    Case "fov"
+                                        startFOV = CSng(Value.Replace(".", GameController.DecSeparator)).Clamp(1, 179)
+                                    Case "textspeed"
+                                        TextBox.TextSpeed = CInt(Value)
+                                    Case "mousespeed"
+                                        startRotationSpeed = CInt(Value)
+                                End Select
+                            End If
+                        Next
+
+                        Pokemons.Clear()
+                        Dim PokeData As String = Encryption.DecryptString(Items(9), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        For Each Line As String In PokeData.SplitAtNewline()
+                            If Line.StartsWith("{") AndAlso Line.EndsWith("}") Then
+                                Dim p As Pokemon = Pokemon.GetPokemonByData(Line)
+                                If p.IsEgg() = False Then
+                                    If p.IsShiny = True Then
+                                        PokedexData = Pokedex.ChangeEntry(PokedexData, p.Number, 3)
+                                    Else
+                                        PokedexData = Pokedex.ChangeEntry(PokedexData, p.Number, 2)
+                                    End If
+                                End If
+                                Pokemons.Add(p)
+                            End If
+                        Next
+
+                        Data = Encryption.DecryptString(Items(10), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        Screen.Level.Riding = False
+                        For Each Line As String In Data.SplitAtNewline()
+                            If Not String.IsNullOrWhiteSpace(Line) AndAlso Line.Contains("|") Then
+                                Dim ID As String = Line.Remove(Line.IndexOf("|"))
+                                Dim Value As String = Line.Remove(0, Line.IndexOf("|") + 1)
+                                Select Case ID.ToLower()
+                                    Case "name"
+                                        Name = CType(IIf(IsGameJoltSave, GameJolt.API.username, Value), String)
+                                    Case "position"
+                                        Dim v() As String = Value.Split(CChar(","))
+                                        startPosition.X = CSng(v(0).Replace(".", GameController.DecSeparator))
+                                        startPosition.Y = CSng(v(1).Replace(".", GameController.DecSeparator))
+                                        startPosition.Z = CSng(v(2).Replace(".", GameController.DecSeparator))
+                                    Case "lastpokemonposition"
+                                        Dim v() As String = Value.Split(CChar(","))
+                                        LastPokemonPosition.X = CSng(v(0).Replace(".", GameController.DecSeparator))
+                                        LastPokemonPosition.Y = CSng(v(1).Replace(".", GameController.DecSeparator))
+                                        LastPokemonPosition.Z = CSng(v(2).Replace(".", GameController.DecSeparator))
+                                    Case "mapfile"
+                                        startMap = Value
+                                    Case "rivalname"
+                                        RivalName = Value
+                                    Case "money"
+                                        Money = CInt(Value)
+                                    Case "badges"
+                                        Badges.Clear()
+                                        If Value = "0" Then
+                                            Badges = New List(Of Integer)
+                                        Else
+                                            If Value.Contains(",") = False Then
+                                                Badges = {CInt(Value)}.ToList()
+                                            Else
+                                                Dim l As List(Of String) = Value.Split(CChar(",")).ToList()
+                                                For i = 0 To l.Count - 1
+                                                    Badges.Add(CInt(l(i)))
+                                                Next
+                                            End If
+                                        End If
+                                    Case "rotation"
+                                        startRotation = CSng(Value.Replace(".", GameController.DecSeparator))
+                                    Case "Gender"
+                                        If Value = "Male" Then
+                                            Male = True
+                                        Else
+                                            Male = False
+                                        End If
+                                    Case "playtime"
+                                        Dim dd() As String = Value.Split(CChar(","))
+                                        If dd.Count >= 4 Then
+                                            PlayTime = New TimeSpan(CInt(dd(3)), CInt(dd(0)), CInt(dd(1)), CInt(dd(2)))
+                                        Else
+                                            PlayTime = New TimeSpan(CInt(dd(0)), CInt(dd(1)), CInt(dd(2)))
+                                        End If
+                                    Case "ot"
+                                        OT = CStr(CInt(Value).Clamp(0, 99999))
+                                    Case "points"
+                                        Points = CInt(Value)
+                                    Case "haspokedex"
+                                        HasPokedex = CBool(Value)
+                                    Case "haspokegear"
+                                        HasPokegear = CBool(Value)
+                                    Case "freecamera"
+                                        startFreeCameraMode = CBool(Value)
+                                    Case "thirdperson"
+                                        startThirdPerson = CBool(Value)
+                                    Case "skin"
+                                        Skin = Value
+                                    Case "battleanimations"
+                                        ShowBattleAnimations = CInt(Value)
+                                    Case "boxamount"
+                                        BoxAmount = CInt(Value)
+                                    Case "lastrestplace"
+                                        LastRestPlace = Value
+                                    Case "lastrestplaceposition"
+                                        LastRestPlacePosition = Value
+                                    Case "diagonalmovement"
+                                        If GameController.IS_DEBUG_ACTIVE = True Then
+                                            DiagonalMovement = CBool(Value)
+                                        Else
+                                            DiagonalMovement = False
+                                        End If
+                                    Case "repelsteps"
+                                        RepelSteps = CInt(Value)
+                                    Case "lastsaveplace"
+                                        LastSavePlace = Value
+                                    Case "lastsaveplaceposition"
+                                        LastSavePlacePosition = Value
+                                    Case "difficulty"
+                                        DifficultyMode = CInt(Value)
+                                    Case "battlestyle"
+                                        BattleStyle = CInt(Value)
+                                    Case "savecreated"
+                                        SaveCreated = Value
+                                    Case "autosave"
+                                        If IsGameJoltSave = False Then
+                                            newFilePrefix = Value
+                                            AutosaveUsed = True
+                                        End If
+                                    Case "daycaresteps"
+                                        DaycareSteps = CInt(Value)
+                                    Case "gamemode"
+                                        GameMode = Value
+                                    Case "pokefiles"
+                                        If Value <> "" Then
+                                            If Value.Contains(",") = True Then
+                                                PokeFiles.AddRange(Value.Split(CChar(",")))
+                                            Else
+                                                PokeFiles.Add(Value)
+                                            End If
+                                        End If
+                                    Case "visitedmaps"
+                                        VisitedMaps = Value
+                                    Case "tempsurfskin"
+                                        TempSurfSkin = Value
+                                    Case "surfing"
+                                        startSurfing = CBool(Value)
+                                        Screen.Level.Surfing = CBool(Value)
+                                    Case "bp"
+                                        BP = CInt(Value)
+                                    Case "gtsstars"
+                                        GTSStars = CInt(Value)
+                                    Case "showmodels"
+                                        ShowModelsInBattle = CBool(Value)
+                                    Case "sandboxmode"
+                                        SandBoxMode = CBool(Value)
+                                    Case "earnedachievements"
+                                        If Value <> "" Then
+                                            EarnedAchievements = Value.Split(CChar(",")).ToList()
+                                        End If
+                                End Select
+                            Else
+                                Logger.Log(Logger.LogTypes.Warning, "Player.vb: The line """ & Line & """ is either empty or does not conform the player.dat file rules.")
+                            End If
+                        Next
+                        If IsGameJoltSave = True And Screen.Level.Surfing = False Then
+                            Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
+                            Select Case GameJoltSave.Gender
+                                Case "0"
+                                    Male = True
+                                Case "1"
+                                    Male = False
+                                Case Else
+                                    Male = True
+                            End Select
+                        End If
+                        GameStart = Date.Now
+
+                        Core.Player.PokedexData = Encryption.DecryptString(Items(11), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        Core.Player.RegisterData = Encryption.DecryptString(Items(12), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        Core.Player.RoamingPokemonData = Encryption.DecryptString(Items(13), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        Core.Player.SecretBaseData = Encryption.DecryptString(Items(14), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                        PlayerStatistics.Load(Encryption.DecryptString(Items(15), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)))
+                    Else
+                        Logger.Log(Logger.LogTypes.Warning, "Backup save have been tempered with. Unable to load.")
+                    End If
+                Catch ex As Exception
+                    Logger.Log(Logger.LogTypes.Warning, "Backup save have been tempered with. Unable to load.")
+                End Try
+            End If
+
+#If DEBUG Then
+            If Not Directory.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite") Then
+                Directory.CreateDirectory(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite")
+            End If
+
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Apricorns.dat")) Then
+                Core.Player.ApricornData = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Apricorns.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Apricorns.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Berries.dat")) Then
+                Core.Player.BerryData = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Berries.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Berries.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Box.dat")) Then
+                Core.Player.BoxData = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Box.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Box.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Daycare.dat")) Then
+                Core.Player.DaycareData = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Daycare.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Daycare.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\HallOfFame.dat")) Then
+                Core.Player.HallOfFameData = IO.File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\HallOfFame.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\HallOfFame.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\ItemData.dat")) Then
+                Core.Player.ItemData = IO.File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\ItemData.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\ItemData.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Items.dat")) Then
+                Inventory.Clear()
+                Mails.Clear()
+                Dim Data As String = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Items.dat")
+                If Not String.IsNullOrWhiteSpace(Data) Then
+                    For Each ItemDat As String In Data.SplitAtNewline()
+                        If Not String.IsNullOrWhiteSpace(ItemDat) Then
+                            If ItemDat.StartsWith("{") AndAlso ItemDat.EndsWith("}") AndAlso ItemDat.Contains("|") Then
+                                Dim ItemID As String = ItemDat.Remove(0, ItemDat.IndexOf("{") + 1)
+                                ItemID = ItemID.Remove(ItemID.IndexOf("}"))
+
+                                Dim amount As Integer = CInt(ItemID.Remove(0, ItemID.IndexOf("|") + 1))
+                                ItemID = ItemID.Remove(ItemID.IndexOf("|"))
+
+                                Inventory.AddItem(CInt(ItemID), amount)
+                            ElseIf ItemDat.StartsWith("Mail|") Then
+                                Dim mailData As String = ItemDat.Remove(0, 5)
+                                Mails.Add(Items.MailItem.GetMailDataFromString(mailData))
+                            End If
+                        End If
+                    Next
+                End If
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Items.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\NPC.dat")) Then
+                Core.Player.NPCData = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\NPC.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\NPC.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Options.dat")) Then
+                Dim Data As String = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Options.dat")
+                For Each Line As String In Data.SplitAtNewline()
+                    If Line.Contains("|") Then
+                        Dim ID As String = Line.Remove(Line.IndexOf("|"))
+                        Dim Value As String = Line.Remove(0, Line.IndexOf("|") + 1)
+                        Select Case ID.ToLower()
+                            Case "fov"
+                                startFOV = CSng(Value.Replace(".", GameController.DecSeparator)).Clamp(1, 179)
+                            Case "textspeed"
+                                TextBox.TextSpeed = CInt(Value)
+                            Case "mousespeed"
+                                startRotationSpeed = CInt(Value)
+                        End Select
+                    End If
+                Next
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Options.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Party.dat")) Then
+                Pokemons.Clear()
+                Dim PokeData As String = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Party.dat")
+                For Each Line As String In PokeData.SplitAtNewline()
+                    If Line.StartsWith("{") AndAlso Line.EndsWith("}") Then
+                        Dim p As Pokemon = Pokemon.GetPokemonByData(Line)
+                        If p.IsEgg() = False Then
+                            If p.IsShiny = True Then
+                                PokedexData = Pokedex.ChangeEntry(PokedexData, p.Number, 3)
+                            Else
+                                PokedexData = Pokedex.ChangeEntry(PokedexData, p.Number, 2)
+                            End If
+                        End If
+                        Pokemons.Add(p)
+                    End If
+                Next
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Party.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Player.dat")) Then
+                Dim Data As String = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Player.dat")
+                Screen.Level.Riding = False
+                For Each Line As String In Data.SplitAtNewline()
+                    If Not String.IsNullOrWhiteSpace(Line) AndAlso Line.Contains("|") Then
+                        Dim ID As String = Line.Remove(Line.IndexOf("|"))
+                        Dim Value As String = Line.Remove(0, Line.IndexOf("|") + 1)
+                        Select Case ID.ToLower()
+                            Case "name"
+                                Name = CType(IIf(IsGameJoltSave, GameJolt.API.username, Value), String)
+                            Case "position"
+                                Dim v() As String = Value.Split(CChar(","))
+                                startPosition.X = CSng(v(0).Replace(".", GameController.DecSeparator))
+                                startPosition.Y = CSng(v(1).Replace(".", GameController.DecSeparator))
+                                startPosition.Z = CSng(v(2).Replace(".", GameController.DecSeparator))
+                            Case "lastpokemonposition"
+                                Dim v() As String = Value.Split(CChar(","))
+                                LastPokemonPosition.X = CSng(v(0).Replace(".", GameController.DecSeparator))
+                                LastPokemonPosition.Y = CSng(v(1).Replace(".", GameController.DecSeparator))
+                                LastPokemonPosition.Z = CSng(v(2).Replace(".", GameController.DecSeparator))
+                            Case "mapfile"
+                                startMap = Value
+                            Case "rivalname"
+                                RivalName = Value
+                            Case "money"
+                                Money = CInt(Value)
+                            Case "badges"
+                                Badges.Clear()
+                                If Value = "0" Then
+                                    Badges = New List(Of Integer)
+                                Else
+                                    If Value.Contains(",") = False Then
+                                        Badges = {CInt(Value)}.ToList()
+                                    Else
+                                        Dim l As List(Of String) = Value.Split(CChar(",")).ToList()
+                                        For i = 0 To l.Count - 1
+                                            Badges.Add(CInt(l(i)))
+                                        Next
+                                    End If
+                                End If
+                            Case "rotation"
+                                startRotation = CSng(Value.Replace(".", GameController.DecSeparator))
+                            Case "Gender"
+                                If Value = "Male" Then
+                                    Male = True
+                                Else
+                                    Male = False
+                                End If
+                            Case "playtime"
+                                Dim dd() As String = Value.Split(CChar(","))
+                                If dd.Count >= 4 Then
+                                    PlayTime = New TimeSpan(CInt(dd(3)), CInt(dd(0)), CInt(dd(1)), CInt(dd(2)))
+                                Else
+                                    PlayTime = New TimeSpan(CInt(dd(0)), CInt(dd(1)), CInt(dd(2)))
+                                End If
+                            Case "ot"
+                                OT = CStr(CInt(Value).Clamp(0, 99999))
+                            Case "points"
+                                Points = CInt(Value)
+                            Case "haspokedex"
+                                HasPokedex = CBool(Value)
+                            Case "haspokegear"
+                                HasPokegear = CBool(Value)
+                            Case "freecamera"
+                                startFreeCameraMode = CBool(Value)
+                            Case "thirdperson"
+                                startThirdPerson = CBool(Value)
+                            Case "skin"
+                                Skin = Value
+                            Case "battleanimations"
+                                ShowBattleAnimations = CInt(Value)
+                            Case "boxamount"
+                                BoxAmount = CInt(Value)
+                            Case "lastrestplace"
+                                LastRestPlace = Value
+                            Case "lastrestplaceposition"
+                                LastRestPlacePosition = Value
+                            Case "diagonalmovement"
+                                If GameController.IS_DEBUG_ACTIVE = True Then
+                                    DiagonalMovement = CBool(Value)
+                                Else
+                                    DiagonalMovement = False
+                                End If
+                            Case "repelsteps"
+                                RepelSteps = CInt(Value)
+                            Case "lastsaveplace"
+                                LastSavePlace = Value
+                            Case "lastsaveplaceposition"
+                                LastSavePlacePosition = Value
+                            Case "difficulty"
+                                DifficultyMode = CInt(Value)
+                            Case "battlestyle"
+                                BattleStyle = CInt(Value)
+                            Case "savecreated"
+                                SaveCreated = Value
+                            Case "autosave"
+                                If IsGameJoltSave = False Then
+                                    newFilePrefix = Value
+                                    AutosaveUsed = True
+                                End If
+                            Case "daycaresteps"
+                                DaycareSteps = CInt(Value)
+                            Case "gamemode"
+                                GameMode = Value
+                            Case "pokefiles"
+                                If Value <> "" Then
+                                    If Value.Contains(",") = True Then
+                                        PokeFiles.AddRange(Value.Split(CChar(",")))
+                                    Else
+                                        PokeFiles.Add(Value)
+                                    End If
+                                End If
+                            Case "visitedmaps"
+                                VisitedMaps = Value
+                            Case "tempsurfskin"
+                                TempSurfSkin = Value
+                            Case "surfing"
+                                startSurfing = CBool(Value)
+                                Screen.Level.Surfing = CBool(Value)
+                            Case "bp"
+                                BP = CInt(Value)
+                            Case "gtsstars"
+                                GTSStars = CInt(Value)
+                            Case "showmodels"
+                                ShowModelsInBattle = CBool(Value)
+                            Case "sandboxmode"
+                                SandBoxMode = CBool(Value)
+                            Case "earnedachievements"
+                                If Value <> "" Then
+                                    EarnedAchievements = Value.Split(CChar(",")).ToList()
+                                End If
+                        End Select
+                    Else
+                        Logger.Log(Logger.LogTypes.Warning, "Player.vb: The line """ & Line & """ is either empty or does not conform the player.dat file rules.")
+                    End If
+                Next
+                If IsGameJoltSave = True And Screen.Level.Surfing = False Then
+                    Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
+                    Select Case GameJoltSave.Gender
+                        Case "0"
+                            Male = True
+                        Case "1"
+                            Male = False
+                        Case Else
+                            Male = True
+                    End Select
+                End If
+                GameStart = Date.Now
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Player.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Pokedex.dat")) Then
+                Core.Player.PokedexData = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Pokedex.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Pokedex.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Register.dat")) Then
+                Core.Player.RegisterData = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Register.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Register.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\RoamingPokemon.dat")) Then
+                Core.Player.RoamingPokemonData = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\RoamingPokemon.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\RoamingPokemon.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\SecretBase.dat")) Then
+                Core.Player.SecretBaseData = File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\SecretBase.dat")
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\SecretBase.dat")
+            End If
+            If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Statistics.dat")) Then
+                PlayerStatistics.Load(File.ReadAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Statistics.dat"))
+                File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\OverWrite\Statistics.dat")
+            End If
+#End If
+
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Apricorns.dat", GameJoltSave.Apricorns)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Berries.dat", GameJoltSave.Berries)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Box.dat", GameJoltSave.Box)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Daycare.dat", GameJoltSave.Daycare)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\HallOfFame.dat", GameJoltSave.HallOfFame)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\ItemData.dat", GameJoltSave.ItemData)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Items.dat", GameJoltSave.Items)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\NPC.dat", GameJoltSave.NPC)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Options.dat", GameJoltSave.Options)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Party.dat", GameJoltSave.Party)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Player.dat", GameJoltSave.Player)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Pokedex.dat", GameJoltSave.Pokedex)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Register.dat", GameJoltSave.Register)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\RoamingPokemon.dat", GameJoltSave.RoamingPokemon)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\SecretBase.dat", GameJoltSave.SecretBase)
+            File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Statistics.dat", GameJoltSave.Statistics)
+        End If
+
         ''' Indev 0.54 Removal List
         ''' 1. All Mega Stones. [ID: 507 - 553]
         ''' 2. Shiny Candy [ID: 501]
@@ -1060,7 +1582,37 @@
         filePrefix = newFilePrefix
 
         If IsGameJoltSave = True Then
+            If Core.GameOptions.DLC.Contains("Backup Save") Then
+                If Not Directory.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Encrypted") Then
+                    Directory.CreateDirectory(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Encrypted")
+                End If
+
+                Dim OriginalHASH As String =
+                Encryption.EncryptString(GetApricornsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetBerriesData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetBoxData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetDaycareData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetHallOfFameData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetItemDataData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetItemsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetNPCDataData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetOptionsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetPartyData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetPlayerData(False), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetPokedexData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetRegisterData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetRoamingPokemonData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetSecretBaseData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetStatisticsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+
+                File.WriteAllText(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Encrypted\Encrypted.dat",
+                                  OriginalHASH & "|" & Encryption.EncryptString(OriginalHASH, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)))
+            End If
+
             Dim APICallSave As New GameJolt.APICall(AddressOf SaveGameHelpers.CompleteGameJoltSave)
+            AddHandler APICallSave.CallFails, Sub(ByVal ex As Exception)
+                                                  SaveGameHelpers.CompleteGameJoltSave("false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false")
+                                              End Sub
 
             Dim keys As New List(Of String)
             Dim dataItems As New List(Of String)
@@ -1678,7 +2230,6 @@
                         Dim s As String = "version=2" & vbNewLine &
                                         "@Text.Show(Your repel effect wore off.)" & vbNewLine &
                                         ":end"
-
 
                         If Temp.LastUsedRepel > -1 Then
                             Dim haveItemLeft As Boolean = Inventory.GetItemAmount(Temp.LastUsedRepel) > 0

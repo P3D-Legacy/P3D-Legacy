@@ -13,6 +13,7 @@
     Public WindowSize As New Vector2(1200, 680)
     Public ForceMusic As Boolean = False
     Public MaxOffsetLevel As Integer = 0
+    Public DLC As New List(Of String)
 
     Public Sub LoadOptions()
         KeyBindings.CreateKeySave(False)
@@ -101,6 +102,10 @@
                         Me.ForceMusic = CBool(value)
                     Case "maxoffsetlevel"
                         Me.MaxOffsetLevel = CInt(value)
+                    Case "dlc"
+                        If Not String.IsNullOrEmpty(value) Then
+                            Me.DLC = value.Split(";"c).ToList()
+                        End If
                 End Select
             End If
         Next
@@ -143,7 +148,8 @@
                 "ContentPacks|" & ContentPackString & vbNewLine &
                 "WindowSize|" & Core.windowSize.Width.ToString() & "," & Core.windowSize.Height.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
                 "ForceMusic|" & Me.ForceMusic.ToNumberString() & vbNewLine &
-                "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString()
+                "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & vbNewLine &
+                "DLC|" & String.Join(";", Me.DLC)
 
             System.IO.File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
             KeyBindings.SaveKeys()
@@ -172,7 +178,8 @@
             "ContentPacks|" & vbNewLine &
             "WindowSize|1200,680" & vbNewLine &
             "ForceMusic|0" & vbNewLine &
-            "MaxOffsetLevel|0"
+            "MaxOffsetLevel|0" & vbNewLine &
+            "DLC|"
 
         System.IO.File.WriteAllText(GameController.GamePath & "\Save\options.dat", s)
     End Sub
