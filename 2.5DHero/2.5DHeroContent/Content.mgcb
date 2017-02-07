@@ -46191,6 +46191,9 @@
 #begin maps/battle/indigo/bruno.dat
 /copy:maps/battle/indigo/bruno.dat
 
+#begin maps/battle/indigo/inside.dat
+/copy:maps/battle/indigo/inside.dat
+
 #begin maps/battle/indigo/karen.dat
 /copy:maps/battle/indigo/karen.dat
 
