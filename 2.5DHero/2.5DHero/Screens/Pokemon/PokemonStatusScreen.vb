@@ -77,10 +77,10 @@
                 End If
             End If
         Else
-            If Me.AttackPos < 320.0F Then
+            If Me.AttackPos < 340.0F Then
                 Me.AttackPos += 15.0F
-                If Me.AttackPos >= 320.0F Then
-                    Me.AttackPos = 320.0F
+                If Me.AttackPos >= 340.0F Then
+                    Me.AttackPos = 340.0F
                 End If
             End If
 
@@ -485,8 +485,8 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_power") & ": " & power & vbNewLine & Localization.GetString("poke_status_screen_accuracy") & ": " & acc & vbNewLine & vbNewLine & t, New Vector2(CInt(572 - 300 + AttackPos), 218), Color.Black)
-                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(572 - 150 + AttackPos), 222, 56, 28), Color.White)
+                .DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_power") & ": " & power & vbNewLine & Localization.GetString("poke_status_screen_accuracy") & ": " & acc & vbNewLine & vbNewLine & t, New Vector2(CInt(552 - 300 + AttackPos), 218), Color.Black)
+                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(552 - 150 + AttackPos), 222, 56, 28), Color.White)
             End With
 
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 196, 320, 384))
