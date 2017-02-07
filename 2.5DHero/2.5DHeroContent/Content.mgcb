@@ -32639,6 +32639,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Sprites/Slowbro.png
 
+#begin Content/Pokemon/Sprites/Slowbro_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Sprites/Slowbro_mega.png
+
 #begin Content/Pokemon/Sprites/Slowking.png
 /importer:TextureImporter
 /processor:TextureProcessor
