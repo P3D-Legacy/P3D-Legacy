@@ -150,7 +150,7 @@ Public Class NewInventoryScreen
     End Sub
 
     Public Overrides Sub Draw()
-        PreScreen.Draw()
+        'PreScreen.Draw()
 
         DrawGradients(CInt(255 * _interfaceFade))
 
@@ -246,7 +246,9 @@ Public Class NewInventoryScreen
 
         If CInt(_enrollY) - 32 > 0 Then 'Only draw, when the size is at least 1 pixel high.
 
-            Dim target As New RenderTarget2D(GraphicsDevice, 816, CInt(_enrollY) - 32, False, GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24Stencil8, 0, RenderTargetUsage.PreserveContents)
+            'Bring back when Monogame begins supporting this stuff
+            '   Dim target As New RenderTarget2D(GraphicsDevice, 816, CInt(_enrollY) - 32, False, GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24Stencil8, 0, RenderTargetUsage.PreserveContents)
+            Dim target As New RenderTarget2D(GraphicsDevice, 816, CInt(_enrollY) - 32, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
             GraphicsDevice.SetRenderTarget(target)
             GraphicsDevice.Clear(Color.Transparent)
 
@@ -315,7 +317,10 @@ Public Class NewInventoryScreen
     ''' </summary>
     Private Sub DrawInfo(ByVal preBatch As SpriteBatch, ByVal preTarget As RenderTarget2D)
         'Create a new render target and set it.
-        Dim target As New RenderTarget2D(GraphicsDevice, _infoSize, 368, False, GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24Stencil8, 0, RenderTargetUsage.PreserveContents)
+
+        'Bring back when Monogame begins supporting this stuff
+        '   Dim target As New RenderTarget2D(GraphicsDevice, _infoSize, 368, False, GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24Stencil8, 0, RenderTargetUsage.PreserveContents)
+        Dim target As New RenderTarget2D(GraphicsDevice, _infoSize, 368, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.DiscardContents)
         GraphicsDevice.SetRenderTarget(target)
 
         'Render background:
@@ -475,7 +480,7 @@ Public Class NewInventoryScreen
                 End If
             End If
             If _interfaceFade < 1.0F Then
-                _interfaceFade = MathHelper.Lerp(1, _interfaceFade, 0.95F)
+                _interfaceFade = MathHelper.Lerp(1.0F, _interfaceFade, 0.95F)
                 If _interfaceFade > 1.0F Then
                     _interfaceFade = 1.0F
                 End If
