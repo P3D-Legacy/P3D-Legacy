@@ -83,8 +83,8 @@
                 fileName = .Year & "-" & month & "-" & day & "_" & hour & "." & minute & "." & second & ".png"
             End With
 
-            If System.IO.Directory.Exists(GameController.GamePath & "\screenshots\") = False Then
-                System.IO.Directory.CreateDirectory(GameController.GamePath & "\screenshots\")
+            If Directory.Exists(GameController.GamePath & "\screenshots\") = False Then
+                Directory.CreateDirectory(GameController.GamePath & "\screenshots\")
             End If
 
             If Core.GraphicsManager.IsFullScreen = False Then
@@ -102,7 +102,7 @@
 
                 Core.GraphicsDevice.SetRenderTarget(Nothing)
 
-                Dim stream As System.IO.Stream = System.IO.File.OpenWrite(GameController.GamePath & "\screenshots\" & fileName)
+                Dim stream As Stream = File.OpenWrite(GameController.GamePath & "\screenshots\" & fileName)
                 screenshot.SaveAsPng(stream, Core.windowSize.Width, Core.windowSize.Height)
                 stream.Dispose()
             End If
@@ -116,11 +116,21 @@
 
     Private Shared Sub ToggleFullScreen()
         If Core.GraphicsManager.IsFullScreen = False Then
-            Core.GraphicsManager.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width
-            Core.GraphicsManager.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
-            Core.windowSize = New Rectangle(0, 0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height)
+            ' MonoGame Bug > GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width != System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width
+            ' MonoGame Bug > GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height != System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height
+            ' Temp Fix just in case someone else face this as well.
+            If GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width <> System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width OrElse
+                GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height <> System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height Then
+                Core.GraphicsManager.PreferredBackBufferWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width
+                Core.GraphicsManager.PreferredBackBufferHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height
+                Core.windowSize = New Rectangle(0, 0, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height)
+            Else
+                Core.GraphicsManager.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width
+                Core.GraphicsManager.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
+                Core.windowSize = New Rectangle(0, 0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height)
+            End If
 
-            System.Windows.Forms.Application.VisualStyleState = Windows.Forms.VisualStyles.VisualStyleState.ClientAndNonClientAreasEnabled
+            Windows.Forms.Application.VisualStyleState = Windows.Forms.VisualStyles.VisualStyleState.ClientAndNonClientAreasEnabled
 
             Core.GraphicsManager.ToggleFullScreen()
 
@@ -130,7 +140,7 @@
             Core.GraphicsManager.PreferredBackBufferHeight = 680
             Core.windowSize = New Rectangle(0, 0, 1200, 680)
 
-            System.Windows.Forms.Application.VisualStyleState = Windows.Forms.VisualStyles.VisualStyleState.ClientAndNonClientAreasEnabled
+            Windows.Forms.Application.VisualStyleState = Windows.Forms.VisualStyles.VisualStyleState.ClientAndNonClientAreasEnabled
 
             Core.GraphicsManager.ToggleFullScreen()
 
