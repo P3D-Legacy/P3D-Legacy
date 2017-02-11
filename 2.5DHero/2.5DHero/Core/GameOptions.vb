@@ -13,19 +13,19 @@
     Public WindowSize As New Vector2(1200, 680)
     Public ForceMusic As Boolean = False
     Public MaxOffsetLevel As Integer = 0
-    Public DLC As New List(Of String)
+    Public Extras As New List(Of String)
 
     Public Sub LoadOptions()
         KeyBindings.CreateKeySave(False)
-        If System.IO.Directory.Exists(GameController.GamePath & "\Save\") = False Then
-            System.IO.Directory.CreateDirectory(GameController.GamePath & "\Save\")
+        If Directory.Exists(GameController.GamePath & "\Save\") = False Then
+            Directory.CreateDirectory(GameController.GamePath & "\Save\")
         End If
 
-        If System.IO.File.Exists(GameController.GamePath & "\Save\options.dat") = False Then
+        If File.Exists(GameController.GamePath & "\Save\options.dat") = False Then
             CreateOptions()
         End If
 
-        Dim Data() As String = System.IO.File.ReadAllText(GameController.GamePath & "\Save\options.dat").SplitAtNewline()
+        Dim Data() As String = File.ReadAllText(GameController.GamePath & "\Save\options.dat").SplitAtNewline()
 
         Dim LanguageFound As Boolean = False
 
@@ -68,7 +68,7 @@
                             Me.ContentPackNames = value.Split(CChar(","))
                             If Me.ContentPackNames.Count > 0 Then
                                 For Each c As String In Me.ContentPackNames
-                                    If System.IO.Directory.Exists(GameController.GamePath & "\ContentPacks\" & c) = False Then
+                                    If Directory.Exists(GameController.GamePath & "\ContentPacks\" & c) = False Then
                                         Dim cList As List(Of String) = Me.ContentPackNames.ToList()
                                         cList.Remove(c)
                                         Me.ContentPackNames = cList.ToArray()
@@ -102,9 +102,9 @@
                         Me.ForceMusic = CBool(value)
                     Case "maxoffsetlevel"
                         Me.MaxOffsetLevel = CInt(value)
-                    Case "dlc"
+                    Case "extras"
                         If Not String.IsNullOrEmpty(value) Then
-                            Me.DLC = value.Split(";"c).ToList()
+                            Me.Extras = value.Split(";"c).ToList()
                         End If
                 End Select
             End If
@@ -149,7 +149,7 @@
                 "WindowSize|" & Core.windowSize.Width.ToString() & "," & Core.windowSize.Height.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
                 "ForceMusic|" & Me.ForceMusic.ToNumberString() & vbNewLine &
                 "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & vbNewLine &
-                "DLC|" & String.Join(";", Me.DLC)
+                "Extras|" & String.Join(";", Me.Extras)
 
             System.IO.File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
             KeyBindings.SaveKeys()
@@ -179,9 +179,9 @@
             "WindowSize|1200,680" & vbNewLine &
             "ForceMusic|0" & vbNewLine &
             "MaxOffsetLevel|0" & vbNewLine &
-            "DLC|"
+            "Extras|Backup Save"
 
-        System.IO.File.WriteAllText(GameController.GamePath & "\Save\options.dat", s)
+        File.WriteAllText(GameController.GamePath & "\Save\options.dat", s)
     End Sub
 
 End Class

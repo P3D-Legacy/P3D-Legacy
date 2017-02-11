@@ -571,7 +571,7 @@
         ''' 1. Encrypted OverWrite Save.
         ''' 2. OverWrite Save.
         ''' 3. Backup Save.
-        If filePrefix = "GAMEJOLTSAVE" AndAlso Core.GameOptions.DLC.Contains("Backup Save") Then
+        If filePrefix = "GAMEJOLTSAVE" AndAlso Core.GameOptions.Extras.Contains("Backup Save") Then
             If Not Directory.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID) Then
                 Directory.CreateDirectory(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID)
             End If
@@ -1582,7 +1582,7 @@
         filePrefix = newFilePrefix
 
         If IsGameJoltSave = True Then
-            If Core.GameOptions.DLC.Contains("Backup Save") Then
+            If Core.GameOptions.Extras.Contains("Backup Save") Then
                 If Not Directory.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Encrypted") Then
                     Directory.CreateDirectory(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID & "\Encrypted")
                 End If
