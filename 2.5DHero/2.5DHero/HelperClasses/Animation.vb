@@ -164,9 +164,9 @@ Public Class Animation
     End Sub
 
     ''' <summary>
-    ''' Stopps the animation and returns to start.
+    ''' Stops the animation and returns to start.
     ''' </summary>
-    Public Sub Stopp()
+    Public Sub [Stop]()
         _Running = PlayMode.Stopped
         CurrentRow = StartRow
         CurrentColumn = StartColumn

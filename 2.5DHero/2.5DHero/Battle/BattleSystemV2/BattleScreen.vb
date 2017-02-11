@@ -2,14 +2,11 @@
 
     Public Class BattleScreen
 
-
         Inherits Screen
 
         'Used for after fainting switching
         Public Shared OwnFaint As Boolean = False
         Public Shared OppFaint As Boolean = False
-
-
 
         'Used for lead picking in PvP Battles
         Public Shared OwnLeadIndex As Integer = 0
@@ -873,6 +870,7 @@ nextIndex:
             Lighting.UpdateLighting(Screen.Effect)
             Camera.Update()
             Level.Update()
+
             SkyDome.Update()
 
             TextBox.Update()
@@ -975,6 +973,8 @@ nextIndex:
 #End Region
 
         Public Sub EndBattle(ByVal blackout As Boolean)
+            Level.StopOffsetMapUpdate()
+
             Dim str As String = ""
             'Call the EndBattle function of the abilities and Reverts battle only Pokemon formes.
             For Each p As Pokemon In Core.Player.Pokemons
@@ -1143,13 +1143,12 @@ nextIndex:
                     End While
 
                 Else
-                    i = Core.Random.Next(0, Trainer.Pokemons.count)
+                    i = Core.Random.Next(0, Trainer.Pokemons.Count)
                     While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse OppPokemonIndex = i OrElse Trainer.Pokemons(i).HP <= 0
-                        i = Core.Random.Next(0, Trainer.Pokemons.count)
+                        i = Core.Random.Next(0, Trainer.Pokemons.Count)
                     End While
                 End If
             End If
-
 
             OppPokemonIndex = i
             OppPokemon = Trainer.Pokemons(i)
@@ -1416,7 +1415,6 @@ nextIndex:
                 End If
             End If
 
-
             While cData.Length > 0
                 If cData(0).ToString() = "|" AndAlso tempData(tempData.Length - 1).ToString() = "}" Then
                     newQueries.Add(tempData)
@@ -1431,8 +1429,6 @@ nextIndex:
                 newQueries.Add(tempData)
                 tempData = ""
             End If
-
-
 
             If s.Identification = Identifications.BattleScreen Then
                 CType(s, BattleScreen).BattleQuery.Clear()
@@ -1545,7 +1541,7 @@ nextIndex:
         ''' Use this to download the sprites for the players.
         ''' </summary>
         Private Sub DownloadOnlineSprites()
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 Dim t As New Threading.Thread(AddressOf DownloadSprites)
                 t.IsBackground = True
                 t.Start()
