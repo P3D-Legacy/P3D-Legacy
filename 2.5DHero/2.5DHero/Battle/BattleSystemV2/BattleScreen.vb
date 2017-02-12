@@ -219,6 +219,7 @@
                 End If
             Next
             Me.OwnPokemon = Core.Player.Pokemons(meIndex)
+            OwnPokemonIndex = meIndex
 
             Me.IsTrainerBattle = False
             Me.ParticipatedPokemon.Add(meIndex)
@@ -352,6 +353,7 @@
                 End If
             Next
             Me.OwnPokemon = Core.Player.Pokemons(meIndex)
+            OwnPokemonIndex = meIndex
             If IsPVPBattle Then
                 OwnPokemon = Core.Player.Pokemons(OwnLeadIndex)
                 OwnPokemonIndex = OwnLeadIndex
@@ -498,6 +500,7 @@
                 End If
             Next
             Me.OwnPokemon = Core.Player.Pokemons(meIndex)
+            OwnPokemonIndex = meIndex
 
             Me.IsTrainerBattle = False
             Me.ParticipatedPokemon.Add(meIndex)
@@ -614,6 +617,8 @@
                 End If
             Next
             Me.OwnPokemon = Core.Player.Pokemons(meIndex)
+            OwnPokemonIndex = meIndex
+
 
             Me.IsTrainerBattle = False
             Me.ParticipatedPokemon.Add(meIndex)
