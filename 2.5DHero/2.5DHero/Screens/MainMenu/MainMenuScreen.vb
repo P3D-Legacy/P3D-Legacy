@@ -85,14 +85,13 @@ Public Class MainMenuScreen
         Try
             Logger.Debug("---Check Version---")
 
-            Dim client As New WebClient
-            client.CachePolicy = New RequestCachePolicy(RequestCacheLevel.BypassCache)
-            Dim version As String = client.DownloadString("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/2.5DHero/2.5DHero/CurrentVersion.dat")
-            If version <> "0.54.1" Then
-                If MsgBox("New version detected." & vbNewLine & "Current Version: Indev 0.54.1" & vbNewLine & "Newest Version: Indev " & version & vbNewLine & vbNewLine & "Would you like to update the game?", MsgBoxStyle.YesNo, "Game Update") = MsgBoxResult.Yes Then
-                    Process.Start("https://p3d-legacy.github.io/P3D-Legacy-Launcher/latestRelease")
-                    Core.GameInstance.Exit()
-                End If
+            Dim Updater As New Process()
+            Updater.StartInfo = New ProcessStartInfo("Updater.exe")
+            Updater.Start()
+            Updater.WaitForExit()
+
+            If Updater.ExitCode = 1 Then
+                Core.GameInstance.Exit()
             End If
         Catch ex As Exception
         End Try
