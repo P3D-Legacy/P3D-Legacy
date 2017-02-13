@@ -1,4 +1,6 @@
-﻿Imports System.Threading
+﻿Imports System.Net
+Imports System.Net.Cache
+Imports System.Threading
 
 Friend Class SplashScreen
 
@@ -72,7 +74,6 @@ Friend Class SplashScreen
 
     Private Sub LoadContent()
         Logger.Debug("---Start loading content---")
-
         Core.LoadContent()
     End Sub
 

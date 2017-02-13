@@ -1,4 +1,7 @@
-﻿Public Class MainMenuScreen
+﻿Imports System.Net
+Imports System.Net.Cache
+
+Public Class MainMenuScreen
 
     Inherits Screen
 
@@ -78,6 +81,21 @@
 
         GameJolt.Emblem.ClearOnlineSpriteCache()
         Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
+
+        Try
+            Logger.Debug("---Check Version---")
+
+            Dim client As New WebClient
+            client.CachePolicy = New RequestCachePolicy(RequestCacheLevel.BypassCache)
+            Dim version As String = client.DownloadString("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/2.5DHero/2.5DHero/CurrentVersion.dat")
+            If version <> "0.54.2" Then
+                If MsgBox("New version detected." & vbNewLine & "Current Version: Indev 0.54.1" & vbNewLine & "Newest Version: Indev " & version & vbNewLine & vbNewLine & "Would you like to update the game?", MsgBoxStyle.YesNo, "Game Update") = MsgBoxResult.Yes Then
+                    Process.Start("https://p3d-legacy.github.io/P3D-Legacy-Launcher/latestRelease")
+                    Core.GameInstance.Exit()
+                End If
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub GetPacks(Optional ByVal reload As Boolean = False)
@@ -703,7 +721,7 @@
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                         Select Case loadMenuIndex(1)
                             Case 0
-                                Core.Player.IsGamejoltSave = False
+                                Core.Player.IsGameJoltSave = False
                                 Core.Player.LoadGame(System.IO.Path.GetFileName(Saves(loadMenuIndex(0))))
 
                                 Core.SetScreen(New JoinServerScreen(Me))
@@ -743,7 +761,7 @@
         If Controls.Accept(False, True) = True Then
             Select Case loadMenuIndex(1)
                 Case 0
-                    Core.Player.IsGamejoltSave = False
+                    Core.Player.IsGameJoltSave = False
                     Core.Player.LoadGame(System.IO.Path.GetFileName(Saves(loadMenuIndex(0))))
 
                     Core.SetScreen(New JoinServerScreen(Me))
