@@ -1,4 +1,4 @@
-﻿
+
 #----------------------------- Global Properties ----------------------------#
 
 /outputDir:bin
@@ -55790,4 +55790,104 @@
 
 #begin Scripts/worldmap/sevii islands.dat
 /copy:Scripts/worldmap/sevii islands.dat
+
+#begin Content/Pokemon/Data/3_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/3_mega.dat
+
+#begin Content/Pokemon/Data/9_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/9_mega.dat
+
+#begin Content/Pokemon/Data/115_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/115_mega.dat
+
+#begin Content/Pokemon/Data/127_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/127_mega.dat
+
+#begin Content/Pokemon/Data/130_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/130_mega.dat
+
+#begin Content/Pokemon/Data/142_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/142_mega.dat
+
+#begin Content/Pokemon/Data/150_mega_x.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/150_mega_x.dat
+
+#begin Content/Pokemon/Data/150_mega_y.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/150_mega_y.dat
+
+#begin Content/Pokemon/Data/208_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/208_mega.dat
+
+#begin Content/Pokemon/Data/229_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/229_mega.dat
+
+#begin Content/Pokemon/Data/302_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/302_mega.dat
+
+#begin Content/Pokemon/Data/303_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/303_mega.dat
+
+#begin Content/Pokemon/Data/310_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/310_mega.dat
+
+#begin Content/Pokemon/Data/319_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/319_mega.dat
+
+#begin Content/Pokemon/Data/362_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/362_mega.dat
+
+#begin Content/Pokemon/Data/373_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/373_mega.dat
+
+#begin Content/Pokemon/Data/380_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/380_mega.dat
+
+#begin Content/Pokemon/Data/381_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/381_mega.dat
+
+#begin Content/Pokemon/Data/384_mega.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/384_mega.dat
+
+#begin Content/Pokemon/Data/483_primal.dat
+/importer:
+/processor:
+/build:Content/Pokemon/Data/483_primal.dat
 

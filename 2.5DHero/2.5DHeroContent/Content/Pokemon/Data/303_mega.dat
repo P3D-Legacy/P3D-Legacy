@@ -1,4 +1,4 @@
-Name|Mawile
+Name|Mega Mawile
 Number|303
 ExperienceType|0
 BaseExperience|133
@@ -14,16 +14,16 @@ IsGenderLess|0
 CanBreed|1
 Devolution|0
 IsMale|50
-Ability1|52
-Ability2|22
-HiddenAbility|125
+Ability1|37
+Ability2|Nothing
+HiddenAbility|Nothing
 EggMoves|246,445,424,385,423,368,581,305,386,69,21,389,422,206,244,14,321
 Machines|223,174,92,249,244,237,241,173,63,196,182,240,203,218,76,216,247,189,104,8,207,214,188,201,126,9,197,156,213,5,14,25,34,36,58,6,66,68,69,99,102,117,130,157,164,264,269,280,53,317,259,263,290,411,206,374,451,373,371,416,444,445,399,363,447,430,496,510,612,590,15,70
 BaseHP|50
-BaseAttack|85
-BaseDefense|85
+BaseAttack|105
+BaseDefense|125
 BaseSpAttack|55
-BaseSpDefense|55
+BaseSpDefense|95
 BaseSpeed|50
 FPHP|0
 FPAttack|1
@@ -33,7 +33,7 @@ FPSpDefense|0
 FPSpeed|0
 CanFly|0
 CanSwim|0
-Pokedex|It chomps with its gaping mouth. Its huge jaws are actually steel horns that have been transformed.\Deceiver Pokémon\11.5\0.6\0,148,0
+Pokedex|It chomps with its gaping mouth. Its huge jaws are actually steel horns that have been transformed.\Deceiver Pokémon\23.5\1\0,148,0
 Scale|0.84
 Move|1,583
 Move|1,442
