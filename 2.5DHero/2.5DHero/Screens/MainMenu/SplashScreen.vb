@@ -1,6 +1,4 @@
-﻿Imports System.Net
-Imports System.Net.Cache
-Imports System.Threading
+﻿Imports System.Threading
 
 Friend Class SplashScreen
 

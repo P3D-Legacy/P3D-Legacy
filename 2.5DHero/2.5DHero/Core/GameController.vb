@@ -48,6 +48,7 @@ Public Class GameController
 
     Public Graphics As GraphicsDeviceManager
     Public FPSMonitor As FPSMonitor
+    Public Shared UpdateChecked As Boolean = False
 
     Public Sub New()
         Graphics = New GraphicsDeviceManager(Me)

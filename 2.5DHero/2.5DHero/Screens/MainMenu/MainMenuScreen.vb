@@ -83,15 +83,19 @@ Public Class MainMenuScreen
         Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
 
         Try
-            Logger.Debug("---Check Version---")
+            If Not GameController.UpdateChecked Then
+                Logger.Debug("---Check Version---")
 
-            Dim Updater As New Process()
-            Updater.StartInfo = New ProcessStartInfo("Updater.exe")
-            Updater.Start()
-            Updater.WaitForExit()
+                Dim Updater As New Process()
+                Updater.StartInfo = New ProcessStartInfo("Updater.exe")
+                Updater.Start()
+                Updater.WaitForExit()
 
-            If Updater.ExitCode = 1 Then
-                Core.GameInstance.Exit()
+                If Updater.ExitCode = 1 Then
+                    Environment.Exit(0)
+                Else
+                    GameController.UpdateChecked = True
+                End If
             End If
         Catch ex As Exception
         End Try
