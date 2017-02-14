@@ -1,4 +1,4 @@
-
+﻿
 #----------------------------- Global Properties ----------------------------#
 
 /outputDir:bin
@@ -1319,6 +1319,9 @@
 #begin Content/Pokemon/Data/115.dat
 /copy:Content/Pokemon/Data/115.dat
 
+#begin Content/Pokemon/Data/115_mega.dat
+/copy:Content/Pokemon/Data/115_mega.dat
+
 #begin Content/Pokemon/Data/116.dat
 /copy:Content/Pokemon/Data/116.dat
 
@@ -1358,6 +1361,9 @@
 #begin Content/Pokemon/Data/127.dat
 /copy:Content/Pokemon/Data/127.dat
 
+#begin Content/Pokemon/Data/127_mega.dat
+/copy:Content/Pokemon/Data/127_mega.dat
+
 #begin Content/Pokemon/Data/128.dat
 /copy:Content/Pokemon/Data/128.dat
 
@@ -1369,6 +1375,9 @@
 
 #begin Content/Pokemon/Data/130.dat
 /copy:Content/Pokemon/Data/130.dat
+
+#begin Content/Pokemon/Data/130_mega.dat
+/copy:Content/Pokemon/Data/130_mega.dat
 
 #begin Content/Pokemon/Data/131.dat
 /copy:Content/Pokemon/Data/131.dat
@@ -1409,6 +1418,9 @@
 #begin Content/Pokemon/Data/142.dat
 /copy:Content/Pokemon/Data/142.dat
 
+#begin Content/Pokemon/Data/142_mega.dat
+/copy:Content/Pokemon/Data/142_mega.dat
+
 #begin Content/Pokemon/Data/143.dat
 /copy:Content/Pokemon/Data/143.dat
 
@@ -1435,6 +1447,12 @@
 
 #begin Content/Pokemon/Data/150.dat
 /copy:Content/Pokemon/Data/150.dat
+
+#begin Content/Pokemon/Data/150_mega_x.dat
+/copy:Content/Pokemon/Data/150_mega_x.dat
+
+#begin Content/Pokemon/Data/150_mega_y.dat
+/copy:Content/Pokemon/Data/150_mega_y.dat
 
 #begin Content/Pokemon/Data/151.dat
 /copy:Content/Pokemon/Data/151.dat
@@ -1637,6 +1655,9 @@
 #begin Content/Pokemon/Data/208.dat
 /copy:Content/Pokemon/Data/208.dat
 
+#begin Content/Pokemon/Data/208_mega.dat
+/copy:Content/Pokemon/Data/208_mega.dat
+
 #begin Content/Pokemon/Data/209.dat
 /copy:Content/Pokemon/Data/209.dat
 
@@ -1711,6 +1732,9 @@
 
 #begin Content/Pokemon/Data/229.dat
 /copy:Content/Pokemon/Data/229.dat
+
+#begin Content/Pokemon/Data/229_mega.dat
+/copy:Content/Pokemon/Data/229_mega.dat
 
 #begin Content/Pokemon/Data/23.dat
 /copy:Content/Pokemon/Data/23.dat
@@ -1973,8 +1997,14 @@
 #begin Content/Pokemon/Data/302.dat
 /copy:Content/Pokemon/Data/302.dat
 
+#begin Content/Pokemon/Data/302_mega.dat
+/copy:Content/Pokemon/Data/302_mega.dat
+
 #begin Content/Pokemon/Data/303.dat
 /copy:Content/Pokemon/Data/303.dat
+
+#begin Content/Pokemon/Data/303_mega.dat
+/copy:Content/Pokemon/Data/303_mega.dat
 
 #begin Content/Pokemon/Data/304.dat
 /copy:Content/Pokemon/Data/304.dat
@@ -2006,6 +2036,9 @@
 #begin Content/Pokemon/Data/310.dat
 /copy:Content/Pokemon/Data/310.dat
 
+#begin Content/Pokemon/Data/310_mega.dat
+/copy:Content/Pokemon/Data/310_mega.dat
+
 #begin Content/Pokemon/Data/311.dat
 /copy:Content/Pokemon/Data/311.dat
 
@@ -2032,6 +2065,9 @@
 
 #begin Content/Pokemon/Data/319.dat
 /copy:Content/Pokemon/Data/319.dat
+
+#begin Content/Pokemon/Data/319_mega.dat
+/copy:Content/Pokemon/Data/319_mega.dat
 
 #begin Content/Pokemon/Data/32.dat
 /copy:Content/Pokemon/Data/32.dat
@@ -2189,6 +2225,9 @@
 #begin Content/Pokemon/Data/362.dat
 /copy:Content/Pokemon/Data/362.dat
 
+#begin Content/Pokemon/Data/362_mega.dat
+/copy:Content/Pokemon/Data/362_mega.dat
+
 #begin Content/Pokemon/Data/363.dat
 /copy:Content/Pokemon/Data/363.dat
 
@@ -2225,6 +2264,9 @@
 #begin Content/Pokemon/Data/373.dat
 /copy:Content/Pokemon/Data/373.dat
 
+#begin Content/Pokemon/Data/373_mega.dat
+/copy:Content/Pokemon/Data/373_mega.dat
+
 #begin Content/Pokemon/Data/374.dat
 /copy:Content/Pokemon/Data/374.dat
 
@@ -2252,8 +2294,14 @@
 #begin Content/Pokemon/Data/380.dat
 /copy:Content/Pokemon/Data/380.dat
 
+#begin Content/Pokemon/Data/380_mega.dat
+/copy:Content/Pokemon/Data/380_mega.dat
+
 #begin Content/Pokemon/Data/381.dat
 /copy:Content/Pokemon/Data/381.dat
+
+#begin Content/Pokemon/Data/381_mega.dat
+/copy:Content/Pokemon/Data/381_mega.dat
 
 #begin Content/Pokemon/Data/382.dat
 /copy:Content/Pokemon/Data/382.dat
@@ -2269,6 +2317,9 @@
 
 #begin Content/Pokemon/Data/384.dat
 /copy:Content/Pokemon/Data/384.dat
+
+#begin Content/Pokemon/Data/384_mega.dat
+/copy:Content/Pokemon/Data/384_mega.dat
 
 #begin Content/Pokemon/Data/385.dat
 /copy:Content/Pokemon/Data/385.dat
@@ -2326,6 +2377,9 @@
 
 #begin Content/Pokemon/Data/399.dat
 /copy:Content/Pokemon/Data/399.dat
+
+#begin Content/Pokemon/Data/3_mega.dat
+/copy:Content/Pokemon/Data/3_mega.dat
 
 #begin Content/Pokemon/Data/4.dat
 /copy:Content/Pokemon/Data/4.dat
@@ -2644,6 +2698,9 @@
 
 #begin Content/Pokemon/Data/483.dat
 /copy:Content/Pokemon/Data/483.dat
+
+#begin Content/Pokemon/Data/483_primal.dat
+/copy:Content/Pokemon/Data/483_primal.dat
 
 #begin Content/Pokemon/Data/484.dat
 /copy:Content/Pokemon/Data/484.dat
@@ -3602,6 +3659,9 @@
 #begin Content/Pokemon/Data/99.dat
 /copy:Content/Pokemon/Data/99.dat
 
+#begin Content/Pokemon/Data/9_mega.dat
+/copy:Content/Pokemon/Data/9_mega.dat
+
 #begin Content/Pokemon/Data/frontier/0.dat
 /copy:Content/Pokemon/Data/frontier/0.dat
 
@@ -4283,6 +4343,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/142.png
 
+#begin Content/Pokemon/Overworld/Normal/142_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Normal/142_mega.png
+
 #begin Content/Pokemon/Overworld/Normal/143.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -4390,6 +4462,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/150.png
+
+#begin Content/Pokemon/Overworld/Normal/150_mega_x.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Normal/150_mega_x.png
 
 #begin Content/Pokemon/Overworld/Normal/151.png
 /importer:TextureImporter
@@ -14819,6 +14903,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/142.png
 
+#begin Content/Pokemon/Overworld/Shiny/142_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/142_mega.png
+
 #begin Content/Pokemon/Overworld/Shiny/143.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -14926,6 +15022,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/150.png
+
+#begin Content/Pokemon/Overworld/Shiny/150_mega_x.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/150_mega_x.png
 
 #begin Content/Pokemon/Overworld/Shiny/151.png
 /importer:TextureImporter
@@ -16162,6 +16270,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/214.png
+
+#begin Content/Pokemon/Overworld/Shiny/214_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/214_mega.png
 
 #begin Content/Pokemon/Overworld/Shiny/215.png
 /importer:TextureImporter
@@ -17435,6 +17555,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/306.png
 
+#begin Content/Pokemon/Overworld/Shiny/306_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/306_mega.png
+
 #begin Content/Pokemon/Overworld/Shiny/307.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -18166,6 +18298,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/359.png
+
+#begin Content/Pokemon/Overworld/Shiny/359_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/359_mega.png
 
 #begin Content/Pokemon/Overworld/Shiny/36.png
 /importer:TextureImporter
@@ -55790,104 +55934,4 @@
 
 #begin Scripts/worldmap/sevii islands.dat
 /copy:Scripts/worldmap/sevii islands.dat
-
-#begin Content/Pokemon/Data/3_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/3_mega.dat
-
-#begin Content/Pokemon/Data/9_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/9_mega.dat
-
-#begin Content/Pokemon/Data/115_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/115_mega.dat
-
-#begin Content/Pokemon/Data/127_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/127_mega.dat
-
-#begin Content/Pokemon/Data/130_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/130_mega.dat
-
-#begin Content/Pokemon/Data/142_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/142_mega.dat
-
-#begin Content/Pokemon/Data/150_mega_x.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/150_mega_x.dat
-
-#begin Content/Pokemon/Data/150_mega_y.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/150_mega_y.dat
-
-#begin Content/Pokemon/Data/208_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/208_mega.dat
-
-#begin Content/Pokemon/Data/229_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/229_mega.dat
-
-#begin Content/Pokemon/Data/302_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/302_mega.dat
-
-#begin Content/Pokemon/Data/303_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/303_mega.dat
-
-#begin Content/Pokemon/Data/310_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/310_mega.dat
-
-#begin Content/Pokemon/Data/319_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/319_mega.dat
-
-#begin Content/Pokemon/Data/362_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/362_mega.dat
-
-#begin Content/Pokemon/Data/373_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/373_mega.dat
-
-#begin Content/Pokemon/Data/380_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/380_mega.dat
-
-#begin Content/Pokemon/Data/381_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/381_mega.dat
-
-#begin Content/Pokemon/Data/384_mega.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/384_mega.dat
-
-#begin Content/Pokemon/Data/483_primal.dat
-/importer:
-/processor:
-/build:Content/Pokemon/Data/483_primal.dat
 

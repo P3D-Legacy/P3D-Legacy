@@ -37,7 +37,7 @@
         If Controls.Down(True, True, True, True) = True Then
             OffsetY += 1
         End If
-        OffsetY = CInt(MathHelper.Clamp(OffsetY, 0, DonatorList.Count - 13))
+        OffsetY = CInt(MathHelper.Clamp(OffsetY, 0, DonatorList.Count - 12))
 
         If Controls.Dismiss() = True Then
             Core.SetScreen(Me.PreScreen)
@@ -50,7 +50,7 @@
         Core.SpriteBatch.Draw(mainTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 285, 0, 570, 680), Color.White)
 
         Dim t As String = ""
-        For i = OffsetY To 12 + OffsetY
+        For i = OffsetY To 11 + OffsetY
             If i <> OffsetY Then
                 t &= vbNewLine & vbNewLine
             End If
@@ -59,8 +59,8 @@
             End If
         Next
 
-        If DonatorList.Count > 13 Then
-            Canvas.DrawScrollBar(New Vector2(CInt(Core.windowSize.Width / 2) + 180, 100), DonatorList.Count, 13, OffsetY, New Size(4, 500), False, TextureManager.GetTexture(scrollTexture, New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(scrollTexture, New Rectangle(113, 12, 1, 1)))
+        If DonatorList.Count > 12 Then
+            Canvas.DrawScrollBar(New Vector2(CInt(Core.windowSize.Width / 2) + 180, 100), DonatorList.Count, 12, OffsetY, New Size(4, 500), False, TextureManager.GetTexture(scrollTexture, New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(scrollTexture, New Rectangle(113, 12, 1, 1)))
         End If
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2) - 180, 100), Color.Black)

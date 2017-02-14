@@ -446,6 +446,7 @@
 
             Battle.SwitchInOwn(Me, meIndex, True, OwnPokemonIndex)
             Battle.SwitchInOpp(Me, True, OppPokemonIndex)
+            TempPVPBattleQuery.Clear()
 
             Me.BattleQuery.AddRange({cq1, q5, cq2})
 
