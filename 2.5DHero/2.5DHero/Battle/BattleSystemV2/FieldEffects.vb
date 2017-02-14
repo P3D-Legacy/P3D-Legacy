@@ -2,6 +2,9 @@
 
     Public Class FieldEffects
 
+        'Client side stuff in PvP
+        Public ClientCanSwitch As Boolean = True 'Calculated by the host, sent to the client
+
         'Own stuff
         Public OwnSleepTurns As Integer = 0 'Sleep turns
         Public OwnTruantRound As Integer = 0 'Truant move counter

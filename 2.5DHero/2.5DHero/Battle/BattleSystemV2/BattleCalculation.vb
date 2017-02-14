@@ -904,6 +904,13 @@
                 If BattleScreen.OwnPokemon.Status = Pokemon.StatusProblems.Fainted Or BattleScreen.OwnPokemon.HP <= 0 Then
                     Return True
                 End If
+
+                If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsPVPBattle AndAlso Not BattleScreen.IsHost Then
+                    If BattleScreen.FieldEffects.ClientCanSwitch = False Then
+                        Return False
+                    End If
+                End If
+
                 If BattleScreen.OppPokemon.Ability.Name.ToLower() = "shadow tag" And BattleScreen.OwnPokemon.Ability.Name.ToLower() <> "shadow tag" Then
                     Return False
                 End If
