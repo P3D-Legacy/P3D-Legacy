@@ -13,6 +13,7 @@
     Public WindowSize As New Vector2(1200, 680)
     Public ForceMusic As Boolean = False
     Public MaxOffsetLevel As Integer = 0
+    Public UpdateDisabled As Boolean = False
     Public Extras As New List(Of String)
 
     Public Sub LoadOptions()
@@ -106,6 +107,8 @@
                         If Not String.IsNullOrEmpty(value) Then
                             Me.Extras = value.Split(";"c).ToList()
                         End If
+                    Case "updatedisabled"
+                        UpdateDisabled = CBool(value)
                 End Select
             End If
         Next
@@ -149,9 +152,10 @@
                 "WindowSize|" & Core.windowSize.Width.ToString() & "," & Core.windowSize.Height.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
                 "ForceMusic|" & Me.ForceMusic.ToNumberString() & vbNewLine &
                 "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & vbNewLine &
+                "UpdateDisabled|" & Me.UpdateDisabled.ToNumberString() & vbNewLine &
                 "Extras|" & String.Join(";", Me.Extras)
 
-            System.IO.File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
+            File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
             KeyBindings.SaveKeys()
 
             Logger.Debug("---Options saved---")
@@ -179,6 +183,7 @@
             "WindowSize|1200,680" & vbNewLine &
             "ForceMusic|0" & vbNewLine &
             "MaxOffsetLevel|0" & vbNewLine &
+            "UpdateDisabled|0" & vbNewLine &
             "Extras|Backup Save"
 
         File.WriteAllText(GameController.GamePath & "\Save\options.dat", s)
