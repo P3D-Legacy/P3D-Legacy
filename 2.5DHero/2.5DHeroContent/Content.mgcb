@@ -14315,6 +14315,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/99.png
 
+#begin Content/Pokemon/Overworld/Normal/9_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Normal/9_mega.png
+
 #begin Content/Pokemon/Overworld/Shiny/1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -17231,6 +17243,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/282.png
 
+#begin Content/Pokemon/Overworld/Shiny/282_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/282_mega.png
+
 #begin Content/Pokemon/Overworld/Shiny/283.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -19379,6 +19403,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/428.png
 
+#begin Content/Pokemon/Overworld/Shiny/428_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/428_mega.png
+
 #begin Content/Pokemon/Overworld/Shiny/429.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -19606,6 +19642,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/445.png
+
+#begin Content/Pokemon/Overworld/Shiny/445_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/445_mega.png
 
 #begin Content/Pokemon/Overworld/Shiny/446.png
 /importer:TextureImporter
@@ -24742,6 +24790,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/99.png
+
+#begin Content/Pokemon/Overworld/Shiny/9_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/9_mega.png
 
 #begin Content/Pokemon/Sprites/Abomasnow.png
 /importer:TextureImporter
