@@ -38,6 +38,7 @@
     <DefineConstants>TRACE,WINDOWS</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>none</DebugType>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Pokemon3D.ico" />
