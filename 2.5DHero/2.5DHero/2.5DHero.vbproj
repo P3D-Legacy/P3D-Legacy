@@ -27,13 +27,13 @@
     <Prefer32Bit>false</Prefer32Bit>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'DebugNoContent'">
+  <PropertyGroup Condition="'$(Configuration)' == 'DebugNoContent' Or '$(Configuration)' == 'DebugStandard' Or '$(Configuration)' == 'DebugJian'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\DesktopGL\Debug\</OutputPath>
     <DefineConstants>DEBUG,TRACE,WINDOWS</DefineConstants>
     <DebugType>full</DebugType>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+  <PropertyGroup Condition="'$(Configuration)' == 'ReleaseNoContent' Or '$(Configuration)' == 'ReleaseStandard' Or '$(Configuration)' == 'ReleaseJian'">
     <OutputPath>bin\DesktopGL\Release\</OutputPath>
     <DefineConstants>TRACE,WINDOWS</DefineConstants>
     <Optimize>true</Optimize>
@@ -1727,5 +1727,6 @@
     </CreateProperty>
   </Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
-  <Import Condition=" '$(Configuration)' != 'DebugNoContent' " Project="MonoGame.Content.Builder.targets" />
+  <Import Condition=" '$(Configuration)' == 'DebugStandard' Or '$(Configuration)' == 'ReleaseStandard' " Project="MonoGame.Content.Builder_Standard.targets" />
+  <Import Condition=" '$(Configuration)' == 'DebugJian' Or '$(Configuration)' == 'ReleaseJian' " Project="MonoGame.Content.Builder_Jian.targets" />
 </Project>
