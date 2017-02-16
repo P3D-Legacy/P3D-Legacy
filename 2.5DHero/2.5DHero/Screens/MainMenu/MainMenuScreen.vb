@@ -110,11 +110,11 @@ Public Class MainMenuScreen
                                            Case 0
                                                GameController.UpdateChecked = True
                                            Case 1
+                                               Core.GameInstance.Exit()
+                                           Case 2
                                                Core.GameOptions.UpdateDisabled = True
                                                Core.GameOptions.SaveOptions()
                                                GameController.UpdateChecked = True
-                                           Case 2
-                                               Core.GameInstance.Exit()
                                            Case 3
                                                Core.GameOptions.UpdateDisabled = True
                                                Core.GameOptions.SaveOptions()
