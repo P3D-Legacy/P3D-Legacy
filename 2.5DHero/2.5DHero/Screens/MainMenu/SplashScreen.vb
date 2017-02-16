@@ -72,7 +72,6 @@ Friend Class SplashScreen
 
     Private Sub LoadContent()
         Logger.Debug("---Start loading content---")
-
         Core.LoadContent()
     End Sub
 

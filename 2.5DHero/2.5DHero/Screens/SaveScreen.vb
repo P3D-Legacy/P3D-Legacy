@@ -32,8 +32,19 @@
         With Core.SpriteBatch
             If saveSessionFailed = True Then
                 .DrawString(FontManager.InGameFont, "Saving failed!", New Vector2(188, 186), Color.Red)
-                .DrawString(FontManager.MiniFont, "Press Dismiss to close this screen and try to save" & vbNewLine &
-                            "again in order to prevent data corruption.", New Vector2(188, 240), Color.Black)
+
+                If Core.GameOptions.Extras.Contains("Backup Save") Then
+                    .DrawString(FontManager.MiniFont, "Press Dismiss to close this screen and try to save" & vbNewLine &
+                            "again in order to prevent data corruption." & vbNewLine & vbNewLine &
+                            "We have backup your save in the event of gamejolt API being down." & vbNewLine &
+                            "You may safely quit the game now or try to save again later." & vbNewLine & vbNewLine &
+                            "Backup save can be found at the Backup Save folder :)", New Vector2(188, 240), Color.Black)
+                Else
+                    .DrawString(FontManager.MiniFont, "Press Dismiss to close this screen and try to save" & vbNewLine &
+                            "again in order to prevent data corruption." & vbNewLine & vbNewLine &
+                            "To have your save back up, you will require to enable Backup Save" & vbNewLine &
+                            "Via GameOptions.dat > Extras|Backup Save", New Vector2(188, 240), Color.Black)
+                End If
             Else
                 If ready = True Then
                     .DrawString(FontManager.InGameFont, OldLocalization.GetString("save_screen_success"), New Vector2(188, 186), Color.DarkBlue)
@@ -74,6 +85,9 @@
                 If SaveGameHelpers.EncounteredErrors = True Then
                     Me.saveSessionFailed = True
                 Else
+                    If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID.ToString() & "\Encrypted\Encrypted.dat")) Then
+                        File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID.ToString() & "\Encrypted\Encrypted.dat")
+                    End If
                     SoundManager.PlaySound("save")
                 End If
 

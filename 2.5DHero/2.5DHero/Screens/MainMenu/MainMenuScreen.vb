@@ -1,4 +1,8 @@
-﻿Public Class MainMenuScreen
+﻿Imports System.Net
+Imports System.Net.Cache
+Imports System.Threading.Tasks
+
+Public Class MainMenuScreen
 
     Inherits Screen
 
@@ -78,6 +82,32 @@
 
         GameJolt.Emblem.ClearOnlineSpriteCache()
         Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
+
+        UpdateCheck()
+    End Sub
+
+    Private Sub UpdateCheck()
+        Try
+            If Not GameController.UpdateChecked Then
+                Logger.Debug("---Check Version---")
+
+                If Not Core.GameOptions.UpdateDisabled AndAlso My.Computer.Network.IsAvailable Then
+                    Task.Factory.StartNew(Sub()
+                                              Dim Updater As New Process()
+                                              Updater.StartInfo = New ProcessStartInfo("Updater.exe")
+                                              Updater.Start()
+                                              Updater.WaitForExit()
+
+                                              If Updater.ExitCode = 1 Then
+                                                  Core.GameInstance.Exit()
+                                              Else
+                                                  GameController.UpdateChecked = True
+                                              End If
+                                          End Sub)
+                End If
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub GetPacks(Optional ByVal reload As Boolean = False)
@@ -703,7 +733,7 @@
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                         Select Case loadMenuIndex(1)
                             Case 0
-                                Core.Player.IsGamejoltSave = False
+                                Core.Player.IsGameJoltSave = False
                                 Core.Player.LoadGame(System.IO.Path.GetFileName(Saves(loadMenuIndex(0))))
 
                                 Core.SetScreen(New JoinServerScreen(Me))
@@ -743,7 +773,7 @@
         If Controls.Accept(False, True) = True Then
             Select Case loadMenuIndex(1)
                 Case 0
-                    Core.Player.IsGamejoltSave = False
+                    Core.Player.IsGameJoltSave = False
                     Core.Player.LoadGame(System.IO.Path.GetFileName(Saves(loadMenuIndex(0))))
 
                     Core.SetScreen(New JoinServerScreen(Me))

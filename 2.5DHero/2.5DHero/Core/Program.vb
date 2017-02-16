@@ -18,7 +18,7 @@ Module Program
         Logger.Debug("---Start game---")
 
         Using Game As New GameController()
-            If GameController.IS_DEBUG_ACTIVE = True And Debugger.IsAttached = True Then
+            If GameController.IS_DEBUG_ACTIVE And Debugger.IsAttached Then
                 Game.Run()
             Else
                 Try

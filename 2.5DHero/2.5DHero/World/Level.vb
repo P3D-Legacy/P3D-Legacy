@@ -685,7 +685,9 @@ Public Class Level
 
     Public Sub StopOffsetMapUpdate()
         Me._offsetTimer.Stop()
-        While Me._isUpdatingOffsetMaps : End While
+        While Me._isUpdatingOffsetMaps
+            System.Threading.Thread.Sleep(1)
+        End While
 
         Logger.Debug("Stopped Offset map update")
     End Sub

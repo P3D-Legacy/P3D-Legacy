@@ -1,56 +1,56 @@
 ﻿Public Class MainGameFunctions
 
     Public Shared Sub FunctionKeys()
-        If KeyBoardHandler.KeyPressed(KeyBindings.ScreenshotKey) = True And Core.CurrentScreen.CanTakeScreenshot = True Then
+        If KeyBoardHandler.KeyPressed(KeyBindings.GUIControlKey) = True Then
+            Core.GameOptions.ShowGUI = Not Core.GameOptions.ShowGUI
+            Core.GameOptions.SaveOptions()
+        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.ScreenshotKey) AndAlso Core.CurrentScreen.CanTakeScreenshot Then
             CaptureScreen()
-        End If
-        If KeyBoardHandler.KeyPressed(KeyBindings.FullScreenKey) = True Then
-            If Core.CurrentScreen.CanGoFullscreen = True Then
-                ToggleFullScreen()
-            End If
-        End If
-        If KeyBoardHandler.KeyPressed(KeyBindings.DebugKey) = True Then
+        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.DebugKey) Then
             Core.GameOptions.ShowDebug += 1
             If Core.GameOptions.ShowDebug >= 2 Then
                 Core.GameOptions.ShowDebug = 0
             End If
             Core.GameOptions.SaveOptions()
-        End If
-        If KeyBoardHandler.KeyPressed(KeyBindings.GUIControlKey) = True Then
-            Core.GameOptions.ShowGUI = Not Core.GameOptions.ShowGUI
+        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.LightKey) Then
+            Core.GameOptions.LightingEnabled = Not Core.GameOptions.LightingEnabled
             Core.GameOptions.SaveOptions()
-        End If
-        If KeyBoardHandler.KeyPressed(KeyBindings.MuteMusicKey) = True And Core.CurrentScreen.CanMuteMusic = True Then
+
+            If Core.GameOptions.LightingEnabled Then
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_on", "Lighting Enabled"), 12, FontManager.MainFont, Color.White)
+            Else
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_off", "Lighting Disabled"), 12, FontManager.MainFont, Color.White)
+            End If
+        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.FullScreenKey) AndAlso Core.CurrentScreen.CanGoFullscreen Then
+            ToggleFullScreen()
+        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.MuteMusicKey) AndAlso Core.CurrentScreen.CanMuteMusic Then
             MusicManager.Mute(Not MediaPlayer.IsMuted)
             SoundManager.Mute(MediaPlayer.IsMuted)
             Core.GameOptions.SaveOptions()
             Core.CurrentScreen.ToggledMute()
         End If
-        If KeyBoardHandler.KeyPressed(KeyBindings.LightKey) = True Then
-            Core.GameOptions.LightingEnabled = Not Core.GameOptions.LightingEnabled
-        End If
+
         If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
-            If KeyBoardHandler.KeyPressed(Keys.F) = True Then
+            If KeyBoardHandler.KeyPressed(Keys.F) Then
                 TextureManager.TextureList.Clear()
-            End If
-            If KeyBoardHandler.KeyPressed(Keys.S) = True Then
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_debug_texture_list_clear", "Texture list have cleared"), 12, FontManager.MainFont, Color.White)
+            ElseIf KeyBoardHandler.KeyPressed(Keys.S) Then
                 Core.SetWindowSize(New Vector2(1200, 680))
+            ElseIf KeyBoardHandler.KeyPressed(Keys.L) Then
+                Logger.DisplayLog = Not Logger.DisplayLog
+            ElseIf KeyBoardHandler.KeyPressed(Keys.B) Then
+                Entity.drawViewBox = Not Entity.drawViewBox
             End If
         End If
+
         If ControllerHandler.ButtonPressed(Buttons.Back, True) = True Then
             Core.GameOptions.GamePadEnabled = Not Core.GameOptions.GamePadEnabled
-            If Core.GameOptions.GamePadEnabled = True Then
+            If Core.GameOptions.GamePadEnabled Then
                 Core.GameMessage.ShowMessage("Enabled XBOX 360 GamePad support.", 12, FontManager.MainFont, Color.White)
             Else
                 Core.GameMessage.ShowMessage("Disabled XBOX 360 GamePad support.", 12, FontManager.MainFont, Color.White)
             End If
             Core.GameOptions.SaveOptions()
-        End If
-        If KeyBoardHandler.KeyPressed(Keys.L) = True And KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
-            Logger.DisplayLog = Not Logger.DisplayLog
-        End If
-        If KeyBoardHandler.KeyPressed(Keys.B) = True And KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
-            Entity.drawViewBox = Not Entity.drawViewBox
         End If
     End Sub
 
@@ -83,17 +83,17 @@
                 fileName = .Year & "-" & month & "-" & day & "_" & hour & "." & minute & "." & second & ".png"
             End With
 
-            If System.IO.Directory.Exists(GameController.GamePath & "\screenshots\") = False Then
-                System.IO.Directory.CreateDirectory(GameController.GamePath & "\screenshots\")
+            If Directory.Exists(GameController.GamePath & "\screenshots\") = False Then
+                Directory.CreateDirectory(GameController.GamePath & "\screenshots\")
             End If
 
             If Core.GraphicsManager.IsFullScreen = False Then
-                Dim b As New System.Drawing.Bitmap(Core.windowSize.Width, Core.windowSize.Height)
-                Using g As System.Drawing.Graphics = System.Drawing.Graphics.FromImage(b)
-                    g.CopyFromScreen(Core.window.ClientBounds.X, Core.window.ClientBounds.Y, 0, 0, New System.Drawing.Size(b.Width, b.Height))
+                Dim b As New Drawing.Bitmap(Core.windowSize.Width, Core.windowSize.Height)
+                Using g As Drawing.Graphics = Drawing.Graphics.FromImage(b)
+                    g.CopyFromScreen(Core.window.ClientBounds.X, Core.window.ClientBounds.Y, 0, 0, New Drawing.Size(b.Width, b.Height))
                 End Using
 
-                b.Save(GameController.GamePath & "\screenshots\" & fileName, System.Drawing.Imaging.ImageFormat.Png)
+                b.Save(GameController.GamePath & "\screenshots\" & fileName, Drawing.Imaging.ImageFormat.Png)
             Else
                 Dim screenshot As New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
                 Core.GraphicsDevice.SetRenderTarget(screenshot)
@@ -102,7 +102,7 @@
 
                 Core.GraphicsDevice.SetRenderTarget(Nothing)
 
-                Dim stream As System.IO.Stream = System.IO.File.OpenWrite(GameController.GamePath & "\screenshots\" & fileName)
+                Dim stream As Stream = File.OpenWrite(GameController.GamePath & "\screenshots\" & fileName)
                 screenshot.SaveAsPng(stream, Core.windowSize.Width, Core.windowSize.Height)
                 stream.Dispose()
             End If
@@ -116,11 +116,21 @@
 
     Private Shared Sub ToggleFullScreen()
         If Core.GraphicsManager.IsFullScreen = False Then
-            Core.GraphicsManager.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width
-            Core.GraphicsManager.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
-            Core.windowSize = New Rectangle(0, 0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height)
+            ' MonoGame Bug > GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width != System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width
+            ' MonoGame Bug > GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height != System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height
+            ' Temp Fix just in case someone else face this as well.
+            If GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width <> Windows.Forms.Screen.PrimaryScreen.Bounds.Width OrElse
+                GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height <> Windows.Forms.Screen.PrimaryScreen.Bounds.Height Then
+                Core.GraphicsManager.PreferredBackBufferWidth = Windows.Forms.Screen.PrimaryScreen.Bounds.Width
+                Core.GraphicsManager.PreferredBackBufferHeight = Windows.Forms.Screen.PrimaryScreen.Bounds.Height
+                Core.windowSize = New Rectangle(0, 0, Windows.Forms.Screen.PrimaryScreen.Bounds.Width, Windows.Forms.Screen.PrimaryScreen.Bounds.Height)
+            Else
+                Core.GraphicsManager.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width
+                Core.GraphicsManager.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
+                Core.windowSize = New Rectangle(0, 0, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height)
+            End If
 
-            System.Windows.Forms.Application.VisualStyleState = Windows.Forms.VisualStyles.VisualStyleState.ClientAndNonClientAreasEnabled
+            Windows.Forms.Application.VisualStyleState = Windows.Forms.VisualStyles.VisualStyleState.ClientAndNonClientAreasEnabled
 
             Core.GraphicsManager.ToggleFullScreen()
 
@@ -130,7 +140,7 @@
             Core.GraphicsManager.PreferredBackBufferHeight = 680
             Core.windowSize = New Rectangle(0, 0, 1200, 680)
 
-            System.Windows.Forms.Application.VisualStyleState = Windows.Forms.VisualStyles.VisualStyleState.ClientAndNonClientAreasEnabled
+            Windows.Forms.Application.VisualStyleState = Windows.Forms.VisualStyles.VisualStyleState.ClientAndNonClientAreasEnabled
 
             Core.GraphicsManager.ToggleFullScreen()
 

@@ -16,7 +16,7 @@
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Fire Fang"
-            Me.Description = "The user bites with flame-cloaked fangs. It may also make the target flinch or leave it burned."
+            Me.Description = "The user bites with flame cloaked fangs. It may also make the target flinch or leave it burned."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

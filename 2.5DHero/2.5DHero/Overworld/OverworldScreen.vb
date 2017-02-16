@@ -329,7 +329,7 @@ Public Class OverworldScreen
             d.Add(Buttons.A, "Interact")
             d.Add(Buttons.X, "Menu")
 
-            If Core.Player.hasPokegear = True Then
+            If Core.Player.HasPokegear = True Then
                 d.Add(Buttons.Y, "Pokégear")
             End If
 
@@ -394,7 +394,7 @@ Public Class OverworldScreen
                 Thread.Sleep(20)
                 x = x + 1
             End While
-            If String.IsNullOrEmpty(Level.MusicLoop)
+            If String.IsNullOrEmpty(Level.MusicLoop) Then
                 Return
             End If
 

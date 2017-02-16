@@ -190,7 +190,7 @@
         Core.SpriteBatch.Draw(Item.Texture, New Rectangle(78, 124, 48, 48), Color.White)
 
         If Me.canExit = True Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Press the E key to go back.", New Vector2(710, 580), Color.DarkGray)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Press the E key to go back.", New Vector2(640, 580), Color.DarkGray)
         End If
 
         For i = 0 To Me.PokemonList.Count - 1

@@ -41,9 +41,9 @@
         window = GameInstance.Window
 
         If CommandLineArgHandler.ForceGraphics = True Then
-            window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " (FORCED GRAPHICS)"
+            window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " (FORCED GRAPHICS)"
         Else
-            window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE
+            window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION
         End If
 
         GameOptions = New GameOptions()
@@ -183,7 +183,7 @@
             CurrentScreen.Draw()
 
             If Not Core.Player Is Nothing Then
-                If Core.Player.IsGamejoltSave = True Then
+                If Core.Player.IsGameJoltSave = True Then
                     GameJolt.Emblem.DrawNewEmblems()
                 End If
                 Core.Player.DrawLevelUp()

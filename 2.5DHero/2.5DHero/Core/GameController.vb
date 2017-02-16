@@ -10,12 +10,12 @@ Public Class GameController
     ''' <summary>
     ''' The current version of the game.
     ''' </summary>
-    Public Const GAMEVERSION As String = "0.54"
+    Public Const GAMEVERSION As String = "0.54.1"
 
     ''' <summary>
     ''' The number of released iterations of the game.
     ''' </summary>
-    Public Const RELEASEVERSION As String = "90"
+    Public Const RELEASEVERSION As String = "92"
 
     ''' <summary>
     ''' The development stage the game is in.
@@ -48,6 +48,7 @@ Public Class GameController
 
     Public Graphics As GraphicsDeviceManager
     Public FPSMonitor As FPSMonitor
+    Public Shared UpdateChecked As Boolean = False
 
     Public Sub New()
         Graphics = New GraphicsDeviceManager(Me)
