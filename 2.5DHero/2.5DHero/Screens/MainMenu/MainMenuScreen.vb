@@ -98,19 +98,33 @@ Public Class MainMenuScreen
         Catch ex As Exception
         End Try
     End Sub
+
     Private Async Function WaitForUpdaterAsync() As Task
-        Dim updater As New Process()
-        updater.StartInfo = New ProcessStartInfo("Updater.exe")
-        updater.Start()
+        Dim Updater As New Process
+        Updater.EnableRaisingEvents = True
+        Updater.StartInfo = New ProcessStartInfo("Updater.exe")
+        Updater.Start()
 
-        Await Task.Delay(5000)
-        If Not updater.HasExited Then
-            updater.Kill()
-        End If
+        AddHandler Updater.Exited, Sub()
+                                       Select Case Updater.ExitCode
+                                           Case 0
+                                               GameController.UpdateChecked = True
+                                           Case 1
+                                               Core.GameOptions.UpdateDisabled = True
+                                               Core.GameOptions.SaveOptions()
+                                               GameController.UpdateChecked = True
+                                           Case 2
+                                               Core.GameInstance.Exit()
+                                           Case 3
+                                               Core.GameOptions.UpdateDisabled = True
+                                               Core.GameOptions.SaveOptions()
+                                               Core.GameInstance.Exit()
+                                       End Select
+                                   End Sub
 
-        If updater.ExitCode = 1 Then
-            Core.GameInstance.Exit()
-        Else
+        Await Task.Delay(20000)
+        If Not Updater.HasExited Then
+            Updater.Kill()
             GameController.UpdateChecked = True
         End If
     End Function
