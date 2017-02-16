@@ -17,9 +17,9 @@
             Core.GameOptions.SaveOptions()
 
             If Core.GameOptions.LightingEnabled Then
-                Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_on", "Lighting Enabled"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_lighting_on", "Lighting Enabled"), 12, FontManager.MainFont, Color.White)
             Else
-                Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_off", "Lighting Disabled"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_lighting_off", "Lighting Disabled"), 12, FontManager.MainFont, Color.White)
             End If
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.FullScreenKey) AndAlso Core.CurrentScreen.CanGoFullscreen Then
             ToggleFullScreen()
@@ -33,7 +33,7 @@
         If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
             If KeyBoardHandler.KeyPressed(Keys.F) Then
                 TextureManager.TextureList.Clear()
-                Core.GameMessage.ShowMessage(Localization.GetString("game_message_debug_texture_list_clear", "Texture list have cleared"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_debug_texture_list_clear", "Texture list have cleared"), 12, FontManager.MainFont, Color.White)
             ElseIf KeyBoardHandler.KeyPressed(Keys.S) Then
                 Core.SetWindowSize(New Vector2(1200, 680))
             ElseIf KeyBoardHandler.KeyPressed(Keys.L) Then
