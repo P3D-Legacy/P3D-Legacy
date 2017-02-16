@@ -92,23 +92,28 @@ Public Class MainMenuScreen
                 Logger.Debug("---Check Version---")
 
                 If Not Core.GameOptions.UpdateDisabled AndAlso My.Computer.Network.IsAvailable Then
-                    Task.Factory.StartNew(Sub()
-                                              Dim Updater As New Process()
-                                              Updater.StartInfo = New ProcessStartInfo("Updater.exe")
-                                              Updater.Start()
-                                              Updater.WaitForExit()
-
-                                              If Updater.ExitCode = 1 Then
-                                                  Core.GameInstance.Exit()
-                                              Else
-                                                  GameController.UpdateChecked = True
-                                              End If
-                                          End Sub)
+                    WaitForUpdaterAsync()
                 End If
             End If
         Catch ex As Exception
         End Try
     End Sub
+    Private Async Function WaitForUpdaterAsync() As Task
+        Dim updater As New Process()
+        updater.StartInfo = New ProcessStartInfo("Updater.exe")
+        updater.Start()
+
+        Await Task.Delay(5000)
+        If Not updater.HasExited Then
+            updater.Kill()
+        End If
+
+        If updater.ExitCode = 1 Then
+            Core.GameInstance.Exit()
+        Else
+            GameController.UpdateChecked = True
+        End If
+    End Function
 
     Private Sub GetPacks(Optional ByVal reload As Boolean = False)
         PackNames.Clear()
