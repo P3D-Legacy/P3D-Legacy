@@ -10,6 +10,11 @@ Public Class NewInventoryScreen
 
     Private _translation As Globalization.Classes.LOCAL_InventoryScreen
 
+    Private target_1 As RenderTarget2D
+    Private target_2 As RenderTarget2D
+    Private itemBatch As CoreSpriteBatch
+    Private infoBatch As CoreSpriteBatch
+
     ''' <summary>
     ''' Texture from file: GUI\Menus\General
     ''' </summary>
@@ -112,6 +117,10 @@ Public Class NewInventoryScreen
 
     Public Sub New(ByVal currentScreen As Screen)
         _translation = New Globalization.Classes.LOCAL_InventoryScreen()
+        target_1 = New RenderTarget2D(GraphicsDevice, 816, 400 - 32, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
+        target_2 = New RenderTarget2D(GraphicsDevice, 500, 368)
+        itemBatch = New CoreSpriteBatch(GraphicsDevice)
+        infoBatch = New CoreSpriteBatch(GraphicsDevice)
 
         Identification = Identifications.InventoryScreen
         PreScreen = currentScreen
@@ -248,12 +257,11 @@ Public Class NewInventoryScreen
 
             'Bring back when Monogame begins supporting this stuff
             '   Dim target As New RenderTarget2D(GraphicsDevice, 816, CInt(_enrollY) - 32, False, GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24Stencil8, 0, RenderTargetUsage.PreserveContents)
-            Dim target As New RenderTarget2D(GraphicsDevice, 816, CInt(_enrollY) - 32, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
-            GraphicsDevice.SetRenderTarget(target)
+            GraphicsDevice.SetRenderTarget(target_1)
             GraphicsDevice.Clear(Color.Transparent)
 
             'Create a designated sprite batch:
-            Dim itemBatch As New CoreSpriteBatch(GraphicsDevice)
+
             itemBatch.BeginBatch()
 
             Dim itemPanelAlpha As Integer = CInt(If(_tabInControl, 180, 255) * _interfaceFade)
@@ -294,7 +302,7 @@ Public Class NewInventoryScreen
 
             'When the info is visible, draw it:
             If _infoSize > 0 Then
-                DrawInfo(itemBatch, target)
+                DrawInfo(itemBatch, target_1)
             End If
 
             itemBatch.EndBatch()
@@ -307,7 +315,7 @@ Public Class NewInventoryScreen
                 drawheight = CInt(_enrollY) - 32
             End If
 
-            SpriteBatch.Draw(target, New Rectangle(halfWidth - 400, halfHeight - 200 + 48, 816, drawheight), mainBackgroundColor)
+            SpriteBatch.Draw(target_1, New Rectangle(halfWidth - 400, halfHeight - 200 + 48, 816, drawheight), mainBackgroundColor)
 
         End If
     End Sub
@@ -320,11 +328,9 @@ Public Class NewInventoryScreen
 
         'Bring back when Monogame begins supporting this stuff
         '   Dim target As New RenderTarget2D(GraphicsDevice, _infoSize, 368, False, GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24Stencil8, 0, RenderTargetUsage.PreserveContents)
-        Dim target As New RenderTarget2D(GraphicsDevice, _infoSize, 368, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.DiscardContents)
-        GraphicsDevice.SetRenderTarget(target)
+        GraphicsDevice.SetRenderTarget(target_2)
 
         'Render background:
-        Dim infoBatch As New CoreSpriteBatch(GraphicsDevice)
         infoBatch.BeginBatch()
         For y = 0 To 368 Step 16
             For x = 0 To _infoSize + 16 Step 16
@@ -383,7 +389,7 @@ Public Class NewInventoryScreen
 
         'Set the target that was previously active and render the new target on top of that:
         GraphicsDevice.SetRenderTarget(preTarget)
-        preBatch.Draw(target, New Rectangle(_infoPosition + 80, 0, target.Width, target.Height), Color.White)
+        preBatch.Draw(target_2, New Rectangle(_infoPosition + 80, 0, target_2.Width, target_2.Height), Color.White)
     End Sub
 
     ''' <summary>
