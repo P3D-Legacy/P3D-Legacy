@@ -129,14 +129,14 @@ Public Class NewInventoryScreen
         _texture = TextureManager.GetTexture("GUI\Menus\General")
         _menuTexture = TextureManager.GetTexture("GUI\Menus\Inventory")
 
-        'DEBUG: Add all items in the game to the inventory:
-        For i = 1 To 2500
-            Dim cItem As Item = Item.GetItemByID(i)
+        ''DEBUG: Add all items in the game to the inventory:
+        'For i = 1 To 2500
+        '    Dim cItem As Item = Item.GetItemByID(i)
 
-            If Not cItem Is Nothing Then
-                Core.Player.Inventory.AddItem(cItem.ID, 1)
-            End If
-        Next
+        '    If Not cItem Is Nothing Then
+        '        Core.Player.Inventory.AddItem(cItem.ID, 1)
+        '    End If
+        'Next
 
         ResetAnimation()
 

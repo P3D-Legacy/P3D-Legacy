@@ -72,7 +72,7 @@
                         Case OldLocalization.GetString("game_menu_party")
                             Core.SetScreen(New PartyScreen(Me, Player.Temp.PokemonScreenIndex))
                         Case OldLocalization.GetString("game_menu_bag")
-                            Core.SetScreen(New InventoryScreen(Me))
+                            Core.SetScreen(New NewInventoryScreen(Me))
                         Case OldLocalization.GetString("game_menu_trainer_card")
                             Core.SetScreen(New TrainerScreen(Me))
                         Case "Pokégear"
