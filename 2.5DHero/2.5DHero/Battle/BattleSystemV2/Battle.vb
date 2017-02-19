@@ -4408,6 +4408,7 @@
                             .OwnPokemon.Status = Pokemon.StatusProblems.Fainted
                             BattleScreen.OwnFaint = True
                             If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
+                                Logger.Debug("[Battle]: The host's pokemon faints")
                                 Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData,
                                     Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {BattleScreen.PartnerNetworkID.ToString(), "-HostFainted-"}.ToList()))
                             End If
@@ -4417,6 +4418,7 @@
                             .OppPokemon.Status = Pokemon.StatusProblems.Fainted
                             BattleScreen.OppFaint = True
                             If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
+                                Logger.Debug("[Battle]: The client's pokemon faints")
                                 Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData,
                                     Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {BattleScreen.PartnerNetworkID.ToString(), "-ClientFainted-"}.ToList()))
                             End If
