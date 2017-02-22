@@ -98,6 +98,8 @@
     Public Shared DoubleFloorModel As DoubleFloorModel = New DoubleFloorModel()
     Public Shared PyramidModel As PyramidModel = New PyramidModel()
     Public Shared StairsModel As StairsModel = New StairsModel()
+    Public Shared DiagonalWallModel As DiagonalWallModel = New DiagonalWallModel()
+    Public Shared HalfDiagonalWallModel As HalfDiagonalWallModel = New HalfDiagonalWallModel()
 
     Public Shared Function getModelbyID(ByVal ID As Integer) As BaseModel
         Select Case ID
@@ -135,6 +137,10 @@
                 Return PyramidModel
             Case 16
                 Return StairsModel
+			Case 17
+                Return DiagonalWallModel
+			Case 18
+                Return HalfDiagonalWallModel
             Case Else
                 Return BlockModel
         End Select
