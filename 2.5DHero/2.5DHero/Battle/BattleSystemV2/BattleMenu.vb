@@ -699,7 +699,13 @@
         Private Sub MainMenuOpenBag(ByVal BattleScreen As BattleScreen)
             If BattleScreen.CanUseItems = True Then
                 TempBattleScreen = BattleScreen
-                Core.SetScreen(New InventoryScreen(Core.CurrentScreen, {}, AddressOf SelectedItem))
+                Dim selScreen As New NewInventoryScreen(Core.CurrentScreen)
+                selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
+                selScreen.CanExit = True
+
+                AddHandler selScreen.SelectedObject, AddressOf SelectedItemHandler
+                Core.SetScreen(selScreen)
+                'Core.SetScreen(New InventoryScreen(Core.CurrentScreen, {}, AddressOf SelectedItem))
             End If
         End Sub
 
@@ -952,6 +958,10 @@
 #End Region
 
 #Region "UseItem"
+
+        Private Shared Sub SelectedItemHandler(ByVal params As Object())
+            SelectedItem(CInt(params(0)))
+        End Sub
 
         Private Shared Sub SelectedItem(ByVal itemID As Integer)
             Dim Item As Item = Item.GetItemByID(itemID)

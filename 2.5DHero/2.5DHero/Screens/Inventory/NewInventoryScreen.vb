@@ -115,7 +115,17 @@ Public Class NewInventoryScreen
     Private _messageDelay As Single = 0F
     Private _messageText As String = ""
 
-    Public Sub New(ByVal currentScreen As Screen)
+    'experiment
+    Public Delegate Sub DoStuff(ByVal ItemID As Integer)
+    Dim ReturnItem As DoStuff
+    Dim AllowedPages() As Integer
+
+    Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages As Integer(), ByVal StartPageIndex As Integer, ByVal DoStuff As DoStuff)
+
+        _tabIndex = StartPageIndex
+        Me.AllowedPages = AllowedPages
+        ReturnItem = DoStuff
+
         _translation = New Globalization.Classes.LOCAL_InventoryScreen()
         target_1 = New RenderTarget2D(GraphicsDevice, 816, 400 - 32, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
         target_2 = New RenderTarget2D(GraphicsDevice, 500, 368)
@@ -156,6 +166,14 @@ Public Class NewInventoryScreen
 
         'Load the items once when loading up the inventory screen:
         LoadItems()
+    End Sub
+
+    Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages() As Integer, ByVal DoStuff As DoStuff)
+        Me.New(currentScreen, AllowedPages, Player.Temp.BagIndex, DoStuff)
+    End Sub
+
+    Public Sub New(ByVal currentScreen As Screen)
+        Me.New(currentScreen, {}, Player.Temp.BagIndex, Nothing)
     End Sub
 
     Public Overrides Sub Draw()
@@ -532,8 +550,21 @@ Public Class NewInventoryScreen
     Private Sub UpdateTabs()
         If Controls.Left(True, True, True, True, True, True) And _tabInControl Or ControllerHandler.ButtonPressed(Buttons.LeftShoulder) Then
             _tabIndex -= 1
+            If AllowedPages.Count > 0 And AllowedPages.Contains(_tabIndex) = False Then
+                While AllowedPages.Contains(_tabIndex) = False
+                    _tabIndex -= 1
+
+                    If _tabIndex < 0 Then
+                        _tabIndex = 7
+                    ElseIf _tabIndex > 7 Then
+                        _tabIndex = 0
+                    End If
+                End While
+            End If
             If _tabIndex < 0 Then
                 _tabIndex = 7
+            ElseIf _tabIndex > 7 Then
+                _tabIndex = 0
             End If
             _itemIntro = 0F
             ResetAnimation()
@@ -541,7 +572,20 @@ Public Class NewInventoryScreen
         End If
         If Controls.Right(True, True, True, True, True, True) And _tabInControl Or ControllerHandler.ButtonPressed(Buttons.RightShoulder) Then
             _tabIndex += 1
-            If _tabIndex > 7 Then
+            If AllowedPages.Count > 0 And AllowedPages.Contains(_tabIndex) = False Then
+                While AllowedPages.Contains(_tabIndex) = False
+                    _tabIndex += 1
+
+                    If _tabIndex < 0 Then
+                        _tabIndex = 7
+                    ElseIf _tabIndex > 7 Then
+                        _tabIndex = 0
+                    End If
+                End While
+            End If
+            If _tabIndex < 0 Then
+                _tabIndex = 7
+            ElseIf _tabIndex > 7 Then
                 _tabIndex = 0
             End If
             _itemIntro = 0F

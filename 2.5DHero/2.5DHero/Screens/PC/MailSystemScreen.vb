@@ -219,7 +219,13 @@
 
             If Controls.Accept(True, True, True) = True Then
                 If Me.selectIndex = 0 Then
-                    Core.SetScreen(New InventoryScreen(Me, {5}, 5, AddressOf Me.ChosenMail))
+                    Dim selScreen As New NewInventoryScreen(Core.CurrentScreen, {5}, 5, Nothing)
+                    selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
+                    selScreen.CanExit = True
+
+                    AddHandler selScreen.SelectedObject, AddressOf ChosenMailHandler
+                    Core.SetScreen(selScreen)
+                    'Core.SetScreen(New InventoryScreen(Me, {5}, 5, AddressOf Me.ChosenMail))
                 Else
                     If Me.index = Me.selectIndex Then
                         Me.index = -1
@@ -286,6 +292,10 @@
                 Me.index = -1
             End If
         End If
+    End Sub
+
+    Private Sub ChosenMailHandler(ByVal params As Object())
+        ChosenMail(CInt(params(0)))
     End Sub
 
     Private Sub ChosenMail(ByVal ItemID As Integer)
