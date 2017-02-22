@@ -1,4 +1,4 @@
-﻿
+
 #----------------------------- Global Properties ----------------------------#
 
 /outputDir:bin
@@ -56126,4 +56126,10 @@
 
 #begin Scripts/worldmap/sevii islands.dat
 /copy:Scripts/worldmap/sevii islands.dat
+
+#begin maps/TestMaps/EmbeddedTower.dat
+/copy:maps/TestMaps/EmbeddedTower.dat
+
+#begin maps/TestMaps/test4models.dat
+/copy:maps/TestMaps/test4models.dat
 
