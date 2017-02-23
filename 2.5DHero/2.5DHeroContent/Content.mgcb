@@ -56133,3 +56133,6 @@
 #begin maps/TestMaps/test4models.dat
 /copy:maps/TestMaps/test4models.dat
 
+#begin maps/TestMaps/Kings_Landing.dat
+/copy:maps/TestMaps/Kings_Landing.dat
+
