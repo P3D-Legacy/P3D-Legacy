@@ -1,3 +1,4 @@
+Imports System.Threading
 ''' <summary>
 ''' A class that manages the collection of entities to represent a map.
 ''' </summary>
@@ -29,7 +30,7 @@ Public Class Level
     Private _offsetMapUpdateDelay As Integer = 50 ' Ticks until the next Offset Map update occurs.
 
     ' Map properties:
-    Private _terrain As Terrain = New Terrain(net.Pokemon3D.Game.Terrain.TerrainTypes.Plain)
+    Private _terrain As Terrain = New Terrain(Terrain.TerrainTypes.Plain)
     Private _mapName As String = ""
     Private _musicLoop As String = ""
     Private _levelFile As String = ""
@@ -686,7 +687,7 @@ Public Class Level
     Public Sub StopOffsetMapUpdate()
         Me._offsetTimer.Stop()
         While Me._isUpdatingOffsetMaps
-            System.Threading.Thread.Sleep(1)
+            Thread.Sleep(1)
         End While
 
         Logger.Debug("Stopped Offset map update")
@@ -713,7 +714,7 @@ Public Class Level
         End If
 
         ' Create own player entity and OverworldPokémon entity and add them to the entity enumeration:
-        OwnPlayer = New OwnPlayer(0, 0, 0, {net.Pokemon3D.Game.TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
+        OwnPlayer = New OwnPlayer(0, 0, 0, {TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
         OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
         OverworldPokemon.ChangeRotation()
         Entities.AddRange({OwnPlayer, OverworldPokemon})
@@ -797,26 +798,22 @@ Public Class Level
         If LevelLoader.IsBusy = False Then
             For i = 0 To Entities.Count - 1
                 If i <= Entities.Count - 1 Then
-                    If Entities.Count - 1 >= i AndAlso Entities(i).CanBeRemoved = True Then
+                    If Entities.Count - 1 >= i AndAlso Entities(i).CanBeRemoved Then
                         Entities.RemoveAt(i)
                         i -= 1
                     Else
-                        If Entities(i).NeedsUpdate = True Then
+                        If Entities(i).NeedsUpdate Then
                             Entities(i).Update()
                         End If
+
+                        ' UpdateEntity for all entities:
+                        Me.Entities(i).UpdateEntity()
                     End If
                 Else
                     Exit For
                 End If
             Next
         End If
-
-        ' UpdateEntity for all entities:
-        For i = 0 To Me.Entities.Count - 1
-            If i <= Me.Entities.Count - 1 Then
-                Me.Entities(i).UpdateEntity()
-            End If
-        Next
 
         ' UpdateEntity for all floors:
         For i = 0 To Me.Floors.Count - 1
@@ -953,7 +950,7 @@ Public Class Level
             Me.Surfing = Core.Player.startSurfing ' Set the Surfing property after map switch.
 
             ' Create player and Pokémon entities:
-            OwnPlayer = New OwnPlayer(0, 0, 0, {net.Pokemon3D.Game.TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
+            OwnPlayer = New OwnPlayer(0, 0, 0, {TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
             OwnPlayer.SetTexture(Core.Player.Skin, usingGameJoltTexture)
 
             OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
