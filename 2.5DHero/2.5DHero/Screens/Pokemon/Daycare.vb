@@ -32,10 +32,10 @@
             p.SetCatchInfos(Item.GetItemByID(5), "obtained at")
             p.CatchBall = Item.GetItemByID(GetEggPokeballID({parent1, parent2}.ToList()))
 
-            'adding egg moves:
+            ' Adding Egg Moves:
             Dim EggMoves As New List(Of BattleSystem.Attack)
 
-            'Level-Up moves:
+            ' Level-Up moves:
             If DittoAsParent = 0 Then
                 For Each m1 As BattleSystem.Attack In parent1.Attacks
                     For Each m2 As BattleSystem.Attack In parent2.Attacks
@@ -47,7 +47,7 @@
                 Next
             End If
 
-            'TM-HM Moves:
+            ' Technical/Hidden Machine moves:
             Dim male As Integer = -1
             If parent1.Gender = net.Pokemon3D.Game.Pokemon.Genders.Male Then
                 male = 0
@@ -73,7 +73,7 @@
                 Next
             End If
 
-            'Egg Moves:
+            ' Egg Moves:
             male = -1
             If parent1.Gender = net.Pokemon3D.Game.Pokemon.Genders.Male Then
                 male = 0
@@ -99,6 +99,11 @@
                         End If
                     Next
                 Next
+            End If
+            ' Volt Tackle for Pikachu:
+            If (parent1.Item IsNot Nothing AndAlso parent1.Item.Name.ToLower = "light ball") OrElse (parent2.Item IsNot Nothing AndAlso parent2.Item.Name.ToLower = "light ball") Then
+                Dim newAttack As BattleSystem.Attack = BattleSystem.Attack.GetAttackByID(344)
+                EggMoves.Add(newAttack)
             End If
 
             Dim learnMoves As New List(Of BattleSystem.Attack)
@@ -127,7 +132,7 @@
                 End If
             Next
 
-            'Inherit stats:
+            ' Inherit stats:
             Dim IV1 As New List(Of String)
             Dim IV2 As New List(Of String)
 
@@ -244,7 +249,7 @@
                 End Select
             Next
 
-            'Natures:
+            ' Natures:
             Dim EStone1 As Boolean = False
             Dim EStone2 As Boolean = False
 
@@ -271,7 +276,7 @@
                 End If
             End If
 
-            'Abilities:
+            ' Abilities:
             If DittoAsParent = 0 Then
                 Dim female As Pokemon = parent1
                 If parent2.Gender = net.Pokemon3D.Game.Pokemon.Genders.Female Then
@@ -283,7 +288,7 @@
                 End If
             End If
 
-            'Hidden Ability'
+            ' Hidden Ability:
             If DittoAsParent <> 0 Then
                 If DittoAsParent = 1 Then
                     If parent2.IsUsingHiddenAbility = True And p.HasHiddenAbility = True And Core.Random.Next(0, 100) < 80 Then
@@ -305,7 +310,7 @@
                 End If
             End If
 
-            'Shiny:
+            ' Shiny:
             Dim Shiny1 As Boolean = parent1.IsShiny
             Dim Shiny2 As Boolean = parent2.IsShiny
 
@@ -464,39 +469,39 @@
             Dim p1 As Pokemon = Pokemon(0)
             Dim p2 As Pokemon = Pokemon(1)
 
-            'First Pokémon is Ditto.
+            ' First Pokémon is Ditto:
             If p1.EggGroup1 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Or p1.EggGroup2 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Then
-                'If first Pokémon is  Ditto, then the other Pokémon must be female to inherit the ball.
+                ' If the first Pokémon is Ditto, then the other Pokémon must be female to inherit the Poké Ball.
                 If p2.Gender = net.Pokemon3D.Game.Pokemon.Genders.Female Then
                     ballID = p2.CatchBall.ID
                 End If
             End If
             'Second Pokémon is Ditto.
             If p2.EggGroup1 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Or p2.EggGroup2 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Then
-                'If second Pokémon is  Ditto, then the other Pokémon must be female to inherit the ball.
+                'If the second Pokémon is Ditto, then the other Pokémon must be female to inherit the Poké Ball.
                 If p1.Gender = net.Pokemon3D.Game.Pokemon.Genders.Female Then
                     ballID = p1.CatchBall.ID
                 End If
             End If
-            'No Pokémon is Ditto:
+            ' No Pokémon is Ditto:
             If p1.EggGroup1 <> net.Pokemon3D.Game.Pokemon.EggGroups.Ditto And p1.EggGroup2 <> net.Pokemon3D.Game.Pokemon.EggGroups.Ditto And p2.EggGroup1 <> net.Pokemon3D.Game.Pokemon.EggGroups.Ditto And p2.EggGroup2 <> net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Then
-                'First Pokémon is female:
+                ' First Pokémon is female:
                 If p1.Gender = net.Pokemon3D.Game.Pokemon.Genders.Female Then
                     ballID = p1.CatchBall.ID
                 End If
-                'Second Pokémon is female:
+                ' Second Pokémon is female:
                 If p2.Gender = net.Pokemon3D.Game.Pokemon.Genders.Female Then
                     ballID = p2.CatchBall.ID
                 End If
             End If
 
-            'Check for: Masterball, Cherish Ball: Set to Pokéball
+            ' Check for: Master Ball, Cherish Ball: Set to Poké Ball
             If ballID = 1 Or ballID = 45 Then
                 ballID = 5
             End If
         End If
 
-        'Return BallID (Standard is 5 for Pokéball)
+        ' Return BallID (Standard is 5 for Pokéball):
         Return ballID
     End Function
 

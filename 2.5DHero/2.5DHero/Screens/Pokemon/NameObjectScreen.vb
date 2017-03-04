@@ -6,17 +6,17 @@ Public Class NameObjectScreen
 
     Inherits Screen
 
-    Private _pokemon As Pokemon 'Temporarly stores the Pokémon to rename.
-    Private _currentText As String = "" 'The current Text in the textbox.
-    Private _mainTexture As Texture2D 'The temporary texture. Loads "GUI\Menus\Menu"
+    Private _pokemon As Pokemon ' Temporarly stores the Pokémon to rename.
+    Private _currentText As String = "" ' The current Text in the textbox.
+    Private _mainTexture As Texture2D ' The temporary texture. Loads "GUI\Menus\Menu".
 
-    Private _index As Integer = 0 'the button index (0 or 1)
-    Private _askedRename As Boolean = False 'If the question to rename is answered or not.
-    Private _renamePokemon As Boolean = False 'If a Pokémon is getting renamed.
+    Private _index As Integer = 0 ' The button index (0 or 1).
+    Private _askedRename As Boolean = False ' If the question to rename is answered or not.
+    Private _renamePokemon As Boolean = False ' If a Pokémon is getting renamed.
 
-    Private _canChooseNo As Boolean = True 'if the player can choose to not rename the object.
-    Private _defaultName As String = "Name" 'The default name (that also gets mentioned in the question).
-    Private _delay As Single = 0.0F 'The delay until the question can be answered.
+    Private _canChooseNo As Boolean = True ' If the player can choose to not rename the object.
+    Private _defaultName As String = "Name" ' The default name (that also gets mentioned in the question).
+    Private _delay As Single = 0.0F ' The delay until the question can be answered.
 
     ''' <summary>
     ''' Handles the NameAccept event which fires if the object gets renamed.
@@ -32,7 +32,7 @@ Public Class NameObjectScreen
     ''' <param name="CurrentScreen">The currently active screen.</param>
     ''' <param name="Pokemon">The Pokémon reference to rename.</param>
     Public Sub New(ByVal CurrentScreen As Screen, ByVal Pokemon As Pokemon)
-        'Set default values:
+        ' Set default values:
         Me.Identification = Identifications.NameObjectScreen
         Me.PreScreen = CurrentScreen
         Me.MouseVisible = True
@@ -44,10 +44,10 @@ Public Class NameObjectScreen
         Me._defaultName = Pokemon.GetDisplayName()
         Me._renamePokemon = True
 
-        'Load texture:
+        ' Load texture:
         Me._mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
-        'Show the Pokémon image:
+        ' Show the Pokémon image:
         Screen.PokemonImageView.Show(Pokemon, True)
     End Sub
 
@@ -232,20 +232,20 @@ Public Class NameObjectScreen
     ''' <param name="text">The name string.</param>
     ''' <remarks>Only numbers and alphabetic characters are allowed (0-9, a-z, A-Z)</remarks>
     Private Function ReplaceInvalidChars(ByVal text As String) As String
-        'Creating the char array.
+        ' Creating the char array:
         Dim chars() As Char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray()
 
-        'Create a new string to store the "purified" text in. YOU SHALL NOT PASS, EXTENDED LATIN
+        ' Create a new string to store the "purified" text in. YOU SHALL NOT PASS, EXTENDED LATIN.
         Dim newText As String = ""
 
-        'Loop through all of the original text and only put in the allowed ones.
+        ' Loop through all of the original text and only put in the allowed ones.
         For i = 0 To text.Length - 1
             If chars.Contains(text(i)) = True Then
                 newText &= text(i).ToString()
             End If
         Next
 
-        'Return the newly created string.
+        ' Return the newly created string.
         Return newText
     End Function
 

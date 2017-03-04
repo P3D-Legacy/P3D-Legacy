@@ -19,7 +19,7 @@
             Me.Description = "The user cloaks its body with a white mist that prevents any of its stats from being cut for five turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False
-            Me.Target = Targets.AllAllies
+            Me.Target = Targets.AllOwn
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End

@@ -122,25 +122,61 @@
             End If
         End Function
 
+        Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnSkyAttackCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppSkyAttackCounter = 0
+            End If
+        End Sub
         Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
-            Dim skyattack As Integer = BattleScreen.FieldEffects.OwnSkyAttackCounter
+            Dim SkyAttack As Integer = BattleScreen.FieldEffects.OwnSkyAttackCounter
             If own = False Then
-                skyattack = BattleScreen.FieldEffects.OppSkyAttackCounter
+                SkyAttack = BattleScreen.FieldEffects.OppSkyAttackCounter
             End If
 
-            If skyattack = 0 Then
+            If SkyAttack = 0 Then
                 Return False
             Else
                 Return True
             End If
         End Function
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            If Core.Random.Next(0, 100) < Me.GetEffectChance(0, own, BattleScreen) Then
-                BattleScreen.Battle.InflictFlinch(Not own, own, BattleScreen, "", "move:skyattack")
+        Private Sub MoveFails(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnSkyAttackCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppSkyAttackCounter = 0
             End If
         End Sub
 
+        Public Overrides Sub MoveMisses(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub AbsorbedBySubstitute(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub MoveProtectedDetected(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub InflictedFlinch(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsSleeping(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub HurtItselfInConfusion(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsAttracted(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
     End Class
 
 End Namespace

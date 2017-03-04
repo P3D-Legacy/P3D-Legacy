@@ -2,6 +2,9 @@
 
     Public Class FieldEffects
 
+        'Client side stuff in PvP
+        Public ClientCanSwitch As Boolean = True 'Calculated by the host, sent to the client
+
         'Own stuff
         Public OwnSleepTurns As Integer = 0 'Sleep turns
         Public OwnTruantRound As Integer = 0 'Truant move counter
@@ -84,7 +87,7 @@
         Public OwnInfestation As Integer = 0
         Public OwnUsedMoves As New List(Of Integer)
         Public OwnMagicCoat As Integer = 0
-        Public OwnLostItem As Item = Nothing
+        Public OwnConsumedItem As Item = Nothing
         Public OwnPursuit As Boolean = False
         Public OwnMegaEvolved As Boolean = False
         Public OwnRoostUsed As Boolean = False 'If roost got used, this is true and will get set false and revert types at the end of a turn.
@@ -194,7 +197,7 @@
         Public OppPokemonDamagedThisTurn As Boolean = False
         Public OppPokemonDamagedLastTurn As Boolean = False
         Public OppMagicCoat As Integer = 0
-        Public OppLostItem As Item = Nothing
+        Public OppConsumedItem As Item = Nothing
         Public OppPursuit As Boolean = False
         Public OppMegaEvolved As Boolean = False
         Public OppRoostUsed As Boolean = False

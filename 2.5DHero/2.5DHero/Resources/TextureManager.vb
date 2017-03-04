@@ -130,8 +130,8 @@ Public Class TextureManager
     End Function
 
     Public Shared Function GetTexture(ByVal Texture As Texture2D, ByVal Rectangle As Rectangle, Optional ByVal Factor As Integer = 1) As Texture2D
-        Dim tex As Texture2D
-        
+        Dim tex As Texture2D = Nothing
+
         If TextureRectList.TryGetValue(New KeyValuePair(Of Int32, Rectangle)(Texture.GetHashCode(), Rectangle), tex) then
             Return tex
         End If

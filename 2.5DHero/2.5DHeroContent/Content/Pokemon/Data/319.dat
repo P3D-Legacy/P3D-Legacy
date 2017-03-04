@@ -9,7 +9,7 @@ BaseFriendship|35
 EggGroup1|Water2
 EggGroup2|None
 BaseEggSteps|5355
-EggPokemon|319
+EggPokemon|318
 IsGenderLess|0
 CanBreed|1
 Devolution|318
@@ -56,4 +56,4 @@ Move|45,97
 Move|50,130
 Move|56,400
 TradeValue|50
-Item|167,5
+Item|5,167

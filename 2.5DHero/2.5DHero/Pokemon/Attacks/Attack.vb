@@ -46,6 +46,8 @@
             AllAllies 'All allies, excluding itself.
 
             All 'All Pokémon, including itself
+
+            AllOwn 'All allies, including itself.
         End Enum
 
         Public Enum AIField
@@ -1587,6 +1589,14 @@
             'DO NOTHING HERE (will do recoil if moves overrides it)
         End Sub
 
+        Public Overridable Sub MoveRecharge(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING HERE (will do recoil if moves overrides it)
+        End Sub
+
+        Public Overridable Sub MoveSwitch(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING HERE (will do recoil if moves overrides it)
+        End Sub
+
         ''' <summary>
         ''' Event that occurs when the move misses its target.
         ''' </summary>
@@ -1632,12 +1642,12 @@
             If Me.Type.Type = Element.Types.Normal Then
                 If p.Ability.Name.ToLower() = "pixilate" Then
                     Return New Element(Element.Types.Fairy)
-                End If
-                If p.Ability.Name.ToLower() = "refrigerate" Then
+                ElseIf p.Ability.Name.ToLower() = "refrigerate" Then
                     Return New Element(Element.Types.Ice)
-                End If
-                If p.Ability.Name.ToLower() = "aerilate" Then
+                ElseIf p.Ability.Name.ToLower() = "aerilate" Then
                     Return New Element(Element.Types.Flying)
+                ElseIf p.Ability.Name.ToLower() = "galvanize" Then
+                    Return New Element(Element.Types.Electric)
                 End If
             End If
 
@@ -1704,6 +1714,42 @@
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveFailsSoundproof(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING
+        End Sub
+
+        ''' <summary>
+        ''' Event that occurs when a flinch has been inflicted.
+        ''' </summary>
+        ''' <param name="Own">If the own Pokémon used the move.</param>
+        ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
+        Public Overridable Sub InflictedFlinch(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING
+        End Sub
+
+        ''' <summary>
+        ''' Event that occurs when the pokemon has hurt itself in confusion.
+        ''' </summary>
+        ''' <param name="Own">If the own Pokémon is confused.</param>
+        ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
+        Public Overridable Sub HurtItselfInConfusion(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING
+        End Sub
+
+        ''' <summary>
+        ''' Event that occurs when the pokemon has falls in love with the opponent.
+        ''' </summary>
+        ''' <param name="Own">If the own Pokémon is in love.</param>
+        ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
+        Public Overridable Sub IsAttracted(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING
+        End Sub
+
+        ''' <summary>
+        ''' Event that occurs when a the pokemon has been put to sleep.
+        ''' </summary>
+        ''' <param name="Own">If the own Pokémon used the move.</param>
+        ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
+        Public Overridable Sub IsSleeping(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             'DO NOTHING
         End Sub
 

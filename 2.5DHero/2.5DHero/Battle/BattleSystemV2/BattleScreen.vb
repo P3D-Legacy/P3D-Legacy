@@ -2,14 +2,11 @@
 
     Public Class BattleScreen
 
-
         Inherits Screen
 
         'Used for after fainting switching
         Public Shared OwnFaint As Boolean = False
         Public Shared OppFaint As Boolean = False
-
-
 
         'Used for lead picking in PvP Battles
         Public Shared OwnLeadIndex As Integer = 0
@@ -222,6 +219,7 @@
                 End If
             Next
             Me.OwnPokemon = Core.Player.Pokemons(meIndex)
+            OwnPokemonIndex = meIndex
 
             Me.IsTrainerBattle = False
             Me.ParticipatedPokemon.Add(meIndex)
@@ -355,6 +353,7 @@
                 End If
             Next
             Me.OwnPokemon = Core.Player.Pokemons(meIndex)
+            OwnPokemonIndex = meIndex
             If IsPVPBattle Then
                 OwnPokemon = Core.Player.Pokemons(OwnLeadIndex)
                 OwnPokemonIndex = OwnLeadIndex
@@ -447,6 +446,7 @@
 
             Battle.SwitchInOwn(Me, meIndex, True, OwnPokemonIndex)
             Battle.SwitchInOpp(Me, True, OppPokemonIndex)
+            TempPVPBattleQuery.Clear()
 
             Me.BattleQuery.AddRange({cq1, q5, cq2})
 
@@ -501,6 +501,7 @@
                 End If
             Next
             Me.OwnPokemon = Core.Player.Pokemons(meIndex)
+            OwnPokemonIndex = meIndex
 
             Me.IsTrainerBattle = False
             Me.ParticipatedPokemon.Add(meIndex)
@@ -617,6 +618,8 @@
                 End If
             Next
             Me.OwnPokemon = Core.Player.Pokemons(meIndex)
+            OwnPokemonIndex = meIndex
+
 
             Me.IsTrainerBattle = False
             Me.ParticipatedPokemon.Add(meIndex)
@@ -873,6 +876,7 @@ nextIndex:
             Lighting.UpdateLighting(Screen.Effect)
             Camera.Update()
             Level.Update()
+
             SkyDome.Update()
 
             TextBox.Update()
@@ -975,6 +979,8 @@ nextIndex:
 #End Region
 
         Public Sub EndBattle(ByVal blackout As Boolean)
+            Level.StopOffsetMapUpdate()
+
             Dim str As String = ""
             'Call the EndBattle function of the abilities and Reverts battle only Pokemon formes.
             For Each p As Pokemon In Core.Player.Pokemons
@@ -1143,13 +1149,12 @@ nextIndex:
                     End While
 
                 Else
-                    i = Core.Random.Next(0, Trainer.Pokemons.count)
+                    i = Core.Random.Next(0, Trainer.Pokemons.Count)
                     While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse OppPokemonIndex = i OrElse Trainer.Pokemons(i).HP <= 0
-                        i = Core.Random.Next(0, Trainer.Pokemons.count)
+                        i = Core.Random.Next(0, Trainer.Pokemons.Count)
                     End While
                 End If
             End If
-
 
             OppPokemonIndex = i
             OppPokemon = Trainer.Pokemons(i)
@@ -1328,16 +1333,20 @@ nextIndex:
         Public LockData As String = "{}"
         Public ClientWonBattle As Boolean = True
 
+        'Sends the decided step to the host
         Public Sub SendClientCommand(ByVal c As String)
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleClientData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), c}.ToList()))
             Me.SentInput = True
+            Logger.Debug("[Battle]: Sent Client command")
         End Sub
 
+        'Receives the current status of the battle from the host
         Public Shared Sub ReceiveHostEndRoundData(ByVal data As String)
             Dim newQueries As New List(Of String)
             Dim tempData As String = ""
             Dim cData As String = data
 
+            'Converts the single string received as data into a list of string 
             While cData.Length > 0
                 If cData(0).ToString() = "|" AndAlso tempData(tempData.Length - 1).ToString() = "}" Then
                     newQueries.Add(tempData)
@@ -1359,7 +1368,9 @@ nextIndex:
             End While
 
             If s.Identification = Identifications.BattleScreen Then
-                CType(s, BattleScreen).LockData = newQueries(0)
+
+                'First set of queries are read and converted into BattleScreen values for the client side.
+                CType(s, BattleScreen).LockData = newQueries(0) 'when locked into certain situations that do not allow the client to take actions (like multi turn moves)
                 CType(s, BattleScreen).OppStatistics.FromString(newQueries(1))
                 CType(s, BattleScreen).OwnStatistics.FromString(newQueries(2))
                 CType(s, BattleScreen).OppPokemon = Pokemon.GetPokemonByData(newQueries(3))
@@ -1369,10 +1380,15 @@ nextIndex:
                 weatherInfo = weatherInfo.Remove(weatherInfo.Length - 1, 1).Remove(0, 1)
                 CType(s, BattleScreen).FieldEffects.Weather = CType(CInt(weatherInfo), BattleWeather.WeatherTypes)
 
-                For i = 0 To 5
+                Dim CanSwitchInfo As String = newQueries(6)
+                CanSwitchInfo = CanSwitchInfo.Remove(CanSwitchInfo.Length - 1, 1).Remove(0, 1)
+                CType(s, BattleScreen).FieldEffects.ClientCanSwitch = CType(CanSwitchInfo, Boolean)
+
+                For i = 0 To 6
                     newQueries.RemoveAt(0)
                 Next
 
+                'Next queries contain the data from the party of the host and the client.
                 Dim ownCount As Integer = Core.Player.Pokemons.Count
                 Dim oppCount As Integer = CType(s, BattleScreen).Trainer.Pokemons.Count
 
@@ -1393,10 +1409,12 @@ nextIndex:
                     End If
                 Next
 
+                Logger.Debug("[Battle]: Received Host End Round data")
                 CType(s, BattleScreen).ReceivedPokemonData = True
             End If
         End Sub
 
+        'Receives the "movie" from the host, and stores it in the BattleQuery list. Also checks for After Fainting Switch conditions.
         Public Shared Sub ReceiveHostData(ByVal data As String)
             Dim newQueries As New List(Of String)
             Dim tempData As String = ""
@@ -1407,15 +1425,16 @@ nextIndex:
             End While
             If s.Identification = Identifications.BattleScreen Then
                 If data = "-HostFainted-" Then
+                    Logger.Debug("[Battle]: The host's pokemon faints")
                     OppFaint = True
                     Exit Sub
                 End If
                 If data = "-ClientFainted-" Then
+                    Logger.Debug("[Battle]: The client's pokemon faints")
                     OwnFaint = True
                     Exit Sub
                 End If
             End If
-
 
             While cData.Length > 0
                 If cData(0).ToString() = "|" AndAlso tempData(tempData.Length - 1).ToString() = "}" Then
@@ -1431,8 +1450,6 @@ nextIndex:
                 newQueries.Add(tempData)
                 tempData = ""
             End If
-
-
 
             If s.Identification = Identifications.BattleScreen Then
                 CType(s, BattleScreen).BattleQuery.Clear()
@@ -1451,7 +1468,7 @@ nextIndex:
                     End If
                 Next
             End If
-
+            Logger.Debug("[Battle]: Received Host data (movie)")
             ReceivedQuery = data
         End Sub
 
@@ -1463,7 +1480,9 @@ nextIndex:
         Public SentHostData As Boolean = False
         Public Shared ReceivedInput As String = ""
 
+        'After the client has decided its next step, the host receives the information about this step, so it can now decide his own.
         Public Shared Sub ReceiveClientData(ByVal data As String)
+            Logger.Debug("[Battle]: Received Client data")
             ReceivedInput = data
 
             Dim s As Screen = Core.CurrentScreen
@@ -1481,6 +1500,7 @@ nextIndex:
             End If
         End Sub
 
+        'Sends some variables that let the client know the current state of the battle
         Public Sub SendEndRoundData()
             Dim lockData As String = "{}"
             Dim oppStep As Battle.RoundConst = Battle.GetOppStep(Me, Battle.OwnStep)
@@ -1495,7 +1515,8 @@ nextIndex:
             Dim d As String = lockData & "|" &
                               OwnStatistics.ToString() & "|" & OppStatistics.ToString() & "|" &
                               OwnPokemon.GetSaveData() & "|" & OppPokemon.GetSaveData() & "|" &
-                              "{" & CInt(FieldEffects.Weather).ToString() & "}"
+                              "{" & CInt(FieldEffects.Weather).ToString() & "}" & "|" &
+                              "{" & BattleCalculation.CanSwitch(Me, False).ToString & "}"
 
             For Each p As Pokemon In Core.Player.Pokemons
                 If d <> "" Then
@@ -1509,10 +1530,11 @@ nextIndex:
                 End If
                 d &= p.GetSaveData()
             Next
-
+            Logger.Debug("[Battle]: Sent End Round data")
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattlePokemonData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), d}.ToList()))
         End Sub
 
+        'Sends the "movie" to the client
         Public Sub SendHostQuery()
             Dim d As String = ""
 
@@ -1533,6 +1555,7 @@ nextIndex:
             Next
             Me.TempPVPBattleQuery.Clear()
 
+            Logger.Debug("[Battle]: Sent Host Query")
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), d}.ToList()))
             SentHostData = True
         End Sub
@@ -1545,7 +1568,7 @@ nextIndex:
         ''' Use this to download the sprites for the players.
         ''' </summary>
         Private Sub DownloadOnlineSprites()
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 Dim t As New Threading.Thread(AddressOf DownloadSprites)
                 t.IsBackground = True
                 t.Start()

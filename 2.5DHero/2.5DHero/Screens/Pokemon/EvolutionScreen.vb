@@ -2,6 +2,8 @@
 
     Inherits Screen
 
+    ' Old Evolution System:
+
     'Private FromBattle As Boolean = False
     'Private EvolutionArgument As String = ""
     'Private EvolutionTrigger As EvolutionCondition.EvolutionTrigger
@@ -222,7 +224,7 @@
                             Sparks.Clear()
                             evolutionReady = True
                             brokeEvolution = True
-                            TextBox.Show("Your " & currentPokemon.GetDisplayName() & "~didn't evolve.", {}, False, False)
+                            TextBox.Show("Huh? " & currentPokemon.GetDisplayName() & "~stopped evolving!", {}, False, False)
                         End If
                     End If
                 Else
@@ -285,7 +287,7 @@
 
     Private Sub Endscene()
         If brokeEvolution = False Then
-            'Nincada's evolution to Shedinja if Pokéball is in Inventory and free space in party:
+            ' Nincada's evolution to Shedinja if a Poké Ball is in the player's Bag and free space is available in the player's party:
             If Shedinja.CanEvolveInto(Me.evolvedPokemon, Me.EvolutionTrigger) = True Then
                 Core.Player.Pokemons.Add(Shedinja.GenerateNew(evolvedPokemon))
                 Core.Player.Inventory.RemoveItem(5, 1)

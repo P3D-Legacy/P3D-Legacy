@@ -2,9 +2,9 @@
 
     Partial Class ScriptComparer
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the <pokemon> constructs.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the <pokemon> constructs.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Function DoPokemon(ByVal subClass As String) As Object
             Dim command As String = GetSubClassArgumentPair(subClass).Command
@@ -285,7 +285,7 @@
                     p.Generate(level, True)
                     Return p.GetSaveData().Replace(",", "§")
                 Case "otmatch"
-                    'arguments: has: returns boolean, ID: returns pokedex number, Name: returns name, maxhits: returns the max number of equal chars
+                    ' Arguments: has: returns boolean, ID: returns Pokédex number, Name: returns name, maxhits: returns the maximum number of equal chars.
 
                     Dim maxDigits As Integer = 0
                     Dim maxName As String = "[EMPTY]"
@@ -415,6 +415,14 @@
                     End If
 
                     Return sheet & "|" & CStr(pos.X * 32) & "|" & CStr(pos.Y * 32) & "|" & CStr(size.Width) & "|" & CStr(size.Height)
+                Case "getsteps"
+                    ' <Pokemon.GetSteps(PokemonIndex)>
+
+                    Dim index As Integer = int(argument.GetSplit(0))
+
+                    If Core.Player.Pokemons.Count - 1 >= index Then
+                        Return Core.Player.Pokemons(index).EggSteps
+                    End If
             End Select
             Return DEFAULTNULL
         End Function

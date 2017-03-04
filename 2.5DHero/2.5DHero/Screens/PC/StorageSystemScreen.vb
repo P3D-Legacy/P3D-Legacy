@@ -318,15 +318,15 @@ Public Class StorageSystemScreen
                         If Me.BoxChooseMode = True Then
                             Me.BoxChooseMode = False
                         Else
-                            Dim e As New MenuEntry(3, "CHOOSE BOX", False, AddressOf Me.ChooseBox)
-                            Dim e1 As New MenuEntry(4, "CHANGE MODE", False, AddressOf Me.ChangemodeMenu)
+                            Dim e As New MenuEntry(3, "Choose Box", False, AddressOf Me.ChooseBox)
+                            Dim e1 As New MenuEntry(4, "Change Mode", False, AddressOf Me.ChangemodeMenu)
                             If GetBox(CurrentBox).IsBattleBox = True Then
-                                Dim e4 As New MenuEntry(5, "CANCEL", True, Nothing)
+                                Dim e4 As New MenuEntry(5, "Cancel", True, Nothing)
                                 Me.SetupMenu({e, e1, e4}, "What do you want to do?")
                             Else
-                                Dim e2 As New MenuEntry(5, "WALLPAPER", False, AddressOf WallpaperMain)
-                                Dim e3 As New MenuEntry(6, "NAME", False, AddressOf SelectNameBox)
-                                Dim e4 As New MenuEntry(7, "CANCEL", True, Nothing)
+                                Dim e2 As New MenuEntry(5, "Wallpaper", False, AddressOf WallpaperMain)
+                                Dim e3 As New MenuEntry(6, "Name", False, AddressOf SelectNameBox)
+                                Dim e4 As New MenuEntry(7, "Cancel", True, Nothing)
                                 Me.SetupMenu({e, e1, e2, e3, e4}, "What do you want to do?")
                             End If
                         End If
@@ -355,11 +355,11 @@ Public Class StorageSystemScreen
 #Region "ChangeMode"
 
     Private Sub ChangemodeMenu()
-        Dim e As New MenuEntry(3, "WITHDRAW", False, AddressOf SelectWithdraw)
-        Dim e1 As New MenuEntry(4, "DEPOSIT", False, AddressOf SelectDeposit)
-        Dim e2 As New MenuEntry(5, "SINGLE MOVE", False, AddressOf Me.SelectSingleMove)
-        Dim e3 As New MenuEntry(6, "EASY MOVE", False, AddressOf Me.SelectEasyMove)
-        Dim e4 As New MenuEntry(7, "CANCEL", True, AddressOf Me.ChooseObject)
+        Dim e As New MenuEntry(3, "Withdraw", False, AddressOf SelectWithdraw)
+        Dim e1 As New MenuEntry(4, "Deposit", False, AddressOf SelectDeposit)
+        Dim e2 As New MenuEntry(5, "Single Move", False, AddressOf Me.SelectSingleMove)
+        Dim e3 As New MenuEntry(6, "Easy Move", False, AddressOf Me.SelectEasyMove)
+        Dim e4 As New MenuEntry(7, "Cancel", True, AddressOf Me.ChooseObject)
         Me.SetupMenu({e, e1, e2, e3, e4}, "Choose a mode to use.")
     End Sub
 
@@ -404,71 +404,71 @@ Public Class StorageSystemScreen
 
         Select Case badges
             Case 0, 1
-                Dim e As New MenuEntry(3, "PACKAGE 1", False, AddressOf WallpaperPackage1)
-                Dim e4 As New MenuEntry(4, "CANCEL", True, AddressOf ChooseObject)
+                Dim e As New MenuEntry(3, "Package 1", False, AddressOf WallpaperPackage1)
+                Dim e4 As New MenuEntry(4, "Cancel", True, AddressOf ChooseObject)
                 SetupMenu({e, e4}, "Please pick a theme.")
             Case 2, 3, 4
-                Dim e As New MenuEntry(3, "PACKAGE 1", False, AddressOf WallpaperPackage1)
-                Dim e1 As New MenuEntry(4, "PACKAGE 2", False, AddressOf WallpaperPackage2)
-                Dim e4 As New MenuEntry(5, "CANCEL", True, AddressOf ChooseObject)
+                Dim e As New MenuEntry(3, "Package 1", False, AddressOf WallpaperPackage1)
+                Dim e1 As New MenuEntry(4, "Package 2", False, AddressOf WallpaperPackage2)
+                Dim e4 As New MenuEntry(5, "Cancel", True, AddressOf ChooseObject)
                 SetupMenu({e, e1, e4}, "Please pick a theme.")
             Case 5, 6, 7
-                Dim e As New MenuEntry(3, "PACKAGE 1", False, AddressOf WallpaperPackage1)
-                Dim e1 As New MenuEntry(4, "PACKAGE 2", False, AddressOf WallpaperPackage2)
-                Dim e2 As New MenuEntry(5, "PACKAGE 3", False, AddressOf WallpaperPackage3)
-                Dim e4 As New MenuEntry(6, "CANCEL", True, AddressOf ChooseObject)
+                Dim e As New MenuEntry(3, "Package 1", False, AddressOf WallpaperPackage1)
+                Dim e1 As New MenuEntry(4, "Package 2", False, AddressOf WallpaperPackage2)
+                Dim e2 As New MenuEntry(5, "Package 3", False, AddressOf WallpaperPackage3)
+                Dim e4 As New MenuEntry(6, "Cancel", True, AddressOf ChooseObject)
                 SetupMenu({e, e1, e2, e4}, "Please pick a theme.")
             Case Else
-                Dim e As New MenuEntry(3, "PACKAGE 1", False, AddressOf WallpaperPackage1)
-                Dim e1 As New MenuEntry(4, "PACKAGE 2", False, AddressOf WallpaperPackage2)
-                Dim e2 As New MenuEntry(5, "PACKAGE 3", False, AddressOf WallpaperPackage3)
-                Dim e3 As New MenuEntry(6, "PACKAGE 4", False, AddressOf WallpaperPackage4)
-                Dim e4 As New MenuEntry(7, "CANCEL", True, AddressOf ChooseObject)
+                Dim e As New MenuEntry(3, "Package 1", False, AddressOf WallpaperPackage1)
+                Dim e1 As New MenuEntry(4, "Package 2", False, AddressOf WallpaperPackage2)
+                Dim e2 As New MenuEntry(5, "Package 3", False, AddressOf WallpaperPackage3)
+                Dim e3 As New MenuEntry(6, "Package 4", False, AddressOf WallpaperPackage4)
+                Dim e4 As New MenuEntry(7, "Cancel", True, AddressOf ChooseObject)
                 SetupMenu({e, e1, e2, e3, e4}, "Please pick a theme.")
         End Select
     End Sub
 
     Private Sub WallpaperPackage1()
-        Dim e As New MenuEntry(3, "FOREST", False, AddressOf PickWallpaper, 0)
-        Dim e1 As New MenuEntry(4, "CITY", False, AddressOf PickWallpaper, 1)
-        Dim e2 As New MenuEntry(5, "DESERT", False, AddressOf PickWallpaper, 2)
-        Dim e3 As New MenuEntry(6, "SAVANNA", False, AddressOf PickWallpaper, 3)
-        Dim e4 As New MenuEntry(7, "CAVE", False, AddressOf PickWallpaper, 8)
-        Dim e5 As New MenuEntry(8, "RIVER", False, AddressOf PickWallpaper, 11)
-        Dim e6 As New MenuEntry(9, "CANCEL", True, AddressOf WallpaperMain)
+        Dim e As New MenuEntry(3, "Forest", False, AddressOf PickWallpaper, 0)
+        Dim e1 As New MenuEntry(4, "City", False, AddressOf PickWallpaper, 1)
+        Dim e2 As New MenuEntry(5, "Desert", False, AddressOf PickWallpaper, 2)
+        Dim e3 As New MenuEntry(6, "Savanna", False, AddressOf PickWallpaper, 3)
+        Dim e4 As New MenuEntry(7, "Cave", False, AddressOf PickWallpaper, 8)
+        Dim e5 As New MenuEntry(8, "River", False, AddressOf PickWallpaper, 11)
+        Dim e6 As New MenuEntry(9, "Cancel", True, AddressOf WallpaperMain)
         SetupMenu({e, e1, e2, e3, e4, e5, e6}, "Pick the wallpaper.")
     End Sub
 
     Private Sub WallpaperPackage2()
-        Dim e As New MenuEntry(3, "VOLCANO", False, AddressOf PickWallpaper, 5)
-        Dim e1 As New MenuEntry(4, "SNOW", False, AddressOf PickWallpaper, 6)
-        Dim e2 As New MenuEntry(5, "BEACH", False, AddressOf PickWallpaper, 9)
-        Dim e3 As New MenuEntry(6, "SEAFLOOR", False, AddressOf PickWallpaper, 10)
-        Dim e4 As New MenuEntry(7, "CRAG", False, AddressOf PickWallpaper, 4)
-        Dim e5 As New MenuEntry(8, "STEEL", False, AddressOf PickWallpaper, 7)
-        Dim e6 As New MenuEntry(9, "CANCEL", True, AddressOf WallpaperMain)
+        Dim e As New MenuEntry(3, "Volcano", False, AddressOf PickWallpaper, 5)
+        Dim e1 As New MenuEntry(4, "Snow", False, AddressOf PickWallpaper, 6)
+        Dim e2 As New MenuEntry(5, "Beach", False, AddressOf PickWallpaper, 9)
+        Dim e3 As New MenuEntry(6, "Seafloor", False, AddressOf PickWallpaper, 10)
+        Dim e4 As New MenuEntry(7, "Crag", False, AddressOf PickWallpaper, 4)
+        Dim e5 As New MenuEntry(8, "Steel", False, AddressOf PickWallpaper, 7)
+        Dim e6 As New MenuEntry(9, "Cancel", True, AddressOf WallpaperMain)
         SetupMenu({e, e1, e2, e3, e4, e5, e6}, "Pick the wallpaper.")
     End Sub
 
     Private Sub WallpaperPackage3()
-        Dim e As New MenuEntry(3, "VOLCANO 2", False, AddressOf PickWallpaper, 14)
-        Dim e1 As New MenuEntry(4, "CITY 2", False, AddressOf PickWallpaper, 15)
-        Dim e2 As New MenuEntry(5, "SNOW 2", False, AddressOf PickWallpaper, 16)
-        Dim e3 As New MenuEntry(6, "DESERT 2", False, AddressOf PickWallpaper, 17)
-        Dim e4 As New MenuEntry(7, "SAVANNA 2", False, AddressOf PickWallpaper, 18)
-        Dim e5 As New MenuEntry(8, "STEEL 2", False, AddressOf PickWallpaper, 19)
-        Dim e6 As New MenuEntry(9, "CANCEL", True, AddressOf WallpaperMain)
+        Dim e As New MenuEntry(3, "Volcano 2", False, AddressOf PickWallpaper, 14)
+        Dim e1 As New MenuEntry(4, "City 2", False, AddressOf PickWallpaper, 15)
+        Dim e2 As New MenuEntry(5, "Snow 2", False, AddressOf PickWallpaper, 16)
+        Dim e3 As New MenuEntry(6, "Desert 2", False, AddressOf PickWallpaper, 17)
+        Dim e4 As New MenuEntry(7, "Savanna 2", False, AddressOf PickWallpaper, 18)
+        Dim e5 As New MenuEntry(8, "Steel 2", False, AddressOf PickWallpaper, 19)
+        Dim e6 As New MenuEntry(9, "Cancel", True, AddressOf WallpaperMain)
         SetupMenu({e, e1, e2, e3, e4, e5, e6}, "Pick the wallpaper.")
     End Sub
 
     Private Sub WallpaperPackage4()
-        Dim e As New MenuEntry(3, "SYSTEM", False, AddressOf PickWallpaper, 22)
-        Dim e1 As New MenuEntry(4, "SIMPLE", False, AddressOf PickWallpaper, 13)
-        Dim e2 As New MenuEntry(5, "CHECKS", False, AddressOf PickWallpaper, 12)
-        Dim e3 As New MenuEntry(6, "SEASONS", False, AddressOf PickWallpaper, 23)
-        Dim e4 As New MenuEntry(7, "RETRO 1", False, AddressOf PickWallpaper, 20)
-        Dim e5 As New MenuEntry(8, "RETRO 2", False, AddressOf PickWallpaper, 21)
-        Dim e6 As New MenuEntry(9, "CANCEL", True, AddressOf WallpaperMain)
+        Dim e As New MenuEntry(3, "System", False, AddressOf PickWallpaper, 22)
+        Dim e1 As New MenuEntry(4, "Simple", False, AddressOf PickWallpaper, 13)
+        Dim e2 As New MenuEntry(5, "Checks", False, AddressOf PickWallpaper, 12)
+        Dim e3 As New MenuEntry(6, "Seasons", False, AddressOf PickWallpaper, 23)
+        Dim e4 As New MenuEntry(7, "Retro 1", False, AddressOf PickWallpaper, 20)
+        Dim e5 As New MenuEntry(8, "Retro 2", False, AddressOf PickWallpaper, 21)
+        Dim e6 As New MenuEntry(9, "Cancel", True, AddressOf WallpaperMain)
         SetupMenu({e, e1, e2, e3, e4, e5, e6}, "Pick the wallpaper.")
     End Sub
 
@@ -663,7 +663,7 @@ Public Class StorageSystemScreen
                     If GetBox(PickupBox).IsBattleBox = True Then
                         GetBox(PickupBox).Pokemon.Add(GetBox(PickupBox).Pokemon.Count, New PokemonWrapper(Me.MovingPokemon)) ' Me.MovingPokemon))
                     Else
-                        GetBox(PickupBox).Pokemon.Add(id, New PokemonWrapper(Me.MovingPokemon)) 'Me.MovingPokemon)
+                        GetBox(PickupBox).Pokemon.Add(id, New PokemonWrapper(Me.MovingPokemon)) ' Me.MovingPokemon)
                     End If
 
                     CurrentBox = PickupBox
@@ -834,16 +834,16 @@ Public Class StorageSystemScreen
 
                         Select Case Me.SelectionMode
                             Case SelectionModes.Withdraw
-                                e = New MenuEntry(3, "WITHDRAW", False, AddressOf WithdrawPokemon)
+                                e = New MenuEntry(3, "Withdraw", False, AddressOf WithdrawPokemon)
                             Case SelectionModes.Deposit
-                                e = New MenuEntry(3, "DEPOSIT", False, AddressOf DepositPokemon)
+                                e = New MenuEntry(3, "Deposit", False, AddressOf DepositPokemon)
                             Case Else
-                                e = New MenuEntry(3, "MOVE", False, AddressOf PickupPokemon)
+                                e = New MenuEntry(3, "Move", False, AddressOf PickupPokemon)
                         End Select
 
-                        Dim e1 As New MenuEntry(4, "SUMMARY", False, AddressOf SummaryPokemon)
-                        Dim e2 As New MenuEntry(5, "RELEASE", False, AddressOf ReleasePokemon)
-                        Dim e3 As New MenuEntry(6, "CANCEL", True, Nothing)
+                        Dim e1 As New MenuEntry(4, "Summary", False, AddressOf SummaryPokemon)
+                        Dim e2 As New MenuEntry(5, "Release", False, AddressOf ReleasePokemon)
+                        Dim e3 As New MenuEntry(6, "Cancel", True, Nothing)
                         SetupMenu({e, e1, e2, e3}, p.GetDisplayName() & " is selected.")
                     End If
                 Else
@@ -931,7 +931,7 @@ Public Class StorageSystemScreen
                 Else
                     Me.MovingPokemon.FullRestore()
                     Dim sPokemon As Pokemon = GetBox(CurrentBox).Pokemon(id).GetPokemon()
-                    GetBox(CurrentBox).Pokemon(id) = New PokemonWrapper(Me.MovingPokemon) 'Me.MovingPokemon
+                    GetBox(CurrentBox).Pokemon(id) = New PokemonWrapper(Me.MovingPokemon) ' Me.MovingPokemon
                     Me.MovingPokemon = sPokemon
                 End If
             Else
@@ -939,9 +939,9 @@ Public Class StorageSystemScreen
                     Me.MovingPokemon.FullRestore()
 
                     If GetBox(CurrentBox).IsBattleBox = True Then
-                        GetBox(CurrentBox).Pokemon.Add(GetBox(CurrentBox).Pokemon.Count, New PokemonWrapper(Me.MovingPokemon)) 'Me.MovingPokemon)
+                        GetBox(CurrentBox).Pokemon.Add(GetBox(CurrentBox).Pokemon.Count, New PokemonWrapper(Me.MovingPokemon)) ' Me.MovingPokemon)
                     Else
-                        GetBox(CurrentBox).Pokemon.Add(id, New PokemonWrapper(Me.MovingPokemon)) 'Me.MovingPokemon)
+                        GetBox(CurrentBox).Pokemon.Add(id, New PokemonWrapper(Me.MovingPokemon)) ' Me.MovingPokemon)
                     End If
 
                     Me.MovingPokemon = Nothing
@@ -992,7 +992,7 @@ Public Class StorageSystemScreen
                         nextIndex += 1
                     End While
                     Core.Player.Pokemons(CInt(Me.CursorPosition.Y)).FullRestore()
-                    GetBox(CurrentBox).Pokemon.Add(nextIndex, New PokemonWrapper(Core.Player.Pokemons(CInt(Me.CursorPosition.Y)))) 'Core.Player.Pokemons(CInt(Me.CursorPosition.Y)))
+                    GetBox(CurrentBox).Pokemon.Add(nextIndex, New PokemonWrapper(Core.Player.Pokemons(CInt(Me.CursorPosition.Y)))) ' Core.Player.Pokemons(CInt(Me.CursorPosition.Y)))
                     Core.Player.Pokemons.RemoveAt(CInt(Me.CursorPosition.Y))
                 Else
                     Dim e As New MenuEntry(3, "OK", True, Nothing)
@@ -1048,11 +1048,11 @@ Public Class StorageSystemScreen
             End If
 
             If p.IsEgg() = False Then
-                Dim e1 As New MenuEntry(3, "NO", True, AddressOf SelectPokemon)
-                Dim e As New MenuEntry(4, "YES", False, AddressOf ConfirmRelease)
+                Dim e1 As New MenuEntry(3, "No", True, AddressOf SelectPokemon)
+                Dim e As New MenuEntry(4, "Yes", False, AddressOf ConfirmRelease)
                 Me.SetupMenu({e1, e}, "Release " & p.GetDisplayName() & "?")
             Else
-                Me.SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Cannot release an egg.")
+                Me.SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Cannot release an Egg.")
             End If
         Else
             Me.SetupMenu({New MenuEntry(3, "OK", True, Nothing)}, "Cannot release the last Pokémon.")
@@ -1074,7 +1074,7 @@ Public Class StorageSystemScreen
             b.Pokemon.Clear()
 
             For i = 0 To p.Count - 1
-                b.Pokemon.Add(i, New PokemonWrapper(p(i))) 'p(i))
+                b.Pokemon.Add(i, New PokemonWrapper(p(i))) ' p(i))
             Next
         End If
     End Sub
@@ -1084,7 +1084,7 @@ Public Class StorageSystemScreen
 #Region "Draw"
 
     Public Overrides Sub Draw()
-        'Draw3DModel()
+        ' Draw3DModel()
         DrawMainWindow()
         DrawPokemonStatus()
 
@@ -1270,7 +1270,7 @@ Public Class StorageSystemScreen
                     maxPokemon = 6
                 End If
 
-                Dim t As String = "BOX:  " & box.Name & vbNewLine & "POKéMON:  " & box.Pokemon.Count & " / " & maxPokemon & vbNewLine & "LEVEL:  " & levelString
+                Dim t As String = "Box:  " & box.Name & vbNewLine & "Pokémon:  " & box.Pokemon.Count & " / " & maxPokemon & vbNewLine & "Level:  " & levelString
 
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(667, 417), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(665, 415), Color.White)
@@ -1329,8 +1329,8 @@ Public Class StorageSystemScreen
                 Canvas.DrawRectangle(New Rectangle(660, 410, 200, 210), c)
 
                 If p.IsEgg() = True Then
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "EGG", New Vector2(667, 417), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "EGG", New Vector2(665, 415), Color.White)
+                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Egg", New Vector2(667, 417), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Egg", New Vector2(665, 415), Color.White)
                 Else
                     Dim itemString As String = "None"
                     If Not p.Item Is Nothing Then
@@ -1508,7 +1508,7 @@ Public Class StorageSystemScreen
     End Function
 
     ''' <summary>
-    ''' Adds a pokemon to the next free spot and returns the index of that box
+    ''' Adds a Pokémon to the next free spot and returns the index of that box.
     ''' </summary>
     Public Shared Function DepositPokemon(ByVal p As Pokemon, Optional ByVal BoxIndex As Integer = -1) As Integer
         p.FullRestore()
@@ -1523,7 +1523,7 @@ Public Class StorageSystemScreen
             If GetBox(i, Boxes).Pokemon.Count < 30 Then
                 For l = 0 To 29
                     If GetBox(i, Boxes).Pokemon.Keys.Contains(l) = False Then
-                        GetBox(i, Boxes).Pokemon.Add(l, New PokemonWrapper(p)) 'p)
+                        GetBox(i, Boxes).Pokemon.Add(l, New PokemonWrapper(p)) ' p)
                         Exit For
                     End If
                 Next
@@ -1537,7 +1537,7 @@ Public Class StorageSystemScreen
                 If GetBox(i, Boxes).Pokemon.Count < 30 Then
                     For l = 0 To 29
                         If GetBox(i, Boxes).Pokemon.Keys.Contains(l) = False Then
-                            GetBox(i, Boxes).Pokemon.Add(l, New PokemonWrapper(p)) 'p)
+                            GetBox(i, Boxes).Pokemon.Add(l, New PokemonWrapper(p)) ' p)
                             Exit For
                         End If
                     Next
@@ -1798,7 +1798,7 @@ Public Class StorageSystemScreen
             End If
         Next
 
-        'Prevent more than 6 pokemon:
+        ' Prevent more than six Pokémon:
         While PokemonList.Count > 6
             PokemonList.RemoveAt(PokemonList.Count - 1)
         End While
@@ -2153,7 +2153,7 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectPokemonLetter(ByVal s As SelectMenu)
         Select Case s.SelectedItem
             Case "Back"
-                'go back
+                ' Go back.
             Case "Clear"
                 For Each Filter As StorageSystemScreen.Filter In Me.Filters
                     If Filter.FilterType = StorageSystemScreen.FilterTypes.Pokémon Then
@@ -2223,7 +2223,7 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectType1Type(ByVal s As SelectMenu)
         Select Case s.SelectedItem
             Case "Back"
-                'Go back
+                ' Go back.
             Case "Clear"
                 For Each Filter As StorageSystemScreen.Filter In Me.Filters
                     If Filter.FilterType = StorageSystemScreen.FilterTypes.Type1 Then
@@ -2270,7 +2270,7 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectType2Type(ByVal s As SelectMenu)
         Select Case s.SelectedItem
             Case "Back"
-                'Go back
+                ' Go back.
             Case "Clear"
                 For Each Filter As StorageSystemScreen.Filter In Me.Filters
                     If Filter.FilterType = StorageSystemScreen.FilterTypes.Type2 Then
@@ -2319,7 +2319,7 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectMoveLetter(ByVal s As SelectMenu)
         Select Case s.SelectedItem
             Case "Back"
-                'go back
+                ' Go back.
             Case "Clear"
                 For Each Filter As StorageSystemScreen.Filter In Me.Filters
                     If Filter.FilterType = StorageSystemScreen.FilterTypes.Move Then
@@ -2391,7 +2391,7 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectAbilityLetter(ByVal s As SelectMenu)
         Select Case s.SelectedItem
             Case "Back"
-                'go back
+                ' Go back.
             Case "Clear"
                 For Each Filter As StorageSystemScreen.Filter In Me.Filters
                     If Filter.FilterType = StorageSystemScreen.FilterTypes.Ability Then
@@ -2461,7 +2461,7 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectNatureType(ByVal s As SelectMenu)
         Select Case s.SelectedItem
             Case "Back"
-                'Go back
+                ' Go back.
             Case "Clear"
                 For Each Filter As StorageSystemScreen.Filter In Me.Filters
                     If Filter.FilterType = StorageSystemScreen.FilterTypes.Nature Then
@@ -2508,7 +2508,7 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectGenderType(ByVal s As SelectMenu)
         Select Case s.SelectedItem
             Case "Back"
-                'Go back
+                ' Go back.
             Case "Clear"
                 For Each Filter As StorageSystemScreen.Filter In Me.Filters
                     If Filter.FilterType = StorageSystemScreen.FilterTypes.Gender Then
@@ -2546,7 +2546,7 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectHeldItemType(ByVal s As SelectMenu)
         Select Case s.SelectedItem
             Case "Back"
-                'Go back
+                ' Go back.
             Case "Clear"
                 For Each Filter As StorageSystemScreen.Filter In Me.Filters
                     If Filter.FilterType = StorageSystemScreen.FilterTypes.HeldItem Then

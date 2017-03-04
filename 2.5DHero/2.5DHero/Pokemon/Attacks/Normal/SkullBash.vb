@@ -122,6 +122,14 @@
             End If
         End Function
 
+        Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnSkullBashCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppSkullBashCounter = 0
+            End If
+        End Sub
+
         Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
             Dim skullBash As Integer = BattleScreen.FieldEffects.OwnSkullBashCounter
             If own = False Then
@@ -155,6 +163,21 @@
             MoveFails(own, BattleScreen)
         End Sub
 
+        Public Overrides Sub InflictedFlinch(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsSleeping(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub HurtItselfInConfusion(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsAttracted(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
     End Class
 
 End Namespace

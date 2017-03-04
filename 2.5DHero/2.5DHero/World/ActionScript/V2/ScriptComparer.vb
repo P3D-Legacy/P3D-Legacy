@@ -10,7 +10,7 @@ Namespace ScriptVersion2
         Public Class DefaultNullObj
 
             Public Overrides Function ToString() As String
-                Return "return:void" 'Just return "void" when this gets used as string to indicate that this type got returned.
+                Return "return:void" ' Just return "void" when this gets used as string to indicate that this type got returned.
             End Function
 
         End Class
@@ -321,11 +321,11 @@ Namespace ScriptVersion2
         End Function
 
 
-        '//////////////////////////////////////////////////////////
-        '//
-        '// Shortens the ScriptConversion methods to shorter names.
-        '//
-        '//////////////////////////////////////////////////////////
+        ' //////////////////////////////////////////////////////////
+        ' //
+        ' // Shortens the ScriptConversion methods to shorter names.
+        ' //
+        ' //////////////////////////////////////////////////////////
 
         Private Shared Function int(ByVal expression As Object) As Integer
             Return ScriptConversion.ToInteger(expression)

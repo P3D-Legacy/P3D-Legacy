@@ -59,7 +59,7 @@
         End If
     End Sub
 
-    Public Overrides  Sub Draw()
+    Public Overrides Sub Draw()
         If reduce = False Then
             OldScreen.Draw()
         Else

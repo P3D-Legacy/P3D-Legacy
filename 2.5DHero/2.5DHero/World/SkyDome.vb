@@ -61,13 +61,13 @@
     Public Sub Draw(ByVal FOV As Single)
         If Core.GameOptions.GraphicStyle = 1 Then
             If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside Then
-                If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then 'Don't render the sky if weather is set to Fog
-                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch() + Math.PI), True, TextureSun, 100, Me.GetSunAlpha()) 'Draw sun
-                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch()), True, TextureMoon, 100, GetStarsAlpha()) 'Draw moon
-                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch()), True, TextureDown, 50, GetStarsAlpha()) 'Draw stars half 1
-                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch()), False, TextureDown, 50, GetStarsAlpha()) 'Draw stars half 2
-                    RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, GetCloudsTexture(), 15, GetCloudAlpha()) 'Draw clouds back layer
-                    RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 10, GetCloudAlpha()) 'Draw clouds front layer
+                If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then ' Don't render the sky if the weather is set to Fog.
+                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch() + Math.PI), True, TextureSun, 100, Me.GetSunAlpha()) ' Draw the Sun.
+                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch()), True, TextureMoon, 100, GetStarsAlpha()) ' Draw the Moon.
+                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch()), True, TextureDown, 50, GetStarsAlpha()) ' Draw the first half of the stars.
+                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch()), False, TextureDown, 50, GetStarsAlpha()) ' Draw the second half of the stars.
+                    RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, GetCloudsTexture(), 15, GetCloudAlpha()) ' Draw the back layer of the clouds.
+                    RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 10, GetCloudAlpha()) ' Draw the front layer of the clouds.
                 End If
             Else
                 RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 8.0F, 1.0F)
@@ -190,22 +190,22 @@
         Dim progress As Integer = GetTimeValue()
 
         If progress >= 1080 And progress < 1140 Then
-            'Between 6PM and 7PM, the sun fades away in 60 stages:
+            ' Between 6:00:00 PM and 7:00:00 PM, the Sun will fade away with 60 stages:
             Dim i As Single = progress - 1080
             Dim percent As Single = i / 60 * 100
 
             Return 1.0F - percent / 100.0F
         ElseIf progress >= 300 And progress < 360 Then
-            'Between 5AM and 6AM, the sun fades in in 60 stages:
+            ' Between 5:00:00 AM and 6:00:00 Am, the Sun will fade in with 60 stages:
             Dim i As Single = progress - 300
             Dim percent As Single = i / 60 * 100
 
             Return percent / 100.0F
         ElseIf progress >= 1140 Or progress < 300 Then
-            'Between 7PM and 5AM, the sun is invisible:
+            ' Between 7:00:00 PM and 5:00:00 AM, the Sun will be invisible:
             Return 0.0F
         Else
-            'Between 6AM and 6PM, the sun is fully visible:
+            ' Between 6:00:00 AM and 6:00:00 PM, the Sun will be fully visible:
             Return 1.0F
         End If
     End Function

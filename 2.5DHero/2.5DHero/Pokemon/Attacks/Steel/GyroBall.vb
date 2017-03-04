@@ -61,7 +61,10 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            Dim basepower As Integer = CInt(Math.Ceiling(25 * (op.Speed / p.Speed)))
+            Dim p_Speed As Integer = BattleCalculation.DetermineBattleSpeed(own, BattleScreen)
+            Dim op_Speed As Integer = BattleCalculation.DetermineBattleSpeed(Not own, BattleScreen)
+
+            Dim basepower As Integer = CInt(Math.Ceiling(25 * (op_Speed / p_Speed)))
 
             basepower = basepower.Clamp(1, 150)
 

@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @pokemon commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @pokemon commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoPokemon(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -23,7 +23,7 @@
                         Core.Player.Pokemons.RemoveAt(index)
                     End If
                 Case "add"
-                    'PokemonID,Level,Method,Ball,Location,IsEgg,TrainerName
+                    ' PokemonID,Level,Method,Ball,Location,IsEgg,TrainerName
 
                     If argument.StartsWith("{") = True Or argument.Remove(0, 1).StartsWith(",{") = True Then
                         Dim insertIndex As Integer = Core.Player.Pokemons.Count
@@ -433,7 +433,7 @@
                     End If
                 Case "registerhalloffame"
                     Dim count As Integer = -1
-
+                    Dim NewHallOfFameData As String = ""
                     If Core.Player.HallOfFameData <> "" Then
                         Dim data() As String = Core.Player.HallOfFameData.SplitAtNewline()
 
@@ -441,6 +441,13 @@
                             Dim id As Integer = CInt(l.Remove(l.IndexOf(",")))
                             If id > count Then
                                 count = id
+                            End If
+                        Next
+
+                        For Each l As String In data
+                            Dim id As Integer = CInt(l.Remove(l.IndexOf(",")))
+                            If id > (count - 19) OrElse id = 0 Then 'last 20 entries saved, plus the first entry
+                                NewHallOfFameData &= l & vbNewLine
                             End If
                         Next
                     End If
@@ -459,16 +466,13 @@
 
                     For Each p As Pokemon In Core.Player.Pokemons
                         If p.IsEgg() = False Then
-                            Dim pData As String = p.GetSaveData()
+                            Dim pData As String = p.GetHallOfFameData()
                             newData &= vbNewLine & count & "," & pData
                         End If
                     Next
 
-                    If Core.Player.HallOfFameData <> "" Then
-                        Core.Player.HallOfFameData &= vbNewLine
-                    End If
-
-                    Core.Player.HallOfFameData &= newData
+                    NewHallOfFameData &= newData
+                    Core.Player.HallOfFameData = NewHallOfFameData
                 Case "setot"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
                     Dim OT As String = argument.GetSplit(1, ",")
@@ -525,7 +529,7 @@
                         Core.Player.Pokemons(Index).CatchLocation = place
                     End If
                 Case "newroaming"
-                    'PokémonID,Level,regionID,startLevelFile,MusicLoop
+                    ' PokémonID,Level,regionID,startLevelFile,MusicLoop
                     Dim data() As String = argument.Split(CChar(","))
                     Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(data(0)))
                     p.Generate(CInt(data(1)), True)
@@ -585,6 +589,7 @@
                     End If
                 Case "sendtostorage"
                     ' @Pokemon.SendToStorage(PokeIndex, [BoxIndex])
+
                     Dim Data() As String = argument.Split(CChar(","))
 
                     If Data.Length = 1 Then
@@ -688,6 +693,24 @@
                         If Pokemon.IsEgg() = False Then
                             Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, pokedexType)
                         End If
+                    End If
+                Case "addsteps"
+                    ' @Pokemon.AddSteps(PokemonIndex, StepsToAdd)
+
+                    Dim Index As Integer = int(argument.GetSplit(0, ","))
+                    Dim StepsToAdd As Integer = int(argument.GetSplit(1, ","))
+
+                    If Core.Player.Pokemons.Count - 1 >= Index Then
+                        Core.Player.Pokemons(Index).EggSteps += StepsToAdd
+                    End If
+                Case "setsteps"
+                    ' @Pokemon.SetSteps(PokemonIndex, StepsToSet)
+
+                    Dim Index As Integer = int(argument.GetSplit(0, ","))
+                    Dim StepsToSet As Integer = int(argument.GetSplit(1, ","))
+
+                    If Core.Player.Pokemons.Count - 1 >= Index Then
+                        Core.Player.Pokemons(Index).EggSteps = StepsToSet
                     End If
             End Select
 

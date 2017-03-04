@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @pokedex commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @pokedex commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoPokedex(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -18,7 +18,7 @@
             End Select
 
             IsReady = True
-        End Sub 'crash handle
+        End Sub ' Crash Handler
 
     End Class
 

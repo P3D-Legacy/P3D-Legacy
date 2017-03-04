@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @daycare commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @daycare commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoDayCare(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -131,7 +131,7 @@
             End Select
 
             IsReady = True
-        End Sub 'crash handle
+        End Sub ' Crash Handler
 
     End Class
 

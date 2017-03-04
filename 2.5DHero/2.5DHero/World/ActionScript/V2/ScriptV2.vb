@@ -160,8 +160,8 @@
     End Sub
 
     Private Sub DoWhile()
-        'if T equals false, go straight to :endwhile and clear any existing while query, else initialize a while query that collects every single script line that gets executed starting with :while and ending with :endwhile
-        'a exitwhile directly goes to :endwhile and clears the query
+        ' If T equals false, go straight to :endwhile and clear any existing while query, else initialize a while query that collects every single script line that gets executed starting with :while and ending with :endwhile.
+        ' A exitwhile directly goes to :endwhile and clears the query.
         Dim T As Boolean = CheckCondition()
 
         If T = True Then
@@ -171,7 +171,7 @@
             ActionScript.CSL().WhileQuery.Clear()
             ActionScript.CSL().WhileQueryInitialized = False
 
-            'Skip to endwhile:
+            ' Skip to endwhile:
 
             Dim oS As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
             While oS.ActionScript.Scripts.Count > 0 AndAlso oS.ActionScript.Scripts(0).ScriptV2.ScriptType <> ScriptTypes.endwhile
@@ -186,7 +186,7 @@
         ActionScript.CSL().WhileQuery.Clear()
         ActionScript.CSL().WhileQueryInitialized = True
 
-        'Skip to endwhile:
+        ' Skip to endwhile:
 
         Dim oS As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
         While oS.ActionScript.Scripts.Count > 0 AndAlso oS.ActionScript.Scripts(0).ScriptV2.ScriptType <> ScriptTypes.endwhile

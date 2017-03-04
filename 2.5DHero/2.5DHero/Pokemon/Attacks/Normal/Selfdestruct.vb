@@ -19,7 +19,7 @@
             Me.Description = "The user attacks everything around it by causing an explosion. The user faints upon using this move."
             Me.CriticalChance = 1
             Me.IsHMMove = False
-            Me.Target = Targets.OneAdjacentTarget
+            Me.Target = Targets.AllTargets
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End

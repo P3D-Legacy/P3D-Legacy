@@ -147,6 +147,55 @@
             End If
         End Sub
 
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim solarBeam As Integer = BattleScreen.FieldEffects.OwnSolarBeam
+            If own = False Then
+                solarBeam = BattleScreen.FieldEffects.OppSolarBeam
+            End If
+
+            If solarBeam = 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
+
+        Private Sub MoveFails(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnSolarBeam = 0
+            Else
+                BattleScreen.FieldEffects.OppSolarBeam = 0
+            End If
+        End Sub
+
+        Public Overrides Sub MoveMisses(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub AbsorbedBySubstitute(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub MoveProtectedDetected(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub InflictedFlinch(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsSleeping(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub HurtItselfInConfusion(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsAttracted(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
     End Class
 
 End Namespace

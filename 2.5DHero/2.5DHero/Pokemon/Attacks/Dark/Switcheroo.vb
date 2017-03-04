@@ -62,47 +62,51 @@ Namespace BattleSystem.Moves.Dark
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
-
+            Dim CanSwitchItems As Boolean = True
             If p.Item Is Nothing And op.Item Is Nothing Then
-                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-            Else
-                If p.Ability.Name.ToLower() = "sticky hold" Or op.Ability.Name.ToLower() = "sticky hold" Then
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                Else
-                    If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower() = "griseous orb" AndAlso p.Number = 487 Then
-                        BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                    Else
-                        If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                        Else
-                            If CheckMultitypePlate(p, op) = False Then
-                                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                            Else
-                                If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                                Else
-                                    If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
-                                        BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                                        If p.Item.IsMegaStone OrElse op.Item.IsMegaStone Then
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-                                        Else
-                                            Dim i1 As Item = p.Item
-                                            Dim i2 As Item = op.Item
-                                            p.Item = i2
-                                            op.Item = i1
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " switched items with " & op.GetDisplayName() & "."))
-                                        End If
-                                    End If
-                                End If
-                            End If
-                        End If
-                    End If
+                CanSwitchItems = False
+            End If
+            If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) AndAlso op.Ability.Name.ToLower() = "sticky hold" Then
+                CanSwitchItems = False
+            End If
+            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower() = "griseous orb" AndAlso p.Number = 487 Then
+                CanSwitchItems = False
+            End If
+            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
+                CanSwitchItems = False
+            End If
+            If CheckMultitypePlate(p, op) = False Then
+                CanSwitchItems = False
+            End If
+            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
+                CanSwitchItems = False
+            End If
+            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+                CanSwitchItems = False
+            End If
+            If (p.Item IsNot Nothing AndAlso p.Item.IsMegaStone) OrElse (op.Item IsNot Nothing AndAlso op.Item.IsMegaStone) Then
+                CanSwitchItems = False
+            End If
+
+            If CanSwitchItems Then
+                Dim i1 As Item = Nothing
+                Dim i2 As Item = Nothing
+                If p.Item IsNot Nothing Then
+                    i1 = p.Item
                 End If
+                If op.Item IsNot Nothing Then
+                    i2 = op.Item
+                End If
+                p.Item = i2
+                op.Item = i1
+                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " switched items with " & op.GetDisplayName() & "."))
+            Else
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
         End Sub
 
         Private Function CheckMultitypePlate(ByVal p As Pokemon, ByVal op As Pokemon) As Boolean
-            If p.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() = "multitype" Then
+            If p.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "multitype" Then
                 Return True
             Else
                 If Not p.Item Is Nothing Then

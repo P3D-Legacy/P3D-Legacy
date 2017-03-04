@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @battle commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @battle commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoBattle(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -87,11 +87,11 @@
 
                     CanContinue = False
                 Case "wild"
-                    'ID,    Level,  [shiny],    [musicloop],    [introtype]
-                    'int    int     -1 or bool  string          int
+                    ' ID,    Level,  [shiny],    [musicloop],    [introtype]
+                    ' int    int     -1 or bool  string          int
 
-                    'optional:
-                    '{pokemondata},             [musicloop],    [introtype]
+                    ' optional:
+                    ' {pokemondata},             [musicloop],    [introtype]
 
                     Dim p As Pokemon = Nothing
                     Dim musicLoop As String = ""

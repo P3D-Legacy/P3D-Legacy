@@ -169,9 +169,9 @@
                             Case 9
                                 AnimationIndex = 10
                                 Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, p))
-                            Case 10 'After Catch
+                            Case 10 ' After Catch
                                 If p.CatchBall.ID = 186 Then
-                                    p.FullRestore() 'Heal Ball
+                                    p.FullRestore() ' Heal Ball
                                 End If
 
                                 PlayerStatistics.Track("Caught Pokemon", 1)
@@ -181,7 +181,7 @@
                                 Core.SetScreen(Me.PreScreen)
                                 BattleSystem.Battle.Won = True
                                 CType(Core.CurrentScreen, BattleSystem.BattleScreen).EndBattle(False)
-                            Case 20 'Failed
+                            Case 20 ' Failed
                                 If Core.Player.Pokemons.Count < 6 Then
                                     Dim p As Pokemon = BattleScreen.OppPokemon
                                     p.SetCatchInfos(Me.Ball, "Illegally caught!")
@@ -190,7 +190,7 @@
                                 End If
                                 ResetVisibility()
                                 Core.SetScreen(Me.PreScreen)
-                            Case 21 'After Break
+                            Case 21 ' After Break
                                 ResetVisibility()
                                 Core.SetScreen(Me.PreScreen)
                                 CType(Core.CurrentScreen, BattleSystem.BattleScreen).Battle.InitializeRound(CType(Core.CurrentScreen, BattleSystem.BattleScreen), New BattleSystem.Battle.RoundConst() With {.StepType = BattleSystem.Battle.RoundConst.StepTypes.Text, .Argument = "It broke free!"})
@@ -282,7 +282,7 @@
                 Animations.Add(New BARotation(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(0, 0, 0.05F), New Vector3(0, 0, 1.0F), 0.0F, 4.0F, False, False, True, True))
             Case 4, 6
                 Animations.Add(New BARotation(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(0, 0, -0.05F), New Vector3(0, 0, -1.0F), 0.0F, 4.0F, False, False, True, True))
-            Case 7 'Catch Animation
+            Case 7 ' Catch Animation
                 For i = 0 To 2
                     Dim v As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z)
 
@@ -291,7 +291,7 @@
                 Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), 0.02F, 0.0F, 6.0F))
             Case 8
                 Animations.Add(New BAOpacity(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), 0.01F, False, 0.0F, 0.0F, 0.0F))
-            Case 21 'Break Animation
+            Case 21 ' Break Animation
 
         End Select
     End Sub

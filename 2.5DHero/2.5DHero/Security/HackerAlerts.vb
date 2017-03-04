@@ -14,16 +14,16 @@
 
         Private Shared Sub TimerTick()
             t.Stop()
-            Dim text As String = "Hey, we have detected that you attempted to hack the game. Please don't do that. We are trying to create an online experience where everyone is set equal, where everyone can play the game and achieve about the same things by playing the same amount of time.
-So please reconsider utilizing certain RAM editing tools in Pokémon3D.
+            Dim text As String = "Hello. We have detected that you attempted to hack the game. Please don't do that. We are trying to create an online experience where everyone is set equal, where everyone can play the game and achieve about the same things by playing the same amount of time.
+So please reconsider utilizing certain RAM editing tools in Pokémon 3D.
 Of course, you are free to use those whenever you want in Offline Mode, since that is essentially a Sandbox for you to play around in.
-To remove these messages and the reverse texture effects, contact a staff member on the forums here: 
+To remove these messages and the reverse texture effects, consider following this link: 
 
-http://www.pokemon3d.net/forum/
+http://pokemon3d.net/forum/faq/44/
 
 Thank you for your cooperation."
 
-            MsgBox(text, MsgBoxStyle.OkOnly, "Pokémon3D Injection Shield")
+            MsgBox(text, MsgBoxStyle.OkOnly, "Pokémon 3D Injection Shield")
 
             t.Start()
         End Sub

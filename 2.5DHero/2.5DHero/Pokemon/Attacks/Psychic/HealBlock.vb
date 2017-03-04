@@ -19,14 +19,14 @@
             Me.Description = "For five turns, the user prevents the opposing team from using any moves, Abilities, or held items that recover HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False
-            Me.Target = Targets.OneFoe
+            Me.Target = Targets.AllFoes
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
 
             '#SpecialDefinitions
             Me.MakesContact = False
-            Me.ProtectAffected = True
+            Me.ProtectAffected = False
             Me.MagicCoatAffected = True
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True

@@ -233,7 +233,7 @@
                 If Not String.IsNullOrWhiteSpace(Core.Player.RoamingPokemonData) Then
                     If Core.Player.RoamingPokemonData.Length > 0 AndAlso Core.Player.RoamingPokemonData.Contains("|") Then
                         For Each Pokes As String In Core.Player.RoamingPokemonData.SplitAtNewline
-                            'PokémonID,Level,regionID,startLevelFile,MusicLoop,PokemonData
+                            ' PokémonID,Level,regionID,startLevelFile,MusicLoop,PokemonData
                             Dim TempData() As String = Pokes.Split("|")
                             Dim MapFiles() As String = Tags("mapfiles").Split(",")
                             Dim PokeCurrentLocation As String = TempData(3)
@@ -373,7 +373,7 @@
             regionPointer = 0
         End If
 
-        'regionPointer = regionPointer.Clamp(0, Me.regions.Count - 1)
+        ' regionPointer = regionPointer.Clamp(0, Me.regions.Count - 1)
 
         If regionPointer <> cPointer Then
             Me.currentRegion = regions(regionPointer)
@@ -480,7 +480,7 @@
 
         Dim regionString As String = Localization.GetString(Me.currentRegion(0).ToString().ToUpper() & Me.currentRegion.Remove(0, 1))
         If Me.regions.Count > 1 Then
-            regionString &= " (Press Shift/Shoulder Buttons to switch between regions)"
+            regionString &= " (Press the Shift/Shoulder Buttons to switch between regions.)"
         End If
 
         Core.SpriteBatch.DrawString(FontManager.InGameFont, regionString, New Vector2(MapScreen.mapOffsetX + 3, MapScreen.mapOffsetY - 30), Color.Black)
@@ -491,7 +491,7 @@
     End Sub
 
     Private Sub DrawSwitch()
-        'Cities:
+        ' Cities:
         Dim r As New Rectangle(104, 0, 12, 12)
         If drawObjects(0) = False Then
             r = New Rectangle(116, 0, 12, 12)
@@ -499,7 +499,7 @@
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 100, 24, 24), r, New Color(255, 255, 255, 220))
         Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 137, 103), Color.Black)
         Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_cities"), New Vector2(Core.windowSize.Width - 140, 100), Color.White)
-        'Routes:
+        ' Routes:
         r = New Rectangle(104, 12, 12, 12)
         If drawObjects(1) = False Then
             r = New Rectangle(116, 12, 12, 12)
@@ -507,7 +507,7 @@
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 130, 24, 24), r, New Color(255, 255, 255, 220))
         Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 137, 133), Color.Black)
         Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_routes"), New Vector2(Core.windowSize.Width - 140, 130), Color.White)
-        'Places:
+        ' Places:
         r = New Rectangle(104, 24, 12, 12)
         If drawObjects(2) = False Then
             r = New Rectangle(116, 24, 12, 12)
@@ -515,7 +515,7 @@
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 160, 24, 24), r, New Color(255, 255, 255, 220))
         Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 137, 163), Color.Black)
         Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("map_screen_places"), New Vector2(Core.windowSize.Width - 140, 160), Color.White)
-        'Roaming:
+        ' Roaming:
         r = New Rectangle(111, 64, 17, 16)
         If drawObjects(3) = False Then
             r = New Rectangle(111, 80, 17, 16)

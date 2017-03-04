@@ -11,7 +11,7 @@ Namespace Items.Standard
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 
         Public Sub New()
-            _textureRectangle = New Rectangle(168, 384, 24, 24)
+            _textureRectangle = New Rectangle(168, 288, 24, 24)
         End Sub
 
     End Class

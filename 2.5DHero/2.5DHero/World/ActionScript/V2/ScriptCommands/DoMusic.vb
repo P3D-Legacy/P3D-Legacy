@@ -2,9 +2,9 @@
 
     Partial Class ScriptCommander
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the @music commands.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the @music commands.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Sub DoMusic(ByVal subClass As String)
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
@@ -17,6 +17,9 @@
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         Screen.Level.MusicLoop = argument
                     End If
+                Case "forceplay"
+                    MusicManager.IgnoreLastSong()
+                    MusicManager.PlayMusic(argument)
                 Case "setmusicloop"
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         Screen.Level.MusicLoop = argument

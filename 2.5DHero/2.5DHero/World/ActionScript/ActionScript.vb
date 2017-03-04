@@ -94,10 +94,10 @@ nextScript:
     Public Shared IsInsightScript As Boolean = False
 
     ''' <summary>
-    ''' Starts a script
+    ''' Starts a script.
     ''' </summary>
-    ''' <param name="Input">The input string</param>
-    ''' <param name="InputType">Type of information; 0: Script path, 1: Text, 2: Direct input</param>
+    ''' <param name="Input">The input string.</param>
+    ''' <param name="InputType">Type of information; 0: Script path, 1: Text, 2: Direct input.</param>
     Public Sub StartScript(ByVal Input As String, ByVal InputType As Integer, Optional ByVal CheckDelay As Boolean = True, Optional ByVal ResetInsight As Boolean = True)
         ScriptLevelIndex += 1
 
@@ -114,7 +114,7 @@ nextScript:
 
         If reDelay = 0.0F Or CheckDelay = False Then
             Select Case InputType
-                Case 0 'Start script from file
+                Case 0 ' Start a script from a file.
                     Logger.Debug("Start script (ID: " & Input & ")")
                     l.ScriptName = "Type: Script; Input: " & Input
 
@@ -132,7 +132,7 @@ nextScript:
                     Else
                         Logger.Log(Logger.LogTypes.ErrorMessage, "ActionScript.vb: The script file """ & path & """ doesn't exist!")
                     End If
-                Case 1 'Display text
+                Case 1 ' Display text.
                     Logger.Debug("Start Script (Text: " & Input & ")")
                     l.ScriptName = "Type: Text; Input: " & Input
 
@@ -141,7 +141,7 @@ nextScript:
                     Dim ScriptData() As String = Data.Split(CChar("^"))
 
                     AddScriptLines(ScriptData)
-                Case 2 'Start script from direct input
+                Case 2 ' Start a script from direct input.
                     Dim activator As String = Environment.StackTrace.Split(vbNewLine)(3)
                     activator = activator.Remove(activator.IndexOf("("))
 

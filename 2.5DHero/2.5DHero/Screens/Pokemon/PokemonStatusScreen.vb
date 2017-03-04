@@ -77,10 +77,10 @@
                 End If
             End If
         Else
-            If Me.AttackPos < 320.0F Then
+            If Me.AttackPos < 340.0F Then
                 Me.AttackPos += 15.0F
-                If Me.AttackPos >= 320.0F Then
-                    Me.AttackPos = 320.0F
+                If Me.AttackPos >= 340.0F Then
+                    Me.AttackPos = 340.0F
                 End If
             End If
 
@@ -195,7 +195,7 @@
     Private Sub DrawHeader()
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
-        'EVColors:
+        ' Effort Value colors:
         With Me.Pokemon
             Dim AllEVs As Integer = .EVHP + .EVAttack + .EVDefense + .EVSpAttack + .EVSpDefense + .EVSpeed
 
@@ -241,7 +241,7 @@
             Core.SpriteBatch.Draw(Pokemon.Item.Texture, New Rectangle(118, 150, 28, 28), Color.White)
         End If
 
-        'Portray
+        ' Portray:
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(60, 196, 128, 128))
         Core.SpriteBatch.Draw(Pokemon.GetTexture(FrontView), New Rectangle(74, 208, 124, 124), Color.White)
         Core.SpriteBatch.Draw(Pokemon.CatchBall.Texture, New Rectangle(74, 318, 24, 24), Color.White)
@@ -249,7 +249,7 @@
             Core.SpriteBatch.Draw(MainTexture, New Rectangle(78, 218, 18, 18), New Rectangle(118, 4, 9, 9), Color.White)
         End If
 
-        'Other:
+        ' Other:
         If Me.Pokemon.EggSteps = 0 Then
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(60, 356, 128, 224))
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(76, 380, 48, 16), Me.Pokemon.Type1.GetElementImage(), Color.White)
@@ -285,7 +285,7 @@
         Dim p As Vector2 = New Vector2(140, 180)
 
         With Core.SpriteBatch
-            'Stats:
+            ' Stats:
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 196, 320, 256))
             Dim barX As Integer = CInt((Pokemon.HP / Pokemon.MaxHP) * 150)
             Dim barRectangle As Rectangle
@@ -353,7 +353,7 @@
             .DrawString(FontManager.MiniFont, blueText, New Vector2(CInt(p.X + 100), CInt(p.Y + 68)), Color.Blue)
             .DrawString(FontManager.MiniFont, Pokemon.HP & " / " & Pokemon.MaxHP & vbNewLine & vbNewLine & Pokemon.Attack & vbNewLine & vbNewLine & Pokemon.Defense & vbNewLine & vbNewLine & Pokemon.SpAttack & vbNewLine & vbNewLine & Pokemon.SpDefense & vbNewLine & vbNewLine & Pokemon.Speed, New Vector2(CInt(p.X + 280), CInt(p.Y + 68)), Color.Black)
 
-            'Experience:
+            ' Experience Points:
             If Pokemon.Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
                 Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 484, 320, 96))
 
@@ -404,13 +404,13 @@
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
         Dim p As Vector2 = New Vector2(140, 180)
 
-        'Catchinfos
+        ' Capture Information: 
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 196, 320, 96))
         With Core.SpriteBatch
             .DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_OT") & ": " & Pokemon.OT & " /" & Pokemon.CatchTrainerName & vbNewLine & vbNewLine & Pokemon.CatchMethod & vbNewLine & Pokemon.CatchLocation, New Vector2(238, 214), Color.DarkBlue)
         End With
 
-        'Item:
+        ' Item:
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 324, 320, 128))
         If Me.Pokemon.EggSteps = 0 Then
             If Not Pokemon.Item Is Nothing Then
@@ -422,7 +422,7 @@
             End If
         End If
 
-        'Ability:
+        ' Ability:
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 484, 320, 96))
         If Me.Pokemon.EggSteps = 0 Then
             With Core.SpriteBatch
@@ -485,8 +485,8 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_power") & ": " & power & vbNewLine & Localization.GetString("poke_status_screen_accuracy") & ": " & acc & vbNewLine & vbNewLine & t, New Vector2(CInt(572 - 300 + AttackPos), 218), Color.Black)
-                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(572 - 150 + AttackPos), 222, 56, 28), Color.White)
+                .DrawString(FontManager.MiniFont, Localization.GetString("poke_status_screen_power") & ": " & power & vbNewLine & Localization.GetString("poke_status_screen_accuracy") & ": " & acc & vbNewLine & vbNewLine & t, New Vector2(CInt(552 - 300 + AttackPos), 218), Color.Black)
+                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(552 - 150 + AttackPos), 222, 56, 28), Color.White)
             End With
 
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 196, 320, 384))

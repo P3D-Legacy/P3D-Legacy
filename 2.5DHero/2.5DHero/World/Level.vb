@@ -19,16 +19,16 @@ Public Class Level
     ''' </summary>
     Public PokemonEncounterData As PokemonEcounterDataStruct
 
-    'Level states:
+    ' Level states:
     Private _isSurfing As Boolean = False
     Private _isRiding As Boolean = False
     Private _usedStrength As Boolean = False
     Private _isDark As Boolean = False
     Private _walkedSteps As Integer = 0
 
-    Private _offsetMapUpdateDelay As Integer = 50 'Ticks until the next Offset Map update occurs.
+    Private _offsetMapUpdateDelay As Integer = 50 ' Ticks until the next Offset Map update occurs.
 
-    'Map properties:
+    ' Map properties:
     Private _terrain As Terrain = New Terrain(net.Pokemon3D.Game.Terrain.TerrainTypes.Plain)
     Private _mapName As String = ""
     Private _musicLoop As String = ""
@@ -52,7 +52,7 @@ Public Class Level
     Private _bugCatchingContestData As String = ""
     Private _battleMapData As String = ""
 
-    'Entity enumerations:
+    ' Entity enumerations:
     Private _ownPlayer As OwnPlayer
     Private _ownOverworldPokemon As OverworldPokemon
 
@@ -67,7 +67,7 @@ Public Class Level
     Private _offsetMapEntities As New List(Of Entity)
     Private _offsetMapFloors As New List(Of Entity)
 
-    'Radio:
+    ' Radio:
     Private _isRadioOn As Boolean = False
     Private _selectedRadioStation As GameJolt.PokegearScreen.RadioStation = Nothing
     Private _radioChannels As New List(Of Decimal)
@@ -98,7 +98,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Indicates wether the player is surfing.
+    ''' Indicates whether the player is Surfing.
     ''' </summary>
     Public Property Surfing() As Boolean
         Get
@@ -110,7 +110,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Indicates wether the player is riding.
+    ''' Indicates whether the player is Riding.
     ''' </summary>
     Public Property Riding() As Boolean
         Get
@@ -122,7 +122,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Indicates wether the player used Strength already.
+    ''' Indicates whether the player used Strength already.
     ''' </summary>
     Public Property UsedStrength() As Boolean
         Get
@@ -257,7 +257,7 @@ Public Class Level
     ''' <summary>
     ''' The default background music for this level.
     ''' </summary>
-    ''' <remarks>Doesn't play for surfing, riding and radio.</remarks>
+    ''' <remarks>Doesn't play for Surfing, Riding and Radio.</remarks>
     Public Property MusicLoop() As String
         Get
             Return Me._musicLoop
@@ -281,7 +281,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the player can use the move Teleport.
+    ''' Whether the player can use the move Teleport.
     ''' </summary>
     Public Property CanTeleport As Boolean
         Get
@@ -293,7 +293,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the player can use the move Dig or an Escape Rope.
+    ''' Whether the player can use the move Dig or an Escape Rope.
     ''' </summary>
     Public Property CanDig As Boolean
         Get
@@ -305,7 +305,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the player can use the move Fly.
+    ''' Whether the player can use the move Fly.
     ''' </summary>
     Public Property CanFly As Boolean
         Get
@@ -355,7 +355,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the player can encounter wild Pokémon in the Grass entities.
+    ''' Whether the player can encounter wild Pokémon in the Grass entities.
     ''' </summary>
     Public Property WildPokemonGrass As Boolean
         Get
@@ -367,7 +367,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the player can encounter wild Pokémon on every floor tile.
+    ''' Whether the player can encounter wild Pokémon on every floor tile.
     ''' </summary>
     Public Property WildPokemonFloor As Boolean
         Get
@@ -379,7 +379,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the player can encounter wild Pokémon while surfing.
+    ''' Whether the player can encounter wild Pokémon while Surfing.
     ''' </summary>
     Public Property WildPokemonWater As Boolean
         Get
@@ -391,7 +391,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the map is dark, and needs to be lightened up by Flash.
+    ''' Whether the map is dark, and needs to be lightened up by Flash.
     ''' </summary>
     Public Property IsDark As Boolean
         Get
@@ -403,7 +403,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the Overworld Pokémon is visible.
+    ''' Whether the Overworld Pokémon is visible.
     ''' </summary>
     Public Property ShowOverworldPokemon As Boolean
         Get
@@ -440,7 +440,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Chance of a Hidden Ability being on a wild pokemon.
+    ''' Chance of a Hidden Ability being on a wild Pokémon.
     ''' </summary>
     Public Property HiddenAbilityChance As Integer
         Get
@@ -464,7 +464,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the map is a part of the SafariZone. This changes the Battle Menu and the MenuScreen.
+    ''' Whether the map is a part of the Safari Zone. This changes the Battle Menu and the Menu Screen.
     ''' </summary>
     Public Property IsSafariZone As Boolean
         Get
@@ -476,7 +476,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the map is a part of the BugCatchingContest. This changes the Battle Menu and the MenuScreen.
+    ''' Whether the map is a part of the Bug Catching Contest. This changes the Battle Menu and the Menu Screen.
     ''' </summary>
     Public Property IsBugCatchingContest As Boolean
         Get
@@ -532,7 +532,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Wether the radio is currently activated.
+    ''' Whether the Radio is currently activated.
     ''' </summary>
     Public Property IsRadioOn() As Boolean
         Get
@@ -544,7 +544,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' The currently selected radio station. If possible, this will replace the MusicLoop.
+    ''' The currently selected Radio station. If possible, this will replace the Music Loop.
     ''' </summary>
     Public Property SelectedRadioStation() As GameJolt.PokegearScreen.RadioStation
         Get
@@ -556,7 +556,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' Allowed radio channels on this map.
+    ''' Allowed Radio channels on this map.
     ''' </summary>
     Public Property AllowedRadioChannels() As List(Of Decimal)
         Get
@@ -609,7 +609,7 @@ Public Class Level
         Public DoWarpInNextTick As Boolean
 
         ''' <summary>
-        ''' Amount of 90° rotations counter clockwise.
+        ''' Amount of 90° rotations counterclockwise.
         ''' </summary>
         Public WarpRotations As Integer
 
@@ -625,7 +625,7 @@ Public Class Level
     End Structure
 
     ''' <summary>
-    ''' A structure to store wild pokémon encounter data in.
+    ''' A structure to store wild Pokémon encounter data in.
     ''' </summary>
     Public Structure PokemonEcounterDataStruct
         ''' <summary>
@@ -634,7 +634,7 @@ Public Class Level
         Public Position As Vector3
 
         ''' <summary>
-        ''' Wether the player encountered a Pokémon.
+        ''' Whether the player encountered a Pokémon.
         ''' </summary>
         Public EncounteredPokemon As Boolean
 
@@ -685,7 +685,9 @@ Public Class Level
 
     Public Sub StopOffsetMapUpdate()
         Me._offsetTimer.Stop()
-        While Me._isUpdatingOffsetMaps : End While
+        While Me._isUpdatingOffsetMaps
+            System.Threading.Thread.Sleep(1)
+        End While
 
         Logger.Debug("Stopped Offset map update")
     End Sub
@@ -695,11 +697,11 @@ Public Class Level
     ''' </summary>
     ''' <param name="Levelpath">The path to load the level from. Start with "|" to prevent loading a levelfile.</param>
     Public Sub Load(ByVal Levelpath As String)
-        'Create a parameter array to pass over to the LevelLoader.
+        ' Create a parameter array to pass over to the LevelLoader:
         Dim params As New List(Of Object)
         params.AddRange({Levelpath, False, New Vector3(0, 0, 0), 0, New List(Of String)})
 
-        'Create the world and load the level.
+        ' Create the world and load the level:
         World = New World(0, 0)
 
         If Levelpath.StartsWith("|") = False Then
@@ -710,7 +712,7 @@ Public Class Level
             Logger.Debug("Don't attempt to load a levelfile.")
         End If
 
-        'Create own player entity and OverworldPokémon entity and add them to the entity enumeration.
+        ' Create own player entity and OverworldPokémon entity and add them to the entity enumeration:
         OwnPlayer = New OwnPlayer(0, 0, 0, {net.Pokemon3D.Game.TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
         OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
         OverworldPokemon.ChangeRotation()
@@ -726,20 +728,20 @@ Public Class Level
     Public Sub Draw()
         Me._backdropRenderer.Draw()
 
-        'Set the effect's View and Projection matrices.
+        ' Set the effect's View and Projection matrices:
         Screen.Effect.View = Screen.Camera.View
         Screen.Effect.Projection = Screen.Camera.Projection
 
-        'Reset the Debug values.
+        ' Reset the Debug values:
         DebugDisplay.DrawnVertices = 0
         DebugDisplay.MaxVertices = 0
         DebugDisplay.MaxDistance = 0
 
         If Core.GameOptions.LoadOffsetMaps > 0 Then
-            Me.RenderOffsetMap() 'Only render offset maps if they are activated.
+            Me.RenderOffsetMap() ' Only render offset maps if they are activated.
         End If
 
-        'Render floors.
+        'Render floors:
         For i = 0 To Me.Floors.Count - 1
             If i <= Me.Floors.Count - 1 Then
                 Me.Floors(i).Render()
@@ -747,7 +749,7 @@ Public Class Level
             End If
         Next
 
-        'Render all other entities.
+        'Render all other entities:
         For i = 0 To Me.Entities.Count - 1
             If i <= Me.Entities.Count - 1 Then
                 Me.Entities(i).Render()
@@ -769,7 +771,7 @@ Public Class Level
         Me.UpdatePlayerWarp()
         Me._pokemonEncounter.TriggerBattle()
 
-        'Reload map from file (debug/sandbox):
+        ' Reload map from file (Debug or Sandbox Mode):
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
             If KeyBoardHandler.KeyPressed(Keys.R) = True And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Core.OffsetMaps.Clear()
@@ -778,12 +780,12 @@ Public Class Level
             End If
         End If
 
-        'Update all network players and Pokémon:
+        ' Update all network players and Pokémon:
         If JoinServerScreen.Online = True Then
             Core.ServersManager.PlayerManager.UpdatePlayers()
         End If
 
-        'Call Update and UpdateEntity methods of all entities:
+        ' Call Update and UpdateEntity methods of all entities:
         Me.UpdateEntities()
     End Sub
 
@@ -791,7 +793,7 @@ Public Class Level
     ''' Updates all entities on the map and offset map and sorts the enumarations.
     ''' </summary>
     Public Sub UpdateEntities()
-        'Update and remove entities:
+        ' Update and remove entities:
         If LevelLoader.IsBusy = False Then
             For i = 0 To Entities.Count - 1
                 If i <= Entities.Count - 1 Then
@@ -809,14 +811,14 @@ Public Class Level
             Next
         End If
 
-        'UpdateEntity for all entities:
+        ' UpdateEntity for all entities:
         For i = 0 To Me.Entities.Count - 1
             If i <= Me.Entities.Count - 1 Then
                 Me.Entities(i).UpdateEntity()
             End If
         Next
 
-        'UpdateEntity for all floors:
+        ' UpdateEntity for all floors:
         For i = 0 To Me.Floors.Count - 1
             If i <= Me.Floors.Count - 1 Then
                 Me.Floors(i).UpdateEntity()
@@ -841,17 +843,17 @@ Public Class Level
     Public Sub UpdateOffsetMap()
         Me._isUpdatingOffsetMaps = True
         If Core.GameOptions.LoadOffsetMaps > 0 Then
-            'The Update function of entities on offset maps are not getting called.
+            ' The Update function of entities on offset maps are not getting called.
 
-            If Me._offsetMapUpdateDelay <= 0 Then 'Only when the delay is 0, update.
-                'Sort the list:
+            If Me._offsetMapUpdateDelay <= 0 Then ' Only when the delay is 0, update.
+                ' Sort the list:
                 If LevelLoader.IsBusy = False Then
                     OffsetmapEntities = (From e In OffsetmapEntities Order By e.CameraDistance Descending).ToList()
                 End If
 
                 Me._offsetMapUpdateDelay = Core.GameOptions.LoadOffsetMaps - 1 'Set the new delay
 
-                'Remove entities that CanBeRemoved (see what I did there?)
+                ' Remove entities that CanBeRemoved (see what I did there?):
                 For i = 0 To OffsetmapEntities.Count - 1
                     If i <= OffsetmapEntities.Count - 1 Then
                         If OffsetmapEntities(i).CanBeRemoved = True Then
@@ -863,14 +865,14 @@ Public Class Level
                     End If
                 Next
 
-                'Call UpdateEntity on all offset map entities.
+                ' Call UpdateEntity on all offset map entities:
                 For i = Me.OffsetmapEntities.Count - 1 To 0 Step -1
                     If i <= Me.OffsetmapEntities.Count - 1 Then
                         Me.OffsetmapEntities(i).UpdateEntity()
                     End If
                 Next
 
-                'Call UpdateEntity on all offset map floors.
+                ' Call UpdateEntity on all offset map floors:
                 For i = Me.OffsetmapFloors.Count - 1 To 0 Step -1
                     If i <= Me.OffsetmapFloors.Count - 1 Then
                         Me.OffsetmapFloors(i).UpdateEntity()
@@ -887,10 +889,7 @@ Public Class Level
     ''' Renders offset map entities.
     ''' </summary>
     Private Sub RenderOffsetMap()
-        Dim state = GraphicsDevice.DepthStencilState
-        GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
-
-        'Render floors:
+        ' Render floors:
         For i = 0 To Me.OffsetmapFloors.Count - 1
             If i <= Me.OffsetmapFloors.Count - 1 Then
                 If Not Me.OffsetmapFloors(i) Is Nothing Then
@@ -900,7 +899,7 @@ Public Class Level
             End If
         Next
 
-        'Render entities:
+        ' Render entities:
         For i = 0 To Me.OffsetmapEntities.Count - 1
             If i <= Me.OffsetmapEntities.Count - 1 Then
                 If Not Me.OffsetmapEntities(i) Is Nothing Then
@@ -909,8 +908,6 @@ Public Class Level
                 End If
             End If
         Next
-
-        GraphicsDevice.DepthStencilState = state
     End Sub
 
     ''' <summary>
@@ -924,24 +921,24 @@ Public Class Level
     ''' Handles warp events for the player.
     ''' </summary>
     Private Sub UpdatePlayerWarp()
-        If WarpData.DoWarpInNextTick = True Then 'If a warp event got scheduled.
-            'Disable wild Pokémon:
+        If WarpData.DoWarpInNextTick = True Then ' If a warp event got scheduled.
+            ' Disable wild Pokémon:
             Me._wildPokemonFloor = False
             Me.PokemonEncounterData.EncounteredPokemon = False
 
-            'Set the surfing flag for the next map:
+            ' Set the Surfing flag for the next map:
             Core.Player.startSurfing = Surfing
 
-            'Change the player position:
+            ' Change the player position:
             Screen.Camera.Position = WarpData.WarpPosition
 
-            Dim tempProperties As String = Me.CanDig.ToString() & "," & Me.CanFly.ToString() 'Store properties to determine if the "enter" sound should be played.
+            Dim tempProperties As String = Me.CanDig.ToString() & "," & Me.CanFly.ToString() ' Store properties to determine if the "enter" sound should be played.
 
-            'Store skin values:
+            ' Store skin values:
             Dim usingGameJoltTexture As Boolean = OwnPlayer.UsingGameJoltTexture
             Core.Player.Skin = OwnPlayer.SkinName
 
-            'Load the new level:
+            ' Load the new level:
             Dim params As New List(Of Object)
             params.AddRange({WarpData.WarpDestination, False, New Vector3(0, 0, 0), 0, New List(Of String)})
 
@@ -951,11 +948,11 @@ Public Class Level
             Dim levelLoader As New LevelLoader()
             levelLoader.LoadLevel(params.ToArray())
 
-            Core.Player.AddVisitedMap(Me.LevelFile) 'Add new map to visited maps list.
-            UsedStrength = False 'Disable strength usuage upon map switch.
-            Me.Surfing = Core.Player.startSurfing 'Set the surfing property after map switch.
+            Core.Player.AddVisitedMap(Me.LevelFile) ' Add new map to visited maps list.
+            UsedStrength = False ' Disable Strength usuage upon map switch.
+            Me.Surfing = Core.Player.startSurfing ' Set the Surfing property after map switch.
 
-            'Create player and Pokémon entities.
+            ' Create player and Pokémon entities:
             OwnPlayer = New OwnPlayer(0, 0, 0, {net.Pokemon3D.Game.TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
             OwnPlayer.SetTexture(Core.Player.Skin, usingGameJoltTexture)
 
@@ -964,20 +961,20 @@ Public Class Level
             OverworldPokemon.warped = True
             Entities.AddRange({OwnPlayer, OverworldPokemon})
 
-            'Set ride skin, if needed.
+            ' Set Ride skin, if needed:
             If Riding = True And CanRide() = False Then
                 Riding = False
                 OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
                 Core.Player.Skin = Core.Player.TempRideSkin
             End If
 
-            'If any turns after the warp are defined, apply them:
+            ' If any turns after the warp are defined, apply them:
             Screen.Camera.InstantTurn(WarpData.WarpRotations)
 
-            'Make the routesign appear:
+            ' Make the RouteSign appear:
             Me._routeSign.Setup(MapName)
 
-            'Play the correct music track.
+            ' Play the correct music track:
             If IsRadioOn = True AndAlso GameJolt.PokegearScreen.StationCanPlay(Me.SelectedRadioStation) = True Then
                 MusicManager.PlayMusic(SelectedRadioStation.Music, True)
             Else
@@ -993,10 +990,10 @@ Public Class Level
                 End If
             End If
 
-            'Initialize the world with newly loaded environment variables:
+            ' Initialize the world with newly loaded environment variables:
             World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
 
-            'If this map is on the restplaces list, set the player's last restplace to this map.
+            ' If this map is on the restplaces list, set the player's last restplace to this map:
             Dim restplaces As List(Of String) = System.IO.File.ReadAllLines(GameModeManager.GetMapPath("restplaces.dat")).ToList()
 
             For Each line As String In restplaces
@@ -1007,33 +1004,33 @@ Public Class Level
                 End If
             Next
 
-            'If the warp happened through a warp block, make the player walk one step forward after switching to the new map.
+            ' If the warp happened through a warp block, make the player walk one step forward after switching to the new map:
             If Screen.Camera.IsMoving = True And WarpData.IsWarpBlock = True Then
                 Screen.Camera.StopMovement()
                 Screen.Camera.Move(1.0F)
             End If
 
-            'Because of the map change, Roaming Pokémon are moving to their next location on the world map.
+            ' Because of the map change, Roaming Pokémon are moving to their next location on the world map:
             RoamingPokemon.ShiftRoamingPokemon(-1)
 
-            'Check if the enter sound should be played by checking if CanDig or CanFly properties are different from the last map.
+            ' Check if the enter sound should be played by checking if CanDig or CanFly properties are different from the last map:
             If tempProperties <> Me.CanDig.ToString() & "," & Me.CanFly.ToString() Then
                 SoundManager.PlaySound("enter", False)
             End If
 
-            'Unlock the yaw on the camera.
+            ' Unlock the yaw on the camera:
             CType(Screen.Camera, OverworldCamera).YawLocked = False
             NetworkPlayer.ScreenRegionChanged()
 
-            'If a warp occured, update the camera:
+            ' If a warp occured, update the camera:
             Screen.Camera.Update()
 
-            'Disable the warp check:
+            ' Disable the warp check:
             Me.WarpData.DoWarpInNextTick = False
             WarpData.IsWarpBlock = False
 
             If Core.ServersManager.ServerConnection.Connected = True Then
-                'Update network players:
+                ' Update network players:
                 Core.ServersManager.PlayerManager.NeedsUpdate = True
             End If
         End If
@@ -1101,7 +1098,7 @@ Public Class Level
     End Sub
 
     ''' <summary>
-    ''' Determines wether the player can use Ride on this map.
+    ''' Determines whether the player can use Ride on this map.
     ''' </summary>
     Public Function CanRide() As Boolean
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then 'Always true for Sandboxmode and Debug mode.
@@ -1123,7 +1120,7 @@ Public Class Level
     End Function
 
     ''' <summary>
-    ''' Wether the player can move based on the entity around him.
+    ''' Whether the player can move based on the entity around him.
     ''' </summary>
     Public Function CanMove() As Boolean
         For Each e As Entity In Me.Entities

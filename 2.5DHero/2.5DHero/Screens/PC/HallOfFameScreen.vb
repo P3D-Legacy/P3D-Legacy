@@ -11,6 +11,7 @@
     Dim texture As Texture2D
 
     Dim Entries As New List(Of HallOfFameEntry)
+    Dim AmountOfEntries As Integer = 0
 
     Dim Scroll As Integer = 0
     Dim Cursor As Integer = 0
@@ -118,6 +119,7 @@
                 If IsNumeric(s) = True Then
                     If IDs.Contains(CInt(s)) = False Then
                         IDs.Add(CInt(s))
+                        AmountOfEntries = CInt(s) + 1
                     End If
                 End If
             End If
@@ -194,7 +196,7 @@
             Next
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Entries: ", New Vector2(90 + 64 * 11, 119), New Color(0, 0, 0, alpha))
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Entries.Count.ToString(), New Vector2(190 + 64 * 11, 119), New Color(255, 255, 255, alpha))
+            Core.SpriteBatch.DrawString(FontManager.MainFont, AmountOfEntries.ToString(), New Vector2(190 + 64 * 11, 119), New Color(255, 255, 255, alpha))
 
             DrawCursor()
         End If
@@ -267,9 +269,9 @@
         Level.Update()
 
         Select Case menuState
-            Case 0 'Menu updates
+            Case 0 ' Menu updates.
                 Me.UpdateMenu()
-            Case 1 'Menu fade/appear
+            Case 1 ' Menu fade/appear.
                 Me.alpha += (3 * Me.alphaFade)
                 If Me.alpha >= 255 Then
                     Me.alpha = 255
@@ -278,7 +280,7 @@
                     Me.alpha = 0
                     Me.menuState = 2
                 End If
-            Case 2 'Level updates
+            Case 2 ' Level updates.
                 Me.UpdateCamera()
         End Select
 
@@ -467,8 +469,11 @@
                 End If
             Next
         End If
-
-        Return (count + 1)
+        count += 1
+        If count > 21 Then
+            count = 21
+        End If
+        Return count
     End Function
 
 End Class

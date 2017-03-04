@@ -1,137 +1,202 @@
+Imports System.Collections
+Imports System.Reflection
+
 ''' <summary>
 ''' A class to access the dump of variables of an object.
 ''' </summary>
 Public Class ObjectDump
 
-    Private _dump As String = ""
-    Private _nullReferenceError As Boolean = False
+    Public ReadOnly Property Dump As String = ""
 
-    Public ReadOnly Property Dump() As String
-        Get
-            Return _dump
-        End Get
-    End Property
-
-    Public ReadOnly Property NullReferenceError() As Boolean
-        Get
-            Return _nullReferenceError
-        End Get
-    End Property
-
-    ''' <summary>
-    ''' Creates a new instance of the ObjectDump class and performs a dump on the passed object.
-    ''' </summary>
-    Public Sub New(ByVal obj As Object)
-        CreateDump(obj)
-    End Sub
-
-    ''' <summary>
-    ''' Creates a dump.
-    ''' </summary>
-    ''' <param name="obj">The object to create a dump from.</param>
-    Private Sub CreateDump(ByVal obj As Object)
-        If obj Is Nothing Then
-            _nullReferenceError = True
-            _dump = "Object reference not set to an instance of an object."
+    Public Sub New(ByVal sender As Object)
+        If sender Is Nothing Then
+            Dump = "Object reference not set to an instance of an object."
         Else
-            Dim t As Type = obj.GetType()
+            Dim fields() As FieldInfo = sender.GetType().GetFields(BindingFlags.Public Or BindingFlags.NonPublic Or BindingFlags.Instance Or BindingFlags.Static)
+            Dim properties() As PropertyInfo = sender.GetType().GetProperties(BindingFlags.Public Or BindingFlags.NonPublic Or BindingFlags.Instance Or BindingFlags.Static)
 
-            Dim fields As Reflection.FieldInfo() = t.GetFields(Reflection.BindingFlags.Public Or
-                                                               Reflection.BindingFlags.NonPublic Or
-                                                               Reflection.BindingFlags.Instance Or
-                                                               Reflection.BindingFlags.Static)
+            Dump =
+                "--------------------------------------------------" & vbNewLine &
+                "Generated Fields:" & vbNewLine &
+                "--------------------------------------------------" & vbNewLine
 
-            Dim dump As String = ""
-
-            For Each field As Reflection.FieldInfo In fields
-                If dump <> "" Then
-                    dump &= vbNewLine
+            For Each field As FieldInfo In fields
+                If Dump <> "" Then
+                    Dump &= vbNewLine
                 End If
 
-                Dim accessToken As String = ""
-                Dim valueToken As String = "Nothing"
-                Dim fieldToken As String = field.Name
-                Dim typeToken As String = field.FieldType.Name
+                Dim fieldAccessToken As String = ""
+                Dim fieldNameToken As String = ""
+                Dim fieldTypeToken As String = ""
+                Dim fieldValueToken As String = ""
 
-                If field.IsPublic = True Then
-                    accessToken = "Public "
-                End If
-                If field.IsPrivate = True Then
-                    accessToken = "Private "
-                End If
-                If field.IsFamily = True Then
-                    accessToken = "Protected "
-                End If
-                If field.IsStatic = True Then
-                    accessToken &= "Shared "
+                If field.IsPublic Then
+                    fieldAccessToken = "Public "
+                ElseIf field.IsPrivate Then
+                    fieldAccessToken = "Private "
+                ElseIf field.IsFamily Then
+                    fieldAccessToken = "Protected "
                 End If
 
-                Dim valueObj As Object = field.GetValue(obj)
-                If valueObj IsNot Nothing Then
-                    If typeToken.EndsWith("[]") = True Then
-                        'Type is array, ToString wont return maintainable material, so we get its content:
-                        valueToken = GetArrayDump(valueObj)
-                    ElseIf typeToken = "List`1" Then
-                        'Type is a list, ToString wont return maintainable material, so we get its content:
-                        valueToken = GetListDump(valueObj)
-                        typeToken = GetListTypeToken(valueObj)
-                    Else
-                        valueToken = valueObj.ToString()
+                If field.IsStatic Then
+                    fieldAccessToken &= "Shared "
+                End If
+
+                fieldNameToken = field.Name
+                fieldTypeToken = field.FieldType.Name
+
+                If field.FieldType.IsArray Then
+                    fieldValueToken = DumpArray(field.GetValue(sender))
+                ElseIf field.FieldType.IsGenericType Then
+                    If field.FieldType.Name = "List`1" Then
+                        fieldTypeToken = $"List(Of {field.FieldType.GetGenericArguments()(0).Name})"
+                        fieldValueToken = DumpGenericArray(field.GetValue(sender), "List`1")
+                    ElseIf field.FieldType.Name = "Dictionary`2" Then
+                        fieldTypeToken = $"Dictionary(Of {field.FieldType.GetGenericArguments()(0).Name}, {field.FieldType.GetGenericArguments()(1).Name})"
+                        fieldValueToken = DumpGenericArray(field.GetValue(sender), "Dictionary`2")
                     End If
+                ElseIf field.FieldType.Name = "Texture2D" Then
+                    fieldValueToken = DumpTexture2D(field.GetValue(sender))
+                Else
+                    fieldValueToken = DumpObject(field.GetValue(sender))
                 End If
 
-                dump &= "   " & accessToken & fieldToken & " As " & typeToken & " = " & valueToken
+                Dump &= fieldAccessToken & fieldNameToken & " As " & fieldTypeToken & " = " & fieldValueToken
             Next
 
-            _dump = dump
+            Dump &= vbNewLine & vbNewLine &
+                "--------------------------------------------------" & vbNewLine &
+                "Generated Property:" & vbNewLine &
+                "--------------------------------------------------" & vbNewLine
+
+            For Each [property] As PropertyInfo In properties
+                If [property].CanRead Then
+                    If Dump <> "" Then
+                        Dump &= vbNewLine
+                    End If
+
+                    Dim propertyNameToken As String = ""
+                    Dim propertyTypeToken As String = ""
+                    Dim propertyValueToken As String = ""
+
+                    propertyNameToken = [property].Name
+                    propertyTypeToken = [property].PropertyType.Name
+
+                    If [property].PropertyType.IsArray Then
+                        propertyValueToken = DumpArray([property].GetValue(sender))
+                    ElseIf [property].PropertyType.IsGenericType Then
+                        If [property].PropertyType.Name = "List`1" Then
+                            propertyTypeToken = $"List(Of {[property].PropertyType.GetGenericArguments()(0).Name})"
+                            propertyValueToken = DumpGenericArray([property].GetValue(sender), "List`1")
+                        ElseIf [property].PropertyType.Name = "Dictionary`2" Then
+                            propertyTypeToken = $"Dictionary(Of {[property].PropertyType.GetGenericArguments()(0).Name}, {[property].PropertyType.GetGenericArguments()(1).Name})"
+                            propertyValueToken = DumpGenericArray([property].GetValue(sender), "Dictionary`2")
+                        End If
+                    ElseIf [property].PropertyType.Name = "Texture2D" Then
+                        propertyValueToken = DumpTexture2D([property].GetValue(sender))
+                    Else
+                        propertyValueToken = DumpObject([property].GetValue(sender))
+                    End If
+
+                    Dump &= "Property " & propertyNameToken & " As " & propertyTypeToken & " = " & propertyValueToken
+                End If
+            Next
         End If
     End Sub
 
-    Private Function GetArrayDump(ByVal valueObj As Object) As String
-        Dim listDump As String = ""
-
-        Dim valueArray As Array = CType(valueObj, Array)
-        For i = 0 To valueArray.Length - 1
-            If listDump <> "" Then
-                listDump &= ", "
-            End If
-            If valueArray.GetValue(i) Is Nothing Then
-                listDump &= "Nothing"
+    Private Function DumpArray(ByVal obj As Object) As String
+        Try
+            If obj IsNot Nothing Then
+                Dim listValue As Array = CType(obj, Array)
+                If listValue.Length = 0 Then
+                    Return "{}"
+                Else
+                    Return "{" & String.Join(", ", listValue.Cast(Of Object).Select(Function(a)
+                                                                                        Return a.ToString()
+                                                                                    End Function).ToArray()) & "}"
+                End If
             Else
-                listDump &= valueArray.GetValue(i).ToString()
+                Return "Nothing"
             End If
-        Next
-        listDump = "{" & listDump & "}"
-        Return listDump
+        Catch ex As Exception
+            Return "Array too complex to dump."
+        End Try
     End Function
 
-    Private Function GetListDump(ByVal valueObj As Object) As String
-        'Grab the type of the list (List`1):
-        Dim listType As Type = Type.GetType(valueObj.ToString())
-        'Get the ToArray method of the list:
-        Dim method As Reflection.MethodInfo = listType.GetMethod("ToArray", Reflection.BindingFlags.Public Or Reflection.BindingFlags.Instance)
+    Private Function DumpGenericArray(ByVal obj As Object, ByVal genericType As String) As String
+        Try
+            If obj IsNot Nothing Then
+                If genericType = "List`1" Then
+                    Dim listValue As Array = CType(obj.GetType().GetMethod("ToArray").Invoke(obj, Nothing), Array)
+                    If listValue.Length = 0 Then
+                        Return "{}"
+                    Else
+                        Return "{" & String.Join(", ", listValue.Cast(Of Object).Select(Function(a)
+                                                                                            Return a.ToString()
+                                                                                        End Function).ToArray()) & "}"
+                    End If
+                ElseIf genericType = "Dictionary`2" Then
+                    Dim dictionaryKeys As Array = CType(obj.GetType().GetProperty("Keys").GetValue(obj), IEnumerable).Cast(Of Object).ToArray()
+                    Dim dictonaryValues As Array = CType(obj.GetType().GetProperty("Values").GetValue(obj), IEnumerable).Cast(Of Object).ToArray()
 
-        Dim listDump As String = ""
-
-        'Create an array from the list by invoking its ToArray method. The array is not a generic type anymore, which means we can iterate through it:
-        Dim valueArray As Array = CType(method.Invoke(valueObj, {}), Array)
-        For i = 0 To valueArray.Length - 1
-            If listDump <> "" Then
-                listDump &= ", "
-            End If
-            If valueArray.GetValue(i) Is Nothing Then
-                listDump &= "Nothing"
+                    If dictionaryKeys.Length = 0 OrElse dictonaryValues.Length = 0 Then
+                        Return "{}"
+                    Else
+                        Dim result As String = ""
+                        For i As Integer = 0 To dictionaryKeys.Length - 1
+                            If i > 0 Then
+                                result &= ", "
+                            End If
+                            result &= "{" & dictionaryKeys.Cast(Of Object)()(i).ToString() & ", " & dictonaryValues.Cast(Of Object)()(i).ToString() & "}"
+                        Next
+                        Return "{" & result & "}"
+                    End If
+                Else
+                    Return "Generic Type too complex to dump."
+                End If
             Else
-                listDump &= valueArray.GetValue(i).ToString()
+                Return "Nothing"
             End If
-        Next
-        listDump = "{" & listDump & "}"
-        Return listDump
+        Catch ex As Exception
+            Return "Generic Type too complex to dump."
+        End Try
     End Function
 
-    Private Function GetListTypeToken(ByVal valueObj As Object) As String
-        Dim listType As Type = Type.GetType(valueObj.ToString())
-        Return "List<" & listType.GetGenericArguments()(0).Name & ">[]"
+    Private Function DumpTexture2D(ByVal obj As Object) As String
+        Try
+            If obj IsNot Nothing Then
+                Dim textureName As String = ""
+                Dim width As Integer = Convert.ToInt32(obj.GetType().GetProperty("Width").GetValue(obj))
+                Dim height As Integer = Convert.ToInt32(obj.GetType().GetProperty("Height").GetValue(obj))
+
+                If String.IsNullOrEmpty((obj.GetType().GetProperty("Name").GetValue(obj)?.ToString())) Then
+                    textureName = """"""
+                Else
+                    textureName = obj.GetType().GetProperty("Name").GetValue(obj)?.ToString()
+                End If
+
+                Return $"{{Name = {textureName}, Width = {width}, Height = {height}}}"
+            Else
+                Return "Nothing"
+            End If
+        Catch ex As Exception
+            Return "Texture2D too complex to dump."
+        End Try
     End Function
 
+    Private Function DumpObject(ByVal obj As Object) As String
+        Try
+            If obj IsNot Nothing Then
+                If String.IsNullOrEmpty(obj.ToString()) Then
+                    Return """"""
+                Else
+                    Return obj.ToString()
+                End If
+            Else
+                Return "Nothing"
+            End If
+        Catch ex As Exception
+            Return "Object too complex to dump."
+        End Try
+    End Function
 End Class

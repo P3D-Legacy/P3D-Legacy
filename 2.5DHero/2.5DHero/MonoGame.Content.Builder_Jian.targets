@@ -85,10 +85,7 @@
   </PropertyGroup>
 
   <Target Name="RunContentBuilder">
-    <!-- RUN CUSTOM MGCB_Tool, MAY NOT WORK IN OTHER PLATFORM, USE AT YOUR OWN DISCRETION!
-    <Exec Condition="'$(OS)' == 'Windows_NT'" Command="&quot;$(ProjectDir)..\2.5DHeroContent\MGCB_Tool.exe&quot; $(Platform)" />
-    <Exec Condition="'$(OS)' != 'Windows_NT'" Command="$(MonoExe) &quot;$(ProjectDir)..\2.5DHeroContent\MGCB_Tool.exe&quot; $(Platform)" />
-    -->
+    <Exec Condition="'$(OS)' == 'Windows_NT'" Command="&quot;$(ProjectDir)..\2.5DHeroContent\MGCB_Tool.exe&quot;" />
     <Exec Condition=" '%(ContentReferences.FullPath)' != '' " Command="$(MonoGameContentBuilderCmd) /@:&quot;%(ContentReferences.FullPath)&quot; $(Header)"
           WorkingDirectory="%(ContentReferences.RootDir)%(ContentReferences.Directory)" />
 

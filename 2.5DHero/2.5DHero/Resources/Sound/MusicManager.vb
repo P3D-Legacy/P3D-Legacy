@@ -200,7 +200,11 @@
         MediaPlayer.Stop()
         currentSong = "nomusic"
     End Sub
-
+    Public Shared Sub IgnoreLastSong()
+        currentSong = "nomusic"
+        SongList.Add("nomusic")
+        IntroStarted = False
+    End Sub
     Public Shared Sub PlayMusic(ByVal Song As String, ByVal SearchForIntro As Boolean, ByVal NewFadeInSpeed As Single, ByVal NewFadeOutSpeed As Single)
         Dim lastSong As String = "nomusic"
 

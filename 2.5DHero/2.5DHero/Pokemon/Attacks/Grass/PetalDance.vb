@@ -73,13 +73,25 @@
         End Sub
 
         Private Sub Interruption(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            Dim petalDance As Integer = 0
+            Dim p As Pokemon
+            If own = True Then
+                petalDance = BattleScreen.FieldEffects.OwnPetalDance
+                p = BattleScreen.OwnPokemon
+            Else
+                petalDance = BattleScreen.FieldEffects.OppPetalDance
+                p = BattleScreen.OppPokemon
+            End If
+
+            If petalDance = 1 Then
+                BattleScreen.Battle.InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & "'s PetalDance stopped.", "move:petaldance")
+            End If
+
             If own = True Then
                 BattleScreen.FieldEffects.OwnPetalDance = 0
             Else
                 BattleScreen.FieldEffects.OppPetalDance = 0
             End If
-
-            BattleScreen.Battle.InflictConfusion(own, own, BattleScreen, "", "move:petaldance")
         End Sub
 
         Public Overrides Sub MoveHasNoEffect(own As Boolean, BattleScreen As BattleScreen)
@@ -94,6 +106,21 @@
             Interruption(own, BattleScreen)
         End Sub
 
+        Public Overrides Sub InflictedFlinch(own As Boolean, BattleScreen As BattleScreen)
+            Interruption(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsSleeping(own As Boolean, BattleScreen As BattleScreen)
+            Interruption(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub HurtItselfInConfusion(own As Boolean, BattleScreen As BattleScreen)
+            Interruption(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsAttracted(own As Boolean, BattleScreen As BattleScreen)
+            Interruption(own, BattleScreen)
+        End Sub
     End Class
 
 End Namespace

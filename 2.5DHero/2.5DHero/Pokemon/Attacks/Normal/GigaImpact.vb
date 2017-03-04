@@ -55,7 +55,7 @@
             Me.AIField2 = AIField.MultiTurn
         End Sub
 
-        Public Overrides Sub PreAttack(Own As Boolean, BattleScreen As BattleScreen)
+        Public Overrides Sub MoveRecharge(Own As Boolean, BattleScreen As BattleScreen)
             If Own = True Then
                 BattleScreen.FieldEffects.OwnRecharge += 1
             Else

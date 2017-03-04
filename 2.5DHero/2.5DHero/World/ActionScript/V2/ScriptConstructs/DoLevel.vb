@@ -2,9 +2,9 @@
 
     Partial Class ScriptComparer
 
-        '--------------------------------------------------------------------------------------------------------------------------
-        'Contains the <level> constructs.
-        '--------------------------------------------------------------------------------------------------------------------------
+        ' --------------------------------------------------------------------------------------------------------------------------
+        ' Contains the <level> constructs.
+        ' --------------------------------------------------------------------------------------------------------------------------
 
         Private Shared Function DoLevel(ByVal subClass As String) As Object
             Dim command As String = GetSubClassArgumentPair(subClass).Command
@@ -20,6 +20,9 @@
                     Return ReturnBoolean(Screen.Level.Riding)
                 Case "surfing"
                     Return ReturnBoolean(Screen.Level.Surfing)
+                Case "musicloop"
+                    Dim musicloop As String = System.IO.Path.GetFileNameWithoutExtension(Screen.Level.MusicLoop)
+                    Return musicloop
             End Select
 
             Return DEFAULTNULL
