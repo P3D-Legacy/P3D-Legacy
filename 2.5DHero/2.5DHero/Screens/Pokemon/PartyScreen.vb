@@ -4,7 +4,7 @@ Public Class PartyScreen
     Inherits Screen
     Implements ISelectionScreen
 
-    Private Const POKEMON_TITLE As String = "Pokémon"
+    Dim POKEMON_TITLE As String = "Pokémon"
 
     Private _translation As Globalization.Classes.LOCAL_PartyScreen
 
@@ -41,39 +41,58 @@ Public Class PartyScreen
     'Message display:
     Private _messageDelay As Single = 0F
     Private _messageText As String = ""
+    Private _messageShowing As Boolean = False
 
-    Public Sub New(ByVal currentScreen As Screen, ByVal PokeIndex As Integer)
-        Identification = Identifications.PartyScreen
-        PreScreen = currentScreen
-        IsDrawingGradients = True
+    'Choose Mode
+    Private ChooseMode As Boolean = True
+    Private PokemonList As New List(Of Pokemon)
+    Private AltPokemonList As New List(Of Pokemon)
 
-        _translation = New Globalization.Classes.LOCAL_PartyScreen()
+    Public Shared Selected As Integer = -1
+    Public Shared Exited As Boolean = False
 
-        _index = PokeIndex
-        _texture = TextureManager.GetTexture("GUI\Menus\General")
-        _menuTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
+    ''Public index As Integer = 0
+    ''Dim MainTexture As Texture2D
+    ''Dim Texture As Texture2D
+    '' Dim yOffset As Single = 0
 
-        If _index >= Core.Player.Pokemons.Count Then
-            _index = 0
+    Dim Item As Item
+    ''Dim Title As String = ""
+
+    Dim used As Boolean = False
+    ''Dim canExit As Boolean = True
+
+    Public CanChooseFainted As Boolean = True
+    Public CanChooseEgg As Boolean = True
+    Public CanChooseHMPokemon As Boolean = True
+
+    Public Delegate Sub DoStuff(ByVal PokeIndex As Integer)
+    Dim ChoosePokemon As DoStuff
+    Public ExitedSub As DoStuff
+
+    Public LearnAttack As BattleSystem.Attack
+    Public LearnType As Integer = 0
+
+    Public Sub New(ByVal currentScreen As Screen, ByVal Item As Item, ByVal ChoosePokemon As DoStuff, ByVal Title As String, ByVal canExit As Boolean, ByVal canChooseFainted As Boolean, ByVal canChooseEgg As Boolean, Optional ByVal _pokemonList As List(Of Pokemon) = Nothing, Optional ByVal ChooseMode As Boolean = True)
+        Me.Item = Item
+        Me.POKEMON_TITLE = Title
+        Me.CanExit = canExit
+
+        Me.ChooseMode = ChooseMode
+        Me.CanChooseEgg = canChooseEgg
+        Me.CanChooseFainted = canChooseFainted
+        If ChoosePokemon IsNot Nothing Then
+            Me.ChoosePokemon = ChoosePokemon
         End If
-        _cursorDest = GetBoxPosition(_index)
-        _cursorPosition = _cursorDest
+        Me.AltPokemonList = _pokemonList
 
-        For i = 0 To Core.Player.Pokemons.Count - 1
-            _pokemonAnimations.Add(New PokemonAnimation())
-        Next
-
-        CheckForLegendaryEmblem()
-        CheckForOverkillEmblem()
-
-        _menu = New UI.SelectMenu({""}.ToList(), 0, Nothing, 0)
-        _menu.Visible = False
-    End Sub
-
-    Public Sub New(ByVal currentScreen As Screen)
         Identification = Identifications.PartyScreen
         PreScreen = currentScreen
         IsDrawingGradients = True
+
+        Me.MouseVisible = False
+        Me.CanChat = Me.PreScreen.CanChat
+        Me.CanBePaused = Me.PreScreen.CanBePaused
 
         _translation = New Globalization.Classes.LOCAL_PartyScreen()
 
@@ -81,13 +100,15 @@ Public Class PartyScreen
         _texture = TextureManager.GetTexture("GUI\Menus\General")
         _menuTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
 
-        If _index >= Core.Player.Pokemons.Count Then
+        GetPokemonList()
+
+        If _index >= PokemonList.Count - 1 Then
             _index = 0
         End If
         _cursorDest = GetBoxPosition(_index)
         _cursorPosition = _cursorDest
 
-        For i = 0 To Core.Player.Pokemons.Count - 1
+        For i = 0 To PokemonList.Count - 1
             _pokemonAnimations.Add(New PokemonAnimation())
         Next
 
@@ -96,8 +117,31 @@ Public Class PartyScreen
 
         _menu = New UI.SelectMenu({""}.ToList(), 0, Nothing, 0)
         _menu.Visible = False
+
+    End Sub
+    Public Sub New(ByVal currentScreen As Screen, ByVal Item As Item, ByVal ChoosePokemon As DoStuff, ByVal Title As String, ByVal canExit As Boolean)
+        Me.New(currentScreen, Item, ChoosePokemon, Title, canExit, True, True)
+    End Sub
+    Public Sub New(ByVal currentScreen As Screen)
+        Me.New(currentScreen, New Items.Balls.Pokeball, Nothing, "Pokémon", True, True, True, Nothing, False)
     End Sub
 
+    Private Sub GetPokemonList()
+        If ChooseMode Then
+            Me.PokemonList.Clear()
+            If AltPokemonList IsNot Nothing Then
+                For Each p As Pokemon In AltPokemonList
+                    Me.PokemonList.Add(Pokemon.GetPokemonByData(p.GetSaveData()))
+                Next
+            Else
+                For Each p As Pokemon In Core.Player.Pokemons
+                    Me.PokemonList.Add(Pokemon.GetPokemonByData(p.GetSaveData()))
+                Next
+            End If
+        Else
+            Me.PokemonList = Core.Player.Pokemons
+        End If
+    End Sub
 
     Public Overrides Sub Draw()
         PreScreen.Draw()
@@ -153,7 +197,7 @@ Public Class PartyScreen
     End Sub
 
     Private Sub DrawPokemonArea()
-        For i = 0 To Core.Player.Pokemons.Count - 1
+        For i = 0 To PokemonList.Count - 1
             DrawPokemon(i)
         Next
 
@@ -169,7 +213,7 @@ Public Class PartyScreen
     Private Sub DrawPokemon(ByVal index As Integer)
         Dim position As Vector2 = GetBoxPosition(index)
 
-        Dim p As Pokemon = Core.Player.Pokemons(index)
+        Dim p As Pokemon = PokemonList(index)
 
         Dim backColor As Color = New Color(0, 0, 0, CInt(100 * _interfaceFade))
         If p.IsShiny And p.IsEgg() = False Then
@@ -311,7 +355,7 @@ Public Class PartyScreen
             End If
         End If
 
-        If _closing Then
+        If _closing And _messageDelay = 0 Then
             If _interfaceFade > 0F Then
                 _interfaceFade = MathHelper.Lerp(0, _interfaceFade, 0.8F)
                 If _interfaceFade < 0F Then
@@ -328,6 +372,9 @@ Public Class PartyScreen
                 SetScreen(PreScreen)
             End If
         Else
+            If _closing And (Controls.Dismiss() Or Controls.Accept) Then
+                _messageDelay = 0
+            End If
             Dim maxWindowHeight As Integer = 400
             If _enrollY < maxWindowHeight Then
                 _enrollY = MathHelper.Lerp(maxWindowHeight, _enrollY, 0.8F)
@@ -345,7 +392,7 @@ Public Class PartyScreen
             If _menu.Visible Then
                 _menu.Update()
             Else
-                If Controls.Down(True, True, False, True, True, True) And _index < Core.Player.Pokemons.Count - 2 Then
+                If Controls.Down(True, True, False, True, True, True) And _index < PokemonList.Count - 2 Then
                     _index += 2
                     _cursorDest = GetBoxPosition(_index)
                 End If
@@ -357,7 +404,7 @@ Public Class PartyScreen
                     _index -= 1
                     _cursorDest = GetBoxPosition(_index)
                 End If
-                If Controls.Right(True) And _index < Core.Player.Pokemons.Count - 1 Then
+                If Controls.Right(True) And _index < PokemonList.Count - 1 Then
                     _index += 1
                     _cursorDest = GetBoxPosition(_index)
                 End If
@@ -372,11 +419,11 @@ Public Class PartyScreen
                         _isSwitching = False
 
                         If _switchIndex <> _index Then
-                            Dim p1 As Pokemon = Core.Player.Pokemons(_switchIndex)
-                            Dim p2 As Pokemon = Core.Player.Pokemons(_index)
+                            Dim p1 As Pokemon = PokemonList(_switchIndex)
+                            Dim p2 As Pokemon = PokemonList(_index)
 
-                            Core.Player.Pokemons(_switchIndex) = p2
-                            Core.Player.Pokemons(_index) = p1
+                            PokemonList(_switchIndex) = p2
+                            PokemonList(_index) = p1
                         End If
                     Else
                         _cursorPosition = _cursorDest
@@ -393,6 +440,7 @@ Public Class PartyScreen
                 End If
             End If
         End If
+
     End Sub
 
     Private Sub CreateMainMenu()
@@ -419,12 +467,12 @@ Public Class PartyScreen
                 FireSelectionEvent(_index)
                 _closing = True
             Case _translation.MENU_SUMMARY
-                SetScreen(New SummaryScreen(Me, Core.Player.Pokemons.ToArray(), _index))
+                SetScreen(New SummaryScreen(Me, PokemonList.ToArray(), _index))
         End Select
     End Sub
 
     Private Sub CreateNormalMenu(ByVal selectedItem As String)
-        Dim p As Pokemon = Core.Player.Pokemons(_index)
+        Dim p As Pokemon = PokemonList(_index)
 
         Dim items As New List(Of String)
         items.Add(_translation.MENU_SUMMARY)
@@ -453,7 +501,7 @@ Public Class PartyScreen
     End Sub
 
     Private Sub CreateFieldMoveMenu()
-        Dim p As Pokemon = Core.Player.Pokemons(_index)
+        Dim p As Pokemon = PokemonList(_index)
 
         Dim items As New List(Of String)
         If CanUseMove(p, "Fly", Badge.HMMoves.Fly) Then
@@ -481,7 +529,7 @@ Public Class PartyScreen
     End Sub
 
     Private Sub CreateItemMenu()
-        Dim p As Pokemon = Core.Player.Pokemons(_index)
+        Dim p As Pokemon = PokemonList(_index)
 
         Dim items As New List(Of String)
 
@@ -521,7 +569,7 @@ Public Class PartyScreen
     Private Sub SelectedMainMenuItem(ByVal selectMenu As UI.SelectMenu)
         Select Case selectMenu.SelectedItem
             Case _translation.MENU_SUMMARY
-                SetScreen(New SummaryScreen(Me, Core.Player.Pokemons.ToArray(), _index))
+                SetScreen(New SummaryScreen(Me, PokemonList.ToArray(), _index))
             Case _translation.MENU_FIELDMOVE
                 CreateFieldMoveMenu()
             Case _translation.MENU_SWITCH
@@ -563,7 +611,7 @@ Public Class PartyScreen
 
                 Core.SetScreen(selScreen)
             Case _translation.MENU_ITEM_TAKE
-                Dim p As Pokemon = Core.Player.Pokemons(_index)
+                Dim p As Pokemon = PokemonList(_index)
 
                 If p.Item.IsMail And p.Item.AdditionalData <> "" Then
                     ShowMessage(_translation.MESSAGE_MAILTAKEN)
@@ -593,7 +641,7 @@ Public Class PartyScreen
         Dim i As Item = Item.GetItemByID(itemID)
 
         If i.CanBeHold Then
-            Dim p As Pokemon = Core.Player.Pokemons(_index)
+            Dim p As Pokemon = PokemonList(_index)
 
             Core.Player.Inventory.RemoveItem(itemID, 1)
 
@@ -622,7 +670,7 @@ Public Class PartyScreen
         End If
     End Sub
 
-    Private Sub ShowMessage(ByVal text As String)
+    Public Sub ShowMessage(ByVal text As String)
         _messageDelay = CSng(text.Length / 1.75)
         _messageText = text
     End Sub
@@ -640,7 +688,7 @@ Public Class PartyScreen
         Dim hasLugia As Boolean = False
         Dim hasSuicune As Boolean = False
 
-        For Each p As Pokemon In Core.Player.Pokemons
+        For Each p As Pokemon In PokemonList
             Select Case p.Number
                 Case 245
                     hasSuicune = True
@@ -657,10 +705,10 @@ Public Class PartyScreen
     End Sub
 
     Private Sub CheckForOverkillEmblem()
-        If Core.Player.Pokemons.Count = 6 Then
+        If PokemonList.Count = 6 Then
             Dim has100 As Boolean = True
             For i = 0 To 5
-                If Core.Player.Pokemons(i).Level < 100 Then
+                If PokemonList(i).Level < 100 Then
                     has100 = False
                     Exit For
                 End If
@@ -684,7 +732,7 @@ Public Class PartyScreen
         End If
         If Screen.Level.IsDark = True Then
             Dim s As String = "version=2" & vbNewLine &
-                              "@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
+                              "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
                               "@environment.toggledarkness" & vbNewLine &
                               "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
                               "@text.show(The area got lit up!)" & vbNewLine &
@@ -693,7 +741,7 @@ Public Class PartyScreen
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         Else
             Dim s As String = "version=2" & vbNewLine &
-                "@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
+                "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
                                             "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
                                             "@text.show(The area is already~lit up!)" & vbNewLine &
                                             ":end"
@@ -711,10 +759,10 @@ Public Class PartyScreen
 
             If Screen.Level.CurrentRegion.Contains(",") = True Then
                 Dim regions As List(Of String) = Screen.Level.CurrentRegion.Split(CChar(",")).ToList()
-                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, regions, 0, {"Fly", Core.Player.Pokemons(_index)}), Color.White, False))
+                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, regions, 0, {"Fly", PokemonList(_index)}), Color.White, False))
             Else
                 Dim startRegion As String = Screen.Level.CurrentRegion
-                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"Fly", Core.Player.Pokemons(_index)}), Color.White, False))
+                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"Fly", PokemonList(_index)}), Color.White, False))
             End If
         Else
             TextBox.Show("You cannot Fly~from here!", {}, True, False)
@@ -731,8 +779,8 @@ Public Class PartyScreen
             End If
 
             PlayerStatistics.Track("Cut used", 1)
-            TextBox.Show(Core.Player.Pokemons(_index).GetDisplayName() & "~used Cut!", {}, True, False)
-            Core.Player.Pokemons(_index).PlayCry()
+            TextBox.Show(PokemonList(_index).GetDisplayName() & "~used Cut!", {}, True, False)
+            PokemonList(_index).PlayCry()
             For Each e As Entity In grassEntities
                 Screen.Level.Entities.Remove(e)
             Next
@@ -768,18 +816,18 @@ Public Class PartyScreen
                 Core.Player.TempRideSkin = Core.Player.Skin
 
                 Dim skin As String = "[POKEMON|"
-                If Core.Player.Pokemons(_index).IsShiny = True Then
+                If PokemonList(_index).IsShiny = True Then
                     skin &= "S]"
                 Else
                     skin &= "N]"
                 End If
-                skin &= Core.Player.Pokemons(_index).Number & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(_index))
+                skin &= PokemonList(_index).Number & PokemonForms.GetOverworldAddition(PokemonList(_index))
 
                 Screen.Level.OwnPlayer.SetTexture(skin, False)
 
-                SoundManager.PlayPokemonCry(Core.Player.Pokemons(_index).Number)
+                SoundManager.PlayPokemonCry(PokemonList(_index).Number)
 
-                TextBox.Show(Core.Player.Pokemons(_index).GetDisplayName() & " used~Ride!", {}, True, False)
+                TextBox.Show(PokemonList(_index).GetDisplayName() & " used~Ride!", {}, True, False)
                 PlayerStatistics.Track("Ride used", 1)
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
@@ -802,7 +850,7 @@ Public Class PartyScreen
             Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
             Dim s As String = "version=2
-@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & " used Dig!)
+@text.show(" & PokemonList(_index).GetDisplayName() & " used Dig!)
 @level.wait(20)
 @camera.activatethirdperson
 @camera.reset
@@ -847,7 +895,7 @@ Public Class PartyScreen
             Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
             Dim s As String = "version=2
-@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & "~used Teleport!)
+@text.show(" & PokemonList(_index).GetDisplayName() & "~used Teleport!)
 @level.wait(20)
 @camera.activatethirdperson
 @camera.reset

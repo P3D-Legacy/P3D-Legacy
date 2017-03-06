@@ -32,8 +32,7 @@ Namespace Items
                 Return False
             Else
                 If Pokemon.HP = Pokemon.MaxHP Then
-                    Screen.TextBox.reDelay = 0.0F
-                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " has full~HP already.", {})
+                    CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " has full HP already.")
 
                     Return False
                 Else
