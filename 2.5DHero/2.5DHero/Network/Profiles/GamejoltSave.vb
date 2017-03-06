@@ -186,22 +186,22 @@ Namespace GameJolt
             End Get
         End Property
 
-        Private _apricorns As String = ""
-        Private _berries As String = ""
-        Private _box As String = ""
-        Private _daycare As String = ""
-        Private _itemData As String = ""
-        Private _items As String = ""
-        Private _NPC As String = ""
-        Private _options As String = ""
-        Private _party As String = ""
-        Private _player As String = ""
-        Private _pokedex As String = ""
-        Private _register As String = ""
-        Private _hallOfFame As String = ""
-        Private _secretBase As String = ""
-        Private _roamingPokemon As String = ""
-        Private _statistics As String = ""
+        Public _apricorns As String = ""
+        Public _berries As String = ""
+        Public _box As String = ""
+        Public _daycare As String = ""
+        Public _itemData As String = ""
+        Public _items As String = ""
+        Public _NPC As String = ""
+        Public _options As String = ""
+        Public _party As String = ""
+        Public _player As String = ""
+        Public _pokedex As String = ""
+        Public _register As String = ""
+        Public _hallOfFame As String = ""
+        Public _secretBase As String = ""
+        Public _roamingPokemon As String = ""
+        Public _statistics As String = ""
 
         Public AchievedEmblems As New List(Of String)
         Public DownloadedSprite As Texture2D = Nothing

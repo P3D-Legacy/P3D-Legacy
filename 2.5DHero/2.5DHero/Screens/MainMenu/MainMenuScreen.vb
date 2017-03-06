@@ -900,6 +900,216 @@ Public Class MainMenuScreen
             If Controls.Accept(True, True) = True Then
                 If Core.GameInstance.IsMouseVisible = False And loadGameJoltIndex = 0 Or Core.ScaleScreenRec(New Rectangle(CInt(Core.ScreenSize.Width / 2) - 256, 300, 512, 128)).Contains(MouseHandler.MousePosition) = True And Core.GameInstance.IsMouseVisible = True Then
                     Core.Player.IsGameJoltSave = True
+
+                    ' Backup Save module
+                    ' 1. Load Encrypted.dat file.
+                    ' 2. Load OverWrite folder
+                    ' 3. Apply Extra Fixes.
+
+                    ' Enable Backup Save functionality.
+                    If (Core.GameOptions.Extras.Contains("Backup Save")) Then
+                        ' Make a copy of last known good gamejolt save!
+                        Dim timestamp As String = Date.Now.ToString("yyyy-MM-dd_HH.mm.ss")
+
+                        If Not Directory.Exists(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp) Then
+                            Directory.CreateDirectory(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp)
+                        End If
+
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Apricorns.dat", Core.GameJoltSave.Apricorns)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Berries.dat", Core.GameJoltSave.Berries)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Box.dat", Core.GameJoltSave.Box)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Daycare.dat", Core.GameJoltSave.Daycare)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/HallOfFame.dat", Core.GameJoltSave.HallOfFame)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/ItemData.dat", Core.GameJoltSave.ItemData)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Items.dat", Core.GameJoltSave.Items)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/NPC.dat", Core.GameJoltSave.NPC)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Options.dat", Core.GameJoltSave.Options)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Party.dat", Core.GameJoltSave.Party)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Player.dat", Core.GameJoltSave.Player)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Pokedex.dat", Core.GameJoltSave.Pokedex)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Register.dat", Core.GameJoltSave.Register)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/RoamingPokemon.dat", Core.GameJoltSave.RoamingPokemon)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/SecretBase.dat", Core.GameJoltSave.SecretBase)
+                        File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Statistics.dat", Core.GameJoltSave.Statistics)
+
+                        If Directory.Exists(GameController.GamePath & "/Backup Save/" & Core.GameJoltSave.GameJoltID.ToString() & "/Encrypted/") Then
+                            If File.Exists(GameController.GamePath & "/Backup Save/" & Core.GameJoltSave.GameJoltID.ToString() & "/Encrypted/Encrypted.dat") Then
+                                Dim Items() As String = File.ReadAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Encrypted/Encrypted.dat").Split(CChar("|"))
+                                Dim Hash As String = String.Join("|", Items.Take(16))
+
+                                ' Ensure that the items count is 17. Last index is for validation purpose.
+                                If Items.Count() = 17 Then
+                                    ' Try using the new algorithm.
+                                    Try
+                                        If String.Equals(Hash, Encryption.DecryptString(Items.Last(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))) Then
+                                            Core.GameJoltSave._apricorns = Encryption.DecryptString(Items(0), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._berries = Encryption.DecryptString(Items(1), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._box = Encryption.DecryptString(Items(2), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._daycare = Encryption.DecryptString(Items(3), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._hallOfFame = Encryption.DecryptString(Items(4), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._itemData = Encryption.DecryptString(Items(5), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._items = Encryption.DecryptString(Items(6), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._NPC = Encryption.DecryptString(Items(7), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._options = Encryption.DecryptString(Items(8), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._party = Encryption.DecryptString(Items(9), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._player = Encryption.DecryptString(Items(10), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._pokedex = Encryption.DecryptString(Items(11), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._register = Encryption.DecryptString(Items(12), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._roamingPokemon = Encryption.DecryptString(Items(13), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._secretBase = Encryption.DecryptString(Items(14), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                            Core.GameJoltSave._statistics = Encryption.DecryptString(Items(15), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                                        End If
+                                    Catch ex As Exception
+
+                                    End Try
+
+                                    ' Try again using the old algorithm.
+                                    Try
+                                        If String.Equals(Hash, Encryption.DecryptString(Items.Last(), StringObfuscation.Obfuscate("TheDialgaTeam"))) Then
+                                            ' Ensure that you are not cheating.
+                                            Dim PlayerData() As String = Items(10).SplitAtNewline()
+                                            If (PlayerData.Any(Function(a)
+                                                                   Return String.Equals(a, "OT|" & GameJoltSave.GameJoltID)
+                                                               End Function)) Then
+                                                Core.GameJoltSave._apricorns = Encryption.DecryptString(Items(0), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._berries = Encryption.DecryptString(Items(1), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._box = Encryption.DecryptString(Items(2), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._daycare = Encryption.DecryptString(Items(3), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._hallOfFame = Encryption.DecryptString(Items(4), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._itemData = Encryption.DecryptString(Items(5), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._items = Encryption.DecryptString(Items(6), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._NPC = Encryption.DecryptString(Items(7), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._options = Encryption.DecryptString(Items(8), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._party = Encryption.DecryptString(Items(9), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._player = Encryption.DecryptString(Items(10), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._pokedex = Encryption.DecryptString(Items(11), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._register = Encryption.DecryptString(Items(12), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._roamingPokemon = Encryption.DecryptString(Items(13), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._secretBase = Encryption.DecryptString(Items(14), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                                Core.GameJoltSave._statistics = Encryption.DecryptString(Items(15), StringObfuscation.Obfuscate("TheDialgaTeam"))
+                                            Else
+                                                MsgBox("The game detected that you are trying to load the legacy Backup Save from Indev 0.53.3 Patch Update 6/7. Due to the nature of cloning account via Backup Save, we are unable to load this save." & vbNewLine & vbNewLine & "Please contact jianmingyong at http://pokemon3d.net/forum/ for more detail.", MsgBoxStyle.OkOnly, "Error")
+                                            End If
+                                        End If
+                                    Catch ex As Exception
+
+                                    End Try
+
+                                    ' Disable the older support for security reason.
+                                    Try
+                                        If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Apricorns.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Berries.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Box.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Daycare.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/HallOfFame.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/ItemData.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Items.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/NPC.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Options.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Party.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Player.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Pokedex.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Register.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/RoamingPokemon.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/SecretBase.dat") AndAlso
+                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Statistics.dat") Then
+                                            MsgBox("The game detected that you are trying to load the legacy Backup Save from Indev 0.53.3 Patch Update 5 and below. Due to the nature of cloning account via Backup Save, we are unable to load this save." & vbNewLine & vbNewLine & "Please contact jianmingyong at http://pokemon3d.net/forum/ for more detail.", MsgBoxStyle.OkOnly, "Error")
+                                        End If
+                                    Catch ex As Exception
+
+                                    End Try
+                                End If
+                            End If
+                        End If
+#If DEBUG Then
+                        If Not Directory.Exists(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Overwrite") Then
+                            Directory.CreateDirectory(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Overwrite")
+                        End If
+
+                        If Directory.Exists(GameController.GamePath & "/Backup Save/" & Core.GameJoltSave.GameJoltID.ToString() & "/Overwrite/") Then
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Apricorns.dat") Then
+                                Core.GameJoltSave._apricorns = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Apricorns.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Apricorns.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Berries.dat") Then
+                                Core.GameJoltSave._berries = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Berries.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Berries.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Box.dat") Then
+                                Core.GameJoltSave._box = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Box.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Box.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Daycare.dat") Then
+                                Core.GameJoltSave._daycare = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Daycare.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Daycare.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/HallOfFame.dat") Then
+                                Core.GameJoltSave._hallOfFame = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/HallOfFame.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/HallOfFame.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/ItemData.dat") Then
+                                Core.GameJoltSave._itemData = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/ItemData.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/ItemData.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Items.dat") Then
+                                Core.GameJoltSave._items = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Items.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Items.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/NPC.dat") Then
+                                Core.GameJoltSave._NPC = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/NPC.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/NPC.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Options.dat") Then
+                                Core.GameJoltSave._options = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Options.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Options.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Party.dat") Then
+                                Core.GameJoltSave._party = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Party.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Party.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Player.dat") Then
+                                Core.GameJoltSave._player = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Player.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Player.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Pokedex.dat") Then
+                                Core.GameJoltSave._pokedex = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Pokedex.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Pokedex.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Register.dat") Then
+                                Core.GameJoltSave._register = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Register.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Register.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/RoamingPokemon.dat") Then
+                                Core.GameJoltSave._roamingPokemon = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/RoamingPokemon.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/RoamingPokemon.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/SecretBase.dat") Then
+                                Core.GameJoltSave._secretBase = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/SecretBase.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/SecretBase.dat")
+                            End If
+
+                            If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Statistics.dat") Then
+                                Core.GameJoltSave._statistics = File.ReadAllText(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Statistics.dat")
+                                File.Delete(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Overwrite/Statistics.dat")
+                            End If
+                        End If
+#End If
+                    End If
+
                     Core.Player.LoadGame("GAMEJOLTSAVE")
 
                     Core.SetScreen(New JoinServerScreen(Me))
