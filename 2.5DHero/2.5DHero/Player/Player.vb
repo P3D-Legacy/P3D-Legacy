@@ -633,7 +633,7 @@
         If Not ActionScript.IsRegistered("PokemonIndev0542Update") Then
             ' Check Party Pokemon.
             For Each Pokemon As Pokemon In Pokemons
-                If Pokemon.CatchTrainerName = Core.Player.Name AndAlso Pokemon.OT <> GameJoltSave.GameJoltID Then
+                If String.Equals(Pokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso Pokemon.OT <> GameJoltSave.GameJoltID Then
                     Pokemon.OT = GameJoltSave.GameJoltID
                 End If
             Next
@@ -648,7 +648,7 @@
                         Dim TempString As String = item.Remove(item.IndexOf("{"))
                         Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-                        If TempPokemon.CatchTrainerName = Core.Player.Name AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
+                        If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
                             TempPokemon.OT = GameJoltSave.GameJoltID
                         End If
 
@@ -669,7 +669,7 @@
                         Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
                         Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-                        If TempPokemon.CatchTrainerName = Core.Player.Name AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
+                        If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
                             TempPokemon.OT = GameJoltSave.GameJoltID
                         End If
 
