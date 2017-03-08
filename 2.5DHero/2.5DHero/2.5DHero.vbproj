@@ -65,9 +65,6 @@
     </None>
     <Content Include="Pokemon3D.ico" />
     <Content Include="Pokemon\Items\_itemList.txt" />
-    <Content Include="Updater.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="c:\program files %28x86%29\monogame\v3.0\assemblies\desktopgl\x64\libopenal.so.1">
       <Link>x64\libopenal.so.1</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -84,7 +81,6 @@
       <Link>x86\libSDL2-2.0.so.0</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="CurrentVersion.dat" />
     <None Include="packages.config" />
     <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MonoGame.Framework.DesktopGL.3.6.0.1625\lib\net40\MonoGame.Framework.dll</HintPath>
