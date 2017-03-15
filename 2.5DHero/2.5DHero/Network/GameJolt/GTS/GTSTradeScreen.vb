@@ -44,7 +44,11 @@
 
             If Controls.Accept(True, False) = True Then
                 If New Rectangle(180, 560, 32 * 5 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
-                    Core.SetScreen(New ChoosePokemonScreen(Me, Item.GetItemByID(5), AddressOf ChosePokemon, "Chose Pokémon to trade!", True))
+
+                    Dim selScreen = New PartyScreen(Me, Item.GetItemByID(5), AddressOf ChosePokemon, "Choose Pokémon to trade", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    AddHandler selScreen.SelectedObject, AddressOf ChosePokemonHandler
+
+                    Core.SetScreen(selScreen)
                 End If
                 If New Rectangle(180, 510, 32 * 5 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                     PokeIndex = -1
@@ -62,6 +66,10 @@
             If Controls.Dismiss(True, True) = True Then
                 Core.SetScreen(Me.PreScreen)
             End If
+        End Sub
+
+        Private Sub ChosePokemonHandler(ByVal params As Object())
+            ChosePokemon(CInt(params(0)))
         End Sub
 
         Private Sub ChosePokemon(ByVal PokeIndex As Integer)

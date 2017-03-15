@@ -281,7 +281,10 @@
                         If TempNewMail.MailHeader = "" Or TempNewMail.MailText = "" Or TempNewMail.MailSignature = "" Then
                             message = "Please fill in the Header, the Message and the Signature."
                         Else
-                            Core.SetScreen(New ChoosePokemonScreen(Me, Item.GetItemByID(TempNewMail.MailID), AddressOf Me.ChosenPokemon, "Give mail to:", True))
+                            Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                            AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
+
+                            Core.SetScreen(selScreen)
                         End If
                     Case 4
                         Me.index = -1
@@ -310,6 +313,10 @@
         Me.TempNewMail.MailAttachment = -1
         Me.TempNewMail.MailRead = False
         Me.TempNewMail.MailSignature = ""
+    End Sub
+
+    Private Sub ChosenPokemonHandler(ByVal params As Object())
+        ChosenPokemon(CInt(params(0)))
     End Sub
 
     Private Sub ChosenPokemon(ByVal PokeIndex As Integer)

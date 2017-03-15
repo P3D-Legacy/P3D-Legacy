@@ -109,7 +109,10 @@
 
             If Controls.Accept(True, True, True) = True Then
                 If _chooseIndex = 0 Then
-                    Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Me.ChoosePokemon, "Choose Pokémon to battle:", False))
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, "Choose Pokémon to battle!", False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
+
+                    Core.SetScreen(selScreen)
                 Else
                     _ready = True
                 End If
@@ -118,6 +121,9 @@
 
         Dim TempScreen As BattleScreen
 
+        Private Sub ChoosePokemonHandler(ByVal params As Object())
+            ChoosePokemon(CInt(params(0)))
+        End Sub
         Private Sub ChoosePokemon(ByVal PokeIndex As Integer)
             TempScreen.Battle.SwitchOutOwn(TempScreen, PokeIndex, insertIndex)
             Me._ready = True

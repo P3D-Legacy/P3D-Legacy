@@ -11,7 +11,7 @@ Public Class PartyScreen
     ''' <summary>
     ''' Cursor index -> pointing to Pokémon (0-5).
     ''' </summary>
-    Private _index As Integer = 0
+    Public _index As Integer = 0
 
     Private _texture As Texture2D
     Private _menuTexture As Texture2D
@@ -72,6 +72,7 @@ Public Class PartyScreen
 
     Public LearnAttack As BattleSystem.Attack
     Public LearnType As Integer = 0
+    Dim moveLearnArg As Object = Nothing
 
     Public Sub New(ByVal currentScreen As Screen, ByVal Item As Item, ByVal ChoosePokemon As DoStuff, ByVal Title As String, ByVal canExit As Boolean, ByVal canChooseFainted As Boolean, ByVal canChooseEgg As Boolean, Optional ByVal _pokemonList As List(Of Pokemon) = Nothing, Optional ByVal ChooseMode As Boolean = True)
         Me.Item = Item
@@ -168,7 +169,7 @@ Public Class PartyScreen
 
     Private Sub DrawBackground()
         Dim mainBackgroundColor As Color = Color.White
-        If _closing Then
+        If _closing And _messageDelay = 0 Then
             mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
         End If
 
@@ -296,7 +297,21 @@ Public Class PartyScreen
             End With
 
             'HP display:
-            GetFontRenderer().DrawString(FontManager.MiniFont, p.HP & " / " & p.MaxHP, New Vector2(position.X + 110, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MiniFont, p.HP & " / " & p.MaxHP, New Vector2(position.X + 100, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+
+            'Able/unable display (when using TM/HM)
+            Dim AttackLabel As String = ""
+            If LearnType > 0 Then
+                AttackLabel = "Unable!"
+                Select Case LearnType
+                    Case 1 ' Technical/Hidden Machine
+                        If CType(moveLearnArg, Items.TechMachine).CanTeach(p) = "" Then
+                            AttackLabel = "Able!"
+                        End If
+                End Select
+            End If
+            GetFontRenderer().DrawString(FontManager.MiniFont, AttackLabel, New Vector2(position.X + 210, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+
         End If
 
         If _menu.Visible Then
@@ -435,6 +450,11 @@ Public Class PartyScreen
                     If _isSwitching Then
                         _isSwitching = False
                     Else
+                        Selected = -1
+                        If Not ExitedSub Is Nothing Then
+                            used = True
+                            ExitedSub(_index)
+                        End If
                         _closing = True
                     End If
                 End If
@@ -464,12 +484,38 @@ Public Class PartyScreen
         Select Case selectMenu.SelectedItem
             Case _translation.MENU_SELECT
                 'When a Pokémon got selected in Selection Mode, raise the selected event and close the screen.
-                FireSelectionEvent(_index)
-                _closing = True
+                If CanChoosePokemon(Me.PokemonList(_index)) = True Then
+                    Selected = _index
+                    FireSelectionEvent(_index)
+                    GetPokemonList()
+                    _closing = True
+                Else
+                    TextBox.Show("Cannot choose this~Pokémon.")
+                End If
             Case _translation.MENU_SUMMARY
                 SetScreen(New SummaryScreen(Me, PokemonList.ToArray(), _index))
         End Select
     End Sub
+
+    Private Function CanChoosePokemon(ByVal p As Pokemon) As Boolean
+        If Me.CanChooseFainted = False Then
+            If p.HP <= 0 Or p.Status = Pokemon.StatusProblems.Fainted Then
+                Return False
+            End If
+        End If
+        If Me.CanChooseEgg = False Then
+            If p.IsEgg() = True Then
+                Return False
+            End If
+        End If
+        If Me.CanChooseHMPokemon = False Then
+            If p.HasHMMove() = True Then
+                Return False
+            End If
+        End If
+        Return True
+    End Function
+
 
     Private Sub CreateNormalMenu(ByVal selectedItem As String)
         Dim p As Pokemon = PokemonList(_index)
@@ -961,5 +1007,11 @@ Public Class PartyScreen
             _canExit = value
         End Set
     End Property
+
+    Public Sub SetupLearnAttack(ByVal a As BattleSystem.Attack, ByVal learnType As Integer, ByVal arg As Object)
+        Me.LearnAttack = a
+        Me.LearnType = learnType
+        Me.moveLearnArg = arg
+    End Sub
 
 End Class
