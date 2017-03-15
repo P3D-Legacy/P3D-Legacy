@@ -699,7 +699,6 @@
 
             Core.SetScreen(selScreen)
 
-            ''CType(Core.CurrentScreen, PartyScreen)._index = BattleScreen.OwnPokemonIndex
         End Sub
 
         Private Sub MainMenuOpenBag(ByVal BattleScreen As BattleScreen)
@@ -924,7 +923,7 @@
         End Sub
 
         Private Shared Sub ShowPokemonMenu(ByVal PokeIndex As Integer)
-            Core.SetScreen(New BattlePokemonInfoScreen(Core.CurrentScreen, PokeIndex, AddressOf SwitchPokemonTo, TempBattleScreen))
+            SwitchPokemonTo(PokeIndex)
         End Sub
 
         Private Shared Sub SwitchPokemonTo(ByVal PokeIndex As Integer)
