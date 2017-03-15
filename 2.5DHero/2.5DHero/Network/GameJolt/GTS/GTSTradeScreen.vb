@@ -54,7 +54,8 @@
                     PokeIndex = -1
                 End If
                 If New Rectangle(780, 560, 32 * 5 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
-                    Core.SetScreen(New PokemonStatusScreen(Me, 0, {D.Pokemon}, D.Pokemon, False))
+                    Core.SetScreen(New SummaryScreen(Me, {D.Pokemon}, 0))
+                    ''Core.SetScreen(New PokemonStatusScreen(Me, 0, {D.Pokemon}, D.Pokemon, False))
                 End If
                 If New Rectangle(520, 560, 32 * 3 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                     If MeetsCondition() = True Then

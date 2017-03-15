@@ -1004,14 +1004,15 @@ Public Class StorageSystemScreen
 
     Private Sub SummaryPokemon()
         If CursorPosition.X = 6 Then
-            Core.SetScreen(New PokemonStatusScreen(Core.CurrentScreen, CInt(CursorPosition.Y), Core.Player.Pokemons.ToArray(), Core.Player.Pokemons(CInt(CursorPosition.Y)), False))
+            Core.SetScreen(New SummaryScreen(Me, Core.Player.Pokemons.ToArray(), CInt(CursorPosition.Y)))
+            ''Core.SetScreen(New PokemonStatusScreen(Core.CurrentScreen, CInt(CursorPosition.Y), Core.Player.Pokemons.ToArray(), Core.Player.Pokemons(CInt(CursorPosition.Y)), False))
         Else
             Dim id As Integer = CInt(CursorPosition.X) + CInt((CursorPosition.Y - 1) * 6)
             If GetBox(CurrentBox).IsBattleBox = True Then
                 id = GetBattleBoxID()
             End If
-
-            Core.SetScreen(New PokemonStatusScreen(Core.CurrentScreen, GetBox(CurrentBox).GetPokemonList().IndexOf(GetBox(CurrentBox).Pokemon(id).GetPokemon()), GetBox(CurrentBox).GetPokemonList().ToArray(), GetBox(CurrentBox).Pokemon(id).GetPokemon(), False))
+            Core.SetScreen(New SummaryScreen(Me, GetBox(CurrentBox).GetPokemonList().ToArray(), GetBox(CurrentBox).GetPokemonList().IndexOf(GetBox(CurrentBox).Pokemon(id).GetPokemon())))
+            ''Core.SetScreen(New PokemonStatusScreen(Core.CurrentScreen, GetBox(CurrentBox).GetPokemonList().IndexOf(GetBox(CurrentBox).Pokemon(id).GetPokemon()), GetBox(CurrentBox).GetPokemonList().ToArray(), GetBox(CurrentBox).Pokemon(id).GetPokemon(), False))
         End If
     End Sub
 
