@@ -86,6 +86,7 @@ Public Class PartyScreen
             Me.ChoosePokemon = ChoosePokemon
         End If
         Me.AltPokemonList = _pokemonList
+        GetPokemonList()
 
         Identification = Identifications.PartyScreen
         PreScreen = currentScreen
@@ -101,7 +102,7 @@ Public Class PartyScreen
         _texture = TextureManager.GetTexture("GUI\Menus\General")
         _menuTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
 
-        GetPokemonList()
+
 
         If _index >= PokemonList.Count - 1 Then
             _index = 0

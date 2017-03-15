@@ -693,12 +693,13 @@
         Private Sub MainMenuOpenPokemon(ByVal BattleScreen As BattleScreen)
             TempBattleScreen = BattleScreen
 
+            Player.Temp.PokemonScreenIndex = BattleScreen.OwnPokemonIndex
             Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ShowPokemonMenu, "Choose Pokémon", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
             AddHandler selScreen.SelectedObject, AddressOf ShowPokemonMenuHandler
 
             Core.SetScreen(selScreen)
 
-            CType(Core.CurrentScreen, PartyScreen)._index = BattleScreen.OwnPokemonIndex
+            ''CType(Core.CurrentScreen, PartyScreen)._index = BattleScreen.OwnPokemonIndex
         End Sub
 
         Private Sub MainMenuOpenBag(ByVal BattleScreen As BattleScreen)
@@ -710,7 +711,6 @@
 
                 AddHandler selScreen.SelectedObject, AddressOf SelectedItemHandler
                 Core.SetScreen(selScreen)
-                'Core.SetScreen(New InventoryScreen(Core.CurrentScreen, {}, AddressOf SelectedItem))
             End If
         End Sub
 
