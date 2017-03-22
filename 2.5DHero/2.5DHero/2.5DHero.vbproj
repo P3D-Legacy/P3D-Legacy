@@ -41,50 +41,13 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
-      <Link>libopenal.1.dylib</Link>
-    </None>
-    <None Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
-      <Link>libSDL2-2.0.0.dylib</Link>
-    </None>
-    <None Include="c:\program files %28x86%29\monogame\v3.0\assemblies\desktopgl\x64\SDL2.dll">
-      <Link>x64\SDL2.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="c:\program files %28x86%29\monogame\v3.0\assemblies\desktopgl\x64\soft_oal.dll">
-      <Link>x64\soft_oal.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="c:\program files %28x86%29\monogame\v3.0\assemblies\desktopgl\x86\SDL2.dll">
-      <Link>x86\SDL2.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="c:\program files %28x86%29\monogame\v3.0\assemblies\desktopgl\x86\soft_oal.dll">
-      <Link>x86\soft_oal.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="Pokemon3D.ico" />
     <Content Include="Pokemon\Items\_itemList.txt" />
-    <None Include="c:\program files %28x86%29\monogame\v3.0\assemblies\desktopgl\x64\libopenal.so.1">
-      <Link>x64\libopenal.so.1</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="c:\program files %28x86%29\monogame\v3.0\assemblies\desktopgl\x64\libSDL2-2.0.so.0">
-      <Link>x64\libSDL2-2.0.so.0</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="c:\program files %28x86%29\monogame\v3.0\assemblies\desktopgl\x86\libopenal.so.1">
-      <Link>x86\libopenal.so.1</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="c:\program files %28x86%29\monogame\v3.0\assemblies\desktopgl\x86\libSDL2-2.0.so.0">
-      <Link>x86\libSDL2-2.0.so.0</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
-    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MonoGame.Framework.DesktopGL.3.6.0.1625\lib\net40\MonoGame.Framework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="OpenTK">
+      <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\DesktopGL\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -106,7 +69,6 @@
     <Content Include="credits.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="MonoGame.Framework.dll.config" />
     <None Include="My Project\app.manifest" />
     <None Include="app.config" />
   </ItemGroup>
@@ -1754,7 +1716,13 @@
     <Compile Include="World\World.vb" />
     <MonoGameContentReference Include="..\2.5DHeroContent\Content.mgcb" />
   </ItemGroup>
+  <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
+  <Target Name="BeforeResolveReferences">
+    <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows,$(AssemblySearchPaths)">
+      <Output TaskParameter="Value" PropertyName="AssemblySearchPaths" />
+    </CreateProperty>
+  </Target>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
-  <Import Condition=" '$(Configuration)' == 'DebugStandard' Or '$(Configuration)' == 'ReleaseStandard' " Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <Import Condition=" '$(Configuration)' == 'DebugStandard' Or '$(Configuration)' == 'ReleaseStandard' " Project="MonoGame.Content.Builder_Standard.targets" />
   <Import Condition=" '$(Configuration)' == 'DebugJian' Or '$(Configuration)' == 'ReleaseJian' " Project="MonoGame.Content.Builder_Jian.targets" />
 </Project>
