@@ -219,7 +219,7 @@
         If SearchForIntro = True And lastSong.ToLower() <> Song.ToLower() Then
             If SongFiles.Keys.Contains("intro\" & Song.ToLower()) = True Then
                 If SongFiles("intro\" & Song.ToLower()).Origin = SongFiles(Song.ToLower()).Origin Then
-                    IntroEndTime = Date.Now + SongFiles("intro\" & Song.ToLower()).Song.Duration
+                    IntroEndTime = DateAdd(DateInterval.Second, -1, Date.Now) + SongFiles("intro\" & Song.ToLower()).Song.Duration
 
                     PlayMusic("intro\" & Song.ToLower(), NewFadeInSpeed, NewFadeOutSpeed)
                     MediaPlayer.IsRepeating = False
@@ -286,9 +286,7 @@
         IntroStarted = False
 
         If Not s Is Nothing Then
-            If CanPlayMusic() = True Then
-                MediaPlayer.Play(s.Song)
-            End If
+            MediaPlayer.Play(s.Song)
 
             If MediaPlayer.IsMuted = True Then
                 MediaPlayer.Pause()
@@ -386,7 +384,7 @@
 
                 If FadeIntoIntro = True Then
                     IntroStarted = True
-                    IntroEndTime = Date.Now + SongFiles(NextSong).Song.Duration
+                    IntroEndTime = DateAdd(DateInterval.Second, -1, Date.Now) + SongFiles(NextSong).Song.Duration
                     FadeIntoIntro = False
                 End If
 
@@ -429,46 +427,6 @@
     Public Shared Function SongExists(ByVal songName As String) As Boolean
         Dim s As CSong = GetSong(songName, False)
         Return Not IsNothing(s)
-    End Function
-
-    'Private Declare Function GetAudioOutputDevices Lib "winmm.dll" Alias "waveOutGetNumDevs" () As Integer
-
-    Private Shared Function CanPlayMusic() As Boolean
-        'Dim errorMessage As String = ""
-
-        'Dim audioDeviceCount As Integer = GetAudioOutputDevices()
-        'If audioDeviceCount > 0 Then
-        '    Try
-        '        Dim r As String = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MediaPlayer\PlayerUpgrade", "PlayerVersion", Nothing).ToString()
-        '        If r <> "" And r.Contains(",") = True Then
-        '            Dim version As String = r.Remove(r.IndexOf(","))
-        '            If IsNumeric(version) = True Then
-        '                If CInt(version) >= 11 Then
-        '                    Return True
-        '                Else
-        '                    errorMessage = "The installed version of the WindowsMediaPlayer (" & r & ") is smaller than 12."
-        '                End If
-        '            Else
-        '                errorMessage = "The registry string doesn't start with a numeric value."
-        '            End If
-        '        Else
-        '            errorMessage = "The registry string doesn't contain "","" or is empty."
-        '        End If
-        '    Catch
-        '        errorMessage = "Unknown error"
-        '    End Try
-        'Else
-        '    errorMessage = "No audio output device is connected to the computer."
-        'End If
-
-        'Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: An error occurred trying to play music: " & errorMessage)
-
-        'If Core.GameOptions.ForceMusic = True Then
-        '    Logger.Log(Logger.LogTypes.Message, "MusicManager.vb: Forced music to play and ignore the error occuring in music validation. Set ForceMusic to ""0"" in the options file to disable this.")
-        '    Return True
-        'End If
-
-        Return True
     End Function
 
     Public Shared Sub ForceVolumeUpdate()
