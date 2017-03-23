@@ -1333,17 +1333,20 @@ nextIndex:
         Public LockData As String = "{}"
         Public ClientWonBattle As Boolean = True
 
+        'Sends the decided step to the host
         Public Sub SendClientCommand(ByVal c As String)
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleClientData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), c}.ToList()))
             Me.SentInput = True
+            Logger.Debug("[Battle]: Sent Client command")
         End Sub
 
+        'Receives the current status of the battle from the host
         Public Shared Sub ReceiveHostEndRoundData(ByVal data As String)
             Dim newQueries As New List(Of String)
             Dim tempData As String = ""
             Dim cData As String = data
 
-            'Converts the single string received as data into a list of queries (as string)
+            'Converts the single string received as data into a list of string 
             While cData.Length > 0
                 If cData(0).ToString() = "|" AndAlso tempData(tempData.Length - 1).ToString() = "}" Then
                     newQueries.Add(tempData)
@@ -1406,10 +1409,12 @@ nextIndex:
                     End If
                 Next
 
+                Logger.Debug("[Battle]: Received Host End Round data")
                 CType(s, BattleScreen).ReceivedPokemonData = True
             End If
         End Sub
 
+        'Receives the "movie" from the host, and stores it in the BattleQuery list. Also checks for After Fainting Switch conditions.
         Public Shared Sub ReceiveHostData(ByVal data As String)
             Dim newQueries As New List(Of String)
             Dim tempData As String = ""
@@ -1420,10 +1425,12 @@ nextIndex:
             End While
             If s.Identification = Identifications.BattleScreen Then
                 If data = "-HostFainted-" Then
+                    Logger.Debug("[Battle]: The host's pokemon faints")
                     OppFaint = True
                     Exit Sub
                 End If
                 If data = "-ClientFainted-" Then
+                    Logger.Debug("[Battle]: The client's pokemon faints")
                     OwnFaint = True
                     Exit Sub
                 End If
@@ -1461,7 +1468,7 @@ nextIndex:
                     End If
                 Next
             End If
-
+            Logger.Debug("[Battle]: Received Host data (movie)")
             ReceivedQuery = data
         End Sub
 
@@ -1473,7 +1480,9 @@ nextIndex:
         Public SentHostData As Boolean = False
         Public Shared ReceivedInput As String = ""
 
+        'After the client has decided its next step, the host receives the information about this step, so it can now decide his own.
         Public Shared Sub ReceiveClientData(ByVal data As String)
+            Logger.Debug("[Battle]: Received Client data")
             ReceivedInput = data
 
             Dim s As Screen = Core.CurrentScreen
@@ -1491,6 +1500,7 @@ nextIndex:
             End If
         End Sub
 
+        'Sends some variables that let the client know the current state of the battle
         Public Sub SendEndRoundData()
             Dim lockData As String = "{}"
             Dim oppStep As Battle.RoundConst = Battle.GetOppStep(Me, Battle.OwnStep)
@@ -1520,10 +1530,11 @@ nextIndex:
                 End If
                 d &= p.GetSaveData()
             Next
-
+            Logger.Debug("[Battle]: Sent End Round data")
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattlePokemonData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), d}.ToList()))
         End Sub
 
+        'Sends the "movie" to the client
         Public Sub SendHostQuery()
             Dim d As String = ""
 
@@ -1544,6 +1555,7 @@ nextIndex:
             Next
             Me.TempPVPBattleQuery.Clear()
 
+            Logger.Debug("[Battle]: Sent Host Query")
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), d}.ToList()))
             SentHostData = True
         End Sub

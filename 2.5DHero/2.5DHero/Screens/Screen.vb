@@ -1,4 +1,4 @@
-﻿''' <summary>
+''' <summary>
 ''' The base class for all screens in the game.
 ''' </summary>
 Public MustInherit Class Screen
@@ -108,6 +108,16 @@ Public MustInherit Class Screen
     ''' A global level instance, that carries over screen instances.
     ''' </summary>
     Public Shared Property Level() As Level
+        Get
+            Return _globalLevel
+        End Get
+        Set(value As Level)
+            If _globalLevel IsNot Nothing Then
+                _globalLevel.StopOffsetMapUpdate()
+            End If
+            _globalLevel = value
+        End Set
+    End Property
 
     ''' <summary>
     ''' A global BasicEffect instance, that carries over screen instances.
