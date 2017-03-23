@@ -13,6 +13,9 @@
     'Pointer
     Private _pointerDest As Integer = 0
     Private _pointerPos As Single = 0F
+    Private _pokemonDest As Integer = 0
+    Private _pokemonPos As Single = 0F
+    Private _previewerOffset As Integer = 0
 
     'Fade in animation:
     Private _fadeIn As Single = 0F
@@ -56,9 +59,10 @@
         _partyIndex = partyIndex
         _party = party
 
-        SetPointerDest(_partyIndex)
+        SetDest(_partyIndex)
         GetYOffset()
         _pointerPos = _pointerDest
+        _pokemonPos = _pokemonDest
         _moveSelectorPosition = GetMoveSelectorDest(_moveIndex)
     End Sub
 
@@ -71,9 +75,10 @@
         _pageIndex = Player.Temp.PokemonSummaryPageIndex
         _selectedPokemon = selectedPokemon
 
-        SetPointerDest(_partyIndex)
+        SetDest(_partyIndex)
         GetYOffset()
         _pointerPos = _pointerDest
+        _pokemonPos = _pokemonDest
         _moveSelectorPosition = GetMoveSelectorDest(_moveIndex)
     End Sub
 
@@ -138,7 +143,7 @@
 
         If _partyIndex > -1 Then
             For i = 0 To _party.Count - 1
-                Dim pokemonPos As Double = GetPointerDest(i) - 16
+                Dim pokemonPos As Double = GetPokemonDest(i) - 16 - (64 + 16) * (_pokemonDest - _pokemonPos)
 
                 Core.SpriteBatch.Draw(_party(i).GetMenuTexture(), New Rectangle(CInt(pokemonPos), 16, 64, 64), mainBackgroundColor)
             Next
@@ -292,7 +297,7 @@
             'Draw stats:
             Dim colors As Color() = {New Color(120, 239, 155), New Color(241, 227, 154), New Color(255, 178, 114), New Color(151, 217, 205), New Color(137, 154, 255), New Color(213, 128, 255)}
             Dim statNames As String() = {"HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"}
-            Dim statValues As String() = { .HP & " / " & .MaxHP, CStr( .Attack), CStr( .Defense), CStr( .SpAttack), CStr( .SpDefense), CStr( .Speed)}
+            Dim statValues As String() = { .HP & " / " & .MaxHP, CStr(.Attack), CStr(.Defense), CStr(.SpAttack), CStr(.SpDefense), CStr(.Speed)}
             Dim evStats As Single() = { .EVHP, .EVAttack, .EVDefense, .EVSpAttack, .EVSpDefense, .EVSpeed}
             Dim ivStats As Single() = { .IVHP, .IVAttack, .IVDefense, .IVSpAttack, .IVSpDefense, .IVSpeed}
 
@@ -316,7 +321,7 @@
                 Canvas.DrawRectangle(New Rectangle(450, 172 + y * 32 + yOffset, 6, height), statColor)
                 SpriteBatch.DrawString(FontManager.ChatFont, statNames(y), New Vector2(466, 176 + y * 32 + yOffset), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
-                Dim natureStatMulti As Single = Nature.GetMultiplier( .Nature, statNames(y))
+                Dim natureStatMulti As Single = Nature.GetMultiplier(.Nature, statNames(y))
                 Dim multiColor As Color = New Color(255, 255, 255, CInt(200 * _fadeIn * _pageFade))
 
                 If natureStatMulti > 1.0F Then
@@ -380,19 +385,19 @@
                 Canvas.DrawRectangle(New Rectangle(816, 490, 300, 64), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade)))
                 SpriteBatch.DrawString(FontManager.ChatFont, "To Next Lv.", New Vector2(826, 494), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
-                If .NeedExperience( .Level + 1) - .Experience > 0 Then
-                    SpriteBatch.DrawString(FontManager.ChatFont, CStr( .NeedExperience( .Level + 1) - .Experience), New Vector2(980, 494), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
+                If .NeedExperience(.Level + 1) - .Experience > 0 Then
+                    SpriteBatch.DrawString(FontManager.ChatFont, CStr(.NeedExperience(.Level + 1) - .Experience), New Vector2(980, 494), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
                     'EXP Bar:
-                    Dim expV As Double = ( .Experience - .NeedExperience( .Level)) / ( .NeedExperience( .Level + 1) - .NeedExperience( .Level))
+                    Dim expV As Double = (.Experience - .NeedExperience(.Level)) / (.NeedExperience(.Level + 1) - .NeedExperience(.Level))
                     If .Level = 1 Then
                         expV = .Experience / .NeedExperience(2)
                     End If
                     Dim expWidth As Integer = CInt((107 * _fadeIn) * expV)
-                    If .Experience > .NeedExperience( .Level) And expWidth = 0 Then
+                    If .Experience > .NeedExperience(.Level) And expWidth = 0 Then
                         expWidth = 1
                     End If
-                    If .Experience > .NeedExperience( .Level + 1) Then
+                    If .Experience > .NeedExperience(.Level + 1) Then
                         expWidth = 107
                         expV = 1.0F
                     End If
@@ -481,7 +486,7 @@
 
             'Stats:
             SpriteBatch.DrawString(FontManager.ChatFont, "Category:", New Vector2(810, 240), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            Core.SpriteBatch.Draw( .Attacks(_moveIndex).GetDamageCategoryImage(), New Rectangle(924, 241, 48, 24), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
+            Core.SpriteBatch.Draw(.Attacks(_moveIndex).GetDamageCategoryImage(), New Rectangle(924, 241, 48, 24), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
 
             SpriteBatch.DrawString(FontManager.ChatFont, "Power:", New Vector2(810, 272), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
 
@@ -600,7 +605,7 @@
                         If _partyIndex > 0 Then
                             _partyIndex -= 1
                             GetYOffset()
-                            SetPointerDest(_partyIndex)
+                            SetDest(_partyIndex)
                         End If
 
                     End If
@@ -608,7 +613,7 @@
                         If _partyIndex < _party.Count - 1 Then
                             _partyIndex += 1
                             GetYOffset()
-                            SetPointerDest(_partyIndex)
+                            SetDest(_partyIndex)
                         End If
 
                     End If
@@ -743,39 +748,60 @@
                 _pointerPos = _pointerDest
             End If
         End If
+        If _pokemonPos < _pokemonDest Then
+            _pokemonPos = MathHelper.Lerp(_pokemonDest, _pokemonPos, 0.8F)
+            If _pokemonPos >= _pokemonDest Then
+                _pokemonPos = _pokemonDest
+            End If
+        ElseIf _pokemonPos > _pokemonDest Then
+            _pokemonPos = MathHelper.Lerp(_pokemonDest, _pokemonPos, 0.8F)
+            If _pokemonPos <= _pokemonDest Then
+                _pokemonPos = _pokemonDest
+            End If
+        End If
     End Sub
 
-    Private Function GetPointerDest(ByVal partyIndex As Integer) As Integer
+    Private Function GetDest(ByVal partyIndex As Integer) As Integer
         Dim pointerX As Double = Core.ScreenSize.Width / 2
-
         If _party.Length Mod 2 = 0 Then
             'Even:
             Dim half As Integer = CInt(_party.Length / 2)
-
-            If partyIndex < _party.Length / 2 Then
-                pointerX -= (8 + 64 * (half - partyIndex) + 16 * ((half - 1) - partyIndex))
-            Else
-                pointerX += (8 + (64 + 16) * (partyIndex - half))
-            End If
+            pointerX += (8 + (64 + 16) * (partyIndex - half))
         Else
             'Odd:
             Dim half As Integer = CInt(Math.Floor(_party.Length / 2))
-
-            If partyIndex < half Then
-                pointerX -= (16 + 64) * (half - partyIndex)
-            ElseIf partyIndex > half Then
-                pointerX += (16 + 64) * (partyIndex - half)
-            End If
+            pointerX += (64 + 16) * (partyIndex - half)
         End If
 
         Return CInt(pointerX)
     End Function
 
-    Private Sub SetPointerDest(ByVal partyIndex As Integer)
+    Private Function GetPointerDest(ByVal partyIndex As Integer) As Integer
+        Dim pointerX As Double = GetDest(partyIndex)
+        _previewerOffset = 0
+        While pointerX > Core.ScreenSize.Width - (64 + 16)
+            pointerX -= (64 + 16)
+            _previewerOffset -= 1
+        End While
+        While pointerX < (64)
+            pointerX += (64 + 16)
+            _previewerOffset += 1
+        End While
+
+        Return CInt(pointerX)
+    End Function
+
+    Private Function GetPokemonDest(ByVal partyIndex As Integer) As Integer
+        Dim pointerX As Double = GetDest(partyIndex)
+        pointerX += (_previewerOffset * (64 + 16))
+        Return CInt(pointerX)
+    End Function
+
+    Private Sub SetDest(ByVal partyIndex As Integer)
         _fadeIn = 0F
         _pixelFade = 0F
         _pointerDest = GetPointerDest(partyIndex)
-
+        _pokemonDest = _previewerOffset
         If GetPokemon().IsEgg() = False Then
             GetPokemon().PlayCry()
         End If
