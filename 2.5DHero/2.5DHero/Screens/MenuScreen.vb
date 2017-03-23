@@ -84,9 +84,9 @@
                         Case OldLocalization.GetString("game_menu_exit")
                             Core.SetScreen(Me.PreScreen)
                         Case Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177)
-                            ShowBalls()
+                            Me.ShowBalls()
                         Case "End Contest"
-                            EndContest()
+                            Me.EndContest()
                     End Select
                 End If
             Else

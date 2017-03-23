@@ -177,7 +177,7 @@ Public Class NewInventoryScreen
     End Sub
 
     Public Overrides Sub Draw()
-        'PreScreen.Draw()
+        PreScreen.Draw()
 
         DrawGradients(CInt(255 * _interfaceFade))
 

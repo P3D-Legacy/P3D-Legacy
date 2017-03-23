@@ -1586,6 +1586,7 @@
     <Compile Include="Resources\FontContainer.vb" />
     <Compile Include="Resources\FontManager.vb" />
     <Compile Include="Resources\GameModeManager.vb" />
+    <Compile Include="Resources\GaussianBlur.vb" />
     <Compile Include="Resources\ModelManager.vb" />
     <Compile Include="Resources\Models\2D\BillModel.vb" />
     <Compile Include="Resources\Models\2D\CrossModel.vb" />
@@ -1639,6 +1640,7 @@
     <Compile Include="Screens\MapPreview\MapPreviewCamera.vb" />
     <Compile Include="Screens\MapPreview\MapPreviewScreen.vb" />
     <Compile Include="Screens\MapScreen.vb" />
+    <Compile Include="Screens\NewMenuScreen.vb" />
     <Compile Include="Screens\MenuScreen.vb" />
     <Compile Include="Screens\NewGameScreen.vb" />
     <Compile Include="Screens\OptionScreen.vb" />

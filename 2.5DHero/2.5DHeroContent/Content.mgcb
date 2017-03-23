@@ -52,6 +52,12 @@
 /processorParam:DebugMode=Auto
 /build:Content/Effects/DiffuseShader.fx
 
+#begin Content/Effects/GaussianBlur.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Content/Effects/GaussianBlur.fx
+
 #begin Content/Effects/Shadow.png
 /importer:TextureImporter
 /processor:TextureProcessor
