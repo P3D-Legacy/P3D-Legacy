@@ -596,7 +596,7 @@ Public Class NewInventoryScreen
             If Controls.Dismiss() And CanExit Then
                 _closing = True
             End If
-            If Controls.Accept() Then
+            If Controls.Accept() And _items.Length > 0 Then
                 _tabInControl = False
             End If
         End If
@@ -652,7 +652,7 @@ Public Class NewInventoryScreen
             End If
         End If
 
-        If Controls.Accept() Then
+        If Controls.Accept() AndAlso _items.Length > 0 Then
             _infoItemOptionSelection = 0
             _isInfoShowing = True
             SetInfoSettings()
