@@ -13,25 +13,43 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		DebugJian|MonoGame 3.5.1 = DebugJian|MonoGame 3.5.1
+		DebugJian|MonoGame 3.6 = DebugJian|MonoGame 3.6
 		DebugNoContent|MonoGame 3.5.1 = DebugNoContent|MonoGame 3.5.1
+		DebugNoContent|MonoGame 3.6 = DebugNoContent|MonoGame 3.6
 		ReleaseJian|MonoGame 3.5.1 = ReleaseJian|MonoGame 3.5.1
+		ReleaseJian|MonoGame 3.6 = ReleaseJian|MonoGame 3.6
 		ReleaseNoContent|MonoGame 3.5.1 = ReleaseNoContent|MonoGame 3.5.1
+		ReleaseNoContent|MonoGame 3.6 = ReleaseNoContent|MonoGame 3.6
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugJian|MonoGame 3.5.1.ActiveCfg = DebugJianNew|Any CPU
 		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugJian|MonoGame 3.5.1.Build.0 = DebugJianNew|Any CPU
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugJian|MonoGame 3.6.ActiveCfg = DebugJianNew|Any CPU
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugJian|MonoGame 3.6.Build.0 = DebugJianNew|Any CPU
 		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugNoContent|MonoGame 3.5.1.ActiveCfg = DebugNoContent|Any CPU
 		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugNoContent|MonoGame 3.5.1.Build.0 = DebugNoContent|Any CPU
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugNoContent|MonoGame 3.6.ActiveCfg = DebugNoContent|Any CPU
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugNoContent|MonoGame 3.6.Build.0 = DebugNoContent|Any CPU
 		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseJian|MonoGame 3.5.1.ActiveCfg = ReleaseJianNew|Any CPU
 		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseJian|MonoGame 3.5.1.Build.0 = ReleaseJianNew|Any CPU
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseJian|MonoGame 3.6.ActiveCfg = ReleaseJianNew|Any CPU
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseJian|MonoGame 3.6.Build.0 = ReleaseJianNew|Any CPU
 		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseNoContent|MonoGame 3.5.1.ActiveCfg = ReleaseNoContent|Any CPU
 		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseNoContent|MonoGame 3.5.1.Build.0 = ReleaseNoContent|Any CPU
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseNoContent|MonoGame 3.6.ActiveCfg = ReleaseNoContent|Any CPU
+		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseNoContent|MonoGame 3.6.Build.0 = ReleaseNoContent|Any CPU
 		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.DebugJian|MonoGame 3.5.1.ActiveCfg = MonoGame|3.5.1
 		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.DebugJian|MonoGame 3.5.1.Build.0 = MonoGame|3.5.1
+		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.DebugJian|MonoGame 3.6.ActiveCfg = MonoGame|3.6
+		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.DebugJian|MonoGame 3.6.Build.0 = MonoGame|3.6
 		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.DebugNoContent|MonoGame 3.5.1.ActiveCfg = MonoGame|3.5.1
+		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.DebugNoContent|MonoGame 3.6.ActiveCfg = MonoGame|3.6
 		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.ReleaseJian|MonoGame 3.5.1.ActiveCfg = MonoGame|3.5.1
 		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.ReleaseJian|MonoGame 3.5.1.Build.0 = MonoGame|3.5.1
+		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.ReleaseJian|MonoGame 3.6.ActiveCfg = MonoGame|3.6
+		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.ReleaseJian|MonoGame 3.6.Build.0 = MonoGame|3.6
 		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.ReleaseNoContent|MonoGame 3.5.1.ActiveCfg = MonoGame|3.5.1
+		{EE057806-FAE2-4F37-B85B-A5DE693E6E79}.ReleaseNoContent|MonoGame 3.6.ActiveCfg = MonoGame|3.6
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
