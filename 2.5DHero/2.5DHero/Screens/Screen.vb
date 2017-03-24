@@ -1,3 +1,4 @@
+Imports net.Pokemon3D.Game
 ''' <summary>
 ''' The base class for all screens in the game.
 ''' </summary>
@@ -104,6 +105,7 @@ Public MustInherit Class Screen
     ''' </summary>
     Public Shared Property Camera() As Camera
 
+    Private Shared _globalLevel As Level
     ''' <summary>
     ''' A global level instance, that carries over screen instances.
     ''' </summary>
@@ -213,13 +215,13 @@ Public MustInherit Class Screen
     ''' </summary>
     ''' <param name="scr">The source screen.</param>
     Protected Sub CopyFrom(ByVal scr As Screen)
-        _mouseVisible = scr._mouseVisible
-        _canBePaused = scr._canBePaused
-        _canMuteMusic = scr._canMuteMusic
-        _canChat = scr._canChat
-        _canTakeScreenshot = scr._canTakeScreenshot
-        _canDrawDebug = scr._canDrawDebug
-        _canGoFullscreen = scr._canGoFullscreen
+        _MouseVisible = scr._MouseVisible
+        _CanBePaused = scr._CanBePaused
+        _CanMuteMusic = scr._CanMuteMusic
+        _CanChat = scr._CanChat
+        _CanTakeScreenshot = scr._CanTakeScreenshot
+        _CanDrawDebug = scr._CanDrawDebug
+        _CanGoFullscreen = scr._CanGoFullscreen
     End Sub
 
     ''' <summary>
@@ -233,7 +235,7 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' The base render function of the screen. Used to render models above sprites.
     ''' </summary>
-        Public Overridable Overloads Sub Render()
+    Public Overridable Overloads Sub Render()
 
     End Sub
 
@@ -265,7 +267,7 @@ Public MustInherit Class Screen
     ''' Returns if this screen instance is the currently active screen (set in the global Basic.CurrentScreen).
     ''' </summary>
     ''' <returns></returns>
-        Public Function IsCurrentScreen() As Boolean
+    Public Function IsCurrentScreen() As Boolean
         If CurrentScreen.Identification = Identification Then 'If the screen stored in the CurrentScreen field has the same ID as this screen, return true.
             Return True
         Else
@@ -292,7 +294,7 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' An event that is getting raised when the Escape button is getting pressed. The PauseScreen is getting brought up if the CanBePaused field is set to true.
     ''' </summary>
-        Public Overridable Sub EscapePressed()
+    Public Overridable Sub EscapePressed()
         'If the game can be paused on this screen, open the PauseScreen.
         If CurrentScreen.CanBePaused = True Then
             SetScreen(New PauseScreen(CurrentScreen))
@@ -329,7 +331,7 @@ Public MustInherit Class Screen
     ''' </summary>
     ''' <param name="Descriptions">The button types and descriptions.</param>
     ''' <param name="Position">The position to draw the buttons.</param>
-        Public Sub DrawGamePadControls(ByVal Descriptions As Dictionary(Of Buttons, String), ByVal Position As Vector2)
+    Public Sub DrawGamePadControls(ByVal Descriptions As Dictionary(Of Buttons, String), ByVal Position As Vector2)
         'Only if a Gamepad is connected and the screen is active, render the buttons:
         If GamePad.GetState(PlayerIndex.One).IsConnected = True And Core.GameOptions.GamePadEnabled = True And IsCurrentScreen() = True Then
             'Transform the position to integers and store the current drawing position:
@@ -398,7 +400,7 @@ Public MustInherit Class Screen
         Dim s As Screen = Me
 
         While s.PreScreen IsNot Nothing And canDrawGradients = True
-            If s._isOverlay = False Then
+            If s._IsOverlay = False Then
                 s = s.PreScreen
                 If s.IsDrawingGradients = True Then
                     canDrawGradients = False
@@ -421,7 +423,7 @@ Public MustInherit Class Screen
     ''' Returns the screen status of the current screen. Override this function to return a screen state.
     ''' </summary>
     ''' <returns></returns>
-        Public Overridable Function GetScreenStatus() As String
+    Public Overridable Function GetScreenStatus() As String
         '// Return the generic "not implemented" message:
         Return "Screen state not implemented for screen class: " & Identification.ToString()
     End Function
