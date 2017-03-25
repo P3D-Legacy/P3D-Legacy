@@ -194,15 +194,15 @@
         If _enrollY >= 160 Then
             Dim height As Integer = CInt(_enrollY - 160).Clamp(0, 256)
             Dim pokemonTexture = GetPokemon().GetTexture(True)
-            Dim textureHeight As Integer = CInt(pixeledPokemonTexture.Height * (height / 256))
+            Dim textureHeight As Integer = CInt(pokemonTexture.Height * (height / 256))
 
             Dim pokemonTextureOffset As Integer = 32
             If GetPokemon().IsEgg() = True Then
                 pokemonTextureOffset = 64
             End If
 
-            SpriteBatch.Draw(pixeledPokemonTexture, New Rectangle(70 + 10, 160 - _yOffset + pokemonTextureOffset + 10, 256, height), New Rectangle(0, 0, pixeledPokemonTexture.Width, textureHeight), New Color(0, 0, 0, 150))
-            SpriteBatch.Draw(pixeledPokemonTexture, New Rectangle(70, 160 - _yOffset + pokemonTextureOffset, 256, height), New Rectangle(0, 0, pixeledPokemonTexture.Width, textureHeight), Color.White)
+            SpriteBatch.Draw(pokemonTexture, New Rectangle(70 + 10, 160 - _yOffset + pokemonTextureOffset + 10, 256, height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), New Color(0, 0, 0, 150))
+            SpriteBatch.Draw(pokemonTexture, New Rectangle(70, 160 - _yOffset + pokemonTextureOffset, 256, height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), Color.White)
         End If
 
         'Draw main infos:

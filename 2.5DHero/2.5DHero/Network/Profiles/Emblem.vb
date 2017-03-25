@@ -279,7 +279,7 @@
             Return TextureManager.GetTexture("Textures\NPC\" & tFile)
         End Function
 
-        Private Shared Function GetEmblemBackgroundTexture(ByVal emblemName As String) As Texture2D
+        Public Shared Function GetEmblemBackgroundTexture(ByVal emblemName As String) As Texture2D
             'Don't load from TextureManager, because ContentPack emblems are not allowed.
             Return Content.Load(Of Texture2D)("Textures\Emblem\" & emblemName)
         End Function

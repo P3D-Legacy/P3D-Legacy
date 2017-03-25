@@ -74,7 +74,7 @@
                         Case OldLocalization.GetString("game_menu_bag")
                             Core.SetScreen(New NewInventoryScreen(Me))
                         Case OldLocalization.GetString("game_menu_trainer_card")
-                            Core.SetScreen(New TrainerScreen(Me))
+                            Core.SetScreen(New NewTrainerScreen(Me))
                         Case "Pokégear"
                             Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
                         Case OldLocalization.GetString("game_menu_save")

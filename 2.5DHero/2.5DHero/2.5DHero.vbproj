@@ -1671,6 +1671,7 @@
     <Compile Include="Screens\StatisticsScreen.vb" />
     <Compile Include="Screens\testWindowScreen.vb" />
     <Compile Include="Screens\TradeScreen.vb" />
+    <Compile Include="Screens\NewTrainerScreen.vb" />
     <Compile Include="Screens\TrainerScreen.vb" />
     <Compile Include="Screens\TransitionScreen.vb" />
     <Compile Include="Screens\WindowScreen.vb" />

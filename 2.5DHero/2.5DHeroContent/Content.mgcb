@@ -5969,6 +5969,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/229.png
 
+#begin Content/Pokemon/Overworld/Normal/229_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Normal/229_mega.png
+
 #begin Content/Pokemon/Overworld/Normal/23.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -7876,6 +7888,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/362.png
+
+#begin Content/Pokemon/Overworld/Normal/362_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Normal/362_mega.png
 
 #begin Content/Pokemon/Overworld/Normal/363.png
 /importer:TextureImporter
@@ -16541,6 +16565,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/229.png
 
+#begin Content/Pokemon/Overworld/Shiny/229_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/229_mega.png
+
 #begin Content/Pokemon/Overworld/Shiny/23.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -18448,6 +18484,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/362.png
+
+#begin Content/Pokemon/Overworld/Shiny/362_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/362_mega.png
 
 #begin Content/Pokemon/Overworld/Shiny/363.png
 /importer:TextureImporter
@@ -28361,6 +28409,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Sprites/Glalie.png
 
+#begin Content/Pokemon/Sprites/Glalie_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Sprites/Glalie_mega.png
+
 #begin Content/Pokemon/Sprites/Glameow.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -31948,6 +32008,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Sprites/Rayquaza.png
+
+#begin Content/Pokemon/Sprites/Rayquaza_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Sprites/Rayquaza_mega.png
 
 #begin Content/Pokemon/Sprites/Regice.png
 /importer:TextureImporter
@@ -45833,6 +45905,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Textures/TVs/Yellow.png
+
+#begin Content/Textures/UI/TrainerCard/Back.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/UI/TrainerCard/Back.png
+
+#begin Content/Textures/UI/TrainerCard/Paperclip.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/UI/TrainerCard/Paperclip.png
+
+#begin Content/Textures/UI/TrainerCard/Papers.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Textures/UI/TrainerCard/Papers.png
 
 #begin Content/Textures/Weather/ash.png
 /importer:TextureImporter

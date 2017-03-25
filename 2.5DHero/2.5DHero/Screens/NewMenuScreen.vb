@@ -271,7 +271,7 @@
             Case "Bag"
                 Core.SetScreen(New NewInventoryScreen(Me))
             Case "|||" & Core.Player.Name
-                Core.SetScreen(New TrainerScreen(Me))
+                Core.SetScreen(New NewTrainerScreen(Me))
             Case "Save"
                 Core.SetScreen(New SaveScreen(Me))
             Case "Options"
