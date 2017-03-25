@@ -217,15 +217,15 @@
             _textBatch.DrawString(FontManager.MiniFont, "Need " & needPoints & " points", New Vector2(280, 318), Color.Black)
         End If
 
-        If totalNeedPoints > 0 Then
-            Canvas.DrawScrollBar(New Vector2(140, 380), totalNeedPoints, hasPointsThisLevel, 0, New Size(320, 16), True, Color.Black, New Color(255, 165, 0))
-            Canvas.DrawScrollBar(New Vector2(140, 380), totalNeedPoints, hasPointsThisLevel, 0, New Size(320, 6), True, Color.Black, New Color(255, 203, 108))
-        Else
-            Canvas.DrawRectangle(New Rectangle(140, 380, 320, 16), Color.Black)
-        End If
+        'If totalNeedPoints > 0 Then
+        '    Canvas.DrawScrollBar(New Vector2(140, 380), totalNeedPoints, hasPointsThisLevel, 0, New Size(320, 16), True, Color.Black, New Color(255, 165, 0))
+        '    Canvas.DrawScrollBar(New Vector2(140, 380), totalNeedPoints, hasPointsThisLevel, 0, New Size(320, 6), True, Color.Black, New Color(255, 203, 108))
+        'Else
+        '    Canvas.DrawRectangle(New Rectangle(140, 380, 320, 16), Color.Black)
+        'End If
 
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Rank: " & currentLevel, New Vector2(100, 400), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Rank: " & currentLevel + 1, New Vector2(430, 400), Color.Black)
+        'Core.SpriteBatch.DrawString(FontManager.MiniFont, "Rank: " & currentLevel, New Vector2(100, 400), Color.Black)
+        'Core.SpriteBatch.DrawString(FontManager.MiniFont, "Rank: " & currentLevel + 1, New Vector2(430, 400), Color.Black)
 
     End Sub
 
