@@ -334,7 +334,7 @@
                                 Dim InSightMusic As String = "nomusic"
 
                                 If Me.IsTrainer = True Then
-                                    Dim trainerFilePath As String = GameModeManager.GetScriptPath(Me.AdditionalValue & ".dat")
+                                    Dim trainerFilePath As String = OldGameModeManager.GetScriptPath(Me.AdditionalValue & ".dat")
                                     Security.FileValidation.CheckFileValid(trainerFilePath, False, "NPC.vb")
 
                                     Dim trainerContent() As String = System.IO.File.ReadAllLines(trainerFilePath)

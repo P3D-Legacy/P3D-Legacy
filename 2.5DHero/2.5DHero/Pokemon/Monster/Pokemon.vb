@@ -1224,7 +1224,7 @@ Public Class Pokemon
     ''' Checks if a requested Pokémon data file exists.
     ''' </summary>
     Public Shared Function PokemonDataExists(ByVal Number As Integer) As Boolean
-        Return System.IO.File.Exists(GameModeManager.GetPokemonDataFilePath(Number.ToString() & ".dat"))
+        Return System.IO.File.Exists(OldGameModeManager.GetPokemonDataFilePath(Number.ToString() & ".dat"))
     End Function
 
     ''' <summary>
@@ -1552,7 +1552,7 @@ Public Class Pokemon
                 Case "nickname"
                     Me.NickName = tagValue
                 Case "level"
-                    Me.Level = CInt(tagValue).Clamp(1, CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")))
+                    Me.Level = CInt(tagValue).Clamp(1, CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100")))
                 Case "ot"
                     Me.OT = tagValue
                 Case "ability"
@@ -2133,7 +2133,7 @@ Public Class Pokemon
         While Me.Experience >= NeedExperience(Me.Level + 1)
             Me.LevelUp(LearnRandomAttack)
         End While
-        Me.Level = Me.Level.Clamp(1, CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")))
+        Me.Level = Me.Level.Clamp(1, CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100")))
     End Sub
 
     ''' <summary>

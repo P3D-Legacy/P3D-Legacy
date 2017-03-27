@@ -144,9 +144,9 @@ Public Class OverworldScreen
     ''' Updates the OverworldScreen.
     ''' </summary>
     Public Overrides Sub Update()
-        If GameModeManager.ActiveGameMode.StartScript <> "" AndAlso ActionScript.IsReady AndAlso Not GlobalGameModeScriptStarted Then
+        If OldGameModeManager.ActiveGameMode.StartScript <> "" AndAlso ActionScript.IsReady AndAlso Not GlobalGameModeScriptStarted Then
             ActionScript.reDelay = 0.0F
-            ActionScript.StartScript(GameModeManager.ActiveGameMode.StartScript, 0)
+            ActionScript.StartScript(OldGameModeManager.ActiveGameMode.StartScript, 0)
             GlobalGameModeScriptStarted = True
         End If
 

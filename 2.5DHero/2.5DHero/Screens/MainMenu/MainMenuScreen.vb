@@ -44,7 +44,7 @@ Public Class MainMenuScreen
     End Function
 
     Public Sub New()
-        GameModeManager.SetGameModePointer("Kolben")
+        OldGameModeManager.SetGameModePointer("Kolben")
 
         Me.Identification = Identifications.MainMenuScreen
         Me.CanBePaused = False
@@ -1862,8 +1862,8 @@ Public Class MainMenuScreen
 
     Public Sub NewGameButton()
         If Core.GameOptions.StartedOfflineGame = True Then
-            If GameModeManager.GameModeCount < 2 Then
-                GameModeManager.SetGameModePointer("Kolben")
+            If OldGameModeManager.GameModeCount < 2 Then
+                OldGameModeManager.SetGameModePointer("Kolben")
                 Core.SetScreen(New TransitionScreen(Me, New NewGameScreen(), Color.Black, False))
             Else
                 GetGameModes()
@@ -1916,7 +1916,7 @@ Public Class MainMenuScreen
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 272, 388, 512, 128), True)
 
         If tempGameModesDisplay = "" Then
-            Dim GameMode As GameMode = GameModeManager.GetGameMode(ModeNames(gameModeMenuIndex(0)))
+            Dim GameMode As OldGameMode = OldGameModeManager.GetGameMode(ModeNames(gameModeMenuIndex(0)))
 
             Dim dispName As String = GameMode.Name
             Dim dispDescription As String = GameMode.Description
@@ -2043,7 +2043,7 @@ Public Class MainMenuScreen
     End Sub
 
     Private Sub AcceptGameMode()
-        GameModeManager.SetGameModePointer(ModeNames(gameModeMenuIndex(0)))
+        OldGameModeManager.SetGameModePointer(ModeNames(gameModeMenuIndex(0)))
         Core.SetScreen(New TransitionScreen(Me, New NewGameScreen(), Color.Black, False))
     End Sub
 

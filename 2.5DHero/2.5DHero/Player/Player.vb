@@ -350,6 +350,7 @@
     Public LastPokemonPosition As Vector3 = New Vector3(999, 999, 999)
     Public PokeFiles As New List(Of String)
     Public EarnedAchievements As New List(Of String)
+    Public FileItems As New List(Of Items.FileItem)
     Public PokegearModules As New List(Of Integer)
     Public PhoneContacts As New List(Of String)
     Public Mails As New List(Of Items.MailItem.MailData)
@@ -486,8 +487,8 @@
             ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
         Next
 
-        GameModeManager.CreateGameModesFolder()
-        GameModeManager.CreateKolbenMode()
+        OldGameModeManager.CreateGameModesFolder()
+        OldGameModeManager.CreateKolbenMode()
 
         ScriptStorage.Clear()
         ScriptBlock.TriggeredScriptBlock = False
@@ -503,11 +504,11 @@
 
         LoadPlayer()
 
-        If GameModeManager.GameModeExists(GameMode) = False Then
+        If OldGameModeManager.GameModeExists(GameMode) = False Then
             GameMode = "Kolben"
-            GameModeManager.SetGameModePointer("Kolben")
+            OldGameModeManager.SetGameModePointer("Kolben")
         Else
-            GameModeManager.SetGameModePointer(GameMode)
+            OldGameModeManager.SetGameModePointer(GameMode)
         End If
 
         BattleSystem.GameModeAttackLoader.Load()
@@ -518,7 +519,7 @@
 
         OldLocalization.ReloadGameModeTokens()
 
-        If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
+        If OldGameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
             MusicManager.LoadMusic(True)
             SoundManager.LoadSounds(True)
         End If
@@ -1081,6 +1082,10 @@
 #Region "Save"
 
     Dim GameJoltTempStoreString As New Dictionary(Of String, String)
+
+    Public Sub SaveGame()
+        SaveGame(True)
+    End Sub
 
     Public Sub SaveGame(ByVal IsAutosave As Boolean)
         SaveGameHelpers.ResetSaveCounter()

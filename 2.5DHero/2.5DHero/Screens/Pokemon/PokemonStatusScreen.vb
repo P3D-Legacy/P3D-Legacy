@@ -354,7 +354,7 @@
             .DrawString(FontManager.MiniFont, Pokemon.HP & " / " & Pokemon.MaxHP & vbNewLine & vbNewLine & Pokemon.Attack & vbNewLine & vbNewLine & Pokemon.Defense & vbNewLine & vbNewLine & Pokemon.SpAttack & vbNewLine & vbNewLine & Pokemon.SpDefense & vbNewLine & vbNewLine & Pokemon.Speed, New Vector2(CInt(p.X + 280), CInt(p.Y + 68)), Color.Black)
 
             ' Experience Points:
-            If Pokemon.Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
+            If Pokemon.Level < CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
                 Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(220, 484, 320, 96))
 
                 Dim NextLvExp As Integer = Pokemon.NeedExperience(Me.Pokemon.Level + 1) - Pokemon.NeedExperience(Me.Pokemon.Level)
@@ -366,7 +366,7 @@
 
                 Dim NeedExp As Integer = NextLvExp - currentExp
 
-                If Pokemon.Level = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
+                If Pokemon.Level = CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
                     NextLvExp = 0
                 Else
                     barPercentage = CInt((currentExp / NextLvExp) * 100)

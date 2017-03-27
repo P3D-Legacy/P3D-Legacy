@@ -85,7 +85,7 @@
     End Sub
 
     Public Sub LoadContent()
-        GameModeManager.LoadGameModes()
+        OldGameModeManager.LoadGameModes()
         Logger.Debug("Loaded game modes.")
 
         FontManager.LoadFonts()

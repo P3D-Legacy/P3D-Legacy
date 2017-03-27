@@ -113,7 +113,7 @@ Public Class PokemonForms
     ''' <param name="Number">The number of the Pokémon.</param>
     ''' <param name="AdditionalData">The additional data of the Pokémon.</param>
     Public Shared Function GetPokemonDataFile(ByVal Number As Integer, ByVal AdditionalData As String) As String
-        Dim FileName As String = GameModeManager.GetPokemonDataFilePath(Number.ToString() & ".dat")
+        Dim FileName As String = OldGameModeManager.GetPokemonDataFilePath(Number.ToString() & ".dat")
 
         Dim Addition As String = ""
 
@@ -129,7 +129,7 @@ Public Class PokemonForms
 
         If System.IO.File.Exists(FileName) = False Then
             Number = 10
-            FileName = GameModeManager.GetPokemonDataFilePath(Number.ToString() & ".dat")
+            FileName = OldGameModeManager.GetPokemonDataFilePath(Number.ToString() & ".dat")
         End If
 
         Return FileName

@@ -98,7 +98,7 @@
             sessionMapsLoaded.Add(levelPath)
         End If
 
-        levelPath = GameModeManager.GetMapPath(levelPath)
+        levelPath = OldGameModeManager.GetMapPath(levelPath)
         Logger.Debug("Loading map: " & levelPath.Remove(0, GameController.GamePath.Length))
         Security.FileValidation.CheckFileValid(levelPath, False, "LevelLoader.vb")
 
@@ -484,7 +484,7 @@
         Dim structureKey As String = MapOffset.X.ToString() & "|" & MapOffset.Y.ToString() & "|" & MapOffset.Z.ToString() & "|" & MapName
 
         If tempStructureList.ContainsKey(structureKey) = False Then
-            Dim filepath As String = GameModeManager.GetMapPath(MapName)
+            Dim filepath As String = OldGameModeManager.GetMapPath(MapName)
             Security.FileValidation.CheckFileValid(filepath, False, "LevelLoader.vb/StructureSpawner")
 
             If IO.File.Exists(filepath) = False Then

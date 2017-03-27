@@ -10,11 +10,11 @@
 
         Logger.Debug("Loaded language [" & LanguageSuffix & "]")
 
-        LoadTokenFile(GameMode.DefaultLocalizationsPath, False)
+        LoadTokenFile(OldGameMode.DefaultLocalizationsPath, False)
 
-        If GameModeManager.GameModeCount > 0 Then
-            Dim GameModeLocalizationPath As String = GameModeManager.ActiveGameMode.LocalizationsPath
-            If GameModeLocalizationPath <> GameMode.DefaultLocalizationsPath Then
+        If OldGameModeManager.GameModeCount > 0 Then
+            Dim GameModeLocalizationPath As String = OldGameModeManager.ActiveGameMode.LocalizationsPath
+            If GameModeLocalizationPath <> OldGameMode.DefaultLocalizationsPath Then
                 LoadTokenFile(GameModeLocalizationPath, True)
             End If
         End If
@@ -32,9 +32,9 @@
             End If
         Next
 
-        If GameModeManager.GameModeCount > 0 Then
-            Dim GameModeLocalizationPath As String = GameModeManager.ActiveGameMode.LocalizationsPath
-            If GameModeLocalizationPath <> GameMode.DefaultLocalizationsPath Then
+        If OldGameModeManager.GameModeCount > 0 Then
+            Dim GameModeLocalizationPath As String = OldGameModeManager.ActiveGameMode.LocalizationsPath
+            If GameModeLocalizationPath <> OldGameMode.DefaultLocalizationsPath Then
                 LoadTokenFile(GameModeLocalizationPath, True)
             End If
         End If

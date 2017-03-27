@@ -71,6 +71,11 @@ Public Class Logger
         Catch ex As Exception : End Try
     End Sub
 
+    Public Shared Sub Log(ByVal code As String, ByVal LogType As LogTypes, ByVal Message As String)
+        Log(LogType, Message)
+    End Sub
+
+
     Public Shared Function LogCrash(ByVal ex As Exception) As String
         Try
             Dim w32ErrorCode As Integer = -1
@@ -111,8 +116,8 @@ Public Class Logger
             End If
 
             Dim GameMode As String = "[No GameMode loaded]"
-            If Not GameModeManager.ActiveGameMode Is Nothing Then
-                GameMode = GameModeManager.ActiveGameMode.Name
+            If Not OldGameModeManager.ActiveGameMode Is Nothing Then
+                GameMode = OldGameModeManager.ActiveGameMode.Name
             End If
 
             Dim OnlineInformation As String = "GameJolt Account: FALSE"
@@ -303,6 +308,9 @@ Public Class Logger
 
         Diagnostics.Debug.Print(stackOutput & vbTab & "| " & message)
         History.Add("(" & GetLogTime(Date.Now) & ") " & message)
+    End Sub
+    Public Shared Sub Debug(ByVal code As String, ByVal message As String)
+        Debug(message)
     End Sub
 
     Public Shared Sub DrawLog()

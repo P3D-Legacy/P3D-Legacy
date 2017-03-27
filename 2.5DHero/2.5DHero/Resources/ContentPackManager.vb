@@ -73,7 +73,7 @@
             Next
         End If
 
-        Dim gameMode As GameMode = GameModeManager.ActiveGameMode
+        Dim gameMode As OldGameMode = OldGameModeManager.ActiveGameMode
         If gameMode.ContentPath <> "\Content\" And gameMode.ContentPath <> "" Then
             Dim gameModePath As String = GameController.GamePath & "\" & gameMode.ContentPath
             For Each fileEnding As String In fileEndings.Split(CChar(","))

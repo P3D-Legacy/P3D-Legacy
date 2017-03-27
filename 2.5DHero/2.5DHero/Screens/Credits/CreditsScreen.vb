@@ -52,10 +52,10 @@ Public Class CreditsScreen
     Private Sub InitializeCreditsPages(ByVal ending As String)
         CreditsPages.Add(New CreditsPage("Pokémon3D Staff", Color.White, Color.Black))
         CreditsPages.Add(New CreditsPage("Pokémon", Color.White, Color.Black, {"made by", "Nintendo", "Game Freak", "The Pokémon Company"}.ToList()))
-        If GameModeManager.ActiveGameMode.IsDefaultGamemode = True Then
+        If OldGameModeManager.ActiveGameMode.IsDefaultGamemode = True Then
             CreditsPages.Add(New CreditsPage("Pokémon 3D", Color.White, Color.Black, {"Trademark (TM) 2012 - " & COPYRIGHTYEAR, "made by Kolben Games"}.ToList()))
         Else
-            CreditsPages.Add(New CreditsPage("Pokémon 3D", Color.White, Color.Black, {"Trademark (TM) 2012 - " & COPYRIGHTYEAR, "made by Kolben Games", "", "GameMode made by", GameModeManager.ActiveGameMode.Author}.ToList()))
+            CreditsPages.Add(New CreditsPage("Pokémon 3D", Color.White, Color.Black, {"Trademark (TM) 2012 - " & COPYRIGHTYEAR, "made by Kolben Games", "", "GameMode made by", OldGameModeManager.ActiveGameMode.Author}.ToList()))
         End If
         CreditsPages.Add(New CreditsPage("Team Kolben", Color.White, Color.Black, {"Nils Drescher", "Andrew Leach", "Marc Boisvert-Dupras", "Grant Garrett", "Jason Houston", "Daniel Billing", "Benjamin Smith", "Hunter Graves"}.ToList()))
         CreditsPages.Add(New CreditsPage("Director", Color.White, Color.Black, {"Nils Drescher"}.ToList()))

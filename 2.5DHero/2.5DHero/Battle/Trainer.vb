@@ -48,7 +48,7 @@ Public Class Trainer
     Public Sub New(ByVal TrainerFile As String)
         Me.TrainerFile = TrainerFile
 
-        Dim path As String = GameModeManager.GetScriptPath("Trainer\" & TrainerFile & ".trainer")
+        Dim path As String = OldGameModeManager.GetScriptPath("Trainer\" & TrainerFile & ".trainer")
         Security.FileValidation.CheckFileValid(path, False, "Trainer.vb")
 
         Dim Data() As String = System.IO.File.ReadAllLines(path)
@@ -271,7 +271,7 @@ Public Class Trainer
                     End If
                     Level += addLevel
 
-                    Dim maxLevel As Integer = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100"))
+                    Dim maxLevel As Integer = CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100"))
 
                     If Level > maxLevel Then
                         Level = maxLevel

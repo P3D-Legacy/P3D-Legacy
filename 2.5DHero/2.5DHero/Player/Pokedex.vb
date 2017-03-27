@@ -1,4 +1,6 @@
-﻿Public Class Pokedex
+﻿Imports net.Pokemon3D.Game.GameModes
+
+Public Class Pokedex
 
     '0 = undiscovered
     '1 = seen
@@ -145,7 +147,7 @@
     Public Shared Sub Load()
         Core.Player.Pokedexes.Clear()
 
-        Dim path As String = GameModeManager.GetContentFilePath("Data\pokedex.dat")
+        Dim path As String = GameModeManager.GetDataFilePath("pokedex.dat")
         Security.FileValidation.CheckFileValid(path, False, "Pokedex.vb")
 
         Dim lines() As String = System.IO.File.ReadAllLines(path)
@@ -246,7 +248,7 @@
             If Me.Activation = "0" Then
                 Return True
             Else
-                If ActionScript.IsRegistered(Me.Activation) = True Then
+                If Construct.Framework.RegisterHandler.IsRegistered(Me.Activation) = True Then
                     Return True
                 End If
             End If
@@ -254,6 +256,26 @@
         End Get
     End Property
 
+    ''' <summary>
+    ''' Returns how many Pokémon caught are shiny.
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property Shiny() As Integer
+        Get
+            Dim o As Integer = 0
+            For Each v As Integer In _originalPokemonList.Values
+                If GetEntryType(Core.Player.PokedexData, v) = 3 Then
+                    o += 1
+                End If
+            Next
+            Return o
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' Returns how many Pokémon have been caught (normal + shiny).
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property Obtained() As Integer
         Get
             Dim o As Integer = 0
@@ -266,6 +288,10 @@
         End Get
     End Property
 
+    ''' <summary>
+    ''' Returns how many Pokémon have only been seen. This excludes caught (normal + shiny) Pokémon.
+    ''' </summary>
+    ''' <returns></returns>
     Public ReadOnly Property Seen() As Integer
         Get
             Dim o As Integer = 0

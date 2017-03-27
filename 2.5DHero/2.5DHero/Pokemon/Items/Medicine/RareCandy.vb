@@ -23,7 +23,7 @@ Namespace Items.Medicine
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-            If Pokemon.Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) And Pokemon.IsEgg() = False Then
+            If Pokemon.Level < CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100")) And Pokemon.IsEgg() = False Then
                 Dim beforeHP As Integer = Pokemon.MaxHP
                 Pokemon.LevelUp(False)
                 Pokemon.Experience = Pokemon.NeedExperience(Pokemon.Level)

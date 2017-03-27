@@ -745,7 +745,7 @@
                     End Select
                 End If
 
-                If File.Exists(GameController.GamePath & "\maps\battle\" & levelfile) = False And File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
+                If File.Exists(GameController.GamePath & "\maps\battle\" & levelfile) = False And File.Exists(GameController.GamePath & OldGameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
                     Select Case Me.defaultMapType
                         Case 0
                             levelfile = cRegion & "0.dat"
@@ -778,7 +778,7 @@
                 End If
             End If
 
-            If File.Exists(GameController.GamePath & "\maps\battle\" & levelfile) = False And File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
+            If File.Exists(GameController.GamePath & "\maps\battle\" & levelfile) = False And File.Exists(GameController.GamePath & OldGameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
                 Select Case Me.defaultMapType
                     Case 0
                         levelfile = "battle0.dat"
@@ -998,7 +998,7 @@ nextIndex:
             Next
 
             'Remove fainted Pokémon from player's team if the DeathInsteadOfFaint GameRule is activated.
-            If CBool(GameModeManager.GetGameRuleValue("DeathInsteadOfFaint", "0")) = True Then
+            If CBool(OldGameModeManager.GetGameRuleValue("DeathInsteadOfFaint", "0")) = True Then
                 For i = 0 To Core.Player.Pokemons.Count - 1
                     If i <= Core.Player.Pokemons.Count - 1 Then
                         If Core.Player.Pokemons(i).HP <= 0 Or Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted Then

@@ -39,7 +39,7 @@ Public Class PokemonEncounter
                     pokeFile = .LevelFile.Remove(.LevelFile.Length - 4, 4) & ".poke"
                 End If
 
-                If System.IO.File.Exists(GameModeManager.GetPokeFilePath(pokeFile)) = True Then ' Only try to register a wild battle if the .poke file exists:
+                If System.IO.File.Exists(OldGameModeManager.GetPokeFilePath(pokeFile)) = True Then ' Only try to register a wild battle if the .poke file exists:
                     Dim startRandomValue As Integer = 12
                     Dim minRandomValue As Integer = 5
 

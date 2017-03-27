@@ -104,7 +104,7 @@
     End Function
 
     Private Shared Function TryAddGameModeSound(ByVal Name As String) As Boolean
-        Dim soundfile As String = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Sounds\" & Name & ".xnb"
+        Dim soundfile As String = GameController.GamePath & OldGameModeManager.ActiveGameMode.ContentPath & "Sounds\" & Name & ".xnb"
         If System.IO.File.Exists(soundfile) = True Then
             Return AddSound(Name, False)
         End If
@@ -167,7 +167,7 @@
     Public Shared Sub PlayPokemonCry(ByVal Number As Integer, ByVal Pitch As Single, ByVal Pan As Single, ByVal Volume As Single)
         If Muted = False Then
             Dim soundfile As String = "Cries\" & Number & ".xnb"
-            If GameModeManager.ContentFileExists("Sounds\" & soundfile) = True Then
+            If OldGameModeManager.ContentFileExists("Sounds\" & soundfile) = True Then
                 AddSound("Cries\" & Number, False)
 
                 Dim s As SoundEffect = GetSoundEffect("Cries\" & Number.ToString())

@@ -905,7 +905,7 @@ Namespace GameJolt
 #Region "DefaultData"
 
         Private Function GetPlayerData() As String
-            Dim GameMode As GameMode = GameModeManager.ActiveGameMode
+            Dim GameMode As OldGameMode = OldGameModeManager.ActiveGameMode
 
             Dim ot As String = GameJoltID
             While ot.Length < 5
@@ -937,7 +937,7 @@ Namespace GameJolt
                 "RepelSteps|0" & vbNewLine &
                 "LastSavePlace|yourroom.dat" & vbNewLine &
                 "LastSavePlacePosition|1,0.1,3" & vbNewLine &
-                "Difficulty|" & GameModeManager.GetGameRuleValue("Difficulty", "0") & vbNewLine &
+                "Difficulty|" & OldGameModeManager.GetGameRuleValue("Difficulty", "0") & vbNewLine &
                 "BattleStyle|0" & vbNewLine &
                 "saveCreated|" & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & vbNewLine &
                 "LastPokemonPosition|999,999,999" & vbNewLine &

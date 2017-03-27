@@ -11,7 +11,7 @@
     Const FASTTIMECYCLE As Boolean = False
 
     Public Sub New()
-        SkydomeModel = Core.Content.Load(Of Model)("SkyDomeResource\SkyDome")
+        SkydomeModel = ModelManager.GetModel("SkyDomeResource\SkyDome") 'Core.Content.Load(Of Model)("SkyDomeResource\SkyDome")
 
         TextureUp = TextureManager.GetTexture("SkyDomeResource\Clouds")
         TextureDown = TextureManager.GetTexture("SkyDomeResource\Clouds")
@@ -137,6 +137,13 @@
         Else
             Return LastSkyColor
         End If
+    End Function
+    Public Shared Function GetEntityColor() As Color
+        Return LastEntityColor
+    End Function
+
+    Public Shared Function GetSkyColor() As Color
+        Return LastSkyColor
     End Function
 
     Private Sub SetLastColor()

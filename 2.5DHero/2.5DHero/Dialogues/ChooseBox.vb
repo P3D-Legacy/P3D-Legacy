@@ -5,15 +5,15 @@
     Public Options() As String
     Public index As Integer = 0
 
-    Dim PositionY As Single = 0
-
     Public Showing As Boolean = False
     Public readyForResult As Boolean = False
-    Public result As Integer = 0
+    Public result As Integer = 0 'The last chosen result as index.
+    Public resultString As String = "" 'The last chosen result as text.
     Public resultID As Integer = 0
     Public ActionScript As Boolean = False
 
     Public Shared CancelIndex As Integer = -1
+    Public ShowTextBox As Boolean = True 'If the text box should be shown when the next choosebox comes up.
 
     Public TextFont As FontContainer
 
@@ -70,18 +70,6 @@
         Next
     End Sub
 
-    Public Function getResult(ByVal ID As Integer) As Integer
-        If Me.readyForResult = True Then
-            If Me.resultID = ID Then
-                Return result
-            Else
-                Return -1
-            End If
-        Else
-            Return -1
-        End If
-    End Function
-
     Public Sub Update()
         Update(True)
     End Sub
@@ -105,11 +93,13 @@
                 If Controls.Accept() = True Then
                     Me.PlayClickSound()
                     Me.result = index
+                    Me.resultString = Options(index)
                     Me.HandleResult()
                 End If
                 If Controls.Dismiss() = True And CancelIndex > -1 Then
                     Me.PlayClickSound()
                     Me.result = CancelIndex
+                    Me.resultString = Options(CancelIndex)
                     Me.HandleResult()
                 End If
             End If
@@ -123,7 +113,8 @@
     End Sub
 
     Private Sub HandleResult()
-        ChooseBox.CancelIndex = -1
+        CancelIndex = -1
+        ShowTextBox = True
         Me.readyForResult = True
         Me.Showing = False
         If Me.DoDelegate = True Then
@@ -131,8 +122,8 @@
         Else
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 If Me.ActionScript = True Then
-                    Dim c As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
-                    c.ActionScript.Switch(Me.Options(result))
+                    'Dim c As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
+                    'c.ActionScript.Switch(Me.Options(result))
                 Else
                     For Each Entity As Entity In UpdateEntities
                         Entity.ResultFunction(result)
@@ -145,11 +136,11 @@
     Public Sub Draw(ByVal Position As Vector2)
         If Me.Showing = True Then
             With Core.SpriteBatch
-                .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X), CInt(Position.Y), 288, 48), New Rectangle(0, 0, 96, 16), Color.White)
+                .Draw(Content.Load(Of Texture2D)("SharedResources\Textures\UI\Overworld\main"), New Rectangle(CInt(Position.X), CInt(Position.Y), 288, 48), New Rectangle(0, 0, 96, 16), Color.White)
                 For i = 0 To Options.Count - 2
-                    .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X), CInt(Position.Y) + 48 + i * 48, 288, 48), New Rectangle(0, 16, 96, 16), Color.White)
+                    .Draw(Content.Load(Of Texture2D)("SharedResources\Textures\UI\Overworld\main"), New Rectangle(CInt(Position.X), CInt(Position.Y) + 48 + i * 48, 288, 48), New Rectangle(0, 16, 96, 16), Color.White)
                 Next
-                .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X), CInt(Position.Y) + 96 + (Options.Count - 2) * 48, 288, 48), New Rectangle(0, 32, 96, 16), Color.White)
+                .Draw(Content.Load(Of Texture2D)("SharedResources\Textures\UI\Overworld\main"), New Rectangle(CInt(Position.X), CInt(Position.Y) + 96 + (Options.Count - 2) * 48, 288, 48), New Rectangle(0, 32, 96, 16), Color.White)
                 For i = 0 To Options.Count - 1
                     Dim m As Single = 1.0F
                     Select Case Me.TextFont.FontName.ToLower()
@@ -159,7 +150,7 @@
 
                     .DrawString(Me.TextFont.SpriteFont, Options(i).Replace("[POKE]", "Poké"), New Vector2(CInt(Position.X + 40), CInt(Position.Y) + 32 + i * 48), Color.Black, 0.0F, Vector2.Zero, m, SpriteEffects.None, 0.0F)
                 Next
-                .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X + 20), CInt(Position.Y) + 36 + index * 48, 10, 20), New Rectangle(96, 0, 3, 6), Color.White)
+                .Draw(Content.Load(Of Texture2D)("SharedResources\Textures\UI\Overworld\main"), New Rectangle(CInt(Position.X + 20), CInt(Position.Y) + 36 + index * 48, 10, 20), New Rectangle(96, 0, 3, 6), Color.White)
             End With
         End If
     End Sub

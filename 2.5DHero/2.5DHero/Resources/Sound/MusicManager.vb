@@ -135,8 +135,8 @@
     End Function
 
     Private Shared Function TryAddGameModeMusic(ByVal Name As String) As Boolean
-        Dim musicfileXNB As String = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".xnb"
-        Dim musicfileMP3 As String = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".mp3"
+        Dim musicfileXNB As String = GameController.GamePath & OldGameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".xnb"
+        Dim musicfileMP3 As String = GameController.GamePath & OldGameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".mp3"
         If System.IO.File.Exists(musicfileXNB) = True Or System.IO.File.Exists(musicfileMP3) = True Then
             Return AddSong(Name, False)
         End If

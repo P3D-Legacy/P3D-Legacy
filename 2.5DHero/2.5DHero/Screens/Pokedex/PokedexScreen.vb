@@ -173,9 +173,9 @@ Public Class PokedexHabitatScreen
         Me.CanMuteMusic = True
         Me.CanBePaused = True
 
-        For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath, "*.*", IO.SearchOption.AllDirectories)
+        For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & OldGameModeManager.ActiveGameMode.PokeFilePath, "*.*", IO.SearchOption.AllDirectories)
             If file.EndsWith(".poke") = True Then
-                Dim fileName As String = file.Remove(0, (GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath & "\").Length - 1)
+                Dim fileName As String = file.Remove(0, (GameController.GamePath & OldGameModeManager.ActiveGameMode.PokeFilePath & "\").Length - 1)
                 Dim newHabitat As New PokedexScreen.Habitat(file)
                 Dim exists As Boolean = False
                 For Each h As PokedexScreen.Habitat In Me.HabitatList
@@ -1321,9 +1321,9 @@ Public Class PokedexViewScreen
     End Sub
 
     Private Sub FillHabitats()
-        For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath, "*.*", IO.SearchOption.AllDirectories)
+        For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & OldGameModeManager.ActiveGameMode.PokeFilePath, "*.*", IO.SearchOption.AllDirectories)
             If file.EndsWith(".poke") = True Then
-                Dim fileName As String = file.Remove(0, (GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath & "\").Length - 1)
+                Dim fileName As String = file.Remove(0, (GameController.GamePath & OldGameModeManager.ActiveGameMode.PokeFilePath & "\").Length - 1)
                 Dim newHabitat As New PokedexScreen.Habitat(file)
                 Dim exists As Boolean = False
                 For Each h As PokedexScreen.Habitat In Me.HabitatList

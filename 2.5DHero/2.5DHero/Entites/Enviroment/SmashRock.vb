@@ -132,7 +132,7 @@
 
     Public Shared Sub Load()
         ItemContainerlist.Clear()
-        Dim File As String = GameModeManager.GetContentFilePath("Data\smashrockitems.dat")
+        Dim File As String = OldGameModeManager.GetContentFilePath("Data\smashrockitems.dat")
         If System.IO.File.Exists(File) = True Then
             Security.FileValidation.CheckFileValid(File, False, "SmashRock.vb")
             Dim data() As String = System.IO.File.ReadAllLines(File)
