@@ -1,0 +1,36 @@
+version=2
+:if:<register.exists(rival_v-road)>=false
+    @npc.warp(0,18,0,5)
+    @Music.play(encounter\rival)
+    @player.turnto(2)
+    @npc.move(0,5)
+    :select:<player.position>
+        :when:12,0,2
+            @npc.move(0,1)
+    :endselect
+
+    @npc.turn(0,0)
+    @npc.move(0,2)
+
+    :if:<register.exists(starter1)>=true
+        @Battle.starttrainer(rival\4\fire)
+    :endif
+
+    :if:<register.exists(starter2)>=true
+        @Battle.starttrainer(rival\4\water)
+    :endif
+
+    :if:<register.exists(starter3)>=true
+        @Battle.starttrainer(rival\4\grass)
+    :endif
+    @Music.play(encounter\rival)
+    @text.show(...I haven't given up~on becoming the~greatest trainer...*I'm going to find~out why I can't*win and become~stronger...*When I do, I will challenge you.*And I'll beat you~down with all my~power.*...Humph! You keep~at it til then.)
+    @npc.turn(0,2)
+    @npc.move(0,2)
+    @npc.turn(0,3)
+    @npc.move(0,10)
+    @npc.remove(0)
+    @register.new(rival_v-road)
+    @music.play(dungeon\cave\victoryroad)
+:endif
+:end

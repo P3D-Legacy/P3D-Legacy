@@ -1,0 +1,6 @@
+version=2
+:if:<register.exists(warehousedooropenchrono)>=True
+    @entity.remove(11)
+    @entity.warp(12,12,1,22)
+:endif
+:end

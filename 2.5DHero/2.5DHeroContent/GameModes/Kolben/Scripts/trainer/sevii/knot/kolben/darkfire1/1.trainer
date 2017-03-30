@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Darkfire
+TrainerClass|Developer
+Money|4000
+IntroMessage|
+OutroMessage|
+DefeatMessage|
+TextureID|darkfire
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+okemon1|{"Pokemon"[6]}{"Experience"[246681]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[516]}{"ItemData"[]}{"NickName"[Charizard]}{"Level"[63]}{"OT"[00000]}{"Ability"[66]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[1]}{"Attack1"[355,5,5]}{"Attack2"[349,10,10]}{"Attack3"[337,5,5]}{"Attack4"[394,10,10]}{"EVs"[144,252,0,0,0,112]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon2|{"Pokemon"[131]}{"Experience"[270000]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Lapras]}{"Level"[60]}{"OT"[00000]}{"Ability"[11]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[573,25,25]}{"Attack2"[57,10,10]}{"Attack3"[94,20,20]}{"Attack4"[58,5,5]}{"EVs"[0,0,128,252,128,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon3|{"Pokemon"[466]}{"Experience"[216000]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[506]}{"ItemData"[]}{"NickName"[Electivire]}{"Level"[60]}{"OT"[00000]}{"Ability"[78]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[238,20,20]}{"Attack2"[528,10,10]}{"Attack3"[8,15,15]}{"Attack4"[612,30,30]}{"EVs"[4,252,0,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon4|{"Pokemon"[94]}{"Experience"[199999]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[182]}{"ItemData"[]}{"NickName"[Gengar]}{"Level"[59]}{"OT"[00000]}{"Ability"[26]}{"Status"[]}{"Nature"[10]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[506,10,10]}{"Attack2"[269,20,20]}{"Attack3"[261,10,10]}{"Attack4"[188,10,10]}{"EVs"[8,0,0,248,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon5|{"Pokemon"[143]}{"Experience"[256723]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[146]}{"ItemData"[]}{"NickName"[Snorlax]}{"Level"[59]}{"OT"[00000]}{"Ability"[17]}{"Status"[]}{"Nature"[0]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[89,5,5]}{"Attack2"[34,20,20]}{"Attack3"[156,10,10]}{"Attack4"[214,5,5]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon6|{"Pokemon"[36]}{"Experience"[181584]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[146]}{"ItemData"[]}{"NickName"[Clefable]}{"Level"[61]}{"OT"[00000]}{"Ability"[109]}{"Status"[]}{"Nature"[5]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[585,20,20]}{"Attack2"[273,20,20]}{"Attack3"[182,30,30]}{"Attack4"[215,5,5]}{"EVs"[252,0,252,0,4,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Items|14,14
+Gender|0
+AI|0
+IntroSequence|Green,Violet
+IntroType|11

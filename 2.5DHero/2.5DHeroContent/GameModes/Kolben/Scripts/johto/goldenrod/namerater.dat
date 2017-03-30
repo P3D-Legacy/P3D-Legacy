@@ -1,0 +1,39 @@
+version=2
+@text.show(Hello, hello! I'm~the Name Rater.~I rate the names~of Pokémon.*Would you like me~to rate names?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @text.show(Which Pokémon's nickname~should I rate for you?)
+        @pokemon.select
+        :if:<pokemon.selected>>-1
+            :if:<pokemon.isegg(<pokemon.selected>)>=false
+                :if:<pokemon.ot(<pokemon.selected>)>=<player.ot>
+                    @text.show(Hm...<pokemon.displayname(<pokemon.selected>)>...~That's a fairly decent~name.~But, how about a slightly~better nickname?*Want me to give it~a better name?)
+                    @options.show(Yes,No)
+                    :select:<options.result>
+                        :when:Yes
+                            @storage.set(TempPokemonCurrentNickname,<pokemon.displayname(<pokemon.selected>)>)
+                            @screen.input(<pokemon.name(<pokemon.selected>)>,name,<pokemon.displayname(<pokemon.selected>)>,20,<pokemon.menusprite(<pokemon.selected>)>)
+                            @pokemon.setnickname(<pokemon.selected>,<system.lastinput>)
+                            :if:<pokemon.displayname(<pokemon.selected>)>=<storage.get(TempPokemonCurrentNickname)>
+                                @text.show(All right.*This Pokémon is now named~<pokemon.displayname(<pokemon.selected>)>!*It might look~the same as before,~but this new name is~much better!*Well done!)
+                            :else
+                                @text.show(All right.*This Pokémon is now named~<pokemon.displayname(<pokemon.selected>)>!~That's a better name~than before!*Well done!)
+                            :endif
+                        :when:No
+                            @text.show(OK, then.~Come again sometime.)
+                    :endselect
+                :else
+                    @text.show(Hm... <pokemon.displayname(<pokemon.selected>)>?*What a great name!~It's perfect.~Treat <pokemon.displayname(<pokemon.selected>)>~with loving care.)
+                :endif
+            :else
+                @text.show(This seems to be~an egg though...)
+            :endif
+        :else
+            @text.show(OK, then.~Come again sometime.)
+        :endif
+    :when:No
+        @text.show(OK, then.~Come again sometime.)
+:endselect
+@storage.clear
+:end

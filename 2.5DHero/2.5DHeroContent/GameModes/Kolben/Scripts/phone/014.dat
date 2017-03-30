@@ -1,0 +1,18 @@
+version=2
+:if:<phone.callflag>=calling
+    @Text.Show(Pokégear:~Calling..............)
+:else
+    @Text.Show(Pokégear: Bug Catcher Arnie~Receiving call.......)
+:endif
+
+:if:<register.exists(phone_reg_014)>=true
+    @Text.Show(Hello <player.name>!*My Venonat and I~have been training.~Want to battle again?*I will be waiting~on Route 35.)
+:else
+    :if:<environment.dayinformation>=tuesday,morning <and> <register.exists(phone_reg_014_time)>=false
+        @Text.Show(Hello <player.name>!*My Venonat and I~have been training.~Want to battle again?*I will be waiting~on Route 35.)
+        @register.new(phone_reg_014)
+    :else
+        @Text.Show(Hey, <player.name>.*I heard the~bug catching contest~might happen soon.*I caught my~Venonat during a~competition before.*Maybe I will find~another parter~in the next one.*Talk to you later.)
+    :endif
+:endif
+:end

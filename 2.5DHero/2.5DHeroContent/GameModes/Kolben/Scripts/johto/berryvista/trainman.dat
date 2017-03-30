@@ -1,0 +1,35 @@
+version=2
+@Text.show(Welcome to the Magnet Train.~We'll soon depart~for Goldenrod City.*Are you coming~aboard?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @text.show(OK. Right this~way, sir.)
+        @npc.turn(0,0)
+        @npc.move(0,1)
+        @npc.turn(0,3)
+        @npc.move(0,1)
+        @npc.turn(0,1)
+        @player.move(2)
+        @player.turnto(1)
+        @player.move(3)
+        @player.turnto(0)
+        @screen.fadeout
+        @level.wait(30)
+        @player.warp(johto\goldenrod\trainstation.dat,11,0.1,4,2)
+        @level.update
+        @npc.warp(0,12,0,4)
+        @npc.turn(0,1)
+        @screen.fadein
+        @level.wait(20)
+        @player.turnto(1)
+        @player.move(2)
+        @player.turnto(2)
+        @player.move(4)
+        @player.turnto(0)
+        @npc.move(0,3)
+        @npc.turn(0,2)
+        @npc.move(0,3)
+    :when:No
+        @text.show(We hope to see you~again!)
+    :endselect
+:end

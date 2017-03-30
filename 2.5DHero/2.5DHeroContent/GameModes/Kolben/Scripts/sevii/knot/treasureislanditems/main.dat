@@ -1,0 +1,9 @@
+version=2
+#0: itemID
+#1: registername
+:if:<register.exists(treatureislanditem<$1>)>=False
+    @item.add(<$0>,1)
+    @item.messagegive(<$0>,1)
+    @register.newtime(treatureislanditem<$1>,<system.random(8,24)>,hours)
+:endif
+:end

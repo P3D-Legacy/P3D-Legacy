@@ -1,0 +1,36 @@
+version=2
+:if:<register.exists(route14suicune)>=False
+    @storage.set(bool,third,<camera.thirdperson>)
+    @camera.deactivatethirdperson
+    @pokemon.cry(245)
+    :if:<player.position(x)>=15
+        @player.move(1)
+    :endif
+    :if:<player.position(z)>=17
+        @player.turnto(2)
+        @player.move(1)
+        @player.turnto(3)
+    :endif
+    :if:<player.position(z)>=19
+        @player.turnto(0)
+        @player.move(1)
+        @player.turnto(3)
+    :endif
+    @npc.turn(0,0)
+    @npc.setspeed(0,2)
+    @npc.move(0,2)
+    @npc.warp(1,~,1,~)
+    @music.play(encounter\eusine)
+    @npc.moveasync(0,5)
+    @player.turnto(1)
+    @player.move(1)
+    @npc.remove(0)
+    @npc.turn(1,3)
+    @text.show(Eusine: <player.name>!~Not again!*I'll be there~first next time!*Having followed it here~I'm starting to understand~what Suicune is after.*To be honest I would~like to keep this~information to myself.*But I want to be an honest~trainer infront of Suicune!*That's why I am sharing~a clue with you.*It seems that...~...Suicune prefers a hilly~place near water...~...Somewhere north.*I don't know exactly~where, yet.*It will be just~you and me!*Who'll find it first?*I challenge you!)
+    @music.play(route\8)
+    @npc.register(kanto\routes\25.dat|0|position|58,2,3)
+    @npc.register(kanto\routes\14.dat|0|remove|0)
+    @register.new(route14suicune)
+    @camera.setthirdperson(<storage.get(bool,third)>)
+:endif
+:end

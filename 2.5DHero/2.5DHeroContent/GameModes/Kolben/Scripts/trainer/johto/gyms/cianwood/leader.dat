@@ -1,0 +1,53 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(stormbadge_obtain)>=true <and> <register.exists(ChuckRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe Monday/Wednesday/~Friday early mornings?*If you visit while~I am there maybe~we could battle.)
+    @register.new(ChuckRematchTalk)
+    :end
+:endif
+:if:<register.exists(stormbadge_obtain)>=False
+    @Music.play(encounter\trainer)
+    @Text.show(WAHAHAHA!*So you've come~this far!*Let me tell you,~I'm tough!~My Pokémon will~crush stones and~shatter bones!~Watch this!)
+    @npc.turn(0,3)
+    @Level.wait(5)
+    @Player.turnto(3)
+    @player.move(1)
+    @player.turnto(0)
+    @text.show(CHUCK: Urggh!~...*Ooooarrgh!)
+
+    @sound.play(destroy)
+    :while:<entity.positiony(5)><1
+        @entity.addtoposition(5,0,0.1,0)
+        @level.wait(2)
+        @level.update
+    :endwhile
+
+    :while:<entity.positiony(5)>>-0.3
+        @entity.addtoposition(5,0,-0.1,0)
+        @level.wait(2)
+        @level.update
+    :endwhile
+
+    @Level.Update
+    @sound.play(destroy)
+    @Level.wait(10)
+    @Player.turnto(1)
+    @player.move(1)
+    @player.turnto(0)
+    @npc.turn(0,2)
+    @battle.starttrainer(johto\gyms\cianwood\leader)
+    @Music.play(building\gym)
+    @register.new(stormbadge_obtain)
+    @register.new(trainer_johto\gyms\cianwood\001)
+    @register.new(trainer_johto\gyms\cianwood\002)
+    @register.new(trainer_johto\gyms\cianwood\003)
+    @register.new(trainer_johto\gyms\cianwood\004)
+    @player.GetBadge(13)
+    @player.AchieveEmblem(storm)
+    @text.show(Stormbadge makes~all Pokémon up to*Level 70 obey, even~traded ones.*It also lets your~Pokémon use Fly*when you're not in~a battle.*Here, take this too!)
+    @item.add(191,1)
+    @item.messagegive(191,1)
+    @text.show(That is Dynamic Punch.*It doesn't always~hit, but when it*does, it causes~confusion!)
+    :end
+:endif
+@battle.starttrainer(johto\gyms\cianwood\leader)
+:end

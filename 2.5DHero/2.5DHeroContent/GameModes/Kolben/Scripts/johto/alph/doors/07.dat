@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(alph_walk_through)>=True
+    @register.remove(alph_walk_through)
+:endif
+
+:if:<register.exists(alph_firstdoor)>=False
+    @register.new(alph_firstdoor)
+:endif
+:end

@@ -1,0 +1,8 @@
+Version=2
+:if:<level.riding>=False
+    @player.turnto(0)
+    @text.show(Hey! Whoa! Stop!*You can't go out on~the Cycling Road unless you~are riding a~bike or a Pokémon.)
+    @player.turnto(3)
+    @player.move(1)
+:endif
+:end

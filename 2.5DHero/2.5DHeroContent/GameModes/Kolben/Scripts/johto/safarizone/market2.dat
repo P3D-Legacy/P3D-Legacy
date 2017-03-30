@@ -1,0 +1,15 @@
+version=2
+:if:<register.exists(safarizone_market2)>=false
+    @text.show(Hello, trainer from Johto.~I am the son of~the Berry Master and I~came from the Hoenn region.*Here, I'll give you~a berry just like my~father would do.)
+    @register.newtime(safarizone_market2,1,day)
+
+    @storage.set(berry_amount,<system.random(1,3)>)
+    @storage.set(berry_id,<system.random(2000,2063)>)
+
+    @item.add(<storage.get(berry_id)>,<storage.get(berry_amount)>)
+    @item.messagegive(<storage.get(berry_id)>,<storage.get(berry_amount)>)
+    @text.show(Please come back tomorrow.)
+:else
+    @text.show(Please come back tomorrow.)
+:endif
+:end

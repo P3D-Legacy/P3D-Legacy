@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file contains an xml description of a font, and will be read by the XNA
+Framework Content Pipeline. Follow the comments to customize the appearance
+of the font in your game, and to change the characters which are available to draw
+with.
+-->
+<XnaContent xmlns:Graphics="Microsoft.Xna.Framework.Content.Pipeline.Graphics">
+  <Asset Type="Graphics:FontDescription">
+
+    <!--
+    Modify this string to change the font that will be imported.
+    -->
+    <FontName>Segoe UI Mono</FontName>
+
+    <!--
+    Size is a float value, measured in points. Modify this value to change
+    the size of the font.
+    -->
+    <Size>11</Size>
+
+    <!--
+    Spacing is a float value, measured in pixels. Modify this value to change
+    the amount of spacing in between characters.
+    -->
+    <Spacing>0</Spacing>
+
+    <!--
+    UseKerning controls the layout of the font. If this value is true, kerning information
+    will be used when placing characters.
+    -->
+    <UseKerning>true</UseKerning>
+
+    <!--
+    Style controls the style of the font. Valid entries are "Regular", "Bold", "Italic",
+    and "Bold, Italic", and are case sensitive.
+    -->
+    <Style>Bold</Style>
+
+    <!--
+    If you uncomment this line, the default character will be substituted if you draw
+    or measure text that contains characters which were not included in the font.
+    -->
+    <!-- <DefaultCharacter>*</DefaultCharacter> -->
+
+    <!--
+    CharacterRegions control what letters are available in the font. Every
+    character from Start to End will be built and made available for drawing. The
+    default range is from 32, (ASCII space), to 126, ('~'), covering the basic Latin
+    character set. The characters are ordered according to the Unicode standard.
+    See the documentation for more information.
+    -->
+    <CharacterRegions>
+      <CharacterRegion>
+        <Start>&#32;</Start>
+        <End>ʯ</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ʰ</Start>
+        <End>΅</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>´</Start>
+        <End>⅞</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ↄ</Start>
+        <End>ↄ</End>
+      </CharacterRegion>
+
+      <CharacterRegion>
+        <Start>Ą</Start>
+        <End>Ą</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ą</Start>
+        <End>ą</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ć</Start>
+        <End>Ć</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ć</Start>
+        <End>ć</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ę</Start>
+        <End>Ę</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ę</Start>
+        <End>ę</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ł</Start>
+        <End>Ł</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ł</Start>
+        <End>ł</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ń</Start>
+        <End>Ń</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ń</Start>
+        <End>ń</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ó</Start>
+        <End>Ó</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ó</Start>
+        <End>ó</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ś</Start>
+        <End>Ś</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ś</Start>
+        <End>ś</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ź</Start>
+        <End>Ź</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ź</Start>
+        <End>ź</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ż</Start>
+        <End>Ż</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>ż</Start>
+        <End>ż</End>
+      </CharacterRegion>
+
+      <CharacterRegion>
+        <Start>�</Start>
+        <End>�</End>
+      </CharacterRegion>
+
+      <CharacterRegion>
+        <Start>ʹ</Start>
+        <End>Ͽ</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>Ѐ</Start>
+        <End>ԓ</End>
+      </CharacterRegion>
+      <CharacterRegion>
+        <Start>֑</Start>
+        <End>״</End>
+      </CharacterRegion>
+    </CharacterRegions>
+  </Asset>
+</XnaContent>

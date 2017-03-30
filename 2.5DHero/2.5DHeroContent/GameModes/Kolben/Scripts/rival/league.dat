@@ -1,0 +1,37 @@
+version=2
+:if:<register.exists(rival_league_wins)>=false
+    @register.new(rival_league_wins,0)
+:endif
+:if:<register.exists(rival_dragonsden_encounter)>=true <and> <register.exists(rival_league_encounter)>=false
+    :if:<datetime.day>=Monday <or> <datetime.day>=Wednesday
+        @npc.warp(9,<player.position(x)>,0,3)
+        @player.turnto(2)
+        @music.play(encounter\rival)
+        @npc.setmovey(9,3)
+        @npc.setspeed(9,2)
+        @npc.move(9,6)
+        
+        @text.show(Hold it.*You're going to~take the Pokémon League~challenge now?*You'll have to~give up on that.*My well-trained-beyond-~recognition Pokémon are~going to pound you.*Right now,~right here!*I challenge you!)
+        :if:<register.exists(starter1)>=True
+            @battle.trainer(rival\6\fire)
+        :endif
+        :if:<register.exists(starter2)>=True
+            @battle.trainer(rival\6\water)
+        :endif
+        :if:<register.exists(starter3)>=True
+            @battle.trainer(rival\6\grass)
+        :endif
+        @music.play(encounter\rival)
+        @text.show(...Oh, no...*I still can't win~after all that training...*I...~I have to believe~more in my Pokémon...*...No big deal.*Sorry to have got~in the way.*Don't forget to rest~your Pokémon before you~challenge the Champion!)
+        
+        @screen.fadeout
+        @npc.remove(9)
+        @register.newtime(rival_league_encounter,day,1)
+        :if:<register.value(rival_league_wins)><20
+            @register.change(rival_league_wins,<register.value(rival_league_wins)>+1)
+        :endif
+        @music.play(town\indigo)
+        @screen.fadein
+    :endif
+:endif
+:end

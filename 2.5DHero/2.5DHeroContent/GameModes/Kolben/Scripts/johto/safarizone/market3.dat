@@ -1,0 +1,29 @@
+version=2
+:if:<register.exists(safarizone_movelearner0)>=false
+    @text.show(It's strong.*NO!*It's SUPER strong!*NOOO!*IT'S MEGA STRONG!*IT'S MEGA PUNCH!!!*Shall I teach one of~your Pokémon the awesome~MEGA PUNCH?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:No
+            @text.show(Hm, that's sad...)
+            :end
+        :when:Yes
+            @text.show(OK then, which Pokémon~shall I teach MEGA PUNCH?)
+            @pokemon.select(1)
+            :if:<pokemon.selected>>-1
+                @screen.teachmoves(<pokemon.selected>,5)
+                :if:<pokemon.learnedtutormove>=true
+                    @register.new(safarizone_movelearner0)
+                    @text.show(Hah, there you go!)
+                :else
+                    @text.show(Hm, OK then...)
+                    :end
+                :endif
+            :else
+                @text.show(Hm, that's sad...)
+                :end
+            :endif
+    :endselect
+:else
+    @text.show(Hah, there you go!~Enjoy MEGA PUNCH as much~as I do.)
+:endif
+:end

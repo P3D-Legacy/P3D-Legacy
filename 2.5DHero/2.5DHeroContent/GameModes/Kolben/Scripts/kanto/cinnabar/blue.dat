@@ -1,0 +1,33 @@
+version=2
+:if:<register.exists(insightfulblue)>=false
+    @text.show(Who are you?~My name's Blue.~I was once the~Kanto Champion.*Although it was~short-lived thanks~to Red...*Anyway, take a good~look around you...*A volcano erupts,~and just like that,~a whole town disappears.~We can go on winning~and losing in Pokémon,~but if nature so~much as twitches,~we can be overwhelmed~in a second...~That's the way it is...~But, anyway,~I'm still a Trainer.~If I see a strong~opponent, it makes me want~to battle.)
+    @register.new(insightfulblue)
+:endif
+:if:<player.badges>=15
+    @text.show(If you want to~battle me...~for real, come to~the Viridian Gym.*I'll be waiting for you!)
+    @npc.register(kanto\cinnabar\main.dat|0|remove|0)
+    @npc.register(kanto\viridian\gym.dat|0|position|5,0,2)
+    @npc.register(kanto\viridian\gym.dat|1|position|7,0,12)
+
+    @npc.wearskin(0,[POKEMON|N]18)
+    @pokemon.cry(18)
+
+    @level.wait(35)
+
+    @npc.turn(0,0)
+    @npc.setmovey(0,1)
+    @npc.move(0,1)
+    @npc.setmovey(0,1)
+    @npc.move(0,1)
+    @npc.setmovey(0,1)
+    @npc.move(0,1)
+
+    @screen.fadeout
+    @sound.play(Battle\Effects\effect_fly)
+    @npc.remove(0)
+    @level.wait(20)
+    @screen.fadein
+:else
+    @text.show(If you want to~battle me...~for real, show me~how many Kanto Badges~you've got.*...*<math.int(<player.badges>-8)>*...*You're not ready~to battle me...)
+:endif
+:end

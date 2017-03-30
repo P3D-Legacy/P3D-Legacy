@@ -1,0 +1,4 @@
+version=2
+@pokemon.cry(016)
+@text.show(Strawberry: Pijji!)
+:end

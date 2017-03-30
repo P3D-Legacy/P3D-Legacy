@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Darkfire
+TrainerClass|Developer
+Money|10000
+IntroMessage|
+OutroMessage|
+DefeatMessage|
+TextureID|darkfire
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|{"Pokemon"[6]}{"Experience"[246681]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[516]}{"ItemData"[]}{"NickName"[Charizard]}{"Level"[83]}{"OT"[00000]}{"Ability"[66]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[1]}{"Attack1"[355,5,5]}{"Attack2"[349,10,10]}{"Attack3"[337,5,5]}{"Attack4"[394,10,10]}{"EVs"[144,252,0,0,0,112]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon2|{"Pokemon"[184]}{"Experience"[181584]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Azumarill]}{"Level"[81]}{"OT"[00000]}{"Ability"[37]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[453,15,15]}{"Attack2"[127,10,10]}{"Attack3"[583,10,10]}{"Attack4"[282,5,5]}{"EVs"[252,252,0,0,4,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon3|{"Pokemon"[286]}{"Experience"[205379]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[505]}{"ItemData"[]}{"NickName"[Breloom]}{"Level"[79]}{"OT"[00000]}{"Ability"[90]}{"Status"[]}{"Nature"[0]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[73,20,20]}{"Attack2"[409,30,30]}{"Attack3"[182,30,30]}{"Attack4"[147,20,20]}{"EVs"[252,4,0,0,252,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon4|{"Pokemon"[462]}{"Experience"[205379]}{"Gender"[2]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Magnezone]}{"Level"[79]}{"OT"[00000]}{"Ability"[42]}{"Status"[]}{"Nature"[10]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[521,20,20]}{"Attack2"[237,5,5]}{"Attack3"[430,20,20]}{"Attack4"[85,20,20]}{"EVs"[0,0,4,252,0,252]}{"IVs"[31,30,31,30,31,30]}{"AdditionalData"[]}
+Pokemon5|{"Pokemon"[596]}{"Experience"[205379]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Galvantula]}{"Level"[80]}{"OT"[00000]}{"Ability"[14]}{"Status"[]}{"Nature"[10]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[564,40,40]}{"Attack2"[405,10,10]}{"Attack3"[87,15,15]}{"Attack4"[521,20,20]}{"EVs"[4,0,0,212,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon6|{"Pokemon"[709]}{"Experience"[1000000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[2009]}{"ItemData"[]}{"NickName"[Trevenant]}{"Level"[80]}{"OT"[00000]}{"Ability"[139]}{"Status"[]}{"Nature"[23]}{"CatchLocation"[]}{"CatchTrainer"[Name]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[73,20,20]}{"Attack2"[532,15,15]}{"Attack3"[164,1,1]}{"Attack4"[261,10,10]}{"EVs"[252,4,0,0,252,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Items|14,14,14,14
+Gender|0
+AI|0
+IntroSequence|Green,Violet
+IntroType|11

@@ -1,0 +1,177 @@
+version=2
+:if:<register.exists(rainbowpass)>=True
+    @text.show(Ahoy there!*Where do you~want to sail?)
+    @Options.show(One Island,Two Island,Three Island,Four Island,Five Island,Six Island,Seven Island,Exit)
+    :select:<options.result>
+        :when:Vermilion
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\kanto\vermilion\dock.dat,-11,0.1,1)
+            @level.update
+            @player.turnto(1)
+            @screen.fadein
+        :when:One Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\knot\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Two Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\boon\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Three Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\kin\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Four Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\floe\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Five Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\chrono\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Six Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\fortune\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Seven Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\quest\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+    :endselect
+    :end
+:else
+    :if:<register.exists(tripass)>=True
+        @text.show(Ahoy there!*Where do you~want to sail?)
+        @Options.show(One Island,Two Island,Three Island,Exit)
+        :select:<options.result>
+            :when:Vermilion
+                @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+                @script.start(kanto\vermilion\fastshipleaving)
+                @player.warp(sevii\kanto\vermilion\dock.dat,-11,0.1,1)
+                @level.update
+                @player.turnto(1)
+                @screen.fadein
+            :when:One Island
+                @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+                @script.start(kanto\vermilion\fastshipleaving)
+                @player.warp(sevii\knot\dock.dat,5,0.1,1)
+                @level.update
+                @player.turnto(2)
+                @screen.fadein
+            :when:Two Island
+                @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+                @script.start(kanto\vermilion\fastshipleaving)
+                @player.warp(sevii\boon\dock.dat,5,0.1,1)
+                @level.update
+                @player.turnto(2)
+                @screen.fadein
+            :when:Three Island
+                @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+                @script.start(kanto\vermilion\fastshipleaving)
+                @player.warp(sevii\kin\dock.dat,5,0.1,1)
+                @level.update
+                @player.turnto(2)
+                @screen.fadein
+        :endselect
+        :end
+    :else
+        :if:<register.exists(signalguy2)>=True
+            :if:<register.exists(protoncerulean)>=True
+                @text.show(Hey could you help~me out with something?*The last rocks blocking~Route 1 and Route 19~require an expert with~special tools to remove,~but he hasn't been responding~to our calls.*If I take you to Two Island~will you check in on him?)
+                @options.show(Sure!,Not right now...)
+                :select:<options.result>
+                    :when:Sure!
+                        @text.show(Thanks!*Let's get going.)
+                        @script.start(kanto\vermilion\fastshipleaving)
+                        @player.warp(sevii\boon\dock.dat,5,0.1,1)
+                        @level.update
+                        @player.turnto(2)
+                        @screen.fadein
+                        @text.show(He lives in the~house furthest from~the docks.*Let me know what~he tells you.)
+                        :end
+                    :when:Not right now...
+                        @text.show(Okay then...*Come back if you~have time to help me.)
+                        :end
+                :endselect
+                :end
+            :else
+                :if:<register.exists(Protonchrono)>=True
+                    @text.show(This is the dock for the~Sea Gallop High-Speed~ferries to the Sevii Islands.*We are currently providing~assistance to the victims~of the recent eruption of the~Cinnabar Island Volcano and~are not accepting customers.*We apologize for~the inconvenience.)
+                :else
+                    :if:<register.exists(seviiboatfirsttalk)>=False
+                        @text.show(Are you~<player.name>?*My friend told me you~needed to go to Five Island~for an emergency.)
+                    :endif
+                    :if:<register.exists(needfourisland)>=false
+                        @text.show(Are you ready to~go to Five Island?)
+                        @options.show(Yes,No)
+                        :select:<options.result>
+                            :when:Yes
+                                @text.show(Okay let's go!)
+                                @script.start(kanto\vermilion\fastshipleaving)
+                                @player.warp(sevii\chrono\memorial.dat,8,0.1,51)
+                                @entity.warp(0,8,-0.5,57)
+                                @entity.setscale(0,0.03,0.03,0.03)
+                                @level.update
+                                @player.turnto(2)
+                                @screen.fadein
+                                :if:<register.exists(seviiboatfirsttalk)>=False
+                                    @text.show(It seems Team Rocket has~taken complete control of~Five Island Town, so I~decided to let you off here.)
+                                    @register.new(seviiboatfirsttalk)
+                                :endif
+                                @text.show(If you want to return to~Vermilion City or heal your~Pokémon, let me know.)
+                                :end
+                        :endselect
+                    :else
+                        @text.show(Are you ready to~go to Four Island?*Or would you rather~return to Five Island?)
+                        @Options.show(Four Island,Five Island,Quit)
+                        :select:<options.result>
+                            :when:Four Island
+                                @script.start(kanto\vermilion\fastshipleaving)
+                                @player.warp(sevii\floe\dock.dat,5,0.1,1)
+                                @level.update
+                                @player.turnto(2)
+                                @screen.fadein
+                                @text.show(Let me know when~you want to return.)
+                                :end
+                            :when:Five Island
+                                @text.show(Okay let's go!)
+                                @script.start(kanto\vermilion\fastshipleaving)
+                                @player.warp(sevii\chrono\memorial.dat,8,0.1,51)
+                                @entity.warp(0,8,-0.5,57)
+                                @entity.setscale(0,0.03,0.03,0.03)
+                                @level.update
+                                @player.turnto(2)
+                                @screen.fadein
+                                @text.show(If you want to return to~Vermilion City or heal your~Pokémon, let me know.)
+                        :endselect
+                    :endif
+                :endif
+            :endif
+        :else
+            @text.show(This is the dock for the~Sea Gallop High-Speed~ferries to the Sevii Islands.*We are currently providing~assistance to the victims~of the recent eruption of the~Cinnabar Island Volcano and~are not accepting customers.*We apologize for~the inconvenience.)
+        :endif
+    :endif
+:endif
+:end

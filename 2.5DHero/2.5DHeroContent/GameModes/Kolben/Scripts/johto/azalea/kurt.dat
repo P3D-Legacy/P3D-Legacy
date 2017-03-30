@@ -1,0 +1,8 @@
+@Text.Show(Hm?~Who are you?~<player.name>, eh?*You want me to~make some Balls?)
+@Options.Show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @screen.apricorns
+    :when:No
+:endselect
+:end

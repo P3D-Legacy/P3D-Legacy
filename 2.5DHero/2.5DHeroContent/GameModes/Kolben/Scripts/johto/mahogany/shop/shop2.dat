@@ -1,0 +1,12 @@
+version=2
+:if:<register.exists(rocket_invasion_defeat)>=True
+    @Text.show(Welcome! How may I~help you?)
+    @Options.show(Buy,See Ya!)
+    :select:<options.result>
+        :when:Buy
+            @screen.Trade({4|-1|-1}{114|-1|-1}{17|-1|-1}{16|-1|-1}{9|-1|-1}{13|-1|-1}{42|-1|-1}{39|-1|-1},True,True)
+        :when:See Ya!
+            @Text.show(Please come again!)
+    :endselect
+:endif
+:end

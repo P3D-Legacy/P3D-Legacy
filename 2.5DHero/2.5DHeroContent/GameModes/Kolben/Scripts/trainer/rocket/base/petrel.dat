@@ -1,0 +1,25 @@
+version=2
+:if:<register.exists(trainer_rocket\base\petrel)>=False
+    @player.move(3)
+    @Player.turnto(1)
+
+    :if:<Player.position>=11,0,5
+        @player.move(1)
+    :endif
+
+    @player.move(2)
+    @Player.turnto(0)
+
+    @npc.Turn(7,2)
+    @npc.Move(7,1)
+    @battle.starttrainer(rocket\base\petrel)
+    @Text.show(No, I can't let~this affect me.*I have to inform~the others...)
+    @npc.Turn(7,3)
+    @npc.Move(7,2)
+    @npc.Turn(7,2)
+    @player.turnto(3)
+    @npc.Move(7,4)
+    @npc.Warp(7,0,-1,0)
+    @NPC.Register(mahogany\rocketbase\2.dat|7|remove|0)
+:endif
+:end

@@ -1,0 +1,22 @@
+version=2
+:if:<register.exists(trainer_ssaqua\first trip\lazysailor)>=false
+    :select:<player.position>
+        :when:26,0,3
+            :if:<npc.position(0)>=27,0,2
+                @player.turnto(0)
+                @npc.turn(0,1)
+                @npc.move(0,1)
+                @npc.turn(0,2)
+            :endif
+
+        :when:27,0,3
+            :if:<npc.position(0)>=26,0,2
+                @player.turnto(0)
+                @npc.turn(0,3)
+                @npc.move(0,1)
+                @npc.turn(0,2)
+            :endif
+    :endselect
+    @level.update
+:endif
+:end

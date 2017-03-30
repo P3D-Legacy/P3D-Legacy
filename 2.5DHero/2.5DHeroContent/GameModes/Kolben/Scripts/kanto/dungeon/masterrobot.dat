@@ -1,0 +1,20 @@
+version=2
+:if:<register.value(dungeonrobotsdefeated)>=24
+    @text.show(Click*Creeeeeeak*WHIIIIIIIIIIIIIR)
+    @battle.trainer(kanto\dungeon\robots\4)
+    @register.new(dungeonrobots<level.filename>)
+    @register.new(completerobots)
+    @register.change(dungeonrobotsdefeated,1+<register.value(dungeonrobotsdefeated)>)
+    @text.show(Click*Creeeeak*)
+    @npc.setmovey(0,-1)
+    @npc.move(0,-1)
+    @npc.remove(0)
+    @npc.register(kanto\ancientruins\1\12.dat|0|remove|0)
+    @entity.warp(1,5,0,5)
+    @level.update
+    @player.move(1)
+    @script.start(kanto\dungeon\robotwarpout)
+:else
+    @text.show(CHEATER!!)
+:endif
+:end

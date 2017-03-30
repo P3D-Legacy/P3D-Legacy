@@ -1,0 +1,9 @@
+version=2
+#0: gym leader
+:if:<register.exists(<$0>rematch)>=false
+    @text.show(<battle.intromessage(leaderrematches\\<$0>)>)
+    @battle.trainer(leaderrematches\\<$0>)
+    @register.newtime(<$0>rematch,1,day)
+:endif
+@text.show(<battle.defeatmessage(leaderrematches\\<$0>)>)
+:end

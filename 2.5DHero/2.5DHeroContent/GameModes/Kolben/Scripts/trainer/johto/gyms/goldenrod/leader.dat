@@ -1,0 +1,37 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(plainbadge_obtain)>=true <and> <register.exists(WhitneyRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe evenings?*If you visit while~I am there maybe~we could battle.)
+    @register.new(WhitneyRematchTalk)
+    :end
+:endif
+
+:if:<register.exists(plainbadge_obtain)>=True
+    @player.AchieveEmblem(plain)
+    @text.show(Ah, that was a~good cry!*Come for a visit~again! Bye-bye!)
+    :end
+:endif
+
+:if:<register.exists(defeat_whitney_2)>=True
+    @text.show(...Sniff...*What? What do you~want? A Badge?*Oh, right. I forgot.~Here's Plainbadge.)
+    @player.GetBadge(11)
+    @player.AchieveEmblem(plain)
+    @text.show(Plainbadge lets~your Pokémon use~Strength outside~of battle.*It also boosts~your Pokémon's~Speed.)
+    @register.new(plainbadge_obtain)
+    @text.show(Oh, you can have this, too!)
+    @item.add(235,1)
+    @item.messagegive(235,1)
+    @text.show(It's Attract!*It makes full use~of a Pokémon's charm.*Isn't it just perfect~for a cutie like me?)
+    :end
+:endif
+
+@battle.starttrainer(johto\gyms\goldenrod\leader)
+
+:if:<register.exists(defeat_whitney_1)>=False
+    @register.new(defeat_whitney_1)
+    @register.new(trainer_johto\gyms\goldenrod\001)
+    @register.new(trainer_johto\gyms\goldenrod\002)
+    @register.new(trainer_johto\gyms\goldenrod\003)
+    @register.new(trainer_johto\gyms\goldenrod\004)
+    @text.show(Waaaaah!*Waaaaah!*...Snivel, hic...~...You meanie!)
+:endif
+:end

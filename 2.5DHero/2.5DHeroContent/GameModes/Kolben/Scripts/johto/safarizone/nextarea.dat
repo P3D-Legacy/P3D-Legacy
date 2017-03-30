@@ -1,0 +1,61 @@
+version=2
+@storage.set(Nextzone,<system.random(0,19)>)
+
+:if:<storage.get(Nextzone)>>19
+    @storage.set(Nextzone,0)
+:endif
+
+:if:<register.exists(visitedzone<storage.get(Nextzone)>)>=True
+    @script.start(johto\safarizone\nextarea)
+    :end
+:endif
+@register.new(visitedzone<storage.get(Nextzone)>)
+@screen.fadeout
+@player.turnto(2)
+@player.warp(johto\safarizone\areas\\<storage.get(Nextzone)>.dat,12,0.1,22,0)
+@level.update
+@screen.fadein
+
+:if:<register.exists(safaritrip6)>=True
+    @register.remove(safaritrip6)
+    @register.new(safaritrip7)
+    @text.show(This is the seventh and~final zone you get to visit.)
+:endif
+
+:if:<register.exists(safaritrip5)>=True
+    @register.remove(safaritrip5)
+    @register.new(safaritrip6)
+    @text.show(This is the sixth zone~of your Safari adventure.*I wish you luck~on your adventure!)
+:endif
+
+:if:<register.exists(safaritrip4)>=True
+    @register.remove(safaritrip4)
+    @register.new(safaritrip5)
+    @text.show(This is the fifth zone~of your Safari adventure.*I wish you luck~on your adventure!)
+:endif
+
+:if:<register.exists(safaritrip3)>=True
+    @register.remove(safaritrip3)
+    @register.new(safaritrip4)
+    @text.show(This is the fourth zone~of your Safari adventure.*I wish you luck~on your adventure!)
+:endif
+
+:if:<register.exists(safaritrip2)>=True
+    @register.remove(safaritrip2)
+    @register.new(safaritrip3)
+    @text.show(This is the third zone~of your Safari adventure.*I wish you luck~on your adventure!)
+:endif
+
+:if:<register.exists(safaritrip1)>=True
+    @register.remove(safaritrip1)
+    @register.new(safaritrip2)
+    @text.show(This is the second zone~of your Safari adventure.*I wish you luck~on your adventure!)
+:endif
+
+:if:<register.exists(safarizonestart)>=True
+    @register.remove(safarizonestart)
+    @register.new(safaritrip1)
+    @text.show(This is the first zone~of your Safari adventure.*I wish you luck!)
+:endif
+
+:end

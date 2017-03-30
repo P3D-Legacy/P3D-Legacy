@@ -1,0 +1,12 @@
+version=2
+:if:<register.exists(trainerhouseinver)>=false
+    @text.show(<battle.intromessage(kanto\trainerhouse\inver)>)
+    @battle.setvar(canblackout,false)
+    @battle.setvar(inversebattle,true)
+    @battle.trainer(kanto\trainerhouse\inver)
+    @pokemon.heal
+    @register.registertime(trainerhouseinver,1,day)
+    :end
+:endif
+@text.show(<battle.defeatmessage(kanto\trainerhouse\inver)>)
+:end

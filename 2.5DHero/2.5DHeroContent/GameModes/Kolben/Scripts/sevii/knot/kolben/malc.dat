@@ -1,0 +1,18 @@
+version=2
+    :if:<register.exists(malcbattle)>=False
+        @text.show(Malcolm: Hail me!)
+        @battle.setvar(canblackout,false)
+        @battle.trainer(sevii\kolben\malc)
+
+        :if:<battle.won>=true
+            @text.show(P-please s-stop~senpai...)
+        :else
+            @text.show(Kek)
+        :endif
+
+        @pokemon.heal
+        @register.newtime(malcbattle,1,day)
+    :else
+    @text.show(P-please s-stop~senpai...)
+    :endif
+:end

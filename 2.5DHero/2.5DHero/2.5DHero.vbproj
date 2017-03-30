@@ -48,6 +48,10 @@
       <HintPath>..\..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\MonoGame.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NVorbis, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\NVorbis.dll</HintPath>
       <Private>True</Private>
@@ -59,6 +63,7 @@
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Import Include="Microsoft.VisualBasic" />
@@ -175,6 +180,35 @@
     <Compile Include="Core\MainGameFunctions.vb" />
     <Compile Include="Core\Program.vb" />
     <Compile Include="Core\StringObfuscation.vb" />
+    <Compile Include="DataModel\IDataModelContainer.vb" />
+    <Compile Include="DataModel\Json\ContentPack\ContentPack.vb" />
+    <Compile Include="DataModel\Json\EntityPropertyExtension.vb" />
+    <Compile Include="DataModel\Json\GameJolt\BanList.vb" />
+    <Compile Include="DataModel\Json\GameJolt\DataStorage.vb" />
+    <Compile Include="DataModel\Json\GameJolt\UserData.vb" />
+    <Compile Include="DataModel\Json\GameJolt\VerifyUser.vb" />
+    <Compile Include="DataModel\Json\GameMode Data\Badges.vb" />
+    <Compile Include="DataModel\Json\GameMode Data\Contacts.vb" />
+    <Compile Include="DataModel\Json\GameMode Data\GameMode.vb" />
+    <Compile Include="DataModel\Json\GameMode Data\Interactions.vb" />
+    <Compile Include="DataModel\Json\GameMode Data\Pokedex.vb" />
+    <Compile Include="DataModel\Json\GameMode Data\Radio.vb" />
+    <Compile Include="DataModel\Json\GameMode Data\RoamingRegions.vb" />
+    <Compile Include="DataModel\Json\GameMode Data\SmashRockItems.vb" />
+    <Compile Include="DataModel\Json\GameMode Data\Worldmap.vb" />
+    <Compile Include="DataModel\Json\Game\Item.vb" />
+    <Compile Include="DataModel\Json\Game\MainMenuMap.vb" />
+    <Compile Include="DataModel\Json\Game\MapModel.vb" />
+    <Compile Include="DataModel\Json\Game\PrimitiveModel.vb" />
+    <Compile Include="DataModel\Json\Game\Trainer.vb" />
+    <Compile Include="DataModel\Json\JsonDataModel.vb" />
+    <Compile Include="DataModel\Json\JsonFormatter.vb" />
+    <Compile Include="DataModel\Json\Localization\LocalizationModel.vb" />
+    <Compile Include="DataModel\Json\Network\PackageModel.vb" />
+    <Compile Include="DataModel\Json\PlayerData\KeyboardSave.vb" />
+    <Compile Include="DataModel\Json\PlayerData\Options.vb" />
+    <Compile Include="DataModel\Json\PlayerData\Pokemon.vb" />
+    <Compile Include="DataModel\Json\PlayerData\ServerList.vb" />
     <Compile Include="Debug\BoundingBoxRenderer.vb" />
     <Compile Include="Debug\DebugDisplay.vb" />
     <Compile Include="Debug\DotNetVersion.vb" />
@@ -1725,6 +1759,7 @@
     <Compile Include="Screens\Inventory\ItemDetailScreen.vb" />
     <Compile Include="Screens\Inventory\NewInventoryScreen.vb" />
     <Compile Include="Screens\Inventory\PokegearScreen.vb" />
+    <Compile Include="Screens\KeyBindingScreen.vb" />
     <Compile Include="Screens\MainMenu\AddServerScreen.vb" />
     <Compile Include="Screens\MainMenu\ConnectScreen.vb" />
     <Compile Include="Screens\MainMenu\IntroScreen.vb" />
@@ -1735,6 +1770,7 @@
     <Compile Include="Screens\MainMenu\NewNewGameScreen.vb" />
     <Compile Include="Screens\MainMenu\OfflineGameWarningScreen.vb" />
     <Compile Include="Screens\MainMenu\PauseScreen.vb" />
+    <Compile Include="Screens\MainMenu\PressStartScreen.vb" />
     <Compile Include="Screens\MainMenu\SplashScreen.vb" />
     <Compile Include="Screens\MapPreview\MapPreviewCamera.vb" />
     <Compile Include="Screens\MapPreview\MapPreviewScreen.vb" />

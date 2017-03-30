@@ -1,0 +1,23 @@
+﻿listen channels (range)|overwrite channels (range)|channel name|Region|TimeOfDay (range)|Card Requirements (range)|Music|[SPECIAL]/(Script)/Text|CanBeOverwritten|Activation (0=Always,1=LevelChannel)|Activation Register (0=no register)
+
+{4.5|4.5|Pokédex Show|Johto|0,3|RADIO|event\show_me_around|[POKEDEXENTRY]|1|0|0}
+{4.5|4.5|Pokémon Talk|Johto|1,2|RADIO|building\oakslab|[RANDOMPOKEMON]|1|0|0}
+{7.5|7.5|Pokémon Music|Johto|0,3|RADIO|radio\lullaby|Hi there, folks.~This is DJ Ben. And you are listening to Pokémon Music.~We are bringing you the song that fits this time of the day:~The Pokémon Lullaby.|1|0|0}
+{7.5|7.5|Pokémon Music|Johto|1,2|RADIO|radio\march|Hi there, folks.~This is DJ Ben. And you are listening to Pokémon Music.~We are bringing you the song that fits this time of the day:~The Pokémon March.|1|0|0}
+{8.5|8.5|Lucky Channel|Johto|0,1,2,3|RADIO|building\gamecorner|[luckychannel]|1|0|0}
+{20.5|0-21|Rocket Transmission|Johto|0,1,2,3|RADIO|radio\rocket|...~e.olv.!~...~.row str..ge., f.ster.~...~mag..arp.~...|1|1|johto_rocket_hq_broadcast}
+{0-21|0-21|Team Rocket Announcement|Johto|0,1,2,3|RADIO|encounter\rocket|---Start of Message---~Team Rocket Executive:~Attention everybody! This is Team Rocket!~We've taken over the Radio Tower in Goldenrod City!~We did this to broadcast a message:~Giovanni! A new Team Rocket has been built.~Now, we reach out to you to come back to lead Team Rocket to victory!~Rejoin Team Rocket and help us taking over the World!~---End of Message---|1|0|johto_rocket_radio_pokegear}
+{13.5|0-21|Mysterious Transmission|Johto|0,1,2,3|RADIO|radio\unown|[unown]|0|1|0}
+{0-21|0|Mysterious Transmission|Johto|0,1,2,3|EXPN|dungeon\cave\cerulean|...~we ar.~...eam Ro~....ey us...~...wer and mig...~...oin u...|0|1|0}
+
+{14.5|14.5|Places and People|Kanto|0,1,2,3|EXPN|town\cerulean|[PLACESANDPEOPLE]|1|0|0}
+{18.5|18.5|Let's All Sing|Kanto|0,3|EXPN|radio\lullaby|Fern: POKéMUSIC!~With DJ Fern! We are bringing you the song that fits this time of the day:~The Pokémon Lullaby.|1|0|0}
+{18.5|18.5|Let's All Sing|Kanto|1,2|EXPN|radio\march|Fern: POKéMUSIC!~With DJ Fern!~The sun is up~So let us jam to~Pokémon March!|1|0|0}
+{20.0|20.0|PokéFlute|Kanto|0,1,2,3|EXPN|radio\pokeflute||1|0|0}
+{0-21|0|Mysterious Transmission|Kanto|0,1,2,3|EXPN|dungeon\cave\cerulean|...~we ar.~...eam Ro~....ey us...~...wer and mig...~...oin u...|0|1|0}
+
+{14.5|14.5|Places and People|Sevii Islands|0,1,2,3|EXPN|town\cerulean|[PLACESANDPEOPLE]|1|0|0}
+{18.5|18.5|Let's All Sing|Sevii Islands|0,3|EXPN|radio\lullaby|Fern: POKéMUSIC!~With DJ Fern! We are bringing you the song that fits this time of the day:~The Pokémon Lullaby.|1|0|0}
+{18.5|18.5|Let's All Sing|Sevii Islands|1,2|EXPN|radio\march|Fern: POKéMUSIC!~With DJ Fern!~The sun is up~So let us jam to~Pokémon March!|1|0|0}
+{20.0|20.0|PokéFlute|Sevii Islands|0,1,2,3|EXPN|radio\pokeflute||1|0|0}
+{0-21|0|Mysterious Transmission|Kanto|0,1,2,3|EXPN|dungeon\cave\cerulean|...~we ar.~...eam Ro~....ey us...~...wer and mig...~...oin u...|0|1|0}

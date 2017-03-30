@@ -1,0 +1,36 @@
+version=2
+:if:<register.exists(phone_reg_019)>=true
+    @Text.Show(I studied a lot and~now I am ready to battle!)
+    @register.remove(phone_reg_019)
+    @register.newtime(phone_reg_time_019,1,day)
+
+    :if:<player.badges>>3
+        :if:<register.exists(rematch_019_1)>=true
+            @battle.trainer(johto\nationalpark\003_2)
+        :else
+            @register.new(rematch_019_1)
+            @battle.trainer(johto\nationalpark\003_1)
+        :endif
+    :else
+        @battle.trainer(johto\nationalpark\003)
+    :endif
+
+:else
+    @battle.starttrainer(johto\nationalpark\003)
+
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_019)>=false
+            @Text.Show(There's a lot to learn.~Maybe I can teach you~something the other day.*Do you want to have~my number?)
+
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Jack's number.)
+                    @register.new(phone_contact_019)
+                    @Text.Show(I'll let you know whenever~I want to battle you.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

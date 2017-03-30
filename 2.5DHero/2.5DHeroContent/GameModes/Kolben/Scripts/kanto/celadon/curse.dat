@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(celadoncurseTM)>=False
+    @text.show(Let me recount a~terrifying tale...*Once upon a time,~there was a little boy who~was given a new Bicycle...*He wanted to try~it right away...*He was having so much fun~that he didn't notice~the sun had set...*While riding home in the~pitch-black night,~the bike suddenly slowed!*The pedals became heavy!*When he stopped pedaling,~the bike began slipping~backwards!*It was as if the bike~were cursed and trying to~drag him into oblivion!*...*...*SHRIEEEEK!*The boy had been riding~uphill on Cycling Road!*...~Ba-dum ba-dum!*For listening so patiently,~you may take this--TM03!)
+    @item.add(193,1)
+    @item.messagegive(193,1)
+    @register.new(celadoncurseTM)
+:endif
+@text.show(TM03 is Curse.*It's a terrifying move~that slowly whittles~down the victim's HP.)
+:end

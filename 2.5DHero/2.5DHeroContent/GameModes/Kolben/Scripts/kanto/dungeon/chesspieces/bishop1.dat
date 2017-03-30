@@ -1,0 +1,17 @@
+version=2
+@text.show(There are letters carved here.*They seem to say "Bishop".)
+:if:<register.exists(solvechess)>=False
+    @text.show(OH!~There's a button here!~Press it?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @level.reload
+            @level.update
+            @sound.play(destroy)
+            @entity.warp(18,8,-1,7)
+            @entity.warp(27,9,-1,8)
+            @entity.warp(36,10,-1,9)
+            :end
+    :endselect
+:endif
+:end

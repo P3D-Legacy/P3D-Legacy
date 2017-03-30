@@ -1,0 +1,32 @@
+version=2
+:if:<DateTime.DayOfWeek>=Sunday <or> <DateTime.DayOfWeek>=Saturday
+    :if:<DateTime.Hour><23 <and> <datetime.hour>>14
+        :if:<register.exists(MistyRematchTalk)>=true
+            @npc.remove(1)
+        :endif
+    :endif
+:endif
+:if:<register.exists(r24grunt)>=False
+    @entity.remove(10)
+:endif
+:if:<register.exists(ceruleangymgrunt)>=False <and> <register.exists(powerplantmanager1)>=True
+    @player.move(0)
+    @npc.setspeed(0,2)
+    @npc.move(0,4)
+    @sound.play(bump)
+    @npc.setspeed(0,4)
+    @npc.move(0,-1)
+    @text.show(Oops!~I'm so sorry!~You not hurt, okay?~I very busy.~No time for talking with you.~Not good for me if~seen by somebody.~Oh no!~You seen me already!~I make big mistake!~The Boss will be angry!~Hey, you!~Forget you see me, okay?~You see, hear,~know nothing, okay?~Bye, kid!~Nothing!~Bye-bye a go-go!)
+    @npc.turn(0,3)
+    @npc.setspeed(0,2)
+    @npc.move(0,1)
+    @npc.turn(0,2)
+    @npc.setspeed(0,2)
+    @npc.move(0,2)
+    @sound.play(enter)
+    @register.new(ceruleangymgrunt)
+	@npc.remove(0)
+    @npc.unregister(kanto\cerulean\gym.dat|0|position|4,0,10)
+    @npc.register(kanto\routes\24.dat|0|position|6,1,11)
+:endif
+:end

@@ -1,0 +1,46 @@
+version=2
+#0: machine name
+#1: rotom form name
+#2: rotom learn move ID
+:if:<pokemon.number(0)>=479
+    :if:<pokemon.additionaldata(0)>=<$1>
+        @text.show(Oh, <pokemon.displayname(0)>~appears as if it wants to~revert to its original form.*Would you like to recall~it from the motor?)
+        @options.show(Recall,Cancel)
+        :select:<options.result>
+            :when:Recall
+            @script.start(kanto\saffron\rotom\recall)
+                :end
+            :when:Cancel
+                :end
+        :endselect
+    :else
+    @text.show(It is a <$0>.*It has an odd-shaped~motor on it.*Oh?*<pokemon.displayname(0)> appears~as if it wants to go~into the motor.*Allow it to enter the motor?)
+        :if:<pokemon.additionaldata(0)>=
+            @options.show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                @script.start(kanto\saffron\rotom\entermotor,<$0>,<$1>,<$2>)
+                    :end
+                :when:No
+                @text.show(<pokemon.displayname(0)> reluctantly~gave up on entering~the <$0>'s motor...)
+                    :end
+            :endselect
+        :else
+            @options.show(Yes,Recall,No)
+            :select:<options.result>
+                :when:Yes
+                @script.start(kanto\saffron\rotom\entermotor,<$0>,<$1>,<$2>)
+                    :end
+                :when:Recall
+                @script.start(kanto\saffron\rotom\recall)
+                    :end
+                :when:No
+                @text.show(<pokemon.displayname(0)> reluctantly~gave up on entering~the <$0>'s motor...)
+                    :end
+            :endselect
+        :endif
+    :endif
+:else
+    @text.show(It is a <$0>.*It has an odd-shaped~motor on it.)
+:endif
+:end

@@ -1,0 +1,27 @@
+version=2
+:if:<register.exists(signalguy1)>=False
+    @text.show(Hello there!*I specialize in~electronic signals*I can tell you anything~you want to know about~things like radio signals.*You want to know where~a transmission is~coming from?*Sure let me check!)
+    @npc.turn(0,0)
+    @level.wait(50)
+    @npc.turn(0,2)
+    @text.show(This broadcast seems~to be a message to members~of Team Rocket!*There was something about a~plan and a powerful Pokémon.*The rest of the message~was too garbled to~understand.*I wasn't able to find the~exact location of the~transmission yet but I can~tell you it is coming from~outside of Kanto.*It will take me some time~to find the exact location.)
+    @register.newtime(findingsignal,1,minute)
+    @register.new(signalguy1)
+    @npc.register(kanto\pewter\main.dat|3|remove|0)
+    :end
+:else
+    :if:<register.exists(findingsignal)>=True <or> <player.hasbadge(1)>=False
+        @text.show(If you come back in a~few minutes I should be able~to tell you the~signal is coming from.*If you need something to do~I hear the Gym Leader~is strong,~maybe you should battle him.)
+        :end
+    :else
+        :if:<register.exists(signalguy2)>=False
+            @text.show(Ah you're back!*The radio signal is~coming from a warehouse~on Five Island.*Five Island is one of the~Sevii Islands, an archipelago~not far from Kanto.*Normally there is a boat~that runs between~Vermilion City and the~Islands.*but the sailors~have joined the relief effort~for Cinnabar Island ~and so the ferry hasn't been~running.*While you were gone I~contacted one of the~ferrymen and he agreed to~take you to Five Island.*I hope that Team Rocket~hasn't been causing much~trouble there.)
+            @register.new(signalguy2)
+            :end
+        :else
+            @text.show(Come see me again~if you need to know anything~else about electronic~signals.)
+            :end
+        :endif
+    :endif
+:endif
+:end

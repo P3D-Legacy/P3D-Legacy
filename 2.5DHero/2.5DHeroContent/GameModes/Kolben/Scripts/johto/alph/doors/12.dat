@@ -1,0 +1,17 @@
+Version=2
+@Pokemon.Cry(201)
+:if:<register.exists(alph02)>=false
+    @register.new(alph02)
+    @text.SetFont(Unown)
+    @Text.show(The cavern changed!)
+    @pokemon.Cry(201)
+    @player.Warp(johto\alph\0.dat,8,0.1,10,0)
+:else
+    @player.Turn(2)
+    @player.Move(1)
+    @player.Turn(2)
+    @text.SetFont(Unown)
+    @Text.show(A magical force~pushed you back!)
+    @Pokemon.Cry(201)
+:endif
+:end

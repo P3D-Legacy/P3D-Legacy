@@ -1,0 +1,7 @@
+version=2
+@battle.starttrainer(rocket\base\006)
+:if:<register.exists(passSPT)>=False
+    @Text.show(The password to~the Boss's room is~Slowpoketail.*But it's usesless~unless you have~two passwords.)
+    @register.new(passSPT)
+:endif
+:end

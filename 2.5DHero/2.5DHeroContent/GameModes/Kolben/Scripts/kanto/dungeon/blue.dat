@@ -1,0 +1,60 @@
+version=2
+@pokemon.heal
+@text.show(A mysterious power~healed your Pokémon!)
+:if:<register.exists(Mindchallengefinish)>=True
+    :if:<register.exists(dungeonCheckpoint2)>=True
+        :if:<register.exists(dungeonCheckpoint3)>=True
+            @text.show(Images appears to be~shining in the gem!*One looks like a crown!*Another looks~like a tower!*The third one~looks like a star!*Touch one?)
+            @options.show(Touch the Crown,Touch the Tower,Touch the Star,Don't Touch!)
+            :select:<options.result>
+                :when:Touch the Crown
+                    @screen.fadeout
+                    @player.warp(kanto\ancientruins\checkpoint.dat,2,0.1,5,0)
+                    @player.turnto(3)
+                    @level.update
+                    @screen.fadein
+                :when:Touch the Tower
+                    @screen.fadeout
+                    @player.warp(kanto\startower\1.dat,3,0.1,8,0)
+                    @player.turnto(0)
+                    @level.update
+                    @screen.fadein
+                :when:Touch the Star
+                    @screen.fadeout
+                    @player.warp(kanto\startower\7.dat,1,0.1,5,0)
+                    @player.turnto(3)
+                    @level.update
+                    @screen.fadein
+                :endselect
+        :else
+            @text.show(Images appears to be~shining in the gem!*One looks like a crown!*The other looks like a tower!*Touch one?)
+            @options.show(Touch the Crown,Touch the Tower,Don't Touch!)
+            :select:<options.result>
+                :when:Touch the Crown
+                    @screen.fadeout
+                    @player.warp(kanto\ancientruins\checkpoint.dat,2,0.1,5,0)
+                    @player.turnto(3)
+                    @level.update
+                    @screen.fadein
+                :when:Touch the Tower
+                    @screen.fadeout
+                    @player.warp(kanto\startower\1.dat,3,0.1,8,0)
+                    @player.turnto(0)
+                    @level.update
+                    @screen.fadein
+                :endselect
+        :endif
+    :else
+        @text.show(An image appears to be~shining in the gem!*It looks like a crown!*Touch it?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @screen.fadeout
+                @player.warp(kanto\ancientruins\checkpoint.dat,2,0.1,5,0)
+                @player.turnto(3)
+                @level.update
+                @screen.fadein
+        :endselect
+    :endif
+:endif
+:end

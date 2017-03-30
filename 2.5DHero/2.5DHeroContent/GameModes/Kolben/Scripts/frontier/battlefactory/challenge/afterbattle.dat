@@ -1,0 +1,53 @@
+version=2
+@npc.turn(0,3)
+@npc.move(0,1)
+@npc.turn(0,0)
+@npc.move(0,3)
+@npc.turn(0,1)
+@npc.move(0,3)
+@npc.turn(0,0)
+@npc.move(0,3)
+
+@camera.deactivatethirdperson
+@player.turn(3)
+@player.move(3)
+@player.turnto(3)
+@player.move(2)
+@player.turnto(2)
+@player.move(1)
+@player.warp(frontier\battlefactory\rental.dat,6,0.1,-1)
+@level.update
+@npc.warp(0,6,0,2)
+@npc.turn(0,3)
+@level.update
+
+@player.move(2)
+@player.turnto(3)
+@player.move(1)
+@player.turnto(2)
+@player.move(1)
+@player.turnto(1)
+@text.show(You defeated opponent~no.<storage.get(factory_streak)>.)
+
+:if:<storage.get(factory_streak)>=7
+    :if:<storage.get(factory_class)><2
+        @register.change(battlefactory_challenge_<storage.get(factory_level)>_class,<math.int(<storage.get(factory_class)>+1)>)
+    :endif
+    @register.change(battlefactory_challenge_<storage.get(factory_level)>_previous_streak,<math.int(7+<storage.get(previous_streak)>)>)
+:endif
+
+@storage.set(factory_class,<register.value(battlefactory_challenge_<storage.get(factory_level)>_class)>)
+@storage.set(previous_streak,<register.value(battlefactory_challenge_<storage.get(factory_level)>_previous_streak)>)
+
+:if:<storage.get(previous_streak)>=21 <and> <register.exists(factory_silver)>=false <or> <storage.get(previous_streak)>=42 <and> <register.exists(factory_gold)>=false
+    @script.start(frontier\battlefactory\challenge\rent)
+    @script.start(frontier\battlefactory\challenge\beforebattle,true)
+:else
+    :if:<storage.get(factory_streak)>=7
+        @script.start(frontier\battlefactory\challenge\won7)
+    :else
+        @script.start(frontier\battlefactory\challenge\rent)
+        @script.start(frontier\battlefactory\challenge\beforebattle,false)
+    :endif
+:endif
+:end

@@ -1,0 +1,11 @@
+version=2
+:if:<register.exists(kurt_gone)>=True
+    @Text.show(Grandpa's gone.~I'm so lonely.)
+    :end
+:endif
+:if:<register.exists(rocket_defeat_slowpokewell)>=True
+    @Text.show(The Slowpoke my~dad gave me came*back! Its tail is~growing back too!)
+    :end
+:endif
+@Text.show(The Slowoke are~gone. Were they*taken away by bad~people?)
+:end

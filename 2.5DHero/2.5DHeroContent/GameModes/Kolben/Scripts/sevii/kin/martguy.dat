@@ -1,0 +1,11 @@
+version=2
+:if:<register.exists(kinthankyougift)>=false
+    @text.show(Thank you!~Those goons were nothing~but bad trouble.*Oh, look, your Pokémon~got hurt on my account.)
+    @item.add(14,1)
+    @item.messagegive(14,1)
+    @npc.register(sevii\kin\town.dat|10|remove|0)
+    @npc.register(sevii\kin\town.dat|11|remove|0)
+    @register.new(kinthankyougift)
+:endif
+@text.show(You've got seriously~impressive Pokémon with you.)
+:end

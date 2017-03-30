@@ -1,0 +1,14 @@
+version=2
+:if:<datetime.dayofweek>!tuesday
+    @Text.Show(Tuscany: Today is~not Tuesday. That~is unfortunate...)
+:else
+    :if:<register.exists(tuscany_item)>=false
+        @Text.Show(Tuscany: I do believe~that this is*the first time~we've met?*Please allow me to~introduce myself.*I am Tuscany of~Tuesday.*By way of introduction,~please*accept this gift,~a Silk Scarf.)
+        @item.add(90)
+        @item.messagegive(90,1)
+        @Text.Show(Tuscany: Wouldn't~you agree that it~is most adorable?*It strengthens~normal-type moves.*I am certain it~will be of use.)
+        @register.new(tuscany_item)
+    :endif
+    @text.Show(Tuscany: Have you~met Monica, my~older sister?*Or my younger~brother, Wesley?*I am the second of~seven children.)
+:endif
+:end

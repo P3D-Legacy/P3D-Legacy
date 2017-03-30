@@ -1,0 +1,62 @@
+Version=2
+:if:<register.exists(alph_unown_appear)>=False
+    @register.new(alph_unown_appear)
+    @Text.show(Help! Help me...)
+    @pokemon.Cry(201)
+    @Level.wait(15)
+    @text.SetFont(Unown)
+    @Text.show(Help~Help me)
+    @pokemon.Cry(201)
+    @NPC.Turn(0,2)
+    :select:<player.position>
+        :when:9,0,30
+            @Player.TurnTo(3)
+            @Player.Move(1)
+            @Player.TurnTo(0)
+            @Player.Move(4)
+            @Player.TurnTo(1)
+            @Player.Move(1)
+            @Player.TurnTo(2)
+        :when:9,0,28
+            @Player.TurnTo(0)
+            @Player.Move(2)
+            @Player.TurnTo(2)
+        :when:10,0,29
+            @Player.TurnTo(0)
+            @Player.Move(3)
+            @Player.TurnTo(1)
+            @Player.Move(1)
+            @Player.TurnTo(2)
+        :when:8,0,29
+            @Player.TurnTo(0)
+            @Player.Move(3)
+            @Player.TurnTo(3)
+            @Player.Move(1)
+            @Player.TurnTo(2)
+    :endselect
+        @Script.start(johto\alph\alph_appear)
+    :end
+:endif
+
+:if:<register.exists(alph_defeat_unown1)>=False <or> <register.exists(alph_defeat_unown2)>=False <or> <register.exists(alph_defeat_unown3)>=False <or> <register.exists(alph_defeat_unown4)>=False <or> <register.exists(alph_defeat_unown5)>=False <or> <register.exists(alph_defeat_unown6)>=False <or> <register.exists(alph_defeat_unown7)>=False <or> <register.exists(alph_defeat_unown8)>=False 
+    @text.SetFont(Unown)
+    @Text.show(Help...~me...)
+    :end
+:endif
+
+@Text.show(You saved me!~Thank you very much!*Take this.~I don't need it~anymore...)
+@item.add(112,1)
+@item.messagegive(112,1)
+@NPC.WearSkin(0,[Pokémon|N]201)
+@Pokemon.Cry(201)
+@Level.wait(15)
+@NPC.WearSkin(0,5)
+@text.SetFont(unown)
+@Text.show(Thank you...)
+@player.AchieveEmblem(alph)
+@Pokemon.Cry(201)
+@NPC.WearSkin(0,[Pokémon|N]201)
+@Level.wait(50)
+@NPC.Warp(0,9,-2,29)
+@NPC.Register(johto\alph\2.dat|0|position|9,-2,29)
+:end

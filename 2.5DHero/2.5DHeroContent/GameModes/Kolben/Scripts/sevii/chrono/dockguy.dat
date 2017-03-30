@@ -1,0 +1,113 @@
+version=2
+:if:<register.exists(rainbowpass)>=True
+    @text.show(Ahoy there!*Where do you~want to sail?)
+    @Options.show(Vermilion,One Island,Two Island,Three Island,Four Island,Six Island,Seven Island,Exit)
+    :select:<options.result>
+        :when:Vermilion
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @screen.fadeout
+            @script.start(speedboatscene)
+            @player.warp(kanto\vermilion\dock.dat,-11,0.1,1)
+            @level.update
+            @player.turnto(1)
+            @screen.fadein
+        :when:One Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 6!)
+            @screen.fadeout
+            @script.start(speedboatscene)
+            @player.warp(sevii\knot\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Two Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 6!)
+            @screen.fadeout
+            @script.start(speedboatscene)
+            @player.warp(sevii\boon\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Three Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 6!)
+            @screen.fadeout
+            @script.start(speedboatscene)
+            @player.warp(kin\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Four Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 3!)
+            @screen.fadeout
+            @script.start(speedboatscene)
+            @player.warp(sevii\floe\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Five Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 3!)
+            @screen.fadeout
+            @script.start(speedboatscene)
+            @player.warp(sevii\chrono\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Six Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 6!)
+            @screen.fadeout
+            @script.start(speedboatscene)
+            @player.warp(sevii\fortune\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+        :when:Seven Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 6!)
+            @screen.fadeout
+            @script.start(speedboatscene)
+            @player.warp(sevii\quest\dock.dat,5,0.1,1)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+    :endselect
+    :end
+:else
+    :if:<register.exists(Tripass)>=True
+        @text.show(Ahoy there!*Where do you~want to sail?)
+        @Options.show(Vermilion,One Island,Two Island,Three Island,Exit)
+        :select:<options.result>
+            :when:Vermilion
+                @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+                @screen.fadeout
+                @script.start(speedboatscene)
+                @player.warp(kanto\vermilion\dock.dat,-11,0.1,1)
+                @level.update
+                @player.turnto(1)
+                @screen.fadein
+            :when:One Island
+                @text.show(All right!*All aboard the~Seagallop Hi-Speed 6!)
+                @screen.fadeout
+                @script.start(speedboatscene)
+                @player.warp(sevii\kin\dock.dat,5,0.1,1)
+                @level.update
+                @player.turnto(2)
+                @screen.fadein
+            :when:Two Island
+                @text.show(All right!*All aboard the~Seagallop Hi-Speed 6!)
+                @screen.fadeout
+                @script.start(speedboatscene)
+                @player.warp(sevii\kin\dock.dat,5,0.1,1)
+                @level.update
+                @player.turnto(2)
+                @screen.fadein
+            :when:Three Island
+                @text.show(All right!*All aboard the~Seagallop Hi-Speed 6!)
+                @screen.fadeout
+                @script.start(speedboatscene)
+                @player.warp(sevii\kin\dock.dat,5,0.1,1)
+                @level.update
+                @player.turnto(2)
+                @screen.fadein
+        :endselect
+        :end
+    :endif
+:endif
+:end

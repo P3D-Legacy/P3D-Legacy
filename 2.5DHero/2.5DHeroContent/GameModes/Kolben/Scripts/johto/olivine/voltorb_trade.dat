@@ -1,0 +1,23 @@
+version=2
+:if:<register.exists(olivine_voltorb_trade)>=True
+    @Text.show(Thank you very~much for the Krabby.)
+:else
+    @Text.show(Hi, I'm looking~for this Pokémon.*If you have~Krabby, would*you trade it for~my Voltorb?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @pokemon.select
+            :if:<pokemon.number(<pokemon.selected>)>=98
+                @script.start(npctrade.dat,100,,2,29189,2007,Volty,Tim,5,Power Plant,caught at)
+                @text.show(OK, connecting...*...*Wow! Thank you!~I always wanted~Krabby!)
+                @sound.play(success_small)
+                @text.show(<player.name> traded~Volty for Krabby!)
+                @register.new(olivine_voltorb_trade)
+            :else
+                @Text.show(You don't have~one either?*Gee, that's really~disappointing...)
+            :endif
+        :when:No
+            @Text.show(You don't have~one either?*Gee, that's really~disappointing...)
+    :endselect
+:endif
+:end

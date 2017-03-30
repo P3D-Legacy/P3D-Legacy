@@ -1,0 +1,39 @@
+version=2
+:if:<register.exists(phone_reg_023)>=true
+    @register.remove(phone_reg_023)
+    @register.newtime(phone_reg_time_023,1,day)
+    :if:<datetime.dayofweek>=thursday <and> <environment.daytime>=night
+        @text.show(I found this while~training my Pokémon.)
+        @item.add(23)
+        @item.messagegive(23,1)
+        @text.show(I'll let you know whenever~I want to battle you.)
+        :end
+    :endif
+    @Text.Show(Do you want to give me~some advice on how~to battle?)
+    :if:<player.badges>>4
+        :if:<register.exists(rematch_023_1)>=true
+            @battle.trainer(johto\routes\38\002_2)
+        :else
+            @register.new(rematch_023_1)
+            @battle.trainer(johto\routes\38\002_1)
+        :endif
+    :else
+        @battle.trainer(johto\routes\38\002)
+    :endif
+:else
+    @battle.starttrainer(johto\routes\38\002)
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_023)>=false
+            @Text.Show(Do you want to give me~some advice on how~to battle?)
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Dana's number.)
+                    @register.new(phone_contact_023)
+                    @Text.Show(I'll let you know whenever~I want to battle you.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

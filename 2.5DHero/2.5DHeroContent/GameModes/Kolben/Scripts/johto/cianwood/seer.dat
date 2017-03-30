@@ -1,0 +1,39 @@
+version=2
+@Text.show(I see all.~I know all...*Certainly, I know~of your Pokémon!)
+@Options.show(Read,See ya)
+:select:<options.result>
+    :when:Read
+        @pokemon.select
+        :if:<pokemon.selected>>-1
+            <text>=~is very stable with~
+            <hp>=<pokemon.getev(<pokemon.selected>,hp)>
+            <atk>=<pokemon.getev(<pokemon.selected>,atk)>
+            <def>=<pokemon.getev(<pokemon.selected>,def)>
+            <spatk>=<pokemon.getev(<pokemon.selected>,spatk)>
+            <spdef>=<pokemon.getev(<pokemon.selected>,spdef)>
+            <speed>=<pokemon.getev(<pokemon.selected>,speed)>
+
+            :if:<atk>><def> <and> <atk>><hp> <and> <atk>><spatk> <and> <atk>><spdef> <and> <atk>><speed>
+                <text>&=performing physical moves.
+            :elseif:<def>><atk> <and> <def>><hp> <and> <def>><spatk> <and> <def>><spdef> <and> <def>><speed>
+                <text>&=taking hits.
+            :elseif:<hp>><atk> <and> <hp>><def> <and> <hp>><spatk> <and> <hp>><spdef> <and> <hp>><speed>
+                <text>&=taking damage.
+            :elseif:<spatk>><atk> <and> <spatk>><def> <and> <spatk>><hp> <and> <spatk>><spdef> <and> <spatk>><speed>
+                <text>&=performing complex strategies.
+            :elseif:<spdef>><atk> <and> <spdef>><def> <and> <spdef>><hp> <and> <spdef>><spatk> <and> <spdef>><speed>
+                <text>&=breaking strategies.
+            :elseif:<speed>><atk> <and> <speed>><def> <and> <speed>><hp> <and> <speed>><spatk> <and> <speed>><spdef>
+                <text>&=speeding the others out.
+            :else
+                <text>=~is very well balanced.
+            :endif
+
+            @text.show(Hm... I see your~<pokemon.displayname(<pokemon.selected>)><text>*...~...*What that means?~I am not sure...)
+        :else
+            @Text.show(Pokémon are great...)
+        :endif
+    :when:See ya
+        @Text.show(Pokémon are great...)
+:endselect
+:end

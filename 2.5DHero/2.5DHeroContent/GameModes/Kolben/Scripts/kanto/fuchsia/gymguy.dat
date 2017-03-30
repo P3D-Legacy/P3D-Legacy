@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(soulbadge_obtain)>=False
+    @Text.show(Yo! Champ in making!*Whoops!*Take a good look around you.*The trainers all look~like the Leader, Janine.*Which of them is~the real Janine?)
+:else
+    @Text.show(That was another~fantastic battle!)
+:endif
+:end

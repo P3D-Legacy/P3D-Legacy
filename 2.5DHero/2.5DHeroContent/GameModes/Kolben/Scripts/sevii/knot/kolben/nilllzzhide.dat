@@ -1,0 +1,4 @@
+version=2
+@entity.setvisible(11,0)
+@entity.setvisible(12,1)
+:end

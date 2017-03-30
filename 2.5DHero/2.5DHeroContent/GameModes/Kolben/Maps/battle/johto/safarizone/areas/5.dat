@@ -1,0 +1,16 @@
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[1]}}{"IsSafariZone"{bool[1]}}{"EnviromentType"{int[0]}}{"Lightning"{int[2]}}{"Weather"{int[5]}}]}}
+
+{"Floor"{ENT[{"Size"{intArr[25,25]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[240,80,16,16]}}]}}
+
+Cacti:
+{"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"Position"{sngArr[21,0.3,6]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[64,32,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"Position"{sngArr[8,0.3,18]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[64,32,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"Position"{sngArr[16,0.3,6]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[64,32,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"Position"{sngArr[17,0.3,21]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[64,32,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"Position"{sngArr[18,0.3,3]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[64,32,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"Position"{sngArr[9,0.3,5]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[64,32,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"Position"{sngArr[19,0.3,17]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[64,32,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1,2,1]}}{"Position"{sngArr[7,0.3,8]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[64,32,16,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Dead tree:
+{"Entity"{ENT[{"EntityID"{str[WallBill]}}{"Scale"{sngArr[1.5,1.5,1.5]}}{"Position"{sngArr[12,0.15,9]}}{"TexturePath"{str[Safari]}}{"Textures"{recArr[[32,32,32,32]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}

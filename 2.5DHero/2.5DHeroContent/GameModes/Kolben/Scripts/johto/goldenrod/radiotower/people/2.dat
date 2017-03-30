@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(rocket_invasion_radio)>=True
+    @text.show(To trainers, Pokémon~are their partners.*It's terrible how~Team Rocket is*trying to control~Pokémon.)
+    :end
+:endif
+@text.show(We run 24 hours a~day to broadcast~entertaining programs.*I'll do my best to~run around the~clock too!)
+:end

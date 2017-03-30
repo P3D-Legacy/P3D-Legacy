@@ -1,0 +1,44 @@
+version=2
+:if:<register.exists(phone_reg_003)>=true
+    @Text.Show(So we meet again,~<player.name>.*I've trained my Ratatta~and now it's top~percentage!)
+    @register.remove(phone_reg_003)
+    @register.newtime(phone_reg_time_003,1,day)
+
+    :if:<player.badges>>3
+        :if:<register.exists(rematch_003_1)>=true
+            @battle.trainer(johto\routes\30\001_2)
+        :else
+            @register.new(rematch_003_1)
+            @battle.trainer(johto\routes\30\001_1)
+        :endif
+    :else
+        @battle.trainer(johto\routes\30\001)
+    :endif
+
+    :if:<datetime.dayofweek>=saturday
+        :if:<environment.daytime>=night
+            @Text.Show(Here, take this.)
+            @item.add(26)
+            @item.messagegive(26,1)
+        :endif
+    :endif
+
+:else
+    @battle.starttrainer(johto\routes\30\001)
+
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_003)>=false
+            @Text.Show(Hey, can I get your~number? I'll ring*you up to battle.)
+
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Joey's number.)
+                    @register.new(phone_contact_003)
+                    @Text.Show(I'll ring you whenever~I get the urge~to battle.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

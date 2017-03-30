@@ -1,0 +1,66 @@
+version=2
+:if:<register.exists(GolUndSwitchEnd)>=true
+    @entity.setvisible(7,0)
+    @entity.setvisible(10,0)
+    @entity.setvisible(15,0)
+    @entity.setvisible(11,0)
+    @entity.setvisible(14,0)
+    @entity.setvisible(12,0)
+    @entity.setvisible(17,0)
+    @entity.setcollision(7,0)
+    @entity.setcollision(10,0)
+    @entity.setcollision(15,0)
+    @entity.setcollision(11,0)
+    @entity.setcollision(14,0)
+    @entity.setcollision(12,0)
+    @entity.setcollision(17,0)
+    :end
+:else
+    :if:<register.exists(GolUndSwitch1)>=false <and> <register.exists(GolUndSwitch2)>=false <and> <register.exists(GolUndSwitch3)>=false <and> <player.position(x)><21 <and> <player.position(z)>>5
+        #This means the player is locked inside the Door system as all doors are closed.
+        @camera.update
+        @level.update
+        @text.show(It seems you~are trapped...)
+        @screen.fadeout
+        @player.warp(johto\goldenrod\underground\1.dat,4,0.1,3,0)
+        @sound.play(teleport)
+        @level.update
+        @screen.fadein
+        :end
+    :endif
+:endif
+:if:<register.exists(GolUndSwitch1)>=true
+    @entity.setvisible(8,<not entity.visible(8)>)
+    @entity.setvisible(12,<not entity.visible(12)>)
+    @entity.setvisible(15,<not entity.visible(15)>)
+    @entity.setvisible(16,<not entity.visible(16)>)
+    @entity.setvisible(17,<not entity.visible(17)>)
+    @entity.setcollision(8,<not entity.collision(8)>)
+    @entity.setcollision(12,<not entity.collision(12)>)
+    @entity.setcollision(15,<not entity.collision(15)>)
+    @entity.setcollision(16,<not entity.collision(16)>)
+    @entity.setcollision(17,<not entity.collision(17)>)
+:endif
+:if:<register.exists(GolUndSwitch2)>=true
+    @entity.setvisible(11,<not entity.visible(11)>)
+    @entity.setvisible(12,<not entity.visible(12)>)
+    @entity.setvisible(15,<not entity.visible(15)>)
+    @entity.setvisible(17,<not entity.visible(17)>)
+    @entity.setcollision(11,<not entity.collision(11)>)
+    @entity.setcollision(12,<not entity.collision(12)>)
+    @entity.setcollision(15,<not entity.collision(15)>)
+    @entity.setcollision(17,<not entity.collision(17)>)
+:endif
+:if:<register.exists(GolUndSwitch3)>=true
+    @entity.setvisible(7,<not entity.visible(7)>)
+    @entity.setvisible(8,<not entity.visible(8)>)
+    @entity.setvisible(12,<not entity.visible(12)>)
+    @entity.setvisible(13,<not entity.visible(13)>)
+    @entity.setvisible(17,<not entity.visible(17)>)
+    @entity.setcollision(7,<not entity.collision(7)>)
+    @entity.setcollision(8,<not entity.collision(8)>)
+    @entity.setcollision(12,<not entity.collision(12)>)
+    @entity.setcollision(13,<not entity.collision(13)>)
+    @entity.setcollision(17,<not entity.collision(17)>)
+:endif
+:end

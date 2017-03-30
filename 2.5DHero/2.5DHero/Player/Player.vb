@@ -484,7 +484,7 @@
 
     Public Sub LoadGame(ByVal filePrefix As String)
         For Each s As String In Core.GameOptions.ContentPackNames
-            ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
+            ContentPackManager.LoadTextureReplacements(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
         Next
 
         OldGameModeManager.CreateGameModesFolder()

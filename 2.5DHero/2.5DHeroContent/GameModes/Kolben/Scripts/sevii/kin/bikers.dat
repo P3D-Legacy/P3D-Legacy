@@ -1,0 +1,88 @@
+version=2
+:if:<register.exists(bikerbattles)>=False
+    @entity.showmessagebulb(1|9|1|24)
+    @npc.turn(4,2)
+    @npc.move(4,1)
+    @text.show(You, what are you staring at?*Don't you know it's not polite?*You wanna make something~of it or what?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:No
+            @text.show(That's smart.*Keep your nose out of this.)
+            @player.turnto(2)
+            @player.move(1)
+            @npc.turn(4,0)
+            @npc.move(4,1)
+            @npc.turn(4,1)
+            :end
+    :endselect
+        @battle.starttrainer(sevii\kin\bikers\001)
+    @text.show(Aww, man...~Don't you dare laugh!)
+    @npc.turn(5,2)
+    @npc.move(5,1)
+    @battle.starttrainer(sevii\kin\bikers\002)
+    @text.show(What's the matter~with you, getting all~hot like that?*Totally uncool man!)
+    @npc.turn(7,2)
+    @npc.move(7,1)
+    @battle.starttrainer(sevii\kin\bikers\003)
+    @npc.turn(7,1)
+    @text.show(Boss, I'm telling you,~you've gotta do something~about this kid!)
+    @npc.turn(7,2)
+    :select:<player.position(x)>
+        :when:7
+            @npc.turn(10,2)
+            @npc.move(10,2)
+            @npc.turn(10,1)
+            @player.turnto(3)
+        :when:8
+            @npc.turn(10,2)
+            @npc.move(10,1)
+        :when:9
+            @npc.turn(10,2)
+            @npc.move(10,2)
+            @npc.turn(10,3)
+            @player.turnto(1)
+        :when:10
+            @npc.turn(10,2)
+            @npc.move(10,2)
+            @npc.turn(10,3)
+            @npc.move(10,1)
+            @player.turnto(1)
+        :when:11
+            @npc.turn(10,2)
+            @npc.move(10,2)
+            @npc.turn(10,3)
+            @npc.move(10,2)
+            @player.turnto(1)
+        :when:12
+            @npc.turn(10,2)
+            @npc.move(10,2)
+            @npc.turn(10,3)
+            @npc.move(10,3)
+            @player.turnto(1)
+    :endselect
+    @battle.starttrainer(sevii\kin\bikers\boss)
+    @text.show(Humph!~Yeah, go right on hanging~around with these hayseeds!)
+    @screen.fadeout
+    @npc.remove(3)
+    @npc.remove(4)
+    @npc.remove(5)
+    @npc.remove(6)
+    @npc.remove(7)
+    @npc.remove(8)
+    @npc.remove(9)
+    @npc.remove(10)
+    @npc.register(sevii\kin\town.dat|3|remove|0)
+    @npc.register(sevii\kin\town.dat|4|remove|0)
+    @npc.register(sevii\kin\town.dat|5|remove|0)
+    @npc.register(sevii\kin\town.dat|6|remove|0)
+    @npc.register(sevii\kin\town.dat|7|remove|0)
+    @npc.register(sevii\kin\town.dat|8|remove|0)
+    @npc.register(sevii\kin\town.dat|9|remove|0)
+    @npc.register(sevii\kin\town.dat|10|remove|0)
+    @npc.register(sevii\kin\port.dat|1|remove|0)
+    @npc.register(sevii\kin\port.dat|2|remove|0)
+    @register.new(bikerbattles)
+    @screen.fadein
+:endif
+:end
+

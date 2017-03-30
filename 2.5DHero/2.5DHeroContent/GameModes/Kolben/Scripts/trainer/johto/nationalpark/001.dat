@@ -1,0 +1,42 @@
+version=2
+:if:<register.exists(phone_reg_018)>=true
+    @Text.Show(I styled my Pokémon and~we are ready to battle!)
+    @register.remove(phone_reg_018)
+    @register.newtime(phone_reg_time_018,1,day)
+
+    :if:<player.badges>>3
+        :if:<register.exists(rematch_018_1)>=true
+            @battle.trainer(johto\nationalpark\001_2)
+        :else
+            @register.new(rematch_018_1)
+            @battle.trainer(johto\nationalpark\001_1)
+        :endif
+    :else
+        @battle.trainer(johto\nationalpark\001)
+    :endif
+
+    :if:<pokemon.has(183)>=true
+        @Text.Show(Thanks for showing me~a Marill. Here, take this.)
+        @item.add(36)
+        @Item.messagegive(36,1)
+    :endif
+
+:else
+    @battle.starttrainer(johto\nationalpark\001)
+
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_018)>=false
+            @Text.Show(My Pokémon aren't looking~nice enough...*Let's exchange numbers so~I can style them again.)
+
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Beverly's number.)
+                    @register.new(phone_contact_018)
+                    @Text.Show(I'll let you know whenever~I want to battle you.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

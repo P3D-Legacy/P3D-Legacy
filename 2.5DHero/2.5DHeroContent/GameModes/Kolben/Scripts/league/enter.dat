@@ -1,0 +1,15 @@
+version=2
+:if:<register.exists(league_greet)>=False
+    @text.show(Welcome Challenger~<player.name>!*Beyond this point is the~Elite Four and the Champion.*Once you enter here~you cannot leave, except~in complete defeat,~or as the new champion!*You may proceed when~you are ready!)
+    @npc.turn(5,1)
+    @npc.turn(6,3)
+    @npc.move(5,1)
+    @npc.move(6,1)
+    @npc.turn(5,2)
+    @npc.turn(6,2)
+    @npc.register(shared\indigo\inside.dat|5|position|11,5,-8)
+    @npc.register(shared\indigo\inside.dat|6|position|14,5,-8)
+    @register.new(league_greet)
+    @text.show(Good luck on your~quest towards victory!)
+:endif
+:end

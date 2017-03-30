@@ -1,0 +1,14 @@
+version=2
+:select:<player.position>
+    :when:6,0,4
+        @npc.turn(1,0)
+    :when:4,0,6
+        @npc.turn(1,1)
+:endselect
+
+:if:<register.exists(rocket_invasion_radio)>=True
+    @text.show(Hello. I'm sorry,~but we're not offering~any tours today.)
+    :end
+:endif
+@text.show(Welcome!)
+:end

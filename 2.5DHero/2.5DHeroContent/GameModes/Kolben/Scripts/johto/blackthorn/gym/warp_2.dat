@@ -1,0 +1,10 @@
+version=2
+@screen.fadeout(35)
+@sound.play(enter)
+@Player.Warp(johto\blackthorn\gym\1f.dat,7,1.1,6,0)
+@level.update
+@screen.fadein(35)
+@player.setmovement(0,-1,0)
+@player.move(1)
+@sound.play(destroy)
+:end

@@ -1,0 +1,12 @@
+version=2
+:select:<environment.daytimeid>
+    :when:0
+        @Text.show(Be careful and~have a good day, Sir!)
+    :when:1
+        @Text.show(Good morning, Sir!)
+    :when:2
+        @Text.show(Good day, Sir!)
+    :when:3
+        @Text.show(Good evening, Sir!)
+:endselect
+:end

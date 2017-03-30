@@ -1,0 +1,17 @@
+version=2
+@battle.starttrainer(ssaqua\firsttrip\lazysailor)
+@text.show(<battle.defeatmessage(ssaqua\firsttrip\lazysailor)>)
+
+:if:<player.position>=4,0,5
+    @npc.turn(0,0)
+    @npc.move(0,1)
+:endif
+
+@npc.turn(0,3)
+@npc.move(0,2)
+@npc.turn(0,2)
+@npc.move(0,4)
+@register.new(ssaquagotowork)
+@npc.remove(0)
+@npc.unregister(ssaqua\firsttrip\cabins\1.dat|0|position|3,0,5)
+:end

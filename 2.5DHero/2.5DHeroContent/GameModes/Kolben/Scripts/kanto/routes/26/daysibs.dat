@@ -1,0 +1,15 @@
+version=2
+@text.show(There's something~written here.*Read it?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:No
+        :end
+:endselect
+@text.show(To my brothers and~sisters:*We take pride in~serving Pokémon trainers.*When trainers talk~to you, give them~something useful.*Love,~Monica*Keep reading?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:No
+        :end
+:endselect
+@text.show(Monday, Monica~Route 40*Tuesday, Tuscany~Route 29*Wednesday, Weskey~Lake of Rage*Thursday, Arthur~Route 36*Friday, Frieda~Route 32*Saturday, Santos~Blackthorn City*Sunday, Sunny~Route 37)
+:end

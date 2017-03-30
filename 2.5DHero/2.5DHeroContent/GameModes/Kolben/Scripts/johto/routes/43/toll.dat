@@ -1,0 +1,49 @@
+version=2
+:if:<register.exists(generator_off)>=false
+    @npc.Warp(0,0,-1,0)
+    @npc.Warp(1,1,-1,1)
+    @player.Move(0)
+
+    :select:<player.position>
+        :when:9,0,4
+            @npc.Turn(3,3)
+            @npc.Move(2,3)
+            @npc.Move(3,3)
+        :when:0,0,4
+            @npc.Turn(2,1)
+            @npc.Move(2,4)
+            @npc.Move(3,4)
+        :when:0,0,3
+            @npc.Turn(2,1)
+            @npc.Move(2,4)
+            @npc.Move(3,4)
+    :endselect
+
+    @Text.show(Hold it there, kiddo!*The toll is $1000~to go through.)
+    :if:<player.money>>999
+        @Player.addmoney(-1000)
+        @sound.play(buy2)
+        @Text.show(Thank you very~much!)
+        @npc.Turn(2,0)
+        @npc.Turn(3,2)
+        @npc.Move(2,1)
+        @npc.Move(3,1)
+        @npc.Turn(3,0)
+        @npc.Turn(2,2)
+    :else
+        @text.show(You don't even have~$1000?*I don't believe you!~Come back if you want~to pay the toll!)
+        :if:<player.position(x)>=0
+            @player.turnto(1)
+            @player.warp(johto\routes\43.dat,17,0.1,32,3)
+            @level.update
+            @player.move(1)
+        :else
+            @player.turnto(3)
+            @player.warp(johto\routes\43.dat,17,0.1,35,3)
+            @level.update
+            @player.move(1)
+        :endif
+    :endif
+    :end
+:endif
+:end

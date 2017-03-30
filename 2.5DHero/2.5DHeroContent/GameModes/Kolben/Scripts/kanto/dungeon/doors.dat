@@ -1,0 +1,80 @@
+version=2
+:if:<register.exists(dungeonrobots0)>=True
+    @entity.remove(0)
+:endif
+:if:<register.exists(dungeonrobots1)>=True
+    @entity.remove(1)
+:endif
+:if:<register.exists(dungeonrobots2)>=True
+    @entity.remove(2)
+:endif
+:if:<register.exists(dungeonrobots3)>=True
+    @entity.remove(3)
+:endif
+:if:<register.exists(dungeonrobots4)>=True
+    @entity.remove(4)
+:endif
+:if:<register.exists(dungeonrobots5)>=True
+    @entity.remove(5)
+:endif
+:if:<register.exists(dungeonrobots6)>=True
+    @entity.remove(6)
+:endif
+:if:<register.exists(dungeonrobots7)>=True
+    @entity.remove(7)
+:endif
+:if:<register.exists(dungeonrobots8)>=True
+    @entity.remove(8)
+:endif
+:if:<register.exists(dungeonrobots9)>=True
+    @entity.remove(9)
+:endif
+:if:<register.exists(dungeonrobots10)>=True
+    @entity.remove(10)
+:endif
+:if:<register.exists(dungeonrobots11)>=True
+    @entity.remove(11)
+:endif
+:if:<register.exists(dungeonrobots12)>=True
+    @entity.remove(12)
+:endif
+:if:<register.exists(dungeonrobots13)>=True
+    @entity.remove(13)
+:endif
+:if:<register.exists(dungeonrobots14)>=True
+    @entity.remove(14)
+:endif
+:if:<register.exists(dungeonrobots15)>=True
+    @entity.remove(15)
+:endif
+:if:<register.exists(dungeonrobots16)>=True
+    @entity.remove(16)
+:endif
+:if:<register.exists(dungeonrobots17)>=True
+    @entity.remove(17)
+:endif
+:if:<register.exists(dungeonrobots18)>=True
+    @entity.remove(18)
+:endif
+:if:<register.exists(dungeonrobots19)>=True
+    @entity.remove(19)
+:endif
+:if:<register.exists(dungeonrobots20)>=True
+    @entity.remove(20)
+:endif
+:if:<register.exists(dungeonrobots21)>=True
+    @entity.remove(21)
+:endif
+:if:<register.exists(dungeonrobots22)>=True
+    @entity.remove(22)
+:endif
+:if:<register.exists(dungeonrobots23)>=True
+    @entity.remove(23)
+:endif
+:if:<register.exists(dungeonrobots24)>=True
+    @entity.remove(24)
+:endif
+:if:<register.value(dungeonrobotsdefeated)>>23
+    @entity.remove(25)
+:endif
+:end

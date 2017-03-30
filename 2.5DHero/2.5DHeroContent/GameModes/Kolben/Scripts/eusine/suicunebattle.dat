@@ -1,0 +1,20 @@
+version=2
+@pokemon.cry(245)
+@battle.setvar(custombattlemusic,battle\main\legend\suicune)
+@battle.wild(245,40,-1,battle\intro\legend\suicune,12)
+@npc.remove(0)
+@npc.turn(11,1)
+@npc.move(11,1)
+@npc.turn(11,0)
+@npc.move(11,1)
+@music.play(encounter\eusine)
+@player.turnto(2)
+@text.show(<player.name>...*You two are truly amazing...*I have never seen a~battle this intense!*I have no regrets...*Farewell, Suicune!*Farewell...~<player.name>!)
+@music.play(route\9)
+@screen.fadeout
+@npc.remove(11)
+@screen.fadein
+@npc.unregister(kanto\routes\25.dat|11|position|59,2,6)
+@npc.unregister(kanto\routes\25.dat|0|position|58,2,3)
+@register.new(suicunebattle)
+:end

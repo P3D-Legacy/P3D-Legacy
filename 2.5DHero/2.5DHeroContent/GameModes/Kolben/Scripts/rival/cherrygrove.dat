@@ -1,0 +1,63 @@
+version=2
+:if:<register.exists(rival_encounter_cherrygrove)>=True
+    @music.play(encounter\rival)
+    @player.turnto(3)
+    :if:<player.position>=35,0,9
+        @npc.warp(3,45,0,9)
+    :else
+        @npc.warp(3,45,0,8)
+    :endif
+
+    @npc.turn(3,1)
+    @npc.move(3,9)
+    @text.show(...... ...... ......*You got a Pokémon~at the Lab.*What a waste!~A wimp like you.*...... ...... ......*Don't you get what~I'm saying?*Well, I too, have~a good Pokémon.*I'll show you~what I mean!)
+
+    @battle.setvar(canblackout,false)
+
+    :if:<register.exists(starter1)>=true
+        @npc.register(johto\newbark\elmlab.dat|2|remove|1)
+        @battle.trainer(rival\0\fire)
+    :endif
+
+    :if:<register.exists(starter2)>=true
+        @npc.register(johto\newbark\elmlab.dat|3|remove|1)
+        @battle.trainer(rival\0\water)
+    :endif
+
+    :if:<register.exists(starter3)>=true
+        @npc.register(johto\newbark\elmlab.dat|1|remove|1)
+        @battle.trainer(rival\0\grass)
+    :endif
+
+    :if:<battle.won>=false
+        @pokemon.heal
+    :endif
+
+    @music.play(encounter\rival)
+
+    @text.show(...... ...... ......*My name's ???.*I'm going to be~the world's greatest~Pokémon trainer.)
+
+    @player.turnto(2)
+    @player.move(1)
+    @npc.moveasync(3,1)
+    @player.turnto(1)
+    @npc.move(3,3)
+    @npc.turn(3,0)
+
+    :if:<npc.position(3)>=32,0,9
+        @npc.moveasync(3,1)
+    :endif
+
+    @npc.move(3,1)
+    @npc.turn(3,1)
+    @npc.move(3,13)
+    @npc.turn(3,0)
+    @npc.move(3,3)
+    @npc.warp(3,42,-2,2)
+    @register.new(elm_police)
+    @register.remove(rival_encounter_cherrygrove)
+    @npc.register(johto\newbark\elmlab.dat|5|position|5,0,2)
+
+    @music.play(town\cherrygrove)
+:endif
+:end

@@ -1,0 +1,30 @@
+version=2
+@text.show(Next up, opponent~no.<math.int(<storage.get(tower_streak)>+1)>. Ready?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:No
+        @text.show(Do you really~want to quit?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @script.start(frontier\battletower\endless\cancelbattle)
+        :endselect
+:endselect
+
+@player.turnto(0)
+@player.move(1)
+@player.turnto(3)
+@player.move(1)
+
+@camera.activatethirdperson
+@camera.set(0,0.745,2,4.712,-0.31)
+
+@script.start(frontier\battletower\endless\choosetrainer)
+
+:if:<battle.won>=true
+    @storage.set(tower_streak,<storage.get(tower_streak)>+1)
+    @script.start(frontier\battletower\endless\afterbattle)
+:else
+    @script.start(frontier\battletower\endless\lostbattle)
+:endif
+:end

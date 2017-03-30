@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(get_egg_mrpokemon)>=True
+    @Text.show(I battled the~trainers on the~road.*My Pokémon lost.~They're a mess! I~must take them to~a Pokémon Center.)
+    :end
+:endif
+@Text.show(Mr. Pokémon's house~is still farther~up ahead.)
+:end

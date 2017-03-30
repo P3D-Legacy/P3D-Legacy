@@ -1,0 +1,32 @@
+version=2
+:if:<register.exists(radio_director_rescue)>=true
+    @entity.remove(4)
+:endif
+
+:if:<register.exists(goldenrod_basement_boxes_1)>=false <and> <register.exists(goldenrod_basement_boxes_2)>=false <and> <register.exists(goldenrod_basement_boxes_3)>=false
+    @register.new(goldenrod_basement_boxes_1)
+    :end
+:endif
+
+
+:if:<register.exists(goldenrod_basement_boxes_1)>=true
+    @register.remove(goldenrod_basement_boxes_1)
+    @register.new(goldenrod_basement_boxes_2)
+    :end
+:endif
+
+:if:<register.exists(goldenrod_basement_boxes_2)>=true
+    @register.remove(goldenrod_basement_boxes_2)
+    @entity.warp(5,10,0,12)
+    @register.new(goldenrod_basement_boxes_3)
+    :end
+:endif
+
+:if:<register.exists(goldenrod_basement_boxes_3)>=true
+    @register.remove(goldenrod_basement_boxes_2)
+    @entity.warp(6,10,0,12)
+    @register.new(goldenrod_basement_boxes_3)
+    :end
+:endif
+
+:end

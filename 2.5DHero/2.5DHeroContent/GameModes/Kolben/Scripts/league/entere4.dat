@@ -1,0 +1,22 @@
+version=2
+:select:<player.position>
+    :when:4,0,15
+        @player.move(3)
+        @register.remove(trainer_league\\<level.filename>)
+        @register.remove(defeat<level.filename>)
+
+    :when:5,0,15
+        @player.move(3)
+        @register.remove(trainer_league\\<level.filename>)
+        @register.remove(defeat<level.filename>)
+:endselect
+
+@entity.setvisible(3,1)
+
+:if:<register.exists(defeat<level.filename>)>=True
+    @entity.remove(2)
+    @entity.setvisible(1,0)
+:endif
+
+@sound.play(shutter)
+:end

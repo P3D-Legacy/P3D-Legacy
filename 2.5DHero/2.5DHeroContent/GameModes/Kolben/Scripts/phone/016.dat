@@ -1,0 +1,102 @@
+version=2
+:if:<phone.callflag>=calling
+    @Text.Show(Pokégear:~Calling..............)
+:else
+    @Text.Show(Pokégear: Juggler Irwin~Receiving call.......)
+:endif
+
+@Text.Show(Hey, <player.name>!~How are you?)
+@Options.show(Good,Not so good)
+:select:<options.result>
+    :when:Good
+        @storage.set(feeling,Good)
+    :when:Not so good
+        @storage.set(feeling,Bad)
+:endselect
+
+:if:<storage.get(feeling)>=Good
+    @Text.show(Oh, that's good!)
+:else
+    @text.show(Sorry to hear that.)
+:endif
+
+:select:<environment.season>
+    :when:Winter
+        :if:<storage.get(feeling)>=Good
+            @text.show(The weather here~on Route 35 has been~a little cold but~my jacket has been~keeping me nice~and warm.)
+        :else
+            @text.show(The weather here~on Route 35 hasn't~been all that great.*The wind is~fridgid and snow~is getting in~my boots.)
+        :endif
+
+        :if:<register.exists(Irwin_Winter_battle)>=false
+            @text.show(Also I have been~training alot.*Would you like~to battle?*I will be waiting~for you on Route 35.)
+            @register.new(Irwin_Winter)
+            @register.remove(Irwin_Spring)
+            @register.remove(Irwin_Spring_Item)
+            @register.remove(Irwin_Fall)
+            @register.remove(Irwin_Fall_Item)
+            @register.remove(Irwin_Summer)
+            @register.remove(Irwin_Summer_battle)
+        :endif
+
+    :when:Spring
+        :if:<storage.get(feeling)>=Good
+            @text.show(It has been~rather nice out~here on Route 35.*The weather is~getting warmer and~the sky has~been clear.)
+        :else
+            @text.show(The weather here~on Route 35 hasn't~been all that great.*It has been~raining alot recently.)
+        :endif
+
+        :if:<register.exists(Irwin_Spring_Item)>=false
+            @text.show(Oh, by the way,~I recently found~this item.*I have no~need for it.*If you want~it I will be~waiting on Route 35.)
+            @register.new(Irwin_Spring)
+            @register.remove(Irwin_Winter)
+            @register.remove(Irwin_Winter_battle)
+            @register.remove(Irwin_Fall)
+            @register.remove(Irwin_Fall_Item)
+            @register.remove(Irwin_Summer)
+            @register.remove(Irwin_Summer_battle)
+        :endif
+
+    :when:Summer
+        :if:<storage.get(feeling)>=Good
+            @Text.show(It is warming~up nicely here~on Route 35.*I sometimes see~the local kids~running around playing.*It is nice~to see them~having fun.)
+        :else
+            @text.show(The weather here~on Route 35 hasn't~been all that great.*It is really~hot out and~Walt insists on~letting his Magmar~out to play,~which just makes~it worse.)
+        :endif
+
+        :if:<register.exists(Irwin_Summer_battle)>=false
+            @text.show(Also I have been~training alot.*Would you like~to battle?*I will be waiting~for you on Route 35.)
+            @register.new(Irwin_Summer)
+            @register.remove(Irwin_Winter)
+            @register.remove(Irwin_Winter_battle)
+            @register.remove(Irwin_Spring)
+            @register.remove(Irwin_Spring_Item)
+            @register.remove(Irwin_Fall)
+            @register.remove(Irwin_Fall_Item)
+        :endif
+
+    :when:Fall
+        :if:<storage.get(feeling)>=Good
+            @Text.show(Here on Route 35~the trees are starting~to change colors and~it looks very beautiful~all around.)
+        :else
+            @text.show(The weather here~on Route 35 hasn't~been all that great.*The wind is~getting really cold~and it sometimes~stats raining~unexpectedly.)
+        :endif
+
+        :if:<register.exists(Irwin_Fall_Item)>=false
+            @text.show(Oh, by the way,~I recently found~this item.*I have no~need for it.*If you want~it I will be~waiting on Route 35.)
+            @register.new(Irwin_Fall)
+            @register.remove(Irwin_Winter)
+            @register.remove(Irwin_Winter_battle)
+            @register.remove(Irwin_Spring)
+            @register.remove(Irwin_Spring_Item)
+            @register.remove(Irwin_Summer)
+            @register.remove(Irwin_Summer_battle)
+        :endif
+:endselect
+
+:if:<storage.get(feeling)>=Good
+    @Text.show(Talk to you later.)
+:else
+    @text.show(Hope you feel~better soon.)
+:endif
+:end

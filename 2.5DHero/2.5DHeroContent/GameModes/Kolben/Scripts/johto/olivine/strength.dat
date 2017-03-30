@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(StrengthHM)>=False
+    @Text.show(Hah! Your Pokémon~sure look like~lightweights!*They don't have~the power to move~boulders aside.*Here, use this~and teach them~Strength!)
+    @item.add(246,1)
+    @item.messagegive(246,1)
+    @register.new(StrengthHM)
+:endif
+@Text.show(On the sea, the~only thing you can*count on is your~own good self!*I'm so proud of my~buff bod!)
+:end

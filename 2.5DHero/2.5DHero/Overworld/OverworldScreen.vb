@@ -196,7 +196,7 @@ Public Class OverworldScreen
             End If
 
             'Open the MenuScreen:
-            If KeyBoardHandler.KeyPressed(KeyBindings.OpenInventoryKey) = True Or ControllerHandler.ButtonPressed(Buttons.X) = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.InventoryKey) = True Or ControllerHandler.ButtonPressed(Buttons.X) = True Then
                 If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
                     Level.RouteSign.Hide()
 

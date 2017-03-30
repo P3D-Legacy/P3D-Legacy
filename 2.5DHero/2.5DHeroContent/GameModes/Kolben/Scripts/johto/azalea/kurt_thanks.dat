@@ -1,0 +1,22 @@
+version=2
+:if:<register.exists(thanks_kurt)>=False
+    @Text.show(Kurt: Hi, <player.name>!*You handled your-~self like a real~hero at the Well.*I like your style!*I would be honored~to make Balls for~a trainer like you.*This is all I have~now, but take it.)
+    @item.add(160,1)
+    @item.messagegive(160,1)
+    @Text.show(Kurt: I make Balls~from Apricorns.*Collect them from~trees and bring~'em to me.*I'll make Balls~out of them.)
+    @Text.show(Kurt: You have an~Apricorn for me?*Fine! I'll turn it~into a Ball.)
+    @screen.apricorns
+    @NPC.register(azalea\kurt.dat|2|remove|1)
+    @NPC.register(azalea\kurt.dat|0|position|14,0,3)
+    @register.new(thanks_kurt)
+    :end
+:endif
+
+@Text.show(Hm?~Who are you?~<player.name>, eh?*You want me to~make some Balls?)
+@Options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @screen.apricorns
+    :when:No
+:endselect
+:end

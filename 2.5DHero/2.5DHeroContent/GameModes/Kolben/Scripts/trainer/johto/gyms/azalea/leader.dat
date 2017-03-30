@@ -1,0 +1,22 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(hivebadge_obtain)>=true <and> <register.exists(BugsyRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe mornings during~the beginning of the week?*If you visit while~I am there maybe~we could battle.)
+    @register.new(BugsyRematchTalk)
+    :end
+:endif
+@battle.starttrainer(johto\gyms\azalea\leader)
+@player.AchieveEmblem(hive)
+:if:<register.exists(hivebadge_obtain)>=False
+    @register.new(hivebadge_obtain)
+    @register.new(trainer_johto\gyms\azalea\001)
+    @register.new(trainer_johto\gyms\azalea\002)
+    @register.new(trainer_johto\gyms\azalea\003)
+    @register.new(trainer_johto\gyms\azalea\004)
+    @register.new(trainer_johto\gyms\azalea\005)
+    @player.GetBadge(10)
+    @Text.show(Do you know the~benefits of Hivebadge?*If you have it,~Pokémon up to Level 30 will~obey you.*Pokémon that know~Cut will be able*to use it outside~of battle too.*Here, I also want~you to have this.)
+    @item.add(239,1)
+    @item.messagegive(239,1)
+    @Text.show(TM49 contains~Fury Cutter.*If you don't miss,~it gets stronger~every turn.*The longer your~battle goes, the~better it gets.*Isn't that great?~I discovered it!)
+:endif
+:end

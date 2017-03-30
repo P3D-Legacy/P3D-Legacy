@@ -1,0 +1,7 @@
+version=2
+@pokemon.cry(151)
+@battle.wild(151,70,-1,,12)
+@register.new(battlemew)
+@npc.register(sevii\faraway\interior.dat|0|remove|0)
+@npc.remove(0)
+:end

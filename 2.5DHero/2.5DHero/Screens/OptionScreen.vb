@@ -43,7 +43,7 @@
         Me.FOV = C.FOV
         Me.TextSpeed = TextBox.TextSpeed
         Me.MouseSpeed = CInt(C.RotationSpeed * 10000)
-        Me.Music = CInt(MusicManager.MasterVolume * 100)
+        Me.Music = CInt(MusicPlayer.GetInstance().MasterVolume * 100)
         Me.Sound = CInt(SoundManager.Volume * 100)
         Me.RenderDistance = Core.GameOptions.RenderDistance
         Me.GraphicStyle = Core.GameOptions.GraphicStyle
@@ -100,8 +100,8 @@
             End If
         Next
 
-        If net.Pokemon3D.Game.Controls.Dismiss(True, True, True) = True Then
-            Close()
+        If Game.Controls.Dismiss(True, True, True) = True Then
+            Close(Nothing)
         End If
     End Sub
 
@@ -110,7 +110,7 @@
         YScroll = 0
 
         Select Case Me.ScreenIndex
-            Case 0 ' Main Options menu.
+            Case 0
                 Me.ControlList.Add(New CommandButton(New Vector2(100, 200), 6, "Game", AddressOf SwitchToGame))
                 Me.ControlList.Add(New CommandButton(New Vector2(340, 200), 6, "Graphics", AddressOf SwitchToGraphics))
                 Me.ControlList.Add(New CommandButton(New Vector2(580, 200), 6, "Battle", AddressOf SwitchToBattle))
@@ -119,14 +119,14 @@
 
                 Me.ControlList.Add(New CommandButton(New Vector2(120, 480), 6, "Apply", AddressOf Apply))
                 Me.ControlList.Add(New CommandButton(New Vector2(630, 480), 6, "Close", AddressOf Close))
-            Case 1 ' "Game" from the Options menu.
-                Me.ControlList.Add(New ScrollBar(New Vector2(100, 200), 400, "Text Speed", Me.TextSpeed, 1, 3, AddressOf ChangeTextspeed))
+            Case 1
+                Me.ControlList.Add(New ScrollBar(New Vector2(100, 200), 400, "Textspeed", Me.TextSpeed, 1, 3, AddressOf ChangeTextspeed))
 
-                If CBool(OldGameModeManager.GetGameRuleValue("LockDifficulty", "0")) = False Then
+                If CBool(GameModeManager.GetGameRuleValue("LockDifficulty", "0")) = False Then
                     Dim d As New Dictionary(Of Integer, String)
                     d.Add(0, "Easy")
                     d.Add(1, "Hard")
-                    d.Add(2, "Super Hard")
+                    d.Add(2, "S-Hard")
 
                     Me.ControlList.Add(New ScrollBar(New Vector2(100, 250), 400, "Difficulty", Me.Difficulty, 0, 2, AddressOf ChangeDifficulty, d))
                 End If
@@ -134,7 +134,7 @@
                 Me.ControlList.Add(New ToggleButton(New Vector2(100, 300), 8, "View Bobbing", Me.ViewBobbing, AddressOf ToggleBobbing, {"Off", "On"}.ToList()))
 
                 Me.ControlList.Add(New CommandButton(New Vector2(364, 480), 6, "Back", AddressOf SwitchToMain))
-            Case 2 ' "Graphics" from the Options menu.
+            Case 2
                 Me.ControlList.Add(New ScrollBar(New Vector2(100, 200), 400, "Field of View", CInt(Me.FOV), 45, 120, AddressOf ChangeFOV))
 
                 Dim d As New Dictionary(Of Integer, String)
@@ -143,48 +143,48 @@
                 d.Add(2, "Normal")
                 d.Add(3, "Far")
                 d.Add(4, "Extreme")
-                Me.ControlList.Add(New ScrollBar(New Vector2(100, 250), 400, "Render Distance", Me.RenderDistance, 0, 4, AddressOf ChangeRenderDistance, d))
+                Me.ControlList.Add(New ScrollBar(New Vector2(100, 250), 400, "Renderdistance", Me.RenderDistance, 0, 4, AddressOf ChangeRenderDistance, d))
 
                 Dim d1 As New Dictionary(Of Integer, String)
                 d1.Add(0, "Off")
-                Me.ControlList.Add(New ScrollBar(New Vector2(100, 300), 400, "Offset Map Quality", Me.LoadOffsetMaps, 0, 100, AddressOf ChangeOffsetMaps, d1))
+                Me.ControlList.Add(New ScrollBar(New Vector2(100, 300), 400, "Offset map quality", Me.LoadOffsetMaps, 0, 100, AddressOf ChangeOffsetMaps, d1))
 
                 Me.ControlList.Add(New ToggleButton(New Vector2(100, 350), 8, "Graphics", CBool(Me.GraphicStyle), AddressOf ToggleGraphicsStyle, {"Fast", "Fancy"}.ToList()))
                 Me.ControlList.Add(New ToggleButton(New Vector2(400, 350), 8, "Multi Sampling", Me.PreferMultiSampling, AddressOf ToggleMultiSampling, {"Off", "On"}.ToList()))
 
                 Me.ControlList.Add(New CommandButton(New Vector2(364, 480), 6, "Back", AddressOf SwitchToMain))
-            Case 3 ' "Battle" from the Options menu.
+            Case 3
                 Me.ControlList.Add(New ToggleButton(New Vector2(100, 200), 8, "3D Models", CBool(ShowModels), AddressOf ToggleShowModels, {"Off", "On"}.ToList()))
                 Me.ControlList.Add(New ToggleButton(New Vector2(400, 200), 8, "Animations", CBool(Me.ShowBattleAnimations), AddressOf ToggleAnimations, {"Off", "On"}.ToList()))
                 Me.ControlList.Add(New ToggleButton(New Vector2(100, 320), 8, "Battle Style", CBool(Me.BattleStyle), AddressOf ToggleBattleStyle, {"Shift", "Set"}.ToList()))
 
                 Me.ControlList.Add(New CommandButton(New Vector2(364, 480), 6, "Back", AddressOf SwitchToMain))
-            Case 4 ' "Controls" from the Options menu.
+            Case 4
                 Dim d As New Dictionary(Of Integer, String)
                 d.Add(1, "...Slow...")
                 d.Add(12, "Standard")
                 d.Add(38, "Super fast!")
                 d.Add(50, "SPEED OF LIGHT!")
                 Me.ControlList.Add(New ScrollBar(New Vector2(100, 200), 400, "Mouse Speed", Me.MouseSpeed, 1, 50, AddressOf ChangeMouseSpeed, d))
-                Me.ControlList.Add(New CommandButton(New Vector2(100, 250), 9, "Reset Key Bindings", AddressOf ResetKeyBindings))
-                Me.ControlList.Add(New ToggleButton(New Vector2(100, 370), 12, "Xbox 360 Gamepad", Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList()))
+                Me.ControlList.Add(New CommandButton(New Vector2(100, 250), 9, "Rebind keys", AddressOf ResetKeyBindings))
+                Me.ControlList.Add(New ToggleButton(New Vector2(100, 370), 12, "XBOX 360 gamepad", Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList()))
 
                 Me.ControlList.Add(New CommandButton(New Vector2(364, 480), 6, "Back", AddressOf SwitchToMain))
-            Case 5 ' "Volume" from the Options menu.
-                Me.ControlList.Add(New ScrollBar(New Vector2(100, 200), 400, "Music Volume", Me.Music, 0, 100, AddressOf ChangeMusicVolume))
-                Me.ControlList.Add(New ScrollBar(New Vector2(100, 250), 400, "Sound Volume", Me.Sound, 0, 100, AddressOf ChangeSoundVolume))
+            Case 5
+                Me.ControlList.Add(New ScrollBar(New Vector2(100, 200), 400, "Music volume", Me.Music, 0, 100, AddressOf ChangeMusicVolume))
+                Me.ControlList.Add(New ScrollBar(New Vector2(100, 250), 400, "Sound volume", Me.Sound, 0, 100, AddressOf ChangeSoundVolume))
                 Me.ControlList.Add(New ToggleButton(New Vector2(100, 300), 8, "Muted", CBool(Me.Muted), AddressOf ToggleMute, {"No", "Yes"}.ToList()))
 
                 Me.ControlList.Add(New CommandButton(New Vector2(364, 480), 6, "Back", AddressOf SwitchToMain))
         End Select
     End Sub
 
-    Private Sub Apply()
+    Private Sub Apply(ByVal C As CommandButton)
         Save()
-        Close()
+        Close(C)
     End Sub
 
-    Private Sub Close()
+    Private Sub Close(ByVal C As CommandButton)
         YScroll = 0
         Core.SetScreen(Me.PreScreen)
     End Sub
@@ -213,9 +213,9 @@
         C.CreateNewProjection(Me.FOV)
         TextBox.TextSpeed = Me.TextSpeed
         C.RotationSpeed = CSng(Me.MouseSpeed / 10000)
-        MusicManager.MasterVolume = CSng(Me.Music / 100)
+        MusicPlayer.GetInstance().MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
-        MusicManager.Mute(CBool(Me.Muted))
+        MusicPlayer.GetInstance().Mute(CBool(Me.Muted))
         SoundManager.Mute(CBool(Me.Muted))
         Core.GameOptions.RenderDistance = Me.RenderDistance
         Core.GameOptions.GraphicStyle = Me.GraphicStyle
@@ -233,7 +233,7 @@
             Core.GameOptions.LoadOffsetMaps = 101 - Me.LoadOffsetMaps
         End If
         Core.GameOptions.ViewBobbing = Me.ViewBobbing
-        Core.GameOptions.SaveOptions()
+        Core.GameOptions.Save()
 
         SoundManager.PlaySound("save")
 
@@ -251,7 +251,7 @@
 
 #Region "Switch"
 
-    Private Sub SwitchToMain()
+    Private Sub SwitchToMain(ByVal C As CommandButton)
         CurrentPath = "Options"
         Me.ScreenIndex = 0
         CanYScroll = False
@@ -259,7 +259,7 @@
         InitializeControls()
     End Sub
 
-    Private Sub SwitchToGame()
+    Private Sub SwitchToGame(ByVal C As CommandButton)
         CurrentPath = "Options > Game"
         Me.ScreenIndex = 1
         CanYScroll = False
@@ -267,7 +267,7 @@
         InitializeControls()
     End Sub
 
-    Private Sub SwitchToGraphics()
+    Private Sub SwitchToGraphics(ByVal C As CommandButton)
         CurrentPath = "Options > Graphics"
         Me.ScreenIndex = 2
         CanYScroll = False
@@ -275,7 +275,7 @@
         InitializeControls()
     End Sub
 
-    Private Sub SwitchToBattle()
+    Private Sub SwitchToBattle(ByVal C As CommandButton)
         CurrentPath = "Options > Battle"
         Me.ScreenIndex = 3
         CanYScroll = False
@@ -283,7 +283,7 @@
         InitializeControls()
     End Sub
 
-    Private Sub SwitchToControls()
+    Private Sub SwitchToControls(ByVal C As CommandButton)
         CurrentPath = "Options > Controls"
         Me.ScreenIndex = 4
         CanYScroll = False
@@ -291,7 +291,7 @@
         InitializeControls()
     End Sub
 
-    Private Sub SwitchToVolume()
+    Private Sub SwitchToVolume(ByVal C As CommandButton)
         CurrentPath = "Options > Volume"
         Me.ScreenIndex = 5
         CanYScroll = False
@@ -384,8 +384,7 @@
     End Sub
 
     Private Sub ResetKeyBindings(ByVal c As CommandButton)
-        KeyBindings.CreateKeySave(True)
-        KeyBindings.LoadKeys()
+        SetScreen(New KeyBindingScreen(Me))
     End Sub
 
 #End Region
@@ -412,9 +411,9 @@
     End Sub
 
     Private Sub ApplyMusicChange()
-        MusicManager.Mute(CBool(Me.Muted))
+        MusicPlayer.GetInstance().Mute(CBool(Me.Muted))
         SoundManager.Mute(CBool(Me.Muted))
-        MusicManager.MasterVolume = CSng(Me.Music / 100)
+        MusicPlayer.GetInstance().MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
     End Sub
 
@@ -498,7 +497,6 @@
             Me.Settings = Settings
         End Sub
 
-
         Public Overrides Sub Draw()
             If _toggled = True Then
                 Canvas.DrawImageBorder(TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
@@ -522,12 +520,13 @@
             Dim r As New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 96)
 
             If r.Contains(MouseHandler.MousePosition) = True Then
-                If net.Pokemon3D.Game.Controls.Accept(True, False, False) = True Then
+                If Game.Controls.Accept(True, False, False) = True Then
                     Me._toggled = Not Me._toggled
                     OnToggleTrigger(Me)
                 End If
             End If
         End Sub
+
     End Class
 
     Class CommandButton
@@ -579,10 +578,10 @@
             Me.OnClickTrigger = ClickSub
         End Sub
 
-
         Public Overrides Sub Draw()
             Dim r As New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, Me._size * 32 + 32, 96)
-            If r.Contains(MouseHandler.MousePosition) = True Then
+
+            If r.Contains(MouseHandler.MousePosition) = True And CurrentScreen.Identification = Screen.Identifications.OptionScreen Then
                 Canvas.DrawImageBorder(TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(48, 0, 48, 48)), 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
             Else
                 Canvas.DrawImageBorder(TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 64))
@@ -595,11 +594,12 @@
             Dim r As New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size + 32, 96)
 
             If r.Contains(MouseHandler.MousePosition) = True Then
-                If net.Pokemon3D.Game.Controls.Accept(True, False, False) = True Then
+                If Game.Controls.Accept(True, False, False) = True Then
                     OnClickTrigger(Me)
                 End If
             End If
         End Sub
+
     End Class
 
     Class ScrollBar
@@ -780,4 +780,5 @@
     End Class
 
 #End Region
+
 End Class

@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(docked)>=True
+    @text.show(We're traveling~around the world.)
+:else
+    @text.show(Oh, hello...*I still can't find~my granddaughter.*If she's on the ship, that's OK.*She's an energetic child, so~she may be bugging someone.*I'm worried...)
+:endif
+:end

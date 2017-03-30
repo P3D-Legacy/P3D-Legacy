@@ -1,0 +1,5 @@
+version=2
+:if:<player.hasbadge(9)>=true <and> <datetime.dayofweek>=wednesday
+    @npc.warp(8,4,0,4)
+:endif
+:end

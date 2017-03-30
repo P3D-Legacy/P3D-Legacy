@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(rocket_defeat_slowpokewell)>=False
+    @Text.show(The Slowpoke have~disappeared from~town.*I heard their~Tails are being~sold somewhere.)
+:else
+    @Text.show(The Slowpoke have~returned.*Knowing them, they~could've just been*goofing off somewhere.)
+:endif
+:end

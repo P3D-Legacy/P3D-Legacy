@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(generator_off)>=True
+    @Text.show(Hahah! The Magikarp are biting!)
+:else
+    @Text.show(The Gyarados are angry!*It's a bad omen!)
+:endif
+:end

@@ -1,0 +1,14 @@
+version=2
+@text.show(There's a digital~journey named*"Discovery of the Unown".~Read a chapter?)
+@options.show(Letters,Forms,The Ruins,Radio signals,Back)
+:select:<options.result>
+    :when:Letters
+        @text.show(4th December;~We had first contact with~Unown. They appear as*letters to us.~10th December;~Our research has shown,~that they are way older*than any latin alphabet.~Does that mean that our*letters originated from these~creatures?)
+    :when:Forms
+        @text.show(22th December;~We discovered more forms~of Unown the deeper we*travel into the caves.~We haven't been able~to fully count all~forms yet.)
+    :when:The Ruins
+        @text.show(01st January;~The ruins we found~seem to be more than*5000 years old.~It looks like the Pokémon*living in here are~corruptions of the alphabet.*But how is that possible?)
+    :when:Radio signals
+        @text.show(03rd January;~We found out that our~radio signals won't work~anymore.*These strange Pokémon~came out of the deeper*caves and seem to somehow~interfer with our radio*communication. They seem~to interact through*these radio waves.~If we only could~understand them...*They are using the~wavelength 13.5 ...)
+:endselect
+:end

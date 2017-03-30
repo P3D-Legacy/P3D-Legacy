@@ -1,0 +1,57 @@
+version=2
+@daycare.clean(2)
+:if:<register.exists(protoncerulean)>=False
+    @text.show(Due to Team Rocket~activities we aren't~accepting trainer's~Pokémon right now.*Come back later.)
+    :end
+:endif
+
+:if:<daycare.hasegg(2)>=true
+    @text.show(My husband was looking for you.)
+    :end
+:endif
+@text.show(Ah, it's you!~Good to see you.*Your Pokémon can~only be doing good!)
+:if:<daycare.grownlevels(2,0)>=0
+    @text.show(By level, your~<daycare.pokemonname(2,0)> has~grown by <daycare.grownlevels(2,0)>.)
+:endif
+:if:<daycare.grownlevels(2,1)>=0
+    @text.show(By level, your~<daycare.pokemonname(2,1)> has~grown by <daycare.grownlevels(2,1)>.)
+:endif
+@text.show(How may I help you?)
+:select:<daycare.countpokemon(2)>
+    :when:0
+        @options.show(Leave Pokémon,Cancel)
+        :select:<options.result>
+            :when:Leave Pokémon
+                @script.start(sevii\floe\daycare\leave_pokemon)
+            :when:Cancel
+                @text.show(Fine.~Come Again.)
+        :endselect
+        :end
+        
+    :when:1
+        @options.show(Leave Pokémon,Take back,Cancel)
+        :select:<options.result>
+            :when:Leave Pokémon
+                @script.start(sevii\floe\daycare\leave_pokemon)
+            :when:Take back
+                @text.show(You have energetic Pokémon!~Would you like your~Pokémon back?)
+                @script.start(sevii\floe\daycare\take_back)
+            :when:Cancel
+                @text.show(Fine.~Come Again.)
+        :endselect
+        :end
+            
+    :when:2
+        @options.show(Take back,Cancel)
+        :select:<options.result>
+            :when:Take back
+                @text.show(You have energetic Pokémon!~Would you like your~Pokémon back?)
+    
+                @script.start(sevii\floe\daycare\take_back)
+            :when:Cancel
+                @text.show(Fine.~Come Again.)
+        :endselect
+        :end
+        
+    :endselect
+:end

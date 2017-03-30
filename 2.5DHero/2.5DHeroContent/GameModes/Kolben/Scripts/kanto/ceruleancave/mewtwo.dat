@@ -1,0 +1,62 @@
+version=2
+@npc.turn(0,0)
+@storage.set(bool,third,<camera.thirdperson>)
+
+@music.pause
+
+@screen.fadeout
+@player.warp(50,2.1,18)
+@camera.activatethirdperson
+@camera.reset
+@camera.set(-0.6,-0.58,-1.54,6,0.04)
+@camera.update
+@level.update
+@screen.fadein
+
+@level.wait(50)
+
+:while:<camera.y><0.09
+    @camera.sety(~+0.002)
+    @camera.update
+:endwhile
+
+@level.wait(50)
+
+@npc.turn(0,2)
+@pokemon.cry(150)
+
+@level.wait(10)
+
+:while:<camera.z><1.5
+    :select:<system.random(0,3)>
+        :when:0
+            @camera.setx(~-0.02)
+        :when:1
+            @camera.setx(~+0.02)
+        :when:2
+            @camera.sety(~-0.02)
+        :when:3
+            @camera.sety(~+0.02)
+    :endselect
+
+    @camera.setz(~+0.15)
+    @camera.update
+:endwhile
+
+@level.update
+
+@level.wait(50)
+
+@battle.wild(150,75,-1,,12)
+@register.new(battlemewtwo)
+@npc.register(kanto\cerulean\cave\b1f.dat|0|remove|0)
+
+@screen.fadeout
+@npc.remove(0)
+
+@camera.reset
+@camera.setthirdperson(<storage.get(bool,third)>)
+
+@screen.fadein
+@player.achieveemblem(genetics)
+:end

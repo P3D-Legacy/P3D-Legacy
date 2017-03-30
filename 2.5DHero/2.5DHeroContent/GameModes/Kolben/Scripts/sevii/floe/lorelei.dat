@@ -1,0 +1,28 @@
+version=2
+:if:<register.exists(battledloreleitoday)>=False
+    :if:<register.exists(loreleibattlecount)>=False
+        @text.show(Hello, <player.name>.*You did a great job~cleaning up Team Rocket.*I don't think I actually~introduced myself.*My name is Lorelei.*I was a member of the~Kanto Elite Four.*I retired a few years~ago and have been living~here ever since.*Even though I am no~longer a member of the~Elite Four, I have been~training rigorously.*Perhaps we could battle?)
+        @register.new(loreleibattlecount,int,0)
+    :else
+        @text.show(Ah, <player.name>.*Ready for another battle?)
+    :endif
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(Don't underestimate me!*I didn't retire because~of my age like Agatha!)
+            :if:<register.value(loreleibattlecount)>>10
+                @battle.trainer(sevii\floe\lorelei2)
+            :else
+                @battle.trainer(sevii\floe\lorelei1)
+            :endif
+            @text.show(That was an invigorating~battle!*Come visit again!)
+            @register.newtime(battledloreleitoday,1,days)
+            @register.change(loreleibattlecount,<register.value(loreleibattlecount)>+1)
+            :end
+        :when:No
+            :end
+    :endselect
+:endif
+@text.show(That was an invigorating battle!*Come visit again.)
+:end
+    

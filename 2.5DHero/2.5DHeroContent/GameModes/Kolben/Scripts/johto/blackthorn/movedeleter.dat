@@ -1,0 +1,39 @@
+version=2
+@text.show(Um... Oh, yes, I'm~the Move Deleter.*I can make Pokémon~forget moves.*Shall I make a~Pokémon forget?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:No
+        @text.show(No? Come visit me~again.)
+        :exit
+    :when:Yes
+        @Text.Show(Which Pokémon should~forget a move?)
+        @pokemon.select(1)
+        :if:<pokemon.selected>>-1
+            :if:<pokemon.countattacks(<pokemon.selected>)>=1
+                @Text.Show(<pokemon.name(<pokemon.selected>)> cannot~forget the last move.)
+                :exit
+            :endif
+            @pokemon.selectmove(<pokemon.selected>,1,1)
+            :if:<pokemon.selectedmove>>-1
+                @Text.show(Shall <pokemon.name(<pokemon.selected>)>~forget the move <pokemon.attackname(<pokemon.selected>,<pokemon.selectedmove>)>?)
+                @options.show(Yes,No)
+                :select:<options.result>
+                    :when:Yes
+                        @text.show(OK, <pokemon.name(<pokemon.selected>)>~forgot the move~<pokemon.attackname(<pokemon.selected>,<pokemon.selectedmove>)>!)
+                        @pokemon.removeattack(<pokemon.selected>,<pokemon.selectedmove>)
+                        @text.show(Come visit again~if you want a Pokémon~to forget a move.)
+                        :end
+                    :when:No
+                        @text.show(No? Come visit me~again.)
+                :endselect
+
+            :else
+                @text.show(No? Come visit me~again.)
+                :exit
+            :endif
+        :else
+            @text.show(No? Come visit me~again.)
+            :exit
+        :endif
+:endselect
+:end

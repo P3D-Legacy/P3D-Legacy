@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(zephyrbadge_obtain)>=False
+    @Text.show(Hey! I'm no train-~er but I can give~some advice!*Believe me!~If you believe, a*championship dream~can come true.*You believe?~Then listen.*The grass-type is~weak against the*flying-type. Keep~this in mind.)
+:else
+    @Text.show(Nice battle! Keep~it up, and you'll*be the Champ in no~time at all!)
+:endif
+:end

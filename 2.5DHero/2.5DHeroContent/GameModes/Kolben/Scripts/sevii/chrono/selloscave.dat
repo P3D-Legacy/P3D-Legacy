@@ -1,0 +1,29 @@
+version=2
+:if:<register.exists(helpselph)>=false
+    @player.move(0)
+    @npc.turn(0,1)
+    @npc.move(0,1)
+    @npc.turn(0,3)
+    @npc.move(0,2)
+    @npc.turn(0,1)
+    @npc.move(0,1)
+    @npc.turn(0,2)
+    @npc.move(0,2)
+    @battle.starttrainer(sevii\chrono\north\selphy)
+    @text.show(I am so glad that~you happened here.*I grew rather bored~of walking, and I~am feeling fatigued.*May I ask you to take~me home from here?)
+    @screen.fadeout
+    @player.warp(sevii\chrono\resort.dat,39,0.1,10)
+    @level.update
+    @npc.warp(7,39,0,9)
+    @level.update
+    @screen.fadein
+    @text.show(You may go now.)
+    @npc.turn(7,0)
+    @npc.move(7,2)
+    @sound.play(door)
+    @npc.remove(7)
+    @register.new(helpselph)
+    @npc.register(sevii\chrono\lostcave\selphy.dat|0|remove|0)
+    @npc.register(sevii\chrono\selphy.dat|0|position|2,0,3)
+:endif
+:end

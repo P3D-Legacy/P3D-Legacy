@@ -1,0 +1,27 @@
+version=2
+:if:<register.exists(rival_encounter_ecruteak)>=true
+    @Entity.setCollision(0,1)
+    @Entity.setCollision(1,0)
+
+    :if:<register.exists(burnttower_encounter_roaming)>=false
+        @pokemon.newroaming(243,40,0,route31.dat,raikou_battle)
+        @pokemon.newroaming(244,40,0,routes\route42.dat,entei_battle)
+        @register.new(burnttower_encounter_roaming)
+    :endif
+:endif
+
+:if:<register.exists(eusine_greeting)>=false
+    @register.new(eusine_greeting)
+    @player.Move(0)
+    @npc.Turn(1,2)
+    @npc.Move(1,1)
+    @npc.Turn(1,1)
+    @npc.Move(1,3)
+    @npc.Turn(1,2)
+    @npc.Move(1,1)
+    @music.play(eusine_encounter)
+    @Text.show(Eusine: My name's~Eusine.*I'm on the trail~of a Pokémon named~Suicune.*And you are...?*<player.name>? Glad to~meet you!*I heard rumors~that Suicune is in*this Burned Tower,~so I came to look.*But where exactly~could it be?)
+    @NPC.register(burnedtower\burnedtower1f.dat|1|position|7,0,14)
+    @music.play(burnedtower)
+:endif
+:end

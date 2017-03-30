@@ -1,0 +1,8 @@
+version=2
+#0: itemID
+:if:<register.exists(berryforestitem<$0>)>=False
+    @item.add(<$0>,1)
+    @item.messagegive(<$0>,1)
+    @register.newtime(berryforestitem<$0>,<system.random(8,24)>,hours)
+:endif
+:end

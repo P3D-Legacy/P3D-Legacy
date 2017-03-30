@@ -1,0 +1,6 @@
+version=2
+:if:<register.exists(battlelugia)>=False <and> <item.count(71)>>0
+    @npc.warp(0,3,0.5,-1)
+    @pokemon.cry(249)
+    :end
+:endif

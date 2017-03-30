@@ -1,0 +1,14 @@
+version=2
+:if:<datetime.dayofweek>!monday
+    @Text.Show(Monica: I don't~think today is~Monday. How sad...)
+:else
+    :if:<register.exists(monica_item)>=false
+        @Text.Show(Monica: Glad to~meet you. I'm*Monica of Monday.*As a token of our~friendship, I have~a gift for you!)
+        @item.add(77)
+        @item.messagegive(77,1)
+        @Text.Show(Monica: It's an~item that raises*the power of flying-type moves.*You should equip a~bird Pokémon with~that item.)
+        @register.new(monica_item)
+    :endif
+    @text.Show(Monica: My brothers~and sisters*are all over the~place.*See if you could~find them all!)
+:endif
+:end

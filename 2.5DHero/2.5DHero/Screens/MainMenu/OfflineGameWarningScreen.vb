@@ -42,7 +42,7 @@
         If Controls.Dismiss(True, True, True) = True Then
             Core.SetScreen(Me.PreScreen)
             Core.GameOptions.StartedOfflineGame = False
-            Core.GameOptions.SaveOptions()
+            Core.GameOptions.Save()
         End If
     End Sub
 

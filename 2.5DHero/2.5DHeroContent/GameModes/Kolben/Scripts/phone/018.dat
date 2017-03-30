@@ -1,0 +1,22 @@
+version=2
+:if:<phone.callflag>=calling
+    @Text.Show(Pokégear:~Calling..............)
+:else
+    @Text.Show(Pokégear: Pokéfan Beverly~Receiving call.......)
+:endif
+
+:if:<register.exists(phone_reg_018)>=true
+    @Text.Show(Can you bring that~Marill to me, <player.name>?*I want to see one.~I am waiting here, in the~National Park.)
+:else
+    :if:<pokemon.has(183)>=true <and> <register.exists(phone_reg_018_time)>=false
+        :if:<phone.callflag>=receiving
+            @Text.Show(Hey, <player.name>.*Wait! Do you have~a MARILL?*I want to see one.~I am waiting here, in the~National Park.)
+            @register.new(phone_reg_018)
+        :else
+            @Text.Show(Hey, <player.name>.*I really want to see a~Marill. Those are adorable~creatures.*Well, see you later.)
+        :endif
+    :else
+        @Text.Show(Hey, <player.name>.*I really want to see a~Marill. Those are adorable~creatures.*Well, see you later.)
+    :endif
+:endif
+:end

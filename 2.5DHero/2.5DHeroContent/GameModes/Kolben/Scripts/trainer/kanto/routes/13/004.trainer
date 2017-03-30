@@ -1,0 +1,22 @@
+﻿[TRAINER FORMAT]
+Name|Alex
+TrainerClass|Pokéfan
+Money|3680
+IntroMessage|Bow down before~my regal Pokémon!
+OutroMessage|How... How dare you mock royalty!
+DefeatMessage|Doesn't everyone wish~to someday be a king?
+TextureID|11
+Region|Kanto
+IniMusic|battle\intro\kanto\trainer
+DefeatMusic|battle\defeat\trainer
+BattleMusic|battle\main\kanto\trainer
+Pokemon1|34,46
+Pokemon2|199,46
+Pokemon3|119,46
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|1
+IntroSequence|Blue,Blue

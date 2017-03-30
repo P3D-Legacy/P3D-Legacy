@@ -1,0 +1,10 @@
+version=2
+:if:<register.exists(kinbikersintro)>=False
+    @text.show(Salesman: Are you the boss?~Go back to Kanto right now!)
+    @text.show(Boss: Hah?*I just got here, pal.*What's with the~hostile attitude?*It's mighty cold of you!*)
+    @text.show(Salesman: Your gang of followers~have been raising havoc~on their bikes.*Do you have any idea~how much trouble they've~caused us on the island?)
+    @text.show(Boss: No, man, I don't get it at all.*Look at this place.~What do you do for~entertainment?*You ought to be~thanking us for livening~up this sleepy village.*But hey,~if you insist,~you can try making us leave.)
+    @text.show(Salesman: Grr... You cowards...~So tough in a pack...)
+    @register.new(kinbikersintro)
+:endif
+:end

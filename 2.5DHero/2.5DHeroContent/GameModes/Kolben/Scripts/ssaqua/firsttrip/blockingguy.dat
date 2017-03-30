@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(ssaquagotowork)>=False
+    :if:<register.exists(ssaquafindthatguy)>=False
+        @text.show(Hey, kid.*Could I get you to~look for my buddy?*He's goofing off somewhere,~that lazy bum!*I want to go find him,~but I'm on duty right now.)
+        @register.new(ssaquafindthatguy)
+        @npc.register(ssaqua\firsttrip\cabins\1.dat|0|position|3,0,5)
+    :else
+        @text.show(Oh, gee...*The Captain will be furious...)
+    :endif
+:else
+    @text.show(Thanks, kid!*I chewed him out good so~he'll quit slacking off!*A little girl?*I may have seen~her go by here.)
+:endif
+:end

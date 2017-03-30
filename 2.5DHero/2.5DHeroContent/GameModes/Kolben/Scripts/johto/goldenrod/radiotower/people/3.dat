@@ -1,0 +1,16 @@
+version=2
+:if:<register.exists(rocket_invasion_radio)>=True
+    @text.show(The Team Rocket~Boss has locked~himself in.*But the Director~can open it.*He's up on the~fifth floor.*Please save him!)
+    :end
+:endif
+
+:if:<register.exists(thankyou_radio_girl)>=False
+    @text.show(Thank you!~You're my hero!*This is a token of~my appreciation.)
+    @item.add(201,1)
+    @text.show(It's Sunny Day.~It powers up fire~type moves for a while.)
+    @register.new(thankyou_radio_girl)
+    :end
+:endif
+
+@text.show(You were simply marvelous!)
+:end

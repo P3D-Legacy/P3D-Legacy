@@ -1,0 +1,15 @@
+version=2
+:if:<register.exists(mtmortar_tyrogue_get)>=false
+    @battle.starttrainer(johto\mtmortar\kungfu)
+    @text.show(My training is~still not enough...*But a loss is a~loss. I admit it.*As proof that you~defeated me, I'll*give you a rare~fighting Pokémon.)
+    :if:<pokemon.count><6
+        @pokemon.add(236,10,A Gift at,5)
+        @pokemon.rename(<pokemon.count>-1)
+        @register.new(mtmortar_tyrogue_get)
+    :else
+        @Text.show(You have no room~in your party!)
+        :end
+    :endif
+:endif
+@Text.show(Tyrogue is a~fighting-type.*It evolves into a~tougher Pokémon.*Keep up the hard~work. I'll keep~training too.*Farewell!)
+:end

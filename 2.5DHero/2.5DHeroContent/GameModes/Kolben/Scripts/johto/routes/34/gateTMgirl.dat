@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(TMilexgateget)>=False
+    @text.show(Oh, honey, you're~making a Pokédex?*It must be hard if~Pokémon won't appear.*Try using this TM.)
+    @item.add(202,1)
+    @item.messagegive(202,1)
+    @register.new(TMilexgateget)
+:endif
+@text.show(It's sweet Scent.*Use it wherever~Pokémon appear.*Pokémon will be~enticed by it.)
+:end

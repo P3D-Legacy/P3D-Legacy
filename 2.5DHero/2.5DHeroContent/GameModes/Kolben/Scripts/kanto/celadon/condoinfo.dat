@@ -1,0 +1,10 @@
+version=2
+:select:<level.filename>
+    :when:0
+        @text.show(Celadon Mansion~Manager's Suite)
+    :when:1
+        @text.show(Game Freak Meeting Room)
+    :when:2
+        @text.show(Game Freak Development Room)
+:endselect
+:end

@@ -1,0 +1,45 @@
+version=2
+:if:<pokemon.number(0)>=479
+    :if:<pokemon.additionaldata(0)>=
+        :if:<pokemon.isshiny(0)>=False
+            @npc.wearskin(0,[POKEMON|N]479)
+        :else
+            @npc.wearskin(0,[POKEMON|S]479)
+        :endif
+    :else
+        :if:<pokemon.isshiny(0)>=False
+            @npc.wearskin(0,[POKEMON|N]479_<pokemon.additionaldata(0)>)
+        :else
+            @npc.wearskin(0,[POKEMON|S]479_<pokemon.additionaldata(0)>)
+        :endif
+    :endif
+    @level.update
+    @overworldpokemon.hide
+    @npc.warp(0,<player.position(x)>-1,0,0)
+    @pokemon.cry(479)
+    @player.turnto(1)
+    @player.setmovement(1,0,0)
+    @player.move(1)
+    @npc.move(0,1)
+    @npc.turn(0,0)
+    @pokemon.cry(479)
+    @text.show(<pokemon.displayname(0)>'s~electricity affected the~elevator, and now~it's working!)
+    @screen.fadeout
+    @sound.play(enter)
+    @sound.play(elevator)
+    @player.turnto(0)
+    @sound.play(enter)
+    :if:<level.filename>=silph
+        @player.warp(kanto\saffron\rotomroom.dat,7,0.1,0)
+        @script.start(kanto\saffron\rotom\managedevices)
+    :else
+        @player.warp(kanto\saffron\silph.dat,8,0.1,0)
+        @level.update
+        @screen.fadein
+    :endif
+    :end
+:else
+    @text.show(...*The elevator doesn't~seem to be working.*Better move on...)
+    :end
+:endif
+:end

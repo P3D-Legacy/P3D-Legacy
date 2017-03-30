@@ -1,0 +1,23 @@
+{"Level"{LEV[{"Name"{str[S.S. Aqua]}}{"MusicLoop"{str[building\ssaqua]}}{"CurrentRegion"{str[Johto,Kanto]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}]}}
+
+{"Floor"{ENT[{"Size"{intArr[8,6]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[House2]}}{"Texture"{rec[96,112,16,16]}}]}}
+
+Walls:
+{"EntityField"{ENT[{"Fill"{bool[0]}}{"Size"{intArr[10,8]}}{"Scale"{sngArr[1,2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[-1,0.5,-1]}}{"TexturePath"{str[House2]}}{"Textures"{recArr[[112,96,16,32]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Fill"{bool[0]}}{"Size"{intArr[1,4]}}{"Scale"{sngArr[1,2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[5,0.5,0]}}{"TexturePath"{str[House2]}}{"Textures"{recArr[[112,96,16,32]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Fill"{bool[0]}}{"Size"{intArr[1,1]}}{"Scale"{sngArr[1,2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[4,0.5,3]}}{"TexturePath"{str[House2]}}{"Textures"{recArr[[112,96,16,32]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Fill"{bool[0]}}{"Size"{intArr[3,1]}}{"Scale"{sngArr[1,2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0.5,3]}}{"TexturePath"{str[House2]}}{"Textures"{recArr[[112,96,16,32]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"EntityField"{ENT[{"Size"{intArr[8,6]}}{"EntityID"{str[AllSidesObject]}}{"Position"{sngArr[0,2,0]}}{"TexturePath"{str[House2]}}{"Textures"{recArr[[96,112,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[olivine\dock.dat,0,0.1,14,0]}}{"Rotation"{int[0]}}]}}
+
+Warps:
+{"EntityField"{ENT[{"Fill"{bool[0]}}{"Size"{intArr[1,1]}}{"Scale"{sngArr[1,2,1]}}{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[3,0.5,3]}}{"TexturePath"{str[House2]}}{"Textures"{recArr[[48,96,16,32]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[shared\ssaqua\olivine\cabins\captain.dat,3,0.1,9,0]}}{"Rotation"{int[0]}}]}}
+
+Bf1:
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[6,0,2]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[64,48,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"Visible"{bool[0]}}{"AdditionalValue"{str[shared\ssaqua\olivine\bf1.dat,0,0.1,8,3,1]}}{"Rotation"{int[0]}}]}}
+{"Floor"{ENT[{"Size"{intArr[1,1]}}{"Position"{intArr[6,0,2]}}{"TexturePath"{str[House2]}}{"Visible"{bool[0]}}{"Texture"{rec[112,16,16,16]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,-1,2]}}{"TexturePath"{str[House2]}}{"Textures"{recArr[[32,96,16,16][16,96,16,16]}}{"TextureIndex"{intArr[0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[1]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"TexturePath"{str[rocketbase]}}{"Textures"{recArr[[32,64,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"Position"{sngArr[6,-1.001,1]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"TexturePath"{str[rocketbase]}}{"Textures"{recArr[[0,64,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"Position"{sngArr[6,-1.001,3]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"TexturePath"{str[rocketbase]}}{"Textures"{recArr[[16,64,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"Position"{sngArr[5,-1.001,2]}}]}}

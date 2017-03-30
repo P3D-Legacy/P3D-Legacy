@@ -1,0 +1,17 @@
+version=2
+@screen.fadeout
+@sound.play(healing,true)
+@pokemon.heal
+@level.wait(200)
+@screen.fadein
+:if:<register.exists(docked)>=False
+    @register.new(docked)
+
+    :if:<level.file>=ssaqua\vermilion\0.dat
+        @text.show(Fast Ship S.S. Aqua has~arrived in Olivine City.)
+    :else
+        @text.show(Fast Ship S.S. Aqua has~arrived in Vermilion City.)
+    :endif
+
+:endif
+:end

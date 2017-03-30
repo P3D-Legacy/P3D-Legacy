@@ -1,0 +1,10 @@
+version=2
+:if:<register.exists(nilllzzdevbattle)>=false
+    @text.show(Nilllzz: Oh, hi.*You want to battle?*Well, sure I guess...)
+    @battle.setvar(canblackout,false)
+    @battle.trainer(sevii\kolben\nilllzz)
+    @pokemon.heal
+    @register.newtime(nilllzzdevbattle,1,day)
+:endif
+@text.show(If you want to~battle me for real~you should challenge~the Battle Tower.*Some of the other~staff in the tower~will battle too.)
+:end

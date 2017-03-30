@@ -1,0 +1,17 @@
+version=2
+:if:<environment.daytime>=Night <and> <datetime.dayofweek>=Monday <and> <register.exists(clefairymtmoon)>=false
+    @entity.showmessagebulb(1|1|1|3)
+    @npc.turn(2,2)
+    @entity.showmessagebulb(1|5|1|4)
+    @npc.turn(3,2)
+    @npc.turn(2,3)
+    @npc.turn(3,3)
+    @npc.setspeed(2,2)
+    @npc.move(2,10)
+    @npc.setspeed(3,2)
+    @npc.move(3,10)
+    @npc.remove(2)
+    @npc.remove(3)
+    @register.newtime(clefairymtmoon,1,day)
+:endif
+:end

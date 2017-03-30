@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(slowpokewell_kingsrock)>=False
+    @Text.show(I'm waiting to see~Slowpoke's moment~of evolution.*Through observation, I made~a new discovery.*A Slowpoke with a~King's Rock often*gets bitten by a~Shellder.*Here, I'll share a~King's Rock with~you.)
+    @item.add(82,1)
+    @item.messagegive(82,1)
+    @register.new(slowpokewell_kingsrock)
+:endif
+@Text.show(I'm going to be~like Slowpoke.*I'll wait patiently,~so I can see one evolve.)
+:end

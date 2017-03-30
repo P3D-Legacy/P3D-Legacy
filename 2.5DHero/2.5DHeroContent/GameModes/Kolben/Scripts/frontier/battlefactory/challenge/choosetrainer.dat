@@ -1,0 +1,36 @@
+version=2
+#0: brain battle bool
+:if:<$0>=false
+    @storage.set(trainer_id,<system.random(0,307)>)
+    @npc.spawn(6,0,-1,0,,<npc.trainertexture(frontier\battletower\\<storage.get(trainer_id)>)>,0,2,0,0,Still)
+:else
+    @npc.spawn(6,0,-1,0,,dracohouston,0,2,0,0,Still)
+:endif
+
+@npc.move(0,3)
+@npc.turn(0,3)
+@npc.move(0,3)
+@npc.turn(0,2)
+@npc.move(0,3)
+@npc.turn(0,1)
+
+@player.move(1)
+@npc.move(0,1)
+
+:if:<$0>=false
+    @text.show(<battle.intromessage(frontier\battletower\\<storage.get(trainer_id)>)>)
+:else
+    @text.show(<battle.intromessage(frontier\battletower\draco)>)
+:endif
+
+@battle.setvar(canreceiveexp,0)
+@battle.setvar(canuseitems,0)
+@battle.setvar(canblackout,0)
+@battle.setvar(frontiertrainer,<storage.get(factory_class)>)
+
+:if:<$0>=false
+    @battle.trainer(frontier\battletower\\<storage.get(trainer_id)>)
+:else
+    @battle.trainer(frontier\battletower\draco)
+:endif
+:end

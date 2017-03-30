@@ -1,0 +1,20 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(earthbadge_obtain)>=true <and> <register.exists(MistyRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe evenings during~the weekend?*If you visit while~I am there maybe~we could battle.)
+    @register.new(MistyRematchTalk)
+    :end
+:endif
+@battle.starttrainer(kanto\gyms\cerulean\leader)
+@player.AchieveEmblem(cascade)
+:if:<register.exists(cascadebadge_obtain)>=False
+    @register.new(cascadebadge_obtain)
+    @register.new(trainer_kanto\gyms\cerulean\001)
+    @register.new(trainer_kanto\gyms\cerulean\002)
+    @register.new(trainer_kanto\gyms\cerulean\003)
+    @player.GetBadge(2)
+    @Text.show(Misty: Here is another~memento from this battle.~Take it!)
+    @item.add(390,1)
+    @item.messagegive(390,1)
+    @Text.show(It contains the~move Water Pulse.*It can sometimes~confuse your foe.*You've managed to defeat~Trainers all the way~from Johto.*I'm sure you have a~good use for it.)
+:endif
+:end

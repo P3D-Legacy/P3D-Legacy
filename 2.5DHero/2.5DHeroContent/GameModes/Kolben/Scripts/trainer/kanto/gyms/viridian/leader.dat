@@ -1,0 +1,20 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(earthbadge_obtain)>=true <and> <register.exists(BlueRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe Wednesdays?*If you visit while~I am there maybe~we could battle.)
+    @register.new(BlueRematchTalk)
+    :end
+:endif
+@battle.starttrainer(kanto\gyms\viridian\leader)
+@player.AchieveEmblem(earth)
+:if:<register.exists(earthbadge_obtain)>=False
+    @register.new(earthbadge_obtain)
+    @npc.unregister(kanto\cerulean\cave\bf1.dat|0|remove|0)
+    @npc.register(kanto\routes\10.dat|3|position|2,0,10)
+    @npc.register(shared\indigo\gate.dat|1|remove|0)
+    @player.GetBadge(8)
+    @Text.show(No way!*How the heck did~I lose to you?*...*Tch, all right...*Here, take this.*It's the Earth Badge.*With this Badge,~you'll be able to~use the HM move~Rock Climb!*In all of Kanto~and Johto there is only~one other person who has~beaten me the~way you just did.*He is currently~training alone on~Mt. Silver.*I think you would~enjoy battling each~other.*I will make arrangments~for you to be allowed~to go to the mountain.*Just take Route 22~from here to the~League Gate and pass~straight through to~take the road to~Mt. Silver.*Here!*Take this as well!*)
+    @item.add(376,1)
+    @item.messagegive(376,1)
+    @Text.show(It contains Metronome!*It uses ANY move at random!*It's a very tricky~move, isn't it?)
+:endif
+:end

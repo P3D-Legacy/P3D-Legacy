@@ -1,0 +1,36 @@
+version=2
+
+:if:<register.exists(mom_start)>=false
+    @register.new(mom_start)
+    @npc.turn(0,3)
+    @npc.move(0,1)
+    @npc.turn(0,0)
+    @npc.move(0,1)
+    @text.show(Oh, <player.name>...! Our~neighbor, Prof. Elm,~was looking for you.*He said he wanted~you to do something~for him.*Oh! I almost forgot!~Your Pokémon Gear~is back from the~repair shop.*Here you go!)
+    @sound.play(success_small)
+    @player.receivepokegear
+    @text.show(<player.name> received~Pokégear.)
+    @text.show(Pokémon Gear, or just~Pokégear.*It's essential if you~want to be a good trainer.*By the way, do you~know how to use~the Phone?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(I'm sure you know~that you can open it~by pressing Q.*Phone numbers are~stored in memory.*Just choose a name~you want to call.*Gee, isn't that~convenient?)
+        :when:No
+            @text.show(Don't you just~turn the Pokégear~on by pressing Q~and switch over to Phone?*Phone numbers are~stored in memory.*Just choose a name~you want to call.*Gee, isn't that~convenient?)
+    :endselect
+
+    @text.show(Also, here is my number!)
+    @register.new(phone_contact_000)
+    @text.show(<player.name>~received Mom's number.)
+    @register.new(mom_getpokegear)
+
+    @npc.turn(0,2)
+    @npc.move(0,1)
+    @npc.turn(0,1)
+    @npc.move(0,1)
+
+    @register.new(mom_wait)
+
+:endif
+
+:end

@@ -1,0 +1,24 @@
+version=2
+:if:<register.exists(sagepasstin)>=true
+    @text.show(You may pass!)
+    :end
+:endif
+@text.show(I am sorry but~only a certain~few may pass here.*I must ask you~to turn back.)
+:if:<item.count(178)>>0
+    @text.show(Oh! The Rainbow Wing!*You may pass!)
+    @register.new(sagepasstin)
+    @npc.turn(2,3)
+    :select:<player.position>
+        :when:9,0,2
+        @npc.turn(2,1)
+    :endselect
+    @npc.move(2,1)
+    @npc.register(johto\ecruteak\tintower\1f.dat|2|remove|0)
+    @npc.turn(2,1)
+    :select:<player.position>
+        :when:26,1,20
+        @npc.turn(2,3)
+    :endselect
+    :end
+:endif
+:end

@@ -1,0 +1,15 @@
+version=2
+@text.show(Ah! You're challenging~the Elite Four?*Are you sure you're ready?~If you need to train some more,*my Abra can help you.~It can Teleport you home.*Would you like to go home now?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @text.show(OK, OK.*Picture your house~in your mind...)
+        @screen.fadeout
+        @sound.play(teleport)
+        @player.warp(johto\newbark\main.dat,19,0.1,12,2)
+        @level.update
+        @screen.fadein
+    :when:No
+        @text.show(OK, OK.*The best of luck~to you!)
+:endselect
+:end

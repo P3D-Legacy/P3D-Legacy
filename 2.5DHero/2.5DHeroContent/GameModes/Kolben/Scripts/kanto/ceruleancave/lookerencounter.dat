@@ -1,0 +1,24 @@
+version=2
+:if:<register.exists(lookercerulean)>=False
+    @entity.warp(0,46,-0.15,28)
+    @player.move(0)
+    @level.update
+    @entity.showmessagebulb(1|46|1|28)
+    @music.play(encounter\looker)
+    @level.wait(50)
+    @entity.remove(0)
+    @npc.warp(1,46,0,28)
+    @level.update
+    @npc.setspeed(1,2)
+    @npc.move(1,2)
+    @npc.turn(1,2)
+    @npc.setspeed(1,2)
+    @npc.move(1,4)
+    @text.show(Are you perhaps~<player.name>?*I overheard the~Team Rocket Boss~tell his followers~to watch for you,~and decided to~wait for you here.*I am a globe-trotting elite~of the International Police.*My name...*Ah, no.*I shall inform you only~of my code name.*My code name, it is Looker.*I was sent here to~investigate Team Rocket's~recent activities.*I request your cooperation.*I will be sneaking around~the cave looking for~a good opportunity to~capture their boss~but I cannot be certain~of the outcome.*If you a could be a~distraction, I would be~very thankful.*I will see you again when~I capture the boss.)
+    @screen.fadeout
+    @npc.remove(1)
+    @register.new(lookercerulean)
+    @music.play(dungeon\cave\cerulean)
+    @screen.fadein
+:endif
+:end

@@ -1,0 +1,50 @@
+version=2
+:if:<register.exists(rival_rocket_underground)>=false
+    @player.turnto(3)
+    @Music.play(encounter\rival)
+    @sound.play(enter)
+    @npc.warp(0,25,0,3)
+    @npc.move(0,3)
+    @npc.turn(0,2)
+
+    :select:<player.position>
+        :when:21,0,4
+            @npc.move(0,1)
+        :when:21,0,5
+            @npc.move(0,2)
+    :endselect
+
+    @npc.turn(0,1)
+
+    :if:<register.exists(starter1)>=true
+        @Battle.starttrainer(rival\3\fire)
+    :endif
+
+    :if:<register.exists(starter2)>=true
+        @Battle.starttrainer(rival\3\water)
+    :endif
+
+    :if:<register.exists(starter3)>=true
+        @Battle.starttrainer(rival\3\grass)
+    :endif
+    
+    @Music.play(encounter\rival)
+    @text.show(...I don't understand...*Is what that Lance~guy said true?*That I don't treat~Pokémon properly?*Love...*Trust...*Are they really~what I lack?*Are they keeping~me from winning?*I... I just don't~understand.*But it's not going~to end here.*Not now. Not~because of this.*I won't give up my~dream of becoming*the world's best~Pokémon trainer!)
+    @npc.turn(0,0)
+
+    :select:<player.position>
+        :when:21,0,4
+            @npc.move(0,1)
+        :when:21,0,5
+            @npc.move(0,2)
+    :endselect
+
+    @npc.turn(0,3)
+    @npc.move(0,3)
+    @sound.play(enter)
+    @npc.remove(0)
+    @music.play(dungeon\forest\ilex)
+    @music.setmusicloop(dungeon\forest\ilex)
+    @register.new(rival_rocket_underground)
+:endif
+:end

@@ -1,0 +1,31 @@
+version=2
+:if:<register.exists(get_ride_HM)>=false
+    @NPC.Turn(8,1)
+    @level.wait(20)
+    @NPC.Turn(8,3)
+    @level.wait(20)
+    @NPC.Turn(8,1)
+    @level.wait(20)
+    @NPC.Turn(8,3)
+    @level.wait(20)
+    @NPC.Turn(8,0)
+    @level.wait(20)
+    @NPC.Turn(8,1)
+    @level.wait(20)
+    @NPC.Turn(8,2)
+    @Text.Show(...sigh... I moved~here, but I don't have*enough space for all my~Pokémon.*I am taming~Pokémon so you can Ride them.*But this city isn't the~right place for a shop like this.*Hm...~Could you ride a~Pokémon outside and advertise~my shop?)
+    @Options.Show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(Really? Great!*Here you go!)
+            @item.add(251)
+            @item.messagegive(251,1)
+            @Text.show(You can use this HM~to teach your Pokémon Ride.*You can Ride them~everywhere then.)
+            @register.new(get_ride_HM)
+        :when:No
+            @text.show(...sigh... Oh, for~the kindness of~people...)
+    :endselect
+:else
+    @Text.show(You can use this HM~to teach your Pokémon Ride.*You can Ride them~everywhere then.)
+:endif
+:end

@@ -1,0 +1,5 @@
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[0]}}{"Lightning"{int[0]}}]}}
+
+{"Backdrop"{BAC[{"Position"{sngArr[-200.5,-0.6,-200.5]}}{"Size"{intArr[400,400]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+
+{"Entity"{ENT[{"ID"{int[0]}}{"Scale"{sngArr[1,1,1]}}{"EntityID"{str[ModelEntity]}}{"Position"{sngArr[0,-0.5,0]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[models\boat2\boat]}}{"Rotation"{int[2]}}]}}

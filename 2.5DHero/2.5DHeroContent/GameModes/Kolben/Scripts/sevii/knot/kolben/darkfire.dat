@@ -1,0 +1,32 @@
+version=2
+    :if:<register.exists(darkfirebattle)>=False
+        :if:<register.exists(darkfireintro)>=false
+            @npc.turn(1,3)
+            @text.show(Darkfire: Damnit Enethil,~Stop trying to~Rick Roll me!*)
+            @entity.showmessagebulb(1|2|1|3)
+            @npc.turn(1,<math.rollover(<player.facing>+2,0,3)>)
+            @text.show(Oh, hi.*How are you?*Oh, you want~to battle?*Sure,~let's go!)
+            @battle.setvar(canblackout,false)
+            @battle.trainer(sevii\kolben\darkfire0)
+        :else
+            @text.show(Welcome back.*Lets battle again!)
+            @battle.setvar(canblackout,false)
+            :if:<register.exists(nationaldex)>=false
+                @battle.trainer(sevii\kolben\darkfire1\\<system.random(0,5)>)
+            :else
+                @battle.trainer(sevii\kolben\darkfire2\\<system.random(0,5)>)
+            :endif
+
+            :if:<battle.won>=true
+                @text.show(You are quite strong.*Come battle again~some time.)
+            :else
+                @text.show(You need to prepare~more next time.*Did you check out~the Ancient Ruins?)
+            :endif
+        :endif
+        @pokemon.heal
+        @register.new(darkfireintro)
+        @register.newtime(darkfirebattle,1,day)
+    :else
+        @text.show(I am busy right now,~please don't disturb.)
+    :endif
+:end

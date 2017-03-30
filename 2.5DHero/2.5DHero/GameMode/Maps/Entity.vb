@@ -167,7 +167,7 @@
                 If _textures Is Nothing Then
                     _textures = New List(Of Texture2D)()
 
-                    For Each textureSource As String In _dataModel.RenderMode.Textures
+                    For Each textureSource In _dataModel.RenderMode.Textures
                         _textures.Add(GameMode.Active.GetTextureManager().GetTexture(textureSource))
                     Next
                 End If

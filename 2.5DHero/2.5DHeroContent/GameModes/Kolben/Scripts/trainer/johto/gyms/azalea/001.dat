@@ -1,0 +1,6 @@
+version=2
+:if:<register.exists(trainer_johto\gyms\azalea\001)>=False
+    @Text.show(May: You want to see~the leader?)
+:endif
+@battle.starttrainer(johto\gyms\azalea\001)
+:end

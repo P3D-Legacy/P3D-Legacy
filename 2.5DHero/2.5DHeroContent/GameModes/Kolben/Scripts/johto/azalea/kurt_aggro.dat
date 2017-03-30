@@ -1,0 +1,15 @@
+version=2
+@Text.show(Hm? Who are you?~<player.name>, eh? You~want me to make~some Balls?*Sorry, but that'll~have to wait.*Do you know Team~Rocket? Ah, don't~worry. I'll tell~you anyhow.*Team Rocket's an~evil gang that~uses Pokémon for~their dirty work.*They're supposed~to have disbanded~three years ago.*Anyway, they're at~the Well, cutting~off Slowpoketails~for sale!*So I'm going to~go give them a~lesson in pain!*Hang on, Slowpoke!~Old Kurt is on his~way!)
+:if:<player.position>=3,0,2
+    @Player.Turn(1)
+    @Player.Move(2)
+    @Player.Turn(2)
+:endif
+@npc.Turn(1,2)
+@npc.Move(1,6)
+@sound.play(enter)
+@NPC.remove(1)
+@NPC.register(johto\azalea\kurt.dat|1|remove|1)
+@NPC.register(johto\azalea\main.dat|0|remove|1)
+@register.new(kurt_gone)
+:end

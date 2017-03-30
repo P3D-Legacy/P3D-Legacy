@@ -1,0 +1,12 @@
+version=2
+:if:<player.position>=9,0,-2
+@entity.remove(140)
+:end
+:endif
+:if:<player.position>=9,0,6
+:end
+:endif
+@player.warp(9,0.1,5)
+@level.update
+@script.start(kanto\dungeon\unregistercracked)
+:end    

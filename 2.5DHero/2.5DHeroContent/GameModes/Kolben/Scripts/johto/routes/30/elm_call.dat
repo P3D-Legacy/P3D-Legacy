@@ -1,0 +1,15 @@
+version=2
+:if:<register.exists(elm4)>=true
+    @register.new(route30_elmcall)
+:endif
+
+:if:<register.exists(route30_elmcall)>=false <and> <register.exists(get_egg_mrpokemon)>=true
+    @player.move(0)
+    @Text.Show(Pokégear: Prof. Elm~Receiving call.......)
+    @text.show(H-hello? <player.name>?~It's a disaster!*Uh, um, it's just~terrible!*What should I do?~It... Oh, no...*Please get back~here now!)
+    @text.show(Click!~...... ...... ......)
+    @register.new(route30_elmcall)
+    @npc.register(johto\newbark\main.dat|2|remove|1)
+:endif
+
+:end

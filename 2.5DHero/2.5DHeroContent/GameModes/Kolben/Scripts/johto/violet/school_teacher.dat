@@ -1,0 +1,53 @@
+version=2
+@NPC.turn(4,1)
+@NPC.turn(4,0)
+@NPC.turn(4,3)
+@NPC.turn(4,2)
+@NPC.turn(4,1)
+@NPC.turn(4,0)
+@NPC.turn(4,3)
+@NPC.turn(4,2)
+@NPC.turn(4,1)
+@NPC.turn(4,0)
+@NPC.turn(4,3)
+@NPC.turn(4,2)
+@NPC.turn(4,1)
+@NPC.turn(4,0)
+@NPC.turn(4,3)
+@NPC.turn(4,2)
+
+:select:<player.position>
+    :when:5,0,1
+        @NPC.turn(4,1)
+        @NPC.turn(4,0)
+        @NPC.turn(4,3)
+    :when:4,0,0
+        @NPC.turn(4,1)
+        @NPC.turn(4,0)
+:endselect
+
+@Text.show(Earl, I am!*Wonderful are~Pokémon, yes!*Teach you I will~to be a better~trainer!*What you want to~know? Want to be~a winner is you?)
+@Options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @Text.show(Good! Teach you,~I will!*In battle, Pokémon~top on list jump~out first!*Change order in~list, make battle~easy, maybe!*More from me you~want to hear?)
+        @Options.show(Yes,No)
+        :select:<options.result>
+            :when:No
+                @Text.show(Oh! Smart student~you are! Nothing~more do I teach!*Good to Pokémon~you must be!)
+                @NPC.turn(4,2)
+                :end
+        :endselect
+:endselect
+
+@Text.show(So, want to know~how to raise~Pokémon well?)
+@Options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @Text.show(Fine! Teach you,~I will!*If Pokémon come~out in battle even*briefly, some Exp.~points it gets.*At top of list put~weak Pokémon.*Switch in battle~quick!*This way, weak~Pokémon strong~become!)
+    :when:No
+        @Text.show(Oh! Smart student~you are! Nothing~more do I teach!*Good to Pokémon~you must be!)
+:endselect
+
+@NPC.turn(4,2)
+:end

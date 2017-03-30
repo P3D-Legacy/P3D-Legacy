@@ -1,0 +1,18 @@
+version=2
+:if:<register.exists(got_itemfinder)>=true
+    @Text.Show(There are many~items lying about*that aren't obvious.*Use Itemfinder to~check if there is*an item on the~ground near you.*Oh yeah--I heard~there are items*in Ecruteak's~Burned Tower.)
+:else
+    @Text.Show(Ah. You're on an~adventure with~your Pokémon?*Well, what's an~adventure without~treasure hunting?*Am I right, or am~I right?)
+    @Options.Show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @Text.Show(Good! You understand the~true spirit of adventure.*I like that! Take~this with you.)
+            @item.add(55)
+            @Item.messagegive(55,1)
+            @Text.Show(There are many~items lying about*that aren't obvious.*Use Itemfinder to~check if there is*an item on the~ground near you.*Oh yeah--I heard~there are items*in Ecruteak's~Burned Tower.)
+            @register.new(got_itemfinder)
+        :when:No
+            @Text.Show(Oh... To each his~own, I suppose...)
+    :endselect
+:endif
+:end

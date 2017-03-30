@@ -1,0 +1,19 @@
+version=2
+:if:<register.exists(FlyHM)>=True
+    @Text.show(My husband lost to~you, so he needs~to train harder.*That's good, since~he was getting a~little chubby.)
+    :end
+:endif
+
+@Text.show(You crossed the~sea to get here?*That must have~been hard.*It would be much~easier if your*Pokémon knew how~to Fly...)
+
+:if:<player.hasbadge(13)>=True
+    @Text.show(That's Cianwood's~Gym Badge!*Then you should~take this HM.)
+    @item.add(244,1)
+    @item.messagegive(244,1)
+    @Text.show(Teach Fly to your~Pokémon.*You will be able~to Fly instantly*to anywhere you~have visited.*My husband lost to~you, so he needs~to train harder.*That's good, since~he was getting a~little chubby.)
+    @register.new(FlyHM)
+    :end
+:endif
+
+@Text.show(But you can't use~Fly without this~city's Gym Badge.*If you beat the~Gym Leader here,~come see me.*I'll have a nice gift for you. )
+:end

@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Malcaroni
+TrainerClass|Moderator
+Money|1000
+IntroMessage|
+OutroMessage|HEHEHEHEHE
+DefeatMessage|
+TextureID|Malc
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|{"Pokemon"[129]}{"Experience"[1000000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[119]}{"ItemData"[]}{"NickName"[DerpFish]}{"Level"[69]}{"OT"[00000]}{"Ability"[99]}{"Status"[]}{"Nature"[5]}{"CatchLocation"[]}{"CatchTrainer"[Malc]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[1]}{"Attack1"[55,25,25]}{"Attack2"[]}{"Attack3"[]}{"Attack4"[]}{"EVs"[252,0,4,0,252,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon2|
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|0
+IntroSequence|Green,Violet
+IntroType|11

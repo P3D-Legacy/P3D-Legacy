@@ -1,0 +1,8 @@
+version=2
+:if:<register.exists(First_time_champion)>=True
+    @text.show(<player.name> from New Bark Town)
+    @text.show(Team of current~champion withheld.)
+    :end
+:endif
+@text.show(Reserved for a new champion.)
+:end

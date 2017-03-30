@@ -1,0 +1,8 @@
+version=2
+:if:<register.exists(trainer_kanto\routes\25\008)>=False
+    @text.show(You took on more battles~than you expected,~but you won anyway.*As I promised, you win a prize.)
+    @item.add(26,1)
+    @item.messagegive(26,1)
+:endif
+@battle.starttrainer(kanto\routes\25\008)
+:end

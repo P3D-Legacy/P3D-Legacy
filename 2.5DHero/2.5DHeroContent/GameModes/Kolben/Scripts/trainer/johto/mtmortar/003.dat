@@ -1,0 +1,14 @@
+version=2
+@battle.starttrainer(johto\mtmortar\003)
+:if:<register.exists(trainer_johto\mtmortar\002)>=True
+    @text.show(You've seen Markus?*In the cave next~to the Waterfall?*Great!~I will go find him!*As thanks you~can have this.)
+    @item.add(120,1)
+    @item.messagegive(120,1)
+    @text.show(See you around!)
+    @screen.fadeout
+    @npc.remove(0)
+    @npc.register(johto\mtmortar\2f.dat|0|remove|0)
+    @npc.register(johto\mtmortar\1f.dat|2|remove|0)
+    @screen.fadein
+:endif
+:end

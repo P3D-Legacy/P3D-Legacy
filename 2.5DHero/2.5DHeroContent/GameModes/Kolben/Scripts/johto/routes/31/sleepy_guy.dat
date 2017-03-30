@@ -1,0 +1,70 @@
+version=2
+:if:<register.exists(goldenrod_spearow_delivery)>=true
+    :if:<register.exists(goldenrod_spearow_delivered)>=true
+        @text.show(TM50 is Nightmare.*It's a wicked move~that steadily cuts*the HP of a sleeping enemy.*Ooooh...~That's scary...*I don't want to~have bad dreams.)
+    :else
+        @text.show(...Zzzz... Huh?*What's that? You~have Mail for me?)
+        :if:<pokemon.count>>0
+            :if:<pokemon.number(0)>=21 <and> <pokemon.ot(0)>=09182 <and> <pokemon.itemid(0)>=300 <and> <pokemon.catchtrainer(0)>=Randy <and> <pokemon.nickname(0)>=Kenya
+                :if:<pokemon.count>=1
+                    @text.show(If I take that~Pokémon from you,*what are you going~to use in battle?)
+                    :end
+                :else
+                    @pokemon.remove(0)
+                    @register.new(goldenrod_spearow_delivered)
+                :endif
+            :endif
+        :endif
+
+        :if:<pokemon.count>>1 <and> <register.exists(goldenrod_spearow_delivered)>=false
+            :if:<pokemon.number(1)>=21 <and> <pokemon.ot(1)>=09182 <and> <pokemon.itemid(1)>=300 <and> <pokemon.catchtrainer(1)>=Randy <and> <pokemon.nickname(1)>=Kenya
+                @pokemon.remove(1)
+                @register.new(goldenrod_spearow_delivered)
+            :endif
+        :endif
+
+        :if:<pokemon.count>>2 <and> <register.exists(goldenrod_spearow_delivered)>=false
+            :if:<pokemon.number(2)>=21 <and> <pokemon.ot(2)>=09182 <and> <pokemon.itemid(2)>=300 <and> <pokemon.catchtrainer(2)>=Randy <and> <pokemon.nickname(2)>=Kenya
+                @pokemon.remove(2)
+                @register.new(goldenrod_spearow_delivered)
+            :endif
+        :endif
+
+        :if:<pokemon.count>>3 <and> <register.exists(goldenrod_spearow_delivered)>=false
+            :if:<pokemon.number(3)>=21 <and> <pokemon.ot(3)>=09182 <and> <pokemon.itemid(3)>=300 <and> <pokemon.catchtrainer(3)>=Randy <and> <pokemon.nickname(3)>=Kenya
+                @pokemon.remove(3)
+                @register.new(goldenrod_spearow_delivered)
+            :endif
+        :endif
+
+        :if:<pokemon.count>>4 <and> <register.exists(goldenrod_spearow_delivered)>=false
+            :if:<pokemon.number(4)>=21 <and> <pokemon.ot(4)>=09182 <and> <pokemon.itemid(4)>=300 <and> <pokemon.catchtrainer(4)>=Randy <and> <pokemon.nickname(4)>=Kenya
+                @pokemon.remove(4)
+                @register.new(goldenrod_spearow_delivered)
+            :endif
+        :endif
+
+        :if:<pokemon.count>>5 <and> <register.exists(goldenrod_spearow_delivered)>=false
+            :if:<pokemon.number(5)>=21 <and> <pokemon.ot(5)>=09182 <and> <pokemon.itemid(5)>=300 <and> <pokemon.catchtrainer(5)>=Randy <and> <pokemon.nickname(5)>=Kenya
+                @pokemon.remove(5)
+                @register.new(goldenrod_spearow_delivered)
+            :endif
+        :endif
+
+        :if:<register.exists(goldenrod_spearow_delivered)>=true
+            @text.show(<player.name> handed~over the Pokémon~holding the Mail.)
+            @text.show(Let's see...*...Dark Cave leads~to another road...*That's good to~know.*Thanks for bring-~ing this to me.*My friend's a good~guy, and you're a~swell guy too!*I'd like to do~something good in~return too!*I know! I want you~to have this!)
+            @item.add(240)
+            @item.messagegive(240,1)
+            @text.show(TM50 is Nightmare.*It's a wicked move~that steadily cuts*the HP of a sleeping enemy.*Ooooh...~That's scary...*I don't want to~have bad dreams.)
+            :end
+        :else
+            @text.show(What? You don't~want anything?)
+            :end
+        :endif
+    :endif
+
+:else
+    @text.show(... Hnuurg... Huh?*I walked too far~today looking for~Pokémon.*My feet hurt and~I'm sleepy...*If I were a wild~Pokémon, I'd be~easy to catch...*...Zzzz...)
+:endif
+:end

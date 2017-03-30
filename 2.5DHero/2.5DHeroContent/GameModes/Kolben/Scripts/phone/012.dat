@@ -1,0 +1,34 @@
+version=2
+:if:<phone.callflag>=calling
+    @Text.Show(Pokégear:~Calling..............)
+    @Text.show(Hello?~Oh, hello <player.name>!)
+    :if:<daycare.hasegg(0)>=true
+        @text.show(We were raising your~Pokémon, and my goodness,~we were surprised!*Your Pokémon was holding~an Egg!*We don't know how it~got there, but your~Pokémon had it.*If you want to have it~visit us on Route 34.)
+    :else
+        :select:<daycare.countpokemon(0)>
+            :when:0
+                @text.show(We take care of the~precious Pokémon of~other trainers.*If you'd like us to~raise your Pokémon,~visit us on Route 34.)
+            :when:1
+                @text.show(Glad you called!~Your <daycare.pokemonname(0,0)> is~doing just fine!)
+            :when:2
+                :select:<daycare.canbreed(0)>
+                    :when:70
+                        @storage.set(breed_text,The two seem to get~along very well.)
+                    :when:50
+                        @storage.set(breed_text,The two seem to~get along.)
+                    :when:20
+                        @storage.set(breed_text,The two don't seem~to like each other.)
+                    :when:0
+                        @storage.set(breed_text,The two prefer to play~with other Pokémon than~each other.)
+                :endselect
+                @text.show(Glad you called!*Your <daycare.pokemonname(0,0)> and~your <daycare.pokemonname(0,1)> are~doing just fine.*<storage.get(breed_text)>)
+        
+                @storage.clear
+        :endselect
+    :endif
+:else
+    @Text.Show(Pokégear: Day-Care Man~Receiving call.......)
+    @text.show(We were raising your~Pokémon, and my goodness,~we were surprised!*Your Pokémon was holding~an Egg!*We don't know how it~got there, but your~Pokémon had it.*If you want to have it~visit us on Route 34.)
+:endif
+
+:end

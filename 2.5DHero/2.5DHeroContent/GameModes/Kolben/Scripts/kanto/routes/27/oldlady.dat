@@ -1,0 +1,15 @@
+version=2
+:if:<register.exists(r27tmget)>=False
+    @Text.show(Where are you off~to with Pokémon?*Pokémon League?*Are your Pokémon~loyal enough for~you to win?*Let me see...)
+    :if:<pokemon.friendship(0)>>150
+        @Text.show(Ah! Your Pokémon~trusts you very much.*It is nice to see a~good trainer.*Here. A gift for~your journey.)
+        @item.add(227,1)
+        @item.messagegive(227,1)
+        @register.new(r27tmget)
+    :else
+        @Text.show(If it doesn't come~to trust you some*more, it could be~tough going.*Trust is the tie~that binds Pokémon~and trainers.)
+        :end
+    :endif
+:endif
+@Text.show(TM37 happens to be~Sandstorm.*It's a move that~inflicts damage on~both battlers.*It's for advanced~trainers only.*Use it if you~dare. Good Luck!)
+:end

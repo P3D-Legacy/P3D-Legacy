@@ -1,0 +1,18 @@
+version=2
+:if:<register.exists(got_goodrod)>=true
+    @text.show(How are things?~Land the big one?)
+:else
+    @text.show(Olivine is on the~sea!*And if it's on the~sea, there are~bound to be fish!*I've fished here~for 30 years.*Would you like to~face the sea and~fish?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(Ah, hahah!~We have ourselves~a new angler!)
+            @item.add(59,1)
+            @item.messagegive(59,1)
+            @text.show(Fish aren't found~in the sea alone.*They go wherever~there is water.)
+            @register.new(got_goodrod)
+        :when:No
+            @text.show(Whaaat? You don't~like to fish!?~Incomprehensible!)
+    :endselect
+:endif
+:end

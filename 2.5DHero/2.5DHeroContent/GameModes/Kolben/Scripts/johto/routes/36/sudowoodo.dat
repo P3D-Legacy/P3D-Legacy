@@ -1,0 +1,19 @@
+version=2
+:if:<item.count(175)>>0
+    @text.Show(It's a weird looking tree.*Use the Squirtbottle?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(<player.name> used the ~Squirtbottle.)
+            @pokemon.cry(185)
+            @level.wait(50)
+            @text.show(The weird tree~doesn't like the~Squirtbottle!*The weird tree attacked!)
+            @NPC.register(johto\routes\36.dat|0|remove|1)
+            @NPC.remove(0)
+            @battle.wild(185,20)
+            @register.new(sudowoodo_removed)
+    :endselect
+:else
+    @text.Show(It's a weird looking tree.)
+:endif
+:end

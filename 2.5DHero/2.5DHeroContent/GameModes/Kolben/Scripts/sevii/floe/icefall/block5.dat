@@ -1,0 +1,26 @@
+version=2
+:if:<register.exists(icefalltile5)>=False
+    @entity.setvisible(5,1)
+    @register.new(icefalltile5)
+    @sound.play(ice_crack)
+:else
+    @sound.play(ice_break)
+    @entity.settexture(5,0,[Routes,192,96,16,16])
+    @level.wait(20)
+    @player.warp(sevii\floe\icefall\basement.dat,0,2.1,1)
+    @level.update
+    @player.setmovement(0,-2,0)
+    @player.move(1)
+    @sound.play(destroy)
+    @player.resetmovement
+    @register.remove(icefalltile0)
+    @register.remove(icefalltile1)
+    @register.remove(icefalltile2)
+    @register.remove(icefalltile3)
+    @register.remove(icefalltile4)
+    @register.remove(icefalltile5)
+    @register.remove(icefalltile6)
+    @register.remove(icefalltile7)
+    @register.remove(icefalltile8)
+:endif
+:end

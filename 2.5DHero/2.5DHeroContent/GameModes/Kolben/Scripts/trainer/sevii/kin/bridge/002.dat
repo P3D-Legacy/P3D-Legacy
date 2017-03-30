@@ -1,0 +1,11 @@
+version=2
+:if:<register.exists(trainer_sevii\kin\bridge\002)>=false
+    :select:<player.position>
+        :when:78,3,7
+            @npc.move(0,1)
+    :endselect
+    @text.show(Meg: We'll show you~our favorite Pokémon.)
+:endif
+@battle.starttrainer(sevii\kin\bridge\002)
+@register.new(trainer_sevii\kin\bridge\001)
+:end

@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(generator_off)>=False
+    @Text.show(Lance: Leave this~side to me.)
+    @Player.turnto(1)
+    @player.Move(1)
+:endif
+:end

@@ -1,0 +1,39 @@
+version=2
+:if:<register.exists(johto_rocket_hq_broadcast)>=false <and> <register.exists(generator_off)>=false
+    @register.new(johto_rocket_hq_broadcast)
+:endif
+
+:if:<player.hasbadge(13)>=true <and> <player.hasbadge(14)>=true <and> <player.hasbadge(15)>=true <and> <register.exists(elm_call_radiotower)>=false
+    @player.move(0)
+    @npc.register(johto\goldenrod\radiotower\1f.dat|0|remove|0)
+    @npc.register(johto\goldenrod\radiotower\1f.dat|2|remove|0)
+    @npc.register(johto\goldenrod\radiotower\1f.dat|3|remove|0)
+    @npc.register(johto\goldenrod\radiotower\1f.dat|4|remove|0)
+    @npc.register(johto\goldenrod\radiotower\1f.dat|5|position|15,0,1)
+    @npc.register(johto\goldenrod\radiotower\2f.dat|3|remove|0)
+    @npc.register(johto\goldenrod\radiotower\2f.dat|4|remove|0)
+    @npc.register(johto\goldenrod\radiotower\2f.dat|5|remove|0)
+    @npc.register(johto\goldenrod\radiotower\2f.dat|6|position|12,0,5)
+    @npc.register(johto\goldenrod\radiotower\2f.dat|7|position|9,0,4)
+    @npc.register(johto\goldenrod\radiotower\2f.dat|8|position|5,0,1)
+    @npc.register(johto\goldenrod\radiotower\2f.dat|9|position|2,0,4)
+    @npc.register(johto\goldenrod\main.dat|0|remove|0)
+    @npc.register(johto\goldenrod\main.dat|1|remove|0)
+    @npc.register(johto\goldenrod\main.dat|2|remove|0)
+    @npc.register(johto\goldenrod\main.dat|3|remove|0)
+    @npc.register(johto\goldenrod\main.dat|4|remove|0)
+    @npc.register(johto\goldenrod\main.dat|5|remove|0)
+    @npc.register(johto\goldenrod\main.dat|6|remove|0)
+    @npc.register(johto\goldenrod\main.dat|7|remove|0)
+    @npc.register(johto\goldenrod\main.dat|10|position|28,0,20)
+    @npc.register(johto\goldenrod\main.dat|11|position|29,0,20)
+    @npc.register(johto\goldenrod\main.dat|12|position|16,0,23)
+    @npc.register(johto\goldenrod\main.dat|13|position|29,0,6)
+    @npc.register(johto\goldenrod\main.dat|14|position|31,0,10)
+    @register.new(elm_call_radiotower)
+    @register.new(rocket_invasion_radio)
+    @Text.Show(Pokégear: Prof. Elm~Receiving call.......)
+    @text.show(<player.name>, how~are things going?*I called because~something weird is~happening with the~radio broadcasts.*They were talking~about Team Rocket.*<player.name>, do you~know anything about it?*Maybe Team Rocket~has returned.*No, that just~can't be true.*Sorry to bug you.~Take care!)
+    @register.new(johto_rocket_radio_pokegear)
+:endif
+:end

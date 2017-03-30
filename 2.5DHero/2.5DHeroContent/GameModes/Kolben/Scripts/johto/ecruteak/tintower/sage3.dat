@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(hooh_return_tintower)>=True
+    @Text.show(The Tin Tower~shook! A Pokémon*must have returned~to the top!)
+:else
+    @Text.show(The Tin Tower up~ahead was built*as a roost for~flying Pokémon.)
+:endif
+:end

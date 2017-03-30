@@ -1,0 +1,8 @@
+version=2
+:if:<register.exists(suicune1)>=True
+    @Text.show(Three big Pokémon~ran off in different~directions. What were they?)
+:else
+    @Text.show(That used to be a~much taller tower,*but it burned down~in a fire.)
+    @NPC.Turn(2,0)
+:endif
+:end

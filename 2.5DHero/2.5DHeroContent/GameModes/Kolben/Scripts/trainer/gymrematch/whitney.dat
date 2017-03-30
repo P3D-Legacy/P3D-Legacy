@@ -1,0 +1,2 @@
+version=2
+@script.start(trainer\gymrematch\main,whitney<register.exists(earthbadge_obtain)>)

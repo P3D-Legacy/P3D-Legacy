@@ -1,0 +1,8 @@
+version=2
+:if:<register.exists(generator_off)>=True
+    @Text.show(The radio transmitter~has finally*stopped its evil~broadcast.)
+    :end
+:endif
+
+@Text.show(It's the radio~transmitter that's*sending the~sinister signal.*It's working at full capacity.)
+:end

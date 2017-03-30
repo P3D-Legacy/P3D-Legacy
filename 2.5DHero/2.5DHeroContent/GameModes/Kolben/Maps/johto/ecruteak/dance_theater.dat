@@ -1,0 +1,78 @@
+{"Level"{LEV[{"Name"{str[Dance Theater]}}{"MusicLoop"{str[encounter\kimono]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}]}}
+
+Floor:
+{"Floor"{ENT[{"Size"{intArr[12,13]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[House3]}}{"Texture"{rec[0,0,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[12,1]}}{"Position"{intArr[0,0,13]}}{"TexturePath"{str[House3]}}{"Texture"{rec[64,0,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[12,2]}}{"Position"{intArr[0,0,14]}}{"TexturePath"{str[House3]}}{"Texture"{rec[16,0,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[12,4]}}{"Position"{intArr[0,1,2]}}{"TexturePath"{str[House3]}}{"Texture"{rec[64,64,16,16]}}]}}
+
+{"Floor"{ENT[{"Size"{intArr[1,1]}}{"Position"{intArr[0,1,6]}}{"TexturePath"{str[House3]}}{"Texture"{rec[64,64,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[8,1]}}{"Position"{intArr[2,1,6]}}{"TexturePath"{str[House3]}}{"Texture"{rec[64,64,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[1,1]}}{"Position"{intArr[11,1,6]}}{"TexturePath"{str[House3]}}{"Texture"{rec[64,64,16,16]}}]}}
+
+Ceiling:
+{"EntityField"{ENT[{"Size"{intArr[12,15]}}{"EntityID"{str[AllSidesObject]}}{"Position"{sngArr[0,3,0]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[16,112,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Walls:
+{"EntityField"{ENT[{"Size"{intArr[14,16]}}{"Fill"{bool[0]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[-1,0,1]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[37,84,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[14,16]}}{"Fill"{bool[0]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[-1,1,1]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[37,84,16,16][53,84,16,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"EntityField"{ENT[{"Size"{intArr[5,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,15]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[37,84,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[5,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[7,0,15]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[37,84,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[12,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,1,15]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[37,84,16,16][53,84,16,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"EntityField"{ENT[{"Size"{intArr[14,15]}}{"Fill"{bool[0]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[-1,2,1]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[53,84,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Warps:
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[5,0,15]}}{"TexturePath"{str[violet]}}{"Textures"{recArr[[0,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[johto\ecruteak\main.dat,23,0.1,21,0]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[6,0,15]}}{"TexturePath"{str[violet]}}{"Textures"{recArr[[0,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[johto\ecruteak\main.dat,23,0.1,21,0]}}{"Rotation"{int[0]}}]}}
+
+Stage:
+{"EntityField"{ENT[{"Size"{intArr[12,3]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,2]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,64,16,16][64,64,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[12,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,5]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,64,16,16][64,64,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,6]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,64,16,16][64,64,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[11,0,6]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,64,16,16][64,64,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"EntityField"{ENT[{"Scale"{sngArr[1,1,1]}}{"Size"{intArr[1,1]}}{"EntityID"{str[SlideBlock]}}{"Position"{sngArr[1,0,6]}}{"TexturePath"{str[violet]}}{"Textures"{recArr[[80,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+{"EntityField"{ENT[{"Scale"{sngArr[1,1,1]}}{"Size"{intArr[1,1]}}{"EntityID"{str[SlideBlock]}}{"Position"{sngArr[10,0,6]}}{"TexturePath"{str[violet]}}{"Textures"{recArr[[80,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[8,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[2,0,6]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,64,16,16][64,64,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Mural:
+{"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"Position"{sngArr[5,0.25,9]}}{"Scale"{sngArr[1,1,0.2]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[0,80,16,20][32,82,4,16][0,77,16,3][16,80,16,20]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,3,3,2,2]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,0.25,9]}}{"Scale"{sngArr[1,1,0.2]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[16,80,16,20][32,82,4,16][16,77,16,3][0,80,16,20]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,3,3,2,2]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"Position"{sngArr[5,-0.35,9]}}{"Scale"{sngArr[0.2,0.20,0.2]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[5,102,4,6]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,-0.35,9]}}{"Scale"{sngArr[0.2,0.20,0.2]}}{"TexturePath"{str[House4]}}{"Textures"{recArr[[5,102,4,6]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Cushions:
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[1,-0.4,8]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[3,-0.4,8]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[1,-0.4,10]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[3,-0.4,10]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[1,-0.4,12]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[3,-0.4,12]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[8,-0.4,8]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[10,-0.4,8]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[8,-0.4,10]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[10,-0.4,10]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[8,-0.4,12]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"Scale"{sngArr[1,0.2,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[10,-0.4,12]}}{"TexturePath"{str[House3]}}{"Textures"{recArr[[48,16,16,5][48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Kimono Girls:
+{"NPC"{NPC[{"Position"{sngArr[0,1,3]}}{"TextureID"{str[31]}}{"ID"{int[0]}}{"Name"{str[Kimono Girl Naoko]}}{"Action"{int[1]}}{"AdditionalValue"{str[trainer\johto\ecruteak\001]}}{"Rotation"{int[3]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[2,1,2]}}{"TextureID"{str[31]}}{"ID"{int[1]}}{"Name"{str[Kimono Girl Sayo]}}{"Action"{int[1]}}{"AdditionalValue"{str[trainer\johto\ecruteak\002]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[6,1,3]}}{"TextureID"{str[31]}}{"ID"{int[2]}}{"Name"{str[Kimono Girl Zuki]}}{"Action"{int[1]}}{"AdditionalValue"{str[trainer\johto\ecruteak\003]}}{"Rotation"{int[1]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[9,1,2]}}{"TextureID"{str[31]}}{"ID"{int[3]}}{"Name"{str[Kimono Girl Kuni]}}{"Action"{int[1]}}{"AdditionalValue"{str[trainer\johto\ecruteak\004]}}{"Rotation"{int[2]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[11,1,3]}}{"TextureID"{str[31]}}{"ID"{int[4]}}{"Name"{str[Kimono Girl Miki]}}{"Action"{int[1]}}{"AdditionalValue"{str[trainer\johto\ecruteak\005]}}{"Rotation"{int[3]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+
+NPC:
+{"NPC"{NPC[{"Position"{sngArr[6,0,10]}}{"TextureID"{str[[POKEMON|N]112]}}{"ID"{int[5]}}{"Name"{str[Rhydon]}}{"Action"{int[1]}}{"AdditionalValue"{str[johto\ecruteak\rhydon]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[7,0,12]}}{"TextureID"{str[oldhatman]}}{"ID"{int[6]}}{"Name"{str[Rhydon]}}{"Action"{int[1]}}{"AdditionalValue"{str[johto\ecruteak\surf_man]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[3,0.2,8]}}{"TextureID"{str[oldlady]}}{"ID"{int[7]}}{"Name"{str[Rhydon]}}{"Action"{int[0]}}{"AdditionalValue"{str[The Kimono Girls~are so beautiful...*But they have to~go through rigorous training.*And they have to~learn to follow*customs before appearing in~public.*But if you love something,~anything is possible.]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[10,0.2,12]}}{"TextureID"{str[20]}}{"ID"{int[8]}}{"Name"{str[Rhydon]}}{"Action"{int[0]}}{"AdditionalValue"{str[That man's always~with his Rhydon.*Says he wants a~Pokémon that can~Surf and dance.*Is he trying to~make a synchronized~swimming Pokémon?]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}

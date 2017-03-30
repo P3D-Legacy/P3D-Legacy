@@ -1,0 +1,7 @@
+version=2
+@pokemon.cry(721)
+@battle.wild(721,70,-1,,12)
+@register.new(volcanionbattle)
+@npc.remove(1)
+@npc.register(sevii\knot\mtember\peak.dat|1|remove|0)
+:end

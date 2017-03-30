@@ -1,0 +1,76 @@
+version=2
+
+:if:<register.exists(elm_police)>=true
+    @text.show(Elm: <player.name>, this~is terrible...*Oh, yes, what was~Mr. Pokémon's big~discovery?*)
+    @item.remove(69,1)
+
+    :select:<player.position>
+        :when:5,0,2
+            @npc.move(0,-1)
+            @text.show(Elm: This?)
+            @npc.move(0,1)
+        :when:4,0,1
+            @npc.move(0,-2)
+            @text.show(Elm: This?)
+            @npc.move(0,2)
+        :when:5,0,0
+            @npc.move(0,-2)
+            @text.show(Elm: This?)
+            @npc.move(0,2)
+    :endselect
+
+    @text.show(But... Is it a~Pokémon Egg?*If it is, it is a~great discovery!*Elm: What?!?*Prof. Oak gave you~a Pokédex?*<player.name>, is that~true? Th-that's~incredible!*He is superb at~seeing the potential~of people as~trainers.*Wow, <player.name>. You~may have what it~takes to become~the Champion.*You seem to be~getting on great~with Pokémon too.*You should take~the Pokémon Gym~challenge.*The closest Gym~would be the one~in Violet City.*...<player.name>. The~road to the~championship will~be a long one.*Before you leave,~make sure that you~talk to your mom.)
+    @register.remove(mom_adventure1)
+    @register.remove(elm_police)
+    @register.new(mom_talk)
+    @register.new(elm5)
+    @npc.register(johto\routes\30.dat|1|remove|1)
+    @npc.register(johto\routes\30.dat|2|remove|1)
+    @npc.register(johto\routes\30.dat|3|remove|1)
+    @npc.register(johto\routes\30.dat|5|position|8,0,31)
+    :end
+:endif
+
+:if:<register.exists(Elm_Post_e4_call)>=True
+    @text.show(Elm: <player.name>!~There you are!*I called because I have~something for you.*See? It's an S.S. Ticket.*Now you can catch~Pokémon in Kanto.)
+    @item.messagegive(41,1)
+    @item.add(41,1)
+    @text.show(The ship departs~from Olivine City.*But you know that~already, <player.name>.*After all, you've traveled~all over with your Pokémon.*Give my regards to~Prof. Oak in Kanto)
+    @register.new(elmticketget)
+    @register.new(elm6)
+    @register.remove(elm4)
+    @register.remove(Elm_Post_e4_call)
+    @register.new(firsttimessaqua)
+    :end
+:endif
+
+:if:<register.exists(elmcallblackthorn)>=True <and> <register.exists(elmmasterballget)>=False
+    @Text.show(Elm: Hi, <player.name>!~Thanks to you, my~research is going great!*Take this as a~token of my appreciation.)
+    @item.messagegive(1,1)
+    @item.add(1,1)
+    @text.show(The Masterball is~the best!*It's the ultimate Ball!*It'll catch any~Pokémon without fail.*It's given only to~recognized Pokémon~researchers.*I think you can~make much better*use of it than I~can, <player.name>!)
+    @register.new(elmmasterballget)
+    :end
+:endif
+
+:if:<register.exists(elm1)>=True
+    @Text.show(If a wild Pokémon~appears, let your~Pokémon battle it!)
+    :end
+:endif
+
+:if:<register.exists(elm2)>=True <or> <register.exists(elm3)>=True
+    @Text.show(Mr. Pokémon goes~everywhere and finds~rarities.*Too bad they're just~rare and not very~useful...*<player.name>, I'm counting~on you!)
+    :end
+:endif
+
+:if:<register.exists(elm4)>=True
+    @Text.show(Elm: Don't give~up! I'll call if*I learn anything~about that Egg!)
+    :end
+:endif
+
+:if:<register.exists(elm6)>=True
+    @Text.show(Good luck in Kanto.)
+    :end
+:endif
+
+:end

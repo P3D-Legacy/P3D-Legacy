@@ -1,0 +1,182 @@
+version=2
+@battle.setvar(canrun,false)
+:select:<player.position>
+    :when:1,0,8
+        :if:<register.exists(trhq108)>=false
+            @pokemon.cry(100)
+            @Battle.Wild(100,23)
+            @register.new(trhq108)
+        :end
+    :endif
+
+    :when:1,0,12
+        :if:<register.exists(rhq1012)>=false
+            @pokemon.cry(100)
+            @Battle.Wild(100,23)
+            @register.new(rhq1012)
+        :end
+    :endif
+
+    :when:2,0,10
+        :if:<register.exists(trhq2010)>=false
+            @pokemon.cry(100)
+            @Battle.Wild(100,23)
+            @register.new(trhq2010)
+        :end
+    :endif
+
+    :when:3,0,7
+        :if:<register.exists(trhq307)>=false
+            @pokemon.cry(100)
+            @Battle.Wild(100,23)
+            @register.new(trhq307)
+        :end
+    :endif
+
+    :when:3,0,9
+        :if:<register.exists(trhq309)>=false
+            @pokemon.cry(100)
+            @Battle.Wild(100,23)
+            @register.new(trhq309)
+        :end
+    :endif
+
+    :when:3,0,13
+        :if:<register.exists(trhq3013)>=false
+            @pokemon.cry(100)
+            @Battle.Wild(100,23)
+            @register.new(trhq3013)
+        :end
+    :endif
+
+    :when:4,0,12
+        :if:<register.exists(trhq4012)>=false
+            @pokemon.cry(100)
+            @Battle.Wild(100,23)
+            @register.new(trhq4012)
+        :end
+    :endif
+
+    :when:5,0,13
+        :if:<register.exists(trhq5013)>=false
+            @pokemon.cry(100)
+            @Battle.Wild(100,23)
+            @register.new(trhq5013)
+        :end
+    :endif
+
+    :when:1,0,10
+        :if:<register.exists(trhq1010)>=false
+            @pokemon.cry(109)
+            @Battle.Wild(109,21)
+            @register.new(trhq1010)
+        :end
+    :endif
+
+    :when:2,0,7
+        :if:<register.exists(trhq207)>=false
+            @pokemon.cry(109)
+            @Battle.Wild(109,21)
+            @register.new(trhq207)
+        :end
+    :endif
+
+    :when:2,0,12
+    :if:<register.exists(trhq2012)>=false
+    @pokemon.cry(109)
+    @Battle.Wild(109,21)
+    @register.new(trhq2012)
+    :end
+    :endif
+
+    :when:4,0,9
+        :if:<register.exists(trhq409)>=false
+            @pokemon.cry(109)
+            @Battle.Wild(109,21)
+            @register.new(trhq409)
+        :end
+    :endif
+
+    :when:4,0,11
+        :if:<register.exists(trhq4011)>=false
+            @pokemon.cry(109)
+            @Battle.Wild(109,21)
+            @register.new(trhq4011)
+        :end
+    :endif
+
+    :when:4,0,13
+        :if:<register.exists(trhq4013)>=false
+            @pokemon.cry(109)
+            @Battle.Wild(109,21)
+            @register.new(trhq4013)
+        :end
+    :endif
+
+    :when:5,0,8
+        :if:<register.exists(trhq508)>=false
+            @pokemon.cry(109)
+            @Battle.Wild(109,21)
+            @register.new(trhq508)
+        :end
+    :endif
+
+    :when:1,0,13
+        :if:<register.exists(trhq1013)>=false
+            @pokemon.cry(74)
+            @Battle.Wild(74,21)
+            @register.new(trhq1013)
+        :end
+    :endif
+
+    :when:2,0,11
+        :if:<register.exists(trhq2011)>=false
+            @pokemon.cry(74)
+            @Battle.Wild(74,21)
+            @register.new(trhq2011)
+        :end
+    :endif
+
+    :when:3,0,8
+        :if:<register.exists(trhq308)>=false
+            @pokemon.cry(74)
+            @Battle.Wild(74,21)
+            @register.new(trhq308)
+        :end
+    :endif
+
+    :when:3,0,10
+        :if:<register.exists(trhq3010)>=false
+            @pokemon.cry(74)
+            @Battle.Wild(74,21)
+            @register.new(trhq3010)
+        :end
+    :endif
+
+    :when:4,0,7
+        :if:<register.exists(trhq407)>=false
+            @pokemon.cry(74)
+            @Battle.Wild(74,21)
+            @register.new(trhq407)
+        :end
+    :endif
+
+    :when:5,0,10
+        :if:<register.exists(trhq5010)>=false
+            @pokemon.cry(74)
+            @Battle.Wild(74,21)
+            @register.new(trhq5010)
+        :end
+    :endif
+
+    :when:5,0,12
+        :if:<register.exists(trhq5012)>=false
+            @pokemon.cry(74)
+            @Battle.Wild(74,21)
+            @register.new(trhq5012)
+            :end
+        :endif
+:endselect
+
+@battle.setvar(canrun,true)
+:end

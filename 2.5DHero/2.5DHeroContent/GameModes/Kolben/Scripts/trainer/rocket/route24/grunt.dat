@@ -1,0 +1,9 @@
+version=2
+@battle.starttrainer(rocket\route24\Grunt)
+@text.show(Ok.~Tell you mine secret will I.*Machine Part steal by me,~hide it I did in~Gym of the Cerulean.*Inside water put it I did.*Look for in water~center of Gym at.*But you forget me not!~Beat you for sure~will Team Rocket.*Come from Johto have they,~mine friends, yes.*Small was my part,~but big plan have we.*Again meet we will!)
+@register.new(r24grunt)
+@screen.fadeout
+@npc.remove(0)
+@npc.unregister(kanto\routes\24.dat|0|position|6,1,11)
+@screen.fadein
+:end

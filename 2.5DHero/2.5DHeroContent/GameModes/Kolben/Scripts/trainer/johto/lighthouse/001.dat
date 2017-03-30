@@ -1,0 +1,36 @@
+version=2
+
+:if:<register.exists(phone_reg_021)>=true
+    @Text.Show(Did you check the status~of the sick Pokémon?)
+    @register.remove(phone_reg_021)
+    @register.newtime(phone_reg_time_021,1,day)
+
+    :if:<player.badges>>4
+        :if:<register.exists(rematch_021_1)>=true
+            @battle.trainer(johto\lighthouse\001_2)
+        :else
+            @register.new(rematch_021_1)
+            @battle.trainer(johto\lighthouse\001_1)
+        :endif
+    :else
+        @battle.trainer(johto\lighthouse\001)
+    :endif
+:else
+    @battle.starttrainer(johto\lighthouse\001)
+
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_021)>=false
+            @Text.Show(I want to stay in contact~with you.*Do you want to give me~your number?)
+
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Alfred's number.)
+                    @register.new(phone_contact_021)
+                    @Text.Show(I'll let you know whenever~I want to battle you.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

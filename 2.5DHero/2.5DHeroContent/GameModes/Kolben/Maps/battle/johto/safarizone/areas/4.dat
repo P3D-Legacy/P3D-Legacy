@@ -1,0 +1,3 @@
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[1]}}{"IsSafariZone"{bool[1]}}{"EnviromentType"{int[0]}}{"Lightning"{int[2]}}{"Weather"{int[7]}}]}}
+
+{"Floor"{ENT[{"Size"{intArr[25,25]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[Safari]}}{"Texture"{rec[176,32,16,16]}}]}}

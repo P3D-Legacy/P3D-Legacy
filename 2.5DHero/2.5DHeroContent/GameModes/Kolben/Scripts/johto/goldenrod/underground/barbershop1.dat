@@ -1,0 +1,32 @@
+version=2
+:if:<datetime.dayofweek>!monday
+    @Text.Show(We're not open today.)
+    :end
+:endif
+
+:if:<register.exists(barbershop_monday)>=true
+    @Text.Show(I do only one~haircut a day. I'm~done for today.)
+    :end
+:endif
+
+@Text.Show(Welcome!*I run the Pokémon~Salon!*I'm the older and~better of the two~Haircut Brothers.*I can make your~Pokémon beautiful~for just $500.*Would you like me~to do that?)
+@Options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        :if:<player.money><500
+            @Text.Show(You'll need more~money than that.)
+        :else
+            @Text.Show(Which Pokémon~should I work on?)
+            @Pokemon.Select
+            @Text.Show(OK! Watch it~become beautiful!)
+            @Sound.Play(pokemon_heal)
+            @Level.Wait(70)
+            @Pokemon.setfriendship(<pokemon.selected>,<pokemon.friendship(<pokemon.selected>)>+4)
+            @Text.Show(<pokemon.name(<pokemon.selected>)> looks~happy.)
+            @player.addmoney(-500)
+            @register.new(barbershop_monday)
+        :endif
+    :when:No
+        @Text.Show(Is that right?~That's a shame!)
+:endselect
+:end

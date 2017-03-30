@@ -1,0 +1,41 @@
+version=2
+:if:<register.exists(phone_reg_022)>=true
+    @Text.Show(I haven't lost in a while again.*I think I can beat you now.)
+    @register.remove(phone_reg_022)
+    @register.newtime(phone_reg_time_022,1,day)
+
+    :if:<player.badges>>4
+        :if:<register.exists(rematch_022_1)>=true
+            @battle.trainer(johto\lighthouse\002_2)
+        :else
+            @register.new(rematch_022_1)
+            @battle.trainer(johto\lighthouse\002_1)
+        :endif
+    :else
+        @battle.trainer(johto\lighthouse\002)
+    :endif
+
+    :if:<datetime.dayofweek>=wednesday <and> <environment.daytime>=day
+        @Text.Show(Wow, you are going to be~really strong.*Here, take this.)
+        @item.add(27)
+        @Item.messagegive(27,1)
+    :endif
+:else
+    @battle.starttrainer(johto\lighthouse\002)
+
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_022)>=false
+            @Text.Show(Cool! That's the~first time I've~lost in a while!*Let's battle again later?)
+
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Huey's number.)
+                    @register.new(phone_contact_022)
+                    @Text.Show(I'll let you know whenever~I want to battle you.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

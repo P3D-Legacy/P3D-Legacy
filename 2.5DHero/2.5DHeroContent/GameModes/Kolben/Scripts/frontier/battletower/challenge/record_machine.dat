@@ -1,0 +1,27 @@
+version=2
+:if:<register.exists(frontier_battletower_challenge_values_created)>=false
+    @text.show(No data recorded for~Challenge Mode.)
+:else
+    @text.show(A machine which displays~record data for~Challenge Mode:)
+    @options.show(Lv. 50,Lv. 100,Emblems,Cancel)
+    :select:<options.result>
+        :when:Lv. 50
+            @text.show(Your record for:~Lv. 50, Challenge Mode:~<register.value(battletower_challenge_50_best)> win streak.)
+        :when:Lv. 100
+            @text.show(Your record for:~Lv. 100, Challenge Mode:~<register.value(battletower_challenge_100_best)> win streak.)
+        :when:Emblems
+            :if:<register.exists(tower_silver)>=true
+                @text.show(You got the~Silver Ability Emblem.)
+            :endif
+            :if:<register.exists(tower_gold)>=true
+                @text.show(You got the~Gold Ability Emblem.)
+            :endif
+            :if:<register.exists(tower_gold)>=false <and> <register.exists(tower_silver)>=false
+                @text.show(You don't own a~tower emblem yet.)
+            :endif
+        :when:Cancel
+            @text.show(Record machine~shutting down.)
+    :endselect
+:endif
+
+:end

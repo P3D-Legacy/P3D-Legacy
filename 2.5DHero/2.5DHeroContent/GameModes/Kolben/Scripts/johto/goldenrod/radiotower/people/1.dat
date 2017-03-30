@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(rocket_invasion_radio)>=True
+    @text.show(Why would they~want to take over~the Radio Tower?)
+    :end
+:endif
+@text.show(Lullabies on the~radio may make~Pokémon sleep.)
+:end

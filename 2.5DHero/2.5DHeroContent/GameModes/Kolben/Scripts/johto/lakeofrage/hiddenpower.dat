@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(hiddenpowergot)>=False
+    @Text.show(...You have strayed far...*Here I have meditated.*Inside me, a new~power has been awakened.*Let me share my~power with your~Pokémon.*Take this, child.)
+    @item.add(200,1)
+    @item.messagegive(200,1)
+    @register.new(hiddenpowergot)
+:endif
+@Text.show(Do you see it?~It is Hidden Power!*It draws out the~power of Pokémon~for attacking.*Remember this:~its type and power~depend on the~Pokémon using it.)
+:end

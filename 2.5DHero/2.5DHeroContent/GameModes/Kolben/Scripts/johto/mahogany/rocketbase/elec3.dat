@@ -1,0 +1,16 @@
+version=2
+@pokemon.cry(101)
+@Battle.Wild(101,23)
+@NPC.Remove(8)
+@NPC.Register(johto\mahogany\rocketbase\1.dat|8|remove|0)
+@register.new(elec3)
+
+:if:<register.exists(elec2)>=True <and> <register.exists(elec1)>=True
+    @Music.play(rHideout)
+    @Player.turnto(3)
+    @player.Move(2)
+    @Player.turnto(2)
+    @player.Move(2)
+    @Script.start(johto\mahogany\rocketbase\electrodedefeat)
+:endif
+:end

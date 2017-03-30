@@ -1,0 +1,44 @@
+version=2
+@storage.set(billspcname,Someone's PC)
+
+:if:<register.exists(bill_encounter)>=true
+    @storage.set(billspcname,Bill's PC)
+:endif
+
+:if:<halloffame.count>>0
+    @storage.set(computer_options,<storage.get(billspcname)>,Inbox,Prof. Oak's PC,Hall of Fame,Log off)
+    @options.setcancelindex(4)
+:else
+    :if:<player.haspokedex>=true
+        @storage.set(computer_options,<storage.get(billspcname)>,Inbox,Prof. Oak's PC,Log off)
+        @options.setcancelindex(3)
+    :else
+        @storage.set(computer_options,<storage.get(billspcname)>,Inbox,Log off)
+        @options.setcancelindex(2)
+    :endif
+:endif
+
+@options.show(<storage.get(computer_options)>)
+:select:<options.result>
+    :when:<storage.get(billspcname)>
+        @sound.play(PC\pc_logon)
+        @screen.storagesystem
+        @script.start(computer_choose)
+    :when:Inbox
+        @sound.play(PC\pc_logon)
+        @screen.mailsystem
+        @script.start(computer_choose)
+    :when:Prof. Oak's PC
+        @sound.play(PC\pc_logon)
+        @script.start(kanto\pallet\evaldist)
+        @text.show(Choose a host to~connect to.)
+        @script.start(computer_choose)
+    :when:Hall of Fame
+        @sound.play(PC\pc_logon)
+        @screen.halloffame
+        @script.start(computer_choose)
+    :when:Log off
+        @sound.play(PC\pc_off)
+        :exit
+:endselect
+:end

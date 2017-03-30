@@ -1,0 +1,62 @@
+version=2
+#Note: Capitalized words are left intentionally!
+
+:if:<register.exists(pokegear_card_radio)>=false
+    @text.show(We have a special~quiz campaign on~right now.*Answer five ques-~tions correctly to~win a Radio Card.*Slide it into your~Pokégear to play*the radio anytime,~anywhere.*Would you like to~take the quiz?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(Question 1:*Can the TOWN MAP~be displayed on a~Pokégear?)
+            @options.show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @text.show(Correct!~Question 2:*Can NIDORINA be~female only?)
+                    @options.show(Yes,No)
+                    :select:<options.result>
+                        :when:Yes
+                            @text.show(Bull's-eye!~Question 3:*Does KURT, the~Pokéball craftsman,~use APRIKORN?)
+                            @options.show(Yes,No)
+                            :select:<options.result>
+                                :when:No
+                                    @text.show(So far so good!~Question 4:*MAGIKARP won't~learn any TM move?)
+                                    @options.show(Yes,No)
+                                    :select:<options.result>
+                                        :when:Yes
+                                            @text.show(Wow! Right again!~Here's the final~question:*PROF. OAK'S Pokémon~Talk is a very~popular program.*Is MARIE the cohost~of the show?)
+                                            @options.show(Yes,No)
+                                            :select:<options.result>
+                                                :when:No
+                                                    @text.show(Bingo! You got it!~Congratulations!*Here's your prize,~a Radio Card!)
+                                                    @sound.play(success_small)
+                                                    @text.show(<player.name> received~the Radio Card!)
+                                                    @register.new(pokegear_card_radio)
+                                                    @text.show(Please tune in to~our radio shows.)
+                                                    :exit
+                                                :when:Yes
+                                                    @text.show(Oh, dear.~Sorry, but you*got it wrong.~Please try again!)
+                                                    :exit
+                                            :endselect
+                                        :when:No
+                                            @text.show(Oh, dear.~Sorry, but you*got it wrong.~Please try again!)
+                                            :exit
+                                    :endselect
+                                :when:Yes
+                                    @text.show(Oh, dear.~Sorry, but you*got it wrong.~Please try again!)
+                                    :exit
+                        :endselect
+                    :when:No
+                        @text.show(Oh, dear.~Sorry, but you*got it wrong.~Please try again!)
+                        :exit
+                :endselect
+            :when:No
+                @text.show(Oh, dear.~Sorry, but you*got it wrong.~Please try again!)
+                :exit
+            :endselect
+        :when:No
+            @text.show(Oh. I see. Please~try if you change~your mind.)
+    :endselect
+:else
+    @text.show(Please tune in to~our radio shows.)
+:endif
+
+:end

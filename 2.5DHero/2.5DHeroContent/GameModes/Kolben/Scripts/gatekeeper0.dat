@@ -1,0 +1,24 @@
+version=2
+:select:<environment.regionweatherid>
+    :when:0
+        @text.show(The weather is clear~outside today.~You should go for~a walk and enjoy~the day.)
+    :when:1
+        @text.show(Oh no! It rains outside!~Maybe you should go to~the next Pokémon Center~and stay there until~the rain is gone.)
+    :when:2
+        @text.show(It snows outside.~That means the entire ground~is covered in snow!~Go out and enjoy this~beautiful appearance.)
+    :when:3
+        @text.show(The weather outside is...~peculiar.)
+    :when:4
+        @text.show(The weather outside is...~peculiar.)
+    :when:5
+        @text.show(The weather outside is...~peculiar.)
+    :when:6
+        @text.show(The weather outside is...~peculiar.)
+    :when:7
+        @text.show(The weather outside is...~peculiar.)
+    :when:8
+        @text.show(The weather outside is...~peculiar.)
+    :when:9
+        @text.show(The weather outside is...~peculiar.)
+:endselect
+:end

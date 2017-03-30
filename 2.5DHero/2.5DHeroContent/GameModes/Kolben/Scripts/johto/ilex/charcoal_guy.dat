@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(ilex_farfetchd_caught)>=True
+    @Text.show(Wow! Thanks a~whole bunch!*My Boss's Pokémon~won't obey me be-~cause I don't have~a Badge.)
+:else
+    @Text.show(Oh, man... My Boss~is going to be~steaming...*The Farfetch'd~that Cuts trees*for charcoal took~off on me.*I can't go looking~for it here in the~Ilex Forest.*It's too big, dark~and scary for me...)
+:endif
+:end

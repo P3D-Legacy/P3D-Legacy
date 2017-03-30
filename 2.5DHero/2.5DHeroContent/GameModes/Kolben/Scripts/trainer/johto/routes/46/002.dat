@@ -1,0 +1,32 @@
+version=2
+:if:<register.exists(phone_reg_033)>=true
+    @Text.Show(Hi, <player.name>.~Let our rematch begin!)
+    @register.remove(phone_reg_033)
+    @register.newtime(phone_reg_time_033,1,day)
+    :if:<player.badges>>7
+        :if:<register.exists(rematch_033_1)>=true
+            @battle.trainer(johto\routes\46\002_2)
+        :else
+            @register.new(rematch_033_1)
+            @battle.trainer(johto\routes\46\002_1)
+        :endif
+    :else
+        @battle.trainer(johto\routes\46\002)
+    :endif
+:else
+    @battle.starttrainer(johto\routes\46\002)
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_033)>=false
+            @Text.Show(I am going to ride~my Ponyta now, but~let's meet again later.*I will talk to you~on the phone when~we exchange numbers.)
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Erin's number.)
+                    @register.new(phone_contact_033)
+                    @Text.Show(I will talk to~you later.)
+                :when:No
+        :endselect
+        :endif
+    :endif
+:endif
+:end

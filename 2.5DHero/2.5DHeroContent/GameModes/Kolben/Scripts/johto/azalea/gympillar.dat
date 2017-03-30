@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(hivebadge_obtain)>=False
+    @Text.show(Azalea Town Pokemon Gym*Leader: Bugsy)
+:else
+    @Text.show(Azalea Town Pokemon Gym*Leader: Bugsy*Certified Trainer!~<player.name>)
+:endif
+:end

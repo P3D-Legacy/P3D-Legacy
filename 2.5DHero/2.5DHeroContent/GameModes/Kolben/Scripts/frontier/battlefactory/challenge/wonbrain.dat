@@ -1,0 +1,39 @@
+version=2
+:if:<storage.get(previous_streak)>=21
+    @text.show(Aha, so <player.name>~is your name.*I will award you with~the Silver Knowledge Emblem~which represents that you~are able to use*the correct moves in~the correct situations.)
+    @player.achieveemblem(silver knowledge)
+    @register.new(factory_silver)
+    @text.show(<player.name> received~the Silver Knowledge Emblem!)
+    @text.show(I hope that we~will meet again!.*Until then,~goodbye.)
+:else
+    @text.show(<player.name>, you~showed your strength once~again. Your trainer skills~are truely remarkable.*You really deserve the~Gold Knowledge Emblem.)
+    @player.achieveemblem(gold knowledge)
+    @register.new(factory_gold)
+    @text.show(<player.name> received~the Golden Knowledge Emblem!)
+    @text.show(I wish you luck~on your journey,~<player.name>.)
+:endif
+
+@screen.fadeout
+@player.warp(frontier\battlefactory\main.dat,14,0.1,3,0)
+@camera.reset
+@level.update
+@screen.fadein
+@player.turnto(0)
+
+:if:<storage.get(boolean,thirdperson)>=true
+    @camera.activatethirdperson
+:else
+    @camera.deactivatethirdperson
+:endif
+
+@player.addbp(5)
+@text.show(<player.name> got 5 BP!*You now have <player.bp> BP.)
+
+:if:<storage.get(previous_streak)>><register.value(battlefactory_challenge_<storage.get(factory_level)>_previous_streak)>
+    @register.change(battlefactory_challenge_<storage.get(factory_level)>_best,<storage.get(previous_streak)>)
+    @text.show(Congratulations!~You beat your high score.*Your new high score is~<storage.get(previous_streak)> win(s).)
+:endif
+
+@script.start(frontier\battlefactory\challenge\clearup)
+
+:end

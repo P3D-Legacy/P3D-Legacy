@@ -1,0 +1,44 @@
+version=2
+@text.show(You lost the battle.~You'll be returning~to the lobby now.)
+@camera.reset
+@camera.deactivatethirdperson
+@screen.fadeout
+@Player.warp(frontier\battletower\main.dat,6,0.1,4,0)
+@camera.reset
+@level.update
+@screen.fadein
+@player.turnto(0)
+
+:if:<storage.get(boolean,thirdperson)>=true
+    @camera.activatethirdperson
+:endif
+
+:if:<storage.get(tower_streak)>>6
+    @storage.set(get_bp,<math.floor(<storage.get(tower_streak)>/5)>)
+    @text.show(You've done well to~defeat at least 7 trainers.*Your record will be recorded,~and you may add to it by~challenging the tower again.*Allow me to present you with~<storage.get(get_bp)>BP for defeating <storage.get(tower_streak)> trainers.)
+    @player.addbp(<storage.get(get_bp)>)
+    @text.show(<player.name> got <storage.get(get_bp)> BP!*You now have <player.bp> BP.)
+:endif
+
+:if:<storage.get(tower_streak)>><register.value(battletower_endless_<storage.get(tower_level)>_best)>
+    @register.change(battletower_endless_<storage.get(tower_level)>_best,<storage.get(tower_streak)>)
+    @text.show(Congratulations!~You beat your high score.*Your new high score is~<storage.get(tower_streak)> win(s).)
+:endif
+
+:if:<storage.get(tower_class)>>0
+    @register.change(battletower_endless_<storage.get(tower_level)>_class,<math.int(<storage.get(tower_class)>-1)>)
+:endif
+
+@pokemon.changelevel(0,<storage.get(level_0)>)
+@pokemon.changelevel(1,<storage.get(level_1)>)
+@pokemon.changelevel(2,<storage.get(level_2)>)
+
+@pokemon.calcstats(0)
+@pokemon.calcstats(1)
+@pokemon.calcstats(2)
+
+@pokemon.heal
+
+@text.show(...~........*All done! Please come~see us again!)
+@storage.clear
+:exit

@@ -1,0 +1,21 @@
+version=2
+:if:<register.exists(trainer_kanto\gyms\fuchsia\003)>=False
+    @npc.turn(3,1)
+    @level.wait(5)
+    @npc.turn(3,2)
+    @level.wait(5)
+    @npc.turn(3,3)
+    @level.wait(5)
+    @npc.turn(3,0)
+    @level.wait(5)
+    @npc.wearskin(3,17)
+    @npc.turn(3,1)
+    @level.wait(5)
+    @npc.turn(3,2)
+    @level.wait(5)
+    @npc.turn(3,3)
+    @level.wait(5)
+    @npc.turn(3,<math.rollover(<player.facing>+2,0,3)>)
+:endif
+@battle.starttrainer(kanto\gyms\fuchsia\003)
+:end

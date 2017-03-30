@@ -1,0 +1,49 @@
+version=2
+@text.show(Next up, opponent~no.<math.int(<storage.get(factory_streak)>+1)>. Ready?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:No
+        @text.show(Do you really~want to quit?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @script.start(frontier\battlefactory\endless\cancelbattle)
+        :endselect
+:endselect
+
+@text.show(This is your team.~Choose the Pokémon you~want to enter the battle with:)
+@pokemon.select(1)
+
+:if:<pokemon.selected>>-1
+    @pokemon.add(0,<pokemon.data(<pokemon.selected>)>)
+    @pokemon.remove(<pokemon.selected>+1)
+:endif
+
+@player.turnto(0)
+@player.move(1)
+@player.turnto(1)
+@player.move(1)
+@player.turnto(0)
+@player.move(1)
+@player.warp(frontier\battlefactory\arena.dat,6,0.1,10)
+@level.update
+
+@player.move(3)
+@player.turnto(1)
+@player.move(3)
+@player.turnto(0)
+@player.move(2)
+@player.turnto(3)
+
+@camera.activatethirdperson
+@camera.set(0.75,0.745,2.75,-0.885,-0.3)
+
+@script.start(frontier\battlefactory\endless\choosetrainer)
+
+:if:<battle.won>=true
+    @storage.set(factory_streak,<storage.get(factory_streak)>+1)
+    @script.start(frontier\battlefactory\endless\afterbattle)
+:else
+    @script.start(frontier\battlefactory\endless\lostbattle)
+:endif
+:end

@@ -1,0 +1,27 @@
+version=2
+@text.show(Hi there, I am~the move reminder.~I can teach your Pokémon*any move it forgot.*I am searching for the~rare Heart Scales. I would~charge one of them to~teach a new move.~Do you want me to~let a Pokémon remember~a move?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        :if:<item.count(190)>=0
+            @text.show(I am sorry but it looks~like you don't have~a Heart Scale...)
+            :exit
+        :endif
+        @text.show(Select a Pokémon I~shall teach a new move.)
+        @pokemon.select(1)
+        :if:<pokemon.selected>>-1
+            @screen.teachmoves(<pokemon.selected>)
+            :if:<pokemon.learnedtutormove>=true
+                @item.remove(190,1,0)
+                @text.show(<player.name>~handed over the Heart Scale.)
+            :endif
+            @text.show(I hope to see you~later again.)
+            :exit
+        :else
+            @text.show(OK then, I will wait here.)
+            :exit
+        :endif
+    :when:No
+    @text.show(OK then, I will wait here.)
+:endselect
+:end

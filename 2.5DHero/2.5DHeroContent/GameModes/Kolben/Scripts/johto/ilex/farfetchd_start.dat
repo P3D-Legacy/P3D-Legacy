@@ -1,0 +1,17 @@
+version=2
+:if:<register.exists(ilex_farfetchd_start)>=False <and> <register.exists(rocket_defeat_slowpokewell)>=True
+    @Player.Move(2)
+    @Player.Turn(1)
+    @pokemon.Cry(83)
+    @npc.Turn(1,0)
+    @npc.Move(1,1)
+    @npc.Turn(1,3)
+    @npc.Move(1,4)
+    @npc.Turn(1,0)
+    @npc.Move(1,3)
+    @npc.Turn(1,2)
+    @register.new(ilex_farfetchd_start)
+    @NPC.register(johto\ilex\main.dat|1|position|16,0,33)
+    @pokemon.Cry(83)
+:endif
+:end

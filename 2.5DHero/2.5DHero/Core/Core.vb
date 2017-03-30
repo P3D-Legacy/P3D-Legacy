@@ -47,7 +47,7 @@
         End If
 
         GameOptions = New GameOptions()
-        GameOptions.LoadOptions()
+        GameOptions.Load()
 
         GraphicsManager.PreferredBackBufferWidth = CInt(GameOptions.WindowSize.X)
         GraphicsManager.PreferredBackBufferHeight = CInt(GameOptions.WindowSize.Y)
@@ -85,7 +85,8 @@
     End Sub
 
     Public Sub LoadContent()
-        OldGameModeManager.LoadGameModes()
+        KeyBindings.Load()
+        GameModeManager.LoadGameModes()
         Logger.Debug("Loaded game modes.")
 
         FontManager.LoadFonts()
@@ -93,7 +94,7 @@
         Screen.TextBox.TextFont = FontManager.GetFontContainer("textfont")
         Logger.Debug("Loaded fonts.")
 
-        KeyBindings.LoadKeys()
+
         TextureManager.InitializeTextures()
         MusicManager.Setup()
         MusicManager.LoadMusic(False)
@@ -111,7 +112,7 @@
         GameMessage.TextPosition = New Vector2(10, 10)
         Logger.Debug("Gamemessage initialized.")
 
-        GameOptions.LoadOptions()
+        GameOptions.Load()
 
         If System.IO.Directory.Exists(GameController.GamePath & "\Temp") = True Then
             Try

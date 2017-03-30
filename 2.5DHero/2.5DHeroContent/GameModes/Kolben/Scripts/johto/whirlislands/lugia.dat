@@ -1,0 +1,11 @@
+version=2
+@pokemon.cry(249)
+@battle.setvar(custombattlemusic,battle\main\legend\lugia)
+:if:<register.exists(silver_wing_radio_tower)>=True
+    @battle.wild(249,45,-1,battle\intro\legend\lugia,12)
+:else
+    @battle.wild(249,70,-1,battle\intro\legend\lugia,12)
+:endif
+@register.new(battlelugia)
+@npc.remove(0)
+:end

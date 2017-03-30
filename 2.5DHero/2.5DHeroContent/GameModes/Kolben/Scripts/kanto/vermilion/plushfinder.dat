@@ -1,0 +1,16 @@
+version=2
+:if:<register.exists(copycat1)>=true
+    :if:<register.exists(copycat2)>=true
+        @text.show(You watch.*I'm going to get a real~Clefairy as my friend.)
+        :end
+    :endif
+    @Text.show(I love Clefairy, but I~could never catch one.*So I'm making do with a~Poké Doll that I found.*Oh I see now.*The girl who lost this~Poké Doll is sad...*Ok.~Could you take this~Poké Doll back to that~poor little girl?*I'll befriend a real~Clefairy on my own one day.*No worries!)
+    @npc.remove(4)
+    @npc.register(kanto\vermilion\fan.dat|4|remove|0)
+    @item.add(130,1)
+    @item.messagegive(130,1)
+    @register.new(copycat2)
+    :end
+:endif
+@text.show(I love the way Clefairy~waggles its finger when~it's trying to use Metronome.*It's so adorable!)
+:end

@@ -1,0 +1,25 @@
+version=2
+@npc.turn(1,3)
+@text.show(Captain, play with me, please?*I'm bored! I want to play more!)
+@npc.turn(1,1)
+@text.show(Hi! Will you play with me?*...Oh!*Grandpa's worried about me?*I have to go!*I have to go find Grandpa!)
+@player.warp(ssaqua\firsttrip\cabins\7.dat,3,0.1,6,1)
+@level.update
+@npc.warp(1,4,0,6)
+@npc.turn(1,0)
+@level.update
+@npc.turn(0,2)
+@npc.move(1,2)
+@npc.turn(1,1)
+@npc.turn(0,3)
+@text.show(Grandpa, here I am!*I was playing with the~Captain and this guy!)
+@npc.turn(0,2)
+@npc.move(0,1)
+@text.show(<player.name>, was it?*I heard you entertained~my granddaughter.*I want to thank you for that.*I know!*I'd like you to have this!)
+@item.add(143,1)
+@item.messagegive(143,1)
+@text.show(Fast Ship S.S. Aqua has~arrived in Vermilion City.)
+@npc.register(ssaqua\firsttrip\cabins\captain.dat|1|remove|0)
+@npc.register(ssaqua\firsttrip\cabins\7.dat|1|position|4,0,4)
+@register.new(docked)
+:end

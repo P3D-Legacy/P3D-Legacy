@@ -3,11 +3,12 @@
     Private Shared TextureReplacements As New Dictionary(Of TextureSource, TextureSource)
     Private Shared FilesExist As New Dictionary(Of String, Boolean)
     Private Shared TextureResolutions As New Dictionary(Of String, Integer)
+    Private Shared MusicReplacements As New Dictionary(Of String, String)
 
-    Public Shared Sub Load(ByVal ContentPackFile As String)
-        If System.IO.Directory.Exists(GameController.GamePath & "\ContentPacks") = True Then
-            If System.IO.File.Exists(ContentPackFile) = True Then
-                Dim Lines() As String = System.IO.File.ReadAllLines(ContentPackFile)
+    Public Shared Sub LoadTextureReplacements(ByVal ContentPackFile As String)
+        If IO.Directory.Exists(GameController.GamePath & "\ContentPacks") = True Then
+            If IO.File.Exists(ContentPackFile) = True Then
+                Dim Lines() As String = IO.File.ReadAllLines(ContentPackFile)
                 For Each Line As String In Lines
                     Select Case Line.CountSplits("|")
                         Case 2 'ResolutionChange
@@ -17,6 +18,14 @@
                             If TextureResolutions.ContainsKey(TextureName) = False Then
                                 TextureResolutions.Add(TextureName, Resolution)
                             End If
+                        Case 3 'MusicReplacement
+                            Dim MapFilePath As String = Line.GetSplit(1, "|")
+                            Dim MusicFile As String = Line.GetSplit(2, "|")
+
+                            If MusicReplacements.ContainsKey(MapFilePath) = False Then
+                                MusicReplacements.Add(MapFilePath, MusicFile)
+                            End If
+
                         Case 4 'TextureReplacement
                             Dim oldTextureName As String = Line.GetSplit(0, "|")
                             Dim newTextureName As String = Line.GetSplit(2, "|")
@@ -35,6 +44,15 @@
         End If
     End Sub
 
+    Public Shared Function GetMusicReplacement(ByVal MapFileName As String) As String
+        For i = 0 To MusicReplacements.Count - 1
+            If MusicReplacements.Keys(i).ToLower() = MapFileName.ToLower() Then
+                Return MusicReplacements.Values(i)
+            End If
+        Next
+
+        Return "None"
+    End Function
     Public Shared Function GetTextureReplacement(ByVal TexturePath As String, ByVal r As Rectangle) As TextureSource
         Dim TextureSource As New TextureSource(TexturePath, r)
         For i = 0 To TextureReplacements.Count - 1
@@ -57,62 +75,60 @@
 
     Public Shared Function GetContentManager(ByVal file As String, ByVal fileEndings As String) As ContentManager
         Dim contentPath As String = ""
-        If Core.GameOptions.ContentPackNames.Count() > 0 Then
+        If Core.GameOptions.ContentPackNames.Length > 0 Then
             For Each c As String In Core.GameOptions.ContentPackNames
                 contentPath = "ContentPacks\" & c
 
                 For Each fileEnding As String In fileEndings.Split(CChar(","))
                     If FilesExist.ContainsKey(GameController.GamePath & "\" & contentPath & "\" & file & fileEnding) = False Then
-                        FilesExist.Add(GameController.GamePath & "\" & contentPath & "\" & file & fileEnding, System.IO.File.Exists(GameController.GamePath & "\" & contentPath & "\" & file & fileEnding))
+                        FilesExist.Add(GameController.GamePath & "\" & contentPath & "\" & file & fileEnding, IO.File.Exists(GameController.GamePath & "\" & contentPath & "\" & file & fileEnding))
                     End If
 
                     If FilesExist(GameController.GamePath & "\" & contentPath & "\" & file & fileEnding) = True Then
-                        Return New ContentManager(Core.GameInstance.Services, contentPath)
+                        Return New ContentManager(GameInstance.Services, contentPath)
                     End If
                 Next
             Next
         End If
 
-        Dim gameMode As OldGameMode = OldGameModeManager.ActiveGameMode
-        If gameMode.ContentPath <> "\Content\" And gameMode.ContentPath <> "" Then
-            Dim gameModePath As String = GameController.GamePath & "\" & gameMode.ContentPath
-            For Each fileEnding As String In fileEndings.Split(CChar(","))
-                If System.IO.File.Exists(gameModePath & file & fileEnding) = True Then
-                    Return New ContentManager(Core.GameInstance.Services, gameMode.ContentPath.Remove(0, 1))
-                End If
-            Next
-        End If
+        Dim gameMode As GameMode = GameModeManager.ActiveGameMode
+        Dim gameModePath As String = GameController.GamePath & "\" & gameMode.ContentPath
+        For Each fileEnding As String In fileEndings.Split(CChar(","))
+            If IO.File.Exists(gameModePath & file & fileEnding) = True Then
+                Return New ContentManager(GameInstance.Services, gameMode.ContentPath.Remove(0, 1))
+            End If
+        Next
 
-        Return New ContentManager(Core.GameInstance.Services, "Content")
+        Return New ContentManager(GameInstance.Services, "GameModes\Kolben\Content")
     End Function
 
     Public Shared Sub CreateContentPackFolder()
-        If System.IO.Directory.Exists(GameController.GamePath & "\ContentPacks") = False Then
-            System.IO.Directory.CreateDirectory(GameController.GamePath & "\ContentPacks")
+        If IO.Directory.Exists(GameController.GamePath & "\ContentPacks") = False Then
+            IO.Directory.CreateDirectory(GameController.GamePath & "\ContentPacks")
         End If
     End Sub
 
     Public Shared Function GetContentPackInfo(ByVal ContentPackName As String) As String()
-        If System.IO.File.Exists(GameController.GamePath & "\ContentPacks\" & ContentPackName & "\info.dat") = False Then
+        If IO.File.Exists(GameController.GamePath & "\ContentPacks\" & ContentPackName & "\info.dat") = False Then
             Dim s As String = "1.00" & vbNewLine & "Pokémon3D" & vbNewLine & "[Add information here!]"
-            System.IO.File.WriteAllText(GameController.GamePath & "\ContentPacks\" & ContentPackName & "\info.dat", s)
+            IO.File.WriteAllText(GameController.GamePath & "\ContentPacks\" & ContentPackName & "\info.dat", s)
         End If
-        Return System.IO.File.ReadAllLines(GameController.GamePath & "\ContentPacks\" & ContentPackName & "\info.dat")
+        Return IO.File.ReadAllLines(GameController.GamePath & "\ContentPacks\" & ContentPackName & "\info.dat")
     End Function
 
     Public Shared Sub Clear()
         TextureReplacements.Clear()
         TextureResolutions.Clear()
         FilesExist.Clear()
-        MusicManager.ReloadMusic()
-        SoundManager.ReloadSounds()
+        MusicManager.Clear()
+        SoundManager.Clear()
         ModelManager.Clear()
         TextureManager.TextureList.Clear()
         Water.ClearAnimationResources()
         Whirlpool.LoadedWaterTemp = False
         Waterfall.ClearAnimationResources()
 
-        Logger.Debug("---Cleared ContentPackManager---")
+        Logger.Debug("161", "---Cleared ContentPackManager---")
     End Sub
 
 End Class
@@ -132,7 +148,7 @@ Public Class TextureSource
     End Function
 
     Public Function IsEqual(ByVal TextureSource As TextureSource) As Boolean
-        If Me.TexturePath = TextureSource.TexturePath And Me.TextureRectangle = TextureSource.TextureRectangle Then
+        If TexturePath = TextureSource.TexturePath And TextureRectangle = TextureSource.TextureRectangle Then
             Return True
         End If
 

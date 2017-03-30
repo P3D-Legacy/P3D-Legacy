@@ -1,0 +1,13 @@
+{"EntityField"{ENT[{"Scale"{sngArr[0.2,1,0.2]}}{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,0]}}{"TexturePath"{str[cyclingroad]}}{"Textures"{recArr[[0,0,8,16][8,0,8,8]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"RotationXYZ"{sngArr[0,0,0]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Scale"{sngArr[0.1,1,0.1]}}{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,1,0]}}{"TexturePath"{str[cyclingroad]}}{"Textures"{recArr[[16,0,4,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Scale"{sngArr[0.099,0.6,0.099]}}{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0.181,1.695,0]}}{"TexturePath"{str[cyclingroad]}}{"Textures"{recArr[[16,0,4,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"RotationXYZ"{sngArr[0,0,-0.7]}}]}}
+
+{"EntityField"{ENT[{"Scale"{sngArr[0.5,0.2,0.5]}}{"Size"{intArr[1,1]}}{"EntityID"{str[Cube]}}{"Position"{sngArr[0.59,1.85,0]}}{"TexturePath"{str[cyclingroad]}}{"Textures"{recArr[[8,8,8,8][0,16,8,8][8,12,8,4]]}}{"TextureIndex"{intArr[2,2,2,2,2,2,2,2,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[12]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Shader:
+{"Shader"{SHA[{"Shader"{sngArr[1.5,1.5,1.5]}}{"StopOnContact"{bool[1]}}{"Position"{intArr[1,2,0]}}{"Size"{intArr[1,1]}}{"ObjectSize"{sngArr[1,1]}}]}}
+{"Shader"{SHA[{"Shader"{sngArr[1.5,1.5,1.5]}}{"StopOnContact"{bool[1]}}{"Position"{intArr[0,2,-1]}}{"Size"{intArr[3,3]}}{"ObjectSize"{sngArr[1,1]}}]}}
+
+Shader:
+{"Shader"{SHA[{"Shader"{sngArr[0.8,0.8,0.8]}}{"StopOnContact"{bool[1]}}{"Position"{intArr[1,-1,0]}}{"Size"{intArr[1,1]}}{"ObjectSize"{sngArr[1,1]}}]}}
+{"Shader"{SHA[{"Shader"{sngArr[0.8,0.8,0.8]}}{"StopOnContact"{bool[1]}}{"Position"{intArr[0,-1,-1]}}{"Size"{intArr[3,3]}}{"ObjectSize"{sngArr[1,1]}}]}}

@@ -1,0 +1,21 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(zephyrbadge_obtain)>=true <and> <register.exists(FalknerRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe mornings?*If you visit while~I am there maybe~we could battle.)
+    @register.new(FalknerRematchTalk)
+    :end
+:endif
+
+@battle.starttrainer(johto\gyms\violet\leader)
+@player.AchieveEmblem(zephyr)
+:if:<register.exists(zephyrbadge_obtain)>=False
+    @register.new(zephyrbadge_obtain)
+    @register.new(trainer_johto\gyms\violet\001)
+    @register.new(trainer_johto\gyms\violet\002)
+    @Player.GetBadge(9)
+    @Text.show(Zephyrbadge~raises the attack~power of Pokémon.*It also enables~Pokémon to use*Flash, if they~have it, anytime.*Here--take this~too.)
+    @item.add(221,1)
+    @Item.messagegive(221,1)
+    @Text.show(By using a TM, a~Pokémon will*instantly learn a~new move.*Think before you~act--a TM can be~used only once.*TM31 contains~Mud-Slap.*It reduces the~enemy's accuracy*while it causes~damage.*In other words, it~is both defensive~and offensive.)
+    @NPC.register(johto\violet\center.dat|4|position|8,0,3)
+:endif
+:end

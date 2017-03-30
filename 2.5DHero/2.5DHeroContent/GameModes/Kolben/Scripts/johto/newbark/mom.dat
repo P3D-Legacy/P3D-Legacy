@@ -1,0 +1,45 @@
+version=2
+
+:if:<register.exists(mom_getpokegear)>=false
+    @text.show(Oh! I almost forgot!~Your Pokémon Gear~is back from the~repair shop.*Here you go!)
+    @sound.play(success_small)
+    @player.receivepokegear
+    @text.show(<player.name> received~Pokégear.)
+    @text.show(Pokémon Gear, or just~Pokégear.*It's essential if you~want to be a good trainer.*By the way, do you~know how to use~the Phone?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(I'm sure you know~that you can open it~by pressing Q.*Phone numbers are~stored in memory.*Just choose a name~you want to call.*Gee, isn't that~convenient?)
+        :when:No
+            @text.show(Don't you just~turn the Pokégear~on by pressing Q~and switch over to Phone?*Phone numbers are~stored in memory.*Just choose a name~you want to call.*Gee, isn't that~convenient?)
+    :endselect
+    @text.show(Also, here is my number!)
+    @register.new(phone_contact_000)
+    @text.show(<player.name>~received Mom's number.)
+    @register.new(mom_getpokegear)
+    @npc.turn(0,1)
+    :end
+:endif
+:if:<register.exists(mom_wait)>=true
+    @text.show(Prof. Elm is waiting~for you.*Hurry up, baby!)
+    @npc.turn(0,1)
+:endif
+
+:if:<register.exists(mom_adventure1)>=true
+    @text.show(So, what was~Prof. Elm's errand?*...*That does sound~challenging.*But, you should be~proud that people~rely on you.)
+    @npc.turn(0,1)
+:endif
+
+:if:<register.exists(mom_adventure2)>=true
+    @text.show(<player.name>, do it!~I'm behind you all the way.)
+    @npc.turn(0,1)
+:endif
+
+:if:<register.exists(mom_talk)>=true
+    @text.show(Wow, that's a~cute Pokémon.~Where did you get it?*...*So, you're leaving~on an adventure...*.............*Be careful.~Pokémon are your friends.~You need to work as~a team.~Now, go on!)
+    @register.remove(mom_talk)
+    @register.new(mom_adventure2)
+    @npc.turn(0,1)
+:endif
+
+:end

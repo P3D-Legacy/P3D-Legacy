@@ -1,0 +1,27 @@
+version=2
+:if:<player.position>=9,2,43
+    @text.show(Boulders and rocks~are neatly piled up~as a cairn.*"Here lies Tectonix" is~engraved on a boulder.)
+    :if:<register.exists(lemonadeoffering)>=false
+        @text.show(There is a Lemonade~placed as an offering~in front of the grave.)
+        :if:<item.count(48)>>0
+            @text.show(Would you like to~leave another Lemonade~as an offering?)
+            @options.show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @text.show(<player.name> placed~a can of Lemonade in~front of the grave.)
+                    @item.clear(48,1)
+                    @npc.turn(8,3)
+                    @player.turnto(1)
+                    @text.show(Th-thank you...*That was my Tectonix's~favorite drink...*I don't even know~you, but your act~of kindness...*It's uplifted me a little.*Can you please take~this as my thanks?)
+                    @item.add(404,1)
+                    @item.messagegive(404,1)
+                    @text.show(Please be good to~your Pokémon, too.)
+                    @npc.turn(8,0)
+                    @register.new(lemonadeoffering)
+                :when:No
+                    :end
+            :endselect
+        :endif                
+    :endif
+:endif
+:end

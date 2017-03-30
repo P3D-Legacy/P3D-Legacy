@@ -1,0 +1,26 @@
+version=2
+@text.show(OK. You'll be returning~to the lobby now.)
+@screen.fadeout
+@Player.warp(frontier\battletower\main.dat,10,0.1,4,0)
+@camera.reset
+@level.update
+@screen.fadein
+@player.turnto(0)
+
+:if:<storage.get(boolean,thirdperson)>=true
+    @camera.activatethirdperson
+:endif
+
+@pokemon.changelevel(0,<storage.get(level_0)>)
+@pokemon.changelevel(1,<storage.get(level_1)>)
+@pokemon.changelevel(2,<storage.get(level_2)>)
+
+@pokemon.calcstats(0)
+@pokemon.calcstats(1)
+@pokemon.calcstats(2)
+
+@pokemon.heal
+
+@text.show(...~........*All done! Please come~see us again!)
+@storage.clear
+:exit

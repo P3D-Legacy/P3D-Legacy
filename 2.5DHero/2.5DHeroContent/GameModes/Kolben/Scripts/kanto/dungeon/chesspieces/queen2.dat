@@ -1,0 +1,29 @@
+version=2
+@text.show(There are letters carved here.*They seem to say "Queen".)
+:if:<register.exists(solvechess)>=False
+    @text.show(OH!~There's a button here!~Press it?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @level.reload
+            @level.update
+            @sound.play(destroy)
+            @entity.warp(6,6,-1,11) 
+            @entity.warp(14,7,-1,11)    
+            @entity.warp(22,8,-1,11)    
+            @entity.warp(30,9,-1,11)    
+            @entity.warp(46,11,-1,11)   
+            @entity.warp(36,10,-1,9)    
+            @entity.warp(37,10,-1,10)   
+            @entity.warp(39,10,-1,12)   
+            @entity.warp(24,8,-1,13)    
+            @entity.warp(31,9,-1,12)    
+            @entity.warp(45,11,-1,10)   
+            @entity.warp(52,12,-1,9)    
+            @entity.warp(56,12,-1,13)   
+            @entity.warp(47,11,-1,12)   
+            @register.new(chesspiecequeen2)
+            :end
+    :endselect
+:endif
+:end

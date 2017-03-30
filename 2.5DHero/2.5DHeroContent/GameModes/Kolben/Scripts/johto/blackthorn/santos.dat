@@ -1,0 +1,14 @@
+version=2
+:if:<datetime.dayofweek>!saturday
+    @Text.Show(Santos: Today's~not Saturday...)
+:else
+    :if:<register.exists(santos_item)>=false
+        @Text.Show(Santos: ...*It's Saturday...*I'm Santos of~Saturday...*You can have this...)
+        @item.add(113)
+        @item.messagegive(113,1)
+        @Text.Show(Santos: ...*Spell Tag...*Ghost-type moves~get stronger...*It will frighten~you...)
+        @register.new(santos_item)
+    :endif
+    @text.Show(Santos: ...*See you again on~another Saturday...*I won't have any~more gifts...)
+:endif
+:end

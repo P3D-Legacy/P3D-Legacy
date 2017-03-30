@@ -1,0 +1,10 @@
+version=2
+@screen.fadeout(35)
+@sound.play(enter)
+@Player.Warp(johto\icepath\3f.dat,4,2.1,12,0)
+@level.update
+@screen.fadein(35)
+@player.setmovement(0,-1,0)
+@player.move(2)
+@sound.play(destroy)
+:end

@@ -1,0 +1,14 @@
+version=2
+:if:<datetime.dayofweek>!thursday
+    @Text.Show(Arthur: Today's~not Thursday. How~disappointing.)
+:else
+    :if:<register.exists(arthur_item)>=false
+        @Text.Show(Arthur: Who are~you?*I'm Arthur of~Thursday.*Here. You can have~this.)
+        @item.add(125)
+        @item.messagegive(125,1)
+        @Text.Show(Arthur: A Pokémon~that uses rock-*type moves should~hold on to that.*It pumps up rock-type attacks.)
+        @register.new(arthur_item)
+    :endif
+    @text.Show(Arthur: I'm Arthur~of Thursday. I'm*the second son out~of seven children.)
+:endif
+:end

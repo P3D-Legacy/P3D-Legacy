@@ -1,0 +1,44 @@
+version=2
+:if:<register.exists(protoncerulean)>=False
+    @text.show(Due to Team Rocket~activities we aren't~accepting trainers'~Pokémon right now.*Come back later.)
+    :end
+:endif
+:if:<register.exists(daycare_callid_2)>=false
+    @text.show(Hello!~I'm the Day-Care Man.*Oh, do you want my~phone number, so I can call*you if anything happens~with your Pokémon.)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(Alright, here you go!)
+            @register.new(daycare_callid_2,str,035)
+            @register.new(phone_contact_035)
+            @text.show(<player.name> registered~the Day-Care Man's number.)
+        :when:No
+            @text.show(Very well.~Please come again.)
+            :end
+    :endselect
+:endif
+:if:<daycare.hasegg(2)>=true
+    @script.start(sevii\floe\daycare\take_egg)
+:else
+    :select:<daycare.countpokemon(2)>
+    :when:0
+        @text.show(We take care of the~precious Pokémon of~other trainers.*If you'd like us to~raise your Pokémon,~have a word with my wife.)
+    :when:1
+        @text.show(Your <daycare.pokemonname(0,0)> is~doing just fine!)
+    :when:2
+        :select:<daycare.canbreed(2)>
+        :when:70
+            @storage.set(breed_text,The two seem to get~along very well.)
+        :when:50
+            @storage.set(breed_text,The two seem to~get along.)
+        :when:20
+            @storage.set(breed_text,The two don't seem~to like each other.)
+        :when:0
+            @storage.set(breed_text,The two prefer to play~with other Pokémon than~each other.)
+        :endselect
+        @text.show(Glad you called!*Your <daycare.pokemonname(2,0)> and~your <daycare.pokemonname(2,1)> are~doing just fine.*<storage.get(breed_text)>)
+
+        @storage.clear
+    :endselect
+:endif
+:end

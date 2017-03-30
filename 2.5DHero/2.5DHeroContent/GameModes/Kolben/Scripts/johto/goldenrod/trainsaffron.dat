@@ -1,0 +1,88 @@
+version=2
+@text.show(OK. Right this~way, sir.)
+@npc.turn(0,0)
+@npc.move(0,2)
+@npc.turn(0,3)
+@npc.move(0,1)
+@npc.turn(0,1)
+@player.move(3)
+@player.turnto(1)
+@player.move(3)
+@player.turnto(0)
+@player.move(1)
+@screen.fadeout(30)
+
+@player.warp(shared\trainmaps\fromgoldenrod.dat,21,-3,12)
+@music.pause
+@level.update
+@entity.warp(69,~,~+4.2,~+8)
+@camera.activatethirdperson(0)
+@camera.set(-0.16,6,0,1,0)
+@camera.fix
+@level.update
+@camera.update
+@screen.fadein(30)
+@sound.play(magnettrain)
+
+:while:<entity.positionx(69)><30
+    @entity.addtoposition(69,0.3,0,0)
+    @level.wait(1)
+    @level.update
+:endwhile
+
+@screen.fadeout(30)
+@camera.defix
+@player.warp(shared\trainmaps\center.dat,4,0.1,11)
+@music.pause
+@level.update
+@entity.warp(69,~,~+4.2,~+8)
+@camera.set(0.48,4.49,1.92,6.27,-0.25)
+@level.update
+@camera.update
+@screen.fadein(30)
+
+:while:<entity.positionx(69)><25
+    @entity.addtoposition(69,0.3,0,0)
+    @camera.setx(~+0.3)
+    @level.wait(1)
+    @level.update
+:endwhile
+
+@screen.fadeout(30)
+@camera.defix
+@player.warp(shared\trainmaps\fromsaffron.dat,4,1.1,-2)
+@music.pause
+@level.update
+@entity.warp(69,~,~+2.2,~+5)
+@camera.set(4.31,1.323,-0.5169,4.095,-0.104)
+@camera.fix
+@level.update
+@camera.update
+@screen.fadein(30)
+
+:while:<entity.positionx(69)><25
+    @entity.addtoposition(69,0.3,0,0)
+    @level.wait(1)
+    @level.update
+:endwhile
+
+@screen.fadeout(30)
+@camera.defix
+@player.warp(kanto\saffron\trainstation.dat,6,0.1,4,2)
+@camera.deactivatethirdperson
+@level.update
+@music.resume
+@screen.fadein(30)
+@npc.warp(0,5,0,4)
+@npc.turn(0,3)
+@screen.fadein
+@level.wait(20)
+@player.turnto(3)
+@player.move(3)
+@player.turnto(2)
+@player.move(4)
+@player.turnto(0)
+@npc.move(0,4)
+@npc.turn(0,2)
+@npc.move(0,3)
+:end

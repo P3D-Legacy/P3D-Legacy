@@ -1,0 +1,6 @@
+version=2
+:if:<register.exists(trainer_johto\routes\37\001)>=False
+    @Text.show(Anne: Ann and I~are in this together!)
+:endif
+@battle.starttrainer(johto\routes\37\001)
+:end

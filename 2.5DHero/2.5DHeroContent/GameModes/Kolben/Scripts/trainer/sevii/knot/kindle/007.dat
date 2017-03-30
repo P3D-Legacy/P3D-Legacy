@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(trainer_sevii\knot\kindle\007)>=false
+    @text.show(Kia: My big brother~and I make an awesome~combination!)
+:endif
+@battle.starttrainer(sevii\knot\kindle\007)
+@register.new(trainer_sevii\knot\kindle\006)
+:end

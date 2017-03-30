@@ -1,0 +1,21 @@
+version=2
+:if:<datetime.dayofweek>!sunday
+    @Text.Show(We're not open today.)
+    :end
+:endif
+
+:if:<register.exists(bargainshop_sunday)>=true
+    @Text.Show(I only sell items~once a day.)
+    :end
+:endif
+
+@Text.Show(Welcome!*I run the Bargain~Shop!*I sell valuable items~for low prices.*Do you want to buy~something?)
+@Options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @register.new(bargainshop_sunday)
+        @screen.trade({36|1|4500}{110|1|650}{111|1|3500}{131|1|900}{132|1|4600},true,false)
+    :when:No
+        @Text.Show(Is that right?~That's a shame!)
+:endselect
+:end

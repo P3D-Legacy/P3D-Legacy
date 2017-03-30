@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(rocket_invasion_radio)>=True
+    @music.play(encounter\rocket)
+    @music.setmusicloop(encounter\rocket)
+    :if:<register.exists(trainer_rocket\radiotower\petrel)>=true
+        @npc.wearskin(0,petrel)
+    :endif
+:endif
+:end

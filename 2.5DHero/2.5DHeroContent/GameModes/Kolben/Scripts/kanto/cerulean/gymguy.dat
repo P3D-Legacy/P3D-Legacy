@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(cascadebadge_obtain)>=False
+    @Text.show(Yo! Champ in making!*Since Misty was away,~I went out for some fun too.*He-he-he.)
+:else
+    @Text.show(Hoo, you showed me~how tough you are.*As always, that was one~heck of a great battle!)
+:endif
+:end

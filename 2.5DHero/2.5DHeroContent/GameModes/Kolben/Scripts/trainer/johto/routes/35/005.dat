@@ -1,0 +1,35 @@
+version=2
+:if:<register.exists(phone_reg_015)>=true
+    @Text.Show(I practiced more and~now my Pokémon are~stronger!)
+    @register.remove(phone_reg_015)
+    @register.newtime(phone_reg_time_015,1,day)
+    :if:<player.badges>>2
+        :if:<register.exists(rematch_015_1)>=true
+            @battle.trainer(johto\routes\35\005_2)
+        :else
+            @register.new(rematch_015_1)
+            @battle.trainer(johto\routes\35\005_1)
+        :endif
+    :else
+        @battle.trainer(johto\routes\35\005)
+    :endif
+
+:else
+    @battle.starttrainer(johto\routes\35\005)
+
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_015)>=false
+            @Text.Show(Let's battle again sometime,~what do you think?)
+
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Walt's number.)
+                    @register.new(phone_contact_015)
+                    @Text.Show(I'll let you know whenever~I want to battle you.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

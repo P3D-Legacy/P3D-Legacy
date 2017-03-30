@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(kanto_welcome_r27)>=false
+    @register.new(kanto_welcome_r27)
+    @npc.turn(0,1)
+    @player.turnto(3)
+    @npc.move(0,1)
+    :select:<player.position>
+        :when:18,0,10
+            @npc.move(0,1)
+    :endselect
+    @text.show(Do you know what~you just did?*You've taken your~first step into~Kanto.*Check your Pokégear~Map and see.)
+:endif
+:end

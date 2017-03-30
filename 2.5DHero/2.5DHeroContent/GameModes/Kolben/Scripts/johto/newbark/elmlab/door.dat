@@ -1,0 +1,78 @@
+version=2
+:if:<register.exists(elm1)>=True
+    @Text.show(Elm: Wait! Where~are you going?)
+    @Player.turn(2)
+    @player.move(1)
+        :exit
+:endif
+
+:if:<register.exists(elm0)>=False
+    @register.new(elm0)
+    @register.new(johto_rocket_hq_broadcast)
+    @register.new(elm1)
+    @player.move(4)
+    @text.show(Elm: <player.name>!~There you are!*I needed to ask you~a favor.*I have an acquaintance~called Mr. Pokémon*He keeps finding weird~things and raving about~his discoveries.*Anyway, I just got an~e-mail from him~saying that this~time it's real.*It is intriguing, but~we're busy with our~Pokémon research.*Could you look into~it for us?*I'll give you a~Pokémon for a partner.)
+    @player.turn(3)
+    @text.show(They're all rare~Pokémon that we~just found.~Go on. Pick one!)
+        :exit
+:endif
+
+:if:<register.exists(elm2)>=True
+    @register.remove(elm2)
+    @npc.turn(4,3)
+    @npc.move(4,2)
+    @npc.turn(4,0)
+    @npc.move(4,1)
+    @text.show(<player.name>, I want~you to have this~for your errand.)
+    @item.add(18,1)
+    @item.messagegive(18,1)
+    @text.show(There are only two~of us, so we're~always busy.)
+    @npc.turn(4,2)
+    @npc.move(4,1)
+    @npc.turn(4,1)
+    @npc.move(4,2)
+    @register.new(elm3)
+    @register.new(mom_adventure1)
+    @register.remove(mom_wait)
+        :exit
+:endif
+
+:if:<register.exists(elm5)>=True
+    @register.remove(elm5)
+    @npc.turn(4,3)
+    @npc.move(4,2)
+    @npc.turn(4,0)
+    @npc.move(4,1)
+    @text.show(<player.name>!*Use these on your~Pokédex quest!)
+    @item.add(5,5)
+    @item.messagegive(5,5)
+    @text.show(To add to your~Pokédex, you have~to catch Pokémon.*Throw Poké Balls~at wild Pokémon~to get them.)
+    @npc.turn(4,2)
+    @npc.move(4,1)
+    @npc.turn(4,1)
+    @npc.move(4,2)
+        :exit
+:endif
+
+:if:<register.exists(elm_police)>=True <and> <register.exists(elm4)>=False
+    @Camera.setposition(1,1,2.5)
+    @player.turnto(1)
+    @player.move(1)
+    @player.turnto(0)
+    @player.move(4)
+    @npc.turn(5,1)
+    @player.turn(3)
+    @text.show(I heard a Pokémon was~stolen here...*I was just getting some~information from Prof. Elm.*Apparently, it was~a young male with~long, red hair...*What?*You battled a~trainer like that?*Did you happen to~get his name?)
+    @rival.rename
+    @text.show(OK! So <rival.name>~was his name.*Thanks for helping~my investigation!)
+    @npc.turn(5,2)
+    @npc.move(5,8)
+    @npc.remove(5)
+    @Camera.reset
+    @npc.unregister(johto\newbark\elmlab.dat|5|position|5,0,2)
+    @register.new(elm4)
+    @register.remove(elm3)
+        :exit
+:endif
+
+:end

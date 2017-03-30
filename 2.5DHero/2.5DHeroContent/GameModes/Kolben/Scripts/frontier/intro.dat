@@ -1,0 +1,12 @@
+version=2
+:if:<register.exists(frontier_intro)>=false
+    @Player.move(4)
+    @Player.turnto(0)
+    @Player.move(1)
+    @Text.Show(Oh hello there newcomer!*Up ahead is the Battle Frontier,~you don't know what that is?!?!*Well, the rest of the~Frontier is under construction,*but the Battle Tower just got~finished!*It's a place where you~battle trainers,*and earn BP, with which you~can buy exclusive items.*You win BP by taking part in~these battles, and winning!*So, go ahead and contiue,~and good luck!)
+    @text.show(Oh yeah, the goal here~is to gather all the*Frontier Emblems by defeating~the Frontier Brains.*If you want to keep~track of them, use this~Pokégear expansion card to~view them.)
+    @register.new(pokegear_card_frontier)
+    @text.show(<player.name> received~the Frontier Card!)
+    @register.new(frontier_intro)
+:endif
+:end

@@ -1,0 +1,7 @@
+version=2
+@pokemon.cry(145)
+@battle.wild(145,50,-1,,12)
+@register.new(battlezapdos)
+@npc.unregister(kanto\routes\10.dat|3|position|2,0,10)
+@npc.remove(3)
+:end

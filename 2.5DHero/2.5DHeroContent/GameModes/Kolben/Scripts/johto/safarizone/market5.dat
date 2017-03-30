@@ -1,0 +1,28 @@
+version=2
+@text.show(Mail here,~Mail there,~Mail everywhere.*Hello there, do you~want to buy~some Stationeries?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:No
+        @text.show(OK then, cya later.)
+        :end
+    :when:Yes
+        :select:<datetime.dayofweek>
+            :when:Monday
+                @screen.trade({301|-1|-1}{303|-1|-1}{305|-1|-1}{307|-1|-1},1,1)
+            :when:Tuesday
+                @screen.trade({309|-1|-1}{311|-1|-1}{302|-1|-1}{304|-1|-1},1,1)
+            :when:Wednesday
+                @screen.trade({306|-1|-1}{308|-1|-1}{310|-1|-1}{301|-1|-1},1,1)
+            :when:Thursday
+                @screen.trade({302|-1|-1}{303|-1|-1}{304|-1|-1}{305|-1|-1},1,1)
+            :when:Friday
+                @screen.trade({306|-1|-1}{307|-1|-1}{308|-1|-1}{309|-1|-1},1,1)
+            :when:Saturday
+                @screen.trade({310|-1|-1}{311|-1|-1}{301|-1|-1}{303|-1|-1},1,1)
+            :when:Sunday
+                @screen.trade({305|-1|-1}{307|-1|-1}{309|-1|-1}{311|-1|-1},1,1)
+        :endselect
+        @text.show(Thank you.)
+        :end
+:endselect
+:end

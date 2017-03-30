@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|#503<storage.get(robotnum)>
+TrainerClass|Automaton
+Money|3250
+IntroMessage|Click*Creeeeeeak*WHIIIIIIIIIIIIIR
+OutroMessage|WHIIIIIiiiiiir.....
+DefeatMessage|It seems to have no power.
+TextureID|robot<storage.get(robotnumber)>
+Region|Kanto
+IniMusic|battle\intro\kanto\trainer
+DefeatMusic|battle\defeat\trainer
+BattleMusic|battle\main\kanto\trainer
+Pokemon1|338,51
+Pokemon2|346,53
+Pokemon3|348,53
+Pokemon4|344,52
+Pokemon5|302,51
+Pokemon6|526,54
+Items|
+Gender|0
+AI|3
+IntroSequence|Blue,Blue

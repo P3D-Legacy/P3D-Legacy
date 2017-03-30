@@ -1,0 +1,7 @@
+version=2
+@pokemon.cry(144)
+@battle.wild(144,50,-1,,12)
+@register.new(battlearticuno)
+@npc.register(kanto\seafoam\b4f.dat|0|remove|0)
+@npc.remove(0)
+:end

@@ -1,0 +1,7 @@
+version=2
+@pokemon.cry(198)
+@Text.show(Murkrow: The~password is...*HAIL GIOVANNI.)
+:if:<register.exists(passhail)>=false
+    @register.new(passhail)
+:endif
+:end

@@ -1,0 +1,12 @@
+version=2
+:if:<register.exists(apricorninstruction)>=True
+    @Text.show(Remember:~You can identify the~color of an apricorn just~by looking at the tree.)
+:else
+    @Text.show(Hi there, trainer!~I will teach you~some things about~Berries and Apricorns.*You can find Apricorns~everywhere!~Also, they are available~in 7 different colors.~They need 24 hours to grow.*You can find Berries~all over the region, too.~There's Loamy Soil to~plant them in.*Thanks for listening~to my instructions.~Here, I'll give you this~for your journey.)
+    @register.new(apricorninstruction)
+    @item.add(101,1)
+    @item.messagegive(101,1)
+    @item.add(2004,1)
+    @item.messagegive(2004,1)
+:endif
+:end

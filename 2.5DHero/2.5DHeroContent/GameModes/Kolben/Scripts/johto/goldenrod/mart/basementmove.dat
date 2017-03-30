@@ -1,0 +1,29 @@
+version=2
+:if:<register.exists(radio_director_rescue)>=true
+    @entity.remove(4)
+:endif
+
+:if:<register.exists(martbase1)>=false <and> <register.exists(martbase2)>=false <and> <register.exists(martbase3)>=false
+    @register.new(martbase1)
+    :end
+:endif
+
+:if:<register.exists(martbase1)>=true
+    @register.remove(martbase1)
+    @register.new(martbase2)
+    :end
+:endif
+
+:if:<register.exists(martbase2)>=true
+    @register.remove(martbase2)
+    @entity.warp(5,11,0,13)
+    @register.new(martbase3)
+    :end
+:endif
+
+:if:<register.exists(martbase3)>=true
+    @register.remove(martbase3)
+    @entity.warp(6,11,0,13)
+    @register.new(martbase1)
+    :end
+:endif

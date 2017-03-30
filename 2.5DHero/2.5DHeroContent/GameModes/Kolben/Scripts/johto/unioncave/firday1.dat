@@ -1,0 +1,7 @@
+version=2
+:if:<datetime.dayofweek>=Friday <and> <register.exists(Friday_Lapras)>=False
+    @player.Move(0)
+    @pokemon.cry(131)
+    @Text.show(A mysterious cry~echoed up from~the depths.*I wonder what~it could be?)
+:endif
+:end

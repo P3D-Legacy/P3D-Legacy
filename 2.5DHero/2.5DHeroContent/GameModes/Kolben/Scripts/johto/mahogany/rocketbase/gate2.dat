@@ -1,0 +1,12 @@
+version=2
+:if:<register.exists(passSPT)>=True <and> <register.exists(passRatT)>=True
+    @Text.show(The door's closed...*<player.name> entered~the two passwords.*The door opened!)
+    @sound.play(shutter)
+    @register.new(gate2open)
+    @Entity.Warp(9,0,-1,0)
+    @Entity.Warp(10,0,-1,0)
+    :end
+:endif
+
+@Text.show(The door's closed...*It needs two~passwords to open.)
+:end

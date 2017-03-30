@@ -1,0 +1,29 @@
+version=2
+:if:<register.exists(rival_encounter_ecruteak)>=False
+    @music.play(encounter\rival)
+    @player.move(1)
+    @npc.turn(2,3)
+    @npc.move(2,1)
+    @text.show(...... ...... ......*...Oh, it's you.*I came looking for~some legendary*Pokémon that they~say roosts here.*But there's nothing here!*Nothing after all~the trouble of*coming to this dump? No way!*It's all your~fault!)
+    :if:<register.exists(starter1)>=True
+        @battle.trainer(rival\2\fire)
+    :endif
+    :if:<register.exists(starter2)>=True
+        @battle.trainer(rival\2\water)
+    :endif
+    :if:<register.exists(starter3)>=True
+        @battle.trainer(rival\2\grass)
+    :endif
+    @music.play(encounter\rival)
+    @register.new(rival_encounter_ecruteak)
+    @text.show(...Aw whatever.*You would never be~able to catch a*legendary Pokémon~anyway.)
+    @NPC.register(johto\ecruteak\burnedtower\1f.dat|2|position|6,-2,9)
+    @Player.Warp(johto\ecruteak\burnedtower\b1f.dat,10,3.1,9,0)
+    @Level.Update
+    @player.setmovement(0,-2,0)
+    @player.move(1)
+    @player.resetmovement
+    @sound.play(destroy)
+    @text.show(Humph!*What are you doing~falling into a*hole? Some genius~you are!*Serves you right!)
+:endif
+:end

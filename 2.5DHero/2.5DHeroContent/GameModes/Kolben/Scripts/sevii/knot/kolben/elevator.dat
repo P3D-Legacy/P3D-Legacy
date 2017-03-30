@@ -1,0 +1,45 @@
+version=2
+@player.move(0)
+@player.move(1)
+@player.turnto(2)
+@text.show(Which floor would~you like to go to?)
+@Options.show(1 - Pkmn Center,2 - Lounge,3 - Staff Offices,4 - Dev. Offices)
+:select:<options.result>
+    :when:1 - Pkmn Center
+        @text.show(...)
+        @player.move(1)
+        @player.warp(sevii\kolben\center.dat,12,0.1,-1,0)
+        @level.update
+        @player.move(1)
+        :end
+    :when:2 - Lounge
+        @text.show(...)
+        @player.move(1)
+        @player.warp(sevii\kolben\lounge.dat,9,0.1,-1,0)
+        @level.update
+        @player.move(1)
+        :end
+    :when:3 - Staff Offices
+        @text.show(...)
+        @player.move(1)
+        @player.warp(sevii\kolben\servers.dat,9,0.1,-1,0)
+        @level.update
+        @player.move(1)
+        :end
+    :when:4 - Dev. Offices
+        @text.show(...)
+        @player.move(1)
+        @player.warp(sevii\kolben\devoffices.dat,9,0.1,-1,0)
+        @level.update
+        @player.move(1)
+        :end
+    :when:5 - Penthouse
+        @text.show(...)
+        @player.move(1)
+        @player.warp(sevii\kolben\center.dat,12,0.1,-1,0)
+        @level.update
+        @player.move(1)
+        :end
+:endselect
+:end
+    

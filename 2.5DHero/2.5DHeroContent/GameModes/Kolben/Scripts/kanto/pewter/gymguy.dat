@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(boulderbadge_obtain)>=False
+    @Text.show(Yo!~Champ in making!*You're really rocking.*Are you battling the~Gym Leaders of Kanto?*They are strong and dedicated~people, just like Johto's~Gym Leaders.)
+:else
+    @Text.show(Yo!~Champ in making!*That Gym didn't give~you much trouble.*The way you took charge~was really inspiring.*I mean that seriously.)
+:endif
+:end

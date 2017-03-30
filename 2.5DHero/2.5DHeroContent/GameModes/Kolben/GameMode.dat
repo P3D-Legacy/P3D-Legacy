@@ -1,0 +1,57 @@
+{
+    "Name":"Pokemon 3D",
+    "Description":"The normal GameMode",
+    "Version":"0.54",
+    "Author":"Kolben Games",
+    "MapPath":"Maps\\",
+    "ScriptPath":"Scripts\\",
+    "PokeFilePath":"Poke\\",
+    "ContentPath":"Content\\",
+    "DataPath":"Data\\",
+    "StartConfiguration":{
+        "Map":"newgame\\intro0.dat",
+        "Script":"newgame\\intro.dat"
+    },
+    "Gamerules":[
+        {
+            "Name":"MaxLevel",
+            "Value":"100"
+        },
+        {
+            "Name":"OnlyCaptureFirst",
+            "Value":"0"
+        },
+        {
+            "Name":"ForceRename",
+            "Value":"0"
+        },
+        {
+            "Name":"DeathInsteadOfFaint",
+            "Value":"0"
+        },
+        {
+            "Name":"CanUseHealItems",
+            "Value":"1"
+        },
+        {
+            "Name":"Difficulty",
+            "Value":"0"
+        },
+        {
+            "Name":"LockDifficulty",
+            "Value":"0"
+        },
+        {
+            "Name":"GameOverAt0Pokemon",
+            "Value":"0"
+        },
+        {
+            "Name":"CanGetAchievements",
+            "Value":"1"
+        },
+        {
+            "Name":"ShowFollowPokemon",
+            "Value":"1"
+        }
+    ]
+}

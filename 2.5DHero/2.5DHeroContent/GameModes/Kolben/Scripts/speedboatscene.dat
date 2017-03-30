@@ -1,0 +1,39 @@
+version=2
+
+#This is the script that controls the animation of the speed boat in the transition scene:
+
+@player.warp(shared\speedboatscene.dat,0,-2,0)
+@level.update
+
+@entity.warp(0,0,-0.5,0)
+@camera.activatethirdperson
+@camera.setfocus(entity,0)
+@camera.reset
+@camera.setposition(0,7.1,9.3)
+@camera.setpitch(-0.7)
+@camera.update
+
+#This controls the current fading state of the screen:
+@storage.set(c_fade,255)
+
+:while:<entity.positionx(0)><120
+    @entity.addtoposition(0,0.3,0,0)
+    @camera.setyaw(<camera.yaw>+0.015)
+    @camera.setposition(0,7.1,9.3)
+    @level.update
+    :if:<entity.positionx(0)>>92
+        @storage.update(int,c_fade,+,3)
+        @screen.setfade(<storage.get(c_fade)>)
+    :else
+        :if:<storage.get(c_fade)>>0
+            @storage.update(int,c_fade,-,3)
+            @screen.setfade(<storage.get(c_fade)>)
+        :endif
+    :endif
+:endwhile
+
+@screen.setfade(255)
+@camera.setfocustype(player)
+@camera.reset
+@camera.setpitch(0)
+:end

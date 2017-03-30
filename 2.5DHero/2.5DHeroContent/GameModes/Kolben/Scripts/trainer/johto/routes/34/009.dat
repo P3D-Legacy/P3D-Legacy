@@ -1,0 +1,8 @@
+version=2
+@battle.starttrainer(johto\routes\34\009)
+:if:<register.exists(r34_softsand)>=False
+    @register.new(r34_softsand)
+    @item.add(76,1)
+    @item.messagegive(76,1)
+:endif
+:end

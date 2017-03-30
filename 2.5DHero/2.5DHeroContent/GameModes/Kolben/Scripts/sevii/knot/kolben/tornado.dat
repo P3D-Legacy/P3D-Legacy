@@ -1,0 +1,31 @@
+version=2
+    :if:<register.exists(tornadobattle)>=False
+        @text.show(Hi there!~You may be wondering...~why is there a Pokémon~on the website staff?*Well...~I'm no ordinary Pokémon.*Want to see something~rather barbaric?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:No
+                @text.show(Well I'll see you on~the website then.)
+                :end
+            :when:Yes
+                @text.show(Then here's a sneak~peak at what my forum~league team will be!)
+                @battle.setvar(canblackout,false)
+                
+                :if:<register.exists(nationaldex)>=false
+                    @battle.trainer(sevii\kolben\Tornado)
+                :else
+                    @battle.trainer(sevii\kolben\Tornado2)
+                :endif
+
+                :if:<battle.won>=true
+                    @text.show(I suppose I don't~really live up to what~my species is known for?*I'm not exactly a~competitive battler,~as you can see.)
+                :else
+                    @text.show(Huh.*I guess I do live~up to what my~species does best.)
+                :endif
+
+                @pokemon.heal
+                @register.newtime(tornadobattle,1,day)
+        :endselect
+    :else
+        @text.show(I'm not exactly a~competitive battler,~as you can see.)
+    :endif
+:end

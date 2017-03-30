@@ -1,0 +1,42 @@
+version=2
+:if:<register.exists(battle_hooh_tintower)>=false
+    @storage.set(playerskin,<player.skin>)
+    @storage.set(boolean,thirdperson,<camera.thirdperson>)
+
+    @pokemon.cry(250)
+
+    @player.wearskin([Pokémon|N]250)
+    @player.warp(4,10,-20)
+
+    @camera.activatethirdperson
+
+    @player.turnto(2)
+    @player.move(24)
+
+    @player.setmovement(0,-1,0)
+
+    @player.move(10)
+
+    @player.setmovement(0,0,0)
+
+    @pokemon.cry(250)
+    @level.wait(50)
+
+    :if:<storage.get(boolean,thirdperson)>=false
+        @camera.deactivatethirdperson
+    :endif
+    @camera.reset
+
+    @player.wearskin(<storage.get(playerskin)>)
+    @player.warp(4,0.1,9)
+
+    @npc.warp(0,4,0.45,4)
+
+    @player.turnto(0)
+
+    @pokemon.cry(250)
+
+    @npc.register(johto\ecruteak\tintower\10f.dat|0|position|4,0.45,4)
+    @register.new(battle_hooh_tintower)
+:endif
+:end

@@ -1,0 +1,7 @@
+version=2
+:if:<player.position>=18,0,9 <and> <register.exists(visitleaguefromkanto)>=false
+@npc.remove(2)
+@npc.register(shared\indigo\gate.dat|2|remove|0)
+@register.new(visitleaguefromkanto)
+:endif
+:end

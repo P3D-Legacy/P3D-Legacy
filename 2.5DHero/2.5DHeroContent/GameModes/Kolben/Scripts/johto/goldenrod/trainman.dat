@@ -1,0 +1,83 @@
+version=2
+#matrix
+:if:<player.hasbadge(9)>=true
+    @Text.show(Welcome to the Magnet Train.~Can you tell me where you~want to go?)
+    @options.show(Berry Vista,Saffron City,Twirl Forest,Back)
+    :select:<options.result>
+        :when:Berry Vista
+            @text.show(OK. Right this~way, sir.)
+            @npc.turn(0,0)
+            @npc.move(0,2)
+            @npc.turn(0,3)
+            @npc.move(0,1)
+            @npc.turn(0,1)
+            @player.move(3)
+            @player.turnto(1)
+            @player.move(3)
+            @player.turnto(0)
+            @player.move(1)
+            @screen.fadeout
+            @level.wait(30)
+            @player.warp(johto\berryvista\main.dat,11,3.1,3,2)
+            @level.update
+            @npc.warp(0,12,3,3)
+            @npc.turn(0,1)
+            @screen.fadein
+            @level.wait(20)
+            @player.turnto(1)
+            @player.move(2)
+            @player.turnto(2)
+            @player.move(2)
+            @player.turnto(0)
+            @npc.move(0,3)
+            @npc.turn(0,2)
+            @npc.move(0,1)
+        :when:Twirl Forest
+            :if:<player.badges>>4
+                @text.show(OK. Right this~way, sir.)
+                @npc.turn(0,0)
+                @npc.move(0,2)
+                @npc.turn(0,3)
+                @npc.move(0,1)
+                @npc.turn(0,1)
+                @player.move(3)
+                @player.turnto(1)
+                @player.move(3)
+                @player.turnto(0)
+                @player.move(1)
+                @screen.fadeout
+                @level.wait(30)
+                @player.warp(johto\twirlforest\main.dat,11,1.1,3,2)
+                @level.update
+                @npc.warp(0,12,1,3)
+                @npc.turn(0,1)
+                @screen.fadein
+                @level.wait(20)
+                @player.turnto(1)
+                @player.move(2)
+                @player.turnto(2)
+                @player.move(2)
+                @player.turnto(0)
+                @npc.move(0,3)
+                @npc.turn(0,2)
+                @npc.move(0,1)
+            :else
+                @text.show(Sorry. You need~to have at least*5 badges to go to the~Twirl Forest. It's a very~dangerous place.)
+                :end
+            :endif
+        :when:Saffron City
+            :if:<item.count(134)>>0
+                @script.start(johto\goldenrod\trainsaffron)
+            :else
+                @text.show(Sorry. You don't~have a Rail Pass.*We hope to see you~again!)
+            :endif
+        :when:Back
+            @text.show(We hope to see you~again!)
+    :endselect
+    :end
+:else
+    @text.show(The train doesn't work~due to technical issues.*I know! I'll carry~the passengers on my back!*That won't work.)
+    :end
+:endif
+
+:end

@@ -1,0 +1,199 @@
+[
+    {   "Mapfile": "johto\\newbark\\main.dat",
+        "Offset": {
+            "X": 13,
+            "Y": 2,
+            "Z": 14
+        }
+    },
+    {   "Mapfile": "johto\\cherrygrove\\main.dat",
+        "Offset": {
+            "X": 23,
+            "Y": 2,
+            "Z": 10
+        }
+    },
+    {   "Mapfile": "johto\\violet\\main.dat",
+        "Offset": {
+            "X": 24,
+            "Y": 2,
+            "Z": 14
+        }
+    },
+    {   "Mapfile": "johto\\azalea\\main.dat",
+        "Offset": {
+            "X": 23,
+            "Y": 2,
+            "Z": 12
+        }
+    },
+    {   "Mapfile": "johto\\goldenrod\\main.dat",
+        "Offset": {
+            "X": 19,
+            "Y": 2,
+            "Z": 18
+        }
+    },
+    {   "Mapfile": "johto\\ecruteak\\main.dat",
+        "Offset": {
+            "X": 19,
+            "Y": 2,
+            "Z": 23
+        }
+    },
+    {   "Mapfile": "johto\\olivine\\main.dat",
+        "Offset": {
+            "X": 14,
+            "Y": 2,
+            "Z": 28
+        }
+    },
+    {   "Mapfile": "johto\\cianwood\\main.dat",
+        "Offset": {
+            "X": 18,
+            "Y": 2,
+            "Z": 45
+        }
+    },
+    {   "Mapfile": "johto\\safarizone\\main.dat",
+        "Offset": {
+            "X": 11,
+            "Y": 2,
+            "Z": 11
+        }
+    },
+    {   "Mapfile": "johto\\mahogany\\main.dat",
+        "Offset": {
+            "X": 12,
+            "Y": 2,
+            "Z": 15
+        }
+    },
+    {   "Mapfile": "johto\\blackthorn\\main.dat",
+        "Offset": {
+            "X": 18,
+            "Y": 2,
+            "Z": 22
+        }
+    },
+    {   "Mapfile": "shared\\indigo\\outside.dat",
+        "Offset": {
+            "X": 1,
+            "Y": 4,
+            "Z": -20
+        }
+    },
+    {   "Mapfile": "kanto\\vermilion\\main.dat",
+        "Offset": {
+            "X": 17,
+            "Y": 2,
+            "Z": 23
+        }
+    },
+    {   "Mapfile": "kanto\\cerulean\\main.dat",
+        "Offset": {
+            "X": 17,
+            "Y": 2,
+            "Z": 25
+        }
+    },
+    {   "Mapfile": "kanto\\lavender\\main.dat",
+        "Offset": {
+            "X": 9,
+            "Y": 2,
+            "Z": 11
+        }
+    },
+    {   "Mapfile": "kanto\\pewter\\main.dat",
+        "Offset": {
+            "X": 18,
+            "Y": 2,
+            "Z": 23
+        }
+    },
+    {   "Mapfile": "kanto\\viridian\\main.dat",
+        "Offset": {
+            "X": 20,
+            "Y": 2,
+            "Z": 20
+        }
+    },
+    {   "Mapfile": "sevii\\floe\\main.dat",
+        "Offset": {
+            "X": 23,
+            "Y": 2,
+            "Z": 24
+        }
+    },
+    {   "Mapfile": "kanto\\saffron\\main.dat",
+        "Offset": {
+            "X": 18,
+            "Y": 3,
+            "Z": 28
+        }
+    },
+    {   "Mapfile": "kanto\\celadon\\main.dat",
+        "Offset": {
+            "X": 11,
+            "Y": 2,
+            "Z": 22
+        }
+    },
+    {   "Mapfile": "kanto\\fuchsia\\main.dat",
+        "Offset": {
+            "X": 12,
+            "Y": 2,
+            "Z": 30
+        }
+    },
+    {   "Mapfile": "sevii\\knot\\main.dat",
+        "Offset": {
+            "X": 16,
+            "Y": 2,
+            "Z": 16
+        }
+    },
+    {   "Mapfile": "sevii\\boon\\main.dat",
+        "Offset": {
+            "X": 18,
+            "Y": 2,
+            "Z": 12
+        }
+    },
+    {   "Mapfile": "sevii\\kin\\main.dat",
+        "Offset": {
+            "X": 11,
+            "Y": 2,
+            "Z": 31
+        }
+    },
+    {   "Mapfile": "kanto\\cinnabar\\main.dat",
+        "Offset": {
+            "X": 8,
+            "Y": 2,
+            "Z": 17
+        }
+    },
+    {   "Mapfile": "kanto\\pallet\\main.dat",
+        "Offset": {
+            "X": 8,
+            "Y": 2,
+            "Z": 17
+        }
+    },
+    {   "Mapfile": "sevii\\chrono\\main.dat",
+        "Offset": {
+            "X": 11,
+            "Y": 2,
+            "Z": 15
+        }
+    },
+    {   "Mapfile": "sevii\\fortune\\main.dat",
+        "Offset": {
+            "X": 11,
+            "Y": 2,
+            "Z": 15
+        }
+    }
+
+]

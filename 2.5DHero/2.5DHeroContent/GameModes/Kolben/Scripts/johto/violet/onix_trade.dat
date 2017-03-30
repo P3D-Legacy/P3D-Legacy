@@ -1,0 +1,23 @@
+version=2
+:if:<register.exists(violet_onix_trade)>=True
+    @Text.show(Yay! I got myself~Bellsprout!*Thanks!)
+:else
+    @Text.show(I collect Pokémon.~Do you have~Bellsprout?*Want to trade it~for my Onix?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @pokemon.select
+            :if:<pokemon.number(<pokemon.selected>)>=69
+                @script.start(npctrade.dat,95,,0,08276,2006,Kyle,Rocky,5,Unioncave,caught at)
+                @text.show(OK, connecting...*...*Wow! Thank you!~I always wanted~Onix!)
+                @sound.play(success_small)
+                @text.show(<player.name> traded~Rocky for Onix!)
+                @register.new(violet_onix_trade)
+            :else
+                @Text.show(You don't want to~trade? Aww...)
+            :endif
+        :when:No
+            @Text.show(You don't want to~trade? Aww...)
+    :endselect
+:endif
+:end

@@ -1,0 +1,17 @@
+version=2
+:if:<daycare.haspokemon(2)>=true
+    :if:<daycare.hasegg(2)>=true
+        @npc.warp(0,11,1,9)
+    :endif
+
+    :if:<daycare.countpokemon(2)>>0 <and> <daycare.pokemonid(2,0)>>0
+    @npc.wearskin(4,[Pokémon|<daycare.shinyindicator(2,0)>]<daycare.pokemonid(2,0)>)
+    @npc.warp(4,11,1,3)
+    :endif
+
+    :if:<daycare.countpokemon(2)>>1 <and> <daycare.pokemonid(2,1)>>0
+    @npc.wearskin(5,[Pokémon|<daycare.shinyindicator(2,1)>]<daycare.pokemonid(2,1)>)
+    @npc.warp(5,14,1,4)
+    :endif
+:endif
+:end

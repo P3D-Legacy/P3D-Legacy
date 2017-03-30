@@ -1,0 +1,12 @@
+version=2
+:if:<register.exists(elmcallblackthorn)>=False <and> <register.exists(risingbadge_obtain)>=True
+    @player.move(0)
+    @Text.Show(Pokégear: Prof. Elm~Receiving call.......)
+    @Text.show(Hello, <player.name>?*I have something~here for you.*Could you swing by my Lab?*See you later!)
+    @register.new(elmcallblackthorn)
+:endif
+
+:if:<player.hasbadge(9)>=true <and> <datetime.dayofweek>=saturday
+    @npc.warp(6,22,0,20)
+:endif
+:end

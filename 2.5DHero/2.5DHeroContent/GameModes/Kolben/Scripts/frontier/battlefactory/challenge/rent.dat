@@ -1,0 +1,107 @@
+version=2
+@text.show(Now, you can prepare~for the next battle.*Would you like to~rent new Pokémon?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @storage.set(factory_storep1,<pokemon.data(0)>)
+        @storage.set(factory_storep2,<pokemon.data(1)>)
+        @storage.set(factory_storep3,<pokemon.data(2)>)
+
+        @storage.set(boolean,rented_1,false)
+        @storage.set(boolean,rented_2,false)
+        @storage.set(boolean,rented_3,false)
+
+        @pokemon.clear
+        @pokemon.add(<pokemon.generatefrontier(<storage.get(factory_level)>,<storage.get(factory_class)>)>)
+        @pokemon.add(<pokemon.generatefrontier(<storage.get(factory_level)>,<storage.get(factory_class)>)>)
+        @pokemon.add(<pokemon.generatefrontier(<storage.get(factory_level)>,<storage.get(factory_class)>)>)
+
+        @pokemon.select(1)
+
+        :if:<pokemon.selected>>-1
+            @storage.set(factory_add1,<pokemon.data(<pokemon.selected>)>)
+            @pokemon.cry(<pokemon.number(<pokemon.selected>)>)
+            @pokemon.remove(<pokemon.selected>)
+            @storage.set(boolean,rented_1,true)
+
+            @text.show(Do you want to rent~another one?)
+            @options.show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @pokemon.select(1)
+                
+                    :if:<pokemon.selected>>-1
+                        @storage.set(factory_add2,<pokemon.data(<pokemon.selected>)>)
+                        @pokemon.cry(<pokemon.number(<pokemon.selected>)>)
+                        @pokemon.remove(<pokemon.selected>)
+                        @storage.set(boolean,rented_2,true)
+
+                        @text.show(Do you want to rent~the last one?)
+                        @options.show(Yes,No)
+                        :select:<options.result>
+                            :when:Yes
+                                @pokemon.select(1)
+                        
+                                :if:<pokemon.selected>>-1
+                                    @storage.set(factory_add3,<pokemon.data(<pokemon.selected>)>)
+                                    @pokemon.cry(<pokemon.number(<pokemon.selected>)>)
+                                    @pokemon.remove(<pokemon.selected>)
+                                    @storage.set(boolean,rented_3,true)
+                                :endif
+                        :endselect
+                    :endif
+            :endselect
+        :endif
+
+        @pokemon.clear
+        @pokemon.add(<storage.get(factory_storep1)>)
+        @pokemon.add(<storage.get(factory_storep2)>)
+        @pokemon.add(<storage.get(factory_storep3)>)
+
+        :if:<storage.get(boolean,rented_1)>=true
+            @pokemon.add(<storage.get(factory_add1)>)
+        :endif
+        :if:<storage.get(boolean,rented_2)>=true
+            @pokemon.add(<storage.get(factory_add2)>)
+        :endif
+        :if:<storage.get(boolean,rented_3)>=true
+            @pokemon.add(<storage.get(factory_add3)>)
+        :endif
+        :if:<pokemon.count>>3
+            @text.show(You need to remove <math.int(<pokemon.count>-3)>~Pokémon from your party~in order to continue.)
+            @pokemon.select
+            @pokemon.remove(<pokemon.selected>)
+            :if:<pokemon.count>>3
+                @pokemon.select
+                @pokemon.remove(<pokemon.selected>)
+            :endif
+            :if:<pokemon.count>>3
+                @pokemon.select
+                @pokemon.remove(<pokemon.selected>)
+            :endif
+        :endif
+        
+        @text.show(You may also heal~one of your Pokémon.*Do you want to heal~one Pokémon?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @pokemon.select(1)
+                :if:<pokemon.selected>>-1
+                    @pokemon.heal(<pokemon.selected>)
+                    @sound.play(single_heal)
+                :endif
+        :endselect
+
+    :when:No
+        @text.show(You may heal~one of your Pokémon.*Do you want to heal~one Pokémon?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @pokemon.select(1)
+                :if:<pokemon.selected>>-1
+                    @pokemon.heal(<pokemon.selected>)
+                    @sound.play(single_heal)
+                :endif
+        :endselect
+:endselect
+:end

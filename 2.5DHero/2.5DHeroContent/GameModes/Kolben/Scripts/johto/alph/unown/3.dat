@@ -1,0 +1,7 @@
+version=2
+@Pokemon.Cry(201)
+@NPC.unregister(johto\alph\2.dat|3|position|10,0,28)
+@NPC.Warp(3,10,-2,28)
+@register.new(alph_defeat_unown3)
+@Battle.Wild(201,40)
+:end

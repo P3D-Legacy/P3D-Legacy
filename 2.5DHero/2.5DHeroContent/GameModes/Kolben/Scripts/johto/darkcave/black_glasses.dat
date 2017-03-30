@@ -1,0 +1,11 @@
+version=2
+:if:<register.exists(got_blackglasses)>=false
+    @Text.Show(Whoa! You startled~me there!*I had my Black~Glasses on, so I*didn't notice you~at all.*What am I doing~here?*Hey, don't you~worry about it.*I'll give you a~pair of Black~Glasses, so forget~you saw me, OK?)
+    @item.add(102,1)
+    @Item.MessageGive(102,1)
+    @register.new(got_blackglasses)
+:else
+    @Text.Show(Black Glasses ups~the power of dark-type~moves.)
+:endif
+
+:end

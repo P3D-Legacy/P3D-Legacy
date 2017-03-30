@@ -1,0 +1,15 @@
+version=2
+@text.show(This is an info board~about the Battle Factory.*What do you want~to know about?)
+@options.show(Renting,Modes,Requirements,Canceling,Close)
+:select:<options.result>
+    :when:Renting
+        @text.show(After each battle,~you can pick up to~3 random Pokémon~to rent from the Factory.*You have to remove~the same amount of~Pokémon from your team.*Afterwards, you can also~heal one of your Pokémon.*When you start a challenge,~you get 3 rented Pokémon~by default.)
+    :when:Modes
+        @text.show(There are two modes~in the Battle Facory:*Challenge Mode and~Endless Mode.*In Challenge Mode, you are~going to face off against~7 trainers in a row.*In Endless Mode,~you fight until you~get defeated.*The Challenge Mode is on~the right counter and~the Endless Mode on~the left one.)
+    :when:Requirements
+        @text.show(Since you get rented~Pokémon in the Battle Factory,*you need to have just~one Pokémon in your party~which will be stored~while you face the challenge.)
+    :when:Canceling
+        @text.show(When you cancel a~challenge, it interrupts~your current streak.*It doesn't clear streaks~you accomplished before~and it doesn't count as~loss.)
+    :when:Close
+:endselect
+:end

@@ -1,0 +1,5 @@
+version=2
+:if:<register.exists(get_egg_mrpokemon)>=False
+    @Script.start(johto\routes\30\mrpokemon)
+:endif
+:end

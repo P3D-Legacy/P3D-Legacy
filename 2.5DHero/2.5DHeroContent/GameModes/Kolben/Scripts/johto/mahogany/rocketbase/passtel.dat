@@ -1,0 +1,26 @@
+version=2
+:if:<register.exists(gate2open)>=True
+    @Entity.remove(9)
+    @Entity.remove(10)
+    :end
+:endif
+
+
+:if:<register.exists(passtell)>=False
+    @player.Move(0)
+    @Player.turnto(0)
+    @npc.Move(0,1)
+    @Text.show(Lance: It takes~two passwords to~get into the~Boss's quarters.*Those passwords~are known only to~a few Rockets.*That Rocket there~very graciously~told me so.*<player.name>, let's go~get the passwords.)
+    @npc.Turn(0,1)
+    @npc.move(0,1)
+    @player.turnto(1)
+    @npc.Move(0,8)
+    @npc.Turn(0,0)
+    @npc.Move(0,3)
+    @npc.Warp(0,0,-1,0)
+    @NPC.Register(johto\mahogany\rocketbase\2.dat|0|position|0,-1,0)
+    @register.new(passtell)
+    :end
+:endif
+
+:end

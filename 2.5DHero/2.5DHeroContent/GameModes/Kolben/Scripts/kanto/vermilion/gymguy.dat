@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(thunderbadge_obtain)>=False
+    @Text.show(Yo! Champ in~making!*Lt. Surge is very cautious.*He has traps set~all over the Gym.*You need to find~two switches to turn~off the electricity.*The second switch should~be right by the first.*But be careful,~looking in the wrong spot~will reset the other switch!)
+:else
+    @Text.show(Whew!~That was an electrifying bout!*It sure made me nervous.)
+:endif
+:end

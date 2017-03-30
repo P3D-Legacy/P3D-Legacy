@@ -1,0 +1,47 @@
+version=2
+:if:<storage.get(previous_streak)>=35
+    @text.show(Dein Name ist also~<player.name>.*That's a cool name, indeed.~You've prooven your skills~in the last 35 battles, so~I will award you with*the Silver Ability Emblem.)
+    @player.achieveemblem(silver ability)
+    @register.new(tower_silver)
+    @text.show(<player.name> received~the Silver Ability Emblem!)
+    @text.show(I hope that we~will meet again!.*Until then,~goodbye.)
+:else
+    @text.show(Dein Team ist großartig!~I didn't expect you to~win again, but you truly*showed your strength and dedication.~Now, I usually don't do~this, but here, have the~Golden Ability Emblem.)
+    @player.achieveemblem(gold ability)
+    @register.new(tower_gold)
+    @text.show(<player.name> received~the Golden Ability Emblem!)
+    @text.show(I wish you luck~on your journey,~<player.name>.)
+:endif
+
+@screen.fadeout
+@Player.warp(frontier\battletower\main.dat,10,0.1,4,0)
+@camera.reset
+@level.update
+@screen.fadein
+@player.turnto(0)
+
+:if:<storage.get(boolean,thirdperson)>=true
+    @camera.activatethirdperson
+:endif
+
+@player.addbp(5)
+@text.show(<player.name> got 5 BP!*You now have <player.bp> BP.)
+
+:if:<storage.get(previous_streak)>><register.value(battletower_challenge_<storage.get(tower_level)>_previous_streak)>
+    @register.change(battletower_challenge_<storage.get(tower_level)>_best,<storage.get(previous_streak)>)
+    @text.show(Congratulations!~You beat your high score.*Your new high score is~<storage.get(previous_streak)> win(s).)
+:endif
+
+@pokemon.changelevel(0,<storage.get(level_0)>)
+@pokemon.changelevel(1,<storage.get(level_1)>)
+@pokemon.changelevel(2,<storage.get(level_2)>)
+
+@pokemon.calcstats(0)
+@pokemon.calcstats(1)
+@pokemon.calcstats(2)
+
+@pokemon.heal
+
+@text.show(...~........*All done! Please come~see us again!)
+@storage.clear
+:end

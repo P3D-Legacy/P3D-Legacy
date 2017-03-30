@@ -1,0 +1,16 @@
+version=2
+:if:<datetime.dayofweek>!wednesday
+    @Text.Show(We're not open today.)
+    :end
+:endif
+
+@Text.Show(Welcome!~I run the HERB SHOP!*I sell herbs to cure~Pokémon's illnesses.*Do you want to~buy some?)
+@Options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @screen.trade({121|-1|-1}{122|-1|-1}{123|-1|-1}{124|-1|-1},true,true)
+    :when:No
+        @Text.Show(Is that right?~That's a shame...)
+:endselect
+
+:end

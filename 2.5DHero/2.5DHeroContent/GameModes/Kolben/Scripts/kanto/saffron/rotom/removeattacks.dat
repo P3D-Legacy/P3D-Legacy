@@ -1,0 +1,25 @@
+version=2
+:if:<pokemon.countattacks(0)>>0
+    :if:<pokemon.attackname(0,0)>=Leaf Storm <or> <pokemon.attackname(0,0)>=Overheat <or> <pokemon.attackname(0,0)>=Hydro Pump <or> <pokemon.attackname(0,0)>=Blizzard <or> <pokemon.attackname(0,0)>=Air Slash
+        @pokemon.removeattack(0,0)
+    :endif
+:endif
+:if:<pokemon.countattacks(0)>>1
+    :if:<pokemon.attackname(0,1)>=Leaf Storm <or> <pokemon.attackname(0,1)>=Overheat <or> <pokemon.attackname(0,1)>=Hydro Pump <or> <pokemon.attackname(0,1)>=Blizzard <or> <pokemon.attackname(0,1)>=Air Slash
+        @pokemon.removeattack(0,1)
+    :endif
+:endif
+:if:<pokemon.countattacks(0)>>2
+    :if:<pokemon.attackname(0,2)>=Leaf Storm <or> <pokemon.attackname(0,2)>=Overheat <or> <pokemon.attackname(0,2)>=Hydro Pump <or> <pokemon.attackname(0,2)>=Blizzard <or> <pokemon.attackname(0,2)>=Air Slash
+        @pokemon.removeattack(0,2)
+    :endif
+:endif
+:if:<pokemon.countattacks(0)>>3
+    :if:<pokemon.attackname(0,3)>=Leaf Storm <or> <pokemon.attackname(0,3)>=Overheat <or> <pokemon.attackname(0,3)>=Hydro Pump <or> <pokemon.attackname(0,3)>=Blizzard <or> <pokemon.attackname(0,3)>=Air Slash
+        @pokemon.removeattack(0,3)
+    :endif
+:endif
+:if:<pokemon.countattacks(0)<4
+    @pokemon.addattack(0,84)
+:endif
+:end

@@ -1,0 +1,135 @@
+version=2
+:if:<register.exists(oldguide)>=true
+    :if:<register.exists(cherrygrove_oldguide_runningshoes)>=false
+        @register.new(cherrygrove_oldguide_runningshoes)
+        @text.show(I have a little gift~for you because you*listened to my instructions.)
+        @item.add(78,1)
+        @item.messagegive(78,1)
+        @text.show(Those are Running Shoes.~I will read out the~manual:*"Hold SHIFT to run.~Go out and explore*the world."~I hope those are usefull~for you. I don't need~them anymore.)
+    :else
+        @text.show(When I was a wee~lad, I was a hot-~shot trainer!*Here's a word of~advice: Catch lots~of Pokémon!*Treat them all~with kindness!)
+    :endif
+:else
+    @text.show(You're a rookie~trainer aren't you?~I can tell!*That's OK!~Everyone is a rookie~at some point!*If you'd like,~I can teach you a~few things.)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+        @music.play(event\showmearound)
+            @text.show(OK, then!~Follow me!)
+            :select:<player.position>
+                :when:34,0,9
+                    @npc.turn(2,1)
+                    @npc.move(2,1)
+                    @player.move(1)
+                    @player.turnto(1)
+                :when:33,0,8
+                    @npc.turn(2,1)
+                    @npc.move(2,1)
+                    @player.move(1)
+                    @player.turnto(1)
+                :when:35,0,8
+                    @npc.turn(2,1)
+                    @npc.move(2,1)
+                    @player.move(1)
+            :endselect
+            @npc.turn(2,0)
+            @npc.moveasync(2,1)
+            @player.move(1)
+            @player.turnto(0)
+            @npc.turn(2,1)
+            @npc.moveasync(2,1)
+            @player.move(1)
+            @player.turnto(1)
+            @npc.moveasync(2,1)
+            @player.move(1)
+            @npc.turn(2,0)
+            @player.turnto(0)
+
+            @text.show(This is a~Pokémon Center.*They heal your~Pokémon in no time~at all.*You'll be relying~on them a lot, so~you better learn~about them.)
+
+            @npc.turn(2,1)
+            @player.turnto(1)
+            @npc.moveasync(2,6)
+            @player.move(6)
+            @npc.turn(2,0)
+            @player.turnto(0)
+
+            @text.show(This is a~Pokémon Mart.~They sell Balls for~catching wild Pokémon~and other useful items.)
+
+            @npc.turn(2,1)
+            @player.turnto(1)
+            @npc.moveasync(2,7)
+            @player.move(7)
+            @npc.turn(2,0)
+            @player.turnto(0)
+
+            @text.show(Route 30 is out~this way.*Trainers will be~battling their prized~Pokémon there.)
+
+            @npc.turn(2,1)
+            @player.turnto(1)
+            @npc.moveasync(2,4)
+            @player.move(4)
+
+            @npc.turn(2,2)
+            @npc.moveasync(2,1)
+            @player.move(1)
+
+            @player.turnto(2)
+
+            @npc.turn(2,1)
+            @npc.moveasync(2,1)
+            @player.move(1)
+
+            @npc.moveasync(2,1)
+            @player.turnto(1)
+            @player.move(1)
+
+            @npc.turn(2,2)
+            @npc.moveasync(2,1)
+            @player.move(1)
+            @npc.turn(2,1)
+
+            @text.show(This is the sea,~as you can see.*Some Pokémon are~found only in water.)
+
+            @npc.turn(2,2)
+            @npc.moveasync(2,2)
+            @player.turnto(2)
+            @player.move(2)
+
+            @npc.turn(2,3)
+            @npc.moveasync(2,4)
+            @player.move(1)
+            @player.turnto(3)
+            @player.move(3)
+
+            @npc.turn(2,2)
+            @npc.moveasync(2,2)
+            @player.move(1)
+            @player.turnto(2)
+            @player.move(1)
+
+            @npc.turn(2,3)
+            @npc.moveasync(2,11)
+            @player.move(1)
+            @player.turnto(3)
+            @player.move(10)
+
+            @npc.turn(2,0)
+            @player.turnto(0)
+            @level.wait(100)
+            @npc.turn(2,1)
+            @player.turnto(3)
+
+            @text.show(Here...*It's my house!~Thanks for your~company.*I wish you luck~on your journey!)
+            @npc.turn(2,0)
+            @npc.move(2,2)
+            @npc.remove(2)
+            @npc.register(johto\cherrygrove\main.dat|2|remove|1))
+            @npc.register(johto\cherrygrove\0.dat|0|position|2,0,2)
+            @music.play(town\cherrygrove)
+            @register.new(oldguide)
+        :when:No
+            @text.show(Just talk to me~if you are lost.)
+    :endselect
+:endif
+:end

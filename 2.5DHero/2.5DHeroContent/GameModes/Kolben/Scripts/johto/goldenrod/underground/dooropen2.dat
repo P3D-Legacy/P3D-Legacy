@@ -1,0 +1,6 @@
+version=2
+:if:<register.exists(underground_dooropen)>=true
+    @entity.warp(10,16,0,5)
+    @entity.setcollision(11,0)
+    :end
+:endif

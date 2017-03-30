@@ -1,0 +1,14 @@
+version=2
+:if:<datetime.dayofweek>!wednesday
+    @Text.Show(Wesley: Today's~not Wednesday.~That's too bad.)
+:else
+    :if:<register.exists(wesley_item)>=false
+        @Text.Show(Wesley: Well, how~do you do?*Seeing as how it's~Wednesday today,*I'm Wesley of~Wednesday.*Pleased to meet~you. Please take a~souvenir.)
+        @item.add(98)
+        @item.messagegive(98,1)
+        @Text.Show(Wesley: Blackbelt~beefs up the power~of fighting moves.)
+        @register.new(wesley_item)
+    :endif
+    @text.Show(Wesley: Since you~found me, you must*have met my brothers~and sisters.*Or did you just~get lucky?)
+:endif
+:end

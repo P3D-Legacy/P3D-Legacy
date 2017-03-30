@@ -1,0 +1,72 @@
+version=2
+:if:<register.exists(Irwin_Winter)>=true
+    @text.show(Yo, <player.name>~it has been awhile.*Let's battle!)
+    @battle.trainer(johto\routes\35\007)
+    @text.show(That was fun!*Let's do it~again sometime.*I also found~this item.*Here take it~as thanks for the~fun battle.)
+    @item.messagegive(34,1)
+    @item.add(34,1)
+    @register.newtime(phone_reg_time_016,1,day)
+    @register.new(Irwin_Winter_battle)
+    @register.remove(Irwin_Winter)
+    :end
+:endif
+
+:if:<register.exists(Irwin_Spring)>=true
+    @Text.show(Hey, <player.name>.*Here's the~item I found.)
+    :if:<environment.weather>=Clear
+        @item.messagegive(22,1)
+        @item.add(22,1)
+    :else
+        @item.messagegive(24,1)
+        @item.add(24,1)
+    :endif
+    @Text.show(I hope it~is useful.)
+    @register.new(Irwin_Spring_Item)
+    @register.remove(Irwin_Spring)
+    @register.newtime(phone_reg_time_016,1,day)
+    :end
+:endif
+
+:if:<register.exists(Irwin_Summer)>=true
+    @text.show(Yo, <player.name>~it has been awhile.*Let's battle!)
+    @register.newtime(phone_reg_time_016,1,day)
+    @battle.trainer(johto\routes\35\007)
+    @text.show(That was fun!*Let's do it~again sometime.*I also found~this item.*Here take it~as thanks for the~fun battle.)
+    @item.messagegive(23,1)
+    @item.add(23,1)
+    @register.new(Irwin_Summer_battle)
+    @register.remove(Irwin_Summer)
+    :end
+:endif
+
+:if:<register.exists(Irwin_Fall)>=true
+    @Text.show(Hey, <player.name>.*Here's the~item I found.)
+    :if:<environment.daytime>=Morning <or> <environment.daytime>=Night
+        @item.messagegive(8,1)
+        @item.add(8,1)
+    :else
+        @item.messagegive(169,1)
+        @item.add(169,1)
+    :endif
+    @register.newtime(phone_reg_time_016,1,day)
+    @Text.show(I hope it~is useful.)
+    @register.new(Irwin_Fall_Item)
+    @register.remove(Irwin_Fall)
+    :end
+:endif
+
+@battle.starttrainer(johto\routes\35\007)
+:if:<player.haspokegear>=true
+    :if:<register.exists(phone_contact_016)>=false
+        @Text.Show(Hey, can I get your~number?*I sometimes find~interesting items~laying around.*I will call you~if I don't want it.)
+        @Options.Show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @Text.Show(<player.name> registered~Irwin's number.)
+                @register.new(phone_contact_016)
+                @Text.Show(I'll ring you whenever~I find something.)
+            :when:No
+        :endselect
+    :endif
+:endif
+:end

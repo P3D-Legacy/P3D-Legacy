@@ -1,0 +1,11 @@
+version=2
+:if:<register.exists(trainerhousecal)>=false
+    @text.show(<battle.intromessage(kanto\trainerhouse\cal)>)
+    @battle.setvar(canblackout,false)
+    @battle.trainer(kanto\trainerhouse\cal)
+    @pokemon.heal
+    @register.newtime(trainerhousecal,1,day)
+    :end
+:endif
+@text.show(<battle.defeatmessage(kanto\trainerhouse\cal)>)
+:end

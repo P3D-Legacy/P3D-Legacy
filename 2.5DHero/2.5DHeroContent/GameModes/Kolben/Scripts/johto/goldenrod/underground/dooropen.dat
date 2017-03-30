@@ -1,0 +1,21 @@
+version=2
+:if:<register.exists(underground_dooropen)>=true
+    @text.show(The door is open.)
+    :end
+:endif
+@text.show(The door is locked.)
+:if:<item.count(133)>>0
+    @Text.show(Use the Basement Key?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @entity.warp(10,16,0,5)
+            @entity.setcollision(11,0)
+            @level.update
+            @register.new(underground_dooropen)
+            @sound.play(shutter)
+            @text.show(The door is open.)
+        :when:No
+    :endselect
+:endif
+:end

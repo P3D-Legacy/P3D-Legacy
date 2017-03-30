@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(earthbadge_obtain)>=False
+    @Text.show(Yo, Champ in making!~How's it going?*Looks like you're~on a roll.*The Gym Leader is a guy~who battled the Champion~three years ago.*He's no pushover.*Give it everything~you've got!)
+:else
+    @Text.show(Man, you are~truly tough...*That was a heck of an~inspirational battle.*It brought tears~to my eyes.)
+:endif
+:end

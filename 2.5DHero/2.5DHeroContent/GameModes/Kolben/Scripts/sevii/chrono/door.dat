@@ -1,0 +1,11 @@
+version=2
+@text.show(You need two passwords~to open the door.)
+:if:<register.exists(goldeenneedlog)>=True <and> <register.exists(needfourisland)>=True
+    @text.show(<player.name>~entered Yes, nah Chansey~and Goldeen need log.)
+    @sound.play(destroy)
+    @entity.remove(11)
+    @entity.warp(12,12,1,22)
+    @text.show(The door opened.)
+    @register.new(warehousedooropenchrono)
+:endif
+:end

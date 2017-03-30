@@ -1,0 +1,9 @@
+version=2
+@text.show(<pokemon.displayname(0)>~emerged from the motor.)
+@pokemon.setadditionalvalue(0,)
+@script.start(kanto\saffron\rotom\removeattacks)
+@pokemon.reload(0)
+@pokemon.calcstats(0)
+@screen.fadeout
+@level.reload
+:end

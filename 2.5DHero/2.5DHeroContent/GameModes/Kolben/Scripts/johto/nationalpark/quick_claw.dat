@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(got_quickclaw)>=false
+    @Text.Show(Pay attention,~please!*...Oops, I have to~quit thinking like*a teacher all the~time.*You must be a~Pokémon trainer.*Since you're working~so hard, I*want you to have~this.)
+    @item.add(73)
+    @Item.messagegive(73,1)
+    @register.new(got_quickclaw)
+:endif
+@Text.Show(Let a Pokémon hold~that Quick Claw.*Sometimes it will~strike first~during battle.)
+:end

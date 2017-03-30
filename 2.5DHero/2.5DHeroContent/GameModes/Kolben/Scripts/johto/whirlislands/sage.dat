@@ -1,0 +1,24 @@
+version=2
+:if:<register.exists(sagepasswhirl)>=true
+    @text.show(You may pass!)
+    :end
+:endif
+@text.show(I am sorry but~only a certain~few may pass here.*I must ask you~to turn back.)
+:if:<item.count(71)>>0
+    @text.show(Oh! The Silver Wing!*You may pass!)
+    @register.new(sagepasswhirl)
+    @npc.turn(0,3)
+    :select:<player.position>
+        :when:26,1,20
+            @npc.turn(0,1)
+    :endselect
+    @npc.move(0,1)
+    @npc.register(johto\whirlislands\b1f.dat|0|remove|0)
+    @npc.turn(0,1)
+    :select:<player.position>
+        :when:26,1,20
+            @npc.turn(0,3)
+    :endselect
+    :end
+:endif
+:end

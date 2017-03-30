@@ -1,0 +1,58 @@
+version=2
+:if:<register.exists(pokedex_national)>=false
+    @storage.set(pokedex_options,Johto Dex,Quit)
+    @options.setcancelindex(1)
+:else
+    @storage.set(pokedex_options,Johto Dex,National Dex,Quit)
+    @options.setcancelindex(2)
+:endif
+
+
+@text.show(Hello, <Player.name>!*How's your Pokédex~coming along?)
+@options.show(<storage.get(pokedex_options)>)
+:select:<options.result>
+    :when:Johto Dex
+        @text.show(Hmm, let's see...~You've seen <math.int(<pokedex.seen(0)>+<pokedex.caught(0)>)> Pokémon,~and caught <pokedex.caught(0)> Pokémon!~I see!)
+        @script.start(kanto\pallet\evaljohtext)
+        :if:<register.exists(johtodexcomplete)>=true
+            :if:<register.exists(Ovalpickedup)>=false
+                #Checks if the script got called from Prof. Oak's NPC script:
+                :if:<storage.get(pallet_oak_scriptcaller)>=flag
+                    @text.show(As a token of my~gratitude I would like to~give you a small gift.)
+                    @item.add(241,1)
+                    @item.messagegive(241,1)
+                    @register.new(Ovalpickedup)
+                :else
+                    @text.show(As a token of my~gratitude I would like to~give you a small gift.~Please come visit me!)
+                :endif
+            :endif
+            :end
+        :else
+            @text.show(Show me your Pokédex~again anytime!)
+            :end
+        :endif
+    :when:National Dex
+        @text.show(Hmm, let's see...~You've seen <math.int(<pokedex.seen>+<pokedex.caught>)> Pokémon,~and caught <pokedex.caught> Pokémon!~I see!)
+        @script.start(kanto\pallet\evalnattext)
+        :if:<register.exists(dexcomplete)>=true
+            :if:<register.exists(Shinypickedup)>=false
+                #Checks if the script got called from Prof. Oak's NPC script:
+                :if:<storage.get(pallet_oak_scriptcaller)>=flag
+                    @text.show(As a token of my~gratitude I would like to~give you a small gift.)
+                    @item.add(242,1)
+                    @item.messagegive(242,1)
+                    @register.new(Shinypickedup)
+                :else
+                    @text.show(As a token of my~gratitude I would like to~give you a small gift.~Please come visit me!)
+                :endif
+            :endif
+            :end
+        :else
+            @text.show(Show me your Pokédex~again anytime!)
+            :end
+        :endif
+    :when:Quit
+        :end
+:endselect
+
+:end

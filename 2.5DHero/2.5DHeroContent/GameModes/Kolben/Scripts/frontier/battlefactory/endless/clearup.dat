@@ -1,0 +1,9 @@
+version=2
+@pokemon.clear
+@pokemon.add(<storage.get(factory_pokemonstore)>)
+@pokemon.heal
+
+@text.show(...~........*All done! Please come~see us again!)
+@storage.clear
+@pokedex.setautodetect(1)
+:end

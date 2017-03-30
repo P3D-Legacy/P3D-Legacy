@@ -1,0 +1,11 @@
+version=2
+:if:<register.exists(olivine_lighthouse_finish)>=False
+    @Text.show(Jasmine, the Gym~Leader, is at the~Lighthouse.*She's been tending~to a sick Pokémon.*A strong trainer~has to be compassionate.)
+    :end
+:endif
+:if:<register.exists(mineralbadge_obtain)>=False
+    @Text.show(Jasmine uses the~newly discovered~steel-type.*I don't know very~much about it.)
+:else
+    @Text.show(That was awesome.*The steel-type,~huh?*That was a close~encounter of an~unknown kind!)
+:endif
+:end

@@ -1,0 +1,35 @@
+version=2
+:if:<pokemon.count>=1
+    @text.show(Do you want to~end the contest?*You haven't caught a~bug Pokémon yet.~That means you won't get~a prize afterwards.)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @screen.fadeout
+            @player.warp(johto\nathionalpark\route36gate.dat,4,0.1,2,0)
+            @level.update
+            @player.turnto(0)
+            @screen.fadein
+            @level.update
+            :if:<item.count(177)>>0
+                @text.show(I will take the~Park Balls.)
+                @item.clear(177)
+            :endif
+            @text.show(Today's Contest is~over. We hope you*will participate~in the future.)
+            :end
+        :when:No
+            @text.show(Have fun catching~more bug Pokémon.)
+            :end
+    :endselect
+:else
+    @text.show(Do you want to~end the contest?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(Ok, please follow me to~the center of the park.)
+            @script.start(johto\nationalpark\contest_prize)
+        :when:No
+            @text.show(Have fun catching~more bug Pokémon.)
+            :end
+    :endselect
+:endif
+:end

@@ -1,0 +1,16 @@
+version=2
+@Text.show(Lance: Are you all right?*Your Pokémon are~hurt and tired.*Here, give them~some of my medicine.*)
+@screen.fadeout
+@Sound.play(pokemon_heal,True)
+@pokemon.heal
+@level.Wait(200)
+@screen.fadein
+@Text.show(Lance: <player.name>,~let's give it our~best for Pokémon.)
+@npc.Turn(0,3)
+@Player.turnto(3)
+@npc.Move(0,12)
+@npc.Turn(0,2)
+@npc.Move(0,3)
+@npc.Warp(0,0,-1,0)
+@NPC.Register(johto\mahogany\rocketbase\1.dat|0|position|0,-1,0)
+:end

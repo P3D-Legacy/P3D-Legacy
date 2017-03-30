@@ -1,0 +1,13 @@
+version=2
+@text.show(It is a portrait of a~Champion and his team!*View it?)
+@options.show(Yes,No)
+:select:<options.result>
+
+:when:No
+:end
+:endselect
+@camera.deactivatethirdperson
+@screen.fadeout(20)
+@player.warp(shared\indigo\portraitplace.dat,10,0.1,13,0)
+
+:end

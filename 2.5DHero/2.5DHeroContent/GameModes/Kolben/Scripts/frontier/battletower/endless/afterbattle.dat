@@ -1,0 +1,33 @@
+version=2
+@npc.turn(0,3)
+@npc.move(0,2)
+@npc.turn(0,0)
+@npc.move(0,2)
+@npc.turn(0,1)
+@npc.move(0,3)
+@npc.turn(0,0)
+@npc.move(0,2)
+@npc.remove(0)
+
+@camera.deactivatethirdperson
+@player.turnto(1)
+@player.move(2)
+@player.turnto(2)
+@player.move(1)
+
+@text.show(You defeated opponent~no.<storage.get(tower_streak)>.)
+@text.show(Allow me to heal your~Pokémon.)
+@pokemon.heal
+@screen.fadeout
+@sound.play(healing,True)
+@level.wait(150)
+@screen.fadein
+
+:if:<storage.get(tower_streak)>=7 <or> <storage.get(tower_streak)>=14
+    :if:<storage.get(tower_class)><2
+        @register.change(battletower_endless_<storage.get(tower_level)>_class,<math.int(<storage.get(tower_class)>+1)>)
+    :endif
+:endif
+@storage.set(tower_class,<register.value(battletower_endless_<storage.get(tower_level)>_class)>)
+@script.start(frontier\battletower\endless\beforebattle)
+:end

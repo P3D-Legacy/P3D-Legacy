@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(olivine_lighthouse_finish)>=False
+    @pokemon.cry(181)
+    @Text.show(Amphy: ...~...Pa... paloo...*Its breathing is~terribly labored...)
+:else
+    @pokemon.cry(181)
+    @Text.show(Amphy: Palu!~Palulu!)
+:endif
+:end

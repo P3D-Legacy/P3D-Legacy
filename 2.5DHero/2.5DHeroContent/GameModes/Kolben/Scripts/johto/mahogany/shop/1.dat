@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(LORLance)>=True
+    @Text.show(Urrgh...*That guy's dragon~Pokémon are tough...)
+    :end
+:endif
+@Text.show(Heheh! The experiment~worked like a charm.*Magikarp are just~worthless, but*Gyarados are big~moneymakers.)
+:end

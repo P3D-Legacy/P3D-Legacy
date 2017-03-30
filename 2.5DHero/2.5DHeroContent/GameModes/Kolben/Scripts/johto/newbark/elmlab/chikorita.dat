@@ -1,0 +1,35 @@
+version=2
+:if:<register.exists(pokemongot)>=False
+    @screen.showpokemon(152,0,1)
+    @Text.show(Elm: So, you like~Chikorita, the grass~Pokémon?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @NPC.remove(1)
+            @NPC.register(johto\newbark\elmlab.dat|1|remove|1)
+            @register.new(pokemongot)
+            @register.new(starter1)
+            @Text.show(Elm: I think that's a~great Pokémon too!)
+            @pokemon.add(152,5,As a gift from Prof. Elm,5,at New Bark Town)
+            @sound.play(success)
+            @Text.show(<player.name> received~Chikorita!)
+            @pokemon.rename(0)
+            @Player.Turn(1)
+            @Player.Move(3)
+            @Player.Turn(3)
+            @Player.Move(1)
+            @npc.Turn(0,2)
+            @Text.show(Mr. Pokémon lives near~Cherrygrove, the next~city.*It's almost a direct~route to there.)
+            @npc.Turn(0,1)
+            @Text.show(If your Pokémon is~hurt, you should*heal it with this~machine.*Feel free to use~it anytime.)
+            @npc.Turn(0,2)
+            @Text.show(<player.name> I'm~counting on you!)
+            @register.remove(elm1)
+            @register.new(elm2)
+        :when:No
+            @Text.show(Elm: Think it over~carefully.*Your partner is~important.)
+    :endselect
+:else
+    @Text.show(It contains a~Pokémon caught by~Prof. Elm.)
+:endif
+:end

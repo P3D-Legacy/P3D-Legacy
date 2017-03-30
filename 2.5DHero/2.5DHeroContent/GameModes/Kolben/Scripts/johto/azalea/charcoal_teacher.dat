@@ -1,0 +1,11 @@
+version=2
+:if:<register.exists(ilex_farfetchd_complete)>=True
+    @Text.show(You chased off~Team Rocket and*went to Ilex~Forest alone?*That takes guts!~I like that. Come~train with us.)
+    :end
+:endif
+:if:<register.exists(rocket_defeat_slowpokewell)>=True
+    @Text.show(The Slowpoke have~returned...*But my apprentice~hasn't come back~from Ilex Forest.*Where in the world~is that lazy guy?)
+    :end
+:endif
+@Text.show(All the Slowpoke~have disappeared~from the town.*The forest's pro-~tector may be~angry with us...*It may be a bad~omen. We should~stay in.)
+:end

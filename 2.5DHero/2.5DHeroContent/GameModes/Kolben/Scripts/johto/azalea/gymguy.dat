@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(hivebadge_obtain)>=False
+    @Text.show(Yo, challenger!*Bugsy's young, but~his knowledge of*bug Pokémon is for~real.*It's going to be tough~without my advice.*Let's see. Bug~Pokémon don't like fire.*Flying-type moves~are super-effective too.)
+:else
+    @Text.show(Well done! That~was a great clash*of talented young~trainers.*With people like you, the~future of Pokémon is bright!)
+:endif
+:end

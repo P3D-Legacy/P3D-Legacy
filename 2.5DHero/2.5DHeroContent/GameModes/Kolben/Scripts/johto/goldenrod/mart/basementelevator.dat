@@ -1,0 +1,30 @@
+version=2
+@Text.show(It's an elevator.)
+@Text.show(Choose floor:)
+@Options.show(Fifth floor,Fourth floor,Third floor,Second floor,First floor,Basement,Quit)
+:select:<options.result>
+    :when:First floor
+        @storage.set(warpspot,-4)
+    :when:Second floor
+        @storage.set(warpspot,-9)
+    :when:Third floor
+        @storage.set(warpspot,-14)
+    :when:Fourth floor
+        @storage.set(warpspot,-19)
+    :when:Fifth floor
+        @storage.set(warpspot,-24)
+    :when:Basement
+        @storage.set(warpspot,-29)
+    :when:Quit
+        :end
+:endselect
+@Player.Turn(1)
+@Player.Move(1)
+@Player.Turn(3)
+@Player.Move(1)
+@Player.Warp(johto\goldenrod\mart.dat,<storage.get(warpspot)>,0.1,-1,0)
+@Level.Update
+@Player.Move(1)
+@Player.Turn(2)
+@Text.show(.  .  .  .  .  .  .  .  .  .  .  .)
+:end

@@ -1,0 +1,23 @@
+version=2
+:if:<register.exists(goldenrod_machop_trade)>=True
+    @Text.show(Wow, my very own Drowzee.~Thank you!)
+:else
+    @Text.show(I like trading~Pokémon. Do you have*a Drowzee?~Do you want to trade it~for my Machop?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @pokemon.select
+            :if:<pokemon.number(<pokemon.selected>)>=96
+                @script.start(npctrade.dat,66,,0,37460,2007,Muscle,Mike,5,Rock Tunnel,caught at)
+                @text.show(OK, connecting...*...*Wow! Thank you!~I always wanted~Drowzee!)
+                @sound.play(success_small)
+                @text.show(<player.name> traded~Muscle for Drowzee!)
+                @register.new(goldenrod_machop_trade)
+            :else
+                @Text.show(You don't want to~trade? Aww...)
+            :endif
+        :when:No
+            @Text.show(You don't want to~trade? Aww...)
+    :endselect
+:endif
+:end

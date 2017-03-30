@@ -1,0 +1,34 @@
+version=2
+@text.show(You lost the battle.~You'll be returning~to the lobby now.)
+@camera.reset
+@screen.fadeout
+@Player.warp(frontier\battlefactory\main.dat,4,0.1,3,0)
+@camera.reset
+@level.update
+@screen.fadein
+@player.turnto(0)
+
+:if:<storage.get(boolean,thirdperson)>=true
+    @camera.activatethirdperson
+:else
+    @camera.deactivatethirdperson
+:endif
+
+:if:<storage.get(factory_streak)>>6
+    @storage.set(get_bp,<math.floor(<storage.get(factory_streak)>/5)>)
+    @text.show(You've done well to~defeat at least 7 trainers.*Your record will be recorded,~and you may add to it by~challenging the factory again.*Allow me to present you with~<storage.get(get_bp)>BP for defeating <storage.get(factory_streak)> trainers.)
+    @player.addbp(<storage.get(get_bp)>)
+    @text.show(<player.name> got <storage.get(get_bp)> BP!*You now have <player.bp> BP.)
+:endif
+
+:if:<storage.get(factory_streak)>><register.value(battlefactory_endless_<storage.get(factory_level)>_best)>
+    @register.change(battlefactory_endless_<storage.get(factory_level)>_best,<storage.get(factory_streak)>)
+    @text.show(Congratulations!~You beat your high score.*Your new high score is~<storage.get(factory_streak)> win(s).)
+:endif
+
+:if:<storage.get(factory_class)>>0
+    @register.change(battlefactory_endless_<storage.get(factory_level)>_class,<math.int(<storage.get(factory_class)>-1)>)
+:endif
+
+@script.start(frontier\battlefactory\endless\clearup)
+:exit

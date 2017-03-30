@@ -7,49 +7,35 @@ Public Class FontManager
     'this sub looks for all fonts that should be in the system (base files, mode files, pack files) and shoves them into FontList
     Public Shared Sub LoadFonts()
         FontList.Clear()
-        'because the pack manager will hoover up replacements from packs and mods already we just load every font name contained in our base files
-        For Each s As String In System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Fonts\BMP")
-            If s.EndsWith(".xnb") = True Then
-                Dim name As String = s.Substring(0, s.Length - 4)
-                name = name.Substring(GameController.GamePath.Length + "\Content\Fonts\BMP\".Length)
-                If FontList.ContainsKey(name.ToLower()) = False Then
-                    Dim font As SpriteFont = ContentPackManager.GetContentManager("Fonts\BMP\" & name, ".xnb").Load(Of SpriteFont)("Fonts\BMP\" & name)
-                    FontList.Add(name.ToLower(), New FontContainer(name, font))
+        'Look for GameMode fonts first:
+        If IO.Directory.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "\Fonts\") = True Then
+            For Each s As String In IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "\Fonts\")
+                If s.EndsWith(".xnb") = True Then
+                    Dim name As String = s.Substring(0, s.Length - 4)
+                    name = name.Substring(GameController.GamePath.Length + "\Fonts\".Length + GameModeManager.ActiveGameMode.ContentPath.Length)
+                    If FontList.ContainsKey(name.ToLower()) = False Then
+                        Dim contentmanager As ContentManager = ContentPackManager.GetContentManager("Fonts\" & name, ".xnb")
+                        Dim font As SpriteFont = contentmanager.Load(Of SpriteFont)("Fonts\" & name)
+                        FontList.Add(name.ToLower(), New FontContainer(name, font))
+                    End If
                 End If
-            End If
-        Next
+            Next
+        End If
         'then look for ADDITIONAL fonts in packs, the ones that exist will have the user's prefered copy already
         For Each c As String In Core.GameOptions.ContentPackNames
-            If System.IO.Directory.Exists(GameController.GamePath & "\ContentPacks\" & c & "\Content\Fonts\BMP") = True Then
-                For Each s As String In System.IO.Directory.GetFiles(GameController.GamePath & "\ContentPacks\" & c & "\Content\Fonts\BMP")
+            If IO.Directory.Exists(GameController.GamePath & "\ContentPacks\" & c & "\Content\Fonts") = True Then
+                For Each s As String In IO.Directory.GetFiles(GameController.GamePath & "\ContentPacks\" & c & "\Content\Fonts")
                     If s.EndsWith(".xnb") = True Then
                         Dim name As String = s.Substring(0, s.Length - 4)
-                        name = name.Substring(GameController.GamePath.Length + "\Content\Fonts\BMP\".Length + "\ContentPacks\".Length + c.Length)
+                        name = name.Substring(GameController.GamePath.Length + "\Content\Fonts\".Length + "\ContentPacks\".Length + c.Length)
                         If FontList.ContainsKey(name.ToLower()) = False Then
-                            Dim font As SpriteFont = ContentPackManager.GetContentManager("Fonts\BMP\" & name, ".xnb").Load(Of SpriteFont)("Fonts\BMP\" & name)
+                            Dim font As SpriteFont = ContentPackManager.GetContentManager("Fonts\" & name, ".xnb").Load(Of SpriteFont)("Fonts\" & name)
                             FontList.Add(name.ToLower(), New FontContainer(name, font))
                         End If
                     End If
                 Next
             End If
         Next
-        'if there's a game mode loaded, look in that too for additional fonts
-        If Not OldGameModeManager.ActiveGameMode.Name = "Kolben" Then
-            If Not OldGameModeManager.ActiveGameMode.ContentPath = "\Content\" Then
-                If System.IO.Directory.Exists(GameController.GamePath & OldGameModeManager.ActiveGameMode.ContentPath & "\Fonts\BMP") = True Then
-                    For Each s As String In System.IO.Directory.GetFiles(GameController.GamePath & OldGameModeManager.ActiveGameMode.ContentPath & "\Fonts\BMP")
-                        If s.EndsWith(".xnb") = True Then
-                            Dim name As String = s.Substring(0, s.Length - 4)
-                            name = name.Substring(GameController.GamePath.Length + "\Fonts\BMP\".Length + OldGameModeManager.ActiveGameMode.ContentPath.Length)
-                            If FontList.ContainsKey(name.ToLower()) = False Then
-                                Dim font As SpriteFont = ContentPackManager.GetContentManager("Fonts\BMP\" & name, ".xnb").Load(Of SpriteFont)("Fonts\BMP\" & name)
-                                FontList.Add(name.ToLower(), New FontContainer(name, font))
-                            End If
-                        End If
-                    Next
-                End If
-            End If
-        End If
     End Sub
 
     ''' <summary>
@@ -57,8 +43,8 @@ Public Class FontManager
     ''' </summary>
     ''' <param name="fontName">The name of the font.</param>
     Public Shared Function GetFont(ByVal fontName As String) As SpriteFont
-        If FontList.ContainsKey(fontname.ToLower()) = True Then
-            Return FontList(fontname.ToLower()).SpriteFont
+        If FontList.ContainsKey(fontName.ToLower()) = True Then
+            Return FontList(fontName.ToLower()).SpriteFont
         End If
         Return Nothing
     End Function
@@ -134,6 +120,5 @@ Public Class FontManager
             End If
         End Get
     End Property
-
 
 End Class

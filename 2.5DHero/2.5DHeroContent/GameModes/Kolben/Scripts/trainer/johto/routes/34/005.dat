@@ -1,0 +1,41 @@
+version=2
+:if:<register.exists(phone_reg_010)>=true
+    @Text.Show(I got my Pokémon back~from the daycare.*Want to see them now?)
+    @register.remove(phone_reg_010)
+    @register.newtime(phone_reg_time_010,1,day)
+
+    :if:<player.badges>>2
+        :if:<register.exists(rematch_010_1)>=true
+            :if:<register.exists(rematch_010_2)>=true
+                @battle.trainer(johto\routes\34\005_3)
+            :else
+                @register.new(rematch_010_2)
+                @battle.trainer(johto\routes\34\005_2)
+            :endif
+        :else
+            @register.new(rematch_010_1)
+            @battle.trainer(johto\routes\34\005_1)
+        :endif
+    :else
+        @battle.trainer(johto\routes\34\005)
+    :endif
+
+:else
+    @battle.starttrainer(johto\routes\34\005)
+
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_010)>=false
+            @Text.Show(Maybe I should~leave one in Day-~Care.*What should I do?*I will tell you my~decision when we exchange~phone numbers.)
+
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Todd's number.)
+                    @register.new(phone_contact_010)
+                    @Text.Show(I'll let you know whenever~I want to battle you.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

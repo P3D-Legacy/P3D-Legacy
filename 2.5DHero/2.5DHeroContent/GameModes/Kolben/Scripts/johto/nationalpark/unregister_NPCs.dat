@@ -1,0 +1,17 @@
+version=2
+#Unregister NPCs.
+@npc.unregister(johto\nathionalpark\route36gate.dat|1|position|7,0,3)
+@npc.unregister(johto\nathionalpark\route36gate.dat|2|position|7,0,3)
+@npc.unregister(johto\nathionalpark\route36gate.dat|3|position|7,0,3)
+@npc.unregister(johto\nathionalpark\route36gate.dat|4|position|7,0,3)
+
+@npc.unregister(johto\nathionalpark\route36gate.dat|10|position|2,0,5)
+@npc.unregister(johto\nathionalpark\route36gate.dat|11|position|2,0,5)
+@npc.unregister(johto\nathionalpark\route36gate.dat|12|position|2,0,5)
+@npc.unregister(johto\nathionalpark\route36gate.dat|13|position|2,0,5)
+
+@npc.unregister(johto\nathionalpark\route36gate.dat|20|position|1,0,2)
+@npc.unregister(johto\nathionalpark\route36gate.dat|21|position|1,0,2)
+@npc.unregister(johto\nathionalpark\route36gate.dat|22|position|1,0,2)
+@npc.unregister(johto\nathionalpark\route36gate.dat|23|position|1,0,2)
+:end

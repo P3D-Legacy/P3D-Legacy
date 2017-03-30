@@ -1,0 +1,20 @@
+version=2
+:if:<register.exists(underground_dooropen)>=true
+    @entity.warp(10,16,0,5)
+:endif
+
+:if:<datetime.dayofweek>!monday
+    @register.remove(barbershop_monday)
+    @Text.Log(Unregister barbershop_monday)
+:endif
+
+:if:<datetime.dayofweek>!friday
+    @register.remove(barbershop_friday)
+    @Text.Log(Unregister barbershop_friday)
+:endif
+
+:if:<datetime.dayofweek>!sunday
+    @register.remove(bargainshop_sunday)
+    @Text.Log(Unregister bargainshop_sunday)
+:endif
+:end

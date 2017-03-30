@@ -1,0 +1,14 @@
+version=2
+:if:<datetime.dayofweek>!sunday
+    @Text.Show(Sunny: Isn't today~Sunday?~Um... I forgot!)
+:else
+    :if:<register.exists(sunny_item)>=false
+        @Text.Show(Sunny: Hi!*I'm Sunny of Sunday,~meaning it's Sunday today!*I was told to give~you this if I saw~you!)
+        @item.add(108)
+        @item.messagegive(108,1)
+        @Text.Show(Sunny: That thing...*Um...*... What was it now...*...*Oh! I remember now!*A Pokémon that~knows electric*moves should hold~it.*My sis Monica said~it powers up~electric moves!)
+        @register.new(sunny_item)
+    :endif
+    @text.Show(SUNNY: My sisters~and brothers are~Monica, Tuscany,~Wesley, Arthur,~Frieda and Santos.*They're all older~than me!)
+:endif
+:end

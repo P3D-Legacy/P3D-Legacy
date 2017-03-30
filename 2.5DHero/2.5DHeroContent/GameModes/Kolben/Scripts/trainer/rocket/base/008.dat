@@ -1,0 +1,7 @@
+version=2
+@battle.starttrainer(rocket\base\008)
+:if:<register.exists(passRatT)>=False
+    @Text.show(Hyuck-hyuck-hyuck!*The password to~the Boss's room...*Uh..., I think it is~Raticate Tail.)
+    @register.new(passRatT)
+:endif
+:end

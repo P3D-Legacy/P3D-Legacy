@@ -1,0 +1,7 @@
+version=2
+:if:<phone.callflag>=receiving
+    :end
+:endif
+
+@Text.Show(Pokégear:~Calling..............)
+:end

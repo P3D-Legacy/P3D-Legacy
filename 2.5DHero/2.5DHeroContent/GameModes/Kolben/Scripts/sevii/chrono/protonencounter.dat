@@ -1,0 +1,38 @@
+version=2
+:if:<register.exists(protonchrono)>=False
+    @player.turnto(3)
+    @npc.turn(1,1)
+    @npc.move(1,2)
+    @npc.turn(1,2)
+    @npc.move(1,1)
+    @npc.turn(1,1)
+    @text.show(You're the brat~from Icefall Cave!*I have completed the~mission for the Boss~and I don't see Lorelei~here to help you.*I will defeat you~now for the Boss!)
+    @battle.trainer(rocket\chrono\010)
+    @text.show(I failed you Boss...)
+    @player.turnto(0)
+    @npc.turn(0,1)
+    @npc.move(0,2)
+    @npc.turn(0,2)
+    @npc.move(0,1)
+    @text.show(I see that.*You, brat.*I am not as weak as~I was in Goldenrod.*When Archer disbanded~us again, I convinced~a small portion of the~members to follow me~by promising them money~and power.*I will not have you~screw this up!)
+    @battle.trainer(rocket\chrono\Proton)
+    @text.show(Your strength is great.*I cannot win as~I am now.*However, that just~makes our objective all~the greater.*Many years ago Giovanni~and his scientists succeeded~in cloning Mew,~the legendary Pokémon,~but was unable to control it.*Three years ago~he was prevented from~gaining the one thing that~would have given him~control over the strongest~Pokémon in existence.*Now I have finally~acquired a Master Ball.*My defeat here~means nothing.*Soon Mewtwo will be mine!*Lieutenant,~gather the men we~leave for Cerulean now!)
+    @screen.fadeout
+    @npc.remove(0)
+    @npc.remove(1)
+    @npc.remove(2)
+    @npc.remove(3)
+    @npc.remove(4)
+    @npc.remove(5)
+    @npc.register(sevii\chrono\warehouse.dat|0|remove|0)
+    @npc.register(sevii\chrono\warehouse.dat|1|remove|0)
+    @npc.register(sevii\chrono\warehouse.dat|2|remove|0)
+    @npc.register(sevii\chrono\warehouse.dat|3|remove|0)
+    @npc.register(sevii\chrono\warehouse.dat|4|remove|0)
+    @npc.register(sevii\chrono\warehouse.dat|5|remove|0)
+    @npc.register(kanto\cerulean\main.dat|5|remove|0)
+    @npc.register(kanto\cerulean\main.dat|7|position|0,0,14)
+    @register.new(protonchrono)
+    @screen.fadein
+:endif
+:end

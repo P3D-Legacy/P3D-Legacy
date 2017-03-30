@@ -1,0 +1,11 @@
+version=2
+@pokemon.cry(250)
+@battle.setvar(custombattlemusic,battle\main\legend\ho-oh)
+:if:<register.exists(rainbow_wing_radio_tower)>=true
+    @battle.wild(250,45,-1,battle\intro\legend\ho-oh,12)
+:else
+    @battle.wild(250,70,-1,battle\intro\legend\ho-oh,12)
+:endif
+@npc.remove(0)
+@npc.unregister(johto\ecruteak\tintower\10f.dat|0|position|4,0.75,4)
+:end

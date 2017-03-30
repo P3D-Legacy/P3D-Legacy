@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(trainer_johto\gyms\cianwood\001)>=False
+    @Music.play(encounter\trainer)
+    @Player.turnto(1)
+    @npc.Move(1,1)
+    @battle.starttrainer(johto\gyms\cianwood\001)
+    @Music.play(encounter\trainer)
+    @Player.turnto(3)
+    @npc.Move(2,2)
+    @battle.starttrainer(johto\gyms\cianwood\002)
+    @Music.play(building\gym)
+:endif
+:end

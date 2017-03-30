@@ -85,6 +85,13 @@
         Return True
     End Function
 
+    ''' <summary>
+    ''' Clears loaded sounds.
+    ''' </summary>
+    Public Shared Sub Clear()
+        SoundFiles.Clear()
+    End Sub
+
     Private Shared Function GetSoundEffect(ByVal Name As String) As SoundEffect
         Select Case Name.ToLower()
             Case "healing"

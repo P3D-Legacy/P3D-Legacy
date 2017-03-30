@@ -1,0 +1,19 @@
+:if:<register.exists(rival_mahogany)>=false
+    @Music.play(encounter\rival)
+    @OverworldPokemon.Hide
+    @npc.Warp(6,5,0,8)
+    @Player.turnto(1)
+    @npc.Move(6,2)
+    @npc.Turn(6,3)
+    @npc.Move(6,2)
+    @Text.show(...*Didn't I tell you~that I was going*to destroy Team Rocket?*...Tell me, who was~the guy in the*cape who used~dragon Pokémon?*My Pokémon were no~match at all.*I don't care that~I lost. I can beat*him by getting~stronger Pokémon.*It's what he said~that bothers me...*He told me that~I don't love and*trust my Pokémon~enough.*I'm furious that I~lost to a bleeding~heart like him.*...Humph! I don't~have the time for~the likes of you!)
+    @npc.Turn(6,1)
+    @npc.Move(6,2)
+    @npc.Turn(6,0)
+    @npc.Move(6,3)
+    @npc.Warp(6,0,-1,0)
+    @Music.play(dungeon\cave\rocketbase)
+    @Register.new(rival_mahogany)
+    @OverworldPokemon.show
+:endif
+:end

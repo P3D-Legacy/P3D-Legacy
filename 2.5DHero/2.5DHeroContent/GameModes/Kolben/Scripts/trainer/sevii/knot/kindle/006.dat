@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(trainer_sevii\knot\kindle\006)>=false
+    @text.show(Mik: Together with Kia,~I'm afraid of nothing!)
+:endif
+@battle.starttrainer(sevii\knot\kindle\006)
+@register.new(trainer_sevii\knot\kindle\007)
+:end

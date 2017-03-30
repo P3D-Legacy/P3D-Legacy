@@ -1,0 +1,5 @@
+version=2
+:if:<register.exists(completerobots)>=True
+    @entity.warp(1,5,0,5)
+:endif
+:end

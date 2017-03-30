@@ -1,0 +1,32 @@
+version=2
+:if:<pokemon.count><1
+    @text.show(Looks like you don't~have any Pokémon...)
+    :end
+:endif
+
+:if:<pokemon.countbattle><2
+    @text.show(Looks like you don't~have enough Pokémon...)
+    :end
+:endif
+
+@text.show(Which Pokémon should~we raise for you?)
+@pokemon.select(true,false,false)
+
+:if:<pokemon.selected>>-1
+    @pokemon.cry(<pokemon.number(<pokemon.selected>)>)
+    @daycare.leavepokemon(2,<daycare.countpokemon(2)>,<pokemon.selected>)
+    @text.show(Okay. We'll raise your~<daycare.pokemonname(2,<daycare.countpokemon(2)>-1)> for you.)
+    :if:<daycare.countpokemon(2)>=1 <and> <pokemon.countbattle>>1
+        @text.show(We can raise two of~your Pokémon.*Would you like us to~raise another?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @script.start(sevii\floe\daycare\leave_pokemon)
+            :when:No
+                @text.show(Fine.~Come Again.)
+        :endselect
+    :endif
+:else
+    @text.show(Fine.~Come Again.)
+:endif
+:end

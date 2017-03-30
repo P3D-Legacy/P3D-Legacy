@@ -1,0 +1,35 @@
+version=2
+:if:<register.exists(phone_reg_026)>=true
+    @Text.Show(Here, I found another~blue stone.*It's transparent and shiny!~But let's battle first.)
+    :if:<player.badges>>5
+        :if:<register.exists(rematch_026_1)>=true
+            @battle.trainer(johto\routes\42\001_2)
+        :else
+            @register.new(rematch_026_1)
+            @battle.trainer(johto\routes\42\001_1)
+        :endif
+    :else
+        @battle.trainer(johto\routes\42\001)
+    :endif
+    @register.remove(phone_reg_026)
+    @item.add(24)
+    @Item.messagegive(24,1)
+    @register.newtime(phone_reg_time_026,1,day)
+    @Text.Show(I'll let you know whenever~I find a new one.)
+:else
+    @battle.starttrainer(johto\routes\42\001)
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_026)>=false
+            @Text.Show(While catching water Pokémon,~I often find blue stones.*I will call you when~I spot another one.)
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Chris' number.)
+                    @register.new(phone_contact_026)
+                    @Text.Show(I'll let you know whenever~I find one.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

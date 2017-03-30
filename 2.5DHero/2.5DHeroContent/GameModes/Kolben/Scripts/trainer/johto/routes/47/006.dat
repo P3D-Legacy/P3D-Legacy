@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(trainer_johto\routes\47\006)>=false
+    :select:<player.position>
+        :when:25,2,15
+            @npc.move(5,2)
+        :when:25,2,14
+            @npc.move(5,1)
+    :endselect
+    @text.show(Having a partner~is great!)
+:endif
+@battle.starttrainer(johto\routes\47\006)
+@register.new(trainer_johto\routes\47\005)
+:end

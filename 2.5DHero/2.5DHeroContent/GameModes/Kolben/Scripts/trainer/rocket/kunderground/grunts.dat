@@ -1,0 +1,41 @@
+version=2
+@npc.turn(0,3)
+@npc.turn(1,1)
+@text.show(...Yeah it seems those~guards have Saffron City~locked down tight.*I don't think we could~get in without alerting them.*It was a stupid idea~to sabotage the Power Plant~before getting into~Saffron City!*We should go tell the~Boss that we will need~to find a different~way to get a Mast-)
+@music.play(encounter\rocket)
+@npc.turn(0,2)
+@npc.turn(1,2)
+@player.setmovement(0,0,1)
+@player.move(1)
+@entity.showmessagebulb(1|2|1|2)
+@entity.showmessagebulb(1|3|1|2)
+@player.move(1)
+@text.show(Hey what do you~think you're doing?*Don't you know its~rude to listen to other~people's conversations?*We will make you~pay for that!)
+:if:<player.position>=3,0,3
+    @battle.trainer(rocket\kunderground\gruntf)
+    @text.show(How did you beat me?!~I am one of the best~grunts in Team Rocket!)
+    @npc.move(0,1)
+    @npc.turn(0,3)
+    @player.turnto(1)
+    @text.show(You may have beaten her~but you won't beat me!)
+    @battle.trainer(rocket\kunderground\gruntm)
+:else
+    @battle.trainer(rocket\kunderground\gruntm)
+    @text.show(How did you beat me?!~I am one of the best~grunts in Team Rocket!)
+    @npc.move(1,1)
+    @npc.turn(1,1)
+    @player.turnto(3)
+    @text.show(You may have beaten him~but you won't beat me!)
+    @battle.trainer(rocket\kunderground\gruntf)
+:endif
+@text.show(Wait, aren't you the~brat who defeated the~Admins in Johto?!*No wonder you beat us!*We better let the Boss~know you are in Kanto!)
+@screen.fadeout
+@npc.remove(0)  
+@npc.remove(1)  
+@level.update
+@screen.fadein
+@music.play(dungeon\cave\digletts)
+@npc.register(kanto\saffron\underground.dat|0|remove|0)
+@npc.register(kanto\saffron\underground.dat|1|remove|0)
+@register.new(Rocketundergroundkanto)
+:end

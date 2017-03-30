@@ -1,0 +1,7 @@
+version=2
+@screen.fadeout
+@player.warp(johto\ecruteak\tintower\7f.dat,4,0.1,9,0)
+@level.update
+@sound.play(teleport)
+@screen.fadein
+:end

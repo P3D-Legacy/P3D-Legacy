@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Enethil
+TrainerClass|Moderator
+Money|5000
+IntroMessage|
+OutroMessage|Oh well, back to Youtube.
+DefeatMessage|
+TextureID|Enethil
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|{"Pokemon"[468]}{"Experience"[800000]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[146]}{"ItemData"[]}{"NickName"[Togeflinch]}{"Level"[68]}{"OT"[00000]}{"Ability"[32]}{"Status"[]}{"Nature"[12]}{"CatchLocation"[]}{"CatchTrainer"[Enethil]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[403,15,15]}{"Attack2"[326,15,15]}{"Attack3"[86,10,10]}{"Attack4"[352,5,5]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon2|{"Pokemon"[407]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[506]}{"ItemData"[]}{"NickName"[Thorn]}{"Level"[68]}{"OT"[00000]}{"Ability"[38]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[]}{"CatchTrainer"[Enethil]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[1]}{"Attack1"[605,20,20]}{"Attack2"[188,10,10]}{"Attack3"[326,15,15]}{"Attack4"[80,40,40]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon3|{"Pokemon"[700]}{"Experience"[1000000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[2009]}{"ItemData"[]}{"NickName"[Dovahkiin]}{"Level"[71]}{"OT"[00000]}{"Ability"[182]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[]}{"CatchTrainer"[Enethil]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[1]}{"Attack1"[585,20,20]}{"Attack2"[182,30,30]}{"Attack3"[63,35,35]}{"Attack4"[92,25,25]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon4|{"Pokemon"[6]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[140]}{"ItemData"[]}{"NickName"[Mir]}{"Level"[70]}{"OT"[00000]}{"Ability"[66]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[]}{"CatchTrainer"[Enethil]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[1]}{"Attack1"[406,10,10]}{"Attack2"[53,30,30]}{"Attack3"[411,10,10]}{"Attack4"[332,30,30]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon5|{"Pokemon"[149]}{"Experience"[1250000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[73]}{"ItemData"[]}{"NickName"[Kaiser]}{"Level"[72]}{"OT"[00000]}{"Ability"[136]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Enethil]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[349,10,10]}{"Attack2"[200,10,10]}{"Attack3"[8,15,15]}{"Attack4"[89,5,5]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon6|{"Pokemon"[448]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[119]}{"ItemData"[]}{"NickName"[Anubis]}{"Level"[70]}{"OT"[00000]}{"Ability"[80]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Enethil]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[370,10,10]}{"Attack2"[89,5,5]}{"Attack3"[398,15,15]}{"Attack4"[245,5,5]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Items|14,14
+Gender|0
+AI|0
+IntroSequence|Green,Violet
+IntroType|11

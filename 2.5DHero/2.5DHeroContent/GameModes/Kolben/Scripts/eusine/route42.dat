@@ -1,0 +1,17 @@
+version=2
+:if:<register.exists(suicune3)>=False <and> <register.exists(suicune2)>=True
+    @Player.turnto(3)
+    @pokemon.cry(245)
+    @npc.Turn(0,0)
+    @npc.Move(0,2)
+    @npc.Warp(0,26,1,14)
+    @npc.Move(0,2)
+    @npc.Warp(0,26,0,12)
+    @npc.Move(0,2)
+    @npc.Turn(0,3)
+    @npc.Move(0,5)
+    @npc.Warp(0,0,-1,0)
+    @NPC.Register(johto\routes\42.dat|0|remove|0)
+    @register.new(suicune3)
+:endif
+:end

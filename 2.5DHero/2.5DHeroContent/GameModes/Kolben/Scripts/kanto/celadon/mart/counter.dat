@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(celadondepttmgive)>=False
+    @text.show(Oh, hi!*I finally finished Pokémon!*Not done yet?*This might be useful!)
+    @item.add(365,1)
+    @item.messagegive(365,1)
+    @register.new(celadondepttmgive)
+:endif
+@text.show(TM 65 is Counter!*Not like the one I am~leaning on, mind you!)
+:end

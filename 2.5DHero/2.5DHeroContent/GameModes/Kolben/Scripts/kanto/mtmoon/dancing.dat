@@ -1,0 +1,7 @@
+version=2
+:if:<environment.daytime>=Night <and> <datetime.dayofweek>=Monday <and> <register.exists(clefairymtmoon)>=false
+    @npc.warp(2,~,0,~)
+    @npc.warp(3,~,0,~)
+    @entity.warp(0,3,-0.2,3)
+:endif
+:end

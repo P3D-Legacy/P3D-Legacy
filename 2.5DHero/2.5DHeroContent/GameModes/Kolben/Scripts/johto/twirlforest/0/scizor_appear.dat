@@ -1,0 +1,19 @@
+version=2
+:if:<register.exists(twirlforest_scizor_appeared)>=false
+    @level.update
+    @player.move(0)
+    @register.new(twirlforest_scizor_appeared)
+    @npc.warp(0,5,-1,3)
+    @npc.setmovey(0,1)
+    @npc.move(0,1)
+    @pokemon.cry(212)
+    @text.show(A Scizor appeared!)
+    @npc.register(johto\twirlforest\0\15.dat|0|position|5,0,4)
+:else
+    :if:<register.exists(twirlforest_scizor_defeat)>=true
+        @level.update
+        @player.move(0)
+        @text.show(There appears to be~nothing in here...)
+    :endif
+:endif
+:end

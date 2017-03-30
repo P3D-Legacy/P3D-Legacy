@@ -1,0 +1,25 @@
+version=2
+
+@text.show(You lost the battle.~You'll be returning~to the lobby now.)
+@camera.reset
+@screen.fadeout
+@Player.warp(frontier\battlefactory\main.dat,14,0.1,3,0)
+@camera.reset
+@level.update
+@screen.fadein
+@player.turnto(0)
+
+:if:<storage.get(boolean,thirdperson)>=true
+    @camera.activatethirdperson
+:else
+    @camera.deactivatethirdperson
+:endif
+
+:if:<storage.get(factory_class)>>0
+    @register.change(battlefactory_challenge_<storage.get(factory_level)>_class,<math.int(<storage.get(factory_class)>-1)>)
+:endif
+
+@register.change(battlefactory_challenge_<storage.get(factory_level)>_previous_streak,0)
+@script.start(frontier\battlefactory\challenge\clearup)
+
+:exit

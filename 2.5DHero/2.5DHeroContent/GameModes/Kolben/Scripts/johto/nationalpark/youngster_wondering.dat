@@ -1,0 +1,7 @@
+version=2
+:if:<datetime.dayofweek>=Tuesday <or> <datetime.dayofweek>=Thursday <or> <datetime.dayofweek>=Saturday
+    @text.show(The Bug-Catching Contest~is today. Are you~going to participate?)
+:else
+    @text.show(When is the next~Bug-Catching Contest~going to be?)
+:endif
+:end

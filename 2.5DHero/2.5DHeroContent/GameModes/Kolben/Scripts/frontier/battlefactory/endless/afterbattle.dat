@@ -1,0 +1,42 @@
+version=2
+@npc.turn(0,3)
+@npc.move(0,1)
+@npc.turn(0,0)
+@npc.move(0,3)
+@npc.turn(0,1)
+@npc.move(0,3)
+@npc.turn(0,0)
+@npc.move(0,3)
+
+@camera.deactivatethirdperson
+@player.turn(3)
+@player.move(3)
+@player.turnto(3)
+@player.move(2)
+@player.turnto(2)
+@player.move(1)
+@player.warp(frontier\battlefactory\rental.dat,6,0.1,-1)
+@level.update
+@npc.warp(0,6,0,2)
+@npc.turn(0,3)
+@level.update
+
+@player.move(2)
+@player.turnto(3)
+@player.move(1)
+@player.turnto(2)
+@player.move(1)
+@player.turnto(1)
+
+@text.show(You defeated opponent~no.<storage.get(factory_streak)>.)
+
+:if:<storage.get(factory_streak)>=7 <or> <storage.get(factory_streak)>=14
+    :if:<storage.get(factory_class)><2
+        @register.change(battlefactory_endless_<storage.get(factory_level)>_class,<math.int(<storage.get(factory_class)>+1)>)
+    :endif
+:endif
+@storage.set(factory_class,<register.value(battlefactory_endless_<storage.get(factory_level)>_class)>)
+
+@script.start(frontier\battlefactory\endless\rent)
+@script.start(frontier\battlefactory\endless\beforebattle)
+:end

@@ -1,0 +1,18 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(earthbadge_obtain)>=true <and> <register.exists(BrockRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe around noon during~the beginning of the week?*If you visit while~I am there maybe~we could battle.)
+    @register.new(BrockRematchTalk)
+    :end
+:endif
+@battle.starttrainer(kanto\gyms\pewter\leader)
+@player.AchieveEmblem(boulder)
+:if:<register.exists(boulderbadge_obtain)>=False
+    @register.new(boulderbadge_obtain)
+    @register.new(trainer_kanto\gyms\pewter\001)
+    @player.GetBadge(1)
+    @Text.show(I really enjoyed~the battle with you,~<player.name>!*I'll give you the~move Rock Slide, too.*It can sometimes cause~your foe to flinch.)
+    @item.add(385,1)
+    @item.messagegive(385,1)
+    @Text.show(Brock: The world is huge.*There are still many~strong trainers like you.*Just wait and see.*I'm going to become~a lot stronger too!)
+:endif
+:end

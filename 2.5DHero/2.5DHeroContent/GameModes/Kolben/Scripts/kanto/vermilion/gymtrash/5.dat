@@ -1,0 +1,32 @@
+version=2
+:if:<register.value(1can)>=5
+    @npc.remove(12)
+    @npc.remove(13)
+    @register.remove(1can,int)
+    @text.show(Found a switch!*Pressed it.)
+    :end
+:endif
+
+:if:<register.value(can)>=5
+    @npc.remove(10)
+    @npc.remove(11)
+    @register.new(foundcan0)
+    @register.remove(can,int)
+    :select:<system.random(0,2)>
+        :when:0
+            @register.new(1can,int,0)
+        :when:1
+            @register.new(1can,int,6)
+        :when:2
+            @register.new(1can,int,10)
+    :endselect
+    @text.show(Found a switch!*Pressed it.)
+    :end
+:endif
+
+@text.show(Nope!~Nothing here but trash.)
+
+:if:<register.exists(foundcan0)>=True
+    @script.start(kanto\vermilion\gymtrash\reset)
+:endif
+:end

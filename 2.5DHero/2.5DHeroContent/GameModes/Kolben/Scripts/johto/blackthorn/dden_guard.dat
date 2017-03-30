@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(trainer_johto\gyms\blackthorn\leader)>=true
+    @text.show(Since Clair, the~dragon master, has*allowed it, you~may enter.)
+:else
+    @text.show(Only dragon users~are permitted to*train here.~Please leave.)
+:endif
+:end

@@ -1,0 +1,10 @@
+version=2
+:if:<player.position>=15,0,-1
+    @npc.warp(0,14,0,0)
+    @player.move(2)
+    @player.turnto(0)
+    @npc.turn(0,3)
+    @npc.move(0,1)
+    @npc.turn(0,2)
+:endif
+:end

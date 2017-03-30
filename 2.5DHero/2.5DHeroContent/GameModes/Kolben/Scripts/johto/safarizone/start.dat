@@ -1,0 +1,29 @@
+version=2
+@text.show(Hello!*Welcome to the~Safari Zone.*For the price of $500,~we will guide you on~a safari adventure!*Your adventure only stops~when you run out of~Safari Balls or~leave the Safari Zone.*We have a total of 20~unique areas for you~to explore and many rare~Pokémon for you to find!)
+@text.show(Using your regular Pokémon~is strictly forbidden in~the Safari Zone.*We will provide you~with 30 Safari Balls.*Would you like to~go on the safari adventure?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:No
+        :end
+:endselect
+@text.show(Great!~That will be $500.)
+:if:<player.money>>500
+    @sound.play(buy2)
+    @player.addmoney(-500)
+:else
+    @text.show(I am sorry,~you don't have enough~money to go on a Safari.*Please come again.)
+    :end
+:endif
+
+@text.show(Alright,~here are your Safari Balls.)
+@item.add(181,30)
+@item.messagegive(181,30)
+
+@text.show(Now follow me!)
+@npc.turn(0,0)
+@npc.move(0,2)
+@npc.remove(0)
+@player.move(3)
+@register.new(safarizonestart)
+@script.start(johto\safarizone\nextarea)
+:end

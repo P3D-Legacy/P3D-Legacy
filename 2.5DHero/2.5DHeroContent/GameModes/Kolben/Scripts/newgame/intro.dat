@@ -1,0 +1,187 @@
+@camera.set(6,3,7,0,0-0.3)
+@camera.update
+@level.update
+
+@music.play(system\gameintro)
+@screen.fadein
+
+<levelWait>=0
+:while:<levelWait><100
+    @level.wait(1)
+    @camera.update
+    <levelWait>+=1
+:endwhile
+
+:while:<camera.y><9
+    @npc.warp(1,~+0.03,~,~)
+    @npc.warp(5,~+0.03,~,~)
+    @npc.warp(6,~+0.03,~,~)
+    @camera.sety(~+0.02)
+    @camera.update
+:endwhile
+:while:<camera.y><15
+    @npc.warp(1,~+0.03,~,~)
+    @npc.warp(5,~+0.03,~,~)
+    @npc.warp(6,~+0.03,~,~)
+    @camera.sety(~+0.02)
+    @camera.setpitch(~-0.0011)
+    @camera.update
+:endwhile
+
+@npc.setspeed(2,0.7)
+@npc.move(2,12)
+
+<screenFade>=0
+:while:<screenFade><255
+    @camera.setx(~-0.01)
+    @camera.setz(~-0.01)
+    @camera.sety(~-0.004)
+    @camera.setpitch(~-0.0012)
+    @camera.update
+    <screenFade>+=1
+    @screen.setfade(<screenFade>)
+:endwhile
+
+@camera.set(40,1.1,11,0,0)
+@camera.update
+@level.update
+
+@screen.fadein(15)
+
+@npc.turn(3,1)
+@camera.update
+@level.wait(5)
+
+@npc.turn(3,2)
+@camera.update
+@level.wait(5)
+
+@npc.turn(3,3)
+@camera.update
+@level.wait(5)
+
+@npc.turn(3,0)
+@camera.update
+@level.wait(5)
+
+@npc.turn(3,2)
+@camera.update
+@level.wait(5)
+
+@npc.move(4,3)
+
+<levelWait>=0
+:while:<levelWait><50
+    @level.wait(1)
+    @camera.update
+    <levelWait>+=1
+:endwhile
+
+@npc.setspeed(4,2)
+@npc.move(4,1)
+
+@sound.play(destroy)
+
+:while:<npc.position(3,x)>>35
+    @npc.warp(3,~-0.05,~,~)
+    @camera.update
+:endwhile
+
+@screen.fadeout(2)
+@music.stop
+
+@level.load(newgame\intro.dat)
+
+@camera.set(9,0.5,9,0,0-0.1)
+@camera.update
+
+@screen.fadein
+
+@music.play(route\1)
+@npc.move(0,4)
+@npc.turn(0,2)
+
+@text.show(Hello, sorry to~keep you waiting!*Welcome to the~world of Pokémon!*My name is Oak.~People call me~Pokémon Professor.*This world is inhabited~by creatures that~we call...)
+@screen.fadeout(20)
+@camera.set(20,3,4,3.36,-0.59)
+@camera.update
+@level.update
+@screen.fadein(20)
+@text.show(...Pokémon.*People and Pokémon~live together by supporting~each other.)
+
+@screen.fadeout(20)
+@camera.set(35,1,14,6.16,0-0.187)
+@camera.update
+@level.update
+@screen.fadein(20)
+
+@text.show(Some people play~with Pokémon, some battle~with them.*But we don't know~everything about~Pokémon yet.)
+
+@screen.fadeout(20)
+@camera.set(9,0.5,9,0,0-0.1)
+@camera.update
+@level.update
+@screen.fadein(20)
+@text.show(There are still~many mysteries to solve.*That's why I study~Pokémon every day.)
+@text.show(But let's get~back to you.)
+
+@screen.skinselection(Ethan,Lyra,Hilbert,Hilda,Nate,Rosa,Leaf)
+
+@player.wearskin(<screen.selectedskin>)
+@npc.wearskin(1,<screen.selectedskin>)
+
+:while:<camera.z><11.5
+    @camera.setz(~+0.05)
+    @camera.sety(~+0.02)
+    @camera.setpitch(~-0.006)
+    @camera.update
+:endwhile
+
+@text.show(Now, what did you say~your name was?)
+@screen.input(<screen.selectedskin>,name,<screen.selectedskin>,14)
+@player.setname(<system.lastinput>)
+
+@text.show(Alright, nice to meet you,~<player.name>!)
+
+@screen.fadeout(20)
+@camera.set(26,1.1,36,5.93,0-0.276)
+@camera.update
+@level.update
+@screen.fadein(20)
+
+@npc.move(4,3)
+@level.wait(50)
+@npc.turn(4,1)
+@npc.move(4,4)
+@npc.turn(3,3)
+@npc.move(3,2)
+@npc.turn(3,0)
+@npc.move(3,2)
+@sound.play(enter)
+
+@text.show(This is your home~in New Bark Town,~you live there~with your mother~right next to Professor Elm.)
+
+@screen.fadeout(20)
+@camera.set(9,1.5,11.5,0,0-0.4)
+@camera.update
+@level.update
+@screen.fadein(20)
+
+@text.show(<player.name>,~are you ready?*Your very own Pokémon~story is about to unfold.*You'll face fun times~and tough challenges.*A world of dreams and~adventures with Pokémon~awaits!*Let's go!~I'll be seeing you later!)
+
+<screenFade>=0
+
+:while:<screenFade><255
+    @camera.setz(~+0.01)
+    @camera.sety(~+0.004)
+    @camera.setpitch(~-0.0012)
+    @camera.update
+    <screenFade>+=1
+    @screen.setfade(<screenFade>)
+:endwhile
+
+@player.setot(<system.random(0,65255)>)
+@player.addmoney(3000)
+@rival.setname(???)
+
+@system.endnewgame(johto\newbark\yourroom.dat,1,0.1,3,1)

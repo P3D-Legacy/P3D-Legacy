@@ -186,6 +186,13 @@
         End If
     End Sub
 
+    ''' <summary>
+    ''' Clears loaded sounds.
+    ''' </summary>
+    Public Shared Sub Clear()
+        SongFiles.Clear()
+    End Sub
+
     Private Shared SongExistFlag As Boolean = True
 
     Public Shared Sub PlayMusic(ByVal Song As String)

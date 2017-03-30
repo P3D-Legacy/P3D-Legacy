@@ -1,0 +1,27 @@
+version=2
+:select:<daycare.countpokemon(0)>
+    :when:0
+        @text.show(I'm the Day-Care Lady.*We take care of the~precious Pokémon of~other trainers.*If you'd like us to~raise your Pokémon,~have a word with~my husband.)
+    :when:1
+        @text.show(Glad you came!~Your <daycare.pokemonname(0,0)> is~doing just fine!)
+    :when:2
+        :select:<daycare.canbreed(0)>
+            :when:70
+                @storage.set(breed_text,The two seem to get~along very well.)
+            :when:50
+                @storage.set(breed_text,The two seem to~get along.)
+            :when:20
+                @storage.set(breed_text,The two don't seem~to like each other.)
+            :when:0
+                @storage.set(breed_text,The two prefer to play~with other Pokémon than~each other.)
+        :endselect
+        @text.show(Glad you came!*Your <daycare.pokemonname(0,0)> and~your <daycare.pokemonname(0,1)> are~doing just fine.*<storage.get(breed_text)>)
+        
+        :if:<daycare.canbreed(0)>=70 <and> <register.exists(daycare_lavacookies)>=false
+            @text.show(Your Pokémon really like~each other.*I am pleased to see~this level of happyness.*Here, take these,~sweetie.)
+            @item.add(7,10)
+            @item.messagegive(7,10)
+        :endif
+        @storage.clear
+:endselect
+:end

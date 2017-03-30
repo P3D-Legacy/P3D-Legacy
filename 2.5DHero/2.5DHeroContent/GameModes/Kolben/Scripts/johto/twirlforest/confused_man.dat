@@ -1,0 +1,36 @@
+version=2
+@register.remove(scizor_appeared)
+
+:if:<register.exists(twirl_forest_confused_man_1)>=true
+    :exit
+:endif
+
+@register.new(twirl_forest_confused_man_1)
+@player.turnto(3)
+@player.setmovement(-1,0,0)
+@overworldpokemon.hide
+@player.move(1)
+@overworldpokemon.hide
+@npc.warp(1,22,0,13)
+@npc.turn(1,1)
+@npc.move(1,2)
+@level.wait(40)
+@npc.turn(1,0)
+@level.wait(40)
+@npc.turn(1,2)
+@level.wait(40)
+@npc.turn(1,3)
+@level.wait(40)
+@npc.turn(1,1)
+@text.show(Woah!~I am back where I~started! This is so~confusing...*I don't know what to~do anymore. I tried~so many paths and~all lead back here.*I am going to leave~this place forever!*What? You want to know~what this place is?*It's a cruel maze,~I can tell you that.*It's like a dungeon, a~mysterious one.~Don't enter it!)
+@player.setmovement(-1,0,0)
+@player.move(1)
+@overworldpokemon.hide
+@player.resetmovement
+@npc.move(1,1)
+@npc.turn(1,2)
+@npc.move(1,1)
+@npc.turn(1,1)
+@npc.move(1,4)
+@npc.warp(1,24,0,13)
+:end

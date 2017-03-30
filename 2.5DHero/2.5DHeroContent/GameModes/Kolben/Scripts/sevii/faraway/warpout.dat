@@ -1,0 +1,17 @@
+version=2
+<cam>=<camera.thirdperson>
+@camera.activatethirdperson
+@camera.fix
+@player.move(3)
+
+@screen.fadeout
+@sound.play(enter)
+@player.warp(sevii\faraway\exterior.dat,<player.position(x)>+16,5.1,7,0)
+@camera.setthirdperson(<cam>)
+@camera.defix
+@camera.update
+@level.update
+@screen.fadein
+
+@player.move(1)
+:end

@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(radio_director_rescue)>=false
+    @text.show(Director: Who?~What? You came to~rescue me?*Thank you!*The Radio Tower!*What's happening there?*Taken over by Team Rocket?*Here.~Take this Card Key.)
+    @item.add(127)
+    @item.messagegive(127,1)
+    @text.show(Director: Use that to open~the shutters on 3F.)
+    @register.new(radio_director_rescue)
+    @register.remove(martbase1)
+    @register.remove(martbase2)
+    @register.new(martbase3)
+:endif
+@text.show(I'm begging you to help.*There's no telling~what they'll do if*they control the~transmitter.*They may even be~able to control*Pokémon using a~special signal!*You're the only~one I can call on.*Please save the Radio Tower...*And all the Pokémon~nation wide!)
+:end

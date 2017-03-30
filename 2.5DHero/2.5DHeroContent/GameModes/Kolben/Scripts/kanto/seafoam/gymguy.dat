@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(volcanobadge_obtain)>=False
+    @Text.show(Yo! Legend~in the making!*This Gym has many~Trainers and rocks in the~way from the rebuilding.*It sure won't be~easy to get to Blaine!*But keep your cool and~defeat the Trainers one~by one, and you will~surely find the path!)
+:else
+    @Text.show(The Gym Leader rebuilding~his Gym and the Trainer~from Johto who has come to~challenge that Gym Leader...*I have witnessed a hot~battle!)
+:endif
+:end

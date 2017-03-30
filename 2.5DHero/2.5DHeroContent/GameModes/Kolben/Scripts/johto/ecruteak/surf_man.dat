@@ -1,0 +1,11 @@
+version=2
+:if:<register.exists(gave_surf)>=false <and> <register.exists(trainer_johto\ecruteak\001)>=true <and> <register.exists(trainer_johto\ecruteak\002)>=true <and> <register.exists(trainer_johto\ecruteak\003)>=true <and> <register.exists(trainer_johto\ecruteak\004)>=true <and> <register.exists(trainer_johto\ecruteak\005)>=true
+    @register.new(gave_surf)
+    @text.show(The way you battled,~it was like watching~a dance.*It was a rare~treat to see!*I want you to have~this. Don't worry~--take it!)
+    @item.add(245,1)
+    @item.messagegive(245,1)
+    @text.show(That's Surf.*It's a move that~lets Pokémon swim~across water.)
+    :end
+:endif
+@text.show(I wish my Pokémon~were as elegant as~the Kimono Girls...)
+:end

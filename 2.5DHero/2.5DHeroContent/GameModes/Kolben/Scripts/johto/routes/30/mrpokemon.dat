@@ -1,0 +1,71 @@
+version=2
+:if:<register.exists(get_egg_mrpokemon)>=false
+    @register.new(get_egg_mrpokemon)
+    @Player.move(1)
+    @NPC.Turn(0,2)
+    @Text.Show(Hello, hello! You~must be <player.name>.~Prof. Elm said that~you would visit.*This is what I want~Prof. Elm to examine.)
+    @item.add(69,1)
+    @item.messagegive(69,1)
+    @Text.show(I know a couple~who run a Pokémon~Day-Care service.*They gave me that~Egg.*I was intrigued,~so I sent mail to~Prof. Elm.*For Pokémon evolution,~Prof. Elm is the~authority.)
+    @npc.turn(0,3)
+    @Text.show(Even Prof. Oak here~recognizes that.)
+    @npc.turn(1,1)
+    @npc.turn(0,2)
+    @Text.show(If my assumption~is correct, Prof.~Elm will know it.)
+    @music.play(oak_encounter)
+    @npc.turn(1,2)
+    @npc.move(1,1)
+    @npc.turn(1,1)
+    @npc.move(1,2)
+    @player.turnto(3)
+    @text.show(Oak: Aha! So~you're <player.name>!*I'm Oak! A Pokémon~researcher.*I was just visiting my~old friend Mr. Pokémon.*I heard you were~running an errand~for Prof. Elm, so I~waited here.*Oh! What's this?~A rare Pokémon!*Let's see...)
+    @text.show(Hm, I see!*I understand why~Prof. Elm gave you~a Pokémon for this~errand.*To researchers~like Prof. Elm and~I, Pokémon are our~friends.*He saw that you~would treat your~Pokémon with love~and care.*...Ah!)
+    @text.show(You seem to be~dependable.*How would you like~to help me out?*See? This is the~latest version of~Pokédex.*It automatically~records data on*Pokémon you've~seen or caught.*It's a hi-tech~encyclopedia!)
+    @sound.play(success,1)
+    @text.show(<player.name> received~Pokédex!)
+    @player.receivepokedex
+    @text.show(Go meet many kinds~of Pokémon and~complete that~Pokédex!*But I've stayed too long.*I have to get to~Goldenrod for my~usual radio show.*<player.name>,~I'm counting on you!)
+    @npc.turn(1,2)
+    @npc.move(1,1)
+    @npc.turn(1,1)
+    @npc.move(1,1)
+    @npc.turn(1,2)
+    @npc.move(1,1)
+    @sound.play(enter)
+    @npc.remove(1)
+    @music.play(RouteMusic1)
+    @NPC.register(johto\routes\30\mrpokemonhouse.dat|1|remove|1)
+    @player.turnto(0)
+    @npc.turn(0,2)
+    @text.show(You are returning~to Prof. Elm?*Here. Your Pokémon~should have some~rest.)
+    @screen.fadeout
+    @pokemon.heal
+    @sound.play(healing,1)
+    @level.wait(150)
+    @screen.fadein
+    @text.show(I'm depending on~you!)
+    @npc.turn(0,3)
+    @register.new(rival_encounter_cherrygrove)
+:else
+    :if:<register.exists(trade_scale_expshare)>=true
+        @text.show(Life is delightful!~Always, new*discoveries to be made!)
+    :else
+        :if:<item.count(66)>>0
+            @text.show(Hm? That Scale!~What's that?~A red Gyarados?*That's rare! ~I, I want it...*<player.name>, would you~care to trade it?*I can offer this~Exp.Share I got~from Prof. Oak.)
+            @options.show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @item.add(57)
+                    @item.messagegive(57,1)
+                    @item.remove(66,1)
+                    @register.new(trade_scale_expshare)
+                    @text.show(Life is delightful!~Always, new*discoveries to be made!)
+                :when:No
+                    @text.show(That's disappointing.~That happens to be very rare.)
+            :endselect
+        :else
+            @text.show(I'm depending on you!)
+        :endif
+    :endif
+:endif
+:end

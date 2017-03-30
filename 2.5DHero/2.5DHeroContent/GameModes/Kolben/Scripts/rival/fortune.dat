@@ -1,0 +1,19 @@
+version=2
+:if:<register.exists(rival_fortune_encounter)>=false
+    @Music.play(encounter\rival)
+    @player.move(1)
+    @entity.showmessagebulb(1|7|1|3)
+    @npc.turn(5,2)
+    @npc.move(5,4)
+    @text.show(<rival.name>: Oh,~hey, <player.name>.*You finally made~it this far?*I have gotten all I~can out of these islands.*I have been thinking~a lot about what I have~learned from you and~that dragon guy.*I decided to spend more~time getting to know~my Pokémon.*Of course I am still~going to become stronger~than you one day,~but I still need to~train more.*Someone told me I might~be interested in Mt. Moon~so I am going to~go visit there...)
+    @player.turnto(1)
+    @player.move(1)
+    @player.turnto(3)
+    @npc.move(5,3)
+    @npc.remove(5)
+    @music.play(building\center)
+    @register.new(rival_fortune_encounter)
+    @npc.register(sevii\fortune\center.dat|5|remove|0)
+    @npc.register(kanto\mtmoon\main.dat|0|position|3,0,8)
+:endif
+:end

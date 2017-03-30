@@ -1,0 +1,96 @@
+version=2
+:if:<register.exists(bill_encounter)>=true <and> <register.exists(pokegear_card_GTS)>=false
+    @text.show(Oh, hello there,~<player.name>.*The new GTS Card for~your Pokégear just arrived.*Here you go.)
+    @sound.play(success_small)
+    @text.show(<player.name> received~the GTS Card!)
+    @text.show(With the GTS Card,~you can trade with~people all around the world.)
+    @register.new(pokegear_card_GTS)
+:endif
+
+:select:<environment.daytimeid>
+    :when:0
+        @text.show(Hello, and welcome to~the Pokémon Center.*We restore your tired~Pokémon to full health.*Would you like to rest~your Pokémon?)
+    :when:1
+        @text.show(Good morning! Welcome~to the Pokémon Center.*We restore your tired~Pokémon to full health.*Would you like to rest~your Pokémon?)
+    :when:2
+        @text.show(Hello, and welcome to~the Pokémon Center.*We restore your tired~Pokémon to full health.*Would you like to rest~your Pokémon?)
+    :when:3
+        @text.show(Good evening! Welcome~to the Pokémon Center.*We restore your tired~Pokémon to full health.*Would you like to rest~your Pokémon?)
+:endselect
+
+@options.setcancelindex(1)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:No
+        @text.show(We hope to see you~again!)
+        :end
+    :when:Yes
+        @text.show(OK, I'll take your~Pokémon for a few~seconds.)
+        @overworldpokemon.hide
+        @level.update
+        @npc.turn(0,1)
+        @music.stop
+
+        :if:<pokemon.count>>0
+            @npc.warp(10,~,~+1.25,~)
+            @level.update
+            @sound.play(pokeball_set,true)
+            @level.wait(16)
+        :endif
+
+        :if:<pokemon.count>>1
+            @npc.warp(11,~,~+1.25,~)
+            @level.update
+            @sound.play(pokeball_set,true)
+            @level.wait(16)
+        :endif
+
+        :if:<pokemon.count>>2
+            @npc.warp(12,~,~+1.25,~)
+            @level.update
+            @sound.play(pokeball_set,true)
+            @level.wait(16)
+        :endif
+
+        :if:<pokemon.count>>3
+            @npc.warp(13,~,~+1.25,~)
+            @level.update
+            @sound.play(pokeball_set,true)
+            @level.wait(16)
+        :endif
+
+        :if:<pokemon.count>>4
+            @npc.warp(14,~,~+1.25,~)
+            @level.update
+            @sound.play(pokeball_set,true)
+            @level.wait(16)
+        :endif
+
+        :if:<pokemon.count>>5
+            @npc.warp(15,~,~+1.25,~)
+            @level.update
+            @sound.play(pokeball_set,true)
+            @level.wait(16)
+        :endif
+
+        @pokemon.heal
+        @sound.play(pokemon_heal,true)
+        @level.wait(180)
+
+        @npc.warp(10,~,~-1.25,~)
+        @npc.warp(11,~,~-1.25,~)
+        @npc.warp(12,~,~-1.25,~)
+        @npc.warp(13,~,~-1.25,~)
+        @npc.warp(14,~,~-1.25,~)
+        @npc.warp(15,~,~-1.25,~)
+        @level.update
+
+        @level.wait(26)
+        @music.resume
+
+        @npc.turn(0,2)
+
+        @text.show(Thank you for waiting.*We've restored your~Pokémon to full health.*We hope to see you~again!)
+        :end
+:endselect
+:end

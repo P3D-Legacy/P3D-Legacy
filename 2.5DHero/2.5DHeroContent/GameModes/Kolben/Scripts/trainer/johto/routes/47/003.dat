@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(trainer_johto\routes\47\003)>=false
+    :select:<player.position>
+        :when:52,2,30
+            @npc.move(3,2)
+        :when:53,2,30
+            @npc.move(3,1)
+    :endselect
+    @text.show(Kae: No lone trainer~will be able to stand~up to our Double Team!)
+:endif
+@battle.starttrainer(johto\routes\47\003)
+@register.new(trainer_johto\routes\47\004)
+:end

@@ -1,0 +1,30 @@
+version=2
+@text.show(Ah, it's you!*We were raising your~Pokémon, and my goodness,~we were surprised!*Your Pokémon was holding~an Egg!*We don't know how it~got there, but your~Pokémon had it.*You do want it,~don't you?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        :if:<pokemon.count><6
+            @text.show(<player.name> received~the Egg from the~Day-Care Man.)
+            @daycare.takeegg(2)
+            @text.show(Please take good~care of it!)
+        :else
+            @text.show(You have no room~right now.*Come back when you've~made room.)
+        :endif
+    :when:No
+        @text.show(I will take it and~never give it back.~You do want this Egg,~don't you?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                :if:<pokemon.count><6
+                    @text.show(<player.name> received~the Egg from the~Day-Care Man.)
+                    @daycare.takeegg(2)
+                    @text.show(Please take good~care of it!)
+                :else
+                    @text.show(You have no room~right now.*Come back when you've~made room.)
+                :endif
+            :when:No
+                @text.show(Well then, I'll hang~on it. Thank you!)
+                @daycare.removeegg(2)
+        :endselect
+:endselect
+:end

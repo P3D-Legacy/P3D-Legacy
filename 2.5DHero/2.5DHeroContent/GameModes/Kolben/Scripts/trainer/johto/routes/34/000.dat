@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(trainer_johto\routes\34\007)>=False
+    @Music.play(encounter\trainer)
+    @Player.turnto(1)
+    @npc.Move(6,2)
+    @battle.starttrainer(johto\routes\34\007)
+    @Music.play(encounter\trainer)
+    @Player.turnto(3)
+    @npc.Move(8,4)
+    @battle.starttrainer(johto\routes\34\008)
+    @Music.play(route\2)
+:end
+:endif

@@ -1,0 +1,9 @@
+version=2
+:if:<register.exists(fogbadge_obtain)>=False
+    @screen.fadeout
+    @Player.Warp(4,0.1,15)
+    @Level.Update
+    @screen.fadein
+    @Player.TurnTo(0)
+:endif
+:end

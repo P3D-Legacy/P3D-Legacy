@@ -1,301 +1,479 @@
 Public Class KeyBindings
 
-    Public Shared ForwardMoveKey As Keys = Keys.W
-    Public Shared LeftMoveKey As Keys = Keys.A
-    Public Shared BackwardMoveKey As Keys = Keys.S
-    Public Shared RightMoveKey As Keys = Keys.D
+    Private Shared _tempKeyMap As New Dictionary(Of String, Keys)
+    Private Shared _dataModel As DataModel.Json.PlayerData.KeyboardSave
+    Private Shared _initialized As Boolean = False
 
-    Public Shared OpenInventoryKey As Keys = Keys.E
-    Public Shared ChatKey As Keys = Keys.T
-    Public Shared SpecialKey As Keys = Keys.Q
+    Public Shared Property IsInitialized() As Boolean
+        Get
+            Return _initialized
+        End Get
+        Set(value As Boolean)
+            _initialized = value
+        End Set
+    End Property
 
-    Public Shared UpKey As Keys = Keys.Up
-    Public Shared DownKey As Keys = Keys.Down
-    Public Shared RightKey As Keys = Keys.Right
-    Public Shared LeftKey As Keys = Keys.Left
+#Region "Keys"
 
-    Public Shared CameraLockKey As Keys = Keys.C
-    Public Shared MuteMusicKey As Keys = Keys.M
-    Public Shared OnlineStatusKey As Keys = Keys.Tab
+    Public Shared Property ForwardMoveKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.W
+            End If
+            Return GetKey(_dataModel.ForwardMove)
+        End Get
+        Set(value As Keys)
+            _dataModel.ForwardMove = value.ToString()
+        End Set
+    End Property
 
-    Public Shared GUIControlKey As Keys = Keys.F1
-    Public Shared ScreenshotKey As Keys = Keys.F2
-    Public Shared DebugKey As Keys = Keys.F3
-    Public Shared LightKey As Keys = Keys.F4
-    Public Shared PerspectiveSwitchKey As Keys = Keys.F5
-    Public Shared FullScreenKey As Keys = Keys.F11
+    Public Shared Property LeftMoveKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.A
+            End If
+            Return GetKey(_dataModel.LeftMove)
+        End Get
+        Set(value As Keys)
+            _dataModel.LeftMove = value.ToString()
+        End Set
+    End Property
 
-    Public Shared EnterKey1 As Keys = Keys.Enter
-    Public Shared EnterKey2 As Keys = Keys.Space
-    Public Shared BackKey1 As Keys = Keys.E
-    Public Shared BackKey2 As Keys = Keys.E
-    Public Shared EscapeKey As Keys = Keys.Escape
+    Public Shared Property BackwardMoveKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.S
+            End If
+            Return GetKey(_dataModel.BackwardMove)
+        End Get
+        Set(value As Keys)
+            _dataModel.BackwardMove = value.ToString()
+        End Set
+    End Property
 
-    Public Shared Sub LoadKeys()
-        'Check if the Keyboard.dat file exists in the save folder:
-        If IO.File.Exists(GameController.GamePath & "\Save\Keyboard.dat") = True Then
-            'Read lines from the file and try to assign the key to the correct Key field.
-            Dim Lines() As String = IO.File.ReadAllLines(GameController.GamePath & "\Save\Keyboard.dat")
+    Public Shared Property RightMoveKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.D
+            End If
+            Return GetKey(_dataModel.RightMove)
+        End Get
+        Set(value As Keys)
+            _dataModel.RightMove = value.ToString()
+        End Set
+    End Property
 
-            For Each line As String In Lines
-                If line.StartsWith("[") = True Then
-                    Dim key As String = line.GetSplit(0, "=")
-                    Dim binding As Keys = GetKey(line.GetSplit(1, "="))
+    Public Shared Property InventoryKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.E
+            End If
+            Return GetKey(_dataModel.Inventory)
+        End Get
+        Set(value As Keys)
+            _dataModel.Inventory = value.ToString()
+        End Set
+    End Property
 
-                    key = key.Remove(0, 1)
-                    key = key.Remove(key.Length - 1, 1)
+    Public Shared Property ChatKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.T
+            End If
+            Return GetKey(_dataModel.Chat)
+        End Get
+        Set(value As Keys)
+            _dataModel.Chat = value.ToString()
+        End Set
+    End Property
 
-                    Select Case key.ToLower()
-                        Case "forwardmove"
-                            ForwardMoveKey = binding
-                        Case "leftmove"
-                            LeftMoveKey = binding
-                        Case "backwardmove"
-                            BackwardMoveKey = binding
-                        Case "rightmove"
-                            RightMoveKey = binding
-                        Case "inventory"
-                            OpenInventoryKey = binding
-                        Case "chat"
-                            ChatKey = binding
-                        Case "special", "pokegear"
-                            SpecialKey = binding
-                        Case "mutemusic"
-                            MuteMusicKey = binding
-                        Case "cameraleft"
-                            LeftKey = binding
-                        Case "cameraright"
-                            RightKey = binding
-                        Case "cameraup"
-                            UpKey = binding
-                        Case "cameradown"
-                            DownKey = binding
-                        Case "cameralock"
-                            CameraLockKey = binding
-                        Case "guicontrol"
-                            GUIControlKey = binding
-                        Case "screenshot"
-                            ScreenshotKey = binding
-                        Case "debugcontrol"
-                            DebugKey = binding
-                        Case "perspectiveswitch"
-                            PerspectiveSwitchKey = binding
-                        Case "fullscreen"
-                            FullScreenKey = binding
-                        Case "enter1"
-                            EnterKey1 = binding
-                        Case "enter2"
-                            EnterKey2 = binding
-                        Case "back1"
-                            BackKey1 = binding
-                        Case "back2"
-                            BackKey2 = binding
-                        Case "escape", "esc"
-                            EscapeKey = binding
-                        Case "onlinestatus"
-                            OnlineStatusKey = binding
-                        Case "lightning"
-                            LightKey = binding
-                    End Select
-                End If
-            Next
-        End If
-    End Sub
+    Public Shared Property SpecialKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.Q
+            End If
+            Return GetKey(_dataModel.Special)
+        End Get
+        Set(value As Keys)
+            _dataModel.Special = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property MuteMusicKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.M
+            End If
+            Return GetKey(_dataModel.MuteMusic)
+        End Get
+        Set(value As Keys)
+            _dataModel.MuteMusic = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property UpKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.Up
+            End If
+            Return GetKey(_dataModel.Up)
+        End Get
+        Set(value As Keys)
+            _dataModel.Up = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property DownKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.Down
+            End If
+            Return GetKey(_dataModel.Down)
+        End Get
+        Set(value As Keys)
+            _dataModel.Down = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property LeftKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.Left
+            End If
+            Return GetKey(_dataModel.Left)
+        End Get
+        Set(value As Keys)
+            _dataModel.Left = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property RightKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.Right
+            End If
+            Return GetKey(_dataModel.Right)
+        End Get
+        Set(value As Keys)
+            _dataModel.Right = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property CameraLockKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.C
+            End If
+            Return GetKey(_dataModel.CameraLock)
+        End Get
+        Set(value As Keys)
+            _dataModel.CameraLock = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property GUIControlKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.F1
+            End If
+            Return GetKey(_dataModel.GUIControl)
+        End Get
+        Set(value As Keys)
+            _dataModel.GUIControl = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property ScreenShotKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.F2
+            End If
+            Return GetKey(_dataModel.ScreenShot)
+        End Get
+        Set(value As Keys)
+            _dataModel.ScreenShot = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property DebugKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.F3
+            End If
+            Return GetKey(_dataModel.DebugControl)
+        End Get
+        Set(value As Keys)
+            _dataModel.DebugControl = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property LightKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.F4
+            End If
+            Return GetKey(_dataModel.Lighting)
+        End Get
+        Set(value As Keys)
+            _dataModel.Lighting = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property PerspectiveSwitchKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.F5
+            End If
+            Return GetKey(_dataModel.PerspectiveSwitch)
+        End Get
+        Set(value As Keys)
+            _dataModel.PerspectiveSwitch = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property FullScreenKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.F11
+            End If
+            Return GetKey(_dataModel.FullScreen)
+        End Get
+        Set(value As Keys)
+            _dataModel.FullScreen = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property EnterKey1() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.Enter
+            End If
+            Return GetKey(_dataModel.Enter1)
+        End Get
+        Set(value As Keys)
+            _dataModel.Enter1 = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property EnterKey2() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.Space
+            End If
+            Return GetKey(_dataModel.Enter2)
+        End Get
+        Set(value As Keys)
+            _dataModel.Enter2 = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property BackKey1() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.E
+            End If
+            Return GetKey(_dataModel.Back1)
+        End Get
+        Set(value As Keys)
+            _dataModel.Back1 = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property BackKey2() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.E
+            End If
+            Return GetKey(_dataModel.Back2)
+        End Get
+        Set(value As Keys)
+            _dataModel.Back2 = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property EscapeKey() As Keys
+        Get
+            If _dataModel Is Nothing Then
+                Return Keys.Escape
+            End If
+            Return GetKey(_dataModel.Escape)
+        End Get
+        Set(value As Keys)
+            _dataModel.Escape = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property OnlineStatusKey() As Keys
+        Get
+            Return GetKey(_dataModel.OnlineStatus)
+        End Get
+        Set(value As Keys)
+            _dataModel.OnlineStatus = value.ToString()
+        End Set
+    End Property
+
+    Public Shared Property SprintingKey() As Keys
+        Get
+            Return GetKey(_dataModel.Sprinting)
+        End Get
+        Set(value As Keys)
+            _dataModel.Sprinting = value.ToString()
+        End Set
+    End Property
+
+#End Region
 
     ''' <summary>
-    ''' Converts the name of a key to the actual Key class.
+    ''' Converts the name of a key to the actual enum member.
     ''' </summary>
     ''' <param name="keyStr">The key name to convert.</param>
     ''' <remarks>The default is Keys.None.</remarks>
-    Public Shared Function GetKey(ByVal keyStr As String) As Keys
-        For Each k As Keys In [Enum].GetValues(GetType(Keys))
-            If k.ToString().ToLower() = keyStr.ToLower() Then
-                Return k
+    Private Shared Function GetKey(ByVal keyStr As String) As Keys
+        Dim keyCompare As String = keyStr.ToLower()
+
+        If _tempKeyMap.ContainsKey(keyCompare) = False Then
+            For Each k As Keys In [Enum].GetValues(GetType(Keys))
+                If k.ToString().ToLower() = keyStr.ToLower() Then
+                    _tempKeyMap.Add(keyCompare, k)
+                End If
+            Next
+
+            If _tempKeyMap.ContainsKey(keyCompare) = False Then
+                _tempKeyMap.Add(keyCompare, Keys.None)
             End If
-        Next
+        End If
 
-        Return Keys.None
+        Return _tempKeyMap(keyCompare)
     End Function
 
-    ''' <summary>
-    ''' Returns the name of a key.
-    ''' </summary>
-    ''' <param name="key">The key to get the name for.</param>
-    ''' <remarks>Returns String.Empty by default.</remarks>
-    Public Shared Function GetKeyName(ByVal key As Keys) As String
-        Return key.ToString()
+    Public Shared Sub Load()
+        If IO.File.Exists(GameController.GamePath & "\Save\Keyboard.dat") = True Then
+            Try
+                Dim jsonData As String = IO.File.ReadAllText(GameController.GamePath & "\Save\Keyboard.dat")
+                _dataModel = DataModel.Json.JsonDataModel.FromString(Of DataModel.Json.PlayerData.KeyboardSave)(jsonData)
+            Catch ex As Exception
+                CreateDefaultData(True)
+                Save()
+            End Try
+        Else
+            CreateDefaultData(True)
+            Save()
+        End If
+        _initialized = True
+    End Sub
 
-        Select Case key
-            Case Keys.A
-                Return "A"
-            Case Keys.B
-                Return "B"
-            Case Keys.C
-                Return "C"
-            Case Keys.D
-                Return "D"
-            Case Keys.E
-                Return "E"
-            Case Keys.F
-                Return "F"
-            Case Keys.G
-                Return "G"
-            Case Keys.H
-                Return "H"
-            Case Keys.I
-                Return "I"
-            Case Keys.J
-                Return "J"
-            Case Keys.K
-                Return "K"
-            Case Keys.L
-                Return "L"
-            Case Keys.M
-                Return "M"
-            Case Keys.N
-                Return "N"
-            Case Keys.O
-                Return "O"
-            Case Keys.P
-                Return "P"
-            Case Keys.Q
-                Return "Q"
-            Case Keys.R
-                Return "R"
-            Case Keys.S
-                Return "S"
-            Case Keys.T
-                Return "T"
-            Case Keys.U
-                Return "U"
-            Case Keys.V
-                Return "V"
-            Case Keys.W
-                Return "W"
-            Case Keys.X
-                Return "X"
-            Case Keys.Y
-                Return "Y"
-            Case Keys.Z
-                Return "Z"
-            Case Keys.F1
-                Return "F1"
-            Case Keys.F2
-                Return "F2"
-            Case Keys.F3
-                Return "F3"
-            Case Keys.F4
-                Return "F4"
-            Case Keys.F5
-                Return "F5"
-            Case Keys.F6
-                Return "F6"
-            Case Keys.F7
-                Return "F7"
-            Case Keys.F8
-                Return "F8"
-            Case Keys.F9
-                Return "F9"
-            Case Keys.F10
-                Return "F10"
-            Case Keys.F11
-                Return "F11"
-            Case Keys.F12
-                Return "F12"
-            Case Keys.Enter
-                Return "Enter"
-            Case Keys.Space
-                Return "Space"
-            Case Keys.Escape
-                Return "Escape"
-            Case Keys.Back
-                Return "Back"
-            Case Keys.Tab
-                Return "Tab"
-            Case Keys.Up
-                Return "Up"
-            Case Keys.Down
-                Return "Down"
-            Case Keys.Left
-                Return "Left"
-            Case Keys.Right
-                Return "Right"
-        End Select
+    Public Shared Sub Save()
+        If _dataModel IsNot Nothing Then
+            Dim jsonData As String = DataModel.Json.JsonFormatter.FormatMultiline(_dataModel.ToString(), "    ")
 
-        Return ""
-    End Function
+            IO.File.WriteAllText(GameController.GamePath & "\Save\Keyboard.dat", jsonData)
+
+            Logger.Debug("151", "---Saved Keybindings---")
+        End If
+    End Sub
 
     ''' <summary>
-    ''' Creates the default keyboard.dat file.
+    ''' Resets the data model to the default key bindings.
     ''' </summary>
-    Public Shared Sub CreateKeySave(ByVal force As Boolean)
+    ''' <param name="force"></param>
+    Public Shared Sub CreateDefaultData(ByVal force As Boolean)
         If IO.Directory.Exists(GameController.GamePath & "\Save") = True Then
             If IO.File.Exists(GameController.GamePath & "\Save\Keyboard.dat") = False Or force = True Then
-                Dim s As String = "[ForwardMove]=W" & vbNewLine &
-                "[LeftMove]=" & GetKeyName(Keys.A) & vbNewLine &
-                "[BackwardMove]=" & GetKeyName(Keys.S) & vbNewLine &
-                "[RightMove]=" & GetKeyName(Keys.D) & vbNewLine &
-                "[Inventory]=" & GetKeyName(Keys.E) & vbNewLine &
-                "[Chat]=" & GetKeyName(Keys.T) & vbNewLine &
-                "[Special]=" & GetKeyName(Keys.Q) & vbNewLine &
-                "[MuteMusic]=" & GetKeyName(Keys.M) & vbNewLine &
-                "[Up]=" & GetKeyName(Keys.Up) & vbNewLine &
-                "[Down]=" & GetKeyName(Keys.Down) & vbNewLine &
-                "[Left]=" & GetKeyName(Keys.Left) & vbNewLine &
-                "[Right]=" & GetKeyName(Keys.Right) & vbNewLine &
-                "[CameraLock]=" & GetKeyName(Keys.C) & vbNewLine &
-                "[GUIControl]=" & GetKeyName(Keys.F1) & vbNewLine &
-                "[ScreenShot]=" & GetKeyName(Keys.F2) & vbNewLine &
-                "[DebugControl]=" & GetKeyName(Keys.F3) & vbNewLine &
-                "[LightKey]=" & GetKeyName(Keys.F4) & vbNewLine &
-                "[PerspectiveSwitch]=" & GetKeyName(Keys.F5) & vbNewLine &
-                "[FullScreen]=" & GetKeyName(Keys.F11) & vbNewLine &
-                "[Enter1]=" & GetKeyName(Keys.Enter) & vbNewLine &
-                "[Enter2]=" & GetKeyName(Keys.Space) & vbNewLine &
-                "[Back1]=" & GetKeyName(Keys.E) & vbNewLine &
-                "[Back2]=" & GetKeyName(Keys.E) & vbNewLine &
-                "[Escape]=" & GetKeyName(Keys.Escape) & vbNewLine &
-                "[OnlineStatus]=" & GetKeyName(Keys.Tab)
-                IO.File.WriteAllText(GameController.GamePath & "\Save\Keyboard.dat", s)
+                _dataModel = New DataModel.Json.PlayerData.KeyboardSave()
+
+                _dataModel.ForwardMove = "W"
+                _dataModel.LeftMove = "A"
+                _dataModel.BackwardMove = "S"
+                _dataModel.RightMove = "D"
+                _dataModel.Inventory = "E"
+                _dataModel.Chat = "T"
+                _dataModel.Special = "Q"
+                _dataModel.MuteMusic = "M"
+                _dataModel.Up = "Up"
+                _dataModel.Down = "Down"
+                _dataModel.Left = "Left"
+                _dataModel.Right = "Right"
+                _dataModel.CameraLock = "C"
+                _dataModel.GUIControl = "F1"
+                _dataModel.ScreenShot = "F2"
+                _dataModel.DebugControl = "F3"
+                _dataModel.Lighting = "F4"
+                _dataModel.PerspectiveSwitch = "F5"
+                _dataModel.FullScreen = "F11"
+                _dataModel.Enter1 = "Enter"
+                _dataModel.Enter2 = "Space"
+                _dataModel.Back1 = "E"
+                _dataModel.Back2 = "E"
+                _dataModel.Escape = "Escape"
+                _dataModel.OnlineStatus = "Tab"
+                _dataModel.Sprinting = "LeftShift"
             End If
         End If
     End Sub
 
     ''' <summary>
-    ''' Saves the current keyboard configuration to the keyboard.dat file.
+    ''' Sets a key binding by key name.
     ''' </summary>
-    Public Shared Sub SaveKeys()
-        If IO.Directory.Exists(GameController.GamePath & "\Save") = True Then
-            Dim s As String = "[ForwardMove]=" & GetKeyName(ForwardMoveKey) & vbNewLine &
-                "[LeftMove]=" & GetKeyName(LeftMoveKey) & vbNewLine &
-                "[BackwardMove]=" & GetKeyName(BackwardMoveKey) & vbNewLine &
-                "[RightMove]=" & GetKeyName(RightMoveKey) & vbNewLine &
-                "[Inventory]=" & GetKeyName(OpenInventoryKey) & vbNewLine &
-                "[Chat]=" & GetKeyName(ChatKey) & vbNewLine &
-                "[Special]=" & GetKeyName(SpecialKey) & vbNewLine &
-                "[MuteMusic]=" & GetKeyName(MuteMusicKey) & vbNewLine &
-                "[Up]=" & GetKeyName(UpKey) & vbNewLine &
-                "[Down]=" & GetKeyName(DownKey) & vbNewLine &
-                "[Left]=" & GetKeyName(LeftKey) & vbNewLine &
-                "[Right]=" & GetKeyName(RightKey) & vbNewLine &
-                "[CameraLock]=" & GetKeyName(CameraLockKey) & vbNewLine &
-                "[GUIControl]=" & GetKeyName(GUIControlKey) & vbNewLine &
-                "[ScreenShot]=" & GetKeyName(ScreenshotKey) & vbNewLine &
-                "[DebugControl]=" & GetKeyName(DebugKey) & vbNewLine &
-                "[LightKey]=" & GetKeyName(LightKey) & vbNewLine &
-                "[PerspectiveSwitch]=" & GetKeyName(PerspectiveSwitchKey) & vbNewLine &
-                "[FullScreen]=" & GetKeyName(FullScreenKey) & vbNewLine &
-                "[Enter1]=" & GetKeyName(EnterKey1) & vbNewLine &
-                "[Enter2]=" & GetKeyName(EnterKey2) & vbNewLine &
-                "[Back1]=" & GetKeyName(BackKey1) & vbNewLine &
-                "[Back2]=" & GetKeyName(BackKey2) & vbNewLine &
-                "[Escape]=" & GetKeyName(EscapeKey) & vbNewLine &
-                "[OnlineStatus]=" & GetKeyName(OnlineStatusKey)
-            IO.File.WriteAllText(GameController.GamePath & "\Save\Keyboard.dat", s)
-
-            Logger.Debug("---Saved Keybindings---")
-        End If
+    ''' <param name="keyName">The key name.</param>
+    ''' <param name="keyBinding">The new key binding.</param>
+    Public Shared Sub SetKeyByName(ByVal keyName As String, ByVal keyBinding As Keys)
+        Select Case keyName
+            Case "ForwardMove"
+                ForwardMoveKey = keyBinding
+            Case "LeftMove"
+                LeftMoveKey = keyBinding
+            Case "BackwardMove"
+                BackwardMoveKey = keyBinding
+            Case "RightMove"
+                RightMoveKey = keyBinding
+            Case "Inventory"
+                InventoryKey = keyBinding
+            Case "Chat"
+                ChatKey = keyBinding
+            Case "Special"
+                SpecialKey = keyBinding
+            Case "MuteMusic"
+                MuteMusicKey = keyBinding
+            Case "Up"
+                UpKey = keyBinding
+            Case "Down"
+                DownKey = keyBinding
+            Case "Left"
+                LeftKey = keyBinding
+            Case "Right"
+                RightKey = keyBinding
+            Case "CameraLock"
+                CameraLockKey = keyBinding
+            Case "GUIControl"
+                GUIControlKey = keyBinding
+            Case "ScreenShot"
+                ScreenShotKey = keyBinding
+            Case "DebugControl"
+                DebugKey = keyBinding
+            Case "Lighting"
+                LightKey = keyBinding
+            Case "PerspectiveSwitch"
+                PerspectiveSwitchKey = keyBinding
+            Case "FullScreen"
+                FullScreenKey = keyBinding
+            Case "Enter1"
+                EnterKey1 = keyBinding
+            Case "Enter2"
+                EnterKey2 = keyBinding
+            Case "Back1"
+                BackKey1 = keyBinding
+            Case "Back2"
+                BackKey2 = keyBinding
+            Case "Escape"
+                EscapeKey = keyBinding
+            Case "OnlineStatus"
+                OnlineStatusKey = keyBinding
+            Case "Sprinting"
+                SprintingKey = keyBinding
+        End Select
     End Sub
+
+#Region "Legacy"
 
     Shared holdDelay As Single = 3.0F
     Shared holdKey As Keys = Keys.A
@@ -420,5 +598,7 @@ Public Class KeyBindings
                         TriggerShift,
                         TriggerAlt)
     End Function
+
+#End Region
 
 End Class

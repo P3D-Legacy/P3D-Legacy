@@ -1,0 +1,89 @@
+version=2
+:if:<register.exists(rival_dragonsden_encounter)>=false <and> <register.exists(rival_mtmoon_encounter)>=true
+    @camera.reset
+
+    @screen.fadeout
+    @music.play(battle\main\johto\champion)
+        @camera.activatethirdperson
+        @camera.setyaw(0)
+        @camera.setfocus(npc,8)
+    @screen.fadein
+
+    @text.show(<rival.name>: Weavile, attack!)
+    @pokemon.cry(461)
+    @npc.move(8,1)
+    @npc.setspeed(8,3)
+    @npc.move(8,2)
+    @sound.play(battle\damage\super_effective)
+    @npc.warp(8,17,0,20)
+    @level.update
+    @level.wait(30)
+
+    @screen.fadeout
+        @camera.activatethirdperson
+        @camera.setyaw(0)
+        @camera.setfocus(npc,7)
+    @screen.fadein
+
+    @text.show(Lance: Dragonite, attack!)
+    @pokemon.cry(149)
+    @npc.move(7,1)
+    @npc.setspeed(7,2)
+    @npc.move(7,2)
+    @sound.play(battle\damage\normaldamage)
+    @npc.warp(7,14,0,20)
+    @level.update
+    @level.wait(30)
+
+    @screen.fadeout
+        @camera.activatethirdperson
+        @camera.setyaw(0)
+        @camera.setfocus(npc,6)
+    @screen.fadein
+
+    @pokemon.cry(461)
+    @npc.SetMoveY(8,-1)
+    @npc.move(8,1)
+    @text.show(<rival.name>: Alright.~You win.)
+
+    @Screen.fadeout
+        @npc.remove(8)
+        @npc.remove(7)
+        @npc.move(6,2)
+        @npc.move(5,2)
+        @camera.setfocus(player,0)
+        @camera.deactivatethirdperson
+        @music.play(encounter\rival)
+        @player.warp(16,0.1,18)
+        @level.update
+        @player.turnto(2)
+    @screen.fadein
+
+    @text.show(That was a good battle.*You are learning how~to treat your Pokémon~with kindness and respect.*I expect soon you will~be an even better~trainer than I am.*If you want a rematch~feel free to challenge~me at the Indigo Plateau!)
+    @npc.turn(5,0)
+    @npc.move(5,2)
+    @npc.turn(5,3)
+    @player.turnto(1)
+    @text.show(<player.name>,~I have gotten stronger~since we last battled.*I will be returning~to Indigo Plateau if you~want to battle again.)
+
+    @screen.fadeout
+        @npc.remove(5)
+        @sound.play(enter)
+    @screen.fadein
+
+    @npc.turn(6,0)
+    @npc.move(6,1)
+    @player.turnto(2)
+    @text.show(<player.name>...*...No, I won't~battle you now...*My Pokémon aren't~ready to beat you.*I can't push them~too hard now.*I have to be disciplined~to become the greatest~Pokémon trainer...)
+    @music.play(dragonsden)
+
+    #registers
+    @register.new(leagueupgrade)
+    @register.new(rival_dragonsden_encounter)
+    @npc.unregister(johto\blackthorn\dragonsden\main.dat|5|position|13,0,20)
+    @npc.unregister(johto\blackthorn\dragonsden\main.dat|6|position|18,0,20)
+    @npc.unregister(johto\blackthorn\dragonsden\main.dat|7|position|14,0,20)
+    @npc.unregister(johto\blackthorn\dragonsden\main.dat|8|position|17,0,20)
+
+:endif
+:end

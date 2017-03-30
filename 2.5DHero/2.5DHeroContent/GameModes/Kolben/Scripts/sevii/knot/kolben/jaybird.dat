@@ -1,0 +1,18 @@
+version=2
+    :if:<register.exists(jaybirdbattle)>=False
+        @text.show(Jaybird: What sound~does a moose make?)
+        @battle.setvar(canblackout,false)
+        
+        :if:<register.exists(nationaldex)>=false
+            @battle.trainer(sevii\kolben\jaybird)
+        :else
+            @battle.trainer(sevii\kolben\jaybird2)
+        :endif
+
+        @text.show(Jaybird: Someone told me~to make a moose sound~and all I can think~of is "Moo".)
+        @pokemon.heal
+        @register.newtime(jaybirdbattle,1,day)
+    :else
+        @text.show(Jaybird: Someone told me~to make a moose sound~and all I can think~of is "Moo".)
+    :endif
+:end

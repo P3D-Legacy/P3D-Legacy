@@ -1,0 +1,7 @@
+version=2
+:if:<environment.daytimeid>=0
+    @battle.starttrainer(johto\routes\39\005)
+:else
+    @Text.show(Ufufufu... I hope it~gets dark soon.)
+:endif
+:end

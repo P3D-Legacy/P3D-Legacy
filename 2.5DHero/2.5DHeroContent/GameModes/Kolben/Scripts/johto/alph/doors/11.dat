@@ -1,0 +1,11 @@
+version=2
+@pokemon.Cry(201)
+:if:<register.exists(alph04)>=False
+    @Player.Turn(2)
+    @Player.Move(1)
+    @Player.Turn(2)
+    @text.SetFont(Unown)
+    @Text.show(A magical force~pushed you back!)
+    @pokemon.Cry(201)
+:endif
+:end

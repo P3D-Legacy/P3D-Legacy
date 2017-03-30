@@ -1,0 +1,11 @@
+version=2
+:if:<register.exists(ACTIVATOR_REMOVE_STRENGTH_ROCK_kanto\startower\3.dat_0)>=True
+    @entity.remove(0)
+:endif
+:if:<register.exists(ACTIVATOR_REMOVE_STRENGTH_ROCK_kanto\startower\3.dat_1)>=True
+    @entity.remove(1)
+:endif
+:if:<register.exists(ACTIVATOR_REMOVE_STRENGTH_ROCK_kanto\startower\3.dat_2)>=True
+    @entity.remove(2)
+:endif
+:end

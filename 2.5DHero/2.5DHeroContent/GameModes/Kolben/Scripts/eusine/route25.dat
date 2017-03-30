@@ -1,0 +1,27 @@
+version=2
+:if:<register.exists(route25suicune1)>=False <and> <register.exists(route14suicune)>=True
+    @storage.set(bool,third,<camera.thirdperson>)
+    @camera.deactivatethirdperson
+    @pokemon.cry(245)
+    @player.move(2)
+    @player.turnto(0)
+    @player.move(<player.position(z)>-6)
+    @npc.warp(11,~,2,~)
+    @music.play(encounter\eusine)
+    @npc.turn(11,3)
+    @player.turnto(2)
+    @npc.move(11,2)
+    @npc.turn(11,0)
+    @text.show(Puff, puff...~I am...~no match for you.*...As I predicted.~..........~...Go ahead.*Since I met you in the~Burned Tower at Ecruteak City,~I've sort of known that~Suicune would choose you.)
+    @npc.turn(11,3)
+    @npc.move(11,1)
+    @npc.turn(11,0)
+    @npc.move(11,1)
+    @player.turnto(0)
+    @text.show(Take a look at it!*Suicune is waiting for you!*It has been waiting~for a battle with a~worthy Trainer to whom it~can entrust itself!)
+    @npc.register(kanto\routes\25.dat|11|position|59,2,6)
+    @register.new(route25suicune1)
+    @music.play(route\9)
+    @camera.setthirdperson(<storage.get(bool,third)>)
+:endif
+:end

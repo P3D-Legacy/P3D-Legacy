@@ -1,0 +1,94 @@
+version=2
+:if:<register.exists(ddenquizpass)>=False
+    @player.move(6)
+    @player.turnto(3)
+    @player.move(1)
+    @player.turnto(0)
+    @npc.warp(0,4,0.1,9)
+    @npc.move(1,1)
+    @text.show(Hm... Good to see~you here.*No need to explain~why you came.*Clair sent you~here, didn't she?*That girl is a~handful...*I am sorry, but I~must test you.*Not to worry, you~are to answer only~a few questions.*Ready?*What are Pokémon~to you?)
+    @storage.set(Q,0)
+    @options.show(Pal,Underling,Friend)
+    :select:<options.result>
+        :when:Underling
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+    @Text.show(Oh, I understand...*What helps you to~win battles?)
+    
+    @options.show(Strategy,Raising,Cheating)
+    :select:<options.result>
+        :when:Cheating
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+    @Text.show(Oh, I understand...*What kind of~trainer do you~wish to battle?)
+    
+    @options.show(Weak person,Tough person,Anybody)
+    :select:<options.result>
+        :when:Weak person
+            @storage.set(Q,<storage.get(Q)>+1)
+        :when:Tough person
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+    @Text.show(Oh, I understand...*What is most~important for~raising Pokémon?)
+    @Options.show(Love,Violence,Knowledge)
+    :select:<options.result>
+        :when:Violence
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+    @Text.show(Oh, I understand...*Strong Pokémon.~Weak Pokémon.*Which is more~important?)
+    @Options.show(Tough,Both,Weak)
+    :select:<options.result>
+        :when:Tough
+            @storage.set(Q,<storage.get(Q)>+1)
+        :when:Weak
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+
+    :if:<storage.get(Q)>>0
+        @text.show(I am sorry you~failed.*Please leave.)
+        @screen.fadeout
+        @player.warp(johto\blackthorn\center.dat,7,0.1,3,0)
+        @level.update
+        @screen.fadein
+        @text.show(Huh? Was that~a day dream?)
+    :else
+        @Text.show(Hm... I see...*You care deeply~for Pokémon.*Very commendable.*That conviction is~what is important!*<player.name>, don't~lose that belief.*It will see you~through at the~Pokémon League.)
+        @player.turnto(2)
+        @npc.turn(0,0)
+        @sound.play(enter)
+        @npc.move(0,7)
+        @npc.turn(0,3)
+        @player.turnto(1)
+        @npc.turn(1,1)
+        @text.show(So how did it go?*I guess there's no~point in asking.*You did fail?*......................*...What? You passed?)
+        @npc.move(0,-1)
+        @text.show(That can't be!)
+        @npc.move(0,-1)
+        @text.show(You're lying!*Even I haven't~been approved!)
+        @npc.move(1,3)
+        @npc.turn(1,2)
+        @text.show(CLAIR!*This child is~impeccable, in~skill and spirit!*Admit defeat and~confer the Risingbadge!*...Or must I inform~Lance of this?)
+        @text.show(I-I understand...)
+        @npc.turn(0,3)
+        @npc.move(0,2)
+        @text.show(Here, this is the~Risingbadge...*Hurry up! Take it!)
+        @player.getbadge(16)
+        @player.achieveemblem(rising)
+        @register.new(risingbadge_obtain)
+        @Text.show(Risignbagde will~enable your*Pokémon to use the~move for climbing~Waterfalls.*Also, all Pokémon~will recognize you*as a trainer and~obey your every~command without~question.)
+        @npc.turn(1,3)
+        @npc.move(1,3)
+        @npc.turn(1,2)
+        @npc.turn(0,0)
+        @player.turnto(0)
+        @text.show(Clair...*Reflect upon what~it is that you*lack and this~child has.)
+        @text.show(.....................)
+        @player.turnto(2)
+        @npc.turn(0,2)
+        @npc.move(0,7)
+        @sound.play(enter)
+        @npc.remove(0)
+        @register.new(ddenquizpass)
+    :endif
+:endif
+:end

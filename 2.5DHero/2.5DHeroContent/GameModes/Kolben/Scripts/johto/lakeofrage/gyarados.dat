@@ -1,0 +1,14 @@
+version=2
+@pokemon.cry(130)
+@Text.show(Gyarados: Gyashaa!)
+@Battle.wild(130,30,1)
+@NPC.warp(0,0,-1,0)
+@level.update
+@item.add(66,1)
+@Player.AchieveEmblem(material)
+@item.messagegive(66,1)
+@register.new(LORSGyarados)
+@NPC.Register(johto\lakeofrage\main.dat|0|remove|0)
+@NPC.Register(johto\lakeofrage\main.dat|4|position|21,0,28)
+@NPC.warp(4,21,0,28)
+:end

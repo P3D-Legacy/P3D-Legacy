@@ -1,0 +1,18 @@
+version=2
+:if:<phone.callflag>=calling
+    @Text.Show(Pokégear:~Calling..............)
+:else
+    @Text.Show(Pokégear: School Kid Jack~Receiving call.......)
+:endif
+
+:if:<register.exists(phone_reg_019)>=true
+    @Text.Show(Hello, <player.name>.*I have been studying~very hard.*Want to battle again?*I will be waiting~at the National Park.)
+:else
+    :if:<environment.dayinformation>=monday,morning <and> <register.exists(phone_reg_019_time)>=false
+        @Text.Show(READYTOFIGHT)
+        @Text.Show(Hello, <player.name>.*I have been studying~very hard.*Want to battle again?*I will be waiting~at the National Park.)
+    :else
+        @Text.Show(Oh, hey <player.name>.*I am busy studying~right now.*I will call you~back later.)
+    :endif
+:endif
+:end

@@ -1,0 +1,17 @@
+version=2
+:if:<phone.callflag>=calling
+    @Text.Show(Pokégear:~Calling..............)
+:else
+    @Text.Show(Pokégear: Hiker Parry~Receiving call.......)
+:endif
+:if:<register.exists(phone_reg_032)>=true
+    @Text.Show(Hello, <player.name>.*I would like~to have a~rematch with you.*I will be waiting~on Route 45.)
+:else
+    :if:<environment.dayinformation>=friday,evening <and> <register.exists(phone_reg_032_time)>=false
+        @Text.Show(Hello, <player.name>.*I would like~to have a~rematch with you.*I will be waiting~on Route 45.)
+        @register.new(phone_reg_032)
+    :else
+        @Text.Show(Hey, <player.name>.*I seem to be a~little lost.*Once I find my~way back we~should battle.*I will call~you then.*Bye.)
+    :endif
+:endif
+:end

@@ -1,0 +1,13 @@
+version=2
+@Text.show(Welcome!~What do you need?)
+@Options.show(Store,See Ya!)
+:select:<options.result>
+    :when:Store
+        :if:<register.exists(First_time_champion)>=true
+            @screen.Trade({18|-1|-1}{17|-1|-1}{16|-1|-1}{9|-1|-1}{13|-1|-1}{10|-1|-1}{11|-1|-1}{12|-1|-1}{38|-1|-1}{39|-1|-1}{15|-1|-1}{79|-1|-1}{80|-1|-1}{129|-1|-1}{150|-1|-1}{158|-1|-1}{168|-1|-1}{186|-1|-1}{188|-1|-1},True,True)
+        :else
+            @screen.Trade({18|-1|-1}{17|-1|-1}{16|-1|-1}{9|-1|-1}{13|-1|-1}{10|-1|-1}{11|-1|-1}{12|-1|-1}{38|-1|-1}{39|-1|-1}{15|-1|-1},True,True)
+        :endif
+    :when:See Ya!
+:endselect
+:end

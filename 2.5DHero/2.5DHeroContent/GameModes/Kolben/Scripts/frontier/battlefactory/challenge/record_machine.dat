@@ -1,0 +1,28 @@
+version=2
+
+:if:<register.exists(frontier_battlefactory_challenge_values_created)>=false
+    @text.show(No data recorded for~Challenge Mode.)
+:else
+    @text.show(A machine which~displays record data~for Challenge Mode:)
+    @options.show(Lv. 50,Lv. 100,Emblems,Cancel)
+    :select:<options.result>
+        :when:Lv. 50
+            @text.show(Your record for:~Lv. 50, Challenge Mode:~<register.value(battlefactory_challenge_50_best)> win streak.)
+        :when:Lv. 100
+            @text.show(Your record for:~Lv. 100, Challenge Mode:~<register.value(battlefactory_challenge_100_best)> win streak.)
+        :when:Emblems
+            :if:<register.exists(factory_silver)>=true
+                @text.show(You got the~Silver Knowledge Emblem.)
+            :endif
+            :if:<register.exists(factory_gold)>=true
+                @text.show(You got the~Gold Knowledge Emblem.)
+            :endif
+            :if:<register.exists(factory_gold)>=false <and> <register.exists(factory_silver)>=false
+                @text.show(You don't own a~factory emblem yet.)
+            :endif
+        :when:Cancel
+            @text.show(Record machine~shutting down.)
+    :endselect
+:endif
+
+:end

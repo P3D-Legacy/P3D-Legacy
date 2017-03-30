@@ -1,0 +1,74 @@
+version=2
+:if:<register.exists(kimono_tinwhirl_story)>=true
+    @text.show(Oh, you are back,~<player.name>.*We awaited your arrival,~seeing that something is~going on at the Tin Tower.*A small but noticeable~disturbance.*<player.name>!~I'd like to ask you~a few questions.*First,~Heads or Tails.)
+    @storage.set(Q,1)
+
+    @Options.show(Heads,Tails)
+    :select:<options.result>
+        :when:Heads
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+
+    @text.show(If you could go~on vacation right now~where would you go?)
+    @Options.show(Beach,Mountains)
+    :select:<options.result>
+        :when:Mountains
+        @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+
+    @text.show(What is your~favorite time of day?)
+    @Options.show(Night,Day)
+    :select:<options.result>
+        :when:Day
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+
+    @text.show(How would you prefer~to cross the ocean?)
+    @Options.show(Airplane,Boat)
+    :select:<options.result>
+        :when:Airplane
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+
+    @text.show(Do you like it~when it rains?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:No
+        @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+
+    @text.show(Which of these~do you like more?)
+    @Options.show(Rattata,Zubat)
+    :select:<options.result>
+        :when:Rattata
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+
+    @text.show(You gaze into a~valley and see~beautiful scattered~light after fallen rain.*Further away a~shimmer catches your~eye as you spot~an abandoned mine.*What do you~want to do?)
+    @options.show(Gaze at the light,Explore the mine)
+    :select:<options.result>
+        :when:Gaze at the light
+            @storage.set(Q,<storage.get(Q)>+1)
+    :endselect
+
+    @text.show(Based on your answers~I think you deserve this item.)
+
+    :if:<storage.get(Q)>>3
+        @item.add(178,1)
+        @item.messagegive(178,1)
+        @register.new(rainbow_wing_radio_tower)
+        @text.show(Perhaps...*That wing has some~connection to the*Tin Tower...)
+    :else
+        @item.add(71,1)
+        @item.messagegive(71,1)
+        @register.new(silver_wing_radio_tower)
+        @text.show(Perhaps...*That wing has some~connection to the*Whirl Islands on Route 41...)
+    :endif
+
+    @text.show(<player.name>, this~item is really valuable~to me.*If you find out what~its connection to the Johto~region is, please tell me.*I hope it has something~to do with the disturbance~in the Tin Tower.)
+    @register.remove(kimono_tinwhirl_story)
+
+:else
+    @battle.starttrainer(johto\ecruteak\003)
+:endif
+:end

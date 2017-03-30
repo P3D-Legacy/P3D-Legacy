@@ -1,0 +1,8 @@
+version=2
+:if:<register.exists(rocket_invasion_defeat)>=True
+    @text.show(Feel free to look~around anywhere.*The Director is~nice again, just~as he was before.)
+    :end
+:endif
+
+@text.show(Sorry. Authorized~personnel only~beyond this point.)
+:end

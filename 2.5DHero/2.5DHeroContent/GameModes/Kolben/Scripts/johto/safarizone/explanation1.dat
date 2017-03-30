@@ -1,0 +1,13 @@
+version=2
+@text.show(Hello!~Is this your first time~visiting the Safari Zone?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @text.show(I will explain~the rules of the~Safari Zone.)
+        @text.show(First, you may not~use any of your own~Pokémon or items.*You will be provided~with Safari Balls to catch~Pokémon with.)
+        @text.show(When facing a wild~Pokémon you may choose~to throw bait or mud~at the enemy Pokémon.*Throwing mud makes a~Pokémon more likely~to be caught and more~likely to flee, and~throwing bait does~the opposite.)
+        @text.show(Your Safari adventure~ends when you either~leave the 7th area~you visit, or you~run out of Safari Balls.)
+        @text.show(For more information~on the unique areas of~the Safari Zone, please~talk to my partner~on the other side.)
+:endselect
+@text.show(Have a fun time~exploring the~Safari Zone!)
+:end

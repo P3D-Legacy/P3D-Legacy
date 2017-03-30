@@ -1,0 +1,10 @@
+version=2
+@pokemon.cry(385)
+@battle.setvar(custombattlemusic,battle\main\legend\space)
+@battle.wild(385,70,-1,battle\intro\legend\space,12)
+@register.new(battlejirachi)
+@npc.register(kanto\startower\main.dat|0|remove|0)
+@npc.remove(0)
+@entity.warp(1,5,23.625,4)
+@player.achieveemblem(shooting star)
+:end

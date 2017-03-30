@@ -1,0 +1,73 @@
+version=2
+#0: file name
+#1: pokemon number1
+#2: pokemon number2
+#3: pokemon number3
+#4: pokemon number4
+#5: min level
+#6: visible item list
+#7: hidden item list
+
+@screen.fadeout
+@storage.clear
+@player.warp(hiddengrotto\\<$0>.dat,2,0.1,4,0)
+@player.turnto(0)
+@level.update
+
+:if:<register.exists(grottoempty<$0>)>=True
+    @entity.remove(1)
+    @npc.remove(0)
+    @screen.fadein
+    :end
+:endif
+
+:if:<register.exists(grottoactive<$0>)>=False
+    @storage.set(random,<system.random(1,10)>)
+    :if:<storage.get(random)><7
+        #60%  its an item
+        :if:<storage.get(random)><3
+            #30% chance it is visible
+            @script.start(hiddengrotto\visiblelists\\<$6>,<$0>)
+        :else
+            #30% chance it is hidden
+            @entity.setvisible(0,0)
+            @script.start(hiddengrotto\hiddenlists\\<$7>,<$0>)
+        :endif
+        :else
+        #40% chance it is a pokemon
+        @storage.set(random2,<system.random(1,40)>)
+        :if:<storage.get(random2)><20
+            @register.new(grottopokemon<$0>,int,<$4>)
+            
+        :elseif:<storage.get(random2)><32
+            @register.new(grottopokemon<$0>,int,<$3>)
+            
+        :elseif:<storage.get(random2)><40
+            @register.new(grottopokemon<$0>,int,<$2>)
+            
+        :else
+            @register.new(grottopokemon<$0>,int,<$1>)
+        :endif
+        
+        :if:<system.random(1,2048)>=1
+            @register.new(grottoshiny<$0>,str,S)
+        :else
+            @register.new(grottoshiny<$0>,str,N)
+        :endif
+        @register.new(grottolevel<$0>,int,<system.random(<$5>-5,<$5>)
+        @register.new(grottoactive<$0>,str,Pokemon)
+    :endif
+:endif
+:if:<register.value(grottoactive<$0>)>=Item
+    @npc.remove(0)
+    :if:<register.exists(grottohidden<$0>)>=True
+        @entity.setvisible(1,0)
+        @entity.setcollision(1,0)
+    :endif
+:else
+    @entity.remove(1)
+    @npc.wearskin(0,[Pokémon|<register.value(grottoshiny<$0>)>]<register.value(grottopokemon<$0>)>)
+:endif
+@level.update
+@screen.fadein
+:end

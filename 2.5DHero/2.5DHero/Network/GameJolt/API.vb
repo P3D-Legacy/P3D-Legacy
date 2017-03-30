@@ -6,6 +6,7 @@
 
         Public Shared username As String = ""
         Public Shared token As String = ""
+        Public Shared gameJoltId As String = ""
 
         Public Shared LoggedIn As Boolean = False
 

@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(generator_off)>=True
+    @Text.show(Lake of Rage is~back to normal.*The Magikarp have~returned.*I may yet realize~my dream of seeing the world's~largest Magikarp.*Do you have a Rod?~Please help me if~you do.)
+    :end
+:endif
+
+:if:<register.exists(fguru1)>=False
+    @Text.show(Lake of Rage is~actually a crater~made by rampaging~Gyarados.*The crater filled~up with rainwater~and the Lake was~formed.*That's the story~passed on from my~Grandpa's great-~great-grandpa.*It used to be that~you could catch*lively Magikarp~there, but...*I don't understand~what's happening.)
+    @register.new(fguru1)
+:else
+    @Text.show(The Lake hasn't~been normal since~those men wearing~black arrived.)
+:endif
+:end

@@ -1,0 +1,21 @@
+version=2
+:if:<register.exists(rival_encounter_ecruteak)>=True <and> <register.exists(rival_encounter_olivine)>=False
+    @music.play(encounter\rival)
+    @Player.turnto(1)
+    @npc.move(0,1)
+    @sound.play(enter)
+    @npc.move(0,2)
+    @npc.turn(0,3)
+    @npc.move(0,2)
+    @text.show(...*You again?*There's no need to~panic. I don't*bother with wimps~like you.*Speaking of weak-~lings, the city's*Gym Leader isn't~here. Supposedly~she's taking~care of a sick*Pokémon at the~Lighthouse.*Humph! Boo-hoo!~Just let sick~Pokémon go!*A Pokémon that~can't battle is~worthless!*Why don't you go~train at the~Lighthouse?*Who knows. It may~make you a bit~less weak!)
+    @Player.turnto(0)
+    @player.move(1)
+    @Player.turnto(3)
+    @npc.move(0,6)
+    @npc.turn(0,0)
+    @npc.move(0,5)
+    @npc.Warp(0,0,-1,0)
+    @register.new(rival_encounter_olivine)
+    @music.play(town\violet)
+    :end
+:endif

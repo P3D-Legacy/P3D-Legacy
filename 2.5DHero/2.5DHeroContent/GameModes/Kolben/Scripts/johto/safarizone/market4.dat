@@ -1,0 +1,28 @@
+version=2
+:if:<datetime.dayofweek>=Saturday <or> <datetime.dayofweek>=Sunday
+    @text.show(Do you want to make~your Pokémon love you?*I mean, love you~even more?*Then you should give it~one of my Berries to eat.)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @screen.trade({2020|-1|2500}{2021|-1|2500}{2022|-1|2500}{2023|-1|2500}{2024|-1|2500}{2025|-1|2500},1,1)
+            @text.show(Thank you.)
+            :end
+        :when:No
+            @text.show(Have a great day.)
+            :end
+    :endselect
+    :end
+:endif
+
+@text.show(Welcome to my little~Vitamins shop.*Do you want to buy~anything?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @screen.trade({25|-1|-1}{26|-1|-1}{27|-1|-1}{28|-1|-1}{29|-1|-1}{31|-1|-1},1,1)
+        @text.show(Thank you.)
+        :end
+    :when:No
+        @text.show(Have a great day.)
+        :end
+:endselect
+:end

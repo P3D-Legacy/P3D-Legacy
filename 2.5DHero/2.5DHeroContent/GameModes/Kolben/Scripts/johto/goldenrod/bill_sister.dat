@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(bill_encounter)>=false
+    @Text.Show(Oh, you collect~Pokémon? My son~Bill is an expert.*He had to leave~for the Pokémon*Center in Ecruteak~City.)
+:else
+    :if:<register.exists(phone_contact_013)>=false
+        @Text.Show(I am so glad to~see my son again.*Oh, you collect Pokémon, too?*My son is an expert.~Here's his phone number,~you should call him from*time to time because~he does't talk much to others.)
+        @register.new(phone_contact_013)
+        @Text.Show(<player.name> registered~Bill's number.)
+    :else
+        @Text.Show(My husband was~once known as a*PokéManiac.~Bill must have*taken after his~father.)
+    :endif
+:endif
+:end

@@ -1,0 +1,5 @@
+version=2
+:if:<register.exists(alph_walk_through)>=False
+    @register.new(alph_walk_through)
+:endif
+:end

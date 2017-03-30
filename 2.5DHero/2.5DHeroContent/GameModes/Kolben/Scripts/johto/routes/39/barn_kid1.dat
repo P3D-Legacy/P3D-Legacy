@@ -1,0 +1,8 @@
+version=2
+:if:<register.exists(miltank_healed)>=False
+    @Text.show(Moomoo is sick...*She needs lots of~Oran Berries.)
+:else
+    @Text.show(We're feeding~Moomoo!)
+:endif
+@NPC.Turn(1,3)
+:end

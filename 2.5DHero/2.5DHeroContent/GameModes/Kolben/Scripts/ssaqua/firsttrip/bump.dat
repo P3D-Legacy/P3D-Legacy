@@ -1,0 +1,23 @@
+version=2
+:if:<register.exists(ssaqua_bump)>=False
+    @npc.move(3,3)
+
+    :if:<player.position>=15,0,4
+        @npc.move(3,1)
+    :endif
+
+    @player.setmovement(1,0,0)
+    @player.move(1)
+    @player.resetmovement
+    @player.turnto(1)
+
+    @text.show(Whoa! Excuse me.~I was in a hurry!*My granddaughter is missing!*She's just a wee girl.*If you see her~please let me know.)
+    @npc.turn(3,2)
+    @npc.move(3,1)
+    @npc.turn(3,3)
+    @npc.move(3,4)
+    @npc.remove(3)
+    @npc.register(ssaqua\firsttrip\main.dat|3|remove|0)
+    @register.new(ssaqua_bump)
+:endif
+:end

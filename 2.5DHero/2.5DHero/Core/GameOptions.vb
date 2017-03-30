@@ -1,192 +1,283 @@
-﻿Public Class GameOptions
+﻿''' <summary>
+''' A class to handle the game's public options.
+''' </summary>
+Public Class GameOptions
 
-    Public RenderDistance As Integer = 3
-    Public ShowDebug As Integer = 0
-    Public ShowGUI As Boolean = True
-    Public GraphicStyle As Integer = 1
-    Public LoadOffsetMaps As Integer = 10
-    Public ContentPackNames() As String = {}
-    Public ViewBobbing As Boolean = True
-    Public LightingEnabled As Boolean = True
-    Public GamePadEnabled As Boolean = True
-    Public StartedOfflineGame As Boolean = False
-    Public WindowSize As New Vector2(1200, 680)
-    Public ForceMusic As Boolean = False
-    Public MaxOffsetLevel As Integer = 0
-    Public UpdateDisabled As Boolean = False
+    Private _dataModel As DataModel.Json.PlayerData.OptionsModel
     Public Extras As New List(Of String)
+    ''' <summary>
+    ''' The render distance of the game (0-4).
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property RenderDistance() As Integer
+        Get
+            Return _dataModel.RenderDistance
+        End Get
+        Set(value As Integer)
+            _dataModel.RenderDistance = value
+        End Set
+    End Property
 
-    Public Sub LoadOptions()
-        KeyBindings.CreateKeySave(False)
-        If Directory.Exists(GameController.GamePath & "\Save\") = False Then
-            Directory.CreateDirectory(GameController.GamePath & "\Save\")
+    ''' <summary>
+    ''' If the debug menu should show.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property ShowDebug() As Integer
+        Get
+            Return _dataModel.ShowDebug
+        End Get
+        Set(value As Integer)
+            _dataModel.ShowDebug = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' If the GUI is being shown ingame.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property ShowGUI() As Boolean
+        Get
+            Return _dataModel.ShowGUI
+        End Get
+        Set(value As Boolean)
+            _dataModel.ShowGUI = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' The graphic style of the game (0-1).
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property GraphicStyle() As Integer
+        Get
+            Return _dataModel.GraphicStyle
+        End Get
+        Set(value As Integer)
+            _dataModel.GraphicStyle = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' The update rate of the offset maps.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property LoadOffsetMaps() As Integer
+        Get
+            Return _dataModel.LoadOffsetMaps
+        End Get
+        Set(value As Integer)
+            _dataModel.LoadOffsetMaps = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' List of activated ContentPacks.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property ContentPackNames() As String()
+        Get
+            Return _dataModel.ContentPacks
+        End Get
+        Set(value As String())
+            _dataModel.ContentPacks = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' If player head bobbing should be activated.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property ViewBobbing() As Boolean
+        Get
+            Return _dataModel.ViewBobbing
+        End Get
+        Set(value As Boolean)
+            _dataModel.ViewBobbing = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' if Lighting should be enabled.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property LightingEnabled() As Boolean
+        Get
+            Return _dataModel.LightingEnabled
+        End Get
+        Set(value As Boolean)
+            _dataModel.LightingEnabled = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' If the XBOX GamePad is enabled.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property GamePadEnabled() As Boolean
+        Get
+            Return _dataModel.GamePadEnabled
+        End Get
+        Set(value As Boolean)
+            _dataModel.GamePadEnabled = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' If the player has started an offline game before.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property StartedOfflineGame() As Boolean
+        Get
+            Return _dataModel.StartedOfflineGame
+        End Get
+        Set(value As Boolean)
+            _dataModel.StartedOfflineGame = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' The window size at startup.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property WindowSize() As Vector2
+        Get
+            Return New Vector2(_dataModel.WindowSize.Width, _dataModel.WindowSize.Height)
+        End Get
+        Set(value As Vector2)
+            _dataModel.WindowSize = New DataModel.Json.PlayerData.OptionsModel.WindowSizeModel() With {.Width = CInt(value.X), .Height = CInt(value.Y)}
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' If the game should ignore XNA's "no sound playback device found" error message and try to play music anyways.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property ForceMusic() As Boolean
+        Get
+            Return _dataModel.ForceMusic
+        End Get
+        Set(value As Boolean)
+            _dataModel.ForceMusic = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' The max iteration of Offset maps that load.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property MaxOffsetLevel() As Integer
+        Get
+            Return _dataModel.MaxOffsetLevel
+        End Get
+        Set(value As Integer)
+            _dataModel.MaxOffsetLevel = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Loads the options from the options.dat file.
+    ''' </summary>
+    Public Sub Load()
+        KeyBindings.CreateDefaultData(False)
+
+        If IO.Directory.Exists(GameController.GamePath & "\Save\") = False Then
+            IO.Directory.CreateDirectory(GameController.GamePath & "\Save\")
         End If
 
-        If File.Exists(GameController.GamePath & "\Save\options.dat") = False Then
-            CreateOptions()
-        End If
+        If IO.File.Exists(GameController.GamePath & "\Save\options.dat") = False Then
+            'Create default data model:
+            CreateDefaultData()
+        Else
+            'Load data model from file:
+            Try
+                Dim jsonData As String = IO.File.ReadAllText(GameController.GamePath & "\Save\options.dat")
+                _dataModel = DataModel.Json.JsonDataModel.FromString(Of DataModel.Json.PlayerData.OptionsModel)(jsonData)
+            Catch ex As Exception
+                Logger.Log("300", Logger.LogTypes.Message, "Failed to load options.dat properly. Restore default settings.")
+                CreateDefaultData()
+            End Try
 
-        Dim Data() As String = File.ReadAllText(GameController.GamePath & "\Save\options.dat").SplitAtNewline()
-
-        Dim LanguageFound As Boolean = False
-
-        For Each line As String In Data
-            If line <> "" Then
-                Dim name As String = line.GetSplit(0, "|")
-                Dim value As String = line.GetSplit(1, "|")
-
-                Select Case name.ToLower()
-                    Case "volume"
-                        MusicManager.MasterVolume = CSng(CDbl(value) / 100)
-                        SoundManager.Volume = CSng(CDbl(value) / 100)
-                    Case "music"
-                        MusicManager.MasterVolume = CSng(CDbl(value) / 100)
-                    Case "sound"
-                        SoundManager.Volume = CSng(CDbl(value) / 100)
-                    Case "muted"
-                        SoundManager.Mute(CBool(value))
-                        MediaPlayer.IsMuted = CBool(value)
-                    Case "renderdistance"
-                        Me.RenderDistance = CInt(value)
-                    Case "showdebug"
-                        Me.ShowDebug = CInt(value)
-                    Case "showboundingboxes"
-                        Entity.drawViewBox = CBool(value)
-                    Case "showdebugconsole"
-                        Logger.DisplayLog = CBool(value)
-                    Case "showgui"
-                        Me.ShowGUI = CBool(value)
-                    Case "graphicstyle"
-                        Me.GraphicStyle = CInt(value)
-                    Case "loadoffsetmaps"
-                        Me.LoadOffsetMaps = CInt(value)
-                    Case "language"
-                        LanguageFound = True
-                        OldLocalization.Load(value)
-                    Case "contentpack", "contentpacks"
-                        ContentPackManager.CreateContentPackFolder()
-                        If value <> "" Then
-                            Me.ContentPackNames = value.Split(CChar(","))
-                            If Me.ContentPackNames.Count > 0 Then
-                                For Each c As String In Me.ContentPackNames
-                                    If Directory.Exists(GameController.GamePath & "\ContentPacks\" & c) = False Then
-                                        Dim cList As List(Of String) = Me.ContentPackNames.ToList()
-                                        cList.Remove(c)
-                                        Me.ContentPackNames = cList.ToArray()
-                                    Else
-                                        ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & c & "\exceptions.dat")
-                                    End If
-                                Next
-                            End If
-                        End If
-                    Case "viewbobbing"
-                        Me.ViewBobbing = CBool(value)
-                    Case "lightningenabled"
-                        Me.LightingEnabled = CBool(value)
-                    Case "gamepadenabled"
-                        Me.GamePadEnabled = CBool(value)
-                    Case "startedofflinegame"
-                        Me.StartedOfflineGame = CBool(value)
-                    Case "prefermultisampling"
-                        Core.GraphicsManager.PreferMultiSampling = CBool(value)
-                    Case "windowsize"
-                        If value.Contains(",") = True Then
-                            Dim arg() As String = value.Split(CChar(","))
-                            If IsNumeric(arg(0)) = True Then
-                                Me.WindowSize.X = CSng(arg(0).Replace(".", GameController.DecSeparator)).Clamp(1, 4096)
-                            End If
-                            If IsNumeric(arg(1)) = True Then
-                                Me.WindowSize.Y = CSng(arg(1).Replace(".", GameController.DecSeparator)).Clamp(1, 4096)
-                            End If
-                        End If
-                    Case "forcemusic"
-                        Me.ForceMusic = CBool(value)
-                    Case "maxoffsetlevel"
-                        Me.MaxOffsetLevel = CInt(value)
-                    Case "extras"
-                        If Not String.IsNullOrEmpty(value) Then
-                            Me.Extras = value.Split(";"c).ToList()
-                        End If
-                    Case "updatedisabled"
-                        UpdateDisabled = CBool(value)
-                End Select
-            End If
-        Next
-
-        If LanguageFound = False Then
-            OldLocalization.Load("en")
+            ApplyLoadedOptions()
         End If
     End Sub
 
-    Public Sub SaveOptions()
-        If MapPreviewScreen.MapViewMode = False Then
-            Dim mutedString As String = MediaPlayer.IsMuted.ToNumberString()
-            Dim showDebugString As String = Me.ShowDebug.ToString()
-            Dim ContentPackString As String = ""
-            If Me.ContentPackNames.Count > 0 Then
-                For Each c As String In Me.ContentPackNames
-                    If ContentPackString <> "" Then
-                        ContentPackString &= ","
+    Private Sub ApplyLoadedOptions()
+        With _dataModel
+            MusicPlayer.GetInstance().MasterVolume = CSng(CDbl(.Music) / 100)
+            SoundManager.Volume = CSng(CDbl(.Sound) / 100)
+            SoundManager.Mute(.Muted)
+            MediaPlayer.IsMuted = .Muted
+            Entity.drawViewBox = .ShowBoundingBoxes
+            Logger.DisplayLog = .ShowDebugConsole
+            OldLocalization.Load(.Language)
+            ContentPackManager.CreateContentPackFolder()
+
+            If _dataModel.ContentPacks.Length > 0 Then
+                For Each c As String In _dataModel.ContentPacks
+                    If IO.Directory.Exists(GameController.GamePath & "\ContentPacks\" & c) = False Then
+                        Dim cList As List(Of String) = ContentPackNames.ToList()
+                        cList.Remove(c)
+                        ContentPackNames = cList.ToArray()
+                    Else
+                        ContentPackManager.LoadTextureReplacements(GameController.GamePath & "\ContentPacks\" & c & "\exceptions.dat")
                     End If
-                    ContentPackString &= c
                 Next
             End If
 
-            Dim Data As String = "Music|" & CInt(MusicManager.MasterVolume * 100) & vbNewLine &
-                "Sound|" & CInt(SoundManager.Volume * 100) & vbNewLine &
-                "Muted|" & mutedString & vbNewLine &
-                "RenderDistance|" & Me.RenderDistance.ToString() & vbNewLine &
-                "ShowDebug|" & showDebugString & vbNewLine &
-                "ShowBoundingBoxes|" & Entity.drawViewBox.ToNumberString() & vbNewLine &
-                "ShowDebugConsole|" & Logger.DisplayLog.ToNumberString() & vbNewLine &
-                "ShowGUI|" & Me.ShowGUI.ToNumberString() & vbNewLine &
-                "GraphicStyle|" & Me.GraphicStyle.ToString() & vbNewLine &
-                "LoadOffsetMaps|" & Me.LoadOffsetMaps.ToString() & vbNewLine &
-                "Language|" & OldLocalization.LanguageSuffix & vbNewLine &
-                "ViewBobbing|" & Me.ViewBobbing.ToNumberString() & vbNewLine &
-                "GamePadEnabled|" & Me.GamePadEnabled.ToNumberString() & vbNewLine &
-                "LightningEnabled|" & Me.LightingEnabled.ToNumberString() & vbNewLine &
-                "StartedOfflineGame|" & Me.StartedOfflineGame.ToNumberString() & vbNewLine &
-                "PreferMultiSampling|" & Core.GraphicsManager.PreferMultiSampling.ToNumberString() & vbNewLine &
-                "ContentPacks|" & ContentPackString & vbNewLine &
-                "WindowSize|" & Core.windowSize.Width.ToString() & "," & Core.windowSize.Height.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
-                "ForceMusic|" & Me.ForceMusic.ToNumberString() & vbNewLine &
-                "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & vbNewLine &
-                "UpdateDisabled|" & Me.UpdateDisabled.ToNumberString() & vbNewLine &
-                "Extras|" & String.Join(";", Me.Extras)
-
-            File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
-            KeyBindings.SaveKeys()
-
-            Logger.Debug("---Options saved---")
-        End If
+        End With
     End Sub
 
-    Private Sub CreateOptions()
-        Dim s As String = "Music|50" & vbNewLine &
-            "Sound|50" & vbNewLine &
-            "Muted|0" & vbNewLine &
-            "RenderDistance|2" & vbNewLine &
-            "ShowDebug|0" & vbNewLine &
-            "ShowBoundingBoxes|0" & vbNewLine &
-            "ShowDebugConsole|0" & vbNewLine &
-            "ShowGUI|1" & vbNewLine &
-            "GraphicStyle|1" & vbNewLine &
-            "LoadOffsetMaps|10" & vbNewLine &
-            "Language|en" & vbNewLine &
-            "ViewBobbing|1" & vbNewLine &
-            "GamePadEnabled|1" & vbNewLine &
-            "LightningEnabled|1" & vbNewLine &
-            "StartedOfflineGame|0" & vbNewLine &
-            "PreferMultiSampling|1" & vbNewLine &
-            "ContentPacks|" & vbNewLine &
-            "WindowSize|1200,680" & vbNewLine &
-            "ForceMusic|0" & vbNewLine &
-            "MaxOffsetLevel|0" & vbNewLine &
-            "UpdateDisabled|0" & vbNewLine &
-            "Extras|Backup Save"
+    Private Sub CreateDefaultData()
+        _dataModel = New DataModel.Json.PlayerData.OptionsModel() With
+        {
+            .Music = 50,
+            .Sound = 50,
+            .RenderDistance = 2,
+            .ShowDebug = 0,
+            .ShowBoundingBoxes = False,
+            .ShowDebugConsole = False,
+            .ShowGUI = True,
+            .GraphicStyle = 1,
+            .LoadOffsetMaps = 10,
+            .Language = "en",
+            .ViewBobbing = True,
+            .GamePadEnabled = True,
+            .LightingEnabled = True,
+            .StartedOfflineGame = False,
+            .PreferMultiSampling = True,
+            .ContentPacks = New String() {},
+            .WindowSize = New DataModel.Json.PlayerData.OptionsModel.WindowSizeModel() With {
+                .Width = 1200,
+                .Height = 680
+            },
+            .ForceMusic = False,
+            .MaxOffsetLevel = 0,
+            .Muted = False
+        }
+        InternalSave(False)
+    End Sub
 
-        File.WriteAllText(GameController.GamePath & "\Save\options.dat", s)
+    Private Sub InternalSave(ByVal apply As Boolean)
+        If apply Then
+            _dataModel.Music = CInt(MusicPlayer.GetInstance().MasterVolume * 100)
+            _dataModel.Sound = CInt(SoundManager.Volume * 100)
+            _dataModel.ShowBoundingBoxes = Entity.drawViewBox
+            _dataModel.Muted = MediaPlayer.IsMuted
+            _dataModel.ShowDebugConsole = Logger.DisplayLog
+            _dataModel.Language = OldLocalization.LanguageSuffix
+        End If
+
+        IO.File.WriteAllText(GameController.GamePath & "\Save\options.dat", _dataModel.ToString("    "))
+
+        'Also save the key bindings at this point:
+        KeyBindings.Save()
+    End Sub
+
+    ''' <summary>
+    ''' Saves the options to the options.dat file.
+    ''' </summary>
+    Public Sub Save()
+        InternalSave(True)
     End Sub
 
 End Class

@@ -1,0 +1,74 @@
+version=2
+@Text.Show(Welcome to the Battle Tower!*I oversee trainers' individual~challenges.*This is the~Challenge Mode.~If you would like to enter~the tower, you must have~only 3 Pokémon.*Also, you have to save~your game before entering.*Would you like to~challenge the Tower?)
+@Options.Show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @system.save
+        @sound.play(Save)
+        @text.show(<player.name>~saved the game.)
+        @storage.set(boolean,thirdperson,<camera.thirdperson>)
+        
+        :if:<pokemon.count>>3
+            @Text.Show(Please remove <math.int(<pokemon.count>-3)> Pokémon~from your party.)
+            @Screen.StorageSystem
+        :else
+            :if:<pokemon.count><3
+                @text.show(Please add <math.int(3-<pokemon.count>)> Pokémon~to your party.)
+                @screen.storagesystem
+            :endif
+        :endif
+
+        :if:<register.exists(frontier_battletower_challenge_values_created)>=false
+            @register.new(battletower_challenge_50_class,INT,0)
+            @register.new(battletower_challenge_50_best,INT,0)
+            @register.new(battletower_challenge_50_previous_streak,INT,0)
+            @register.new(battletower_challenge_100_class,INT,0)
+            @register.new(battletower_challenge_100_best,INT,0)
+            @register.new(battletower_challenge_100_previous_streak,INT,0)
+            @register.new(frontier_battletower_challenge_values_created)
+        :endif      
+
+        @storage.set(tower_streak,0)
+
+        :if:<pokemon.count>=3 <and> <pokemon.countbattle>=3
+            @text.show(Which challenge do~you want to start?)
+            @options.show(Lv. 50,Lv. 100,Cancel)
+            :select:<options.result>
+                :when:Lv. 50
+                    @storage.set(tower_level,50)
+                    @storage.set(tower_class,<register.value(battletower_challenge_50_class)>)
+                :when:Lv. 100
+                    @storage.set(tower_level,100)
+                    @storage.set(tower_class,<register.value(battletower_challenge_100_class)>)
+                :when:Cancel
+                    @Text.Show(Well, come back and see~us again when you have*prepared yourself for~the challenge.)
+                    :exit
+            :endselect
+            
+            @pokemon.heal
+            @storage.set(level_0,<pokemon.level(0)>)
+            @storage.set(level_1,<pokemon.level(1)>)
+            @storage.set(level_2,<pokemon.level(2)>)
+            
+            @Pokemon.changelevel(0,<storage.get(tower_level)>)
+            @Pokemon.changelevel(1,<storage.get(tower_level)>)
+            @Pokemon.changelevel(2,<storage.get(tower_level)>)
+            
+            @pokemon.calcstats(0)
+            @pokemon.calcstats(1)
+            @pokemon.calcstats(2)
+            @pokemon.heal
+
+            @Text.Show(Well, now you are~prepared.)
+            @script.start(frontier\battletower\challenge\intro_walk)
+        :else
+            :if:<pokemon.count>>3 <or> <pokemon.countbattle>>3
+                @Text.Show(It seems you have~too many Pokémon.*Please return when you are~prepared to use exactly~3 Pokémon.)
+            :else
+                @Text.Show(It seems you have~too few Pokémon.*Please return when you are~prepared to use exactly~3 Pokémon.)
+            :endif
+        :endif
+    :when:No
+        @Text.Show(Well, come back and see~us again when you have*prepared yourself for~the challenge.)
+:endselect
+:end

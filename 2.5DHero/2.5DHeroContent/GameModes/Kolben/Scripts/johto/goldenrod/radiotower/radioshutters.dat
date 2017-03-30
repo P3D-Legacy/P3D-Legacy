@@ -1,0 +1,8 @@
+version=2
+@Text.show(It's the Card Key slot.)
+:if:<item.count(127)>>0 <and> <register.exists(Radio3fshuttersopen)>=false
+    @entity.remove(0)
+    @sound.play(shutter)
+    @register.new(Radio3fshuttersopen)
+:endif
+:end

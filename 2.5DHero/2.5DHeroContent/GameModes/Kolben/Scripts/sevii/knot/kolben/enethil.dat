@@ -1,0 +1,23 @@
+version=2
+    :if:<register.exists(enethilbattle)>=False
+        @text.show(Enethil: Haydos,~Darkfire~aaand send.*I look forward to...*Err...*Hello there,~I didn't expect visitors today.*I am Enethil, one of~the strongest trainers~in this tower, and if~I didn't relax every~once in a while,~I'd go insane,~though some people~already say that I am!*Either way,~since you are here,~why don't I show you~the power of my~team which is shaped~solely to defeat the~likes of you!)
+        @battle.setvar(canblackout,false)
+        
+        :if:<register.exists(nationaldex)>=false
+            @battle.trainer(sevii\kolben\enethil)
+        :else
+            @battle.trainer(sevii\kolben\enethil2)
+        :endif
+
+        :if:<battle.won>=true
+            @text.show(Well well, you~are quite formidable,~aren't you?*Quite skilled actually.*Perhaps we can have~another battle some~other time?)
+        :else
+            @text.show(You have a long way~ahead of you...)
+        :endif
+
+        @pokemon.heal
+        @register.newtime(enethilbattle,1,day)
+    :else
+        @text.show(I am going to be even~stronger than last time,*Visit me when you have~the National Pokédex.)
+    :endif
+:end

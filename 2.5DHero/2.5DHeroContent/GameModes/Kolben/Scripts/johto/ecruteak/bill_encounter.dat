@@ -1,0 +1,31 @@
+version=2
+:if:<register.exists(bill_encounter)>=false
+    @Text.show(Hi, I'm Bill. And~who are you?*Hmm, <player.name>, huh?~You've come at the~right time.*I just finished~adjustments on my~GTS Card.*You know that~Pokémon can be~traded, right?*My GTS Card~was developed to*enable trades with~your friends.*But you can't send~more than 6~Pokémon at once.*If you did, the PC~storing them would~have a breakdown.*Don't worry.~I'm done with the~adjustments.*From now on, the~GTS Card will be given~out at all Pokémon Centers.*I have to hurry on~back to Goldenrod~and see my folks.*Bye-bye!)
+    :select:<player.position>
+        :when:7,0,4
+            @NPC.Turn(6,3)
+            @Player.Turnto(3)
+            @NPC.Move(6,1)
+            @NPC.Turn(6,2)
+            @NPC.Move(6,2)
+            @NPC.Turn(6,1)
+            @NPC.Move(6,1)
+            @Player.Turnto(2)
+            @NPC.Turn(6,2)
+            @NPC.Move(6,4)
+        :when:8,0,3
+            @NPC.Turn(6,2)
+            @Player.Turnto(2)
+            @NPC.Move(6,6)
+        :when:6,0,3
+            @NPC.Turn(6,2)
+            @Player.Turnto(2)
+            @NPC.Move(6,6)
+    :endselect
+    @sound.play(enter)
+    @NPC.Warp(6,7,-3,9)
+    @NPC.Register(johto\ecruteak\center.dat|6|remove|0)
+    @NPC.Register(johto\goldenrod\bill.dat|0|position|2,0,2)
+    @register.new(bill_encounter)
+:endif
+:end

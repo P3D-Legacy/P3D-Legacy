@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(ilex_farfetchd_complete)>=true
+    :if:<register.exists(got_charcoal_azalea)>=false
+        @Text.Show(I'm sorry--I forgot~to thank you.*This is Charcoal~that I made.*Fire-type Pokémon~would be happy to~hold that.)
+        @item.add(138)
+        @item.messagegive(138,1)
+        @register.new(got_charcoal_azalea)
+    :endif
+    @Text.Show(The Slowpoke came~back, and you even~found Farfetch'd.*You're the cool-~est, man!)
+:else
+    @Text.Show(Where have all the~Slowpoke gone?*Are they out play-~ing somewhere?)
+:endif
+:end

@@ -1,0 +1,9 @@
+version=2
+@text.show(This rock looks like~it can be broken!*Do you want to use Rock Smash?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @entity.remove(0)
+        @entity.warp(1,3,-0.375,3)
+:endselect
+:end

@@ -1,0 +1,11 @@
+version=2
+@text.show(The following paths are still~under construction!*There's lag coming ahead, do~you want to continue?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @npc.turn(1,3)
+        @npc.move(1,1)
+        @npc.turn(1,1)
+    :when:No
+:endselect
+:end

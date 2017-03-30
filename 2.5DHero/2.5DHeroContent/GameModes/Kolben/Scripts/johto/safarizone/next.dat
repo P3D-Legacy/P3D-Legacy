@@ -1,0 +1,27 @@
+version=2
+:if:<item.count(181)>=0 <or> <register.exists(safaritrip7)>=True
+    :if:<item.count(181)>=0
+        @text.show(You are out~of Safari Balls!*I will take you back~to the gate.)
+    :else
+        @text.show(This is the last~area you may visit~on this Safari.*I can take you back~to the main gate.*Do you wish to go?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:No
+                :end
+        :endselect
+    :endif
+        @script.start(johto\safarizone\quitsafari)
+    :end
+:else
+    @Text.show(If you leave this~area you cannot return.*Are you sure you~want to proceed?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(Okay,~right this way.)
+            @script.start(johto\safarizone\nextarea)
+            :end
+        :when:No
+            :end
+    :endselect
+:endif
+:end

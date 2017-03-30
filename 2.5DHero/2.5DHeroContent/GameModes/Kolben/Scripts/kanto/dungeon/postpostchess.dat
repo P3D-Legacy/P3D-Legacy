@@ -1,0 +1,22 @@
+version=2
+:if:<register.exists(dungeonrobotsdefeated)>=False
+    @register.new(dungeonrobotsdefeated,int,0)
+:endif
+:if:<register.exists(Mindchallengefinish)>=False
+    @player.move(0)
+    @level.wait(50)
+    @sound.play(enter)
+    @npc.warp(0,2,0,5)
+    @level.update
+    @entity.showmessagebulb(1|2|1|5)
+    @npc.turn(0,3)
+    @npc.setspeed(0,2)
+    @npc.move(0,3)
+    @npc.turn(0,2)
+    @npc.setspeed(0,2)
+    @npc.move(0,3)
+    @text.show(Oh my this is~so exciting!*The room beyond here~seemed to contain~an automaton of sorts!*It seems to be made~to battle intruders.*I lost quickly but~I expect your Pokémon~can defeat it.*Also the gem in the~front room has a symbol~glowing on it!*When I touched it I~was warped back here!*Isn't the technology~here amazing?!)
+    @npc.register(kanto\ancientruins\checkpoint.dat|0|position|7,0,2)
+    @register.new(Mindchallengefinish)
+:endif
+:end

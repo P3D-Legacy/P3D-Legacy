@@ -1,0 +1,37 @@
+version=2
+@text.show(There is a switch~in the floor!*Press it?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        :if:<register.exists(chesspiecequeen2)>=True <and> <player.position>=6,-1,11
+            @player.setmovement(-1,0,0)
+            @player.move(1)
+            @npc.move(65,4)
+            @npc.warp(65,6,-0.62,11)
+            @entity.remove(66)
+            @sound.play(pokeball_set)
+            @entity.warp(67,10,-1,7)
+            @level.update
+            @entity.remove(68)
+            @sound.play(destroy)
+            @register.new(solvechess)
+            @npc.register(kanto\ancientruins\chess.dat|65|position|6,-0.62,11)
+            @npc.register(kanto\ancientruins\chess.dat|0|position|11,0,1)
+            @entity.showmessagebulb(1|17|1|2)
+            @npc.turn(0,0)
+            @npc.move(0,1)
+            @npc.turn(0,1)
+            @npc.setspeed(0,2)
+            @npc.move(0,6)
+        :else
+            @sound.play(destroy,0)
+            @screen.fadeout(100)
+            @sound.play(destroy,0)
+            @sound.play(running)
+            @player.warp(kanto\ancientruins\main.dat,7,0.1,11,0)
+            @screen.fadein
+            @register.remove(chesspiecequeen2)
+        :endif
+:endselect
+:end
+        

@@ -1,0 +1,15 @@
+version=2
+:if:<register.exists(LORLance)>=True
+    @Text.show(Arrgh... You found~the secret stairway...)
+    :end
+:endif
+
+@Text.show(Welcome! How may I~help you?)
+@Options.show(Buy,See Ya!)
+:select:<options.result>
+    :when:Buy
+        @screen.trade({86|-1|-1}{103|-1|-1}{5|-1|-1}{18|-1|-1},True,True)
+    :when:See Ya!
+        @Text.show(Please come again!)
+:endselect
+:end

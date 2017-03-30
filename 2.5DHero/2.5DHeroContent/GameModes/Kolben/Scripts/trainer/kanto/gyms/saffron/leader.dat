@@ -1,0 +1,21 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(earthbadge_obtain)>=true <and> <register.exists(SabrinaRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe every afternoon?*If you visit while~I am there maybe~we could battle.)
+    @register.new(SabrinaRematchTalk)
+    :end
+:endif
+@battle.starttrainer(kanto\gyms\saffron\leader)
+@player.AchieveEmblem(marsh)
+:if:<register.exists(marshbadge_obtain)>=False
+    @register.new(marshbadge_obtain)
+    @register.new(trainer_kanto\gyms\saffron\001)
+    @register.new(trainer_kanto\gyms\saffron\002)
+    @register.new(trainer_kanto\gyms\saffron\003)
+    @register.new(trainer_kanto\gyms\saffron\004)
+    @player.GetBadge(6)
+    @Text.show(I failed to accurately~predict your power.*That means that your power~is beyond my psychic ability.*You deserve this.*Please take this TM, too!)
+    @item.add(406,1)
+    @item.messagegive(406,1)
+    @Text.show(It contains Skill Swap!*It swaps Abilities between~the user and the target.*You will become a celebrated~and beloved Champion!)
+:endif
+:end

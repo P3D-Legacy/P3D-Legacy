@@ -1,0 +1,15 @@
+version=2
+:if:<register.exists(pokegear_card_radioEXPN)>=False
+    @text.show(Ah!~So you're the~<player.name> who solved~the Power Plant's problem?*Thanks to you,~I didn't lose my job.*I tell you, you're~a real lifesaver!*Please take this as my thanks.)
+    @sound.play(success_small)
+    @text.show(<player.name> received~the Expn Card!)
+    @register.new(pokegear_card_radioEXPN)
+:endif
+
+@text.show(With that card, you~can tune into the~radio programs here in Kanto.*Gahahahaha!)
+
+:if:<register.exists(rocketkantointerferance)>=false
+    @text.show(Hrm?*A mysterious signal?*Yeah we have been~hearing it here too.*We don't have the equipment~here to find the source,~and it isn't interfering with~our normal broadcasts so we~haven't done anything about it.*If you want to find the~source I believe that there~is equipment for that over~at the Pewter City Museum.*I recommend you go there.*You will probably need to~go through Diglett's Cave~from Vermilion City to get there.*Good luck!)
+    @register.new(rocketkantointerferance)
+:endif
+:end

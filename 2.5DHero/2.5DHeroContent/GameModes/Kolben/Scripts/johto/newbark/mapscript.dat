@@ -1,0 +1,9 @@
+version=2
+
+:if:<register.exists(First_time_champion)>=True <and> <register.exists(Elm_Post_e4_call)>=False <and> <register.exists(elmticketget)>=False
+    @player.move(0)
+    @Text.Show(Pokégear: Prof. Elm~Receiving call.......)
+    @text.show(Hello, <player.name>?*I have something here for you.*Could you swing by my lab?*See you later!)
+    @register.new(Elm_Post_e4_call)
+:endif
+:end

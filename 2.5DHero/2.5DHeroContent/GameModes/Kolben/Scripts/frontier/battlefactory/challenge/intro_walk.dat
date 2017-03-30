@@ -1,0 +1,23 @@
+version=2
+@text.show(Now follow me.)
+@npc.turn(1,0)
+@npc.moveasync(1,3)
+@player.move(3)
+@player.warp(frontier\battlefactory\rental.dat,8,0.1,8)
+@level.update
+
+@npc.moveasync(0,5)
+@player.move(5)
+@npc.turn(0,1)
+@npc.moveasync(0,1)
+@player.move(1)
+@player.turnto(1)
+@npc.moveasync(0,1)
+@player.move(1)
+@npc.turn(0,3)
+
+@text.show(Here, we give you~3 Pokémon to start~the first battle with.)
+@text.show(<player.name> received~rental Pokémon.)
+
+@script.start(frontier\battlefactory\challenge\beforebattle,false)
+:end

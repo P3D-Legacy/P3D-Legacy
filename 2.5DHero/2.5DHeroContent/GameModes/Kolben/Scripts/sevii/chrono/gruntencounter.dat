@@ -1,0 +1,73 @@
+version=2
+:if:<register.exists(needfourisland)>=False
+    @music.play(encounter\rocket)
+    @npc.turn(2,0)
+    @npc.setspeed(2,2)
+    @npc.move(2,1)
+    @npc.turn(2,1)
+    @npc.turn(3,1)
+    :if:<player.position>=14,1,47
+        @npc.setspeed(2,2)
+        @npc.move(2,2)
+        @npc.turn(2,2)
+    :else
+        @npc.setspeed(2,2)
+        @npc.move(2,1)
+        @npc.setspeed(3,2)
+        @npc.move(3,1)
+        @npc.turn(3,0)
+    :endif
+    @text.show(Hey, Kid!*Get out of here!*This area is for Team~Rocket personnel only!)
+    @music.play(encounter\rival)
+    @npc.warp(4,~,0,~)
+    @npc.setspeed(4,2)
+    @npc.move(4,5)
+    @npc.turn(4,1)
+    @npc.setspeed(4,2)
+    @npc.move(4,2)
+    @npc.turn(4,0)
+    @npc.setmovey(4,1)
+    @npc.setspeed(4,2)
+    :if:<player.position>=14,1,47
+        @npc.move(4,3)
+    :else
+        @npc.move(4,2)
+    :endif
+    @npc.turn(4,1)
+    @npc.setspeed(4,2)
+    @npc.move(4,1)
+    :if:<player.position>=14,1,47
+        @npc.turn(2,3)
+    :else
+        @npc.turn(3,3)
+    :endif
+    @text.show(What, how did you~get back there!)
+    @text.show(<rival.name>: That doesn't matter.*You are going to tell~us what Team Rocket is~doing here!)
+    @text.show(These brats are~getting cocky!*We will show you the~strength of Team Rocket!)
+    :if:<player.position>=14,1,47
+        @battle.trainer(rocket\chrono\001)
+    :else
+        @battle.trainer(rocket\chrono\002)
+    :endif
+    @text.show(<rival.name>: Now tell us~what you are doing here!)
+    @text.show(We were just told to keep~a look out down here!*The Boss didn't tell us why.*Also don't think you~can get into the hideout~either as it needs two~passwords and none of us~guarding it know them.*The ones that do all~left for Four Island.)
+    @screen.fadeout
+    @npc.remove(2)
+    @npc.remove(3)
+    @screen.fadein
+    @npc.move(4,1)
+    :if:<player.position>=14,1,47
+        @npc.turn(4,2)
+        @player.turnto(0)
+    :else
+        @npc.turn(4,0)
+        @player.turnto(2)
+    :endif
+    @text.show(These Team Rocket grunts~are surprisingly not as weak as~the ones we have seen before.*I already found one of the~Passwords from the Grunts~near the town;~Yes, Nah Chansey.*The best bet for getting~the other password is following~those grunts to Four Island.*I think it will be~best if we split up.*I will see if I can find~the other password amongst~the ones here.)
+    @npc.register(sevii\chrono\memorial.dat|2|remove|0)
+    @npc.register(sevii\chrono\memorial.dat|3|remove|0)
+    @npc.register(sevii\chrono\memorial.dat|4|remove|0)
+    @register.new(needfourisland)
+    @music.play(route\4)
+:endif
+:end

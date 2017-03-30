@@ -1,0 +1,10 @@
+version=2
+@battle.starttrainer(johto\sprouttower\elder)
+:if:<register.exists(get_HM01)>=False
+    @register.new(get_HM01)
+    @Text.show(You and your Poké~mon should have*no problem using~this move.*Take this Flash~HM.)
+    @item.add(243,1)
+    @item.messagegive(243,1)
+    @Text.show(Flash illuminates~even the darkest~of all places.*But to use it out~of battle, you*need the Badge~from Violet's Gym.)
+:endif
+:end

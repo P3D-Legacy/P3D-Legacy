@@ -1,0 +1,17 @@
+version=2
+:if:<register.exists(ilex_headbutt)>=true
+    @Text.show(Rattle trees with~Headbutt. Sometimes, sleeping~Pokémon fall out.)
+    :end
+:else
+    @npc.turn(3,3)
+    @level.wait(10)
+    @sound.play(destroy)
+    @level.wait(10)
+    @npc.turn(3,2)
+    @Text.show(What am I doing?*I'm shaking trees~using Headbutt.*It's fun. Here,~you try it too!)
+    @item.add(192,1)
+    @item.messagegive(192,1)
+    @Text.show(Rattle trees with~Headbutt. Sometimes, sleeping~Pokémon fall out.)
+    @register.new(ilex_headbutt)
+:endif
+:end

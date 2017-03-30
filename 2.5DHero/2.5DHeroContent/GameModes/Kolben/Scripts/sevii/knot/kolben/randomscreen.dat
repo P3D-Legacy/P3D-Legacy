@@ -1,0 +1,11 @@
+version=2
+:if:<system.Random(1,2000)>=1
+    @entity.Setvisible(20,1)
+    :end
+:endif
+:if:<system.Random(1,4000)>=1
+    @entity.Setvisible(10,1)
+    :end
+:endif
+@entity.Setvisible(<system.Random(11,19)>,1)
+:end

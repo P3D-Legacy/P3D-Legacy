@@ -1,0 +1,19 @@
+version=2
+@Music.play(battle\main\johto\trainer)
+@npc.Turn(1,0)
+@Text.show(Go, RATTATA!*TACKLE!)
+@level.Wait(50)
+
+:select:<player.position>
+:when:6,0,28
+    @npc.Turn(1,1)
+:when:8,0,28
+    @npc.Turn(1,3)
+:when:7,0,29
+    @npc.Turn(1,2)
+:endselect
+
+@Text.show(What? This is a big battle!~Leave me alone!)
+@npc.Turn(1,0)
+@Music.play(route\1)
+:end

@@ -1,0 +1,41 @@
+version=2
+:if:<register.exists(TRHQ_switch)>=True <or> <register.exists(trap3)>=True
+    :end
+:endif
+
+@Sound.play(trhq_alarm,true)
+@Player.turnto(0)
+
+:if:<player.position>=6,0,3
+    @player.move(1)
+:endif
+
+@Text.show(It seems to be~some sort of camera.)
+@Music.play(encounter\rocket)
+@npc.Warp(0,4,0,2)
+@npc.Turn(0,3)
+@npc.Warp(1,8,0,2)
+@npc.Turn(1,1)
+@npc.Move(0,1)
+@Player.turnto(1)
+
+@battle.startTrainer(rocket\base\t1)
+@register.remove(trainer_rocket\base\t1)
+
+@npc.Turn(0,2)
+@npc.Move(0,4)
+@npc.Move(1,1)
+@Player.turnto(3)
+
+@battle.startTrainer(rocket\base\t2)
+@npc.Warp(0,0,-1,0)
+@register.remove(trainer_rocket\base\t2)
+@register.new(trap3)
+@Music.play(dungeon\cave\rocketbase)
+
+@npc.Turn(1,3)
+@npc.Move(1,3)
+@npc.Turn(1,2)
+@npc.Move(1,3)
+@npc.Warp(1,0,-1,0)
+:end

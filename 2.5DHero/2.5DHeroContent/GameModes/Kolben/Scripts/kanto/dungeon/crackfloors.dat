@@ -1,0 +1,29 @@
+version=2
+@storage.clear
+@storage.set(crackID,<math.int(<player.position(z)>*20+<player.position(x)>)>)
+:if:<register.exists(dungeoncrackedice<storage.get(crackID)>)>=True
+    @sound.play(ice_break)
+    @level.wait(20)
+    @player.warp(kanto\startower\4.dat,~,3.1,~)
+    @level.update
+    @player.setmovement(0,-3,0)
+    @player.move(1)
+    @sound.play(destroy)
+    :end
+:endif
+@sound.play(ice_crack)
+@entity.setvisible(<storage.get(crackID)>,1)
+@register.remove(dungeonuncrackfloor)
+@register.new(dungeoncrackedice<storage.get(crackID)>)
+:if:<register.exists(dungeoncrackedicecount)>=False
+    @register.new(dungeoncrackedicecount,int,0)
+:endif
+@register.change(dungeoncrackedicecount,<register.value(dungeoncrackedicecount)>+1)
+:if:<register.value(dungeoncrackedicecount)>=100
+    @entity.remove(140)
+    @sound.play(destroy)
+:endif
+:if:<player.position>=9,0,-2
+    @entity.remove(140)
+:endif
+:end

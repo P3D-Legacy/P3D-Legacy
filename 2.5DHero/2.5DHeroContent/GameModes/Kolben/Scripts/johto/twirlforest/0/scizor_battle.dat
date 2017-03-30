@@ -1,0 +1,12 @@
+version=2
+
+@text.show(The wild Scizor attacked!)
+@npc.unregister(johto\twirlforest\0\15.dat|0|position|5,0,4)
+@battle.setvar(canrun,false)
+@battle.setvar(cancatch,false)
+@battle.wild(212,<math.clamp(10*<player.badges>,10,100)>)
+@npc.warp(0,5,-2,4)
+@register.new(twirlforest_scizor_defeat)
+@register.new(twirlforest_complete_0)
+
+:end

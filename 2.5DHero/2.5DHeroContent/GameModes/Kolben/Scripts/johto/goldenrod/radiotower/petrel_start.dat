@@ -1,0 +1,10 @@
+version=2
+:if:<register.exists(trainer_rocket\radiotower\petrel)>=false
+    @Text.show(Y-you! You came to~rescue me?)
+    @NPC.turn(0,1)
+    @npc.move(0,3)
+    @npc.turn(0,0)
+    @npc.move(0,1)
+    @script.start(trainer\rocket\radiotower\petrel)
+:endif
+:end

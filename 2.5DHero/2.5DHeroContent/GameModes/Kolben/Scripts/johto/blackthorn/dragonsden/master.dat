@@ -1,0 +1,28 @@
+version=2
+:if:<register.exists(clairtmget)>=True
+    :if:<register.exists(masterdratiniget)>=True
+        @text.show(Dragon Pokémon are~symbolic of our clan.*You have shown~that you can be~entrusted with one.)
+        :end
+    :else
+        @Text.show(Hm... Good to see~you here.*Your arrival is~most fortunate.*I have something~for you.*Take this Dratini~as proof that I*have recognized~your worth.)
+        :if:<pokemon.count><6
+            @pokemon.add(147,15,A Gift at,5)
+            @text.show(<player.name>, recieved Dratini!)
+            @pokemon.clearattacks(<pokemon.count>-1)
+            @pokemon.addattack(<pokemon.count>-1,86)
+            @pokemon.addattack(<pokemon.count>-1,239)
+            @pokemon.addattack(<pokemon.count>-1,82)
+            @pokemon.addattack(<pokemon.count>-1,245)
+            @pokemon.rename(<pokemon.count>-1)
+            @register.new(masterdratiniget)
+            @text.show(Dragon Pokémon are~symbolic of our clan.*You have shown~that you can be~entrusted with one.)
+            :end
+        :else
+            @Text.show(Hm? Your Pokémon~party is full.)
+            :end
+        :endif
+    :endif
+:else
+    @text.show(Come again, if you~so desire.)
+    :end
+:endif

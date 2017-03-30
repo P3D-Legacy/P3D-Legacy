@@ -1,0 +1,24 @@
+version=2
+:if:<phone.callflag>=receiving
+    :end
+:endif
+
+@Text.Show(Pokégear:~Calling..............)
+
+:if:<register.exists(mom_wait)>=true
+    @Text.Show(Oh, hi sweety.*Prof. Elm is waiting~for you.*Hurry up, baby!)
+:endif
+
+:if:<register.exists(mom_adventure1)>=true
+    @Text.Show(Oh, hi sweety.*So, what was Prof.~Elm's errand?*...*That does sound~challenging.*But, you should be~proud that people~rely on you.)
+:endif
+
+:if:<register.exists(mom_adventure2)>=true
+    @Text.Show(Oh, hi sweety.*Thanks for calling me,~I hope you are alright.*I'm behind you all the way,~<player.name>.)
+:endif
+
+:if:<register.exists(mom_talk)>=true
+    @Text.Show(Oh, hi sweety.*Don't you want to~come home and tell~me what you experienced on~the errand?)
+:endif
+
+:end

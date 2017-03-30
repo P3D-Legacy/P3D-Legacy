@@ -1,0 +1,27 @@
+version=2
+:if:<register.exists(postblueoak)>=false <and> <player.badges>=16
+    @text.show(Hello, you are beginning~to hold the air of~a great Champion,~<player.name>.*It is time for your~Pokédex to match~who you are.*Let me see your~Pokédex for a moment.*I will upgrade your~Pokédex with the~National Mode.)
+    @sound.play(success,1)
+    @text.color(playercolor)
+    @text.show(<player.name> recieved~the National Pokédex!)
+    @level.wait(30)
+    @register.new(pokedex_national)
+    @register.new(nationaldex)
+    @text.show(It won't be easy to complete~the National Pokédex...*Infact I have another~gift to help you~do that!)
+    @item.add(284,1)
+    @item.messagegive(284,1)
+    @register.new(rainbowpass)
+    @text.show(That pass will allow~you to take the~Sea Gallop Ferries~from Vermilion to all~of the Sevii Islands.*I have heard many~ruins and secrets lie~on those islands.*I am sure visiting~those islands will be~an amazing experience!)
+    @register.new(postblueoak)
+    :end
+:endif
+
+:if:<register.exists(beatred)>=true <and> <register.exists(kantostart)>=false
+    #Kanto starters
+    :end
+:endif
+
+#This sets a flag for the evaldist script so that it knows where the call came from:
+@storage.set(pallet_oak_scriptcaller,flag)
+@script.start(kanto\pallet\evaldist)
+:end

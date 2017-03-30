@@ -1,0 +1,18 @@
+version=2
+:if:<phone.callflag>=calling
+    @Text.Show(Pokégear:~Calling..............)
+:else
+    @Text.Show(Pokégear: Pokéfan Derek~Receiving call.......)
+:endif
+
+:if:<register.exists(phone_reg_025)>=true
+    @Text.Show(Hey, <player.name>,~I trained my precious~Pikachu and now it's ready~to battle.*If you want to~I will be waiting~on Route 39.)
+:else
+    :if:<system.random(1,10)>=1 <and> <register.exists(phone_reg_025_time)>=false
+        @Text.Show(Hey, <player.name>,~I trained my precious~Pikachu and now it's ready~to battle.*If you want to~I will be waiting~on Route 39.)
+        @register.new(phone_reg_025)
+    :else
+        @Text.Show(Hello, <player.name>.*How are you?*My Pikachu is as~adorable as ever.*Maybe you should~come and see it again.*Well, talk to~you later.)
+    :endif
+:endif
+:end

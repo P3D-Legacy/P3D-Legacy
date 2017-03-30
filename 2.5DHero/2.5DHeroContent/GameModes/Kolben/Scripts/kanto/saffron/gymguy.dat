@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(marshbadge_obtain)>=False
+    @Text.show(Yo! Champ in making!*A trainer as skilled as you~doesn't need to be told~how to deal with~Psychic-type Pokémon, right?*I expect great~things from you!*Good luck!)
+:else
+    @Text.show(That was another~fantastic battle!)
+:endif
+:end

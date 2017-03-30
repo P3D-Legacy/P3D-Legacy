@@ -1,0 +1,29 @@
+{"Level"{LEV[{"Name"{str[Diglett's Cave]}}{"MusicLoop"{str[dungeon\cave\digletts]}}{"CurrentRegion"{str[Kanto]}}{"WildPokemon"{bool[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[2]}}{"Weather"{int[1]}}]}}
+
+Frame:
+Floor:
+{"Floor"{ENT[{"Size"{intArr[6,6]}}{"Position"{intArr[1,0,1]}}{"TexturePath"{str[DiglettCave]}}{"Texture"{rec[16,0,16,16]}}]}}
+Walls:
+{"EntityField"{ENT[{"Size"{intArr[1,8]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[1,0,0]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[32,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[1,8]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,0,0]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[32,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[1]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[8,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,1]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[32,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[3,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,6]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[32,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[3,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[4,0,6]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[32,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[8,8]}}{"Fill"{bool[0]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0,0]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[16,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[10,1,10]}}{"Fill"{bool[0]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[-1,1,-1]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[32,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+Ceiling:
+{"EntityField"{ENT[{"Size"{intArr[10,10]}}{"EntityID"{str[AllSidesObject]}}{"Position"{sngArr[-1,2,-1]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[16,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Boulders:
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"Scale"{sngArr[0.8,0.8,0.8]}}{"EntityID"{str[WallBill]}}{"Position"{sngArr[2,-0.15,2]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[0,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Warps:
+vermilion:
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[3,0,6]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[32,0,16,16][48,0,16,16]]}}{"TextureIndex"{intArr[1,1,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[kanto\vermilion\main.dat,34,0.1,7,0]}}{"Rotation"{int[2]}}]}}
+
+1:
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[5,0,3]}}{"TexturePath"{str[DiglettCave]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[kanto\diglettscave\main.dat,15,0.1,30,2,2|0]}}{"Rotation"{int[0]}}{"Visible"{bool[1]}}]}}
+{"Entity"{ENT[{"EntityID"{str[Cube]}}{"Scale"{sngArr[1,1,0.25]}}{"Position"{sngArr[5,0,3]}}{"TexturePath"{str[WoodTower]}}{"Textures"{recArr[[16,80,16,16][16,80,4,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0,0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+
+{"NPC"{NPC[{"Position"{sngArr[3,0,3]}}{"TextureID"{str[2]}}{"ID"{int[2]}}{"Name"{str[SellMan]}}{"Action"{int[0]}}{"AdditionalValue"{str[A bunch of Diglett~popped out of the ground!*That was shocking.]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}

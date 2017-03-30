@@ -1,0 +1,13 @@
+version=2
+@pokemon.heal
+@text.show(A mysterious power~healed your Pokémon!*The crystal is glowing softly.*Would you like to touch it?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @screen.fadeout
+        @player.warp(kanto\ancientruins\main.dat,5,0.1,13,0)
+        @player.turnto(3)
+        @level.update
+        @screen.fadein
+:endselect
+:end

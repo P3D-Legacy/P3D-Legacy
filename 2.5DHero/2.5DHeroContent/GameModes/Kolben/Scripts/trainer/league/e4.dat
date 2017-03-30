@@ -1,0 +1,11 @@
+version=2
+@battle.starttrainer(league\\<register.exists(leagueupgrade)>\\<level.filename>)
+
+:if:<register.exists(defeat<level.filename>)>=false
+    @entity.remove(2)
+    @entity.setvisible(1,0)
+    @sound.play(shutter)
+    @register.new(defeat<level.filename>)
+    @text.show(<battle.defeatmessage(league\\<register.exists(leagueupgrade)>\\<level.filename>)>)
+:endif
+:end

@@ -1,0 +1,46 @@
+version=2
+:if:<register.exists(goldenrod_spearow_delivery)>=false
+    @text.show(Excuse me, guy!~Can you do a guy~a favor?*Can you take this~Pokémon with Mail~to my friend?*He's on Route 31.)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            :if:<pokemon.count><6
+                @text.show(You will? Perfect!~Thanks, guy!*My pal's a chubby~guy who snoozes~all the time.*You'll recognize~him right away!)
+                @pokemon.add(21,10,Caught at,5,Route 32,0,Randy)
+                @pokemon.setnickname(<pokemon.count>-1,Kenya)
+                @pokemon.clearattacks(<pokemon.count>-1)
+                @pokemon.addattack(<pokemon.count>-1,64)
+                @pokemon.addattack(<pokemon.count>-1,45)
+                @pokemon.addattack(<pokemon.count>-1,43)
+                @pokemon.setshiny(<pokemon.count>-1,0)
+                @pokemon.setgender(<pokemon.count>-1,1)
+                @pokemon.setot(<pokemon.count>-1,09182)
+                @pokemon.setitem(<pokemon.count>-1,300)
+                @sound.play(success_small)
+                @text.show(<player.name> received a~Pokémon with Mail.)
+                @text.show(You can read it,~but don't lose it!~Route 31!*Oh, yeah. There~was a weird tree~blocking the road.*I wonder if it's~been cleared?)
+                @register.new(goldenrod_spearow_delivery)
+            :else
+                @text.show(You can't carry~another Pokémon...)
+            :endif
+            :end
+        :when:No
+            @text.show(Oh... Never mind,~then...)
+    :endselect
+    :end
+:else
+    :if:<register.exists(goldenrod_spearow_delivered)>=true
+        :if:<register.exists(goldenrod_spearow_got)>=false
+            @text.show(Thanks, guy! You~made the delivery~for me!*Here's something~for your trouble!)
+            @item.add(26)
+            @item.messagegive(26,1)
+            @register.new(goldenrod_spearow_got)
+        :else
+            @text.show(My pal was snoozing, right?~Heh, what'd I say?)
+            :end
+        :endif
+    :else
+        @text.show(You can read it,~but don't lose it!~ROUTE 31!*Oh, yeah. There~was a weird tree~blocking the road.*I wonder if it's~been cleared?)
+    :endif
+:endif
+:end

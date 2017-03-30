@@ -1,0 +1,18 @@
+version=2
+@text.show(There are letters carved here.*They seem to say "Rook".)
+:if:<register.exists(solvechess)>=False
+    @text.show(OH!~There's a button here!~Press it?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @level.reload
+            @level.update
+            @sound.play(destroy)
+            @entity.warp(36,10,-1,9)    
+            @entity.warp(44,11,-1,9)    
+            @entity.warp(52,12,-1,9)    
+            @entity.warp(61,13,-1,10)   
+            :end
+    :endselect
+:endif
+:end

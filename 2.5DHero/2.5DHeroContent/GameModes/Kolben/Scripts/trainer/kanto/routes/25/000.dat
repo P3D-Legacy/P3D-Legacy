@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(trainer_kanto\routes\25\004)>=False
+    @Music.play(encounter\trainer)
+    @Player.turnto(1)
+    @npc.Move(4,1)
+    @battle.starttrainer(kanto\routes\25\004)
+    @Music.play(encounter\trainer)
+    @Player.turnto(0)
+    @npc.Move(5,1)
+    @battle.starttrainer(kanto\routes\25\005)
+    @Music.play(route\9)
+:endif
+:end

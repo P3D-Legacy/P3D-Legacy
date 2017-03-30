@@ -1,0 +1,49 @@
+version=2
+:if:<register.exists(lucky_number_show)>=true
+    @text.show(Please come back~next week for the next~Lucky Number.)
+    :exit
+:else
+    @register.newtime(lucky_number_show,1,week)
+    
+    <randomOT>=<string.empty>
+    :while:<string.length(<randomOT>)><5
+        <randomOT>=<randomOT><system.random(0,9)>
+    :endwhile
+
+    @storage.set(lOT,<randomOT>)
+    @text.show(Hi, are you here for~the Lucky Number Show?*Want me to check the~ID numbers of your Pokémon?*If you get lucky,~you win a prize.~This week's ID number~is <storage.get(lOT)>.*Let's see if you have~a match.)
+
+    :if:<pokemon.otmatch(<storage.get(lOT)>,has)>=true
+        @storage.set(matches,<pokemon.otmatch(<storage.get(lOT)>,maxhits)>)
+        @storage.set(p_name,<pokemon.otmatch(<storage.get(lOT)>,name)>)
+        @text.show(Congratulations!~We have a match with*the ID number of~<storage.get(p_name)>.)
+
+        :select:<storage.get(matches)>
+            :when:1
+                @text.show(Ooh, you've matched~the last number.*You've won fifth prize,~a Moomoo Milk.)
+                @item.add(72,1)
+                @item.messagegive(72,1)
+            :when:2
+                @text.show(Ooh, you've matched~the last two numbers.*You've won fourth prize,~a PP Up.)
+                @item.add(62,1)
+                @item.messagegive(62,1)
+            :when:3
+                @text.show(Ooh, you've matched~the last three numbers.*You've won third prize,~a Exp. Share.)
+                @item.add(57,1)
+                @item.messagegive(57,1)
+            :when:4
+                @text.show(Ooh, you've matched~the last four numbers.*You've won second prize,~a Max Revive.)
+                @item.add(40,1)
+                @item.messagegive(40,1)
+            :when:5
+                @text.show(Wow!~You have a perfect match*of all five numbers!~We have a grand prize winner!*You have won a Master Ball!)
+                @item.add(1,1)
+                @item.messagegive(1,1)
+        :endselect
+    :else
+        @text.show(Nope, none of your~ID numbers match.)
+    :endif
+    @text.show(Please come back~next week for the next~Lucky Number.)
+:endif
+
+:end

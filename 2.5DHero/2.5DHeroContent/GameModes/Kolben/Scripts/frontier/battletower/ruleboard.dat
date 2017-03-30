@@ -1,0 +1,15 @@
+version=2
+@text.show(This is an info board~about the Battle Tower.*What do you want~to know about?)
+@options.show(Battles,Modes,Requirements,Canceling,Close)
+:select:<options.result>
+    :when:Battles
+        @text.show(You face off against~single trainers with 3~Pokémon that are the~same level as yours.*Your Pokémon get healed~after each battle.)
+    :when:Modes
+        @text.show(There are two modes~in the Battle Tower:*Challenge Mode and~Endless Mode.*In Challenge Mode, you are~going to face off against~7 trainers in a row.*In Endless Mode,~you fight until you~get defeated.*The Challenge Mode is on~the right counter and~the Endless Mode on~the left one.)
+    :when:Requirements
+        @text.show(You need to bring~3 Pokémon with you that~are ready to battle.*Eggs don't count~as Pokémon.*They get raised to level~50 or 100 temporary.)
+    :when:Canceling
+        @text.show(When you cancel a~challenge, it interrupts~your current streak.*It doesn't clear streaks~you accomplished before~and it doesn't count as~loss.)
+    :when:Close
+:endselect
+:end

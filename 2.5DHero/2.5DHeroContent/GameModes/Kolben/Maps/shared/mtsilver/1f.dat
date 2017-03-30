@@ -1,0 +1,17 @@
+{"Level"{LEV[{"Name"{str[Mt. Silver]}}{"MusicLoop"{str[dungeon\tower\lighthouse]}}{"WildPokemon"{bool[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[2]}}{"Weather"{int[1]}}]}}
+
+Floor:
+Lower:
+{"Floor"{ENT[{"Size"{intArr[11,2]}}{"Position"{intArr[23,0,20]}}{"TexturePath"{str[mtsilver]}}{"Texture"{rec[0,0,16,16]}}]}}
+
+Walls:
+{"EntityField"{ENT[{"Size"{intArr[12,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[23,0,19]}}{"TexturePath"{str[mtsilver]}}{"Textures"{recArr[[32,0,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[13,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[23,1,18]}}{"TexturePath"{str[mtsilver]}}{"Textures"{recArr[[32,0,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+
+{"EntityField"{ENT[{"Size"{intArr[1,4]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[34,0,19]}}{"TexturePath"{str[mtsilver]}}{"Textures"{recArr[[32,0,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[1]}}]}}
+
+Doors:
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[26,0,22]}}{"TexturePath"{str[mtsilver]}}{"Textures"{recArr[[144,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,-1,-1,0,0,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[27,0,22]}}{"TexturePath"{str[mtsilver]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,-1,-1,0,0,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[28,0,22]}}{"TexturePath"{str[mtsilver]}}{"Textures"{recArr[[112,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,-1,-1,0,0,-1,-1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}

@@ -1,0 +1,3 @@
+version=2
+@script.start(kanto\saffron\rotom\main,washing machine,wash,56)
+:end            

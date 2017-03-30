@@ -1,0 +1,4 @@
+version=2
+@pokemon.cry(<daycare.pokemonid(2,0)>)
+@text.show(<daycare.pokemonname(2,0)>~seems pleased to~stay in the Daycare.*It would like to~travel with you again~soon though.)
+:end

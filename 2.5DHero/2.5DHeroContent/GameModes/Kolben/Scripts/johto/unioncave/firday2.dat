@@ -1,0 +1,7 @@
+version=2
+:if:<datetime.dayofweek>=Friday <and> <register.exists(Friday_Lapras)>=False
+    @player.Move(0)
+    @NPC.Warp(0,12,-0.24,30)
+    @pokemon.cry(131)
+:endif
+:end

@@ -1,0 +1,19 @@
+version=2
+@screen.fadeout(20)
+
+@player.warp(16,2.1,31)
+@camera.activatethirdperson
+@camera.set(-6.8,0,-3.4,0,0)
+
+@title.add(The Battle Frontier,42,248,208,48,8,true,0,0)
+@title.add(Is your body ready?,35,255,255,255,4,true,0,100)
+@screen.fadein(20)
+
+:while:<camera.z>>-37
+    @camera.setz(<camera.z>-0.1)
+:endwhile
+
+@screen.fadeout(20)
+@camera.deactivatethirdperson
+@screen.fadein(20)
+:end

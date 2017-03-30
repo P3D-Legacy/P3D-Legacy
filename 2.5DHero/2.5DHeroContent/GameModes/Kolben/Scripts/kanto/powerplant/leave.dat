@@ -1,0 +1,8 @@
+Version=2
+:if:<register.exists(elmcallplant)>=False <and> <register.exists(powerplanton)>=True
+    @player.move(0)
+    @Text.Show(Pokégear: Prof. Elm~Receiving call.......)
+    @Text.show(Hello, <player.name>?*There seems to be~a strange radio message~coming from Kanto.*I am to far away~to hear it clearly~but I am reminded of~Team Rocket's attack on~the Johto Radio Tower!*Could you visit the~Kanto Radio Tower in~Lavender Town to look~into that signal?*Thanks!)
+    @register.new(elmcallplant)
+:endif
+:end

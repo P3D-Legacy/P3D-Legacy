@@ -1,0 +1,12 @@
+version=2
+:if:<register.exists(defeat_whitney_2)>=False <and> <register.exists(defeat_whitney_1)>=True
+    @register.new(defeat_whitney_2)
+    @npc.Turn(4,1)
+    @npc.Move(4,1)
+    @npc.Turn(4,0)
+    @Text.show(Oh, no. You made~Whitney cry.*It's OK. She'll~stop soon. She~always cries when~she loses.)
+    @npc.Turn(4,3)
+    @npc.Move(4,1)
+    @npc.Turn(4,1)
+:endif
+:end

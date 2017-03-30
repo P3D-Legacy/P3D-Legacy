@@ -1,0 +1,41 @@
+version=2
+@text.show(Hey trainer!~Do you want to leave your~Pokémon here for~us to raise them?*Wait, are you the trainer~who helped with the~Mystery Egg?*<player.name> right?~I found another Egg here,~I want you to have it~since you seem to~be very dependable.*But there's something odd~with this Egg.~In fact, I called~it the Odd Egg.*Here, I want you~to take it!)
+
+@Options.Show(Yes,No)
+:select:<options.result>
+    :when:No
+        @text.show(Oh, that's sad...*But you can always come~back if you want to~get the Odd Egg.)
+        :end
+:endselect
+
+:if:<pokemon.count><6
+    :select:<system.random(1,7)>
+        :when:1
+            @pokemon.add(172,1,hatched,5,Daycare,1,<player.name>)
+        :when:2
+            @pokemon.add(173,1,hatched,5,Daycare,1,<player.name>)
+        :when:3
+            @pokemon.add(174,1,hatched,5,Daycare,1,<player.name>)
+        :when:4
+            @pokemon.add(236,1,hatched,5,Daycare,1,<player.name>)
+        :when:5
+            @pokemon.add(238,1,hatched,5,Daycare,1,<player.name>)
+        :when:6
+            @pokemon.add(239,1,hatched,5,Daycare,1,<player.name>)
+        :when:7
+            @pokemon.add(240,1,hatched,5,Daycare,1,<player.name>)
+    :endselect
+
+    :if:<system.random(0,100)><14
+        @pokemon.setshiny(<pokemon.count>-1,1)
+    :endif
+
+    @sound.play(success_small)
+    @text.show(<player.name> received~the Odd Egg.)
+
+    @register.new(oddegg_got)
+    @text.show(Old Man: Please take good~care of the Egg.)
+:else
+    @text.show(Oh, your team is full?~Please deposit one of~your Pokémon in the PC~and come back.)
+:endif
+:end

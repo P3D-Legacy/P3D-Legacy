@@ -1,0 +1,23 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(risingbadge_obtain)>=true <and> <register.exists(ClairRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe evenings during~the end of the week?*If you visit while~I am there maybe~we could battle.)
+    @register.new(ClairRematchTalk)
+    :end
+:endif
+:if:<register.exists(trainer_johto\gyms\blackthorn\leader)>=true <and> <register.exists(risingbadge_obtain)>=false
+    @Text.show(What's the matter?*Is it too much to~expect of you?)
+    :end
+:endif
+@battle.starttrainer(johto\gyms\blackthorn\leader)
+:if:<register.exists(risingbadge_obtain)>=false
+    @entity.warp(1,3,-1,5)
+    @entity.remove(0)
+    @register.new(trainer_johto\gyms\blackthorn\001)
+    @register.new(trainer_johto\gyms\blackthorn\002)
+    @register.new(trainer_johto\gyms\blackthorn\003)
+    @register.new(trainer_johto\gyms\blackthorn\004)
+    @register.new(trainer_johto\gyms\blackthorn\005)
+    @npc.register(johto\blackthorn\main.dat|5|position|21,0,2)
+    @Text.show(I won't admit this.*I may have lost,~but you're still*not ready for the~Pokémon Leageue*I know. You should~take the dragon~user challenge.*Behind this Gym is~a place called~Dragon's Den.*There is a small~shrine at its center.*Go there.*If you can prove~that you've lost*your lazy ideals,~I will recognize*you as a trainer~worthy of a~Gym Badge!)
+:endif
+:end

@@ -1,0 +1,14 @@
+version=2
+    @text.show(You ready to return~to Vermilion City?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 7!)
+            @screen.fadeout
+            @script.start(speedboatscene)
+            @player.warp(kanto\vermilion\dock.dat,-11,0.1,2)
+            @level.update
+            @player.turnto(1)
+            @screen.fadein
+    :endselect
+:end

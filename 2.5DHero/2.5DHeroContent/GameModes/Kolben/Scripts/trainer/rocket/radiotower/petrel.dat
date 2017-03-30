@@ -1,0 +1,21 @@
+version=2
+:if:<register.exists(trainer_rocket\radiotower\petrel)>=false
+    @text.show(Is that what you~were expecting?)
+    @sound.play(Contest\rankplace)
+    @npc.wearskin(0,petrel)
+    @level.update
+    @level.wait(30)
+    @battle.starttrainer(rocket\radiotower\petrel)
+    @text.show(We stashed the~real Director in*the Underground~Warehouse.*It's at the far~end of the~Underground.*But I doubt you'll~get that far.)
+    @item.add(133,1)
+    @item.messagegive(133,1)
+    :end
+:endif
+
+:if:<register.exists(rocket_invasion_defeat)>=false
+    @text.show(We stashed the~real Director in*the Underground~Warehouse.*It's at the far~end of the~Underground.*But I doubt you'll~get that far.)
+    :end
+:endif
+
+@text.show(Director: Hello,~<player.name>!*You know, I love Pokémon.*I built this Radio~Tower so I could*express my love~of Pokémon.*It would be nice~if people enjoyed~our programs.)
+:end

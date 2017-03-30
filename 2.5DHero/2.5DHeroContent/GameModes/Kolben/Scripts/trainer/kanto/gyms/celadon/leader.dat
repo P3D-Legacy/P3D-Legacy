@@ -1,0 +1,22 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(earthbadge_obtain)>=true <and> <register.exists(ErikaRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe around noon~during the weekends?*If you visit while~I am there maybe~we could battle.)
+    @register.new(ErikaRematchTalk)
+    :end
+:endif
+@battle.starttrainer(kanto\gyms\celadon\leader)
+@player.AchieveEmblem(rainbow)
+:if:<register.exists(rainbowbadge_obtain)>=False
+    @register.new(rainbowbadge_obtain)
+    @register.new(trainer_kanto\gyms\celadon\001)
+    @register.new(trainer_kanto\gyms\celadon\002)
+    @register.new(trainer_kanto\gyms\celadon\003)
+    @register.new(trainer_kanto\gyms\celadon\004)
+    @register.new(trainer_kanto\gyms\celadon\005)
+    @player.GetBadge(4)
+    @Text.show(That was a delightful match.*I felt inspired.*Please, I wish~you to have this TM.)
+    @item.add(209,1)
+    @item.messagegive(209,1)
+    @Text.show(It is Giga Drain.*It is a wonderful move~that drains half the damage~it inflicts to heal your Pokémon.*Please use it if~it pleases you.)
+:endif
+:end

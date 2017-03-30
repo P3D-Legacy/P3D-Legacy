@@ -1,0 +1,23 @@
+version=2
+:if:<register.exists(pewter_xatu_trade)>=True
+    @Text.show(Wow, my very own Haunter.~Thank you!)
+:else
+    @Text.show(Hi, I'm looking~for this Pokémon.*If you have Haunter,~would you trade it~for a Xatu?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @pokemon.select
+            :if:<pokemon.number(<pokemon.selected>)>=93
+                @script.start(npctrade.dat,178,,0,24165,2037,Paul,Peter,5,Ruins of Alph,caught at)
+                @text.show(OK, connecting...*...*Wow! Thank you!~I always wanted~Haunter!)
+                @sound.play(success_small)
+                @text.show(<player.name> traded~Peter for Haunter!)
+                @register.new(pewter_xatu_trade)
+            :else
+                @Text.show(You don't want to~trade? Aww...)
+            :endif
+        :when:No
+            @Text.show(You don't want to~trade? Aww...)
+    :endselect
+:endif
+:end

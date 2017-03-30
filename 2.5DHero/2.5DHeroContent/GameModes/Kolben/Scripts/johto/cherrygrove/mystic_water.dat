@@ -1,0 +1,14 @@
+version=2
+:if:<register.exists(got_mysticwater)>=false
+    @Text.Show(A Pokémon I caught~had an item.*I think it's~Mystic Water.*I don't need it,~so do you want it?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @item.add(95)
+            @Item.messagegive(95,1)
+            @register.new(got_mysticwater)
+    :endselect
+:endif
+@Text.Show(Back to fishing~for me, then.)
+@NPC.Turn(4,3)
+:end

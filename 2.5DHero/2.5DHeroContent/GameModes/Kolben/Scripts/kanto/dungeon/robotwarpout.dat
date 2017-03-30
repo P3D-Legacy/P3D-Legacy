@@ -1,0 +1,20 @@
+version=2
+@player.warp(kanto\ancientruins\passage.dat,3,3.1,30,0)
+@level.update
+@player.setmovement(0,-3,0)
+@player.move(1)
+@sound.play(destroy)
+:if:<register.exists(scientistinpassage)>=False
+    @player.resetmovement
+    @player.turnto(2)
+    @npc.move(0,2)
+    @text.show(Oh hello <player.name>!*It seems like you~cleared the stuff with~the robots.*Just a moment ago~the large marble slab~moved to reveal a~ladder which is how~I got here and how~you can get back out.*It seems like there is~another ladder up ahead.*I am going to return~to my intern to discuss~our findings but you~should keep going.*Who knows what amazing~things await you~up ahead!)
+    @npc.turn(0,2)
+    @npc.setspeed(0,2)
+    @npc.move(0,17)
+    @npc.remove(0)
+    @npc.register(kanto\ancientruins\passage.dat|0|remove|0)
+    @npc.register(kanto\ancientruins\0\11.dat|1|position|8,0,3)
+    @register.new(scientistinpassage)
+:endif
+:end

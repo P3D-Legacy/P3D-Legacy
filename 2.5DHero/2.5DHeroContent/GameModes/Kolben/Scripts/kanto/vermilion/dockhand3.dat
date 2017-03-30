@@ -1,0 +1,37 @@
+version=2
+:if:<item.count(285)>>0 <and> <register.exists(oldseamaptonav)>=false
+    @text.show(Oh this is a cool map!*It seems to point to a place~called "Faraway Island."*We can take you~there if you want.)
+    @register.new(oldseamaptonav)
+    @register.new(specialmap-tixreg)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\faraway\exterior.dat,16,2.1,32)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+            :end
+    :endselect
+    :end
+:endif
+:if:<register.exists(specialmap-tixreg)>=true
+    @text.show(Where would you like to go?)
+    :if:<register.exists(oldseamaptonav)>=True
+        @options.show(Faraway Island,Quit)
+        :select:<options.result>
+            :when:Faraway Island
+            @text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
+            @script.start(kanto\vermilion\fastshipleaving)
+            @player.warp(sevii\faraway\exterior.dat,16,2.1,32)
+            @level.update
+            @player.turnto(2)
+            @screen.fadein
+            :end
+        :endselect
+    :endif
+    :end
+:endif
+@text.show(Yo!*I am the navigator.*If you ever find any odd~maps or specialty tickets come~talk to me.*For our regularly scheduled~trips talk to the first~mate next to me.)
+:end

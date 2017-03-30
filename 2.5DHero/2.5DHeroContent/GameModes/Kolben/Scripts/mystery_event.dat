@@ -1,0 +1,10 @@
+version=2
+@text.show(Do you want to view~the Mystery Events?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @screen.mysteryevent
+    :when:No
+        @text.show(Come back later.)
+:endselect
+:end

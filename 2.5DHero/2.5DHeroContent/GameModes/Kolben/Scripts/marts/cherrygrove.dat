@@ -1,0 +1,17 @@
+version=2
+:if:<player.badges>>0
+    @script.start(marts\default)
+:else
+    @text.show(Welcome!~What do you need?)
+    @options.show(Store,See Ya!)
+    :select:<options.result>
+        :when:Store
+            :if:<register.exists(elm4)>=True
+                @screen.trade({5|-1|-1}{18|-1|-1}{9|-1|-1}{12|-1|-1}{13|-1|-1},True,True)
+            :else
+                @screen.trade({18|-1|-1},True,True)
+            :endif
+        :when:See Ya!
+    :endselect
+:endif
+:end

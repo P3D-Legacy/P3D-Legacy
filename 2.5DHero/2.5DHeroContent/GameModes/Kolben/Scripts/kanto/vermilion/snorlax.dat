@@ -1,0 +1,13 @@
+version=2
+:if:<radio.currentchannel>=PokéFlute
+    @text.show(The Pokégear was placed~near the sleeping~Snorlax...*...*Snorlax woke up!)
+    @pokemon.cry(143)
+    @level.wait(30)
+    @battle.wild(143,50)
+    @entity.remove(0)
+    @register.new(snorlaxawake)
+:else
+    @pokemon.cry(143)
+    @text.show(Snorlax is snoring~peacefully...)
+:endif
+:end

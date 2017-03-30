@@ -1,0 +1,11 @@
+version=2
+@battle.starttrainer(kanto\gyms\cinnabar\001)
+:if:<register.exists(c_gym_t_move_1)>=false
+    @text.show(<battle.defeatmessage(kanto\gyms\cinnabar\001)>)
+    @npc.turn(1,0)
+    @npc.move(1,1)
+    @npc.turn(1,2)
+    @npc.register(kanto\seafoam\gym.dat|1|position|11,0,12)
+    @register.new(c_gym_t_move_1)
+:endif
+:end

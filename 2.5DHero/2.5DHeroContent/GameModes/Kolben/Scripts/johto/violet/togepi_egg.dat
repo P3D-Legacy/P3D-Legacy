@@ -1,0 +1,61 @@
+version=2
+:if:<register.exists(got_togepi_egg)>=True
+    @Text.show(We discovered that~a Pokémon will not*hatch until it~grows in the Egg.*It also has to be~with other active~Pokémon to hatch.*<player.name>, you're~the only person~we can rely on.*Please call Prof.~Eml when that Egg~hatches!)
+    :end
+:endif
+
+:if:<register.exists(met_aid_egg)>=False
+    @Text.show(<player.name>, long~time, no see.*Prof. Elm asked me~to find you.*He has another~favor to ask.*Would you take the~Pokémon Egg?)
+    @register.new(met_aid_egg)
+:else
+    @Text.show(<player.name>, will you~take the Egg?)
+:endif
+
+@Options.show(Yes,No)
+:select:<options.result>
+    :when:No
+        @Text.show(B-but... Prof. Elm~asked for you...)
+        :end
+:endselect
+
+:if:<pokemon.count>=6
+    @Text.show(Oh, no. You can't~carry any more~Pokémon with you.*I'll wait here~while you make~room for the Egg.)
+    :end
+:else
+    @pokemon.add(175,1,hatched,5,Violet City,1,<player.name>)
+    @sound.play(success_small)
+    @Text.show(<player.name> received~the Egg!)
+    @Text.show(We discovered that~a Pokémon will not*hatch until it~grows in the Egg.*It also has to be~with other active~Pokémon to hatch.*<player.name>, you're~the only person~we can rely on.*Please call Prof.~Elm when that Egg~hatches!)
+    :select:<player.position>
+        :when:7,0,3
+            @NPC.turn(4,2)
+            @Player.turnto(2)
+            @NPC.move(4,5)
+            @NPC.turn(4,1)
+            @NPC.move(4,1)
+            @NPC.turn(4,2)
+            @NPC.move(4,2)
+        :when:8,0,4
+            @NPC.turn(4,1)
+            @NPC.move(4,1)
+            @Player.turnto(1)
+            @NPC.turn(4,2)
+            @NPC.move(4,2)
+            @Player.turnto(2)
+            @NPC.move(4,5)
+        :when:9,0,3
+            @NPC.turn(4,2)
+            @Player.turnto(2)
+            @NPC.move(4,5)
+            @NPC.turn(4,1)
+            @NPC.move(4,1)
+            @NPC.turn(4,2)
+            @NPC.move(4,2)
+        :endselect
+    @npc.remove(4)
+    @sound.play(enter)
+    @NPC.unregister(johto\violet\center.dat|4|position|8,0,3)
+    @register.remove(met_aid_egg)
+    @register.new(got_togepi_egg)
+:endif
+:end

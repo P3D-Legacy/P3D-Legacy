@@ -1,0 +1,36 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(earthbadge_obtain)>=true <and> <register.exists(BlaineRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe Tuesday/~Thursday mornings?*If you visit while~I am there maybe~we could battle.)
+    @register.new(BlaineRematchTalk)
+    :end
+:endif
+@battle.starttrainer(kanto\gyms\cinnabar\leader)
+@player.AchieveEmblem(volcano)
+:if:<register.exists(volcanobadge_obtain)>=False
+    @register.new(volcanobadge_obtain)
+    @register.new(trainer_kanto\gyms\cinnabar\001)
+    @register.new(trainer_kanto\gyms\cinnabar\002)
+    @register.new(trainer_kanto\gyms\cinnabar\003)
+    @register.new(trainer_kanto\gyms\cinnabar\004)
+    @register.new(trainer_kanto\gyms\cinnabar\005)
+    @register.new(trainer_kanto\gyms\cinnabar\006)
+    @npc.register(kanto\seafoam\gym.dat|1|position|11,0,12)
+    @npc.register(kanto\seafoam\gym.dat|2|position|3,0,13)
+    @npc.register(kanto\seafoam\gym.dat|3|position|17,0,10)
+    @npc.register(kanto\seafoam\gym.dat|4|position|12,0,7)
+    @npc.register(kanto\seafoam\gym.dat|5|position|9,0,5)
+    @npc.register(kanto\seafoam\gym.dat|6|position|5,0,10)
+    @register.new(c_gym_t_move_1)
+    @register.new(c_gym_t_move_2)
+    @register.new(c_gym_t_move_3)
+    @register.new(c_gym_t_move_4)
+    @register.new(c_gym_t_move_5)
+    @register.new(c_gym_t_move_6)
+    @level.reload
+    @player.GetBadge(7)
+    @Text.show(Blaine: Awesome.~I have burned out...~Take this Volcano Badge!*Here, I will give~you this, too.)
+    @item.add(408,1)
+    @item.messagegive(408,1)
+    @Text.show(It's called Overheat!*It has a slight~drawback, but it's~powerful and well~worth it!)
+:endif
+:end

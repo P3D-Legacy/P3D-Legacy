@@ -1,0 +1,14 @@
+version=2
+@text.show(<pokemon.displayname(0)>~entered the motor.)
+@pokemon.setadditionalvalue(0,<$1>)
+@script.start(kanto\saffron\rotom\removeattacks)
+:if:<pokemon.countattacks(0)>=4
+    @pokemon.learnattack(0,<$2>)
+:else
+    @pokemon.addattack(0,<$2>)
+:endif
+@pokemon.reload(0)
+@pokemon.calcstats(0)
+@screen.fadeout
+@level.reload
+:end

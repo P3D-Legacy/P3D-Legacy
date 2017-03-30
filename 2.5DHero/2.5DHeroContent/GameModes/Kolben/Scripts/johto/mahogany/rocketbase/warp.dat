@@ -1,0 +1,34 @@
+version=2
+:if:<camera.thirdperson>=true
+    @camera.setposition(0,0.3,1.5)
+    @camera.update
+    :while:<camera.z>>0
+        @camera.sety(~-0.01)
+        @camera.setz(~-0.05)
+        @player.turn(1)
+        @camera.update
+    :endwhile
+    
+    @sound.play(teleport)
+    @player.warp(26,0.1,2)
+    @camera.setposition(0,0,0)
+    :while:<camera.z><1.5
+        @camera.sety(~+0.01)
+        @camera.setz(~+0.05)
+        @player.turn(1)
+        @camera.update
+    :endwhile
+:else
+    @Player.turn(1)
+    @Player.turn(1)
+    @Player.turn(1)
+    @Player.turn(1)
+    @sound.play(teleport)
+    @Player.warp(26,0.1,2)
+    @Player.turn(1)
+    @Player.turn(1)
+    @Player.turnto(1)
+:endif
+
+@storage.clear
+:end

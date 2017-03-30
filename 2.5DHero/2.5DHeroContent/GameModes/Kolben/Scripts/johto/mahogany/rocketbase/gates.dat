@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(gate1open)>=True
+    @Entity.remove(9)
+    @Entity.remove(10)
+    :exit
+:endif
+:end

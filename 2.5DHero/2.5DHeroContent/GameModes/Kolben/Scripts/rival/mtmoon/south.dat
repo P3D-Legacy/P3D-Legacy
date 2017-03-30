@@ -1,0 +1,32 @@
+version=2
+:if:<register.exists(rival_fortune_encounter)>=true <and> <register.exists(rival_mtmoon_encounter)>=false
+    @Music.play(encounter\rival)
+    @player.turnto(1)
+    @npc.turn(0,2)
+    @npc.move(0,4)
+    @npc.turn(0,3)
+    @npc.move(0,2)
+    @text.show(.....~.....~.....*It's been a while,~<player.name>.*...Since I lost to you,~I thought about what~I was lacking with my~Pokémon...*And we came up~with an answer.*<player.name>,~now we'll show you!)
+    :if:<register.exists(starter1)>=True
+        @battle.trainer(rival\5\fire)
+    :endif
+    :if:<register.exists(starter2)>=True
+        @battle.trainer(rival\5\water)
+    :endif
+    :if:<register.exists(starter3)>=True
+        @battle.trainer(rival\5\grass)
+    :endif
+    @Music.play(encounter\rival)
+    @text.show(......~......~......*...You won,~fair and square.*I admit it.*But this isn't the end.*I'm going to be~the greatest Pokémon~Trainer ever,~because these guys~are behind me.*Mt. Moon is boring.*I think I am going~to return to Johto.*Lance told me if~I ever needed somewhere~to train and think,~I should visit the~Dragon's Den.*...Listen,~<player.name>.*One of these days~I'm going to prove how~good I am by beating you.)
+    @screen.fadeout
+    @npc.remove(0)
+    @npc.unregister(kanto\mtmoon\main.dat|0|position|3,0,8)
+    @Music.play(dungeon\cave\digletts)
+    @screen.fadein
+    @register.new(rival_mtmoon_encounter)
+    @npc.register(johto\blackthorn\dragonsden\main.dat|5|position|13,0,20)
+    @npc.register(johto\blackthorn\dragonsden\main.dat|6|position|18,0,20)
+    @npc.register(johto\blackthorn\dragonsden\main.dat|7|position|14,0,20)
+    @npc.register(johto\blackthorn\dragonsden\main.dat|8|position|17,0,20)
+:endif
+:end

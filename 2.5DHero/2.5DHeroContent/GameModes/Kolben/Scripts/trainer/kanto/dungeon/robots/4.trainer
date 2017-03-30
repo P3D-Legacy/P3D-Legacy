@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|#50324
+TrainerClass|Automaton
+Money|4000
+IntroMessage|Click*Creeeeeeak*WHIIIIIIIIIIIIIR
+OutroMessage|WHIIIIIiiiiiir.....
+DefeatMessage|It seems to have no power.
+TextureID|robot3
+Region|Kanto
+IniMusic|battle\intro\kanto\leader
+DefeatMusic|battle\defeat\leader
+BattleMusic|battle\main\kanto\leader
+Pokemon1|376,67
+Pokemon2|697,65
+Pokemon3|699,65
+Pokemon4|681,68
+Pokemon5|715,68
+Pokemon6|623,70
+Items|
+Gender|0
+AI|3
+IntroSequence|Blue,Blue

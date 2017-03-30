@@ -1,0 +1,5 @@
+version=2
+:if:<register.exists(snorlaxawake)>=True
+    @entity.remove(0)
+:endif
+:end

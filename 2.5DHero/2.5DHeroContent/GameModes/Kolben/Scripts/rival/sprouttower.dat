@@ -1,0 +1,31 @@
+version=2
+:if:<register.exists(rival_sprouttower)>=False
+    @register.new(rival_sprouttower)
+    @Music.stop
+    @Player.turnto(0)
+    @Player.move(3)
+    @npc.Move(4,1)
+
+    @Text.show(Elder: You are in-deed~skilled as a~trainer.*As promised, here~is your HM.*But let me say~this: You should*treat your~Pokémon better.*The way you battle~is far too harsh.*Pokémon are not~tools of war...)
+
+    @Entity.showmessagebulb(1|8.01|0.7|3.01)
+    @npc.Turn(4,2)
+    @Level.wait(50)
+    @npc.Turn(4,3)
+    @npc.Move(4,1)
+    @npc.Turn(4,2)
+    @npc.Move(4,2)
+    @Music.play(encounter\rival)
+
+    @Text.show(...~...Humph!*He claims to be~the Elder but~he's weak!*It stands to~reason.*I'd never lose to~fools who babble*about being nice~to Pokémon.*I only care about~strong Pokémon~that can win.*I really couldn't~care less about~weak Pokémon.)
+
+    @npc.Turn(4,0)
+    @Text.show(<rival.name> used an Escape Rope!)
+    @Screen.fadeout
+    @NPC.remove(4)
+    @NPC.register(johto\violet\sprouttower\3f.dat|4|remove|1)
+    @Screen.fadein
+
+    @Music.play(dungeon\tower\sprout)
+:endif
+:end

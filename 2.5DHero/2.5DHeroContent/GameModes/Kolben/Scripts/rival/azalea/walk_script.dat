@@ -1,0 +1,8 @@
+version=2
+:if:<register.exists(rival_encounter_azalea)>=True <and> <register.exists(rocket_defeat_slowpokewell)>=False
+    @player.turn(1)
+    @player.move(1)
+    @player.turn(3)
+    @Script.start(rival\azalea\startscript)
+:endif
+:end

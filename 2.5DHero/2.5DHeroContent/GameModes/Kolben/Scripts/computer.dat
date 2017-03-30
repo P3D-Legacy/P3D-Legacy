@@ -1,0 +1,10 @@
+version=2
+:if:<level.surfing>=true <or> <level.riding>=true
+    @text.show(You can't interact with~the PC at the moment.)
+    :end
+:endif
+
+@sound.play(PC\pc_turnon)
+@text.show(Booting up the PC...*Choose a host to~connect to.)
+@script.start(computer_choose)
+:end

@@ -1,0 +1,32 @@
+version=2
+:if:<register.exists(phone_reg_027)>=true
+    @Text.Show(Have you been to the~Lake of Rage yet?)
+    @register.remove(phone_reg_027)
+    @register.newtime(phone_reg_time_027,1,day)
+    :if:<player.badges>>3
+        :if:<register.exists(rematch_027_1)>=true
+            @battle.trainer(johto\routes\43\002_2)
+        :else
+            @register.new(rematch_027_1)
+            @battle.trainer(johto\routes\43\002_1)
+        :endif
+    :else
+        @battle.trainer(johto\routes\43\002)
+    :endif
+:else
+    @battle.starttrainer(johto\routes\43\002)
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_027)>=false
+            @Text.Show(Can you visit the~Lake of Rage for me and~tell me a bit about it?)
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Tiffany's number.)
+                    @register.new(phone_contact_027)
+                    @Text.Show(I'll let you know whenever~I want to battle you.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

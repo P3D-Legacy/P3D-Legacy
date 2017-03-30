@@ -1,0 +1,37 @@
+version=2
+:if:<register.exists(No_help)>=True
+    @Text.show(Lance: Hm? are you~going to help me?)
+:else
+    @Text.show(This lake is full~of Gyarados but~nothing else...*So the Magikarp~are being forced~to evolve...*Did you come here~because of the~rumors?*You're <player.name>?~I'm Lance, a~trainer like you.*I heard some rumors,~so I came to~investigate...*I saw the way you~battled earlier,~<player.name>.*I can tell that~you're a trainer~with considerable skill.*If you don't mind,~could you help me~investigate?)
+:endif
+@Options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @Text.show(Lance: Excellent!*It seems that the~Lake's Magikarp~are being forced~to evolve.*A mysterious radio~broadcast coming*from Mahogany is~the cause.*I'll be waiting~for you, <player.name>.)
+        :if:<register.exists(No_help)>=True
+            @register.remove(No_help)
+        :endif
+    :when:No
+        @Text.show(Oh...Well, if you~change your mind,~please help me.)
+        @register.new(No_help)
+        :end
+:endselect
+
+@NPC.Wearskin(4,[Pokémon|N]149)
+@pokemon.cry(149)
+@level.Wait(20)
+
+:while:<npc.position(4,y)><2
+    @npc.addtoposition(4,0,0.1,0)
+    @level.wait(1)
+    @level.update
+:endwhile
+
+@sound.play(Battle\Effects\effect_fly)
+
+@NPC.remove(4)
+@NPC.Register(johto\lakeofrage\main.dat|4|remove|0)
+@NPC.Register(johto\mahogany\shop.dat|0|position|3,0,5)
+@NPC.Register(johto\mahogany\shop.dat|3|position|2,0,5)
+@register.new(LORLance)
+:end

@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(trainer_johto\gyms\blackthorn\leader)>=true
+    @Text.show(You were great to~beat Clair!*All that's left is~the Pokémon League~challenge.*You're on the way~to becoming the~Pokémon Champion!)
+:else
+    @Text.show(Yo! Champ in~making!*It's been a long~journey, but we*are almost done!~Count on me!*Clair uses the~mythical and sacred~dragon-type Pokémon.*You can't damage~them very easily.*But you know,~they're supposed*to be weak against~ice-type moves.)
+:endif
+:end

@@ -1,0 +1,16 @@
+version=2
+:if:<register.exists(frontier_battletower_endless_values_created)>=false
+    @text.show(No data recorded for~Endless Mode.)
+:else
+    @text.show(A machine which displays~record data for Endless Mode:)
+    @options.show(Lv. 50,Lv. 100,Cancel)
+    :select:<options.result>
+        :when:Lv. 50
+            @text.show(Your record for:~Lv. 50, Endless Mode:~<register.value(battletower_endless_50_best)> win streak.)
+        :when:Lv. 100
+            @text.show(Your record for:~Lv. 100, Endless Mode:~<register.value(battletower_endless_100_best)> win streak.)
+        :when:Cancel
+            @text.show(Record machine~shutting down.)
+    :endselect
+:endif
+:end

@@ -1,0 +1,112 @@
+version=2
+:if:<register.exists(First_time_champion)>=false
+    @player.move(0)
+    @player.turnto(1)
+    @text.show(I'm sorry this club~is for members only.*Please leave.)
+    @player.turnto(2)
+    @player.move(1)
+    @player.warp(johto\goldenrod\main.dat,15,0.1,21,0)
+    @level.update
+    @player.move(1)
+    :end
+:endif
+:if:<register.exists(clubintro)>=false
+    @player.move(0)
+    @player.turnto(1)
+    @text.show(I'm sorry this club is for mem-*Wait.~Are you perhaps~<player.name>?*I am so sorry~for my rudeness.*Any trainer who is good~enough to be champion is~welcome at this club.*This club is intended~to be a place for powerful~trainers to hangout,~relax, and engage in~friendly battles.*Currently all of the~Gym Leaders of Kanto~and Johto are members,~but they rarely come by.*I am sure if a trainer~as strong as you told~them about this club and~asked them to join you~here they would do so.*They might even come~here willing to battle!)
+    @register.new(clubintro)
+    :end
+:endif
+:if:<DateTime.DayOfWeek>=Sunday <or> <DateTime.DayOfWeek>=Monday <or> <DateTime.DayOfWeek>=Tuesday
+    :if:<DateTime.Hour><15 <and> <datetime.hour>>8
+        :if:<register.exists(BrockRematchTalk)>=true
+            @npc.warp(1,~,0.2,~)
+        :endif
+    :endif
+    :if:<DateTime.Hour><12 <and> <datetime.hour>>4
+        :if:<register.exists(BugsyRematchTalk)>=true
+            @npc.warp(10,~,0.2,~)
+        :endif
+    :endif
+:endif
+:if:<DateTime.DayOfWeek>=Thursday <or> <DateTime.DayOfWeek>=Friday <or> <DateTime.DayOfWeek>=Saturday
+    :if:<DateTime.Hour><17 <and> <datetime.hour>>10
+        :if:<register.exists(SurgeRematchTalk)>=true
+            @npc.warp(3,~,0.2,~)
+        :endif
+    :endif
+    :if:<DateTime.Hour><23 <and> <datetime.hour>>16
+        :if:<register.exists(ClairRematchTalk)>=true
+            @npc.warp(16,~,0.2,~)
+        :endif
+    :endif
+:endif
+:if:<DateTime.DayOfWeek>=Monday <or> <DateTime.DayOfWeek>=Wednesday <or> <DateTime.DayOfWeek>=Friday
+    :if:<DateTime.Hour><9 <and> <datetime.hour>>2
+        :if:<register.exists(ChuckRematchTalk)>=true
+            @npc.warp(15,~,0.2,~)
+        :endif
+    :endif
+    :if:<DateTime.Hour><19 <and> <datetime.hour>>12
+        :if:<register.exists(JasmineRematchTalk)>=true
+            @npc.warp(14,~,0.2,~)
+        :endif
+    :endif
+:endif
+:if:<DateTime.DayOfWeek>=Sunday <or> <DateTime.DayOfWeek>=Saturday
+    :if:<DateTime.Hour><23 <and> <datetime.hour>>14
+        :if:<register.exists(MistyRematchTalk)>=true
+            @npc.warp(2,~,0.2,~)
+        :endif
+    :endif
+    :if:<DateTime.Hour><17 <and> <datetime.hour>>8
+        :if:<register.exists(ErikaRematchTalk)>=true
+            @npc.warp(4,~,0.2,~)
+        :endif
+    :endif
+:endif
+:if:<DateTime.DayOfWeek>=Tuesday <or> <DateTime.DayOfWeek>=Thursday
+    :if:<DateTime.Hour><11 <and> <datetime.hour>>2
+        :if:<register.exists(BlaineRematchTalk)>=true
+            @npc.warp(7,~,0.2,~)
+        :endif
+    :endif
+    :if:<DateTime.Hour><23 <and> <datetime.hour>>14
+        :if:<register.exists(PryceRematchTalk)>=true
+            @npc.warp(15,~,0.2,~)
+        :endif
+    :endif
+:endif
+:if:<DateTime.DayOfWeek>=Wednesday
+    :if:<DateTime.Hour><22 <and> <datetime.hour>>6
+        :if:<register.exists(BlueRematchTalk)>=true
+            @npc.warp(8,~,0.2,~)
+        :endif
+    :endif
+:endif
+:if:<DateTime.Hour><4 <and> <datetime.hour>>0
+    :if:<register.exists(JanineRematchTalk)>=true
+        @npc.warp(5,~,0.2,~)
+    :endif
+:endif
+:if:<DateTime.Hour><17 <and> <datetime.hour>>13
+    :if:<register.exists(SabrinaRematchTalk)>=true
+        @npc.warp(6,~,0.2,~)
+    :endif
+:endif
+:if:<DateTime.Hour><7 <and> <datetime.hour>>3
+    :if:<register.exists(FalknerRematchTalk)>=true
+        @npc.warp(9,~,0.2,~)
+    :endif
+:endif
+:if:<DateTime.Hour><22 <and> <datetime.hour>>18
+    :if:<register.exists(WhitneyRematchTalk)>=true
+        @npc.warp(11,~,0.2,~)
+    :endif
+:endif
+:if:<DateTime.Hour>=0 <or> <DateTime.Hour>=22 <or> <datetime.hour>=23
+    :if:<register.exists(MortyRematchTalk)>=true
+        @npc.warp(12,~,0.2,~)
+    :endif
+:endif
+:end

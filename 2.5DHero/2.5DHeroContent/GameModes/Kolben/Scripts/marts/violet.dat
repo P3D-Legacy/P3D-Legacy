@@ -1,0 +1,9 @@
+version=2
+@Text.show(Welcome!~What do you need?)
+@Options.show(Store,See Ya!)
+:select:<options.result>
+    :when:Store
+        @screen.Trade({5|-1|-1}{18|-1|-1}{9|-1|-1}{12|-1|-1}{13|-1|-1}{51|-1|-1}{49|-1|-1}{52|-1|-1}{19|-1|-1},True,True)
+    :when:See Ya!
+:endselect
+:end

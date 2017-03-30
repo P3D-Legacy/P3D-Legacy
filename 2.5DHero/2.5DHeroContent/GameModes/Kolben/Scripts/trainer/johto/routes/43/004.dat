@@ -1,0 +1,32 @@
+version=2
+:if:<register.exists(phone_reg_028)>=true
+    @Text.Show(I want a rematch!)
+    @register.remove(phone_reg_028)
+    @register.newtime(phone_reg_time_028,1,day)
+    :if:<player.badges>>6
+        :if:<register.exists(rematch_028_1)>=true
+            @battle.trainer(johto\routes\43\004_2)
+        :else
+            @register.new(rematch_028_1)
+            @battle.trainer(johto\routes\43\004_1)
+        :endif
+    :else
+        @battle.trainer(johto\routes\43\004)
+    :endif
+:else
+    @battle.starttrainer(johto\routes\43\004)
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_028)>=false
+            @Text.Show(Are you going to catch~more rare Pokémon?*Please call when you~find one, OK?)
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Brent's number.)
+                    @register.new(phone_contact_028)
+                    @Text.Show(I'd be happy just~to own a single~rare Pokémon.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

@@ -3,7 +3,7 @@
     Public Shared Sub FunctionKeys()
         If KeyBoardHandler.KeyPressed(KeyBindings.GUIControlKey) = True Then
             Core.GameOptions.ShowGUI = Not Core.GameOptions.ShowGUI
-            Core.GameOptions.SaveOptions()
+            Core.GameOptions.Save()
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.ScreenshotKey) AndAlso Core.CurrentScreen.CanTakeScreenshot Then
             CaptureScreen()
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.DebugKey) Then
@@ -11,10 +11,10 @@
             If Core.GameOptions.ShowDebug >= 2 Then
                 Core.GameOptions.ShowDebug = 0
             End If
-            Core.GameOptions.SaveOptions()
+            Core.GameOptions.Save()
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.LightKey) Then
             Core.GameOptions.LightingEnabled = Not Core.GameOptions.LightingEnabled
-            Core.GameOptions.SaveOptions()
+            Core.GameOptions.Save()
 
             If Core.GameOptions.LightingEnabled Then
                 Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_lighting_on", "Lighting Enabled"), 12, FontManager.MainFont, Color.White)
@@ -26,7 +26,7 @@
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.MuteMusicKey) AndAlso Core.CurrentScreen.CanMuteMusic Then
             MusicManager.Mute(Not MediaPlayer.IsMuted)
             SoundManager.Mute(MediaPlayer.IsMuted)
-            Core.GameOptions.SaveOptions()
+            Core.GameOptions.Save()
             Core.CurrentScreen.ToggledMute()
         End If
 
@@ -50,7 +50,7 @@
             Else
                 Core.GameMessage.ShowMessage("Disabled XBOX 360 GamePad support.", 12, FontManager.MainFont, Color.White)
             End If
-            Core.GameOptions.SaveOptions()
+            Core.GameOptions.Save()
         End If
     End Sub
 

@@ -1,0 +1,20 @@
+version=2
+
+:if:<pokemon.count>=0
+    @text.show(This is a~machine for healing~injured Pokémon.)
+:else
+    @text.show(Do you want to~heal your Pokémon?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @screen.fadeout
+            @pokemon.heal
+            @sound.play(healing,1)
+            @level.wait(150)
+            @screen.fadein
+            @text.show(Your Pokémon are~fully restored.)
+        :when:No
+    :endselect
+:endif
+
+:end

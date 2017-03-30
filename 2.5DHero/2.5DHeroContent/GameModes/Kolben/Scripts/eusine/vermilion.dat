@@ -1,0 +1,39 @@
+version=2
+:if:<register.exists(suicunevermilion)>=False
+    @pokemon.cry(245)
+    :if:<player.position>=18,0,30
+        @player.turnto(3)
+        @player.move(1)
+    :endif
+    @player.turnto(0)
+    @player.move(4)
+    @npc.warp(7,23,0,26)
+    @music.play(encounter\eusine)
+    @npc.moveasync(7,3)
+    @npc.turn(6,3)
+    @npc.move(6,5)
+    @level.waitforevents
+    @npc.turn(7,0)
+    @npc.remove(6)
+    @player.turnto(3)
+    @text.show(Eusine: That was close!*I thought I could corner~it by ambushing it here...*But running on the water....~is beyond me.*Still, I am starting~to see a pattern.*Suicune prefers water!*That means...)
+    @npc.turn(7,1)
+    @text.show(Sorry <player.name>!~I've got to go!*Hypno!*Teleport!)
+    @NPC.Turn(7,1)
+    @NPC.Turn(7,2)
+    @NPC.Turn(7,3)
+    @NPC.Turn(7,0)
+    @NPC.Turn(7,1)
+    @NPC.Turn(7,2)
+    @NPC.Turn(7,3)
+    @NPC.Turn(7,0)
+    @npc.remove(7)
+    @npc.register(kanto\vermilion\main.dat|6|remove|0)
+    @register.new(suicunevermilion)
+    :if:<register.exists(suicune3)>=False
+        @NPC.Register(johto\routes\42.dat|0|remove|0)
+        @register.new(suicune3)
+    :endif
+    @music.play(town\vermilion)
+:endif
+:end

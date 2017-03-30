@@ -1,0 +1,33 @@
+version=2
+:if:<register.exists(phone_reg_020)>=true
+    @register.remove(phone_reg_020)
+    @Text.Show(I found this while~training my Pokémon.)
+    :if:<player.badges>>3
+        :if:<register.exists(rematch_020_1)>=true
+            @battle.trainer(johto\routes\36\002_2)
+        :else
+            @register.new(rematch_020_1)
+            @battle.trainer(johto\routes\36\002_1)
+        :endif
+    :else
+        @battle.trainer(johto\routes\36\002)
+    :endif
+    @item.add(22)
+    @Item.messagegive(22,1)
+    @register.newtime(phone_reg_time_016,1,day)
+    @Text.Show(I'll let you know whenever~I find another one.)
+:else
+    @battle.starttrainer(johto\routes\36\002)
+    :if:<player.haspokegear>=true <and> <register.exists(phone_contact_020)>=false
+        @Text.Show(Sometimes, I find mysterious~stones on the ground.*I'll call you when~I find another one.)
+        @Options.Show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @Text.Show(<player.name> registered~Alan's number.)
+                @register.new(phone_contact_020)
+                @Text.Show(I'll let you know whenever~I find one.)
+            :when:No
+        :endselect
+    :endif
+:endif
+:end

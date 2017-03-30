@@ -1,0 +1,8 @@
+version=2
+:if:<register.exists(rocket_invasion_radio)>=True
+    @text.show(Buena: Huh?~Today's password?~HELP, of course!)
+    :end
+:endif
+
+@text.show(This isn't ready yet.~Come back later.)
+:end

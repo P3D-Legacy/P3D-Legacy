@@ -1,0 +1,89 @@
+version=2
+:if:<register.exists(rival_encounter_azalea)>=false <and> <register.exists(rocket_defeat_slowpokewell)>=true
+    @music.play(nomusic)
+    @screen.fadeout
+
+    @overworldpokemon.hide
+    @npc.warp(9,15,0,11)
+    @storage.set(bool,isthirdperson,<camera.thirdperson>)
+    @camera.activatethirdperson
+    @camera.setposition(0,2.96,-6.39)
+    @camera.setyaw(4.67)
+    @camera.setpitch(0.18)
+    @level.update
+
+    @screen.fadein(10)
+    @level.wait(10)
+
+    :while:<camera.y>>0
+        @camera.sety(<camera.y>-0.025)
+        @camera.update
+    :endwhile
+
+    @music.play(encounter\rival)
+    @level.wait(60)
+    @npc.turn(9,2)
+    
+    @sound.play(enter)
+    :if:<player.position(z)>=12
+        @npc.move(9,2)
+    :else
+        @npc.move(9,1)
+    :endif
+    
+    @npc.turn(9,3)
+    @level.wait(30)
+    @entity.showmessagebulb(1|15|1|<npc.position(9,z)>)
+    @level.wait(20)
+    @npc.turn(9,1)
+    @level.wait(20)
+    @npc.move(9,3)
+    
+    @screen.fadeout(20)
+
+    @camera.setposition(-0.36,0.74,1.84)
+    @camera.setyaw(3.23)
+    @camera.setpitch(-0.38)
+    @level.update
+
+    @screen.fadein(20)
+
+    @npc.move(9,7)
+    @camera.deactivatethirdperson
+    :if:<player.position(z)>=12
+        @npc.turn(9,0)
+        @player.turnto(2)
+    :else
+        @npc.turn(9,2)
+        @player.turnto(0)
+    :endif
+
+    @text.show(Tell me something.*Is it true that~Team Rocket has~returned?*What? You beat~them? Hah! Quit~lying.*You're not joking?~Then let's see how~good you are.)
+
+    :if:<register.exists(starter1)>=true
+        @battle.trainer(rival\1\fire)
+    :endif
+    
+    :if:<register.exists(starter2)>=true
+        @battle.trainer(rival\1\water)
+    :endif
+    
+    :if:<register.exists(starter3)>=true
+        @battle.trainer(rival\1\grass)
+    :endif
+    
+    @music.play(encounter\rival)
+    @text.show(I hate the weak.*Pokémon, trainers.~It doesn't matter~who or what.*I'm going to be~strong and wipe~out the weak.*That goes for Team~Rocket too.*They act big and~tough in a group.*But get them~alone, and they're~weak.*I hate them all.*You stay out of my~way. A weakling*like you is only a~distraction.)
+    @npc.turn(9,1)
+    @player.turnto(1)
+    @npc.move(9,4)
+    @sound.play(enter)
+    @npc.warp(9,14,-2,12)
+    @register.new(rival_encounter_azalea)
+    @music.play(azalea)
+
+    :if:<storage.get(bool,isthirdperson)>=true
+        @camera.activatethirdperson
+    :endif
+:endif
+:end

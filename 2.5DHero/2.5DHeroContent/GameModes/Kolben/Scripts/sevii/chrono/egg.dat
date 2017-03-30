@@ -1,0 +1,22 @@
+version=2
+@text.show(You travel all over~the place, don't you?*You're not driving your~Pokémon too harshly,~are you?)
+:end
+:if:<register.exists(manaeggget)>=false
+    @text.show(*Let me take a look.*... ... ...  ... ... ...)
+    :if:<pokemon.friendship(0)>>200
+        @text.show(Oh, impressive.*You treat your Pokémon right.*I think you can be~entrusted with this.)
+        :if:<pokemon.count>>5
+            @text.show(Oh, you don't have~space in your party.)
+            :end
+        :else
+            @text.show(Please, I'd like you~to have this.)
+            @pokemon.add(490,1,hatched,5,Water Labyrinth,1,<player.name>)
+            @Text.show(<player.name> received~the Egg!)
+            @text.show(I found that egg~washed up on the shore~of a small island.)
+        :endif
+    :else
+        @text.show(You should be abit~nicer to your Pokémon,~don't you think?)
+    :endif
+:endif
+@text.show(I'm glad I met~someone like you.)
+:end

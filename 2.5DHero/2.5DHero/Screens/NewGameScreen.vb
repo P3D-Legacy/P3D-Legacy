@@ -44,7 +44,7 @@
 
     Public Sub New()
         For Each s As String In Core.GameOptions.ContentPackNames
-            ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
+            ContentPackManager.LoadTextureReplacements(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
         Next
 
         BattleSystem.GameModeAttackLoader.Load()

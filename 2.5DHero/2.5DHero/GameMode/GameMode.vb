@@ -29,7 +29,7 @@
         Public Sub New(ByVal gameModeFile As String)
 
             Dim fileContent As String = IO.File.ReadAllText(gameModeFile)
-            _dataModel = Pokemon3D.DataModel.Json.JsonDataModel.FromString(Of DataModel.Json.GameModeData.GameModeModel)(fileContent)
+            _dataModel = Game.DataModel.Json.JsonDataModel.FromString(Of DataModel.Json.GameModeData.GameModeModel)(fileContent)
 
             _components = New List(Of IGameModeComponent)()
             _gameModeFolder = IO.Path.GetDirectoryName(gameModeFile)

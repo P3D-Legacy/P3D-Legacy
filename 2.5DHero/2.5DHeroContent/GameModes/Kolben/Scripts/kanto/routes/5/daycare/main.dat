@@ -1,0 +1,67 @@
+version=2
+@daycare.clean(1)
+
+:if:<daycare.hasegg(1)>=true
+    @script.start(kanto\routes\5\daycare\take_egg)
+    @daycare.clean(1)
+    :end
+:endif
+:if:<register.exists(daycare_callid_1)>=false
+    @text.show(Hello!~I'm the Day-Care Girl.*We can raise Pokémon~for you.~How may I help you?*Oh, do you want my~phone number, so I can call*you if anything happens~with your Pokémon.)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(Alright, here you go!)
+            @register.new(daycare_callid_1,str,034)
+            @register.new(phone_contact_034)
+            @text.show(<player.name> registered~the Day-Care Girl's number.)
+            @text.show(We can raise Pokémon~for you.~How may I help you?)
+        :when:No
+            @text.show(Oh....*Come back later then...)
+            :end
+    :endselect
+:else
+    @text.show(Hello!~I'm the Day-Care Girl.*We can raise Pokémon~for you.~How may I help you?)
+:endif
+:select:<daycare.countpokemon(1)>
+    :when:0
+        @options.show(Leave Pokémon,Cancel)
+        :select:<options.result>
+            :when:Leave Pokémon
+                @script.start(kanto\routes\5\daycare\leave_pokemon)
+                @daycare.clean(1)
+            :when:Cancel
+                @text.show(Oh...~Come back soon!)
+        :endselect
+        :end
+        
+    :when:1
+        @options.show(Leave Pokémon,Take back,Cancel)
+        :select:<options.result>
+            :when:Leave Pokémon
+                @script.start(kanto\routes\5\daycare\leave_pokemon)
+                @daycare.clean(1)
+            :when:Take back
+                @text.show(You have energetic Pokémon!~Would you like your~Pokémon back?)
+                @script.start(kanto\routes\5\daycare\take_back)
+                @daycare.clean(1)
+            :when:Cancel
+                @text.show(Oh...~Come back soon!)
+        :endselect
+        :end
+            
+    :when:2
+        @options.show(Take back,Cancel)
+        :select:<options.result>
+            :when:Take back
+                @text.show(You have energetic Pokémon!~Would you like your~Pokémon back?)
+    
+                @script.start(kanto\routes\5\daycare\take_back)
+                @daycare.clean(1)
+            :when:Cancel
+                @text.show(Oh...~Come back soon!)
+        :endselect
+        :end
+        
+    :endselect
+:end

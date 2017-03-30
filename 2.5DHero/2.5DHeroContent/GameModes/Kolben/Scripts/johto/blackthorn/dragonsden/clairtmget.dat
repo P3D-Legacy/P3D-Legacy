@@ -1,0 +1,23 @@
+version=2
+:if:<register.exists(rival_dragonsden_encounter)>=true
+    :if:<datetime.day>=Tuesday <or> <datetime.day>=Thursday
+        @npc.warp(6,17,0,20)
+    :endif
+:endif
+
+:if:<register.exists(clairtmget)>=False <and> <register.exists(ddenquizpass)>=True
+    @player.move(0)
+    @npc.warp(0,11,0,26)
+    @text.show(Wait!)
+    @npc.turn(0,3)
+    @player.move(0)
+    @player.turnto(1)
+    @npc.move(0,3)
+    @text.show(Clair: I'm sorry~about this.*Here, take this as~my apology.)
+    @item.add(214,1)
+    @item.messagegive(214,1)
+    @Text.show(That contains~Dragonbreath.*No, it doesn't~have anything to~do with my breath.*If you don't want~it, you don't have~to take it.)
+    @Text.show(Clair: What's the matter?*Aren't you going on~to the Pokémon League?*Do you know how to~get there?*From here, go to~New Bark Town.*Then Surf east to~the Pokémon League.*The route there is~very tough.*Don't you dare~lose at the~Pokémon League!*If you do, I'll~feel even worse*about having lost~to you!*Give it everything~you've got.)
+    @register.new(clairtmget)
+:endif
+:end

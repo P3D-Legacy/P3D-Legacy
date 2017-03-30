@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(alph_firstdoor)>=false
+    @register.remove(alph_walk_through)
+    :end
+:endif
+:if:<register.exists(alph_walk_through)>=false
+    @register.remove(alph_firstdoor)
+    :end
+:endif
+@register.remove(alph_firstdoor)
+@register.remove(alph_walk_through)
+@Player.Warp(9,0.1,11)
+:end

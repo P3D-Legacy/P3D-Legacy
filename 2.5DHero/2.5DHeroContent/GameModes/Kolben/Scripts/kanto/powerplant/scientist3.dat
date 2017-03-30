@@ -1,0 +1,23 @@
+version=2
+:if:<register.exists(powerplant_magneton_trade)>=True
+    @Text.show(So, how is my~old Magneton doing?)
+:else
+    @Text.show(I collect Pokémon.*Do you have Dugtrio?*Want to trade it for Magneton?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @pokemon.select
+            :if:<pokemon.number(<pokemon.selected>)>=51
+                @script.start(npctrade.dat,82,,2,50082,2007,Forest,Maggie,5,Route 6,caught at)
+                @text.show(OK, connecting...*...*Wow! Thank you!~I always wanted~Dugtrio!)
+                @sound.play(success_small)
+                @text.show(<player.name> traded~Maggie for Dugtrio!)
+                @register.new(powerplant_magneton_trade)
+            :else
+                @Text.show(You don't want to~trade? Aww...)
+            :endif
+        :when:No
+            @Text.show(You don't want to~trade? Aww...)
+    :endselect
+:endif
+:end

@@ -1,0 +1,36 @@
+version=2
+@register.new(grottoactive<$0>,str,Item)
+@register.new(grottohidden<$0>)
+@npc.remove(0)
+:select:<system.random(1,100)>
+    :when:1;2;3;4;5
+        <grottoitem>=120
+    :when:6;7;8;9;10
+        <grottoitem>=100
+    :when:11;12;13;14;15
+        <grottoitem>=141
+    :when:16;17;18;19;20
+        <grottoitem>=162
+    :when:21;22;23;24;25
+        <grottoitem>=167
+    :when:26;27;28;29;30
+        <grottoitem>=174
+    :when:31;32;33;34;35
+        <grottoitem>=189
+    :when:36
+        <grottoitem>=187
+    :when:37;38;39;40;41;42;43;44;45;46
+        <grottoitem>=2
+    :when:47;48;49;50;51;52;53;54
+        <grottoitem>=188
+    :when:55;56;57;58;59;60;61;62;63;64;65;66;67;68;69;70;71;72;73;74
+        <grottoitem>=15
+    :when:75;76;77;78;79;80;81;82;83;84
+        <grottoitem>=39
+    :when:85;86;87;88;89;90
+        <grottoitem>=502
+    :when:91;92;93;94;95;96;97;98;99;100
+        <grottoitem>=111
+:endselect
+@register.new(grottoitem<$0>,int,<grottoitem>)
+:end

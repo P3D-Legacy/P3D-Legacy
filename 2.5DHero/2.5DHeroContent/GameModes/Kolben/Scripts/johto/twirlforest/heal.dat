@@ -1,0 +1,15 @@
+version=2
+:if:<register.exists(pokegear_card_minimap)>=false
+    @register.new(pokegear_card_minimap)
+    @text.show(Hey there, traveler.*Do you want to continue~adventuring into this forest?*It's easy to get lost, so~better take this.)
+    @text.show(<player.name> received~the Minimap Card!)
+    @text.show(It's a little map for~your Pokégear that lets~you look at an overhead~view of the area.)
+:endif
+
+@text.show(Let me heal your~Pokémon real quick.)
+@screen.fadeout
+@pokemon.heal
+@sound.play(pokemon_heal)
+@level.wait(170)
+@screen.fadein
+:end

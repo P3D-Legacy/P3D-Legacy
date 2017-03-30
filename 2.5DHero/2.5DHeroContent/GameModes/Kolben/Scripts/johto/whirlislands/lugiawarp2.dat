@@ -1,0 +1,5 @@
+version=2
+:if:<register.exists(battlelugia)>=False <and> <item.count(71)>>0
+    @npc.warp(0,6,0.5,2)
+    :endif
+:end

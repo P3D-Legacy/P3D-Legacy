@@ -1,0 +1,22 @@
+version=2
+@text.show(There are letters carved here.*They seem to say "Knight".)
+:if:<register.exists(solvechess)>=False
+    @text.show(OH!~There's a button here!~Press it?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @level.reload
+            @level.update
+            @sound.play(destroy)
+            @entity.warp(12,7,-1,9) 
+            @entity.warp(14,7,-1,11)    
+            @entity.warp(23,8,-1,12)    
+            @entity.warp(39,10,-1,12)   
+            @entity.warp(46,11,-1,11)   
+            @entity.warp(44,11,-1,9)    
+            @entity.warp(35,10,-1,8)    
+            @entity.warp(19,8,-1,8) 
+            :end
+    :endselect
+:endif
+:end

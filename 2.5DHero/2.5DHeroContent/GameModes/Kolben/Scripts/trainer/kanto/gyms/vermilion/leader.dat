@@ -1,0 +1,34 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(earthbadge_obtain)>=true <and> <register.exists(SurgeRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe afternoons during~the end of the week?*If you visit while~I am there maybe~we could battle.)
+    @register.new(SurgeRematchTalk)
+    :end
+:endif
+@battle.starttrainer(kanto\gyms\vermilion\leader)
+@player.AchieveEmblem(thunder)
+:if:<register.exists(thunderbadge_obtain)>=False
+    @register.new(thunderbadge_obtain)
+    @register.new(trainer_kanto\gyms\vermilion\001)
+    @register.new(trainer_kanto\gyms\vermilion\002)
+    @register.new(trainer_kanto\gyms\vermilion\003)
+    @npc.register(kanto\vermilion\gym.dat|10|remove|0)
+    @npc.register(kanto\vermilion\gym.dat|11|remove|0)
+    @npc.register(kanto\vermilion\gym.dat|12|remove|0)
+    @npc.register(kanto\vermilion\gym.dat|13|remove|0)
+    @npc.register(kanto\route\s6.dat|1|remove|0)
+    @npc.register(kanto\route\s6.dat|2|remove|0)
+    @npc.remove(10)
+    @npc.remove(11)
+    @npc.remove(12)
+    @npc.remove(13)
+    @player.GetBadge(3)
+    @Text.show(Surge: Thunderbadge increases~your Pokémon's speed.*Consider it proof~that you defeated me.*You wear it proudly, hear?)
+    @item.add(370,1)
+    @item.messagegive(370,1)
+    @register.new(tboltgain)
+    @Text.show(TM70 contains Thunderbolt!*Teach it to an electric Pokémon!)
+:endif
+:if:<register.exists(tboltgain)>=false
+    @item.add(370,1)
+:endif
+:end

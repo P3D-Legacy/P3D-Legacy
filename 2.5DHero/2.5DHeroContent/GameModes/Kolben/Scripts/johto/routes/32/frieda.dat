@@ -1,0 +1,14 @@
+version=2
+:if:<datetime.dayofweek>!friday
+    @Text.Show(Frieda: Isn't it~Friday today?*It's so boring~when it's not!)
+:else
+    :if:<register.exists(frieda_item)>=false
+        @Text.Show(Frieda: Yahoo!~It's Friday!*I'm Frieda of~Friday!*Nice to meet you!*Here's a Poison~Barb for you!)
+        @item.add(81)
+        @item.messagegive(81,1)
+        @Text.Show(Frieda: Give it to~a Pokémon that has~poison-type moves.*Oh!*It's wicked!*You'll be shocked~how good it makes~poison moves!)
+        @register.new(frieda_item)
+    :endif
+    @text.Show(Frieda: Hiya! What~day do you like?*I love Friday. No~doubt about it!*Don't you think~it's great too?)
+:endif
+:end

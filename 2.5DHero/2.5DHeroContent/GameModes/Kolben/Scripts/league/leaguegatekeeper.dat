@@ -1,0 +1,11 @@
+version=2
+@text.show(Only trainers who~have proven themselves~may pass.)
+:if:<player.hasbadge(16)>=True
+    @text.show(Oh! The eight~Badges of Johto!*Please, go right~on through!)
+    @register.new(badgecheck16)
+:else
+    @Text.show(I am sorry you~aren't qualified~to pass here.)
+    @player.turnto(2)
+    @player.move(1)
+:endif
+:end

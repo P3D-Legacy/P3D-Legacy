@@ -1,0 +1,13 @@
+version=2
+:if:<register.exists(trainer_johto\routes\47\004)>=false
+    :select:<player.position>
+        :when:52,2.1,31
+            @npc.move(2,2)
+        :when:53,2.1,31
+            @npc.move(2,1)
+    :endselect
+    @text.show(Thom: I predict~that we will win!)
+:endif
+@battle.starttrainer(johto\routes\47\004)
+@register.new(trainer_johto\routes\47\003)
+:end

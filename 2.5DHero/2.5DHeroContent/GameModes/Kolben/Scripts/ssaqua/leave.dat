@@ -1,0 +1,48 @@
+version=2
+:if:<level.file>=ssaqua\vermilion\main.dat
+    <registers>=vermilion
+    <maps>=johto\olivine
+    <speech>=Olivine
+:else
+    <registers>olivine
+    <maps>=kanto\vermilion
+    <speech>=Vermilion
+:endif
+:if:<register.exists(docked)>=True
+    @text.show(Fast Ship S.S. Aqua has~arrived in <speech> City.)
+    @npc.turn(0,1)
+    :if:<player.position>=14,0,0
+        @npc.turn(0,2)
+    :endif
+    @npc.move(0,1)
+    :if:<player.position>=14,0,0
+        @player.move(1)
+        @player.turnto(0)
+        @player.move(1)
+    :else
+        @player.move(2)
+    :endif
+    @register.remove(docked)
+    :if:<register.exists(firsttimessaqua)>=False
+        @register.remove(trainer_ssaqua\\<registers>\001)
+        @register.remove(trainer_ssaqua\\<registers>\002)
+        @register.remove(trainer_ssaqua\\<registers>\003)
+        @register.remove(trainer_ssaqua\\<registers>\004)
+        @register.remove(trainer_ssaqua\\<registers>\005)
+        @register.remove(trainer_ssaqua\\<registers>\006)
+        @register.remove(trainer_ssaqua\\<registers>\007)
+        @register.remove(trainer_ssaqua\\<registers>\008)
+        @register.remove(trainer_ssaqua\\<registers>\009)
+        @register.remove(trainer_ssaqua\\<registers>\010)
+        :if:<register.value(ssaqua<registers>levels,int)><20
+            @register.change(ssaqua<registers>levels,<register.value(ssaqua<registers>levels,int)>+2)
+        :endif
+    :endif
+    @register.remove(firsttimessaqua)
+    @player.warp(<maps>\dock.dat,0,0.1,12,0)
+    @level.update
+    @player.move(4)
+    :end
+:endif
+@text.show(Fast Ship S.S. Aqua is~en route to <speech> City.*We will make an~announcement when we arrive.)
+:end

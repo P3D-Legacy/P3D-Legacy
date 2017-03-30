@@ -1,0 +1,45 @@
+version=2
+:if:<item.count(67)>>0 <and> <register.exists(jasmine_meet)>=True
+    @Text.show(...Will~that medicine cure~Amphy?)
+    @Options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @item.remove(67)
+            @Text.show(Jasmine: ...Um,~please don't be~offended...*...Amphy will not~take anything from~anyone but me...)
+            @NPC.Turn(11,3)
+            @NPC.Turn(12,1)
+            @Text.show( ...*Amphy, how are you~feeling?)
+            @pokemon.cry(181)
+            @Text.show(Amphy: Palu!~Palulu!)
+            @NPC.Turn(12,2)
+            @NPC.Turn(11,2)
+            @Text.show(Jasmine: ...Oh, I'm~so relieved...*This is just so~wonderful...*Thank you so very,~very much.*...I will return to~the Gym...)
+            @NPC.Turn(11,0)
+            @NPC.Move(11,2)
+            @NPC.Turn(11,3)
+            @NPC.Move(11,1)
+            @NPC.Turn(11,0)
+            @NPC.Move(11,3)
+            @NPC.Turn(11,3)
+            @NPC.Move(11,3)
+            @NPC.Warp(11,11,25,11)
+            @NPC.Register(johto\olivine\lighthouse.dat|11|remove|0)
+            @NPC.register(johto\olivine\gym.dat|1|position|4,1,3)
+            @register.new(olivine_lighthouse_finish)
+            :end
+        :when:No
+            @Text.show(...I see...)
+            @NPC.Turn(11,3)
+            @Text.show(...Amphy, hang on!)
+            :end
+    :endselect
+:endif
+
+
+:if:<register.exists(jasmine_meet)>=False
+    @Text.show(...This~Pokémon always*kept the sea lit~at night.*...But it suddenly~got sick... It's~gasping for air...*...I understand~that there is a*wonderful Pharmacy~in Cianwood...*But that's across~the sea...*And I can't leave~Amphy unattended...)
+    @register.new(jasmine_meet)
+:endif
+@Text.show(...May I ask you to~get some medicine~for me? Please?)
+
+:end

@@ -1,0 +1,48 @@
+version=2
+@text.show(Lostelle: Whimper... Sniff...~Oh! Please, help!*A scary Pokémon appeared~there a little while ago.*It kept scaring....*It made Lostelle scared.*I'm too scared to move!*But I want to go home...)
+@entity.showmessagebulb(1|4|1|6)
+@npc.turn(0,1)
+@text.show(Oh!~Here it comes again!~No!~Go away!~It's scaring me!~Waaaaaah!~I want my daddy!)
+
+@battle.wild(97,50)
+
+@npc.turn(0,<math.rollover(<player.facing>+2,0,3)>)
+@text.show(Ohh!~That was so scary!~Thank you!*Lostelle came to~pick some berries.*You can have this!)
+@item.add(2014,1)
+@item.messagegive(2014,1)
+@text.show(What's your name?*Lostelle's scared,~so can I go with you~to my daddy's house?*Okay let's go home!)
+@screen.fadeout
+@npc.register(sevii\kin\berry.dat|0|remove|0)
+@player.warp(sevii\boon\2.dat,2,0.1,3,0)
+@level.update
+
+@npc.warp(1,1,0,2)
+@npc.warp(0,2,0,2)
+@player.turnto(0)
+@npc.turn(0,1)
+@level.update
+@screen.fadein
+@text.show(Lostelle, darling,~forgive me!*Daddy didn't know~you were scared and~in trouble!*Lostelle: It's okay,~Daddy.~I got to be friends with~<player.name>!)
+@npc.turn(0,2)
+@text.show(Thank you for saving~Lostelle for me.*Please have this!)
+@item.add(265,1)
+@item.messagegive(265,1)
+@text.show(That will allow you~to travel between~One, Two, and Three Islands~and Vermilion City.*Now I need to go help~finish the clean up~on Routes 1 and 19.)
+
+@screen.fadeout
+@npc.remove(0)
+@npc.remove(1)
+@screen.fadein
+
+@register.new(tripass)
+@npc.register(sevii\boon\2.dat|0|remove|0)
+@npc.register(kanto\routes\1.dat|0|remove|0)
+@npc.register(kanto\routes\1.dat|1|remove|0)
+@npc.register(kanto\routes\1.dat|2|remove|0)
+@npc.register(kanto\routes\1.dat|3|remove|0)
+@npc.register(kanto\routes\1.dat|4|remove|0)
+@npc.register(kanto\routes\1.dat|5|remove|0)
+@npc.register(kanto\routes\19.dat|0|remove|0)
+@npc.register(kanto\routes\19.dat|1|remove|0)
+@npc.register(kanto\routes\19.dat|2|remove|0)
+:end

@@ -1,0 +1,18 @@
+version=2
+:if:<register.exists(got_oldrod)>=true
+    @text.show(Yo, youngster. How~are they biting?)
+:else
+    @text.show(This is a great~fishing spot.*You saw people~fishing? How~about you?*Would you like one~of my Rods?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            @text.show(Heh, that's good~to hear.*Now you're an~angler too!)
+            @item.add(58,1)
+            @item.messagegive(58,1)
+            @text.show(Fishing is great!*If there's water,~be it the sea or a*stream, try out~your Rod.)
+            @register.new(got_oldrod)
+        :when:No
+            @text.show(Oh. That's rather~disappointing...)
+    :endselect
+:endif
+:end

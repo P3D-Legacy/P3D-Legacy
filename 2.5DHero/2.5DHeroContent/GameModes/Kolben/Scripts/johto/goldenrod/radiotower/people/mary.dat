@@ -1,0 +1,17 @@
+version=2
+:if:<register.exists(rocket_invasion_radio)>=true
+    @text.show(Mary: Why? Why do~I have to suffer~through this?*Meowth, help me!)
+    :end
+:endif
+
+:if:<register.exists(thankyou_mary_radio)>=false
+    @text.show(Mary: Oh! You're~my little savior!*Will you take this~as my thanks?)
+    @item.add(104,1)
+    @item.messagegive(104,1)
+    @text.show(Mary: It's just~right for Pokémon*that know fairy~type moves.)
+    @register.new(thankyou_mary_radio)
+    :end
+:endif
+
+@text.show(Mary: Please tune~into me on Prof. Oak's~Pokémon Talk Show.)
+:end

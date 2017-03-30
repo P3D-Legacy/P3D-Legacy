@@ -1,0 +1,29 @@
+version=2
+:if:<register.exists(powerplantmanager1)>=False
+    @text.show(Manager: I, I, I~am ready to blast someone!*Who would dare ruin~my generator?*I spent so much time on it!*If I catch him, he is going to~get a taste of my Zap Cannon!)
+    @register.new(powerplantmanager1)
+    :end
+:else
+    :if:<register.exists(powerplanton)>=False
+        :if:<item.count(128)>>0
+            @text.show(Ah!~Yeah!*That's the missing Part~from my beloved generator!*You found it?~Wahah!)
+            @item.remove(128,1)
+            @text.show(Thanks!~Here!*Take this TM as a reward!)
+            @item.add(197,1)
+            @item.messagegive(197,1)
+            @text.show(TM07 is my Zap Cannon.*It's a powerful technique!*It's not what anyone~would consider accurate,~but it packs a wallop!)
+            @register.new(powerplanton)
+            @npc.register(kanto\routes\25.dat|9|position|44,1,9)
+            @npc.register(kanto\routes\25.dat|10|position|44,1,10)
+            @npc.register(kanto\routes\10.dat|0|remove|0)
+            :end
+        :else
+            @text.show(I won't forgive him!*The culprit can~cry and apologize,~but I will still hammer him!*Muahahahahahah!)
+            :end
+        :endif
+    :else
+        @text.show(Manager: My beloved generator!*Keep pumping eletricity out!)
+        :end
+    :endif
+:endif
+:end

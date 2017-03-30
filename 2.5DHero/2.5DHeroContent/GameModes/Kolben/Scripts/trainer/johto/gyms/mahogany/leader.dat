@@ -1,0 +1,22 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(glacierbadge_obtain)>=true <and> <register.exists(PryceRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe Tuesday/~Thursday afternoons?*If you visit while~I am there maybe~we could battle.)
+    @register.new(PryceRematchTalk)
+    :end
+:endif
+@battle.starttrainer(johto\gyms\mahogany\leader)
+@player.AchieveEmblem(glacier)
+:if:<register.exists(glacierbadge_obtain)>=False
+    @register.new(glacierbadge_obtain)
+    @register.new(trainer_johto\gyms\mahogany\001)
+    @register.new(trainer_johto\gyms\mahogany\002)
+    @register.new(trainer_johto\gyms\mahogany\003)
+    @register.new(trainer_johto\gyms\mahogany\004)
+    @register.new(trainer_johto\gyms\mahogany\005)
+    @player.GetBadge(15)
+    @text.show(That Badge will~raise the Special stats~of Pokémon.*It also lets your~Pokémon use Whirlpool~to get across real Whirlpools.*And this...~This is a gift from me!)
+    @item.add(206,1)
+    @item.messagegive(206,1)
+    @text.show(That TM contains Icy Wind.*It inflicts damage~and lowers speed.*It demonstrates~the harshness of winter.)
+:endif
+:end

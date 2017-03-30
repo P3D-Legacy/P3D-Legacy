@@ -1,0 +1,33 @@
+version=2
+:if:<register.exists(ecruteak_sage_block)>=True
+    @Text.show(Tin Tower is off~limits to anyone*without Ecruteak~Gym's Badge.*Ah!*Ecruteak's Gym Badge! Please, go~right through.)
+    @NPC.Turn(0,2)
+    :end
+:endif
+
+:if:<register.exists(fogbadge_obtain)>=False
+    @Text.show(Tin Tower is off~limits to anyone*without Ecruteak~Gym's Badge.*Sorry, but you'll~have to leave.)
+:else
+    @register.new(ecruteak_sage_block)
+    @Text.show(Tin Tower is off~limits to anyone*without Ecruteak~Gym's Badge.*Ah!*Ecruteak's Gym~Badge! Please, go~right through.)
+    @NPC.Move(0,1)
+    @Player.TurnTo(1)
+    @NPC.Turn(0,1)
+    @NPC.Move(0,1)
+    @NPC.Turn(0,2)
+    @Player.TurnTo(0)
+    @NPC.Turn(1,1)
+    @NPC.Move(1,1)
+    @NPC.Turn(1,2)
+    @Player.TurnTo(2)
+    @NPC.Move(1,2)
+    @NPC.Turn(1,3)
+    @NPC.Move(1,2)
+    @NPC.Turn(1,0)
+    @NPC.Move(1,1)
+    @NPC.Turn(1,2)
+    @Player.TurnTo(0)
+    @NPC.register(johto\ecruteak\tintower\gate\0.dat|0|position|3,0,7)
+    @NPC.register(johto\ecruteak\tintower\gate\0.dat|1|position|6,0,7)
+:endif
+:end

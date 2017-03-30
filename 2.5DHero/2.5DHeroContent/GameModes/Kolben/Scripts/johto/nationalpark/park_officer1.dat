@@ -1,0 +1,63 @@
+version=2
+:if:<datetime.dayofweek>=Tuesday <or> <datetime.dayofweek>=Thursday <or> <datetime.dayofweek>=Saturday
+    :if:<register.exists(bugcontest_done)>=true
+        #Contest done this week
+        @text.show(Today's Contest is~over. We hope you*will participate~in the future.)
+        :end
+    :endif
+
+    #Bug catching contest is today:
+    @text.show(Today's <datetime.dayofweek>.~That means the*Bug-Catching Contest~is on today.*The rules are simple.*Using one of your~Pokémon, catch a*bug Pokémon to be~judged.*Would you like to~give it a try?)
+    @options.show(Yes,No)
+    :select:<options.result>
+        :when:Yes
+            #Check for Pokemon in party:
+            :if:<pokemon.count>>1
+                #Has more than 1 Pokemon in party, thus the script stops.
+                @text.show(Uh-oh...*You have more than~one Pokémon.*You'll have to deposit~all but one Pokémon to~boxes on the PC.)
+                :end
+            :endif
+
+            #Enter the contest (Remove all Park Balls from bag, then add 20):
+            @register.newtime(bugcontest_done,1,day)
+
+            @text.show(Here are the Park~Balls for the~Contest.)
+            @item.clear(177)
+            @item.add(177,20)
+            @item.messagegive(177,20)
+
+            @text.show(The person who~gets the strongest bug~Pokémon is the winner.*If you run out of~Park Balls, you're~done.*You may keep the~last Pokémon you~catch as your own.*Go out and catch~the strongest bug*Pokémon you can~find!)
+
+            @music.play(bugcontest)
+            #make the player walk into the park + the wardens have to close the gate afterwards.
+            @player.turnto(1)
+            @player.move(3)
+            @player.turnto(2)
+            @player.move(1)
+            @player.turnto(1)
+            @player.move(1)
+            @screen.fadeout
+            @player.warp(johto\nationalpark\contest.dat,35,0.1,16,0)
+            @level.update
+            @npc.warp(2,35,0,15)
+            @npc.warp(3,35,0,18)
+            @screen.fadein
+            @player.move(1)
+            @player.turnto(3)
+            @npc.turn(2,2)
+            @npc.turn(3,0)
+            @npc.move(2,1)
+            @npc.move(3,1)
+            @npc.turn(2,1)
+            @npc.turn(3,1)
+
+            @script.start(johto\nationalpark\unregister_NPCs)
+        :when:No
+            @text.show(OK. We hope you'll~take part in the~future.)
+            :end
+    :endselect
+    :else
+        #Not the correct day.
+        @text.show(Some Pokémon can~only be seen in the Park.)
+:endif
+:end

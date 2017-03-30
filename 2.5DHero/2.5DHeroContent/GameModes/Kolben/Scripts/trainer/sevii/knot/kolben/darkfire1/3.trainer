@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Darkfire
+TrainerClass|Developer
+Money|4000
+IntroMessage|
+OutroMessage|
+DefeatMessage|
+TextureID|darkfire
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|{"Pokemon"[257]}{"Experience"[222522]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[506]}{"ItemData"[]}{"NickName"[Blaziken]}{"Level"[61]}{"OT"[00000]}{"Ability"[3]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[136,30,30]}{"Attack2"[394,10,10]}{"Attack3"[182,30,30]}{"Attack4"[14,30,30]}{"EVs"[4,252,0,40,0,212]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon2|{"Pokemon"[376]}{"Experience"[211060]}{"Gender"[2]}{"EggSteps"[0]}{"Item"[506]}{"ItemData"[]}{"NickName"[Metagross]}{"Level"[60]}{"OT"[00000]}{"Ability"[29]}{"Status"[]}{"Nature"[13]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[1]}{"Attack1"[97,30,30]}{"Attack2"[309,15,15]}{"Attack3"[89,5,5]}{"Attack4"[428,10,10]}{"EVs"[4,252,0,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon3|{"Pokemon"[373]}{"Experience"[270000]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Salamence]}{"Level"[60]}{"OT"[00000]}{"Ability"[22]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[434,15,15]}{"Attack2"[406,10,10]}{"Attack3"[126,15,15]}{"Attack4"[444,20,20]}{"EVs"[4,0,0,252,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon4|{"Pokemon"[282]}{"Experience"[312558]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[519]}{"ItemData"[]}{"NickName"[Gardevoir]}{"Level"[63]}{"OT"[00000]}{"Ability"[36]}{"Status"[]}{"Nature"[15]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[347,15,15]}{"Attack2"[304,15,15]}{"Attack3"[473,10,10]}{"Attack4"[411,10,10]}{"EVs"[0,0,24,232,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon5|{"Pokemon"[342]}{"Experience"[205379]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Crawdaunt]}{"Level"[59]}{"OT"[00000]}{"Ability"[91]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[282,5,5]}{"Attack2"[152,5,5]}{"Attack3"[453,15,15]}{"Attack4"[242,20,20]}{"EVs"[0,252,0,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon6|{"Pokemon"[286]}{"Experience"[205379]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[505]}{"ItemData"[]}{"NickName"[Breloom]}{"Level"[59]}{"OT"[00000]}{"Ability"[90]}{"Status"[]}{"Nature"[0]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[73,20,20]}{"Attack2"[409,30,30]}{"Attack3"[182,30,30]}{"Attack4"[147,20,20]}{"EVs"[252,4,0,0,252,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Items|14,14
+Gender|0
+AI|0
+IntroSequence|Green,Violet
+IntroType|11

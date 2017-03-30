@@ -1,0 +1,22 @@
+﻿[TRAINER FORMAT]
+Name|Joshua
+TrainerClass|Pokéfan
+Money|3040
+IntroMessage|Nihihi!*Would you like to~battle my Pikachu gang?
+OutroMessage|Pi-Pikachu!
+DefeatMessage|You look like you have~many Pokémon, but Pikachu~is still the best.
+TextureID|11
+Region|Kanto
+IniMusic|battle\intro\kanto\trainer
+DefeatMusic|battle\defeat\trainer
+BattleMusic|battle\main\kanto\trainer
+Pokemon1|25,38
+Pokemon2|25,38
+Pokemon3|25,38
+Pokemon4|25,38
+Pokemon5|25,38
+Pokemon6|25,38
+Items|
+Gender|0
+AI|1
+IntroSequence|Blue,Blue

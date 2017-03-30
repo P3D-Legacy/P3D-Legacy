@@ -1,0 +1,19 @@
+version=2
+:if:<DateTime.Hour><4 <and> <datetime.hour>>0
+    :if:<register.exists(JanineRematchTalk)>=true
+        @npc.remove(0)
+    :endif
+:endif
+:if:<register.exists(trainer_kanto\gyms\fuschia\001)>=false
+    @npc.wearskin(1,janine)
+:endif
+:if:<register.exists(trainer_kanto\gyms\fuschia\002)>=false
+    @npc.wearskin(2,janine)
+:endif
+:if:<register.exists(trainer_kanto\gyms\fuschia\003)>=false
+    @npc.wearskin(3,janine)
+:endif
+:if:<register.exists(trainer_kanto\gyms\fuschia\004)>=false
+    @npc.wearskin(4,janine)
+:endif
+:end

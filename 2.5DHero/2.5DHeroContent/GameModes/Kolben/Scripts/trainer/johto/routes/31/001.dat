@@ -1,0 +1,24 @@
+version=2
+:if:<register.exists(phone_reg_004)>=true
+    @Text.Show(Let's see if my~bug Pokémon are strong~enough this time.)
+    @register.remove(phone_reg_004)
+    @register.newtime(phone_reg_time_004,1,day)
+    @battle.trainer(johto\routes\31\001_1)
+:else
+    @battle.starttrainer(johto\routes\31\001)
+    :if:<player.haspokegear>=true
+        :if:<register.exists(phone_contact_004)>=false
+            @Text.Show(Let's exchange numbers.*I want to battle you~again sometime.)
+
+            @Options.Show(Yes,No)
+            :select:<options.result>
+                :when:Yes
+                    @Text.Show(<player.name> registered~Wade's number.)
+                    @register.new(phone_contact_004)
+                    @Text.Show(I'll let you know whenever~I want to battle you.)
+                :when:No
+            :endselect
+        :endif
+    :endif
+:endif
+:end

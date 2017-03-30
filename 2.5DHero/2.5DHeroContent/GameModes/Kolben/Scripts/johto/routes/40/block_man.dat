@@ -1,0 +1,12 @@
+version=2
+@Text.show(Hm! There's a big~building up ahead!*What is it?)
+
+:if:<player.badges>>7
+    @Text.show(Woah! It seems to be~open now! Let's*get there!)
+    @npc.turn(0,0)
+    @npc.move(0,1)
+    @npc.register(johto\routes\40.dat|0|remove|0)
+:else
+    @NPC.Turn(0,0)
+:endif
+:end

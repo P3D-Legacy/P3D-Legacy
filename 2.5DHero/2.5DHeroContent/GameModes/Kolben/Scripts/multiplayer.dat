@@ -1,0 +1,7 @@
+@Text.show(Do you want to~connect your game~to the network~to play with others?)
+@Options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @screen.mysteryEvent
+:endselect
+:end

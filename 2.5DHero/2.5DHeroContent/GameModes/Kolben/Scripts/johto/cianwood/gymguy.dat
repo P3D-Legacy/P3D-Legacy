@@ -1,0 +1,7 @@
+version=2
+:if:<register.exists(stormbadge_obtain)>=False
+    @Text.show(The Pokémon Gym~trainers here are~macho bullies.*If I stick around,~they might come~after me.*Here's some advice:~the Gym Leader uses~the fighting-type.*So you should~confound him with~psychic Pokémon.*Wipe out his Pokémon~before they*can use their~physical strength.*And those boulders~in the middle of~the Gym?*If you don't move~them correctly,*you won't reach~the Gym Leader.*If you get stuck,~go outside.)
+:else
+    @Text.show(<player.name>! You won!~I could tell by~looking at you!)
+:endif
+:end

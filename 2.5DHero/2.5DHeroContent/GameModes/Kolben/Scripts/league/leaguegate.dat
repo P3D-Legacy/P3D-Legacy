@@ -1,0 +1,6 @@
+version=2
+:if:<register.exists(badgecheck16)>=False
+    @player.turnto(1)
+    @script.start(league\Leaguegatekeeper)
+:endif
+:end

@@ -1,0 +1,20 @@
+version=2
+:if:<register.exists(copcallplant)>=False <and> <register.exists(powerplantmanager1)>=True
+    @npc.turn(0,3)
+    @npc.move(0,2)
+    @npc.turn(0,0)
+    @player.turnto(3)
+    @npc.move(0,2)
+    @npc.turn(1,2)
+    @text.show(I've just gotten~word from Cerulean.*A shady character have been~loitering around there.)
+    @npc.turn(0,1)
+    @text.show(Could I ask for~your cooperation?)
+    @npc.turn(0,2)
+    @npc.move(0,2)
+    @npc.turn(0,1)
+    @npc.move(0,2)
+    @npc.turn(0,2)
+    @register.new(copcallplant)
+    @npc.register(kanto\cerulean\gym.dat|0|position|4,0,10)
+:endif
+:end

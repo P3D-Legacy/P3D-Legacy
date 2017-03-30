@@ -1,0 +1,39 @@
+version=2
+:if:<datetime.dayofweek>=Saturday <or> <datetime.dayofweek>=Sunday
+    @text.show(I am sorry but this~shop is closed today.)
+    :end
+:endif
+
+:if:<register.exists(safarizone_market1)>=true
+    @text.show(I am sorry but I am~sold out for today...)
+    :end
+:endif
+
+@text.show(Welcome to my little market~near the Safari Zone.*I am changing my supply~every day.*Do you want to~have a look?)
+@options.show(Yes,No)
+:select:<options.result>
+    :when:Yes
+        @register.newtime(safarizone_market1,1,day)
+        :select:<datetime.dayofweek>
+            :when:Monday
+                @text.show(I am selling vitamins for top~prices today.)
+                @screen.trade({25|<system.random(0,5)>|4900}{26|<system.random(0,5)>|4900}{27|<system.random(0,5)>|4900}{28|<system.random(0,5)>|4900}{29|<system.random(0,5)>|4900}{31|<system.random(0,5)>|4900},1,1)
+                @text.show(If you liked the offer today,~be sure to visit again on~FRIDAY.)
+            :when:Tuesday
+                @screen.trade({2|-1|-1}{16|-1|-1}{19|-1|-1}{39|-1|-1}{42|-1|-1},1,1)
+            :when:Wednesday
+                @text.show(You can buy a~rare Heart Scale~today. Quick, before someone~else buys all of them!)
+                @screen.trade({190|5|10000},1,1)
+            :when:Thursday
+                @screen.trade({2|-1|-1}{16|-1|-1}{19|-1|-1}{39|-1|-1}{42|-1|-1},1,1)
+            :when:Friday
+                @text.show(I am selling vitamins for top~prices today.)
+                @screen.trade({25|<system.random(0,5)>|4900}{26|<system.random(0,5)>|4900}{27|<system.random(0,5)>|4900}{28|<system.random(0,5)>|4900}{29|<system.random(0,5)>|4900}{31|<system.random(0,5)>|4900},1,1)
+                @text.show(If you liked the offer today,~be sure to visit again on~Monday.)
+        :endselect
+        :end
+
+    :when:No
+        :end
+    :endselect
+:end

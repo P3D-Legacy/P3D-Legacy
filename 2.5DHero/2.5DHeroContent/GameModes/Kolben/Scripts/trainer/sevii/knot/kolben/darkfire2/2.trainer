@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Darkfire
+TrainerClass|Developer
+Money|6000
+IntroMessage|
+OutroMessage|
+DefeatMessage|
+TextureID|darkfire
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|{"Pokemon"[184]}{"Experience"[181584]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Azumarill]}{"Level"[71]}{"OT"[00000]}{"Ability"[37]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[453,15,15]}{"Attack2"[127,10,10]}{"Attack3"[583,10,10]}{"Attack4"[282,5,5]}{"EVs"[252,252,0,0,4,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon2|{"Pokemon"[473]}{"Experience"[256723]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[506]}{"ItemData"[]}{"NickName"[Mamoswine]}{"Level"[69]}{"OT"[00000]}{"Ability"[47]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[420,15,15]}{"Attack2"[89,5,5]}{"Attack3"[556,5,5]}{"Attack4"[182,30,30]}{"EVs"[196,252,0,0,0,60]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon3|{"Pokemon"[196]}{"Experience"[216000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Espeon]}{"Level"[70]}{"OT"[00000]}{"Ability"[156]}{"Status"[]}{"Nature"[10]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[113,30,30]}{"Attack2"[115,30,30]}{"Attack3"[226,5,5]}{"Attack4"[281,20,20]}{"EVs"[252,0,4,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon4|{"Pokemon"[235]}{"Experience"[164303]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Smeargle]}{"Level"[69]}{"OT"[00000]}{"Ability"[20]}{"Status"[]}{"Nature"[10]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[564,40,40]}{"Attack2"[446,20,20]}{"Attack3"[147,20,20]}{"Attack4"[277,10,10]}{"EVs"[96,0,120,0,40,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon5|{"Pokemon"[212]}{"Experience"[250047]}{"Gender"[1]}{"EggSteps"[0]}{"Item"[532]}{"ItemData"[]}{"NickName"[Scizor]}{"Level"[73]}{"OT"[00000]}{"Ability"[135]}{"Status"[]}{"Nature"[8]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[355,5,5]}{"Attack2"[418,10,10]}{"Attack3"[282,5,5]}{"Attack4"[14,30,30]}{"EVs"[248,84,0,0,176,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon6|{"Pokemon"[169]}{"Experience"[216000]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Crobat]}{"Level"[70]}{"OT"[00000]}{"Ability"[151]}{"Status"[]}{"Nature"[13]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[413,10,10]}{"Attack2"[369,5,5]}{"Attack3"[440,5,5]}{"Attack4"[162,20,20]}{"EVs"[0,252,0,0,0,252]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Items|14,14
+Gender|0
+AI|0
+IntroSequence|Green,Violet
+IntroType|11

@@ -1,0 +1,62 @@
+version=2
+@text.show(Hello <player.name>!*Let me heal your~Pokémon for you.)
+@pokemon.heal
+@screen.fadeout
+@sound.play(healing,1)
+@level.wait(150)
+@screen.fadein
+:if:<register.exists(protonchrono)>=True
+    @text.show(If you have finished your~business here I will~return you to~Vermilion City now.*Once there we will~be returning to assisting~with the volcano~recovery and will no longer~be able to bring you here.*Would you like to~go to Vermilion City?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @screen.fadeout
+                @script.start(speedboatscene)
+                @player.warp(kanto\vermilion\dock.dat,-11,0.1,1)
+                @level.update
+                @player.turnto(1)
+                @screen.fadein
+                @text.show(Come visit again when~we resume business.)
+                :end
+        :endselect
+:else
+    :if:<register.exists(needfourisland)>=false
+        @text.show(Do you want to return~to Vermilion City?)
+        @options.show(Yes,No)
+        :select:<options.result>
+            :when:Yes
+                @screen.fadeout
+                @script.start(speedboatscene)
+                @player.warp(kanto\vermilion\dock.dat,-11,0.1,1)
+                @level.update
+                @player.turnto(1)
+                @screen.fadein
+                @text.show(Let me know when~you want to return.)
+                :end
+        :endselect
+    :else
+        @text.show(You need to chase~Team Rocket to~Four Island?*I can take you there!*Or would you~rather go to~Vermilion City first?)
+        @Options.show(Four Island,Vermilion City,Quit)
+        :select:<options.result>
+            :when:Four Island
+                @screen.fadeout
+                @script.start(speedboatscene)
+                @player.warp(sevii\floe\dock.dat,5,0.1,1)
+                @level.update
+                @player.turnto(2)
+                @screen.fadein
+                @text.show(Let me know when~you want to return.)
+                :end
+            :when:Vermilion City
+                @screen.fadeout
+                @script.start(speedboatscene)
+                @player.warp(kanto\vermilion\dock.dat,-11,0.1,1)
+                @level.update
+                @player.turnto(1)
+                @screen.fadein
+                @text.show(Let me know when~you want to return.)
+                :end
+        :endselect
+    :endif
+:endif
+:end

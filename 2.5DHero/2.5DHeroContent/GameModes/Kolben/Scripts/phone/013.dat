@@ -1,0 +1,13 @@
+version=2
+:if:<phone.callflag>=receiving
+    :end
+:endif
+
+@Text.Show(Pokégear:~Calling..............)
+
+:if:<register.exists(eevee_given)>=true
+    @Text.Show(Hey, <player.name>.*How is the box system~working for you?*It's doing good?*Great!*Call me if you have any problems.)
+:else
+    @Text.Show(Hey, <player.name>.*How are you?*I recently found~a Pokémon floating~around in the~PC system.*I am not able~to take care of it.*Could you come and~take it off my hands?*I will be waiting~in Goldenrod City.)
+:endif
+:end

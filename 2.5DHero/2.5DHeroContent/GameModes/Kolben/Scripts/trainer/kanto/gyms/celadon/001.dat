@@ -1,0 +1,6 @@
+version=2
+:if:<register.exists(trainer_kanto\gyms\celadon\001)>=False
+    @Text.show(We're going to protect Erika!)
+:endif
+@battle.starttrainer(kanto\gyms\celadon\001)
+:end

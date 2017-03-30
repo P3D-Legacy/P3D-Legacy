@@ -1,0 +1,21 @@
+version=2
+:if:<register.exists(clubintro)>=true <and> <register.exists(earthbadge_obtain)>=true <and> <register.exists(JanineRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe daily in the~early morning?*If you visit while~I am there maybe~we could battle.)
+    @register.new(JanineRematchTalk)
+    :end
+:endif
+@battle.starttrainer(kanto\gyms\fuchsia\leader)
+@player.AchieveEmblem(soul)
+:if:<register.exists(soulbadge_obtain)>=False
+    @register.new(soulbadge_obtain)
+    @register.new(trainer_kanto\gyms\fuchsia\001)
+    @register.new(trainer_kanto\gyms\fuchsia\002)
+    @register.new(trainer_kanto\gyms\fuchsia\003)
+    @register.new(trainer_kanto\gyms\fuchsia\004)
+    @player.GetBadge(5)
+    @Text.show(You're so tough!*I have a special gift for you!)
+    @item.add(196,1)
+    @item.messagegive(196,1)
+    @Text.show(It's Toxic,~a powerful poison that~steadily saps the victim's HP.)
+:endif
+:end
