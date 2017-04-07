@@ -994,31 +994,31 @@ Public Class MainMenuScreen
                                     Catch ex As Exception
 
                                     End Try
-
-                                    ' Disable the older support for security reason.
-                                    Try
-                                        If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Apricorns.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Berries.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Box.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Daycare.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/HallOfFame.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/ItemData.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Items.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/NPC.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Options.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Party.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Player.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Pokedex.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Register.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/RoamingPokemon.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/SecretBase.dat") AndAlso
-                                        File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Statistics.dat") Then
-                                            MsgBox("The game detected that you are trying to load the legacy Backup Save from Indev 0.53.3 Patch Update 5 and below. Due to the nature of cloning account via Backup Save, we are unable to load this save." & vbNewLine & vbNewLine & "Please contact jianmingyong at http://pokemon3d.net/forum/ for more detail.", MsgBoxStyle.OkOnly, "Error")
-                                        End If
-                                    Catch ex As Exception
-
-                                    End Try
                                 End If
+                            Else
+                                ' Disable the older support for security reason.
+                                Try
+                                    If File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Apricorns.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Berries.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Box.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Daycare.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/HallOfFame.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/ItemData.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Items.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/NPC.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Options.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Party.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Player.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Pokedex.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Register.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/RoamingPokemon.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/SecretBase.dat") AndAlso
+                                    File.Exists(GameController.GamePath + "/Backup Save/" + Core.GameJoltSave.GameJoltID.ToString() + "/Encrypted/Statistics.dat") Then
+                                        MsgBox("The game detected that you are trying to load the legacy Backup Save from Indev 0.53.3 Patch Update 5 and below. Due to the nature of cloning account via Backup Save, we are unable to load this save." & vbNewLine & vbNewLine & "Please contact jianmingyong at http://pokemon3d.net/forum/ for more detail.", MsgBoxStyle.OkOnly, "Error")
+                                    End If
+                                Catch ex As Exception
+
+                                End Try
                             End If
                         End If
 #If DEBUG Then
