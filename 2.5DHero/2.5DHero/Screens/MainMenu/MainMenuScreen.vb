@@ -968,9 +968,7 @@ Public Class MainMenuScreen
                                         If String.Equals(Hash, Encryption.DecryptString(Items.Last(), StringObfuscation.Obfuscate("TheDialgaTeam"))) Then
                                             ' Ensure that you are not cheating.
                                             Dim PlayerData() As String = Items(10).SplitAtNewline()
-                                            If (PlayerData.Any(Function(a)
-                                                                   Return String.Equals(a, "OT|" & GameJoltSave.GameJoltID)
-                                                               End Function)) Then
+                                            If (PlayerData.Any(Function(a) String.Equals(a, "OT|" & GameJoltSave.GameJoltID))) Then
                                                 Core.GameJoltSave._apricorns = Encryption.DecryptString(Items(0), StringObfuscation.Obfuscate("TheDialgaTeam"))
                                                 Core.GameJoltSave._berries = Encryption.DecryptString(Items(1), StringObfuscation.Obfuscate("TheDialgaTeam"))
                                                 Core.GameJoltSave._box = Encryption.DecryptString(Items(2), StringObfuscation.Obfuscate("TheDialgaTeam"))
