@@ -1,4 +1,4 @@
-﻿
+
 #----------------------------- Global Properties ----------------------------#
 
 /outputDir:bin
@@ -46053,53 +46053,37 @@
 #begin GameModes/Kolben/GameMode.dat
 /copy:GameModes/Kolben/GameMode.dat
 
-#begin GameModes/Kolben/Content/Fonts/Braille.bmp
+#begin GameModes/Kolben/Content/Fonts/Braille.png
 /importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GameModes/Kolben/Content/Fonts/Braille.bmp
+/build:GameModes/Kolben/Content/Fonts/Braille.png
 
-#begin GameModes/Kolben/Content/Fonts/chatFont.bmp
+#begin GameModes/Kolben/Content/Fonts/chatFont.png
 /importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GameModes/Kolben/Content/Fonts/chatFont.bmp
+/build:GameModes/Kolben/Content/Fonts/chatFont.png
 
-#begin GameModes/Kolben/Content/Fonts/InGame.bmp
+#begin GameModes/Kolben/Content/Fonts/InGame.png
 /importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GameModes/Kolben/Content/Fonts/InGame.bmp
+/build:GameModes/Kolben/Content/Fonts/InGame.png
 
-#begin GameModes/Kolben/Content/Fonts/mainFont.bmp
+#begin GameModes/Kolben/Content/Fonts/mainFont.png
 /importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GameModes/Kolben/Content/Fonts/mainFont.bmp
+/build:GameModes/Kolben/Content/Fonts/mainFont.png
 
 #begin GameModes/Kolben/Content/Fonts/miniFont.spritefont
 /importer:FontDescriptionImporter
@@ -46109,27 +46093,19 @@
 
 #begin GameModes/Kolben/Content/Fonts/TextFont.png
 /importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GameModes/Kolben/Content/Fonts/TextFont.png
 
-#begin GameModes/Kolben/Content/Fonts/Unown.bmp
+#begin GameModes/Kolben/Content/Fonts/Unown.png
 /importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GameModes/Kolben/Content/Fonts/Unown.bmp
+/build:GameModes/Kolben/Content/Fonts/Unown.png
 
 #begin GameModes/Kolben/Content/GUI/Badges.png
 /importer:TextureImporter
