@@ -1140,25 +1140,6 @@
 /processorParam:TextureFormat=Color
 /build:Content/Models/boat/Ship.X
 
-#begin Content/Models/boat2/Boat.fbx
-/importer:FbxImporter
-/processor:ModelProcessor
-/processorParam:ColorKeyColor=0,0,0,0
-/processorParam:ColorKeyEnabled=True
-/processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
-/processorParam:GenerateTangentFrames=False
-/processorParam:PremultiplyTextureAlpha=True
-/processorParam:PremultiplyVertexColors=True
-/processorParam:ResizeTexturesToPowerOfTwo=False
-/processorParam:RotationX=0
-/processorParam:RotationY=0
-/processorParam:RotationZ=0
-/processorParam:Scale=1
-/processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Color
-/build:Content/Models/boat2/Boat.fbx
-
 #begin Content/Models/building/P3DBuilding.x
 /importer:XImporter
 /processor:ModelProcessor
@@ -107240,4 +107221,2413 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Medium
 /build:GameModes/Kolben/Content/Sounds/trhq_alarm.mp3
+
+#begin GameModes/Kolben/Data/Pokemon/1.dat
+/copy:GameModes/Kolben/Data/Pokemon/1.dat
+
+#begin GameModes/Kolben/Data/Pokemon/2.dat
+/copy:GameModes/Kolben/Data/Pokemon/2.dat
+
+#begin GameModes/Kolben/Data/Pokemon/3.dat
+/copy:GameModes/Kolben/Data/Pokemon/3.dat
+
+#begin GameModes/Kolben/Data/Pokemon/3_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/3_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/4.dat
+/copy:GameModes/Kolben/Data/Pokemon/4.dat
+
+#begin GameModes/Kolben/Data/Pokemon/5.dat
+/copy:GameModes/Kolben/Data/Pokemon/5.dat
+
+#begin GameModes/Kolben/Data/Pokemon/6.dat
+/copy:GameModes/Kolben/Data/Pokemon/6.dat
+
+#begin GameModes/Kolben/Data/Pokemon/6_mega_x.dat
+/copy:GameModes/Kolben/Data/Pokemon/6_mega_x.dat
+
+#begin GameModes/Kolben/Data/Pokemon/6_mega_y.dat
+/copy:GameModes/Kolben/Data/Pokemon/6_mega_y.dat
+
+#begin GameModes/Kolben/Data/Pokemon/7.dat
+/copy:GameModes/Kolben/Data/Pokemon/7.dat
+
+#begin GameModes/Kolben/Data/Pokemon/8.dat
+/copy:GameModes/Kolben/Data/Pokemon/8.dat
+
+#begin GameModes/Kolben/Data/Pokemon/9.dat
+/copy:GameModes/Kolben/Data/Pokemon/9.dat
+
+#begin GameModes/Kolben/Data/Pokemon/9_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/9_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/10.dat
+/copy:GameModes/Kolben/Data/Pokemon/10.dat
+
+#begin GameModes/Kolben/Data/Pokemon/11.dat
+/copy:GameModes/Kolben/Data/Pokemon/11.dat
+
+#begin GameModes/Kolben/Data/Pokemon/12.dat
+/copy:GameModes/Kolben/Data/Pokemon/12.dat
+
+#begin GameModes/Kolben/Data/Pokemon/13.dat
+/copy:GameModes/Kolben/Data/Pokemon/13.dat
+
+#begin GameModes/Kolben/Data/Pokemon/14.dat
+/copy:GameModes/Kolben/Data/Pokemon/14.dat
+
+#begin GameModes/Kolben/Data/Pokemon/15.dat
+/copy:GameModes/Kolben/Data/Pokemon/15.dat
+
+#begin GameModes/Kolben/Data/Pokemon/15_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/15_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/16.dat
+/copy:GameModes/Kolben/Data/Pokemon/16.dat
+
+#begin GameModes/Kolben/Data/Pokemon/17.dat
+/copy:GameModes/Kolben/Data/Pokemon/17.dat
+
+#begin GameModes/Kolben/Data/Pokemon/18.dat
+/copy:GameModes/Kolben/Data/Pokemon/18.dat
+
+#begin GameModes/Kolben/Data/Pokemon/18_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/18_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/19.dat
+/copy:GameModes/Kolben/Data/Pokemon/19.dat
+
+#begin GameModes/Kolben/Data/Pokemon/20.dat
+/copy:GameModes/Kolben/Data/Pokemon/20.dat
+
+#begin GameModes/Kolben/Data/Pokemon/21.dat
+/copy:GameModes/Kolben/Data/Pokemon/21.dat
+
+#begin GameModes/Kolben/Data/Pokemon/22.dat
+/copy:GameModes/Kolben/Data/Pokemon/22.dat
+
+#begin GameModes/Kolben/Data/Pokemon/23.dat
+/copy:GameModes/Kolben/Data/Pokemon/23.dat
+
+#begin GameModes/Kolben/Data/Pokemon/24.dat
+/copy:GameModes/Kolben/Data/Pokemon/24.dat
+
+#begin GameModes/Kolben/Data/Pokemon/25.dat
+/copy:GameModes/Kolben/Data/Pokemon/25.dat
+
+#begin GameModes/Kolben/Data/Pokemon/26.dat
+/copy:GameModes/Kolben/Data/Pokemon/26.dat
+
+#begin GameModes/Kolben/Data/Pokemon/27.dat
+/copy:GameModes/Kolben/Data/Pokemon/27.dat
+
+#begin GameModes/Kolben/Data/Pokemon/28.dat
+/copy:GameModes/Kolben/Data/Pokemon/28.dat
+
+#begin GameModes/Kolben/Data/Pokemon/29.dat
+/copy:GameModes/Kolben/Data/Pokemon/29.dat
+
+#begin GameModes/Kolben/Data/Pokemon/30.dat
+/copy:GameModes/Kolben/Data/Pokemon/30.dat
+
+#begin GameModes/Kolben/Data/Pokemon/31.dat
+/copy:GameModes/Kolben/Data/Pokemon/31.dat
+
+#begin GameModes/Kolben/Data/Pokemon/32.dat
+/copy:GameModes/Kolben/Data/Pokemon/32.dat
+
+#begin GameModes/Kolben/Data/Pokemon/33.dat
+/copy:GameModes/Kolben/Data/Pokemon/33.dat
+
+#begin GameModes/Kolben/Data/Pokemon/34.dat
+/copy:GameModes/Kolben/Data/Pokemon/34.dat
+
+#begin GameModes/Kolben/Data/Pokemon/35.dat
+/copy:GameModes/Kolben/Data/Pokemon/35.dat
+
+#begin GameModes/Kolben/Data/Pokemon/36.dat
+/copy:GameModes/Kolben/Data/Pokemon/36.dat
+
+#begin GameModes/Kolben/Data/Pokemon/37.dat
+/copy:GameModes/Kolben/Data/Pokemon/37.dat
+
+#begin GameModes/Kolben/Data/Pokemon/38.dat
+/copy:GameModes/Kolben/Data/Pokemon/38.dat
+
+#begin GameModes/Kolben/Data/Pokemon/39.dat
+/copy:GameModes/Kolben/Data/Pokemon/39.dat
+
+#begin GameModes/Kolben/Data/Pokemon/40.dat
+/copy:GameModes/Kolben/Data/Pokemon/40.dat
+
+#begin GameModes/Kolben/Data/Pokemon/41.dat
+/copy:GameModes/Kolben/Data/Pokemon/41.dat
+
+#begin GameModes/Kolben/Data/Pokemon/42.dat
+/copy:GameModes/Kolben/Data/Pokemon/42.dat
+
+#begin GameModes/Kolben/Data/Pokemon/43.dat
+/copy:GameModes/Kolben/Data/Pokemon/43.dat
+
+#begin GameModes/Kolben/Data/Pokemon/44.dat
+/copy:GameModes/Kolben/Data/Pokemon/44.dat
+
+#begin GameModes/Kolben/Data/Pokemon/45.dat
+/copy:GameModes/Kolben/Data/Pokemon/45.dat
+
+#begin GameModes/Kolben/Data/Pokemon/46.dat
+/copy:GameModes/Kolben/Data/Pokemon/46.dat
+
+#begin GameModes/Kolben/Data/Pokemon/47.dat
+/copy:GameModes/Kolben/Data/Pokemon/47.dat
+
+#begin GameModes/Kolben/Data/Pokemon/48.dat
+/copy:GameModes/Kolben/Data/Pokemon/48.dat
+
+#begin GameModes/Kolben/Data/Pokemon/49.dat
+/copy:GameModes/Kolben/Data/Pokemon/49.dat
+
+#begin GameModes/Kolben/Data/Pokemon/50.dat
+/copy:GameModes/Kolben/Data/Pokemon/50.dat
+
+#begin GameModes/Kolben/Data/Pokemon/51.dat
+/copy:GameModes/Kolben/Data/Pokemon/51.dat
+
+#begin GameModes/Kolben/Data/Pokemon/52.dat
+/copy:GameModes/Kolben/Data/Pokemon/52.dat
+
+#begin GameModes/Kolben/Data/Pokemon/53.dat
+/copy:GameModes/Kolben/Data/Pokemon/53.dat
+
+#begin GameModes/Kolben/Data/Pokemon/54.dat
+/copy:GameModes/Kolben/Data/Pokemon/54.dat
+
+#begin GameModes/Kolben/Data/Pokemon/55.dat
+/copy:GameModes/Kolben/Data/Pokemon/55.dat
+
+#begin GameModes/Kolben/Data/Pokemon/56.dat
+/copy:GameModes/Kolben/Data/Pokemon/56.dat
+
+#begin GameModes/Kolben/Data/Pokemon/57.dat
+/copy:GameModes/Kolben/Data/Pokemon/57.dat
+
+#begin GameModes/Kolben/Data/Pokemon/58.dat
+/copy:GameModes/Kolben/Data/Pokemon/58.dat
+
+#begin GameModes/Kolben/Data/Pokemon/59.dat
+/copy:GameModes/Kolben/Data/Pokemon/59.dat
+
+#begin GameModes/Kolben/Data/Pokemon/60.dat
+/copy:GameModes/Kolben/Data/Pokemon/60.dat
+
+#begin GameModes/Kolben/Data/Pokemon/61.dat
+/copy:GameModes/Kolben/Data/Pokemon/61.dat
+
+#begin GameModes/Kolben/Data/Pokemon/62.dat
+/copy:GameModes/Kolben/Data/Pokemon/62.dat
+
+#begin GameModes/Kolben/Data/Pokemon/63.dat
+/copy:GameModes/Kolben/Data/Pokemon/63.dat
+
+#begin GameModes/Kolben/Data/Pokemon/64.dat
+/copy:GameModes/Kolben/Data/Pokemon/64.dat
+
+#begin GameModes/Kolben/Data/Pokemon/65.dat
+/copy:GameModes/Kolben/Data/Pokemon/65.dat
+
+#begin GameModes/Kolben/Data/Pokemon/65_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/65_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/66.dat
+/copy:GameModes/Kolben/Data/Pokemon/66.dat
+
+#begin GameModes/Kolben/Data/Pokemon/67.dat
+/copy:GameModes/Kolben/Data/Pokemon/67.dat
+
+#begin GameModes/Kolben/Data/Pokemon/68.dat
+/copy:GameModes/Kolben/Data/Pokemon/68.dat
+
+#begin GameModes/Kolben/Data/Pokemon/69.dat
+/copy:GameModes/Kolben/Data/Pokemon/69.dat
+
+#begin GameModes/Kolben/Data/Pokemon/70.dat
+/copy:GameModes/Kolben/Data/Pokemon/70.dat
+
+#begin GameModes/Kolben/Data/Pokemon/71.dat
+/copy:GameModes/Kolben/Data/Pokemon/71.dat
+
+#begin GameModes/Kolben/Data/Pokemon/72.dat
+/copy:GameModes/Kolben/Data/Pokemon/72.dat
+
+#begin GameModes/Kolben/Data/Pokemon/73.dat
+/copy:GameModes/Kolben/Data/Pokemon/73.dat
+
+#begin GameModes/Kolben/Data/Pokemon/74.dat
+/copy:GameModes/Kolben/Data/Pokemon/74.dat
+
+#begin GameModes/Kolben/Data/Pokemon/75.dat
+/copy:GameModes/Kolben/Data/Pokemon/75.dat
+
+#begin GameModes/Kolben/Data/Pokemon/76.dat
+/copy:GameModes/Kolben/Data/Pokemon/76.dat
+
+#begin GameModes/Kolben/Data/Pokemon/77.dat
+/copy:GameModes/Kolben/Data/Pokemon/77.dat
+
+#begin GameModes/Kolben/Data/Pokemon/78.dat
+/copy:GameModes/Kolben/Data/Pokemon/78.dat
+
+#begin GameModes/Kolben/Data/Pokemon/79.dat
+/copy:GameModes/Kolben/Data/Pokemon/79.dat
+
+#begin GameModes/Kolben/Data/Pokemon/80.dat
+/copy:GameModes/Kolben/Data/Pokemon/80.dat
+
+#begin GameModes/Kolben/Data/Pokemon/80_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/80_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/81.dat
+/copy:GameModes/Kolben/Data/Pokemon/81.dat
+
+#begin GameModes/Kolben/Data/Pokemon/82.dat
+/copy:GameModes/Kolben/Data/Pokemon/82.dat
+
+#begin GameModes/Kolben/Data/Pokemon/83.dat
+/copy:GameModes/Kolben/Data/Pokemon/83.dat
+
+#begin GameModes/Kolben/Data/Pokemon/84.dat
+/copy:GameModes/Kolben/Data/Pokemon/84.dat
+
+#begin GameModes/Kolben/Data/Pokemon/85.dat
+/copy:GameModes/Kolben/Data/Pokemon/85.dat
+
+#begin GameModes/Kolben/Data/Pokemon/86.dat
+/copy:GameModes/Kolben/Data/Pokemon/86.dat
+
+#begin GameModes/Kolben/Data/Pokemon/87.dat
+/copy:GameModes/Kolben/Data/Pokemon/87.dat
+
+#begin GameModes/Kolben/Data/Pokemon/88.dat
+/copy:GameModes/Kolben/Data/Pokemon/88.dat
+
+#begin GameModes/Kolben/Data/Pokemon/89.dat
+/copy:GameModes/Kolben/Data/Pokemon/89.dat
+
+#begin GameModes/Kolben/Data/Pokemon/90.dat
+/copy:GameModes/Kolben/Data/Pokemon/90.dat
+
+#begin GameModes/Kolben/Data/Pokemon/91.dat
+/copy:GameModes/Kolben/Data/Pokemon/91.dat
+
+#begin GameModes/Kolben/Data/Pokemon/92.dat
+/copy:GameModes/Kolben/Data/Pokemon/92.dat
+
+#begin GameModes/Kolben/Data/Pokemon/93.dat
+/copy:GameModes/Kolben/Data/Pokemon/93.dat
+
+#begin GameModes/Kolben/Data/Pokemon/94.dat
+/copy:GameModes/Kolben/Data/Pokemon/94.dat
+
+#begin GameModes/Kolben/Data/Pokemon/94_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/94_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/95.dat
+/copy:GameModes/Kolben/Data/Pokemon/95.dat
+
+#begin GameModes/Kolben/Data/Pokemon/96.dat
+/copy:GameModes/Kolben/Data/Pokemon/96.dat
+
+#begin GameModes/Kolben/Data/Pokemon/97.dat
+/copy:GameModes/Kolben/Data/Pokemon/97.dat
+
+#begin GameModes/Kolben/Data/Pokemon/98.dat
+/copy:GameModes/Kolben/Data/Pokemon/98.dat
+
+#begin GameModes/Kolben/Data/Pokemon/99.dat
+/copy:GameModes/Kolben/Data/Pokemon/99.dat
+
+#begin GameModes/Kolben/Data/Pokemon/100.dat
+/copy:GameModes/Kolben/Data/Pokemon/100.dat
+
+#begin GameModes/Kolben/Data/Pokemon/101.dat
+/copy:GameModes/Kolben/Data/Pokemon/101.dat
+
+#begin GameModes/Kolben/Data/Pokemon/102.dat
+/copy:GameModes/Kolben/Data/Pokemon/102.dat
+
+#begin GameModes/Kolben/Data/Pokemon/103.dat
+/copy:GameModes/Kolben/Data/Pokemon/103.dat
+
+#begin GameModes/Kolben/Data/Pokemon/104.dat
+/copy:GameModes/Kolben/Data/Pokemon/104.dat
+
+#begin GameModes/Kolben/Data/Pokemon/105.dat
+/copy:GameModes/Kolben/Data/Pokemon/105.dat
+
+#begin GameModes/Kolben/Data/Pokemon/106.dat
+/copy:GameModes/Kolben/Data/Pokemon/106.dat
+
+#begin GameModes/Kolben/Data/Pokemon/107.dat
+/copy:GameModes/Kolben/Data/Pokemon/107.dat
+
+#begin GameModes/Kolben/Data/Pokemon/108.dat
+/copy:GameModes/Kolben/Data/Pokemon/108.dat
+
+#begin GameModes/Kolben/Data/Pokemon/109.dat
+/copy:GameModes/Kolben/Data/Pokemon/109.dat
+
+#begin GameModes/Kolben/Data/Pokemon/110.dat
+/copy:GameModes/Kolben/Data/Pokemon/110.dat
+
+#begin GameModes/Kolben/Data/Pokemon/111.dat
+/copy:GameModes/Kolben/Data/Pokemon/111.dat
+
+#begin GameModes/Kolben/Data/Pokemon/112.dat
+/copy:GameModes/Kolben/Data/Pokemon/112.dat
+
+#begin GameModes/Kolben/Data/Pokemon/113.dat
+/copy:GameModes/Kolben/Data/Pokemon/113.dat
+
+#begin GameModes/Kolben/Data/Pokemon/114.dat
+/copy:GameModes/Kolben/Data/Pokemon/114.dat
+
+#begin GameModes/Kolben/Data/Pokemon/115.dat
+/copy:GameModes/Kolben/Data/Pokemon/115.dat
+
+#begin GameModes/Kolben/Data/Pokemon/115_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/115_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/116.dat
+/copy:GameModes/Kolben/Data/Pokemon/116.dat
+
+#begin GameModes/Kolben/Data/Pokemon/117.dat
+/copy:GameModes/Kolben/Data/Pokemon/117.dat
+
+#begin GameModes/Kolben/Data/Pokemon/118.dat
+/copy:GameModes/Kolben/Data/Pokemon/118.dat
+
+#begin GameModes/Kolben/Data/Pokemon/119.dat
+/copy:GameModes/Kolben/Data/Pokemon/119.dat
+
+#begin GameModes/Kolben/Data/Pokemon/120.dat
+/copy:GameModes/Kolben/Data/Pokemon/120.dat
+
+#begin GameModes/Kolben/Data/Pokemon/121.dat
+/copy:GameModes/Kolben/Data/Pokemon/121.dat
+
+#begin GameModes/Kolben/Data/Pokemon/122.dat
+/copy:GameModes/Kolben/Data/Pokemon/122.dat
+
+#begin GameModes/Kolben/Data/Pokemon/123.dat
+/copy:GameModes/Kolben/Data/Pokemon/123.dat
+
+#begin GameModes/Kolben/Data/Pokemon/124.dat
+/copy:GameModes/Kolben/Data/Pokemon/124.dat
+
+#begin GameModes/Kolben/Data/Pokemon/125.dat
+/copy:GameModes/Kolben/Data/Pokemon/125.dat
+
+#begin GameModes/Kolben/Data/Pokemon/126.dat
+/copy:GameModes/Kolben/Data/Pokemon/126.dat
+
+#begin GameModes/Kolben/Data/Pokemon/127.dat
+/copy:GameModes/Kolben/Data/Pokemon/127.dat
+
+#begin GameModes/Kolben/Data/Pokemon/127_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/127_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/128.dat
+/copy:GameModes/Kolben/Data/Pokemon/128.dat
+
+#begin GameModes/Kolben/Data/Pokemon/129.dat
+/copy:GameModes/Kolben/Data/Pokemon/129.dat
+
+#begin GameModes/Kolben/Data/Pokemon/130.dat
+/copy:GameModes/Kolben/Data/Pokemon/130.dat
+
+#begin GameModes/Kolben/Data/Pokemon/130_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/130_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/131.dat
+/copy:GameModes/Kolben/Data/Pokemon/131.dat
+
+#begin GameModes/Kolben/Data/Pokemon/132.dat
+/copy:GameModes/Kolben/Data/Pokemon/132.dat
+
+#begin GameModes/Kolben/Data/Pokemon/133.dat
+/copy:GameModes/Kolben/Data/Pokemon/133.dat
+
+#begin GameModes/Kolben/Data/Pokemon/134.dat
+/copy:GameModes/Kolben/Data/Pokemon/134.dat
+
+#begin GameModes/Kolben/Data/Pokemon/135.dat
+/copy:GameModes/Kolben/Data/Pokemon/135.dat
+
+#begin GameModes/Kolben/Data/Pokemon/136.dat
+/copy:GameModes/Kolben/Data/Pokemon/136.dat
+
+#begin GameModes/Kolben/Data/Pokemon/137.dat
+/copy:GameModes/Kolben/Data/Pokemon/137.dat
+
+#begin GameModes/Kolben/Data/Pokemon/138.dat
+/copy:GameModes/Kolben/Data/Pokemon/138.dat
+
+#begin GameModes/Kolben/Data/Pokemon/139.dat
+/copy:GameModes/Kolben/Data/Pokemon/139.dat
+
+#begin GameModes/Kolben/Data/Pokemon/140.dat
+/copy:GameModes/Kolben/Data/Pokemon/140.dat
+
+#begin GameModes/Kolben/Data/Pokemon/141.dat
+/copy:GameModes/Kolben/Data/Pokemon/141.dat
+
+#begin GameModes/Kolben/Data/Pokemon/142.dat
+/copy:GameModes/Kolben/Data/Pokemon/142.dat
+
+#begin GameModes/Kolben/Data/Pokemon/142_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/142_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/143.dat
+/copy:GameModes/Kolben/Data/Pokemon/143.dat
+
+#begin GameModes/Kolben/Data/Pokemon/144.dat
+/copy:GameModes/Kolben/Data/Pokemon/144.dat
+
+#begin GameModes/Kolben/Data/Pokemon/145.dat
+/copy:GameModes/Kolben/Data/Pokemon/145.dat
+
+#begin GameModes/Kolben/Data/Pokemon/146.dat
+/copy:GameModes/Kolben/Data/Pokemon/146.dat
+
+#begin GameModes/Kolben/Data/Pokemon/147.dat
+/copy:GameModes/Kolben/Data/Pokemon/147.dat
+
+#begin GameModes/Kolben/Data/Pokemon/148.dat
+/copy:GameModes/Kolben/Data/Pokemon/148.dat
+
+#begin GameModes/Kolben/Data/Pokemon/149.dat
+/copy:GameModes/Kolben/Data/Pokemon/149.dat
+
+#begin GameModes/Kolben/Data/Pokemon/150.dat
+/copy:GameModes/Kolben/Data/Pokemon/150.dat
+
+#begin GameModes/Kolben/Data/Pokemon/150_mega_x.dat
+/copy:GameModes/Kolben/Data/Pokemon/150_mega_x.dat
+
+#begin GameModes/Kolben/Data/Pokemon/150_mega_y.dat
+/copy:GameModes/Kolben/Data/Pokemon/150_mega_y.dat
+
+#begin GameModes/Kolben/Data/Pokemon/151.dat
+/copy:GameModes/Kolben/Data/Pokemon/151.dat
+
+#begin GameModes/Kolben/Data/Pokemon/152.dat
+/copy:GameModes/Kolben/Data/Pokemon/152.dat
+
+#begin GameModes/Kolben/Data/Pokemon/153.dat
+/copy:GameModes/Kolben/Data/Pokemon/153.dat
+
+#begin GameModes/Kolben/Data/Pokemon/154.dat
+/copy:GameModes/Kolben/Data/Pokemon/154.dat
+
+#begin GameModes/Kolben/Data/Pokemon/155.dat
+/copy:GameModes/Kolben/Data/Pokemon/155.dat
+
+#begin GameModes/Kolben/Data/Pokemon/156.dat
+/copy:GameModes/Kolben/Data/Pokemon/156.dat
+
+#begin GameModes/Kolben/Data/Pokemon/157.dat
+/copy:GameModes/Kolben/Data/Pokemon/157.dat
+
+#begin GameModes/Kolben/Data/Pokemon/158.dat
+/copy:GameModes/Kolben/Data/Pokemon/158.dat
+
+#begin GameModes/Kolben/Data/Pokemon/159.dat
+/copy:GameModes/Kolben/Data/Pokemon/159.dat
+
+#begin GameModes/Kolben/Data/Pokemon/160.dat
+/copy:GameModes/Kolben/Data/Pokemon/160.dat
+
+#begin GameModes/Kolben/Data/Pokemon/161.dat
+/copy:GameModes/Kolben/Data/Pokemon/161.dat
+
+#begin GameModes/Kolben/Data/Pokemon/162.dat
+/copy:GameModes/Kolben/Data/Pokemon/162.dat
+
+#begin GameModes/Kolben/Data/Pokemon/163.dat
+/copy:GameModes/Kolben/Data/Pokemon/163.dat
+
+#begin GameModes/Kolben/Data/Pokemon/164.dat
+/copy:GameModes/Kolben/Data/Pokemon/164.dat
+
+#begin GameModes/Kolben/Data/Pokemon/165.dat
+/copy:GameModes/Kolben/Data/Pokemon/165.dat
+
+#begin GameModes/Kolben/Data/Pokemon/166.dat
+/copy:GameModes/Kolben/Data/Pokemon/166.dat
+
+#begin GameModes/Kolben/Data/Pokemon/167.dat
+/copy:GameModes/Kolben/Data/Pokemon/167.dat
+
+#begin GameModes/Kolben/Data/Pokemon/168.dat
+/copy:GameModes/Kolben/Data/Pokemon/168.dat
+
+#begin GameModes/Kolben/Data/Pokemon/169.dat
+/copy:GameModes/Kolben/Data/Pokemon/169.dat
+
+#begin GameModes/Kolben/Data/Pokemon/170.dat
+/copy:GameModes/Kolben/Data/Pokemon/170.dat
+
+#begin GameModes/Kolben/Data/Pokemon/171.dat
+/copy:GameModes/Kolben/Data/Pokemon/171.dat
+
+#begin GameModes/Kolben/Data/Pokemon/172.dat
+/copy:GameModes/Kolben/Data/Pokemon/172.dat
+
+#begin GameModes/Kolben/Data/Pokemon/173.dat
+/copy:GameModes/Kolben/Data/Pokemon/173.dat
+
+#begin GameModes/Kolben/Data/Pokemon/174.dat
+/copy:GameModes/Kolben/Data/Pokemon/174.dat
+
+#begin GameModes/Kolben/Data/Pokemon/175.dat
+/copy:GameModes/Kolben/Data/Pokemon/175.dat
+
+#begin GameModes/Kolben/Data/Pokemon/176.dat
+/copy:GameModes/Kolben/Data/Pokemon/176.dat
+
+#begin GameModes/Kolben/Data/Pokemon/177.dat
+/copy:GameModes/Kolben/Data/Pokemon/177.dat
+
+#begin GameModes/Kolben/Data/Pokemon/178.dat
+/copy:GameModes/Kolben/Data/Pokemon/178.dat
+
+#begin GameModes/Kolben/Data/Pokemon/179.dat
+/copy:GameModes/Kolben/Data/Pokemon/179.dat
+
+#begin GameModes/Kolben/Data/Pokemon/180.dat
+/copy:GameModes/Kolben/Data/Pokemon/180.dat
+
+#begin GameModes/Kolben/Data/Pokemon/181.dat
+/copy:GameModes/Kolben/Data/Pokemon/181.dat
+
+#begin GameModes/Kolben/Data/Pokemon/181_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/181_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/182.dat
+/copy:GameModes/Kolben/Data/Pokemon/182.dat
+
+#begin GameModes/Kolben/Data/Pokemon/183.dat
+/copy:GameModes/Kolben/Data/Pokemon/183.dat
+
+#begin GameModes/Kolben/Data/Pokemon/184.dat
+/copy:GameModes/Kolben/Data/Pokemon/184.dat
+
+#begin GameModes/Kolben/Data/Pokemon/185.dat
+/copy:GameModes/Kolben/Data/Pokemon/185.dat
+
+#begin GameModes/Kolben/Data/Pokemon/186.dat
+/copy:GameModes/Kolben/Data/Pokemon/186.dat
+
+#begin GameModes/Kolben/Data/Pokemon/187.dat
+/copy:GameModes/Kolben/Data/Pokemon/187.dat
+
+#begin GameModes/Kolben/Data/Pokemon/188.dat
+/copy:GameModes/Kolben/Data/Pokemon/188.dat
+
+#begin GameModes/Kolben/Data/Pokemon/189.dat
+/copy:GameModes/Kolben/Data/Pokemon/189.dat
+
+#begin GameModes/Kolben/Data/Pokemon/190.dat
+/copy:GameModes/Kolben/Data/Pokemon/190.dat
+
+#begin GameModes/Kolben/Data/Pokemon/191.dat
+/copy:GameModes/Kolben/Data/Pokemon/191.dat
+
+#begin GameModes/Kolben/Data/Pokemon/192.dat
+/copy:GameModes/Kolben/Data/Pokemon/192.dat
+
+#begin GameModes/Kolben/Data/Pokemon/193.dat
+/copy:GameModes/Kolben/Data/Pokemon/193.dat
+
+#begin GameModes/Kolben/Data/Pokemon/194.dat
+/copy:GameModes/Kolben/Data/Pokemon/194.dat
+
+#begin GameModes/Kolben/Data/Pokemon/195.dat
+/copy:GameModes/Kolben/Data/Pokemon/195.dat
+
+#begin GameModes/Kolben/Data/Pokemon/196.dat
+/copy:GameModes/Kolben/Data/Pokemon/196.dat
+
+#begin GameModes/Kolben/Data/Pokemon/197.dat
+/copy:GameModes/Kolben/Data/Pokemon/197.dat
+
+#begin GameModes/Kolben/Data/Pokemon/198.dat
+/copy:GameModes/Kolben/Data/Pokemon/198.dat
+
+#begin GameModes/Kolben/Data/Pokemon/199.dat
+/copy:GameModes/Kolben/Data/Pokemon/199.dat
+
+#begin GameModes/Kolben/Data/Pokemon/200.dat
+/copy:GameModes/Kolben/Data/Pokemon/200.dat
+
+#begin GameModes/Kolben/Data/Pokemon/201.dat
+/copy:GameModes/Kolben/Data/Pokemon/201.dat
+
+#begin GameModes/Kolben/Data/Pokemon/202.dat
+/copy:GameModes/Kolben/Data/Pokemon/202.dat
+
+#begin GameModes/Kolben/Data/Pokemon/203.dat
+/copy:GameModes/Kolben/Data/Pokemon/203.dat
+
+#begin GameModes/Kolben/Data/Pokemon/204.dat
+/copy:GameModes/Kolben/Data/Pokemon/204.dat
+
+#begin GameModes/Kolben/Data/Pokemon/205.dat
+/copy:GameModes/Kolben/Data/Pokemon/205.dat
+
+#begin GameModes/Kolben/Data/Pokemon/206.dat
+/copy:GameModes/Kolben/Data/Pokemon/206.dat
+
+#begin GameModes/Kolben/Data/Pokemon/207.dat
+/copy:GameModes/Kolben/Data/Pokemon/207.dat
+
+#begin GameModes/Kolben/Data/Pokemon/208.dat
+/copy:GameModes/Kolben/Data/Pokemon/208.dat
+
+#begin GameModes/Kolben/Data/Pokemon/208_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/208_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/209.dat
+/copy:GameModes/Kolben/Data/Pokemon/209.dat
+
+#begin GameModes/Kolben/Data/Pokemon/210.dat
+/copy:GameModes/Kolben/Data/Pokemon/210.dat
+
+#begin GameModes/Kolben/Data/Pokemon/211.dat
+/copy:GameModes/Kolben/Data/Pokemon/211.dat
+
+#begin GameModes/Kolben/Data/Pokemon/212.dat
+/copy:GameModes/Kolben/Data/Pokemon/212.dat
+
+#begin GameModes/Kolben/Data/Pokemon/212_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/212_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/213.dat
+/copy:GameModes/Kolben/Data/Pokemon/213.dat
+
+#begin GameModes/Kolben/Data/Pokemon/214.dat
+/copy:GameModes/Kolben/Data/Pokemon/214.dat
+
+#begin GameModes/Kolben/Data/Pokemon/214_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/214_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/215.dat
+/copy:GameModes/Kolben/Data/Pokemon/215.dat
+
+#begin GameModes/Kolben/Data/Pokemon/216.dat
+/copy:GameModes/Kolben/Data/Pokemon/216.dat
+
+#begin GameModes/Kolben/Data/Pokemon/217.dat
+/copy:GameModes/Kolben/Data/Pokemon/217.dat
+
+#begin GameModes/Kolben/Data/Pokemon/218.dat
+/copy:GameModes/Kolben/Data/Pokemon/218.dat
+
+#begin GameModes/Kolben/Data/Pokemon/219.dat
+/copy:GameModes/Kolben/Data/Pokemon/219.dat
+
+#begin GameModes/Kolben/Data/Pokemon/220.dat
+/copy:GameModes/Kolben/Data/Pokemon/220.dat
+
+#begin GameModes/Kolben/Data/Pokemon/221.dat
+/copy:GameModes/Kolben/Data/Pokemon/221.dat
+
+#begin GameModes/Kolben/Data/Pokemon/222.dat
+/copy:GameModes/Kolben/Data/Pokemon/222.dat
+
+#begin GameModes/Kolben/Data/Pokemon/223.dat
+/copy:GameModes/Kolben/Data/Pokemon/223.dat
+
+#begin GameModes/Kolben/Data/Pokemon/224.dat
+/copy:GameModes/Kolben/Data/Pokemon/224.dat
+
+#begin GameModes/Kolben/Data/Pokemon/225.dat
+/copy:GameModes/Kolben/Data/Pokemon/225.dat
+
+#begin GameModes/Kolben/Data/Pokemon/226.dat
+/copy:GameModes/Kolben/Data/Pokemon/226.dat
+
+#begin GameModes/Kolben/Data/Pokemon/227.dat
+/copy:GameModes/Kolben/Data/Pokemon/227.dat
+
+#begin GameModes/Kolben/Data/Pokemon/228.dat
+/copy:GameModes/Kolben/Data/Pokemon/228.dat
+
+#begin GameModes/Kolben/Data/Pokemon/229.dat
+/copy:GameModes/Kolben/Data/Pokemon/229.dat
+
+#begin GameModes/Kolben/Data/Pokemon/229_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/229_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/230.dat
+/copy:GameModes/Kolben/Data/Pokemon/230.dat
+
+#begin GameModes/Kolben/Data/Pokemon/231.dat
+/copy:GameModes/Kolben/Data/Pokemon/231.dat
+
+#begin GameModes/Kolben/Data/Pokemon/232.dat
+/copy:GameModes/Kolben/Data/Pokemon/232.dat
+
+#begin GameModes/Kolben/Data/Pokemon/233.dat
+/copy:GameModes/Kolben/Data/Pokemon/233.dat
+
+#begin GameModes/Kolben/Data/Pokemon/234.dat
+/copy:GameModes/Kolben/Data/Pokemon/234.dat
+
+#begin GameModes/Kolben/Data/Pokemon/235.dat
+/copy:GameModes/Kolben/Data/Pokemon/235.dat
+
+#begin GameModes/Kolben/Data/Pokemon/236.dat
+/copy:GameModes/Kolben/Data/Pokemon/236.dat
+
+#begin GameModes/Kolben/Data/Pokemon/237.dat
+/copy:GameModes/Kolben/Data/Pokemon/237.dat
+
+#begin GameModes/Kolben/Data/Pokemon/238.dat
+/copy:GameModes/Kolben/Data/Pokemon/238.dat
+
+#begin GameModes/Kolben/Data/Pokemon/239.dat
+/copy:GameModes/Kolben/Data/Pokemon/239.dat
+
+#begin GameModes/Kolben/Data/Pokemon/240.dat
+/copy:GameModes/Kolben/Data/Pokemon/240.dat
+
+#begin GameModes/Kolben/Data/Pokemon/241.dat
+/copy:GameModes/Kolben/Data/Pokemon/241.dat
+
+#begin GameModes/Kolben/Data/Pokemon/242.dat
+/copy:GameModes/Kolben/Data/Pokemon/242.dat
+
+#begin GameModes/Kolben/Data/Pokemon/243.dat
+/copy:GameModes/Kolben/Data/Pokemon/243.dat
+
+#begin GameModes/Kolben/Data/Pokemon/244.dat
+/copy:GameModes/Kolben/Data/Pokemon/244.dat
+
+#begin GameModes/Kolben/Data/Pokemon/245.dat
+/copy:GameModes/Kolben/Data/Pokemon/245.dat
+
+#begin GameModes/Kolben/Data/Pokemon/246.dat
+/copy:GameModes/Kolben/Data/Pokemon/246.dat
+
+#begin GameModes/Kolben/Data/Pokemon/247.dat
+/copy:GameModes/Kolben/Data/Pokemon/247.dat
+
+#begin GameModes/Kolben/Data/Pokemon/248.dat
+/copy:GameModes/Kolben/Data/Pokemon/248.dat
+
+#begin GameModes/Kolben/Data/Pokemon/248_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/248_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/249.dat
+/copy:GameModes/Kolben/Data/Pokemon/249.dat
+
+#begin GameModes/Kolben/Data/Pokemon/250.dat
+/copy:GameModes/Kolben/Data/Pokemon/250.dat
+
+#begin GameModes/Kolben/Data/Pokemon/251.dat
+/copy:GameModes/Kolben/Data/Pokemon/251.dat
+
+#begin GameModes/Kolben/Data/Pokemon/252.dat
+/copy:GameModes/Kolben/Data/Pokemon/252.dat
+
+#begin GameModes/Kolben/Data/Pokemon/253.dat
+/copy:GameModes/Kolben/Data/Pokemon/253.dat
+
+#begin GameModes/Kolben/Data/Pokemon/254.dat
+/copy:GameModes/Kolben/Data/Pokemon/254.dat
+
+#begin GameModes/Kolben/Data/Pokemon/254_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/254_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/255.dat
+/copy:GameModes/Kolben/Data/Pokemon/255.dat
+
+#begin GameModes/Kolben/Data/Pokemon/256.dat
+/copy:GameModes/Kolben/Data/Pokemon/256.dat
+
+#begin GameModes/Kolben/Data/Pokemon/257.dat
+/copy:GameModes/Kolben/Data/Pokemon/257.dat
+
+#begin GameModes/Kolben/Data/Pokemon/257_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/257_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/258.dat
+/copy:GameModes/Kolben/Data/Pokemon/258.dat
+
+#begin GameModes/Kolben/Data/Pokemon/259.dat
+/copy:GameModes/Kolben/Data/Pokemon/259.dat
+
+#begin GameModes/Kolben/Data/Pokemon/260.dat
+/copy:GameModes/Kolben/Data/Pokemon/260.dat
+
+#begin GameModes/Kolben/Data/Pokemon/260_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/260_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/261.dat
+/copy:GameModes/Kolben/Data/Pokemon/261.dat
+
+#begin GameModes/Kolben/Data/Pokemon/262.dat
+/copy:GameModes/Kolben/Data/Pokemon/262.dat
+
+#begin GameModes/Kolben/Data/Pokemon/263.dat
+/copy:GameModes/Kolben/Data/Pokemon/263.dat
+
+#begin GameModes/Kolben/Data/Pokemon/264.dat
+/copy:GameModes/Kolben/Data/Pokemon/264.dat
+
+#begin GameModes/Kolben/Data/Pokemon/265.dat
+/copy:GameModes/Kolben/Data/Pokemon/265.dat
+
+#begin GameModes/Kolben/Data/Pokemon/266.dat
+/copy:GameModes/Kolben/Data/Pokemon/266.dat
+
+#begin GameModes/Kolben/Data/Pokemon/267.dat
+/copy:GameModes/Kolben/Data/Pokemon/267.dat
+
+#begin GameModes/Kolben/Data/Pokemon/268.dat
+/copy:GameModes/Kolben/Data/Pokemon/268.dat
+
+#begin GameModes/Kolben/Data/Pokemon/269.dat
+/copy:GameModes/Kolben/Data/Pokemon/269.dat
+
+#begin GameModes/Kolben/Data/Pokemon/270.dat
+/copy:GameModes/Kolben/Data/Pokemon/270.dat
+
+#begin GameModes/Kolben/Data/Pokemon/271.dat
+/copy:GameModes/Kolben/Data/Pokemon/271.dat
+
+#begin GameModes/Kolben/Data/Pokemon/272.dat
+/copy:GameModes/Kolben/Data/Pokemon/272.dat
+
+#begin GameModes/Kolben/Data/Pokemon/273.dat
+/copy:GameModes/Kolben/Data/Pokemon/273.dat
+
+#begin GameModes/Kolben/Data/Pokemon/274.dat
+/copy:GameModes/Kolben/Data/Pokemon/274.dat
+
+#begin GameModes/Kolben/Data/Pokemon/275.dat
+/copy:GameModes/Kolben/Data/Pokemon/275.dat
+
+#begin GameModes/Kolben/Data/Pokemon/276.dat
+/copy:GameModes/Kolben/Data/Pokemon/276.dat
+
+#begin GameModes/Kolben/Data/Pokemon/277.dat
+/copy:GameModes/Kolben/Data/Pokemon/277.dat
+
+#begin GameModes/Kolben/Data/Pokemon/278.dat
+/copy:GameModes/Kolben/Data/Pokemon/278.dat
+
+#begin GameModes/Kolben/Data/Pokemon/279.dat
+/copy:GameModes/Kolben/Data/Pokemon/279.dat
+
+#begin GameModes/Kolben/Data/Pokemon/280.dat
+/copy:GameModes/Kolben/Data/Pokemon/280.dat
+
+#begin GameModes/Kolben/Data/Pokemon/281.dat
+/copy:GameModes/Kolben/Data/Pokemon/281.dat
+
+#begin GameModes/Kolben/Data/Pokemon/282.dat
+/copy:GameModes/Kolben/Data/Pokemon/282.dat
+
+#begin GameModes/Kolben/Data/Pokemon/282_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/282_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/283.dat
+/copy:GameModes/Kolben/Data/Pokemon/283.dat
+
+#begin GameModes/Kolben/Data/Pokemon/284.dat
+/copy:GameModes/Kolben/Data/Pokemon/284.dat
+
+#begin GameModes/Kolben/Data/Pokemon/285.dat
+/copy:GameModes/Kolben/Data/Pokemon/285.dat
+
+#begin GameModes/Kolben/Data/Pokemon/286.dat
+/copy:GameModes/Kolben/Data/Pokemon/286.dat
+
+#begin GameModes/Kolben/Data/Pokemon/287.dat
+/copy:GameModes/Kolben/Data/Pokemon/287.dat
+
+#begin GameModes/Kolben/Data/Pokemon/288.dat
+/copy:GameModes/Kolben/Data/Pokemon/288.dat
+
+#begin GameModes/Kolben/Data/Pokemon/289.dat
+/copy:GameModes/Kolben/Data/Pokemon/289.dat
+
+#begin GameModes/Kolben/Data/Pokemon/290.dat
+/copy:GameModes/Kolben/Data/Pokemon/290.dat
+
+#begin GameModes/Kolben/Data/Pokemon/291.dat
+/copy:GameModes/Kolben/Data/Pokemon/291.dat
+
+#begin GameModes/Kolben/Data/Pokemon/292.dat
+/copy:GameModes/Kolben/Data/Pokemon/292.dat
+
+#begin GameModes/Kolben/Data/Pokemon/293.dat
+/copy:GameModes/Kolben/Data/Pokemon/293.dat
+
+#begin GameModes/Kolben/Data/Pokemon/294.dat
+/copy:GameModes/Kolben/Data/Pokemon/294.dat
+
+#begin GameModes/Kolben/Data/Pokemon/295.dat
+/copy:GameModes/Kolben/Data/Pokemon/295.dat
+
+#begin GameModes/Kolben/Data/Pokemon/296.dat
+/copy:GameModes/Kolben/Data/Pokemon/296.dat
+
+#begin GameModes/Kolben/Data/Pokemon/297.dat
+/copy:GameModes/Kolben/Data/Pokemon/297.dat
+
+#begin GameModes/Kolben/Data/Pokemon/298.dat
+/copy:GameModes/Kolben/Data/Pokemon/298.dat
+
+#begin GameModes/Kolben/Data/Pokemon/299.dat
+/copy:GameModes/Kolben/Data/Pokemon/299.dat
+
+#begin GameModes/Kolben/Data/Pokemon/300.dat
+/copy:GameModes/Kolben/Data/Pokemon/300.dat
+
+#begin GameModes/Kolben/Data/Pokemon/301.dat
+/copy:GameModes/Kolben/Data/Pokemon/301.dat
+
+#begin GameModes/Kolben/Data/Pokemon/302.dat
+/copy:GameModes/Kolben/Data/Pokemon/302.dat
+
+#begin GameModes/Kolben/Data/Pokemon/302_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/302_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/303.dat
+/copy:GameModes/Kolben/Data/Pokemon/303.dat
+
+#begin GameModes/Kolben/Data/Pokemon/303_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/303_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/304.dat
+/copy:GameModes/Kolben/Data/Pokemon/304.dat
+
+#begin GameModes/Kolben/Data/Pokemon/305.dat
+/copy:GameModes/Kolben/Data/Pokemon/305.dat
+
+#begin GameModes/Kolben/Data/Pokemon/306.dat
+/copy:GameModes/Kolben/Data/Pokemon/306.dat
+
+#begin GameModes/Kolben/Data/Pokemon/306_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/306_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/307.dat
+/copy:GameModes/Kolben/Data/Pokemon/307.dat
+
+#begin GameModes/Kolben/Data/Pokemon/308.dat
+/copy:GameModes/Kolben/Data/Pokemon/308.dat
+
+#begin GameModes/Kolben/Data/Pokemon/308_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/308_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/309.dat
+/copy:GameModes/Kolben/Data/Pokemon/309.dat
+
+#begin GameModes/Kolben/Data/Pokemon/310.dat
+/copy:GameModes/Kolben/Data/Pokemon/310.dat
+
+#begin GameModes/Kolben/Data/Pokemon/310_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/310_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/311.dat
+/copy:GameModes/Kolben/Data/Pokemon/311.dat
+
+#begin GameModes/Kolben/Data/Pokemon/312.dat
+/copy:GameModes/Kolben/Data/Pokemon/312.dat
+
+#begin GameModes/Kolben/Data/Pokemon/313.dat
+/copy:GameModes/Kolben/Data/Pokemon/313.dat
+
+#begin GameModes/Kolben/Data/Pokemon/314.dat
+/copy:GameModes/Kolben/Data/Pokemon/314.dat
+
+#begin GameModes/Kolben/Data/Pokemon/315.dat
+/copy:GameModes/Kolben/Data/Pokemon/315.dat
+
+#begin GameModes/Kolben/Data/Pokemon/316.dat
+/copy:GameModes/Kolben/Data/Pokemon/316.dat
+
+#begin GameModes/Kolben/Data/Pokemon/317.dat
+/copy:GameModes/Kolben/Data/Pokemon/317.dat
+
+#begin GameModes/Kolben/Data/Pokemon/318.dat
+/copy:GameModes/Kolben/Data/Pokemon/318.dat
+
+#begin GameModes/Kolben/Data/Pokemon/319.dat
+/copy:GameModes/Kolben/Data/Pokemon/319.dat
+
+#begin GameModes/Kolben/Data/Pokemon/319_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/319_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/320.dat
+/copy:GameModes/Kolben/Data/Pokemon/320.dat
+
+#begin GameModes/Kolben/Data/Pokemon/321.dat
+/copy:GameModes/Kolben/Data/Pokemon/321.dat
+
+#begin GameModes/Kolben/Data/Pokemon/322.dat
+/copy:GameModes/Kolben/Data/Pokemon/322.dat
+
+#begin GameModes/Kolben/Data/Pokemon/323.dat
+/copy:GameModes/Kolben/Data/Pokemon/323.dat
+
+#begin GameModes/Kolben/Data/Pokemon/323_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/323_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/324.dat
+/copy:GameModes/Kolben/Data/Pokemon/324.dat
+
+#begin GameModes/Kolben/Data/Pokemon/325.dat
+/copy:GameModes/Kolben/Data/Pokemon/325.dat
+
+#begin GameModes/Kolben/Data/Pokemon/326.dat
+/copy:GameModes/Kolben/Data/Pokemon/326.dat
+
+#begin GameModes/Kolben/Data/Pokemon/327.dat
+/copy:GameModes/Kolben/Data/Pokemon/327.dat
+
+#begin GameModes/Kolben/Data/Pokemon/328.dat
+/copy:GameModes/Kolben/Data/Pokemon/328.dat
+
+#begin GameModes/Kolben/Data/Pokemon/329.dat
+/copy:GameModes/Kolben/Data/Pokemon/329.dat
+
+#begin GameModes/Kolben/Data/Pokemon/330.dat
+/copy:GameModes/Kolben/Data/Pokemon/330.dat
+
+#begin GameModes/Kolben/Data/Pokemon/331.dat
+/copy:GameModes/Kolben/Data/Pokemon/331.dat
+
+#begin GameModes/Kolben/Data/Pokemon/332.dat
+/copy:GameModes/Kolben/Data/Pokemon/332.dat
+
+#begin GameModes/Kolben/Data/Pokemon/333.dat
+/copy:GameModes/Kolben/Data/Pokemon/333.dat
+
+#begin GameModes/Kolben/Data/Pokemon/334.dat
+/copy:GameModes/Kolben/Data/Pokemon/334.dat
+
+#begin GameModes/Kolben/Data/Pokemon/334_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/334_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/335.dat
+/copy:GameModes/Kolben/Data/Pokemon/335.dat
+
+#begin GameModes/Kolben/Data/Pokemon/336.dat
+/copy:GameModes/Kolben/Data/Pokemon/336.dat
+
+#begin GameModes/Kolben/Data/Pokemon/337.dat
+/copy:GameModes/Kolben/Data/Pokemon/337.dat
+
+#begin GameModes/Kolben/Data/Pokemon/338.dat
+/copy:GameModes/Kolben/Data/Pokemon/338.dat
+
+#begin GameModes/Kolben/Data/Pokemon/339.dat
+/copy:GameModes/Kolben/Data/Pokemon/339.dat
+
+#begin GameModes/Kolben/Data/Pokemon/340.dat
+/copy:GameModes/Kolben/Data/Pokemon/340.dat
+
+#begin GameModes/Kolben/Data/Pokemon/341.dat
+/copy:GameModes/Kolben/Data/Pokemon/341.dat
+
+#begin GameModes/Kolben/Data/Pokemon/342.dat
+/copy:GameModes/Kolben/Data/Pokemon/342.dat
+
+#begin GameModes/Kolben/Data/Pokemon/343.dat
+/copy:GameModes/Kolben/Data/Pokemon/343.dat
+
+#begin GameModes/Kolben/Data/Pokemon/344.dat
+/copy:GameModes/Kolben/Data/Pokemon/344.dat
+
+#begin GameModes/Kolben/Data/Pokemon/345.dat
+/copy:GameModes/Kolben/Data/Pokemon/345.dat
+
+#begin GameModes/Kolben/Data/Pokemon/346.dat
+/copy:GameModes/Kolben/Data/Pokemon/346.dat
+
+#begin GameModes/Kolben/Data/Pokemon/347.dat
+/copy:GameModes/Kolben/Data/Pokemon/347.dat
+
+#begin GameModes/Kolben/Data/Pokemon/348.dat
+/copy:GameModes/Kolben/Data/Pokemon/348.dat
+
+#begin GameModes/Kolben/Data/Pokemon/349.dat
+/copy:GameModes/Kolben/Data/Pokemon/349.dat
+
+#begin GameModes/Kolben/Data/Pokemon/350.dat
+/copy:GameModes/Kolben/Data/Pokemon/350.dat
+
+#begin GameModes/Kolben/Data/Pokemon/351.dat
+/copy:GameModes/Kolben/Data/Pokemon/351.dat
+
+#begin GameModes/Kolben/Data/Pokemon/352.dat
+/copy:GameModes/Kolben/Data/Pokemon/352.dat
+
+#begin GameModes/Kolben/Data/Pokemon/353.dat
+/copy:GameModes/Kolben/Data/Pokemon/353.dat
+
+#begin GameModes/Kolben/Data/Pokemon/354.dat
+/copy:GameModes/Kolben/Data/Pokemon/354.dat
+
+#begin GameModes/Kolben/Data/Pokemon/354_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/354_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/355.dat
+/copy:GameModes/Kolben/Data/Pokemon/355.dat
+
+#begin GameModes/Kolben/Data/Pokemon/356.dat
+/copy:GameModes/Kolben/Data/Pokemon/356.dat
+
+#begin GameModes/Kolben/Data/Pokemon/357.dat
+/copy:GameModes/Kolben/Data/Pokemon/357.dat
+
+#begin GameModes/Kolben/Data/Pokemon/358.dat
+/copy:GameModes/Kolben/Data/Pokemon/358.dat
+
+#begin GameModes/Kolben/Data/Pokemon/359.dat
+/copy:GameModes/Kolben/Data/Pokemon/359.dat
+
+#begin GameModes/Kolben/Data/Pokemon/359_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/359_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/360.dat
+/copy:GameModes/Kolben/Data/Pokemon/360.dat
+
+#begin GameModes/Kolben/Data/Pokemon/361.dat
+/copy:GameModes/Kolben/Data/Pokemon/361.dat
+
+#begin GameModes/Kolben/Data/Pokemon/362.dat
+/copy:GameModes/Kolben/Data/Pokemon/362.dat
+
+#begin GameModes/Kolben/Data/Pokemon/362_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/362_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/363.dat
+/copy:GameModes/Kolben/Data/Pokemon/363.dat
+
+#begin GameModes/Kolben/Data/Pokemon/364.dat
+/copy:GameModes/Kolben/Data/Pokemon/364.dat
+
+#begin GameModes/Kolben/Data/Pokemon/365.dat
+/copy:GameModes/Kolben/Data/Pokemon/365.dat
+
+#begin GameModes/Kolben/Data/Pokemon/366.dat
+/copy:GameModes/Kolben/Data/Pokemon/366.dat
+
+#begin GameModes/Kolben/Data/Pokemon/367.dat
+/copy:GameModes/Kolben/Data/Pokemon/367.dat
+
+#begin GameModes/Kolben/Data/Pokemon/368.dat
+/copy:GameModes/Kolben/Data/Pokemon/368.dat
+
+#begin GameModes/Kolben/Data/Pokemon/369.dat
+/copy:GameModes/Kolben/Data/Pokemon/369.dat
+
+#begin GameModes/Kolben/Data/Pokemon/370.dat
+/copy:GameModes/Kolben/Data/Pokemon/370.dat
+
+#begin GameModes/Kolben/Data/Pokemon/371.dat
+/copy:GameModes/Kolben/Data/Pokemon/371.dat
+
+#begin GameModes/Kolben/Data/Pokemon/372.dat
+/copy:GameModes/Kolben/Data/Pokemon/372.dat
+
+#begin GameModes/Kolben/Data/Pokemon/373.dat
+/copy:GameModes/Kolben/Data/Pokemon/373.dat
+
+#begin GameModes/Kolben/Data/Pokemon/373_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/373_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/374.dat
+/copy:GameModes/Kolben/Data/Pokemon/374.dat
+
+#begin GameModes/Kolben/Data/Pokemon/375.dat
+/copy:GameModes/Kolben/Data/Pokemon/375.dat
+
+#begin GameModes/Kolben/Data/Pokemon/376.dat
+/copy:GameModes/Kolben/Data/Pokemon/376.dat
+
+#begin GameModes/Kolben/Data/Pokemon/376_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/376_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/377.dat
+/copy:GameModes/Kolben/Data/Pokemon/377.dat
+
+#begin GameModes/Kolben/Data/Pokemon/378.dat
+/copy:GameModes/Kolben/Data/Pokemon/378.dat
+
+#begin GameModes/Kolben/Data/Pokemon/379.dat
+/copy:GameModes/Kolben/Data/Pokemon/379.dat
+
+#begin GameModes/Kolben/Data/Pokemon/380.dat
+/copy:GameModes/Kolben/Data/Pokemon/380.dat
+
+#begin GameModes/Kolben/Data/Pokemon/380_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/380_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/381.dat
+/copy:GameModes/Kolben/Data/Pokemon/381.dat
+
+#begin GameModes/Kolben/Data/Pokemon/381_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/381_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/382.dat
+/copy:GameModes/Kolben/Data/Pokemon/382.dat
+
+#begin GameModes/Kolben/Data/Pokemon/382_primal.dat
+/copy:GameModes/Kolben/Data/Pokemon/382_primal.dat
+
+#begin GameModes/Kolben/Data/Pokemon/383.dat
+/copy:GameModes/Kolben/Data/Pokemon/383.dat
+
+#begin GameModes/Kolben/Data/Pokemon/383_primal.dat
+/copy:GameModes/Kolben/Data/Pokemon/383_primal.dat
+
+#begin GameModes/Kolben/Data/Pokemon/384.dat
+/copy:GameModes/Kolben/Data/Pokemon/384.dat
+
+#begin GameModes/Kolben/Data/Pokemon/384_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/384_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/385.dat
+/copy:GameModes/Kolben/Data/Pokemon/385.dat
+
+#begin GameModes/Kolben/Data/Pokemon/386.dat
+/copy:GameModes/Kolben/Data/Pokemon/386.dat
+
+#begin GameModes/Kolben/Data/Pokemon/386_attack.dat
+/copy:GameModes/Kolben/Data/Pokemon/386_attack.dat
+
+#begin GameModes/Kolben/Data/Pokemon/386_defense.dat
+/copy:GameModes/Kolben/Data/Pokemon/386_defense.dat
+
+#begin GameModes/Kolben/Data/Pokemon/386_speed.dat
+/copy:GameModes/Kolben/Data/Pokemon/386_speed.dat
+
+#begin GameModes/Kolben/Data/Pokemon/387.dat
+/copy:GameModes/Kolben/Data/Pokemon/387.dat
+
+#begin GameModes/Kolben/Data/Pokemon/388.dat
+/copy:GameModes/Kolben/Data/Pokemon/388.dat
+
+#begin GameModes/Kolben/Data/Pokemon/389.dat
+/copy:GameModes/Kolben/Data/Pokemon/389.dat
+
+#begin GameModes/Kolben/Data/Pokemon/390.dat
+/copy:GameModes/Kolben/Data/Pokemon/390.dat
+
+#begin GameModes/Kolben/Data/Pokemon/391.dat
+/copy:GameModes/Kolben/Data/Pokemon/391.dat
+
+#begin GameModes/Kolben/Data/Pokemon/392.dat
+/copy:GameModes/Kolben/Data/Pokemon/392.dat
+
+#begin GameModes/Kolben/Data/Pokemon/393.dat
+/copy:GameModes/Kolben/Data/Pokemon/393.dat
+
+#begin GameModes/Kolben/Data/Pokemon/394.dat
+/copy:GameModes/Kolben/Data/Pokemon/394.dat
+
+#begin GameModes/Kolben/Data/Pokemon/395.dat
+/copy:GameModes/Kolben/Data/Pokemon/395.dat
+
+#begin GameModes/Kolben/Data/Pokemon/396.dat
+/copy:GameModes/Kolben/Data/Pokemon/396.dat
+
+#begin GameModes/Kolben/Data/Pokemon/397.dat
+/copy:GameModes/Kolben/Data/Pokemon/397.dat
+
+#begin GameModes/Kolben/Data/Pokemon/398.dat
+/copy:GameModes/Kolben/Data/Pokemon/398.dat
+
+#begin GameModes/Kolben/Data/Pokemon/399.dat
+/copy:GameModes/Kolben/Data/Pokemon/399.dat
+
+#begin GameModes/Kolben/Data/Pokemon/400.dat
+/copy:GameModes/Kolben/Data/Pokemon/400.dat
+
+#begin GameModes/Kolben/Data/Pokemon/401.dat
+/copy:GameModes/Kolben/Data/Pokemon/401.dat
+
+#begin GameModes/Kolben/Data/Pokemon/402.dat
+/copy:GameModes/Kolben/Data/Pokemon/402.dat
+
+#begin GameModes/Kolben/Data/Pokemon/403.dat
+/copy:GameModes/Kolben/Data/Pokemon/403.dat
+
+#begin GameModes/Kolben/Data/Pokemon/404.dat
+/copy:GameModes/Kolben/Data/Pokemon/404.dat
+
+#begin GameModes/Kolben/Data/Pokemon/405.dat
+/copy:GameModes/Kolben/Data/Pokemon/405.dat
+
+#begin GameModes/Kolben/Data/Pokemon/406.dat
+/copy:GameModes/Kolben/Data/Pokemon/406.dat
+
+#begin GameModes/Kolben/Data/Pokemon/407.dat
+/copy:GameModes/Kolben/Data/Pokemon/407.dat
+
+#begin GameModes/Kolben/Data/Pokemon/408.dat
+/copy:GameModes/Kolben/Data/Pokemon/408.dat
+
+#begin GameModes/Kolben/Data/Pokemon/409.dat
+/copy:GameModes/Kolben/Data/Pokemon/409.dat
+
+#begin GameModes/Kolben/Data/Pokemon/410.dat
+/copy:GameModes/Kolben/Data/Pokemon/410.dat
+
+#begin GameModes/Kolben/Data/Pokemon/411.dat
+/copy:GameModes/Kolben/Data/Pokemon/411.dat
+
+#begin GameModes/Kolben/Data/Pokemon/412.dat
+/copy:GameModes/Kolben/Data/Pokemon/412.dat
+
+#begin GameModes/Kolben/Data/Pokemon/413.dat
+/copy:GameModes/Kolben/Data/Pokemon/413.dat
+
+#begin GameModes/Kolben/Data/Pokemon/413_sandy.dat
+/copy:GameModes/Kolben/Data/Pokemon/413_sandy.dat
+
+#begin GameModes/Kolben/Data/Pokemon/413_trash.dat
+/copy:GameModes/Kolben/Data/Pokemon/413_trash.dat
+
+#begin GameModes/Kolben/Data/Pokemon/414.dat
+/copy:GameModes/Kolben/Data/Pokemon/414.dat
+
+#begin GameModes/Kolben/Data/Pokemon/415.dat
+/copy:GameModes/Kolben/Data/Pokemon/415.dat
+
+#begin GameModes/Kolben/Data/Pokemon/416.dat
+/copy:GameModes/Kolben/Data/Pokemon/416.dat
+
+#begin GameModes/Kolben/Data/Pokemon/417.dat
+/copy:GameModes/Kolben/Data/Pokemon/417.dat
+
+#begin GameModes/Kolben/Data/Pokemon/418.dat
+/copy:GameModes/Kolben/Data/Pokemon/418.dat
+
+#begin GameModes/Kolben/Data/Pokemon/419.dat
+/copy:GameModes/Kolben/Data/Pokemon/419.dat
+
+#begin GameModes/Kolben/Data/Pokemon/420.dat
+/copy:GameModes/Kolben/Data/Pokemon/420.dat
+
+#begin GameModes/Kolben/Data/Pokemon/421.dat
+/copy:GameModes/Kolben/Data/Pokemon/421.dat
+
+#begin GameModes/Kolben/Data/Pokemon/422.dat
+/copy:GameModes/Kolben/Data/Pokemon/422.dat
+
+#begin GameModes/Kolben/Data/Pokemon/423.dat
+/copy:GameModes/Kolben/Data/Pokemon/423.dat
+
+#begin GameModes/Kolben/Data/Pokemon/424.dat
+/copy:GameModes/Kolben/Data/Pokemon/424.dat
+
+#begin GameModes/Kolben/Data/Pokemon/425.dat
+/copy:GameModes/Kolben/Data/Pokemon/425.dat
+
+#begin GameModes/Kolben/Data/Pokemon/426.dat
+/copy:GameModes/Kolben/Data/Pokemon/426.dat
+
+#begin GameModes/Kolben/Data/Pokemon/427.dat
+/copy:GameModes/Kolben/Data/Pokemon/427.dat
+
+#begin GameModes/Kolben/Data/Pokemon/428.dat
+/copy:GameModes/Kolben/Data/Pokemon/428.dat
+
+#begin GameModes/Kolben/Data/Pokemon/428_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/428_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/429.dat
+/copy:GameModes/Kolben/Data/Pokemon/429.dat
+
+#begin GameModes/Kolben/Data/Pokemon/430.dat
+/copy:GameModes/Kolben/Data/Pokemon/430.dat
+
+#begin GameModes/Kolben/Data/Pokemon/431.dat
+/copy:GameModes/Kolben/Data/Pokemon/431.dat
+
+#begin GameModes/Kolben/Data/Pokemon/432.dat
+/copy:GameModes/Kolben/Data/Pokemon/432.dat
+
+#begin GameModes/Kolben/Data/Pokemon/433.dat
+/copy:GameModes/Kolben/Data/Pokemon/433.dat
+
+#begin GameModes/Kolben/Data/Pokemon/434.dat
+/copy:GameModes/Kolben/Data/Pokemon/434.dat
+
+#begin GameModes/Kolben/Data/Pokemon/435.dat
+/copy:GameModes/Kolben/Data/Pokemon/435.dat
+
+#begin GameModes/Kolben/Data/Pokemon/436.dat
+/copy:GameModes/Kolben/Data/Pokemon/436.dat
+
+#begin GameModes/Kolben/Data/Pokemon/437.dat
+/copy:GameModes/Kolben/Data/Pokemon/437.dat
+
+#begin GameModes/Kolben/Data/Pokemon/438.dat
+/copy:GameModes/Kolben/Data/Pokemon/438.dat
+
+#begin GameModes/Kolben/Data/Pokemon/439.dat
+/copy:GameModes/Kolben/Data/Pokemon/439.dat
+
+#begin GameModes/Kolben/Data/Pokemon/440.dat
+/copy:GameModes/Kolben/Data/Pokemon/440.dat
+
+#begin GameModes/Kolben/Data/Pokemon/441.dat
+/copy:GameModes/Kolben/Data/Pokemon/441.dat
+
+#begin GameModes/Kolben/Data/Pokemon/442.dat
+/copy:GameModes/Kolben/Data/Pokemon/442.dat
+
+#begin GameModes/Kolben/Data/Pokemon/443.dat
+/copy:GameModes/Kolben/Data/Pokemon/443.dat
+
+#begin GameModes/Kolben/Data/Pokemon/444.dat
+/copy:GameModes/Kolben/Data/Pokemon/444.dat
+
+#begin GameModes/Kolben/Data/Pokemon/445.dat
+/copy:GameModes/Kolben/Data/Pokemon/445.dat
+
+#begin GameModes/Kolben/Data/Pokemon/445_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/445_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/446.dat
+/copy:GameModes/Kolben/Data/Pokemon/446.dat
+
+#begin GameModes/Kolben/Data/Pokemon/447.dat
+/copy:GameModes/Kolben/Data/Pokemon/447.dat
+
+#begin GameModes/Kolben/Data/Pokemon/448.dat
+/copy:GameModes/Kolben/Data/Pokemon/448.dat
+
+#begin GameModes/Kolben/Data/Pokemon/448_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/448_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/449.dat
+/copy:GameModes/Kolben/Data/Pokemon/449.dat
+
+#begin GameModes/Kolben/Data/Pokemon/450.dat
+/copy:GameModes/Kolben/Data/Pokemon/450.dat
+
+#begin GameModes/Kolben/Data/Pokemon/451.dat
+/copy:GameModes/Kolben/Data/Pokemon/451.dat
+
+#begin GameModes/Kolben/Data/Pokemon/452.dat
+/copy:GameModes/Kolben/Data/Pokemon/452.dat
+
+#begin GameModes/Kolben/Data/Pokemon/453.dat
+/copy:GameModes/Kolben/Data/Pokemon/453.dat
+
+#begin GameModes/Kolben/Data/Pokemon/454.dat
+/copy:GameModes/Kolben/Data/Pokemon/454.dat
+
+#begin GameModes/Kolben/Data/Pokemon/455.dat
+/copy:GameModes/Kolben/Data/Pokemon/455.dat
+
+#begin GameModes/Kolben/Data/Pokemon/456.dat
+/copy:GameModes/Kolben/Data/Pokemon/456.dat
+
+#begin GameModes/Kolben/Data/Pokemon/457.dat
+/copy:GameModes/Kolben/Data/Pokemon/457.dat
+
+#begin GameModes/Kolben/Data/Pokemon/458.dat
+/copy:GameModes/Kolben/Data/Pokemon/458.dat
+
+#begin GameModes/Kolben/Data/Pokemon/459.dat
+/copy:GameModes/Kolben/Data/Pokemon/459.dat
+
+#begin GameModes/Kolben/Data/Pokemon/460.dat
+/copy:GameModes/Kolben/Data/Pokemon/460.dat
+
+#begin GameModes/Kolben/Data/Pokemon/460_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/460_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/461.dat
+/copy:GameModes/Kolben/Data/Pokemon/461.dat
+
+#begin GameModes/Kolben/Data/Pokemon/462.dat
+/copy:GameModes/Kolben/Data/Pokemon/462.dat
+
+#begin GameModes/Kolben/Data/Pokemon/463.dat
+/copy:GameModes/Kolben/Data/Pokemon/463.dat
+
+#begin GameModes/Kolben/Data/Pokemon/464.dat
+/copy:GameModes/Kolben/Data/Pokemon/464.dat
+
+#begin GameModes/Kolben/Data/Pokemon/465.dat
+/copy:GameModes/Kolben/Data/Pokemon/465.dat
+
+#begin GameModes/Kolben/Data/Pokemon/466.dat
+/copy:GameModes/Kolben/Data/Pokemon/466.dat
+
+#begin GameModes/Kolben/Data/Pokemon/467.dat
+/copy:GameModes/Kolben/Data/Pokemon/467.dat
+
+#begin GameModes/Kolben/Data/Pokemon/468.dat
+/copy:GameModes/Kolben/Data/Pokemon/468.dat
+
+#begin GameModes/Kolben/Data/Pokemon/469.dat
+/copy:GameModes/Kolben/Data/Pokemon/469.dat
+
+#begin GameModes/Kolben/Data/Pokemon/470.dat
+/copy:GameModes/Kolben/Data/Pokemon/470.dat
+
+#begin GameModes/Kolben/Data/Pokemon/471.dat
+/copy:GameModes/Kolben/Data/Pokemon/471.dat
+
+#begin GameModes/Kolben/Data/Pokemon/472.dat
+/copy:GameModes/Kolben/Data/Pokemon/472.dat
+
+#begin GameModes/Kolben/Data/Pokemon/473.dat
+/copy:GameModes/Kolben/Data/Pokemon/473.dat
+
+#begin GameModes/Kolben/Data/Pokemon/474.dat
+/copy:GameModes/Kolben/Data/Pokemon/474.dat
+
+#begin GameModes/Kolben/Data/Pokemon/475.dat
+/copy:GameModes/Kolben/Data/Pokemon/475.dat
+
+#begin GameModes/Kolben/Data/Pokemon/475_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/475_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/476.dat
+/copy:GameModes/Kolben/Data/Pokemon/476.dat
+
+#begin GameModes/Kolben/Data/Pokemon/477.dat
+/copy:GameModes/Kolben/Data/Pokemon/477.dat
+
+#begin GameModes/Kolben/Data/Pokemon/478.dat
+/copy:GameModes/Kolben/Data/Pokemon/478.dat
+
+#begin GameModes/Kolben/Data/Pokemon/479.dat
+/copy:GameModes/Kolben/Data/Pokemon/479.dat
+
+#begin GameModes/Kolben/Data/Pokemon/479_fan.dat
+/copy:GameModes/Kolben/Data/Pokemon/479_fan.dat
+
+#begin GameModes/Kolben/Data/Pokemon/479_frost.dat
+/copy:GameModes/Kolben/Data/Pokemon/479_frost.dat
+
+#begin GameModes/Kolben/Data/Pokemon/479_heat.dat
+/copy:GameModes/Kolben/Data/Pokemon/479_heat.dat
+
+#begin GameModes/Kolben/Data/Pokemon/479_mow.dat
+/copy:GameModes/Kolben/Data/Pokemon/479_mow.dat
+
+#begin GameModes/Kolben/Data/Pokemon/479_wash.dat
+/copy:GameModes/Kolben/Data/Pokemon/479_wash.dat
+
+#begin GameModes/Kolben/Data/Pokemon/480.dat
+/copy:GameModes/Kolben/Data/Pokemon/480.dat
+
+#begin GameModes/Kolben/Data/Pokemon/481.dat
+/copy:GameModes/Kolben/Data/Pokemon/481.dat
+
+#begin GameModes/Kolben/Data/Pokemon/482.dat
+/copy:GameModes/Kolben/Data/Pokemon/482.dat
+
+#begin GameModes/Kolben/Data/Pokemon/483.dat
+/copy:GameModes/Kolben/Data/Pokemon/483.dat
+
+#begin GameModes/Kolben/Data/Pokemon/483_primal.dat
+/copy:GameModes/Kolben/Data/Pokemon/483_primal.dat
+
+#begin GameModes/Kolben/Data/Pokemon/484.dat
+/copy:GameModes/Kolben/Data/Pokemon/484.dat
+
+#begin GameModes/Kolben/Data/Pokemon/485.dat
+/copy:GameModes/Kolben/Data/Pokemon/485.dat
+
+#begin GameModes/Kolben/Data/Pokemon/486.dat
+/copy:GameModes/Kolben/Data/Pokemon/486.dat
+
+#begin GameModes/Kolben/Data/Pokemon/487.dat
+/copy:GameModes/Kolben/Data/Pokemon/487.dat
+
+#begin GameModes/Kolben/Data/Pokemon/487_origin.dat
+/copy:GameModes/Kolben/Data/Pokemon/487_origin.dat
+
+#begin GameModes/Kolben/Data/Pokemon/488.dat
+/copy:GameModes/Kolben/Data/Pokemon/488.dat
+
+#begin GameModes/Kolben/Data/Pokemon/489.dat
+/copy:GameModes/Kolben/Data/Pokemon/489.dat
+
+#begin GameModes/Kolben/Data/Pokemon/490.dat
+/copy:GameModes/Kolben/Data/Pokemon/490.dat
+
+#begin GameModes/Kolben/Data/Pokemon/491.dat
+/copy:GameModes/Kolben/Data/Pokemon/491.dat
+
+#begin GameModes/Kolben/Data/Pokemon/492.dat
+/copy:GameModes/Kolben/Data/Pokemon/492.dat
+
+#begin GameModes/Kolben/Data/Pokemon/492_sky.dat
+/copy:GameModes/Kolben/Data/Pokemon/492_sky.dat
+
+#begin GameModes/Kolben/Data/Pokemon/493.dat
+/copy:GameModes/Kolben/Data/Pokemon/493.dat
+
+#begin GameModes/Kolben/Data/Pokemon/494.dat
+/copy:GameModes/Kolben/Data/Pokemon/494.dat
+
+#begin GameModes/Kolben/Data/Pokemon/495.dat
+/copy:GameModes/Kolben/Data/Pokemon/495.dat
+
+#begin GameModes/Kolben/Data/Pokemon/496.dat
+/copy:GameModes/Kolben/Data/Pokemon/496.dat
+
+#begin GameModes/Kolben/Data/Pokemon/497.dat
+/copy:GameModes/Kolben/Data/Pokemon/497.dat
+
+#begin GameModes/Kolben/Data/Pokemon/498.dat
+/copy:GameModes/Kolben/Data/Pokemon/498.dat
+
+#begin GameModes/Kolben/Data/Pokemon/499.dat
+/copy:GameModes/Kolben/Data/Pokemon/499.dat
+
+#begin GameModes/Kolben/Data/Pokemon/500.dat
+/copy:GameModes/Kolben/Data/Pokemon/500.dat
+
+#begin GameModes/Kolben/Data/Pokemon/501.dat
+/copy:GameModes/Kolben/Data/Pokemon/501.dat
+
+#begin GameModes/Kolben/Data/Pokemon/502.dat
+/copy:GameModes/Kolben/Data/Pokemon/502.dat
+
+#begin GameModes/Kolben/Data/Pokemon/503.dat
+/copy:GameModes/Kolben/Data/Pokemon/503.dat
+
+#begin GameModes/Kolben/Data/Pokemon/504.dat
+/copy:GameModes/Kolben/Data/Pokemon/504.dat
+
+#begin GameModes/Kolben/Data/Pokemon/505.dat
+/copy:GameModes/Kolben/Data/Pokemon/505.dat
+
+#begin GameModes/Kolben/Data/Pokemon/506.dat
+/copy:GameModes/Kolben/Data/Pokemon/506.dat
+
+#begin GameModes/Kolben/Data/Pokemon/507.dat
+/copy:GameModes/Kolben/Data/Pokemon/507.dat
+
+#begin GameModes/Kolben/Data/Pokemon/508.dat
+/copy:GameModes/Kolben/Data/Pokemon/508.dat
+
+#begin GameModes/Kolben/Data/Pokemon/509.dat
+/copy:GameModes/Kolben/Data/Pokemon/509.dat
+
+#begin GameModes/Kolben/Data/Pokemon/510.dat
+/copy:GameModes/Kolben/Data/Pokemon/510.dat
+
+#begin GameModes/Kolben/Data/Pokemon/511.dat
+/copy:GameModes/Kolben/Data/Pokemon/511.dat
+
+#begin GameModes/Kolben/Data/Pokemon/512.dat
+/copy:GameModes/Kolben/Data/Pokemon/512.dat
+
+#begin GameModes/Kolben/Data/Pokemon/513.dat
+/copy:GameModes/Kolben/Data/Pokemon/513.dat
+
+#begin GameModes/Kolben/Data/Pokemon/514.dat
+/copy:GameModes/Kolben/Data/Pokemon/514.dat
+
+#begin GameModes/Kolben/Data/Pokemon/515.dat
+/copy:GameModes/Kolben/Data/Pokemon/515.dat
+
+#begin GameModes/Kolben/Data/Pokemon/516.dat
+/copy:GameModes/Kolben/Data/Pokemon/516.dat
+
+#begin GameModes/Kolben/Data/Pokemon/517.dat
+/copy:GameModes/Kolben/Data/Pokemon/517.dat
+
+#begin GameModes/Kolben/Data/Pokemon/518.dat
+/copy:GameModes/Kolben/Data/Pokemon/518.dat
+
+#begin GameModes/Kolben/Data/Pokemon/519.dat
+/copy:GameModes/Kolben/Data/Pokemon/519.dat
+
+#begin GameModes/Kolben/Data/Pokemon/520.dat
+/copy:GameModes/Kolben/Data/Pokemon/520.dat
+
+#begin GameModes/Kolben/Data/Pokemon/521.dat
+/copy:GameModes/Kolben/Data/Pokemon/521.dat
+
+#begin GameModes/Kolben/Data/Pokemon/522.dat
+/copy:GameModes/Kolben/Data/Pokemon/522.dat
+
+#begin GameModes/Kolben/Data/Pokemon/523.dat
+/copy:GameModes/Kolben/Data/Pokemon/523.dat
+
+#begin GameModes/Kolben/Data/Pokemon/524.dat
+/copy:GameModes/Kolben/Data/Pokemon/524.dat
+
+#begin GameModes/Kolben/Data/Pokemon/525.dat
+/copy:GameModes/Kolben/Data/Pokemon/525.dat
+
+#begin GameModes/Kolben/Data/Pokemon/526.dat
+/copy:GameModes/Kolben/Data/Pokemon/526.dat
+
+#begin GameModes/Kolben/Data/Pokemon/527.dat
+/copy:GameModes/Kolben/Data/Pokemon/527.dat
+
+#begin GameModes/Kolben/Data/Pokemon/528.dat
+/copy:GameModes/Kolben/Data/Pokemon/528.dat
+
+#begin GameModes/Kolben/Data/Pokemon/529.dat
+/copy:GameModes/Kolben/Data/Pokemon/529.dat
+
+#begin GameModes/Kolben/Data/Pokemon/530.dat
+/copy:GameModes/Kolben/Data/Pokemon/530.dat
+
+#begin GameModes/Kolben/Data/Pokemon/531.dat
+/copy:GameModes/Kolben/Data/Pokemon/531.dat
+
+#begin GameModes/Kolben/Data/Pokemon/531_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/531_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/532.dat
+/copy:GameModes/Kolben/Data/Pokemon/532.dat
+
+#begin GameModes/Kolben/Data/Pokemon/533.dat
+/copy:GameModes/Kolben/Data/Pokemon/533.dat
+
+#begin GameModes/Kolben/Data/Pokemon/534.dat
+/copy:GameModes/Kolben/Data/Pokemon/534.dat
+
+#begin GameModes/Kolben/Data/Pokemon/535.dat
+/copy:GameModes/Kolben/Data/Pokemon/535.dat
+
+#begin GameModes/Kolben/Data/Pokemon/536.dat
+/copy:GameModes/Kolben/Data/Pokemon/536.dat
+
+#begin GameModes/Kolben/Data/Pokemon/537.dat
+/copy:GameModes/Kolben/Data/Pokemon/537.dat
+
+#begin GameModes/Kolben/Data/Pokemon/538.dat
+/copy:GameModes/Kolben/Data/Pokemon/538.dat
+
+#begin GameModes/Kolben/Data/Pokemon/539.dat
+/copy:GameModes/Kolben/Data/Pokemon/539.dat
+
+#begin GameModes/Kolben/Data/Pokemon/540.dat
+/copy:GameModes/Kolben/Data/Pokemon/540.dat
+
+#begin GameModes/Kolben/Data/Pokemon/541.dat
+/copy:GameModes/Kolben/Data/Pokemon/541.dat
+
+#begin GameModes/Kolben/Data/Pokemon/542.dat
+/copy:GameModes/Kolben/Data/Pokemon/542.dat
+
+#begin GameModes/Kolben/Data/Pokemon/543.dat
+/copy:GameModes/Kolben/Data/Pokemon/543.dat
+
+#begin GameModes/Kolben/Data/Pokemon/544.dat
+/copy:GameModes/Kolben/Data/Pokemon/544.dat
+
+#begin GameModes/Kolben/Data/Pokemon/545.dat
+/copy:GameModes/Kolben/Data/Pokemon/545.dat
+
+#begin GameModes/Kolben/Data/Pokemon/546.dat
+/copy:GameModes/Kolben/Data/Pokemon/546.dat
+
+#begin GameModes/Kolben/Data/Pokemon/547.dat
+/copy:GameModes/Kolben/Data/Pokemon/547.dat
+
+#begin GameModes/Kolben/Data/Pokemon/548.dat
+/copy:GameModes/Kolben/Data/Pokemon/548.dat
+
+#begin GameModes/Kolben/Data/Pokemon/549.dat
+/copy:GameModes/Kolben/Data/Pokemon/549.dat
+
+#begin GameModes/Kolben/Data/Pokemon/550.dat
+/copy:GameModes/Kolben/Data/Pokemon/550.dat
+
+#begin GameModes/Kolben/Data/Pokemon/550_blue.dat
+/copy:GameModes/Kolben/Data/Pokemon/550_blue.dat
+
+#begin GameModes/Kolben/Data/Pokemon/551.dat
+/copy:GameModes/Kolben/Data/Pokemon/551.dat
+
+#begin GameModes/Kolben/Data/Pokemon/552.dat
+/copy:GameModes/Kolben/Data/Pokemon/552.dat
+
+#begin GameModes/Kolben/Data/Pokemon/553.dat
+/copy:GameModes/Kolben/Data/Pokemon/553.dat
+
+#begin GameModes/Kolben/Data/Pokemon/554.dat
+/copy:GameModes/Kolben/Data/Pokemon/554.dat
+
+#begin GameModes/Kolben/Data/Pokemon/555.dat
+/copy:GameModes/Kolben/Data/Pokemon/555.dat
+
+#begin GameModes/Kolben/Data/Pokemon/555_zen.dat
+/copy:GameModes/Kolben/Data/Pokemon/555_zen.dat
+
+#begin GameModes/Kolben/Data/Pokemon/556.dat
+/copy:GameModes/Kolben/Data/Pokemon/556.dat
+
+#begin GameModes/Kolben/Data/Pokemon/557.dat
+/copy:GameModes/Kolben/Data/Pokemon/557.dat
+
+#begin GameModes/Kolben/Data/Pokemon/558.dat
+/copy:GameModes/Kolben/Data/Pokemon/558.dat
+
+#begin GameModes/Kolben/Data/Pokemon/559.dat
+/copy:GameModes/Kolben/Data/Pokemon/559.dat
+
+#begin GameModes/Kolben/Data/Pokemon/560.dat
+/copy:GameModes/Kolben/Data/Pokemon/560.dat
+
+#begin GameModes/Kolben/Data/Pokemon/561.dat
+/copy:GameModes/Kolben/Data/Pokemon/561.dat
+
+#begin GameModes/Kolben/Data/Pokemon/562.dat
+/copy:GameModes/Kolben/Data/Pokemon/562.dat
+
+#begin GameModes/Kolben/Data/Pokemon/563.dat
+/copy:GameModes/Kolben/Data/Pokemon/563.dat
+
+#begin GameModes/Kolben/Data/Pokemon/564.dat
+/copy:GameModes/Kolben/Data/Pokemon/564.dat
+
+#begin GameModes/Kolben/Data/Pokemon/565.dat
+/copy:GameModes/Kolben/Data/Pokemon/565.dat
+
+#begin GameModes/Kolben/Data/Pokemon/566.dat
+/copy:GameModes/Kolben/Data/Pokemon/566.dat
+
+#begin GameModes/Kolben/Data/Pokemon/567.dat
+/copy:GameModes/Kolben/Data/Pokemon/567.dat
+
+#begin GameModes/Kolben/Data/Pokemon/568.dat
+/copy:GameModes/Kolben/Data/Pokemon/568.dat
+
+#begin GameModes/Kolben/Data/Pokemon/569.dat
+/copy:GameModes/Kolben/Data/Pokemon/569.dat
+
+#begin GameModes/Kolben/Data/Pokemon/570.dat
+/copy:GameModes/Kolben/Data/Pokemon/570.dat
+
+#begin GameModes/Kolben/Data/Pokemon/571.dat
+/copy:GameModes/Kolben/Data/Pokemon/571.dat
+
+#begin GameModes/Kolben/Data/Pokemon/572.dat
+/copy:GameModes/Kolben/Data/Pokemon/572.dat
+
+#begin GameModes/Kolben/Data/Pokemon/573.dat
+/copy:GameModes/Kolben/Data/Pokemon/573.dat
+
+#begin GameModes/Kolben/Data/Pokemon/574.dat
+/copy:GameModes/Kolben/Data/Pokemon/574.dat
+
+#begin GameModes/Kolben/Data/Pokemon/575.dat
+/copy:GameModes/Kolben/Data/Pokemon/575.dat
+
+#begin GameModes/Kolben/Data/Pokemon/576.dat
+/copy:GameModes/Kolben/Data/Pokemon/576.dat
+
+#begin GameModes/Kolben/Data/Pokemon/577.dat
+/copy:GameModes/Kolben/Data/Pokemon/577.dat
+
+#begin GameModes/Kolben/Data/Pokemon/578.dat
+/copy:GameModes/Kolben/Data/Pokemon/578.dat
+
+#begin GameModes/Kolben/Data/Pokemon/579.dat
+/copy:GameModes/Kolben/Data/Pokemon/579.dat
+
+#begin GameModes/Kolben/Data/Pokemon/580.dat
+/copy:GameModes/Kolben/Data/Pokemon/580.dat
+
+#begin GameModes/Kolben/Data/Pokemon/581.dat
+/copy:GameModes/Kolben/Data/Pokemon/581.dat
+
+#begin GameModes/Kolben/Data/Pokemon/582.dat
+/copy:GameModes/Kolben/Data/Pokemon/582.dat
+
+#begin GameModes/Kolben/Data/Pokemon/583.dat
+/copy:GameModes/Kolben/Data/Pokemon/583.dat
+
+#begin GameModes/Kolben/Data/Pokemon/584.dat
+/copy:GameModes/Kolben/Data/Pokemon/584.dat
+
+#begin GameModes/Kolben/Data/Pokemon/585.dat
+/copy:GameModes/Kolben/Data/Pokemon/585.dat
+
+#begin GameModes/Kolben/Data/Pokemon/586.dat
+/copy:GameModes/Kolben/Data/Pokemon/586.dat
+
+#begin GameModes/Kolben/Data/Pokemon/587.dat
+/copy:GameModes/Kolben/Data/Pokemon/587.dat
+
+#begin GameModes/Kolben/Data/Pokemon/588.dat
+/copy:GameModes/Kolben/Data/Pokemon/588.dat
+
+#begin GameModes/Kolben/Data/Pokemon/589.dat
+/copy:GameModes/Kolben/Data/Pokemon/589.dat
+
+#begin GameModes/Kolben/Data/Pokemon/590.dat
+/copy:GameModes/Kolben/Data/Pokemon/590.dat
+
+#begin GameModes/Kolben/Data/Pokemon/591.dat
+/copy:GameModes/Kolben/Data/Pokemon/591.dat
+
+#begin GameModes/Kolben/Data/Pokemon/592.dat
+/copy:GameModes/Kolben/Data/Pokemon/592.dat
+
+#begin GameModes/Kolben/Data/Pokemon/593.dat
+/copy:GameModes/Kolben/Data/Pokemon/593.dat
+
+#begin GameModes/Kolben/Data/Pokemon/594.dat
+/copy:GameModes/Kolben/Data/Pokemon/594.dat
+
+#begin GameModes/Kolben/Data/Pokemon/595.dat
+/copy:GameModes/Kolben/Data/Pokemon/595.dat
+
+#begin GameModes/Kolben/Data/Pokemon/596.dat
+/copy:GameModes/Kolben/Data/Pokemon/596.dat
+
+#begin GameModes/Kolben/Data/Pokemon/597.dat
+/copy:GameModes/Kolben/Data/Pokemon/597.dat
+
+#begin GameModes/Kolben/Data/Pokemon/598.dat
+/copy:GameModes/Kolben/Data/Pokemon/598.dat
+
+#begin GameModes/Kolben/Data/Pokemon/599.dat
+/copy:GameModes/Kolben/Data/Pokemon/599.dat
+
+#begin GameModes/Kolben/Data/Pokemon/600.dat
+/copy:GameModes/Kolben/Data/Pokemon/600.dat
+
+#begin GameModes/Kolben/Data/Pokemon/601.dat
+/copy:GameModes/Kolben/Data/Pokemon/601.dat
+
+#begin GameModes/Kolben/Data/Pokemon/602.dat
+/copy:GameModes/Kolben/Data/Pokemon/602.dat
+
+#begin GameModes/Kolben/Data/Pokemon/603.dat
+/copy:GameModes/Kolben/Data/Pokemon/603.dat
+
+#begin GameModes/Kolben/Data/Pokemon/604.dat
+/copy:GameModes/Kolben/Data/Pokemon/604.dat
+
+#begin GameModes/Kolben/Data/Pokemon/605.dat
+/copy:GameModes/Kolben/Data/Pokemon/605.dat
+
+#begin GameModes/Kolben/Data/Pokemon/606.dat
+/copy:GameModes/Kolben/Data/Pokemon/606.dat
+
+#begin GameModes/Kolben/Data/Pokemon/607.dat
+/copy:GameModes/Kolben/Data/Pokemon/607.dat
+
+#begin GameModes/Kolben/Data/Pokemon/608.dat
+/copy:GameModes/Kolben/Data/Pokemon/608.dat
+
+#begin GameModes/Kolben/Data/Pokemon/609.dat
+/copy:GameModes/Kolben/Data/Pokemon/609.dat
+
+#begin GameModes/Kolben/Data/Pokemon/610.dat
+/copy:GameModes/Kolben/Data/Pokemon/610.dat
+
+#begin GameModes/Kolben/Data/Pokemon/611.dat
+/copy:GameModes/Kolben/Data/Pokemon/611.dat
+
+#begin GameModes/Kolben/Data/Pokemon/612.dat
+/copy:GameModes/Kolben/Data/Pokemon/612.dat
+
+#begin GameModes/Kolben/Data/Pokemon/613.dat
+/copy:GameModes/Kolben/Data/Pokemon/613.dat
+
+#begin GameModes/Kolben/Data/Pokemon/614.dat
+/copy:GameModes/Kolben/Data/Pokemon/614.dat
+
+#begin GameModes/Kolben/Data/Pokemon/615.dat
+/copy:GameModes/Kolben/Data/Pokemon/615.dat
+
+#begin GameModes/Kolben/Data/Pokemon/616.dat
+/copy:GameModes/Kolben/Data/Pokemon/616.dat
+
+#begin GameModes/Kolben/Data/Pokemon/617.dat
+/copy:GameModes/Kolben/Data/Pokemon/617.dat
+
+#begin GameModes/Kolben/Data/Pokemon/618.dat
+/copy:GameModes/Kolben/Data/Pokemon/618.dat
+
+#begin GameModes/Kolben/Data/Pokemon/619.dat
+/copy:GameModes/Kolben/Data/Pokemon/619.dat
+
+#begin GameModes/Kolben/Data/Pokemon/620.dat
+/copy:GameModes/Kolben/Data/Pokemon/620.dat
+
+#begin GameModes/Kolben/Data/Pokemon/621.dat
+/copy:GameModes/Kolben/Data/Pokemon/621.dat
+
+#begin GameModes/Kolben/Data/Pokemon/622.dat
+/copy:GameModes/Kolben/Data/Pokemon/622.dat
+
+#begin GameModes/Kolben/Data/Pokemon/623.dat
+/copy:GameModes/Kolben/Data/Pokemon/623.dat
+
+#begin GameModes/Kolben/Data/Pokemon/624.dat
+/copy:GameModes/Kolben/Data/Pokemon/624.dat
+
+#begin GameModes/Kolben/Data/Pokemon/625.dat
+/copy:GameModes/Kolben/Data/Pokemon/625.dat
+
+#begin GameModes/Kolben/Data/Pokemon/626.dat
+/copy:GameModes/Kolben/Data/Pokemon/626.dat
+
+#begin GameModes/Kolben/Data/Pokemon/627.dat
+/copy:GameModes/Kolben/Data/Pokemon/627.dat
+
+#begin GameModes/Kolben/Data/Pokemon/628.dat
+/copy:GameModes/Kolben/Data/Pokemon/628.dat
+
+#begin GameModes/Kolben/Data/Pokemon/629.dat
+/copy:GameModes/Kolben/Data/Pokemon/629.dat
+
+#begin GameModes/Kolben/Data/Pokemon/630.dat
+/copy:GameModes/Kolben/Data/Pokemon/630.dat
+
+#begin GameModes/Kolben/Data/Pokemon/631.dat
+/copy:GameModes/Kolben/Data/Pokemon/631.dat
+
+#begin GameModes/Kolben/Data/Pokemon/632.dat
+/copy:GameModes/Kolben/Data/Pokemon/632.dat
+
+#begin GameModes/Kolben/Data/Pokemon/633.dat
+/copy:GameModes/Kolben/Data/Pokemon/633.dat
+
+#begin GameModes/Kolben/Data/Pokemon/634.dat
+/copy:GameModes/Kolben/Data/Pokemon/634.dat
+
+#begin GameModes/Kolben/Data/Pokemon/635.dat
+/copy:GameModes/Kolben/Data/Pokemon/635.dat
+
+#begin GameModes/Kolben/Data/Pokemon/636.dat
+/copy:GameModes/Kolben/Data/Pokemon/636.dat
+
+#begin GameModes/Kolben/Data/Pokemon/637.dat
+/copy:GameModes/Kolben/Data/Pokemon/637.dat
+
+#begin GameModes/Kolben/Data/Pokemon/638.dat
+/copy:GameModes/Kolben/Data/Pokemon/638.dat
+
+#begin GameModes/Kolben/Data/Pokemon/639.dat
+/copy:GameModes/Kolben/Data/Pokemon/639.dat
+
+#begin GameModes/Kolben/Data/Pokemon/640.dat
+/copy:GameModes/Kolben/Data/Pokemon/640.dat
+
+#begin GameModes/Kolben/Data/Pokemon/641.dat
+/copy:GameModes/Kolben/Data/Pokemon/641.dat
+
+#begin GameModes/Kolben/Data/Pokemon/641_therian.dat
+/copy:GameModes/Kolben/Data/Pokemon/641_therian.dat
+
+#begin GameModes/Kolben/Data/Pokemon/642.dat
+/copy:GameModes/Kolben/Data/Pokemon/642.dat
+
+#begin GameModes/Kolben/Data/Pokemon/642_therian.dat
+/copy:GameModes/Kolben/Data/Pokemon/642_therian.dat
+
+#begin GameModes/Kolben/Data/Pokemon/643.dat
+/copy:GameModes/Kolben/Data/Pokemon/643.dat
+
+#begin GameModes/Kolben/Data/Pokemon/644.dat
+/copy:GameModes/Kolben/Data/Pokemon/644.dat
+
+#begin GameModes/Kolben/Data/Pokemon/645.dat
+/copy:GameModes/Kolben/Data/Pokemon/645.dat
+
+#begin GameModes/Kolben/Data/Pokemon/645_therian.dat
+/copy:GameModes/Kolben/Data/Pokemon/645_therian.dat
+
+#begin GameModes/Kolben/Data/Pokemon/646.dat
+/copy:GameModes/Kolben/Data/Pokemon/646.dat
+
+#begin GameModes/Kolben/Data/Pokemon/646_black.dat
+/copy:GameModes/Kolben/Data/Pokemon/646_black.dat
+
+#begin GameModes/Kolben/Data/Pokemon/646_white.dat
+/copy:GameModes/Kolben/Data/Pokemon/646_white.dat
+
+#begin GameModes/Kolben/Data/Pokemon/647.dat
+/copy:GameModes/Kolben/Data/Pokemon/647.dat
+
+#begin GameModes/Kolben/Data/Pokemon/648.dat
+/copy:GameModes/Kolben/Data/Pokemon/648.dat
+
+#begin GameModes/Kolben/Data/Pokemon/648_pirouette.dat
+/copy:GameModes/Kolben/Data/Pokemon/648_pirouette.dat
+
+#begin GameModes/Kolben/Data/Pokemon/649.dat
+/copy:GameModes/Kolben/Data/Pokemon/649.dat
+
+#begin GameModes/Kolben/Data/Pokemon/650.dat
+/copy:GameModes/Kolben/Data/Pokemon/650.dat
+
+#begin GameModes/Kolben/Data/Pokemon/651.dat
+/copy:GameModes/Kolben/Data/Pokemon/651.dat
+
+#begin GameModes/Kolben/Data/Pokemon/652.dat
+/copy:GameModes/Kolben/Data/Pokemon/652.dat
+
+#begin GameModes/Kolben/Data/Pokemon/653.dat
+/copy:GameModes/Kolben/Data/Pokemon/653.dat
+
+#begin GameModes/Kolben/Data/Pokemon/654.dat
+/copy:GameModes/Kolben/Data/Pokemon/654.dat
+
+#begin GameModes/Kolben/Data/Pokemon/655.dat
+/copy:GameModes/Kolben/Data/Pokemon/655.dat
+
+#begin GameModes/Kolben/Data/Pokemon/656.dat
+/copy:GameModes/Kolben/Data/Pokemon/656.dat
+
+#begin GameModes/Kolben/Data/Pokemon/657.dat
+/copy:GameModes/Kolben/Data/Pokemon/657.dat
+
+#begin GameModes/Kolben/Data/Pokemon/658.dat
+/copy:GameModes/Kolben/Data/Pokemon/658.dat
+
+#begin GameModes/Kolben/Data/Pokemon/659.dat
+/copy:GameModes/Kolben/Data/Pokemon/659.dat
+
+#begin GameModes/Kolben/Data/Pokemon/660.dat
+/copy:GameModes/Kolben/Data/Pokemon/660.dat
+
+#begin GameModes/Kolben/Data/Pokemon/661.dat
+/copy:GameModes/Kolben/Data/Pokemon/661.dat
+
+#begin GameModes/Kolben/Data/Pokemon/662.dat
+/copy:GameModes/Kolben/Data/Pokemon/662.dat
+
+#begin GameModes/Kolben/Data/Pokemon/663.dat
+/copy:GameModes/Kolben/Data/Pokemon/663.dat
+
+#begin GameModes/Kolben/Data/Pokemon/664.dat
+/copy:GameModes/Kolben/Data/Pokemon/664.dat
+
+#begin GameModes/Kolben/Data/Pokemon/665.dat
+/copy:GameModes/Kolben/Data/Pokemon/665.dat
+
+#begin GameModes/Kolben/Data/Pokemon/666.dat
+/copy:GameModes/Kolben/Data/Pokemon/666.dat
+
+#begin GameModes/Kolben/Data/Pokemon/667.dat
+/copy:GameModes/Kolben/Data/Pokemon/667.dat
+
+#begin GameModes/Kolben/Data/Pokemon/668.dat
+/copy:GameModes/Kolben/Data/Pokemon/668.dat
+
+#begin GameModes/Kolben/Data/Pokemon/669.dat
+/copy:GameModes/Kolben/Data/Pokemon/669.dat
+
+#begin GameModes/Kolben/Data/Pokemon/670.dat
+/copy:GameModes/Kolben/Data/Pokemon/670.dat
+
+#begin GameModes/Kolben/Data/Pokemon/671.dat
+/copy:GameModes/Kolben/Data/Pokemon/671.dat
+
+#begin GameModes/Kolben/Data/Pokemon/672.dat
+/copy:GameModes/Kolben/Data/Pokemon/672.dat
+
+#begin GameModes/Kolben/Data/Pokemon/673.dat
+/copy:GameModes/Kolben/Data/Pokemon/673.dat
+
+#begin GameModes/Kolben/Data/Pokemon/674.dat
+/copy:GameModes/Kolben/Data/Pokemon/674.dat
+
+#begin GameModes/Kolben/Data/Pokemon/675.dat
+/copy:GameModes/Kolben/Data/Pokemon/675.dat
+
+#begin GameModes/Kolben/Data/Pokemon/676.dat
+/copy:GameModes/Kolben/Data/Pokemon/676.dat
+
+#begin GameModes/Kolben/Data/Pokemon/677.dat
+/copy:GameModes/Kolben/Data/Pokemon/677.dat
+
+#begin GameModes/Kolben/Data/Pokemon/678.dat
+/copy:GameModes/Kolben/Data/Pokemon/678.dat
+
+#begin GameModes/Kolben/Data/Pokemon/678_f.dat
+/copy:GameModes/Kolben/Data/Pokemon/678_f.dat
+
+#begin GameModes/Kolben/Data/Pokemon/679.dat
+/copy:GameModes/Kolben/Data/Pokemon/679.dat
+
+#begin GameModes/Kolben/Data/Pokemon/680.dat
+/copy:GameModes/Kolben/Data/Pokemon/680.dat
+
+#begin GameModes/Kolben/Data/Pokemon/681.dat
+/copy:GameModes/Kolben/Data/Pokemon/681.dat
+
+#begin GameModes/Kolben/Data/Pokemon/681_blade.dat
+/copy:GameModes/Kolben/Data/Pokemon/681_blade.dat
+
+#begin GameModes/Kolben/Data/Pokemon/682.dat
+/copy:GameModes/Kolben/Data/Pokemon/682.dat
+
+#begin GameModes/Kolben/Data/Pokemon/683.dat
+/copy:GameModes/Kolben/Data/Pokemon/683.dat
+
+#begin GameModes/Kolben/Data/Pokemon/684.dat
+/copy:GameModes/Kolben/Data/Pokemon/684.dat
+
+#begin GameModes/Kolben/Data/Pokemon/685.dat
+/copy:GameModes/Kolben/Data/Pokemon/685.dat
+
+#begin GameModes/Kolben/Data/Pokemon/686.dat
+/copy:GameModes/Kolben/Data/Pokemon/686.dat
+
+#begin GameModes/Kolben/Data/Pokemon/687.dat
+/copy:GameModes/Kolben/Data/Pokemon/687.dat
+
+#begin GameModes/Kolben/Data/Pokemon/688.dat
+/copy:GameModes/Kolben/Data/Pokemon/688.dat
+
+#begin GameModes/Kolben/Data/Pokemon/689.dat
+/copy:GameModes/Kolben/Data/Pokemon/689.dat
+
+#begin GameModes/Kolben/Data/Pokemon/690.dat
+/copy:GameModes/Kolben/Data/Pokemon/690.dat
+
+#begin GameModes/Kolben/Data/Pokemon/691.dat
+/copy:GameModes/Kolben/Data/Pokemon/691.dat
+
+#begin GameModes/Kolben/Data/Pokemon/692.dat
+/copy:GameModes/Kolben/Data/Pokemon/692.dat
+
+#begin GameModes/Kolben/Data/Pokemon/693.dat
+/copy:GameModes/Kolben/Data/Pokemon/693.dat
+
+#begin GameModes/Kolben/Data/Pokemon/694.dat
+/copy:GameModes/Kolben/Data/Pokemon/694.dat
+
+#begin GameModes/Kolben/Data/Pokemon/695.dat
+/copy:GameModes/Kolben/Data/Pokemon/695.dat
+
+#begin GameModes/Kolben/Data/Pokemon/696.dat
+/copy:GameModes/Kolben/Data/Pokemon/696.dat
+
+#begin GameModes/Kolben/Data/Pokemon/697.dat
+/copy:GameModes/Kolben/Data/Pokemon/697.dat
+
+#begin GameModes/Kolben/Data/Pokemon/698.dat
+/copy:GameModes/Kolben/Data/Pokemon/698.dat
+
+#begin GameModes/Kolben/Data/Pokemon/699.dat
+/copy:GameModes/Kolben/Data/Pokemon/699.dat
+
+#begin GameModes/Kolben/Data/Pokemon/700.dat
+/copy:GameModes/Kolben/Data/Pokemon/700.dat
+
+#begin GameModes/Kolben/Data/Pokemon/701.dat
+/copy:GameModes/Kolben/Data/Pokemon/701.dat
+
+#begin GameModes/Kolben/Data/Pokemon/702.dat
+/copy:GameModes/Kolben/Data/Pokemon/702.dat
+
+#begin GameModes/Kolben/Data/Pokemon/703.dat
+/copy:GameModes/Kolben/Data/Pokemon/703.dat
+
+#begin GameModes/Kolben/Data/Pokemon/704.dat
+/copy:GameModes/Kolben/Data/Pokemon/704.dat
+
+#begin GameModes/Kolben/Data/Pokemon/705.dat
+/copy:GameModes/Kolben/Data/Pokemon/705.dat
+
+#begin GameModes/Kolben/Data/Pokemon/706.dat
+/copy:GameModes/Kolben/Data/Pokemon/706.dat
+
+#begin GameModes/Kolben/Data/Pokemon/707.dat
+/copy:GameModes/Kolben/Data/Pokemon/707.dat
+
+#begin GameModes/Kolben/Data/Pokemon/708.dat
+/copy:GameModes/Kolben/Data/Pokemon/708.dat
+
+#begin GameModes/Kolben/Data/Pokemon/709.dat
+/copy:GameModes/Kolben/Data/Pokemon/709.dat
+
+#begin GameModes/Kolben/Data/Pokemon/710.dat
+/copy:GameModes/Kolben/Data/Pokemon/710.dat
+
+#begin GameModes/Kolben/Data/Pokemon/710_large.dat
+/copy:GameModes/Kolben/Data/Pokemon/710_large.dat
+
+#begin GameModes/Kolben/Data/Pokemon/710_small.dat
+/copy:GameModes/Kolben/Data/Pokemon/710_small.dat
+
+#begin GameModes/Kolben/Data/Pokemon/710_super.dat
+/copy:GameModes/Kolben/Data/Pokemon/710_super.dat
+
+#begin GameModes/Kolben/Data/Pokemon/711.dat
+/copy:GameModes/Kolben/Data/Pokemon/711.dat
+
+#begin GameModes/Kolben/Data/Pokemon/711_large.dat
+/copy:GameModes/Kolben/Data/Pokemon/711_large.dat
+
+#begin GameModes/Kolben/Data/Pokemon/711_small.dat
+/copy:GameModes/Kolben/Data/Pokemon/711_small.dat
+
+#begin GameModes/Kolben/Data/Pokemon/711_super.dat
+/copy:GameModes/Kolben/Data/Pokemon/711_super.dat
+
+#begin GameModes/Kolben/Data/Pokemon/712.dat
+/copy:GameModes/Kolben/Data/Pokemon/712.dat
+
+#begin GameModes/Kolben/Data/Pokemon/713.dat
+/copy:GameModes/Kolben/Data/Pokemon/713.dat
+
+#begin GameModes/Kolben/Data/Pokemon/714.dat
+/copy:GameModes/Kolben/Data/Pokemon/714.dat
+
+#begin GameModes/Kolben/Data/Pokemon/715.dat
+/copy:GameModes/Kolben/Data/Pokemon/715.dat
+
+#begin GameModes/Kolben/Data/Pokemon/716.dat
+/copy:GameModes/Kolben/Data/Pokemon/716.dat
+
+#begin GameModes/Kolben/Data/Pokemon/717.dat
+/copy:GameModes/Kolben/Data/Pokemon/717.dat
+
+#begin GameModes/Kolben/Data/Pokemon/718.dat
+/copy:GameModes/Kolben/Data/Pokemon/718.dat
+
+#begin GameModes/Kolben/Data/Pokemon/719.dat
+/copy:GameModes/Kolben/Data/Pokemon/719.dat
+
+#begin GameModes/Kolben/Data/Pokemon/719_mega.dat
+/copy:GameModes/Kolben/Data/Pokemon/719_mega.dat
+
+#begin GameModes/Kolben/Data/Pokemon/720.dat
+/copy:GameModes/Kolben/Data/Pokemon/720.dat
+
+#begin GameModes/Kolben/Data/Pokemon/721.dat
+/copy:GameModes/Kolben/Data/Pokemon/721.dat
+
+#begin GameModes/Kolben/Data/Pokemon/frontier/0.dat
+/copy:GameModes/Kolben/Data/Pokemon/frontier/0.dat
+
+#begin GameModes/Kolben/Data/Pokemon/frontier/1.dat
+/copy:GameModes/Kolben/Data/Pokemon/frontier/1.dat
+
+#begin GameModes/Kolben/Data/Pokemon/frontier/2.dat
+/copy:GameModes/Kolben/Data/Pokemon/frontier/2.dat
 
