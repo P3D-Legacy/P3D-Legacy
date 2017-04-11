@@ -1,6 +1,6 @@
-Public Class OldGameModeManager
+Public Class GameModeManager
 
-    Private Shared GameModeList As New List(Of OldGameMode)
+    Private Shared GameModeList As New List(Of GameMode)
     Private Shared GameModePointer As Integer = 0
     Public Shared Initialized As Boolean = False
 
@@ -23,8 +23,8 @@ Public Class OldGameModeManager
         Initialized = True
     End Sub
 
-    Public Shared Function GetGameMode(ByVal GameModeDirectory As String) As OldGameMode
-        For Each GameMode As OldGameMode In GameModeList
+    Public Shared Function GetGameMode(ByVal GameModeDirectory As String) As GameMode
+        For Each GameMode As GameMode In GameModeList
             If GameMode.DirectoryName = GameModeDirectory Then
                 Return GameMode
             End If
@@ -48,7 +48,7 @@ Public Class OldGameModeManager
     ''' <param name="GameModeDirectoryName">The directory resembeling the new GameMode.</param>
     Public Shared Sub SetGameModePointer(ByVal GameModeDirectoryName As String)
         For i = 0 To GameModeList.Count - 1
-            Dim GameMode As OldGameMode = GameModeList(i)
+            Dim GameMode As GameMode = GameModeList(i)
             If GameMode.DirectoryName = GameModeDirectoryName Then
                 GameModePointer = i
                 Logger.Debug("---Set pointer to """ & GameModeDirectoryName & """!---")
@@ -71,7 +71,7 @@ Public Class OldGameModeManager
     ''' Checks if a GameMode exists.
     ''' </summary>
     Public Shared Function GameModeExists(ByVal GameModePath As String) As Boolean
-        For Each GameMode As OldGameMode In GameModeList
+        For Each GameMode As GameMode In GameModeList
             If GameMode.DirectoryName = GameModePath Then
                 Return True
             End If
@@ -85,7 +85,7 @@ Public Class OldGameModeManager
     ''' </summary>
     ''' <param name="Path">The path of the GameMode directory.</param>
     Private Shared Sub AddGameMode(ByVal Path As String)
-        Dim newGameMode As New OldGameMode(Path & "\GameMode.dat")
+        Dim newGameMode As New GameMode(Path & "\GameMode.dat")
         If newGameMode.IsValid = True Then
             GameModeList.Add(newGameMode)
         End If
@@ -110,7 +110,7 @@ Public Class OldGameModeManager
         End If
 
         If doCreateKolbenMode = True Then
-            Dim kolbenMode As OldGameMode = OldGameMode.GetKolbenGameMode()
+            Dim kolbenMode As GameMode = GameMode.GetKolbenGameMode()
             kolbenMode.SaveToFile(GameController.GamePath & "\GameModes\Kolben\GameMode.dat")
         End If
     End Sub
@@ -120,7 +120,7 @@ Public Class OldGameModeManager
     ''' <summary>
     ''' Returns the currently active GameMode.
     ''' </summary>
-    Public Shared ReadOnly Property ActiveGameMode() As OldGameMode
+    Public Shared ReadOnly Property ActiveGameMode() As GameMode
         Get
             If GameModeList.Count - 1 >= GameModePointer Then
                 Return GameModeList(GameModePointer)
@@ -132,7 +132,7 @@ Public Class OldGameModeManager
     ''' <summary>
     ''' Returns the GameRules of the currently active GameMode.
     ''' </summary>
-    Public Shared Function GetGameRules() As List(Of OldGameMode.GameRule)
+    Public Shared Function GetGameRules() As List(Of GameMode.GameRule)
         Return ActiveGameMode.GameRules
     End Function
 
@@ -142,14 +142,14 @@ Public Class OldGameModeManager
     ''' <param name="RuleName">The RuleName to search for.</param>
     Public Shared Function GetGameRuleValue(ByVal RuleName As String, ByVal DefaultValue As String) As String
 start:
-        Dim rules As List(Of OldGameMode.GameRule) = GetGameRules()
-        For Each rule As OldGameMode.GameRule In rules
+        Dim rules As List(Of GameMode.GameRule) = GetGameRules()
+        For Each rule As GameMode.GameRule In rules
             If rule.RuleName.ToLower() = RuleName.ToLower() Then
                 Return rule.RuleValue
             End If
         Next
 
-        ActiveGameMode.GameRules.Add(New OldGameMode.GameRule(RuleName, DefaultValue))
+        ActiveGameMode.GameRules.Add(New GameMode.GameRule(RuleName, DefaultValue))
         GoTo start
 
         Return ""
@@ -161,18 +161,18 @@ start:
     ''' <param name="levelfile">The levelfile containing the map.</param>
     Public Shared Function GetMapPath(ByVal levelFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
-            Return GameController.GamePath & OldGameMode.DefaultMapPath & levelFile
+            Return GameController.GamePath & GameMode.DefaultMapPath & levelFile
         End If
 
         If System.IO.File.Exists(GameController.GamePath & ActiveGameMode.MapPath & levelFile) = True Then
             Return GameController.GamePath & ActiveGameMode.MapPath & levelFile
         End If
 
-        If GameController.GamePath & OldGameMode.DefaultMapPath & levelFile <> GameController.GamePath & ActiveGameMode.MapPath & levelFile Then
+        If GameController.GamePath & GameMode.DefaultMapPath & levelFile <> GameController.GamePath & ActiveGameMode.MapPath & levelFile Then
             Logger.Log(Logger.LogTypes.Message, "Map file: """ & ActiveGameMode.MapPath & levelFile & """ does not exist in the GameMode. The game tries to load the normal file at ""\maps\" & levelFile & """.")
         End If
 
-        Return GameController.GamePath & OldGameMode.DefaultMapPath & levelFile
+        Return GameController.GamePath & GameMode.DefaultMapPath & levelFile
     End Function
 
     ''' <summary>
@@ -181,18 +181,18 @@ start:
     ''' <param name="scriptFile">The file that contains the script information.</param>
     Public Shared Function GetScriptPath(ByVal scriptFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
-            Return GameController.GamePath & OldGameMode.DefaultScriptPath & scriptFile
+            Return GameController.GamePath & GameMode.DefaultScriptPath & scriptFile
         End If
 
         If System.IO.File.Exists(GameController.GamePath & ActiveGameMode.ScriptPath & scriptFile) = True Then
             Return GameController.GamePath & ActiveGameMode.ScriptPath & scriptFile
         End If
 
-        If GameController.GamePath & OldGameMode.DefaultScriptPath & scriptFile <> GameController.GamePath & ActiveGameMode.ScriptPath & scriptFile Then
+        If GameController.GamePath & GameMode.DefaultScriptPath & scriptFile <> GameController.GamePath & ActiveGameMode.ScriptPath & scriptFile Then
             Logger.Log(Logger.LogTypes.Message, "Script file: """ & ActiveGameMode.ScriptPath & scriptFile & """ does not exist in the GameMode. The game tries to load the normal file at ""\Scripts\" & scriptFile & """.")
         End If
 
-        Return GameController.GamePath & OldGameMode.DefaultScriptPath & scriptFile
+        Return GameController.GamePath & GameMode.DefaultScriptPath & scriptFile
     End Function
 
     ''' <summary>
@@ -201,18 +201,18 @@ start:
     ''' <param name="pokeFile">The file that contains the Wild Pokémon Definitions.</param>
     Public Shared Function GetPokeFilePath(ByVal pokeFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
-            Return GameController.GamePath & OldGameMode.DefaultPokeFilePath & pokeFile
+            Return GameController.GamePath & GameMode.DefaultPokeFilePath & pokeFile
         End If
 
         If System.IO.File.Exists(GameController.GamePath & ActiveGameMode.PokeFilePath & pokeFile) = True Then
             Return GameController.GamePath & ActiveGameMode.PokeFilePath & pokeFile
         End If
 
-        If GameController.GamePath & OldGameMode.DefaultPokeFilePath & pokeFile <> GameController.GamePath & ActiveGameMode.PokeFilePath & pokeFile Then
+        If GameController.GamePath & GameMode.DefaultPokeFilePath & pokeFile <> GameController.GamePath & ActiveGameMode.PokeFilePath & pokeFile Then
             Logger.Log(Logger.LogTypes.Message, "Poke file: """ & ActiveGameMode.PokeFilePath & pokeFile & """ does not exist in the GameMode. The game tries to load the normal file at ""\maps\poke\" & pokeFile & """.")
         End If
 
-        Return GameController.GamePath & OldGameMode.DefaultPokeFilePath & pokeFile
+        Return GameController.GamePath & GameMode.DefaultPokeFilePath & pokeFile
     End Function
 
     ''' <summary>
@@ -221,18 +221,18 @@ start:
     ''' <param name="PokemonDataFile">The file which contains the Pokémon information.</param>
     Public Shared Function GetPokemonDataFilePath(ByVal PokemonDataFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
-            Return GameController.GamePath & OldGameMode.DefaultPokemonDataPath & PokemonDataFile
+            Return GameController.GamePath & GameMode.DefaultPokemonDataPath & PokemonDataFile
         End If
 
         If System.IO.File.Exists(GameController.GamePath & ActiveGameMode.PokemonDataPath & PokemonDataFile) = True Then
             Return GameController.GamePath & ActiveGameMode.PokemonDataPath & PokemonDataFile
         End If
 
-        If GameController.GamePath & OldGameMode.DefaultPokemonDataPath & PokemonDataFile <> GameController.GamePath & ActiveGameMode.PokemonDataPath & PokemonDataFile Then
+        If GameController.GamePath & GameMode.DefaultPokemonDataPath & PokemonDataFile <> GameController.GamePath & ActiveGameMode.PokemonDataPath & PokemonDataFile Then
             'Logger.Log(Logger.LogTypes.Message, "Pokemon data file: """ & ActiveGameMode.PokemonDataPath & PokemonDataFile & """ does not exist in the GameMode. The game tries to load the normal file at ""\Content\Pokemon\Data\" & PokemonDataFile & """.")
         End If
 
-        Return GameController.GamePath & OldGameMode.DefaultPokemonDataPath & PokemonDataFile
+        Return GameController.GamePath & GameMode.DefaultPokemonDataPath & PokemonDataFile
     End Function
 
     Public Shared Function GetLocalizationsPath(ByVal TokensFile As String) As String
@@ -240,7 +240,7 @@ start:
             Return GameController.GamePath & ActiveGameMode.LocalizationsPath & TokensFile
         End If
 
-        Return GameController.GamePath & OldGameMode.DefaultLocalizationsPath & TokensFile
+        Return GameController.GamePath & GameMode.DefaultLocalizationsPath & TokensFile
     End Function
 
     ''' <summary>
@@ -249,14 +249,14 @@ start:
     ''' <param name="ContentFile">The stub file path to the Content file.</param>
     Public Shared Function GetContentFilePath(ByVal ContentFile As String) As String
         If ActiveGameMode.IsDefaultGamemode = True Then
-            Return GameController.GamePath & OldGameMode.DefaultContentPath & ContentFile
+            Return GameController.GamePath & GameMode.DefaultContentPath & ContentFile
         End If
 
         If System.IO.File.Exists(GameController.GamePath & ActiveGameMode.ContentPath & ContentFile) = True Then
             Return GameController.GamePath & ActiveGameMode.ContentPath & ContentFile
         End If
 
-        Return GameController.GamePath & OldGameMode.DefaultContentPath & ContentFile
+        Return GameController.GamePath & GameMode.DefaultContentPath & ContentFile
     End Function
 
     ''' <summary>
@@ -265,9 +265,9 @@ start:
     ''' <param name="levelFile">The map file to look for.</param>
     Public Shared Function MapFileExists(ByVal levelFile As String) As Boolean
         Dim path As String = GameController.GamePath & ActiveGameMode.MapPath & levelFile
-        Dim defaultPath As String = GameController.GamePath & OldGameMode.DefaultMapPath & levelFile
+        Dim defaultPath As String = GameController.GamePath & GameMode.DefaultMapPath & levelFile
         If ActiveGameMode.IsDefaultGamemode = True Then
-            path = GameController.GamePath & OldGameMode.DefaultMapPath & levelFile
+            path = GameController.GamePath & GameMode.DefaultMapPath & levelFile
         End If
 
         Return System.IO.File.Exists(path) Or System.IO.File.Exists(defaultPath)
@@ -279,9 +279,9 @@ start:
     ''' <param name="contentFile">The Content file to look for.</param>
     Public Shared Function ContentFileExists(ByVal contentFile As String) As Boolean
         Dim path As String = GameController.GamePath & ActiveGameMode.ContentPath & contentFile
-        Dim defaultPath As String = GameController.GamePath & OldGameMode.DefaultContentPath & contentFile
+        Dim defaultPath As String = GameController.GamePath & GameMode.DefaultContentPath & contentFile
         If ActiveGameMode.IsDefaultGamemode = True Then
-            path = GameController.GamePath & OldGameMode.DefaultContentPath & contentFile
+            path = GameController.GamePath & GameMode.DefaultContentPath & contentFile
         End If
 
         Return System.IO.File.Exists(path) Or System.IO.File.Exists(defaultPath)
@@ -291,7 +291,7 @@ start:
 
 End Class
 
-Public Class OldGameMode
+Public Class GameMode
 
     Private _loaded As Boolean = False
     Private _usedFileName As String = ""
@@ -542,12 +542,12 @@ Public Class OldGameMode
     ''' <summary>
     ''' Returns the default Kolben Game Mode.
     ''' </summary>
-    Public Shared Function GetKolbenGameMode() As OldGameMode
+    Public Shared Function GetKolbenGameMode() As GameMode
         Dim SkinColors As List(Of Color) = {New Color(248, 176, 32), New Color(248, 216, 88), New Color(56, 88, 200), New Color(216, 96, 112), New Color(56, 88, 152), New Color(239, 90, 156)}.ToList()
         Dim SkinFiles As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
         Dim SkinNames As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
 
-        Dim gameMode As New OldGameMode("Pokemon 3D", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\maps\", "\Scripts\", "\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule),
+        Dim gameMode As New GameMode("Pokemon 3D", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\maps\", "\Scripts\", "\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule),
                                      "yourroom.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", SkinColors, SkinFiles, SkinNames)
 
         Dim gameRules As New List(Of GameRule)

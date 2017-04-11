@@ -421,7 +421,7 @@
     Public AutosaveUsed As Boolean = False
     Public loadedSave As Boolean = False
 
-    Public PlayerTemp As New PlayerTemp()
+    Public PlayerTemp As PlayerTemp
 
     Public Structure Temp
         Public Shared PokemonScreenIndex As Integer = 0
@@ -487,10 +487,7 @@
             ContentPackManager.LoadTextureReplacements(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
         Next
 
-        OldGameModeManager.CreateGameModesFolder()
-        OldGameModeManager.CreateKolbenMode()
-
-        ScriptStorage.Clear()
+        Construct.Framework.StorageHandler.GetInstance().Clear()
         ScriptBlock.TriggeredScriptBlock = False
         MysteryEventScreen.ClearActivatedEvents()
         Pokedex.AutoDetect = True
@@ -504,25 +501,22 @@
 
         LoadPlayer()
 
-        If OldGameModeManager.GameModeExists(GameMode) = False Then
+        If GameModeManager.GameModeExists(GameMode) = False Then
             GameMode = "Kolben"
-            OldGameModeManager.SetGameModePointer("Kolben")
+            GameModeManager.SetGameModePointer("Kolben")
         Else
-            OldGameModeManager.SetGameModePointer(GameMode)
+            GameModeManager.SetGameModePointer(GameMode)
         End If
 
+        GameModeManager.LoadFileItems()
         BattleSystem.GameModeAttackLoader.Load()
 
         If IsGameJoltSave = True Then
             SandBoxMode = False
         End If
 
-        OldLocalization.ReloadGameModeTokens()
-
-        If OldGameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
-            MusicManager.LoadMusic(True)
-            SoundManager.LoadSounds(True)
-        End If
+        MusicManager.Clear()
+        SoundManager.Clear()
         SmashRock.Load()
         Badge.Load()
         Pokedex.Load()
@@ -545,8 +539,7 @@
         LoadRoamingPokemonData()
         LoadStatistics()
 
-        PlayerTemp.Reset()
-        ResetTemp()
+        PlayerTemp = New PlayerTemp()
         Chat.ClearChat()
 
         If AutosaveUsed = True Then
@@ -557,7 +550,7 @@
 
             Dim outputString As String = newFilePrefix
 
-            Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_continue_autosave") & " """ & outputString & """", 12, FontManager.MainFont, Color.White)
+            Core.GameMessage.ShowMessage(Localization.GetString("game_message_continue_autosave") & " """ & outputString & """", 12, FontManager.MainFont, Color.White)
 
             newFilePrefix = ""
         End If
@@ -569,124 +562,126 @@
 
         Entity.MakeShake = Name.ToLower() = "drunknilllzz"
 
+
+
         ''' Indev 0.54 Removal List
         ''' 1. All Mega Stones. [ID: 507 - 553]
         ''' 2. Shiny Candy [ID: 501]
-        If Not ActionScript.IsRegistered("PokemonIndev054Update") Then
-            ' Check Inventory.
-            Inventory.RemoveItem(501)
-            For i As Integer = 507 To 553 Step +1
-                Inventory.RemoveItem(i)
-            Next
+        'If Not ActionScript.IsRegistered("PokemonIndev054Update") Then
+        '    ' Check Inventory.
+        '    Inventory.RemoveItem(501)
+        '    For i As Integer = 507 To 553 Step +1
+        '        Inventory.RemoveItem(i)
+        '    Next
 
-            ' Check Party Pokemon.
-            For Each Pokemon As Pokemon In Pokemons
-                If Pokemon.Item IsNot Nothing AndAlso (Pokemon.Item.ID >= 501 OrElse (Pokemon.Item.ID >= 507 AndAlso Pokemon.Item.ID <= 553)) Then
-                    Pokemon.Item = Nothing
-                End If
-            Next
+        '    ' Check Party Pokemon.
+        '    For Each Pokemon As Pokemon In Pokemons
+        '        If Pokemon.Item IsNot Nothing AndAlso (Pokemon.Item.ID >= 501 OrElse (Pokemon.Item.ID >= 507 AndAlso Pokemon.Item.ID <= 553)) Then
+        '            Pokemon.Item = Nothing
+        '        End If
+        '    Next
 
-            ' Check PC Boxes.
-            If Not String.IsNullOrWhiteSpace(BoxData) Then
-                Dim TempBoxData As New List(Of String)
-                TempBoxData.AddRange(BoxData.SplitAtNewline())
+        '    ' Check PC Boxes.
+        '    If Not String.IsNullOrWhiteSpace(BoxData) Then
+        '        Dim TempBoxData As New List(Of String)
+        '        TempBoxData.AddRange(BoxData.SplitAtNewline())
 
-                For Each item As String In TempBoxData
-                    If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
-                        Dim TempString As String = item.Remove(item.IndexOf("{"))
-                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
+        '        For Each item As String In TempBoxData
+        '            If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
+        '                Dim TempString As String = item.Remove(item.IndexOf("{"))
+        '                Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-                        If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
-                            TempPokemon.Item = Nothing
-                        End If
+        '                If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
+        '                    TempPokemon.Item = Nothing
+        '                End If
 
-                        item = TempString & TempPokemon.ToString()
-                    End If
-                Next
+        '                item = TempString & TempPokemon.ToString()
+        '            End If
+        '        Next
 
-                BoxData = String.Join(vbNewLine, TempBoxData)
-            End If
+        '        BoxData = String.Join(vbNewLine, TempBoxData)
+        '    End If
 
-            ' Check Day Care.
-            If Not String.IsNullOrWhiteSpace(DaycareData) Then
-                Dim TempDaycareData As New List(Of String)
-                TempDaycareData.AddRange(DaycareData.SplitAtNewline())
+        '    ' Check Day Care.
+        '    If Not String.IsNullOrWhiteSpace(DaycareData) Then
+        '        Dim TempDaycareData As New List(Of String)
+        '        TempDaycareData.AddRange(DaycareData.SplitAtNewline())
 
-                For Each item As String In TempDaycareData
-                    If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
-                        Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
-                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
+        '        For Each item As String In TempDaycareData
+        '            If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
+        '                Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
+        '                Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-                        If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
-                            TempPokemon.Item = Nothing
-                        End If
+        '                If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
+        '                    TempPokemon.Item = Nothing
+        '                End If
 
-                        item = TempString & TempPokemon.ToString()
-                    End If
-                Next
+        '                item = TempString & TempPokemon.ToString()
+        '            End If
+        '        Next
 
-                DaycareData = String.Join(vbNewLine, TempDaycareData)
-            End If
+        '        DaycareData = String.Join(vbNewLine, TempDaycareData)
+        '    End If
 
-            ActionScript.RegisterID("PokemonIndev054Update")
-        End If
+        '    ActionScript.RegisterID("PokemonIndev054Update")
+        'End If
 
-        ''' Indev 0.54.2 OT Fix List.
-        If Not ActionScript.IsRegistered("PokemonIndev0542Update") Then
-            ' Check Party Pokemon.
-            For Each Pokemon As Pokemon In Pokemons
-                If String.Equals(Pokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso Pokemon.OT <> GameJoltSave.GameJoltID Then
-                    Pokemon.OT = GameJoltSave.GameJoltID
-                End If
-            Next
+        '''' Indev 0.54.2 OT Fix List.
+        'If Not ActionScript.IsRegistered("PokemonIndev0542Update") Then
+        '    ' Check Party Pokemon.
+        '    For Each Pokemon As Pokemon In Pokemons
+        '        If String.Equals(Pokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso Pokemon.OT <> GameJoltSave.GameJoltID Then
+        '            Pokemon.OT = GameJoltSave.GameJoltID
+        '        End If
+        '    Next
 
-            ' Check PC Boxes.
-            If Not String.IsNullOrWhiteSpace(BoxData) Then
-                Dim TempBoxData As New List(Of String)
-                TempBoxData.AddRange(BoxData.SplitAtNewline())
+        '    ' Check PC Boxes.
+        '    If Not String.IsNullOrWhiteSpace(BoxData) Then
+        '        Dim TempBoxData As New List(Of String)
+        '        TempBoxData.AddRange(BoxData.SplitAtNewline())
 
-                For Each item As String In TempBoxData
-                    If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
-                        Dim TempString As String = item.Remove(item.IndexOf("{"))
-                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
+        '        For Each item As String In TempBoxData
+        '            If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
+        '                Dim TempString As String = item.Remove(item.IndexOf("{"))
+        '                Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-                        If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
-                            TempPokemon.OT = GameJoltSave.GameJoltID
-                        End If
+        '                If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
+        '                    TempPokemon.OT = GameJoltSave.GameJoltID
+        '                End If
 
-                        item = TempString & TempPokemon.ToString()
-                    End If
-                Next
+        '                item = TempString & TempPokemon.ToString()
+        '            End If
+        '        Next
 
-                BoxData = String.Join(vbNewLine, TempBoxData)
-            End If
+        '        BoxData = String.Join(vbNewLine, TempBoxData)
+        '    End If
 
-            ' Check Day Care.
-            If Not String.IsNullOrWhiteSpace(DaycareData) Then
-                Dim TempDaycareData As New List(Of String)
-                TempDaycareData.AddRange(DaycareData.SplitAtNewline())
+        '    ' Check Day Care.
+        '    If Not String.IsNullOrWhiteSpace(DaycareData) Then
+        '        Dim TempDaycareData As New List(Of String)
+        '        TempDaycareData.AddRange(DaycareData.SplitAtNewline())
 
-                For Each item As String In TempDaycareData
-                    If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
-                        Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
-                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
+        '        For Each item As String In TempDaycareData
+        '            If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
+        '                Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
+        '                Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-                        If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
-                            TempPokemon.OT = GameJoltSave.GameJoltID
-                        End If
+        '                If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
+        '                    TempPokemon.OT = GameJoltSave.GameJoltID
+        '                End If
 
-                        item = TempString & TempPokemon.ToString()
-                    End If
-                Next
+        '                item = TempString & TempPokemon.ToString()
+        '            End If
+        '        Next
 
-                DaycareData = String.Join(vbNewLine, TempDaycareData)
-            End If
+        '        DaycareData = String.Join(vbNewLine, TempDaycareData)
+        '    End If
 
-            ' Remove Duplicate data.
-            Core.Player.PokeFiles = Core.Player.PokeFiles.Distinct().ToList()
+        '    ' Remove Duplicate data.
+        '    Core.Player.PokeFiles = Core.Player.PokeFiles.Distinct().ToList()
 
-            ActionScript.RegisterID("PokemonIndev0542Update")
-        End If
+        '    ActionScript.RegisterID("PokemonIndev0542Update")
+        'End If
 
         loadedSave = True
     End Sub
@@ -698,7 +693,8 @@
         If IsGameJoltSave = True Then
             PokeData = GameJoltSave.Party.SplitAtNewline()
         Else
-            PokeData = IO.File.ReadAllText(GameController.GamePath & "\Save\" & filePrefix & "\Party.dat").SplitAtNewline()
+            Dim PartyData As String = IO.File.ReadAllText(GameController.GamePath & "\Save\" & filePrefix & "\Party.dat")
+            PokeData = PartyData.SplitAtNewline()
         End If
 
         If PokeData.Count > 0 AndAlso PokeData(0) <> "" Then
@@ -1743,7 +1739,7 @@
         If CanFireStepEvent() = True Then
             Screen.Level.CheckTrainerSights()
             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                If CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
+                If Construct.Controller.GetInstance().IsReady = False Then
                     _stepEventStartedTrainer = True
                 End If
             End If
@@ -1791,28 +1787,26 @@
                     If CanFireStepEvent() = True Then
                         Screen.Level.WalkedSteps = 0
 
-                        Dim s As String = "version=2" & vbNewLine &
-                                        "@Text.Show(Your repel effect wore off.)" & vbNewLine &
-                                        ":end"
+                        Dim s As String = "@Text.Show(Your repel effect wore off.)"
+
 
                         If Temp.LastUsedRepel > -1 Then
                             Dim haveItemLeft As Boolean = Inventory.GetItemAmount(Temp.LastUsedRepel) > 0
 
                             If haveItemLeft = True Then
-                                s = "version=2" & vbNewLine &
-                                    "@Text.Show(Your repel effect wore off.*Do you want to use~another <inventory.name(" & Temp.LastUsedRepel & ")>?)" & vbNewLine &
+                                s = "@Text.Show(Your repel effect wore off.*Do you want to use~another <item.name(" & Temp.LastUsedRepel & ")>?)" & vbNewLine &
                                     "@Options.Show(Yes,No)" & vbNewLine &
+                                    ":select:<options.result>" & vbNewLine &
                                     ":when:Yes" & vbNewLine &
                                     "@sound.play(repel_use)" & vbNewLine &
-                                    "@Text.Show(<player.name> used~a <inventory.name(" & Temp.LastUsedRepel & ")>.)" & vbNewLine &
-                                    "@item.repel(" & Temp.LastUsedRepel & ")" & vbNewLine &
+                                    "@Text.Show(<player.name> used~a <item.name(" & Temp.LastUsedRepel & ")>.)" & vbNewLine &
+                                    "@player.userepel(" & Temp.LastUsedRepel & ")" & vbNewLine &
                                     "@item.remove(" & Temp.LastUsedRepel & ",1,0)" & vbNewLine &
-                                    ":endwhen" & vbNewLine &
-                                    ":end"
+                                    ":endselect"
                             End If
                         End If
 
-                        CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+                        Construct.Controller.GetInstance().RunFromString(s, {})
                         _stepEventRepelMessage = True
                     Else
                         _repelSteps = 1

@@ -581,7 +581,10 @@ Public Class NewMainMenuScreen
                     _isGameJolt = True
                     _loaded = False
 
-                    _sprite = Content.Load(Of Texture2D)("SharedResources\Textures\UI\GameJolt\gameJoltIcon")
+                    Dim contentmanager As ContentManager = New ContentManager(GameInstance.Services, "SharedResources\Textures\UI\GameJolt")
+                    _sprite = contentmanager.Load(Of Texture2D)("gameJoltIcon")
+
+                    '_sprite = Content.Load(Of Texture2D)("SharedResources\Textures\UI\GameJolt\gameJoltIcon")
 
                     LoadGameJolt()
                 Else

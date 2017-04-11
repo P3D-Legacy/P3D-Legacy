@@ -209,7 +209,7 @@ Public Class GameOptions
             MediaPlayer.IsMuted = .Muted
             Entity.drawViewBox = .ShowBoundingBoxes
             Logger.DisplayLog = .ShowDebugConsole
-            OldLocalization.Load(.Language)
+            Localization.Load(.Language)
             ContentPackManager.CreateContentPackFolder()
 
             If _dataModel.ContentPacks.Length > 0 Then
@@ -264,7 +264,7 @@ Public Class GameOptions
             _dataModel.ShowBoundingBoxes = Entity.drawViewBox
             _dataModel.Muted = MediaPlayer.IsMuted
             _dataModel.ShowDebugConsole = Logger.DisplayLog
-            _dataModel.Language = OldLocalization.LanguageSuffix
+            _dataModel.Language = Localization.LanguageSuffix
         End If
 
         IO.File.WriteAllText(GameController.GamePath & "\Save\options.dat", _dataModel.ToString("    "))

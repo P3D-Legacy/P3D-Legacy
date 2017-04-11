@@ -116,8 +116,8 @@ Public Class Logger
             End If
 
             Dim GameMode As String = "[No GameMode loaded]"
-            If Not OldGameModeManager.ActiveGameMode Is Nothing Then
-                GameMode = OldGameModeManager.ActiveGameMode.Name
+            If Not GameModeManager.ActiveGameMode Is Nothing Then
+                GameMode = GameModeManager.ActiveGameMode.Name
             End If
 
             Dim OnlineInformation As String = "GameJolt Account: FALSE"
@@ -131,8 +131,10 @@ Public Class Logger
             Dim ScriptInfo As String = "Actionscript: No script running"
             If Not CurrentScreen Is Nothing Then
                 If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                    If CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
-                        ScriptInfo = "Actionscript: " & ActionScript.CSL().ScriptName & "; Line: " & ActionScript.CSL().CurrentLine
+                    If Construct.Controller.GetInstance.IsReady = False Then
+                        'ScriptInfo = "Actionscript: " & ActionScript.CSL().ScriptName & "; Line: " & ActionScript.CSL().CurrentLine
+                        'Test
+                        ScriptInfo = "Actionscript: " & Construct.Controller.GetInstance.ActiveScript.OriginIdentifier & "; Line: " & Construct.Controller.GetInstance.ActiveScript.ActiveLine.ToString
                     End If
                 End If
             End If
@@ -176,7 +178,7 @@ Public Class Logger
             Dim specs As String = "Operating system: " & My.Computer.Info.OSFullName & " [" & My.Computer.Info.OSVersion & "]" & vbNewLine &
                 "Core architecture: " & architectureString & vbNewLine &
                 "System time: " & My.Computer.Clock.LocalTime.ToString() & vbNewLine &
-                "System language: " & System.Globalization.CultureInfo.CurrentCulture.EnglishName & "(" & System.Globalization.CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName & ") / Loaded game language: " & OldLocalization.LanguageSuffix & vbNewLine &
+                "System language: " & System.Globalization.CultureInfo.CurrentCulture.EnglishName & "(" & System.Globalization.CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName & ") / Loaded game language: " & Localization.LanguageSuffix & vbNewLine &
                 "Decimal separator: " & GameController.DecSeparator & vbNewLine &
                 "Available physical memory: " & Math.Round((My.Computer.Info.TotalPhysicalMemory / Math.Pow(1024, 3)), 2).ToString() & " Gigabyte" & vbNewLine &
                 "Available logical processors: " & Environment.ProcessorCount.ToString()

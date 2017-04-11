@@ -65,7 +65,7 @@
 
     Public Overrides Sub Render()
         If ConnectScreen.Connected = True Then
-            If CBool(OldGameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
+            If CBool(GameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
                 If Screen.Level.ShowOverworldPokemon = True Then
                     If IsCorrectScreen() = True Then
                         If Me.PokemonTexture <> "" Then

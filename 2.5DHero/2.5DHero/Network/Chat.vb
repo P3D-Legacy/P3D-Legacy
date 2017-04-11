@@ -199,7 +199,7 @@
 
                         If s.Identification = Screen.Identifications.OverworldScreen Then
                             If testForScript = False Then
-                                CType(s, OverworldScreen).ActionScript.StartScript("version=2" & vbNewLine & text & vbNewLine & ":end", 2, False)
+                                Construct.Controller.GetInstance().RunFromString(text, {})
                             End If
 
                             Return text
@@ -211,7 +211,7 @@
                     End Try
                 Case "<"
                     Try
-                        Return text & ": " & ScriptVersion2.ScriptComparer.EvaluateConstruct(text).ToString()
+                        Return text & "= " & Construct.Framework.Parser.EvaluateConstruct(text)
                     Catch ex As Exception
                         Return "Invalid construct: """ & text & """"
                     End Try

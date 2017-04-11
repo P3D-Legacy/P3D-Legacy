@@ -70,7 +70,7 @@
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180 + offSetX, 240 + offSetY, 320, 64))
             Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + offSetX, 276 + offSetY), Color.Black)
 
-            If MenuItems(i) = OldLocalization.GetString("item_detail_screen_trash") Then
+            If MenuItems(i) = Localization.GetString("item_detail_screen_trash") Then
                 Dim trashText As String = trashValue & "/" & Core.Player.Inventory.GetItemAmount(Me.Item.ID)
 
                 Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) + 180 + offSetX, 240 + offSetY, 128, 64))
@@ -93,7 +93,7 @@
 
             If Controls.Down(True, True, False, True) = True Then
                 If Controls.ShiftDown() = True Then
-                    If MenuItems(index) = OldLocalization.GetString("item_detail_screen_trash") Then
+                    If MenuItems(index) = Localization.GetString("item_detail_screen_trash") Then
                         trashValue += 1
                     End If
                 Else
@@ -102,7 +102,7 @@
             End If
             If Controls.Up(True, True, False, True) = True Then
                 If Controls.ShiftDown() = True Then
-                    If MenuItems(index) = OldLocalization.GetString("item_detail_screen_trash") Then
+                    If MenuItems(index) = Localization.GetString("item_detail_screen_trash") Then
                         trashValue -= 1
                     End If
                 Else
@@ -123,7 +123,7 @@
 
             index = CInt(MathHelper.Clamp(index, 0, MenuItems.Count - 1))
 
-            If MenuItems(index) = OldLocalization.GetString("item_detail_screen_trash") Then
+            If MenuItems(index) = Localization.GetString("item_detail_screen_trash") Then
                 If Controls.Right(True, False, True, False) = True Then
                     trashValue += 1
                 End If
@@ -136,16 +136,16 @@
 
             If Controls.Accept() = True Then
                 Select Case MenuItems(index)
-                    Case OldLocalization.GetString("item_detail_screen_use")
+                    Case Localization.GetString("item_detail_screen_use")
                         Item.Use()
-                    Case OldLocalization.GetString("item_detail_screen_give")
-                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Me.Item, AddressOf GiveItem, OldLocalization.GetString("item_detail_screen_give_item") & Me.Item.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Case Localization.GetString("item_detail_screen_give")
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Me.Item, AddressOf GiveItem, Localization.GetString("item_detail_screen_give_item") & Me.Item.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                         AddHandler selScreen.SelectedObject, AddressOf GiveItemHandler
 
                         Core.SetScreen(selScreen)
-                    Case OldLocalization.GetString("item_detail_screen_trash")
+                    Case Localization.GetString("item_detail_screen_trash")
                         Core.Player.Inventory.RemoveItem(Me.Item.ID, trashValue)
-                    Case OldLocalization.GetString("item_detail_screen_back")
+                    Case Localization.GetString("item_detail_screen_back")
                         Core.SetScreen(Me.PreScreen)
                 End Select
             End If
@@ -175,9 +175,9 @@
 
             TextBox.reDelay = 0.0F
 
-            Dim t As String = OldLocalization.GetString("pokemon_screen_give_item_1") & Item.Name & OldLocalization.GetString("pokemon_screen_give_item_2") & Pokemon.GetDisplayName() & OldLocalization.GetString("pokemon_screen_give_item_3")
+            Dim t As String = Localization.GetString("pokemon_screen_give_item_1") & Item.Name & Localization.GetString("pokemon_screen_give_item_2") & Pokemon.GetDisplayName() & Localization.GetString("pokemon_screen_give_item_3")
             If Not reItem Is Nothing Then
-                t &= OldLocalization.GetString("pokemon_screen_give_item_4") & reItem.Name & OldLocalization.GetString("pokemon_screen_give_item_5")
+                t &= Localization.GetString("pokemon_screen_give_item_4") & reItem.Name & Localization.GetString("pokemon_screen_give_item_5")
             Else
                 t &= "."
             End If
@@ -189,14 +189,14 @@
 
     Private Sub CreateMenuItems()
         If Item.CanBeUsed = True And canUse = True Then
-            MenuItems.Add(OldLocalization.GetString("item_detail_screen_use"))
+            MenuItems.Add(Localization.GetString("item_detail_screen_use"))
         End If
         If Item.CanBeHold = True Then
-            MenuItems.Add(OldLocalization.GetString("item_detail_screen_give"))
+            MenuItems.Add(Localization.GetString("item_detail_screen_give"))
         End If
         If Item.ItemType <> Game.Items.ItemTypes.KeyItems And Item.CanBeTossed = True Then
-            MenuItems.Add(OldLocalization.GetString("item_detail_screen_trash"))
+            MenuItems.Add(Localization.GetString("item_detail_screen_trash"))
         End If
-        MenuItems.Add(OldLocalization.GetString("item_detail_screen_back"))
+        MenuItems.Add(Localization.GetString("item_detail_screen_back"))
     End Sub
 End Class

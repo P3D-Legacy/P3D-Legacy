@@ -41,7 +41,7 @@ Public Class Spawner
             pokeFile = InputPokeFile
         End If
 
-        Dim pokeFilePath As String = OldGameModeManager.GetPokeFilePath(pokeFile)
+        Dim pokeFilePath As String = GameModeManager.GetPokeFilePath(pokeFile)
 
         If System.IO.File.Exists(pokeFilePath) = True Then
             Security.FileValidation.CheckFileValid(pokeFilePath, False, "Spawner.vb")
@@ -170,8 +170,8 @@ Public Class Spawner
                     addLevel = CInt(Math.Floor(level / 5))
                 End If
                 level += addLevel
-                If level > CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
-                    level = CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100"))
+                If level > CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
+                    level = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100"))
                 End If
 
                 Dim p As Pokemon = Pokemon.GetPokemonByID(Pokemons(i))

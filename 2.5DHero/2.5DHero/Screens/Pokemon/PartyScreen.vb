@@ -770,179 +770,107 @@ Public Class PartyScreen
 
 #Region "Field Moves"
 
-    'TEMPORARY
-    Private Sub UseFlash()
-        ChooseBox.Showing = False
-        Core.SetScreen(Me.PreScreen)
-        If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-            Core.SetScreen(Core.CurrentScreen.PreScreen)
-        End If
-        If Screen.Level.IsDark = True Then
-            Dim s As String = "version=2" & vbNewLine &
-                              "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
-                              "@environment.toggledarkness" & vbNewLine &
-                              "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
-                              "@text.show(The area got lit up!)" & vbNewLine &
-                              ":end"
-            PlayerStatistics.Track("Flash used", 1)
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+    Private Sub UseFly()
+        If Level.CanFly Or GameController.IS_DEBUG_ACTIVE Or Core.Player.SandBoxMode Then
+            SetScreen(OverworldScreen.GetCurrentInstance())
+
+            If Screen.Level.CurrentRegion.Contains(",") Then
+                Dim regions As List(Of String) = Screen.Level.CurrentRegion.Split(CChar(",")).ToList()
+                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, regions, 0, {"Fly", Core.Player.Pokemons(_index)}), Color.White, False))
+            Else
+                Dim startRegion As String = Screen.Level.CurrentRegion
+                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"Fly", Core.Player.Pokemons(_index)}), Color.White, False))
+            End If
         Else
-            Dim s As String = "version=2" & vbNewLine &
-                "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
-                                            "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
-                                            "@text.show(The area is already~lit up!)" & vbNewLine &
-                                            ":end"
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+            ShowMessage(_translation.MESSAGE_FIELDMOVE_ERROR("Fly"))
         End If
     End Sub
 
-    Private Sub UseFly()
-        If Level.CanFly = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
-            End If
+    Private Sub UseFlash()
+        SetScreen(OverworldScreen.GetCurrentInstance())
 
-            If Screen.Level.CurrentRegion.Contains(",") = True Then
-                Dim regions As List(Of String) = Screen.Level.CurrentRegion.Split(CChar(",")).ToList()
-                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, regions, 0, {"Fly", PokemonList(_index)}), Color.White, False))
-            Else
-                Dim startRegion As String = Screen.Level.CurrentRegion
-                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"Fly", PokemonList(_index)}), Color.White, False))
+        If Screen.Level.IsDark Then
+            Dim s As String = "@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
+                              "@environment.toggledarkness" & vbNewLine &
+                              "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
+                              "@text.show(The area got lit up!)"
+            PlayerStatistics.Track("Flash used", 1)
+            Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
+        Else
+            Dim s As String = "@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
+                                            "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
+                                            "@text.show(The area is already~lit up!)"
+            Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
+        End If
+    End Sub
+
+    Private Sub UseRide()
+        If Screen.Level.Riding Then
+            Screen.Level.Riding = False
+            Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
+            Core.Player.Skin = Core.Player.TempRideSkin
+
+            Core.SetScreen(OverworldScreen.GetCurrentInstance())
+
+            If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
+                MusicPlayer.GetInstance().Play(Level.MusicLoop)
             End If
         Else
-            TextBox.Show("You cannot Fly~from here!", {}, True, False)
+            If Screen.Level.Surfing = False And Screen.Camera.IsMoving() = False And Screen.Camera.Turning = False And Level.CanRide() Then
+                Core.SetScreen(OverworldScreen.GetCurrentInstance())
+
+                Screen.Level.Riding = True
+                Core.Player.TempRideSkin = Core.Player.Skin
+
+                Dim skin As String = "[POKEMON|"
+                If Core.Player.Pokemons(_index).IsShiny Then
+                    skin &= "S]"
+                Else
+                    skin &= "N]"
+                End If
+                skin &= Core.Player.Pokemons(_index).Number & PokemonForms.GetOverworldAddition(Core.Player.Pokemons(_index))
+
+                Screen.Level.OwnPlayer.SetTexture(skin, False)
+
+                SoundManager.PlayPokemonCry(Core.Player.Pokemons(_index).Number)
+
+                TextBox.Show(Core.Player.Pokemons(_index).GetDisplayName() & " used~Ride!", {}, True, False)
+                PlayerStatistics.Track("Ride used", 1)
+
+                If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
+                    MusicPlayer.GetInstance().Play("system\ride", True)
+                End If
+            Else
+                ShowMessage(_translation.MESSAGE_FIELDMOVE_ERROR("Ride"))
+            End If
         End If
     End Sub
 
     Private Sub UseCut()
         Dim grassEntities = Grass.GetGrassTilesAroundPlayer(2.4F)
         If grassEntities.Count > 0 Then
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
-            End If
+            Core.SetScreen(OverworldScreen.GetCurrentInstance())
 
             PlayerStatistics.Track("Cut used", 1)
-            TextBox.Show(PokemonList(_index).GetDisplayName() & "~used Cut!", {}, True, False)
-            PokemonList(_index).PlayCry()
+            TextBox.Show(Core.Player.Pokemons(_index).GetDisplayName() & "~used Cut!", {}, True, False)
+            Core.Player.Pokemons(_index).PlayCry()
             For Each e As Entity In grassEntities
                 Screen.Level.Entities.Remove(e)
             Next
         Else
-            TextBox.Show("There is nothing~to be Cut!", {}, True, False)
-        End If
-    End Sub
-
-    Private Sub UseRide()
-        If Screen.Level.Riding = True Then
-            Screen.Level.Riding = False
-            Screen.Level.OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
-            Core.Player.Skin = Core.Player.TempRideSkin
-
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
-            End If
-
-            If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                MusicManager.PlayMusic(Level.MusicLoop)
-            End If
-        Else
-            If Screen.Level.Surfing = False And Screen.Camera.IsMoving() = False And Screen.Camera.Turning = False And Level.CanRide() = True Then
-                ChooseBox.Showing = False
-                Core.SetScreen(Me.PreScreen)
-                If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                    Core.SetScreen(Core.CurrentScreen.PreScreen)
-                End If
-
-                Screen.Level.Riding = True
-                Core.Player.TempRideSkin = Core.Player.Skin
-
-                Dim skin As String = "[POKEMON|"
-                If PokemonList(_index).IsShiny = True Then
-                    skin &= "S]"
-                Else
-                    skin &= "N]"
-                End If
-                skin &= PokemonList(_index).Number & PokemonForms.GetOverworldAddition(PokemonList(_index))
-
-                Screen.Level.OwnPlayer.SetTexture(skin, False)
-
-                SoundManager.PlayPokemonCry(PokemonList(_index).Number)
-
-                TextBox.Show(PokemonList(_index).GetDisplayName() & " used~Ride!", {}, True, False)
-                PlayerStatistics.Track("Ride used", 1)
-
-                If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                    MusicManager.PlayMusic("ride", True)
-                End If
-            Else
-                TextBox.Show("You cannot Ride here!", {}, True, False)
-            End If
-        End If
-    End Sub
-
-    Private Sub UseDig()
-        If Screen.Level.CanDig = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
-            End If
-
-            Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
-
-            Dim s As String = "version=2
-@text.show(" & PokemonList(_index).GetDisplayName() & " used Dig!)
-@level.wait(20)
-@camera.activatethirdperson
-@camera.reset
-@camera.fix
-@player.turnto(0)
-@sound.play(destroy)
-:while:<player.position(y)>>" & (Screen.Camera.Position.Y - 1.4).ToString().ReplaceDecSeparator() & "
-@player.turn(1)
-@player.warp(~,~-0.1,~)
-@level.wait(1)
-:endwhile
-@screen.fadeout
-@camera.defix
-@player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)" & vbNewLine &
-"@player.turnto(2)"
-
-            If setToFirstPerson = True Then
-                s &= vbNewLine & "@camera.deactivatethirdperson"
-            End If
-            s &= vbNewLine &
-"@level.update
-@screen.fadein
-:end"
-
-            PlayerStatistics.Track("Dig used", 1)
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
-        Else
-            TextBox.Show("Cannot use Dig here.", {}, True, False)
+            ShowMessage(_translation.MESSAGE_FIELDMOVE_ERROR("Cut"))
         End If
     End Sub
 
     Private Sub UseTeleport()
-        If Screen.Level.CanTeleport = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            ChooseBox.Showing = False
-            Core.SetScreen(Me.PreScreen)
-            If Core.CurrentScreen.Identification = Identifications.MenuScreen Then
-                Core.SetScreen(Core.CurrentScreen.PreScreen)
-            End If
+        If Screen.Level.CanTeleport Or GameController.IS_DEBUG_ACTIVE Or Core.Player.SandBoxMode Then
+            Core.SetScreen(OverworldScreen.GetCurrentInstance())
 
             Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
             Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
-            Dim s As String = "version=2
-@text.show(" & PokemonList(_index).GetDisplayName() & "~used Teleport!)
+            Dim s As String = "@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & "~used Teleport!)
 @level.wait(20)
 @camera.activatethirdperson
 @camera.reset
@@ -959,22 +887,59 @@ Public Class PartyScreen
 @player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)
 @player.turnto(2)"
 
-            If setToFirstPerson = True Then
+            If setToFirstPerson Then
                 s &= vbNewLine & "@camera.deactivatethirdperson"
             End If
             s &= vbNewLine &
 "@level.update
-@screen.fadein
-:end"
+@screen.fadein"
 
             PlayerStatistics.Track("Teleport used", 1)
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+            Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
         Else
-            TextBox.Show("Cannot use Teleport here.", {}, True, False)
+            ShowMessage(_translation.MESSAGE_FIELDMOVE_ERROR("Teleport"))
+        End If
+    End Sub
+
+    Private Sub UseDig()
+        If Screen.Level.CanDig Or GameController.IS_DEBUG_ACTIVE Or Core.Player.SandBoxMode Then
+            Core.SetScreen(OverworldScreen.GetCurrentInstance())
+
+            Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
+
+            Dim s As String = "@text.show(" & Core.Player.Pokemons(_index).GetDisplayName() & " used Dig!)
+@level.wait(20)
+@camera.activatethirdperson
+@camera.reset
+@camera.fix
+@player.turnto(0)
+@sound.play(destroy)
+:while:<player.position(y)>>" & (Screen.Camera.Position.Y - 1.4).ToString().ReplaceDecSeparator() & "
+@player.turn(1)
+@player.warp(~,~-0.1,~)
+@level.wait(1)
+:endwhile
+@screen.fadeout
+@camera.defix
+@player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)" & vbNewLine &
+"@player.turnto(2)"
+
+            If setToFirstPerson Then
+                s &= vbNewLine & "@camera.deactivatethirdperson"
+            End If
+            s &= vbNewLine &
+"@level.update
+@screen.fadein"
+
+            PlayerStatistics.Track("Dig used", 1)
+            Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
+        Else
+            ShowMessage(_translation.MESSAGE_FIELDMOVE_ERROR("Dig"))
         End If
     End Sub
 
 #End Region
+
 
     Private _mode As ISelectionScreen.ScreenMode = ISelectionScreen.ScreenMode.Default
     Private _canExit As Boolean = True

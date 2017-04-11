@@ -86,87 +86,92 @@
 
     Public Sub LoadContent()
         KeyBindings.Load()
+
         GameModeManager.LoadGameModes()
-        Logger.Debug("Loaded game modes.")
+        Logger.Debug("162", "Loaded game modes.")
 
         FontManager.LoadFonts()
 
         Screen.TextBox.TextFont = FontManager.GetFontContainer("textfont")
-        Logger.Debug("Loaded fonts.")
-
+        Logger.Debug("163", "Loaded fonts.")
 
         TextureManager.InitializeTextures()
-        MusicManager.Setup()
-        MusicManager.LoadMusic(False)
-        SoundManager.LoadSounds(False)
-        Logger.Debug("Loaded content.")
+        Logger.Debug("164", "Loaded content.")
 
-        Logger.Debug("Validated files. Result: " & Security.FileValidation.IsValid(True).ToString())
+        Logger.Debug("165", "Validated files. Result: " & Security.FileValidation.IsValid(True).ToString())
         If Security.FileValidation.IsValid(False) = False Then
-            Logger.Log(Logger.LogTypes.Warning, "Core.vb: File Validation failed! Download a fresh copy of the game to fix this issue.")
+            Logger.Log("250", Logger.LogTypes.Warning, "Core.vb: File Validation failed! Download a fresh copy of the game to fix this issue.")
         End If
 
-        GameMessage = New GameMessage(net.Pokemon3D.Game.TextureManager.DefaultTexture, New Size(10, 40), New Vector2(0, 0))
-        GameMessage.Dock = net.Pokemon3D.Game.GameMessage.DockStyles.Top
+        GameMessage = New GameMessage(Game.TextureManager.DefaultTexture, New Size(10, 40), New Vector2(0, 0))
+        GameMessage.Dock = Game.GameMessage.DockStyles.Top
         GameMessage.BackgroundColor = Color.Black
         GameMessage.TextPosition = New Vector2(10, 10)
-        Logger.Debug("Gamemessage initialized.")
+        Logger.Debug("166", "Gamemessage initialized.")
 
         GameOptions.Load()
 
         If System.IO.Directory.Exists(GameController.GamePath & "\Temp") = True Then
             Try
                 System.IO.Directory.Delete(GameController.GamePath & "\Temp", True)
-                Logger.Log(Logger.LogTypes.Message, "Core.vb: Deleted Temp directory.")
+                Logger.Log("251", Logger.LogTypes.Message, "Core.vb: Deleted Temp directory.")
             Catch ex As Exception
-                Logger.Log(Logger.LogTypes.Warning, "Core.vb: Failed to delete the Temp directory.")
+                Logger.Log("252", Logger.LogTypes.Warning, "Core.vb: Failed to delete the Temp directory.")
             End Try
         End If
 
         GameJolt.StaffProfile.SetupStaff()
-
-        ScriptVersion2.ScriptLibrary.InitializeLibrary()
     End Sub
 
     Public Sub Update(ByVal gameTime As GameTime)
-        Core.GameTime = gameTime
+        If KeyBindings.IsInitialized Then
+            Core.GameTime = gameTime
 
-        KeyBoardHandler.Update()
-        ControllerHandler.Update()
+            KeyBoardHandler.Update()
+            ControllerHandler.Update()
 
-        ConnectScreen.UpdateConnectSet()
+            ConnectScreen.UpdateConnectSet()
 
-        If Core.GameInstance.IsActive = False Then
-            If Core.CurrentScreen.CanBePaused = True Then
-                Core.SetScreen(New PauseScreen(Core.CurrentScreen))
-            End If
-        Else
-            If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True Or ControllerHandler.ButtonDown(Buttons.Start) = True Then
-                CurrentScreen.EscapePressed()
-            End If
-        End If
-
-        CurrentScreen.Update()
-        If CurrentScreen.CanChat = True Then
-            If KeyBoardHandler.KeyPressed(KeyBindings.ChatKey) = True Or ControllerHandler.ButtonPressed(Buttons.RightShoulder) = True Then
-                If JoinServerScreen.Online = True Or Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
-                    SetScreen(New ChatScreen(CurrentScreen))
+            If Core.GameInstance.IsActive = False Then
+                If Core.CurrentScreen.CanBePaused = True Then
+                    Core.SetScreen(New PauseScreen(Core.CurrentScreen))
+                End If
+            Else
+                If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True Or ControllerHandler.ButtonDown(Buttons.Start) = True Then
+                    CurrentScreen.EscapePressed()
                 End If
             End If
+
+            CurrentScreen.Update()
+            If CurrentScreen.CanChat = True Then
+                If KeyBoardHandler.KeyPressed(KeyBindings.ChatKey) = True Then
+                    OpenChatScreen()
+                End If
+            End If
+
+            MainGameFunctions.FunctionKeys()
+
+            MusicPlayer.GetInstance().Update(gameTime)
+
+            GameMessage.Update()
+            Controls.MakeMouseVisible()
+
+            MouseHandler.Update()
+
+            LoadingDots.Update()
+            ForcedCrash.Update()
+
+            ServersManager.Update()
+        Else
+            'Update the current screen when the keybindings have not been initialized, because this happens in the Update method of the SplashScreen.
+            CurrentScreen.Update()
         End If
+    End Sub
 
-        MainGameFunctions.FunctionKeys()
-        MusicManager.Update()
-
-        GameMessage.Update()
-        Controls.MakeMouseVisible()
-
-        MouseHandler.Update()
-
-        LoadingDots.Update()
-        ForcedCrash.Update()
-
-        ServersManager.Update()
+    Public Sub OpenChatScreen()
+        If JoinServerScreen.Online = True Or Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
+            SetScreen(New ChatScreen(CurrentScreen))
+        End If
     End Sub
 
     Public Sub Draw()

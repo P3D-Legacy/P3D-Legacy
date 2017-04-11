@@ -57,22 +57,18 @@
 
             Dim spawnedPokemon As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.Headbutt, False)
             If spawnedPokemon Is Nothing Then
-                Dim s As String = "version=2" & vbNewLine &
-                    "@text.show(" & pName & " used~Headbutt!)" & vbNewLine &
+                Dim s As String = "@text.show(" & pName & " used~Headbutt!)" & vbNewLine &
                     "@sound.play(destroy,0)" & vbNewLine &
                     "@level.wait(20)" & vbNewLine &
-                    "@text.show(Nothing happened...)" & vbNewLine &
-                    ":end"
-                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                    "@text.show(Nothing happened...)"
+                Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
             Else
-                Dim s As String = "version=2" & vbNewLine &
-                    "@text.show(" & pName & " used~Headbutt!)" & vbNewLine &
+                Dim s As String = "@text.show(" & pName & " used~Headbutt!)" & vbNewLine &
                     "@sound.play(destroy,0)" & vbNewLine &
                     "@level.wait(20)" & vbNewLine &
                     "@text.show(A wild Pokémon~appeared!)" & vbNewLine &
-                    "@battle.wild(" & spawnedPokemon.Number & "," & spawnedPokemon.Level & ")" & vbNewLine &
-                    ":end"
-                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                    "@battle.wild(" & spawnedPokemon.Number & "," & spawnedPokemon.Level & ")"
+                Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
             End If
         End If
     End Sub

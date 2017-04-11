@@ -56,13 +56,13 @@
         DrawContent()
         DrawBadges()
 
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("trainer_screen_backadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(OldLocalization.GetString("trainer_screen_backadvice")).X - 330, 580), Color.DarkGray)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("trainer_screen_backadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(Localization.GetString("trainer_screen_backadvice")).X - 330, 580), Color.DarkGray)
     End Sub
 
     Private Sub DrawHeader()
         Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 480, 64))
         Core.SpriteBatch.Draw(mainTexture, New Rectangle(78, 124, 60, 48), New Rectangle(108, 112, 20, 16), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.InGameFont, OldLocalization.GetString("trainer_screen_trainer_card"), New Vector2(154, 132), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("trainer_screen_trainer_card"), New Vector2(154, 132), Color.Black)
     End Sub
 
     Private Sub DrawContent()
@@ -108,14 +108,14 @@
             Dim EmblemName As String = Core.GameJoltSave.Emblem
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Current Emblem: """ & EmblemName(0).ToString().ToUpper() & EmblemName.Substring(1, EmblemName.Length - 1) & """ (" & CStr(Core.GameJoltSave.AchievedEmblems.IndexOf(EmblemName) + 1) & "/" & Core.GameJoltSave.AchievedEmblems.Count & ") - use arrow keys to change.", New Vector2(80, 333), Color.Black)
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("trainer_screen_money") & ": " & vbNewLine & vbNewLine & OldLocalization.GetString("trainer_screen_pokedex") & ": " & vbNewLine & vbNewLine & OldLocalization.GetString("trainer_screen_time") & ": ", New Vector2(610, 220), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("trainer_screen_money") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_pokedex") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_time") & ": ", New Vector2(610, 220), Color.Black)
             With Core.Player
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, "$" & .Money & vbNewLine & vbNewLine & Pokedex.CountEntries(Core.Player.PokedexData, {2, 3}) & " /" & Pokedex.CountEntries(Core.Player.PokedexData, {1, 2, 3}) & vbNewLine & vbNewLine & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(700, 220), Color.DarkBlue)
             End With
         Else
             Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(572, 100, 288, 288))
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("trainer_screen_name") & ": " & vbNewLine & vbNewLine & OldLocalization.GetString("trainer_screen_points") & ": " & vbNewLine & vbNewLine & OldLocalization.GetString("trainer_screen_money") & ": " & vbNewLine & vbNewLine & OldLocalization.GetString("trainer_screen_pokedex") & ": " & vbNewLine & vbNewLine & OldLocalization.GetString("trainer_screen_time") & ": ", New Vector2(108, 220), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("trainer_screen_name") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_points") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_money") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_pokedex") & ": " & vbNewLine & vbNewLine & Localization.GetString("trainer_screen_time") & ": ", New Vector2(108, 220), Color.Black)
 
             Dim displayPoints As Integer = Core.Player.Points
             If Core.Player.IsGameJoltSave = True Then
@@ -133,7 +133,7 @@
 
     Private Sub DrawBadges()
         If Core.Player.Badges.Count > 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("trainer_screen_collected_badges") & ": " & Core.Player.Badges.Count, New Vector2(108, 450), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("trainer_screen_collected_badges") & ": " & Core.Player.Badges.Count, New Vector2(108, 450), Color.Black)
 
             Dim selectedRegion As String = Badge.GetRegion(CInt(index.Y))
             Dim badgesCount As Integer = Badge.GetBadgesCount(selectedRegion)
@@ -142,10 +142,10 @@
                 Dim badgeID As Integer = Badge.GetBadgeID(selectedRegion, i)
 
                 Dim c As Color = Color.White
-                Dim t As String = Badge.GetBadgeName(badgeID) & OldLocalization.GetString("trainer_screen_badge")
+                Dim t As String = Badge.GetBadgeName(badgeID) & Localization.GetString("trainer_screen_badge")
                 If Badge.PlayerHasBadge(badgeID) = False Then
                     c = Color.Black
-                    t = OldLocalization.GetString("trainer_screen_empty_badge")
+                    t = Localization.GetString("trainer_screen_empty_badge")
                 End If
 
                 Core.SpriteBatch.Draw(Badge.GetBadgeTexture(badgeID), New Rectangle(60 + (i + 1) * 64, 480, 50, 50), c)

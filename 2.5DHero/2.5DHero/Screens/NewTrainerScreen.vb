@@ -157,7 +157,7 @@
     End Sub
 
     Private Sub DrawBadges()
-        _textBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("trainer_screen_collected_badges") & ": " & Core.Player.Badges.Count, New Vector2(50, 360), Color.Black)
+        _textBatch.DrawString(FontManager.MiniFont, Localization.GetString("trainer_screen_collected_badges") & ": " & Core.Player.Badges.Count, New Vector2(50, 360), Color.Black)
 
         Dim selectedRegion As String = Badge.GetRegion(_badgeRegionIndex)
         Dim badgesCount As Integer = Badge.GetBadgesCount(selectedRegion)
@@ -167,11 +167,11 @@
             Dim badgeID As Integer = Badge.GetBadgeID(selectedRegion, i)
 
             Dim c As Color = Color.White
-            Dim t As String = Badge.GetBadgeName(badgeID) & OldLocalization.GetString("trainer_screen_badge")
+            Dim t As String = Badge.GetBadgeName(badgeID) & Localization.GetString("trainer_screen_badge")
             Dim shake As Single = 0F
             If Badge.PlayerHasBadge(badgeID) = False Then
                 c = Color.Black
-                t = OldLocalization.GetString("trainer_screen_empty_badge")
+                t = Localization.GetString("trainer_screen_empty_badge")
             End If
 
             If i = CInt(_badgeIndex) Then

@@ -278,17 +278,19 @@
 
     Public Sub ActivateScript()
         Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
-        If oScreen.ActionScript.IsReady = True Then
+        If Construct.Controller.GetInstance().IsReady = True Then
             SoundManager.PlaySound("select")
             Select Case Me.ActionValue
-                Case 0
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
-                Case 1
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
-                Case 3
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", vbNewLine), 2)
-                Case Else
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
+                Case 0 'text
+                    Construct.Controller.GetInstance().RunFromText(Me.AdditionalValue, {Construct.Controller.ScriptRunOptions.CheckDelay})
+                Case 1 'script
+                    Construct.Controller.GetInstance().RunFromFile(Me.AdditionalValue, {Construct.Controller.ScriptRunOptions.CheckDelay})
+                Case 2 'script (is trainer)
+                    Construct.Controller.GetInstance().RunFromFile(Me.AdditionalValue, {Construct.Controller.ScriptRunOptions.CheckDelay})
+                Case 3 'string
+                    Construct.Controller.GetInstance().RunFromString(Me.AdditionalValue, {Construct.Controller.ScriptRunOptions.CheckDelay})
+                Case Else 'text
+                    Construct.Controller.GetInstance().RunFromText(Me.AdditionalValue, {Construct.Controller.ScriptRunOptions.CheckDelay})
             End Select
         End If
     End Sub
@@ -328,13 +330,13 @@
                         End If
 
                         If correctFacing = True Then
-                            distance = distance.ToPositive()
+                            distance = Math.Abs(distance)
 
                             If distance <= Me.TrainerSight Then
                                 Dim InSightMusic As String = "nomusic"
 
                                 If Me.IsTrainer = True Then
-                                    Dim trainerFilePath As String = OldGameModeManager.GetScriptPath(Me.AdditionalValue & ".dat")
+                                    Dim trainerFilePath As String = GameModeManager.GetScriptPath(Me.AdditionalValue & ".dat")
                                     Security.FileValidation.CheckFileValid(trainerFilePath, False, "NPC.vb")
 
                                     Dim trainerContent() As String = System.IO.File.ReadAllLines(trainerFilePath)
@@ -372,12 +374,12 @@
                                 End Select
                                 Dim turns As Integer = needFacing - Screen.Camera.GetPlayerFacingDirection()
                                 If turns < 0 Then
-                                    turns = 4 - turns.ToPositive()
+                                    turns = 4 - Math.Abs(turns)
                                 End If
 
                                 CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = True
                                 If InSightMusic <> "nomusic" And InSightMusic <> "" Then
-                                    MusicManager.PlayMusic(InSightMusic, True, 0.0F, 0.0F)
+                                    MusicPlayer.GetInstance().Play(InSightMusic, True, 0.0F, 0.0F)
                                 End If
                                 Screen.Camera.StopMovement()
                                 Me.Movement = Movements.Still
@@ -394,8 +396,7 @@
                                         offset.X = 0.01F
                                 End Select
 
-                                Dim s As String = "version=2" & vbNewLine &
-                                    "@player.turn(" & turns & ")" & vbNewLine
+                                Dim s As String = "@player.turn(" & turns & ")" & vbNewLine
 
                                 With CType(Screen.Camera, OverworldCamera)
                                     If CType(Screen.Camera, OverworldCamera).ThirdPerson = True And IsOnScreen() = False Then
@@ -405,20 +406,17 @@
                                              "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & vbNewLine &
                                              "@camera.resetfocus" & vbNewLine &
                                              "@camera.setposition(" & cPosition & ")" & vbNewLine &
-                                             "@script.start(" & Me.AdditionalValue & ")" & vbNewLine &
-                                             ":end"
+                                             "@script.start(" & Me.AdditionalValue & ")"
                                     Else
                                         s &= "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & vbNewLine &
                                         "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & vbNewLine &
-                                        "@script.start(" & Me.AdditionalValue & ")" & vbNewLine &
-                                        ":end"
+                                        "@script.start(" & Me.AdditionalValue & ")"
                                     End If
                                 End With
 
 
                                 Screen.Level.OwnPlayer.Opacity = 0.5F
-                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
-                                ActionScript.IsInsightScript = True
+                                Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay, Construct.Controller.ScriptRunOptions.InsightScript})
                             End If
                         End If
                     End If
@@ -471,7 +469,7 @@
 
     Private Sub NPCMovement()
         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-            If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
+            If Construct.Controller.GetInstance().IsReady = False Then
                 Exit Sub
             End If
         End If

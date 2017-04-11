@@ -4,8 +4,8 @@
 
         Inherits Screen
 
-        Public Shared TradeRequestData As Integer = -1 ' This data gets set to the network ID of the user that requests a trade.
-        Public Shared BattleRequestData As Integer = -1 ' This data gets set to the network ID of the user that requests a battle.
+        Public Shared TradeRequestData As Integer = -1 'This data gets set to the network ID of the user that requests a trade.
+        Public Shared BattleRequestData As Integer = -1 'This data gets set to the network ID of the user that requests a battle.
 
         Enum MenuScreens As Integer
             Main = 0
@@ -42,31 +42,31 @@
 
             Me.MouseVisible = True
 
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 Me.UserBanned = LogInScreen.UserBanned(Core.GameJoltSave.GameJoltID)
                 Dim APICall As New APICall(AddressOf GotPublicKeys)
-                APICall.GetKeys(False, "saveStorageV" & GameJolt.GamejoltSave.Version & "|*|*")
+                APICall.GetKeys(False, "saveStorageV" & GameJolt.GamejoltSave.VERSION & "|*|*")
             End If
 
             If Me.UserBanned = False Then
                 FunctionList.Add("PSS")
-                If API.LoggedIn = True And Core.Player.IsGamejoltSave = True And Core.Player.Pokemons.Count > 0 Then
+                If API.LoggedIn = True And Core.Player.IsGameJoltSave = True And Core.Player.Pokemons.Count > 0 Then
                     FunctionList.Add("Battle Spot")
                 End If
-                If (ActionScript.IsRegistered("pokegear_card_GTS") = True Or GameController.IS_DEBUG_ACTIVE = True) = True And API.LoggedIn = True And Core.Player.IsGamejoltSave = True Then
+                If (Construct.Framework.RegisterHandler.IsRegistered("pokegear_card_GTS") = True Or GameController.IS_DEBUG_ACTIVE = True) = True And API.LoggedIn = True And Core.Player.IsGameJoltSave = True Then
                     FunctionList.Add("GTS")
                 End If
-                If API.LoggedIn = True And Core.Player.IsGamejoltSave = True And Core.Player.Pokemons.Count > 0 Then
+                If API.LoggedIn = True And Core.Player.IsGameJoltSave = True And Core.Player.Pokemons.Count > 0 Then
                     FunctionList.Add("Wondertrade")
                 End If
             End If
 
             FunctionList.Add("Phone")
-            If ActionScript.IsRegistered("pokegear_card_radio") = True Or GameController.IS_DEBUG_ACTIVE = True Then
+            If Construct.Framework.RegisterHandler.IsRegistered("pokegear_card_radio") = True Or GameController.IS_DEBUG_ACTIVE = True Then
                 FunctionList.Add("Radio")
             End If
             FunctionList.Add("Worldmap")
-            If ActionScript.IsRegistered("pokegear_card_minimap") = True Or GameController.IS_DEBUG_ACTIVE = True Then
+            If Construct.Framework.RegisterHandler.IsRegistered("pokegear_card_minimap") = True Or GameController.IS_DEBUG_ACTIVE = True Then
                 FunctionList.Add("Minimap")
             End If
 
@@ -74,7 +74,7 @@
                 FunctionList.Add("Statistics")
             End If
 
-            If ActionScript.IsRegistered("pokegear_card_frontier") = True Or GameController.IS_DEBUG_ACTIVE = True Then
+            If Construct.Framework.RegisterHandler.IsRegistered("pokegear_card_frontier") = True Or GameController.IS_DEBUG_ACTIVE = True Then
                 FunctionList.Add("Frontier")
             End If
 
@@ -83,7 +83,7 @@
             Select Case EntryMode
                 Case EntryModes.MainMenu
                     SoundManager.PlaySound("Pokegear\pokegear_on")
-                    Me.menuIndex = Player.Temp.LastPokegearPage
+                    Me.menuIndex = Core.Player.Temp.PokegearPage
                 Case EntryModes.DisplayUser
                     InitializeUserView(Data)
                 Case EntryModes.TradeRequest
@@ -94,7 +94,7 @@
         End Sub
 
         Private Sub InitializeUserView(ByVal Data() As Object)
-            ' Data: NetworkID, GameJoltID, Name, Sprite
+            'Data: NetworkID, GameJoltID, Name, Sprite
 
             UserEmblem = Nothing
             UserSprite = CType(Data(3), Texture2D)
@@ -107,7 +107,7 @@
         End Sub
 
         Private Sub InitializeTradeRequest(ByVal Data() As Object)
-            ' Data: NetworkID of the requester, GameJoltID
+            'Data: NetworkID of the requester, GameJoltID
 
             menuIndex = MenuScreens.TradeRequest
             Me.TradeRequestNetworkID = CInt(Data(0))
@@ -117,7 +117,7 @@
         End Sub
 
         Private Sub InitializeBattleRequest(ByVal Data() As Object)
-            ' Data: NetworkID of the requester, GameJoltID
+            'Data: NetworkID of the requester, GameJoltID
 
             menuIndex = MenuScreens.BattleRequest
             Me.BattleRequestNetworkID = CInt(Data(0))
@@ -181,7 +181,7 @@
 
             If Me.menuIndex <> MenuScreens.TradeRequest Then
                 If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
-                    If Me.menuIndex <> MenuScreens.UserView Then Player.Temp.LastPokegearPage = Me.menuIndex
+                    If Me.menuIndex <> MenuScreens.UserView Then Core.Player.Temp.PokegearPage = Me.menuIndex
                     SoundManager.PlaySound("Pokegear\pokegear_off")
                     Core.SetScreen(Me.PreScreen)
                 End If
@@ -427,8 +427,8 @@
 
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
 
-            If Core.Player.IsGamejoltSave = True Then
-                ' Draw own information:
+            If Core.Player.IsGameJoltSave = True Then
+                'Draw own information:
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 40), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16 + 304), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
@@ -555,7 +555,7 @@
                 Me.RankingList.Clear()
                 InitializedRanklist = True
 
-                If Core.Player.IsGamejoltSave = True And UserBanned = False Then
+                If Core.Player.IsGameJoltSave = True And UserBanned = False Then
                     Dim APICall As New APICall(AddressOf GotDataRanklist)
 
                     APICall.FetchTable(100, "14908")
@@ -621,8 +621,8 @@
 
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
 
-            If Core.Player.IsGamejoltSave = True Then
-                ' Draw own information:
+            If Core.Player.IsGameJoltSave = True Then
+                'Draw own information:
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 40), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16 + 304), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
@@ -1009,7 +1009,7 @@
             Dim sameServer As Boolean = False
             Dim sameConnection As Boolean = False
 
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 If Not UserEmblem Is Nothing Then
                     sameConnection = True
                 End If
@@ -1089,7 +1089,7 @@
                 Dim sameServer As Boolean = False
                 Dim sameConnection As Boolean = False
 
-                If Core.Player.IsGamejoltSave = True Then
+                If Core.Player.IsGameJoltSave = True Then
                     If Not UserEmblem Is Nothing Then
                         sameConnection = True
                     End If
@@ -1252,9 +1252,8 @@
 
             Call_Flag = "calling"
 
-            Player.Temp.PokegearPage = Me.menuIndex
             Core.SetScreen(Me.PreScreen)
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript("phone\" & chosenID, 0)
+            Construct.Controller.GetInstance().RunFromFile("phone\" & chosenID, {})
         End Sub
 
         Private Sub InitializePhone()
@@ -1262,7 +1261,7 @@
 
             Dim reg() As String = Core.Player.RegisterData.Split(CChar(","))
 
-            Dim contactData() As String = System.IO.File.ReadAllLines(GameController.GamePath & "\Scripts\phone\contacts.dat")
+            Dim contactData() As String = System.IO.File.ReadAllLines(GameModeManager.GetDataFilePath("contacts.dat"))
 
             For Each r As String In reg
                 If r.StartsWith("phone_contact_") = True Then
@@ -1292,10 +1291,12 @@
         End Structure
 
         Public Shared Sub CallID(ByVal ID As String, ByVal checkRegistered As Boolean, ByVal checkLocation As Boolean)
-            Dim reg() As String = Core.Player.RegisterData.Split(CChar(","))
+            Dim reg() As String = Core.Player.RegisterData.Split(CChar(", "))
 
-            Security.FileValidation.CheckFileValid(GameController.GamePath & "\Scripts\phone\contacts.dat", False, "PokegearScreen.vb")
-            Dim contactData() As String = System.IO.File.ReadAllLines(GameController.GamePath & "\Scripts\phone\contacts.dat")
+            Dim contactsFile As String = GameModeManager.GetDataFilePath("contacts.dat")
+
+            Security.FileValidation.CheckFileValid(contactsFile, False, "PokegearScreen.vb")
+            Dim contactData() As String = System.IO.File.ReadAllLines(contactsFile)
 
             Dim tempContacs As New List(Of Contact)
 
@@ -1336,7 +1337,7 @@
 
                 Call_Flag = "receiving"
 
-                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript("phone\" & chosenID, 0)
+                Construct.Controller.GetInstance().RunFromFile("phone\" & chosenID, {})
             End If
         End Sub
 
@@ -1345,10 +1346,12 @@
                 Exit Sub
             End If
 
-            Dim reg() As String = Core.Player.RegisterData.Split(CChar(","))
+            Dim reg() As String = Core.Player.RegisterData.Split(CChar(", "))
 
-            Security.FileValidation.CheckFileValid(GameController.GamePath & "\Scripts\phone\contacts.dat", False, "PokegearScreen.vb")
-            Dim contactData() As String = System.IO.File.ReadAllLines(GameController.GamePath & "\Scripts\phone\contacts.dat")
+            Dim contactsFile As String = GameModeManager.GetDataFilePath("contacts.dat")
+
+            Security.FileValidation.CheckFileValid(contactsFile, False, "PokegearScreen.vb")
+            Dim contactData() As String = System.IO.File.ReadAllLines(contactsFile)
 
             Dim tempContacs As New List(Of Contact)
 
@@ -1387,7 +1390,7 @@
 
                 Call_Flag = "receiving"
 
-                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript("phone\" & chosenID, 0)
+                Construct.Controller.GetInstance().RunFromFile("phone\" & chosenID, {})
             End If
         End Sub
 
@@ -1460,17 +1463,17 @@
 
             Me.InitializedFrontier = True
 
-            If ActionScript.IsRegistered("gold ability") = True Then
+            If Construct.Framework.RegisterHandler.IsRegistered("gold ability") = True Then
                 Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Ability", .Description = "You defeated the Frontier Brain of" & vbNewLine & "Battle Tower a second time and you've" & vbNewLine & "your real strength when it comes to battles.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(50, 200, 50, 50), "")})
             Else
-                If ActionScript.IsRegistered("silver ability") = True Then
-                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Ability", .Description = "You defeated the Frontier Brain of" & vbNewLine & "Battle Tower and showed him how" & vbNewLine & "you and your Pokémon really are.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(0, 200, 50, 50), "")})
+                If Construct.Framework.RegisterHandler.IsRegistered("silver ability") = True Then
+                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Ability", .Description = "You defeated the Frontier Brain of" & vbNewLine & "Battle Tower and showed him how" & vbNewLine & "you and your POKéMON really are.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(0, 200, 50, 50), "")})
                 End If
             End If
-            If ActionScript.IsRegistered("gold knowledge") = True Then
-                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Knowledge", .Description = "This Emblem displays how great you can" & vbNewLine & "interact with Pokémon and how well" & vbNewLine & "you can adapt your strategy to a new situation.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(150, 200, 50, 50), "")})
+            If Construct.Framework.RegisterHandler.IsRegistered("gold knowledge") = True Then
+                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Knowledge", .Description = "This Emblem displays how great you can" & vbNewLine & "interact with POKéMON and how well" & vbNewLine & "you can adapt your strategy to a new situation.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(150, 200, 50, 50), "")})
             Else
-                If ActionScript.IsRegistered("silver knowledge") = True Then
+                If Construct.Framework.RegisterHandler.IsRegistered("silver knowledge") = True Then
                     Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Knowledge", .Description = "Only few trainers achieved this emblem" & vbNewLine & "which shows what strength lies" & vbNewLine & "inside them.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(100, 200, 50, 50), "")})
                 End If
             End If
@@ -1582,7 +1585,7 @@
             End Sub
 
             Public Function CanListen() As Boolean
-                ' Need to check: Daytime, Region, Expansion Card, Activation
+                'Need to check: Daytime, Region, Expansion Card, Activation
 
                 If Me.DayTimes.Contains(World.GetTime) = False Then
                     Return False
@@ -1595,23 +1598,23 @@
 
                 For Each exp As String In Me.Expansions
                     If exp.ToLower <> "radio" Then
-                        If ActionScript.IsRegistered("pokegear_card_radio" & exp) = False Then
+                        If Construct.Framework.RegisterHandler.IsRegistered("pokegear_card_radio" & exp) = False Then
                             Return False
                         End If
                     End If
                 Next
 
                 Select Case Activation
-                    Case "1" ' Needs register in the level channels (only works when minChannel = maxChannel)
+                    Case "1" 'needs register in the level channels (only works when minChannel = maxChannel)
                         If Screen.Level.AllowedRadioChannels.Contains(Me.ChannelMin) = False Then
                             Return False
                         End If
                     Case "0"
-                        ' Channel is always available.
+                        'Channel is always available.
                 End Select
 
                 If Me.ActivationRegister <> "0" Then
-                    If ActionScript.IsRegistered(Me.ActivationRegister) = False Then
+                    If Construct.Framework.RegisterHandler.IsRegistered(Me.ActivationRegister) = False Then
                         Return False
                     End If
                 End If
@@ -1667,7 +1670,7 @@
                         If chosenID > -1 Then
                             Dim p As Pokemon = Pokemon.GetPokemonByID(chosenID)
 
-                            output = "Welcome to the Pokédex Show! Today, we are going to look at the entry of " & p.GetName() & "! Its entry reads:~""" & p.PokedexEntry.Text & """~Wow, that is interesting! Also, " & p.GetName() & " is " & p.PokedexEntry.Height & "m high and weights " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName() & " is part of the " & p.PokedexEntry.Species & " species.~That's all the information we have. Tune in next time!"
+                            output = "Welcome to the POKéDEX Show! Today, we are going to look at the entry of " & p.GetName() & "! Its entry reads:~""" & p.PokedexEntry.Text & """~Wow, that is interesting! Also, " & p.GetName() & " is " & p.PokedexEntry.Height & "m high and weights " & p.PokedexEntry.Weight & "kg.~Isn't that amazing?~" & p.GetName() & " is part of the " & p.PokedexEntry.Species & " species.~That's all the information we have. Tune in next time!"
                         End If
                     Case "[randompokemon]"
                         Dim levels() As String = {"route29.dat", "route30.dat", "route31.dat", "route32.dat", "route33.dat", "route36.dat", "route37.dat", "route38.dat", "route39.dat", "routes\route34.dat", "routes\route35.dat", "routes\route42.dat", "routes\route43.dat", "routes\route44.dat", "routes\route45.dat", "routes\route46.dat"}
@@ -1683,7 +1686,7 @@
                         levelName = levelName.Substring(0, 5) & " " & levelName.Remove(0, 5)
 
                         If Not p Is Nothing Then
-                            output = "Professor Oak's Pokémon Talk! With Mary!~~Professor Oak: " & p.GetName() & " has been spotted on " & levelName & ".~Mary: " & p.GetName() & "! How smart! How inspiring!"
+                            output = "Professor Oak's POKéMON Talk! With Mary!~~Professor Oak: " & p.GetName() & " has been spotted on " & levelName & ".~Mary: " & p.GetName() & "! How smart! How inspiring!"
                         End If
                     Case "[unown]"
                         Dim words() As String = {"doom", "dark", "help", "join us", "stay", "lost", "vanish", "always there", "no eyes"}
@@ -1823,7 +1826,7 @@
                         Else
                             Screen.Level.IsRadioOn = Not Screen.Level.IsRadioOn
                             Screen.Level.SelectedRadioStation = CurrentStation
-                            Player.Temp.RadioStation = Me.RadioCursor
+                            Core.Player.Temp.RadioStation = Me.RadioCursor
                         End If
                     End If
                 End If
@@ -1862,7 +1865,7 @@
             CurrentSong = ""
             For Each station As RadioStation In Me.RadioStations
                 If station.IsInterfering(RadioCursor) = True Then
-                    MusicManager.PlayMusic(station.Music, True)
+                    MusicPlayer.GetInstance().Play(station.Music, True)
                     CurrentSong = station.Music
                     CurrentStation = station
                     Exit For
@@ -1870,7 +1873,7 @@
             Next
 
             If CurrentSong = "" Then
-                MusicManager.PlayMusic("nomusic", False)
+                MusicPlayer.GetInstance().Play("nomusic", False)
                 CurrentStation = Nothing
             End If
         End Sub
@@ -1878,7 +1881,7 @@
         Private Sub InitializeRadio()
             Me.InitializedRadio = True
 
-            Dim radioData() As String = System.IO.File.ReadAllLines(OldGameModeManager.GetContentFilePath("Data\channels.dat"))
+            Dim radioData() As String = System.IO.File.ReadAllLines(GameModeManager.GetDataFilePath("channels.dat"))
             For Each line As String In radioData
                 If line.StartsWith("{") = True And line.EndsWith("}") = True Then
                     line = line.Remove(line.Length - 1, 1).Remove(0, 1)
@@ -1888,16 +1891,16 @@
                 End If
             Next
 
-            Me.RadioCursor = Player.Temp.RadioStation
+            Me.RadioCursor = Core.Player.Temp.RadioStation
             CheckForStation()
 
-            Logger.Debug("Initialized Radio with " & Me.RadioStations.Count & " stations.")
+            Logger.Debug("134", "Initialized Radio with " & Me.RadioStations.Count & " stations.")
         End Sub
 
         Public Shared Function StationCanPlay(ByVal station As RadioStation) As Boolean
             Dim stations As New List(Of RadioStation)
 
-            Dim file As String = OldGameModeManager.GetContentFilePath("Data\channels.dat")
+            Dim file As String = GameModeManager.GetDataFilePath("channels.dat")
             Security.FileValidation.CheckFileValid(file, False, "PokegearScreen.vb")
 
             Dim radioData() As String = System.IO.File.ReadAllLines(file)
@@ -2037,7 +2040,7 @@
             End If
         End Sub
 
-        Private Sub DownloadTradeRequestSprite()
+        Private Sub DownloadTradeRequestSprite(ByVal obj As Object)
             If Me.TradeRequestGameJoltID <> "" Then
                 Dim t As Texture2D = Emblem.GetOnlineSprite(Me.TradeRequestGameJoltID)
                 If Not t Is Nothing Then
@@ -2168,7 +2171,7 @@
             End If
         End Sub
 
-        Private Sub DownloadBattleRequestSprite()
+        Private Sub DownloadBattleRequestSprite(ByVal obj As Object)
             If Me.BattleRequestGameJoltID <> "" Then
                 Dim t As Texture2D = Emblem.GetOnlineSprite(Me.BattleRequestGameJoltID)
                 If Not t Is Nothing Then

@@ -19,7 +19,7 @@ Namespace Items.Berries
         End Sub
 
         Public Overrides Sub Use()
-            If CBool(OldGameModeManager.GetGameRuleValue("CanUseHealItem", "1")) = False Then
+            If CBool(GameModeManager.GetGameRuleValue("CanUseHealItem", "1")) = False Then
                 Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
                 Exit Sub
             End If

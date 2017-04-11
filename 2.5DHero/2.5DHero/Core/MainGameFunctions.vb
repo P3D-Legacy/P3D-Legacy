@@ -17,9 +17,9 @@
             Core.GameOptions.Save()
 
             If Core.GameOptions.LightingEnabled Then
-                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_lighting_on", "Lighting Enabled"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_on", "Lighting Enabled"), 12, FontManager.MainFont, Color.White)
             Else
-                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_lighting_off", "Lighting Disabled"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_off", "Lighting Disabled"), 12, FontManager.MainFont, Color.White)
             End If
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.FullScreenKey) AndAlso Core.CurrentScreen.CanGoFullscreen Then
             ToggleFullScreen()
@@ -33,7 +33,7 @@
         If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
             If KeyBoardHandler.KeyPressed(Keys.F) Then
                 TextureManager.TextureList.Clear()
-                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_debug_texture_list_clear", "Texture list have cleared"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_debug_texture_list_clear", "Texture list have cleared"), 12, FontManager.MainFont, Color.White)
             ElseIf KeyBoardHandler.KeyPressed(Keys.S) Then
                 Core.SetWindowSize(New Vector2(1200, 680))
             ElseIf KeyBoardHandler.KeyPressed(Keys.L) Then
@@ -107,10 +107,10 @@
                 stream.Dispose()
             End If
 
-            Core.GameMessage.SetupText(OldLocalization.GetString("game_message_screenshot") & fileName, FontManager.MainFont, Color.White)
+            Core.GameMessage.SetupText(Localization.GetString("game_message_screenshot") & fileName, FontManager.MainFont, Color.White)
             Core.GameMessage.ShowMessage(12, Core.GraphicsDevice)
         Catch ex As Exception
-            Logger.Log(Logger.LogTypes.ErrorMessage, "Basic.vb: " & OldLocalization.GetString("game_message_screenshot_failed") & ". More information: " & ex.Message)
+            Logger.Log(Logger.LogTypes.ErrorMessage, "Basic.vb: " & Localization.GetString("game_message_screenshot_failed") & ". More information: " & ex.Message)
         End Try
     End Sub
 
@@ -134,7 +134,7 @@
 
             Core.GraphicsManager.ToggleFullScreen()
 
-            Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_fullscreen_on"), 12, FontManager.MainFont, Color.White)
+            Core.GameMessage.ShowMessage(Localization.GetString("game_message_fullscreen_on"), 12, FontManager.MainFont, Color.White)
         Else
             Core.GraphicsManager.PreferredBackBufferWidth = 1200
             Core.GraphicsManager.PreferredBackBufferHeight = 680
@@ -144,7 +144,7 @@
 
             Core.GraphicsManager.ToggleFullScreen()
 
-            Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_fullscreen_off"), 12, FontManager.MainFont, Color.White)
+            Core.GameMessage.ShowMessage(Localization.GetString("game_message_fullscreen_off"), 12, FontManager.MainFont, Color.White)
         End If
 
         Core.GraphicsManager.ApplyChanges()

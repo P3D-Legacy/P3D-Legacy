@@ -23,17 +23,16 @@ Namespace Items.Medicine
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-            If Pokemon.Level < CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100")) And Pokemon.IsEgg() = False Then
+            If Pokemon.Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) And Pokemon.IsEgg() = False Then
                 Dim beforeHP As Integer = Pokemon.MaxHP
                 Pokemon.LevelUp(False)
                 Pokemon.Experience = Pokemon.NeedExperience(Pokemon.Level)
-                If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
-                    Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.None
+                If Pokemon.Status = Pokemon.StatusProblems.Fainted Then
+                    Pokemon.Status = Pokemon.StatusProblems.None
                     Pokemon.HP = (Pokemon.MaxHP - beforeHP).Clamp(1, 999)
                 End If
 
                 Dim s As String =
-                    "version=2" & vbNewLine &
                     "@sound.play(success_small)" & vbNewLine &
                     "@text.show(" & Pokemon.GetDisplayName() & " reached~level " & Pokemon.Level & "!)" & vbNewLine
 
@@ -80,7 +79,7 @@ Namespace Items.Medicine
 
                 Core.SetScreen(sc)
 
-                CType(sc, OverworldScreen).ActionScript.StartScript(s, 2, False)
+                Construct.Controller.GetInstance().RunFromString(s, {})
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                 Return True

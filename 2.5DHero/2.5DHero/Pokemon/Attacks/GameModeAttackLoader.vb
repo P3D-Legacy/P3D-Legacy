@@ -18,8 +18,8 @@
         Public Shared Sub Load()
             LoadedMoves.Clear()
 
-            If OldGameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
-                For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & OldGameModeManager.ActiveGameMode.ContentPath & "\" & PATH, "*.dat")
+            If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
+                For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "\" & PATH, "*.dat")
                     LoadMove(file)
                 Next
             End If

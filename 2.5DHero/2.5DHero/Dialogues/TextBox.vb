@@ -107,8 +107,8 @@
             tokenEndIdx = possibleToken.IndexOf(">")
             If Not tokenEndIdx = -1 Then
                 validToken = possibleToken.Substring(0, tokenEndIdx)
-                If OldLocalization.LocalizationTokens.ContainsKey(validToken) = True Then
-                    If OldLocalization.LocalizationTokens.TryGetValue(validToken, token) = True Then
+                If Localization.LocalizationTokens.ContainsKey(validToken) = True Then
+                    If Localization.LocalizationTokens.TryGetValue(validToken, token) = True Then
                         Me.Text = Me.Text.Replace("<" & validToken & ">", token.TokenContent)
                     End If
                 End If

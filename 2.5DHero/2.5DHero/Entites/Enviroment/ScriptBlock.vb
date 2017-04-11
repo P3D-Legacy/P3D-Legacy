@@ -36,8 +36,8 @@
         If Me.TriggerID = 0 Or Me.TriggerID = 4 Then
             ActivateScript = True
             TriggeredScriptBlock = True
-            If ActionScript.TempInputDirection = -1 Then
-                ActionScript.TempInputDirection = Screen.Camera.GetPlayerFacingDirection()
+            If Construct.Controller.GetInstance().CorrectPlayerOrientation = -1 Then
+                Construct.Controller.GetInstance().CorrectPlayerOrientation = Screen.Camera.GetPlayerFacingDirection()
             End If
 
             If Screen.Camera.Name = "Overworld" Then
@@ -55,7 +55,7 @@
 
     Public Overrides Sub ClickFunction()
         If Me.TriggerID = 1 Then
-            ActionScript.TempInputDirection = -1
+            Construct.Controller.GetInstance().CorrectPlayerOrientation = -1
             Me.clickedToActivate = True
             TriggerScript(False)
         End If
@@ -75,17 +75,18 @@
         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             Dim oS As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
 
-            If oS.ActionScript.IsReady = True Or canAttach = True Then
-                If Me.CorrectRotation() = True Then
-                    If Me.clickedToActivate = True Then
-                        Me.clickedToActivate = False
-                        SoundManager.PlaySound("select")
-                    End If
+            With Construct.Controller.GetInstance()
+                If .IsReady = True Or canAttach = True Then
+                    If Me.CorrectRotation() = True Then
+                        If Me.clickedToActivate = True Then
+                            Me.clickedToActivate = False
+                            SoundManager.PlaySound("select")
+                        End If
 
-                    oS.ActionScript.StartScript(Me._scriptID, GetActivationID())
-                    ActionScript.TempSpin = True
+                        .RunFromFile(Me._scriptID, {Construct.Controller.ScriptRunOptions.CheckDelay, Construct.Controller.ScriptRunOptions.OrientatePlayer})
+                    End If
                 End If
-            End If
+            End With
         End If
         TriggeredScriptBlock = False
     End Sub

@@ -580,17 +580,17 @@
     End Sub
 
     Public Shared Sub TriggerCall(ByVal daycareID As Integer)
-        If ActionScript.IsRegistered("daycare_callid_" & daycareID.ToString()) = True Then
-            Dim c() As Object = ActionScript.GetRegisterValue("daycare_callid_" & daycareID.ToString())
-            If Not c(0) Is Nothing And Not c(1) Is Nothing Then
-                Dim callID As String = CStr(c(0))
+        If Construct.Framework.RegisterHandler.IsRegistered("daycare_callid_" & daycareID.ToString()) = True Then
+            Dim registerValue = Construct.Framework.RegisterHandler.GetRegisterValue("daycare_callid_" & daycareID.ToString())
+            If registerValue <> "" Then
+                Dim callID As String = registerValue
 
                 GameJolt.PokegearScreen.CallID(callID, True, False)
             Else
-                Logger.Debug("Cannot initialize call for Daycare ID " & daycareID.ToString() & ".")
+                Logger.Debug("109", "Cannot initialize call for Daycare ID " & daycareID.ToString() & ".")
             End If
         Else
-            Logger.Debug("Cannot initialize call for Daycare ID " & daycareID.ToString() & ".")
+            Logger.Debug("110", "Cannot initialize call for Daycare ID " & daycareID.ToString() & ".")
         End If
     End Sub
 

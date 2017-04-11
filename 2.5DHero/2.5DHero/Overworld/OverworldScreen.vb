@@ -1,8 +1,5 @@
 ﻿Imports System.Threading
 
-''' <summary>
-''' The screen to display the default Overworld gameplay.
-''' </summary>
 Public Class OverworldScreen
 
     Inherits Screen
@@ -12,7 +9,6 @@ Public Class OverworldScreen
     Private Shared _fadeValue As Integer = 0 'Fade progress value for the black screen fade.
     Private Shared _drawRodID As Integer = -1 'The rod ID to display on the screen during the fishing animation.
 
-    Private _actionScript As ActionScript 'Private ActionScript instance.
     Private _particlesTexture As Texture2D 'A texture field to contain the particles texture, currently only used for the crosshair.
     Private _trainerEncountered As Boolean = False
     Private _titles As New List(Of Title)
@@ -31,16 +27,7 @@ Public Class OverworldScreen
     ''' </summary>
     Public ReadOnly Property Titles() As List(Of Title)
         Get
-            Return Me._titles
-        End Get
-    End Property
-
-    ''' <summary>
-    ''' The ActionScript instance that controls the scripts.
-    ''' </summary>
-    Public ReadOnly Property ActionScript() As ActionScript
-        Get
-            Return Me._actionScript
+            Return _titles
         End Get
     End Property
 
@@ -49,10 +36,10 @@ Public Class OverworldScreen
     ''' </summary>
     Public Property TrainerEncountered() As Boolean
         Get
-            Return Me._trainerEncountered
+            Return _trainerEncountered
         End Get
         Set(value As Boolean)
-            Me._trainerEncountered = value
+            _trainerEncountered = value
         End Set
     End Property
 
@@ -81,7 +68,6 @@ Public Class OverworldScreen
         End Set
     End Property
 
-    Public Property GlobalGameModeScriptStarted As Boolean = False
 #End Region
 
     ''' <summary>
@@ -103,13 +89,18 @@ Public Class OverworldScreen
     ''' </summary>
     Public Sub New()
         'Set default information:
-        Me.Identification = Identifications.OverworldScreen
-        Me.CanChat = True
-        Me.MouseVisible = False
+        Identification = Identifications.OverworldScreen
+        CanChat = True
+        MouseVisible = False
+        IsOverlay = True
 
         'Set up 3D environment variables (Effect, Camera, SkyDome and Level):
-        Effect = New BasicEffect(Core.GraphicsDevice)
+        Effect = New BasicEffect(GraphicsDevice)
         Effect.FogEnabled = True
+        Effect.TextureEnabled = True
+
+        'Reset Construct:
+        Construct.Controller.GetInstance().Reset()
 
         Camera = New OverworldCamera()
         SkyDome = New SkyDome()
@@ -118,47 +109,37 @@ Public Class OverworldScreen
 
         'Play music depending on the player state in the level (surfing and riding):
         If Level.Surfing = True Then
-            MusicManager.PlayMusic("surf", True) 'Play "surf" when player is surfing.
+            MusicPlayer.GetInstance().Play("system\surf", True) 'Play "surf" when player is surfing.
         Else
             If Level.Riding = True Then
-                MusicManager.PlayMusic("ride", True) 'Play "ride" when player is riding.
+                MusicPlayer.GetInstance().Play("system\ride", True) 'Play "ride" when player is riding.
             Else
-                MusicManager.PlayMusic(Level.MusicLoop, True) 'Play default MusicLoop.
+                MusicPlayer.GetInstance().Play(Level.MusicLoop, True) 'Play default MusicLoop.
             End If
         End If
 
         'Setup the RouteSign for the initial level.
         Level.RouteSign.Setup(Level.MapName)
 
-        'Create a new instance of the ActionScript.
-        Me._actionScript = New ActionScript(Level)
-
         'Initialize the World information with the loaded level.
-        Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
+        Level.World.Initialize(Level.EnvironmentType, Level.WeatherType)
 
         'Load the particle texture.
-        Me._particlesTexture = TextureManager.GetTexture("GUI\Overworld\Particles")
+        _particlesTexture = TextureManager.GetTexture("GUI\Overworld\Particles")
     End Sub
 
     ''' <summary>
     ''' Updates the OverworldScreen.
     ''' </summary>
     Public Overrides Sub Update()
-        If OldGameModeManager.ActiveGameMode.StartScript <> "" AndAlso ActionScript.IsReady AndAlso Not GlobalGameModeScriptStarted Then
-            ActionScript.reDelay = 0.0F
-            ActionScript.StartScript(OldGameModeManager.ActiveGameMode.StartScript, 0)
-            GlobalGameModeScriptStarted = True
-        End If
-
         'If the MapScript has a value loaded from the MapScript map tag and there is no script running, start that script:
-        If LevelLoader.MapScript <> "" And ActionScript.IsReady = True Then
-            ActionScript.reDelay = 0.0F
-            ActionScript.StartScript(LevelLoader.MapScript, 0)
+        If Level.MapScript <> "" And Construct.Controller.GetInstance().IsReady = True Then
+            Construct.Controller.GetInstance().RunFromFile(Level.MapScript, {})
 
-            LevelLoader.MapScript = "" 'Reset the MapScript.
+            Level.MapScript = "" 'Reset the MapScript.
         End If
 
-        Lighting.UpdateLighting(Screen.Effect) 'Update the lighting on the basic effect.
+        Lighting.UpdateLighting(Effect) 'Update the lighting on the basic effect.
 
         'Update the Dialogues:
         ChooseBox.Update()
@@ -170,11 +151,10 @@ Public Class OverworldScreen
         End If
 
         'Middle click/Thumbstick press: Show first Pokémon in party.
-        If ActionScript.IsReady = True Then
+        If Construct.Controller.GetInstance().IsReady = True Then
             If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.MiddleButton) = True Or ControllerHandler.ButtonPressed(Buttons.LeftStick) = True Then
                 If Core.Player.Pokemons.Count > 0 Then
-                    ''Core.SetScreen(New PokemonStatusScreen(Core.CurrentScreen, 0, {}, Core.Player.Pokemons(0), True))
-                    Core.SetScreen(New SummaryScreen(CurrentScreen, Core.Player.Pokemons.ToArray, 0))
+                    SetScreen(New SummaryScreen(Me, Core.Player.Pokemons.ToArray(), 0))
                 End If
             End If
         End If
@@ -182,8 +162,8 @@ Public Class OverworldScreen
         'If no dialogue is showing, do level update tasks:
         If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False Then
             'If no script is running and no MapScript is in the queue, update camera and the level.
-            If ActionScript.IsReady = True And LevelLoader.MapScript = "" Then
-                If Me.HandleServerRequests() = True Then
+            If Construct.Controller.GetInstance().IsReady = True And Level.MapScript = "" Then
+                If HandleServerRequests() = True Then
                     Camera.Update()
                     Level.Update()
                 End If
@@ -197,24 +177,28 @@ Public Class OverworldScreen
 
             'Open the MenuScreen:
             If KeyBoardHandler.KeyPressed(KeyBindings.InventoryKey) = True Or ControllerHandler.ButtonPressed(Buttons.X) = True Then
-                If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
+                If Camera.IsMoving() = False And Construct.Controller.GetInstance().IsReady = True Then
                     Level.RouteSign.Hide()
 
                     SoundManager.PlaySound("menu_open")
-                    Core.SetScreen(New NewMenuScreen(Me))
+                    SetScreen(New NewMenuScreen(Me))
                 End If
             End If
 
             'Open the PokégearScreen:
             If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
                 If Core.Player.HasPokegear = True Or GameController.IS_DEBUG_ACTIVE = True Then
-                    If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
-                        Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
+                    If Camera.IsMoving() = False And Construct.Controller.GetInstance().IsReady = True Then
+                        SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
                     End If
                 End If
             End If
 
-            ActionScript.Update() 'Update the action script.
+            Construct.Controller.GetInstance().Update() 'Update construct scripts.
+
+            If ControllerHandler.ButtonPressed(Buttons.RightShoulder) = True Then
+                Core.OpenChatScreen()
+            End If
         Else 'Dialogues are showing:
             'Update some parts of the camera:
             If Camera.Name = "Overworld" Then
@@ -253,21 +237,36 @@ Public Class OverworldScreen
         Level.RouteSign.Update()
 
         'Update the World with new environment variables.
-        Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
+        Level.World.Initialize(Level.EnvironmentType, Level.WeatherType)
 
-        Me.UpdateShowControlDelay()
+        UpdateShowControlDelay()
 
         'If for some mysterical reason, a player with a GameJolt account is not logged in during a play session, prompt the LogInScreen.
         GameJolt.LogInScreen.KickFromOnlineScreen(Me)
 
-        Me.UpdateTitles()
+        UpdateTitles()
+        UpdateWorldWeather()
+    End Sub
+
+    Private _minimumWeatherChangeDelay As Double = 200.0F
+
+    ''' <summary>
+    ''' Updates the weather to change it after a while.
+    ''' </summary>
+    Private Sub UpdateWorldWeather()
+        If _minimumWeatherChangeDelay > 0F Then
+            _minimumWeatherChangeDelay -= 0.1F
+        Else
+            _minimumWeatherChangeDelay = Random.Next(100, 400)
+            Level.World.SetNewRegionWeather(Level.EnvironmentType, Level.WeatherType)
+        End If
     End Sub
 
     ''' <summary>
     ''' Updates the delay of the XBOX button render.
     ''' </summary>
     Private Sub UpdateShowControlDelay()
-        If Me.ShowControlsDelay > 0.0F Then
+        If ShowControlsDelay > 0.0F Then
             'If any Gamepad is connected, countdown the delay.
             If Core.GameOptions.GamePadEnabled = True AndAlso GamePad.GetState(PlayerIndex.One).IsConnected = True Then
                 ShowControlsDelay -= 0.1F
@@ -276,7 +275,7 @@ Public Class OverworldScreen
                 End If
             End If
         End If
-        If Screen.Camera.IsMoving() = True Or Camera.Turning = True Or ActionScript.IsReady = False Or TextBox.Showing = True Or ChooseBox.Showing = True Then
+        If Camera.IsMoving() = True Or Camera.Turning = True Or Construct.Controller.GetInstance().IsReady = False Or TextBox.Showing = True Or ChooseBox.Showing = True Then
             'If any input is received, reset the delay:
             ShowControlsDelay = 8.0F
         End If
@@ -288,16 +287,16 @@ Public Class OverworldScreen
     ''' <returns>True, if no requests are in the queue, False otherwise.</returns>
     Private Function HandleServerRequests() As Boolean
         If GameJolt.PokegearScreen.BattleRequestData <> -1 Then 'A Servers ID from another player is set here.
-            If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.BattleRequestData) = True Then 'If the player still exists on the server.
-                Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.BattleRequest, {GameJolt.PokegearScreen.BattleRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.BattleRequestData).GameJoltId}))
+            If ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.BattleRequestData) = True Then 'If the player still exists on the server.
+                SetScreen(New GameJolt.PokegearScreen(CurrentScreen, GameJolt.PokegearScreen.EntryModes.BattleRequest, {GameJolt.PokegearScreen.BattleRequestData, ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.BattleRequestData).GameJoltId}))
                 Return False
             Else 'Otherwise, reset the data.
                 GameJolt.PokegearScreen.BattleRequestData = -1
             End If
         End If
         If GameJolt.PokegearScreen.TradeRequestData <> -1 Then 'A Servers ID from another player is set here.
-            If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.TradeRequestData) = True Then 'If the player still exists on the server.
-                Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.TradeRequest, {GameJolt.PokegearScreen.TradeRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.TradeRequestData).GameJoltId}))
+            If ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.TradeRequestData) = True Then 'If the player still exists on the server.
+                SetScreen(New GameJolt.PokegearScreen(CurrentScreen, GameJolt.PokegearScreen.EntryModes.TradeRequest, {GameJolt.PokegearScreen.TradeRequestData, ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.TradeRequestData).GameJoltId}))
                 Return False
             Else 'Otherwise, reset the data.
                 GameJolt.PokegearScreen.TradeRequestData = -1
@@ -311,14 +310,14 @@ Public Class OverworldScreen
 
         Level.Draw()
 
-        World.DrawWeather(Screen.Level.World.CurrentMapWeather)
+        World.DrawWeather(Level.World.CurrentMapWeather)
 
         DrawGUI()
         PokemonImageView.Draw()
         TextBox.Draw()
 
         'Only draw the ChooseBox when it's the current screen, cause the same ChooseBox might get used on other screens.
-        If Me.IsCurrentScreen() = True Then
+        If IsCurrentScreen() = True Then
             ChooseBox.Draw()
         End If
 
@@ -355,25 +354,25 @@ Public Class OverworldScreen
         'Render the Rod (based on the DrawRodID property).
         If DrawRodID > -1 And isThirdPerson = False Then
             Dim t As Texture2D = TextureManager.GetTexture("GUI\Overworld\Rods", New Rectangle(DrawRodID * 8, 0, 8, 64), "") 'Load the texture.
-            Dim P As New Vector2(CSng(Core.windowSize.Width / 2 - 32), Core.windowSize.Height - 490)
+            Dim P As New Vector2(CSng(windowSize.Width / 2 - 32), windowSize.Height - 490)
 
-            Core.SpriteBatch.Draw(t, New Rectangle(CInt(P.X), CInt(P.Y), 64, 512), Color.White)
+            SpriteBatch.Draw(t, New Rectangle(CInt(P.X), CInt(P.Y), 64, 512), Color.White)
         End If
 
         'Render Crosshair:
         If Core.GameOptions.ShowGUI = True And isThirdPerson = False Then
-            Dim P As Vector2 = Core.GetMiddlePosition(New Size(16, 16))
-            Core.SpriteBatch.Draw(_particlesTexture, New Rectangle(CInt(P.X), CInt(P.Y), 16, 16), New Rectangle(0, 0, 9, 9), Color.White)
+            Dim P As Vector2 = GetMiddlePosition(New Size(16, 16))
+            SpriteBatch.Draw(_particlesTexture, New Rectangle(CInt(P.X), CInt(P.Y), 16, 16), New Rectangle(0, 0, 9, 9), Color.White)
         End If
 
         'Render all active titles:
-        For Each Title As Title In Me._titles
+        For Each Title As Title In _titles
             Title.Draw()
         Next
 
         'If the black fade is visible, render it:
         If FadeValue > 0 Then
-            Canvas.DrawRectangle(Core.windowSize, New Color(0, 0, 0, FadeValue))
+            Canvas.DrawRectangle(windowSize, New Color(0, 0, 0, FadeValue))
         End If
     End Sub
 
@@ -382,11 +381,11 @@ Public Class OverworldScreen
         DrawRodID = -1
 
         'Center the mouse:
-        Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
+        Dim c As OverworldCamera = CType(Camera, OverworldCamera)
         c.oldX = MouseHandler.MousePosition.X
         c.oldY = MouseHandler.MousePosition.Y
 
-        Player.Temp.IsInBattle = False
+        Core.Player.Temp.IsInBattle = False
 
         'Set to correct music:
         If TrainerEncountered = False Then
@@ -400,21 +399,21 @@ Public Class OverworldScreen
             End If
 
             Dim theme As String = Level.MusicLoop
-            If Screen.Level.Surfing = True Then
+            If Level.Surfing = True Then
                 theme = "surf"
             End If
-            If Screen.Level.Riding = True Then
+            If Level.Riding = True Then
                 theme = "ride"
             End If
 
             'If the radio is activated and the station can be played on the current map, play the music.
-            If Level.IsRadioOn = True AndAlso GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = True Then
+            If Level.IsRadioOn = True AndAlso GameJolt.PokegearScreen.StationCanPlay(Level.SelectedRadioStation) = True Then
                 theme = Level.SelectedRadioStation.Music
             Else
                 Level.IsRadioOn = False
             End If
 
-            MusicManager.PlayMusic(theme, True)
+            MusicPlayer.GetInstance().Play(theme, True)
         End If
     End Sub
 
@@ -422,14 +421,37 @@ Public Class OverworldScreen
     ''' Update all title objects in the _titles array.
     ''' </summary>
     Private Sub UpdateTitles()
-        For Each t As Title In Me._titles
+        For Each t As Title In _titles
             t.Update()
             If t.IsReady = True Then 'If the title animation is ready, remove it from the array.
-                Me._titles.Remove(t)
+                _titles.Remove(t)
                 Exit For
             End If
         Next
     End Sub
+
+    ''' <summary>
+    ''' Returns the currently active OverworldScreen instance.
+    ''' </summary>
+    Public Shared Function GetCurrentInstance() As OverworldScreen
+        Return GetCurrentInstance(CurrentScreen)
+    End Function
+
+    ''' <summary>
+    ''' Returns the currently active OverworldScreen instance.
+    ''' </summary>
+    ''' <param name="startScreen">The screen on the top of the stack.</param>
+    Public Shared Function GetCurrentInstance(ByVal startScreen As Screen) As OverworldScreen
+        Dim s As Screen = startScreen
+        While s.Identification <> Identifications.OverworldScreen And s.PreScreen IsNot Nothing
+            s = s.PreScreen
+        End While
+        If s.Identification = Identifications.OverworldScreen Then
+            Return CType(s, OverworldScreen)
+        Else
+            Return Nothing
+        End If
+    End Function
 
     ''' <summary>
     ''' A class to display text on the OverworldScreen.
@@ -449,10 +471,10 @@ Public Class OverworldScreen
         ''' <remarks>The default is "Sample Text".</remarks>
         Public Property Text() As String
             Get
-                Return Me._text
+                Return _text
             End Get
             Set(value As String)
-                Me._text = value
+                _text = value
             End Set
         End Property
 
@@ -462,10 +484,10 @@ Public Class OverworldScreen
         ''' <remarks>The default is White (255,255,255). No transparency is suppoorted.</remarks>
         Public Property TextColor() As Color
             Get
-                Return Me._textColor
+                Return _textColor
             End Get
             Set(value As Color)
-                Me._textColor = value
+                _textColor = value
             End Set
         End Property
 
@@ -475,10 +497,10 @@ Public Class OverworldScreen
         ''' <remarks>The default is x10.</remarks>
         Public Property Scale() As Single
             Get
-                Return Me._scale
+                Return _scale
             End Get
             Set(value As Single)
-                Me._scale = value
+                _scale = value
             End Set
         End Property
 
@@ -488,10 +510,10 @@ Public Class OverworldScreen
         ''' <remarks>The default is 0,0 - This position gets ignored when IsCentered is set to True.</remarks>
         Public Property Position() As Vector2
             Get
-                Return Me._position
+                Return _position
             End Get
             Set(value As Vector2)
-                Me._position = value
+                _position = value
             End Set
         End Property
 
@@ -501,10 +523,10 @@ Public Class OverworldScreen
         ''' <remarks>The default is True. If this is set to True, the Position Property is getting ignored.</remarks>
         Public Property IsCentered() As Boolean
             Get
-                Return Me._isCentered
+                Return _isCentered
             End Get
             Set(value As Boolean)
-                Me._isCentered = value
+                _isCentered = value
             End Set
         End Property
 
@@ -514,10 +536,10 @@ Public Class OverworldScreen
         ''' <remarks>The default is 20.</remarks>
         Public Property Delay() As Single
             Get
-                Return Me._delay
+                Return _delay
             End Get
             Set(value As Single)
-                Me._delay = value
+                _delay = value
             End Set
         End Property
 
@@ -538,12 +560,12 @@ Public Class OverworldScreen
         ''' <param name="Position">The position of the text on the screen.</param>
         ''' <param name="IsCentered">If the text should always get centered on the screen.</param>
         Public Sub New(ByVal Text As String, ByVal Delay As Single, ByVal TextColor As Color, ByVal Scale As Single, ByVal Position As Vector2, ByVal IsCentered As Boolean)
-            Me._text = Text
-            Me._delay = Delay
-            Me._textColor = TextColor
-            Me._scale = Scale
-            Me._position = Position
-            Me._isCentered = IsCentered
+            _text = Text
+            _delay = Delay
+            _textColor = TextColor
+            _scale = Scale
+            _position = Position
+            _isCentered = IsCentered
         End Sub
 
         ''' <summary>
@@ -553,29 +575,29 @@ Public Class OverworldScreen
             Dim p As Vector2 = Vector2.Zero
 
             'If the text is centered, set the draw position to the center of the screen, then add the position.
-            If Me._isCentered = True Then
-                Dim v As Vector2 = FontManager.TextFont.MeasureString(Me._text) * Me._scale
-                p = New Vector2(CSng(Core.windowSize.Width / 2 - v.X / 2), CSng(Core.windowSize.Height / 2 - v.Y / 2))
+            If _isCentered = True Then
+                Dim v As Vector2 = FontManager.TextFont.MeasureString(_text) * _scale
+                p = New Vector2(CSng(windowSize.Width / 2 - v.X / 2), CSng(windowSize.Height / 2 - v.Y / 2))
             End If
-            p += Me._position
+            p += _position
 
             'Determine the alpha value.
             Dim A As Integer = 255
-            If Me._delay <= 3.0F Then
-                A = CInt(255 * (1 / 3 * Me._delay))
+            If _delay <= 3.0F Then
+                A = CInt(255 * (1 / 3 * _delay))
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.TextFont, Me._text, p, New Color(Me._textColor.R, Me._textColor.G, Me._textColor.B, A), 0.0F, Vector2.Zero, Me._scale, SpriteEffects.None, 0.0F)
+            SpriteBatch.DrawString(FontManager.TextFont, _text, p, New Color(_textColor.R, _textColor.G, _textColor.B, A), 0.0F, Vector2.Zero, _scale, SpriteEffects.None, 0.0F)
         End Sub
 
         ''' <summary>
         ''' Updates the Title object.
         ''' </summary>
         Public Sub Update()
-            If Me._delay > 0.0F Then
-                Me._delay -= 0.1F
-                If Me._delay <= 0.0F Then
-                    Me._delay = 0.0F
+            If _delay > 0.0F Then
+                _delay -= 0.1F
+                If _delay <= 0.0F Then
+                    _delay = 0.0F
                 End If
             End If
         End Sub
@@ -585,7 +607,7 @@ Public Class OverworldScreen
         ''' </summary>
         Public ReadOnly Property IsReady() As Boolean
             Get
-                Return Me._delay = 0.0F
+                Return _delay = 0.0F
             End Get
         End Property
 

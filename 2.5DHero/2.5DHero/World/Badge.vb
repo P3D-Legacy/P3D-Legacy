@@ -91,7 +91,7 @@ Public Class Badge
     Public Shared Sub Load()
         Badges.Clear()
 
-        Dim file As String = OldGameModeManager.GetContentFilePath("Data\badges.dat")
+        Dim file As String = GameModeManager.GetContentFilePath("Data\badges.dat")
         Security.FileValidation.CheckFileValid(file, False, "Badge.vb")
         Dim data() As String = System.IO.File.ReadAllLines(file)
         For Each line As String In data

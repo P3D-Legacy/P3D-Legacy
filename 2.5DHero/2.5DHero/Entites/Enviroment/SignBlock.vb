@@ -22,7 +22,7 @@
     Public Overrides Sub ClickFunction()
         Dim canRead As Boolean = False
 
-        Select Case Screen.Camera.GetPlayerFacingDirection() 
+        Select Case Screen.Camera.GetPlayerFacingDirection()
             Case 1, 3
                 If Me.Rotation.Y = MathHelper.Pi * 1.5F Or Me.Rotation.Y = MathHelper.Pi * 0.5F Then
                     canRead = True
@@ -35,17 +35,17 @@
 
         If canRead = True Then
             Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
-            If oScreen.ActionScript.IsReady = True Then
+            If Construct.Controller.GetInstance().IsReady = True Then
                 SoundManager.PlaySound("select")
                 Select Case Me.ActionValue
-                    Case 0, 3
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
-                    Case 1
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
-                    Case 2
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", vbNewLine), 2)
-                    Case Else
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
+                    Case 0, 3 'text
+                        Construct.Controller.GetInstance().RunFromText(Me.AdditionalValue, {Construct.Controller.ScriptRunOptions.CheckDelay})
+                    Case 1 'file
+                        Construct.Controller.GetInstance().RunFromFile(Me.AdditionalValue, {Construct.Controller.ScriptRunOptions.CheckDelay})
+                    Case 2 'string
+                        Construct.Controller.GetInstance().RunFromString(Me.AdditionalValue, {Construct.Controller.ScriptRunOptions.CheckDelay})
+                    Case Else 'text
+                        Construct.Controller.GetInstance().RunFromText(Me.AdditionalValue, {Construct.Controller.ScriptRunOptions.CheckDelay})
                 End Select
             End If
         End If

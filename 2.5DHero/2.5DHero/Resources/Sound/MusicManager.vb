@@ -135,8 +135,8 @@
     End Function
 
     Private Shared Function TryAddGameModeMusic(ByVal Name As String) As Boolean
-        Dim musicfileXNB As String = GameController.GamePath & OldGameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".xnb"
-        Dim musicfileMP3 As String = GameController.GamePath & OldGameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".mp3"
+        Dim musicfileXNB As String = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".xnb"
+        Dim musicfileMP3 As String = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".mp3"
         If System.IO.File.Exists(musicfileXNB) = True Or System.IO.File.Exists(musicfileMP3) = True Then
             Return AddSong(Name, False)
         End If
@@ -315,12 +315,12 @@
 
             If MediaPlayer.IsMuted = True Then
                 MediaPlayer.Pause()
-                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_music_off"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_off"), 12, FontManager.MainFont, Color.White)
             Else
                 If SongExistFlag = True Then
                     MediaPlayer.Resume()
                 End If
-                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_music_on"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_on"), 12, FontManager.MainFont, Color.White)
             End If
         End If
     End Sub

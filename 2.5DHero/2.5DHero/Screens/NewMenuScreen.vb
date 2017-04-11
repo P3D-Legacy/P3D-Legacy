@@ -286,24 +286,14 @@
     End Sub
 
     Private Sub ShowBalls()
-        ''' Requires new scripting system
-        'Dim s As Screen = Me.PreScreen
-        'Construct.Controller.GetInstance().RunFromFile(Screen.Level.BugCatchingContestData.GetSplit(1))
-        'Core.SetScreen(s)
-
         Dim s As Screen = Me.PreScreen
-        CType(s, OverworldScreen).ActionScript.StartScript(Screen.Level.BugCatchingContestData.GetSplit(1), 0)
+        Construct.Controller.GetInstance().RunFromFile(Screen.Level.BugCatchingContestData.GetSplit(1))
         Core.SetScreen(s)
     End Sub
 
     Private Sub EndContest()
-        ''' Requires new scripting system
-        'Dim s As Screen = Me.PreScreen
-        'Construct.Controller.GetInstance().RunFromFile(Screen.Level.BugCatchingContestData.GetSplit(0))
-        'Core.SetScreen(s)
-
         Dim s As Screen = Me.PreScreen
-        CType(s, OverworldScreen).ActionScript.StartScript(Screen.Level.BugCatchingContestData.GetSplit(0), 0)
+        Construct.Controller.GetInstance().RunFromFile(Screen.Level.BugCatchingContestData.GetSplit(0))
         Core.SetScreen(s)
     End Sub
 

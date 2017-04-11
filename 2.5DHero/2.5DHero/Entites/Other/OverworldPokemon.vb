@@ -124,7 +124,7 @@ Public Class OverworldPokemon
     ''' If the OverworldPokémon should be rendered.
     ''' </summary>
     Public Function IsVisible() As Boolean
-        If CBool(OldGameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
+        If CBool(GameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
             If Screen.Level.ShowOverworldPokemon = True Then
                 If IsCorrectScreen() = True Then
                     If Not Core.Player.GetWalkPokemon() Is Nothing Then
@@ -241,14 +241,14 @@ Public Class OverworldPokemon
     End Sub
 
     Public Overrides Sub ClickFunction()
-        If CBool(OldGameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
+        If CBool(GameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
             If Me.Visible = True And Not Core.Player.GetWalkPokemon() Is Nothing And Screen.Level.Surfing = False And Screen.Level.Riding = False And Screen.Level.ShowOverworldPokemon = True Then
                 Dim p As Pokemon = Core.Player.GetWalkPokemon()
-                Dim scriptString As String = PokemonInteractions.GetScriptString(p, Me.Position, Me.faceRotation)
+                Dim s As String = PokemonInteractions.GetScriptString(p, Me.Position, Me.faceRotation)
 
                 If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                    If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
-                        CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(scriptString, 2)
+                    If Construct.Controller.GetInstance().IsReady = True Then
+                        Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
                     End If
                 End If
             End If

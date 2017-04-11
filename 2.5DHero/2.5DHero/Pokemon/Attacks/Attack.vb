@@ -1487,7 +1487,7 @@
                 Case Else
                     'Try to load a GameMode move.
                     Dim gameModeMove As Attack = GameModeAttackLoader.GetAttackByID(ID)
-                    If Not gameModeMove Is Nothing And OldGameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
+                    If Not gameModeMove Is Nothing And GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
                         returnMove = gameModeMove.Copy()
                     Else
                         returnMove = New Moves.Normal.Pound()

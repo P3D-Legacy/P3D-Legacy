@@ -26,8 +26,7 @@ Namespace Items.Standard
 
                 Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
-                Dim s As String = "version=2" & vbNewLine &
-                    "@text.show(" & t & ")
+                Dim s As String = "@text.show(" & t & ")
 @level.wait(20)
 @camera.activatethirdperson
 @camera.reset
@@ -49,10 +48,9 @@ Namespace Items.Standard
                 End If
                 s &= vbNewLine &
 "@level.update
-@screen.fadein
-:end"
+@screen.fadein"
 
-                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
             Else
                 Screen.TextBox.Show("Cannot use the Escape~Rope here!", {}, True, True)
             End If

@@ -372,7 +372,7 @@
                     CPosition = CType(Screen.Camera, BattleSystem.BattleCamera).CPosition
                 End If
                 If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                    ActionScriptActive = Not CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
+                    ActionScriptActive = Not Construct.Controller.GetInstance().IsReady
                 End If
             End If
         End SyncLock

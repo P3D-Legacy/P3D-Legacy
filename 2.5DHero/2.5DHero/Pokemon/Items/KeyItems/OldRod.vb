@@ -14,16 +14,16 @@ Namespace Items.KeyItems
 
         Public Overrides Sub Use()
             If IsInfrontOfWater() = True And Screen.Level.Surfing = False And Screen.Level.Riding = False Then
-                Dim s As String = "version=2"
+                Dim s As String = ""
 
                 While Core.CurrentScreen.Identification <> Screen.Identifications.OverworldScreen
                     Core.CurrentScreen = Core.CurrentScreen.PreScreen
                 End While
 
                 Dim p As Pokemon = Nothing
-                
-                Dim pokeFile As String = "poke\" & Screen.Level.LevelFile.Remove(Screen.Level.LevelFile.Length - 4, 4) & ".poke"
-                If OldGameModeManager.MapFileExists(pokeFile) = True Then
+
+                Dim pokeFile As String = Screen.Level.LevelFile.Remove(Screen.Level.LevelFile.Length - 4, 4) & ".poke"
+                If System.IO.File.Exists(GameModeManager.GetPokeFilePath(pokeFile)) = True Then
                     p = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.OldRod, False)
                 End If
 
@@ -38,10 +38,13 @@ Namespace Items.KeyItems
                     PokemonShiny = "S"
                 End If
 
-                If Core.Random.Next(0, 3) <> 0 Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "suction cups" Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "sticky hold" Then
+                If Core.Random.Next(0, 3) <> 0 Or
+                    Core.Player.Pokemons(0).Ability.Name.ToLower() = "suction cups" Or
+                    Core.Player.Pokemons(0).Ability.Name.ToLower() = "sticky hold" Then
+
                     Dim LookingOffset As New Vector3(0)
 
-                    Select Case Screen.Camera.GetPlayerFacingDirection() 
+                    Select Case Screen.Camera.GetPlayerFacingDirection()
                         Case 0
                             LookingOffset.Z = -1
                         Case 1
@@ -54,12 +57,12 @@ Namespace Items.KeyItems
 
                     Dim spawnPosition As Vector3 = New Vector3(Screen.Camera.Position.X + LookingOffset.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + LookingOffset.Z)
 
-                    Dim endRotation As Integer = Screen.Camera.GetPlayerFacingDirection() + 2 
+                    Dim endRotation As Integer = Screen.Camera.GetPlayerFacingDirection() + 2
                     If endRotation > 3 Then
                         endRotation = endRotation - 4
                     End If
 
-                    s &= vbNewLine & "@player.showrod(0)" & vbNewLine &
+                    s &= "@player.showrod(0)" & vbNewLine &
                         "@text.show(. . . . . . . . . .)" & vbNewLine &
                         "@text.show(Oh!~A bite!)" & vbNewLine &
                         "@player.hiderod" & vbNewLine &
@@ -70,17 +73,15 @@ Namespace Items.KeyItems
                         "@text.show(The wild " & p.OriginalName & "~attacked!)" & vbNewLine &
                         "@npc.remove(1337)" & vbNewLine &
                         "@battle.setvar(divebattle,true)" & vbNewLine &
-                        "@battle.wild(" & p.GetSaveData() & ")" & vbNewLine &
-                        ":end"
+                        "@battle.wild(" & p.GetSaveData() & ")"
                 Else
-                    s &= vbNewLine & "@player.showrod(0)" & vbNewLine &
+                    s &= "@player.showrod(0)" & vbNewLine &
                         "@text.show(. . . . . . . . . .)" & vbNewLine &
                         "@text.show(No, there's nothing here...)" & vbNewLine &
-                        "@player.hiderod" & vbNewLine &
-                        ":end"
+                        "@player.hiderod"
                 End If
 
-                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
             Else
                 Screen.TextBox.Show("Now is not the time~to use that.", {}, True, True)
             End If

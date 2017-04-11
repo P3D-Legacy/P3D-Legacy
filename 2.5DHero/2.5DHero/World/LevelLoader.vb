@@ -98,7 +98,7 @@
             sessionMapsLoaded.Add(levelPath)
         End If
 
-        levelPath = OldGameModeManager.GetMapPath(levelPath)
+        levelPath = GameModeManager.GetMapPath(levelPath)
         Logger.Debug("Loading map: " & levelPath.Remove(0, GameController.GamePath.Length))
         Security.FileValidation.CheckFileValid(levelPath, False, "LevelLoader.vb")
 
@@ -484,7 +484,7 @@
         Dim structureKey As String = MapOffset.X.ToString() & "|" & MapOffset.Y.ToString() & "|" & MapOffset.Z.ToString() & "|" & MapName
 
         If tempStructureList.ContainsKey(structureKey) = False Then
-            Dim filepath As String = OldGameModeManager.GetMapPath(MapName)
+            Dim filepath As String = GameModeManager.GetMapPath(MapName)
             Security.FileValidation.CheckFileValid(filepath, False, "LevelLoader.vb/StructureSpawner")
 
             If IO.File.Exists(filepath) = False Then
@@ -574,12 +574,18 @@
             positionData = positionData.Remove(positionData.IndexOf("]"))
 
             Dim posArr() As String = positionData.Split(CChar(","))
-            Dim newPosition As New Vector3(ScriptConversion.ToSingle(posArr(0).Replace(".", GameController.DecSeparator)) + MapOffset.X, ScriptConversion.ToSingle(posArr(1).Replace(".", GameController.DecSeparator)) + MapOffset.Y, CSng(posArr(2).Replace(".", GameController.DecSeparator)) + MapOffset.Z)
+            Dim newPosition As New Vector3(CSng(posArr(0).Replace(".", GameController.DecSeparator)) + MapOffset.X,
+                                           CSng(posArr(1).Replace(".", GameController.DecSeparator)) + MapOffset.Y,
+                                           CSng(posArr(2).Replace(".", GameController.DecSeparator)) + MapOffset.Z)
 
             If line.ToLower().Contains("{""position""{sngarr[") = True Then
-                line = line.Replace(positionString, "{""position""{sngarr[" & newPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & newPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & newPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & "]}}")
+                line = line.Replace(positionString, "{""position""{sngarr[" & newPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," &
+                                                                              newPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," &
+                                                                              newPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & "]}}")
             Else
-                line = line.Replace(positionString, "{""position""{intarr[" & CInt(newPosition.X).ToString().Replace(GameController.DecSeparator, ".") & "," & CInt(newPosition.Y).ToString().Replace(GameController.DecSeparator, ".") & "," & CInt(newPosition.Z).ToString().Replace(GameController.DecSeparator, ".") & "]}}")
+                line = line.Replace(positionString, "{""position""{intarr[" & CInt(newPosition.X).ToString().Replace(GameController.DecSeparator, ".") & "," &
+                                                                              CInt(newPosition.Y).ToString().Replace(GameController.DecSeparator, ".") & "," &
+                                                                              CInt(newPosition.Z).ToString().Replace(GameController.DecSeparator, ".") & "]}}")
             End If
         End If
 
@@ -1012,17 +1018,16 @@
         If TagExists(Tags, "MapScript") = True Then
             Dim scriptName As String = CStr(GetTag(Tags, "MapScript"))
             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                If CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
-                    CType(CurrentScreen, OverworldScreen).ActionScript.reDelay = 0.0F
-                    CType(CurrentScreen, OverworldScreen).ActionScript.StartScript(scriptName, 0)
-                Else ' A script intro is playing (such as Fly).
-                    MapScript = scriptName
+                If Construct.Controller.GetInstance().IsReady = True Then
+                    Construct.Controller.GetInstance().RunFromFile(scriptName, {})
+                Else 'A script intro is playing (fly)
+                    Screen.Level.MapScript = scriptName
                 End If
-            Else ' Must be a direct save load from the main menu.
-                MapScript = scriptName
+            Else 'Loads the map from a screen that is not the overworld screen, preserve the map script and apply as soon as the screen switches to an overworld screen.
+                Screen.Level.MapScript = scriptName
             End If
         Else
-            MapScript = ""
+            Screen.Level.MapScript = ""
         End If
 
         If TagExists(Tags, "RadioChannels") = True Then

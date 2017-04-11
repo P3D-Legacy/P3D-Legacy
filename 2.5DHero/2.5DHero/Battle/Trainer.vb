@@ -1,6 +1,4 @@
-﻿Imports net.Pokemon3D.Game.ScriptVersion2
-
-Public Class Trainer
+﻿Public Class Trainer
 
     Public AILevel As Integer = 0
     Public SignatureMoves As New List(Of BattleSystem.Attack)
@@ -35,11 +33,11 @@ Public Class Trainer
     Public Shared FrontierTrainer As Integer = -1
 
     Public Function IsBeaten() As Boolean
-        Return ActionScript.IsRegistered("trainer_" & TrainerFile)
+        Return Construct.Framework.RegisterHandler.IsRegistered("trainer_" & TrainerFile)
     End Function
 
     Public Shared Function IsBeaten(ByVal CheckTrainerFile As String) As Boolean
-        Return ActionScript.IsRegistered("trainer_" & CheckTrainerFile)
+        Return Construct.Framework.RegisterHandler.IsRegistered("trainer_" & CheckTrainerFile)
     End Function
 
     Public Sub New()
@@ -48,7 +46,7 @@ Public Class Trainer
     Public Sub New(ByVal TrainerFile As String)
         Me.TrainerFile = TrainerFile
 
-        Dim path As String = OldGameModeManager.GetScriptPath("Trainer\" & TrainerFile & ".trainer")
+        Dim path As String = GameModeManager.GetScriptPath("Trainer\" & TrainerFile & ".trainer")
         Security.FileValidation.CheckFileValid(path, False, "Trainer.vb")
 
         Dim Data() As String = System.IO.File.ReadAllLines(path)
@@ -105,8 +103,8 @@ Public Class Trainer
         End If
         newData.Add("IntroSequence|" & sequenceData)
 
-        Logger.Log(Logger.LogTypes.Warning, "Trainer.vb: Converted legacy trainer file! Generated new trainer data:")
-        Logger.Log(Logger.LogTypes.Message, newData.ToArray().ArrayToString())
+        Logger.Log("215", Logger.LogTypes.Warning, "Trainer.vb: Converted legacy trainer file! Generated new trainer data:")
+        Logger.Log("216", Logger.LogTypes.Message, newData.ToArray().ArrayToString())
 
         LoadTrainer(newData.ToArray())
     End Sub
@@ -124,7 +122,7 @@ Public Class Trainer
 
                 Select Case pointer.ToLower()
                     Case "name"
-                        Me.Name = ScriptCommander.Parse(value).ToString()
+                        Me.Name = Construct.Framework.Parser.EvaluateScriptExpression(value)
                         If Me.Name.Contains(",") = True Then
                             Me.Name2 = Me.Name.GetSplit(1)
                             Me.Name = Me.Name.GetSplit(0)
@@ -132,7 +130,7 @@ Public Class Trainer
                             isDoubleTrainerValid += 1
                         End If
                     Case "trainerclass"
-                        Me.TrainerType = ScriptCommander.Parse(value).ToString()
+                        Me.TrainerType = Construct.Framework.Parser.EvaluateScriptExpression(value)
                         If Me.TrainerType.Contains(",") = True Then
                             Me.TrainerType2 = TrainerType.GetSplit(1)
                             Me.TrainerType = TrainerType.GetSplit(0)
@@ -140,11 +138,11 @@ Public Class Trainer
                             isDoubleTrainerValid += 1
                         End If
                     Case "money"
-                        Me.Money = CInt(ScriptCommander.Parse(value).ToString())
+                        Me.Money = CInt(Construct.Framework.Parser.EvaluateScriptExpression(value))
                     Case "intromessage"
-                        Me.IntroMessage = ScriptCommander.Parse(value).ToString()
+                        Me.IntroMessage = Construct.Framework.Parser.EvaluateScriptExpression(value)
                     Case "outromessage"
-                        Me.OutroMessage = ScriptCommander.Parse(value).ToString()
+                        Me.OutroMessage = Construct.Framework.Parser.EvaluateScriptExpression(value)
                         If Me.OutroMessage.Contains("|") = True Then
                             Me.OutroMessage2 = OutroMessage.GetSplit(1, "|")
                             Me.OutroMessage = OutroMessage.GetSplit(0, "|")
@@ -152,9 +150,9 @@ Public Class Trainer
                             isDoubleTrainerValid += 1
                         End If
                     Case "defeatmessage"
-                        Me.DefeatMessage = ScriptCommander.Parse(value).ToString()
+                        Me.DefeatMessage = Construct.Framework.Parser.EvaluateScriptExpression(value)
                     Case "textureid"
-                        Me.SpriteName = ScriptCommander.Parse(value).ToString()
+                        Me.SpriteName = Construct.Framework.Parser.EvaluateScriptExpression(value)
                         If Me.SpriteName.Contains(",") = True Then
                             Me.SpriteName2 = Me.SpriteName.GetSplit(1)
                             Me.SpriteName = Me.SpriteName.GetSplit(0)
@@ -162,34 +160,34 @@ Public Class Trainer
                             isDoubleTrainerValid += 1
                         End If
                     Case "region"
-                        Me.Region = ScriptCommander.Parse(value).ToString()
+                        Me.Region = Construct.Framework.Parser.EvaluateScriptExpression(value)
                     Case "inimusic"
-                        Me.IniMusic = ScriptCommander.Parse(value).ToString()
+                        Me.IniMusic = Construct.Framework.Parser.EvaluateScriptExpression(value)
                     Case "defeatmusic"
-                        Me.DefeatMusic = ScriptCommander.Parse(value).ToString()
+                        Me.DefeatMusic = Construct.Framework.Parser.EvaluateScriptExpression(value)
                     Case "battlemusic"
-                        Me.BattleMusic = ScriptCommander.Parse(value).ToString()
+                        Me.BattleMusic = Construct.Framework.Parser.EvaluateScriptExpression(value)
                     Case "insightmusic"
-                        Me.InSightMusic = ScriptCommander.Parse(value).ToString()
+                        Me.InSightMusic = Construct.Framework.Parser.EvaluateScriptExpression(value)
                     Case "pokemon1", "pokemon2", "pokemon3", "pokemon4", "pokemon5", "pokemon6"
                         If value <> "" Then
                             PokeLines.Add(value)
                         End If
                     Case "items"
                         If value <> "" Then
-                            Dim itemData() As String = ScriptCommander.Parse(value).ToString().Split(CChar(","))
+                            Dim itemData() As String = Construct.Framework.Parser.EvaluateScriptExpression(value).Split(CChar(","))
                             For Each ItemID As String In itemData
                                 Items.Add(Item.GetItemByID(CInt(ItemID)))
                             Next
                         End If
                     Case "gender"
-                        Dim GenderInt As Integer = CInt(ScriptCommander.Parse(value).ToString())
+                        Dim GenderInt As Integer = CInt(Construct.Framework.Parser.EvaluateScriptExpression(value))
 
                         Me.Gender = CInt(MathHelper.Clamp(GenderInt, -1, 1))
                     Case "ai"
-                        Me.AILevel = CInt(ScriptCommander.Parse(value).ToString())
+                        Me.AILevel = CInt(Construct.Framework.Parser.EvaluateScriptExpression(value))
                     Case "introsequence"
-                        value = ScriptCommander.Parse(value).ToString()
+                        value = Construct.Framework.Parser.EvaluateScriptExpression(value)
 
                         If value.Contains(",") = True Then
                             vsdata = value.GetSplit(0)
@@ -198,7 +196,7 @@ Public Class Trainer
                             vsdata = value
                         End If
                     Case "introtype"
-                        Me.IntroType = CInt(ScriptCommander.Parse(value).ToString())
+                        Me.IntroType = CInt(Construct.Framework.Parser.EvaluateScriptExpression(value))
                 End Select
             End If
         Next
@@ -206,8 +204,8 @@ Public Class Trainer
         For Each PokeLine As String In PokeLines
             Dim PokeData As String = PokeLine.GetSplit(1, "|")
             If PokeData <> "" Then
-                If ScriptCommander.Parse(PokeData).ToString().StartsWith("{") = True Then
-                    PokeData = ScriptCommander.Parse(PokeData).ToString().Replace("§", ",")
+                If Construct.Framework.Parser.EvaluateScriptExpression(PokeData).StartsWith("{") = True Then
+                    PokeData = Construct.Framework.Parser.EvaluateScriptExpression(PokeData).Replace("§", ",")
                 End If
                 If PokeData.StartsWith("{") = True And PokeData.EndsWith("}") = True Then
                     Dim p As Pokemon = Pokemon.GetPokemonByData(PokeData)
@@ -260,8 +258,8 @@ Public Class Trainer
                         readData = readData.Remove(0, 1)
                     End While
 
-                    Dim ID As Integer = ScriptConversion.ToInteger(ScriptCommander.Parse(firstPart))
-                    Dim Level As Integer = ScriptConversion.ToInteger(ScriptCommander.Parse(secondPart))
+                    Dim ID As Integer = Construct.Framework.Converter.ToInteger(Construct.Framework.Parser.EvaluateScriptExpression(firstPart))
+                    Dim Level As Integer = Construct.Framework.Converter.ToInteger(Construct.Framework.Parser.EvaluateScriptExpression(secondPart))
 
                     Dim addLevel As Integer = 0
                     If Core.Player.DifficultyMode = 1 Then
@@ -271,7 +269,7 @@ Public Class Trainer
                     End If
                     Level += addLevel
 
-                    Dim maxLevel As Integer = CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100"))
+                    Dim maxLevel As Integer = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100"))
 
                     If Level > maxLevel Then
                         Level = maxLevel
@@ -448,7 +446,7 @@ Public Class Trainer
 
     Public Function HasBattlePokemon() As Boolean
         For Each Pokemon As Pokemon In Pokemons
-            If Pokemon.Status <> net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted And Pokemon.HP > 0 Then
+            If Pokemon.Status <> Pokemon.StatusProblems.Fainted And Pokemon.HP > 0 Then
                 Return True
             End If
         Next

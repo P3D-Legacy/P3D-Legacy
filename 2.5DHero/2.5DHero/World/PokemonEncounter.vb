@@ -39,7 +39,7 @@ Public Class PokemonEncounter
                     pokeFile = .LevelFile.Remove(.LevelFile.Length - 4, 4) & ".poke"
                 End If
 
-                If System.IO.File.Exists(OldGameModeManager.GetPokeFilePath(pokeFile)) = True Then ' Only try to register a wild battle if the .poke file exists:
+                If System.IO.File.Exists(GameModeManager.GetPokeFilePath(pokeFile)) = True Then ' Only try to register a wild battle if the .poke file exists:
                     Dim startRandomValue As Integer = 12
                     Dim minRandomValue As Integer = 5
 
@@ -115,7 +115,7 @@ Public Class PokemonEncounter
                 ' Generate new wild Pokémon:
                 Dim Pokemon As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Me._levelReference.PokemonEncounterData.Method, True, Me._levelReference.PokemonEncounterData.PokeFile)
 
-                If Not Pokemon Is Nothing And CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = False And CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
+                If Not Pokemon Is Nothing And CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = False And Construct.Controller.GetInstance().IsReady = True Then
                     Screen.Level.RouteSign.Hide() ' When a battle starts, hide the Route sign.
 
                     ' If the player has a Repel going and the first Pokémon in the party's level is greater than the wild Pokémon's level, don't start the battle:

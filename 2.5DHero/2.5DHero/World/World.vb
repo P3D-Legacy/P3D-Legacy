@@ -465,6 +465,16 @@ endsub:
         End Select
     End Function
 
+
+    ''' <summary>
+    ''' Sets a new region weather.
+    ''' </summary>
+    ''' <param name="EnvironmentType">The environment type to use.</param>
+    ''' <param name="WeatherType">The weather type to use.</param>
+    Public Sub SetNewRegionWeather(ByVal EnvironmentType As Integer, ByVal WeatherType As Integer)
+        _regionWeatherSet = False
+        Initialize(EnvironmentType, WeatherType)
+    End Sub
     Public Sub Initialize(ByVal EnvironmentType As Integer, ByVal WeatherType As Integer)
         If _regionWeatherSet = False Then
             World._regionWeather = World.GetRegionWeather(World.CurrentSeason)
@@ -708,7 +718,7 @@ endsub:
             Dim validScreen() As Screen.Identifications = {Screen.Identifications.OverworldScreen, Screen.Identifications.BattleScreen, Screen.Identifications.BattleCatchScreen, Screen.Identifications.MainMenuScreen}
             If validScreen.Contains(Core.CurrentScreen.Identification) = True Then
                 If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                    If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
+                    If Construct.Controller.GetInstance().IsReady = False Then
                         Exit Sub
                     End If
                 End If

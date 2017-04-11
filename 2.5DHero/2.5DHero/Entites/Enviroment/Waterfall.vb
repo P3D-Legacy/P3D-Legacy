@@ -207,16 +207,14 @@
                 End If
             End While
 
-            s = "version=2" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
+            s = "@overworldpokemon.hide" & vbNewLine &
                 "@player.move(2)" & vbNewLine &
                 "@player.setmovement(0,-1,0)" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
+                "@overworldpokemon.hide" & vbNewLine &
                 "@player.move(" & Steps & ")" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
-                ":end"
+                "@overworldpokemon.hide"
 
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+            Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
         End If
     End Sub
 
@@ -259,18 +257,16 @@
 
             Screen.Camera.PlannedMovement = New Vector3(0, 1, 0)
 
-            s = "version=2" & vbNewLine &
-                "@pokemon.cry(" & pNumber & ")" & vbNewLine &
+            s = "@pokemon.cry(" & pNumber & ")" & vbNewLine &
                 "@sound.play(select)" & vbNewLine &
                 "@text.show(" & pName & " used~Waterfall.)" & vbNewLine &
                 "@player.move(" & Steps & ")" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
+                "@overworldpokemon.hide" & vbNewLine &
                 "@player.move(2)" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
-                ":end"
+                "@overworldpokemon.hide"
 
             PlayerStatistics.Track("Waterfall used", 1)
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+            Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
 
             Return False
         End If

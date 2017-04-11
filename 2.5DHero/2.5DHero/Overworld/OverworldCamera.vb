@@ -208,7 +208,7 @@ Public Class OverworldCamera
             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Dim OS As OverworldScreen = CType(CurrentScreen, OverworldScreen)
 
-                If _freeCameraMode = True And OS.ActionScript.IsReady = True Then
+                If _freeCameraMode = True And Construct.Controller.GetInstance().IsReady = True Then
                     If YawLocked = False Then
                         Yaw += -RotationSpeed * 0.75F * dx
                     End If
@@ -226,14 +226,14 @@ Public Class OverworldCamera
         If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             Dim OS As OverworldScreen = CType(CurrentScreen, OverworldScreen)
 
-            If OS.ActionScript.IsReady = True Then
+            If Construct.Controller.GetInstance().IsReady = True Then
                 If (KeyBoardHandler.KeyPressed(KeyBindings.CameraLockKey) = True Or ControllerHandler.ButtonPressed(Buttons.RightStick)) = True And _moved = 0.0F And YawLocked = False Then
                     _freeCameraMode = Not _freeCameraMode
 
                     If _freeCameraMode = False Then
-                        Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_free_camera_off"), 12, FontManager.MainFont, Color.White)
+                        Core.GameMessage.ShowMessage(Localization.GetString("game_message_free_camera_off"), 12, FontManager.MainFont, Color.White)
                     Else
-                        Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_free_camera_on"), 12, FontManager.MainFont, Color.White)
+                        Core.GameMessage.ShowMessage(Localization.GetString("game_message_free_camera_on"), 12, FontManager.MainFont, Color.White)
                     End If
                 End If
             End If
@@ -284,7 +284,7 @@ Public Class OverworldCamera
             If KeyBoardHandler.KeyPressed(KeyBindings.PerspectiveSwitchKey) = True Or ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True Then
                 Dim actionscriptReady As Boolean = True
                 If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                    actionscriptReady = CType(CurrentScreen, OverworldScreen).ActionScript.IsReady
+                    actionscriptReady = Construct.Controller.GetInstance().IsReady
                 End If
                 If actionscriptReady = True Then
                     SetThirdPerson(Not _thirdPerson, True)
@@ -336,12 +336,12 @@ Public Class OverworldCamera
             If _thirdPerson = True Then
                 Screen.Level.OwnPlayer.Opacity = 1.0F
                 If showMessage = True Then
-                    Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_third_person_on"), 12, FontManager.MainFont, Color.White)
+                    Core.GameMessage.ShowMessage(Localization.GetString("game_message_third_person_on"), 12, FontManager.MainFont, Color.White)
                 End If
             Else
                 Yaw = GetAimYawFromDirection(_playerFacing)
                 If showMessage = True Then
-                    Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_third_person_off"), 12, FontManager.MainFont, Color.White)
+                    Core.GameMessage.ShowMessage(Localization.GetString("game_message_third_person_off"), 12, FontManager.MainFont, Color.White)
                 End If
             End If
         End If
@@ -380,7 +380,7 @@ Public Class OverworldCamera
 #Region "CameraMethods"
 
     Private Sub SetSpeed()
-        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
+        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso Construct.Controller.GetInstance().IsReady = False Then
             Speed = 0.04F
         Else
             If Screen.Level.Riding = True Then
@@ -589,7 +589,7 @@ Public Class OverworldCamera
         Dim OS As OverworldScreen = Nothing
         If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             OS = CType(CurrentScreen, OverworldScreen)
-            isActionscriptReady = OS.ActionScript.IsReady
+            isActionscriptReady = Construct.Controller.GetInstance().IsReady
         End If
 
         If isActionscriptReady = True And Screen.Level.CanMove() = True Then

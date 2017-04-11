@@ -12,7 +12,7 @@
 
             Dim ActionscriptActive As Boolean = True
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                ActionscriptActive = CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
+                ActionscriptActive = Construct.Controller.GetInstance.IsReady
             End If
 
             Dim thirdPersonString As String = ""

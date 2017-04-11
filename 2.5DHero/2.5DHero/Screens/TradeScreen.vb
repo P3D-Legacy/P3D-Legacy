@@ -1,3 +1,5 @@
+Imports net.Pokemon3D.Game.Construct.Framework
+
 Public Class TradeScreen
 
     Inherits Screen
@@ -148,7 +150,7 @@ Public Class TradeScreen
 
             Dim itemData = lItem.Split(CChar("|"))
 
-            Me.TradeItems.Add(New TradeItem(ScriptConversion.ToInteger(itemData(0)), ScriptConversion.ToInteger(itemData(1)), ScriptConversion.ToInteger(itemData(2)), Me.Currency))
+            TradeItems.Add(New TradeItem(Converter.ToInteger(itemData(0)), Converter.ToInteger(itemData(1)), Converter.ToInteger(itemData(2)), Currency))
         Next
 
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")

@@ -5,7 +5,7 @@
     Dim BattleScreen As BattleSystem.BattleScreen
     Dim index As Integer = 0
     Dim textIndex As Integer = 0
-    Dim Text() As String = {OldLocalization.GetString("black_out_screen_line1"), vbNewLine, "        ", OldLocalization.GetString("black_out_screen_line2"), OldLocalization.GetString("black_out_screen_line3"), OldLocalization.GetString("black_out_screen_line4"), OldLocalization.GetString("black_out_screen_line5")}
+    Dim Text() As String = {Localization.GetString("black_out_screen_line1"), vbNewLine, "        ", Localization.GetString("black_out_screen_line2"), Localization.GetString("black_out_screen_line3"), Localization.GetString("black_out_screen_line4"), Localization.GetString("black_out_screen_line5")}
     Dim ready As Boolean = False
     Dim delay As Single = 0.2F
 
@@ -17,7 +17,7 @@
         Me.BattleScreen = BattleScreen
         Me.Identification = Identifications.BlackOutScreen
 
-        Me.IsGameOver = CBool(OldGameModeManager.GetGameRuleValue("GameOverAt0Pokemon", "0"))
+        Me.IsGameOver = CBool(GameModeManager.GetGameRuleValue("GameOverAt0Pokemon", "0"))
 
         FromBattle = True
     End Sub
@@ -26,7 +26,7 @@
         Me.PreScreen = currentScreen
         Me.Identification = Identifications.BlackOutScreen
 
-        Me.IsGameOver = CBool(OldGameModeManager.GetGameRuleValue("GameOverAt0Pokemon", "0"))
+        Me.IsGameOver = CBool(GameModeManager.GetGameRuleValue("GameOverAt0Pokemon", "0"))
 
         FromBattle = False
     End Sub
@@ -63,7 +63,7 @@
                         CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).YawLocked = False
                         Screen.Camera.Yaw = MathHelper.Pi
                         Screen.Camera.Position = New Vector3(CSng(positionString(0).Replace(".", GameController.DecSeparator)), CSng(positionString(1).Replace(".", GameController.DecSeparator)), CSng(positionString(2).Replace(".", GameController.DecSeparator)))
-                        CType(BattleScreen.SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.Scripts.Clear()
+                        Construct.Controller.GetInstance().Reset()
 
                         Core.SetScreen(New TransitionScreen(Me, BattleScreen.SavedOverworld.OverworldScreen, Color.Black, False))
                     Else
@@ -79,7 +79,7 @@
                         CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).YawLocked = False
                         Screen.Camera.Yaw = MathHelper.Pi
                         Screen.Camera.Position = New Vector3(CSng(positionString(0).Replace(".", GameController.DecSeparator)), CSng(positionString(1).Replace(".", GameController.DecSeparator)), CSng(positionString(2).Replace(".", GameController.DecSeparator)))
-                        CType(BattleScreen.SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.Scripts.Clear()
+                        Construct.Controller.GetInstance().Reset()
 
                         While Core.CurrentScreen.Identification <> Identifications.OverworldScreen
                             Core.SetScreen(Core.CurrentScreen.PreScreen)

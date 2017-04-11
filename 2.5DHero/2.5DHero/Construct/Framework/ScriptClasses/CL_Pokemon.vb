@@ -1180,7 +1180,7 @@
         <ScriptDescription("Returns a generated frontier Pokémon.")>
         Private Function F_GenerateFrontier(ByVal argument As String) As String
             Dim level As Integer = Int(argument.GetSplit(0))
-            level = level.Clamp(1, CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100")))
+            level = level.Clamp(1, CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")))
             Dim pokemon_class As Integer = Int(argument.GetSplit(1))
             Dim IDPreset As List(Of Integer) = Nothing
 

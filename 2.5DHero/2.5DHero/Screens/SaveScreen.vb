@@ -15,7 +15,7 @@
         Me.PreScreen = currentScreen
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
-        ChooseBox.Show({OldLocalization.GetString("save_screen_yes"), OldLocalization.GetString("save_screen_no")}, 0, {})
+        ChooseBox.Show({Localization.GetString("save_screen_yes"), Localization.GetString("save_screen_no")}, 0, {})
 
         SaveGameHelpers.ResetSaveCounter()
     End Sub
@@ -47,7 +47,7 @@
                 End If
             Else
                 If ready = True Then
-                    .DrawString(FontManager.InGameFont, OldLocalization.GetString("save_screen_success"), New Vector2(188, 186), Color.DarkBlue)
+                    .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_success"), New Vector2(188, 186), Color.DarkBlue)
                 Else
                     If SaveGameHelpers.GameJoltSaveDone() = False And savingStarted = True Then
                         If SaveGameHelpers.StartedDownloadCheck = True Then
@@ -56,7 +56,7 @@
                             .DrawString(FontManager.InGameFont, "Saving, please wait" & LoadingDots.Dots, New Vector2(188, 186), Color.Black)
                         End If
                     Else
-                        .DrawString(FontManager.InGameFont, OldLocalization.GetString("save_screen_title"), New Vector2(188, 186), Color.Black)
+                        .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_title"), New Vector2(188, 186), Color.Black)
                     End If
                 End If
 
@@ -68,7 +68,7 @@
                     End If
                 Next
 
-                .DrawString(FontManager.MiniFont, OldLocalization.GetString("save_screen_name") & ": " & Core.Player.Name & vbNewLine & vbNewLine & OldLocalization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & vbNewLine & vbNewLine & OldLocalization.GetString("save_screen_money") & ": " & Core.Player.Money & vbNewLine & vbNewLine & OldLocalization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(192, 350), Color.DarkBlue)
+                .DrawString(FontManager.MiniFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & vbNewLine & vbNewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & vbNewLine & vbNewLine & Localization.GetString("save_screen_money") & ": " & Core.Player.Money & vbNewLine & vbNewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(192, 350), Color.DarkBlue)
             End If
         End With
 

@@ -55,38 +55,30 @@
             If Core.Random.Next(0, 100) < 20 Then
                 spawnedPokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.RockSmash, False)
                 If spawnedPokemon Is Nothing Then
-                    Dim s As String = "version=2" & vbNewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
-                        "@sound.play(destroy)" & vbNewLine &
-                        ":end"
-                    CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                    Dim s As String = "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
+                        "@sound.play(destroy)"
+                    Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
                 Else
-                    Dim s As String = "version=2" & vbNewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
+                    Dim s As String = "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
                         "@sound.play(destroy)" & vbNewLine &
                         "@level.update" & vbNewLine &
                         "@text.show(A wild Pokémon~appeared!)" & vbNewLine &
-                        "@battle.wild(" & spawnedPokemon.Number & "," & spawnedPokemon.Level & ")" & vbNewLine &
-                        ":end"
-                    CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                        "@battle.wild(" & spawnedPokemon.Number & "," & spawnedPokemon.Level & ")"
+                    Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
                 End If
             Else
                 If Core.Random.Next(0, 100) < 20 Then
                     Dim ItemID As Integer = GetItemID()
-                    Dim s As String = "version=2" & vbNewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
+                    Dim s As String = "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
                         "@sound.play(destroy)" & vbNewLine &
                         "@level.update" & vbNewLine &
                         "@item.give(" & ItemID & ",1)" & vbNewLine &
-                        "@item.messagegive(" & ItemID & ",1)" & vbNewLine &
-                        ":end"
-                    CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                        "@item.messagegive(" & ItemID & ",1)"
+                    Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
                 Else
-                    Dim s As String = "version=2" & vbNewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
-                        "@sound.play(destroy)" & vbNewLine &
-                        ":end"
-                    CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                    Dim s As String = "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
+                        "@sound.play(destroy)"
+                    Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
                 End If
             End If
             PlayerStatistics.Track("Rock Smash used", 1)
@@ -132,7 +124,7 @@
 
     Public Shared Sub Load()
         ItemContainerlist.Clear()
-        Dim File As String = OldGameModeManager.GetContentFilePath("Data\smashrockitems.dat")
+        Dim File As String = GameModeManager.GetDataFilePath("smashrockitems.dat")
         If System.IO.File.Exists(File) = True Then
             Security.FileValidation.CheckFileValid(File, False, "SmashRock.vb")
             Dim data() As String = System.IO.File.ReadAllLines(File)

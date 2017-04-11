@@ -112,28 +112,25 @@
             Screen.Level.OwnPlayer.Texture = RockClimbPokemon.GetOverworldTexture()
             Screen.Level.OwnPlayer.ChangeTexture()
 
-            Dim s As String = "version=2" & vbNewLine &
-                "@pokemon.cry(" & RockClimbPokemon.Number & ")" & vbNewLine &
+            Dim s As String = "@pokemon.cry(" & RockClimbPokemon.Number & ")" & vbNewLine &
                 "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",1," & Screen.Camera.GetMoveDirection().Z & ")" & vbNewLine &
                 "@sound.play(destroy)" & vbNewLine &
                 "@player.move(" & Steps & ")" & vbNewLine &
                 "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
+                "@overworldpokemon.hide" & vbNewLine &
                 "@player.move(1)" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
-                "@player.wearskin(" & tempSkin & ")" & vbNewLine
+                "@overworldpokemon.hide" & vbNewLine &
+                "@player.wearskin(" & tempSkin & ")"
 
             If Not Me.TempScriptEntity Is Nothing Then
-                s &= GetScriptStartLine(Me.TempScriptEntity) & vbNewLine
+                s &= vbNewLine & GetScriptStartLine(Me.TempScriptEntity)
                 Me.TempScriptEntity = Nothing
             End If
-
-            s &= ":end"
 
             'Reset the player's transparency:
             Screen.Level.OwnPlayer.Opacity = 1.0F
 
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+            Construct.Controller.GetInstance().RunFromString(s)
         End If
 
         facing = CInt(Me.Rotation.Y / MathHelper.PiOver2)
@@ -185,26 +182,23 @@
             Screen.Level.OwnPlayer.Texture = RockClimbPokemon.GetOverworldTexture()
             Screen.Level.OwnPlayer.ChangeTexture()
 
-            Dim s As String = "version=2" & vbNewLine &
-            "@pokemon.cry(" & RockClimbPokemon.Number & ")" & vbNewLine &
+            Dim s As String = "@pokemon.cry(" & RockClimbPokemon.Number & ")" & vbNewLine &
             "@player.move(1)" & vbNewLine &
             "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-1," & Screen.Camera.GetMoveDirection().Z & ")" & vbNewLine &
             "@sound.play(destroy)" & vbNewLine &
             "@player.move(" & Steps & ")" & vbNewLine &
-            "@pokemon.hide" & vbNewLine &
-            "@player.wearskin(" & tempSkin & ")" & vbNewLine
+            "@overworldpokemon.hide" & vbNewLine &
+            "@player.wearskin(" & tempSkin & ")"
 
             If Not Me.TempScriptEntity Is Nothing Then
-                s &= GetScriptStartLine(Me.TempScriptEntity) & vbNewLine
+                s &= vbNewLine & GetScriptStartLine(Me.TempScriptEntity)
                 Me.TempScriptEntity = Nothing
             End If
-
-            s &= ":end"
 
             'Reset the player's transparency:
             Screen.Level.OwnPlayer.Opacity = 1.0F
 
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+            Construct.Controller.GetInstance().RunFromString(s)
         End If
     End Sub
 

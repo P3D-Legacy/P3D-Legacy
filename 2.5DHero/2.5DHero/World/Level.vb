@@ -49,6 +49,7 @@ Public Class Level
     Private _lightingType As Integer = 0
     Private _isSafariZone As Boolean = False
     Private _isBugCatchingContest As Boolean = False
+    Private _mapScript As String = ""
 
     Private _bugCatchingContestData As String = ""
     Private _battleMapData As String = ""
@@ -586,6 +587,18 @@ Public Class Level
         End Get
     End Property
 
+    ''' <summary>
+    ''' The map script of this map.
+    ''' </summary>
+    Public Property MapScript() As String
+        Get
+            Return _mapScript
+        End Get
+        Set(value As String)
+            _mapScript = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Structures"
@@ -991,7 +1004,7 @@ Public Class Level
             World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
 
             ' If this map is on the restplaces list, set the player's last restplace to this map:
-            Dim restplaces As List(Of String) = System.IO.File.ReadAllLines(OldGameModeManager.GetMapPath("restplaces.dat")).ToList()
+            Dim restplaces As List(Of String) = System.IO.File.ReadAllLines(GameModeManager.GetMapPath("restplaces.dat")).ToList()
 
             For Each line As String In restplaces
                 Dim place As String = line.GetSplit(0, "|")

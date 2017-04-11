@@ -48,8 +48,7 @@
 
         Dim newPosition As New Vector2(0, 1)
 
-        Dim s As String = "version=2" & vbNewLine &
-            "@pokemon.cry(" & p.Number & ")" & vbNewLine
+        Dim s As String = "@pokemon.cry(" & p.Number & ")" & vbNewLine
 
         If CType(Screen.Camera, OverworldCamera).ThirdPerson = False Then
             If reaction.HasNotification = True Then
@@ -60,7 +59,7 @@
 
                 s &= "@camera.deactivatethirdperson" & vbNewLine
             End If
-            s &= "@text.show(" & reaction.GetMessage(p) & ")" & vbNewLine
+            s &= "@text.show(" & reaction.GetMessage(p) & ")"
         Else
             Dim preYaw As Single = Screen.Camera.Yaw
             If reaction.HasNotification = True Then
@@ -72,9 +71,8 @@
             End If
             s &= "@text.show(" & reaction.GetMessage(p) & ")" & vbNewLine
             s &= "@camera.activatethirdperson" & vbNewLine
-            s &= "@camera.setyaw(" & preYaw & ")" & vbNewLine
+            s &= "@camera.setyaw(" & preYaw & ")"
         End If
-        s &= ":end"
 
         Return s
     End Function
@@ -110,6 +108,7 @@
             s &= "@camera.deactivatethirdperson" & vbNewLine
             s &= "@text.show(" & message & ")" & vbNewLine &
                 "@options.show(Yes,No)" & vbNewLine &
+                ":select:<options.result>" & vbNewLine &
                 ":when:Yes" & vbNewLine &
                 "@text.show(Your Pokémon handed over~the " & item.Name & "!)" & vbNewLine &
                 "@item.give(" & PickupItemID & ",1)" & vbNewLine &
@@ -117,7 +116,7 @@
                 ":when:No" & vbNewLine &
                 "@text.show(Your Pokémon kept~the item happily.)" & vbNewLine &
                 "@pokemon.addfriendship(0,10)" & vbNewLine &
-                ":endwhen" & vbNewLine
+                ":endselect" & vbNewLine
         Else
             s &= "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & vbNewLine
             s &= "@entity.showmessagebulb(" & CInt(MessageBulb.NotifcationTypes.Question).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & vbNewLine
@@ -126,6 +125,7 @@
 
             s &= "@text.show(" & message & ")" & vbNewLine &
                 "@options.show(Yes,No)" & vbNewLine &
+                ":select:<options.result>" & vbNewLine &
                 ":when:Yes" & vbNewLine &
                 "@text.show(Your Pokémon handed over~the " & item.Name & "!)" & vbNewLine &
                 "@item.give(" & PickupItemID & ",1)" & vbNewLine &
@@ -133,7 +133,7 @@
                 ":when:No" & vbNewLine &
                 "@text.show(Your Pokémon kept~the item happily.)" & vbNewLine &
                 "@pokemon.addfriendship(0,10)" & vbNewLine &
-                ":endwhen" & vbNewLine
+                ":endselect" & vbNewLine
             s &= "@camera.activatethirdperson" & vbNewLine
         End If
         s &= ":end"
@@ -229,7 +229,7 @@
     Private Shared Function GetStatusConditionReaction(ByVal p As Pokemon) As ReactionContainer
         Select Case p.Status
             Case Pokemon.StatusProblems.BadPoison, Pokemon.StatusProblems.Poison
-                Return New ReactionContainer("<name> is shivering~with the effects of being~poisoned.", MessageBulb.NotifcationTypes.Poisoned)
+                Return New ReactionContainer("<name> is~shivering with the effects~of being poisoned.", MessageBulb.NotifcationTypes.Poisoned)
             Case Pokemon.StatusProblems.Burn
                 Return New ReactionContainer("<name>'s burn~looks painful!", MessageBulb.NotifcationTypes.Poisoned)
             Case Pokemon.StatusProblems.Freeze
@@ -398,13 +398,13 @@
                         r = New ReactionContainer("<name> is sniffing~at the floor.", MessageBulb.NotifcationTypes.Question)
                     End If
                 Case 18
-                    r = New ReactionContainer("<name> is peering~down.", MessageBulb.NotifcationTypes.Question)
+                    r = New ReactionContainer("<name> is~peering down.", MessageBulb.NotifcationTypes.Question)
                 Case 19
                     r = New ReactionContainer("<name> seems~to be wandering around.", MessageBulb.NotifcationTypes.Note)
                 Case 20
-                    r = New ReactionContainer("<name> is looking~around absentmindedly.", MessageBulb.NotifcationTypes.Waiting)
+                    r = New ReactionContainer("<name> is~looking around absentmindedly.", MessageBulb.NotifcationTypes.Waiting)
                 Case 21
-                    r = New ReactionContainer("<name> is relaxing~comfortably.", MessageBulb.NotifcationTypes.Friendly)
+                    r = New ReactionContainer("<name> is~relaxing comfortably.", MessageBulb.NotifcationTypes.Friendly)
                 Case 22
                     If IsInside() = True Then
                         r = New ReactionContainer("<name> is sniffing~at the floor.", MessageBulb.NotifcationTypes.Waiting)
@@ -481,7 +481,7 @@
                     r = New ReactionContainer("Your Pokémon was surprised~that you suddenly spoke to it!", MessageBulb.NotifcationTypes.Exclamation)
                 Case 42
                     If Not p.Item Is Nothing Then
-                        r = New ReactionContainer("<name> almost forgot~it was holding~that " & p.Item.Name & "!", MessageBulb.NotifcationTypes.Question)
+                        r = New ReactionContainer("<name> almost~forgot it was holding~that " & p.Item.Name & "!", MessageBulb.NotifcationTypes.Question)
                     End If
                 Case 43
                     If IceAround() = True Then
@@ -492,7 +492,7 @@
                         r = New ReactionContainer("Your Pokémon almost slipped~and fell over!", MessageBulb.NotifcationTypes.Exclamation)
                     End If
                 Case 45
-                    r = New ReactionContainer("<name> sensed something~strange and was surprised!", MessageBulb.NotifcationTypes.Question)
+                    r = New ReactionContainer("<name> sensed~something strange and~was surprised!", MessageBulb.NotifcationTypes.Question)
                 Case 46
                     r = New ReactionContainer("Your Pokémon is looking~around restlessly for~something.", MessageBulb.NotifcationTypes.Question)
                 Case 47
@@ -502,7 +502,7 @@
                         r = New ReactionContainer("Sniff, sniff!~Is there something nearby?", MessageBulb.NotifcationTypes.Question)
                     End If
                 Case 49
-                    r = New ReactionContainer("<name> is wandering~around and searching~for something.", MessageBulb.NotifcationTypes.Question)
+                    r = New ReactionContainer("<name> is~wandering around and~searching for something.", MessageBulb.NotifcationTypes.Question)
                 Case 50
                     r = New ReactionContainer("<name> is sniffing~at <player.name>.", MessageBulb.NotifcationTypes.Friendly)
                 Case 51
@@ -694,7 +694,7 @@
     Public Shared Sub Load()
         SpecialReactionList.Clear()
 
-        Dim path As String = OldGameModeManager.GetContentFilePath("Data\interactions.dat")
+        Dim path As String = GameModeManager.GetDataFilePath("interactions.dat")
         Security.FileValidation.CheckFileValid(path, False, "PokemonInteractions.vb")
 
         Dim data() As String = System.IO.File.ReadAllLines(path)
@@ -819,11 +819,8 @@
 
         Public Function Match(ByVal p As Pokemon) As Boolean
             If MapFiles.Count > 0 Then
-                If MapFiles.Any(Function(m As String)
-                                    Return m.ToLowerInvariant() = Screen.Level.LevelFile.ToLowerInvariant()
-                                End Function) Then
+                If MapFiles.Contains(Screen.Level.LevelFile) = False Then
                     Return False
-
                 End If
             End If
 
@@ -879,7 +876,7 @@
 
     Public Shared Sub CheckForRandomPickup()
         'Checks if the first Pokémon in the party is following the player:
-        If Screen.Level.ShowOverworldPokemon = True And CBool(OldGameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
+        If Screen.Level.ShowOverworldPokemon = True And CBool(GameModeManager.GetGameRuleValue("ShowFollowPokemon", "1")) = True Then
             'Checks if the player has a Pokémon:
             If Core.Player.Pokemons.Count > 0 And Screen.Level.Surfing = False And Screen.Level.Riding = False And Screen.Level.ShowOverworldPokemon = True And Not Core.Player.GetWalkPokemon() Is Nothing Then
                 If Core.Player.GetWalkPokemon().Status = Pokemon.StatusProblems.None Then
@@ -1046,7 +1043,7 @@
 
                         'If an item got generated, assign it to the global value to store it until the player interacts with the Pokémon. Also store the individual value.
                         If newItemID > -1 Then
-                            Logger.Debug("Pokémon picks up item (" & Item.GetItemByID(newItemID).Name & ")")
+                            Logger.Debug("152", "Pokémon picks up item (" & Item.GetItemByID(newItemID).Name & ")")
                             PickupItemID = newItemID
                             PickupIndividualValue = Core.Player.GetWalkPokemon().IndividualValue
                             SoundManager.PlaySound("pickup")

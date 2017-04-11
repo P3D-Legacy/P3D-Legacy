@@ -243,9 +243,9 @@
 
         Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\BagPack"), New Rectangle(592, 126, 48, 48), New Rectangle(24 * bagIndex, 150, 24, 24), Color.White)
 
-        Core.SpriteBatch.DrawString(FontManager.InGameFont, OldLocalization.GetString("inventory_menu_bag"), New Vector2(646, 134), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("inventory_menu_backadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(OldLocalization.GetString("inventory_menu_backadvice")).X - 330, 580), Color.DarkGray)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, OldLocalization.GetString("inventory_menu_items") & ":" & vbNewLine & OldLocalization.GetString("item_category_" & Me.bagIdentifier.ToString()), New Vector2(640, 446), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("inventory_menu_bag"), New Vector2(646, 134), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("inventory_menu_backadvice"), New Vector2(1200 - FontManager.MiniFont.MeasureString(Localization.GetString("inventory_menu_backadvice")).X - 330, 580), Color.DarkGray)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("inventory_menu_items") & ":" & vbNewLine & Localization.GetString("item_category_" & Me.bagIdentifier.ToString()), New Vector2(640, 446), Color.Black)
 
         Canvas.DrawScrollBar(New Vector2(555, 120), cItems.Count, 6, scrollIndex(bagIndex), New Size(4, 390), False, TextureManager.GetTexture(mainTexture, New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(mainTexture, New Rectangle(113, 12, 1, 1)))
 

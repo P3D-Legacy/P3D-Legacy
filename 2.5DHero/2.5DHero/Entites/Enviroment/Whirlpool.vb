@@ -11,22 +11,22 @@
     Public Overrides Sub Initialize()
         MyBase.Initialize()
 
-        WaterAnimation = New Animation(net.Pokemon3D.Game.TextureManager.GetTexture("Textures\Routes"), 1, 4, 16, 16, 9, 12, 0)
+        WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Routes"), 1, 4, 16, 16, 9, 12, 0)
 
-        If Whirlpool.LoadedWaterTemp = False Then
+        If LoadedWaterTemp = False Then
 
         End If
     End Sub
 
     Public Shared Sub CreateWaterTextureTemp()
         If Core.GameOptions.GraphicStyle = 1 Then
-            Whirlpool.WaterTexturesTemp.Clear()
+            WaterTexturesTemp.Clear()
 
-            Whirlpool.WaterTexturesTemp.Add(net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(0, 176, 16, 16)))
-            Whirlpool.WaterTexturesTemp.Add(net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(16, 176, 16, 16)))
-            Whirlpool.WaterTexturesTemp.Add(net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(32, 176, 16, 16)))
-            Whirlpool.WaterTexturesTemp.Add(net.Pokemon3D.Game.TextureManager.GetTexture("Routes", New Rectangle(48, 176, 16, 16)))
-            Whirlpool.LoadedWaterTemp = True
+            WaterTexturesTemp.Add(TextureManager.GetTexture("Routes", New Rectangle(0, 176, 16, 16)))
+            WaterTexturesTemp.Add(TextureManager.GetTexture("Routes", New Rectangle(16, 176, 16, 16)))
+            WaterTexturesTemp.Add(TextureManager.GetTexture("Routes", New Rectangle(32, 176, 16, 16)))
+            WaterTexturesTemp.Add(TextureManager.GetTexture("Routes", New Rectangle(48, 176, 16, 16)))
+            LoadedWaterTemp = True
         End If
     End Sub
 
@@ -45,24 +45,24 @@
 
     Private Sub ChangeTexture()
         If Core.GameOptions.GraphicStyle = 1 Then
-            If Whirlpool.LoadedWaterTemp = False Then
-                Whirlpool.CreateWaterTextureTemp()
+            If LoadedWaterTemp = False Then
+                CreateWaterTextureTemp()
             End If
             Select Case WaterAnimation.CurrentColumn
                 Case 0
-                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(0)
+                    Textures(0) = WaterTexturesTemp(0)
                 Case 1
-                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(1)
+                    Textures(0) = WaterTexturesTemp(1)
                 Case 2
-                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(2)
+                    Textures(0) = WaterTexturesTemp(2)
                 Case 3
-                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(3)
+                    Textures(0) = WaterTexturesTemp(3)
             End Select
         End If
     End Sub
 
     Public Overrides Sub Render()
-        Me.Draw(Me.Model, Textures, False)
+        Draw(Model, Textures, False)
     End Sub
 
     Private Function ReturnWhirlPoolPokemonName() As String
@@ -79,8 +79,8 @@
     End Function
 
     Public Overrides Function WalkAgainstFunction() As Boolean
-        If Me.ActionValue = 1 Then
-            Return Me.Collision
+        If ActionValue = 1 Then
+            Return Collision
         End If
 
         If Screen.Level.Surfing = True Then
@@ -88,14 +88,11 @@
             Dim s As String = ""
 
             If Badge.CanUseHMMove(Badge.HMMoves.Whirlpool) = True And pName <> "" Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-                s = "version=2
-@text.show(" & pName & " used~Whirlpool!)
-@player.move(2)
-:end"
+                s = "@text.show(" & pName & " used~Whirlpool!)
+@player.move(2)"
                 PlayerStatistics.Track("Whirlpool used", 1)
             Else
-                s = "version=2
-@player.move(1)
+                s = "@player.move(1)
 @player.turn(1)
 @level.wait(3)
 @player.turn(1)
@@ -121,11 +118,10 @@
 @level.wait(3)
 @player.turn(1)
 @level.wait(3)
-@text.show(It's a vicious~whirlpool!*A Pokémon may be~able to pass it.)
-:end"
+@text.show(It's a vicious~whirlpool!*A Pokémon may be~able to pass it.)"
             End If
 
-            CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+            Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
             Return True
         End If
 

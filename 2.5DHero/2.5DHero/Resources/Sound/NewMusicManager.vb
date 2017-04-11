@@ -45,7 +45,7 @@ Public Class NewMusicManager
                         Dim filePath As String = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".mp3"
                         s = CType(ctor.Invoke({songName, filePath, 0}), Song)
                     Else
-                        Logger.Log("296", Logger.LogTypes.ErrorMessage, "MusicManager.vb: Song """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & """ was not found!")
+                        Logger.Log("296", Logger.LogTypes.ErrorMessage, "NewMusicManager.vb: Song """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & """ was not found!")
                         Return Nothing
                     End If
                 Else
@@ -57,7 +57,7 @@ Public Class NewMusicManager
 
             Return _songs(tKey.ToLower())
         Catch ex As Exception
-            Logger.Log("269", Logger.LogTypes.Warning, "MusicManager.vb: File at ""Songs\" & songName & """ is not a valid song file!")
+            Logger.Log("269", Logger.LogTypes.Warning, "NewMusicManager.vb: File at ""Songs\" & songName & """ is not a valid song file!")
             Return Nothing
         End Try
     End Function
@@ -365,12 +365,12 @@ Public Class MusicPlayer
 
             If MediaPlayer.IsMuted = True Then
                 MediaPlayer.Pause()
-                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_music_off"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_off"), 12, FontManager.MainFont, Color.White)
             Else
                 If _currentSong <> "" Then
                     MediaPlayer.Resume()
                 End If
-                Core.GameMessage.ShowMessage(OldLocalization.GetString("game_message_music_on"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_on"), 12, FontManager.MainFont, Color.White)
             End If
         End If
     End Sub

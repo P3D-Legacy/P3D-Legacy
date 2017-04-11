@@ -142,7 +142,7 @@
                 filePath = filePath & ".dat"
             End If
 
-            Dim path As String = OldGameModeManager.GetScriptPath(filePath)
+            Dim path As String = GameModeManager.GetScriptPath(filePath)
             Security.FileValidation.CheckFileValid(path, False, "ScriptController")
 
             If IO.File.Exists(path) = True Then

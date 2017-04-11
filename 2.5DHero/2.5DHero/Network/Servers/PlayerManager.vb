@@ -275,7 +275,7 @@ Namespace Servers
                 GameJoltID = Core.GameJoltSave.GameJoltID
             End If
 
-            AddToDataItems(dataItems, OldGameModeManager.ActiveGameMode.Name.ToLower(), 0)
+            AddToDataItems(dataItems, GameModeManager.ActiveGameMode.Name.ToLower(), 0)
             AddToDataItems(dataItems, Core.Player.IsGamejoltSave.ToNumberString(), 1)
             AddToDataItems(dataItems, GameJoltID, 2)
             AddToDataItems(dataItems, GameController.DecSeparator, 3)

@@ -1,216 +1,111 @@
 ﻿Public Class SoundManager
 
-    Shared Muted As Boolean = False
+#Region "Resource Management"
 
-    Private Shared SoundFiles As New Dictionary(Of String, CSound)
-    Public Shared Volume As Single = 1.0F
+    Private Shared _sounds As New Dictionary(Of String, SoundEffect)
 
-    Class CSound
+    ''' <summary>
+    ''' Returns a sound object from the sound's name.
+    ''' </summary>
+    ''' <param name="soundName">The sound name.</param>
+    ''' <returns></returns>
+    Public Shared Function GetSound(ByVal soundName As String) As SoundEffect
+        Dim cContent As ContentManager = ContentPackManager.GetContentManager("Sounds\" & soundName, ".xnb,.wav")
 
-        Private _sound As SoundEffect
-        Private _origin As String
+        Dim tKey As String = cContent.RootDirectory & "\Sounds\" & soundName
 
-        Public Sub New(ByVal Sound As SoundEffect, ByVal Origin As String)
-            Me._sound = Sound
-            Me._origin = Origin
-        End Sub
+        If _sounds.ContainsKey(tKey.ToLower()) = False Then
+            Dim s As SoundEffect = Nothing
 
-        Public Property Sound() As SoundEffect
-            Get
-                Return Me._sound
-            End Get
-            Set(value As SoundEffect)
-                Me._sound = value
-            End Set
-        End Property
-
-        Public Property Origin() As String
-            Get
-                Return Me._origin
-            End Get
-            Set(value As String)
-                Me._origin = value
-            End Set
-        End Property
-
-        Public ReadOnly Property IsStandardSong() As Boolean
-            Get
-                Return (Me.Origin = "Content")
-            End Get
-        End Property
-
-    End Class
-
-    Private Shared Function AddSound(ByVal Name As String, ByVal forceReplace As Boolean) As Boolean
-        Try
-            Dim cContent As ContentManager = ContentPackManager.GetContentManager("Sounds\" & Name, ".xnb,.wav")
-
-            Dim loadSound As Boolean = False
-            Dim removeSound As Boolean = False
-
-            If SoundFiles.ContainsKey(Name.ToLower()) = False Then
-                loadSound = True
-            ElseIf forceReplace = True And SoundFiles(Name.ToLower()).IsStandardSong = True Then
-                removeSound = True
-                loadSound = True
-            End If
-
-            If loadSound = True Then
-                Dim sound As SoundEffect = Nothing
-
-                If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Sounds\" & Name & ".xnb") = False Then
-                    If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Sounds\" & Name & ".wav") = True Then
-                        Using stream As System.IO.Stream = System.IO.File.Open(GameController.GamePath & "\" & cContent.RootDirectory & "\Sounds\" & Name & ".wav", IO.FileMode.OpenOrCreate)
-                            sound = SoundEffect.FromStream(stream)
-                        End Using
-                    Else
-                        Logger.Log(Logger.LogTypes.Warning, "SoundManager.vb: Sound at """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & """ was not found!")
-                        Return False
-                    End If
+            If IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Sounds\" & soundName & ".xnb") = False Then
+                If IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Sounds\" & soundName & ".wav") = True Then
+                    Using stream As IO.Stream = IO.File.Open(GameController.GamePath & "\" & cContent.RootDirectory & "\Sounds\" & soundName & ".wav", IO.FileMode.OpenOrCreate)
+                        s = SoundEffect.FromStream(stream)
+                    End Using
                 Else
-                    sound = cContent.Load(Of SoundEffect)("Sounds\" & Name)
+                    Logger.Log("263", Logger.LogTypes.Warning, "SoundManager.vb: Sound at """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Sounds\" & soundName & """ was not found!")
+                    Return Nothing
                 End If
-
-                If Not sound Is Nothing Then
-                    If removeSound = True Then
-                        SoundFiles.Remove(Name.ToLower())
-                    End If
-                    SoundFiles.Add(Name.ToLower(), New CSound(sound, cContent.RootDirectory))
-                End If
+            Else
+                s = cContent.Load(Of SoundEffect)("Sounds\" & soundName)
             End If
-        Catch ex As Exception
-            Logger.Log(Logger.LogTypes.Warning, "SoundManager.vb: File at ""Sounds\" & Name & """ is not a valid sound file. They have to be a PCM wave file, mono or stereo, 8 or 16 bit and have to have a sample rate between 8k and 48k Hz.")
-            Return False
-        End Try
-        Return True
+
+            _sounds.Add(tKey.ToLower(), s)
+        End If
+
+        Return _sounds(tKey.ToLower())
     End Function
 
     ''' <summary>
     ''' Clears loaded sounds.
     ''' </summary>
     Public Shared Sub Clear()
-        SoundFiles.Clear()
+        _sounds.Clear()
     End Sub
 
-    Private Shared Function GetSoundEffect(ByVal Name As String) As SoundEffect
-        Select Case Name.ToLower()
-            Case "healing"
-                Name = "pokemon_heal"
-        End Select
+#End Region
 
-        If SoundFiles.ContainsKey(Name.ToLower()) = True Then
-            Return SoundFiles(Name.ToLower()).Sound
-        Else
-            If TryAddGameModeSound(Name) = True Then
-                Return SoundFiles(Name.ToLower()).Sound
-            Else
-                Logger.Log(Logger.LogTypes.Warning, "SoundManager.vb: Cannot find sound file """ & Name & """. Return nothing.")
-                Return Nothing
-            End If
-        End If
-    End Function
+    Public Shared Property Volume() As Single = 1.0F
 
-    Private Shared Function TryAddGameModeSound(ByVal Name As String) As Boolean
-        Dim soundfile As String = GameController.GamePath & OldGameModeManager.ActiveGameMode.ContentPath & "Sounds\" & Name & ".xnb"
-        If System.IO.File.Exists(soundfile) = True Then
-            Return AddSound(Name, False)
-        End If
-        Return False
-    End Function
+    Private Shared _muted As Boolean = False
 
-    Public Shared Sub LoadSounds(ByVal forceReplace As Boolean)
-        For Each soundfile As String In System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Sounds\")
-            If soundfile.EndsWith(".xnb") = True Then
-                soundfile = System.IO.Path.GetFileNameWithoutExtension(soundfile)
-                AddSound(soundfile, forceReplace)
-            End If
-        Next
-        If Core.GameOptions.ContentPackNames.Count > 0 Then
-            For Each c As String In Core.GameOptions.ContentPackNames
-                Dim path As String = GameController.GamePath & "\ContentPacks\" & c & "\Sounds\"
-
-                If System.IO.Directory.Exists(path) = True Then
-                    For Each soundfile As String In System.IO.Directory.GetFiles(path, "*.*", IO.SearchOption.AllDirectories)
-                        If soundfile.EndsWith(".xnb") = True Then
-                            soundfile = System.IO.Path.GetFileNameWithoutExtension(soundfile)
-                            AddSound(soundfile, forceReplace)
-                        End If
-                    Next
-                End If
-            Next
-        End If
+    Public Shared Sub PlaySound(ByVal sound As String)
+        InternalPlay(sound, 0F, 0F, _Volume, False)
     End Sub
 
-    Public Shared Sub PlaySound(ByVal Sound As String, ByVal Pitch As Single, ByVal Pan As Single, ByVal Volume As Single, ByVal stopMusic As Boolean)
-        If Muted = False Then
-            Dim s As SoundEffect = Nothing
+    Public Shared Sub PlaySound(ByVal sound As String, ByVal stopMusic As Boolean)
+        InternalPlay(sound, 0F, 0F, _Volume, stopMusic)
+    End Sub
 
-            s = GetSoundEffect(Sound)
+    Public Shared Sub PlaySound(ByVal sound As String, ByVal pitch As Single, ByVal pan As Single, ByVal volume As Single, ByVal stopMusic As Boolean)
+        InternalPlay(sound, pitch, pan, volume, stopMusic)
+    End Sub
 
-            If Not s Is Nothing Then
-                Logger.Debug("SoundEffect [" & Sound & "]")
+    Public Shared Sub PlayPokemonCry(ByVal number As Integer)
+        InternalPlay("Cries\" & number.ToString(), 0F, 0F, _Volume * 0.6F, False)
+    End Sub
 
+    Public Shared Sub PlayPokemonCry(ByVal number As Integer, ByVal pitch As Single, ByVal pan As Single)
+        InternalPlay("Cries\" & number.ToString(), pitch, pan, _Volume * 0.6F, False)
+    End Sub
+
+    Public Shared Sub PlayPokemonCry(ByVal number As Integer, ByVal pitch As Single, ByVal pan As Single, ByVal volume As Single)
+        InternalPlay("Cries\" & number.ToString(), pitch, pan, volume * 0.6F, False)
+    End Sub
+
+    Private Shared Sub InternalPlay(ByVal sound As String, ByVal pitch As Single, ByVal pan As Single, ByVal volume As Single, ByVal stopMusic As Boolean)
+        If _muted = False Then
+            Dim s As SoundEffect = GetSound(sound)
+            If s IsNot Nothing Then
                 If CanPlaySound() = True Then
-                    s.Play(Volume, Pitch, Pan)
+                    s.Play(volume, pitch, pan)
 
                     If stopMusic = True Then
-                        MusicManager.PauseForSound(s)
+                        MusicPlayer.GetInstance().PauseForSound(s)
                     End If
                 Else
-                    Logger.Log(Logger.LogTypes.Warning, "SoundManager.vb: Failed to play sound: No audio devices found.")
+                    Logger.Log("267", Logger.LogTypes.Warning, "SoundManager.vb: Failed to play sound: No audio devices found.")
                 End If
             End If
         End If
     End Sub
 
-    Public Shared Sub PlayPokemonCry(ByVal Number As Integer)
-        PlayPokemonCry(Number, 0.0F, 0F, Volume)
+    ''' <summary>
+    ''' Mutes the sound player.
+    ''' </summary>
+    ''' <param name="muted">The mute state.</param>
+    Public Shared Sub Mute(ByVal muted As Boolean)
+        _muted = muted
     End Sub
 
-    Public Shared Sub PlayPokemonCry(ByVal Number As Integer, ByVal Pitch As Single, ByVal Pan As Single)
-        PlayPokemonCry(Number, Pitch, Pan, Volume)
-    End Sub
-
-    Public Shared Sub PlayPokemonCry(ByVal Number As Integer, ByVal Pitch As Single, ByVal Pan As Single, ByVal Volume As Single)
-        If Muted = False Then
-            Dim soundfile As String = "Cries\" & Number & ".xnb"
-            If OldGameModeManager.ContentFileExists("Sounds\" & soundfile) = True Then
-                AddSound("Cries\" & Number, False)
-
-                Dim s As SoundEffect = GetSoundEffect("Cries\" & Number.ToString())
-
-                If CanPlaySound() = True Then
-                    If Not s Is Nothing Then
-                        s.Play(Volume * 0.6F, Pitch, Pan)
-                    End If
-                Else
-                    Logger.Log(Logger.LogTypes.Warning, "SoundManager.vb: Failed to play sound: No audio devices found.")
-                End If
-            End If
-        End If
-    End Sub
-
-    Public Shared Sub Mute(ByVal mute As Boolean)
-        Muted = mute
-    End Sub
-
-    Public Shared Sub PlaySound(ByVal Sound As String)
-        PlaySound(Sound, 0.0F, 0.0F, Volume, False)
-    End Sub
-
-    Public Shared Sub PlaySound(ByVal Sound As String, ByVal stopMusic As Boolean)
-        PlaySound(Sound, 0.0F, 0.0F, Volume, stopMusic)
-    End Sub
-
-    Public Shared Sub ReloadSounds()
-        SoundFiles.Clear()
-        LoadSounds(False)
-    End Sub
+#Region "Can play sound"
 
     Private Declare Function GetAudioOutputDevices Lib "winmm.dll" Alias "waveOutGetNumDevs" () As Integer
 
     Private Shared Function CanPlaySound() As Boolean
         Return GetAudioOutputDevices() > 0
     End Function
+
+#End Region
 
 End Class

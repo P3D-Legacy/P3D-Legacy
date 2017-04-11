@@ -51,11 +51,11 @@
                             CType(sRock, StrengthRock).CanBeRemoved = True
                         End If
                         If RemoveForever = True Then
-                            ActionScript.RegisterID("ACTIVATOR_REMOVE_STRENGTH_ROCK_" & Screen.Level.LevelFile & "_" & sRock.ID.ToString())
+                            Construct.Framework.RegisterHandler.NewRegister("ACTIVATOR_REMOVE_STRENGTH_ROCK_" & Screen.Level.LevelFile & "_" & sRock.ID.ToString(), "")
                         End If
                         If ActivateScript <> "" Then
                             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(Me.ActivateScript, 0, False)
+                                Construct.Controller.GetInstance().RunFromString(Me.ActivateScript, {Construct.Controller.ScriptRunOptions.CheckDelay})
                             End If
                         End If
 

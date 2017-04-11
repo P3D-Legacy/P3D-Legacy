@@ -51,7 +51,7 @@
 
         OldLocalization.ReloadGameModeTokens()
 
-        If OldGameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
+        If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
             MusicManager.LoadMusic(True)
             SoundManager.LoadSounds(True)
         End If
@@ -84,7 +84,7 @@
     End Sub
 
     Private Sub LoadIntroValues()
-        Dim GameMode As OldGameMode = OldGameModeManager.ActiveGameMode
+        Dim GameMode As GameMode = GameModeManager.ActiveGameMode
 
         Me.skinNames = GameMode.SkinNames.ToArray()
         Me.startSkins = GameMode.SkinFiles.ToArray()
@@ -474,12 +474,12 @@
             "RepelSteps|0" & vbNewLine & _
             "LastSavePlace|yourroom.dat" & vbNewLine & _
             "LastSavePlacePosition|1,0.1,3" & vbNewLine & _
-            "Difficulty|" & OldGameModeManager.GetGameRuleValue("Difficulty", "0") & vbNewLine & _
+            "Difficulty|" & GameModeManager.GetGameRuleValue("Difficulty", "0") & vbNewLine & _
             "BattleStyle|0" & vbNewLine & _
             "saveCreated|" & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & vbNewLine & _
             "LastPokemonPosition|999,999,999" & vbNewLine & _
             "DaycareSteps|0" & vbNewLine & _
-            "GameMode|" & OldGameModeManager.ActiveGameMode.DirectoryName & vbNewLine &
+            "GameMode|" & GameModeManager.ActiveGameMode.DirectoryName & vbNewLine &
             "PokeFiles|" & vbNewLine &
             "VisitedMaps|yourroom.dat" & vbNewLine &
             "TempSurfSkin|Hilbert" & vbNewLine &

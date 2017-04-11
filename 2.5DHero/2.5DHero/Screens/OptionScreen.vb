@@ -72,7 +72,7 @@
 
         Core.SpriteBatch.DrawString(FontManager.InGameFont, Me.CurrentPath, New Vector2(80, 130), Color.Black)
         If savedOptions = False Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, OldLocalization.GetString("option_screen_warning"), New Vector2(90 + FontManager.InGameFont.MeasureString(OldLocalization.GetString("option_screen_title")).X, 138), Color.DarkRed)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("option_screen_warning"), New Vector2(90 + FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_title")).X, 138), Color.DarkRed)
         End If
 
         For Each C As Control In ControlList

@@ -381,7 +381,7 @@
             SpriteBatch.DrawString(FontManager.ChatFont, "Exp. Points", New Vector2(826, 462), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
             SpriteBatch.DrawString(FontManager.ChatFont, .Experience.ToString(), New Vector2(980, 462), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
-            If .Level < CInt(OldGameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
+            If .Level < CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100")) Then
                 Canvas.DrawRectangle(New Rectangle(816, 490, 300, 64), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade)))
                 SpriteBatch.DrawString(FontManager.ChatFont, "To Next Lv.", New Vector2(826, 494), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 

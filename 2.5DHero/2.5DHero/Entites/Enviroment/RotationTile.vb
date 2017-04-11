@@ -27,17 +27,15 @@
     Public Overrides Sub Update()
         If Me.RotationType = RotationTypes.StartSpin Then
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
+                If Construct.Controller.GetInstance().IsReady = True Then
                     If Me.Position.X = Screen.Camera.Position.X And CInt(Me.Position.Y) = CInt(Screen.Camera.Position.Y) And Me.Position.Z = Screen.Camera.Position.Z Then
                         Dim steps As Integer = GetSteps()
 
-                        Dim s As String = "version=2" & vbNewLine &
-                       "@player.move(0)" & vbNewLine &
+                        Dim s As String = "@player.move(0)" & vbNewLine &
                        "@player.turnto(" & Me.RotateTo.ToString() & ")" & vbNewLine &
-                       "@player.move(" & steps & ")" & vbNewLine &
-                       ":end"
+                       "@player.move(" & steps & ")"
 
-                        CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                        Construct.Controller.GetInstance().RunFromString(s, {Construct.Controller.ScriptRunOptions.CheckDelay})
                     End If
                 End If
             End If
