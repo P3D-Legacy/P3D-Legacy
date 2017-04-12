@@ -18,6 +18,8 @@ Public Class PressStartScreen
     Private _shineRenderer As SpriteBatch
     Private _backgroundRenderer As SpriteBatch
 
+    Private target As RenderTarget2D
+
     Dim tempF As Single = 0F
     Dim tempG As Single = 0F
 
@@ -56,6 +58,9 @@ Public Class PressStartScreen
         _logoRenderer = New SpriteBatch(GraphicsDevice)
         _shineRenderer = New SpriteBatch(GraphicsDevice)
         _backgroundRenderer = New SpriteBatch(GraphicsDevice)
+
+        target = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height)
+
     End Sub
 
     Public Overrides Sub Update()
@@ -106,7 +111,6 @@ Public Class PressStartScreen
             _blurHandler = New Resources.GaussianEffect(windowSize.Width, windowSize.Height)
         End If
 
-        Dim target As New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Rgba1010102, DepthFormat.Depth24Stencil8)
         GraphicsDevice.SetRenderTarget(target)
         GraphicsDevice.Clear(BackgroundColor)
 
@@ -581,10 +585,8 @@ Public Class NewMainMenuScreen
                     _isGameJolt = True
                     _loaded = False
 
-                    Dim contentmanager As ContentManager = New ContentManager(GameInstance.Services, "SharedResources\Textures\UI\GameJolt")
-                    _sprite = contentmanager.Load(Of Texture2D)("gameJoltIcon")
 
-                    '_sprite = Content.Load(Of Texture2D)("SharedResources\Textures\UI\GameJolt\gameJoltIcon")
+                    _sprite = Content.Load(Of Texture2D)("SharedResources\Textures\UI\GameJolt\gameJoltIcon")
 
                     LoadGameJolt()
                 Else

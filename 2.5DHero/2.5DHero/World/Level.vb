@@ -931,24 +931,24 @@ Public Class Level
     ''' Handles warp events for the player.
     ''' </summary>
     Private Sub UpdatePlayerWarp()
-        If WarpData.DoWarpInNextTick = True Then ' If a warp event got scheduled.
-            ' Disable wild Pokémon:
+        If WarpData.DoWarpInNextTick = True Then 'If a warp event got scheduled.
+            'Disable wild Pokémon:
             Me._wildPokemonFloor = False
             Me.PokemonEncounterData.EncounteredPokemon = False
 
-            ' Set the Surfing flag for the next map:
+            'Set the surfing flag for the next map:
             Core.Player.startSurfing = Surfing
 
-            ' Change the player position:
+            'Change the player position:
             Screen.Camera.Position = WarpData.WarpPosition
 
-            Dim tempProperties As String = Me.CanDig.ToString() & "," & Me.CanFly.ToString() ' Store properties to determine if the "enter" sound should be played.
+            Dim tempProperties As String = Me.CanDig.ToString() & "," & Me.CanFly.ToString() 'Store properties to determine if the "enter" sound should be played.
 
-            ' Store skin values:
+            'Store skin values:
             Dim usingGameJoltTexture As Boolean = OwnPlayer.UsingGameJoltTexture
             Core.Player.Skin = OwnPlayer.SkinName
 
-            ' Load the new level:
+            'Load the new level:
             Dim params As New List(Of Object)
             params.AddRange({WarpData.WarpDestination, False, New Vector3(0, 0, 0), 0, New List(Of String)})
 
@@ -958,11 +958,11 @@ Public Class Level
             Dim levelLoader As New LevelLoader()
             levelLoader.LoadLevel(params.ToArray())
 
-            Core.Player.AddVisitedMap(Me.LevelFile) ' Add new map to visited maps list.
-            UsedStrength = False ' Disable Strength usuage upon map switch.
-            Me.Surfing = Core.Player.startSurfing ' Set the Surfing property after map switch.
+            Core.Player.AddVisitedMap(Me.LevelFile) 'Add new map to visited maps list.
+            UsedStrength = False 'Disable strength usuage upon map switch.
+            Me.Surfing = Core.Player.startSurfing 'Set the surfing property after map switch.
 
-            ' Create player and Pokémon entities:
+            'Create player and Pokémon entities.
             OwnPlayer = New OwnPlayer(0, 0, 0, {TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
             OwnPlayer.SetTexture(Core.Player.Skin, usingGameJoltTexture)
 
@@ -971,40 +971,42 @@ Public Class Level
             OverworldPokemon.warped = True
             Entities.AddRange({OwnPlayer, OverworldPokemon})
 
-            ' Set Ride skin, if needed:
+            'Set ride skin, if needed.
             If Riding = True And CanRide() = False Then
                 Riding = False
                 OwnPlayer.SetTexture(Core.Player.TempRideSkin, True)
                 Core.Player.Skin = Core.Player.TempRideSkin
             End If
 
-            ' If any turns after the warp are defined, apply them:
-            Screen.Camera.InstantTurn(WarpData.WarpRotations)
+            'If any turns after the warp are defined, apply them:
+            If WarpData.WarpRotations > 0 And Screen.Camera.Name = "Overworld" Then
+                Screen.Camera.InstantTurn(WarpData.WarpRotations)
+            End If
 
-            ' Make the RouteSign appear:
+            'Make the routesign appear:
             Me._routeSign.Setup(MapName)
 
-            ' Play the correct music track:
+            'Play the correct music track.
             If IsRadioOn = True AndAlso GameJolt.PokegearScreen.StationCanPlay(Me.SelectedRadioStation) = True Then
-                MusicManager.PlayMusic(SelectedRadioStation.Music, True)
+                MusicPlayer.GetInstance().Play(SelectedRadioStation.Music, True)
             Else
                 IsRadioOn = False
                 If Me.Surfing = True Then
-                    MusicManager.PlayMusic("surf", True)
+                    MusicPlayer.GetInstance().Play("system\surf", True)
                 Else
                     If Me.Riding = True Then
-                        MusicManager.PlayMusic("ride", True)
+                        MusicPlayer.GetInstance().Play("system\ride", True)
                     Else
-                        MusicManager.PlayMusic(MusicLoop, True)
+                        MusicPlayer.GetInstance().Play(MusicLoop, True)
                     End If
                 End If
             End If
 
-            ' Initialize the world with newly loaded environment variables:
+            'Initialize the world with newly loaded environment variables:
             World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
 
-            ' If this map is on the restplaces list, set the player's last restplace to this map:
-            Dim restplaces As List(Of String) = System.IO.File.ReadAllLines(GameModeManager.GetMapPath("restplaces.dat")).ToList()
+            'If this map is on the restplaces list, set the player's last restplace to this map.
+            Dim restplaces As List(Of String) = System.IO.File.ReadAllLines(GameModeManager.GetDataFilePath("restplaces.dat")).ToList()
 
             For Each line As String In restplaces
                 Dim place As String = line.GetSplit(0, "|")
@@ -1014,33 +1016,35 @@ Public Class Level
                 End If
             Next
 
-            ' If the warp happened through a warp block, make the player walk one step forward after switching to the new map:
+            'If the warp happened through a warp block, make the player walk one step forward after switching to the new map.
             If Screen.Camera.IsMoving = True And WarpData.IsWarpBlock = True Then
                 Screen.Camera.StopMovement()
                 Screen.Camera.Move(1.0F)
             End If
 
-            ' Because of the map change, Roaming Pokémon are moving to their next location on the world map:
+            'Because of the map change, Roaming Pokémon are moving to their next location on the world map.
             RoamingPokemon.ShiftRoamingPokemon(-1)
 
-            ' Check if the enter sound should be played by checking if CanDig or CanFly properties are different from the last map:
+            'Check if the enter sound should be played by checking if CanDig or CanFly properties are different from the last map.
             If tempProperties <> Me.CanDig.ToString() & "," & Me.CanFly.ToString() Then
                 SoundManager.PlaySound("enter", False)
             End If
 
-            ' Unlock the yaw on the camera:
-            CType(Screen.Camera, OverworldCamera).YawLocked = False
+            'Unlock the yaw on the camera.
+            If Screen.Camera.Name = "Overworld" Then
+                CType(Screen.Camera, OverworldCamera).YawLocked = False
+            End If
             NetworkPlayer.ScreenRegionChanged()
 
-            ' If a warp occured, update the camera:
+            'If a warp occured, update the camera:
             Screen.Camera.Update()
 
-            ' Disable the warp check:
+            'Disable the warp check:
             Me.WarpData.DoWarpInNextTick = False
             WarpData.IsWarpBlock = False
 
             If Core.ServersManager.ServerConnection.Connected = True Then
-                ' Update network players:
+                'Update network players:
                 Core.ServersManager.PlayerManager.NeedsUpdate = True
             End If
         End If

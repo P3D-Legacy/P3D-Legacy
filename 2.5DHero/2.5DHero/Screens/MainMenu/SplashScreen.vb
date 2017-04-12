@@ -18,7 +18,6 @@ Friend Class SplashScreen
 
     Public Sub New(ByVal GameReference As GameController)
         _game = GameReference
-
         CanBePaused = False
         CanMuteMusic = False
         CanChat = False
@@ -27,8 +26,8 @@ Friend Class SplashScreen
         MouseVisible = True
         CanGoFullscreen = False
 
-        _monoGameLogo = Core.Content.Load(Of Texture2D)("GUI\Logos\MonoGame")
-        _licenseFont = Core.Content.Load(Of SpriteFont)("Fonts\BMP\mainFont")
+        _monoGameLogo = Core.Content.Load(Of Texture2D)("Content\GUI\Logos\MonoGame")
+        _licenseFont = Core.Content.Load(Of SpriteFont)("Content\Fonts\BMP\mainFont")
         _licenseTextSize = _licenseFont.MeasureString(LICENSE_TEXT)
 
         Me.Identification = Identifications.SplashScreen

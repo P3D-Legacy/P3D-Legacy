@@ -1238,7 +1238,12 @@
         Dim hasPokedexString As String = HasPokedex.ToNumberString()
 
         Dim c As OverworldCamera = GetOverworldCamera()
-        Dim freeCameraString As String = c.FreeCameraMode.ToNumberString()
+        Dim freeCameraString As String = "1"
+        Dim thirdPersonCameraString As String = "1"
+        If c IsNot Nothing Then
+            freeCameraString = c.FreeCameraMode.ToNumberString()
+            thirdPersonCameraString = c.ThirdPerson.ToNumberString()
+        End If
 
         Dim diff As Integer = CInt(DateDiff(DateInterval.Second, GameStart, Date.Now))
         Dim p As TimeSpan = PlayTime + TimeHelpers.ConvertSecondToTime(diff)
@@ -1276,10 +1281,15 @@
             skin = TempRideSkin
         End If
 
+        Dim generalCam As Camera = c
+        If generalCam Is Nothing Then
+            generalCam = Screen.Camera
+        End If
+
         Dim Data As String = "Name|" & Name & vbNewLine &
-            "Position|" & c.Position.X.ToString().Replace(GameController.DecSeparator, ".") & "," & c.Position.Y.ToString.Replace(GameController.DecSeparator, ".") & "," & c.Position.Z.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
+            "Position|" & generalCam.Position.X.ToString().Replace(GameController.DecSeparator, ".") & "," & generalCam.Position.Y.ToString.Replace(GameController.DecSeparator, ".") & "," & generalCam.Position.Z.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
             "MapFile|" & Screen.Level.LevelFile & vbNewLine &
-            "Rotation|" & c.Yaw.ToString.Replace(GameController.DecSeparator, ".") & vbNewLine &
+            "Rotation|" & generalCam.Yaw.ToString.Replace(GameController.DecSeparator, ".") & vbNewLine &
             "RivalName|" & RivalName & vbNewLine &
             "Money|" & Money & vbNewLine &
             "Badges|" & badgeString & vbNewLine &
@@ -1290,7 +1300,7 @@
             "hasPokedex|" & hasPokedexString & vbNewLine &
             "hasPokegear|" & HasPokegear.ToNumberString() & vbNewLine &
             "freeCamera|" & freeCameraString & vbNewLine &
-            "thirdPerson|" & c.ThirdPerson.ToNumberString() & vbNewLine &
+            "thirdPerson|" & thirdPersonCameraString & vbNewLine &
             "skin|" & skin & vbNewLine &
             "location|" & Screen.Level.MapName & vbNewLine &
             "battleAnimations|" & ShowBattleAnimations.ToString() & vbNewLine &
@@ -1325,10 +1335,8 @@
     End Function
 
     Public Function GetOptionsData() As String
-        Dim c As OverworldCamera = GetOverworldCamera()
-
-        Dim FOVstring As String = c.FOV.ToString.Replace(",", ".")
-        Dim MouseSpeedString As String = CStr(c.RotationSpeed * 10000)
+        Dim FOVstring As String = Screen.Camera.FOV.ToString.Replace(",", ".")
+        Dim MouseSpeedString As String = CStr(Screen.Camera.RotationSpeed * 10000)
         Dim TextSpeedString As String = CStr(TextBox.TextSpeed)
 
         Dim Data As String = "FOV|" & FOVstring & vbNewLine &
@@ -1421,7 +1429,7 @@
             Return CType(CType(baseScreen, HallOfFameScreen).SavedOverworld.Camera, OverworldCamera)
         End If
 
-        Return CType(Screen.Camera, OverworldCamera)
+        Return Nothing
     End Function
 
     Private Sub SaveParty()

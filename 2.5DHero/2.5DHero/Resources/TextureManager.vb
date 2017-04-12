@@ -3,7 +3,7 @@ Public Class TextureManager
     Public Shared DefaultTexture As Texture2D
 
     Public Shared Sub InitializeTextures()
-        DefaultTexture = Core.Content.Load(Of Texture2D)("GUI\no_texture")
+        DefaultTexture = Core.Content.Load(Of Texture2D)("SharedResources\Textures\no_texture")
     End Sub
 
     Public Shared TextureList As New Dictionary(Of String, Texture2D)

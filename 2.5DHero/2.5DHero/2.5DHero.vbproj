@@ -1743,7 +1743,6 @@
     <Compile Include="Screens\BattleIntroScreen.vb" />
     <Compile Include="Screens\Battle\BattleCatchScreen.vb" />
     <Compile Include="Screens\Battle\BattleGrowStatsScreen.vb" />
-    <Compile Include="Screens\Battle\BattlePokemonInfoScreen.vb" />
     <Compile Include="Screens\Battle\BlackOutScreen.vb" />
     <Compile Include="Screens\Credits\CreditsCamera.vb" />
     <Compile Include="Screens\Credits\CreditsScreen.vb" />
@@ -1754,8 +1753,6 @@
     <Compile Include="Screens\GUI\ISelectionScreen.vb" />
     <Compile Include="Screens\HistoryScreen.vb" />
     <Compile Include="Screens\Inventory\ApricornScreen.vb" />
-    <Compile Include="Screens\Inventory\ChoosePokemonScreen.vb" />
-    <Compile Include="Screens\Inventory\InventoryScreen.vb" />
     <Compile Include="Screens\Inventory\ItemDetailScreen.vb" />
     <Compile Include="Screens\Inventory\NewInventoryScreen.vb" />
     <Compile Include="Screens\Inventory\PokegearScreen.vb" />
@@ -1791,8 +1788,6 @@
     <Compile Include="Screens\Pokemon\LearnAttackScreen.vb" />
     <Compile Include="Screens\Pokemon\NameObjectScreen.vb" />
     <Compile Include="Screens\Pokemon\PartyScreen.vb" />
-    <Compile Include="Screens\Pokemon\PokemonScreenV2.vb" />
-    <Compile Include="Screens\Pokemon\PokemonStatusScreen.vb" />
     <Compile Include="Screens\Pokemon\SummaryScreen.vb" />
     <Compile Include="Screens\Pokemon\TeachMovesScreen.vb" />
     <Compile Include="Screens\SaveScreen.vb" />

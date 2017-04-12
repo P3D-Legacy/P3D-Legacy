@@ -258,7 +258,7 @@
         End If
         Chat.ClearChat()
         If Core.Player.loadedSave = True And Me.canCreateAutosave = True Then
-            Core.Player.SaveGame(True)
+            Core.Player.SaveGame(False)
         End If
         Construct.Controller.GetInstance().Reset()
         Core.SetScreen(New PressStartScreen())

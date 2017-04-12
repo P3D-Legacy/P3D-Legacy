@@ -5,6 +5,7 @@
     Public GraphicsDevice As GraphicsDevice
     Public GraphicsManager As GraphicsDeviceManager
     Public Content As ContentManager
+    Public AltContent As ContentManager
     Public GameTime As GameTime
     Public GameInstance As GameController
     Public Random As System.Random = New System.Random()
@@ -36,6 +37,7 @@
         GraphicsManager = GameInstance.Graphics
         GraphicsDevice = GameInstance.GraphicsDevice
         Content = GameInstance.Content
+        Content.RootDirectory = ""
         SpriteBatch = New CoreSpriteBatch(GraphicsDevice)
         FontRenderer = New CoreSpriteBatch(GraphicsDevice)
         window = GameInstance.Window

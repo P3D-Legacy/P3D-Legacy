@@ -33,14 +33,10 @@
         Me.Identification = Identifications.TrainerScreen
         Me.PreScreen = currentScreen
 
-        ''Requires file restructure
-        '_backTexture = Content.Load(Of Texture2D)("SharedResources\Textures\UI\TrainerCard\Back")
-        '_paperClipTexture = Content.Load(Of Texture2D)("SharedResources\Textures\UI\TrainerCard\Paperclip")
-        '_papersTexture = Content.Load(Of Texture2D)("SharedResources\Textures\UI\TrainerCard\Papers")
+        _backTexture = Content.Load(Of Texture2D)("SharedResources\Textures\UI\TrainerCard\Back")
+        _paperClipTexture = Content.Load(Of Texture2D)("SharedResources\Textures\UI\TrainerCard\Paperclip")
+        _papersTexture = Content.Load(Of Texture2D)("SharedResources\Textures\UI\TrainerCard\Papers")
 
-        _backTexture = Content.Load(Of Texture2D)("Textures\UI\TrainerCard\Back")
-        _paperClipTexture = Content.Load(Of Texture2D)("Textures\UI\TrainerCard\Paperclip")
-        _papersTexture = Content.Load(Of Texture2D)("Textures\UI\TrainerCard\Papers")
         target = New RenderTarget2D(GraphicsDevice, _backTexture.Width, _backTexture.Height + _paperClipTexture.Height)
         target2 = New RenderTarget2D(GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height)
 

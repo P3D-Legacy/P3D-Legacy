@@ -39,7 +39,7 @@ Public Class NewMusicManager
             If _songs.ContainsKey(tKey.ToLower()) = False Then
                 Dim s As Song = Nothing
 
-                If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".xnb") = False Or System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".wma") = False Then
+                If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".xnb") = False AndAlso System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".wma") = False Then
                     If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".mp3") = True Then
                         Dim ctor = GetType(Song).GetConstructor(System.Reflection.BindingFlags.NonPublic Or System.Reflection.BindingFlags.Instance, Nothing, {GetType(String), GetType(String), GetType(Integer)}, Nothing)
                         Dim filePath As String = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".mp3"

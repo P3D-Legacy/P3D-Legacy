@@ -171,10 +171,7 @@ Namespace Resources
             Public Sub New(game As Microsoft.Xna.Framework.Game)
                 Me.game = game
 
-                '''Requires file restructure
-                'effect = Content.Load(Of Effect)("SharedResources\Effects\GaussianBlur")
-                effect = Content.Load(Of Effect)("Effects\GaussianBlur")
-
+                effect = Content.Load(Of Effect)("SharedResources\Effects\GaussianBlur")
 
                 'Try
                 '    effect = game.Content.Load(Of Effect)("SharedResources\Effects\GaussianBlur")

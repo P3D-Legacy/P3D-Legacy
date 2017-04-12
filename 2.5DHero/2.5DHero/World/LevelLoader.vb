@@ -110,6 +110,11 @@
                 CType(CurrentScreen, OverworldScreen).Titles.Add(New OverworldScreen.Title("Couldn't find map file!", 20.0F, Color.White, 6.0F, Vector2.Zero, True))
             End If
 
+            If GameModeManager.GetMapPath("johto\newbark\yourroom.dat") <> levelPath And loadOffsetMap = False Then
+                Screen.Camera.Position = New Vector3(1, 0.1F, 3)
+                LoadLevel({"johto\newbark\yourroom.dat", False, New Vector3(0, 0, 0), 0, New List(Of String)})
+            End If
+
             Exit Sub
         End If
 

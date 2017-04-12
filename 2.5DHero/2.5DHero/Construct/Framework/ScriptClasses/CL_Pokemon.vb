@@ -652,7 +652,7 @@
                 End If
             End If
 
-            Game.Core.SetScreen(New ChoosePokemonScreen(Game.Core.CurrentScreen, New Items.Balls.Pokeball, Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg))
+            Game.Core.SetScreen(New PartyScreen(Game.Core.CurrentScreen, New Items.Balls.Pokeball, Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg))
 
             ActiveLine.EndExecutionFrame = True
 
@@ -1161,7 +1161,7 @@
         <ScriptConstruct("Selected")>
         <ScriptDescription("Returns the last selected Pokémon index.")>
         Private Function F_Selected(ByVal argument As String) As String
-            Return ToString(ChoosePokemonScreen.Selected)
+            Return ToString(PartyScreen.Selected)
         End Function
 
         <ScriptConstruct("SelectedMove")>
