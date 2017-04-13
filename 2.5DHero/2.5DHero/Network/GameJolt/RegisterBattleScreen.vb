@@ -37,7 +37,7 @@
             Me.MouseVisible = True
             Me.CanBePaused = False
 
-            MusicManager.PlayMusic("lobby", True)
+            MusicPlayer.GetInstance().Play("system\lobby", True)
 
             Dim APICall As New APICall(AddressOf GotKeys)
             APICall.GetKeys(False, "RegisterBattleV" & REGISTERBATTLEVERSION & "|" & Core.GameJoltSave.GameJoltID & "|*")
@@ -646,7 +646,7 @@
                 Me.OwnTeam.Clear()
                 Me.TeamDownloaded = False
                 Me.HasTeamUploaded = False
-                MusicManager.PlayMusic("lobby", False)
+                MusicPlayer.GetInstance().Play("system\lobby", False)
                 Core.Player.Pokemons.Clear()
                 Core.Player.Pokemons.AddRange(TempOriginalTeam.ToArray())
                 Dim APICall As New APICall(AddressOf GotKeys)

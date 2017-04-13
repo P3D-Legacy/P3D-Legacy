@@ -1736,7 +1736,6 @@
     <Compile Include="Resources\Models\Steps\InsideStepModel.vb" />
     <Compile Include="Resources\Models\Steps\StepModel.vb" />
     <Compile Include="Resources\Sound\NewMusicManager.vb" />
-    <Compile Include="Resources\Sound\MusicManager.vb" />
     <Compile Include="Resources\Sound\SoundManager.vb" />
     <Compile Include="Resources\TextureManager.vb" />
     <Compile Include="Resources\TextureManager2.vb" />
@@ -1796,7 +1795,6 @@
     <Compile Include="Screens\testWindowScreen.vb" />
     <Compile Include="Screens\TradeScreen.vb" />
     <Compile Include="Screens\NewTrainerScreen.vb" />
-    <Compile Include="Screens\TrainerScreen.vb" />
     <Compile Include="Screens\TransitionScreen.vb" />
     <Compile Include="Screens\WindowScreen.vb" />
     <Compile Include="Security\FileValidation.vb" />

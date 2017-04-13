@@ -15,9 +15,9 @@
 
         Public Overrides Sub Update(BV2Screen As BattleScreen)
             If fade = True Then
-                MusicManager.PlayMusic(Me._music, True)
+                MusicPlayer.GetInstance().Play(Me._music, True)
             Else
-                MusicManager.PlayMusic(Me._music, True, 0.0F, 0.0F)
+                MusicPlayer.GetInstance().Play(Me._music, True, 0.0F, 0.0F)
             End If
         End Sub
 

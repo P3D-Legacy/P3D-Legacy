@@ -20,40 +20,36 @@
     Dim duration As TimeSpan
 
     Public MusicLoop As String = ""
+    Private renderTarget As RenderTarget2D
 
     Public Sub New(ByVal OldScreen As Screen, ByVal NewScreen As Screen, ByVal IntroType As Integer)
-        Dim musicLoop As String = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_intro"
+        Dim musicLoop As String = "battle\intro\" & Screen.Level.CurrentRegion.Split(CChar(","))(0) & "\wild"
 
         If BattleSystem.BattleScreen.RoamingBattle = True Then
             If BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop <> "" Then
-                musicLoop = BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop & "_intro"
+                musicLoop = "battle\intro\legend\" & BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop
             End If
         End If
 
-        If MusicManager.SongExists(musicLoop) = False Then
-            musicLoop = "johto_wild_intro"
+        If NewMusicManager.SongExists(musicLoop) = False Then
+            musicLoop = "battle\intro\johto\wild"
         End If
-        musicLoop = musicLoop
-
         Me.Constructor(OldScreen, NewScreen, Nothing, musicLoop, IntroType)
     End Sub
 
     Public Sub New(ByVal OldScreen As Screen, ByVal NewScreen As Screen, ByVal IntroType As Integer, ByVal MusicLoop As String)
         If MusicLoop = "" Then
-            MusicLoop = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_intro"
-            If MusicManager.SongExists(MusicLoop) = False Then
+            MusicLoop = "battle\intro\" & Screen.Level.CurrentRegion.Split(CChar(","))(0) & "\wild"
+            If NewMusicManager.SongExists(MusicLoop) = False Then
                 If BattleSystem.BattleScreen.RoamingBattle = True Then
                     If BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop <> "" Then
-                        MusicLoop = BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop & "_intro"
+                        MusicLoop = "battle\intro\legend\" & BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop
                     End If
                 End If
-                If MusicManager.SongExists(MusicLoop) = False Then
-                    MusicLoop = "johto_wild_intro"
+                If NewMusicManager.SongExists(MusicLoop) = False Then
+                    MusicLoop = "battle\intro\johto\wild"
                 End If
             End If
-            MusicLoop = MusicLoop
-        Else
-            MusicLoop = MusicLoop
         End If
 
         Me.Constructor(OldScreen, NewScreen, Nothing, MusicLoop, IntroType)
@@ -77,6 +73,9 @@
         End If
 
         Me.Identification = Identifications.BattleIniScreen
+
+        renderTarget = New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height)
+
     End Sub
 
     Public Overrides Sub Draw()
@@ -139,7 +138,7 @@
 
     Private Sub UpdateBlurIntro()
         If blurTexture Is Nothing Then
-            Dim r As New RenderTarget2D(Core.GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height)
+            Dim r = renderTarget
             Core.GraphicsDevice.SetRenderTarget(r)
 
             Core.Draw()
@@ -501,16 +500,16 @@
     End Sub
 
     Public Overrides Sub ChangeTo()
-        Player.Temp.IsInBattle = True
-        Player.Temp.BeforeBattlePosition = Screen.Camera.Position
-        Player.Temp.BeforeBattleLevelFile = Screen.Level.LevelFile
-        Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection() 
-        MusicManager.PlayMusic(MusicLoop)
+        Core.Player.Temp.IsInBattle = True
+        Core.Player.Temp.BeforeBattlePosition = Screen.Camera.Position
+        Core.Player.Temp.BeforeBattleLevelFile = Screen.Level.LevelFile
+        Core.Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection()
+        MusicPlayer.GetInstance().Play(MusicLoop)
         MediaPlayer.IsRepeating = False
 
-        Dim s As MusicManager.CSong = MusicManager.GetSong(MusicLoop, True)
+        Dim s As Song = NewMusicManager.GetSong(MusicLoop)
         If Not s Is Nothing Then
-            Me.duration = s.Song.Duration
+            Me.duration = s.Duration
         Else
             Me.duration = New TimeSpan(0)
         End If

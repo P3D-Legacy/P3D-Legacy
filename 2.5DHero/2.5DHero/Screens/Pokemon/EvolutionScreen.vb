@@ -161,8 +161,8 @@
 
         EvolvePokemon()
 
-        Me.SavedMusic = MusicManager.GetCurrentSong()
-        MusicManager.PlayMusic("nomusic", False)
+        Me.SavedMusic = MusicPlayer.GetInstance().CurrentSong()
+        MusicPlayer.GetInstance().Play("nomusic", False)
     End Sub
 
     Public Overrides Sub Draw()
@@ -199,8 +199,8 @@
             Next
         Else
             If evolutionReady = False And TextBox.Showing = False Then
-                If MusicManager.GetCurrentSong() <> "evolution" Then
-                    MusicManager.PlayMusic("evolution", True)
+                If MusicPlayer.GetInstance().CurrentSong() <> "system\evolution" Then
+                    MusicPlayer.GetInstance().Play("system\evolution", True)
                 End If
 
                 If evolved = False Then
@@ -304,7 +304,7 @@
                     s = s.PreScreen
                 End While
                 Core.SetScreen(New TransitionScreen(s, s.PreScreen, Color.Black, False))
-                MusicManager.PlayMusic(SavedMusic)
+                MusicPlayer.GetInstance().Play(SavedMusic)
             Else
                 Dim s As Screen = Core.CurrentScreen
                 While s.Identification <> Identifications.BattleScreen

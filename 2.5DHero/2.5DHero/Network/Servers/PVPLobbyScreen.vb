@@ -35,7 +35,7 @@
         Me.Identification = Identifications.PVPLobbyScreen
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
 
-        MusicManager.PlayMusic("lobby", True)
+        MusicPlayer.GetInstance().Play("system\lobby", True)
 
         Me.MouseVisible = True
         Me.CanBePaused = False
@@ -607,7 +607,7 @@
             If BattleSuccessful = True Then
                 ScreenState = ScreenStates.BattleResults
             End If
-            MusicManager.PlayMusic("lobby", False)
+            MusicPlayer.GetInstance().Play("system\lobby", False)
             Core.Player.Pokemons.Clear()
             Core.Player.Pokemons.AddRange(TempOriginalTeam.ToArray())
             BattleSystem.BattleScreen.OwnFaint = False

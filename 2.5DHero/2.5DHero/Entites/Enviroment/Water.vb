@@ -241,7 +241,7 @@
                 SoundManager.PlayPokemonCry(pokemonNumber)
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                    MusicManager.PlayMusic("surf", True)
+                    MusicPlayer.GetInstance().Play("system\surf", True)
                 End If
             End With
         End If

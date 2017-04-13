@@ -11,7 +11,7 @@ Public Class NewMusicManager
     'Intros to songs are not required, but have the default folder called "intro", which songs do not get pulled from unless they have a song in the corresponding main folder.
     'Intros only play if the corresponding song was loaded from the same origin (GameMode/ContentPack).
     '
-    'Accepted file formats are .xnb (with .wma file) and .mp3.
+    'Accepted file formats are .xnb (with .wma file) and .ogg.
 
     'This maps the song files.
     Private Shared _songs As New Dictionary(Of String, Song)
@@ -32,7 +32,7 @@ Public Class NewMusicManager
     ''' <returns></returns>
     Public Shared Function GetSong(ByVal songName As String) As Song
         Try
-            Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & songName, ".xnb,.mp3")
+            Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & songName, ".xnb,.ogg")
 
             Dim tKey As String = cContent.RootDirectory & "\Songs\" & songName
 
@@ -40,9 +40,9 @@ Public Class NewMusicManager
                 Dim s As Song = Nothing
 
                 If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".xnb") = False AndAlso System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".wma") = False Then
-                    If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".mp3") = True Then
+                    If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".ogg") = True Then
                         Dim ctor = GetType(Song).GetConstructor(System.Reflection.BindingFlags.NonPublic Or System.Reflection.BindingFlags.Instance, Nothing, {GetType(String), GetType(String), GetType(Integer)}, Nothing)
-                        Dim filePath As String = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".mp3"
+                        Dim filePath As String = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & ".ogg"
                         s = CType(ctor.Invoke({songName, filePath, 0}), Song)
                     Else
                         Logger.Log("296", Logger.LogTypes.ErrorMessage, "NewMusicManager.vb: Song """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & songName & """ was not found!")
@@ -71,11 +71,11 @@ Public Class NewMusicManager
         'To check if an intro exists, we grab the ContentManager of the root song first.
         'Then, we check if the intro file exists relative to the ContentManager's RootDirectory.
 
-        Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & songName, ".xnb,.mp3")
+        Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & songName, ".xnb,.ogg")
 
-        Return (System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\intro\" & songName & ".xnb") = True And
-            System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\intro\" & songName & ".wma") = True) Or
-            System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\intro\" & songName & ".mp3") = True
+        Return (System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\intro\" & songName & ".xnb") = True AndAlso
+            (System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\intro\" & songName & ".ogg")) OrElse
+            System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\intro\" & songName & ".wma"))
     End Function
 
     ''' <summary>
@@ -227,7 +227,15 @@ Public Class MusicPlayer
     ''' Forces a volume update to the Media Player.
     ''' </summary>
     Public Sub ForceVolumeUpdate()
+#If WINDOWS Then
+        Try
+            MediaPlayer.Volume = _volume * _masterVolume
+        Catch ex As NullReferenceException
+            ' song changed while changing volume
+        End Try
+#Else
         MediaPlayer.Volume = _volume * _masterVolume
+#End If
         _currentVolume = _volume * _masterVolume
     End Sub
 
@@ -244,7 +252,7 @@ Public Class MusicPlayer
 
             _introFollowUp = Song
             _introPlaying = True
-            _introRemaining = s.Duration
+            _introRemaining = s.Duration - TimeSpan.FromSeconds(1)
 
             PlayTrack(s, Song)
         Else

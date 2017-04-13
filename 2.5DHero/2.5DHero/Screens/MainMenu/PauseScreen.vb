@@ -257,21 +257,22 @@
             Core.ServersManager.ServerConnection.Disconnect()
         End If
         Chat.ClearChat()
-        If Core.Player.loadedSave = True And Me.canCreateAutosave = True Then
-            Core.Player.SaveGame(False)
-        End If
+        'RIP autosave
+        'If Core.Player.loadedSave = True And Me.canCreateAutosave = True Then
+        '    Core.Player.SaveGame(False)
+        'End If
         Construct.Controller.GetInstance().Reset()
         Core.SetScreen(New PressStartScreen())
         Core.Player.loadedSave = False
     End Sub
 
     Public Overrides Sub ChangeTo()
-        MusicManager.MasterVolume /= 4
-        MusicManager.ForceVolumeUpdate()
+        MusicPlayer.GetInstance().MasterVolume /= 4
+        MusicPlayer.GetInstance().ForceVolumeUpdate()
     End Sub
 
     Public Overrides Sub ChangeFrom()
-        MusicManager.MasterVolume *= 4
-        MusicManager.ForceVolumeUpdate()
+        MusicPlayer.GetInstance().MasterVolume *= 4
+        MusicPlayer.GetInstance().ForceVolumeUpdate()
     End Sub
 End Class

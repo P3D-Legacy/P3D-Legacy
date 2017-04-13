@@ -34,7 +34,7 @@
         Public Overrides Sub ChangeTo()
             PokemonGTSCount = -1
 
-            MusicManager.PlayMusic("gts", True)
+            MusicPlayer.GetInstance().Play("system\gts", True)
 
             If GTSVersion <> "1.X" Then
                 GetGTSPokemonInfo()

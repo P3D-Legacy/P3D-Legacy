@@ -187,18 +187,18 @@
 
             PlayerStatistics.Track("Wild battles", 1)
 
-            If CustomBattleMusic = "" OrElse MusicManager.SongExists(CustomBattleMusic) = False Then
-                If RoamingBattle = True AndAlso RoamingPokemonStorage.MusicLoop <> "" AndAlso MusicManager.SongExists(RoamingPokemonStorage.MusicLoop) = True Then
-                    MusicManager.PlayMusic(RoamingPokemonStorage.MusicLoop, True, 0.0F, 0.0F)
+            If CustomBattleMusic = "" OrElse NewMusicManager.SongExists(CustomBattleMusic) = False Then
+                If RoamingBattle = True AndAlso RoamingPokemonStorage.MusicLoop <> "" AndAlso NewMusicManager.SongExists(RoamingPokemonStorage.MusicLoop) = True Then
+                    MusicPlayer.GetInstance().Play(RoamingPokemonStorage.MusicLoop, True, 0.0F, 0.0F)
                 Else
-                    If MusicManager.SongExists(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
-                        MusicManager.PlayMusic(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild", True, 0.0F, 0.0F)
+                    If NewMusicManager.SongExists("battle\main\" & SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "\wild") = True Then
+                        MusicPlayer.GetInstance().Play("battle\main\" & SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "\wild", True, 0.0F, 0.0F)
                     Else
-                        MusicManager.PlayMusic("johto_wild", True, 0.0F, 0.0F)
+                        MusicPlayer.GetInstance().Play("battle\main\johto\wild", True, 0.0F, 0.0F)
                     End If
                 End If
             Else
-                MusicManager.PlayMusic(CustomBattleMusic, True, 0.0F, 0.0F)
+                MusicPlayer.GetInstance().Play(CustomBattleMusic, True, 0.0F, 0.0F)
             End If
 
             Me.defaultMapType = defaultMapType
@@ -330,9 +330,9 @@
             End If
 
             If IsPVPBattle = True Then
-                MusicManager.PlayMusic("pvp", True, 0.0F, 0.0F)
+                MusicPlayer.GetInstance().Play("system\pvp", True, 0.0F, 0.0F)
             Else
-                MusicManager.PlayMusic(Trainer.GetBattleMusicName(), True, 0.0F, 0.0F)
+                MusicPlayer.GetInstance().Play(Trainer.GetBattleMusicName(), True, 0.0F, 0.0F)
             End If
 
             Me.defaultMapType = defaultMapType
@@ -477,10 +477,10 @@
 
             PlayerStatistics.Track("Safari battles", 1)
 
-            If MusicManager.SongExists(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
-                MusicManager.PlayMusic(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild", True, 0.0F, 0.0F)
+            If NewMusicManager.SongExists("battle\main\" & SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "\wild") = True Then
+                MusicPlayer.GetInstance().Play("battle\main\" & SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "\wild", True, 0.0F, 0.0F)
             Else
-                MusicManager.PlayMusic("johto_wild", True, 0.0F, 0.0F)
+                MusicPlayer.GetInstance().Play("battle\main\johto\wild", True, 0.0F, 0.0F)
             End If
 
             Me.defaultMapType = defaultMapType
@@ -594,10 +594,10 @@
 
             PlayerStatistics.Track("Bug-Catching contest battles", 1)
 
-            If MusicManager.SongExists(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
-                MusicManager.PlayMusic(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild", True, 0.0F, 0.0F)
+            If NewMusicManager.SongExists("battle\main\" & SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "\wild") = True Then
+                MusicPlayer.GetInstance().Play("battle\main\" & SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "\wild", True, 0.0F, 0.0F)
             Else
-                MusicManager.PlayMusic("johto_wild", True, 0.0F, 0.0F)
+                MusicPlayer.GetInstance().Play("battle\main\johto\wild", True, 0.0F, 0.0F)
             End If
 
             Me.defaultMapType = defaultMapType

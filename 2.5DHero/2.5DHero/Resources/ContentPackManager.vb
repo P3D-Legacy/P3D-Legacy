@@ -120,7 +120,7 @@
         TextureReplacements.Clear()
         TextureResolutions.Clear()
         FilesExist.Clear()
-        MusicManager.Clear()
+        NewMusicManager.Clear()
         SoundManager.Clear()
         ModelManager.Clear()
         TextureManager.TextureList.Clear()

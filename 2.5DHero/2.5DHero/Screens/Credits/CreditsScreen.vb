@@ -44,7 +44,7 @@ Public Class CreditsScreen
 
         ExecuteCameraLevel()
 
-        MusicManager.PlayMusic("credits", True)
+        MusicPlayer.GetInstance().Play("system\credits", True)
         MediaPlayer.IsRepeating = False
     End Sub
 

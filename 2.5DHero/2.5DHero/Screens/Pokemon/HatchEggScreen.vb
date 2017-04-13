@@ -35,7 +35,7 @@
         Me.Backgroud = TextureManager.GetTexture("GUI\EggBreak", New Rectangle(0, 0, 256, 192), "")
         Me.Egg = GetEggTexture()
 
-        MusicManager.PlayNoMusic()
+        MusicPlayer.GetInstance().Stop()
     End Sub
 
     Private Function GetEggTexture() As Texture2D
@@ -81,7 +81,7 @@
                 If size < 3.5F Then
                     size += 0.08F
                 Else
-                    MusicManager.PlayMusic("wild_defeat")
+                    MusicPlayer.GetInstance().Play("battle\defeat\wild")
                     cPokemon.PlayCry()
                     SoundManager.PlaySound("success", True)
                     Stage = 7

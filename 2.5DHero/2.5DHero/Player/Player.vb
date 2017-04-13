@@ -515,7 +515,7 @@
             SandBoxMode = False
         End If
 
-        MusicManager.Clear()
+        NewMusicManager.Clear()
         SoundManager.Clear()
         SmashRock.Load()
         Badge.Load()
