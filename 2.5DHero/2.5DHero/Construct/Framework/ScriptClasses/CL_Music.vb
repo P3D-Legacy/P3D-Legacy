@@ -20,6 +20,18 @@
             Return Core.Null
         End Function
 
+        <ScriptCommand("ForcePlay")>
+        <ScriptDescription("Plays music and sets the music loop ignoring last song and without fade-in.")>
+        Private Function M_ForcePlay(ByVal argument As String) As String
+            MusicPlayer.GetInstance().ForcePlay(argument)
+
+            If Screen.Level IsNot Nothing Then
+                Screen.Level.MusicLoop = argument
+            End If
+
+            Return Core.Null
+        End Function
+
         <ScriptCommand("SetMusicLoop")>
         <ScriptDescription("Sets the music loop without playing music.")>
         Private Function M_SetMusicLoop(ByVal argument As String) As String

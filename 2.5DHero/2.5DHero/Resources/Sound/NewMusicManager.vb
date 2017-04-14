@@ -327,7 +327,12 @@ Public Class MusicPlayer
             End If
         End If
     End Sub
-
+    Public Sub ForcePlay(ByVal Song As String)
+        _currentSong = "nomusic"
+        _introPlaying = False
+        _introRemaining = TimeSpan.FromSeconds(0)
+        Play(Song, True, 1, 1)
+    End Sub
     ''' <summary>
     ''' This stops all music playback.
     ''' </summary>
