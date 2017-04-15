@@ -307,4 +307,5 @@ Temporary Items
 !2.5DHero/2.5DHero/
 !2.5DHero/2.5DHero/Debug/
 !2.5DHero/2.5DHero/Debug/**/*
-/2.5DHero/2.5DHero/DataModel
+!2.5DHero/2.5DHero/DataModel/
+!2.5DHero/2.5DHero/DataModel/**/*
