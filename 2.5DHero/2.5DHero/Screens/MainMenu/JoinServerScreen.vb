@@ -10,6 +10,7 @@ Public Class JoinServerScreen
 
     Dim mainTexture As Texture2D
 
+    Private _dataModel As DataModel.Json.PlayerData.ServerListModel
     Dim ServerList As New List(Of Server)
 
     Dim selectIndex As Integer = 0
@@ -26,41 +27,57 @@ Public Class JoinServerScreen
     Public Sub New(ByVal currentScreeen As Screen)
         mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
-        Me.PreScreen = currentScreeen
-        Me.Identification = Identifications.JoinServerScreen
-        Me.MouseVisible = True
-        Me.CanBePaused = False
-        Me.CanChat = False
+        PreScreen = currentScreeen
+        Identification = Identifications.JoinServerScreen
+        MouseVisible = True
+        CanBePaused = False
+        CanChat = False
     End Sub
 
     Private Sub LoadServers()
-        Me.ServerList.Clear()
+        ServerList.Clear()
 
         Dim localServer As New Server("Local", "127.0.0.1")
         localServer.IsLocal = True
+        ServerList.Add(localServer)
 
-        Me.ServerList.Add(localServer)
-
-        If System.IO.File.Exists(GameController.GamePath & "\Save\server_list.dat") = False Then
-            System.IO.File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", "Official Pokémon3D Server,karp.pokemon3d.net:15124" & vbNewLine & "AGN Server,p3d.aggressivegaming.org:15124")
+        If File.Exists(GameController.GamePath & "\Save\server_list.dat") = False Then
+            CreateDefaultServerList()
         End If
 
         If LoadOnlineServers = True Then
-            Dim data() As String = System.IO.File.ReadAllLines(GameController.GamePath & "\Save\server_list.dat")
-            If data.Length > 0 Then
-                For Each line As String In data
-                    If line.CountSeperators(",") = 1 Then
-                        Dim Name As String = line.Split(CChar(","))(0)
-                        Dim address As String = line.Split(CChar(","))(1)
-                        Me.ServerList.Add(New Server(Name, address))
-                    End If
-                Next
-            End If
+            LoadServerList()
         End If
 
-        For Each s As Server In Me.ServerList
+        For Each s As Server In ServerList
             s.Ping()
         Next
+    End Sub
+
+    Private Sub LoadServerList()
+        Dim jsonData As String = File.ReadAllText(GameController.GamePath & "\Save\server_list.dat")
+
+        Try
+            _dataModel = DataModel.Json.JsonDataModel.FromString(Of DataModel.Json.PlayerData.ServerListModel)(jsonData)
+            For Each serverModel In _dataModel.Servers
+                ServerList.Add(New Server(serverModel.ListName, serverModel.IpAddress & ":" & serverModel.Port.ToString()))
+            Next
+        Catch ex As Exception
+            Logger.Log("300", Logger.LogTypes.Message, "Failed to load server_list.dat. Create default content.")
+            CreateDefaultServerList()
+        End Try
+    End Sub
+
+    Private Sub CreateDefaultServerList()
+        Dim officialServer As New Server("Official Pokémon3D Server", "karp.pokemon3d.net:15124")
+        Dim AGNServer As New Server("AGN Server", "p3d.aggressivegaming.org:15124")
+
+        ServerList.Add(officialServer)
+        ServerList.Add(AGNServer)
+
+        _dataModel = New DataModel.Json.PlayerData.ServerListModel()
+
+        SaveServerlist()
     End Sub
 
     Public Overrides Sub Draw()
@@ -74,26 +91,26 @@ Public Class JoinServerScreen
         Dim ServersToDisplay As Integer = GetServersToDisplay()
 
         Dim pattern As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(160 + Tx * 16, Ty * 16, 16, 16), "")
-        For Dx = 0 To Core.ScreenSize.Width Step 128
-            For Dy = 0 To Core.ScreenSize.Height Step 128
+        For Dx = 0 To ScreenSize.Width Step 128
+            For Dy = 0 To ScreenSize.Height Step 128
                 Dim c As Color = Color.White
 
-                Core.SpriteBatch.DrawInterface(pattern, New Rectangle(Dx, Dy, 128, 128), c)
+                SpriteBatch.DrawInterface(pattern, New Rectangle(Dx, Dy, 128, 128), c)
             Next
         Next
 
-        Canvas.DrawRectangle(New Rectangle(0, 75, Core.ScreenSize.Width, Core.ScreenSize.Height - 240), New Color(0, 0, 0, 128), True)
+        Canvas.DrawRectangle(New Rectangle(0, 75, ScreenSize.Width, ScreenSize.Height - 240), New Color(0, 0, 0, 128), True)
 
-        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join a server", New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join a server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join a server", New Vector2(CSng(ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join a server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
 
         Dim endX As Integer = ServerList.Count - 1
         endX = CInt(MathHelper.Clamp(endX, 0, ServersToDisplay - 1))
 
         If ServerList.Count > ServersToDisplay Then
-            Canvas.DrawScrollBar(New Vector2(CSng(Core.ScreenSize.Width / 2 + 266), 100), Me.ServerList.Count, 1, selectIndex, New Size(8, Core.ScreenSize.Height - 300), False, Color.Black, Color.Gray, True)
+            Canvas.DrawScrollBar(New Vector2(CSng(ScreenSize.Width / 2 + 266), 100), ServerList.Count, 1, selectIndex, New Size(8, ScreenSize.Height - 300), False, Color.Black, Color.Gray, True)
         End If
 
-        ' Draw default first:
+        'Draw default first:
         For i = 0 To endX
             Dim index As Integer = i + scrollIndex
 
@@ -106,7 +123,7 @@ Public Class JoinServerScreen
         CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
         For i = 0 To 5
-            If i = Me.buttonIndex Then
+            If i = buttonIndex Then
                 CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
             Else
                 CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
@@ -147,14 +164,14 @@ Public Class JoinServerScreen
                     Text = "Back"
             End Select
 
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 560 + i * 192, Core.ScreenSize.Height - 136, 128, 64), True)
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - 542 + i * 192, Core.ScreenSize.Height - 106), Color.Black)
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(ScreenSize.Width / 2) - 560 + i * 192, ScreenSize.Height - 136, 128, 64), True)
+            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(ScreenSize.Width / 2) - 542 + i * 192, ScreenSize.Height - 106), Color.Black)
         Next
 
         Dim vS As String = "Protocol version: " & Servers.ServersManager.PROTOCOLVERSION
-        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, vS, New Vector2(Core.ScreenSize.Width - FontManager.MiniFont.MeasureString(vS).X - 4, Core.ScreenSize.Height - FontManager.MiniFont.MeasureString(vS).Y - 1), Color.White)
+        SpriteBatch.DrawInterfaceString(FontManager.MiniFont, vS, New Vector2(ScreenSize.Width - FontManager.MiniFont.MeasureString(vS).X - 4, ScreenSize.Height - FontManager.MiniFont.MeasureString(vS).Y - 1), Color.White)
 
-        ' Draw player list tooltip after everything else:
+        'Draw player list tooltip after everything else:
         For i = 0 To endX
             Dim index As Integer = i + scrollIndex
 
@@ -184,13 +201,13 @@ Public Class JoinServerScreen
             End If
         End If
 
-        If Core.GameInstance.IsMouseVisible = True Then
+        If GameInstance.IsMouseVisible = True Then
             For i = 0 To 5
-                If Core.ScaleScreenRec(New Rectangle(CInt(Core.ScreenSize.Width / 2) - 560 + i * 192, Core.ScreenSize.Height - 138, 128 + 32, 64 + 32)).Contains(MouseHandler.MousePosition) = True Then
-                    Me.buttonIndex = i
+                If ScaleScreenRec(New Rectangle(CInt(ScreenSize.Width / 2) - 560 + i * 192, ScreenSize.Height - 138, 128 + 32, 64 + 32)).Contains(MouseHandler.MousePosition) = True Then
+                    buttonIndex = i
 
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True AndAlso MouseHandler.ButtonPressed(MouseHandler.MouseButtons.RightButton) = False Then
-                        Select Case Me.buttonIndex
+                        Select Case buttonIndex
                             Case 0
                                 JoinButton()
                             Case 1
@@ -210,24 +227,24 @@ Public Class JoinServerScreen
         End If
 
         For i = 0 To ServersToDisplay - 1
-            If Core.ScaleScreenRec(New Rectangle(CInt(Core.ScreenSize.Width / 2) - 354, i * 100 + 100, 500, 80)).Contains(MouseHandler.MousePosition) = True Then
+            If ScaleScreenRec(New Rectangle(CInt(ScreenSize.Width / 2) - 354, i * 100 + 100, 500, 80)).Contains(MouseHandler.MousePosition) = True Then
                 If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
-                    Me.selectIndex = i + scrollIndex
+                    selectIndex = i + scrollIndex
                 End If
             End If
         Next
 
         If Controls.Right(True, True, False) = True Then
-            Me.buttonIndex += 1
+            buttonIndex += 1
         End If
         If Controls.Left(True, True, False) = True Then
-            Me.buttonIndex -= 1
+            buttonIndex -= 1
         End If
 
-        Me.buttonIndex = CInt(MathHelper.Clamp(Me.buttonIndex, 0, 5))
+        buttonIndex = CInt(MathHelper.Clamp(buttonIndex, 0, 5))
 
         If Controls.Accept(False, True) = True Then
-            Select Case Me.buttonIndex
+            Select Case buttonIndex
                 Case 0
                     JoinButton()
                 Case 1
@@ -244,8 +261,8 @@ Public Class JoinServerScreen
         End If
 
         If Controls.Dismiss() = True Then
-            CType(Me.PreScreen, MainMenuScreen).menuIndex = 0
-            Core.SetScreen(Me.PreScreen)
+            'CType(PreScreen, MainMenuScreen).menuIndex = 0
+            SetScreen(PreScreen)
         End If
 
         BarAnimationState += 1
@@ -260,22 +277,22 @@ Public Class JoinServerScreen
 #Region "Buttons"
 
     Private Sub JoinButton()
-        If Me.selectIndex = 0 Then
+        If selectIndex = 0 Then
             Online = False
             SelectedServer = Nothing
-            Core.SetScreen(New OverworldScreen())
+            SetScreen(New OverworldScreen())
         Else
             If ServerList(selectIndex).CanJoin() = True Then
-                SelectedServer = Me.ServerList(selectIndex)
+                SelectedServer = ServerList(selectIndex)
                 ServerList.Move(selectIndex, 1)
                 SaveServerlist()
-                Core.SetScreen(New ConnectScreen(ConnectScreen.Modes.Connect, "Connecting to server", "Please wait...", Core.CurrentScreen))
+                SetScreen(New ConnectScreen(ConnectScreen.Modes.Connect, "Connecting to server", "Please wait...", CurrentScreen))
             End If
         End If
     End Sub
 
     Private Sub AddServerButton()
-        Core.SetScreen(New AddServerScreen(Me, Me.ServerList, True, Nothing))
+        SetScreen(New AddServerScreen(Me, ServerList, True, Nothing))
     End Sub
 
     Private Sub EditServerButton()
@@ -284,7 +301,7 @@ Public Class JoinServerScreen
         If s.IsLocal = False Then
             ServerList.RemoveAt(selectIndex)
             SaveServerlist()
-            Core.SetScreen(New AddServerScreen(Me, Me.ServerList, False, s))
+            SetScreen(New AddServerScreen(Me, ServerList, False, s))
         End If
     End Sub
 
@@ -299,7 +316,7 @@ Public Class JoinServerScreen
     End Sub
 
     Private Sub CancelButton()
-        Core.SetScreen(Me.PreScreen)
+        SetScreen(PreScreen)
     End Sub
 
     Private Sub RefreshButton()
@@ -311,7 +328,7 @@ Public Class JoinServerScreen
 #End Region
 
     Private Function GetServersToDisplay() As Integer
-        Dim contentHeight As Integer = Core.ScreenSize.Height - 300
+        Dim contentHeight As Integer = ScreenSize.Height - 300
         Dim serverHeight As Integer = 80
         Dim serverCount As Integer = 1
 
@@ -351,16 +368,16 @@ Public Class JoinServerScreen
         Dim ReceivedError As Boolean = False
 
         Public Sub Refresh()
-            Me.Name = IdentifierName
-            Me.Pinged = False
-            Me.StartedPing = False
-            Me.ReceivedError = False
-            Me.CurrentPlayersOnline = 0
-            Me.MaxPlayersOnline = 0
-            Me.ServerProtocolVersion = ""
-            Me.ServerMessage = ""
+            Name = IdentifierName
+            Pinged = False
+            StartedPing = False
+            ReceivedError = False
+            CurrentPlayersOnline = 0
+            MaxPlayersOnline = 0
+            ServerProtocolVersion = ""
+            ServerMessage = ""
 
-            Me.Ping()
+            Ping()
         End Sub
 
         Public Function GetName() As String
@@ -373,34 +390,34 @@ Public Class JoinServerScreen
         Public Sub New(ByVal name As String, ByVal Address As String)
             MyBase.New(Address)
 
-            Me.IdentifierName = name
+            IdentifierName = name
 
-            Me.Pinged = False
-            Me.StartedPing = False
+            Pinged = False
+            StartedPing = False
         End Sub
 
         Public Sub Ping()
             If IsLocal = True Then
-                Me.Name = "Local"
-                Me.PingResult = 0
-                Me.StartedPing = True
-                Me.Pinged = True
-                Me.CurrentPlayersOnline = 0
-                Me.MaxPlayersOnline = 1
-                Me.IP = "127.0.0.1"
-                Me.Port = "15124"
-                Me.ServerMessage = "Play on your local computer."
-                Me.ServerProtocolVersion = Servers.ServersManager.PROTOCOLVERSION
+                Name = "Local"
+                PingResult = 0
+                StartedPing = True
+                Pinged = True
+                CurrentPlayersOnline = 0
+                MaxPlayersOnline = 1
+                IP = "127.0.0.1"
+                Port = "15124"
+                ServerMessage = "Play on your local computer."
+                ServerProtocolVersion = Servers.ServersManager.PROTOCOLVERSION
             Else
                 Dim t As New Threading.Thread(AddressOf StartPing)
                 t.IsBackground = True
                 t.Start()
-                JoinServerScreen.ClearThreadList.Add(t)
-                Me.StartedPing = True
+                ClearThreadList.Add(t)
+                StartedPing = True
                 Dim cT As New Threading.Thread(AddressOf CheckServerConnectTimeout)
                 cT.IsBackground = True
                 cT.Start(t)
-                JoinServerScreen.ClearThreadList.Add(cT)
+                ClearThreadList.Add(cT)
             End If
         End Sub
 
@@ -408,20 +425,20 @@ Public Class JoinServerScreen
             Dim sw As New Stopwatch()
             sw.Start()
 
-            ' TTL: 10000 ticks, usually at 60 Hz => 10000/60 seconds
-            While sw.ElapsedMilliseconds < 10000 And Me.Pinged = False
-                'Wait for server connection in the main thread.
+            'TTL: 10000 ticks, usually at 60 Hz => 10000/60 seconds
+            While sw.ElapsedMilliseconds < 10000 And Pinged = False
+                'wait for server connection in main thread.
                 Threading.Thread.Sleep(1)
             End While
 
             sw.Stop()
 
-            If Me.Pinged = False Then
+            If Pinged = False Then
                 Try
                     CType(t, Threading.Thread).Abort()
                 Catch : End Try
-                Me.Pinged = True
-                Me.ReceivedError = True
+                Pinged = True
+                ReceivedError = True
             End If
         End Sub
 
@@ -430,7 +447,7 @@ Public Class JoinServerScreen
                 Return True
             End If
             If StartedPing = True And Pinged = True Then
-                If Me.ServerProtocolVersion = Servers.ServersManager.PROTOCOLVERSION Then
+                If ServerProtocolVersion = Servers.ServersManager.PROTOCOLVERSION Then
                     If CurrentPlayersOnline < MaxPlayersOnline Then
                         Return True
                     End If
@@ -447,7 +464,7 @@ Public Class JoinServerScreen
 
                 Dim connectIP As IPAddress = Nothing
 
-                For Each ipaddress In System.Net.Dns.GetHostEntry(Me.IP).AddressList
+                For Each ipaddress In Dns.GetHostEntry(IP).AddressList
                     If ipaddress.AddressFamily = AddressFamily.InterNetwork Then
                         connectIP = ipaddress
                         Exit For
@@ -455,7 +472,7 @@ Public Class JoinServerScreen
                 Next
 
                 sw.Start()
-                client.Connect(connectIP, CInt(Me.Port))
+                client.Connect(connectIP, CInt(Port))
 
                 If client.Connected = True Then
                     Dim Stream As NetworkStream = client.GetStream()
@@ -470,23 +487,22 @@ Public Class JoinServerScreen
                     If p.IsValid = True Then
                         If p.PackageType = Servers.Package.PackageTypes.ServerInfoData Then
                             sw.Stop()
-
                             CurrentPlayersOnline = CInt(p.DataItems(0))
                             MaxPlayersOnline = CInt(p.DataItems(1))
                             Name = p.DataItems(2)
                             ServerMessage = p.DataItems(3)
 
-                            Me.PlayerList.Clear()
+                            PlayerList.Clear()
                             If p.DataItems.Count > 4 Then
                                 For i = 4 To p.DataItems.Count - 1
-                                    Me.PlayerList.Add(p.DataItems(i))
+                                    PlayerList.Add(p.DataItems(i))
                                 Next
                             End If
 
-                            Me.PlayerList = (From playerName As String In PlayerList Order By playerName Ascending).ToList()
+                            PlayerList = (From playerName As String In PlayerList Order By playerName Ascending).ToList()
 
                             ServerProtocolVersion = p.ProtocolVersion
-                            Logger.Debug("Received server data.")
+                            Logger.Debug("171", "Received server data.")
                         Else
                             ReceivedError = True
                         End If
@@ -499,19 +515,19 @@ Public Class JoinServerScreen
             Catch ex As Exception
                 ReceivedError = True
 
-                Logger.Debug("JoinServerScreen.vb: Exception trying to ping server: " & ex.Message)
+                Logger.Debug("172", "JoinServerScreen.vb: Exception trying to ping server: " & ex.Message)
             End Try
-            Me.Pinged = True
+            Pinged = True
 
-            Me.PingResult = CInt(sw.ElapsedMilliseconds)
+            PingResult = CInt(sw.ElapsedMilliseconds)
         End Sub
 
         Public Function GetPingTime() As Integer
-            If Me.Pinged = True And Me.StartedPing = True Then
+            If Pinged = True And StartedPing = True Then
                 If ReceivedError = True Then
                     Return 0
                 Else
-                    Return Me.PingResult
+                    Return PingResult
                 End If
             Else
                 Return 0
@@ -522,7 +538,7 @@ Public Class JoinServerScreen
             If ReceivedError = True Then
                 Return "Cannot reach server."
             End If
-            If Me.Pinged = True Then
+            If Pinged = True Then
                 Return "Server online"
             Else
                 Return "Polling" & LoadingDots.Dots
@@ -531,25 +547,25 @@ Public Class JoinServerScreen
 
         Public Sub Draw(ByVal startPos As Vector2, ByVal selected As Boolean)
             Dim width As Integer = 500
-            startPos.X = CInt(Core.ScreenSize.Width / 2 - width / 2)
+            startPos.X = CInt(ScreenSize.Width / 2 - width / 2)
             If selected = True Then
                 Canvas.DrawRectangle(New Rectangle(CInt(startPos.X), CInt(startPos.Y), width, 80), New Color(0, 0, 0, 200), True)
                 Canvas.DrawBorder(2, New Rectangle(CInt(startPos.X), CInt(startPos.Y), width, 80), Color.LightGray, True)
             End If
-            Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Me.GetName(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 3), Color.White, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, GetName(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 3), Color.White, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
 
             If ReceivedError = True Then
-                Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, GetServerStatus(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(190, 0, 0, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(150, 224, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
+                SpriteBatch.DrawInterfaceString(FontManager.MiniFont, GetServerStatus(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(190, 0, 0, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(150, 224, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
 
                 If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                     Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                     Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "(no connection)", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                    SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "(no connection)", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                 End If
             Else
                 If Pinged = True Then
-                    Dim message As String = Me.ServerMessage
+                    Dim message As String = ServerMessage
                     Dim color As Color = New Color(180, 180, 180, 255)
 
                     If CanJoin() = False Then
@@ -563,38 +579,38 @@ Public Class JoinServerScreen
                         color = New Color(190, 0, 0, 255)
                     End If
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, message, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), color, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                    SpriteBatch.DrawInterfaceString(FontManager.MiniFont, message, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), color, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline, New Vector2(CInt(startPos.X) + width - 36 - FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X, CInt(startPos.Y) + 7), Color.LightGray)
-                    Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * (4 - GetPingLevel()), 238, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
+                    SpriteBatch.DrawInterfaceString(FontManager.MiniFont, CurrentPlayersOnline & "/" & MaxPlayersOnline, New Vector2(CInt(startPos.X) + width - 36 - FontManager.MiniFont.MeasureString(CurrentPlayersOnline & "/" & MaxPlayersOnline).X, CInt(startPos.Y) + 7), Color.LightGray)
+                    SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * (4 - GetPingLevel()), 238, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
 
-                    ' Ping result tool tip:
+                    'Ping result tool tip:
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Ping: " & PingResult & " ms", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                        SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Ping: " & PingResult & " ms", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                     End If
                 Else
-                    Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * CInt(Math.Floor(JoinServerScreen.BarAnimationState / 10)), 224, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
+                    SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * CInt(Math.Floor(BarAnimationState / 10)), 224, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Polling" & LoadingDots.Dots, New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                        SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Polling" & LoadingDots.Dots, New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                     End If
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Polling" & LoadingDots.Dots, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                    SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Polling" & LoadingDots.Dots, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                 End If
             End If
 
-            Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, GetAddressString(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 53), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, GetAddressString(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 53), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         End Sub
 
         Public Sub DrawPlayerListToolTip(ByVal startPos As Vector2)
             If ReceivedError = False And Pinged = True And IsLocal = False Then
                 Dim width As Integer = 500
-                startPos.X = CInt(Core.ScreenSize.Width / 2 - width / 2)
+                startPos.X = CInt(ScreenSize.Width / 2 - width / 2)
 
-                If Core.ScaleScreenRec(New Rectangle(CInt(startPos.X) + width - 36 - FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X.ToInteger(), CInt(startPos.Y) + 3, FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X.ToInteger(), 28)).Contains(MouseHandler.MousePosition) = True Then
+                If ScaleScreenRec(New Rectangle(CInt(startPos.X) + width - 36 - FontManager.MiniFont.MeasureString(CurrentPlayersOnline & "/" & MaxPlayersOnline).X.ToInteger(), CInt(startPos.Y) + 3, FontManager.MiniFont.MeasureString(CurrentPlayersOnline & "/" & MaxPlayersOnline).X.ToInteger(), 28)).Contains(MouseHandler.MousePosition) = True Then
                     Dim tooltipText As String = "No players on the server."
 
                     If PlayerList.Count > 0 Then
@@ -604,8 +620,8 @@ Public Class JoinServerScreen
                     Dim v = FontManager.MiniFont.MeasureString("Player list:" & vbNewLine & tooltipText)
 
                     Dim drawY As Integer = MouseHandler.MousePosition.Y + 10
-                    If drawY + v.Y + 12 > Core.windowSize.Height Then
-                        drawY = CInt(Core.windowSize.Height - v.Y - 22)
+                    If drawY + v.Y + 12 > windowSize.Height Then
+                        drawY = CInt(windowSize.Height - v.Y - 22)
                     End If
                     If drawY < 0 Then
                         drawY = 0
@@ -614,8 +630,8 @@ Public Class JoinServerScreen
                     Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, drawY, CInt(v.X + 10), CInt(v.Y + 22)), Color.Black, True)
                     Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, drawY, CInt(v.X + 10), CInt(v.Y + 22)), Color.Gray, True)
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Player list:", New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6), Color.LightBlue)
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, tooltipText, New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6 + 34), Color.White)
+                    SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Player list:", New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6), Color.LightBlue)
+                    SpriteBatch.DrawInterfaceString(FontManager.MiniFont, tooltipText, New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6 + 34), Color.White)
                 End If
             End If
         End Sub
@@ -624,12 +640,12 @@ Public Class JoinServerScreen
             If IsLocal = True Then
                 Return ""
             Else
-                Return Me.IP & ":" & Me.Port
+                Return IP & ":" & Port
             End If
         End Function
 
         Private Function GetPingLevel() As Integer
-            If Me.PingResult < 500 Then
+            If PingResult < 500 Then
                 Return 0
             ElseIf PingResult >= 500 And PingResult < 1000 Then
                 Return 1
@@ -643,19 +659,19 @@ Public Class JoinServerScreen
         End Function
 
         Public Overrides Function ToString() As String
-            Return Me.IdentifierName & "," & Me.GetAddressString()
+            Return IdentifierName & "," & GetAddressString()
         End Function
 
     End Class
 
     Public Shared Sub AddServerMessage(ByVal m As String, ByVal server_name As String)
-        If System.IO.File.Exists(GameController.GamePath & "\Save\server_list.dat") = False Then
-            System.IO.File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", "")
+        If File.Exists(GameController.GamePath & "\Save\server_list.dat") = False Then
+            File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", "")
         End If
 
         Dim newData As String = ""
 
-        Dim data() As String = System.IO.File.ReadAllLines(GameController.GamePath & "\Save\server_list.dat")
+        Dim data() As String = File.ReadAllLines(GameController.GamePath & "\Save\server_list.dat")
         For Each line As String In data
             If newData <> "" Then
                 newData &= vbNewLine
@@ -668,7 +684,7 @@ Public Class JoinServerScreen
             End If
         Next
 
-        System.IO.File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", newData)
+        File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", newData)
     End Sub
 
     Public Overrides Sub ChangeFrom()
@@ -683,16 +699,18 @@ Public Class JoinServerScreen
     End Sub
 
     Private Sub SaveServerlist()
-        Dim data As String = ""
-        For Each s As Server In Me.ServerList
-            If s.IsLocal = False Then
-                If data <> "" Then
-                    data &= vbNewLine
-                End If
-                data &= s.ToString()
-            End If
+        Dim serverModels As New List(Of DataModel.Json.PlayerData.ServerListModel.ServerModel)
+        For Each server In ServerList
+            serverModels.Add(New DataModel.Json.PlayerData.ServerListModel.ServerModel() With {
+                             .IpAddress = server.IP,
+                             .ListName = server.IdentifierName,
+                             .Port = CInt(server.Port)})
         Next
-        System.IO.File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", data)
+
+        _dataModel.Servers = serverModels.ToArray()
+
+        Dim jsonData As String = _dataModel.ToString("    ")
+        File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", jsonData)
     End Sub
 
 End Class
