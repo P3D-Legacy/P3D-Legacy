@@ -396,25 +396,27 @@
     Private IniMusic As String = ""
     Private DefeatMusic As String = ""
     Private BattleMusic As String = ""
-    Private InSightMusic As String = "trainer_encounter"
+    Private InSightMusic As String = "battle/encounter/trainer"
 
     Public Function GetIniMusicName() As String
         If IniMusic <> "" Then
             Return IniMusic
         End If
 
-        Dim middle As String = "trainer"
+        Dim trainerClass As String = "trainer"
 
         Select Case Me.Music.ToLower()
             Case "rival"
-                middle = "rival"
+                trainerClass = "rival"
             Case "leader"
-                middle = "leader"
+                trainerClass = "leader"
             Case "rocket"
-                middle = "rocket"
+                trainerClass = "rocket"
+            Case "elite"
+                trainerClass = "elite"
         End Select
 
-        Return Region & "_" & middle & "_intro"
+        Return "battle/intro/" & Region & "/" & trainerClass
     End Function
 
     Public Function GetDefeatMusic() As String
@@ -422,14 +424,14 @@
             Return DefeatMusic
         End If
 
-        Dim pre As String = "trainer"
+        Dim trainerClass As String = "trainer"
 
         Select Case Me.Music.ToLower()
             Case "leader"
-                pre = "leader"
+                trainerClass = "leader"
         End Select
 
-        Return pre & "_defeat"
+        Return "battle/defeat/" & trainerClass
     End Function
 
     Public Function GetBattleMusicName() As String

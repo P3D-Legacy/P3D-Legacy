@@ -6628,7 +6628,7 @@
                         Won = True
                         Core.Player.AddPoints(1, "Won against wild Pokémon.")
 
-                        BattleScreen.BattleQuery.Add(New PlayMusicQueryObject("wild_defeat"))
+                        BattleScreen.BattleQuery.Add(New PlayMusicQueryObject("battle/defeat/wild"))
                         ChangeCameraAngel(1, True, BattleScreen)
 
                         GainEXP(BattleScreen)
