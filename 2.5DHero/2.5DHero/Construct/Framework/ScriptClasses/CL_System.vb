@@ -11,7 +11,7 @@
         <ScriptCommand("Save", RequiredContext:=ScriptContext.Overworld)>
         <ScriptDescription("Saves the game.")>
         Private Function M_Save(ByVal argument As String) As String
-            Game.Core.Player.SaveGame(False)
+            Game.Core.Player.SaveGame()
 
             Return Core.Null
         End Function

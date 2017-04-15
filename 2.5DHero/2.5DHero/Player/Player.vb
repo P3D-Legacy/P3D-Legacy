@@ -421,64 +421,7 @@
     Public AutosaveUsed As Boolean = False
     Public loadedSave As Boolean = False
 
-    Public PlayerTemp As PlayerTemp
-
-    Public Structure Temp
-        Public Shared PokemonScreenIndex As Integer = 0
-        Public Shared PokemonSummaryPageIndex As Integer = 0
-        Public Shared PokemonStatusPageIndex As Integer = 0
-        Public Shared BagIndex As Integer = 0
-        Public Shared BagSelectIndex As Integer = 0
-        Public Shared MenuIndex As Integer = 0
-        Public Shared PokedexIndex As Integer = 0
-        Public Shared PCBoxIndex As Integer = 0
-        Public Shared StorageSystemCursorPosition As New Vector2(1, 0)
-        Public Shared OptionScreenIndex As Integer = 0
-        Public Shared MapSwitch(3) As Boolean
-        Public Shared LastPosition As Vector3
-        Public Shared IsInBattle As Boolean = False
-        Public Shared BeforeBattlePosition As Vector3 = New Vector3(0)
-        Public Shared BeforeBattleLevelFile As String = "yourroom.dat"
-        Public Shared BeforeBattleFacing As Integer = 0
-        Public Shared PokedexModeIndex As Integer = 0
-        Public Shared PokedexHabitatIndex As Integer = 0
-        Public Shared PokegearPage As Integer = 0
-        Public Shared LastCall As Integer = 32
-        Public Shared LastUsedRepel As Integer = -1
-        Public Shared MapSteps As Integer = 0
-        Public Shared HallOfFameIndex As Integer = 0
-        Public Shared PCBoxChooseMode As Boolean = False
-        Public Shared PCSelectionType As StorageSystemScreen.SelectionModes = StorageSystemScreen.SelectionModes.SingleMove
-        Public Shared RadioStation As Decimal = 0D
-        Public Shared LastPokegearPage As GameJolt.PokegearScreen.MenuScreens = GameJolt.PokegearScreen.MenuScreens.Main
-    End Structure
-
-    Private Sub ResetTemp()
-        Temp.PokemonScreenIndex = 0
-        Temp.PokemonStatusPageIndex = 0
-        Temp.BagIndex = 0
-        Temp.BagSelectIndex = 0
-        Temp.MenuIndex = 0
-        Temp.PokedexIndex = 0
-        Temp.PCBoxIndex = 0
-        Temp.OptionScreenIndex = 0
-        Temp.IsInBattle = False
-        For i = 0 To 3
-            Temp.MapSwitch(i) = True
-        Next
-        Temp.PokedexModeIndex = 0
-        Temp.PokedexHabitatIndex = 0
-        Temp.PokegearPage = 0
-        Temp.LastCall = 32
-        Temp.LastUsedRepel = -1
-        Temp.MapSteps = 0
-        Temp.HallOfFameIndex = 0
-        Temp.PCBoxChooseMode = False
-        Temp.StorageSystemCursorPosition = New Vector2(1, 0)
-        Temp.PCSelectionType = StorageSystemScreen.SelectionModes.SingleMove
-        Temp.RadioStation = 0D
-        Temp.LastPokegearPage = GameJolt.PokegearScreen.MenuScreens.Main
-    End Sub
+    Public Temp As New PlayerTemp
 
 #Region "Load"
 
@@ -539,7 +482,7 @@
         LoadRoamingPokemonData()
         LoadStatistics()
 
-        PlayerTemp = New PlayerTemp()
+        Temp = New PlayerTemp()
         Chat.ClearChat()
 
         If AutosaveUsed = True Then
@@ -562,126 +505,125 @@
 
         Entity.MakeShake = Name.ToLower() = "drunknilllzz"
 
-
-
         ''' Indev 0.54 Removal List
         ''' 1. All Mega Stones. [ID: 507 - 553]
         ''' 2. Shiny Candy [ID: 501]
-        'If Not ActionScript.IsRegistered("PokemonIndev054Update") Then
-        '    ' Check Inventory.
-        '    Inventory.RemoveItem(501)
-        '    For i As Integer = 507 To 553 Step +1
-        '        Inventory.RemoveItem(i)
-        '    Next
+        If Not Construct.Framework.RegisterHandler.IsRegistered("PokemonIndev054Update") Then
+            ' Check Inventory.
+            Inventory.RemoveItem(501)
+            For i As Integer = 507 To 553 Step +1
+                Inventory.RemoveItem(i)
+            Next
 
-        '    ' Check Party Pokemon.
-        '    For Each Pokemon As Pokemon In Pokemons
-        '        If Pokemon.Item IsNot Nothing AndAlso (Pokemon.Item.ID >= 501 OrElse (Pokemon.Item.ID >= 507 AndAlso Pokemon.Item.ID <= 553)) Then
-        '            Pokemon.Item = Nothing
-        '        End If
-        '    Next
+            ' Check Party Pokemon.
+            For Each Pokemon As Pokemon In Pokemons
+                If Pokemon.Item IsNot Nothing AndAlso (Pokemon.Item.ID >= 501 OrElse (Pokemon.Item.ID >= 507 AndAlso Pokemon.Item.ID <= 553)) Then
+                    Pokemon.Item = Nothing
+                End If
+            Next
 
-        '    ' Check PC Boxes.
-        '    If Not String.IsNullOrWhiteSpace(BoxData) Then
-        '        Dim TempBoxData As New List(Of String)
-        '        TempBoxData.AddRange(BoxData.SplitAtNewline())
+            ' Check PC Boxes.
+            If Not String.IsNullOrWhiteSpace(BoxData) Then
+                Dim TempBoxData As New List(Of String)
+                TempBoxData.AddRange(BoxData.SplitAtNewline())
 
-        '        For Each item As String In TempBoxData
-        '            If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
-        '                Dim TempString As String = item.Remove(item.IndexOf("{"))
-        '                Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
+                For Each item As String In TempBoxData
+                    If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
+                        Dim TempString As String = item.Remove(item.IndexOf("{"))
+                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-        '                If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
-        '                    TempPokemon.Item = Nothing
-        '                End If
+                        If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
+                            TempPokemon.Item = Nothing
+                        End If
 
-        '                item = TempString & TempPokemon.ToString()
-        '            End If
-        '        Next
+                        item = TempString & TempPokemon.ToString()
+                    End If
+                Next
 
-        '        BoxData = String.Join(vbNewLine, TempBoxData)
-        '    End If
+                BoxData = String.Join(vbNewLine, TempBoxData)
+            End If
 
-        '    ' Check Day Care.
-        '    If Not String.IsNullOrWhiteSpace(DaycareData) Then
-        '        Dim TempDaycareData As New List(Of String)
-        '        TempDaycareData.AddRange(DaycareData.SplitAtNewline())
+            ' Check Day Care.
+            If Not String.IsNullOrWhiteSpace(DaycareData) Then
+                Dim TempDaycareData As New List(Of String)
+                TempDaycareData.AddRange(DaycareData.SplitAtNewline())
 
-        '        For Each item As String In TempDaycareData
-        '            If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
-        '                Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
-        '                Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
+                For Each item As String In TempDaycareData
+                    If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
+                        Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
+                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-        '                If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
-        '                    TempPokemon.Item = Nothing
-        '                End If
+                        If TempPokemon.Item IsNot Nothing AndAlso (TempPokemon.Item.ID >= 501 OrElse (TempPokemon.Item.ID >= 507 AndAlso TempPokemon.Item.ID <= 553)) Then
+                            TempPokemon.Item = Nothing
+                        End If
 
-        '                item = TempString & TempPokemon.ToString()
-        '            End If
-        '        Next
+                        item = TempString & TempPokemon.ToString()
+                    End If
+                Next
 
-        '        DaycareData = String.Join(vbNewLine, TempDaycareData)
-        '    End If
+                DaycareData = String.Join(vbNewLine, TempDaycareData)
+            End If
 
-        '    ActionScript.RegisterID("PokemonIndev054Update")
-        'End If
+            Construct.Framework.RegisterHandler.NewRegister("PokemonIndev054Update", "")
+        End If
 
-        '''' Indev 0.54.2 OT Fix List.
-        'If Not ActionScript.IsRegistered("PokemonIndev0542Update") Then
-        '    ' Check Party Pokemon.
-        '    For Each Pokemon As Pokemon In Pokemons
-        '        If String.Equals(Pokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso Pokemon.OT <> GameJoltSave.GameJoltID Then
-        '            Pokemon.OT = GameJoltSave.GameJoltID
-        '        End If
-        '    Next
+        ''' Indev 0.54.2 OT Fix List.
+        If Not Construct.Framework.RegisterHandler.IsRegistered("PokemonIndev0542Update") Then
+            ' Check Party Pokemon.
+            For Each Pokemon As Pokemon In Pokemons
+                If String.Equals(Pokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso Pokemon.OT <> GameJoltSave.GameJoltID Then
+                    Pokemon.OT = GameJoltSave.GameJoltID
+                End If
+            Next
 
-        '    ' Check PC Boxes.
-        '    If Not String.IsNullOrWhiteSpace(BoxData) Then
-        '        Dim TempBoxData As New List(Of String)
-        '        TempBoxData.AddRange(BoxData.SplitAtNewline())
+            ' Check PC Boxes.
+            If Not String.IsNullOrWhiteSpace(BoxData) Then
+                Dim TempBoxData As New List(Of String)
+                TempBoxData.AddRange(BoxData.SplitAtNewline())
 
-        '        For Each item As String In TempBoxData
-        '            If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
-        '                Dim TempString As String = item.Remove(item.IndexOf("{"))
-        '                Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
+                For Each item As String In TempBoxData
+                    If Not String.IsNullOrWhiteSpace(item) AndAlso Not item.StartsWith("BOX") Then
+                        Dim TempString As String = item.Remove(item.IndexOf("{"))
+                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-        '                If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
-        '                    TempPokemon.OT = GameJoltSave.GameJoltID
-        '                End If
+                        If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
+                            TempPokemon.OT = GameJoltSave.GameJoltID
+                        End If
 
-        '                item = TempString & TempPokemon.ToString()
-        '            End If
-        '        Next
+                        item = TempString & TempPokemon.ToString()
+                    End If
+                Next
 
-        '        BoxData = String.Join(vbNewLine, TempBoxData)
-        '    End If
+                BoxData = String.Join(vbNewLine, TempBoxData)
+            End If
 
-        '    ' Check Day Care.
-        '    If Not String.IsNullOrWhiteSpace(DaycareData) Then
-        '        Dim TempDaycareData As New List(Of String)
-        '        TempDaycareData.AddRange(DaycareData.SplitAtNewline())
+            ' Check Day Care.
+            If Not String.IsNullOrWhiteSpace(DaycareData) Then
+                Dim TempDaycareData As New List(Of String)
+                TempDaycareData.AddRange(DaycareData.SplitAtNewline())
 
-        '        For Each item As String In TempDaycareData
-        '            If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
-        '                Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
-        '                Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
+                For Each item As String In TempDaycareData
+                    If Not String.IsNullOrWhiteSpace(item) AndAlso item.Contains("{") Then
+                        Dim TempString As String = ItemData.Remove(item.IndexOf("{"))
+                        Dim TempPokemon As Pokemon = Pokemon.GetPokemonByData(item.Remove(0, item.IndexOf("{")))
 
-        '                If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
-        '                    TempPokemon.OT = GameJoltSave.GameJoltID
-        '                End If
+                        If String.Equals(TempPokemon.CatchTrainerName, Core.Player.Name, StringComparison.OrdinalIgnoreCase) AndAlso TempPokemon.OT <> GameJoltSave.GameJoltID Then
+                            TempPokemon.OT = GameJoltSave.GameJoltID
+                        End If
 
-        '                item = TempString & TempPokemon.ToString()
-        '            End If
-        '        Next
+                        item = TempString & TempPokemon.ToString()
+                    End If
+                Next
 
-        '        DaycareData = String.Join(vbNewLine, TempDaycareData)
-        '    End If
+                DaycareData = String.Join(vbNewLine, TempDaycareData)
+            End If
 
-        '    ' Remove Duplicate data.
-        '    Core.Player.PokeFiles = Core.Player.PokeFiles.Distinct().ToList()
+            ' Remove Duplicate data.
+            Core.Player.PokeFiles = Core.Player.PokeFiles.Distinct().ToList()
 
-        '    ActionScript.RegisterID("PokemonIndev0542Update")
-        'End If
+            Construct.Framework.RegisterHandler.NewRegister("PokemonIndev0542Update", "")
+        End If
+
 
         loadedSave = True
     End Sub
@@ -693,8 +635,7 @@
         If IsGameJoltSave = True Then
             PokeData = GameJoltSave.Party.SplitAtNewline()
         Else
-            Dim PartyData As String = IO.File.ReadAllText(GameController.GamePath & "\Save\" & filePrefix & "\Party.dat")
-            PokeData = PartyData.SplitAtNewline()
+            PokeData = IO.File.ReadAllText(GameController.GamePath & "\Save\" & filePrefix & "\Party.dat").SplitAtNewline()
         End If
 
         If PokeData.Count > 0 AndAlso PokeData(0) <> "" Then
@@ -864,7 +805,7 @@
                         End If
                 End Select
             Else
-                Logger.Log(Logger.LogTypes.Warning, "Player.vb: The line """ & Line & """ is either empty or does not conform the player.dat file rules.")
+                Logger.Log("254", Logger.LogTypes.Warning, "Player.vb: The line """ & Line & """ is either empty or does not conform the player.dat file rules.")
             End If
         Next
 
@@ -985,6 +926,9 @@
         Else
             RegisterData = IO.File.ReadAllText(GameController.GamePath & "\Save\" & filePrefix & "\Register.dat")
         End If
+
+        'LEGACY: Converts the old register format into the new one:
+        RegisterData = Construct.Framework.RegisterHandler.ConvertFromOldRegisterFormat(RegisterData)
     End Sub
 
     Private Sub LoadItemData()
@@ -1080,26 +1024,13 @@
     Dim GameJoltTempStoreString As New Dictionary(Of String, String)
 
     Public Sub SaveGame()
-        SaveGame(True)
-    End Sub
-
-    Public Sub SaveGame(ByVal IsAutosave As Boolean)
         SaveGameHelpers.ResetSaveCounter()
 
-        If IsAutosave = True Then
-            newFilePrefix = filePrefix
-            filePrefix = "autosave"
-
-            If IO.Directory.Exists(GameController.GamePath & "\Save\autosave") = False Then
-                IO.Directory.CreateDirectory(GameController.GamePath & "\Save\autosave")
-            End If
-        Else
-            newFilePrefix = filePrefix
-        End If
+        newFilePrefix = filePrefix
 
         GameJoltTempStoreString.Clear()
 
-        SavePlayer(IsAutosave)
+        SavePlayer()
         SaveParty()
         SaveItems()
         SaveBerries()
@@ -1119,60 +1050,7 @@
         filePrefix = newFilePrefix
 
         If IsGameJoltSave = True Then
-            If Core.GameOptions.Extras.Contains("Backup Save") Then
-                If Not Directory.Exists(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Encrypted") Then
-                    Directory.CreateDirectory(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Encrypted")
-                End If
-
-                Dim OriginalHASH As String =
-                Encryption.EncryptString(GetApricornsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetBerriesData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetBoxData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetDaycareData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetHallOfFameData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetItemDataData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetItemsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetNPCDataData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetOptionsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetPartyData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetPlayerData(False), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetPokedexData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetRegisterData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetRoamingPokemonData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetSecretBaseData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetStatisticsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
-
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Encrypted/Encrypted.dat",
-                                  OriginalHASH & "|" & Encryption.EncryptString(OriginalHASH, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)))
-
-                Dim timestamp As String = Date.Now.ToString("yyyy-MM-dd_HH.mm.ss")
-
-                If Not Directory.Exists(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp) Then
-                    Directory.CreateDirectory(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp)
-                End If
-
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Apricorns.dat", GetApricornsData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Berries.dat", GetBerriesData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Box.dat", GetBoxData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Daycare.dat", GetDaycareData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/HallOfFame.dat", GetHallOfFameData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/ItemData.dat", GetItemDataData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Items.dat", GetItemsData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/NPC.dat", GetNPCDataData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Options.dat", GetOptionsData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Party.dat", GetPartyData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Player.dat", GetPlayerData(False))
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Pokedex.dat", GetPokedexData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Register.dat", GetRegisterData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/RoamingPokemon.dat", GetRoamingPokemonData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/SecretBase.dat", GetSecretBaseData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Statistics.dat", GetStatisticsData)
-            End If
-
             Dim APICallSave As New GameJolt.APICall(AddressOf SaveGameHelpers.CompleteGameJoltSave)
-            AddHandler APICallSave.CallFails, Sub(ByVal ex As Exception)
-                                                  SaveGameHelpers.CompleteGameJoltSave("false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false")
-                                              End Sub
 
             Dim keys As New List(Of String)
             Dim dataItems As New List(Of String)
@@ -1215,7 +1093,7 @@
         Return Data
     End Function
 
-    Public Function GetPlayerData(ByVal IsAutosave As Boolean) As String
+    Public Function GetPlayerData() As String
         Dim GenderString As String = ""
         If Male = True Then
             GenderString = "Male"
@@ -1326,10 +1204,6 @@
             "GTSStars|" & GTSStars & vbNewLine &
             "SandBoxMode|" & SandBoxMode.ToNumberString() & vbNewLine &
             "EarnedAchievements|" & EarnedAchievementsString
-
-        If IsAutosave = True Then
-            Data &= vbNewLine & "AutoSave|" & newFilePrefix
-        End If
 
         Return Data
     End Function
@@ -1442,8 +1316,8 @@
         End If
     End Sub
 
-    Private Sub SavePlayer(ByVal IsAutosave As Boolean)
-        Dim Data As String = GetPlayerData(IsAutosave)
+    Private Sub SavePlayer()
+        Dim Data As String = GetPlayerData()
 
         If IsGameJoltSave = True Then
             GameJoltTempStoreString.Add("saveStorageV" & GameJolt.GamejoltSave.VERSION & "|" & GameJoltSave.GameJoltID & "|player", Data)
@@ -1707,8 +1581,8 @@
             PlayerStatistics.Track("Steps taken", stepAmount)
 
             'Daycare cycle:
-            PlayerTemp.DayCareCycle -= stepAmount
-            If PlayerTemp.DayCareCycle <= 0 Then
+            Temp.DayCareCycle -= stepAmount
+            If Temp.DayCareCycle <= 0 Then
                 Daycare.EggCircle()
 
                 'Every 256 steps, add friendship to the Pokémon in the player's team.
@@ -1835,12 +1709,12 @@
     Private Sub StepEventPokegearCall()
         If CanFireStepEvent() = True Then
             If Temp.MapSteps > 0 Then
-                If Temp.LastCall < 256 Then
-                    Temp.LastCall += 1
+                If Temp.LastPokegearCall < 256 Then
+                    Temp.LastPokegearCall += 1
                 Else
                     If Random.Next(0, 700) = 0 Then
                         GameJolt.PokegearScreen.RandomCall()
-                        Temp.LastCall = 0
+                        Temp.LastPokegearCall = 0
                     End If
                 End If
             End If
@@ -1989,7 +1863,7 @@
     End Function
 
     Public Function IsRunning() As Boolean
-        If KeyBoardHandler.KeyDown(Keys.LeftShift) = True Or ControllerHandler.ButtonDown(Buttons.B) = True Then
+        If KeyBoardHandler.KeyDown(KeyBindings.SprintingKey) = True Or ControllerHandler.ButtonDown(Buttons.B) = True Then
             If Screen.Level.Riding = False And Screen.Level.Surfing = False And Inventory.HasRunningShoes = True Then
                 Return True
             End If
@@ -2009,6 +1883,7 @@
             Badges.Clear()
             PokeFiles.Clear()
             EarnedAchievements.Clear()
+            FileItems.Clear()
             PokegearModules.Clear()
             PhoneContacts.Clear()
             Mails.Clear()
@@ -2052,7 +1927,7 @@
             startRotation = 0
             startFreeCameraMode = False
             startMap = "barktown.dat"
-            startFOV = 45.0F
+            startFOV = 60.0F
             startRotationSpeed = 12
             startThirdPerson = False
             startSurfing = False

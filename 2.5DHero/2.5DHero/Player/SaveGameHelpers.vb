@@ -122,7 +122,7 @@ Public Class SaveGameHelpers
             _tempGJSave.NPC = Core.Player.GetNPCDataData() And
             _tempGJSave.Options = Core.Player.GetOptionsData() And
             _tempGJSave.Party = Core.Player.GetPartyData() And
-            GetTimeFixedPlayerData(_tempGJSave.Player) = GetTimeFixedPlayerData(Core.Player.GetPlayerData(False)) And
+            GetTimeFixedPlayerData(_tempGJSave.Player) = GetTimeFixedPlayerData(Core.Player.GetPlayerData()) And
             _tempGJSave.Pokedex = Core.Player.GetPokedexData() And
             _tempGJSave.Register = Core.Player.GetRegisterData() And
             _tempGJSave.RoamingPokemon = Core.Player.GetRoamingPokemonData() And

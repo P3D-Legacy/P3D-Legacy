@@ -314,7 +314,7 @@
                 Core.Player.Pokemons.Add(Pokemon.GetPokemonByData(Me.WonderTradePokemonData))
                 Core.Player.PokedexData = Pokedex.RegisterPokemon(Core.Player.PokedexData, Core.Player.Pokemons(Core.Player.Pokemons.Count - 1))
                 PlayerStatistics.Track("Wondertrades", 1)
-                Core.Player.SaveGame(False)
+                Core.Player.SaveGame()
             Else
                 Me.ScreenState = ScreenStates.Stopped
                 Me.DisconnectMessage = "Trade not successful. Press any key to exit."

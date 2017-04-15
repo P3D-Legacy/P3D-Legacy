@@ -370,7 +370,7 @@
                     End If
 
                     PlayerStatistics.Track("GTS trades", 1)
-                    Core.Player.SaveGame(False)
+                    Core.Player.SaveGame()
 
                     UploadDone = True
                 End If

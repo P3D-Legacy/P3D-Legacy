@@ -244,7 +244,7 @@
 
             Core.Player.Pokemons.Add(p)
         Else
-            Dim boxName As String = StorageSystemScreen.GetBoxName(StorageSystemScreen.DepositPokemon(p, Player.Temp.PCBoxIndex))
+            Dim boxName As String = StorageSystemScreen.GetBoxName(StorageSystemScreen.DepositPokemon(p, Core.Player.Temp.PCBoxIndex))
 
             s = "It was transfered to Box~""" & boxName & """~on your PC."
         End If

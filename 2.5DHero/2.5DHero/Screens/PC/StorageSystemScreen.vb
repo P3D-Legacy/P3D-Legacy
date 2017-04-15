@@ -155,15 +155,15 @@ Public Class StorageSystemScreen
     End Function
 
     Private Sub LoadScreen()
-        SelectionMode = Player.Temp.PCSelectionType
+        SelectionMode = Core.Player.Temp.PCSelectionType
 
         CursorMode = CursorModes.Selection
-        CursorPosition = Player.Temp.StorageSystemCursorPosition
+        CursorPosition = Core.Player.Temp.StorageSystemCursorPosition
 
         Me.Boxes = LoadBoxes()
 
-        Me.CurrentBox = Player.Temp.PCBoxIndex
-        Me.BoxChooseMode = Player.Temp.PCBoxChooseMode
+        Me.CurrentBox = Core.Player.Temp.PCBoxIndex
+        Me.BoxChooseMode = Core.Player.Temp.PCBoxChooseMode
     End Sub
 
 #Region "Update"
@@ -670,10 +670,10 @@ Public Class StorageSystemScreen
                 End If
                 Me.MovingPokemon = Nothing
             Else
-                Player.Temp.StorageSystemCursorPosition = Me.CursorPosition
-                Player.Temp.PCBoxIndex = Me.CurrentBox
-                Player.Temp.PCBoxChooseMode = Me.BoxChooseMode
-                Player.Temp.PCSelectionType = Me.SelectionMode
+                Core.Player.Temp.StorageSystemCursorPosition = Me.CursorPosition
+                Core.Player.Temp.PCBoxIndex = Me.CurrentBox
+                Core.Player.Temp.PCBoxChooseMode = Me.BoxChooseMode
+                Core.Player.Temp.PCSelectionType = Me.SelectionMode
 
                 Core.Player.BoxData = GetBoxSaveData(Me.Boxes)
 

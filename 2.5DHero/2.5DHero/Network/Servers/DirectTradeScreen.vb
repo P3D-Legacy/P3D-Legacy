@@ -396,7 +396,7 @@
         Core.Player.Pokemons.RemoveAt(OfferPokemonIndex)
         Core.Player.Pokemons.Add(Pokemon.GetPokemonByData(TradePokemon.GetSaveData()))
         Core.Player.PokedexData = Pokedex.RegisterPokemon(Core.Player.PokedexData, Core.Player.Pokemons(Core.Player.Pokemons.Count - 1))
-        Core.Player.SaveGame(False)
+        Core.Player.SaveGame()
 
         SentTradeOffer = False
         ReceivedTradeOffer = False

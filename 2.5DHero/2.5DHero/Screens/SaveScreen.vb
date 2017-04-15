@@ -112,7 +112,7 @@
             If ChooseBox.readyForResult = True And savingStarted = False Then
                 If ChooseBox.result = 0 Then
                     If ready = False Then
-                        Core.Player.SaveGame(False)
+                        Core.Player.SaveGame()
 
                         savingStarted = True
 

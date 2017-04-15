@@ -595,7 +595,7 @@
     End Sub
 
     Public Shared Sub EggCircle()
-        Core.Player.PlayerTemp.DayCareCycle = 256
+        Core.Player.Temp.DayCareCycle = 256
         ObtainEgg()
     End Sub
 

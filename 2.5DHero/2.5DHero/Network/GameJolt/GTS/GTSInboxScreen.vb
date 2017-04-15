@@ -137,7 +137,7 @@
                     Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, InboxList(Selected).Pokemon.Number, pokedexType)
                 End If
 
-                Core.Player.SaveGame(False)
+                Core.Player.SaveGame()
 
                 If Me.PreScreen.Identification = Identifications.GTSMainScreen Then
                     CType(Me.PreScreen, GTSMainScreen).PokemonGTSCount -= 1

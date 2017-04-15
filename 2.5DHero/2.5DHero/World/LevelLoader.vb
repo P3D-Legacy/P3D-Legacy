@@ -76,7 +76,7 @@
             Screen.Level.LevelFile = levelPath
 
             Core.Player.LastSavePlace = Screen.Level.LevelFile
-            Core.Player.LastSavePlacePosition = Player.Temp.LastPosition.X & "," & Player.Temp.LastPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Player.Temp.LastPosition.Z
+            Core.Player.LastSavePlacePosition = Core.Player.Temp.LastPosition.X & "," & Core.Player.Temp.LastPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Core.Player.Temp.LastPosition.Z
 
             Screen.Level.Entities.Clear()
             Screen.Level.Floors.Clear()
@@ -93,7 +93,7 @@
             LoadedOffsetMapOffsets.Clear()
             Floor.ClearFloorTemp()
 
-            Player.Temp.MapSteps = 0
+            Core.Player.Temp.MapSteps = 0
 
             sessionMapsLoaded.Add(levelPath)
         End If

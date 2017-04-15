@@ -361,7 +361,7 @@
 
         Private Sub FetchTradeBack(ByVal result As String)
             Core.Player.Pokemons.Add(FetchBack.Pokemon)
-            Core.Player.SaveGame(False)
+            Core.Player.SaveGame()
             loaded = False
         End Sub
 
@@ -828,7 +828,7 @@
                     End If
                 End If
 
-                Core.Player.SaveGame(False)
+                Core.Player.SaveGame()
 
                 Me.GTSSetupScreen.loaded = False
                 Core.SetScreen(Me.GTSSetupScreen)

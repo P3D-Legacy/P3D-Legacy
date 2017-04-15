@@ -129,7 +129,7 @@
             Core.Player.filePrefix = folderPath
             Core.Player.GameStart = Date.Now
 
-            Core.Player.SaveGame(False)
+            Core.Player.SaveGame()
             Core.Player.LoadGame(folderPath)
 
             Core.Player.startFOV = 60
@@ -145,7 +145,7 @@
             Construct.Controller.GetInstance().Context = Construct.ScriptContext.Overworld
 
             SetScreen(New TransitionScreen(CurrentScreen, New OverworldScreen(), Color.Black, False))
-            Core.Player.SaveGame(False)
+            Core.Player.SaveGame()
         End Sub
 
         ''' <summary>

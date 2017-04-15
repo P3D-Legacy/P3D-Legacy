@@ -360,8 +360,8 @@ Namespace Servers
         Private ReadOnly Property GetPlayerPositionString() As String
             Get
                 Dim PositionString As String = ""
-                If net.Pokemon3D.Game.Player.Temp.IsInBattle = True Then
-                    PositionString = net.Pokemon3D.Game.Player.Temp.BeforeBattlePosition.X.ToString() & "|" & (net.Pokemon3D.Game.Player.Temp.BeforeBattlePosition.Y - 0.1F).ToString() & "|" & net.Pokemon3D.Game.Player.Temp.BeforeBattlePosition.Z.ToString()
+                If net.Pokemon3D.Game.Core.Player.Temp.IsInBattle = True Then
+                    PositionString = net.Pokemon3D.Game.Core.Player.Temp.BeforeBattlePosition.X.ToString() & "|" & (net.Pokemon3D.Game.Core.Player.Temp.BeforeBattlePosition.Y - 0.1F).ToString() & "|" & net.Pokemon3D.Game.Core.Player.Temp.BeforeBattlePosition.Z.ToString()
                 Else
                     PositionString = Screen.Camera.Position.X.ToString() & "|" & (Screen.Camera.Position.Y - 0.1F).ToString() & "|" & Screen.Camera.Position.Z.ToString()
                 End If
@@ -372,8 +372,8 @@ Namespace Servers
         Private ReadOnly Property GetLevelFile() As String
             Get
                 Dim levelFile As String = Screen.Level.LevelFile
-                If net.Pokemon3D.Game.Player.Temp.IsInBattle = True Then
-                    levelFile = net.Pokemon3D.Game.Player.Temp.BeforeBattleLevelFile
+                If net.Pokemon3D.Game.Core.Player.Temp.IsInBattle = True Then
+                    levelFile = net.Pokemon3D.Game.Core.Player.Temp.BeforeBattleLevelFile
                 End If
                 Return levelFile
             End Get
@@ -382,8 +382,8 @@ Namespace Servers
         Private ReadOnly Property GetFacing() As Integer
             Get
                 Dim facing As Integer = 0
-                If net.Pokemon3D.Game.Player.Temp.IsInBattle = True Then
-                    facing = net.Pokemon3D.Game.Player.Temp.BeforeBattleFacing
+                If net.Pokemon3D.Game.Core.Player.Temp.IsInBattle = True Then
+                    facing = net.Pokemon3D.Game.Core.Player.Temp.BeforeBattleFacing
                 Else
                     facing = Screen.Camera.GetPlayerFacingDirection() 
                 End If
@@ -407,7 +407,7 @@ Namespace Servers
                 If Core.CurrentScreen.Identification = Screen.Identifications.ChatScreen Then
                     busyType = "2" 'In chat
                 End If
-                If net.Pokemon3D.Game.Player.Temp.IsInBattle = True Then
+                If net.Pokemon3D.Game.Core.Player.Temp.IsInBattle = True Then
                     busyType = "1" 'in battle
                 End If
                 If Core.CurrentScreen.Identification = Screen.Identifications.PauseScreen Then
@@ -419,7 +419,7 @@ Namespace Servers
 
         Private ReadOnly Property GetPokemonVisible() As String
             Get
-                If Screen.Level.OverworldPokemon.Visible = True And Screen.Level.Surfing = False And Screen.Level.Riding = False And net.Pokemon3D.Game.Player.Temp.IsInBattle = False Then
+                If Screen.Level.OverworldPokemon.Visible = True And Screen.Level.Surfing = False And Screen.Level.Riding = False And net.Pokemon3D.Game.Core.Player.Temp.IsInBattle = False Then
                     Return "1"
                 End If
                 Return "0"
@@ -428,7 +428,7 @@ Namespace Servers
 
         Private ReadOnly Property GetPokemonPosition() As String
             Get
-                If net.Pokemon3D.Game.Player.Temp.IsInBattle = False Then
+                If net.Pokemon3D.Game.Core.Player.Temp.IsInBattle = False Then
                     Return Screen.Level.OverworldPokemon.Position.X.ToString() & "|" & Math.Floor(Screen.Level.OverworldPokemon.Position.Y).ToString() & "|" & Screen.Level.OverworldPokemon.Position.Z.ToString()
                 End If
                 Return "0|-10|0"

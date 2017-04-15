@@ -39,7 +39,7 @@
         Me.regions = regions
         Me.regionPointer = startIndex
 
-        Me.drawObjects = Player.Temp.MapSwitch
+        Me.drawObjects = Core.Player.Temp.MapSwitch
 
         Me.MouseVisible = False
 
@@ -266,7 +266,7 @@
         End If
 
         If Controls.Dismiss() = True Then
-            Player.Temp.MapSwitch = Me.drawObjects
+            Core.Player.Temp.MapSwitch = Me.drawObjects
             Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.Black, False))
         End If
 

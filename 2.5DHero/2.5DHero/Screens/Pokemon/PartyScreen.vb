@@ -98,7 +98,7 @@ Public Class PartyScreen
 
         _translation = New Globalization.Classes.LOCAL_PartyScreen()
 
-        _index = Player.Temp.PokemonScreenIndex
+        _index = Core.Player.Temp.PokemonScreenIndex
         _texture = TextureManager.GetTexture("GUI\Menus\General")
         _menuTexture = TextureManager.GetTexture("GUI\Menus\PokemonInfo")
 
@@ -425,7 +425,7 @@ Public Class PartyScreen
                     _cursorDest = GetBoxPosition(_index)
                 End If
 
-                Player.Temp.PokemonScreenIndex = _index
+                Core.Player.Temp.PokemonScreenIndex = _index
 
                 _cursorPosition.X = MathHelper.Lerp(_cursorDest.X, _cursorPosition.X, 0.8F)
                 _cursorPosition.Y = MathHelper.Lerp(_cursorDest.Y, _cursorPosition.Y, 0.8F)

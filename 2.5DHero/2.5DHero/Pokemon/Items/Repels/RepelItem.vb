@@ -11,7 +11,7 @@
         Public Overrides Sub Use()
             If Core.Player.RepelSteps <= 0 Then
                 Core.Player.Inventory.RemoveItem(ID, 1)
-                Player.Temp.LastUsedRepel = ID
+                Core.Player.Temp.LastUsedRepel = ID
 
                 SoundManager.PlaySound("repel_use", False)
                 Screen.TextBox.Show(Core.Player.Name & " used a~" & Name, {}, True, True)

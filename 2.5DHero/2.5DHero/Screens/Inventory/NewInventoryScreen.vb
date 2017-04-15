@@ -169,11 +169,11 @@ Public Class NewInventoryScreen
     End Sub
 
     Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages() As Integer, ByVal DoStuff As DoStuff)
-        Me.New(currentScreen, AllowedPages, Player.Temp.BagIndex, DoStuff)
+        Me.New(currentScreen, AllowedPages, Core.Player.Temp.InventoryTabIndex, DoStuff)
     End Sub
 
     Public Sub New(ByVal currentScreen As Screen)
-        Me.New(currentScreen, {}, Player.Temp.BagIndex, Nothing)
+        Me.New(currentScreen, {}, Core.Player.Temp.InventoryTabIndex, Nothing)
     End Sub
 
     Public Overrides Sub Draw()

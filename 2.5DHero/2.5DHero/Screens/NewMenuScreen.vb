@@ -32,7 +32,7 @@
 
         ConstructMenu()
 
-        _menuIndex = Player.Temp.MenuIndex
+        _menuIndex = Core.Player.Temp.MenuIndex
         SetCursorPosition(_menuIndex)
         _cursorPosition = _cursorDestPosition
 
@@ -191,7 +191,7 @@
         End If
 
         If _buttonIntroFinished = True Then
-            Player.Temp.MenuIndex = _menuIndex
+            Core.Player.Temp.MenuIndex = _menuIndex
 
             Dim preMenuIndex As Integer = _menuIndex
 
