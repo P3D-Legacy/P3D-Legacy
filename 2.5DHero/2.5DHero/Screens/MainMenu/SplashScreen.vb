@@ -26,8 +26,8 @@ Friend Class SplashScreen
         MouseVisible = True
         CanGoFullscreen = False
 
-        _monoGameLogo = Core.Content.Load(Of Texture2D)("Content\GUI\Logos\MonoGame")
-        _licenseFont = Core.Content.Load(Of SpriteFont)("Content\Fonts\BMP\mainFont")
+        _monoGameLogo = Core.Content.Load(Of Texture2D)("SharedResources\Textures\UI\Logos\MonoGame")
+        _licenseFont = Core.Content.Load(Of SpriteFont)("SharedResources\Fonts\mainFont")
         _licenseTextSize = _licenseFont.MeasureString(LICENSE_TEXT)
 
         Me.Identification = Identifications.SplashScreen
