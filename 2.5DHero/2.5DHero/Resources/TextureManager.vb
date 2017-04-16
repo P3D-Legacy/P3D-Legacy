@@ -39,7 +39,7 @@ Public Class TextureManager
                 t = cContent.Load(Of Texture2D)(Name)
             End If
 
-            TextureList.Add(tKey, ApplyEffect(TextureRectangle(t, New Rectangle(0, 0, t.Width, t.Height), 1)))
+            TextureList.Add(tKey, ApplyEffect(GetTexture(t, New Rectangle(0, 0, t.Width, t.Height), 1)))
 
             cContent.Unload()
         End If
@@ -109,9 +109,9 @@ Public Class TextureManager
             End If
 
             If doApplyEffect = True Then
-                If TextureList.ContainsKey(tKey) = False Then TextureList.Add(tKey, ApplyEffect(TextureRectangle(t, tSource.TextureRectangle, resolution)))
+                If TextureList.ContainsKey(tKey) = False Then TextureList.Add(tKey, ApplyEffect(GetTexture(t, tSource.TextureRectangle, resolution)))
             Else
-                If TextureList.ContainsKey(tKey) = False Then TextureList.Add(tKey, TextureRectangle(t, tSource.TextureRectangle, resolution))
+                If TextureList.ContainsKey(tKey) = False Then TextureList.Add(tKey, GetTexture(t, tSource.TextureRectangle, resolution))
             End If
 
             cContent.Unload()
