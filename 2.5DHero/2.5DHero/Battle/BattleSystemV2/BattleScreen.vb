@@ -781,11 +781,11 @@
             If File.Exists(GameController.GamePath & "\maps\battle\" & levelfile) = False And File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
                 Select Case Me.defaultMapType
                     Case 0
-                        levelfile = "battle0.dat"
+                        levelfile = "main.dat"
                     Case 2
-                        levelfile = "battle1.dat"
+                        levelfile = "surf.dat"
                     Case Else
-                        levelfile = "battle0.dat"
+                        levelfile = "main.dat"
                 End Select
                 BattleMapOffset = New Vector3(0)
             End If

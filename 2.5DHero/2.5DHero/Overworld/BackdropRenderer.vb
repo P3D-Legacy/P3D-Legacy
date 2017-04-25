@@ -89,7 +89,7 @@
         End Sub
 
         Public Sub New(ByVal BackdropType As String, ByVal Position As Vector3, ByVal Rotation As Vector3, ByVal Width As Integer, ByVal Height As Integer, ByVal BackdropTexture As Texture2D)
-            _shader = Content.Load(Of Effect)("Effects\BackdropShader")
+            _shader = Content.Load(Of Effect)("SharedResources\Effects\BackdropShader")
 
             _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(0, 0, 0), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(0, 0)))
             _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(Width, 0, 0), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(0, 1)))
