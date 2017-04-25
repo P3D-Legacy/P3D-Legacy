@@ -438,9 +438,10 @@ Public Class NewMainMenuScreen
 
     Public Overrides Sub ChangeTo()
         If _profiles.Count = 0 Then
-            Dim t As New Threading.Thread(AddressOf LoadProfiles)
-            t.IsBackground = True
-            t.Start()
+            'Dim t As New Threading.Thread(AddressOf LoadProfiles)
+            't.IsBackground = True
+            't.Start()
+            LoadProfiles()
         End If
     End Sub
 
