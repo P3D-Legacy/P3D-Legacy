@@ -142,7 +142,7 @@
             Camera = New BattleSystem.BattleCamera()
 
             Level = New Level()
-            Level.Load("indigo\halloffame_interface.dat")
+            Level.Load("shared\indigo\halloffame_interface.dat")
 
             ResetCamera()
             Me.loadedLevel = True

@@ -396,7 +396,7 @@
     Private IniMusic As String = ""
     Private DefeatMusic As String = ""
     Private BattleMusic As String = ""
-    Private InSightMusic As String = "battle/encounter/trainer"
+    Private InSightMusic As String = "encounter\trainer"
 
     Public Function GetIniMusicName() As String
         If IniMusic <> "" Then

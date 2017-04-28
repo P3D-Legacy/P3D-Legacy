@@ -60,7 +60,17 @@ Public Class JoinServerScreen
         Try
             _dataModel = DataModel.Json.JsonDataModel.FromString(Of DataModel.Json.PlayerData.ServerListModel)(jsonData)
             For Each serverModel In _dataModel.Servers
-                ServerList.Add(New Server(serverModel.ListName, serverModel.IpAddress & ":" & serverModel.Port.ToString()))
+                Dim listedServer As New Server(serverModel.ListName, serverModel.IpAddress & ":" & serverModel.Port.ToString())
+                Dim addToList As Boolean = True
+                For Each Server In ServerList
+                    If Server.IdentifierName = listedServer.IdentifierName AndAlso Server.IP = listedServer.IP AndAlso Server.Port = listedServer.Port Then
+                        addToList = False
+                        Exit For
+                    End If
+                Next
+                If addToList Then
+                    ServerList.Add(listedServer)
+                End If
             Next
         Catch ex As Exception
             Logger.Log("300", Logger.LogTypes.Message, "Failed to load server_list.dat. Create default content.")
@@ -699,18 +709,22 @@ Public Class JoinServerScreen
     End Sub
 
     Private Sub SaveServerlist()
+        SaveServerlist(ServerList, _dataModel)
+    End Sub
+    Public Shared Sub SaveServerlist(ByRef sList As List(Of Server), ByRef dModel As DataModel.Json.PlayerData.ServerListModel)
         Dim serverModels As New List(Of DataModel.Json.PlayerData.ServerListModel.ServerModel)
-        For Each server In ServerList
+        For Each server In sList
             serverModels.Add(New DataModel.Json.PlayerData.ServerListModel.ServerModel() With {
                              .IpAddress = server.IP,
                              .ListName = server.IdentifierName,
                              .Port = CInt(server.Port)})
         Next
 
-        _dataModel.Servers = serverModels.ToArray()
+        dModel.Servers = serverModels.ToArray()
 
-        Dim jsonData As String = _dataModel.ToString("    ")
+        Dim jsonData As String = dModel.ToString("    ")
         File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", jsonData)
     End Sub
+
 
 End Class

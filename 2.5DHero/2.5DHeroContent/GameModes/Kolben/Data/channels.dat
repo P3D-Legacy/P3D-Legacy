@@ -1,6 +1,6 @@
 ﻿listen channels (range)|overwrite channels (range)|channel name|Region|TimeOfDay (range)|Card Requirements (range)|Music|[SPECIAL]/(Script)/Text|CanBeOverwritten|Activation (0=Always,1=LevelChannel)|Activation Register (0=no register)
 
-{4.5|4.5|Pokédex Show|Johto|0,3|RADIO|event\show_me_around|[POKEDEXENTRY]|1|0|0}
+{4.5|4.5|Pokédex Show|Johto|0,3|RADIO|event\showmearound|[POKEDEXENTRY]|1|0|0}
 {4.5|4.5|Pokémon Talk|Johto|1,2|RADIO|building\oakslab|[RANDOMPOKEMON]|1|0|0}
 {7.5|7.5|Pokémon Music|Johto|0,3|RADIO|radio\lullaby|Hi there, folks.~This is DJ Ben. And you are listening to Pokémon Music.~We are bringing you the song that fits this time of the day:~The Pokémon Lullaby.|1|0|0}
 {7.5|7.5|Pokémon Music|Johto|1,2|RADIO|radio\march|Hi there, folks.~This is DJ Ben. And you are listening to Pokémon Music.~We are bringing you the song that fits this time of the day:~The Pokémon March.|1|0|0}

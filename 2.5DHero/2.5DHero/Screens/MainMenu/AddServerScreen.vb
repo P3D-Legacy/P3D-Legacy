@@ -208,7 +208,7 @@
         End Select
 
         If Controls.Dismiss(True, False, True) = True Then
-            Core.SetScreen(Me.PreScreen)
+            ButtonCancel()
         End If
     End Sub
 
@@ -236,18 +236,43 @@
 
     Private Sub ButtonDone()
         If IsValid() = "" Then
-            Dim data As List(Of String) = System.IO.File.ReadAllLines(GameController.GamePath & "\Save\server_list.dat").ToList()
-            data.Add(Me.IdentifyName & "," & Me.Address)
-            System.IO.File.WriteAllLines(GameController.GamePath & "\Save\server_list.dat", data.ToArray())
+            Dim jsonData As String = File.ReadAllText(GameController.GamePath & "\Save\server_list.dat")
+            Dim dModel As New DataModel.Json.PlayerData.ServerListModel
+            dModel = DataModel.Json.JsonDataModel.FromString(Of DataModel.Json.PlayerData.ServerListModel)(jsonData)
+
+            Dim sList As New List(Of JoinServerScreen.Server)
+            For Each serverModel In dModel.Servers
+                Dim listedServer As New JoinServerScreen.Server(serverModel.ListName, serverModel.IpAddress & ":" & serverModel.Port.ToString())
+                sList.Add(listedServer)
+            Next
+            sList.Add(New JoinServerScreen.Server(Me.IdentifyName, Me.Address))
+
+            JoinServerScreen.SaveServerlist(sList, dModel)
+
+            'Dim data As List(Of String) = System.IO.File.ReadAllLines(GameController.GamePath & "\Save\server_list.dat").ToList()
+            'data.Add(Me.IdentifyName & "," & Me.Address)
+            'System.IO.File.WriteAllLines(GameController.GamePath & "\Save\server_list.dat", data.ToArray())
             Core.SetScreen(Me.PreScreen)
         End If
     End Sub
 
     Private Sub ButtonCancel()
         If NewServer = False Then
-            Dim data As List(Of String) = System.IO.File.ReadAllLines(GameController.GamePath & "\Save\server_list.dat").ToList()
-            data.Add(EditServer.ToString())
-            System.IO.File.WriteAllLines(GameController.GamePath & "\Save\server_list.dat", data.ToArray())
+            Dim jsonData As String = File.ReadAllText(GameController.GamePath & "\Save\server_list.dat")
+            Dim dModel As New DataModel.Json.PlayerData.ServerListModel
+            dModel = DataModel.Json.JsonDataModel.FromString(Of DataModel.Json.PlayerData.ServerListModel)(jsonData)
+
+            Dim sList As New List(Of JoinServerScreen.Server)
+            For Each serverModel In dModel.Servers
+                Dim listedServer As New JoinServerScreen.Server(serverModel.ListName, serverModel.IpAddress & ":" & serverModel.Port.ToString())
+                sList.Add(listedServer)
+            Next
+            sList.Add(EditServer)
+
+            JoinServerScreen.SaveServerlist(sList, dModel)
+            'Dim data As List(Of String) = System.IO.File.ReadAllLines(GameController.GamePath & "\Save\server_list.dat").ToList()
+            'data.Add(EditServer.ToString())
+            'System.IO.File.WriteAllLines(GameController.GamePath & "\Save\server_list.dat", data.ToArray())
         End If
 
         Core.SetScreen(Me.PreScreen)
