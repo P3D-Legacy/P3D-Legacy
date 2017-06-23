@@ -184,7 +184,7 @@
             "ForceMusic|0" & vbNewLine &
             "MaxOffsetLevel|0" & vbNewLine &
             "UpdateDisabled|0" & vbNewLine &
-            "Extras|Backup Save"
+            "Extras|"
 
         File.WriteAllText(GameController.GamePath & "\Save\options.dat", s)
     End Sub
