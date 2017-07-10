@@ -177,6 +177,12 @@
         Public Overrides Sub IsAttracted(own As Boolean, BattleScreen As BattleScreen)
             MoveFails(own, BattleScreen)
         End Sub
+
+        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+            If Core.Random.Next(0, 100) < Me.GetEffectChance(0, own, BattleScreen) Then
+                BattleScreen.Battle.InflictFlinch(Not own, own, BattleScreen, "", "move:skyattack")
+            End If
+        End Sub
     End Class
 
 End Namespace

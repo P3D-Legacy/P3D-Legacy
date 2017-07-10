@@ -6725,7 +6725,7 @@
                         Next
                     End If
 
-                    Core.Player.Pokemons(PokeIndex).GainEffort(Core.Player.Pokemons(PokeIndex), BattleScreen.OppPokemon)
+                    Core.Player.Pokemons(PokeIndex).GainEffort(BattleScreen.OppPokemon)
                 Next
             End If
 

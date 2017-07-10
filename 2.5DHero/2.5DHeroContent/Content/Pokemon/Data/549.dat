@@ -1,4 +1,4 @@
-Name|Lilligant
+﻿Name|Lilligant
 Number|549
 ExperienceType|1
 BaseExperience|168
@@ -9,7 +9,7 @@ BaseFriendship|70
 EggGroup1|Grass
 EggGroup2|None
 BaseEggSteps|5355
-EggPokemon|549
+EggPokemon|548
 IsGenderLess|0
 CanBreed|1
 Devolution|548

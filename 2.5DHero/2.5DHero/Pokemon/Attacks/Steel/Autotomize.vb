@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Agility"
+            Me.Name = "Autotomize"
             Me.Description = "The user sheds part of its body to make itself lighter and sharply raise its Speed stat. "
             Me.CriticalChance = 0
             Me.IsHMMove = False

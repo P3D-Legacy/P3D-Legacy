@@ -1,4 +1,4 @@
-Name|Greninja
+﻿Name|Greninja
 Number|658
 ExperienceType|2
 BaseExperience|239
@@ -23,7 +23,7 @@ TutorMoves|308
 BaseHP|72
 BaseAttack|95
 BaseDefense|67
-BaseSpAttack|403
+BaseSpAttack|103
 BaseSpDefense|71
 BaseSpeed|122
 FPHP|0
