@@ -4151,6 +4151,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/127.png
 
+#begin Content/Pokemon/Overworld/Normal/127_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Normal/127_mega.png
+
 #begin Content/Pokemon/Overworld/Normal/128.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -4486,6 +4498,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/150_mega_x.png
+
+#begin Content/Pokemon/Overworld/Normal/150_mega_y.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Normal/150_mega_y.png
 
 #begin Content/Pokemon/Overworld/Normal/151.png
 /importer:TextureImporter
@@ -8014,6 +8038,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/373.png
+
+#begin Content/Pokemon/Overworld/Normal/373_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Normal/373_mega.png
 
 #begin Content/Pokemon/Overworld/Normal/374.png
 /importer:TextureImporter
@@ -14195,6 +14231,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/88.png
 
+#begin Content/Pokemon/Overworld/Normal/88_alola.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Normal/88_alola.png
+
 #begin Content/Pokemon/Overworld/Normal/89.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -14759,6 +14807,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/127.png
 
+#begin Content/Pokemon/Overworld/Shiny/127_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/127_mega.png
+
 #begin Content/Pokemon/Overworld/Shiny/128.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -15094,6 +15154,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/150_mega_x.png
+
+#begin Content/Pokemon/Overworld/Shiny/150_mega_y.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/150_mega_y.png
 
 #begin Content/Pokemon/Overworld/Shiny/151.png
 /importer:TextureImporter
@@ -18610,6 +18682,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/373.png
+
+#begin Content/Pokemon/Overworld/Shiny/373_mega.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/373_mega.png
 
 #begin Content/Pokemon/Overworld/Shiny/374.png
 /importer:TextureImporter
@@ -24755,6 +24839,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/88.png
 
+#begin Content/Pokemon/Overworld/Shiny/88_alola.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Overworld/Shiny/88_alola.png
+
 #begin Content/Pokemon/Overworld/Shiny/89.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -28715,6 +28811,18 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Sprites/Groudon.png
 
+#begin Content/Pokemon/Sprites/Groudon_primal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Sprites/Groudon_primal.png
+
 #begin Content/Pokemon/Sprites/Grovyle.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -29602,6 +29710,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Sprites/Kyogre.png
+
+#begin Content/Pokemon/Sprites/Kyogre_primal.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Sprites/Kyogre_primal.png
 
 #begin Content/Pokemon/Sprites/Kyurem.png
 /importer:TextureImporter
