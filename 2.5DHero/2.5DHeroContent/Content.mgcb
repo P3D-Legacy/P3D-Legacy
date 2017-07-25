@@ -3362,6 +3362,9 @@
 #begin Content/Pokemon/Data/670.dat
 /copy:Content/Pokemon/Data/670.dat
 
+#begin Content/Pokemon/Data/670_eternal.dat
+/copy:Content/Pokemon/Data/670_eternal.dat
+
 #begin Content/Pokemon/Data/671.dat
 /copy:Content/Pokemon/Data/671.dat
 
@@ -3562,6 +3565,9 @@
 
 #begin Content/Pokemon/Data/720.dat
 /copy:Content/Pokemon/Data/720.dat
+
+#begin Content/Pokemon/Data/720_unbound.dat
+/copy:Content/Pokemon/Data/720_unbound.dat
 
 #begin Content/Pokemon/Data/721.dat
 /copy:Content/Pokemon/Data/721.dat
@@ -13979,7 +13985,7 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Normal/72.png
 
-#begin Content/Pokemon/Overworld/Normal/720_confined.png
+#begin Content/Pokemon/Overworld/Normal/720.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -13989,7 +13995,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Pokemon/Overworld/Normal/720_confined.png
+/build:Content/Pokemon/Overworld/Normal/720.png
 
 #begin Content/Pokemon/Overworld/Normal/720_unbound.png
 /importer:TextureImporter
@@ -24623,7 +24629,7 @@
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Overworld/Shiny/72.png
 
-#begin Content/Pokemon/Overworld/Shiny/720_confined.png
+#begin Content/Pokemon/Overworld/Shiny/720.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -24633,7 +24639,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Pokemon/Overworld/Shiny/720_confined.png
+/build:Content/Pokemon/Overworld/Shiny/720.png
 
 #begin Content/Pokemon/Overworld/Shiny/720_unbound.png
 /importer:TextureImporter
@@ -29230,6 +29236,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Content/Pokemon/Sprites/hoopa.png
+
+#begin Content/Pokemon/Sprites/Hoopa_unbound.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Content/Pokemon/Sprites/Hoopa_unbound.png
 
 #begin Content/Pokemon/Sprites/Hoothoot.png
 /importer:TextureImporter

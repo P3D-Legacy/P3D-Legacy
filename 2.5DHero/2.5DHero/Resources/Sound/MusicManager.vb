@@ -56,7 +56,7 @@
 
     Private Shared Function AddSong(ByVal Name As String, ByVal forceReplace As Boolean) As Boolean
         Try
-            Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & Name, ".xnb,.mp3")
+            Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & Name, ".xnb,.mp3,.ogg")
 
             Dim loadSong As Boolean = False
             Dim removeSong As Boolean = False
@@ -75,6 +75,10 @@
                     If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".mp3") = True Then
                         Dim ctor = GetType(Song).GetConstructor(System.Reflection.BindingFlags.NonPublic Or System.Reflection.BindingFlags.Instance, Nothing, {GetType(String), GetType(String), GetType(Integer)}, Nothing)
                         Dim filePath As String = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".mp3"
+                        song = CType(ctor.Invoke({Name, filePath, 0}), Song)
+                    ElseIf System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".ogg") = True Then
+                        Dim ctor = GetType(Song).GetConstructor(System.Reflection.BindingFlags.NonPublic Or System.Reflection.BindingFlags.Instance, Nothing, {GetType(String), GetType(String), GetType(Integer)}, Nothing)
+                        Dim filePath As String = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".ogg"
                         song = CType(ctor.Invoke({Name, filePath, 0}), Song)
                     Else
                         Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: Song at """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & """ was not found!")
@@ -137,7 +141,9 @@
     Private Shared Function TryAddGameModeMusic(ByVal Name As String) As Boolean
         Dim musicfileXNB As String = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".xnb"
         Dim musicfileMP3 As String = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".mp3"
-        If System.IO.File.Exists(musicfileXNB) = True Or System.IO.File.Exists(musicfileMP3) = True Then
+        Dim musicfileOGG As String = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & Name & ".ogg"
+
+        If System.IO.File.Exists(musicfileXNB) OrElse System.IO.File.Exists(musicfileMP3) OrElse System.IO.File.Exists(musicfileMP3) Then
             Return AddSong(Name, False)
         End If
         Return False

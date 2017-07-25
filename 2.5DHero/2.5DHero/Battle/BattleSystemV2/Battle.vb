@@ -466,6 +466,9 @@
         End Sub
         'Checks if any pokemon is mega evolving, order based on speed
         Sub MegaEvolCheck(ByVal BattleScreen As BattleScreen)
+            If Not (BattleScreen.IsMegaEvolvingOwn OrElse BattleScreen.IsMegaEvolvingOpp) Then
+                Exit Sub
+            End If
             If BattleCalculation.MovesFirst(BattleScreen) Then
                 If BattleScreen.IsMegaEvolvingOwn Then
                     DoMegaEvolution(BattleScreen, True)
@@ -4428,6 +4431,9 @@
                                 End If
                             End If
                             SwitchOutOpp(BattleScreen, -1)
+                            If BattleScreen.IsTrainerBattle AndAlso Not BattleScreen.IsRemoteBattle Then
+                                HasSwitchedInOpp = False 'since opponents dont do after fainting switch rounds in PvE
+                            End If
                         End If
 
                         ChangeCameraAngel(0, True, BattleScreen)
@@ -6451,8 +6457,9 @@
         End Sub
 
         Public Sub SwitchInOpp(ByVal BattleScreen As BattleScreen, ByVal FirstTime As Boolean, ByVal index As Integer)
-            HasSwitchedInOpp = True
+
             If FirstTime = False Then
+                HasSwitchedInOpp = True
                 ChangeCameraAngel(1, False, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Come back, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
