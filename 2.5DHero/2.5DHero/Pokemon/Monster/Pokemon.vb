@@ -1030,7 +1030,7 @@ Public Class Pokemon
 
     'Just use these subs when doing/reverting mega evolutions.
     Public NormalAbility As Ability = New Abilities.Stench
-    Public Sub LoadMegaAbility()
+    Public Sub LoadAltAbility()
         NormalAbility = Ability
         Me.Ability = NewAbilities(0)
     End Sub

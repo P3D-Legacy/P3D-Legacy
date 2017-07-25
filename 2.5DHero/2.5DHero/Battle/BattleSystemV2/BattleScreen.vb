@@ -990,7 +990,9 @@ nextIndex:
                         p.AdditionalData = PokemonForms.GetInitialAdditionalData(p)
                         p.ReloadDefinitions()
                         p.CalculateStats()
-                        p.RestoreAbility()
+                        If str <> "blade" Then
+                            p.RestoreAbility() 'currently only used for mega evolutions
+                        End If
                 End Select
                 If Not p.Ability Is Nothing Then
                     p.Ability.EndBattle(p)
