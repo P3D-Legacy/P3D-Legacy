@@ -1117,7 +1117,7 @@
         filePrefix = newFilePrefix
 
         If IsGameJoltSave = True Then
-            If Core.GameOptions.Extras.Contains("Backup Save") Then
+            If Core.GameOptions.Extras.Contains("Backup Save Feature") Then
                 If Not Directory.Exists(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Encrypted") Then
                     Directory.CreateDirectory(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Encrypted")
                 End If

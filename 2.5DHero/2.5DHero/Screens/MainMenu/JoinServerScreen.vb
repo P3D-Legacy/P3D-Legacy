@@ -42,7 +42,7 @@ Public Class JoinServerScreen
         Me.ServerList.Add(localServer)
 
         If System.IO.File.Exists(GameController.GamePath & "\Save\server_list.dat") = False Then
-            System.IO.File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", "Official Pokémon3D Server,karp.pokemon3d.net:15124" & vbNewLine & "AGN Server,p3d.aggressivegaming.org:15124")
+            System.IO.File.WriteAllText(GameController.GamePath & "\Save\server_list.dat", "Official Pokémon3D Server,karp.pokemon3d.net:15124")
         End If
 
         If LoadOnlineServers = True Then
