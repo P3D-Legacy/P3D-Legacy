@@ -47,8 +47,8 @@ Public Class ModelManager
         ModelList.Clear()
     End Sub
 
-    Public Shared Function DrawModelToTexture(ByVal modelName As String, ByVal texSize As Vector2, ByVal modelPosition As Vector3, ByVal cameraPosition As Vector3, ByVal cameraRotation As Vector3, ByVal Scale As Single, ByVal enableLight As Boolean) As Texture2D
-        Dim renderTarget As RenderTarget2D = New RenderTarget2D(Core.GraphicsDevice, CInt(texSize.X), CInt(texSize.Y), False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+    Public Shared Function DrawModelToTexture(ByVal modelName As String, ByVal renderTarget As RenderTarget2D, ByVal modelPosition As Vector3, ByVal cameraPosition As Vector3, ByVal cameraRotation As Vector3, ByVal Scale As Single, ByVal enableLight As Boolean) As Texture2D
+
         Core.GraphicsDevice.SetRenderTarget(renderTarget)
         Core.GraphicsDevice.Clear(Color.Transparent)
 

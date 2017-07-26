@@ -4,6 +4,8 @@ Public Class StorageSystemScreen
 
     Public Shared TileOffset As Integer = 0
 
+    Private renderTarget As RenderTarget2D
+
     Public Enum FeatureTypes
         Deposit
         Withdraw
@@ -73,6 +75,7 @@ Public Class StorageSystemScreen
     Dim modelPan As Single = 0.0F
 
     Public Sub New(ByVal currentScreen As Screen)
+        Me.renderTarget = New RenderTarget2D(Core.GraphicsDevice, 1200, 680, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
         Me.PreScreen = currentScreen
         Me.Identification = Identifications.StorageSystemScreen
         Me.MouseVisible = True
@@ -1370,7 +1373,7 @@ Public Class StorageSystemScreen
 
         Dim roll As Single = propList.Item5
 
-        Dim t As Texture2D = ModelManager.DrawModelToTexture(modelName, New Vector2(1200, 680), New Vector3(x, y, z), New Vector3(0.0F, 50.0F, 10.0F), New Vector3(0.0F, 0.2F, roll + modelRoll), scale, True)
+        Dim t As Texture2D = ModelManager.DrawModelToTexture(modelName, renderTarget, New Vector3(x, y, z), New Vector3(0.0F, 50.0F, 10.0F), New Vector3(0.0F, 0.2F, roll + modelRoll), scale, True)
         Core.SpriteBatch.Draw(t, New Rectangle(160, 50, 1200, 680), Color.White)
     End Sub
 
