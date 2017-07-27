@@ -33,7 +33,7 @@
             If saveSessionFailed = True Then
                 .DrawString(FontManager.InGameFont, "Saving failed!", New Vector2(188, 186), Color.Red)
 
-                If Core.GameOptions.Extras.Contains("Backup Save") Then
+                If Core.GameOptions.Extras.Contains("Backup Save Feature") Then
                     .DrawString(FontManager.MiniFont, "Press Dismiss to close this screen and try to save" & vbNewLine &
                             "again in order to prevent data corruption." & vbNewLine & vbNewLine &
                             "We have backup your save in the event of gamejolt API being down." & vbNewLine &

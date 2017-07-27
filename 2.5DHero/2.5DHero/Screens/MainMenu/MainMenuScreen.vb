@@ -907,7 +907,7 @@ Public Class MainMenuScreen
                     ' 3. Apply Extra Fixes.
 
                     ' Enable Backup Save functionality.
-                    If (Core.GameOptions.Extras.Contains("Backup Save")) Then
+                    If (Core.GameOptions.Extras.Contains("Backup Save Feature")) Then
                         ' Make a copy of last known good gamejolt save!
                         Dim timestamp As String = Date.Now.ToString("yyyy-MM-dd_HH.mm.ss")
 
