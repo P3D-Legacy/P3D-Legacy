@@ -1,0 +1,11 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.187496374)
+
+newmtl PDX01_-_Default
+Kd 1 1 1
+Ks 0.54 0.54 0.54
+Ke 0 0 0
+Ns 9.6
+illum 2
+map_Kd textures/ferry.tga
+
