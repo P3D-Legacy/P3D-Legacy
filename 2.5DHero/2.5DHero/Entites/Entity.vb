@@ -122,7 +122,7 @@
         Me.UpdateEntity()
     End Sub
 
-    Public Shared Function GetNewEntity(ByVal EntityID As String, ByVal Position As Vector3, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Vector3, ByVal Scale As Vector3, ByVal Model As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Visible As Boolean, ByVal Shader As Vector3, ByVal ID As Integer, ByVal MapOrigin As String, ByVal SeasonColorTexture As String, ByVal Offset As Vector3, Optional ByVal Params() As Object = Nothing, Optional ByVal Opacity As Single = 1.0F) As Entity
+    Public Shared Function GetNewEntity(ByVal EntityID As String, ByVal Position As Vector3, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Vector3, ByVal Scale As Vector3, ByVal Model As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Visible As Boolean, ByVal Shader As Vector3, ByVal ID As Integer, ByVal MapOrigin As String, ByVal SeasonColorTexture As String, ByVal Offset As Vector3, Optional ByVal Params() As Object = Nothing, Optional ByVal Opacity As Single = 1.0F, Optional ByVal AnimationData As List(Of Integer) = Nothing) As Entity
         Dim newEnt As New Entity()
         Dim propertiesEnt As New Entity()
 
@@ -146,6 +146,10 @@
         propertiesEnt.Offset = Offset
 
         Select Case EntityID.ToLower()
+            Case "animatedtile"
+                newEnt = New AnimatedTile()
+                SetProperties(newEnt, propertiesEnt)
+                CType(newEnt, AnimatedTile).Initialize(AnimationData)
             Case "wallblock"
                 newEnt = New WallBlock()
                 SetProperties(newEnt, propertiesEnt)
@@ -363,19 +367,13 @@
         Dim CPosition As Vector3 = Screen.Camera.Position
         Dim ActionScriptActive As Boolean = False
 
-        SyncLock Screen.Camera
-            If Not Core.CurrentScreen Is Nothing Then
-                If Screen.Camera.Name.ToLower() = "overworld" Then
-                    CPosition = CType(Screen.Camera, OverworldCamera).CPosition
-                End If
-                If Screen.Camera.Name.ToLower() = "battlev2" Then
-                    CPosition = CType(Screen.Camera, BattleSystem.BattleCamera).CPosition
-                End If
-                If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                    ActionScriptActive = Not CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
-                End If
+
+        If Not Core.CurrentScreen Is Nothing Then
+            CPosition = Screen.Camera.CPosition
+            If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                ActionScriptActive = Not CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
             End If
-        End SyncLock
+        End If
 
 
         CameraDistance = CalculateCameraDistance(CPosition)

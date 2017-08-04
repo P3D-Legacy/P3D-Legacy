@@ -97,5 +97,9 @@
         Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(newFOV), Core.GraphicsDevice.Viewport.AspectRatio, 0.01, Me.FarPlane)
         Me.FOV = newFOV
     End Sub
-
+    Public Overridable ReadOnly Property CPosition As Vector3
+        Get
+            Return Me.Position
+        End Get
+    End Property
 End Class

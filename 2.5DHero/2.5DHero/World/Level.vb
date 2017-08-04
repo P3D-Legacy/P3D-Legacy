@@ -851,23 +851,26 @@ Public Class Level
                 Me._offsetMapUpdateDelay = Core.GameOptions.LoadOffsetMaps - 1 'Set the new delay
 
                 ' Remove entities that CanBeRemoved (see what I did there?):
+                ' Now it also updates the remaining entities.
                 For i = 0 To OffsetmapEntities.Count - 1
                     If i <= OffsetmapEntities.Count - 1 Then
-                        If OffsetmapEntities(i).CanBeRemoved = True Then
+                        If OffsetmapEntities(i).CanBeRemoved Then
                             OffsetmapEntities.RemoveAt(i)
                             i -= 1
+                        Else
+                            OffsetmapEntities(i).UpdateEntity()
                         End If
                     Else
                         Exit For
                     End If
                 Next
 
-                ' Call UpdateEntity on all offset map entities:
-                For i = Me.OffsetmapEntities.Count - 1 To 0 Step -1
-                    If i <= Me.OffsetmapEntities.Count - 1 Then
-                        Me.OffsetmapEntities(i).UpdateEntity()
-                    End If
-                Next
+                '' Call UpdateEntity on all offset map entities:
+                'For i = Me.OffsetmapEntities.Count - 1 To 0 Step -1
+                '    If i <= Me.OffsetmapEntities.Count - 1 Then
+                '        Me.OffsetmapEntities(i).UpdateEntity()
+                '    End If
+                'Next
 
                 ' Call UpdateEntity on all offset map floors:
                 For i = Me.OffsetmapFloors.Count - 1 To 0 Step -1

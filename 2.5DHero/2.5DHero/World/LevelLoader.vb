@@ -806,6 +806,11 @@
             AdditionalValue = CStr(GetTag(Tags, "AdditionalValue"))
         End If
 
+        Dim AnimationData As List(Of Integer) = Nothing
+        If TagExists(Tags, "AnimationData") = True Then
+            AnimationData = CType(GetTag(Tags, "AnimationData"), List(Of Integer))
+        End If
+
         Dim Rotation As Vector3 = Entity.GetRotationFromInteger(CInt(GetTag(Tags, "Rotation")))
 
         Dim Visible As Boolean = True
@@ -865,6 +870,9 @@
                         End If
                     End If
 
+                    If AnimationData IsNot Nothing AndAlso AnimationData.Count = 5 Then
+
+                    End If
                     If DoAdd = True Then
                         Dim newEnt As Entity = Entity.GetNewEntity(EntityID,
                                                                    New Vector3(Position.X + X, Position.Y + Y, Position.Z + Z),
@@ -883,7 +891,8 @@
                                                                    SeasonTexture,
                                                                    Offset,
                                                                    {},
-                                                                   Opacity)
+                                                                   Opacity,
+                                                                   AnimationData)
                         newEnt.IsOffsetMapContent = loadOffsetMap
 
                         If Not newEnt Is Nothing Then

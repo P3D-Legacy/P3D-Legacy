@@ -63,7 +63,7 @@ Public Class OverworldCamera
         End Get
     End Property
 
-    Public ReadOnly Property CPosition() As Vector3
+    Public Overrides ReadOnly Property CPosition() As Vector3
         Get
             Return _cPosition
         End Get

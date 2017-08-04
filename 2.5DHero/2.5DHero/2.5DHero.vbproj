@@ -208,6 +208,7 @@
     <Compile Include="Entites\Enviroment\WallBill.vb" />
     <Compile Include="Entites\Enviroment\WallBlock.vb" />
     <Compile Include="Entites\Enviroment\WarpBlock.vb" />
+    <Compile Include="Entites\Enviroment\AnimatedTile.vb" />
     <Compile Include="Entites\Enviroment\Water.vb" />
     <Compile Include="Entites\Enviroment\Waterfall.vb" />
     <Compile Include="Entites\Enviroment\Whirlpool.vb" />

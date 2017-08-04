@@ -225,7 +225,7 @@
             Return v
         End Function
 
-        Public ReadOnly Property CPosition() As Vector3
+        Public Overrides ReadOnly Property CPosition() As Vector3
             Get
                 Return Me.Position + GetBattleMapOffset()
             End Get
