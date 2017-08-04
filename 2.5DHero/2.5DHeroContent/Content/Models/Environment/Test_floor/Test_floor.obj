@@ -1,0 +1,26 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.187496374)
+
+mtllib Test_floor.mtl
+
+# 4 vertex positions
+v  294.419 0 404.138
+v  294.419 0 -383.264
+v  -290.227 0 404.138
+v  -290.227 0 -383.264
+
+# 4 UV coordinates
+vt 0.01 0.00999999 0
+vt 0.99 0.00999999 0
+vt 0.01 0.73765 0
+vt 0.99 0.73765 0
+
+# 1 vertex normals
+vn 0 1 0
+
+# Mesh 'Plane001' with 2 faces
+g Plane001
+usemtl PDX01_-_Default
+f  1/1/1 2/2/1 3/3/1
+f  4/4/1 3/3/1 2/2/1
+
