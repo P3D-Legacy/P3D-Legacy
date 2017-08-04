@@ -46097,11 +46097,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/boat/Ship.obj
 
-#begin Models/building/P3DBuilding.mtl
-/importer:
-/processor:
-/build:Models/building/P3DBuilding.mtl
-
 #begin Models/building/P3DBuilding.obj
 /importer:OpenAssetImporter
 /processor:ModelProcessor
