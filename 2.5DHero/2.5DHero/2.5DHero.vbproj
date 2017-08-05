@@ -1635,6 +1635,8 @@
     <Compile Include="Resources\Models\Blocks\BlockModel.vb" />
     <Compile Include="Resources\Models\Blocks\CornerModel.vb" />
     <Compile Include="Resources\Models\Blocks\CubeModel.vb" />
+    <Compile Include="Resources\Models\Blocks\DiagonalWallModel.vb" />
+    <Compile Include="Resources\Models\Blocks\HalfDiagonalWallModel.vb" />
     <Compile Include="Resources\Models\Blocks\InsideCornerModel.vb" />
     <Compile Include="Resources\Models\Blocks\PyramidModel.vb" />
     <Compile Include="Resources\Models\Blocks\SlideModel.vb" />
