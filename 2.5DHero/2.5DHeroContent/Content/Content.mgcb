@@ -46192,16 +46192,7 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/truck2/Truck.obj
 
-#begin maps/TestMaps/EmbeddedTower.dat
-/copy:maps/TestMaps/EmbeddedTower.dat
-
-#begin maps/TestMaps/test4models.dat
-/copy:maps/TestMaps/test4models.dat
-
-#begin maps/TestMaps/Kings_Landing.dat
-/copy:maps/TestMaps/Kings_Landing.dat
-
-#begin Content/Textures/EmbeddedTower.png
+#begin Textures/EmbeddedTower.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -46211,5 +46202,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Content/Textures/EmbeddedTower.png
+/build:Textures/EmbeddedTower.png
 
