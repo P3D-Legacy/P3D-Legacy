@@ -144,10 +144,10 @@ Public Class Animation
                 CurrentColumn += 1
                 If CurrentColumn >= Columns Then
                     CurrentRow += 1
-                    CurrentColumn = StartColumn
+                    CurrentColumn = 0
 
                     If CurrentRow >= Rows Then
-                        CurrentRow = StartRow
+                        CurrentRow = 0
                     End If
                 End If
             End If

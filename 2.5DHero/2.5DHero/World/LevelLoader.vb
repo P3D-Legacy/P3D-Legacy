@@ -320,6 +320,20 @@
                             arr.Add(CInt(value))
                         Next
                         Dictionary.Add(TagName, arr)
+                    Case "intarr2d"
+                        Dim rows() As String = subTagValue.Split(CChar("]"))
+                        Dim arr As New List(Of List(Of Integer))
+                        For Each row As String In rows
+                            If row.Length > 0 Then
+                                row = row.Remove(0, 1)
+                                Dim list As New List(Of Integer)
+                                For Each value In row.Split(CChar(","))
+                                    list.Add(CInt(value))
+                                Next
+                                arr.Add(list)
+                            End If
+                        Next
+                        Dictionary.Add(TagName, arr)
                     Case "rec"
                         Dim content() As String = subTagValue.Split(CChar(","))
                         Dictionary.Add(TagName, New Rectangle(CInt(content(0)), CInt(content(1)), CInt(content(2)), CInt(content(3))))
@@ -806,9 +820,9 @@
             AdditionalValue = CStr(GetTag(Tags, "AdditionalValue"))
         End If
 
-        Dim AnimationData As List(Of Integer) = Nothing
+        Dim AnimationData As List(Of List(Of Integer)) = Nothing
         If TagExists(Tags, "AnimationData") = True Then
-            AnimationData = CType(GetTag(Tags, "AnimationData"), List(Of Integer))
+            AnimationData = CType(GetTag(Tags, "AnimationData"), List(Of List(Of Integer)))
         End If
 
         Dim Rotation As Vector3 = Entity.GetRotationFromInteger(CInt(GetTag(Tags, "Rotation")))

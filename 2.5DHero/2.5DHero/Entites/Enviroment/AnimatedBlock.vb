@@ -1,51 +1,80 @@
-﻿Public Class AnimatedTile
+﻿Public Class AnimatedBlock
 
     Inherits Entity
 
-    Shared TileTexturesTemp As New Dictionary(Of String, Texture2D)
-    Dim TileTextureName As String = ""
-
-    Dim tileAnimation As Animation
-    Dim currentRectangle As New Rectangle(0, 0, 0, 0)
-
-    Dim rows, columns, animationSpeed, startRow, startColumn As Integer
+    Shared BlockTexturesTemp As New Dictionary(Of String, Texture2D)
 
 
-    Public Overloads Sub Initialize(ByVal AnimationData As List(Of Integer))
+    Dim AnimationNames As List(Of String)
+
+    Dim Animations As List(Of Animation)
+    Dim currentRectangle As List(Of Rectangle)
+
+    Dim X, Y, width, height, rows, columns, animationSpeed, startRow, startColumn As List(Of Integer)
+
+    Dim AnimCount As Integer = 0
+
+
+    Sub New()
+        X = New List(Of Integer)
+        Y = New List(Of Integer)
+        width = New List(Of Integer)
+        height = New List(Of Integer)
+        rows = New List(Of Integer)
+        columns = New List(Of Integer)
+        animationSpeed = New List(Of Integer)
+        startRow = New List(Of Integer)
+        startColumn = New List(Of Integer)
+
+        AnimationNames = New List(Of String)
+        currentRectangle = New List(Of Rectangle)
+        Animations = New List(Of Animation)
+    End Sub
+
+    Public Overloads Sub Initialize(ByVal AnimationData As List(Of List(Of Integer)))
+
         MyBase.Initialize()
-        rows = AnimationData(0)
-        columns = AnimationData(1)
-        animationSpeed = AnimationData(2)
-        startRow = AnimationData(3)
-        startColumn = AnimationData(4)
+        For i = 0 To AnimationData.Count - 1
+            X.Add(AnimationData(i)(0))
+            Y.Add(AnimationData(i)(1))
+            width.Add(AnimationData(i)(2))
+            height.Add(AnimationData(i)(3))
+            rows.Add(AnimationData(i)(4))
+            columns.Add(AnimationData(i)(5))
+            animationSpeed.Add(AnimationData(i)(6))
+            startRow.Add(AnimationData(i)(7))
+            startColumn.Add(AnimationData(i)(8))
 
-        tileAnimation = New Animation(TextureManager.GetTexture("Textures\Routes"), rows, columns, 16, 16, animationSpeed, startRow, startColumn)
+            AnimationNames.Add("")
+            currentRectangle.Add(New Rectangle(0, 0, 0, 0))
 
-        CreateTileTextureTemp()
+            Animations.Add(New Animation(TextureManager.GetTexture("Textures\Routes"), rows(i), columns(i), 16, 16, animationSpeed(i), startRow(i), startColumn(i)))
+
+            AnimCount += 1
+        Next
+
+        CreateBlockTextureTemp()
     End Sub
 
     Public Shared Sub ClearAnimationResources()
-        TileTexturesTemp.Clear()
+        BlockTexturesTemp.Clear()
     End Sub
 
-    Private Sub CreateTileTextureTemp()
+    Private Sub CreateBlockTextureTemp()
         'If Core.GameOptions.GraphicStyle = 1 Then
-        Dim textureData As List(Of String) = Me.AdditionalValue.Split(CChar(",")).ToList()
-        If textureData.Count >= 5 Then
-            Dim r As New Rectangle(CInt(textureData(1)), CInt(textureData(2)), CInt(textureData(3)), CInt(textureData(4)))
-            Dim texturePath As String = textureData(0)
-            Me.TileTextureName = AdditionalValue
-            If AnimatedTile.TileTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
-                For i = 0 To Me.rows - 1
-                    For j = 0 To Me.columns - 1
-                        AnimatedTile.TileTexturesTemp.Add(AdditionalValue & "_" & (j + columns * i).ToString, TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * j, r.Y + r.Height * i, r.Width, r.Height)))
+
+        For n = 0 To Animations.Count - 1
+            Dim r As New Rectangle(X(n), Y(n), width(n), height(n))
+            Me.AnimationNames(n) = AdditionalValue & "," & X(n) & "," & Y(n) & "," & height(n) & "," & width(n)
+            If BlockTexturesTemp.ContainsKey(AnimationNames(n) & "_0") = False Then
+                For i = 0 To Me.rows(n) - 1
+                    For j = 0 To Me.columns(n) - 1
+                        BlockTexturesTemp.Add(AnimationNames(n) & "_" & (j + columns(n) * i).ToString, TextureManager.GetTexture(AdditionalValue, New Rectangle(r.X + r.Width * j, r.Y + r.Height * i, r.Width, r.Height)))
                     Next
                 Next
             End If
-        Else
-            Logger.Log(Logger.LogTypes.ErrorMessage, "AnimatedTile.vb: invalid AdditionalValue parameters")
-        End If
-        'End If
+        Next
+
     End Sub
 
     Public Overrides Sub ClickFunction()
@@ -68,7 +97,7 @@
 
             For Each Entity As Entity In Screen.Level.Entities
                 If Entity.boundingBox.Contains(Screen.Camera.GetForwardMovedPosition()) = ContainmentType.Contains Then
-                    If Entity.EntityID = "Water" Then
+                    If Entity.ActionValue = 0 AndAlso (Entity.EntityID = "AnimatedBlock" OrElse Entity.EntityID = "Water") Then
                         canSurf = True
                     Else
                         If Entity.Collision = True Then
@@ -97,7 +126,7 @@
                         If Me.ActionValue = 0 Then
                             For Each Entity As Entity In Screen.Level.Entities
                                 If Entity.boundingBox.Contains(Screen.Camera.GetForwardMovedPosition()) = ContainmentType.Contains Then
-                                    If Entity.EntityID = "Water" Then
+                                    If Entity.EntityID = "AnimatedBlock" Then
                                         If Core.Player.SurfPokemon > -1 Then
                                             canSurf = True
                                         End If
@@ -132,27 +161,30 @@
     End Function
 
     Public Overrides Sub UpdateEntity()
-        If Not tileAnimation Is Nothing Then
-            tileAnimation.Update(0.01)
-            If currentRectangle <> tileAnimation.TextureRectangle Then
-                ChangeTexture()
+        If Not Animations Is Nothing Then
+            For n = 0 To Animations.Count - 1
+                Animations(n).Update(0.01)
+                If currentRectangle(n) <> Animations(n).TextureRectangle Then
+                    ChangeTexture(n)
 
-                currentRectangle = tileAnimation.TextureRectangle
-            End If
+                    currentRectangle(n) = Animations(n).TextureRectangle
+                End If
+            Next
         End If
-
         MyBase.UpdateEntity()
     End Sub
 
-    Private Sub ChangeTexture()
+    Private Sub ChangeTexture(ByVal n As Integer)
         'If Core.GameOptions.GraphicStyle = 1 Then
-        If TileTexturesTemp.Count = 0 Then
+
+        If BlockTexturesTemp.Count = 0 Then
             ClearAnimationResources()
-            CreateTileTextureTemp()
+            CreateBlockTextureTemp()
         End If
-        Dim i = tileAnimation.CurrentRow
-            Dim j = tileAnimation.CurrentColumn
-        Me.Textures(0) = AnimatedTile.TileTexturesTemp(TileTextureName & "_" & (j + columns * i))
+        Dim i = Animations(n).CurrentRow
+        Dim j = Animations(n).CurrentColumn
+        Me.Textures(n) = AnimatedBlock.BlockTexturesTemp(AnimationNames(n) & "_" & (j + columns(n) * i))
+
         'End If
     End Sub
 
