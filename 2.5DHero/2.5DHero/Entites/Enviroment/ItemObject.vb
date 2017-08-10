@@ -2,11 +2,18 @@
 
     Inherits Entity
 
+    Shared AnimationTexturesTemp As New Dictionary(Of String, Texture2D)
+    Dim AnimationName As String = ""
+    Dim Animation As Animation = Nothing
+
     Dim Item As Item
     Dim ItemID As Integer = 0
     Dim checkedExistence As Boolean = False
+    Dim AnimationPath As String = ""
+    Dim X, Y, width, height, rows, columns, animationSpeed, startRow, startColumn As Integer
+    Dim CurrentRectangle As New Rectangle(0, 0, 0, 0)
 
-    Public Overrides Sub Initialize()
+    Public Overloads Sub Initialize(Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing)
         MyBase.Initialize()
 
         Me.Item = Item.GetItemByID(CInt(Me.AdditionalValue.GetSplit(1)))
@@ -18,9 +25,55 @@
         ElseIf Me.ActionValue = 1 Then
             Me.Visible = False
             Me.Collision = False
+        ElseIf Me.ActionValue = 2 Then
+            Me.Visible = Visible
+            'sparkles
+            If AnimationData IsNot Nothing Then
+                X = AnimationData(0)(0)
+                Y = AnimationData(0)(1)
+                width = AnimationData(0)(2)
+                height = AnimationData(0)(3)
+                rows = AnimationData(0)(4)
+                columns = AnimationData(0)(5)
+                animationSpeed = AnimationData(0)(6)
+                startRow = AnimationData(0)(7)
+                startColumn = AnimationData(0)(8)
+                AnimationPath = "ItemAnimations"
+            Else
+                X = 0
+                Y = 0
+                width = 48
+                height = 48
+                rows = 5
+                columns = 10
+                animationSpeed = 60
+                startRow = 0
+                startColumn = 0
+                AnimationPath = "SparkleAnimation"
+            End If
+            CreateAnimationTextureTemp()
+
+            Me.Animation = New Animation(TextureManager.GetTexture("Textures\Routes"), rows, columns, 16, 16, animationSpeed, startRow, startColumn)
         End If
 
         Me.NeedsUpdate = True
+    End Sub
+
+    Public Shared Sub ClearAnimationResources()
+        AnimationTexturesTemp.Clear()
+    End Sub
+
+    Private Sub CreateAnimationTextureTemp()
+        'If Core.GameOptions.GraphicStyle = 1 Then
+        Dim r As New Rectangle(X, Y, width, height)
+        Me.AnimationName = AnimationPath & "," & X & "," & Y & "," & height & "," & width
+        If AnimationTexturesTemp.ContainsKey(AnimationName & "_0") = False Then
+            For i = 0 To Me.rows - 1
+                For j = 0 To Me.columns - 1
+                    AnimationTexturesTemp.Add(AnimationName & "_" & (j + columns * i).ToString, TextureManager.GetTexture(AnimationPath, New Rectangle(r.X + r.Width * j, r.Y + r.Height * i, r.Width, r.Height)))
+                Next
+            Next
+        End If
     End Sub
 
     Public Overrides Sub Update()
@@ -51,7 +104,29 @@
             Me.CreatedWorld = False
         End If
 
+        If Not Animation Is Nothing Then
+            Animation.Update(0.01)
+            If CurrentRectangle <> Animation.TextureRectangle Then
+                ChangeTexture()
+                CurrentRectangle = Animation.TextureRectangle
+            End If
+        End If
+
         MyBase.UpdateEntity()
+    End Sub
+
+    Private Sub ChangeTexture()
+        'If Core.GameOptions.GraphicStyle = 1 Then
+
+        If AnimationTexturesTemp.Count = 0 Then
+            ClearAnimationResources()
+            CreateAnimationTextureTemp()
+        End If
+        Dim i = Animation.CurrentRow
+        Dim j = Animation.CurrentColumn
+        Me.Textures(0) = ItemObject.AnimationTexturesTemp(AnimationName & "_" & (j + columns * i))
+
+        'End If
     End Sub
 
     Public Overrides Sub ClickFunction()
