@@ -692,14 +692,24 @@
 
         Private Sub MainMenuOpenPokemon(ByVal BattleScreen As BattleScreen)
             TempBattleScreen = BattleScreen
-            Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ShowPokemonMenu, "Choose Pokémon", True))
-            CType(Core.CurrentScreen, PartyScreen)._index = BattleScreen.OwnPokemonIndex
+
+            Player.Temp.PokemonScreenIndex = BattleScreen.OwnPokemonIndex
+            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ShowPokemonMenu, "Choose Pokémon", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+            AddHandler selScreen.SelectedObject, AddressOf ShowPokemonMenuHandler
+
+            Core.SetScreen(selScreen)
+
         End Sub
 
         Private Sub MainMenuOpenBag(ByVal BattleScreen As BattleScreen)
             If BattleScreen.CanUseItems = True Then
                 TempBattleScreen = BattleScreen
-                Core.SetScreen(New NewInventoryScreen(Core.CurrentScreen, {}, AddressOf SelectedItem))
+                Dim selScreen As New NewInventoryScreen(Core.CurrentScreen)
+                selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
+                selScreen.CanExit = True
+
+                AddHandler selScreen.SelectedObject, AddressOf SelectedItemHandler
+                Core.SetScreen(selScreen)
             End If
         End Sub
 
@@ -908,9 +918,12 @@
 #Region "SwitchPokemon"
 
         Shared TempBattleScreen As BattleScreen
+        Private Shared Sub ShowPokemonMenuHandler(ByVal params As Object())
+            ShowPokemonMenu(CInt(params(0)))
+        End Sub
 
         Private Shared Sub ShowPokemonMenu(ByVal PokeIndex As Integer)
-            Core.SetScreen(New BattlePokemonInfoScreen(Core.CurrentScreen, PokeIndex, AddressOf SwitchPokemonTo, TempBattleScreen))
+            SwitchPokemonTo(PokeIndex)
         End Sub
 
         Private Shared Sub SwitchPokemonTo(ByVal PokeIndex As Integer)
@@ -953,6 +966,10 @@
 
 #Region "UseItem"
 
+        Private Shared Sub SelectedItemHandler(ByVal params As Object())
+            SelectedItem(CInt(params(0)))
+        End Sub
+
         Private Shared Sub SelectedItem(ByVal itemID As Integer)
             Dim Item As Item = Item.GetItemByID(itemID)
 
@@ -982,7 +999,11 @@
                     TempItemID = itemID
 
                     If Item.BattleSelectPokemon = True Then
-                        Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item, AddressOf UseItem, "Use " & Item.Name, True))
+                        'Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item, AddressOf UseItem, "Use " & Item.Name, True))
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item, AddressOf Item.UseOnPokemon, "Use " & Item.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        AddHandler selScreen.SelectedObject, AddressOf UseItemHandler
+
+                        Core.SetScreen(selScreen)
                     Else
                         UseItem(0)
                     End If
@@ -991,6 +1012,10 @@
         End Sub
 
         Shared TempItemID As Integer = -1
+
+        Private Shared Sub UseItemhandler(ByVal params As Object())
+            UseItem(CInt(params(0)))
+        End Sub
 
         Private Shared Sub UseItem(ByVal PokeIndex As Integer)
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)

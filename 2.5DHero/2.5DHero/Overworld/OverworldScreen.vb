@@ -173,7 +173,7 @@ Public Class OverworldScreen
         If ActionScript.IsReady = True Then
             If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.MiddleButton) = True Or ControllerHandler.ButtonPressed(Buttons.LeftStick) = True Then
                 If Core.Player.Pokemons.Count > 0 Then
-                    Core.SetScreen(New PokemonStatusScreen(Core.CurrentScreen, 0, {}, Core.Player.Pokemons(0), True))
+                    Core.SetScreen(New SummaryScreen(CurrentScreen, Core.Player.Pokemons.ToArray, 0))
                 End If
             End If
         End If

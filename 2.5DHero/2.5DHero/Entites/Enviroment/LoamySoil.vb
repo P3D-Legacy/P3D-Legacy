@@ -25,8 +25,17 @@
 
     Public Overrides Sub ResultFunction(ByVal Result As Integer)
         If Result = 0 Then
-            Core.SetScreen(New NewInventoryScreen(Core.CurrentScreen, {4}, 4, AddressOf Me.PlantBerry))
+            Dim selScreen As New NewInventoryScreen(Core.CurrentScreen, {2}, 2, Nothing)
+            selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
+            selScreen.CanExit = True
+
+            AddHandler selScreen.SelectedObject, AddressOf PlantBerryHandler
+            Core.SetScreen(selScreen)
         End If
+    End Sub
+
+    Public Sub PlantBerryHandler(ByVal params As Object())
+        PlantBerry(CInt(params(0)))
     End Sub
 
     Public Sub PlantBerry(ByVal ChosenBerry As Integer)

@@ -286,8 +286,15 @@
 
     Private Sub StartBattle()
         If Not Me.OwnTeam Is Nothing And Not OppTeam Is Nothing Then
-            Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf LeadPickedStart, "Choose your lead.", True, True, False, _pokemonList:=OwnTeam))
+            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf LeadPickedStart, "Choose your Lead", True, True, False, _pokemonList:=OwnTeam) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+            AddHandler selScreen.SelectedObject, AddressOf LeadPickedStartHandler
+
+            Core.SetScreen(selScreen)
         End If
+    End Sub
+
+    Public Sub LeadPickedStartHandler(ByVal params As Object())
+        LeadPickedStart(CInt(params(0)))
     End Sub
 
     Private Sub LeadPickedStart(ByVal index As Integer)

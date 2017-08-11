@@ -26,14 +26,11 @@ Namespace Items
             End If
 
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
-
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is fainted!")
                 Return False
             Else
                 If Pokemon.HP = Pokemon.MaxHP Then
-                    Screen.TextBox.reDelay = 0.0F
-                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " has full~HP already.", {})
+                    CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " has full HP already.")
 
                     Return False
                 Else
@@ -42,13 +39,11 @@ Namespace Items
 
                     Pokemon.Heal(HP)
 
-                    Screen.TextBox.reDelay = 0.0F
-
-                    Dim t As String = "Restored " & Pokemon.GetDisplayName() & "'s~HP by " & diff & "."
+                    Dim t As String = "Restored " & Pokemon.GetDisplayName() & "'s HP by " & diff & "."
                     t &= RemoveItem()
 
                     SoundManager.PlaySound("single_heal", False)
-                    Screen.TextBox.Show(t, {})
+                    CType(CurrentScreen, PartyScreen).ShowMessage(t)
                     PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                     Return True
@@ -68,27 +63,23 @@ Namespace Items
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
-
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is fainted!")
                 Return False
+
             ElseIf Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Poison Or Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.BadPoison Then
                 Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.None
 
-                Screen.TextBox.reDelay = 0.0F
 
                 Dim t As String = "Cures the poison of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                 SoundManager.PlaySound("single_heal", False)
-                Screen.TextBox.Show(t, {})
+                CType(CurrentScreen, PartyScreen).ShowMessage(t)
 
                 Return True
             Else
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not poisoned.", {})
-
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is not poisoned.")
                 Return False
             End If
         End Function
@@ -105,26 +96,23 @@ Namespace Items
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
-
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is fainted!")
                 Return False
+
             ElseIf Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Sleep Then
                 Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.None
 
-                Screen.TextBox.reDelay = 0.0F
 
                 Dim t As String = "Cures the sleep of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("single_heal", False)
-                Screen.TextBox.Show(t, {})
+                CType(CurrentScreen, PartyScreen).ShowMessage(t)
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                 Return True
             Else
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not asleep.", {})
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is not asleep.")
 
                 Return False
             End If
@@ -142,26 +130,23 @@ Namespace Items
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
-
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is fainted!")
                 Return False
+
             ElseIf Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Burn Then
                 Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.None
 
-                Screen.TextBox.reDelay = 0.0F
 
                 Dim t As String = "Cures the burn of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("single_heal", False)
-                Screen.TextBox.Show(t, {})
+                CType(CurrentScreen, PartyScreen).ShowMessage(t)
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                 Return True
             Else
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not burned.", {})
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is not burned.")
 
                 Return False
             End If
@@ -179,28 +164,25 @@ Namespace Items
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
-
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is fainted!")
                 Return False
+
             ElseIf Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Freeze Then
                 Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.None
 
                 Core.Player.Inventory.RemoveItem(Me.ID, 1)
 
-                Screen.TextBox.reDelay = 0.0F
 
                 Dim t As String = "Cures the ice of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("single_heal", False)
-                Screen.TextBox.Show(t, {})
+                CType(CurrentScreen, PartyScreen).ShowMessage(t)
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                 Return True
             Else
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not frozen.", {})
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is not frozen.")
 
                 Return False
             End If
@@ -218,28 +200,25 @@ Namespace Items
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
             If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & "~is fainted!", {})
-
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is fainted!")
                 Return False
+
             ElseIf Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Paralyzed Then
                 Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.None
 
                 Core.Player.Inventory.RemoveItem(Me.ID, 1)
 
-                Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the paralyzis~of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cures the paralysis of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("single_heal", False)
-                Screen.TextBox.Show(t, {})
+                CType(CurrentScreen, PartyScreen).ShowMessage(t)
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
                 Return True
             Else
-                Screen.TextBox.reDelay = 0.0F
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is not~paralyzed.", {})
+                CType(CurrentScreen, PartyScreen).ShowMessage(Pokemon.GetDisplayName() & " is not paralyzed.")
 
                 Return False
             End If

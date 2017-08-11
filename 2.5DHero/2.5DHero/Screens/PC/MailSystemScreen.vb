@@ -219,7 +219,12 @@
 
             If Controls.Accept(True, True, True) = True Then
                 If Me.selectIndex = 0 Then
-                    Core.SetScreen(New NewInventoryScreen(Me, {5}, 5, AddressOf Me.ChosenMail))
+                    Dim selScreen As New NewInventoryScreen(Core.CurrentScreen, {5}, 5, Nothing)
+                    selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
+                    selScreen.CanExit = True
+
+                    AddHandler selScreen.SelectedObject, AddressOf ChosenMailHandler
+                    Core.SetScreen(selScreen)
                 Else
                     If Me.index = Me.selectIndex Then
                         Me.index = -1
@@ -275,7 +280,10 @@
                         If TempNewMail.MailHeader = "" Or TempNewMail.MailText = "" Or TempNewMail.MailSignature = "" Then
                             message = "Please fill in the Header, the Message and the Signature."
                         Else
-                            Core.SetScreen(New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID), AddressOf Me.ChosenPokemon, "Give mail to:", True))
+                            Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                            AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
+
+                            Core.SetScreen(selScreen)
                         End If
                     Case 4
                         Me.index = -1
@@ -286,6 +294,10 @@
                 Me.index = -1
             End If
         End If
+    End Sub
+
+    Private Sub ChosenMailHandler(ByVal params As Object())
+        ChosenMail(CInt(params(0)))
     End Sub
 
     Private Sub ChosenMail(ByVal ItemID As Integer)
@@ -300,6 +312,10 @@
         Me.TempNewMail.MailAttachment = -1
         Me.TempNewMail.MailRead = False
         Me.TempNewMail.MailSignature = ""
+    End Sub
+
+    Private Sub ChosenPokemonHandler(ByVal params As Object())
+        ChosenPokemon(CInt(params(0)))
     End Sub
 
     Private Sub ChosenPokemon(ByVal PokeIndex As Integer)

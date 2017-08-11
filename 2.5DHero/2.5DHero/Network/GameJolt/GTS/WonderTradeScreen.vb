@@ -202,7 +202,10 @@
                         If Me.OpenedSelect = True Then
                             Me.CloseScreen()
                         Else
-                            Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Me.SelectPokemonForTrade, "Choose Pokémon for Trade", True, True, False))
+                            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf SelectPokemonForTrade, "Choose Pokémon for Trade", True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                            AddHandler selScreen.SelectedObject, AddressOf SelectPokemonForTradeHandler
+
+                            Core.SetScreen(selScreen)
                             CType(Core.CurrentScreen, PartyScreen).CanChooseHMPokemon = False
                             Me.OpenedSelect = True
                         End If
@@ -241,6 +244,10 @@
                 Case 1
                     CloseScreen()
             End Select
+        End Sub
+
+        Private Sub SelectPokemonForTradeHandler(ByVal params As Object())
+            SelectPokemonForTrade(CInt(params(0)))
         End Sub
 
         Private Sub SelectPokemonForTrade(ByVal pokeIndex As Integer)

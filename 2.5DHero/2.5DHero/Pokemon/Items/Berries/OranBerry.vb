@@ -25,7 +25,10 @@ Namespace Items.Berries
                 Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
                 Exit Sub
             End If
-            Core.SetScreen(New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True))
+            Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+            AddHandler selScreen.SelectedObject, AddressOf UseItemHandler
+
+            Core.SetScreen(selScreen)
         End Sub
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean

@@ -288,8 +288,12 @@
             Case 0
                 Me.StartTrade()
             Case 1
-                Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Me.SelectPokemonForTrade, "Choose Pokémon for Trade", True, False, False))
+                Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf SelectPokemonForTrade, "Choose Pokémon for Trade", True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                AddHandler selScreen.SelectedObject, AddressOf SelectPokemonForTradeHandler
+
+                Core.SetScreen(selScreen)
                 CType(Core.CurrentScreen, PartyScreen).CanChooseHMPokemon = False
+
             Case 2
                 Me.QuitTrade()
         End Select
@@ -312,6 +316,10 @@
                 SentTradeOffer = True
             End If
         End If
+    End Sub
+
+    Private Sub SelectPokemonForTradeHandler(ByVal params As Object())
+        SelectPokemonForTrade(CInt(params(0)))
     End Sub
 
     Private Sub SelectPokemonForTrade(ByVal pokeIndex As Integer)

@@ -139,7 +139,10 @@
                     Case Localization.GetString("item_detail_screen_use")
                         Item.Use()
                     Case Localization.GetString("item_detail_screen_give")
-                        Core.SetScreen(New PartyScreen(Core.CurrentScreen, Me.Item, AddressOf GiveItem, Localization.GetString("item_detail_screen_give_item") & Me.Item.Name, True))
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Me.Item, AddressOf GiveItem, Localization.GetString("item_detail_screen_give_item") & Me.Item.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        AddHandler selScreen.SelectedObject, AddressOf GiveItemHandler
+
+                        Core.SetScreen(selScreen)
                     Case Localization.GetString("item_detail_screen_trash")
                         Core.Player.Inventory.RemoveItem(Me.Item.ID, trashValue)
                     Case Localization.GetString("item_detail_screen_back")
@@ -151,6 +154,10 @@
                 Core.SetScreen(Me.PreScreen)
             End If
         End If
+    End Sub
+
+    Private Sub GiveItemHandler(ByVal params As Object())
+        GiveItem(CInt(params(0)))
     End Sub
 
     Private Sub GiveItem(ByVal PokeIndex As Integer)

@@ -203,6 +203,10 @@
         Screen.TextBox.Show(message2, {}, False, False)
     End Sub
 
+    Public Shared Sub DoNPCTradeHandler(ByVal params As Object())
+        DoNPCTrade(CInt(params(0)))
+    End Sub
+
     Public Shared Sub DoNPCTrade(ByVal pokeIndex As Integer)
         Core.SetScreen(Core.CurrentScreen.PreScreen)
 

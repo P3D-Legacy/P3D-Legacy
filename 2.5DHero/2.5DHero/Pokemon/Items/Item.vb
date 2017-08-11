@@ -200,6 +200,10 @@ Public MustInherit Class Item
         Logger.Debug("PLACEHOLDER FOR ITEM USE")
     End Sub
 
+    Public Sub UseItemhandler(ByVal params As Object())
+        UseOnPokemon(CInt(params(0)))
+    End Sub
+
     ''' <summary>
     ''' A method that gets used when the item is applied to a Pokémon. Returns True if the action was successful.
     ''' </summary>
