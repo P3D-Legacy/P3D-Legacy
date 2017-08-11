@@ -200,7 +200,7 @@ Public Class OverworldScreen
                     Level.RouteSign.Hide()
 
                     SoundManager.PlaySound("menu_open")
-                    Core.SetScreen(New MenuScreen(Me))
+                    Core.SetScreen(New NewMenuScreen(Me))
                 End If
             End If
 

@@ -139,7 +139,7 @@
                     Case Localization.GetString("item_detail_screen_use")
                         Item.Use()
                     Case Localization.GetString("item_detail_screen_give")
-                        Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Me.Item, AddressOf GiveItem, Localization.GetString("item_detail_screen_give_item") & Me.Item.Name, True))
+                        Core.SetScreen(New PartyScreen(Core.CurrentScreen, Me.Item, AddressOf GiveItem, Localization.GetString("item_detail_screen_give_item") & Me.Item.Name, True))
                     Case Localization.GetString("item_detail_screen_trash")
                         Core.Player.Inventory.RemoveItem(Me.Item.ID, trashValue)
                     Case Localization.GetString("item_detail_screen_back")

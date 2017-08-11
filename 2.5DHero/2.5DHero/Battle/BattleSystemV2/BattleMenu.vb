@@ -692,14 +692,14 @@
 
         Private Sub MainMenuOpenPokemon(ByVal BattleScreen As BattleScreen)
             TempBattleScreen = BattleScreen
-            Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ShowPokemonMenu, "Choose Pokémon", True))
-            CType(Core.CurrentScreen, ChoosePokemonScreen).index = BattleScreen.OwnPokemonIndex
+            Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ShowPokemonMenu, "Choose Pokémon", True))
+            CType(Core.CurrentScreen, PartyScreen)._index = BattleScreen.OwnPokemonIndex
         End Sub
 
         Private Sub MainMenuOpenBag(ByVal BattleScreen As BattleScreen)
             If BattleScreen.CanUseItems = True Then
                 TempBattleScreen = BattleScreen
-                Core.SetScreen(New InventoryScreen(Core.CurrentScreen, {}, AddressOf SelectedItem))
+                Core.SetScreen(New NewInventoryScreen(Core.CurrentScreen, {}, AddressOf SelectedItem))
             End If
         End Sub
 
@@ -982,7 +982,7 @@
                     TempItemID = itemID
 
                     If Item.BattleSelectPokemon = True Then
-                        Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Item, AddressOf UseItem, "Use " & Item.Name, True))
+                        Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item, AddressOf UseItem, "Use " & Item.Name, True))
                     Else
                         UseItem(0)
                     End If

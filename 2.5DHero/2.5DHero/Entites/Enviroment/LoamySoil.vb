@@ -25,7 +25,7 @@
 
     Public Overrides Sub ResultFunction(ByVal Result As Integer)
         If Result = 0 Then
-            Core.SetScreen(New InventoryScreen(Core.CurrentScreen, {4}, 4, AddressOf Me.PlantBerry))
+            Core.SetScreen(New NewInventoryScreen(Core.CurrentScreen, {4}, 4, AddressOf Me.PlantBerry))
         End If
     End Sub
 

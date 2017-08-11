@@ -1,3 +1,4 @@
+Imports net.Pokemon3D.Game
 ''' <summary>
 ''' The base class for all screens in the game.
 ''' </summary>
@@ -15,8 +16,8 @@ Public MustInherit Class Screen
         PokedexViewScreen
         PokedexSearchScreen
         PokedexHabitatScreen
-        PokemonScreen
-        PokemonStatusScreen
+        PartyScreen
+        SummaryScreen
         InventoryScreen
         BerryScreen
         TrainerScreen
@@ -85,33 +86,28 @@ Public MustInherit Class Screen
         RegisterBattleScreen
         StatisticsScreen
         MapPreviewScreen
+        KeyBindingScreen
+        MessageBoxScreen
+        PressStartScreen
+        CharacterSelectionScreen
+        GameModeSelectionScreen
+
+        'TEMPORARY, OLD
+        PokemonScreen
         IntroScreen
+        PokemonStatusScreen
     End Enum
 
 #Region "Shared values"
 
-    Private Shared _globalCamera As Camera
-    Private Shared _globalBasicEffect As BasicEffect
-    Private Shared _globalLevel As Level
-    Private Shared _globalSkyDome As SkyDome
-    Private Shared _globalTextBox As New TextBox
-    Private Shared _globalChooseBox As New ChooseBox
-    Private Shared _globalPokemonImageView As New PokemonImageView
-
     ''' <summary>
-    ''' A global camera instance that carries over screen instances.
+    ''' A global camera instance, that carries over screen instances.
     ''' </summary>
     Public Shared Property Camera() As Camera
-        Get
-            Return _globalCamera
-        End Get
-        Set(value As Camera)
-            _globalCamera = value
-        End Set
-    End Property
 
+    Private Shared _globalLevel As Level
     ''' <summary>
-    ''' A global level instance that carries over screen instances.
+    ''' A global level instance, that carries over screen instances.
     ''' </summary>
     Public Shared Property Level() As Level
         Get
@@ -126,220 +122,106 @@ Public MustInherit Class Screen
     End Property
 
     ''' <summary>
-    ''' A global BasicEffect instance that carries over screen instances.
+    ''' A global BasicEffect instance, that carries over screen instances.
     ''' </summary>
     Public Shared Property Effect() As BasicEffect
-        Get
-            Return _globalBasicEffect
-        End Get
-        Set(value As BasicEffect)
-            _globalBasicEffect = value
-        End Set
-    End Property
 
     ''' <summary>
-    ''' A global SkyDome instance that carries over screen instances.
+    ''' A global SkyDome instance, that carries over screen instances.
     ''' </summary>
     Public Shared Property SkyDome() As SkyDome
-        Get
-            Return _globalSkyDome
-        End Get
-        Set(value As SkyDome)
-            _globalSkyDome = value
-        End Set
-    End Property
 
     ''' <summary>
-    ''' A global TextBox instance that carries over screen instances.
+    ''' A global TextBox instance, that carries over screen instances.
     ''' </summary>
-    Public Shared Property TextBox() As TextBox
-        Get
-            Return _globalTextBox
-        End Get
-        Set(value As TextBox)
-            _globalTextBox = value
-        End Set
-    End Property
+    Public Shared Property TextBox() As TextBox = New TextBox()
 
     ''' <summary>
-    ''' A global ChooseBox instance that carries over screen instances.
+    ''' A global ChooseBox instance, that carries over screen instances.
     ''' </summary>
-    Public Shared Property ChooseBox() As ChooseBox
-        Get
-            Return _globalChooseBox
-        End Get
-        Set(value As ChooseBox)
-            _globalChooseBox = value
-        End Set
-    End Property
+    Public Shared Property ChooseBox() As ChooseBox = New ChooseBox()
 
     ''' <summary>
-    ''' A global PokemonImageView instance that carries over screen instances.
+    ''' A global PokemonImageView instance, that carries over screen instances.
     ''' </summary>
-    Public Shared Property PokemonImageView() As PokemonImageView
-        Get
-            Return _globalPokemonImageView
-        End Get
-        Set(value As PokemonImageView)
-            _globalPokemonImageView = value
-        End Set
-    End Property
+    Public Shared Property PokemonImageView() As PokemonImageView = New PokemonImageView()
 
 #End Region
 
 #Region "Fields"
 
-    Private _preScreen As Screen = Nothing
-    Private _identification As Identifications = Identifications.MainMenuScreen ' Some default value I guess...
-
-    Private _mouseVisible As Boolean = False
-    Private _canBePaused As Boolean = True
-    Private _canMuteMusic As Boolean = True
-    Private _canChat As Boolean = True
-    Private _canTakeScreenshot As Boolean = True
-    Private _canDrawDebug As Boolean = True
-    Private _canGoFullscreen As Boolean = True
-
     ''' <summary>
     ''' A value to store the screen that underlies the current screen in.
     ''' </summary>
-    Public Property PreScreen() As Screen
-        Get
-            Return Me._preScreen
-        End Get
-        Set(value As Screen)
-            Me._preScreen = value
-        End Set
-    End Property
+    Public Property PreScreen() As Screen = Nothing
 
     ''' <summary>
     ''' The ID of the screen.
     ''' </summary>
-    Public Property Identification() As Identifications
-        Get
-            Return Me._identification
-        End Get
-        Set(value As Identifications)
-            Me._identification = value
-        End Set
-    End Property
+    Public Property Identification() As Identifications = Identifications.MainMenuScreen
 
     ''' <summary>
-    ''' Whether the mouse cursor is visible on the screen.
+    ''' Wether the mouse is visible on the screen.
     ''' </summary>
-    ''' <remarks>The default value is "False".</remarks>
-    Public Property MouseVisible() As Boolean
-        Get
-            Return Me._mouseVisible
-        End Get
-        Set(value As Boolean)
-            Me._mouseVisible = value
-        End Set
-    End Property
+    Public Property MouseVisible() As Boolean = False
 
     ''' <summary>
-    ''' Whether the game can be paused when pressing the Escape key.
+    ''' Wether the game can be paused when pressing Escape.
     ''' </summary>
-    ''' <remarks>The default value is "True".</remarks>
-    Public Property CanBePaused() As Boolean
-        Get
-            Return Me._canBePaused
-        End Get
-        Set(value As Boolean)
-            Me._canBePaused = value
-        End Set
-    End Property
+    Public Property CanBePaused() As Boolean = True
 
     ''' <summary>
-    ''' Whether the game can be muted by pressing the M key (default).
+    ''' Wether the game can be muted by pressing M (default).
     ''' </summary>
-    ''' <remarks>The default value is "True".</remarks>
-    Public Property CanMuteMusic() As Boolean
-        Get
-            Return Me._canMuteMusic
-        End Get
-        Set(value As Boolean)
-            Me._canMuteMusic = value
-        End Set
-    End Property
+    Public Property CanMuteMusic() As Boolean = True
 
     ''' <summary>
-    ''' Whether the ChatScreen can be opened by pressing the T key (default).
+    ''' Wether the ChatScreen can be opened by pressing T (default).
     ''' </summary>
-    ''' <remarks>The default value is "True".</remarks>
-    Public Property CanChat() As Boolean
-        Get
-            Return Me._canChat
-        End Get
-        Set(value As Boolean)
-            Me._canChat = value
-        End Set
-    End Property
+    Public Property CanChat() As Boolean = True
 
     ''' <summary>
-    ''' Whether a screenshot can be taken by pressing the F2 key (default).
+    ''' Wether a screenshot can be taken by pressing F2 (default).
     ''' </summary>
-    ''' <remarks>The default value is "True".</remarks>
-    Public Property CanTakeScreenshot() As Boolean
-        Get
-            Return Me._canTakeScreenshot
-        End Get
-        Set(value As Boolean)
-            Me._canTakeScreenshot = value
-        End Set
-    End Property
+    Public Property CanTakeScreenshot() As Boolean = True
 
     ''' <summary>
-    ''' Whether the debug information can be drawn on the screen.
+    ''' Wether the debug information can be drawn on the screen.
     ''' </summary>
-    ''' <remarks>The default value is "True".</remarks>
-    Public Property CanDrawDebug() As Boolean
-        Get
-            Return Me._canDrawDebug
-        End Get
-        Set(value As Boolean)
-            Me._canDrawDebug = value
-        End Set
-    End Property
+    Public Property CanDrawDebug() As Boolean = True
 
     ''' <summary>
-    ''' Whether the game can switch its fullscreen state by pressing the F11 key (default).
+    ''' Wether the game can switch its fullscreen state by pressing F11 (default).
     ''' </summary>
-    ''' <remarks>The default value is "True".</remarks>
-    Public Property CanGoFullscreen() As Boolean
-        Get
-            Return Me._canGoFullscreen
-        End Get
-        Set(value As Boolean)
-            Me._canGoFullscreen = value
-        End Set
-    End Property
+    Public Property CanGoFullscreen() As Boolean = True
 
-    Public UpdateFadeOut As Boolean = False ' Sets if the screen gets updated during its set as a FadeOut screen on the TransitionScreen.
-    Public UpdateFadeIn As Boolean = False ' Sets if the screen gets updated during its set as a FadeIn screen on the TransitionScreen.
+    ''' <summary>
+    ''' Wether this screen draws gradients.
+    ''' </summary>
+    Protected Property IsDrawingGradients() As Boolean = False
+
+    ''' <summary>
+    ''' If this screen completely overlays its PreScreen.
+    ''' </summary>
+    Public Property IsOverlay() As Boolean = False
+
+    Public UpdateFadeOut As Boolean = False 'Sets if the screen gets updated during its set as a FadeOut screen on the TransitionScreen.
+    Public UpdateFadeIn As Boolean = False 'Sets if the screen gets updated during its set as a FadeIn screen on the TransitionScreen.
 
 #End Region
 
     ''' <summary>
-    ''' Sets all default fields of the screen instance.
+    ''' Copies variables from another screen.
     ''' </summary>
-    ''' <param name="Identification">The ID of the screen.</param>
-    ''' <param name="MouseVisible">Sets if the mouse cursor is visible on the screen.</param>
-    ''' <param name="CanBePaused">Sets if the PauseScreen can be opened by pressing the Escape key.</param>
-    ''' <param name="CanMuteMusic">Sets if the M key (default) can mute the music.</param>
-    ''' <param name="CanChat">Sets if the T key (default) can open the chat screen.</param>
-    ''' <param name="CanTakeScreenshot">Sets if the F2 key (default) can take a screenshot.</param>
-    ''' <param name="CanDrawDebug">Sets if the debug information can be drawn on this screen.</param>
-    ''' <param name="CanGoFullscreen">Sets if the F11 key (default) can sets the game to fullscreen (or back).</param>
-    Private Sub Setup(ByVal Identification As Identifications, ByVal MouseVisible As Boolean, ByVal CanBePaused As Boolean, ByVal CanMuteMusic As Boolean, ByVal CanChat As Boolean, ByVal CanTakeScreenshot As Boolean, ByVal CanDrawDebug As Boolean, ByVal CanGoFullscreen As Boolean)
-        Me.Identification = Identification
-        Me.MouseVisible = MouseVisible
-        Me.CanBePaused = CanBePaused
-        Me.CanChat = CanChat
-        Me.CanDrawDebug = CanDrawDebug
-        Me.CanGoFullscreen = CanGoFullscreen
-        Me.CanMuteMusic = CanMuteMusic
-        Me.CanTakeScreenshot = CanTakeScreenshot
+    ''' <param name="scr">The source screen.</param>
+    Protected Sub CopyFrom(ByVal scr As Screen)
+        _MouseVisible = scr._MouseVisible
+        _CanBePaused = scr._CanBePaused
+        _CanMuteMusic = scr._CanMuteMusic
+        _CanChat = scr._CanChat
+        _CanTakeScreenshot = scr._CanTakeScreenshot
+        _CanDrawDebug = scr._CanDrawDebug
+        _CanGoFullscreen = scr._CanGoFullscreen
     End Sub
 
     ''' <summary>
@@ -384,8 +266,9 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Returns if this screen instance is the currently active screen (set in the global Basic.CurrentScreen).
     ''' </summary>
+    ''' <returns></returns>
     Public Function IsCurrentScreen() As Boolean
-        If Core.CurrentScreen.Identification = Me.Identification Then ' If the screen stored in the CurrentScreen field has the same ID as this screen, return true.
+        If CurrentScreen.Identification = Identification Then 'If the screen stored in the CurrentScreen field has the same ID as this screen, return true.
             Return True
         Else
             Return False
@@ -412,21 +295,21 @@ Public MustInherit Class Screen
     ''' An event that is getting raised when the Escape button is getting pressed. The PauseScreen is getting brought up if the CanBePaused field is set to true.
     ''' </summary>
     Public Overridable Sub EscapePressed()
-        ' If the game can be paused on this screen, open the PauseScreen.
-        If Core.CurrentScreen.CanBePaused = True Then
-            Core.SetScreen(New PauseScreen(Core.CurrentScreen))
+        'If the game can be paused on this screen, open the PauseScreen.
+        If CurrentScreen.CanBePaused = True Then
+            SetScreen(New PauseScreen(CurrentScreen))
         End If
     End Sub
 
     ''' <summary>
-    ''' Draws Xbox controls on the bottom right of the screen.
+    ''' Draws XBOX controls on the bottom right of the screen.
     ''' </summary>
     ''' <param name="Descriptions">The button types and descriptions.</param>
     ''' <remarks>Calculates the position and calls DrawGamePadControls(Descriptions,Position)</remarks>
-    Friend Sub DrawGamePadControls(ByVal Descriptions As Dictionary(Of Microsoft.Xna.Framework.Input.Buttons, String))
-        Dim x As Integer = Core.windowSize.Width ' Store the X position at the start of the controls render.
+    Public Sub DrawGamePadControls(ByVal Descriptions As Dictionary(Of Buttons, String))
+        Dim x As Integer = windowSize.Width 'Store the x position of the start of the controls render.
 
-        ' Loop through the buttons and add to the X location:
+        'Loop through the buttons and add to the x location.
         For i = 0 To Descriptions.Count - 1
             Select Case Descriptions.Keys(i)
                 Case Buttons.A, Buttons.B, Buttons.X, Buttons.Y, Buttons.Start, Buttons.LeftStick, Buttons.RightStick, Buttons.LeftTrigger, Buttons.RightTrigger
@@ -435,33 +318,33 @@ Public MustInherit Class Screen
                     x -= 64 + 4
             End Select
 
-            ' Add to the X location for the length of the string and a separator:
+            'Add to the x location for the length of the string and a separator.
             x -= CInt(FontManager.MainFont.MeasureString(Descriptions.Values(i)).X) + 16
         Next
 
-        ' Finally, render the buttons:
-        DrawGamePadControls(Descriptions, New Vector2(x, Core.windowSize.Height - 40))
+        'Finally, render the buttons:
+        DrawGamePadControls(Descriptions, New Vector2(x, windowSize.Height - 40))
     End Sub
 
     ''' <summary>
-    ''' Generic void to render Xbox Gamepad controls on the screen.
+    ''' Generic void to render XBOX Gamepad controls on the screen.
     ''' </summary>
     ''' <param name="Descriptions">The button types and descriptions.</param>
     ''' <param name="Position">The position to draw the buttons.</param>
-    Friend Sub DrawGamePadControls(ByVal Descriptions As Dictionary(Of Microsoft.Xna.Framework.Input.Buttons, String), ByVal Position As Vector2)
-        ' Only if a Gamepad is connected and the screen is active, render the buttons:
-        If GamePad.GetState(PlayerIndex.One).IsConnected = True And Core.GameOptions.GamePadEnabled = True And Me.IsCurrentScreen() = True Then
-            ' Transform the position to integers and store the current drawing position:
+    Public Sub DrawGamePadControls(ByVal Descriptions As Dictionary(Of Buttons, String), ByVal Position As Vector2)
+        'Only if a Gamepad is connected and the screen is active, render the buttons:
+        If GamePad.GetState(PlayerIndex.One).IsConnected = True And Core.GameOptions.GamePadEnabled = True And IsCurrentScreen() = True Then
+            'Transform the position to integers and store the current drawing position:
             Dim x As Integer = CInt(Position.X)
             Dim y As Integer = CInt(Position.Y)
 
-            ' Loop through the button list:
+            'Loop through the button list:
             For i = 0 To Descriptions.Count - 1
-                Dim t As String = "GUI\GamePad\xboxController" ' Store the texture path.
-                Dim width As Integer = 32 ' Store the width of the image.
-                Dim height As Integer = 32 ' Store the height of the image.
+                Dim t As String = "GUI\GamePad\xboxController" 'Store the texture path.
+                Dim width As Integer = 32 'Store the width of the image.
+                Dim height As Integer = 32 'Store the height of the image.
 
-                ' Get the correct button image and size (currently, all buttons use the same size of 32x32 pixels).
+                'Get the correct button image and size (currently, all buttons use the same size of 32x32 pixels).
                 Select Case Descriptions.Keys(i)
                     Case Buttons.A
                         t &= "ButtonA"
@@ -487,38 +370,84 @@ Public MustInherit Class Screen
                         t &= "Start"
                 End Select
 
-                ' Draw the buttons (first, the "shadow" with a black color, then the real button):
-                Core.SpriteBatch.Draw(TextureManager.GetTexture(t), New Rectangle(x + 2, y + 2, width, height), Color.Black)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture(t), New Rectangle(x, y, width, height), Color.White)
+                'Draw the buttons (first, the "shadow" with a black color, then the real button).
+                SpriteBatch.Draw(TextureManager.GetTexture(t), New Rectangle(x + 2, y + 2, width, height), Color.Black)
+                SpriteBatch.Draw(TextureManager.GetTexture(t), New Rectangle(x, y, width, height), Color.White)
 
-                ' Add the button width and a little offset to the drawing position:
+                'Add the button width and a little offset to the drawing position:
                 x += width + 4
 
-                ' Draw the button description (again, with a shadow):
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x + 3, y + 7), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x, y + 4), Color.White)
+                'Draw the button description (again, with a shadow):
+                SpriteBatch.DrawString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x + 3, y + 7), Color.Black)
+                SpriteBatch.DrawString(FontManager.MainFont, Descriptions.Values(i), New Vector2(x, y + 4), Color.White)
 
-                ' Add the text width and the offset for the next button description to the drawing position:
+                'Add the text width and the offset for the next button description to the drawing position:
                 x += CInt(FontManager.MainFont.MeasureString(Descriptions.Values(i)).X) + 16
             Next
         End If
     End Sub
 
     ''' <summary>
+    ''' Renders fading gradients.
+    ''' </summary>
+    ''' <param name="alpha">The alpha to draw the gradients at.</param>
+    Protected Sub DrawGradients(ByVal alpha As Integer)
+        DrawGradients(alpha, Screens.UI.ColorProvider.IsGameJolt)
+    End Sub
+
+    Protected Sub DrawGradients(ByVal alpha As Integer, ByVal isGameJolt As Boolean)
+        Dim canDrawGradients As Boolean = True
+        Dim s As Screen = Me
+
+        While s.PreScreen IsNot Nothing And canDrawGradients = True
+            If s._IsOverlay = False Then
+                s = s.PreScreen
+                If s.IsDrawingGradients = True Then
+                    canDrawGradients = False
+                End If
+            Else
+                Exit While
+            End If
+        End While
+
+        If canDrawGradients = True Then
+            Dim c As Color = Screens.UI.ColorProvider.GradientColor(isGameJolt, 0)
+            Dim cA As Color = Screens.UI.ColorProvider.GradientColor(isGameJolt, alpha)
+
+            Canvas.DrawGradient(New Rectangle(0, 0, CInt(windowSize.Width), 200), cA, c, False, -1)
+            Canvas.DrawGradient(New Rectangle(0, CInt(windowSize.Height - 200), CInt(windowSize.Width), 200), c, cA, False, -1)
+        End If
+    End Sub
+
+    ''' <summary>
     ''' Returns the screen status of the current screen. Override this function to return a screen state.
     ''' </summary>
+    ''' <returns></returns>
     Public Overridable Function GetScreenStatus() As String
-        ' // Return the generic "not implemented" message:
-        Return "Screen state not implemented for screen class: " & Me.Identification.ToString()
+        '// Return the generic "not implemented" message:
+        Return "Screen state not implemented for screen class: " & Identification.ToString()
     End Function
 
     ''' <summary>
     ''' Returns the minimum size for the screen size to display a large interface before switching to the small size.
     ''' </summary>
+    ''' <returns></returns>
     ''' <remarks>The default size is 800x620 pixels.</remarks>
     Public Overridable Function GetScreenScaleMinimum() As Size
-        ' // Default size: 800x620 pixels.
+        '// Default size: 800x620 pixels.
         Return New Size(800, 620)
+    End Function
+
+    ''' <summary>
+    ''' Returns the spritebatch that should render a font.
+    ''' </summary>
+    ''' <returns></returns>
+    Protected Overridable Function GetFontRenderer() As SpriteBatch
+        If IsCurrentScreen() Then
+            Return FontRenderer
+        Else
+            Return SpriteBatch
+        End If
     End Function
 
 End Class

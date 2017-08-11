@@ -429,6 +429,7 @@
         Public Shared BagSelectIndex As Integer = 0
         Public Shared MenuIndex As Integer = 0
         Public Shared PokedexIndex As Integer = 0
+        Public Shared PokemonSummaryPageIndex As Integer = 0
         Public Shared PCBoxIndex As Integer = 0
         Public Shared StorageSystemCursorPosition As New Vector2(1, 0)
         Public Shared OptionScreenIndex As Integer = 0

@@ -18,7 +18,7 @@ Namespace Items.Medicine
                 Screen.TextBox.Show("Cannot use heal items.", {}, False, False)
                 Exit Sub
             End If
-            Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True))
+            Core.SetScreen(New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True))
         End Sub
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean

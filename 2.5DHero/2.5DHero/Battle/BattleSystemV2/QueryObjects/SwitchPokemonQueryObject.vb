@@ -109,7 +109,7 @@
 
             If Controls.Accept(True, True, True) = True Then
                 If _chooseIndex = 0 Then
-                    Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Me.ChoosePokemon, "Choose Pokémon to battle:", False))
+                    Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Me.ChoosePokemon, "Choose Pokémon to battle:", False))
                 Else
                     _ready = True
                 End If

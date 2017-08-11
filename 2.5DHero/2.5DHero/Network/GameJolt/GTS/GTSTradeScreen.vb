@@ -44,7 +44,7 @@
 
             If Controls.Accept(True, False) = True Then
                 If New Rectangle(180, 560, 32 * 5 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
-                    Core.SetScreen(New ChoosePokemonScreen(Me, Item.GetItemByID(5), AddressOf ChosePokemon, "Chose Pokémon to trade!", True))
+                    Core.SetScreen(New PartyScreen(Me, Item.GetItemByID(5), AddressOf ChosePokemon, "Chose Pokémon to trade!", True))
                 End If
                 If New Rectangle(180, 510, 32 * 5 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                     PokeIndex = -1

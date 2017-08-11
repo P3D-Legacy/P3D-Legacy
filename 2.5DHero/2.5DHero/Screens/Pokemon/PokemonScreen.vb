@@ -129,7 +129,7 @@
                 Case 1
                     Select Case ChooseBox.index
                         Case 0
-                            Core.SetScreen(New InventoryScreen(Me, {}, AddressOf GiveItem))
+                            Core.SetScreen(New NewInventoryScreen(Me, {}, AddressOf GiveItem))
                         Case 1
                             Me.TakeItem()
                         Case 2

@@ -235,6 +235,13 @@
     <Compile Include="Input\KeyboardInput.vb" />
     <Compile Include="Input\KeyCharConverter.vb" />
     <Compile Include="Input\MouseHandler.vb" />
+    <Compile Include="Input\UI\ColorProvider.vb" />
+    <Compile Include="Input\UI\Controls\Button.vb" />
+    <Compile Include="Input\UI\Controls\Control.vb" />
+    <Compile Include="Input\UI\Controls\ControlList.vb" />
+    <Compile Include="Input\UI\Controls\Textbox.vb" />
+    <Compile Include="Input\UI\MessageBox.vb" />
+    <Compile Include="Input\UI\SelectMenu.vb" />
     <Compile Include="Modules\Extensions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="Network\Chat.vb" />
@@ -1626,6 +1633,7 @@
     <Compile Include="Resources\FontContainer.vb" />
     <Compile Include="Resources\FontManager.vb" />
     <Compile Include="Resources\GameModeManager.vb" />
+    <Compile Include="Resources\GaussianBlur.vb" />
     <Compile Include="Resources\ModelManager.vb" />
     <Compile Include="Resources\Models\2D\BillModel.vb" />
     <Compile Include="Resources\Models\2D\CrossModel.vb" />
@@ -1661,11 +1669,13 @@
     <Compile Include="Screens\GUI\Canvas.vb" />
     <Compile Include="Screens\GUI\DonationScreen.vb" />
     <Compile Include="Screens\GUI\InputScreen.vb" />
+    <Compile Include="Screens\GUI\ISelectionScreen.vb" />
     <Compile Include="Screens\HistoryScreen.vb" />
     <Compile Include="Screens\Inventory\ApricornScreen.vb" />
     <Compile Include="Screens\Inventory\ChoosePokemonScreen.vb" />
     <Compile Include="Screens\Inventory\InventoryScreen.vb" />
     <Compile Include="Screens\Inventory\ItemDetailScreen.vb" />
+    <Compile Include="Screens\Inventory\NewInventoryScreen.vb" />
     <Compile Include="Screens\Inventory\PokegearScreen.vb" />
     <Compile Include="Screens\MainMenu\AddServerScreen.vb" />
     <Compile Include="Screens\MainMenu\ConnectScreen.vb" />
@@ -1681,6 +1691,8 @@
     <Compile Include="Screens\MapScreen.vb" />
     <Compile Include="Screens\MenuScreen.vb" />
     <Compile Include="Screens\NewGameScreen.vb" />
+    <Compile Include="Screens\NewMenuScreen.vb" />
+    <Compile Include="Screens\NewTrainerScreen.vb" />
     <Compile Include="Screens\OptionScreen.vb" />
     <Compile Include="Screens\PC\HallOfFameScreen.vb" />
     <Compile Include="Screens\PC\MailSystemScreen.vb" />
@@ -1695,9 +1707,11 @@
     <Compile Include="Screens\Pokemon\HatchEggScreen.vb" />
     <Compile Include="Screens\Pokemon\LearnAttackScreen.vb" />
     <Compile Include="Screens\Pokemon\NameObjectScreen.vb" />
+    <Compile Include="Screens\Pokemon\PartyScreen.vb" />
     <Compile Include="Screens\Pokemon\PokemonScreen.vb" />
     <Compile Include="Screens\Pokemon\PokemonScreenV2.vb" />
     <Compile Include="Screens\Pokemon\PokemonStatusScreen.vb" />
+    <Compile Include="Screens\Pokemon\SummaryScreen.vb" />
     <Compile Include="Screens\Pokemon\TeachMovesScreen.vb" />
     <Compile Include="Screens\SaveScreen.vb" />
     <Compile Include="Screens\Screen.vb" />

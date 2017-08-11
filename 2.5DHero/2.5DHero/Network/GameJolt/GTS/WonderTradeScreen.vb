@@ -202,8 +202,8 @@
                         If Me.OpenedSelect = True Then
                             Me.CloseScreen()
                         Else
-                            Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Me.SelectPokemonForTrade, "Choose Pokémon for Trade", True, True, False))
-                            CType(Core.CurrentScreen, ChoosePokemonScreen).CanChooseHMPokemon = False
+                            Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Me.SelectPokemonForTrade, "Choose Pokémon for Trade", True, True, False))
+                            CType(Core.CurrentScreen, PartyScreen).CanChooseHMPokemon = False
                             Me.OpenedSelect = True
                         End If
                     Else

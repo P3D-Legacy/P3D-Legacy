@@ -286,7 +286,7 @@
 
     Private Sub StartBattle()
         If Not Me.OwnTeam Is Nothing And Not OppTeam Is Nothing Then
-            Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf LeadPickedStart, "Choose your lead.", True, True, False, _pokemonList:=OwnTeam))
+            Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf LeadPickedStart, "Choose your lead.", True, True, False, _pokemonList:=OwnTeam))
         End If
     End Sub
 

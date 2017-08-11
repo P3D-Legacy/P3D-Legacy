@@ -166,7 +166,7 @@
 
                     Return ReturnBoolean(has)
                 Case "selected"
-                    Return ChoosePokemonScreen.Selected
+                    Return PartyScreen.Selected
                 Case "selectedmove"
                     Return ChooseAttackScreen.Selected
                 Case "hasegg"

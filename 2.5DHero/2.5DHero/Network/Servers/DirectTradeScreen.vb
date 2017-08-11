@@ -288,8 +288,8 @@
             Case 0
                 Me.StartTrade()
             Case 1
-                Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Me.SelectPokemonForTrade, "Choose Pokémon for Trade", True, False, False))
-                CType(Core.CurrentScreen, ChoosePokemonScreen).CanChooseHMPokemon = False
+                Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Me.SelectPokemonForTrade, "Choose Pokémon for Trade", True, False, False))
+                CType(Core.CurrentScreen, PartyScreen).CanChooseHMPokemon = False
             Case 2
                 Me.QuitTrade()
         End Select

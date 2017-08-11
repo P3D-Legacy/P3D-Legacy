@@ -13,7 +13,7 @@ Namespace Items
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 3000
 
         Public Overrides Sub Use()
-            Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True))
+            Core.SetScreen(New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True))
         End Sub
 
         ''' <summary>

@@ -210,8 +210,8 @@
                     Dim splits() As String = argument.Split(CChar("|"))
                     Script.SaveNPCTrade = splits
 
-                    Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Script.DoNPCTrade, "Choose trade Pokémon", True))
-                    CType(Core.CurrentScreen, ChoosePokemonScreen).ExitedSub = AddressOf Script.ExitedNPCTrade
+                    Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Script.DoNPCTrade, "Choose trade Pokémon", True))
+                    CType(Core.CurrentScreen, PartyScreen).ExitedSub = AddressOf Script.ExitedNPCTrade
 
                     CanContinue = False
                 Case "hide"
@@ -331,7 +331,7 @@
                         End If
                     End If
 
-                    Core.SetScreen(New ChoosePokemonScreen(Core.CurrentScreen, New Items.Balls.Pokeball, Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg))
+                    Core.SetScreen(New PartyScreen(Core.CurrentScreen, New Items.Balls.Pokeball, Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg))
 
                     CanContinue = False
                 Case "selectmove"

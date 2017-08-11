@@ -92,8 +92,8 @@
 
         Public Overrides Sub Use()
             SoundManager.PlaySound("PC\pc_logon", False)
-            SetScreen(New ChoosePokemonScreen(CurrentScreen, Me, AddressOf UseOnPokemon, "Teach " & Attack.Name, True))
-            CType(CurrentScreen, ChoosePokemonScreen).SetupLearnAttack(Attack, 1, Me)
+            SetScreen(New PartyScreen(CurrentScreen, Me, AddressOf UseOnPokemon, "Teach " & Attack.Name, True))
+            CType(CurrentScreen, PartyScreen).SetupLearnAttack(Attack, 1, Me)
         End Sub
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean

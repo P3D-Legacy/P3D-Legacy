@@ -716,8 +716,8 @@
                             Core.SetScreen(New SelectFriendScreen(Me))
                         End If
                         If New Rectangle(100, 300, 32 * 5 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
-                            Core.SetScreen(New ChoosePokemonScreen(Me, Item.GetItemByID(5), AddressOf ChosenPokemon, "Choose Pokémon to trade", True, True, False))
-                            CType(Core.CurrentScreen, ChoosePokemonScreen).CanChooseHMPokemon = False
+                            Core.SetScreen(New PartyScreen(Me, Item.GetItemByID(5), AddressOf ChosenPokemon, "Choose Pokémon to trade", True, True, False))
+                            CType(Core.CurrentScreen, PartyScreen).CanChooseHMPokemon = False
                         End If
                         If New Rectangle(700, 540, 32 * 3 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                             Me.GTSSetupScreen.loaded = False
