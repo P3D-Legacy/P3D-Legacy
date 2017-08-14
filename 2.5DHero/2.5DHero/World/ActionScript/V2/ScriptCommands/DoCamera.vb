@@ -13,19 +13,26 @@
             Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
             Dim doCameraUpdate As Boolean = True
 
+            Dim position As Vector3
+            If Core.CurrentScreen.Identification = Screen.Identifications.NewGameScreen Then
+                position = c.Position
+            Else
+                position = c.ThirdPersonOffset
+            End If
+
             Select Case command.ToLower()
                 Case "set"
-                    Dim x As Single = sng(argument.GetSplit(0).Replace("~", CStr(c.ThirdPersonOffset.X)).Replace(".", GameController.DecSeparator))
-                    Dim y As Single = sng(argument.GetSplit(1).Replace("~", CStr(c.ThirdPersonOffset.Y)).Replace(".", GameController.DecSeparator))
-                    Dim z As Single = sng(argument.GetSplit(2).Replace("~", CStr(c.ThirdPersonOffset.Z)).Replace(".", GameController.DecSeparator))
+                    Dim x As Single = sng(argument.GetSplit(0).Replace("~", CStr(position.X)).Replace(".", GameController.DecSeparator))
+                    Dim y As Single = sng(argument.GetSplit(1).Replace("~", CStr(position.Y)).Replace(".", GameController.DecSeparator))
+                    Dim z As Single = sng(argument.GetSplit(2).Replace("~", CStr(position.Z)).Replace(".", GameController.DecSeparator))
                     Dim yaw As Single = sng(argument.GetSplit(3).Replace(".", GameController.DecSeparator))
                     Dim pitch As Single = sng(argument.GetSplit(4).Replace(".", GameController.DecSeparator))
 
-                    c.ThirdPersonOffset = New Vector3(x, y, z)
+                    position = New Vector3(x, y, z)
                     c.Yaw = yaw
                     c.Pitch = pitch
                 Case "reset"
-                    c.ThirdPersonOffset = New Vector3(0.0F, 0.3F, 1.5F)
+                    position = New Vector3(0.0F, 0.3F, 1.5F)
                     If argument <> "" Then
                         doCameraUpdate = CBool(argument)
                     End If
@@ -34,27 +41,27 @@
 
                     c.Yaw = yaw
                 Case "setpitch"
-                    Dim pitch As Single = sng(argument.Replace(",", ".").Replace(".", GameController.DecSeparator))
+                    Dim pitch As Single = sng(argument.Replace("~", CStr(c.Pitch)).Replace(",", ".").Replace(".", GameController.DecSeparator))
 
                     c.Pitch = pitch
                 Case "setposition"
-                    Dim x As Single = sng(argument.GetSplit(0).Replace("~", CStr(c.ThirdPersonOffset.X)).Replace(".", GameController.DecSeparator))
-                    Dim y As Single = sng(argument.GetSplit(1).Replace("~", CStr(c.ThirdPersonOffset.Y)).Replace(".", GameController.DecSeparator))
-                    Dim z As Single = sng(argument.GetSplit(2).Replace("~", CStr(c.ThirdPersonOffset.Z)).Replace(".", GameController.DecSeparator))
+                    Dim x As Single = sng(argument.GetSplit(0).Replace("~", CStr(position.X)).Replace(".", GameController.DecSeparator))
+                    Dim y As Single = sng(argument.GetSplit(1).Replace("~", CStr(position.Y)).Replace(".", GameController.DecSeparator))
+                    Dim z As Single = sng(argument.GetSplit(2).Replace("~", CStr(position.Z)).Replace(".", GameController.DecSeparator))
 
-                    c.ThirdPersonOffset = New Vector3(x, y, z)
+                    position = New Vector3(x, y, z)
                 Case "setx"
-                    Dim x As Single = sng(argument.Replace("~", CStr(c.ThirdPersonOffset.X)).Replace(".", GameController.DecSeparator))
+                    Dim x As Single = sng(argument.Replace("~", CStr(position.X)).Replace(".", GameController.DecSeparator))
 
-                    c.ThirdPersonOffset.X = x
+                    position.X = x
                 Case "sety"
-                    Dim y As Single = sng(argument.Replace("~", CStr(c.ThirdPersonOffset.Y)).Replace(".", GameController.DecSeparator))
+                    Dim y As Single = sng(argument.Replace("~", CStr(position.Y)).Replace(".", GameController.DecSeparator))
 
-                    c.ThirdPersonOffset.Y = y
+                    position.Y = y
                 Case "setz"
-                    Dim z As Single = sng(argument.Replace("~", CStr(c.ThirdPersonOffset.Z)).Replace(".", GameController.DecSeparator))
+                    Dim z As Single = sng(argument.Replace("~", CStr(position.Z)).Replace(".", GameController.DecSeparator))
 
-                    c.ThirdPersonOffset.Z = z
+                    position.Z = z
                 Case "togglethirdperson"
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         c.SetThirdPerson(Not c.ThirdPerson, False)
@@ -131,6 +138,13 @@
                     Dim facing As Integer = Screen.Camera.GetPlayerFacingDirection()
                     c.Yaw = facing * MathHelper.PiOver2
             End Select
+
+
+            If Core.CurrentScreen.Identification = Screen.Identifications.NewGameScreen Then
+                c.Position = position
+            Else
+                c.ThirdPersonOffset = position
+            End If
 
             c.UpdateThirdPersonCamera()
             If doCameraUpdate = True Then

@@ -55,6 +55,10 @@
                     If doWait = False Then
                         IsReady = True
                     End If
+                Case "load"
+                    Screen.Level = New Level()
+                    Screen.Level.Load(argument)
+                    IsReady = True
                 Case "reload"
                     Screen.Level.WarpData.WarpDestination = Screen.Level.LevelFile
                     Screen.Level.WarpData.WarpPosition = Screen.Camera.Position

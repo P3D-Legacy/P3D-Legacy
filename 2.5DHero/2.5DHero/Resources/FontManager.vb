@@ -128,7 +128,7 @@ Public Class FontManager
                 Return loadedGameJoltFont
             Else
                 hasLoadedGameJoltFont = True
-                loadedGameJoltFont = Content.Load(Of SpriteFont)("SharedResources\Fonts\GameJolt")
+                loadedGameJoltFont = Content.Load(Of SpriteFont)("Fonts\BMP\GameJolt")
                 loadedGameJoltFont.DefaultCharacter = " "c
                 Return loadedGameJoltFont
             End If

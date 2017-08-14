@@ -73,7 +73,7 @@
         If Me.MyMode = Modes.Disconnect Then
             If Controls.Accept(True, True, True) = True Or Controls.Dismiss(True, True, True) = True Then
                 If quitToMenu = True Then
-                    Core.SetScreen(New MainMenuScreen())
+                    Core.SetScreen(New PressStartScreen())
                 Else
                     Core.SetScreen(Me.PreScreen)
                 End If
@@ -86,7 +86,7 @@
             If Controls.Dismiss() = True Then
                 Connected = False
                 Core.ServersManager.ServerConnection.Disconnect()
-                Core.SetScreen(New MainMenuScreen())
+                Core.SetScreen(New PressStartScreen())
             End If
         End If
     End Sub

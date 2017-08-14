@@ -12,15 +12,21 @@
 
             Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
 
+            Dim position As Vector3
+            If Core.CurrentScreen.Identification = Screen.Identifications.NewGameScreen Then
+                position = c.Position
+            Else
+                position = c.ThirdPersonOffset
+            End If
             Select Case command.ToLower()
                 Case "isfixed"
                     Return ReturnBoolean(c.Fixed)
                 Case "x"
-                    Return c.ThirdPersonOffset.X.ToString().ReplaceDecSeparator()
+                    Return position.X.ToString().ReplaceDecSeparator()
                 Case "y"
-                    Return c.ThirdPersonOffset.Y.ToString().ReplaceDecSeparator()
+                    Return position.Y.ToString().ReplaceDecSeparator()
                 Case "z"
-                    Return c.ThirdPersonOffset.Z.ToString().ReplaceDecSeparator()
+                    Return position.Z.ToString().ReplaceDecSeparator()
                 Case "yaw"
                     Return c.Yaw.ToString().ReplaceDecSeparator()
                 Case "pitch"

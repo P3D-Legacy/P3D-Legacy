@@ -61,7 +61,7 @@ Friend Class SplashScreen
                 If MapPreviewScreen.MapViewMode = True Then
                     Core.SetScreen(New MapPreviewScreen())
                 Else
-                    Core.SetScreen(New MainMenuScreen())
+                    Core.SetScreen(New PressStartScreen())
                 End If
                 ' Core.SetScreen(New TransitionScreen(Me, New IntroScreen(), Color.Black, False))
             End If

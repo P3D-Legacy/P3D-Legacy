@@ -244,7 +244,8 @@ Public Class JoinServerScreen
         End If
 
         If Controls.Dismiss() = True Then
-            CType(Me.PreScreen, MainMenuScreen).menuIndex = 0
+            ''CType(Me.PreScreen, NewMainMenuScreen)._menuIndex = 0
+            Core.Player.Unload()
             Core.SetScreen(Me.PreScreen)
         End If
 

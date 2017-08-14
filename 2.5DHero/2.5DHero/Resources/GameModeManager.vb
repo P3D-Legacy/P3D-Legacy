@@ -67,6 +67,12 @@ Public Class GameModeManager
         End Get
     End Property
 
+    Public Shared ReadOnly Property GetAllGameModes() As GameMode()
+        Get
+            Return GameModeList.ToArray()
+        End Get
+    End Property
+
     ''' <summary>
     ''' Checks if a GameMode exists.
     ''' </summary>
@@ -548,7 +554,7 @@ Public Class GameMode
         Dim SkinNames As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
 
         Dim gameMode As New GameMode("Pokemon 3D", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\maps\", "\Scripts\", "\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule),
-                                     "yourroom.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", SkinColors, SkinFiles, SkinNames)
+                                     "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", SkinColors, SkinFiles, SkinNames)
 
         Dim gameRules As New List(Of GameRule)
         gameRules.Add(New GameRule("MaxLevel", "100"))

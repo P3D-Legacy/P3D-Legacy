@@ -238,6 +238,9 @@
                     Core.Player.SaveGame(False)
 
                     IsReady = True
+                Case "setname"
+                    Core.Player.Name = argument
+                    IsReady = True
                 Case "setrivalname"
                     Core.Player.RivalName = argument
                     IsReady = True

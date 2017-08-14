@@ -61,6 +61,9 @@
     <Import Include="Microsoft.Xna.Framework.Audio" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="maps\newgame\intro.dat" />
+    <None Include="maps\newgame\intro0.dat" />
+    <None Include="Scripts\newgame\intro.dat" />
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -1679,9 +1682,11 @@
     <Compile Include="Screens\MainMenu\IntroScreen.vb" />
     <Compile Include="Screens\MainMenu\JoinServerScreen.vb" />
     <Compile Include="Screens\MainMenu\MainMenuCamera.vb" />
-    <Compile Include="Screens\MainMenu\MainMenuScreen.vb" />
+    <Compile Include="Screens\MainMenu\NewGameCamera.vb" />
+    <Compile Include="Screens\MainMenu\NewNewGameScreen.vb" />
     <Compile Include="Screens\MainMenu\OfflineGameWarningScreen.vb" />
     <Compile Include="Screens\MainMenu\PauseScreen.vb" />
+    <Compile Include="Screens\MainMenu\PressStartScreen.vb" />
     <Compile Include="Screens\MainMenu\SplashScreen.vb" />
     <Compile Include="Screens\MapPreview\MapPreviewCamera.vb" />
     <Compile Include="Screens\MapPreview\MapPreviewScreen.vb" />
@@ -1729,6 +1734,7 @@
     <Compile Include="World\ActionScript\V2\ScriptCommands\DoEntity.vb" />
     <Compile Include="World\ActionScript\V2\ScriptCommands\DoEnvironment.vb" />
     <Compile Include="World\ActionScript\V2\ScriptCommands\DoItem.vb" />
+    <Compile Include="World\ActionScript\V2\ScriptCommands\DoSystem.vb" />
     <Compile Include="World\ActionScript\V2\ScriptCommands\DoLevel.vb" />
     <Compile Include="World\ActionScript\V2\ScriptCommands\DoMusic.vb" />
     <Compile Include="World\ActionScript\V2\ScriptCommands\DoNPC.vb" />
@@ -1746,6 +1752,7 @@
     <Compile Include="World\ActionScript\V2\ScriptCommands\DoText.vb" />
     <Compile Include="World\ActionScript\V2\ScriptCommands\DoTitle.vb" />
     <Compile Include="World\ActionScript\V2\ScriptComparer.vb" />
+    <Compile Include="World\ActionScript\V2\ScriptConstructs\DoScreen.vb" />
     <Compile Include="World\ActionScript\V2\ScriptConstructs\DoBattle.vb" />
     <Compile Include="World\ActionScript\V2\ScriptConstructs\DoCamera.vb" />
     <Compile Include="World\ActionScript\V2\ScriptConstructs\DoDaycare.vb" />
@@ -1780,6 +1787,7 @@
     <Compile Include="World\Terrain.vb" />
     <Compile Include="World\World.vb" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Condition=" '$(Configuration)' != 'DebugNoContent' Or '$(Configuration)' != 'ReleaseNoContent' " Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 </Project>

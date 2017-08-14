@@ -135,6 +135,8 @@ Namespace ScriptVersion2
                     DoRadio(subClass)
                 Case "help"
                     DoHelp(subClass)
+                Case "system"
+                    DoSystem(subClass)
                 Case "title"
                     DoTitle(subClass)
                 Case Else

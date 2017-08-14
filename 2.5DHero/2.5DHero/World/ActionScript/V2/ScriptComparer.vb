@@ -304,6 +304,8 @@ Namespace ScriptVersion2
                     Return DoCamera(subClass)
                 Case "filesystem"
                     Return DoFileSystem(subClass)
+                Case "screen"
+                    Return DoScreen(subClass)
             End Select
             Return DefaultNull
         End Function

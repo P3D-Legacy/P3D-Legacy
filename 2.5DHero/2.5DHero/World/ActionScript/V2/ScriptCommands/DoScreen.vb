@@ -222,6 +222,13 @@
                     IsReady = True
 
                     CanContinue = False
+                Case "skinselection"
+                    Dim skins = argument.Split(","c)
+                    If Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin <> "" Then
+                        IsReady = True
+                    Else
+                        SetScreen(New Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen(CurrentScreen, skins))
+                    End If
                 Case Else
                     IsReady = True
             End Select

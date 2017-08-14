@@ -258,10 +258,11 @@
         End If
         Chat.ClearChat()
         If Core.Player.loadedSave = True And Me.canCreateAutosave = True Then
-            Core.Player.SaveGame(True)
+            'Core.Player.SaveGame(True)
+            Core.Player.SaveGame(False)
         End If
         ScriptStorage.Clear()
-        Core.SetScreen(New MainMenuScreen())
+        Core.SetScreen(New PressStartScreen())
         Core.Player.loadedSave = False
     End Sub
 
