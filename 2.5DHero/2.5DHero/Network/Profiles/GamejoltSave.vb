@@ -920,7 +920,7 @@ Namespace GameJolt
                 "Money|3000" & vbNewLine &
                 "Badges|0" & vbNewLine &
                 "Gender|Male" & vbNewLine &
-                "PlayTime|0,0,0" & vbNewLine &
+                "PlayTime|0,0,0,0" & vbNewLine &
                 "OT|" & ot & vbNewLine &
                 "Points|0" & vbNewLine &
                 "hasPokedex|0" & vbNewLine &
