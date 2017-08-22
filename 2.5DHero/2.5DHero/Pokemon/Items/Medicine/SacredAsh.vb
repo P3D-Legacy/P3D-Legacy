@@ -3,7 +3,7 @@ Namespace Items.Medicine
     <Item(156, "Sacred Ash")>
     Public Class SacredAsh
 
-        Inherits Item
+        Inherits MedicineItem
 
         Public Overrides ReadOnly Property Description As String = "It revives all fainted Pokémon. In doing so, it also fully restores their HP."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200

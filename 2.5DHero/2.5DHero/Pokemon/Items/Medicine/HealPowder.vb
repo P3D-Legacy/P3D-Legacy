@@ -3,7 +3,7 @@ Namespace Items.Medicine
     <Item(123, "Heal Powder")>
     Public Class HealPowder
 
-        Inherits Item
+        Inherits MedicineItem
 
         Public Overrides ReadOnly Property Description As String = "A very bitter medicine powder. When consumed, it heals all of a Pokémon's status conditions."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 450

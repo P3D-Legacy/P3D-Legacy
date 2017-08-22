@@ -3,7 +3,7 @@ Namespace Items.Medicine
     <Item(32, "Rare Candy")>
     Public Class RareCandy
 
-        Inherits Item
+        Inherits MedicineItem
 
         Public Overrides ReadOnly Property Description As String = "A candy that is packed with energy. When consumed, it will instantly raise the level of a single Pokémon by one."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 4800

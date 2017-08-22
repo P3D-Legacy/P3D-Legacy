@@ -3,7 +3,7 @@ Namespace Items.Medicine
     <Item(40, "Max Revive")>
     Public Class MaxRevive
 
-        Inherits Item
+        Inherits MedicineItem
 
         Public Overrides ReadOnly Property IsHealingItem As Boolean = True
         Public Overrides ReadOnly Property Description As String = "A medicine that can revive fainted Pokémon. It also fully restores a fainted Pokémon's maximum HP."

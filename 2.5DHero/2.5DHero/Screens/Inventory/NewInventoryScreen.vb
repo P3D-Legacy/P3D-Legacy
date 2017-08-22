@@ -143,7 +143,6 @@ Public Class NewInventoryScreen
         ''DEBUG: Add all items in the game to the inventory:
         'For i = 1 To 2500
         '    Dim cItem As Item = Item.GetItemByID(i)
-
         '    If Not cItem Is Nothing Then
         '        Core.Player.Inventory.AddItem(cItem.ID, 1)
         '    End If
@@ -313,8 +312,9 @@ Public Class NewInventoryScreen
                         Dim fontWidth As Integer = CInt(FontManager.MiniFont.MeasureString(cItem.Name).X)
 
                         itemBatch.DrawString(FontManager.MiniFont, cItem.Name, itemLoc + New Vector2(48 - fontWidth / 2.0F, 51), New Color(255, 255, 255, itemPanelAlpha))
-
-                        itemBatch.DrawString(FontManager.MiniFont, "x" & _items(i + (PageIndex * 10)).Amount.ToString(), itemLoc + New Vector2(84, 26), New Color(40, 40, 40, itemPanelAlpha))
+                        If _tabIndex <> 7 Then
+                            itemBatch.DrawString(FontManager.MiniFont, "x" & _items(i + (PageIndex * 10)).Amount.ToString(), itemLoc + New Vector2(84, 26), New Color(40, 40, 40, itemPanelAlpha))
+                        End If
                     End If
                 End If
             Next
@@ -644,7 +644,7 @@ Public Class NewInventoryScreen
                 End If
             End If
         End If
-        If Controls.Up(True, True, True, True, True, True) Then
+        If Controls.Up(True, True, False, True, True, True) Then
             ItemIndex -= 1
             If ItemIndex < 0 And PageIndex > 0 Then
                 ItemIndex += 10
@@ -655,7 +655,7 @@ Public Class NewInventoryScreen
                 ItemIndex = 0
             End If
         End If
-        If Controls.Down(True, True, True, True, True, True) Then
+        If Controls.Down(True, True, False, True, True, True) Then
             If ItemIndex + 1 + (PageIndex * 10) < _items.Length Then
                 ItemIndex += 1
                 If ItemIndex > 9 Then
@@ -784,6 +784,11 @@ Public Class NewInventoryScreen
             End If
 
             LoadItems()
+            If ItemIndex + PageIndex * 10 > _items.Count - 1 Then
+                ItemIndex = 0
+                PageIndex = 0
+                CloseInfoScreen()
+            End If
         Else
             'JSON Stuff
             'ShowMessage(_translation.MESSAGE_EGG_ERROR)
@@ -827,6 +832,11 @@ Public Class NewInventoryScreen
     ''' </summary>
     Private Sub LoadItems()
         _items = Core.Player.Inventory.Where(Function(x) Item.GetItemByID(x.ItemID).ItemType = _visibleItemTypes(_tabIndex)).ToArray()
+        If _tabIndex = 4 Then 'TM/HM
+            _items = (From i In _items Order By Item.GetItemByID(i.ItemID).SortValue Ascending).ToArray()
+        Else
+            _items = (From i In _items Order By Item.GetItemByID(i.ItemID).Name Ascending).ToArray()
+        End If
     End Sub
 
     ''' <summary>

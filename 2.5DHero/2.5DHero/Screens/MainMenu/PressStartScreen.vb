@@ -641,7 +641,7 @@ Public Class NewMainMenuScreen
                                 _fontSize -= 0.01F
                             End While
                         Case "badges"
-                            If content.Length > 0 Then
+                            If content.Length > 0 AndAlso content <> "0" Then
                                 _badges = content.Split(","c).Length
                             Else
                                 _badges = 0
@@ -748,7 +748,7 @@ Public Class NewMainMenuScreen
                 If _isGameJolt And _loaded = False And _isLoading = False Then
                     _isLoading = True
 
-                    GameJoltSave.DownloadSave(GameJolt.API.gameJoltId, True)
+                    GameJoltSave.DownloadSave(GameJolt.LogInScreen.LoadedGameJoltID, True)
                 ElseIf _isGameJolt And _loaded = False And _isLoading Then
                     If GameJoltSave.DownloadFinished Then
                         _loaded = True

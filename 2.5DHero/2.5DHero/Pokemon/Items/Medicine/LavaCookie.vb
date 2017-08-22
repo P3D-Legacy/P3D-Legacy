@@ -3,7 +3,7 @@ Namespace Items.Medicine
     <Item(7, "Lava Cookie")>
     Public Class LavaCookie
 
-        Inherits Item
+        Inherits MedicineItem
 
         Public Overrides ReadOnly Property Description As String = "Lavaridge Town's local specialty. It can be used once to heal all the status conditions of a Pokemon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200

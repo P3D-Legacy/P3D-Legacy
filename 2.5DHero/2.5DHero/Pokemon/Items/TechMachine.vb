@@ -35,7 +35,7 @@
                 _CanBeTossed = False
 
                 'Sets the sortvalue to something very low so the HMs will always be in first place:
-                _SortValue = -100000 + ID
+                _SortValue = -100000 + CInt(Name.Remove(0, 3)) 'Because the ID order for HMs is fucked up
             Else
                 _SortValue = ID
             End If

@@ -3,7 +3,7 @@ Namespace Items.Medicine
     <Item(63, "Ether")>
     Public Class Ether
 
-        Inherits Item
+        Inherits MedicineItem
 
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1200
         Public Overrides ReadOnly Property Description As String = "This medicine can restore 10 PP to a single selected move that has been learned by a Pokémon."

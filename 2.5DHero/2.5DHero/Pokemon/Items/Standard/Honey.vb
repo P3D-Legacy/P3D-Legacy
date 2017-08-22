@@ -5,7 +5,7 @@ Namespace Items.Plants
 
         Inherits Item
 
-        Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Plants
+        Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Standard
         Public Overrides ReadOnly Property Description As String = "Honey produced by a Pokémon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False

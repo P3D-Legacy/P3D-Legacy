@@ -204,11 +204,21 @@
         _spriteBatch.Draw(nextSprite, New Rectangle(570, 310, 32, 32), New Rectangle(0, 64, 32, 32), Color.White)
 
         Dim value = hasPointsThisLevel / totalNeedPoints * 310
+
+        If currentLevel >= 100 Then
+            value = 310
+            needPoints = 0
+        End If
         Canvas.DrawRectangle(_spriteBatch, New Rectangle(260, 312, 310, 32), New Color(0, 0, 0, 180))
         Canvas.DrawRectangle(_spriteBatch, New Rectangle(260, 316, CInt(value), 24), New Color(255, 165, 0))
         Canvas.DrawRectangle(_spriteBatch, New Rectangle(260, 316, CInt(value), 8), New Color(255, 203, 108))
 
-        Dim rankStr = "Rank: " & currentLevel + 1
+        Dim nxtLvl As Integer = currentLevel + 1
+        If currentLevel = 100 Then
+            nxtLvl = 100
+        End If
+        Dim rankStr = "Rank: " & nxtLvl
+
         _textBatch.DrawString(FontManager.MiniFont, rankStr, New Vector2(600 - FontManager.MiniFont.MeasureString(rankStr).X.ToInteger(), 290), Color.Black)
 
         If needPoints = 1 Then
@@ -232,8 +242,8 @@
     Public Overrides Sub Update()
         If _isIntro Then
             If _rotation < 0.12F Then
-                _rotation = MathHelper.Lerp(_rotation, 0.12F, 0.2F)
-                _introY = MathHelper.Lerp(_introY, 0, 0.2F)
+                _rotation = MathHelper.Lerp(_rotation, 0.12F, 0.1F)
+                _introY = MathHelper.Lerp(_introY, 0, 0.1F)
                 If _rotation + 0.01F >= 0.12F Then
                     _isIntro = False
                 End If

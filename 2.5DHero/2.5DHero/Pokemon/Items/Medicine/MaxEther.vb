@@ -3,7 +3,7 @@ Namespace Items.Medicine
     <Item(64, "Max Ether")>
     Public Class MaxEther
 
-        Inherits Item
+        Inherits MedicineItem
 
         Public Overrides ReadOnly Property Description As String = "This medicine can fully restore the PP of a single selected move that has been learned by a Pokémon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 2000

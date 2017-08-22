@@ -3,7 +3,7 @@ Namespace Items.Medicine
     <Item(38, "Full Heal")>
     Public Class FullHeal
 
-        Inherits Item
+        Inherits MedicineItem
 
         Public Overrides ReadOnly Property Description As String = "A spray-type medicine that is broadly effective. It can be used once to heal all the status conditions of a Pokémon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 600
