@@ -33,6 +33,10 @@ Public Class NewInventoryScreen
     Private _itemindex As Integer() = {0, 0, 0, 0, 0, 0, 0, 0}
     Private _pageIndex As Integer() = {0, 0, 0, 0, 0, 0, 0, 0}
 
+    'Shows amount window if tossing item when true
+    Private _tossingItems As Boolean = False
+    Private _tossValue As Integer = 1
+
     ''' <summary>
     ''' The item index of the current tab and page:
     ''' </summary>
@@ -188,6 +192,9 @@ Public Class NewInventoryScreen
 
         PokemonImageView.Draw()
         TextBox.Draw()
+        ChooseBox.Draw()
+
+        DrawAmount()
     End Sub
 
     ''' <summary>
@@ -426,6 +433,25 @@ Public Class NewInventoryScreen
     End Sub
 
     ''' <summary>
+    ''' Draws the amount of items to be tossed.
+    ''' </summary>
+    Private Sub DrawAmount()
+        If _tossingItems Then
+            Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
+
+            Dim CanvasTexture As Texture2D
+            CanvasTexture = TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48))
+
+            Dim trashText As String = _tossValue & "/" & Core.Player.Inventory.GetItemAmount(cItem.ID)
+            Dim offsetX As Integer = 100
+            Dim offsetY As Integer = Core.windowSize.Height - 390
+
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) + 180 + offSetX, 240 + offSetY, 128, 64))
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, trashText, New Vector2(CInt(Core.windowSize.Width / 2) - (FontManager.InGameFont.MeasureString(trashText).X / 2) + 256 + offSetX, 276 + offSetY), Color.Black)
+        End If
+    End Sub
+
+    ''' <summary>
     ''' Determines the x-offset of an item based on the <see cref="_itemColumnLeft"/> value.
     ''' </summary>
     Private Function ComputeXOffset(ByVal itemPositionId As Integer) As Integer
@@ -559,6 +585,30 @@ Public Class NewInventoryScreen
             End If
 
             UpdateInfoAnimation()
+        End If
+
+        'Update the toss amount indicator:
+        If _tossingItems Then
+            Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
+            If Controls.Right(True, True, True, True) Then
+                _tossValue += 1
+            End If
+            If Controls.Left(True, True, True, True) Then
+                _tossValue -= 1
+            End If
+
+            _tossValue = CInt(MathHelper.Clamp(_tossValue, 1, Core.Player.Inventory.GetItemAmount(cItem.ID)))
+
+            If Not TextBox.Showing Then
+                If Controls.Accept Then
+                    Core.Player.Inventory.RemoveItem(cItem.ID, _tossValue)
+                    LoadItems()
+                    _tossingItems = False
+                ElseIf Controls.Dismiss Then
+                    _tossingItems = False
+                End If
+                _tossValue = 1
+            End If
         End If
     End Sub
 
@@ -742,7 +792,7 @@ Public Class NewInventoryScreen
 
                     Core.SetScreen(selScreen)
                 Case INFO_ITEM_OPTION_TOSS
-
+                    TossItem(cItem)
                 Case INFO_ITEM_OPTION_SELECT
                     FireSelectionEvent(cItem.ID)
                     CloseInfoScreen()
@@ -751,6 +801,17 @@ Public Class NewInventoryScreen
         End If
     End Sub
 
+    Private Sub TossItem(ByVal cItem As Item)
+        Dim text As String = "Are you sure you want to toss~this item?%Yes|No%"
+        TextBox.Show(text, AddressOf Me.TossManyItems, False, False, TextBox.DefaultColor)
+    End Sub
+
+    Private Sub TossManyItems(ByVal result As Integer)
+        If result = 0 Then
+            TextBox.Show("Select the amount to toss.", {})
+            _tossingItems = True
+        End If
+    End Sub
     ''' <summary>
     ''' A handler method to convert the incoming object array.
     ''' </summary>
