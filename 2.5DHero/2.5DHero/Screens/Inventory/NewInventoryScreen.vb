@@ -37,6 +37,13 @@ Public Class NewInventoryScreen
     Private _tossingItems As Boolean = False
     Private _tossValue As Integer = 1
 
+    'Stuff related to blurred PreScreens
+    Private _preScreenTexture As RenderTarget2D
+    Private _preScreenTarget As RenderTarget2D
+    Private _blurScreens As Identifications() = {Identifications.BattleScreen,
+                                                 Identifications.OverworldScreen,
+                                                 Identifications.MailSystemScreen}
+
     ''' <summary>
     ''' The item index of the current tab and page:
     ''' </summary>
@@ -126,6 +133,9 @@ Public Class NewInventoryScreen
 
     Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages As Integer(), ByVal StartPageIndex As Integer, ByVal DoStuff As DoStuff)
 
+        _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height)
+        _blur = New Resources.GaussianEffect(windowSize.Width, windowSize.Height)
+
         _tabIndex = StartPageIndex
         Me.AllowedPages = AllowedPages
         ReturnItem = DoStuff
@@ -181,8 +191,11 @@ Public Class NewInventoryScreen
     End Sub
 
     Public Overrides Sub Draw()
-        PreScreen.Draw()
-
+        If _blurScreens.Contains(PreScreen.Identification) Then
+            DrawPrescreen()
+        Else
+            PreScreen.Draw()
+        End If
         DrawGradients(CInt(255 * _interfaceFade))
 
         DrawTabs()
@@ -195,6 +208,32 @@ Public Class NewInventoryScreen
         ChooseBox.Draw()
 
         DrawAmount()
+    End Sub
+
+    Private _blur As Resources.GaussianEffect
+
+    Private Sub DrawPrescreen()
+        If _preScreenTexture Is Nothing OrElse _preScreenTexture.IsContentLost Then
+            SpriteBatch.EndBatch()
+
+            Dim target As RenderTarget2D = _preScreenTarget
+            GraphicsDevice.SetRenderTarget(target)
+            GraphicsDevice.Clear(BackgroundColor)
+
+            SpriteBatch.BeginBatch()
+
+            PreScreen.Draw()
+
+            SpriteBatch.EndBatch()
+
+            GraphicsDevice.SetRenderTarget(Nothing)
+
+            SpriteBatch.BeginBatch()
+
+            _preScreenTexture = target
+        End If
+
+        SpriteBatch.Draw(_blur.Perform(_preScreenTexture), windowSize, Color.White)
     End Sub
 
     ''' <summary>

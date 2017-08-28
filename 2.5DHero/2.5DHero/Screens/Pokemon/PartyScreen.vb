@@ -74,7 +74,22 @@ Public Class PartyScreen
     Public LearnType As Integer = 0
     Dim moveLearnArg As Object = Nothing
 
+    'Stuff related to blurred PreScreens
+    Private _preScreenTexture As RenderTarget2D
+    Private _preScreenTarget As RenderTarget2D
+    Private _blurScreens As Identifications() = {Identifications.BattleScreen,
+                                                 Identifications.OverworldScreen,
+                                                 Identifications.DirectTradeScreen,
+                                                 Identifications.WonderTradeScreen,
+                                                 Identifications.GTSSetupScreen,
+                                                 Identifications.GTSTradeScreen,
+                                                 Identifications.PVPLobbyScreen}
+
     Public Sub New(ByVal currentScreen As Screen, ByVal Item As Item, ByVal ChoosePokemon As DoStuff, ByVal Title As String, ByVal canExit As Boolean, ByVal canChooseFainted As Boolean, ByVal canChooseEgg As Boolean, Optional ByVal _pokemonList As List(Of Pokemon) = Nothing, Optional ByVal ChooseMode As Boolean = True)
+
+        _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height)
+        _blur = New Resources.GaussianEffect(windowSize.Width, windowSize.Height)
+
         Me.Item = Item
         Me.POKEMON_TITLE = Title
         Me.CanExit = canExit
@@ -146,7 +161,11 @@ Public Class PartyScreen
     End Sub
 
     Public Overrides Sub Draw()
-        PreScreen.Draw()
+        If _blurScreens.Contains(PreScreen.Identification) Then
+            DrawPrescreen()
+        Else
+            PreScreen.Draw()
+        End If
 
         DrawGradients(CInt(255 * _interfaceFade))
 
@@ -167,6 +186,34 @@ Public Class PartyScreen
             SpriteBatch.DrawString(FontManager.ChatFont, text, New Vector2(CSng(Core.windowSize.Width / 2 - size.X / 2), CSng(Core.windowSize.Height - 150 - size.Y / 2)), New Color(255, 255, 255, CInt(255 * textFade * _interfaceFade)))
         End If
     End Sub
+
+
+    Private _blur As Resources.GaussianEffect
+
+    Private Sub DrawPrescreen()
+        If _preScreenTexture Is Nothing OrElse _preScreenTexture.IsContentLost Then
+            SpriteBatch.EndBatch()
+
+            Dim target As RenderTarget2D = _preScreenTarget
+            GraphicsDevice.SetRenderTarget(target)
+            GraphicsDevice.Clear(BackgroundColor)
+
+            SpriteBatch.BeginBatch()
+
+            PreScreen.Draw()
+
+            SpriteBatch.EndBatch()
+
+            GraphicsDevice.SetRenderTarget(Nothing)
+
+            SpriteBatch.BeginBatch()
+
+            _preScreenTexture = target
+        End If
+
+        SpriteBatch.Draw(_blur.Perform(_preScreenTexture), windowSize, Color.White)
+    End Sub
+
 
     Private Sub DrawBackground()
         Dim mainBackgroundColor As Color = Color.White

@@ -1674,7 +1674,6 @@
     <Compile Include="Screens\GUI\ISelectionScreen.vb" />
     <Compile Include="Screens\HistoryScreen.vb" />
     <Compile Include="Screens\Inventory\ApricornScreen.vb" />
-    <Compile Include="Screens\Inventory\ItemDetailScreen.vb" />
     <Compile Include="Screens\Inventory\NewInventoryScreen.vb" />
     <Compile Include="Screens\Inventory\PokegearScreen.vb" />
     <Compile Include="Screens\MainMenu\AddServerScreen.vb" />
