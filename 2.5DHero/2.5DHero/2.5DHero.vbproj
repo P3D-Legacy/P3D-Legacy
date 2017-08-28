@@ -1136,7 +1136,7 @@
     <Compile Include="Pokemon\Items\KeyItems\GSBall.vb" />
     <Compile Include="Pokemon\Items\KeyItems\ItemFinder.vb" />
     <Compile Include="Pokemon\Items\KeyItems\KeyItem.vb" />
-    <Compile Include="Pokemon\Items\KeyItems\AncientFragment.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\AncientShard.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LostItem.vb" />
     <Compile Include="Pokemon\Items\KeyItems\MachinePart.vb" />
     <Compile Include="Pokemon\Items\KeyItems\MegaBracelet.vb" />
