@@ -16,11 +16,11 @@ Namespace Items.XItems
             Dim foundBattleScreen As Boolean = True
             Dim s As Screen = Core.CurrentScreen
             While s.Identification <> Screen.Identifications.BattleScreen
-                s = s.PreScreen
                 If s.PreScreen Is Nothing Then
                     foundBattleScreen = False
                     Exit While
                 End If
+                s = s.PreScreen
             End While
 
             If foundBattleScreen = True Then
