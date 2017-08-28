@@ -30,6 +30,9 @@
     Dim menuItems As New List(Of String)
     Dim texture As Texture2D = Nothing
 
+    Private Shared _oppGameVersion As String = ""
+    Private _startNow As Boolean = False
+
     Public Sub New(ByVal currentScreen As Screen, ByVal connectPlayerID As Integer, ByVal isHost As Boolean)
         Me.PreScreen = currentScreen
         Me.Identification = Identifications.PVPLobbyScreen
@@ -98,9 +101,15 @@
             Case ScreenStates.BattleResults
                 Me.DrawBattleResults()
         End Select
+        TextBox.Draw()
     End Sub
 
     Public Overrides Sub Update()
+        If TextBox.Showing Then
+            TextBox.Update()
+            Exit Sub
+        End If
+
         If ScreenState = ScreenStates.Idle Then
             If ConnectScreen.Connected = True Then
                 Dim partnerOnServer As Boolean = False
@@ -234,6 +243,9 @@
             If StartBattleRemote = True Then
                 StartBattleRemote = False
                 InitializeBattle()
+            ElseIf _startNow Then
+                _startNow = False
+                InitializeBattle()
             Else
                 If Controls.Up(True, True, True, True, True, True) = True Then
                     Me.Cursor -= 1
@@ -300,9 +312,13 @@
     Private Sub LeadPickedStart(ByVal index As Integer)
         BattleSystem.BattleScreen.OwnLeadIndex = index
         Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleOffer,
-                Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), CStr(index)}.ToList()))
+                Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), CStr(index) & "," & GameController.RELEASEVERSION}.ToList()))
         If ReceivedBattleOffer = True Then
-            InitializeBattle()
+            If GameController.RELEASEVERSION = _oppGameVersion Then
+                _startNow = True
+            Else
+                TextBox.Show("Game versions don't match.")
+            End If
         Else
             SentBattleOffer = True
         End If
@@ -503,8 +519,10 @@
         End If
     End Sub
 
-    Public Shared Sub ReceiveBattleStart(ByVal index As Integer)
-        BattleSystem.BattleScreen.OppLeadIndex = index
+    Public Shared Sub ReceiveBattleStart(ByVal data As String)
+        Dim cData As String() = data.Split(",")
+        BattleSystem.BattleScreen.OppLeadIndex = CInt(cData(0))
+        _oppGameVersion = cData(1)
         If IsLobbyScreen() = True Then
             If SentBattleOffer = True Then
                 StartBattleRemote = True
