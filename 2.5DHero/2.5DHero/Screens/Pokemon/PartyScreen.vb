@@ -130,6 +130,7 @@ Public Class PartyScreen
         Next
 
         CheckForLegendaryEmblem()
+        CheckForUnoDosTresEmblem()
         CheckForOverkillEmblem()
 
         _menu = New UI.SelectMenu({""}.ToList(), 0, Nothing, 0)
@@ -795,6 +796,28 @@ Public Class PartyScreen
 
         If hasSuicune And hasLugia And hasHoOh Then
             GameJolt.Emblem.AchieveEmblem("legendary")
+        End If
+    End Sub
+
+    Private Sub CheckForUnoDosTresEmblem()
+        'This sub checks if Articuno, Zapdos and Moltres are in the player's party.
+        Dim hasArticuno As Boolean = False
+        Dim hasZapdos As Boolean = False
+        Dim hasMoltres As Boolean = False
+
+        For Each p As Pokemon In PokemonList
+            Select Case p.Number
+                Case 144
+                    hasArticuno = True
+                Case 145
+                    hasZapdos = True
+                Case 146
+                    hasMoltres = True
+            End Select
+        Next
+
+        If hasArticuno And hasZapdos And hasMoltres Then
+            GameJolt.Emblem.AchieveEmblem("unodostres")
         End If
     End Sub
 
