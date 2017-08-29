@@ -21,9 +21,9 @@ Public Class EvolutionCondition
     Public Structure Condition
         Dim ConditionType As ConditionTypes
         Dim Argument As String
-        Dim Trigger As EvolutionTrigger
     End Structure
 
+    Public Trigger As EvolutionTrigger
     Public Evolution As Integer = 0
     Public Conditions As New List(Of Condition)
 
@@ -31,7 +31,7 @@ Public Class EvolutionCondition
         Me.Evolution = evolution
     End Sub
 
-    Public Sub AddCondition(ByVal type As String, ByVal arg As String, ByVal trigger As String)
+    Public Sub AddCondition(ByVal type As String, ByVal arg As String)
         Dim c As New Condition
         c.Argument = arg
 
@@ -67,19 +67,20 @@ Public Class EvolutionCondition
             Case "weather"
                 c.ConditionType = ConditionTypes.Weather
         End Select
+        Me.Conditions.Add(c)
+    End Sub
 
+    Public Sub SetTrigger(ByVal trigger As String)
         Select Case trigger.ToLower()
             Case "none", ""
-                c.Trigger = EvolutionTrigger.None
+                Me.Trigger = EvolutionTrigger.None
             Case "level", "levelup"
-                c.Trigger = EvolutionTrigger.LevelUp
+                Me.Trigger = EvolutionTrigger.LevelUp
             Case "trade", "trading"
-                c.Trigger = EvolutionTrigger.Trading
+                Me.Trigger = EvolutionTrigger.Trading
             Case "item", "itemuse"
-                c.Trigger = EvolutionTrigger.ItemUse
+                Me.Trigger = EvolutionTrigger.ItemUse
         End Select
-
-        Me.Conditions.Add(c)
     End Sub
 
     Public ReadOnly Property Count() As Integer
@@ -102,24 +103,31 @@ Public Class EvolutionCondition
     ''' <param name="trigger">The trigger that triggered the evolution.</param>
     ''' <param name="arg">An argument (for example Item ID)</param>
     Public Shared Function EvolutionNumber(ByVal p As Pokemon, ByVal trigger As EvolutionTrigger, ByVal arg As String) As Integer
+        Dim e As EvolutionCondition = GetEvolutionCondition(p, trigger, arg)
+        If e Is Nothing Then
+            Return 0
+        Else
+            Return e.Evolution
+        End If
+    End Function
+
+    Public Shared Function GetEvolutionCondition(ByVal p As Pokemon, ByVal trigger As EvolutionTrigger, ByVal arg As String) As EvolutionCondition
         If trigger = EvolutionTrigger.LevelUp Or trigger = EvolutionTrigger.Trading Then
             If Not p.Item Is Nothing Then
                 If p.Item.ID = 112 Then
-                    Return 0
+                    Return Nothing
                 End If
             End If
         End If
 
-        Dim possibleEvolutions As New List(Of Integer)
+        Dim possibleEvolutions As New List(Of EvolutionCondition)
 
         For Each e As EvolutionCondition In p.EvolutionConditions
             Dim canEvolve As Boolean = True
 
-            For Each c As Condition In e.Conditions
-                If c.Trigger <> trigger Then
-                    canEvolve = False
-                End If
-            Next
+            If trigger <> e.Trigger Then
+                canEvolve = False
+            End If
 
             If canEvolve = True Then
                 For Each c As Condition In e.Conditions
@@ -156,6 +164,8 @@ Public Class EvolutionCondition
                             Else
                                 If p.Item.ID <> CInt(c.Argument) Then
                                     canEvolve = False
+                                    'ElseIf c.Trigger = EvolutionTrigger.Trading Then
+                                    'REMOVE HELD ITEM CHECK
                                 End If
                             End If
                         Case ConditionTypes.InParty
@@ -220,15 +230,16 @@ Public Class EvolutionCondition
             End If
 
             If canEvolve = True Then
-                possibleEvolutions.Add(e.Evolution)
+                possibleEvolutions.Add(e)
             End If
         Next
 
+        'Assuming there is never more than one possible evolution for trading + held item
         If possibleEvolutions.Count > 0 Then
             Return possibleEvolutions(Core.Random.Next(0, possibleEvolutions.Count))
         End If
 
-        Return 0
+        Return Nothing
     End Function
 
 End Class

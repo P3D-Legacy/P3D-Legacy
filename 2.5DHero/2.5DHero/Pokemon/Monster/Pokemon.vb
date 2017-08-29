@@ -1447,15 +1447,17 @@ Public Class Pokemon
                     Dim EvolutionExists As Boolean = False
                     Dim e As EvolutionCondition = New EvolutionCondition
 
+                    e.SetTrigger(Trigger)
+                    e.SetEvolution(Evolution)
+
                     For Each oldE As EvolutionCondition In Me.EvolutionConditions
-                        If Evolution = oldE.Evolution Then
+                        If e.Evolution = oldE.Evolution AndAlso e.Trigger = oldE.Trigger Then
                             e = oldE
                             EvolutionExists = True
                         End If
                     Next
 
-                    e.SetEvolution(Evolution)
-                    e.AddCondition(Type, Argument, Trigger)
+                    e.AddCondition(Type, Argument)
 
                     If EvolutionExists = False Then
                         EvolutionConditions.Add(e)

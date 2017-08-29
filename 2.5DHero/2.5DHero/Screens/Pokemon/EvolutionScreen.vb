@@ -263,6 +263,21 @@
                             End If
                         End If
 
+                        If Me.EvolutionTrigger = EvolutionCondition.EvolutionTrigger.Trading Then
+                            Dim econ As EvolutionCondition = EvolutionCondition.GetEvolutionCondition(currentPokemon, Me.EvolutionTrigger, Me.EvolutionArg)
+                            Dim removeItem As Boolean = False
+                            If econ.Trigger = EvolutionCondition.EvolutionTrigger.Trading Then
+                                For i = 0 To econ.Conditions.Count - 1
+                                    If econ.Conditions(i).ConditionType = EvolutionCondition.ConditionTypes.HoldItem Then
+                                        removeItem = True
+                                    End If
+                                Next
+                            End If
+                            If removeItem Then
+                                evolvedPokemon.Item = Nothing
+                            End If
+                        End If
+
                         Core.Player.AddPoints(10, "Evolved Pokémon.")
 
                         If ConnectScreen.Connected = True Then

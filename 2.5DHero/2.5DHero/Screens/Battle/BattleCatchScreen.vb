@@ -345,7 +345,7 @@
             Case "moon ball"
                 For Each ev As EvolutionCondition In cp.EvolutionConditions
                     For Each con As EvolutionCondition.Condition In ev.Conditions
-                        If con.ConditionType = EvolutionCondition.ConditionTypes.Item And con.Argument = "8" And con.Trigger = EvolutionCondition.EvolutionTrigger.ItemUse Then
+                        If con.ConditionType = EvolutionCondition.ConditionTypes.Item And con.Argument = "8" And ev.Trigger = EvolutionCondition.EvolutionTrigger.ItemUse Then
                             BallRate = 4.0F
                             Exit For
                         End If
