@@ -1571,9 +1571,10 @@ nextIndex:
         ''' </summary>
         Private Sub DownloadOnlineSprites()
             If Core.Player.IsGameJoltSave = True Then
-                Dim t As New Threading.Thread(AddressOf DownloadSprites)
-                t.IsBackground = True
-                t.Start()
+                'Dim t As New Threading.Thread(AddressOf DownloadSprites)
+                't.IsBackground = True
+                't.Start()
+                DownloadSprites()
             End If
         End Sub
 
