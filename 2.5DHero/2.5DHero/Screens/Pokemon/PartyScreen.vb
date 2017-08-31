@@ -457,18 +457,22 @@ Public Class PartyScreen
                 _menu.Update()
             Else
                 If Controls.Down(True, True, False, True, True, True) And _index < PokemonList.Count - 2 Then
+                    _pokemonAnimations(_index)._shakeV = 0
                     _index += 2
                     _cursorDest = GetBoxPosition(_index)
                 End If
                 If Controls.Up(True, True, False, True, True, True) And _index > 1 Then
+                    _pokemonAnimations(_index)._shakeV = 0
                     _index -= 2
                     _cursorDest = GetBoxPosition(_index)
                 End If
                 If Controls.Left(True) And _index > 0 Then
+                    _pokemonAnimations(_index)._shakeV = 0
                     _index -= 1
                     _cursorDest = GetBoxPosition(_index)
                 End If
                 If Controls.Right(True) And _index < PokemonList.Count - 1 Then
+                    _pokemonAnimations(_index)._shakeV = 0
                     _index += 1
                     _cursorDest = GetBoxPosition(_index)
                 End If

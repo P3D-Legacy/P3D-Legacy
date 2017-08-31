@@ -10,6 +10,8 @@
 
     Private _texture As Texture2D
 
+    Private _isFront As Boolean = True
+
     'Pointer
     Private _pointerDest As Integer = 0
     Private _pointerPos As Single = 0F
@@ -194,7 +196,7 @@
         'Draw Pokémon preview:
         If _enrollY >= 160 Then
             Dim height As Integer = CInt(_enrollY - 160).Clamp(0, 256)
-            Dim pokemonTexture = GetPokemon().GetTexture(True)
+            Dim pokemonTexture = GetPokemon().GetTexture(_isFront)
             Dim textureHeight As Integer = CInt(pokemonTexture.Height * (height / 256))
 
             Dim pokemonTextureOffset As Integer = 32
@@ -607,6 +609,7 @@
                             _partyIndex -= 1
                             GetYOffset()
                             SetDest(_partyIndex)
+                            _isFront = True
                         End If
 
                     End If
@@ -615,6 +618,7 @@
                             _partyIndex += 1
                             GetYOffset()
                             SetDest(_partyIndex)
+                            _isFront = True
                         End If
 
                     End If
@@ -634,8 +638,12 @@
                             _pageOpening = False
                         End If
                     End If
-                    If Controls.Accept() = True And _pageIndex = 1 Then
-                        _moveSelected = True
+                    If Controls.Accept() = True Then
+                        If _pageIndex = 0 Then
+                            _isFront = Not _isFront
+                        ElseIf _pageIndex = 1 Then
+                            _moveSelected = True
+                        End If
                     End If
                 End If
                 If Controls.Dismiss() = True Then
