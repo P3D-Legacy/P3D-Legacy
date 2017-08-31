@@ -415,6 +415,18 @@
                             End Select
                         End With
                     End If
+                Case "setallevs"
+                    Dim Index As Integer = int(argument.GetSplit(0, ","))
+                    If Core.Player.Pokemons.Count - 1 >= Index Then
+                        With Core.Player.Pokemons(Index)
+                            .EVHP = Clamp(int(argument.GetSplit(1, ",")), 0, 252)
+                            .EVAttack = Clamp(int(argument.GetSplit(2, ",")), 0, 252)
+                            .EVDefense = Clamp(int(argument.GetSplit(3, ",")), 0, 252)
+                            .EVSpAttack = Clamp(int(argument.GetSplit(4, ",")), 0, 252)
+                            .EVSpDefense = Clamp(int(argument.GetSplit(5, ",")), 0, 252)
+                            .EVSpeed = Clamp(int(argument.GetSplit(6, ",")), 0, 252)
+                        End With
+                    End If
                 Case "setiv"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
                     Dim dv As String = argument.GetSplit(1, ",")
@@ -436,6 +448,18 @@
                                 Case "speed"
                                     .IVSpeed = dvValue
                             End Select
+                        End With
+                    End If
+                Case "setallivs"
+                    Dim Index As Integer = int(argument.GetSplit(0, ","))
+                    If Core.Player.Pokemons.Count - 1 >= Index Then
+                        With Core.Player.Pokemons(Index)
+                            .IVHP = Clamp(int(argument.GetSplit(1, ",")), 0, 31)
+                            .IVAttack = Clamp(int(argument.GetSplit(2, ",")), 0, 31)
+                            .IVDefense = Clamp(int(argument.GetSplit(3, ",")), 0, 31)
+                            .IVSpAttack = Clamp(int(argument.GetSplit(4, ",")), 0, 31)
+                            .IVSpDefense = Clamp(int(argument.GetSplit(5, ",")), 0, 31)
+                            .IVSpeed = Clamp(int(argument.GetSplit(6, ",")), 0, 31)
                         End With
                     End If
                 Case "registerhalloffame"

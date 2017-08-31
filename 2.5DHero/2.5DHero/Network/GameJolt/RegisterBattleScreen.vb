@@ -491,7 +491,7 @@
 
                 Dim data() As String = Key.Split(CChar("|"))
                 Me.GameJoltID = data(1)
-                Me.BattleStrength = CInt(data(2))
+                Me.BattleStrength = Clamp(CInt(data(2)), 0, 100)
             End Sub
 
             Public Sub SetDifferenceValue(ByVal ownBattleStrength As Integer)
@@ -657,16 +657,17 @@
         Public Shared Function GetBattleStrength(ByVal team As List(Of Pokemon)) As Integer
             Dim pCount As Integer = team.Count
 
-            '(BaseStats + EVs * (780 / 186) + IVs * (780 / 186)) / (3 * 780) * 100 = x
+            '(BaseStats + EVs * (780 / 510) + IVs * (780 / 186)) / (3 * 780) * 100 = x
 
             Dim x As Integer = 0
             Dim c As Double = 0
             For Each p As Pokemon In team
                 c = 0
                 c += p.BaseHP + p.BaseAttack + p.BaseDefense + p.BaseSpAttack + p.BaseSpDefense + p.BaseSpeed
-                c += (p.IVHP + p.IVAttack + p.IVDefense + p.IVSpAttack + p.IVSpDefense + p.IVSpeed) * (780 / 186)
-                c += (p.EVHP + p.EVAttack + p.EVDefense + p.EVSpAttack + p.EVSpDefense + p.EVSpeed) * (780 / 186)
+                c += Clamp((p.IVHP + p.IVAttack + p.IVDefense + p.IVSpAttack + p.IVSpDefense + p.IVSpeed), 0, 186) * (780 / 186)
+                c += Clamp((p.EVHP + p.EVAttack + p.EVDefense + p.EVSpAttack + p.EVSpDefense + p.EVSpeed), 0, 510) * (780 / 510)
                 c = c / (3 * 780) * 100
+                c = Clamp(c, 0, 100)
                 x += CInt(c)
             Next
 

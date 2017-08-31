@@ -1936,7 +1936,7 @@ Public Class PokemonForms
                 Case "primal"
                     Return New Size(36, 32)
                 Case Else
-                    Return New Size(35, 32)
+                    Return New Size(32, 32)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
