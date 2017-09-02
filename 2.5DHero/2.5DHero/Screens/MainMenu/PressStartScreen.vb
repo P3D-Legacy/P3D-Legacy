@@ -261,6 +261,19 @@ Public Class NewMainMenuScreen
                         End If
                     Next
                 End If
+                If Controls.Dismiss(True, False, False) Then
+                    'Click on profiles:
+                    For x = 0 To _profiles.Count - 1
+                        Dim xOffset As Single = _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeIn))
+
+                        If New Rectangle(CInt(xOffset), CInt(_screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
+                            If _selectedProfile = x Then
+                                DismissProfile()
+                            End If
+                            Exit For
+                        End If
+                    Next
+                End If
 
                 If Controls.Right(True) And _selectedProfile < _profiles.Count - 1 Then
                     _selectedProfile += 1
@@ -276,7 +289,9 @@ Public Class NewMainMenuScreen
                     If Controls.Accept(False, True, True) Then
                         ClickedProfile()
                     End If
-
+                    If Controls.Dismiss(False, True, True) Then
+                        DismissProfile()
+                    End If
                     'Try to load the GameJolt profile once the player has logged in.
                     _profiles(0).LoadGameJolt()
                 End If
@@ -322,6 +337,10 @@ Public Class NewMainMenuScreen
         Else
             _profiles(_selectedProfile).SelectProfile()
         End If
+    End Sub
+
+    Private Sub DismissProfile()
+        _profiles(_selectedProfile).UnSelectProfile()
     End Sub
 
     Private Sub UpdateScreenOffset()
@@ -428,7 +447,17 @@ Public Class NewMainMenuScreen
                                                                         "GameMode: " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
 
                     SpriteBatch.Draw(_menuTexture, New Rectangle(displayRect.X + 30, displayRect.Y + 70, 32, 32), New Rectangle(0, 32, 32, 32), Color.White)
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "The required GameMode does not exist!", New Vector2(displayRect.X + 70, displayRect.Y + 78), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
+                    Dim errorText As String = ""
+
+                    If tmpProfile.IsGameJolt() Then
+                        errorText = "Download failed. Press Accept to try again." & vbNewLine & vbNewLine &
+                                    "If the problem persists, please try again later" & vbNewLine &
+                                    "or contact us in our Discord server:" & vbNewLine & vbNewLine &
+                                    "http://www.discord.me/p3d"
+                    Else
+                        errorText = "The required GameMode does not exist!"
+                    End If
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, errorText, New Vector2(displayRect.X + 70, displayRect.Y + 78), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
 
                 End If
             End If
@@ -484,7 +513,7 @@ Public Class NewMainMenuScreen
         Private _path As String = ""
         Private _isNewGameButton As Boolean = False
 
-        Private _name As String
+        Private _name As String = ""
         Private _gameMode As String
         Private _pokedexSeen As Integer
         Private _pokedexCaught As Integer
@@ -590,7 +619,7 @@ Public Class NewMainMenuScreen
                     _loaded = False
 
 
-                    _sprite = Content.Load(Of Texture2D)("Textures\UI\GameJolt\gameJoltIcon")
+                    _sprite = TextureManager.GetTexture("Textures\UI\GameJolt\gameJoltIcon")
 
                     LoadGameJolt()
                 Else
@@ -622,7 +651,7 @@ Public Class NewMainMenuScreen
                 End If
             Else
                 _gameModeExists = False
-                _sprite = Content.Load(Of Texture2D)("SharedResources\Textures\unknownSprite")
+                _sprite = TextureManager.GetTexture("GUI\unknownSprite")
             End If
         End Sub
 
@@ -767,13 +796,22 @@ Public Class NewMainMenuScreen
                             _isLoading = False
                             _failedGameJoltLoading = True
 
-                            _sprite = Content.Load(Of Texture2D)("SharedResources\Textures\unknownSprite")
+                            _sprite = TextureManager.GetTexture("GUI\unknownSprite")
                         End If
                     End If
                 End If
             End If
         End Sub
-
+        Public Sub UnSelectProfile()
+            If IsGameJolt AndAlso _loaded Then
+                _loaded = False
+                _isLoading = False
+                _pokemonTextures.Clear()
+                _sprite = TextureManager.GetTexture("Textures\UI\GameJolt\gameJoltIcon")
+                _fontSize = 0.75F
+                GameJolt.API.LoggedIn = False
+            End If
+        End Sub
         Public Sub SelectProfile()
             If _isNewGameButton Then
                 If GameModeManager.GameModeCount = 1 Then
@@ -803,8 +841,15 @@ Public Class NewMainMenuScreen
                             SetScreen(New JoinServerScreen(CurrentScreen))
                         End If
                     Else
-                        Dim messageBox As New UI.MessageBox(CurrentScreen)
-                        messageBox.Show("The required GameMode does not exist." & vbNewLine & "Reaquire the GameMode to play on this profile.")
+                        If Me.IsGameJolt Then
+                            _loaded = False
+                            _sprite = TextureManager.GetTexture("Textures\UI\GameJolt\gameJoltIcon")
+                            LoadGameJolt()
+                        Else
+                            Dim messageBox As New UI.MessageBox(CurrentScreen)
+                            messageBox.Show("The required GameMode does not exist." & vbNewLine & "Reaquire the GameMode to play on this profile.")
+                        End If
+
                     End If
                 End If
             End If

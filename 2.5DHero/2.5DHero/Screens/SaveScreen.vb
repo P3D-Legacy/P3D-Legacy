@@ -40,10 +40,13 @@
                             "You may safely quit the game now or try to save again later." & vbNewLine & vbNewLine &
                             "Backup save can be found at the Backup Save folder :)", New Vector2(188, 240), Color.Black)
                 Else
-                    .DrawString(FontManager.MiniFont, "Press Dismiss to close this screen and try to save" & vbNewLine &
-                            "again in order to prevent data corruption." & vbNewLine & vbNewLine &
-                            "To have your save back up, you will require to enable Backup Save" & vbNewLine &
-                            "Via GameOptions.dat > Extras|Backup Save", New Vector2(188, 240), Color.Black)
+                    .DrawString(FontManager.MiniFont,
+                            "Press Dismiss to close this screen and try to save again in order to prevent" & vbNewLine &
+                            "data corruption." & vbNewLine & vbNewLine &
+                            "If the problem persists, the reason could be GameJolt servers being under" & vbNewLine &
+                            "maintenance right now." & vbNewLine & vbNewLine &
+                            "Please try again later, or contact us in our official Discord server: " & vbNewLine & vbNewLine &
+                            "http://www.discord.me/p3d", New Vector2(188, 240), Color.Black)
                 End If
             Else
                 If ready = True Then
