@@ -15,7 +15,8 @@
 #Region "BattleValues"
 
         Public IsChoiced As Boolean = False
-        Public ClearMenuTime As Boolean = False
+        Public ClearMainMenuTime As Boolean = False
+        Public ClearMoveMenuTime As Boolean = False
         Public Shared CanCatch As Boolean = True
         Public Shared CanRun As Boolean = True
         Public Shared CanBlackout As Boolean = True
@@ -854,7 +855,8 @@ nextIndex:
                     ClientWaitForData = False
                     ReceivedPokemonData = False
                     BattleMenu.Reset()
-                    ClearMenuTime = True
+                    ClearMainMenuTime = True
+                    ClearMoveMenuTime = True
                     BattleMenu.Update(Me)
                 End If
             End If
@@ -1346,8 +1348,15 @@ nextIndex:
         Public Shared Sub ReceiveHostEndRoundData(ByVal data As String)
             Dim newQueries As New List(Of String)
             Dim tempData As String = ""
-            Dim cData As String = data
 
+            Dim cData As String = data
+            If GameController.IS_DEBUG_ACTIVE Then
+                If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
+                    Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
+                End If
+                Dim shownData As String = data.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                IO.File.WriteAllText(GameController.GamePath & "\PvP Log\HostEndRoundData.dat", shownData)
+            End If
             'Converts the single string received as data into a list of string 
             While cData.Length > 0
                 If cData(0).ToString() = "|" AndAlso tempData(tempData.Length - 1).ToString() = "}" Then
@@ -1430,11 +1439,18 @@ nextIndex:
                     Logger.Debug("[Battle]: The host's pokemon faints")
                     OppFaint = True
                     Exit Sub
-                End If
-                If data = "-ClientFainted-" Then
+                ElseIf data = "-ClientFainted-" Then
                     Logger.Debug("[Battle]: The client's pokemon faints")
                     OwnFaint = True
                     Exit Sub
+                Else
+                    If GameController.IS_DEBUG_ACTIVE Then
+                        If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
+                            Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
+                        End If
+                        Dim shownData As String = data.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                        IO.File.WriteAllText(GameController.GamePath & "\PvP Log\HostData.dat", shownData)
+                    End If
                 End If
             End If
 
@@ -1456,7 +1472,10 @@ nextIndex:
             If s.Identification = Identifications.BattleScreen Then
                 CType(s, BattleScreen).BattleQuery.Clear()
                 For Each q As String In newQueries
-                    CType(s, BattleScreen).BattleQuery.Add(QueryObject.FromString(q))
+                    Dim Query As QueryObject = QueryObject.FromString(q)
+                    If Query IsNot Nothing Then
+                        CType(s, BattleScreen).BattleQuery.Add(Query)
+                    End If
                 Next
                 For i = 0 To 99
                     CType(s, BattleScreen).InsertCasualCameramove()
@@ -1486,6 +1505,14 @@ nextIndex:
         Public Shared Sub ReceiveClientData(ByVal data As String)
             Logger.Debug("[Battle]: Received Client data")
             ReceivedInput = data
+
+            If GameController.IS_DEBUG_ACTIVE Then
+                If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
+                    Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
+                End If
+                Dim shownData As String = data.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                IO.File.WriteAllText(GameController.GamePath & "\PvP Log\ClientCommand.dat", shownData)
+            End If
 
             Dim s As Screen = Core.CurrentScreen
             While Not s.PreScreen Is Nothing And s.Identification <> Identifications.BattleScreen
@@ -1532,6 +1559,13 @@ nextIndex:
                 End If
                 d &= p.GetSaveData()
             Next
+            If GameController.IS_DEBUG_ACTIVE Then
+                If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
+                    Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
+                End If
+                Dim shownData As String = d.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                IO.File.WriteAllText(GameController.GamePath & "\PvP Log\SentEndRoundData.dat", shownData)
+            End If
             Logger.Debug("[Battle]: Sent End Round data")
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattlePokemonData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), d}.ToList()))
         End Sub
@@ -1558,6 +1592,13 @@ nextIndex:
             Me.TempPVPBattleQuery.Clear()
 
             Logger.Debug("[Battle]: Sent Host Query")
+            If GameController.IS_DEBUG_ACTIVE Then
+                If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
+                    Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
+                End If
+                Dim shownData As String = d.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                IO.File.WriteAllText(GameController.GamePath & "\PvP Log\SentHostQuery.dat", shownData)
+            End If
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), d}.ToList()))
             SentHostData = True
         End Sub

@@ -536,10 +536,10 @@ Namespace GameJolt
             Next
 
             If exists(ID_BERRIES) = False Then
-                _berries = NewGameScreen.GetBerryData()
+                _berries = GetBerryData()
             End If
             If exists(ID_OPTIONS) = False Then
-                _options = NewGameScreen.GetOptionsData()
+                _options = GetOptionsData()
             End If
             If exists(ID_PLAYER) = False Then
                 _player = GetPlayerData()
@@ -623,7 +623,7 @@ Namespace GameJolt
 
                 _berries = data.Replace("\""", """")
             Else
-                _berries = NewGameScreen.GetBerryData()
+                _berries = GetBerryData()
             End If
 
             _downloadedFlags(ID_BERRIES) = True
@@ -713,7 +713,7 @@ Namespace GameJolt
 
                 _options = data.Replace("\""", """")
             Else
-                _options = NewGameScreen.GetOptionsData()
+                _options = GetOptionsData()
             End If
 
             _downloadedFlags(ID_OPTIONS) = True
@@ -963,13 +963,13 @@ Namespace GameJolt
             Gender = "0"
 
             _apricorns = ""
-            _berries = NewGameScreen.GetBerryData()
+            _berries = GetBerryData()
             _box = ""
             _daycare = ""
             _itemData = ""
             _items = ""
             _NPC = ""
-            _options = NewGameScreen.GetOptionsData()
+            _options = GetOptionsData()
             _party = ""
             _player = GetPlayerData()
             _pokedex = ""
@@ -980,6 +980,44 @@ Namespace GameJolt
             _statistics = ""
         End Sub
 
+        Public Shared Function GetOptionsData() As String
+            Dim s As String = "FOV|50" & vbNewLine &
+                "TextSpeed|2" & vbNewLine &
+                "MouseSpeed|12"
+
+            Return s
+        End Function
+
+        Public Shared Function GetBerryData() As String
+            Dim s As String = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route29.dat|14,0,5|6|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route29.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{azalea.dat|9,0,3|0|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{azalea.dat|9,0,4|1|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{azalea.dat|9,0,5|0|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route30.dat|7,0,41|10|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route30.dat|14,0,5|2|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route30.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route30.dat|16,0,5|2|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{routes\route35.dat|0,0,4|7|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{routes\route35.dat|1,0,4|8|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route36.dat|37,0,7|0|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route36.dat|38,0,7|4|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route36.dat|39,0,7|3|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route39.dat|8,0,2|9|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route39.dat|8,0,3|6|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route38.dat|13,0,12|16|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route38.dat|14,0,12|23|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{route38.dat|15,0,12|16|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{routes\route43.dat|13,0,45|23|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{routes\route43.dat|13,0,46|24|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{routes\route43.dat|13,0,47|25|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{safarizone\main.dat|3,0,11|5|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{safarizone\main.dat|4,0,11|0|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+                "{safarizone\main.dat|5,0,11|6|3|0|2012,9,21,4,0,0|1}"
+
+            Return s
+        End Function
     End Class
 
     Public Class StaffProfile
@@ -993,6 +1031,7 @@ Namespace GameJolt
             Staff.Add(New StaffProfile("33742", "Prince", "princevade", {StaffArea.GlobalAdmin, StaffArea.GTSAdmin, StaffArea.GTSDaily, StaffArea.MailManagement}))
             Staff.Add(New StaffProfile("1", "GameJolt", "cros", {}))
             Staff.Add(New StaffProfile("35947", "", "", {StaffArea.GTSDaily}))
+            Staff.Add(New StaffProfile("541732", "The Captain", "", {StaffArea.GTSDaily}))
         End Sub
 
         Public Enum StaffArea

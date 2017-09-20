@@ -4164,7 +4164,10 @@
                                 p.IsShiny = op.IsShiny
 
                                 p.Attacks.Clear()
-                                p.Attacks.AddRange(op.Attacks.ToArray())
+                                For i = 0 To op.Attacks.Count - 1
+                                    p.Attacks.Add(Attack.GetAttackByID(op.Attacks(i).ID))
+                                    p.Attacks(i).CurrentPP = 5
+                                Next
 
                                 p.Ability = Ability.GetAbilityByID(op.Ability.ID)
 
@@ -4447,7 +4450,8 @@
                         BattleScreen.BattleQuery.AddRange({cq1, cq2})
 
                         StartRound(BattleScreen)
-                        BattleScreen.ClearMenuTime = True
+                        BattleScreen.ClearMainMenuTime = True
+                        BattleScreen.ClearMoveMenuTime = True
                     Case 1 'Own round
                         EndTurnOwn(BattleScreen)
                     Case 2 'Opp round

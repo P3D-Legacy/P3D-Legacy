@@ -149,6 +149,7 @@
     <Compile Include="Battle\BattleSystemV2\PokemonProfile.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\CameraQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\ChoosePokemonQueryObject.vb" />
+    <Compile Include="Battle\BattleSystemV2\QueryObjects\AfterFaintQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\DelayQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\DisplayLevelUpQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\EndBattleQueryObject.vb" />
@@ -1691,7 +1692,6 @@
     <Compile Include="Screens\MapPreview\MapPreviewCamera.vb" />
     <Compile Include="Screens\MapPreview\MapPreviewScreen.vb" />
     <Compile Include="Screens\MapScreen.vb" />
-    <Compile Include="Screens\NewGameScreen.vb" />
     <Compile Include="Screens\NewMenuScreen.vb" />
     <Compile Include="Screens\NewTrainerScreen.vb" />
     <Compile Include="Screens\OptionScreen.vb" />

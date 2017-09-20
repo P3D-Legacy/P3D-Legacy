@@ -1237,10 +1237,18 @@ Public Class Pokemon
         For Each Tag As String In Data
             If Tag.Contains("{") = True And Tag.Contains("[") = True Then
                 Dim TagName As String = Tag.Remove(0, 2)
-                TagName = TagName.Remove(TagName.IndexOf(""""))
+                Try
+                    TagName = TagName.Remove(TagName.IndexOf(""""))
+                Catch ex As Exception
+                    Logger.Debug("Pokemon.vb, GetPokemonByData: Wrong Pokemon data, symbol "" was missing")
+                End Try
 
                 Dim TagContent As String = Tag.Remove(0, Tag.IndexOf("[") + 1)
-                TagContent = TagContent.Remove(TagContent.IndexOf("]"))
+                Try
+                    TagContent = TagContent.Remove(TagContent.IndexOf("]"))
+                Catch ex As Exception
+                    Logger.Debug("Pokemon.vb, GetPokemonByData: Wrong Pokemon data, symbol ] was missing")
+                End Try
 
                 If Tags.ContainsKey(TagName) = False Then
                     Tags.Add(TagName, TagContent)
@@ -1514,10 +1522,20 @@ Public Class Pokemon
         For Each Tag As String In Data
             If Tag.Contains("{") = True And Tag.Contains("[") = True Then
                 Dim TagName As String = Tag.Remove(0, 2)
-                TagName = TagName.Remove(TagName.IndexOf(""""))
+                Try
+                    TagName = TagName.Remove(TagName.IndexOf(""""))
+                Catch ex As Exception
+                    Logger.Debug("Pokemon.vb, LoadData: Wrong Pokemon data, symbol "" was missing")
+                End Try
+
 
                 Dim TagContent As String = Tag.Remove(0, Tag.IndexOf("[") + 1)
-                TagContent = TagContent.Remove(TagContent.IndexOf("]"))
+                Try
+                    TagContent = TagContent.Remove(TagContent.IndexOf("]"))
+                Catch ex As Exception
+                    Logger.Debug("Pokemon.vb, LoadData: Wrong Pokemon data, symbol ] was missing")
+                End Try
+
 
                 If Tags.ContainsKey(TagName) = False Then
                     Tags.Add(TagName, TagContent)
@@ -1530,6 +1548,8 @@ Public Class Pokemon
             Dim tagValue As String = Tags.Values(i)
 
             Select Case tagName.ToLower()
+                Case "originalnumber"
+                    Me.OriginalNumber = CInt(tagValue)
                 Case "experience"
                     Me.Experience = CInt(tagValue)
                 Case "gender"
@@ -1750,6 +1770,7 @@ Public Class Pokemon
         End If
 
         Dim Data As String = "{""Pokemon""[" & Me.Number & "]}" &
+        "{""OriginalNumber""[" & Me.OriginalNumber & "]}" &
         "{""Experience""[" & Me.Experience & "]}" &
         "{""Gender""[" & SaveGender & "]}" &
         "{""EggSteps""[" & Me.EggSteps & "]}" &
@@ -2190,6 +2211,8 @@ Public Class Pokemon
         If DoHP = True Then
             If Me.Number = 292 Then
                 Return 1
+            ElseIf OriginalNumber <> -1 AndAlso OriginalNumber <> Number Then 'when transformed
+                Return CInt(Math.Floor((((IVStat + (2 * GetPokemonByID(OriginalNumber).BaseHP) + (EVStat / 4) + 100) * calcLevel) / 100) + 10))
             Else
                 Return CInt(Math.Floor((((IVStat + (2 * baseStat) + (EVStat / 4) + 100) * calcLevel) / 100) + 10))
             End If

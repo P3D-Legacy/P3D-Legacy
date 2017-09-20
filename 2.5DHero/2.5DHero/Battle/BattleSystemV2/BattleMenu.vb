@@ -561,9 +561,9 @@
 
         Private Sub UpdateMainMenu(ByRef BattleScreen As BattleScreen)
 
-            If BattleScreen.ClearMenuTime = True Then
+            If BattleScreen.ClearMainMenuTime = True Then
                 _mainMenuItemList.Clear()
-                BattleScreen.ClearMenuTime = False
+                BattleScreen.ClearMainMenuTime = False
             End If
 
             If _mainMenuItemList.Count = 0 Then
@@ -816,6 +816,11 @@
         End Sub
 
         Private Sub UpdateMoveMenu(ByVal BattleScreen As BattleScreen)
+            If BattleScreen.ClearMoveMenuTime = True Then
+                _moveMenuItemList.Clear()
+                BattleScreen.ClearMoveMenuTime = False
+            End If
+
             If _moveMenuChoseMove = True Then
                 _moveMenuAlpha -= 15
                 If _moveMenuAlpha <= 0 Then

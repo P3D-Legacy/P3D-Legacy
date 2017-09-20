@@ -102,7 +102,10 @@
                 p.IsShiny = op.IsShiny
 
                 p.Attacks.Clear()
-                p.Attacks.AddRange(op.Attacks.ToArray())
+                For i = 0 To op.Attacks.Count - 1
+                    p.Attacks.Add(GetAttackByID(op.Attacks(i).ID))
+                    p.Attacks(i).CurrentPP = 5
+                Next
 
                 p.Ability = Ability.GetAbilityByID(op.Ability.ID)
 

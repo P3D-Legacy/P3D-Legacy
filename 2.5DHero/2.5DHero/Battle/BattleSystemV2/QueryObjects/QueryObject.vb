@@ -64,30 +64,37 @@
 
                 Dim Type As String = input.Remove(input.IndexOf("|"))
                 Dim Data As String = input.Remove(0, input.IndexOf("|") + 1)
-                Select Case Type
-                    Case "CAMERA"
-                        Return CameraQueryObject.FromString(Data)
-                    Case "DELAY"
-                        Return DelayQueryObject.FromString(Data)
-                    Case "ENDBATTLE"
-                        Return EndBattleQueryObject.FromString(Data)
-                    Case "MATHHP"
-                        Return MathHPQueryObject.FromString(Data)
-                    Case "MUSIC"
-                        Return PlayMusicQueryObject.FromString(Data)
-                    Case "SOUND"
-                        Return PlaySoundQueryObject.FromString(Data)
-                    Case "FADE"
-                        Return ScreenFadeQueryObject.FromString(Data)
-                    Case "TEXT"
-                        Return TextQueryObject.FromString(Data)
-                    Case "TOGGLEENTITY"
-                        Return ToggleEntityQueryObject.FromString(Data)
-                    Case "TOGGLEMENU"
-                        Return ToggleMenuQueryObject.FromString(Data)
-                    Case "TRIGGERNEWROUNDPVP"
-                        Return TriggerNewRoundPVPQueryObject.FromString(Data)
-                End Select
+                Try
+                    Select Case Type
+                        Case "CAMERA"
+                            Return CameraQueryObject.FromString(Data)
+                        Case "DELAY"
+                            Return DelayQueryObject.FromString(Data)
+                        Case "ENDBATTLE"
+                            Return EndBattleQueryObject.FromString(Data)
+                        Case "MATHHP"
+                            Return MathHPQueryObject.FromString(Data)
+                        Case "MUSIC"
+                            Return PlayMusicQueryObject.FromString(Data)
+                        Case "SOUND"
+                            Return PlaySoundQueryObject.FromString(Data)
+                        Case "FADE"
+                            Return ScreenFadeQueryObject.FromString(Data)
+                        Case "TEXT"
+                            Return TextQueryObject.FromString(Data)
+                        Case "TOGGLEENTITY"
+                            Return ToggleEntityQueryObject.FromString(Data)
+                        Case "TOGGLEMENU"
+                            Return ToggleMenuQueryObject.FromString(Data)
+                        Case "TRIGGERNEWROUNDPVP"
+                            Return TriggerNewRoundPVPQueryObject.FromString(Data)
+                    End Select
+                Catch ex As Exception
+                    Logger.Debug("QueryObject.vb: Wrong data received, could not convert to [" & Type & "] query object. Return Nothing.")
+                    Logger.Debug(input)
+                    Return Nothing
+                End Try
+
             End If
             Return Nothing
         End Function
