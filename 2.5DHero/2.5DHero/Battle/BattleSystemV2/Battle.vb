@@ -4416,8 +4416,7 @@
                             BattleScreen.OwnFaint = True
                             If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
                                 Logger.Debug("[Battle]: The host's pokemon faints")
-                                Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData,
-                                    Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {BattleScreen.PartnerNetworkID.ToString(), "-HostFainted-"}.ToList()))
+                                BattleScreen.BattleQuery.Add(New AfterFaintQueryObject(True))
                             End If
                             SwitchOutOwn(BattleScreen, -1, -1)
                         End If
@@ -4426,8 +4425,7 @@
                             BattleScreen.OppFaint = True
                             If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsHost Then
                                 Logger.Debug("[Battle]: The client's pokemon faints")
-                                Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData,
-                                    Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {BattleScreen.PartnerNetworkID.ToString(), "-ClientFainted-"}.ToList()))
+                                BattleScreen.BattleQuery.Add(New AfterFaintQueryObject(False))
                             End If
                             If BattleScreen.IsTrainerBattle = True Then
                                 If BattleScreen.Trainer.HasBattlePokemon() = True Then
@@ -6610,8 +6608,8 @@
         End Enum
 
         Public Sub EndBattle(ByVal reason As EndBattleReasons, ByVal BattleScreen As BattleScreen, ByVal AddPVP As Boolean)
-            BattleSystem.BattleScreen.OwnFaint = False
-            BattleSystem.BattleScreen.OppFaint = False
+            BattleScreen.OwnFaint = False
+            BattleScreen.OppFaint = False
             IsAfterFaint = False
             If AddPVP = True Then
                 Select Case reason

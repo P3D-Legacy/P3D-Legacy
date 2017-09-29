@@ -22,6 +22,7 @@
             DisplayLevelUp
             PlaySound
             MoveAnimation
+            AfterFaint
         End Enum
 
         Public QueryType As QueryTypes = QueryTypes.CameraMovement
@@ -88,6 +89,8 @@
                             Return ToggleMenuQueryObject.FromString(Data)
                         Case "TRIGGERNEWROUNDPVP"
                             Return TriggerNewRoundPVPQueryObject.FromString(Data)
+                        Case "FAINT"
+                            Return AfterFaintQueryObject.FromString(Data)
                     End Select
                 Catch ex As Exception
                     Logger.Debug("QueryObject.vb: Wrong data received, could not convert to [" & Type & "] query object. Return Nothing.")

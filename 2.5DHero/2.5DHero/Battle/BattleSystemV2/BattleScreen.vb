@@ -5,8 +5,8 @@
         Inherits Screen
 
         'Used for after fainting switching
-        Public Shared OwnFaint As Boolean = False
-        Public Shared OppFaint As Boolean = False
+        Public OwnFaint As Boolean = False
+        Public OppFaint As Boolean = False
 
         'Used for lead picking in PvP Battles
         Public Shared OwnLeadIndex As Integer = 0
@@ -118,9 +118,6 @@
             Me.IsTrainerBattle = False
             Me.MouseVisible = False
             Me.PVPGameJoltID = ""
-
-            OppFaint = False
-            OwnFaint = False
         End Sub
 
         Public Sub New(ByVal Trainer As Trainer, ByVal OverworldScreen As Screen, ByVal defaultMapType As Integer)
@@ -130,9 +127,6 @@
             Me.IsTrainerBattle = True
             Me.MouseVisible = False
             Me.PVPGameJoltID = ""
-
-            OppFaint = False
-            OwnFaint = False
         End Sub
 
 #Region "Initialize"
@@ -1307,8 +1301,6 @@ nextIndex:
                         Battle.Won = True
                         EndBattle(False)
                         PVPLobbyScreen.BattleSuccessful = False
-                        OwnFaint = False
-                        OppFaint = False
                         Return False
                     End If
                 Else
@@ -1318,8 +1310,6 @@ nextIndex:
                     Battle.Won = False
                     EndBattle(False)
                     PVPLobbyScreen.BattleSuccessful = False
-                    OwnFaint = False
-                    OppFaint = False
                     Return False
                 End If
             End If
@@ -1435,22 +1425,12 @@ nextIndex:
                 s = s.PreScreen
             End While
             If s.Identification = Identifications.BattleScreen Then
-                If data = "-HostFainted-" Then
-                    Logger.Debug("[Battle]: The host's pokemon faints")
-                    OppFaint = True
-                    Exit Sub
-                ElseIf data = "-ClientFainted-" Then
-                    Logger.Debug("[Battle]: The client's pokemon faints")
-                    OwnFaint = True
-                    Exit Sub
-                Else
-                    If GameController.IS_DEBUG_ACTIVE Then
-                        If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
-                            Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
-                        End If
-                        Dim shownData As String = data.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
-                        IO.File.WriteAllText(GameController.GamePath & "\PvP Log\HostData.dat", shownData)
+                If GameController.IS_DEBUG_ACTIVE Then
+                    If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
+                        Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
                     End If
+                    Dim shownData As String = data.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                    IO.File.WriteAllText(GameController.GamePath & "\PvP Log\HostData.dat", shownData)
                 End If
             End If
 
@@ -1519,13 +1499,14 @@ nextIndex:
                 s = s.PreScreen
             End While
 
-            CType(s, BattleScreen).BattleMenu.Visible = False
+            Dim BV2Screen As BattleScreen = CType(s, BattleScreen)
+            BV2Screen.BattleMenu.Visible = False
 
             'prevents multi turn action to take place in an after fainting switching turn
-            If Not (OppFaint And CType(s, BattleScreen).IsRemoteBattle) Then
-                CType(s, BattleScreen).Battle.StartMultiTurnAction(CType(s, BattleScreen))
+            If Not (BV2Screen.OppFaint And BV2Screen.IsRemoteBattle) Then
+                BV2Screen.Battle.StartMultiTurnAction(BV2Screen)
             Else
-                CType(s, BattleScreen).BattleMenu.Visible = True
+                BV2Screen.BattleMenu.Visible = True
             End If
         End Sub
 
