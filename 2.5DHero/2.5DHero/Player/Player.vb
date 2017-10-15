@@ -360,7 +360,7 @@
     Public BoxAmount As Integer = 10
     Public DiagonalMovement As Boolean = False
     Public DifficultyMode As Integer = 0
-    Public BattleStyle As Integer = 0
+    Public BattleStyle As Integer = 1
     Public ShowModelsInBattle As Boolean = True
     Public TempSurfSkin As String = "Hilbert"
     Public TempRideSkin As String = ""
@@ -2029,7 +2029,7 @@
             DiagonalMovement = False
             RepelSteps = 0
             DifficultyMode = 0
-            BattleStyle = 0
+            BattleStyle = 1
             ShowModelsInBattle = True
             SaveCreated = "Pre 0.21"
             LastPokemonPosition = New Vector3(999)

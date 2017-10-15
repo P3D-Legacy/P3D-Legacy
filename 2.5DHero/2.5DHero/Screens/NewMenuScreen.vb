@@ -275,7 +275,7 @@
             Case "Save"
                 Core.SetScreen(New SaveScreen(Me))
             Case "Options"
-                Core.SetScreen(New OptionScreen(Me))
+                Core.SetScreen(New NewOptionScreen(Me))
             Case "Exit"
                 Core.SetScreen(PreScreen)
             Case Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177)

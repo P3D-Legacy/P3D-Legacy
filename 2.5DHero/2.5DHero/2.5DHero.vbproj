@@ -1694,7 +1694,7 @@
     <Compile Include="Screens\MapScreen.vb" />
     <Compile Include="Screens\NewMenuScreen.vb" />
     <Compile Include="Screens\NewTrainerScreen.vb" />
-    <Compile Include="Screens\OptionScreen.vb" />
+    <Compile Include="Screens\NewOptionScreen.vb" />
     <Compile Include="Screens\PC\HallOfFameScreen.vb" />
     <Compile Include="Screens\PC\MailSystemScreen.vb" />
     <Compile Include="Screens\PC\StorageSystemScreen.vb" />
