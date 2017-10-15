@@ -166,14 +166,14 @@
 
         For y = 0 To CInt(_enrollY) Step 16
             For x = 0 To Core.windowSize.Width - 100 Step 16
-                SpriteBatch.Draw(t, New Rectangle(50 + x, y + 97, 16, 16), New Rectangle(0, 0, 4, 4), mainBackgroundColor)
+                SpriteBatch.Draw(_texture, New Rectangle(50 + x, y + 97, 16, 16), New Rectangle(64, 0, 4, 4), mainBackgroundColor)
             Next
         Next
 
         Dim modRes As Integer = CInt(_enrollY) Mod 16
         If modRes > 0 Then
             For x = 0 To Core.windowSize.Width - 100 Step 16
-                SpriteBatch.Draw(t, New Rectangle(50 + x, CInt(_enrollY + 97), 16, modRes), New Rectangle(0, 0, 4, 4), mainBackgroundColor)
+                SpriteBatch.Draw(_texture, New Rectangle(50 + x, CInt(_enrollY + 97), 16, modRes), New Rectangle(64, 0, 4, 4), mainBackgroundColor)
             Next
         End If
 

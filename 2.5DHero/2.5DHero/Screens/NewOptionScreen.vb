@@ -120,21 +120,21 @@
 
         Canvas.DrawRectangle(New Rectangle(halfWidth - 400, halfHeight - 232, 260, 32), New Color(84, 198, 216, mainBackgroundColor.A))
         Canvas.DrawRectangle(New Rectangle(halfWidth - 140, halfHeight - 216, 16, 16), New Color(84, 198, 216, mainBackgroundColor.A))
-        SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(16, 0, 16, 16), mainBackgroundColor)
-        SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(16, 0, 16, 16), mainBackgroundColor)
+        SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
+        SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
 
         SpriteBatch.DrawString(FontManager.ChatFont, "Options", New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
 
         For y = 0 To CInt(_enrollY) Step 16
             For x = 0 To 800 Step 16
-                SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 400 + x, halfHeight - 200 + y, 16, 16), New Rectangle(8, 0, 4, 4), mainBackgroundColor)
+                SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 400 + x, halfHeight - 200 + y, 16, 16), New Rectangle(64, 0, 4, 4), mainBackgroundColor)
             Next
         Next
 
         Dim modRes As Integer = CInt(_enrollY) Mod 16
         If modRes > 0 Then
             For x = 0 To 800 Step 16
-                SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 400 + x, CInt(_enrollY + (halfHeight - 200)), 16, modRes), New Rectangle(8, 0, 4, 4), mainBackgroundColor)
+                SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 400 + x, CInt(_enrollY + (halfHeight - 200)), 16, modRes), New Rectangle(64, 0, 4, 4), mainBackgroundColor)
             Next
         End If
     End Sub

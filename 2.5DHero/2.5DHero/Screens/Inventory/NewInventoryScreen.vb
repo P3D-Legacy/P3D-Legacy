@@ -198,8 +198,9 @@ Public Class NewInventoryScreen
         End If
         DrawGradients(CInt(255 * _interfaceFade))
 
-        DrawTabs()
+
         DrawMain()
+        DrawTabs()
 
         DrawMessage()
 
@@ -215,24 +216,16 @@ Public Class NewInventoryScreen
     Private Sub DrawPrescreen()
         If _preScreenTexture Is Nothing OrElse _preScreenTexture.IsContentLost Then
             SpriteBatch.EndBatch()
-
             Dim target As RenderTarget2D = _preScreenTarget
             GraphicsDevice.SetRenderTarget(target)
             GraphicsDevice.Clear(BackgroundColor)
-
             SpriteBatch.BeginBatch()
-
             PreScreen.Draw()
-
             SpriteBatch.EndBatch()
-
             GraphicsDevice.SetRenderTarget(Nothing)
-
             SpriteBatch.BeginBatch()
-
             _preScreenTexture = target
         End If
-
         SpriteBatch.Draw(_blur.Perform(_preScreenTexture), windowSize, Color.White)
     End Sub
 
@@ -261,6 +254,10 @@ Public Class NewInventoryScreen
     Private Sub DrawTabs()
         Dim halfWidth As Integer = CInt(Core.windowSize.Width / 2)
         Dim halfHeight As Integer = CInt(Core.windowSize.Height / 2)
+        Dim mainBackgroundColor As Color = Color.White
+        If _closing = True Then
+            mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
+        End If
 
         For x = 0 To 368 Step 16
             Dim cTabIndex As Integer = CInt(Math.Floor(x / 48))
@@ -282,6 +279,35 @@ Public Class NewInventoryScreen
                 SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 400 + x - 24, halfHeight - 200 + 8, 32, 32), GetTabImageRect(cTabIndex), bgColor)
             End If
         Next
+
+        Dim TabDesriptionWidth As Integer = 176
+        Dim TbgColor As New Color(128, 128, 128)
+        If _closing Then
+            TbgColor = New Color(TbgColor.R, TbgColor.G, TbgColor.B, CInt(CInt(TbgColor.A) * _interfaceFade))
+        End If
+        For x = 0 To TabDesriptionWidth Step 16
+            For y = 0 To 32 Step 16
+                SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 400 + x + 384, halfHeight - 200 + y, 16, 16), New Rectangle(0, 0, 4, 4), TbgColor)
+            Next
+        Next
+        Canvas.DrawGradient(Core.SpriteBatch, New Rectangle(halfWidth - 400 + 384 + TabDesriptionWidth + 16, halfHeight - 200, 800 - (384 + TabDesriptionWidth), 48), New Color(0, 0, 0, CInt(TbgColor.A * 0.5)), New Color(0, 0, 0, CInt(TbgColor.A * 0.00)), True, -1)
+        Dim TabName As String = ""
+        Select Case _tabIndex
+            Case 0 : TabName = "Standard"
+            Case 1 : TabName = "Medicine"
+            Case 2 : TabName = "Plants"
+            Case 3 : TabName = "Pokéball"
+            Case 4 : TabName = "TM/HM"
+            Case 5 : TabName = "Mail"
+            Case 6 : TabName = "Battle Items"
+            Case 7 : TabName = "Key Items"
+        End Select
+        Dim gColor As New Color(164, 164, 164)
+        If _closing Then
+            gColor = New Color(gColor.R, gColor.G, gColor.B, CInt(CInt(gColor.A) * _interfaceFade))
+        End If
+        Dim fontWidth As Integer = CInt(FontManager.ChatFont.MeasureString(TabName).X)
+        SpriteBatch.DrawString(FontManager.ChatFont, TabName, New Vector2(halfWidth - 400 + 384 + CInt((TabDesriptionWidth - fontWidth) * 0.5), halfHeight - 200 + 12), gColor)
     End Sub
 
     ''' <summary>
@@ -298,10 +324,17 @@ Public Class NewInventoryScreen
             mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
         End If
 
+        Canvas.DrawRectangle(New Rectangle(halfWidth - 400, halfHeight - 232, 260, 32), New Color(84, 198, 216, mainBackgroundColor.A))
+        Canvas.DrawRectangle(New Rectangle(halfWidth - 140, halfHeight - 216, 16, 16), New Color(84, 198, 216, mainBackgroundColor.A))
+        SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
+        SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
+
+        SpriteBatch.DrawString(FontManager.ChatFont, "Inventory", New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
+
         'Draw background pattern:
-        For y = 48 To CInt(_enrollY) Step 16
+        For y = 0 To CInt(_enrollY) Step 16
             For x = 0 To 800 Step 16
-                SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 400 + x, halfHeight - 200 + y, 16, 16), New Rectangle(0, 0, 4, 4), mainBackgroundColor)
+                SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 400 + x, halfHeight - 200 + y, 16, 16), New Rectangle(64, 0, 4, 4), mainBackgroundColor)
             Next
         Next
 
@@ -309,7 +342,7 @@ Public Class NewInventoryScreen
         Dim modRes As Integer = CInt(_enrollY) Mod 16
         If modRes > 0 Then
             For x = 0 To 800 Step 16
-                SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 400 + x, CInt(_enrollY + (halfHeight - 200)), 16, modRes), New Rectangle(0, 0, 4, 4), mainBackgroundColor)
+                SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 400 + x, CInt(_enrollY + (halfHeight - 200)), 16, modRes), New Rectangle(64, 0, 4, 4), mainBackgroundColor)
             Next
         End If
 
@@ -353,13 +386,22 @@ Public Class NewInventoryScreen
                         itemBatch.Draw(cItem.Texture, New Rectangle(CInt(itemLoc.X) + 48, CInt(itemLoc.Y) + Yoffset, size, size), Nothing, New Color(255, 255, 255, itemPanelAlpha),
                                        If(i = ItemIndex, _itemAnimation._shakeV, 0F), New Vector2(cItem.Texture.Width / 2.0F), SpriteEffects.None, 0F)
 
-                        Canvas.DrawRectangle(itemBatch, New Rectangle(CInt(itemLoc.X) - 16, CInt(itemLoc.Y) + 48, 128, 24), New Color(0, 0, 0, CInt(If(_tabInControl, 64, 128) * _interfaceFade)))
+                        Dim nameTextHeight As Integer = 24
+                        If _tabIndex = 4 Then
+                            nameTextHeight = 40
+                        End If
+                        Canvas.DrawRectangle(itemBatch, New Rectangle(CInt(itemLoc.X) - 16, CInt(itemLoc.Y) + 48, 128, nameTextHeight), New Color(0, 0, 0, CInt(If(_tabInControl, 64, 128) * _interfaceFade)))
 
                         Dim fontWidth As Integer = CInt(FontManager.MiniFont.MeasureString(cItem.Name).X)
-
                         itemBatch.DrawString(FontManager.MiniFont, cItem.Name, itemLoc + New Vector2(48 - fontWidth / 2.0F, 51), New Color(255, 255, 255, itemPanelAlpha))
                         If _tabIndex <> 7 Then
                             itemBatch.DrawString(FontManager.MiniFont, "x" & _items(i + (PageIndex * 10)).Amount.ToString(), itemLoc + New Vector2(84, 26), New Color(40, 40, 40, itemPanelAlpha))
+                        End If
+
+                        If _tabIndex = 4 Then
+                            Dim AttackName As String = CType(cItem, Items.TechMachine).Attack.Name
+                            Dim TMfontWidth As Integer = CInt(FontManager.MiniFont.MeasureString(AttackName).X)
+                            itemBatch.DrawString(FontManager.MiniFont, AttackName, itemLoc + New Vector2(48 - TMfontWidth / 2.0F, 51 + 16), New Color(255, 255, 255, itemPanelAlpha))
                         End If
                     End If
                 End If
