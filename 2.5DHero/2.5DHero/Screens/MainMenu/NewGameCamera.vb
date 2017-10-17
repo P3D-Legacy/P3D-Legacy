@@ -13,13 +13,21 @@
 
         View = Matrix.CreateLookAt(Position, Vector3.Zero, Vector3.Up)
         Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0), Core.GraphicsDevice.Viewport.AspectRatio, 0.01, 16)
+        FOV = 45
 
+
+        CreateProjectionMatrix()
         Update()
+    End Sub
+
+    Private Sub CreateProjectionMatrix()
+        Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(FOV), GraphicsDevice.Viewport.AspectRatio, 0.01, FarPlane)
     End Sub
 
     Public Overrides Sub Update()
         Ray = createRay()
 
+        UpdateViewMatrix()
         UpdateMatrices()
         UpdateFrustrum()
     End Sub

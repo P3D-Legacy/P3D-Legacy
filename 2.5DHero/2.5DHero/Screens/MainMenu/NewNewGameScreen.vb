@@ -9,15 +9,6 @@
 
         Private Shared _fadeValue As Integer = 255 'Fade progress value for the black screen fade.
 
-        'Public Shared Property FadeValue() As Integer
-        '    Get
-        '        Return _fadeValue
-        '    End Get
-        '    Set(value As Integer)
-        '        _fadeValue = value
-        '    End Set
-        'End Property
-
         Public Sub New(ByVal currentScreen As Screen)
             Identification = Identifications.NewGameScreen
             CanChat = False
@@ -73,15 +64,15 @@
                 End If
                 If ActionScript.Scripts.Count = 0 Then
                     If CurrentScreen.Identification = Screen.Identifications.NewGameScreen Then
-                        Core.SetScreen(New TransitionScreen(CurrentScreen, New OverworldScreen(), Color.Black, False))
+                        Core.SetScreen(New TransitionScreen(CurrentScreen, New OverworldScreen(), Color.Black, False, AddressOf RemoveFade))
                     Else
-                        Dim fadeSpeed As Integer = 12
-                        If OverworldScreen.FadeValue > 0 Then
-                            OverworldScreen.FadeValue -= fadeSpeed
-                            If OverworldScreen.FadeValue <= 0 Then
-                                OverworldScreen.FadeValue = 0
-                            End If
-                        End If
+                        'Dim fadeSpeed As Integer = 12
+                        'If OverworldScreen.FadeValue > 0 Then
+                        '    OverworldScreen.FadeValue -= fadeSpeed
+                        '    If OverworldScreen.FadeValue <= 0 Then
+                        '        OverworldScreen.FadeValue = 0
+                        '    End If
+                        'End If
                     End If
                 Else
                     Me.ActionScript.Update() 'Update construct scripts.
@@ -96,6 +87,9 @@
             'Update the World with new environment variables.
             Level.World.Initialize(Level.EnvironmentType, Level.WeatherType)
 
+        End Sub
+        Public Sub RemoveFade()
+            FadeValue = 0
         End Sub
 
         Public Overrides Sub Draw()
@@ -140,13 +134,10 @@
                 IO.Directory.CreateDirectory(GameController.GamePath & "\Save")
             End If
 
-            IO.Directory.CreateDirectory(savePath & folderPath)
+            'IO.Directory.CreateDirectory(savePath & folderPath)
 
             Core.Player.filePrefix = folderPath
             Core.Player.GameStart = Date.Now
-
-            Core.Player.SaveGame(False)
-            Core.Player.LoadGame(folderPath)
 
             Core.Player.startFOV = 60
             Core.Player.startFreeCameraMode = True
@@ -158,11 +149,6 @@
             Core.Player.startRiding = False
             Core.Player.startRotation = CSng(MathHelper.Pi * (rot / 2))
 
-            'Construct.Controller.GetInstance().Context = Construct.ScriptContext.Overworld
-
-            ''SetScreen(New TransitionScreen(CurrentScreen, New OverworldScreen(), Color.Black, False))
-            ''SetScreen(New OverworldScreen())
-            Core.Player.SaveGame(False)
         End Sub
 
         ''' <summary>

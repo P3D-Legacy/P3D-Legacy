@@ -1098,6 +1098,12 @@
 
         GameJoltTempStoreString.Clear()
 
+        If Not IsGameJoltSave Then
+            If IO.Directory.Exists(GameController.GamePath & "\Save\" & filePrefix) = False Then
+                IO.Directory.CreateDirectory(GameController.GamePath & "\Save\" & filePrefix)
+            End If
+        End If
+
         SavePlayer(IsAutosave)
         SaveParty()
         SaveItems()
