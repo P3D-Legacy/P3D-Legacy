@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Cordell
+TrainerClass|Youngster
+Money|800
+IntroMessage|I bet you think I'm just some~guy, don't you, eh?
+OutroMessage|I bet you think I'm weak, don't you, eh?
+DefeatMessage|Ayup, you townies come around~all so dandy with a hat that~flashy...~How about giving me that?
+TextureID|14
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|83,50
+Pokemon2|83,50
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|2
+IntroSequence|Blue,Blue

@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Jack
+TrainerClass|Psychic
+Money|1080
+IntroMessage|...Huh?*I was envisioning my house,~but this is where I teleport?
+OutroMessage|Big boo-boo!
+DefeatMessage|I am so scatterbrained!*I need to focus so I can~teleport properly to my house!
+TextureID|29
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|178,52
+Pokemon2|80,52
+Pokemon3|65,54
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|2
+IntroSequence|Blue,Blue

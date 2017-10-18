@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Nicole
+TrainerClass|Swimmer♀
+Money|216
+IntroMessage|It's not so easy sending~Pokémon out while swimming,~you know?
+OutroMessage|I didn't lose to you at swimming.~This doesn't bother me.
+DefeatMessage|Are you headed for the island~up past here?*I didn't see anything~interesting there.
+TextureID|35
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|184,54
+Pokemon2|
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|1
+AI|2
+IntroSequence|Blue,Blue

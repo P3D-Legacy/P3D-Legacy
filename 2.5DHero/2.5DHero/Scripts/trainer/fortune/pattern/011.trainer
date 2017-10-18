@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Dalia
+TrainerClass|Lass
+Money|816
+IntroMessage|Take a deep breath.~Isn't the air delicious?
+OutroMessage|If you'd like, I can teach you how to breathe properly.
+DefeatMessage|First, exhale.~Blow everything out.*When you can't exhale anymore,~inhale the clean air!*Isn't it refreshing?
+TextureID|10
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|188,49
+Pokemon2|188,50
+Pokemon3|189,50
+Pokemon4|189,51
+Pokemon5|
+Pokemon6|
+Items|
+Gender|1
+AI|2
+IntroSequence|Blue,Blue

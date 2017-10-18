@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Edna
+TrainerClass|Artist
+Money|880
+IntroMessage|Clifford is teaching me how to~paint.
+OutroMessage|We might get in trouble for being noisy here.
+DefeatMessage|I said that I wanted to paint~an old building.*So Clifford brought me here.
+TextureID|pinkshirtgirl
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|235,55
+Pokemon2|
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|1
+AI|2
+IntroSequence|Blue,Blue

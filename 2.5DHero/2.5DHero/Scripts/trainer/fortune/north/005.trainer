@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Tylor
+TrainerClass|Fisherman
+Money|1908
+IntroMessage|I'm having no luck at all.~A battle'd be a change of pace!
+OutroMessage|Nope, no luck at all...
+DefeatMessage|I can't very well go home~without catching something,~though.
+TextureID|19
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|211,53
+Pokemon2|211,53
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|2
+IntroSequence|Blue,Blue

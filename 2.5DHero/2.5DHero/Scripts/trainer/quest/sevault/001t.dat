@@ -1,0 +1,9 @@
+version=2
+:if:<register.registered(trainer_quest\sevault\001t)>=false
+:then
+@text.show(Lex: My darling Nya, together~we could win!)
+:endif
+
+@battle.starttrainer(quest\sevault\001t)
+@register.register(trainer_quest\sevault\001b)
+:end

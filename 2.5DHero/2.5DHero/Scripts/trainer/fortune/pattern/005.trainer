@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Nash
+TrainerClass|Youngster
+Money|832
+IntroMessage|Look, look! there are funny~patterns on the ground.
+OutroMessage|Super awesome!
+DefeatMessage|The funny patterns on the~ground...*They look like the patterns on~my grandpa's clothes.
+TextureID|14
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|70,50
+Pokemon2|70,50
+Pokemon3|71,52
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|2
+IntroSequence|Blue,Blue

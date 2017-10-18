@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Riley
+TrainerClass|Camper
+Money|1100
+IntroMessage|This is a good spot.~I'll pitch my tent here.
+OutroMessage|Wimped out...
+DefeatMessage|I'm going to observe the night~sky here.
+TextureID|17
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|127,55
+Pokemon2|214,55
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|2
+IntroSequence|Blue,Blue

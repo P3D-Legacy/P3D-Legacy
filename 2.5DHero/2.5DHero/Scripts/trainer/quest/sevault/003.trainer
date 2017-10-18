@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Jackson
+TrainerClass|Pokémon Ranger
+Money|2016
+IntroMessage|I work to protect the~environment. In turn, nature~protects me!
+OutroMessage|Whoa! You're tough!~How about protecting me?
+DefeatMessage|From far out among the stars,~our planet is just a drop of~water.*But we want to protect that~drop of water for everyone.
+TextureID|89
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|465,56
+Pokemon2|103,55
+Pokemon3|103,56
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|2
+IntroSequence|Blue,Blue

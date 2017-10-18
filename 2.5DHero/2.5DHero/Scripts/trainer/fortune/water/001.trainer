@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Edward
+TrainerClass|Juggler
+Money|2040
+IntroMessage|I'm practicing in secret so~no one can see me.
+OutroMessage|Nobody saw me losing, right?
+DefeatMessage|As a performer, I don't want~people to know about the~effort I put in.
+TextureID|27
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|100,49
+Pokemon2|100,49
+Pokemon3|101,50
+Pokemon4|122,51
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|2
+IntroSequence|Blue,Blue

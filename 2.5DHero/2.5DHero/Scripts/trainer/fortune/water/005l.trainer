@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Miu,Mia
+TrainerClass|Twins,
+Money|1320
+IntroMessage|
+OutroMessage|Miu: Oh, no!~Mommy!
+DefeatMessage|Miu: It makes me all sad inside~when we lose...
+TextureID|littlegirl,littlegirl
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|26,55
+Pokemon2|26,55
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|1
+AI|2
+IntroSequence|Blue,Blue
