@@ -46459,3 +46459,9 @@
 /processorParam:TextureFormat=Color
 /build:GUI/Menus/Options.png
 
+#begin Songs/wind.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/wind.ogg
+

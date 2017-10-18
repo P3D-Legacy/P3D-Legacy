@@ -100,7 +100,7 @@ Public Class PressStartScreen
             tempG += 0.04F
 
             If IsCurrentScreen() Then
-                If KeyBoardHandler.KeyPressed(KeyBindings.EnterKey1) Or ControllerHandler.ButtonPressed(Buttons.A) Or MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) Then
+                If KeyBoardHandler.KeyPressed(KeyBindings.EnterKey1) Or KeyBoardHandler.KeyPressed(KeyBindings.EnterKey2) Or ControllerHandler.ButtonPressed(Buttons.A) Or MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) Then
                     SetScreen(New NewMainMenuScreen(Me))
                 End If
             End If
