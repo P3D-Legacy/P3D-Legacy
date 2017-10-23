@@ -975,7 +975,7 @@ nextIndex:
 #End Region
 
         Public Sub EndBattle(ByVal blackout As Boolean)
-            Level.StopOffsetMapUpdate()
+            'Level.StopOffsetMapUpdate()
 
             Dim str As String = ""
             'Call the EndBattle function of the abilities and Reverts battle only Pokemon formes.

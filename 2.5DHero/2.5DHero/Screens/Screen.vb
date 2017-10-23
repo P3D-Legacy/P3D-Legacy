@@ -118,6 +118,7 @@ Public MustInherit Class Screen
                 _globalLevel.StopOffsetMapUpdate()
             End If
             _globalLevel = value
+            _globalLevel.StartOffsetMapUpdate()
         End Set
     End Property
 

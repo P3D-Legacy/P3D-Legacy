@@ -200,7 +200,7 @@ Stairs:
 {"Structure"{STR[{"Map"{str[structures\stairs\0\n]}}{"Offset"{sngArr[39,0,13]}}]}}
 
 NPC:
-{"NPC"{NPC[{"Position"{sngArr[11,0,8]}}{"TextureID"{str[29]}}{"ID"{int[0]}}{"Name"{str[IDlotto]}}{"Action"{int[0]}}{"AdditionalValue"{str[2|trainer\fortune\north\001]}}{"Rotation"{int[3]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[11,0,8]}}{"TextureID"{str[29]}}{"ID"{int[0]}}{"Name"{str[IDlotto]}}{"Action"{int[2]}}{"AdditionalValue"{str[2|trainer\fortune\north\001]}}{"Rotation"{int[3]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 
 Item:
 {"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[12,-0.375,8]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[1]}}{"AdditionalValue"{str[1,2]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.25,0.25,0.25]}}]}}

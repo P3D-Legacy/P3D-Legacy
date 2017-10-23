@@ -738,23 +738,33 @@ Public Class Level
         DebugDisplay.MaxVertices = 0
         DebugDisplay.MaxDistance = 0
 
+        Dim AllEntities As New List(Of Entity)
+        Dim AllFloors As New List(Of Entity)
+
+        AllEntities.AddRange(Entities)
+        AllFloors.AddRange(Floors)
+
         If Core.GameOptions.LoadOffsetMaps > 0 Then
-            Me.RenderOffsetMap() ' Only render offset maps if they are activated.
+            AllEntities.AddRange(OffsetmapEntities)
+            AllFloors.AddRange(OffsetmapFloors)
         End If
 
+        AllEntities = (From f In AllEntities Order By f.CameraDistance Descending).ToList()
+        AllFloors = (From f In AllFloors Order By f.CameraDistance Descending).ToList()
+
         'Render floors:
-        For i = 0 To Me.Floors.Count - 1
-            If i <= Me.Floors.Count - 1 Then
-                Me.Floors(i).Render()
-                DebugDisplay.MaxVertices += Me.Floors(i).VertexCount
+        For i = 0 To AllFloors.Count - 1
+            If i <= AllFloors.Count - 1 Then
+                AllFloors(i).Render()
+                DebugDisplay.MaxVertices += AllFloors(i).VertexCount
             End If
         Next
 
         'Render all other entities:
-        For i = 0 To Me.Entities.Count - 1
-            If i <= Me.Entities.Count - 1 Then
-                Me.Entities(i).Render()
-                DebugDisplay.MaxVertices += Me.Entities(i).VertexCount
+        For i = 0 To AllEntities.Count - 1
+            If i <= AllEntities.Count - 1 Then
+                AllEntities(i).Render()
+                DebugDisplay.MaxVertices += AllEntities(i).VertexCount
             End If
         Next
 
@@ -864,13 +874,6 @@ Public Class Level
                         Exit For
                     End If
                 Next
-
-                '' Call UpdateEntity on all offset map entities:
-                'For i = Me.OffsetmapEntities.Count - 1 To 0 Step -1
-                '    If i <= Me.OffsetmapEntities.Count - 1 Then
-                '        Me.OffsetmapEntities(i).UpdateEntity()
-                '    End If
-                'Next
 
                 ' Call UpdateEntity on all offset map floors:
                 For i = Me.OffsetmapFloors.Count - 1 To 0 Step -1
