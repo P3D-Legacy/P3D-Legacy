@@ -1069,7 +1069,7 @@
             Else
                 Clicked = False
                 If Selected Then
-                    If Controls.Dismiss(False, True, True) Then
+                    If Controls.Dismiss(False, True, True) OrElse Controls.Accept(False, True, True) Then
                         Selected = False
                         s._selectedScrollBar = False
                     ElseIf Controls.Left(True) Then
