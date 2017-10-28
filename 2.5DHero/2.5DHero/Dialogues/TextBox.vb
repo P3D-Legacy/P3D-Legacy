@@ -3,7 +3,7 @@
     Public Shared ReadOnly DefaultColor As Color = New Color(16, 24, 32)
     Public Shared ReadOnly PlayerColor As Color = New Color(0, 0, 180)
 
-    Public Shared TextSpeed As Integer = 0
+    Public Shared TextSpeed As Integer = 1
 
     Public Text As String
     Dim currentChar As Integer = 0

@@ -122,9 +122,7 @@ nextScript:
                     Security.FileValidation.CheckFileValid(path, False, "ActionScript.vb")
 
                     If System.IO.File.Exists(path) = True Then
-
-                        Dim Data As String = System.IO.File.ReadAllText(path)
-
+                        Dim Data As String = System.IO.File.ReadAllText(path, Encoding.GetEncoding("iso-8859-1"))
                         Data = Data.Replace(vbNewLine, "^")
                         Dim ScriptData() As String = Data.Split(CChar("^"))
 

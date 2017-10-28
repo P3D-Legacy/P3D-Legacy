@@ -42,6 +42,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Import Include="System.Text" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
