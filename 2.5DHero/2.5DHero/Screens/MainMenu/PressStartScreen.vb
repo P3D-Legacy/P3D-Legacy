@@ -59,7 +59,7 @@ Public Class PressStartScreen
         _shineRenderer = New SpriteBatch(GraphicsDevice)
         _backgroundRenderer = New SpriteBatch(GraphicsDevice)
 
-        target = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height)
+        target = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
 
         'crappy fix
         Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin = ""

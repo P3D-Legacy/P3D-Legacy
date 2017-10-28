@@ -142,8 +142,8 @@ Public Class NewInventoryScreen
 
         'JSON Stuff
         '_translation = New Globalization.Classes.LOCAL_InventoryScreen()
-        target_1 = New RenderTarget2D(GraphicsDevice, 816, 400 - 32, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
-        target_2 = New RenderTarget2D(GraphicsDevice, 500, 368)
+        target_1 = New RenderTarget2D(GraphicsDevice, 816, 400 - 32, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8, 0, RenderTargetUsage.PreserveContents)
+        target_2 = New RenderTarget2D(GraphicsDevice, 500, 368, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
         itemBatch = New CoreSpriteBatch(GraphicsDevice)
         infoBatch = New CoreSpriteBatch(GraphicsDevice)
 

@@ -27,7 +27,7 @@
         IsDrawingGradients = True
 
         MouseVisible = True
-        _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height)
+        _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
         _texture = TextureManager.GetTexture("GUI\Menus\General")
 
         ConstructMenu()

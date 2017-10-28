@@ -41,8 +41,8 @@
         _backTexture = Content.Load(Of Texture2D)("Textures\UI\TrainerCard\Back")
         _paperClipTexture = Content.Load(Of Texture2D)("Textures\UI\TrainerCard\Paperclip")
         _papersTexture = Content.Load(Of Texture2D)("Textures\UI\TrainerCard\Papers")
-        target = New RenderTarget2D(GraphicsDevice, _backTexture.Width, _backTexture.Height + _paperClipTexture.Height)
-        target2 = New RenderTarget2D(GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height)
+        target = New RenderTarget2D(GraphicsDevice, _backTexture.Width, _backTexture.Height + _paperClipTexture.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+        target2 = New RenderTarget2D(GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
 
         If Screen.Level.Surfing = True Then
             _charTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempSurfSkin)
