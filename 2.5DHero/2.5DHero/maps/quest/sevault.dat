@@ -2,7 +2,7 @@
 {"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[1]}}{"Lightning"{int[0]}}]}}
 
 Floor:
-{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[2,6]}}{"Position"{intArr[15,0,74]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
+{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[2,7]}}{"Position"{intArr[15,0,74]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[7,7]}}{"Position"{intArr[7,1,17]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,6]}}{"Position"{intArr[13,1,68]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
@@ -19,6 +19,7 @@ Floor:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[2,4]}}{"Position"{intArr[17,5,6]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 
 Dirt:
+{"Floor"{ENT[{"Size"{intArr[1,2]}}{"Position"{intArr[-1,2,8]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[240,128,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[2,4]}}{"Position"{intArr[0,2,8]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[240,128,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[4,2]}}{"Position"{intArr[2,2,10]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[240,128,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[4,3]}}{"Position"{intArr[13,2,17]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[240,128,16,16]}}]}}
@@ -873,15 +874,15 @@ PurpleHouse2:
 
 Warps:
 Ent:
-{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[0,2,8]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\canyonent.dat,23,2.1,28,0]}}{"Rotation"{int[0]}}]}}
-{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[0,2,9]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\canyonent.dat,23,2.1,29,0]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[-1,2,8]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\canyonent.dat,24,2.1,28,0]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[-1,2,9]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\canyonent.dat,24,2.1,29,0]}}{"Rotation"{int[0]}}]}}
 key:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[7,1,17]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16][176,16,16,16]]}}{"TextureIndex"{intArr[1,1,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\tanoby\key.dat,3,0.1,12,0]}}{"Rotation"{int[0]}}]}}
 House:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[14,2,61]}}{"TexturePath"{str[sevii]}}{"Textures"{recArr[[48,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\1.dat,2,0.1,7,0]}}{"Rotation"{int[0]}}]}}
 Tanoby:
-{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[15,0,79]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\tanoby\main.dat,63,0.1,0,0]}}{"Rotation"{int[0]}}]}}
-{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[16,0,79]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\tanoby\main.dat,64,0.1,0,0]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[15,0,80]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\tanoby\main.dat,63,0.1,-1,0]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[16,0,80]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\tanoby\main.dat,64,0.1,-1,0]}}{"Rotation"{int[0]}}]}}
 
 Backdrops:
 {"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,-100.5]}}{"Size"{intArr[240,280]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
