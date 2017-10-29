@@ -51,7 +51,7 @@ Public Class Trainer
         Dim path As String = GameModeManager.GetScriptPath("Trainer\" & TrainerFile & ".trainer")
         Security.FileValidation.CheckFileValid(path, False, "Trainer.vb")
 
-        Dim Data() As String = System.IO.File.ReadAllLines(path, Encoding.GetEncoding("iso-8859-1"))
+        Dim Data() As String = System.IO.File.ReadAllLines(path)
 
         If Data(0) = "[TRAINER FORMAT]" Then
             LoadTrainer(Data)

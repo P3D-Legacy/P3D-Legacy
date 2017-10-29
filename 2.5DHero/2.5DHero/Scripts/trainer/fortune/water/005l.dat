@@ -1,7 +1,7 @@
 version=2
 :if:<register.registered(trainer_fortune\water\005l)>=false
 :then
-@text.show(Miu: Hello, Pokémon!~It's time to play!)
+@text.show(Miu: Hello, PokÃ©mon!~It's time to play!)
 :endif
 
 @battle.starttrainer(fortune\water\005l)
