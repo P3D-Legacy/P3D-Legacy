@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Sevault Canyon]}}{"MusicLoop"{str[RouteMusic4]}}{"CurrentRegion"{str[sevii islands]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[1]}}{"Lightning"{int[0]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[1]}}{"Lightning"{int[0]}}{"BattleMap"{str[quest\sevault.dat,19,2,-26.5]}}]}}
 
 Floor:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[2,7]}}{"Position"{intArr[15,0,74]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}

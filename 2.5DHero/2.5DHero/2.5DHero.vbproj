@@ -65,6 +65,21 @@
     <Content Include="Scripts\underwatercave\rocks\Clipboard Text %2823-10-16, 22.00.44%29.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="maps\battle\fortune\altering.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\fortune\green.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\fortune\outcast.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\fortune\patternbush\main.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\fortune\valley.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="maps\battle\mtsilver\1f.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -84,6 +99,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="maps\battle\mtsilver\snow.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\quest\canyonent.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\quest\sevault.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\quest\tanoby\main.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="maps\battle\quest\trainertower\main.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="maps\battle\routes\route28.dat">
