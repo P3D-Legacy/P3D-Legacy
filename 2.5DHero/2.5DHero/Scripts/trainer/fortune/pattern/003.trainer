@@ -2,8 +2,8 @@
 Name|Garret
 TrainerClass|Bug Catcher
 Money|648
-IntroMessage|I caught a bug Pokémon that~lives only around here!
-OutroMessage|Heheh...~Isn't my Pokémon awesome?
+IntroMessage|I caught a bug PokÃ©mon that~lives only around here!
+OutroMessage|Heheh...~Isn't my PokÃ©mon awesome?
 DefeatMessage|There's a girl near the bush~who measures Heracross for~trainers.
 TextureID|bugcatcher
 Region|Sevii Islands

@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Gate]}}{"MusicLoop"{str[viridian_forest]}}{"CurrentRegion"{str[Sevii Islands]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"RideType"{int[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"RideType"{int[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}{"BattleMap"{str[fortune\patternbush\main.dat,0,0,-0.6]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[10,7]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[Gate]}}{"Texture"{rec[0,0,16,16]}}]}}
