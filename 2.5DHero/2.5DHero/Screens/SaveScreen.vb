@@ -10,11 +10,21 @@
     Dim saveSessionFailed As Boolean = False
     Dim backupFileLocation As String = ""
 
+    Private Yslide As Integer = 0
+    Private YslideMAX As Integer = CInt(Core.windowSize.Height / 2) + 270
+
+    Dim menuTexture As Texture2D
+    Dim _closing As Boolean = False
+    Dim _opening As Boolean = True
+
     Public Sub New(ByVal currentScreen As Screen)
+        Yslide = YslideMAX
+
         Me.Identification = Identifications.SaveScreen
         Me.PreScreen = currentScreen
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
+        Me.menuTexture = TextureManager.GetTexture("GUI\Menus\SaveBook")
         ChooseBox.Show({Localization.GetString("save_screen_yes"), Localization.GetString("save_screen_no")}, 0, {})
 
         SaveGameHelpers.ResetSaveCounter()
@@ -23,63 +33,125 @@
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
 
+        Dim halfWidth As Integer = CInt(Core.windowSize.Width / 2)
+        Dim halfHeight As Integer = CInt(Core.windowSize.Height / 2)
+
+        Dim Delta_X As Integer = halfWidth - 350
+        Dim Delta_Y As Integer = halfHeight - 220 + Yslide
         If Core.Player.IsGameJoltSave = True Then
             GameJolt.Emblem.Draw(GameJolt.API.username, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem, New Vector2(CSng(Core.windowSize.Width / 2 - 256), 30), 4, Core.GameJoltSave.DownloadedSprite)
         End If
 
-        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(168, 168, 640, 320))
-
         With Core.SpriteBatch
+            .Draw(menuTexture, New Rectangle(Delta_X, Delta_Y, 700, 440), Color.White)
+
             If saveSessionFailed = True Then
-                .DrawString(FontManager.InGameFont, "Saving failed!", New Vector2(188, 186), Color.Red)
+                .DrawString(FontManager.InGameFont, "Saving failed!", New Vector2(Delta_X + 90, Delta_Y + 50), Color.Red)
 
                 If Core.GameOptions.Extras.Contains("Backup Save Feature") Then
-                    .DrawString(FontManager.MiniFont, "Press Dismiss to close this screen and try to save" & vbNewLine &
-                            "again in order to prevent data corruption." & vbNewLine & vbNewLine &
-                            "We have backup your save in the event of gamejolt API being down." & vbNewLine &
-                            "You may safely quit the game now or try to save again later." & vbNewLine & vbNewLine &
-                            "Backup save can be found at the Backup Save folder :)", New Vector2(188, 240), Color.Black)
+                    .DrawString(FontManager.MiniFont,
+                        "Press Dismiss to close this" & vbNewLine &
+                        "screen and try to save again" & vbNewLine &
+                        "in order to prevent data" & vbNewLine &
+                        "corruption." & vbNewLine & vbNewLine & vbNewLine &
+                        "Your save has been backed" & vbNewLine &
+                        "up in the event of the" & vbNewLine &
+                        "Gamejolt API being down.", New Vector2(Delta_X + 90, Delta_Y + 100), Color.Black)
+                    .DrawString(FontManager.MiniFont,
+                        "You may safely quit the" & vbNewLine &
+                        "game now or try to save" & vbNewLine &
+                        "again later." & vbNewLine & vbNewLine & vbNewLine &
+                        "The backup save can be" & vbNewLine &
+                        "found in the Backup Save" & vbNewLine &
+                        "folder", New Vector2(Delta_X + 390, Delta_Y + 100), Color.Black)
                 Else
                     .DrawString(FontManager.MiniFont,
-                            "Press Dismiss to close this screen and try to save again in order to prevent" & vbNewLine &
-                            "data corruption." & vbNewLine & vbNewLine &
-                            "If the problem persists, the reason could be GameJolt servers being under" & vbNewLine &
-                            "maintenance right now." & vbNewLine & vbNewLine &
-                            "Please try again later, or contact us in our official Discord server: " & vbNewLine & vbNewLine &
-                            "http://www.discord.me/p3d", New Vector2(188, 240), Color.Black)
+                        "Press Dismiss to close this" & vbNewLine &
+                        "screen and try to save again" & vbNewLine &
+                        "in order to prevent data" & vbNewLine &
+                        "corruption." & vbNewLine & vbNewLine & vbNewLine &
+                        "If the problem persists, the" & vbNewLine &
+                        "GameJolt servers could be" & vbNewLine &
+                        "down for maintenance right" & vbNewLine &
+                        "now.", New Vector2(Delta_X + 90, Delta_Y + 100), Color.Black)
+                    .DrawString(FontManager.MiniFont, "Please try again later," & vbNewLine &
+                        "or contact us here:" & vbNewLine & vbNewLine &
+                        "Discord server" & vbNewLine &
+                        "www.discord.me/p3d" & vbNewLine & vbNewLine &
+                        "Official Forum" & vbNewLine &
+                        "pokemon3d.net/forum/news", New Vector2(Delta_X + 390, Delta_Y + 100), Color.Black)
                 End If
+
+                Dim text As String = String.Empty
+                If ControllerHandler.IsConnected() Then
+                    text = "Press      to continue"
+                Else
+                    text = "Press " & KeyBindings.BackKey1.ToString() & " to continue"
+                End If
+
+                Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
+
+                GetFontRenderer().DrawString(FontManager.MiniFont, text, New Vector2(Delta_X + 610 - textSize.X / 2.0F,
+                                                                                   Delta_Y + 350 - textSize.Y / 2.0F), Color.DarkBlue)
+
+                If ControllerHandler.IsConnected() Then
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonB"), New Rectangle(CInt(Delta_X + 610 - textSize.X / 2 + FontManager.MiniFont.MeasureString("Press ").X),
+                                                                                                               CInt(Delta_Y + 350 - textSize.Y / 2), 20, 20), Color.White)
+                End If
+
             Else
                 If ready = True Then
-                    .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_success"), New Vector2(188, 186), Color.DarkBlue)
+                    .DrawString(FontManager.InGameFont, "Saved the game.", New Vector2(Delta_X + 90, Delta_Y + 50), Color.DarkBlue)
                 Else
                     If SaveGameHelpers.GameJoltSaveDone() = False And savingStarted = True Then
                         If SaveGameHelpers.StartedDownloadCheck = True Then
-                            .DrawString(FontManager.InGameFont, "Validating uploaded data" & LoadingDots.Dots, New Vector2(188, 186), Color.Black)
+                            .DrawString(FontManager.InGameFont, "Validating data" & LoadingDots.Dots, New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
                         Else
-                            .DrawString(FontManager.InGameFont, "Saving, please wait" & LoadingDots.Dots, New Vector2(188, 186), Color.Black)
+                            .DrawString(FontManager.InGameFont, "Saving, please wait" & LoadingDots.Dots, New Vector2(Delta_X + 77, Delta_Y + 50), Color.Black)
                         End If
                     Else
-                        .DrawString(FontManager.InGameFont, Localization.GetString("save_screen_title"), New Vector2(188, 186), Color.Black)
+                        .DrawString(FontManager.InGameFont, "Would you like to", New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
+                        .DrawString(FontManager.InGameFont, "save the game?", New Vector2(Delta_X + 90, Delta_Y + 80), Color.Black)
                     End If
                 End If
 
                 For i = 0 To Core.Player.Pokemons.Count - 1
-                    .Draw(Core.Player.Pokemons(i).GetMenuTexture(), New Rectangle(220 + i * 80, 260, 64, 64), Color.White)
+                    Dim Pos As New Vector2(Delta_X + 390 + (i Mod 3) * 80, Delta_Y + 50 + CInt(Math.Floor(i / 3)) * 64)
+                    .Draw(Core.Player.Pokemons(i).GetMenuTexture(), New Rectangle(CInt(Pos.X), CInt(Pos.Y), 64, 64), Color.White)
 
                     If Not Core.Player.Pokemons(i).Item Is Nothing And Core.Player.Pokemons(i).IsEgg() = False Then
-                        .Draw(Core.Player.Pokemons(i).Item.Texture, New Rectangle(CInt(252 + i * 80), 290, 32, 32), Color.White)
+                        .Draw(Core.Player.Pokemons(i).Item.Texture, New Rectangle(CInt(Pos.X) + 36, CInt(Pos.Y) + 36, 32, 32), Color.White)
                     End If
                 Next
 
-                .DrawString(FontManager.MiniFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & vbNewLine & vbNewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & vbNewLine & vbNewLine & Localization.GetString("save_screen_money") & ": " & Core.Player.Money & vbNewLine & vbNewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(192, 350), Color.DarkBlue)
+                .DrawString(FontManager.MiniFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & vbNewLine & vbNewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & vbNewLine & vbNewLine & Localization.GetString("save_screen_money") & ": " & Core.Player.Money & vbNewLine & vbNewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
             End If
         End With
-
-        Screen.ChooseBox.Draw()
+        Screen.ChooseBox.Draw(New Vector2(Delta_X + 115, Delta_Y + 155), False, 1.5F)
     End Sub
 
     Public Overrides Sub Update()
         Screen.ChooseBox.Update()
+
+        If _opening Then
+            If Yslide < 5 Then
+                Yslide = 0
+                _opening = False
+            Else
+                Yslide = CInt(MathHelper.Lerp(Yslide, 0, 0.1F))
+            End If
+
+            Exit Sub
+        ElseIf _closing Then
+            If Yslide < CInt(YslideMAX * 0.91) Then
+                Yslide = CInt(MathHelper.Lerp(Yslide, YslideMAX, 0.1F))
+            Else
+                _closing = False
+                Core.SetScreen(Me.PreScreen)
+            End If
+
+            Exit Sub
+        End If
 
         If Core.Player.IsGameJoltSave = True Then
             If SaveGameHelpers.GameJoltSaveDone() = True Then
@@ -102,7 +174,8 @@
             If ChooseBox.Showing = False Then
                 If ready = True Then
                     If Me.delay <= 0.0F Then
-                        Core.SetScreen(Me.PreScreen)
+                        _closing = True
+                        'Core.SetScreen(Me.PreScreen)
                     Else
                         Me.delay -= 0.2F
                         If delay <= 0.0F Then
@@ -132,12 +205,14 @@
 
             If Controls.Dismiss() And ready = False Then
                 ChooseBox.Showing = False
-                Core.SetScreen(Me.PreScreen)
+                _closing = True
+                'Core.SetScreen(Me.PreScreen)
             End If
         Else
             If Controls.Dismiss() = True Then
                 ChooseBox.Showing = False
-                Core.SetScreen(Me.PreScreen)
+                _closing = True
+                'Core.SetScreen(Me.PreScreen)
             End If
         End If
     End Sub

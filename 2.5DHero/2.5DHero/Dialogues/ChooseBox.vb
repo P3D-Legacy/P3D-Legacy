@@ -142,24 +142,28 @@
         End If
     End Sub
 
-    Public Sub Draw(ByVal Position As Vector2)
+    Public Sub Draw(ByVal Position As Vector2, Optional ByVal DrawBox As Boolean = True, Optional ByVal Size As Single = 1.0F)
         If Me.Showing = True Then
             With Core.SpriteBatch
-                .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X), CInt(Position.Y), 288, 48), New Rectangle(0, 0, 96, 16), Color.White)
-                For i = 0 To Options.Count - 2
-                    .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X), CInt(Position.Y) + 48 + i * 48, 288, 48), New Rectangle(0, 16, 96, 16), Color.White)
-                Next
-                .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X), CInt(Position.Y) + 96 + (Options.Count - 2) * 48, 288, 48), New Rectangle(0, 32, 96, 16), Color.White)
+                'Bounding box
+                If DrawBox Then
+                    .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X), CInt(Position.Y), 288, 48), New Rectangle(0, 0, 96, 16), Color.White)
+                    For i = 0 To Options.Count - 2
+                        .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X), CInt(Position.Y) + 48 + i * 48, 288, 48), New Rectangle(0, 16, 96, 16), Color.White)
+                    Next
+                    .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X), CInt(Position.Y) + 96 + (Options.Count - 2) * 48, 288, 48), New Rectangle(0, 32, 96, 16), Color.White)
+                End If
+                'Text
                 For i = 0 To Options.Count - 1
-                    Dim m As Single = 1.0F
+                    Dim useSize As Single = Size
                     Select Case Me.TextFont.FontName.ToLower()
                         Case "textfont", "braille"
-                            m = 2.0F
+                            useSize = 2 * Size
                     End Select
-
-                    .DrawString(Me.TextFont.SpriteFont, Options(i).Replace("[POKE]", "Poké"), New Vector2(CInt(Position.X + 40), CInt(Position.Y) + 32 + i * 48), Color.Black, 0.0F, Vector2.Zero, m, SpriteEffects.None, 0.0F)
+                    .DrawString(Me.TextFont.SpriteFont, Options(i).Replace("[POKE]", "Poké"), New Vector2(CInt(Position.X + 40), CInt(Position.Y) + 32 + i * 48 * Size), Color.Black, 0.0F, Vector2.Zero, useSize, SpriteEffects.None, 0.0F)
                 Next
-                .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X + 20), CInt(Position.Y) + 36 + index * 48, 10, 20), New Rectangle(96, 0, 3, 6), Color.White)
+                'Cursor
+                .Draw(TextureManager.GetTexture("GUI\Overworld\ChooseBox"), New Rectangle(CInt(Position.X + 20), CInt(Position.Y) + 36 + CInt(index * 48 * Size), CInt(10 * Size), CInt(20 * Size)), New Rectangle(96, 0, 3, 6), Color.White)
             End With
         End If
     End Sub
