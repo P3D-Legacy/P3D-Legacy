@@ -23,7 +23,7 @@
                         Core.Player.Pokemons.RemoveAt(index)
                     End If
                 Case "add"
-                    ' PokemonID,Level,Method,Ball,Location,IsEgg,TrainerName
+                    ' PokemonID,Level,Method,Ball,Location,IsEgg,TrainerName,HeldItem
 
                     If argument.StartsWith("{") = True Or argument.Remove(0, 1).StartsWith(",{") = True Then
                         Dim insertIndex As Integer = Core.Player.Pokemons.Count
@@ -80,6 +80,11 @@
                             catchTrainer = argument.GetSplit(6)
                         End If
 
+                        Dim heldItem As Integer = 0
+                        If commas > 6 Then
+                            heldItem = CInt(argument.GetSplit(7))
+                        End If
+
                         Dim Pokemon As Pokemon = Pokemon.GetPokemonByID(PokemonID)
                         Pokemon.Generate(Level, True)
 
@@ -95,6 +100,10 @@
                             Pokemon.SetCatchInfos(Item.GetItemByID(5), "obtained at")
                         Else
                             Pokemon.EggSteps = 0
+                        End If
+
+                        If heldItem <> 0 Then
+                            Pokemon.Item = Item.GetItemByID(heldItem)
                         End If
 
                         Core.Player.Pokemons.Add(Pokemon)

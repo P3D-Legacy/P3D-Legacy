@@ -1664,6 +1664,12 @@
     <None Include="Scripts\olivine\voltorb_trade.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Scripts\pallet\bulbasaur.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\pallet\charmander.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Scripts\pallet\daisy.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1677,6 +1683,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Scripts\pallet\oak.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Scripts\pallet\squirtle.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Scripts\pewter\fossilscientist.dat">
