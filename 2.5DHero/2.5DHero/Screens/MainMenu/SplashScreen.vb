@@ -4,8 +4,9 @@ Friend Class SplashScreen
 
     Inherits Screen
 
-    Private Const LICENSE_TEXT As String = """MonoGame"", the MonoGame Logo and source code are copyrights of MonoGame Team (monogame.net).\n" +
-                                           "Pokémon 3D is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc."
+    Private Const LICENSE_TEXT As String =
+"""MonoGame"", the MonoGame Logo and source code are copyrights of MonoGame Team (monogame.net).
+Pokémon 3D is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc."
 
     Private ReadOnly _monoGameLogo As Texture2D
     Private ReadOnly _licenseFont As SpriteFont
