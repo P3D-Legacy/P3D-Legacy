@@ -504,7 +504,7 @@
         Player.Temp.IsInBattle = True
         Player.Temp.BeforeBattlePosition = Screen.Camera.Position
         Player.Temp.BeforeBattleLevelFile = Screen.Level.LevelFile
-        Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection() 
+        Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection()
         MusicManager.PlayMusic(MusicLoop)
         MediaPlayer.IsRepeating = False
 
@@ -519,7 +519,7 @@
     End Sub
 
     Private Function SongOver() As Boolean
-        Return startTime + duration < DateAdd(DateInterval.Second, +1, Date.Now)
+        Return startTime + duration < Date.Now.AddSeconds(1)
     End Function
 
     'Protected Overrides Sub Finalize()

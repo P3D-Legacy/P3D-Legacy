@@ -253,7 +253,7 @@ Public Class ScriptConversion
     Private Shared Function InternalToDouble(ByVal expression As String, Optional ByRef hasError As Boolean = False) As Double
         expression = expression.Replace(".", My.Application.Culture.NumberFormat.NumberDecimalSeparator)
 
-        If IsNumeric(expression) = True Then
+        If StringHelper.IsNumeric(expression) Then
             Return System.Convert.ToDouble(expression)
         Else
             If expression.ToLower() = "false" Then

@@ -1,4 +1,6 @@
-﻿Namespace Security
+﻿Imports System.Windows.Forms
+
+Namespace Security
 
     Public Class HackerAlerts
 
@@ -23,7 +25,7 @@ http://pokemon3d.net/forum/faq/44/
 
 Thank you for your cooperation."
 
-            MsgBox(text, MsgBoxStyle.OkOnly, "Pokémon 3D Injection Shield")
+            MessageBox.Show(text, "Pokémon 3D Injection Shield", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
 
             t.Start()
         End Sub

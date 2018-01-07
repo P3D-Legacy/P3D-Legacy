@@ -852,19 +852,19 @@ Public Class PartyScreen
             Core.SetScreen(Core.CurrentScreen.PreScreen)
         End If
         If Screen.Level.IsDark = True Then
-            Dim s As String = "version=2" & vbNewLine &
-                              "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
-                              "@environment.toggledarkness" & vbNewLine &
-                              "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
-                              "@text.show(The area got lit up!)" & vbNewLine &
+            Dim s As String = "version=2" & Environment.NewLine &
+                              "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
+                              "@environment.toggledarkness" & Environment.NewLine &
+                              "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
+                              "@text.show(The area got lit up!)" & Environment.NewLine &
                               ":end"
             PlayerStatistics.Track("Flash used", 1)
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         Else
-            Dim s As String = "version=2" & vbNewLine &
-                "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & vbNewLine &
-                                            "@sound.play(Battle\Effects\effect_thunderbolt)" & vbNewLine &
-                                            "@text.show(The area is already~lit up!)" & vbNewLine &
+            Dim s As String = "version=2" & Environment.NewLine &
+                "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
+                                            "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
+                                            "@text.show(The area is already~lit up!)" & Environment.NewLine &
                                             ":end"
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         End If
@@ -985,13 +985,13 @@ Public Class PartyScreen
 :endwhile
 @screen.fadeout
 @camera.defix
-@player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)" & vbNewLine &
+@player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)" & Environment.NewLine &
 "@player.turnto(2)"
 
             If setToFirstPerson = True Then
-                s &= vbNewLine & "@camera.deactivatethirdperson"
+                s &= Environment.NewLine & "@camera.deactivatethirdperson"
             End If
-            s &= vbNewLine &
+            s &= Environment.NewLine &
 "@level.update
 @screen.fadein
 :end"
@@ -1034,9 +1034,9 @@ Public Class PartyScreen
 @player.turnto(2)"
 
             If setToFirstPerson = True Then
-                s &= vbNewLine & "@camera.deactivatethirdperson"
+                s &= Environment.NewLine & "@camera.deactivatethirdperson"
             End If
-            s &= vbNewLine &
+            s &= Environment.NewLine &
 "@level.update
 @screen.fadein
 :end"

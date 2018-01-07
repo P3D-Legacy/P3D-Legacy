@@ -21,7 +21,7 @@ Namespace Items.KeyItems
                 End While
 
                 Dim p As Pokemon = Nothing
-                
+
                 Dim pokeFile As String = "poke\" & Screen.Level.LevelFile.Remove(Screen.Level.LevelFile.Length - 4, 4) & ".poke"
                 If GameModeManager.MapFileExists(pokeFile) = True Then
                     p = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.OldRod, False)
@@ -41,7 +41,7 @@ Namespace Items.KeyItems
                 If Core.Random.Next(0, 3) <> 0 Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "suction cups" Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "sticky hold" Then
                     Dim LookingOffset As New Vector3(0)
 
-                    Select Case Screen.Camera.GetPlayerFacingDirection() 
+                    Select Case Screen.Camera.GetPlayerFacingDirection()
                         Case 0
                             LookingOffset.Z = -1
                         Case 1
@@ -54,29 +54,29 @@ Namespace Items.KeyItems
 
                     Dim spawnPosition As Vector3 = New Vector3(Screen.Camera.Position.X + LookingOffset.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + LookingOffset.Z)
 
-                    Dim endRotation As Integer = Screen.Camera.GetPlayerFacingDirection() + 2 
+                    Dim endRotation As Integer = Screen.Camera.GetPlayerFacingDirection() + 2
                     If endRotation > 3 Then
                         endRotation = endRotation - 4
                     End If
 
-                    s &= vbNewLine & "@player.showrod(0)" & vbNewLine &
-                        "@text.show(. . . . . . . . . .)" & vbNewLine &
-                        "@text.show(Oh!~A bite!)" & vbNewLine &
-                        "@player.hiderod" & vbNewLine &
-                        "@npc.spawn(" & spawnPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & spawnPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & spawnPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & ",0,...,[POKEMON|" & PokemonShiny & "]" & PokemonID & PokemonForms.GetOverworldAddition(p) & ",0," & endRotation & ",POKEMON,1337,Still)" & vbNewLine &
-                        "@Level.Update" & vbNewLine &
-                        "@pokemon.cry(" & PokemonID & ")" & vbNewLine &
-                        "@level.wait(50)" & vbNewLine &
-                        "@text.show(The wild " & p.OriginalName & "~attacked!)" & vbNewLine &
-                        "@npc.remove(1337)" & vbNewLine &
-                        "@battle.setvar(divebattle,true)" & vbNewLine &
-                        "@battle.wild(" & p.GetSaveData() & ")" & vbNewLine &
+                    s &= Environment.NewLine & "@player.showrod(0)" & Environment.NewLine &
+                        "@text.show(. . . . . . . . . .)" & Environment.NewLine &
+                        "@text.show(Oh!~A bite!)" & Environment.NewLine &
+                        "@player.hiderod" & Environment.NewLine &
+                        "@npc.spawn(" & spawnPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & spawnPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & spawnPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & ",0,...,[POKEMON|" & PokemonShiny & "]" & PokemonID & PokemonForms.GetOverworldAddition(p) & ",0," & endRotation & ",POKEMON,1337,Still)" & Environment.NewLine &
+                        "@Level.Update" & Environment.NewLine &
+                        "@pokemon.cry(" & PokemonID & ")" & Environment.NewLine &
+                        "@level.wait(50)" & Environment.NewLine &
+                        "@text.show(The wild " & p.OriginalName & "~attacked!)" & Environment.NewLine &
+                        "@npc.remove(1337)" & Environment.NewLine &
+                        "@battle.setvar(divebattle,true)" & Environment.NewLine &
+                        "@battle.wild(" & p.GetSaveData() & ")" & Environment.NewLine &
                         ":end"
                 Else
-                    s &= vbNewLine & "@player.showrod(0)" & vbNewLine &
-                        "@text.show(. . . . . . . . . .)" & vbNewLine &
-                        "@text.show(No, there's nothing here...)" & vbNewLine &
-                        "@player.hiderod" & vbNewLine &
+                    s &= Environment.NewLine & "@player.showrod(0)" & Environment.NewLine &
+                        "@text.show(. . . . . . . . . .)" & Environment.NewLine &
+                        "@text.show(No, there's nothing here...)" & Environment.NewLine &
+                        "@player.hiderod" & Environment.NewLine &
                         ":end"
                 End If
 
@@ -91,7 +91,7 @@ Namespace Items.KeyItems
 
             Dim LookingOffset As New Vector3(0)
 
-            Select Case Screen.Camera.GetPlayerFacingDirection() 
+            Select Case Screen.Camera.GetPlayerFacingDirection()
                 Case 0
                     LookingOffset.Z = -1
                 Case 1

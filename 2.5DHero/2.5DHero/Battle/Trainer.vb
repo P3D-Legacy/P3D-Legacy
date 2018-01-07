@@ -343,7 +343,7 @@ Public Class Trainer
                 Me.VSImageOrigin = "battlefrontier"
                 Me.VSImageSize = New Size(275, 275)
             Case Else
-                If IsNumeric(vsType) = True Then
+                If StringHelper.IsNumeric(vsType) = True Then
                     If CInt(vsType) > 11 Then
                         Dim x As Integer = CInt(vsType)
                         Dim y As Integer = 0
@@ -381,7 +381,7 @@ Public Class Trainer
             Case "11"
                 Me.BarImagePosition = New Vector2(1, 5)
             Case Else
-                If IsNumeric(barType) = True Then
+                If StringHelper.IsNumeric(barType) = True Then
                     If CInt(barType) > 11 Then
                         Dim x As Integer = CInt(barType)
                         Dim y As Integer = 0

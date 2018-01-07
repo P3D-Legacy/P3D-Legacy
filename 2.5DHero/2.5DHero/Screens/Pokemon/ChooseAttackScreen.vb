@@ -86,7 +86,7 @@
 
                     If c = CChar(" ") Then
                         If FontManager.MiniFont.MeasureString(n & c).X > 170 Then
-                            t &= vbNewLine
+                            t &= Environment.NewLine
                             n = ""
                         Else
                             t &= " "
@@ -108,7 +108,7 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MiniFont, "Power: " & power & vbNewLine & "Accuracy: " & acc & vbNewLine & vbNewLine & t, New Vector2(CInt(p.X + 432 - 300 + AttackPos), p.Y + 38), Color.Black)
+                .DrawString(FontManager.MiniFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & t, New Vector2(CInt(p.X + 432 - 300 + AttackPos), p.Y + 38), Color.Black)
                 .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 432 - 150 + AttackPos), CInt(p.Y + 42), 56, 28), Color.White)
             End With
 

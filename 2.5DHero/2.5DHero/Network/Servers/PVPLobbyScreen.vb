@@ -73,8 +73,8 @@
     Private Sub DownloadOnlineSprite()
         Dim p As Servers.Player = Core.ServersManager.PlayerCollection.GetPlayer(PartnerNetworkID)
         If Not p Is Nothing Then
-            If p.GamejoltID <> "" Then
-                GameJolt.Emblem.GetOnlineSprite(p.GamejoltID)
+            If p.GameJoltId <> "" Then
+                GameJolt.Emblem.GetOnlineSprite(p.GameJoltId)
             End If
         End If
     End Sub
@@ -120,11 +120,11 @@
                     End If
                 Next
                 If partnerOnServer = False Then
-                    DisconnectMessage = "The other player disconnected." & vbNewLine & vbNewLine & "Press any key to exit."
+                    DisconnectMessage = "The other player disconnected." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
                     ScreenState = ScreenStates.Stopped
                 End If
             Else
-                DisconnectMessage = "You got disconnected from the server." & vbNewLine & vbNewLine & "Press any key to exit."
+                DisconnectMessage = "You got disconnected from the server." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
                 ScreenState = ScreenStates.Stopped
             End If
         End If
@@ -167,11 +167,11 @@
         'Menu:
         If ReceivedBattleOffer = True Then
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Your opponent wants to" & vbNewLine & "battle with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Your opponent wants to" & Environment.NewLine & "battle with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
         Else
             If SentBattleOffer = True Then
                 Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "You want to battle" & vbNewLine & "with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, "You want to battle" & Environment.NewLine & "with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
             End If
         End If
 
@@ -487,7 +487,7 @@
     Public Shared Sub OtherPlayerQuits()
         If IsLobbyScreen() = True Then
             ScreenState = ScreenStates.Stopped
-            DisconnectMessage = "The other player quit the battle." & vbNewLine & vbNewLine & "Press any key to exit."
+            DisconnectMessage = "The other player quit the battle." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
         End If
     End Sub
 
@@ -580,7 +580,7 @@
         t.Gender = 0
         t.IntroType = 11
         t.OutroMessage = ". . ."
-        t.GameJoltID = tempPlayer.GamejoltID
+        t.GameJoltID = tempPlayer.GameJoltId
 
         For Each p As Pokemon In t.Pokemons
             p.Level = 50
@@ -610,8 +610,8 @@
         b.IsRemoteBattle = True
         b.PartnerNetworkID = PartnerNetworkID
 
-        If tempPlayer.GamejoltID <> "" Then
-            b.PVPGameJoltID = tempPlayer.GamejoltID
+        If tempPlayer.GameJoltId <> "" Then
+            b.PVPGameJoltID = tempPlayer.GameJoltId
         End If
 
         Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, t, t.GetIniMusicName(), t.IntroType))
@@ -718,19 +718,19 @@
 
             'Draw Own Statistics:
             With BattleResults.OwnStatistics
-                Dim s1 As String = "Turns:" & vbNewLine &
-                                   "     Moves:" & vbNewLine &
-                                   "     Switches:" & vbNewLine & vbNewLine &
-                                   "Super Effective:" & vbNewLine &
-                                   "Not very Effective:" & vbNewLine &
-                                   "No Effect:" & vbNewLine & vbNewLine &
+                Dim s1 As String = "Turns:" & Environment.NewLine &
+                                   "     Moves:" & Environment.NewLine &
+                                   "     Switches:" & Environment.NewLine & Environment.NewLine &
+                                   "Super Effective:" & Environment.NewLine &
+                                   "Not very Effective:" & Environment.NewLine &
+                                   "No Effect:" & Environment.NewLine & Environment.NewLine &
                                    "Critical Hits:"
-                Dim s2 As String = .Turns & vbNewLine &
-                                   .Moves & vbNewLine &
-                                   .Switches & vbNewLine & vbNewLine &
-                                   .SuperEffective & vbNewLine &
-                                   .NotVeryEffective & vbNewLine &
-                                   .NoEffect & vbNewLine & vbNewLine &
+                Dim s2 As String = .Turns & Environment.NewLine &
+                                   .Moves & Environment.NewLine &
+                                   .Switches & Environment.NewLine & Environment.NewLine &
+                                   .SuperEffective & Environment.NewLine &
+                                   .NotVeryEffective & Environment.NewLine &
+                                   .NoEffect & Environment.NewLine & Environment.NewLine &
                                    .Critical
 
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, s1, New Vector2(40, 340), Color.White, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
@@ -793,19 +793,19 @@
 
             'Draw Opp Statistics:
             With BattleResults.OppStatistics
-                Dim s1 As String = "Turns:" & vbNewLine &
-                                   "     Moves:" & vbNewLine &
-                                   "     Switches:" & vbNewLine & vbNewLine &
-                                   "Super Effective:" & vbNewLine &
-                                   "Not very Effective:" & vbNewLine &
-                                   "No Effect:" & vbNewLine & vbNewLine &
+                Dim s1 As String = "Turns:" & Environment.NewLine &
+                                   "     Moves:" & Environment.NewLine &
+                                   "     Switches:" & Environment.NewLine & Environment.NewLine &
+                                   "Super Effective:" & Environment.NewLine &
+                                   "Not very Effective:" & Environment.NewLine &
+                                   "No Effect:" & Environment.NewLine & Environment.NewLine &
                                    "Critical Hits:"
-                Dim s2 As String = .Turns & vbNewLine &
-                                   .Moves & vbNewLine &
-                                   .Switches & vbNewLine & vbNewLine &
-                                   .SuperEffective & vbNewLine &
-                                   .NotVeryEffective & vbNewLine &
-                                   .NoEffect & vbNewLine & vbNewLine &
+                Dim s2 As String = .Turns & Environment.NewLine &
+                                   .Moves & Environment.NewLine &
+                                   .Switches & Environment.NewLine & Environment.NewLine &
+                                   .SuperEffective & Environment.NewLine &
+                                   .NotVeryEffective & Environment.NewLine &
+                                   .NoEffect & Environment.NewLine & Environment.NewLine &
                                    .Critical
 
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, s1, New Vector2(Core.windowSize.Width - 360, 340), Color.White, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)

@@ -32,7 +32,7 @@ Public Class RoamingPokemon
                 Dim data() As String = line.Split(CChar("|"))
 
                 If newData <> "" Then
-                    newData &= vbNewLine
+                    newData &= Environment.NewLine
                 End If
 
                 If CInt(data(2)) = worldID Or worldID = -1 Then
@@ -77,7 +77,7 @@ Public Class RoamingPokemon
         For Each line As String In Core.Player.RoamingPokemonData.SplitAtNewline()
             If line.StartsWith(compareData) = False Then
                 If newData <> "" Then
-                    newData &= vbNewLine
+                    newData &= Environment.NewLine
                 End If
                 newData &= line
             End If
@@ -93,7 +93,7 @@ Public Class RoamingPokemon
 
         For Each line As String In Core.Player.RoamingPokemonData.SplitAtNewline()
             If newData <> "" Then
-                newData &= vbNewLine
+                newData &= Environment.NewLine
             End If
             If line.StartsWith(compareData) = False Then
                 newData &= line

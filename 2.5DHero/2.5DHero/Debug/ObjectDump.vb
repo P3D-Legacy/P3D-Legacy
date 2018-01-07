@@ -16,13 +16,13 @@ Public Class ObjectDump
             Dim properties() As PropertyInfo = sender.GetType().GetProperties(BindingFlags.Public Or BindingFlags.NonPublic Or BindingFlags.Instance Or BindingFlags.Static)
 
             Dump =
-                "--------------------------------------------------" & vbNewLine &
-                "Generated Fields:" & vbNewLine &
-                "--------------------------------------------------" & vbNewLine
+                "--------------------------------------------------" & Environment.NewLine &
+                "Generated Fields:" & Environment.NewLine &
+                "--------------------------------------------------" & Environment.NewLine
 
             For Each field As FieldInfo In fields
                 If Dump <> "" Then
-                    Dump &= vbNewLine
+                    Dump &= Environment.NewLine
                 End If
 
                 Dim fieldAccessToken As String = ""
@@ -64,15 +64,15 @@ Public Class ObjectDump
                 Dump &= fieldAccessToken & fieldNameToken & " As " & fieldTypeToken & " = " & fieldValueToken
             Next
 
-            Dump &= vbNewLine & vbNewLine &
-                "--------------------------------------------------" & vbNewLine &
-                "Generated Property:" & vbNewLine &
-                "--------------------------------------------------" & vbNewLine
+            Dump &= Environment.NewLine & Environment.NewLine &
+                "--------------------------------------------------" & Environment.NewLine &
+                "Generated Property:" & Environment.NewLine &
+                "--------------------------------------------------" & Environment.NewLine
 
             For Each [property] As PropertyInfo In properties
                 If [property].CanRead Then
                     If Dump <> "" Then
-                        Dump &= vbNewLine
+                        Dump &= Environment.NewLine
                     End If
 
                     Dim propertyNameToken As String = ""

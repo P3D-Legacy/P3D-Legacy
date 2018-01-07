@@ -28,7 +28,7 @@ Public Class TimeHelpers
     Public Shared Function GetCurrentPlayTime() As TimeSpan
         Dim PTime As TimeSpan = Core.Player.PlayTime
 
-        Dim diff As Integer = CInt(DateDiff(DateInterval.Second, Core.Player.GameStart, Date.Now))
+        Dim diff As Integer = (Date.Now - Core.Player.GameStart).Seconds
         PTime += ConvertSecondToTime(diff)
 
         Return PTime

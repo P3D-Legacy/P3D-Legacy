@@ -695,7 +695,7 @@
             Case Me.Value.ToLower() = "opendonation"
                 Core.SetScreen(New DonationScreen(Core.CurrentScreen))
             Case Me.Value.ToLower() = "receivepokedex"
-                Core.Player.hasPokedex = True
+                Core.Player.HasPokedex = True
                 For Each p As Pokemon In Core.Player.Pokemons
                     Dim i As Integer = 2
                     If p.IsShiny = True Then
@@ -704,7 +704,7 @@
                     Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, i)
                 Next
             Case Me.Value.ToLower() = "receivepokegear"
-                Core.Player.hasPokegear = True
+                Core.Player.HasPokegear = True
             Case Me.Value.ToLower().StartsWith("renamepokemon(") = True
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
@@ -719,7 +719,7 @@
                 End If
 
                 Dim PokemonIndex As Integer = 0
-                If IsNumeric(index) = True Then
+                If StringHelper.IsNumeric(index) Then
                     PokemonIndex = CInt(index)
                 Else
                     If index.ToLower() = "last" Then
@@ -829,7 +829,7 @@
             Case Me.Value.ToLower() = "toggledarkness"
                 Screen.Level.IsDark = Not Screen.Level.IsDark
             Case Me.Value.ToLower().StartsWith("globalhub"), Me.Value.ToLower().StartsWith("friendhub")
-                If GameJolt.API.LoggedIn = True And Core.Player.IsGamejoltSave = True Or GameController.IS_DEBUG_ACTIVE = True Then
+                If GameJolt.API.LoggedIn = True And Core.Player.IsGameJoltSave = True Or GameController.IS_DEBUG_ACTIVE = True Then
                     If GameJolt.LogInScreen.UserBanned(Core.GameJoltSave.GameJoltID) = False Then
                         Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New GameJolt.GTSMainScreen(Core.CurrentScreen), Color.Black, False))
                     Else
@@ -1355,7 +1355,7 @@
                 End If
             Case "turnto"
                 If Me.started = False Then
-                    Dim turns As Integer = CInt(argument) - Screen.Camera.GetPlayerFacingDirection() 
+                    Dim turns As Integer = CInt(argument) - Screen.Camera.GetPlayerFacingDirection()
                     If turns < 0 Then
                         turns = turns + 4
                     End If
@@ -1692,7 +1692,7 @@
     End Sub
 
     Private Sub GetBadge()
-        If IsNumeric(Value) = True Then
+        If StringHelper.IsNumeric(Value) = True Then
             If Core.Player.Badges.Contains(CInt(Value)) = False Then
                 Core.Player.Badges.Add(CInt(Value))
                 SoundManager.PlaySound("badge_acquired", True)

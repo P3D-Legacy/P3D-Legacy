@@ -115,7 +115,7 @@ Public Class ChatScreen
             End If
             If KeyBoardHandler.KeyPressed(Keys.V) = True Then
                 If System.Windows.Forms.Clipboard.ContainsText() = True Then
-                    Dim t As String = System.Windows.Forms.Clipboard.GetText().Replace(vbNewLine, " ")
+                    Dim t As String = System.Windows.Forms.Clipboard.GetText().Replace(Environment.NewLine, " ")
 
                     inputText &= t
                 End If
@@ -512,7 +512,7 @@ Public Class ChatScreen
                         Dim preIndex As Integer = 0
                         For Each index As Integer In SplitIndicies
                             If dispLine <> "" Then
-                                dispLine &= vbNewLine
+                                dispLine &= Environment.NewLine
                             End If
                             If index - preIndex > line.Length - preIndex Then
                                 dispLine &= line.Substring(preIndex)
@@ -562,7 +562,7 @@ Public Class ChatScreen
                         Dim preIndex As Integer = 0
                         For Each index As Integer In SplitIndicies
                             If dispLine <> "" Then
-                                dispLine &= vbNewLine
+                                dispLine &= Environment.NewLine
                             End If
                             If index - preIndex > line.Length - preIndex Then
                                 dispLine &= line.Substring(preIndex)
@@ -850,7 +850,7 @@ Public Class ChatScreen
                     Dim preIndex As Integer = 0
                     For Each index As Integer In SplitIndicies
                         If dispLine <> "" Then
-                            dispLine &= vbNewLine
+                            dispLine &= Environment.NewLine
                         End If
                         If index - preIndex > line.Length - preIndex Then
                             dispLine &= line.Substring(preIndex)

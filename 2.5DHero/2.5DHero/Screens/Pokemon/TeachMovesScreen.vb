@@ -112,7 +112,7 @@
 
         Core.SpriteBatch.Draw(Pokemon.GetTexture(True), New Rectangle(80, 100, 128, 128), Color.White)
 
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Pokemon.GetDisplayName() & vbNewLine & "Level: " & Pokemon.Level, New Vector2(80, 260), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Pokemon.GetDisplayName() & Environment.NewLine & "Level: " & Pokemon.Level, New Vector2(80, 260), Color.Black)
 
         Core.SpriteBatch.DrawString(FontManager.MiniFont, "Pokémon's moves:", New Vector2(245, 140), Color.Black)
         For i = 0 To Pokemon.Attacks.Count - 1
@@ -122,7 +122,7 @@
         Next
 
         If Me.MovesList.Count = 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "The Pokémon cannot learn" & vbNewLine & "a new move here.", New Vector2(580, 140), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, "The Pokémon cannot learn" & Environment.NewLine & "a new move here.", New Vector2(580, 140), Color.Black)
         Else
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Tutor moves (" & MovesList.Count & "):", New Vector2(580, 140), Color.Black)
 

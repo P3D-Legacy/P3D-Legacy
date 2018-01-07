@@ -143,7 +143,7 @@ Public Class SaveGameHelpers
     ''' </summary>
     ''' <param name="input">The player data.</param>
     Private Shared Function GetTimeFixedPlayerData(ByVal input As String) As String
-        Dim inputArr As String() = input.Split({vbNewLine}, StringSplitOptions.None)
+        Dim inputArr As String() = input.Split({Environment.NewLine}, StringSplitOptions.None)
         Dim output As String = ""
 
         For Each l As String In inputArr
@@ -152,7 +152,7 @@ Public Class SaveGameHelpers
                 inputLine = "PlayTime|xxxxxxxxxx"
             End If
             If output <> "" Then
-                output &= vbNewLine
+                output &= Environment.NewLine
             End If
             output &= inputLine
         Next

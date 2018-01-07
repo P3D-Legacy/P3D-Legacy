@@ -603,7 +603,7 @@
                     End If
                 Next
 
-                BoxData = String.Join(vbNewLine, TempBoxData)
+                BoxData = String.Join(Environment.NewLine, TempBoxData)
             End If
 
             ' Check Day Care.
@@ -624,7 +624,7 @@
                     End If
                 Next
 
-                DaycareData = String.Join(vbNewLine, TempDaycareData)
+                DaycareData = String.Join(Environment.NewLine, TempDaycareData)
             End If
 
             ActionScript.RegisterID("PokemonIndev054Update")
@@ -657,7 +657,7 @@
                     End If
                 Next
 
-                BoxData = String.Join(vbNewLine, TempBoxData)
+                BoxData = String.Join(Environment.NewLine, TempBoxData)
             End If
 
             ' Check Day Care.
@@ -678,7 +678,7 @@
                     End If
                 Next
 
-                DaycareData = String.Join(vbNewLine, TempDaycareData)
+                DaycareData = String.Join(Environment.NewLine, TempDaycareData)
             End If
 
             ' Remove Duplicate data.
@@ -1046,7 +1046,7 @@
             If IO.File.Exists(GameController.GamePath & "\Save\" & filePrefix & "\RoamingPokemon.dat") = True Then
                 For Each line As String In IO.File.ReadAllLines(GameController.GamePath & "\Save\" & filePrefix & "\RoamingPokemon.dat")
                     If RoamingPokemonData <> "" Then
-                        RoamingPokemonData &= vbNewLine
+                        RoamingPokemonData &= Environment.NewLine
                     End If
                     If line.CountSeperators("|") < 5 Then
                         'Convert potential old data:
@@ -1176,7 +1176,7 @@
 
             Dim APICallSave As New GameJolt.APICall(AddressOf SaveGameHelpers.CompleteGameJoltSave)
             AddHandler APICallSave.CallFails, Sub(ByVal ex As Exception)
-                                                  SaveGameHelpers.CompleteGameJoltSave("false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false" & vbNewLine & "false")
+                                                  SaveGameHelpers.CompleteGameJoltSave("false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false" & Environment.NewLine & "false")
                                               End Sub
 
             Dim keys As New List(Of String)
@@ -1213,7 +1213,7 @@
         Dim Data As String = ""
         For i = 0 To Pokemons.Count - 1
             If Data <> "" Then
-                Data &= vbNewLine
+                Data &= Environment.NewLine
             End If
             Data &= Pokemons(i).GetSaveData()
         Next
@@ -1245,7 +1245,7 @@
         Dim c As OverworldCamera = GetOverworldCamera()
         Dim freeCameraString As String = c.FreeCameraMode.ToNumberString()
 
-        Dim diff As Integer = CInt(DateDiff(DateInterval.Second, GameStart, Date.Now))
+        Dim diff As Integer = (Date.Now - GameStart).Seconds
         Dim p As TimeSpan = PlayTime + TimeHelpers.ConvertSecondToTime(diff)
         Dim PlayTimeString As String = p.Hours & "," & p.Minutes & "," & p.Seconds & "," & p.Days
 
@@ -1281,49 +1281,49 @@
             skin = TempRideSkin
         End If
 
-        Dim Data As String = "Name|" & Name & vbNewLine &
-            "Position|" & c.Position.X.ToString().Replace(GameController.DecSeparator, ".") & "," & c.Position.Y.ToString.Replace(GameController.DecSeparator, ".") & "," & c.Position.Z.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
-            "MapFile|" & Screen.Level.LevelFile & vbNewLine &
-            "Rotation|" & c.Yaw.ToString.Replace(GameController.DecSeparator, ".") & vbNewLine &
-            "RivalName|" & RivalName & vbNewLine &
-            "Money|" & Money & vbNewLine &
-            "Badges|" & badgeString & vbNewLine &
-            "Gender|" & GenderString & vbNewLine &
-            "PlayTime|" & PlayTimeString & vbNewLine &
-            "OT|" & OT & vbNewLine &
-            "Points|" & Points.ToString() & vbNewLine &
-            "hasPokedex|" & hasPokedexString & vbNewLine &
-            "hasPokegear|" & HasPokegear.ToNumberString() & vbNewLine &
-            "freeCamera|" & freeCameraString & vbNewLine &
-            "thirdPerson|" & c.ThirdPerson.ToNumberString() & vbNewLine &
-            "skin|" & skin & vbNewLine &
-            "location|" & Screen.Level.MapName & vbNewLine &
-            "battleAnimations|" & ShowBattleAnimations.ToString() & vbNewLine &
-            "BoxAmount|" & BoxAmount.ToString() & vbNewLine &
-            "LastRestPlace|" & LastRestPlace & vbNewLine &
-            "LastRestPlacePosition|" & LastRestPlacePosition & vbNewLine &
-            "DiagonalMovement|" & DiagonalMovement.ToNumberString() & vbNewLine &
-            "RepelSteps|" & RepelSteps.ToString() & vbNewLine &
-            "LastSavePlace|" & LastSavePlace & vbNewLine &
-            "LastSavePlacePosition|" & LastSavePlacePosition & vbNewLine &
-            "Difficulty|" & DifficultyMode.ToString() & vbNewLine &
-            "BattleStyle|" & BattleStyle.ToString() & vbNewLine &
-            "saveCreated|" & SaveCreated & vbNewLine &
-            "LastPokemonPosition|" & lastPokemonPosition & vbNewLine &
-            "DaycareSteps|" & DaycareSteps.ToString() & vbNewLine &
-            "GameMode|" & GameMode & vbNewLine &
-            "PokeFiles|" & PokeFilesString & vbNewLine &
-            "VisitedMaps|" & VisitedMaps & vbNewLine &
-            "TempSurfSkin|" & TempSurfSkin & vbNewLine &
-            "Surfing|" & Screen.Level.Surfing.ToNumberString() & vbNewLine &
-            "BP|" & BP & vbNewLine &
-            "ShowModels|" & ShowModelsInBattle.ToNumberString() & vbNewLine &
-            "GTSStars|" & GTSStars & vbNewLine &
-            "SandBoxMode|" & SandBoxMode.ToNumberString() & vbNewLine &
+        Dim Data As String = "Name|" & Name & Environment.NewLine &
+            "Position|" & c.Position.X.ToString().Replace(GameController.DecSeparator, ".") & "," & c.Position.Y.ToString.Replace(GameController.DecSeparator, ".") & "," & c.Position.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
+            "MapFile|" & Screen.Level.LevelFile & Environment.NewLine &
+            "Rotation|" & c.Yaw.ToString.Replace(GameController.DecSeparator, ".") & Environment.NewLine &
+            "RivalName|" & RivalName & Environment.NewLine &
+            "Money|" & Money & Environment.NewLine &
+            "Badges|" & badgeString & Environment.NewLine &
+            "Gender|" & GenderString & Environment.NewLine &
+            "PlayTime|" & PlayTimeString & Environment.NewLine &
+            "OT|" & OT & Environment.NewLine &
+            "Points|" & Points.ToString() & Environment.NewLine &
+            "hasPokedex|" & hasPokedexString & Environment.NewLine &
+            "hasPokegear|" & HasPokegear.ToNumberString() & Environment.NewLine &
+            "freeCamera|" & freeCameraString & Environment.NewLine &
+            "thirdPerson|" & c.ThirdPerson.ToNumberString() & Environment.NewLine &
+            "skin|" & skin & Environment.NewLine &
+            "location|" & Screen.Level.MapName & Environment.NewLine &
+            "battleAnimations|" & ShowBattleAnimations.ToString() & Environment.NewLine &
+            "BoxAmount|" & BoxAmount.ToString() & Environment.NewLine &
+            "LastRestPlace|" & LastRestPlace & Environment.NewLine &
+            "LastRestPlacePosition|" & LastRestPlacePosition & Environment.NewLine &
+            "DiagonalMovement|" & DiagonalMovement.ToNumberString() & Environment.NewLine &
+            "RepelSteps|" & RepelSteps.ToString() & Environment.NewLine &
+            "LastSavePlace|" & LastSavePlace & Environment.NewLine &
+            "LastSavePlacePosition|" & LastSavePlacePosition & Environment.NewLine &
+            "Difficulty|" & DifficultyMode.ToString() & Environment.NewLine &
+            "BattleStyle|" & BattleStyle.ToString() & Environment.NewLine &
+            "saveCreated|" & SaveCreated & Environment.NewLine &
+            "LastPokemonPosition|" & lastPokemonPosition & Environment.NewLine &
+            "DaycareSteps|" & DaycareSteps.ToString() & Environment.NewLine &
+            "GameMode|" & GameMode & Environment.NewLine &
+            "PokeFiles|" & PokeFilesString & Environment.NewLine &
+            "VisitedMaps|" & VisitedMaps & Environment.NewLine &
+            "TempSurfSkin|" & TempSurfSkin & Environment.NewLine &
+            "Surfing|" & Screen.Level.Surfing.ToNumberString() & Environment.NewLine &
+            "BP|" & BP & Environment.NewLine &
+            "ShowModels|" & ShowModelsInBattle.ToNumberString() & Environment.NewLine &
+            "GTSStars|" & GTSStars & Environment.NewLine &
+            "SandBoxMode|" & SandBoxMode.ToNumberString() & Environment.NewLine &
             "EarnedAchievements|" & EarnedAchievementsString
 
         If IsAutosave = True Then
-            Data &= vbNewLine & "AutoSave|" & newFilePrefix
+            Data &= Environment.NewLine & "AutoSave|" & newFilePrefix
         End If
 
         Return Data
@@ -1336,8 +1336,8 @@
         Dim MouseSpeedString As String = CStr(c.RotationSpeed * 10000)
         Dim TextSpeedString As String = CStr(TextBox.TextSpeed)
 
-        Dim Data As String = "FOV|" & FOVstring & vbNewLine &
-            "TextSpeed|" & TextSpeedString & vbNewLine &
+        Dim Data As String = "FOV|" & FOVstring & Environment.NewLine &
+            "TextSpeed|" & TextSpeedString & Environment.NewLine &
             "MouseSpeed|" & MouseSpeedString
 
         Return Data
@@ -1348,7 +1348,7 @@
 
         For Each c In Inventory
             If Data <> "" Then
-                Data &= vbNewLine
+                Data &= Environment.NewLine
             End If
 
             Data &= "{" & c.ItemID & "|" & c.Amount & "}"
@@ -1356,7 +1356,7 @@
 
         For Each mail As Items.MailItem.MailData In Mails
             If Data <> "" Then
-                Data &= vbNewLine
+                Data &= Environment.NewLine
             End If
             Data &= "Mail|" & Items.MailItem.GetStringFromMail(mail)
         Next
@@ -1792,23 +1792,23 @@
                     If CanFireStepEvent() = True Then
                         Screen.Level.WalkedSteps = 0
 
-                        Dim s As String = "version=2" & vbNewLine &
-                                        "@Text.Show(Your repel effect wore off.)" & vbNewLine &
+                        Dim s As String = "version=2" & Environment.NewLine &
+                                        "@Text.Show(Your repel effect wore off.)" & Environment.NewLine &
                                         ":end"
 
                         If Temp.LastUsedRepel > -1 Then
                             Dim haveItemLeft As Boolean = Inventory.GetItemAmount(Temp.LastUsedRepel) > 0
 
                             If haveItemLeft = True Then
-                                s = "version=2" & vbNewLine &
-                                    "@Text.Show(Your repel effect wore off.*Do you want to use~another <inventory.name(" & Temp.LastUsedRepel & ")>?)" & vbNewLine &
-                                    "@Options.Show(Yes,No)" & vbNewLine &
-                                    ":when:Yes" & vbNewLine &
-                                    "@sound.play(repel_use)" & vbNewLine &
-                                    "@Text.Show(<player.name> used~a <inventory.name(" & Temp.LastUsedRepel & ")>.)" & vbNewLine &
-                                    "@item.repel(" & Temp.LastUsedRepel & ")" & vbNewLine &
-                                    "@item.remove(" & Temp.LastUsedRepel & ",1,0)" & vbNewLine &
-                                    ":endwhen" & vbNewLine &
+                                s = "version=2" & Environment.NewLine &
+                                    "@Text.Show(Your repel effect wore off.*Do you want to use~another <inventory.name(" & Temp.LastUsedRepel & ")>?)" & Environment.NewLine &
+                                    "@Options.Show(Yes,No)" & Environment.NewLine &
+                                    ":when:Yes" & Environment.NewLine &
+                                    "@sound.play(repel_use)" & Environment.NewLine &
+                                    "@Text.Show(<player.name> used~a <inventory.name(" & Temp.LastUsedRepel & ")>.)" & Environment.NewLine &
+                                    "@item.repel(" & Temp.LastUsedRepel & ")" & Environment.NewLine &
+                                    "@item.remove(" & Temp.LastUsedRepel & ",1,0)" & Environment.NewLine &
+                                    ":endwhen" & Environment.NewLine &
                                     ":end"
                             End If
                         End If

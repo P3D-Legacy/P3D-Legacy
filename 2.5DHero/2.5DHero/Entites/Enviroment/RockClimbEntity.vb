@@ -112,19 +112,19 @@
             Screen.Level.OwnPlayer.Texture = RockClimbPokemon.GetOverworldTexture()
             Screen.Level.OwnPlayer.ChangeTexture()
 
-            Dim s As String = "version=2" & vbNewLine &
-                "@pokemon.cry(" & RockClimbPokemon.Number & ")" & vbNewLine &
-                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",1," & Screen.Camera.GetMoveDirection().Z & ")" & vbNewLine &
-                "@sound.play(destroy)" & vbNewLine &
-                "@player.move(" & Steps & ")" & vbNewLine &
-                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
-                "@player.move(1)" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
-                "@player.wearskin(" & tempSkin & ")" & vbNewLine
+            Dim s As String = "version=2" & Environment.NewLine &
+                "@pokemon.cry(" & RockClimbPokemon.Number & ")" & Environment.NewLine &
+                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+                "@sound.play(destroy)" & Environment.NewLine &
+                "@player.move(" & Steps & ")" & Environment.NewLine &
+                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+                "@pokemon.hide" & Environment.NewLine &
+                "@player.move(1)" & Environment.NewLine &
+                "@pokemon.hide" & Environment.NewLine &
+                "@player.wearskin(" & tempSkin & ")" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then
-                s &= GetScriptStartLine(Me.TempScriptEntity) & vbNewLine
+                s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
                 Me.TempScriptEntity = Nothing
             End If
 
@@ -185,17 +185,17 @@
             Screen.Level.OwnPlayer.Texture = RockClimbPokemon.GetOverworldTexture()
             Screen.Level.OwnPlayer.ChangeTexture()
 
-            Dim s As String = "version=2" & vbNewLine &
-            "@pokemon.cry(" & RockClimbPokemon.Number & ")" & vbNewLine &
-            "@player.move(1)" & vbNewLine &
-            "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-1," & Screen.Camera.GetMoveDirection().Z & ")" & vbNewLine &
-            "@sound.play(destroy)" & vbNewLine &
-            "@player.move(" & Steps & ")" & vbNewLine &
-            "@pokemon.hide" & vbNewLine &
-            "@player.wearskin(" & tempSkin & ")" & vbNewLine
+            Dim s As String = "version=2" & Environment.NewLine &
+            "@pokemon.cry(" & RockClimbPokemon.Number & ")" & Environment.NewLine &
+            "@player.move(1)" & Environment.NewLine &
+            "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+            "@sound.play(destroy)" & Environment.NewLine &
+            "@player.move(" & Steps & ")" & Environment.NewLine &
+            "@pokemon.hide" & Environment.NewLine &
+            "@player.wearskin(" & tempSkin & ")" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then
-                s &= GetScriptStartLine(Me.TempScriptEntity) & vbNewLine
+                s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
                 Me.TempScriptEntity = Nothing
             End If
 

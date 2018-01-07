@@ -514,17 +514,17 @@
                 If line.EndsWith("}") = True Then
                     Dim addLine As Boolean = False
                     Select Case True
-                        Case line.Trim(" "c, Chr(9)).StartsWith("{""Entity""{ENT[")
+                        Case line.Trim(" "c, StringHelper.Tab).StartsWith("{""Entity""{ENT[")
                             addLine = True
-                        Case line.Trim(" "c, Chr(9)).StartsWith("{""Floor""{ENT[")
+                        Case line.Trim(" "c, StringHelper.Tab).StartsWith("{""Floor""{ENT[")
                             addLine = True
-                        Case line.Trim(" "c, Chr(9)).StartsWith("{""EntityField""{ENT[")
+                        Case line.Trim(" "c, StringHelper.Tab).StartsWith("{""EntityField""{ENT[")
                             addLine = True
-                        Case line.Trim(" "c, Chr(9)).StartsWith("{""NPC""{NPC[")
+                        Case line.Trim(" "c, StringHelper.Tab).StartsWith("{""NPC""{NPC[")
                             If addNPC = True Then
                                 addLine = True
                             End If
-                        Case line.Trim(" "c, Chr(9)).StartsWith("{""Shader""{SHA[")
+                        Case line.Trim(" "c, StringHelper.Tab).StartsWith("{""Shader""{SHA[")
                             addLine = True
                     End Select
 
@@ -1146,7 +1146,7 @@
 #End Region
 
     Private Sub LoadBerries()
-        Dim Data() As String = Core.Player.BerryData.Replace("}" & vbNewLine, "}").Split(CChar("}"))
+        Dim Data() As String = Core.Player.BerryData.Replace("}" & Environment.NewLine, "}").Split(CChar("}"))
         For Each Berry As String In Data
             If Berry.Contains("{") = True Then
                 Berry = Berry.Remove(0, Berry.IndexOf("{"))

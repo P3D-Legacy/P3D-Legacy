@@ -46,16 +46,16 @@
             Screen.Level.OverworldPokemon.Visible = False
             Screen.Level.OverworldPokemon.warped = True
 
-            Dim s As String = "version=2" & vbNewLine &
-                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",1," & Screen.Camera.GetMoveDirection().Z & ")" & vbNewLine &
-                "@player.move(" & Steps & ")" & vbNewLine &
-                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & vbNewLine &
-                "@pokemon.hide" & vbNewLine &
-                "@player.move(1)" & vbNewLine &
-                "@pokemon.hide" & vbNewLine
+            Dim s As String = "version=2" & Environment.NewLine &
+                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+                "@player.move(" & Steps & ")" & Environment.NewLine &
+                "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+                "@pokemon.hide" & Environment.NewLine &
+                "@player.move(1)" & Environment.NewLine &
+                "@pokemon.hide" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then
-                s &= GetScriptStartLine(Me.TempScriptEntity) & vbNewLine
+                s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
                 Me.TempScriptEntity = Nothing
             End If
 
@@ -69,7 +69,7 @@
         If facing < 0 Then
             facing += 4
         End If
-        If Screen.Camera.GetPlayerFacingDirection() = facing Then 
+        If Screen.Camera.GetPlayerFacingDirection() = facing Then
             Return False
         End If
 
@@ -131,14 +131,14 @@
             Screen.Level.OverworldPokemon.Visible = False
             Screen.Level.OverworldPokemon.warped = True
 
-            Dim s As String = "version=2" & vbNewLine &
-            "@player.move(1)" & vbNewLine &
-            "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-1," & Screen.Camera.GetMoveDirection().Z & ")" & vbNewLine &
-            "@player.move(" & Steps & ")" & vbNewLine &
-            "@pokemon.hide" & vbNewLine
+            Dim s As String = "version=2" & Environment.NewLine &
+            "@player.move(1)" & Environment.NewLine &
+            "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
+            "@player.move(" & Steps & ")" & Environment.NewLine &
+            "@pokemon.hide" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then
-                s &= GetScriptStartLine(Me.TempScriptEntity) & vbNewLine
+                s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
                 Me.TempScriptEntity = Nothing
             End If
 

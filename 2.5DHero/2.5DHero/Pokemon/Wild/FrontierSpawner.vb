@@ -5,7 +5,7 @@
 
         Dim files() As String = System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Pokemon\Data", "*.dat", IO.SearchOption.TopDirectoryOnly)
         For Each f As String In files
-            If IsNumeric(System.IO.Path.GetFileNameWithoutExtension(f)) = True Then
+            If StringHelper.IsNumeric(System.IO.Path.GetFileNameWithoutExtension(f)) Then
                 Dim newID As Integer = CInt(System.IO.Path.GetFileNameWithoutExtension(f))
                 If IDPreset Is Nothing OrElse IDPreset.Contains(newID) = True Then
                     validIDs.Add(newID)
@@ -39,7 +39,7 @@
                 Dim OutputID As Integer = CInt(lData(1))
                 Dim Moveset As New List(Of Integer)
                 For Each move As String In lData(2).Split(CChar(","))
-                    If move <> "" And IsNumeric(move) = True Then
+                    If move <> "" And StringHelper.IsNumeric(move) Then
                         Moveset.Add(CInt(move))
                     End If
                 Next

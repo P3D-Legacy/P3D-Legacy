@@ -48,31 +48,31 @@
 
         Dim newPosition As New Vector2(0, 1)
 
-        Dim s As String = "version=2" & vbNewLine &
-            "@pokemon.cry(" & p.Number & ")" & vbNewLine
+        Dim s As String = "version=2" & Environment.NewLine &
+            "@pokemon.cry(" & p.Number & ")" & Environment.NewLine
 
         If CType(Screen.Camera, OverworldCamera).ThirdPerson = False Then
             If reaction.HasNotification = True Then
-                s &= "@camera.activatethirdperson" & vbNewLine &
-                     "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & vbNewLine
+                s &= "@camera.activatethirdperson" & Environment.NewLine &
+                     "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & Environment.NewLine
 
-                s &= "@entity.showmessagebulb(" & CInt(reaction.Notification).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & vbNewLine
+                s &= "@entity.showmessagebulb(" & CInt(reaction.Notification).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & Environment.NewLine
 
-                s &= "@camera.deactivatethirdperson" & vbNewLine
+                s &= "@camera.deactivatethirdperson" & Environment.NewLine
             End If
-            s &= "@text.show(" & reaction.GetMessage(p) & ")" & vbNewLine
+            s &= "@text.show(" & reaction.GetMessage(p) & ")" & Environment.NewLine
         Else
             Dim preYaw As Single = Screen.Camera.Yaw
             If reaction.HasNotification = True Then
-                s &= "@camera.setyaw(" & CType(Screen.Camera, OverworldCamera).GetAimYawFromDirection(Screen.Camera.GetPlayerFacingDirection()) & ")" & vbNewLine
-                s &= "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & vbNewLine
-                s &= "@entity.showmessagebulb(" & CInt(reaction.Notification).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & vbNewLine
+                s &= "@camera.setyaw(" & CType(Screen.Camera, OverworldCamera).GetAimYawFromDirection(Screen.Camera.GetPlayerFacingDirection()) & ")" & Environment.NewLine
+                s &= "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & Environment.NewLine
+                s &= "@entity.showmessagebulb(" & CInt(reaction.Notification).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & Environment.NewLine
 
-                s &= "@camera.deactivatethirdperson" & vbNewLine
+                s &= "@camera.deactivatethirdperson" & Environment.NewLine
             End If
-            s &= "@text.show(" & reaction.GetMessage(p) & ")" & vbNewLine
-            s &= "@camera.activatethirdperson" & vbNewLine
-            s &= "@camera.setyaw(" & preYaw & ")" & vbNewLine
+            s &= "@text.show(" & reaction.GetMessage(p) & ")" & Environment.NewLine
+            s &= "@camera.activatethirdperson" & Environment.NewLine
+            s &= "@camera.setyaw(" & preYaw & ")" & Environment.NewLine
         End If
         s &= ":end"
 
@@ -98,43 +98,43 @@
 
         Dim item As Item = Item.GetItemByID(PickupItemID)
 
-        Dim s As String = "version=2" & vbNewLine &
-           "@pokemon.cry(" & p.Number & ")" & vbNewLine
+        Dim s As String = "version=2" & Environment.NewLine &
+           "@pokemon.cry(" & p.Number & ")" & Environment.NewLine
 
         If CType(Screen.Camera, OverworldCamera).ThirdPerson = False Then
-            s &= "@camera.activatethirdperson" & vbNewLine &
-                 "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & vbNewLine
+            s &= "@camera.activatethirdperson" & Environment.NewLine &
+                 "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & Environment.NewLine
 
-            s &= "@entity.showmessagebulb(" & CInt(MessageBulb.NotifcationTypes.Question).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & vbNewLine
+            s &= "@entity.showmessagebulb(" & CInt(MessageBulb.NotifcationTypes.Question).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & Environment.NewLine
 
-            s &= "@camera.deactivatethirdperson" & vbNewLine
-            s &= "@text.show(" & message & ")" & vbNewLine &
-                "@options.show(Yes,No)" & vbNewLine &
-                ":when:Yes" & vbNewLine &
-                "@text.show(Your Pokémon handed over~the " & item.Name & "!)" & vbNewLine &
-                "@item.give(" & PickupItemID & ",1)" & vbNewLine &
-                "@item.messagegive(" & PickupItemID & ",1)" & vbNewLine &
-                ":when:No" & vbNewLine &
-                "@text.show(Your Pokémon kept~the item happily.)" & vbNewLine &
-                "@pokemon.addfriendship(0,10)" & vbNewLine &
-                ":endwhen" & vbNewLine
+            s &= "@camera.deactivatethirdperson" & Environment.NewLine
+            s &= "@text.show(" & message & ")" & Environment.NewLine &
+                "@options.show(Yes,No)" & Environment.NewLine &
+                ":when:Yes" & Environment.NewLine &
+                "@text.show(Your Pokémon handed over~the " & item.Name & "!)" & Environment.NewLine &
+                "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
+                "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
+                ":when:No" & Environment.NewLine &
+                "@text.show(Your Pokémon kept~the item happily.)" & Environment.NewLine &
+                "@pokemon.addfriendship(0,10)" & Environment.NewLine &
+                ":endwhen" & Environment.NewLine
         Else
-            s &= "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & vbNewLine
-            s &= "@entity.showmessagebulb(" & CInt(MessageBulb.NotifcationTypes.Question).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & vbNewLine
+            s &= "@camera.setposition(" & newPosition.X & ",1," & newPosition.Y & ")" & Environment.NewLine
+            s &= "@entity.showmessagebulb(" & CInt(MessageBulb.NotifcationTypes.Question).ToString() & "|" & cPosition.X + offset.X & "|" & cPosition.Y + 0.7F & "|" & cPosition.Z + offset.Y & ")" & Environment.NewLine
 
-            s &= "@camera.deactivatethirdperson" & vbNewLine
+            s &= "@camera.deactivatethirdperson" & Environment.NewLine
 
-            s &= "@text.show(" & message & ")" & vbNewLine &
-                "@options.show(Yes,No)" & vbNewLine &
-                ":when:Yes" & vbNewLine &
-                "@text.show(Your Pokémon handed over~the " & item.Name & "!)" & vbNewLine &
-                "@item.give(" & PickupItemID & ",1)" & vbNewLine &
-                "@item.messagegive(" & PickupItemID & ",1)" & vbNewLine &
-                ":when:No" & vbNewLine &
-                "@text.show(Your Pokémon kept~the item happily.)" & vbNewLine &
-                "@pokemon.addfriendship(0,10)" & vbNewLine &
-                ":endwhen" & vbNewLine
-            s &= "@camera.activatethirdperson" & vbNewLine
+            s &= "@text.show(" & message & ")" & Environment.NewLine &
+                "@options.show(Yes,No)" & Environment.NewLine &
+                ":when:Yes" & Environment.NewLine &
+                "@text.show(Your Pokémon handed over~the " & item.Name & "!)" & Environment.NewLine &
+                "@item.give(" & PickupItemID & ",1)" & Environment.NewLine &
+                "@item.messagegive(" & PickupItemID & ",1)" & Environment.NewLine &
+                ":when:No" & Environment.NewLine &
+                "@text.show(Your Pokémon kept~the item happily.)" & Environment.NewLine &
+                "@pokemon.addfriendship(0,10)" & Environment.NewLine &
+                ":endwhen" & Environment.NewLine
+            s &= "@camera.activatethirdperson" & Environment.NewLine
         End If
         s &= ":end"
 
@@ -737,7 +737,7 @@
                         pokePart = pokePart.Remove(0, 1)
                         lReference = ExcludeIDs
                     End If
-                    If IsNumeric(pokePart) = True Then
+                    If StringHelper.IsNumeric(pokePart) = True Then
                         If lReference.Contains(CInt(pokePart)) = False Then
                             lReference.Add(CInt(pokePart))
                         End If

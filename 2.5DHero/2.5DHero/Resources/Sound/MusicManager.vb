@@ -225,7 +225,7 @@
         If SearchForIntro = True And lastSong.ToLower() <> Song.ToLower() Then
             If SongFiles.Keys.Contains("intro\" & Song.ToLower()) = True Then
                 If SongFiles("intro\" & Song.ToLower()).Origin = SongFiles(Song.ToLower()).Origin Then
-                    IntroEndTime = DateAdd(DateInterval.Second, -1, Date.Now) + SongFiles("intro\" & Song.ToLower()).Song.Duration
+                    IntroEndTime = Date.Now.AddSeconds(-1) + SongFiles("intro\" & Song.ToLower()).Song.Duration
 
                     PlayMusic("intro\" & Song.ToLower(), NewFadeInSpeed, NewFadeOutSpeed)
                     MediaPlayer.IsRepeating = False
@@ -390,7 +390,7 @@
 
                 If FadeIntoIntro = True Then
                     IntroStarted = True
-                    IntroEndTime = DateAdd(DateInterval.Second, -1, Date.Now) + SongFiles(NextSong).Song.Duration
+                    IntroEndTime = Date.Now.AddSeconds(-1) + SongFiles(NextSong).Song.Duration
                     FadeIntoIntro = False
                 End If
 
@@ -432,7 +432,7 @@
 
     Public Shared Function SongExists(ByVal songName As String) As Boolean
         Dim s As CSong = GetSong(songName, False)
-        Return Not IsNothing(s)
+        Return s IsNot Nothing
     End Function
 
     Public Shared Sub ForceVolumeUpdate()

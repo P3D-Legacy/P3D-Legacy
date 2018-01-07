@@ -1074,7 +1074,7 @@ Namespace ScriptVersion2
                 Dim selected As Integer = 1
 
                 If subClass.Contains(",") = True Then
-                    If IsNumeric(subClass.GetSplit(1)) = True Then
+                    If StringHelper.IsNumeric(subClass.GetSplit(1)) = True Then
                         selected = CInt(subClass.GetSplit(1))
                         subClass = subClass.GetSplit(0)
                     Else
@@ -1107,7 +1107,7 @@ Namespace ScriptVersion2
                 Dim page As Integer = 1
 
                 If mainClass.Contains(",") = True Then
-                    If IsNumeric(mainClass.GetSplit(1)) = True Then
+                    If StringHelper.IsNumeric(mainClass.GetSplit(1)) Then
                         page = CInt(mainClass.GetSplit(1))
                         mainClass = mainClass.GetSplit(0)
                     Else

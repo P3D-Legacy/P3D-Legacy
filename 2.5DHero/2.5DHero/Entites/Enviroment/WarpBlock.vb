@@ -28,7 +28,7 @@
                 For Each Element As String In rotationData
                     validRotations.Add(CInt(Element))
                 Next
-                If validRotations.Contains(Screen.Camera.GetPlayerFacingDirection()) = False Then 
+                If validRotations.Contains(Screen.Camera.GetPlayerFacingDirection()) = False Then
                     Return True
                 End If
             End If
@@ -75,7 +75,10 @@
                         Dim z As String = link.GetSplit(3)
                         Dim l As String = link.GetSplit(4)
 
-                        If IsNumeric(x) = True And IsNumeric(y) = True And IsNumeric(z) = True And IsNumeric(l) = True Then
+                        If StringHelper.IsNumeric(x) = True And
+                           StringHelper.IsNumeric(y) = True And
+                           StringHelper.IsNumeric(z) = True And
+                           StringHelper.IsNumeric(l) = True Then
                             Return True
                         Else
                             CallError("Position values are not numeric.")
