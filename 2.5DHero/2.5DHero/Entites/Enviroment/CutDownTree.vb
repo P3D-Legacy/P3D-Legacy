@@ -62,9 +62,9 @@
             Me.CanBeRemoved = True
 
             Dim s As String =
-                "version=2" & vbNewLine &
-                "@text.show(" & Text & ")" & vbNewLine &
-                "@sound.play(destroy,0)" & vbNewLine &
+                "version=2" & Environment.NewLine &
+                "@text.show(" & Text & ")" & Environment.NewLine &
+                "@sound.play(destroy,0)" & Environment.NewLine &
                 ":end"
 
             PlayerStatistics.Track("Cut used", 1)

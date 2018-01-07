@@ -112,18 +112,18 @@
             Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(50, 150), Color.White)
         Else
             If Me.failedDownload = True Then
-                Dim t As String = "Failed to download Mystery Event data." & vbNewLine & "Please check your internet connection and try again."
+                Dim t As String = "Failed to download Mystery Event data." & Environment.NewLine & "Please check your internet connection and try again."
 
                 Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(52, 152), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(50, 150), Color.White)
             Else
                 If EventData.Count = 0 Then
-                    Dim t As String = "There are no Mystery Events available" & vbNewLine & "at the moment. Please try again later."
+                    Dim t As String = "There are no Mystery Events available" & Environment.NewLine & "at the moment. Please try again later."
 
                     Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(52, 152), Color.Black)
                     Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(50, 150), Color.White)
                 Else
-                    Dim t As String = "Please select the Mystery Events that" & vbNewLine & "you want to activate for your gameplay session:"
+                    Dim t As String = "Please select the Mystery Events that" & Environment.NewLine & "you want to activate for your gameplay session:"
 
                     Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(52, 152), Color.Black)
                     Core.SpriteBatch.DrawString(FontManager.InGameFont, t, New Vector2(50, 150), Color.White)
@@ -153,16 +153,16 @@
                             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\GTS"), New Rectangle(58, startY + i * 100 + 13, 32, 32), New Rectangle(384, 96, 16, 16), Color.White)
                         End If
 
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, cEvent.EventType.ToString() & ": " & cEvent.Name & vbNewLine & activated, New Vector2(100, startY + i * 100 + 8), textColor)
+                        Core.SpriteBatch.DrawString(FontManager.MiniFont, cEvent.EventType.ToString() & ": " & cEvent.Name & Environment.NewLine & activated, New Vector2(100, startY + i * 100 + 8), textColor)
                     Next
 
                     Canvas.DrawGradient(New Rectangle(500, startY, 400, 300), Color.White, Color.Gray, False, -1)
 
                     Dim sEvent As MysteryEvent = EventData(cursor)
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Name: " & sEvent.Name & vbNewLine & vbNewLine &
-                                                 "Type: " & sEvent.EventType.ToString() & vbNewLine & vbNewLine &
-                                                 "Multiplicator: " & sEvent.Value & "x" & vbNewLine & vbNewLine &
-                                                 "Description:" & vbNewLine &
+                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Name: " & sEvent.Name & Environment.NewLine & Environment.NewLine &
+                                                 "Type: " & sEvent.EventType.ToString() & Environment.NewLine & Environment.NewLine &
+                                                 "Multiplicator: " & sEvent.Value & "x" & Environment.NewLine & Environment.NewLine &
+                                                 "Description:" & Environment.NewLine &
                                                  sEvent.Description.CropStringToWidth(FontManager.MiniFont, 300), New Vector2(512, startY + 12), Color.Black)
                 End If
             End If

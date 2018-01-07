@@ -912,44 +912,44 @@ Namespace GameJolt
                 ot = "0" & ot
             End While
 
-            Dim s As String = "Name|" & GameJolt.API.username & vbNewLine &
-                "Position|1,0.1,3" & vbNewLine &
-                "MapFile|yourroom.dat" & vbNewLine &
-                "Rotation|1.570796" & vbNewLine &
-                "RivalName|???" & vbNewLine &
-                "Money|3000" & vbNewLine &
-                "Badges|0" & vbNewLine &
-                "Gender|Male" & vbNewLine &
-                "PlayTime|0,0,0,0" & vbNewLine &
-                "OT|" & ot & vbNewLine &
-                "Points|0" & vbNewLine &
-                "hasPokedex|0" & vbNewLine &
-                "hasPokegear|0" & vbNewLine &
-                "freeCamera|1" & vbNewLine &
-                "thirdPerson|0" & vbNewLine &
-                "skin|" & GameJolt.Emblem.GetPlayerSpriteFile(1, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Gender) & vbNewLine &
-                "location|Your Room" & vbNewLine &
-                "battleAnimations|2" & vbNewLine &
-                "BoxAmount|5" & vbNewLine &
-                "LastRestPlace|yourroom.dat" & vbNewLine &
-                "LastRestPlacePosition|1,0.1,3" & vbNewLine &
-                "DiagonalMovement|0" & vbNewLine &
-                "RepelSteps|0" & vbNewLine &
-                "LastSavePlace|yourroom.dat" & vbNewLine &
-                "LastSavePlacePosition|1,0.1,3" & vbNewLine &
-                "Difficulty|" & GameModeManager.GetGameRuleValue("Difficulty", "0") & vbNewLine &
-                "BattleStyle|0" & vbNewLine &
-                "saveCreated|" & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & vbNewLine &
-                "LastPokemonPosition|999,999,999" & vbNewLine &
-                "DaycareSteps|0" & vbNewLine &
-                "GameMode|Kolben" & vbNewLine &
-                "PokeFiles|" & vbNewLine &
-                "VisitedMaps|yourroom.dat" & vbNewLine &
-                "TempSurfSkin|Hilbert" & vbNewLine &
-                "Surfing|0" & vbNewLine &
-                "ShowModels|1" & vbNewLine &
-                "GTSStars|4" & vbNewLine &
-                "SandBoxMode|0" & vbNewLine &
+            Dim s As String = "Name|" & GameJolt.API.username & Environment.NewLine &
+                "Position|1,0.1,3" & Environment.NewLine &
+                "MapFile|yourroom.dat" & Environment.NewLine &
+                "Rotation|1.570796" & Environment.NewLine &
+                "RivalName|???" & Environment.NewLine &
+                "Money|3000" & Environment.NewLine &
+                "Badges|0" & Environment.NewLine &
+                "Gender|Male" & Environment.NewLine &
+                "PlayTime|0,0,0,0" & Environment.NewLine &
+                "OT|" & ot & Environment.NewLine &
+                "Points|0" & Environment.NewLine &
+                "hasPokedex|0" & Environment.NewLine &
+                "hasPokegear|0" & Environment.NewLine &
+                "freeCamera|1" & Environment.NewLine &
+                "thirdPerson|0" & Environment.NewLine &
+                "skin|" & GameJolt.Emblem.GetPlayerSpriteFile(1, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Gender) & Environment.NewLine &
+                "location|Your Room" & Environment.NewLine &
+                "battleAnimations|2" & Environment.NewLine &
+                "BoxAmount|5" & Environment.NewLine &
+                "LastRestPlace|yourroom.dat" & Environment.NewLine &
+                "LastRestPlacePosition|1,0.1,3" & Environment.NewLine &
+                "DiagonalMovement|0" & Environment.NewLine &
+                "RepelSteps|0" & Environment.NewLine &
+                "LastSavePlace|yourroom.dat" & Environment.NewLine &
+                "LastSavePlacePosition|1,0.1,3" & Environment.NewLine &
+                "Difficulty|" & GameModeManager.GetGameRuleValue("Difficulty", "0") & Environment.NewLine &
+                "BattleStyle|0" & Environment.NewLine &
+                "saveCreated|" & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & Environment.NewLine &
+                "LastPokemonPosition|999,999,999" & Environment.NewLine &
+                "DaycareSteps|0" & Environment.NewLine &
+                "GameMode|Kolben" & Environment.NewLine &
+                "PokeFiles|" & Environment.NewLine &
+                "VisitedMaps|yourroom.dat" & Environment.NewLine &
+                "TempSurfSkin|Hilbert" & Environment.NewLine &
+                "Surfing|0" & Environment.NewLine &
+                "ShowModels|1" & Environment.NewLine &
+                "GTSStars|4" & Environment.NewLine &
+                "SandBoxMode|0" & Environment.NewLine &
                 "EarnedAchievements|"
 
             Return s
@@ -981,39 +981,39 @@ Namespace GameJolt
         End Sub
 
         Public Shared Function GetOptionsData() As String
-            Dim s As String = "FOV|50" & vbNewLine &
-                "TextSpeed|2" & vbNewLine &
+            Dim s As String = "FOV|50" & Environment.NewLine &
+                "TextSpeed|2" & Environment.NewLine &
                 "MouseSpeed|12"
 
             Return s
         End Function
 
         Public Shared Function GetBerryData() As String
-            Dim s As String = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route29.dat|14,0,5|6|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route29.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{azalea.dat|9,0,3|0|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{azalea.dat|9,0,4|1|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{azalea.dat|9,0,5|0|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route30.dat|7,0,41|10|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route30.dat|14,0,5|2|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route30.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route30.dat|16,0,5|2|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{routes\route35.dat|0,0,4|7|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{routes\route35.dat|1,0,4|8|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route36.dat|37,0,7|0|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route36.dat|38,0,7|4|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route36.dat|39,0,7|3|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route39.dat|8,0,2|9|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route39.dat|8,0,3|6|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route38.dat|13,0,12|16|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route38.dat|14,0,12|23|1|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{route38.dat|15,0,12|16|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{routes\route43.dat|13,0,45|23|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{routes\route43.dat|13,0,46|24|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{routes\route43.dat|13,0,47|25|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{safarizone\main.dat|3,0,11|5|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
-                "{safarizone\main.dat|4,0,11|0|2|0|2012,9,21,4,0,0|1}" & vbNewLine &
+            Dim s As String = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route29.dat|14,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route29.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{azalea.dat|9,0,3|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{azalea.dat|9,0,4|1|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{azalea.dat|9,0,5|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route30.dat|7,0,41|10|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route30.dat|14,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route30.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route30.dat|16,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{routes\route35.dat|0,0,4|7|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{routes\route35.dat|1,0,4|8|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route36.dat|37,0,7|0|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route36.dat|38,0,7|4|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route36.dat|39,0,7|3|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route39.dat|8,0,2|9|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route39.dat|8,0,3|6|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route38.dat|13,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route38.dat|14,0,12|23|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{route38.dat|15,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{routes\route43.dat|13,0,45|23|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{routes\route43.dat|13,0,46|24|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{routes\route43.dat|13,0,47|25|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{safarizone\main.dat|3,0,11|5|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                "{safarizone\main.dat|4,0,11|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
                 "{safarizone\main.dat|5,0,11|6|3|0|2012,9,21,4,0,0|1}"
 
             Return s

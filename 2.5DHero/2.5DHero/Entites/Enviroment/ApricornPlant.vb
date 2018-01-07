@@ -67,7 +67,7 @@
 
                             Dim PickDate As Date = New Date(CInt(d(0)), CInt(d(1)), CInt(d(2)), CInt(d(3)), CInt(d(4)), CInt(d(5)))
 
-                            Dim diff As Integer = CInt(DateDiff(DateInterval.Hour, PickDate, Date.Now))
+                            Dim diff As Integer = (Date.Now - PickDate).Hours
 
                             Dim hasToDiff As Integer = 24
                             If Game.World.CurrentSeason = Game.World.Seasons.Winter Or Game.World.CurrentSeason = Game.World.Seasons.Fall Then
@@ -91,7 +91,7 @@
                 Core.Player.ApricornData = ""
                 For Each Apricorn As String In ApricornsData
                     If Core.Player.ApricornData <> "" Then
-                        Core.Player.ApricornData &= vbNewLine
+                        Core.Player.ApricornData &= Environment.NewLine
                     End If
                     Core.Player.ApricornData &= Apricorn
                 Next
@@ -157,7 +157,7 @@
             "}"
 
         If Core.Player.ApricornData <> "" Then
-            Core.Player.ApricornData &= vbNewLine
+            Core.Player.ApricornData &= Environment.NewLine
         End If
 
         Core.Player.ApricornData &= s

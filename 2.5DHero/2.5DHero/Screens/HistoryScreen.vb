@@ -4,7 +4,7 @@
 
         Public Shared Sub AddHistoryItem(ByVal Name As String, ByVal Data As String, ByVal IsScriptOrigin As Boolean, ByVal ShowOnTimeline As Boolean)
             If Core.Player.HistoryData <> "" Then
-                Core.Player.HistoryData &= vbNewLine
+                Core.Player.HistoryData &= Environment.NewLine
             End If
 
             Dim dateString As String = ""

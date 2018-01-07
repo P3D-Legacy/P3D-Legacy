@@ -23,9 +23,9 @@
                 End If
             End If
 
-            Dim s As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " / FPS: " & Math.Round(Core.GameInstance.FPSMonitor.Value, 0) & isDebugString & vbNewLine &
-                Screen.Camera.Position.ToString() & thirdPersonString & vbNewLine & Screen.Camera.Yaw & "; " & Screen.Camera.Pitch & vbNewLine &
-                "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & vbNewLine &
+            Dim s As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " / FPS: " & Math.Round(Core.GameInstance.FPSMonitor.Value, 0) & isDebugString & Environment.NewLine &
+                Screen.Camera.Position.ToString() & thirdPersonString & Environment.NewLine & Screen.Camera.Yaw & "; " & Screen.Camera.Pitch & Environment.NewLine &
+                "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & Environment.NewLine &
                 "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString()
 
             If Core.GameOptions.ContentPackNames.Count() > 0 Then
@@ -37,7 +37,7 @@
                     contentPackString &= ContentPackName
                 Next
                 contentPackString = "Loaded ContentPacks: " & contentPackString
-                s &= vbNewLine & contentPackString
+                s &= Environment.NewLine & contentPackString
             End If
 
             Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, s, New Vector2(7, 7), Color.Black)

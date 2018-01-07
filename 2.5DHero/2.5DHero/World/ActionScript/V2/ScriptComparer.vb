@@ -132,13 +132,13 @@ Namespace ScriptVersion2
                         End If
                     End If
                 Case ">"
-                    If IsNumeric(resultValue) = True And IsNumeric(compareValue) = True Then
+                    If StringHelper.IsNumeric(resultValue) And StringHelper.IsNumeric(compareValue) Then
                         If dbl(resultValue) > dbl(compareValue) Then
                             comparisonResult = True
                         End If
                     End If
                 Case "<"
-                    If IsNumeric(resultValue) = True And IsNumeric(compareValue) = True Then
+                    If StringHelper.IsNumeric(resultValue) And StringHelper.IsNumeric(compareValue) Then
                         If dbl(resultValue) < dbl(compareValue) Then
                             comparisonResult = True
                         End If

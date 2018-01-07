@@ -81,7 +81,7 @@ Public Class KeyboardInput
                 'Check for Ctrl+V
                 If k = Keys.V And KeyBoardHandler.KeyPressed(Keys.V) = True And Controls.CtrlPressed() = True Then
                     If System.Windows.Forms.Clipboard.ContainsText() = True Then
-                        Dim pasteText As String = System.Windows.Forms.Clipboard.GetText().Replace(vbNewLine, "")
+                        Dim pasteText As String = System.Windows.Forms.Clipboard.GetText().Replace(Environment.NewLine, "")
 
                         Me.AppendString(CurrentText, pasteText, CarretPosition)
                     End If

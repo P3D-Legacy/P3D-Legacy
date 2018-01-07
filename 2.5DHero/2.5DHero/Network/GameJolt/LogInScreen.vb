@@ -86,7 +86,7 @@ Namespace GameJolt
                 Dim cUsername As String = Encryption.EncryptString(UserName.Text, "") 'CLASSIFIED
                 Dim cToken As String = Encryption.EncryptString(Token.Text, "") 'CLASSIFIED
 
-                System.IO.File.WriteAllText(GameController.GamePath & "\Save\gamejoltAcc.dat", cUsername & vbNewLine & cToken)
+                System.IO.File.WriteAllText(GameController.GamePath & "\Save\gamejoltAcc.dat", cUsername & Environment.NewLine & cToken)
             End If
         End Sub
 
@@ -337,7 +337,7 @@ Namespace GameJolt
                     WaitingForResponse = True
                     GameJolt.API.LoggedIn = False
 
-                    WaitingMessage = "The version of your game does not match with" & vbNewLine & "the version required to play online. If you have" & vbNewLine & "the lastest version of the game, the game is" & vbNewLine & "getting updated right now." & vbNewLine & vbNewLine & vbNewLine & "Your version: " & GameController.GAMEVERSION & vbNewLine & "Required version: " & list(1).Value
+                    WaitingMessage = "The version of your game does not match with" & Environment.NewLine & "the version required to play online. If you have" & Environment.NewLine & "the lastest version of the game, the game is" & Environment.NewLine & "getting updated right now." & Environment.NewLine & Environment.NewLine & Environment.NewLine & "Your version: " & GameController.GAMEVERSION & Environment.NewLine & "Required version: " & list(1).Value
                     ShowokButton = True
 
                     LogInButton.Text = "Log in"
@@ -356,7 +356,7 @@ Namespace GameJolt
                 WaitingForResponse = True
                 GameJolt.API.LoggedIn = False
 
-                WaitingMessage = "Cannot connect to account!" & vbNewLine & "You have to use your Token," & vbNewLine & "not your Password."
+                WaitingMessage = "Cannot connect to account!" & Environment.NewLine & "You have to use your Token," & Environment.NewLine & "not your Password."
                 ShowokButton = True
 
                 LogInButton.Text = "Log in"

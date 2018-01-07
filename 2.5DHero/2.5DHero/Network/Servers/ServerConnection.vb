@@ -182,7 +182,7 @@ Namespace Servers
         ''' </summary>
         Private Sub InternalPing()
             Try
-                If DateDiff(DateInterval.Second, Me.LastPingTime, Date.Now) >= 10 Then
+                If (Date.Now - Me.LastPingTime).Seconds >= 10 Then
                     Me.SendPackage(New Package(Package.PackageTypes.Ping, Core.ServersManager.ID, Package.ProtocolTypes.UDP))
                     Me.LastPingTime = Date.Now
                 End If
@@ -206,10 +206,10 @@ Namespace Servers
         Public Sub SendChatMessage(ByVal message As String)
             If message.ToLower().StartsWith("/login ") = True Then
                 Dim password As String = message.Remove(0, 7)
-                Dim hashedPassword As String = BitConverter.ToString(new SHA512Managed().ComputeHash(Encoding.UTF8.GetBytes(password))).Replace("-", "").ToLower()
+                Dim hashedPassword As String = BitConverter.ToString(New SHA512Managed().ComputeHash(Encoding.UTF8.GetBytes(password))).Replace("-", "").ToLower()
                 message = "/login " + hashedPassword
                 SendPackage(New Package(Package.PackageTypes.ChatMessage, Core.ServersManager.ID, Package.ProtocolTypes.TCP, message))
-            Else If message.ToLower().StartsWith("/pm ") = True Then
+            ElseIf message.ToLower().StartsWith("/pm ") = True Then
                 message = message.Remove(0, 4)
                 Dim playerName As String = message
                 While Core.ServersManager.PlayerCollection.HasPlayer(playerName) = False And playerName.Contains(" ") = True
@@ -250,7 +250,7 @@ Namespace Servers
                     Me._streamWriter.Flush()
                 Catch ex As Exception
                     Logger.Log(Logger.LogTypes.Warning, "ServerConnection.vb: Error while sending data to server (TCP): " & ex.Message)
-                    Me.Disconnect("Disconnected from Server", "Error trying to send data to the server (TCP)." & vbNewLine & ex.Message)
+                    Me.Disconnect("Disconnected from Server", "Error trying to send data to the server (TCP)." & Environment.NewLine & ex.Message)
                 End Try
 
                 Me.LastPingTime = Date.Now
@@ -294,7 +294,7 @@ Namespace Servers
                         Logger.Debug("Received invalid server package.")
                     End If
                 Catch ex As Exception
-                    Logger.Log(Logger.LogTypes.Warning, "ServerConnection.vb: Error while receiving server data (TCP): " & vbNewLine & ex.Message)
+                    Logger.Log(Logger.LogTypes.Warning, "ServerConnection.vb: Error while receiving server data (TCP): " & Environment.NewLine & ex.Message)
                     Me.Disconnect("Disconnected from Server", "Error while receiving server data (TCP).")
                 End Try
             End While

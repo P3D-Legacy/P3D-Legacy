@@ -568,9 +568,9 @@ Public Class GameMode
         gameRules.Add(New GameRule("CanGetAchievements", "1"))
         gameRules.Add(New GameRule("ShowFollowPokemon", "1"))
 
-        GameMode.GameRules = gameRules
+        gameMode.GameRules = gameRules
 
-        Return GameMode
+        Return gameMode
     End Function
 
     ''' <summary>
@@ -578,32 +578,32 @@ Public Class GameMode
     ''' </summary>
     ''' <param name="File">The file this GameMode should get exported to.</param>
     Public Sub SaveToFile(ByVal File As String)
-        Dim s As String = "Name|" & Me._name & vbNewLine &
-            "Description|" & Me._description & vbNewLine &
-            "Version|" & Me._version & vbNewLine &
-            "Author|" & Me._author & vbNewLine &
-            "MapPath|" & Me._mapPath & vbNewLine &
-            "ScriptPath|" & Me._scriptPath & vbNewLine &
-            "PokeFilePath|" & Me._pokeFilePath & vbNewLine &
-            "PokemonDataPath|" & Me._pokemonDataPath & vbNewLine &
-            "ContentPath|" & Me._contentPath & vbNewLine &
-            "LocalizationsPath|" & Me._localizationsPath & vbNewLine
+        Dim s As String = "Name|" & Me._name & Environment.NewLine &
+            "Description|" & Me._description & Environment.NewLine &
+            "Version|" & Me._version & Environment.NewLine &
+            "Author|" & Me._author & Environment.NewLine &
+            "MapPath|" & Me._mapPath & Environment.NewLine &
+            "ScriptPath|" & Me._scriptPath & Environment.NewLine &
+            "PokeFilePath|" & Me._pokeFilePath & Environment.NewLine &
+            "PokemonDataPath|" & Me._pokemonDataPath & Environment.NewLine &
+            "ContentPath|" & Me._contentPath & Environment.NewLine &
+            "LocalizationsPath|" & Me._localizationsPath & Environment.NewLine
 
         Dim GameRuleString As String = "Gamerules|"
         For Each rule As GameRule In Me._gameRules
             GameRuleString &= "(" & rule.RuleName & "|" & rule.RuleValue & ")"
         Next
 
-        s &= GameRuleString & vbNewLine &
-            "StartMap|" & Me._startMap & vbNewLine &
-            "StartPosition|" & Me._startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
-            "StartRotation|" & Me._startRotation.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
-            "StartScript|" & StartScript & vbNewLine &
-            "StartLocationName|" & Me._startLocationName & vbNewLine &
-            "StartDialogue|" & Me._startDialogue & vbNewLine &
-            "StartColor|" & Me._startColor.R & "," & Me._startColor.G & "," & Me._startColor.B & vbNewLine &
-            "PokemonAppear|" & Me._pokemonAppear & vbNewLine &
-            "IntroMusic|" & Me._introMusic & vbNewLine
+        s &= GameRuleString & Environment.NewLine &
+            "StartMap|" & Me._startMap & Environment.NewLine &
+            "StartPosition|" & Me._startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
+            "StartRotation|" & Me._startRotation.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
+            "StartScript|" & StartScript & Environment.NewLine &
+            "StartLocationName|" & Me._startLocationName & Environment.NewLine &
+            "StartDialogue|" & Me._startDialogue & Environment.NewLine &
+            "StartColor|" & Me._startColor.R & "," & Me._startColor.G & "," & Me._startColor.B & Environment.NewLine &
+            "PokemonAppear|" & Me._pokemonAppear & Environment.NewLine &
+            "IntroMusic|" & Me._introMusic & Environment.NewLine
 
         Dim SkinColorsString As String = "SkinColors|"
         Dim iSC As Integer = 0
@@ -617,7 +617,7 @@ Public Class GameMode
             iSC += 1
         Next
 
-        s &= SkinColorsString & vbNewLine
+        s &= SkinColorsString & Environment.NewLine
 
         Dim SkinFilesString As String = "SkinFiles|"
         Dim iSF As Integer = 0
@@ -631,7 +631,7 @@ Public Class GameMode
             iSF += 1
         Next
 
-        s &= SkinFilesString & vbNewLine
+        s &= SkinFilesString & Environment.NewLine
 
         Dim SkinNamesString As String = "SkinNames|"
         Dim iSN As Integer = 0

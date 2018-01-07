@@ -48,8 +48,7 @@
             NewTexture()
         Else
             With My.Computer.Clock.LocalTime
-                Dim cD As New Date(.Year, .Month, .Day, .TimeOfDay.Hours, .TimeOfDay.Minutes, .TimeOfDay.Seconds)
-                Dim diff As Integer = CInt(DateDiff(DateInterval.Second, d, cD))
+                Dim diff As Integer = (Date.Now - d).Seconds
 
                 Grow += diff
 
@@ -72,7 +71,7 @@
             Me.LastUpdateDate = Date.Now
         End If
 
-        Dim diff As Integer = CInt(DateDiff(DateInterval.Second, LastUpdateDate, Date.Now))
+        Dim diff As Integer = (Date.Now - LastUpdateDate).Seconds
         If diff > 0 Then
             Me.Grow += diff
 
@@ -217,7 +216,7 @@
             If Berry <> "" Then
                 If Berry.ToLower().StartsWith("{" & Screen.Level.LevelFile.ToLower() & "|" & (Me.Position.X & "," & Me.Position.Y & "," & Me.Position.Z).ToLower() & "|") = False Then
                     If OutData <> "" Then
-                        OutData &= vbNewLine
+                        OutData &= Environment.NewLine
                     End If
                     OutData &= Berry
                 End If
@@ -243,7 +242,7 @@
 
         Dim OldData As String = Core.Player.BerryData
         If OldData <> "" Then
-            OldData &= vbNewLine
+            OldData &= Environment.NewLine
         End If
         OldData &= Data
 
@@ -330,7 +329,7 @@
 
             Dim OldData As String = Core.Player.BerryData
             If OldData <> "" Then
-                OldData &= vbNewLine
+                OldData &= Environment.NewLine
             End If
             OldData &= Data
 

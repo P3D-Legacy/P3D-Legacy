@@ -473,7 +473,7 @@ Public Class NewInventoryScreen
                     itemSubTitle = "Hidden Machine"
                 End If
 
-                itemDescription &= vbNewLine & techMachine.Attack.Description
+                itemDescription &= Environment.NewLine & techMachine.Attack.Description
             Case Items.ItemTypes.Standard
                 'JSON stuff
                 'itemSubTitle = _translation.STANDARD_ITEM_TITLE(cItem.ItemType.ToString())
@@ -527,8 +527,8 @@ Public Class NewInventoryScreen
             Dim offsetX As Integer = 100
             Dim offsetY As Integer = Core.windowSize.Height - 390
 
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) + 180 + offSetX, 240 + offSetY, 128, 64))
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, trashText, New Vector2(CInt(Core.windowSize.Width / 2) - (FontManager.InGameFont.MeasureString(trashText).X / 2) + 256 + offSetX, 276 + offSetY), Color.Black)
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) + 180 + offsetX, 240 + offsetY, 128, 64))
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, trashText, New Vector2(CInt(Core.windowSize.Width / 2) - (FontManager.InGameFont.MeasureString(trashText).X / 2) + 256 + offsetX, 276 + offsetY), Color.Black)
         End If
     End Sub
 

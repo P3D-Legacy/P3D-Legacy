@@ -13,7 +13,7 @@
     Public Shared Function CountEntries(ByVal Data As String, ByVal Type() As Integer) As Integer
         Dim counts As Integer = 0
 
-        Dim pData() As String = Data.Split(CChar(vbNewLine))
+        Dim pData() As String = Data.Split(CChar(Environment.NewLine))
         For Each Entry As String In pData
             Entry = Entry.Remove(0, Entry.IndexOf("{") + 1)
             Entry = Entry.Remove(Entry.Length - 1, 1)
@@ -33,7 +33,7 @@
         Dim IDs As New List(Of Integer)
 
         For Each r As String In Range
-            If IsNumeric(r) = True Then
+            If StringHelper.IsNumeric(r) = True Then
                 If IDs.Contains(CInt(r)) = False Then
                     IDs.Add(CInt(r))
                 End If
@@ -53,7 +53,7 @@
 
         Dim counts As Integer = 0
 
-        Dim pData() As String = Data.Split(CChar(vbNewLine))
+        Dim pData() As String = Data.Split(CChar(Environment.NewLine))
         For Each Entry As String In pData
             Entry = Entry.Remove(0, Entry.IndexOf("{") + 1)
             Entry = Entry.Remove(Entry.Length - 1, 1)
@@ -72,7 +72,7 @@
     End Function
 
     Public Shared Function GetEntryType(ByVal Data As String, ByVal ID As Integer) As Integer
-        Dim pData() As String = Data.Split(CChar(vbNewLine))
+        Dim pData() As String = Data.Split(CChar(Environment.NewLine))
 
         If pData.Count >= ID Then
             If pData(ID - 1).Contains(ID.ToString() & "|") = True Then
@@ -101,7 +101,7 @@
                 End If
             Else
                 If Data <> "" Then
-                    Data &= vbNewLine
+                    Data &= Environment.NewLine
                 End If
                 Data &= "{" & ID & "|" & Type & "}"
                 Return Data
@@ -116,7 +116,7 @@
         For i = 1 To POKEMONCOUNT
             Data &= "{" & i & "|0}"
             If i <> POKEMONCOUNT Then
-                Data &= vbNewLine
+                Data &= Environment.NewLine
             End If
         Next
 
@@ -124,7 +124,7 @@
     End Function
 
     Public Shared Function GetLastSeen(ByVal Data As String) As Integer
-        Dim pData() As String = Data.Split(CChar(vbNewLine))
+        Dim pData() As String = Data.Split(CChar(Environment.NewLine))
         Dim lastSeen As Integer = 1
 
         For Each Entry As String In pData

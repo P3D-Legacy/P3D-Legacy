@@ -498,13 +498,13 @@ Public Class PokedexScreen
 
         If CHabitat Is Nothing Then
             Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Pokedex.Name, New Vector2(60, 55), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Seen: " & vbNewLine & vbNewLine & "Obtained: ", New Vector2(420, 45), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Seen + Profile.Obtained & vbNewLine & vbNewLine & Profile.Obtained, New Vector2(540, 45), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Seen: " & Environment.NewLine & Environment.NewLine & "Obtained: ", New Vector2(420, 45), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Seen + Profile.Obtained & Environment.NewLine & Environment.NewLine & Profile.Obtained, New Vector2(540, 45), Color.Black)
         Else
             Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.Name, New Vector2(60, 80), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.Draw(CHabitat.Texture, New Rectangle(60, 32, 64, 48), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Available: " & vbNewLine & vbNewLine & "Obtained: ", New Vector2(420, 45), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.PokemonList.Count & vbNewLine & vbNewLine & CHabitat.PokemonCaught, New Vector2(540, 45), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Available: " & Environment.NewLine & Environment.NewLine & "Obtained: ", New Vector2(420, 45), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.PokemonList.Count & Environment.NewLine & Environment.NewLine & CHabitat.PokemonCaught, New Vector2(540, 45), Color.Black)
 
             Dim progressTexture As Texture2D = Me.CHabitat.ProgressTexture
             If Not progressTexture Is Nothing Then
@@ -594,8 +594,8 @@ Public Class PokedexScreen
                 End Select
             Next
         End If
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Order:" & vbNewLine & "Filter:" & vbNewLine & "Press Q on the keyboard to search.", New Vector2(685, 45), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & vbNewLine & filterText, New Vector2(790, 45), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, "Order:" & Environment.NewLine & "Filter:" & Environment.NewLine & "Press Q on the keyboard to search.", New Vector2(685, 45), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(790, 45), Color.Black)
 
         If menu.Visible = True Then
             menu.Draw()
@@ -636,9 +636,9 @@ Public Class PokedexScreen
         End While
 
         If entryType = 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & vbNewLine & vbNewLine & "No. " & no, New Vector2(830, 200), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(830, 200), Color.White)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName() & vbNewLine & vbNewLine & "No. " & no, New Vector2(830, 200), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName() & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(830, 200), Color.White)
             Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(670, 140, 128, 128), Color.White)
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "SPECIES", New Vector2(680, 310), Color.Black)
@@ -1110,7 +1110,7 @@ Public Class PokedexScreen
                     Dim dayTimes As New List(Of Integer)
 
                     For Each s As String In daytimesData
-                        If IsNumeric(s) = True Then
+                        If StringHelper.IsNumeric(s) = True Then
                             Dim i As Integer = CInt(s)
                             If i > 0 Then
                                 dayTimes.Add(i)

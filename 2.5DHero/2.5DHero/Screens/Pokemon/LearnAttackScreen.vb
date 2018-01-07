@@ -129,7 +129,7 @@
 
                     If c = CChar(" ") Then
                         If FontManager.MiniFont.MeasureString(n & c).X > 170 Then
-                            t &= vbNewLine
+                            t &= Environment.NewLine
                             n = ""
                         Else
                             t &= " "
@@ -151,7 +151,7 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MiniFont, "Power: " & power & vbNewLine & "Accuracy: " & acc & vbNewLine & vbNewLine & t, New Vector2(CInt(p.X + 432 - 300 + AttackPos), p.Y + 38), Color.Black)
+                .DrawString(FontManager.MiniFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & t, New Vector2(CInt(p.X + 432 - 300 + AttackPos), p.Y + 38), Color.Black)
                 .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 432 - 150 + AttackPos), CInt(p.Y + 42), 56, 28), Color.White)
             End With
 
@@ -175,7 +175,7 @@
             Else
                 drawText = "Forget """ & Pokemon.Attacks(AttackIndex).Name & """ to learn """ & newAttack.Name & """?"
                 If canForget = False Then
-                    drawText = "Cannot forget the move " & Pokemon.Attacks(AttackIndex).Name & " because" & vbNewLine & "it's a Hidden Machine move."
+                    drawText = "Cannot forget the move " & Pokemon.Attacks(AttackIndex).Name & " because" & Environment.NewLine & "it's a Hidden Machine move."
                 End If
             End If
 
@@ -221,15 +221,15 @@
         End If
         If currentCharIndex > (Pokemon.GetDisplayName() & " ").Length + 1 Then
             If currentCharIndex < GetText().Length Then
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, ("wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & vbNewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?").Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, ("wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?").Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & vbNewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?", New Vector2(FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, "wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?", New Vector2(FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             End If
         End If
     End Sub
 
     Private Function GetText() As String
-        Return Pokemon.GetDisplayName() & " wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & vbNewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?"
+        Return Pokemon.GetDisplayName() & " wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?"
     End Function
 
     Private Sub DrawAttack(ByVal i As Integer, ByVal A As BattleSystem.Attack)

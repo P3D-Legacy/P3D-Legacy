@@ -31,10 +31,10 @@
                     If Me.Position.X = Screen.Camera.Position.X And CInt(Me.Position.Y) = CInt(Screen.Camera.Position.Y) And Me.Position.Z = Screen.Camera.Position.Z Then
                         Dim steps As Integer = GetSteps()
 
-                        Dim s As String = "version=2" & vbNewLine &
-                       "@player.move(0)" & vbNewLine &
-                       "@player.turnto(" & Me.RotateTo.ToString() & ")" & vbNewLine &
-                       "@player.move(" & steps & ")" & vbNewLine &
+                        Dim s As String = "version=2" & Environment.NewLine &
+                       "@player.move(0)" & Environment.NewLine &
+                       "@player.turnto(" & Me.RotateTo.ToString() & ")" & Environment.NewLine &
+                       "@player.move(" & steps & ")" & Environment.NewLine &
                        ":end"
 
                         CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)

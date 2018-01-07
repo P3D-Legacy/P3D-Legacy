@@ -30,7 +30,7 @@
             If r.StartsWith("ACTIVATOR_REMOVE_STRENGTH_ROCK_" & Screen.Level.LevelFile & "_") = True Then
                 Dim RemoveID As String = r.Remove(0, ("ACTIVATOR_REMOVE_STRENGTHT_ROCK_" & Screen.Level.LevelFile & "_").Length - 1)
                 For Each sRock As Entity In Screen.Level.Entities
-                    If sRock.EntityID = "StrengthRock" And IsNumeric(sRock.ID) = True Then
+                    If sRock.EntityID = "StrengthRock" Then
                         If sRock.ID = CInt(RemoveID) Then
                             sRock.CanBeRemoved = True
                         End If

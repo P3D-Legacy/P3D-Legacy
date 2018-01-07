@@ -19,7 +19,7 @@
                             minRange = int(argument.GetSplit(0))
                             maxRange = int(argument.GetSplit(1))
                         Else
-                            If IsNumeric(argument) = True Then
+                            If StringHelper.IsNumeric(argument) = True Then
                                 maxRange = int(argument)
                             End If
                         End If
@@ -62,7 +62,7 @@
                         Return sortedList(returnIndex)
                     End If
 
-                    Return DEFAULTNULL
+                    Return DefaultNull
                 Case "isinsightscript"
                     Return ReturnBoolean(ActionScript.IsInsightScript)
                 Case "lastinput"
@@ -77,8 +77,8 @@
                     Dim chars() As String = argument.Split(CChar(","))
                     Dim output As String = ""
                     For Each c As String In chars
-                        If IsNumeric(c) = True Then
-                            output &= ChrW(CInt(c))
+                        If StringHelper.IsNumeric(c) = True Then
+                            output &= StringHelper.GetChar(CInt(c))
                         End If
                     Next
                     Return output
@@ -86,7 +86,7 @@
                     Return ActionScript.ScriptLevelIndex.ToString()
             End Select
 
-            Return DEFAULTNULL
+            Return DefaultNull
         End Function
 
     End Class

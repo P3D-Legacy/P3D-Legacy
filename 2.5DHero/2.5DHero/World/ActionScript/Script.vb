@@ -219,7 +219,7 @@
 
         Dim Level As Integer = ownPokemon.Level
 
-        If IsNumeric(Script.SaveNPCTrade(2)) = True Then
+        If StringHelper.IsNumeric(Script.SaveNPCTrade(2)) Then
             Level = ScriptConversion.ToInteger(Script.SaveNPCTrade(2))
         End If
 
@@ -227,7 +227,7 @@
 
         Dim Gender As Pokemon.Genders = ownPokemon.Gender
 
-        If IsNumeric(Script.SaveNPCTrade(3)) = True Then
+        If StringHelper.IsNumeric(Script.SaveNPCTrade(3)) Then
             Dim genderID As Integer = ScriptConversion.ToInteger(Script.SaveNPCTrade(3))
             If genderID = -1 Then
                 genderID = Core.Random.Next(0, 2)
@@ -269,7 +269,7 @@
         oppPokemon.CatchBall = Item.GetItemByID(ScriptConversion.ToInteger(Script.SaveNPCTrade(8)))
 
         Dim itemID As String = Script.SaveNPCTrade(9)
-        If IsNumeric(itemID) = True Then
+        If StringHelper.IsNumeric(itemID) Then
             oppPokemon.Item = Item.GetItemByID(ScriptConversion.ToInteger(itemID))
         End If
 

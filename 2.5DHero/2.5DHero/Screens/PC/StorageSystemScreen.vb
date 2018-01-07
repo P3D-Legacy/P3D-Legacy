@@ -729,7 +729,7 @@ Public Class StorageSystemScreen
         Dim returnData As String = ""
         For Each l As String In newData
             If returnData <> "" Then
-                returnData &= vbNewLine
+                returnData &= Environment.NewLine
             End If
             returnData &= l
         Next
@@ -1273,7 +1273,7 @@ Public Class StorageSystemScreen
                     maxPokemon = 6
                 End If
 
-                Dim t As String = "Box:  " & box.Name & vbNewLine & "Pokémon:  " & box.Pokemon.Count & " / " & maxPokemon & vbNewLine & "Level:  " & levelString
+                Dim t As String = "Box:  " & box.Name & Environment.NewLine & "Pokémon:  " & box.Pokemon.Count & " / " & maxPokemon & Environment.NewLine & "Level:  " & levelString
 
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(667, 417), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(665, 415), Color.White)
@@ -1345,15 +1345,15 @@ Public Class StorageSystemScreen
                         nameString = p.GetDisplayName()
                     End If
 
-                    Dim t As String = nameString & vbNewLine &
-                                                 "DEX NO. " & p.Number & vbNewLine &
-                                                 "LEVEL  " & p.Level & vbNewLine &
-                                                 "HP  " & p.HP & " / " & p.MaxHP & vbNewLine &
-                                                 "ATTACK  " & p.Attack & vbNewLine &
-                                                 "DEFENSE  " & p.Defense & vbNewLine &
-                                                 "SP. ATK  " & p.SpAttack & vbNewLine &
-                                                 "SP. DEF  " & p.SpDefense & vbNewLine &
-                                                 "SPEED  " & p.Speed & vbNewLine &
+                    Dim t As String = nameString & Environment.NewLine &
+                                                 "DEX NO. " & p.Number & Environment.NewLine &
+                                                 "LEVEL  " & p.Level & Environment.NewLine &
+                                                 "HP  " & p.HP & " / " & p.MaxHP & Environment.NewLine &
+                                                 "ATTACK  " & p.Attack & Environment.NewLine &
+                                                 "DEFENSE  " & p.Defense & Environment.NewLine &
+                                                 "SP. ATK  " & p.SpAttack & Environment.NewLine &
+                                                 "SP. DEF  " & p.SpDefense & Environment.NewLine &
+                                                 "SPEED  " & p.Speed & Environment.NewLine &
                                                  "ITEM  " & itemString
 
                     Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(667, 417), Color.Black)
@@ -1982,8 +1982,8 @@ Public Class StorageSystemFilterScreen
         Next
 
         If Filters.Count > 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Results: " & vbNewLine & vbNewLine & "Filters: ", New Vector2(90 + 64 * 11, 119), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Results & vbNewLine & vbNewLine & Me.Filters.Count, New Vector2(190 + 64 * 11, 119), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Results: " & Environment.NewLine & Environment.NewLine & "Filters: ", New Vector2(90 + 64 * 11, 119), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Results & Environment.NewLine & Environment.NewLine & Me.Filters.Count, New Vector2(190 + 64 * 11, 119), Color.White)
         End If
 
         If Menu.Visible = True Then

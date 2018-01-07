@@ -106,7 +106,7 @@
         If UseTextureID.StartsWith("Pokemon\Overworld\") = True Then
             texturePath = ""
             HasPokemonTexture = True
-            If IsNumeric(TextureID) = True Then
+            If StringHelper.IsNumeric(TextureID) = True Then
                 PokemonAddition = PokemonForms.GetDefaultOverworldSpriteAddition(CInt(TextureID))
             End If
         End If
@@ -165,7 +165,7 @@
         If Core.Player.NPCData = "" Then
             Core.Player.NPCData = Data
         Else
-            Core.Player.NPCData &= vbNewLine & Data
+            Core.Player.NPCData &= Environment.NewLine & Data
         End If
     End Sub
 
@@ -182,7 +182,7 @@
         Data = ""
         For i = 0 To NData.Count - 1
             If i <> 0 Then
-                Data &= vbNewLine
+                Data &= Environment.NewLine
             End If
 
             Data &= NData(i)
@@ -286,7 +286,7 @@
                 Case 1
                     oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
                 Case 3
-                    oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", vbNewLine), 2)
+                    oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2)
                 Case Else
                     oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
             End Select
@@ -394,23 +394,23 @@
                                         offset.X = 0.01F
                                 End Select
 
-                                Dim s As String = "version=2" & vbNewLine &
-                                    "@player.turn(" & turns & ")" & vbNewLine
+                                Dim s As String = "version=2" & Environment.NewLine &
+                                    "@player.turn(" & turns & ")" & Environment.NewLine
 
                                 With CType(Screen.Camera, OverworldCamera)
                                     If CType(Screen.Camera, OverworldCamera).ThirdPerson = True And IsOnScreen() = False Then
-                                        s &= "@camera.setfocus(npc," & Me.NPCID & ")" & vbNewLine
+                                        s &= "@camera.setfocus(npc," & Me.NPCID & ")" & Environment.NewLine
                                         Dim cPosition = .ThirdPersonOffset.X.ToString() & "," & .ThirdPersonOffset.Y.ToString() & "," & .ThirdPersonOffset.Z.ToString()
-                                        s &= "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & vbNewLine &
-                                             "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & vbNewLine &
-                                             "@camera.resetfocus" & vbNewLine &
-                                             "@camera.setposition(" & cPosition & ")" & vbNewLine &
-                                             "@script.start(" & Me.AdditionalValue & ")" & vbNewLine &
+                                        s &= "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
+                                             "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
+                                             "@camera.resetfocus" & Environment.NewLine &
+                                             "@camera.setposition(" & cPosition & ")" & Environment.NewLine &
+                                             "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
                                              ":end"
                                     Else
-                                        s &= "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & vbNewLine &
-                                        "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & vbNewLine &
-                                        "@script.start(" & Me.AdditionalValue & ")" & vbNewLine &
+                                        s &= "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
+                                        "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
+                                        "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
                                         ":end"
                                     End If
                                 End With
@@ -448,8 +448,8 @@
         MyBase.Update()
     End Sub
 
-    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
-        Return MyBase.CalculateCameraDistance(CPosition) - 0.2f
+    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) As Single
+        Return MyBase.CalculateCameraDistance(CPosition) - 0.2F
     End Function
 
     Public Overrides Sub UpdateEntity()

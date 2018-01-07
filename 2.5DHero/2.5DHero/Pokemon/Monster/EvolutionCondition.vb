@@ -214,7 +214,7 @@ Public Class EvolutionCondition
                                 canEvolve = False
                             End If
                         Case ConditionTypes.Trade
-                            If IsNumeric(c.Argument) = True Then
+                            If StringHelper.IsNumeric(c.Argument) Then
                                 If CInt(c.Argument) > 0 Then
                                     If CInt(c.Argument) <> CInt(arg) Then
                                         canEvolve = False

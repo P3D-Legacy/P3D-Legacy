@@ -181,9 +181,9 @@
             Core.SpriteBatch.Draw(PlayerTexture, New Rectangle(CInt(Position.X), CInt(Position.Y), CInt(32 * Scale), CInt(32 * Scale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
             If PokemonList Is Nothing OrElse PokemonList.Count = 0 Then
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, PlayerName & vbNewLine & PlayerTitle & vbNewLine & vbNewLine & "Level: " & PlayerLevel & vbNewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 10 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 10 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, PlayerName & vbNewLine & PlayerTitle & vbNewLine & "Level: " & PlayerLevel & vbNewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 6 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 6 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
 
                 For i = 0 To 5
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(192, 0, 32, 32), ""), New Rectangle(CInt(32 * Scale + (10 / 4) * Scale + Position.X + i * (10 * Scale)), CInt(Position.Y + 22.5F * Scale), CInt(Scale * 8), CInt(Scale * 8)), Color.White)
@@ -410,7 +410,7 @@
 
         Public Sub StartLoading(ByVal userName As String)
             Dim APICall As New APICall(AddressOf GotGameJoltID)
-            APICall.FetchUserdata(Username)
+            APICall.FetchUserdata(userName)
 
             Me.Username = userName
             Me.startedLoading = True
@@ -452,7 +452,7 @@
                         GotPublicKeys(PublicKeys)
                     Else
                         Dim APICall As New APICall(AddressOf GotPublicKeys)
-                        APICall.GetKeys(False, "saveStorageV" & GameJolt.GamejoltSave.Version & "|" & GameJoltID & "|*")
+                        APICall.GetKeys(False, "saveStorageV" & GameJolt.GamejoltSave.VERSION & "|" & GameJoltID & "|*")
                     End If
 
                     Dim APICall1 As New APICall(AddressOf GotOnlineTeamKey)
@@ -477,21 +477,21 @@
             Dim exists(3) As Boolean
 
             For Each Item As API.JoltValue In list
-                If Item.Value = "saveStorageV" & GameJolt.GamejoltSave.Version & "|" & GameJoltID & "|points" Then
+                If Item.Value = "saveStorageV" & GameJolt.GamejoltSave.VERSION & "|" & GameJoltID & "|points" Then
                     If exists(0) = False Then
                         Dim APICall As New APICall(AddressOf GetPlayerPoints)
                         APICall.GetStorageData(Item.Value, False)
                         exists(0) = True
                     End If
                 End If
-                If Item.Value = "saveStorageV" & GameJolt.GamejoltSave.Version & "|" & GameJoltID & "|emblem" Then
+                If Item.Value = "saveStorageV" & GameJolt.GamejoltSave.VERSION & "|" & GameJoltID & "|emblem" Then
                     If exists(1) = False Then
                         Dim APICall As New APICall(AddressOf GetPlayerEmblem)
                         APICall.GetStorageData(Item.Value, False)
                         exists(1) = True
                     End If
                 End If
-                If Item.Value = "saveStorageV" & GameJolt.GamejoltSave.Version & "|" & GameJoltID & "|gender" Then
+                If Item.Value = "saveStorageV" & GameJolt.GamejoltSave.VERSION & "|" & GameJoltID & "|gender" Then
                     If exists(2) = False Then
                         Dim APICall As New APICall(AddressOf GetPlayerGender)
                         APICall.GetStorageData(Item.Value, False)
@@ -873,7 +873,7 @@
         End Sub
 
         Public Shared Sub AchieveEmblem(ByVal emblem As String)
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 If Core.GameJoltSave.AchievedEmblems.Contains(emblem.ToLower()) = False Then
                     Dim trophy_id As Integer = EmblemToTrophyID(emblem)
 

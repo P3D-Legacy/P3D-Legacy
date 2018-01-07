@@ -94,7 +94,7 @@
 
     Public Shared Function GetContentPackInfo(ByVal ContentPackName As String) As String()
         If System.IO.File.Exists(GameController.GamePath & "\ContentPacks\" & ContentPackName & "\info.dat") = False Then
-            Dim s As String = "1.00" & vbNewLine & "Pokémon3D" & vbNewLine & "[Add information here!]"
+            Dim s As String = "1.00" & Environment.NewLine & "Pokémon3D" & Environment.NewLine & "[Add information here!]"
             System.IO.File.WriteAllText(GameController.GamePath & "\ContentPacks\" & ContentPackName & "\info.dat", s)
         End If
         Return System.IO.File.ReadAllLines(GameController.GamePath & "\ContentPacks\" & ContentPackName & "\info.dat")

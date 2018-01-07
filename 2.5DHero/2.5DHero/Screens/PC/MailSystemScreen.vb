@@ -66,7 +66,7 @@
             Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(x, y, 48, 48), ""), 1, New Rectangle(CInt(P.X), CInt(P.Y), 288, 32))
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Write new mail.", New Vector2(CInt(P.X) + 13, CInt(P.Y) + 14), Color.Black)
         Else
-            Dim item As Item = item.GetItemByID(mail.MailID)
+            Dim item As Item = Item.GetItemByID(mail.MailID)
 
             Dim x As Integer = 0
             Dim y As Integer = 0
@@ -101,7 +101,7 @@
     Private Sub DrawCurrentMail()
         If index = 0 Then
             Dim mail As Items.MailItem.MailData = TempNewMail
-            Dim item As Item = item.GetItemByID(mail.MailID)
+            Dim item As Item = Item.GetItemByID(mail.MailID)
 
             Core.SpriteBatch.Draw(item.Texture, New Rectangle(420, 84, 48, 48), Color.White)
 
@@ -117,7 +117,7 @@
 
             Canvas.DrawRectangle(New Rectangle(420, 140, 660, 2), Color.DarkGray)
 
-            Dim text As String = ("Text: (" & mail.MailText.Length & "/" & 200 & ")" & vbNewLine & vbNewLine & mail.MailText.Replace("<br>", vbNewLine)).CropStringToWidth(FontManager.MiniFont, 600)
+            Dim text As String = ("Text: (" & mail.MailText.Length & "/" & 200 & ")" & Environment.NewLine & Environment.NewLine & mail.MailText.Replace("<br>", Environment.NewLine)).CropStringToWidth(FontManager.MiniFont, 600)
             If EditMailIndex = 1 Then
                 c = Color.Blue
                 text &= "_"
@@ -154,7 +154,7 @@
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Cancel", New Vector2(696, yPlus + 334), Color.Black)
         Else
             Dim mail As Items.MailItem.MailData = Core.Player.Mails(index - 1)
-            Dim item As Item = item.GetItemByID(mail.MailID)
+            Dim item As Item = Item.GetItemByID(mail.MailID)
 
             Core.SpriteBatch.Draw(item.Texture, New Rectangle(420, 84, 48, 48), Color.White)
 
@@ -162,7 +162,7 @@
 
             Canvas.DrawRectangle(New Rectangle(420, 140, 660, 2), Color.DarkGray)
 
-            Dim text As String = ("Text: " & vbNewLine & vbNewLine & mail.MailText).CropStringToWidth(FontManager.MiniFont, 600)
+            Dim text As String = ("Text: " & Environment.NewLine & Environment.NewLine & mail.MailText).CropStringToWidth(FontManager.MiniFont, 600)
             Core.SpriteBatch.DrawString(FontManager.MiniFont, text, New Vector2(430, 160), Color.Black)
 
             Dim yPlus As Integer = CInt(FontManager.MiniFont.MeasureString(text).Y)
@@ -179,7 +179,7 @@
                 Dim t As TrophyInformation = GetTrophyInformation(mail.MailAttachment)
                 Core.SpriteBatch.DrawString(FontManager.MiniFont, "Trophy:", New Vector2(430, yPlus + 320), Color.Black)
                 Core.SpriteBatch.Draw(t.Texture, New Rectangle(430, yPlus + 340, 64, 64), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, (t.Name & vbNewLine & vbNewLine & t.Description).CropStringToWidth(FontManager.MiniFont, 500), New Vector2(510, yPlus + 340), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, (t.Name & Environment.NewLine & Environment.NewLine & t.Description).CropStringToWidth(FontManager.MiniFont, 500), New Vector2(510, yPlus + 340), Color.Black)
             End If
         End If
     End Sub
@@ -264,13 +264,13 @@
                 Select Case EditMailIndex
                     Case 0
                         KeyBindings.GetInput(TempNewMail.MailHeader, 25, True, True)
-                        TempNewMail.MailHeader = TempNewMail.MailHeader.Replace("\,", ",").Replace(vbNewLine, "").Replace("|", "/")
+                        TempNewMail.MailHeader = TempNewMail.MailHeader.Replace("\,", ",").Replace(Environment.NewLine, "").Replace("|", "/")
                     Case 1
                         KeyBindings.GetInput(TempNewMail.MailText, 200, True, True)
-                        TempNewMail.MailText = TempNewMail.MailText.Replace("\,", ",").Replace(vbNewLine, "<br>").Replace("|", "/")
+                        TempNewMail.MailText = TempNewMail.MailText.Replace("\,", ",").Replace(Environment.NewLine, "<br>").Replace("|", "/")
                     Case 2
                         KeyBindings.GetInput(TempNewMail.MailSignature, 25, True, True)
-                        TempNewMail.MailSignature = TempNewMail.MailSignature.Replace("\,", ",").Replace(vbNewLine, "").Replace("|", "/")
+                        TempNewMail.MailSignature = TempNewMail.MailSignature.Replace("\,", ",").Replace(Environment.NewLine, "").Replace("|", "/")
                 End Select
             End If
 

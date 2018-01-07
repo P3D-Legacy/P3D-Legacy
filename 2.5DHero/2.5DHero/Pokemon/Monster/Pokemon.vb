@@ -1354,12 +1354,12 @@ Public Class Pokemon
                         If Value.Contains(",") = True Then
                             Dim MachinesValue() As String = Value.Split(CChar(","))
                             For i = 0 To MachinesValue.Length - 1
-                                If IsNumeric(MachinesValue(i)) = True Then
+                                If StringHelper.IsNumeric(MachinesValue(i)) Then
                                     Me.Machines.Add(CInt(MachinesValue(i)))
                                 End If
                             Next
                         Else
-                            If IsNumeric(Value) = True Then
+                            If StringHelper.IsNumeric(Value) Then
                                 If CInt(Value) = -1 Then
                                     Me.Machines.Clear()
                                     Me.CanLearnAllMachines = True
@@ -1564,7 +1564,7 @@ Public Class Pokemon
                 Case "eggsteps"
                     Me.EggSteps = CInt(tagValue)
                 Case "item"
-                    If IsNumeric(tagValue) = True Then
+                    If StringHelper.IsNumeric(tagValue) Then
                         Me.Item = Item.GetItemByID(CInt(tagValue))
                     End If
                 Case "itemdata"
