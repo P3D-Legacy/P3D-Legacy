@@ -312,31 +312,7 @@ Module Extensions
 
     <Extension()>
     Public Function SplitAtNewline(ByVal s As String) As String()
-        If s.Contains("§") = False Then
-            Return s.Replace(StringHelper.CrLf, "§").Replace(StringHelper.LineFeed, "§").Split(CChar("§"))
-        Else
-            Dim Data As New List(Of String)
-
-            If s = "" Then
-                Return (New List(Of String)).ToArray()
-            End If
-
-            Dim i As Integer = 0
-            While s <> "" And i < s.Length
-                If s.Substring(i).StartsWith(StringHelper.CrLf) = False Or s.Substring(i).StartsWith(StringHelper.LineFeed) = False Then
-                    i += 1
-                Else
-                    Data.Add(s.Substring(0, i))
-                    i += 2
-                    s = s.Remove(0, i)
-                    i = 0
-                End If
-            End While
-
-            Data.Add(s.Substring(0, i))
-
-            Return Data.ToArray()
-        End If
+        Return s.Split({Environment.NewLine}, StringSplitOptions.None)
     End Function
 
     <Extension()>

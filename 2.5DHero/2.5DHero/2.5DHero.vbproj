@@ -87,6 +87,8 @@
     <Content Include="Scripts\underwatercave\rocks\Clipboard Text %2823-10-16, 22.00.44%29.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Compile Include="World\ActionScript\V3\Prototypes\CameraPrototype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\DaycarePrototype.vb" />
     <None Include="maps\battle\fortune\altering.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -12678,6 +12680,24 @@
     <Compile Include="World\ActionScript\V2\ScriptConstructs\DoSystem.vb" />
     <Compile Include="World\ActionScript\V2\ScriptLibrary.vb" />
     <Compile Include="World\ActionScript\V2\ScriptV2.vb" />
+    <Compile Include="World\ActionScript\V3\ApiClasses\ApiClass.vb" />
+    <Compile Include="World\ActionScript\V3\ApiClasses\ApiClassAttribute.vb" />
+    <Compile Include="World\ActionScript\V3\ApiClasses\ApiClassMethodAttribute.vb" />
+    <Compile Include="World\ActionScript\V3\ApiClasses\Chat.vb" />
+    <Compile Include="World\ActionScript\V3\ApiClasses\Text.vb" />
+    <Compile Include="World\ActionScript\V3\ParamHelper.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\AbilityPrototype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\BattlePrototype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\EntityPrototype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\ItemPrototype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\MovePrototype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\PokemonPrototype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\TrainerProtoype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\TypeContract.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\Vector3Prototype.vb" />
+    <Compile Include="World\ActionScript\V3\ScriptInputType.vb" />
+    <Compile Include="World\ActionScript\V3\ScriptManager.vb" />
+    <Compile Include="World\ActionScript\V3\ScriptStartFlag.vb" />
     <Compile Include="World\Badge.vb" />
     <Compile Include="World\BaseEntity.vb" />
     <Compile Include="World\Level.vb" />
@@ -12689,6 +12709,12 @@
     <Compile Include="World\SkyDome.vb" />
     <Compile Include="World\Terrain.vb" />
     <Compile Include="World\World.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\kolben\Kolben\Kolben.csproj">
+      <Project>{ed665f9b-07f4-4415-bd72-a728cf1ea909}</Project>
+      <Name>Kolben</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

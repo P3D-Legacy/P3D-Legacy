@@ -1,4 +1,6 @@
-﻿Public Class SignBlock
+﻿Imports net.Pokemon3D.Game.Scripting.V3
+
+Public Class SignBlock
 
     Inherits Entity
 
@@ -34,18 +36,30 @@
         End Select
 
         If canRead = True Then
-            Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
-            If oScreen.ActionScript.IsReady = True Then
+            'Dim oScreen As OverworldScreen = CType(Core.CurrentScreen, OverworldScreen)
+            'If oScreen.ActionScript.IsReady = True Then
+            '    SoundManager.PlaySound("select")
+            '    Select Case Me.ActionValue
+            '        Case 0, 3
+            '            oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
+            '        Case 1
+            '            oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
+            '        Case 2
+            '            oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2)
+            '        Case Else
+            '            oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
+            '    End Select
+            'End If
+            Dim sManager = ScriptManager.Instance
+            If Not sManager.IsActive Then
                 SoundManager.PlaySound("select")
                 Select Case Me.ActionValue
-                    Case 0, 3
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
                     Case 1
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
+                        sManager.StartScript(Me.AdditionalValue, ScriptInputType.File, ScriptStartFlag.None)
                     Case 2
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2)
-                    Case Else
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
+                        sManager.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), ScriptInputType.Raw, ScriptStartFlag.None)
+                    Case Else ' 0 and 3
+                        sManager.StartScript(Me.AdditionalValue, ScriptInputType.Text, ScriptStartFlag.None)
                 End Select
             End If
         End If
