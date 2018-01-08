@@ -1,3 +1,7 @@
 [submodule "Universal Content Builder"]
 	path = Universal Content Builder
 	url = https://github.com/AGN-Pokemon-3D/Pokemon-3D-Universal-Content-Builder.git
+[submodule "kolben"]
+	path = kolben
+	url = git@github.com:nilllzz/kolben.git
+	branch = master
