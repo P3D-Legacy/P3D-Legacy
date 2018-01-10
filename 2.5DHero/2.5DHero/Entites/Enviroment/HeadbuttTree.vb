@@ -57,20 +57,20 @@
 
             Dim spawnedPokemon As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.Headbutt, False)
             If spawnedPokemon Is Nothing Then
-                Dim s As String = "version=2" & vbNewLine &
-                    "@text.show(" & pName & " used~Headbutt!)" & vbNewLine &
-                    "@sound.play(destroy,0)" & vbNewLine &
-                    "@level.wait(20)" & vbNewLine &
-                    "@text.show(Nothing happened...)" & vbNewLine &
+                Dim s As String = "version=2" & Environment.NewLine &
+                    "@text.show(" & pName & " used~Headbutt!)" & Environment.NewLine &
+                    "@sound.play(destroy,0)" & Environment.NewLine &
+                    "@level.wait(20)" & Environment.NewLine &
+                    "@text.show(Nothing happened...)" & Environment.NewLine &
                     ":end"
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
             Else
-                Dim s As String = "version=2" & vbNewLine &
-                    "@text.show(" & pName & " used~Headbutt!)" & vbNewLine &
-                    "@sound.play(destroy,0)" & vbNewLine &
-                    "@level.wait(20)" & vbNewLine &
-                    "@text.show(A wild Pokémon~appeared!)" & vbNewLine &
-                    "@battle.wild(" & spawnedPokemon.Number & "," & spawnedPokemon.Level & ")" & vbNewLine &
+                Dim s As String = "version=2" & Environment.NewLine &
+                    "@text.show(" & pName & " used~Headbutt!)" & Environment.NewLine &
+                    "@sound.play(destroy,0)" & Environment.NewLine &
+                    "@level.wait(20)" & Environment.NewLine &
+                    "@text.show(A wild Pokémon~appeared!)" & Environment.NewLine &
+                    "@battle.wild(" & spawnedPokemon.Number & "," & spawnedPokemon.Level & ")" & Environment.NewLine &
                     ":end"
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
             End If

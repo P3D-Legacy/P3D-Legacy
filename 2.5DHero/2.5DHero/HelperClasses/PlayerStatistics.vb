@@ -36,7 +36,7 @@
         Dim s As String = ""
         For i = 0 To Statistics.Count - 1
             If s <> "" Then
-                s &= vbNewLine
+                s &= Environment.NewLine
             End If
             s &= Statistics.Keys(i) & "," & Statistics.Values(i).ToString()
         Next

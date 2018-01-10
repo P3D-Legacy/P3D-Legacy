@@ -17,7 +17,7 @@
                 Me.Rotation.Y = randomValue
         End Select
 
-        If IsNumeric(Me.AdditionalValue) = True Then
+        If StringHelper.IsNumeric(Me.AdditionalValue) = True Then
             Me.TurningSpeed = CSng(CInt(Me.AdditionalValue) / 100)
         End If
         Me.CreateWorldEveryFrame = True

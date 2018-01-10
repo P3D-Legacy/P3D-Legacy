@@ -70,7 +70,7 @@
             Dim Player As Player = Core.ServersManager.PlayerCollection.GetPlayer(p.Origin)
 
             If Not Player Is Nothing Then
-                GameJoltID = Player.GameJoltID
+                GameJoltID = Player.GameJoltId
             End If
 
             Chat.AddLine(New Chat.ChatMessage(Core.ServersManager.PlayerCollection.GetPlayerName(p.Origin), p.DataItems(0), GameJoltID, Chat.ChatMessage.MessageTypes.GlobalMessage))
@@ -108,7 +108,7 @@
         End Sub
 
         Private Shared Sub HandleKicked(ByVal p As Package)
-            Core.ServersManager.ServerConnection.Disconnect("You got kicked!", "Reason: " & vbNewLine & p.DataItems(0))
+            Core.ServersManager.ServerConnection.Disconnect("You got kicked!", "Reason: " & Environment.NewLine & p.DataItems(0))
         End Sub
 
         Private Shared Sub HandleCreatePlayer(ByVal p As Package)

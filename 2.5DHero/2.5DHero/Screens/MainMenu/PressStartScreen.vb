@@ -333,7 +333,7 @@ Public Class NewMainMenuScreen
 
     Private Sub ClickedProfile()
         If _selectedProfile = 0 And Security.FileValidation.IsValid(False) = False Then
-            _messageBox.Show("File validation failed!" & vbNewLine & "Redownload the game's files to solve this problem.")
+            _messageBox.Show("File validation failed!" & Environment.NewLine & "Redownload the game's files to solve this problem.")
         Else
             _profiles(_selectedProfile).SelectProfile()
         End If
@@ -437,22 +437,22 @@ Public Class NewMainMenuScreen
                     For i = 0 To tmpProfile.PokemonTextures.Count - 1
                         SpriteBatch.Draw(tmpProfile.PokemonTextures(i), New Rectangle(displayRect.X + 30 + i * 70, displayRect.Y + 70, 64, 64), Color.White)
                     Next
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Name: " & tmpProfile.Name & vbNewLine &
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Name: " & tmpProfile.Name & Environment.NewLine &
                                                                         "GameMode: " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Badges: " & tmpProfile.Badges.ToString() & vbNewLine &
-                                                                        "Time played: " & tmpProfile.TimePlayed & vbNewLine &
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Badges: " & tmpProfile.Badges.ToString() & Environment.NewLine &
+                                                                        "Time played: " & tmpProfile.TimePlayed & Environment.NewLine &
                                                                         "Location: " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
                 Else
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Name: " & tmpProfile.Name & vbNewLine &
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Name: " & tmpProfile.Name & Environment.NewLine &
                                                                         "GameMode: " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
 
                     SpriteBatch.Draw(_menuTexture, New Rectangle(displayRect.X + 30, displayRect.Y + 70, 32, 32), New Rectangle(0, 32, 32, 32), Color.White)
                     Dim errorText As String = ""
 
                     If tmpProfile.IsGameJolt() Then
-                        errorText = "Download failed. Press Accept to try again." & vbNewLine & vbNewLine &
-                                    "If the problem persists, please try again later" & vbNewLine &
-                                    "or contact us in our Discord server:" & vbNewLine & vbNewLine &
+                        errorText = "Download failed. Press Accept to try again." & Environment.NewLine & Environment.NewLine &
+                                    "If the problem persists, please try again later" & Environment.NewLine &
+                                    "or contact us in our Discord server:" & Environment.NewLine & Environment.NewLine &
                                     "http://www.discord.me/p3d"
                     Else
                         errorText = "The required GameMode does not exist!"
@@ -717,7 +717,7 @@ Public Class NewMainMenuScreen
             End If
 
             If _isNewGameButton Then
-                Dim text As String = "NEW" & vbNewLine & "GAME"
+                Dim text As String = "NEW" & Environment.NewLine & "GAME"
 
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
                     FontRenderer.DrawString(FontManager.GameJoltFont, text, New Vector2(offset.X + 80 - (FontManager.GameJoltFont.MeasureString(text).X) / 2,
@@ -847,7 +847,7 @@ Public Class NewMainMenuScreen
                             LoadGameJolt()
                         Else
                             Dim messageBox As New UI.MessageBox(CurrentScreen)
-                            messageBox.Show("The required GameMode does not exist." & vbNewLine & "Reaquire the GameMode to play on this profile.")
+                            messageBox.Show("The required GameMode does not exist." & Environment.NewLine & "Reaquire the GameMode to play on this profile.")
                         End If
 
                     End If
@@ -888,7 +888,7 @@ Public Class GameModeSelectionScreen
     Public Overrides Sub Draw()
         PreScreen.Draw()
 
-        Dim text = "Select a GameMode" + vbNewLine + "to start the new game with"
+        Dim text = "Select a GameMode" + Environment.NewLine + "to start the new game with"
 
         GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(30, 30), Color.White)
 

@@ -97,11 +97,11 @@
 
         Public Shared Shadows Function FromString(ByVal input As String) As QueryObject
             Dim d() As String = input.Split(CChar("|"))
-            Return New TextQueryObject(d(0).Replace("*", vbNewLine), New Color(CInt(d(1)), CInt(d(2)), CInt(d(3))))
+            Return New TextQueryObject(d(0).Replace("*", Environment.NewLine), New Color(CInt(d(1)), CInt(d(2)), CInt(d(3))))
         End Function
 
         Public Overrides Function ToString() As String
-            Dim s As String = Me._text.Replace(vbNewLine, "*") & "|" &
+            Dim s As String = Me._text.Replace(Environment.NewLine, "*") & "|" &
                 Me._textColor.R & "|" & Me._textColor.G & "|" & Me._textColor.B
 
             Return "{TEXT|" & s & "}"

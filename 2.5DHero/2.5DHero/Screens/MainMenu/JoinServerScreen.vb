@@ -602,7 +602,7 @@ Public Class JoinServerScreen
                         tooltipText = PlayerList.ToArray().ArrayToString(True)
                     End If
 
-                    Dim v = FontManager.MiniFont.MeasureString("Player list:" & vbNewLine & tooltipText)
+                    Dim v = FontManager.MiniFont.MeasureString("Player list:" & Environment.NewLine & tooltipText)
 
                     Dim drawY As Integer = MouseHandler.MousePosition.Y + 10
                     If drawY + v.Y + 12 > Core.windowSize.Height Then
@@ -659,7 +659,7 @@ Public Class JoinServerScreen
         Dim data() As String = System.IO.File.ReadAllLines(GameController.GamePath & "\Save\server_list.dat")
         For Each line As String In data
             If newData <> "" Then
-                newData &= vbNewLine
+                newData &= Environment.NewLine
             End If
             If line.StartsWith(server_name & ",") = True Then
                 Dim lineData() As String = line.Split(CChar(","))
@@ -688,7 +688,7 @@ Public Class JoinServerScreen
         For Each s As Server In Me.ServerList
             If s.IsLocal = False Then
                 If data <> "" Then
-                    data &= vbNewLine
+                    data &= Environment.NewLine
                 End If
                 data &= s.ToString()
             End If

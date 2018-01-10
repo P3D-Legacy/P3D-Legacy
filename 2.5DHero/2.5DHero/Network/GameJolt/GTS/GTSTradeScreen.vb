@@ -104,7 +104,7 @@
             Canvas.DrawRectangle(New Rectangle(100 + OwnX, 160, 400, 450), New Color(255, 255, 255, 150))
 
             'User:
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 Dim ownEmblem As Emblem = New Emblem(API.username, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem)
 
                 Dim SpriteSize As New Size(CInt(ownEmblem.SpriteTexture.Width / 3), CInt(ownEmblem.SpriteTexture.Height / 4))
@@ -142,9 +142,9 @@
                         Core.SpriteBatch.Draw(P.Item.Texture, New Rectangle(202 + OwnX, 474, 24, 24), Color.White)
                     End If
 
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & P.Level & vbNewLine & vbNewLine &
-                                                 "Gender: " & P.Gender.ToString() & vbNewLine & vbNewLine &
-                                                 "OT: " & P.CatchTrainerName & "/" & P.OT & vbNewLine & vbNewLine &
+                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & P.Level & Environment.NewLine & Environment.NewLine &
+                                                 "Gender: " & P.Gender.ToString() & Environment.NewLine & Environment.NewLine &
+                                                 "OT: " & P.CatchTrainerName & "/" & P.OT & Environment.NewLine & Environment.NewLine &
                                                  "Item: " & ItemString, New Vector2(150 + OwnX, 360), Color.Black)
 
                     DrawButton(New Vector2(180, 520), "Clear", 5)
@@ -154,7 +154,7 @@
                         GenderString = D.RequestGender
                     End If
 
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Request Level: " & D.RequestLevel & vbNewLine & vbNewLine &
+                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Request Level: " & D.RequestLevel & Environment.NewLine & Environment.NewLine &
                                                  "Request Gender: " & GenderString, New Vector2(150 + OwnX, 360), Color.Black)
                 End If
 
@@ -198,9 +198,9 @@
                     Core.SpriteBatch.Draw(D.Pokemon.Item.Texture, New Rectangle(202 + OppX, 474, 24, 24), Color.White)
                 End If
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & D.Pokemon.Level & vbNewLine & vbNewLine &
-                                             "Gender: " & D.Pokemon.Gender.ToString() & vbNewLine & vbNewLine &
-                                             "OT: " & D.Pokemon.CatchTrainerName & "/" & D.Pokemon.OT & vbNewLine & vbNewLine &
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & D.Pokemon.Level & Environment.NewLine & Environment.NewLine &
+                                             "Gender: " & D.Pokemon.Gender.ToString() & Environment.NewLine & Environment.NewLine &
+                                             "OT: " & D.Pokemon.CatchTrainerName & "/" & D.Pokemon.OT & Environment.NewLine & Environment.NewLine &
                                              "Item: " & ItemString, New Vector2(150 + OppX, 360), Color.Black)
 
 
@@ -222,15 +222,15 @@
                 If v > 0 Then
                     Canvas.DrawRectangle(New Rectangle(540, 430, 120, 120), New Color(255, 255, 255, 150))
 
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "You get" & vbNewLine & "stars:", New Vector2(560, 435), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "You get" & Environment.NewLine & "stars:", New Vector2(560, 435), Color.Black)
 
                     GTSMainScreen.DrawStars(v, New Vector2(560, 480))
                 End If
             Else
                 If PokeIndex > -1 Then
-                    Dim t As String = "Your chosen Pokémon does not match the" & vbNewLine & "conditions given by your trade partner."
+                    Dim t As String = "Your chosen Pokémon does not match the" & Environment.NewLine & "conditions given by your trade partner."
                     If Core.Player.Pokemons(PokeIndex).HasHMMove() = True Then
-                        t = "This Pokémon knows an HM move." & vbNewLine & "You can't trade this Pokémon."
+                        t = "This Pokémon knows an HM move." & Environment.NewLine & "You can't trade this Pokémon."
                     End If
                     If Core.Player.Pokemons(PokeIndex).IsEgg() = True Then
                         t = "You can't trade an egg."

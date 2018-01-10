@@ -26,7 +26,7 @@ Namespace Items.Standard
 
                 Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
-                Dim s As String = "version=2" & vbNewLine &
+                Dim s As String = "version=2" & Environment.NewLine &
                     "@text.show(" & t & ")
 @level.wait(20)
 @camera.activatethirdperson
@@ -45,9 +45,9 @@ Namespace Items.Standard
 @player.turnto(2)"
 
                 If setToFirstPerson = True Then
-                    s &= vbNewLine & "@camera.deactivatethirdperson"
+                    s &= Environment.NewLine & "@camera.deactivatethirdperson"
                 End If
-                s &= vbNewLine &
+                s &= Environment.NewLine &
 "@level.update
 @screen.fadein
 :end"

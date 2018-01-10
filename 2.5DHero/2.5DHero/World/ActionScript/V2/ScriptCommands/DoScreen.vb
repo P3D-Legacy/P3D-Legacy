@@ -137,7 +137,7 @@
                         Dim moves As New List(Of BattleSystem.Attack)
 
                         For i = 1 To args.Length - 1
-                            If IsNumeric(args(i)) = True Then
+                            If StringHelper.IsNumeric(args(i)) Then
                                 moves.Add(BattleSystem.Attack.GetAttackByID(int(args(i))))
                             End If
                         Next

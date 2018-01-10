@@ -25,7 +25,9 @@
 
                     Dim currentValue As String = ScriptStorage.GetObject(type, name).ToString()
 
-                    If IsNumeric(value.Replace(".", GameController.DecSeparator)) = True And IsNumeric(currentValue.Replace(".", GameController.DecSeparator)) = True Then
+                    If StringHelper.IsNumeric(value.Replace(".", GameController.DecSeparator)) And
+                       StringHelper.IsNumeric(currentValue.Replace(".", GameController.DecSeparator)) Then
+
                         Select Case operation.ToLower()
                             Case "+", "plus", "add", "addition"
                                 If ScriptConversion.IsArithmeticExpression(currentValue) = True And ScriptConversion.IsArithmeticExpression(value) = True Then

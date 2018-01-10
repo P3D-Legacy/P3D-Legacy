@@ -256,11 +256,11 @@
                     Core.SpriteBatch.Draw(D.Pokemon.Item.Texture, New Rectangle(882, 314, 24, 24), Color.White)
                 End If
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & D.Pokemon.Level & vbNewLine & vbNewLine &
-                                             "Gender: " & D.Pokemon.Gender.ToString() & vbNewLine & vbNewLine &
-                                             "OT: " & D.Pokemon.CatchTrainerName & "/" & D.Pokemon.OT & vbNewLine & vbNewLine &
-                                             "Item: " & ItemString & vbNewLine & vbNewLine &
-                                             "Message: " & vbNewLine & D.Message, New Vector2(830, 200), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & D.Pokemon.Level & Environment.NewLine & Environment.NewLine &
+                                             "Gender: " & D.Pokemon.Gender.ToString() & Environment.NewLine & Environment.NewLine &
+                                             "OT: " & D.Pokemon.CatchTrainerName & "/" & D.Pokemon.OT & Environment.NewLine & Environment.NewLine &
+                                             "Item: " & ItemString & Environment.NewLine & Environment.NewLine &
+                                             "Message: " & Environment.NewLine & D.Message, New Vector2(830, 200), Color.Black)
 
 
                 'Stars:
@@ -281,7 +281,7 @@
                 End If
 
                 'To:
-                If Core.Player.IsGamejoltSave = True Then
+                If Core.Player.IsGameJoltSave = True Then
                     Core.SpriteBatch.DrawString(FontManager.MiniFont, "To:", New Vector2(516, 360), Color.Black)
                     Dim ownEmblem As Emblem = New Emblem(API.username, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem)
 

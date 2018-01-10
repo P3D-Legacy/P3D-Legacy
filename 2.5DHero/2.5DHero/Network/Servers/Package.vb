@@ -163,7 +163,7 @@
                     Me._protocolVersion = bits(0)
 
                     'Get second part, set PackageType:
-                    If IsNumeric(bits(1)) = True Then
+                    If StringHelper.IsNumeric(bits(1)) Then
                         Me._packageType = CType(CInt(bits(1)), PackageTypes)
                     Else
                         Me._isValid = False
@@ -171,7 +171,7 @@
                     End If
 
                     'Get third part, set Origin:
-                    If IsNumeric(bits(2)) = True Then
+                    If StringHelper.IsNumeric(bits(2)) Then
                         Me._origin = CInt(bits(2))
                     Else
                         Me._isValid = False
@@ -180,7 +180,7 @@
 
                     'Get data items count:
                     Dim dataItemsCount As Integer = 0
-                    If IsNumeric(bits(3)) = True Then
+                    If StringHelper.IsNumeric(bits(3)) Then
                         dataItemsCount = CInt(bits(3))
                     Else
                         Me._isValid = False
@@ -191,7 +191,7 @@
 
                     'Count from 4th item to second last item. Those are the offsets.
                     For i = 4 To dataItemsCount - 1 + 4
-                        If IsNumeric(bits(i)) = True Then
+                        If StringHelper.IsNumeric(bits(i)) Then
                             OffsetList.Add(CInt(bits(i)))
                         Else
                             Me._isValid = False

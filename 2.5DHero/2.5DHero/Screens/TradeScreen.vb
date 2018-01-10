@@ -736,7 +736,7 @@ Public Class TradeScreen
             Core.SpriteBatch.Draw(texture, New Rectangle(856, 484, 64, 64), New Rectangle(16, 32, 16, 16), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "+", New Vector2(856 + 19, 484 + 6), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Per Item: " & selectedItem.Price.ToString() & GetCurrencyShort() & vbNewLine &
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Per Item: " & selectedItem.Price.ToString() & GetCurrencyShort() & Environment.NewLine &
                                                        "Total: " & (BuyItemsAmount * selectedItem.Price).ToString() & GetCurrencyShort(), New Vector2(930, 490), Color.White)
 
             ' Buy button:
@@ -1073,7 +1073,7 @@ Public Class TradeScreen
             Core.SpriteBatch.Draw(texture, New Rectangle(856, 484, 64, 64), New Rectangle(16, 32, 16, 16), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "+", New Vector2(856 + 19, 484 + 6), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Per Item: " & selectedItem.SellPrice().ToString() & GetCurrencyShort() & vbNewLine &
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Per Item: " & selectedItem.SellPrice().ToString() & GetCurrencyShort() & Environment.NewLine &
                                                        "Total: " & (SellItemsAmount * selectedItem.SellPrice()).ToString() & GetCurrencyShort(), New Vector2(930, 490), Color.White)
 
             ' Sell button:
@@ -1143,7 +1143,7 @@ Public Class TradeScreen
 
         Dim tradeItem As TradeItem = Me.SellItemsList(Me.Scroll + Me.Cursor)
 
-        Dim text As String = "Do you want to sell" & vbNewLine & Me.SellItemsAmount & " " & tradeItem.GetItem().Name & "?"
+        Dim text As String = "Do you want to sell" & Environment.NewLine & Me.SellItemsAmount & " " & tradeItem.GetItem().Name & "?"
 
         Core.SpriteBatch.DrawString(FontManager.MiniFont,
                                     text,

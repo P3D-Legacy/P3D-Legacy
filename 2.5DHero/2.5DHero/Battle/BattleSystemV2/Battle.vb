@@ -1284,7 +1284,7 @@
             If p.Status = Pokemon.StatusProblems.Paralyzed Then
                 If Core.Random.Next(0, 4) = 0 Then
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_thundershock2", False))
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fully paralyzed!" & vbNewLine & "It cannot move!"))
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fully paralyzed!" & Environment.NewLine & "It cannot move!"))
                     Exit Sub
                 End If
             End If
@@ -2600,12 +2600,12 @@
                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_thundershock2", False))
                             Select Case message
                                 Case "" 'Print default message only
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is paralyzed!" & vbNewLine & "It can't move!"))
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is paralyzed!" & Environment.NewLine & "It can't move!"))
                                 Case "-1" 'Print no message at all
                                     'Do nothing
                                 Case Else 'Print message given in 'message'
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is paralyzed!" & vbNewLine & "It can't move!"))
+                                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is paralyzed!" & Environment.NewLine & "It can't move!"))
                             End Select
                             If p.Ability.Name.ToLower() = "synchronize" AndAlso from <> own Then
                                 Me.InflictParalysis(Not own, Not own, BattleScreen, "Synchronize passed over the paralysis.", "synchronize")
@@ -3000,7 +3000,7 @@
 
             If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 If cause <> "contrary" Then
-                    Return LowerStat(own, own, BattleScreen, Stat, val, message & vbNewLine & "Contrary reverted the stat change!", "contrary")
+                    Return LowerStat(own, own, BattleScreen, Stat, val, message & Environment.NewLine & "Contrary reverted the stat change!", "contrary")
                 End If
             End If
 
@@ -3217,7 +3217,7 @@
 
             If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 If cause <> "contrary" Then
-                    Return RaiseStat(own, own, BattleScreen, Stat, val, message & vbNewLine & "Contrary reverted the stat change!", "contrary")
+                    Return RaiseStat(own, own, BattleScreen, Stat, val, message & Environment.NewLine & "Contrary reverted the stat change!", "contrary")
                 End If
             End If
 
@@ -4496,22 +4496,22 @@
                             Dim usedMentalHerb As Boolean = False
                             If .OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
                                 .OwnPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
-                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the infatuation" & vbNewLine & "due to Mental Herb!"))
+                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the infatuation" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
                             If .FieldEffects.OwnTaunt > 0 Then
                                 .FieldEffects.OwnTaunt = 0
-                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the taunt" & vbNewLine & "due to Mental Herb!"))
+                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the taunt" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
                             If .FieldEffects.OwnEncore > 0 Then
                                 .FieldEffects.OwnEncore = 0
-                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the encore" & vbNewLine & "due to Mental Herb!"))
+                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the encore" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
                             If .FieldEffects.OwnTorment > 0 Then
                                 .FieldEffects.OwnTorment = 0
-                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the torment" & vbNewLine & "due to Mental Herb!"))
+                                .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the torment" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
                             'Remove disable
@@ -5230,22 +5230,22 @@
                             Dim usedMentalHerb As Boolean = False
                             If .OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
                                 .OppPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
-                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the infatuation" & vbNewLine & "due to Mental Herb!"))
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the infatuation" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
                             If .FieldEffects.OppTaunt > 0 Then
                                 .FieldEffects.OppTaunt = 0
-                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the taunt" & vbNewLine & "due to Mental Herb!"))
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the taunt" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
                             If .FieldEffects.OppEncore > 0 Then
                                 .FieldEffects.OppEncore = 0
-                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the encore" & vbNewLine & "due to Mental Herb!"))
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the encore" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
                             If .FieldEffects.OppTorment > 0 Then
                                 .FieldEffects.OppTorment = 0
-                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the torment" & vbNewLine & "due to Mental Herb!"))
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the torment" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
                             'Remove disable
@@ -5286,7 +5286,7 @@
                                 End If
                             End With
                             If hasNegativeStats = True Then
-                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " negative stats got healed" & vbNewLine & "due to White Herb!"))
+                                .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " negative stats got healed" & Environment.NewLine & "due to White Herb!"))
                                 .OppPokemon.Item = Nothing
                             End If
                         End If

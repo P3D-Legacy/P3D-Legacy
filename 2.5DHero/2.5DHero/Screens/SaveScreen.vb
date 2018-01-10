@@ -50,35 +50,35 @@
 
                 If Core.GameOptions.Extras.Contains("Backup Save Feature") Then
                     .DrawString(FontManager.MiniFont,
-                        "Press Dismiss to close this" & vbNewLine &
-                        "screen and try to save again" & vbNewLine &
-                        "in order to prevent data" & vbNewLine &
-                        "corruption." & vbNewLine & vbNewLine & vbNewLine &
-                        "Your save has been backed" & vbNewLine &
-                        "up in the event of the" & vbNewLine &
+                        "Press Dismiss to close this" & Environment.NewLine &
+                        "screen and try to save again" & Environment.NewLine &
+                        "in order to prevent data" & Environment.NewLine &
+                        "corruption." & Environment.NewLine & Environment.NewLine & Environment.NewLine &
+                        "Your save has been backed" & Environment.NewLine &
+                        "up in the event of the" & Environment.NewLine &
                         "Gamejolt API being down.", New Vector2(Delta_X + 90, Delta_Y + 100), Color.Black)
                     .DrawString(FontManager.MiniFont,
-                        "You may safely quit the" & vbNewLine &
-                        "game now or try to save" & vbNewLine &
-                        "again later." & vbNewLine & vbNewLine & vbNewLine &
-                        "The backup save can be" & vbNewLine &
-                        "found in the Backup Save" & vbNewLine &
+                        "You may safely quit the" & Environment.NewLine &
+                        "game now or try to save" & Environment.NewLine &
+                        "again later." & Environment.NewLine & Environment.NewLine & Environment.NewLine &
+                        "The backup save can be" & Environment.NewLine &
+                        "found in the Backup Save" & Environment.NewLine &
                         "folder", New Vector2(Delta_X + 390, Delta_Y + 100), Color.Black)
                 Else
                     .DrawString(FontManager.MiniFont,
-                        "Press Dismiss to close this" & vbNewLine &
-                        "screen and try to save again" & vbNewLine &
-                        "in order to prevent data" & vbNewLine &
-                        "corruption." & vbNewLine & vbNewLine & vbNewLine &
-                        "If the problem persists, the" & vbNewLine &
-                        "GameJolt servers could be" & vbNewLine &
-                        "down for maintenance right" & vbNewLine &
+                        "Press Dismiss to close this" & Environment.NewLine &
+                        "screen and try to save again" & Environment.NewLine &
+                        "in order to prevent data" & Environment.NewLine &
+                        "corruption." & Environment.NewLine & Environment.NewLine & Environment.NewLine &
+                        "If the problem persists, the" & Environment.NewLine &
+                        "GameJolt servers could be" & Environment.NewLine &
+                        "down for maintenance right" & Environment.NewLine &
                         "now.", New Vector2(Delta_X + 90, Delta_Y + 100), Color.Black)
-                    .DrawString(FontManager.MiniFont, "Please try again later," & vbNewLine &
-                        "or contact us here:" & vbNewLine & vbNewLine &
-                        "Discord server" & vbNewLine &
-                        "www.discord.me/p3d" & vbNewLine & vbNewLine &
-                        "Official Forum" & vbNewLine &
+                    .DrawString(FontManager.MiniFont, "Please try again later," & Environment.NewLine &
+                        "or contact us here:" & Environment.NewLine & Environment.NewLine &
+                        "Discord server" & Environment.NewLine &
+                        "www.discord.me/p3d" & Environment.NewLine & Environment.NewLine &
+                        "Official Forum" & Environment.NewLine &
                         "pokemon3d.net/forum/news", New Vector2(Delta_X + 390, Delta_Y + 100), Color.Black)
                 End If
 
@@ -124,7 +124,7 @@
                     End If
                 Next
 
-                .DrawString(FontManager.MiniFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & vbNewLine & vbNewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & vbNewLine & vbNewLine & Localization.GetString("save_screen_money") & ": " & Core.Player.Money & vbNewLine & vbNewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
+                .DrawString(FontManager.MiniFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_money") & ": " & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
             End If
         End With
         Screen.ChooseBox.Draw(New Vector2(Delta_X + 115, Delta_Y + 155), False, 1.5F)

@@ -22,7 +22,7 @@
     Public Overrides Sub ClickFunction()
         Dim canRead As Boolean = False
 
-        Select Case Screen.Camera.GetPlayerFacingDirection() 
+        Select Case Screen.Camera.GetPlayerFacingDirection()
             Case 1, 3
                 If Me.Rotation.Y = MathHelper.Pi * 1.5F Or Me.Rotation.Y = MathHelper.Pi * 0.5F Then
                     canRead = True
@@ -43,7 +43,7 @@
                     Case 1
                         oScreen.ActionScript.StartScript(Me.AdditionalValue, 0)
                     Case 2
-                        oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", vbNewLine), 2)
+                        oScreen.ActionScript.StartScript(Me.AdditionalValue.Replace("<br>", Environment.NewLine), 2)
                     Case Else
                         oScreen.ActionScript.StartScript(Me.AdditionalValue, 1)
                 End Select

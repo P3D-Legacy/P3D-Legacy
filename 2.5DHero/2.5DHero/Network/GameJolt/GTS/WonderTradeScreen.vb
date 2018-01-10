@@ -74,7 +74,7 @@
         Private Sub GotTradeID(ByVal result As String)
             Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
-            If IsNumeric(list(1).Value) = True Then
+            If StringHelper.IsNumeric(list(1).Value) = True Then
                 Me.WonderTradeID = CInt(list(1).Value)
                 Me.PartnerEmblem = New Emblem(GameJoltID, 0)
             Else
@@ -88,9 +88,9 @@
 
             Select Case Me.ScreenState
                 Case ScreenStates.Choose
-                    Dim t As String = "With Wonder Trade, you trade your" & vbNewLine &
-                                      "Pokémon instantly with a random one" & vbNewLine &
-                                      "from anyone anywhere in the world!" & vbNewLine & vbNewLine &
+                    Dim t As String = "With Wonder Trade, you trade your" & Environment.NewLine &
+                                      "Pokémon instantly with a random one" & Environment.NewLine &
+                                      "from anyone anywhere in the world!" & Environment.NewLine & Environment.NewLine &
                                       "Do you want to do a Wonder Trade?"
 
                     Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 150, 600, 200), New Color(135, 168, 20, 100))
@@ -338,7 +338,7 @@
                 Case 1
                     Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), CInt(Core.windowSize.Height / 2 - 128), 256, 256), Color.White)
 
-                    Dim t As String = "Sending " & Me.SelectedPokemon.GetDisplayName() & " to Wondertrade." & vbNewLine & "Good-bye, " & Me.SelectedPokemon.GetDisplayName() & "!"
+                    Dim t As String = "Sending " & Me.SelectedPokemon.GetDisplayName() & " to Wondertrade." & Environment.NewLine & "Good-bye, " & Me.SelectedPokemon.GetDisplayName() & "!"
 
                     Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 130)), Color.White)
                 Case 2

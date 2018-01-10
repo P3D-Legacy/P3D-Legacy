@@ -166,7 +166,7 @@
 
                     IsReady = True
                 Case "getbadge"
-                    If IsNumeric(argument) = True Then
+                    If StringHelper.IsNumeric(argument) Then
                         If Core.Player.Badges.Contains(int(argument)) = False Then
                             Core.Player.Badges.Add(int(argument))
                             SoundManager.PlaySound("badge_acquired", True)
@@ -181,7 +181,7 @@
 
                     CanContinue = False
                 Case "removebadge"
-                    If IsNumeric(argument) = True Then
+                    If StringHelper.IsNumeric(argument) Then
                         If Core.Player.Badges.Contains(int(argument)) = True Then
                             Core.Player.Badges.Remove(int(argument))
                         End If
@@ -189,7 +189,7 @@
 
                     IsReady = True
                 Case "addbadge"
-                    If IsNumeric(argument) = True Then
+                    If StringHelper.IsNumeric(argument) Then
                         If Core.Player.Badges.Contains(int(argument)) = False Then
                             Core.Player.Badges.Add(int(argument))
                         End If

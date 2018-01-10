@@ -18,7 +18,7 @@
                     For Each line As String In Core.Player.DaycareData.SplitAtNewline()
                         If line.StartsWith(dayCareID.ToString() & "|Egg|") = False Then
                             If newData <> "" Then
-                                newData &= vbNewLine
+                                newData &= Environment.NewLine
                             End If
                             newData &= line
                         Else
@@ -45,7 +45,7 @@
                             Core.Player.Pokemons.Add(p)
                         Else
                             If newData <> "" Then
-                                newData &= vbNewLine
+                                newData &= Environment.NewLine
                             End If
                             newData &= line
                         End If
@@ -58,7 +58,7 @@
                     Dim PokemonIndex As Integer = int(argument.GetSplit(2))
 
                     If Core.Player.DaycareData <> "" Then
-                        Core.Player.DaycareData &= vbNewLine
+                        Core.Player.DaycareData &= Environment.NewLine
                     End If
 
                     Core.Player.DaycareData &= dayCareID.ToString() & "|" & PokemonDaycareIndex.ToString() & "|" & Core.Player.DaycareSteps & "|0|" & Core.Player.Pokemons(PokemonIndex).GetSaveData()
@@ -71,7 +71,7 @@
                     For Each line As String In Core.Player.DaycareData.SplitAtNewline()
                         If line.StartsWith(dayCareID.ToString() & "|Egg|") = False Then
                             If newData <> "" Then
-                                newData &= vbNewLine
+                                newData &= Environment.NewLine
                             End If
                             newData &= line
                         End If
@@ -88,7 +88,7 @@
                             lines.Add(line)
                         Else
                             If newData <> "" Then
-                                newData &= vbNewLine
+                                newData &= Environment.NewLine
                             End If
                             newData &= line
                         End If
@@ -99,7 +99,7 @@
                         Dim data() As String = line.Split(CChar("|"))
 
                         If newData <> "" Then
-                            newData &= vbNewLine
+                            newData &= Environment.NewLine
                         End If
 
                         If data(1) = "Egg" Then
@@ -117,7 +117,7 @@
                     For Each line As String In Core.Player.DaycareData.SplitAtNewline()
                         If line.StartsWith(daycareID.ToString() & "|") = False Then
                             If newData <> "" Then
-                                newData &= vbNewLine
+                                newData &= Environment.NewLine
                             End If
                             newData &= line
                         End If

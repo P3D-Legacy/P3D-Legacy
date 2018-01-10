@@ -1,4 +1,5 @@
 ﻿Imports System.Management
+Imports System.Windows.Forms
 
 Public Class Logger
 
@@ -64,7 +65,7 @@ Public Class Logger
             If Log = "" Then
                 Log = LogString
             Else
-                Log &= vbNewLine & LogString
+                Log &= Environment.NewLine & LogString
             End If
 
             IO.File.WriteAllText(GameController.GamePath & "\log.dat", Log)
@@ -75,7 +76,7 @@ Public Class Logger
         Try
             Dim w32ErrorCode As Integer = -1
 
-            Dim w32 = TryCast(ex, ComponentModel.Win32Exception)
+            Dim w32 = TryCast(ex, System.ComponentModel.Win32Exception)
             If w32 IsNot Nothing Then
                 w32ErrorCode = w32.ErrorCode
             End If
@@ -147,19 +148,19 @@ Public Class Logger
                 IsSandboxMode = Core.Player.SandBoxMode.ToString()
             End If
 
-            Dim gameInformation As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " version: " & GameController.GAMEVERSION & " (" & GameController.RELEASEVERSION & ")" & vbNewLine &
-                "Content Packs: " & ContentPacks & vbNewLine &
-                "Active GameMode: " & GameMode & vbNewLine &
-                OnlineInformation & vbNewLine &
-                "Playing on Servers: " & ServerInfo & vbNewLine &
-                "Game Environment: " & GameEnvironment & vbNewLine &
-                ScriptInfo & vbNewLine &
-                "File Validation: " & Security.FileValidation.IsValid(True).ToString() & vbNewLine &
+            Dim gameInformation As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " version: " & GameController.GAMEVERSION & " (" & GameController.RELEASEVERSION & ")" & Environment.NewLine &
+                "Content Packs: " & ContentPacks & Environment.NewLine &
+                "Active GameMode: " & GameMode & Environment.NewLine &
+                OnlineInformation & Environment.NewLine &
+                "Playing on Servers: " & ServerInfo & Environment.NewLine &
+                "Game Environment: " & GameEnvironment & Environment.NewLine &
+                ScriptInfo & Environment.NewLine &
+                "File Validation: " & Security.FileValidation.IsValid(True).ToString() & Environment.NewLine &
                 "Sandboxmode: " & IsSandboxMode
 
             Dim ScreenState As String = "[Screen state object not available]"
             If Not CurrentScreen Is Nothing Then
-                ScreenState = "Screen state for the current screen (" & CurrentScreen.Identification.ToString() & ")" & vbNewLine & vbNewLine &
+                ScreenState = "Screen state for the current screen (" & CurrentScreen.Identification.ToString() & ")" & Environment.NewLine & Environment.NewLine &
                     CurrentScreen.GetScreenStatus()
             End If
 
@@ -168,12 +169,12 @@ Public Class Logger
                 architectureString = "64 Bit"
             End If
 
-            Dim specs As String = "Operating system: " & My.Computer.Info.OSFullName & " [" & My.Computer.Info.OSVersion & "]" & vbNewLine &
-                "Core architecture: " & architectureString & vbNewLine &
-                "System time: " & My.Computer.Clock.LocalTime.ToString() & vbNewLine &
-                "System language: " & Globalization.CultureInfo.CurrentCulture.EnglishName & "(" & Globalization.CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName & ") / Loaded game language: " & Localization.LanguageSuffix & vbNewLine &
-                "Decimal separator: " & GameController.DecSeparator & vbNewLine &
-                "Available physical memory: " & Math.Round((My.Computer.Info.TotalPhysicalMemory / Math.Pow(1024, 3)), 2).ToString() & " Gigabyte" & vbNewLine &
+            Dim specs As String = "Operating system: " & My.Computer.Info.OSFullName & " [" & My.Computer.Info.OSVersion & "]" & Environment.NewLine &
+                "Core architecture: " & architectureString & Environment.NewLine &
+                "System time: " & My.Computer.Clock.LocalTime.ToString() & Environment.NewLine &
+                "System language: " & Globalization.CultureInfo.CurrentCulture.EnglishName & "(" & Globalization.CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName & ") / Loaded game language: " & Localization.LanguageSuffix & Environment.NewLine &
+                "Decimal separator: " & GameController.DecSeparator & Environment.NewLine &
+                "Available physical memory: " & Math.Round((My.Computer.Info.TotalPhysicalMemory / Math.Pow(1024, 3)), 2).ToString() & " Gigabyte" & Environment.NewLine &
                 "Available logical processors: " & Environment.ProcessorCount.ToString()
 
             Dim innerException As String = "NOTHING"
@@ -207,7 +208,7 @@ Public Class Logger
                     data = ""
                     For i = 0 To ex.Data.Count - 1
                         If data <> "" Then
-                            data &= vbNewLine
+                            data &= Environment.NewLine
                         End If
                         data &= "[" & ex.Data.Keys(i).ToString() & ": """ & ex.Data.Values(i).ToString() & """]"
                     Next
@@ -220,47 +221,49 @@ Public Class Logger
             Dim screenDump As String = objDump.Dump
 
             Dim content As String =
-                            "Kolben Games Crash Log V " & LOGVERSION & vbNewLine &
-                            GameController.GAMENAME & " has crashed!" & vbNewLine &
-                            "// " & ErrorHeaders(Random.Next(0, ErrorHeaders.Length)) & vbNewLine & vbNewLine &
-                            CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                            "Game information:" & vbNewLine & vbNewLine &
-                            gameInformation & vbNewLine & vbNewLine &
-                            CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                            ScreenState & vbNewLine & vbNewLine &
-                            CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                            "System specifications:" & vbNewLine & vbNewLine &
-                            specs & vbNewLine & vbNewLine &
-                            CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                            ".Net installation information:" & vbNewLine & vbNewLine &
-                            DotNetVersion.GetInstalled() & vbNewLine &
-                            CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                            GetGraphicsCardInformation() & vbNewLine & vbNewLine &
-                            CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                            "Error information:" & vbNewLine &
-                           vbNewLine & "Message: " & message &
-                           vbNewLine & "InnerException: " & innerException &
-                           vbNewLine & "BaseException: " & BaseException.Message &
-                           vbNewLine & "HelpLink: " & helpLink &
-                           vbNewLine & "Data: " & data &
-                           vbNewLine & "Source: " & source &
-                           vbNewLine & "Win32 Errorcode: " & w32ErrorCode.ToString() & vbNewLine & vbNewLine &
-                           CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                           informationItem.ToString() & vbNewLine & vbNewLine &
-                           CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                           "CallStack: " & vbNewLine & vbNewLine &
-                           StackTrace & vbNewLine & vbNewLine &
-                           CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                           "Enviornment dump: " & vbNewLine & vbNewLine &
-                           screenDump & vbNewLine & vbNewLine &
-                           CRASHLOGSEPARATOR & vbNewLine & vbNewLine &
-                           "You should report this error." & vbNewLine & vbNewLine & "Go to ""http://pokemon3d.net/forum/forums/6/create-thread"" to report this crash there."
+                            "Kolben Games Crash Log V " & LOGVERSION & Environment.NewLine &
+                            GameController.GAMENAME & " has crashed!" & Environment.NewLine &
+                            "// " & ErrorHeaders(Random.Next(0, ErrorHeaders.Length)) & Environment.NewLine & Environment.NewLine &
+                            CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                            "Game information:" & Environment.NewLine & Environment.NewLine &
+                            gameInformation & Environment.NewLine & Environment.NewLine &
+                            CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                            ScreenState & Environment.NewLine & Environment.NewLine &
+                            CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                            "System specifications:" & Environment.NewLine & Environment.NewLine &
+                            specs & Environment.NewLine & Environment.NewLine &
+                            CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                            ".Net installation information:" & Environment.NewLine & Environment.NewLine &
+                            DotNetVersion.GetInstalled() & Environment.NewLine &
+                            CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                            GetGraphicsCardInformation() & Environment.NewLine & Environment.NewLine &
+                            CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                            "Error information:" & Environment.NewLine &
+                           Environment.NewLine & "Message: " & message &
+                           Environment.NewLine & "InnerException: " & innerException &
+                           Environment.NewLine & "BaseException: " & BaseException.Message &
+                           Environment.NewLine & "HelpLink: " & helpLink &
+                           Environment.NewLine & "Data: " & data &
+                           Environment.NewLine & "Source: " & source &
+                           Environment.NewLine & "Win32 Errorcode: " & w32ErrorCode.ToString() & Environment.NewLine & Environment.NewLine &
+                           CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                           informationItem.ToString() & Environment.NewLine & Environment.NewLine &
+                           CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                           "CallStack: " & Environment.NewLine & Environment.NewLine &
+                           StackTrace & Environment.NewLine & Environment.NewLine &
+                           CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                           "Enviornment dump: " & Environment.NewLine & Environment.NewLine &
+                           screenDump & Environment.NewLine & Environment.NewLine &
+                           CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
+                           "You should report this error." & Environment.NewLine & Environment.NewLine & "Go to ""http://pokemon3d.net/forum/forums/6/create-thread"" to report this crash there."
 
             IO.File.WriteAllText(GameController.GamePath & "\" & logName, content)
 
-            MsgBox(GameController.GAMENAME & " has crashed!" & vbNewLine & "---------------------------" & vbNewLine & vbNewLine & "Here is further information:" &
-                           vbNewLine & "Message: " & ex.Message &
-                           vbNewLine & vbNewLine & "You should report this error. When you do this, please attach the crash log to the report. You can find the file in your ""Pokemon"" folder." & vbNewLine & vbNewLine & "The name of the file is: """ & logName & """.", MsgBoxStyle.Critical, "Pokémon3D crashed!")
+            MessageBox.Show(GameController.GAMENAME & " has crashed!" & Environment.NewLine & "---------------------------" & Environment.NewLine & Environment.NewLine & "Here is further information:" &
+                           Environment.NewLine & "Message: " & ex.Message &
+                           Environment.NewLine & Environment.NewLine & "You should report this error. When you do this, please attach the crash log to the report. You can find the file in your ""Pokemon"" folder." & Environment.NewLine & Environment.NewLine & "The name of the file is: """ & logName & """.",
+                            "Pokémon3D crashed!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
 
             Process.Start("explorer.exe", "/select,""" & GameController.GamePath & "\" & logName & """")
 
@@ -272,7 +275,7 @@ Public Class Logger
                 """CODESOURCE_" & ex.Source & """ " &
                 """TOPSTACK_" & ErrorInformation.GetStackItem(ex.StackTrace, 0) & """"
         Catch exs As Exception
-            MsgBox(exs.Message & vbNewLine & exs.StackTrace)
+            MessageBox.Show(exs.Message & Environment.NewLine & exs.StackTrace)
         End Try
 
         Return ""
@@ -301,7 +304,7 @@ Public Class Logger
             End While
         End If
 
-        Diagnostics.Debug.Print(stackOutput & vbTab & "| " & message)
+        Diagnostics.Debug.Print(stackOutput & StringHelper.Tab & "| " & message)
         History.Add("(" & GetLogTime(Date.Now) & ") " & message)
     End Sub
 
@@ -376,8 +379,8 @@ Public Class Logger
             End Try
         Next
 
-        Return "Graphics Card information:" & vbNewLine & vbNewLine &
-            "[CardName(s): """ & CardName & """]" & vbNewLine &
+        Return "Graphics Card information:" & Environment.NewLine & Environment.NewLine &
+            "[CardName(s): """ & CardName & """]" & Environment.NewLine &
             "[CardRAM(s) : """ & CardRAM & """]"
     End Function
 
@@ -510,10 +513,10 @@ analyzeStack:
                 ErrorType = "NaN"
             End If
 
-            Dim s As String = "Error solution:" & vbNewLine & "(The provided solution might not work for your problem)" & vbNewLine & vbNewLine &
-                "Error ID: " & ErrorID & vbNewLine &
-                "Error Type: " & ErrorType & vbNewLine &
-                "Error Description: " & ErrorDescription & vbNewLine &
+            Dim s As String = "Error solution:" & Environment.NewLine & "(The provided solution might not work for your problem)" & Environment.NewLine & Environment.NewLine &
+                "Error ID: " & ErrorID & Environment.NewLine &
+                "Error Type: " & ErrorType & Environment.NewLine &
+                "Error Description: " & ErrorDescription & Environment.NewLine &
                 "Error Solution: " & ErrorSolution
             Return s
         End Function

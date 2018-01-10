@@ -19,10 +19,10 @@ Public Class DotNetVersion
                         Dim install As String = versionKey.GetValue("Install", "").ToString()
                         If install = "" Then
                             'no install info, ust be later
-                            output &= versionKeyName & "  " & name & vbNewLine
+                            output &= versionKeyName & "  " & name & Environment.NewLine
                         Else
                             If sp <> "" AndAlso install = "1" Then
-                                output &= versionKeyName & "  " & name & "  SP" & sp & vbNewLine
+                                output &= versionKeyName & "  " & name & "  SP" & sp & Environment.NewLine
                             End If
                         End If
                         If name <> "" Then
@@ -37,12 +37,12 @@ Public Class DotNetVersion
                             install = subKey.GetValue("Install", "").ToString()
                             If install = "" Then
                                 'no install info, ust be later
-                                output &= versionKeyName & "  " & name & vbNewLine
+                                output &= versionKeyName & "  " & name & Environment.NewLine
                             Else
                                 If sp <> "" AndAlso install = "1" Then
-                                    output &= "  " & subKeyName & "  " & name & "  SP" & sp & vbNewLine
+                                    output &= "  " & subKeyName & "  " & name & "  SP" & sp & Environment.NewLine
                                 ElseIf install = "1" Then
-                                    output &= "  " & subKeyName & "  " & name & vbNewLine
+                                    output &= "  " & subKeyName & "  " & name & Environment.NewLine
                                 End If
                             End If
                         Next

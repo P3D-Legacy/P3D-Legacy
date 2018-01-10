@@ -1,12 +1,9 @@
 ﻿Public Class BaseModel
 
-    Public Shared vertexData As New List(Of VertexPositionNormalTexture)
-
+    Public ID As Integer = 0
     Public vertexBuffer As VertexBuffer
 
-    Public ID As Integer = 0
-
-    Public Sub Setup()
+    Protected Sub Setup(ByVal vertexData As VertexPositionNormalTexture())
         vertexBuffer = New VertexBuffer(Core.GraphicsDevice, GetType(VertexPositionNormalTexture), vertexData.Count, BufferUsage.WriteOnly)
         vertexBuffer.SetData(vertexData.ToArray())
     End Sub
@@ -137,9 +134,9 @@
                 Return PyramidModel
             Case 16
                 Return StairsModel
-			Case 17
+            Case 17
                 Return DiagonalWallModel
-			Case 18
+            Case 18
                 Return HalfDiagonalWallModel
             Case Else
                 Return BlockModel

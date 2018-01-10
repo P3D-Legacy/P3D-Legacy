@@ -189,11 +189,7 @@
                         Dim speed As Single = sng(argument.GetSplit(1))
 
                         If Not targetNPC Is Nothing Then
-                            If IsNumeric(speed) = True Then
-                                targetNPC.Speed = speed * 0.04F
-                            Else
-                                Logger.Log(Logger.LogTypes.Warning, "ScriptCommander.vb: (@npc." & command & ") The argument for ""speed"" did not have the correct data type (int)")
-                            End If
+                            targetNPC.Speed = speed * 0.04F
                         Else
                             Logger.Log(Logger.LogTypes.Warning, "ScriptCommander.vb: (@npc." & command & ") The targeted NPC with ID """ & int(argument.GetSplit(0)) & """ doesn't exist.")
                         End If

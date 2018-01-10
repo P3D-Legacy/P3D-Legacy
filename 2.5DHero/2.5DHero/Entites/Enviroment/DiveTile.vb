@@ -54,43 +54,43 @@
         If result = 0 Then
             If diveUp = 0 Then
                 'Down
-                Dim s As String = "version=2" & vbNewLine &
-                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & vbNewLine &
-                    "@screen.fadeout" & vbNewLine &
-                    "@player.warp(" & Me.AdditionalValue & ")" & vbNewLine &
-                    "@level.update" & vbNewLine &
-                    "@player.setmovement(0,-0.5,0)" & vbNewLine &
-                    "@screen.fadein" & vbNewLine &
-                    "@player.move(8)" & vbNewLine &
-                    "@player.resetmovement" & vbNewLine &
+                Dim s As String = "version=2" & Environment.NewLine &
+                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & Environment.NewLine &
+                    "@screen.fadeout" & Environment.NewLine &
+                    "@player.warp(" & Me.AdditionalValue & ")" & Environment.NewLine &
+                    "@level.update" & Environment.NewLine &
+                    "@player.setmovement(0,-0.5,0)" & Environment.NewLine &
+                    "@screen.fadein" & Environment.NewLine &
+                    "@player.move(8)" & Environment.NewLine &
+                    "@player.resetmovement" & Environment.NewLine &
                     ":end"
 
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
             ElseIf diveUp = 1 Then
                 'Up
-                Dim s As String = "version=2" & vbNewLine &
-                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & vbNewLine &
-                    "@player.setmovement(0,0.5,0)" & vbNewLine &
-                    "@player.move(8)" & vbNewLine &
-                    "@player.resetmovement" & vbNewLine &
-                    "@screen.fadeout" & vbNewLine &
-                    "@player.warp(" & Me.AdditionalValue & ")" & vbNewLine &
-                    "@level.update" & vbNewLine &
-                    "@screen.fadein" & vbNewLine &
+                Dim s As String = "version=2" & Environment.NewLine &
+                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & Environment.NewLine &
+                    "@player.setmovement(0,0.5,0)" & Environment.NewLine &
+                    "@player.move(8)" & Environment.NewLine &
+                    "@player.resetmovement" & Environment.NewLine &
+                    "@screen.fadeout" & Environment.NewLine &
+                    "@player.warp(" & Me.AdditionalValue & ")" & Environment.NewLine &
+                    "@level.update" & Environment.NewLine &
+                    "@screen.fadein" & Environment.NewLine &
                     ":end"
 
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
             ElseIf diveUp = 2 Then
                 'Up
-                Dim s As String = "version=2" & vbNewLine &
-                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & vbNewLine &
-                    "@player.setmovement(0,0.5,0)" & vbNewLine &
-                    "@player.move(6)" & vbNewLine &
-                    "@player.resetmovement" & vbNewLine &
-                    "@screen.fadeout" & vbNewLine &
-                    "@player.warp(" & Me.AdditionalValue & ")" & vbNewLine &
-                    "@level.update" & vbNewLine &
-                    "@screen.fadein" & vbNewLine &
+                Dim s As String = "version=2" & Environment.NewLine &
+                    "@text.show(" & GetDivePokemon() & "~used Dive!)" & Environment.NewLine &
+                    "@player.setmovement(0,0.5,0)" & Environment.NewLine &
+                    "@player.move(6)" & Environment.NewLine &
+                    "@player.resetmovement" & Environment.NewLine &
+                    "@screen.fadeout" & Environment.NewLine &
+                    "@player.warp(" & Me.AdditionalValue & ")" & Environment.NewLine &
+                    "@level.update" & Environment.NewLine &
+                    "@screen.fadein" & Environment.NewLine &
                     ":end"
 
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)

@@ -55,36 +55,36 @@
             If Core.Random.Next(0, 100) < 20 Then
                 spawnedPokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.RockSmash, False)
                 If spawnedPokemon Is Nothing Then
-                    Dim s As String = "version=2" & vbNewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
-                        "@sound.play(destroy)" & vbNewLine &
+                    Dim s As String = "version=2" & Environment.NewLine &
+                        "@text.show(" & pName & " used~Rock Smash!)" & Environment.NewLine &
+                        "@sound.play(destroy)" & Environment.NewLine &
                         ":end"
                     CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
                 Else
-                    Dim s As String = "version=2" & vbNewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
-                        "@sound.play(destroy)" & vbNewLine &
-                        "@level.update" & vbNewLine &
-                        "@text.show(A wild Pokémon~appeared!)" & vbNewLine &
-                        "@battle.wild(" & spawnedPokemon.Number & "," & spawnedPokemon.Level & ")" & vbNewLine &
+                    Dim s As String = "version=2" & Environment.NewLine &
+                        "@text.show(" & pName & " used~Rock Smash!)" & Environment.NewLine &
+                        "@sound.play(destroy)" & Environment.NewLine &
+                        "@level.update" & Environment.NewLine &
+                        "@text.show(A wild Pokémon~appeared!)" & Environment.NewLine &
+                        "@battle.wild(" & spawnedPokemon.Number & "," & spawnedPokemon.Level & ")" & Environment.NewLine &
                         ":end"
                     CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
                 End If
             Else
                 If Core.Random.Next(0, 100) < 20 Then
                     Dim ItemID As Integer = GetItemID()
-                    Dim s As String = "version=2" & vbNewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
-                        "@sound.play(destroy)" & vbNewLine &
-                        "@level.update" & vbNewLine &
-                        "@item.give(" & ItemID & ",1)" & vbNewLine &
-                        "@item.messagegive(" & ItemID & ",1)" & vbNewLine &
+                    Dim s As String = "version=2" & Environment.NewLine &
+                        "@text.show(" & pName & " used~Rock Smash!)" & Environment.NewLine &
+                        "@sound.play(destroy)" & Environment.NewLine &
+                        "@level.update" & Environment.NewLine &
+                        "@item.give(" & ItemID & ",1)" & Environment.NewLine &
+                        "@item.messagegive(" & ItemID & ",1)" & Environment.NewLine &
                         ":end"
                     CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
                 Else
-                    Dim s As String = "version=2" & vbNewLine &
-                        "@text.show(" & pName & " used~Rock Smash!)" & vbNewLine &
-                        "@sound.play(destroy)" & vbNewLine &
+                    Dim s As String = "version=2" & Environment.NewLine &
+                        "@text.show(" & pName & " used~Rock Smash!)" & Environment.NewLine &
+                        "@sound.play(destroy)" & Environment.NewLine &
                         ":end"
                     CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
                 End If

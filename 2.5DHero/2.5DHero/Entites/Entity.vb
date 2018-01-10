@@ -359,7 +359,7 @@
         Return Me.Position + Me.GetCenter()
     End Function
 
-    Protected Overridable Function CalculateCameraDistance(CPosition As Vector3) as Single
+    Protected Overridable Function CalculateCameraDistance(CPosition As Vector3) As Single
         Return Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition)
     End Function
 
@@ -377,11 +377,11 @@
 
 
         CameraDistance = CalculateCameraDistance(CPosition)
-        
+
         If Me.DropUpdateUnlessDrawn = True And Me.DrawnLastFrame = False And Me.Visible = True And ActionScriptActive = False Then
             Exit Sub
         End If
-        
+
 
         If Me.Moved > 0.0F And Me.CanMove = True Then
             Me.Moved -= Me.Speed

@@ -41,14 +41,36 @@
     <DebugType>none</DebugType>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'ReleaseNoContent'">
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'DebugNoContent'">
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>
+    </WarningsAsErrors>
+  </PropertyGroup>
   <ItemGroup>
-    <Import Include="System.Text" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Import Include="Microsoft.VisualBasic" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Diagnostics" />
     <Import Include="System.Linq" />
@@ -11111,6 +11133,7 @@
     <Compile Include="HelperClasses\Localization.vb" />
     <Compile Include="HelperClasses\PlayerStatistics.vb" />
     <Compile Include="HelperClasses\Size.vb" />
+    <Compile Include="HelperClasses\StringHelper.vb" />
     <Compile Include="HelperClasses\TimeHelpers.vb" />
     <Compile Include="Input\ControllerHandler.vb" />
     <Compile Include="Input\Controls.vb" />

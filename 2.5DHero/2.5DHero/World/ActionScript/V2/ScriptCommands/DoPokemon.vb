@@ -487,7 +487,7 @@
                         For Each l As String In data
                             Dim id As Integer = CInt(l.Remove(l.IndexOf(",")))
                             If id > (count - 19) OrElse id = 0 Then 'last 20 entries saved, plus the first entry
-                                NewHallOfFameData &= l & vbNewLine
+                                NewHallOfFameData &= l & Environment.NewLine
                             End If
                         Next
                     End If
@@ -507,7 +507,7 @@
                     For Each p As Pokemon In Core.Player.Pokemons
                         If p.IsEgg() = False Then
                             Dim pData As String = p.GetHallOfFameData()
-                            newData &= vbNewLine & count & "," & pData
+                            newData &= Environment.NewLine & count & "," & pData
                         End If
                     Next
 
@@ -575,7 +575,7 @@
                     p.Generate(CInt(data(1)), True)
 
                     If Core.Player.RoamingPokemonData <> "" Then
-                        Core.Player.RoamingPokemonData &= vbNewLine
+                        Core.Player.RoamingPokemonData &= Environment.NewLine
                     End If
 
                     Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & p.GetSaveData()

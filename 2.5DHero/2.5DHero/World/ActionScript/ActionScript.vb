@@ -123,7 +123,7 @@ nextScript:
 
                     If System.IO.File.Exists(path) = True Then
                         Dim Data As String = System.IO.File.ReadAllText(path)
-                        Data = Data.Replace(vbNewLine, "^")
+                        Data = Data.Replace(Environment.NewLine, "^")
                         Dim ScriptData() As String = Data.Split(CChar("^"))
 
                         AddScriptLines(ScriptData)
@@ -140,13 +140,13 @@ nextScript:
 
                     AddScriptLines(ScriptData)
                 Case 2 ' Start a script from direct input.
-                    Dim activator As String = Environment.StackTrace.Split(vbNewLine)(3)
+                    Dim activator As String = Environment.StackTrace.Split(Environment.NewLine)(3)
                     activator = activator.Remove(activator.IndexOf("("))
 
                     Logger.Debug("Start Script (DirectInput; " & activator & ")")
                     l.ScriptName = "Type: Direct; Input: " & Input
 
-                    Dim Data As String = Input.Replace(vbNewLine, "^")
+                    Dim Data As String = Input.Replace(Environment.NewLine, "^")
 
                     Dim ScriptData() As String = Data.Split(CChar("^"))
 
@@ -163,10 +163,10 @@ nextScript:
                 l.ScriptVersion = CInt(newScript.Remove(0, ("version=").Length))
                 l.CurrentLine += 1
             Else
-                While newScript.StartsWith(" ") = True Or newScript.StartsWith(vbTab) = True
+                While newScript.StartsWith(" ") = True Or newScript.StartsWith(StringHelper.Tab) = True
                     newScript = newScript.Remove(0, 1)
                 End While
-                While newScript.EndsWith(" ") = True Or newScript.EndsWith(vbTab) = True
+                While newScript.EndsWith(" ") = True Or newScript.EndsWith(StringHelper.Tab) = True
                     newScript = newScript.Remove(newScript.Length - 1, 1)
                 End While
                 If newScript <> "" Then
@@ -369,37 +369,40 @@ nextScript:
 
                         Dim remove As Boolean = False
 
+                        Dim date1 = Date.Now
+                        Dim date2 = regDate
+                        Dim diff = date1 - date2
                         Select Case format
                             Case "days", "day"
-                                If DateDiff(DateInterval.Day, regDate, Date.Now) >= value Then
+                                If diff.Days >= value Then
                                     remove = True
                                 End If
                             Case "minutes", "minute"
-                                If DateDiff(DateInterval.Minute, regDate, Date.Now) >= value Then
+                                If diff.Minutes >= value Then
                                     remove = True
                                 End If
                             Case "seconds", "second"
-                                If DateDiff(DateInterval.Second, regDate, Date.Now) >= value Then
+                                If diff.Seconds >= value Then
                                     remove = True
                                 End If
                             Case "years", "year"
-                                If CInt(Math.Floor(DateDiff(DateInterval.Day, regDate, Date.Now) / 365)) >= value Then
+                                If CInt(Math.Floor(diff.TotalDays / 365)) >= value Then
                                     remove = True
                                 End If
                             Case "weeks", "week"
-                                If CInt(Math.Floor(DateDiff(DateInterval.Day, regDate, Date.Now) / 7)) >= value Then
+                                If CInt(Math.Floor(diff.TotalDays / 7)) >= value Then
                                     remove = True
                                 End If
                             Case "months", "month"
-                                If DateDiff(DateInterval.Month, regDate, Date.Now) >= value Then
+                                If ((date1.Year - date2.Year) * 12) + date1.Month - date2.Month >= value Then
                                     remove = True
                                 End If
                             Case "hours", "hour"
-                                If DateDiff(DateInterval.Hour, regDate, Date.Now) >= value Then
+                                If diff.Hours >= value Then
                                     remove = True
                                 End If
                             Case "dayofweek"
-                                If DateDiff(DateInterval.Weekday, regDate, Date.Now) >= value Then
+                                If CInt(Math.Floor(diff.TotalDays / 7)) >= value Then
                                     remove = True
                                 End If
                         End Select
@@ -431,17 +434,13 @@ nextScript:
     End Sub
 
     Public Shared Function UnixToTime(ByVal strUnixTime As String) As Date
-        UnixToTime = DateAdd(DateInterval.Second, Val(strUnixTime), #1/1/1970#)
-        If UnixToTime.IsDaylightSavingTime = True Then
-            UnixToTime = DateAdd(DateInterval.Hour, 1, UnixToTime)
-        End If
+        Dim unixDate = New Date(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+        unixDate.AddSeconds(Convert.ToInt64(strUnixTime)).ToLocalTime()
+        Return unixDate
     End Function
 
     Public Shared Function TimeToUnix(ByVal dteDate As Date) As String
-        If dteDate.IsDaylightSavingTime = True Then
-            dteDate = DateAdd(DateInterval.Hour, -1, dteDate)
-        End If
-        TimeToUnix = DateDiff(DateInterval.Second, #1/1/1970#, dteDate).ToString()
+        Return (dteDate.ToUniversalTime() - New Date(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds.ToString()
     End Function
 
     Public Shared Sub RegisterID(ByVal i As String)

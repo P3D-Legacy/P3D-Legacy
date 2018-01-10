@@ -821,7 +821,7 @@ endsub:
             SeasonTextureBuffer.Clear()
         End If
 
-        If IsNothing(T) = False Then
+        If T IsNot Nothing Then
             If SeasonTextureBuffer.ContainsKey(T) = True Then
                 Return SeasonTextureBuffer(T)
             End If
@@ -868,7 +868,7 @@ endsub:
                 Dim minutes As Integer = CInt(data(1))
                 Dim seconds As Integer = CInt(data(2))
 
-                seconds += CInt(Math.Abs(DateDiff(DateInterval.Second, LastServerDataReceived, Date.Now)))
+                seconds += CInt(Math.Abs((Date.Now - LastServerDataReceived).Seconds))
 
                 Return hours * 3600 + minutes * 60 + seconds
             Else
@@ -884,7 +884,7 @@ endsub:
                 Dim hours As Integer = CInt(data(0))
                 Dim minutes As Integer = CInt(data(1))
 
-                minutes += CInt(Math.Abs(DateDiff(DateInterval.Minute, LastServerDataReceived, Date.Now)))
+                minutes += CInt(Math.Abs((Date.Now - LastServerDataReceived).Minutes))
 
                 Return hours * 60 + minutes
             Else

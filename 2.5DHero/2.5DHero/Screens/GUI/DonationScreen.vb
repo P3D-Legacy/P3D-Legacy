@@ -52,7 +52,7 @@
         Dim t As String = ""
         For i = OffsetY To 11 + OffsetY
             If i <> OffsetY Then
-                t &= vbNewLine & vbNewLine
+                t &= Environment.NewLine & Environment.NewLine
             End If
             If DonatorList.Count - 1 >= i Then
                 t &= DonatorList(i)

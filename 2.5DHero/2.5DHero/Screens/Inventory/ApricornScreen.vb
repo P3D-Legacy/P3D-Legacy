@@ -56,7 +56,7 @@
 
             Select Case Me.State
                 Case States.Wait
-                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_producing").Replace("~", vbNewLine), New Vector2(100, 200), FontManager.MainFont))
+                    Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_producing").Replace("~", Environment.NewLine), New Vector2(100, 200), FontManager.MainFont))
                     Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_backadvice"), New Vector2(100, 260), Color.DarkGray, FontManager.MainFont))
                 Case States.CanGive
                     Dim T As Texture2D = TextureManager.GetTexture("Items\ItemSheet")
@@ -252,7 +252,7 @@
 
     Private Sub AdjustButtonTexts()
         For Each b As ButtonIcon In Buttons
-            If IsNumeric(b.AdditionalValue) = True Then
+            If StringHelper.IsNumeric(b.AdditionalValue) Then
                 Dim apricornID As Integer = 0
 
                 Select Case CInt(b.AdditionalValue)
@@ -307,7 +307,7 @@
             d.Year & "," & d.Month & "," & d.Day & "," & d.Hour & "," & d.Minute & "," & d.Second & "}"
 
         If Core.Player.ApricornData <> "" Then
-            Core.Player.ApricornData &= vbNewLine
+            Core.Player.ApricornData &= Environment.NewLine
         End If
 
         Core.Player.ApricornData &= s
@@ -356,7 +356,7 @@
         For i = 0 To Data.Count() - 1
             If Data(i).StartsWith("{" & Me.owner & "|") = False Then
                 If s <> "" Then
-                    s &= vbNewLine
+                    s &= Environment.NewLine
                 End If
                 s &= Data(i)
             End If
@@ -418,9 +418,8 @@
                     If ApricornData(0) = Me.owner Then
                         Dim d() As String = ApricornData(2).Split(CChar(","))
                         Dim gaveDate As Date = New Date(CInt(d(0)), CInt(d(1)), CInt(d(2)), CInt(d(3)), CInt(d(4)), CInt(d(5)))
-                        Dim currentDate As Date = Date.Now
 
-                        diff = CInt(DateDiff(DateInterval.Minute, gaveDate, currentDate))
+                        diff = (Date.Now - gaveDate).Minutes
                     End If
                 End If
             Next

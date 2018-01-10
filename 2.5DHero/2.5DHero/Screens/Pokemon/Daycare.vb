@@ -361,7 +361,7 @@
                 End If
             End If
 
-            If p1.IsGenderLess = True Then
+            If p1.IsGenderless = True Then
                 If p2.EggGroup1 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Or p2.EggGroup2 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Then
                     chance = -1
                 Else
@@ -369,7 +369,7 @@
                         chance = -1
                     End If
                 End If
-            ElseIf p2.IsGenderLess = True Then
+            ElseIf p2.IsGenderless = True Then
                 If p1.EggGroup1 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Or p1.EggGroup2 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Then
                     chance = -1
                 Else
@@ -377,7 +377,7 @@
                         chance = -1
                     End If
                 End If
-            ElseIf p1.IsGenderLess = False And p2.IsGenderLess = False Then
+            ElseIf p1.IsGenderless = False And p2.IsGenderless = False Then
                 If p1.Gender <> p2.Gender Then
                     If p1.EggGroup1 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Or p2.EggGroup1 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Or p1.EggGroup2 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Or p2.EggGroup2 = net.Pokemon3D.Game.Pokemon.EggGroups.Ditto Then
                         chance = -1
@@ -562,12 +562,12 @@
                         Dim newEggID As Integer = net.Pokemon3D.Game.Pokemon.GetPokemonByID(parentID).EggPokemon
                         Dim s As String = DaycareID.ToString() & "|Egg|" & newEggID.ToString()
 
-                        Logger.Debug("Egg created!" & vbNewLine & "EggID: " & newEggID)
+                        Logger.Debug("Egg created!" & Environment.NewLine & "EggID: " & newEggID)
                         TriggerCall(DaycareID)
 
                         Dim oldData As String = Core.Player.DaycareData
                         If oldData <> "" Then
-                            oldData &= vbNewLine
+                            oldData &= Environment.NewLine
                         End If
                         oldData &= s
                         Core.Player.DaycareData = oldData

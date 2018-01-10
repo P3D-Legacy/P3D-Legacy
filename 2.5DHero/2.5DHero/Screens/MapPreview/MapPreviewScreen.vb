@@ -220,20 +220,20 @@
                 offsetString = "ON (QUALITY: " & (100 - Core.GameOptions.LoadOffsetMaps).ToString() & ")"
             End If
 
-            Dim t As String = "MAP: " & Level.LevelFile & vbNewLine &
-                "LEVEL: " & Level.MapName & vbNewLine &
-                "RENDERDISTANCE: " & Core.GameOptions.RenderDistance.ToString() & vbNewLine &
+            Dim t As String = "MAP: " & Level.LevelFile & Environment.NewLine &
+                "LEVEL: " & Level.MapName & Environment.NewLine &
+                "RENDERDISTANCE: " & Core.GameOptions.RenderDistance.ToString() & Environment.NewLine &
                 "OFFSETMAPS: " & offsetString
 
             Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(2, Core.windowSize.Height - FontManager.MiniFont.MeasureString(t).Y - 2), Color.White)
 
-            Dim t2 As String = "WASD: Move around" & vbNewLine &
-                "MOUSE SCROLL: Change camera speed" & vbNewLine &
-                "LEFT MOUSE CLICK: Interact" & vbNewLine &
-                "ARROW KEYS UP/DOWN: Change RenderDistance" & vbNewLine &
-                "ARROW KEYS LEFT/RIGHT: Change Offset Map Quality" & vbNewLine &
-                "R: Reload map" & vbNewLine &
-                "Q: Replace player" & vbNewLine &
+            Dim t2 As String = "WASD: Move around" & Environment.NewLine &
+                "MOUSE SCROLL: Change camera speed" & Environment.NewLine &
+                "LEFT MOUSE CLICK: Interact" & Environment.NewLine &
+                "ARROW KEYS UP/DOWN: Change RenderDistance" & Environment.NewLine &
+                "ARROW KEYS LEFT/RIGHT: Change Offset Map Quality" & Environment.NewLine &
+                "R: Reload map" & Environment.NewLine &
+                "Q: Replace player" & Environment.NewLine &
                 "ESC: Close Map Preview"
 
             Core.SpriteBatch.DrawString(FontManager.MiniFont, t2, New Vector2(Core.windowSize.Width - FontManager.MiniFont.MeasureString(t2).X - 2, Core.windowSize.Height - FontManager.MiniFont.MeasureString(t2).Y - 2), Color.White)

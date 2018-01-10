@@ -92,10 +92,10 @@
                     Case "windowsize"
                         If value.Contains(",") = True Then
                             Dim arg() As String = value.Split(CChar(","))
-                            If IsNumeric(arg(0)) = True Then
+                            If StringHelper.IsNumeric(arg(0)) = True Then
                                 Me.WindowSize.X = CSng(arg(0).Replace(".", GameController.DecSeparator)).Clamp(1, 4096)
                             End If
-                            If IsNumeric(arg(1)) = True Then
+                            If StringHelper.IsNumeric(arg(1)) = True Then
                                 Me.WindowSize.Y = CSng(arg(1).Replace(".", GameController.DecSeparator)).Clamp(1, 4096)
                             End If
                         End If
@@ -132,27 +132,27 @@
                 Next
             End If
 
-            Dim Data As String = "Music|" & CInt(MusicManager.MasterVolume * 100) & vbNewLine &
-                "Sound|" & CInt(SoundManager.Volume * 100) & vbNewLine &
-                "Muted|" & mutedString & vbNewLine &
-                "RenderDistance|" & Me.RenderDistance.ToString() & vbNewLine &
-                "ShowDebug|" & showDebugString & vbNewLine &
-                "ShowBoundingBoxes|" & Entity.drawViewBox.ToNumberString() & vbNewLine &
-                "ShowDebugConsole|" & Logger.DisplayLog.ToNumberString() & vbNewLine &
-                "ShowGUI|" & Me.ShowGUI.ToNumberString() & vbNewLine &
-                "GraphicStyle|" & Me.GraphicStyle.ToString() & vbNewLine &
-                "LoadOffsetMaps|" & Me.LoadOffsetMaps.ToString() & vbNewLine &
-                "Language|" & Localization.LanguageSuffix & vbNewLine &
-                "ViewBobbing|" & Me.ViewBobbing.ToNumberString() & vbNewLine &
-                "GamePadEnabled|" & Me.GamePadEnabled.ToNumberString() & vbNewLine &
-                "LightningEnabled|" & Me.LightingEnabled.ToNumberString() & vbNewLine &
-                "StartedOfflineGame|" & Me.StartedOfflineGame.ToNumberString() & vbNewLine &
-                "PreferMultiSampling|" & Core.GraphicsManager.PreferMultiSampling.ToNumberString() & vbNewLine &
-                "ContentPacks|" & ContentPackString & vbNewLine &
-                "WindowSize|" & Core.windowSize.Width.ToString() & "," & Core.windowSize.Height.ToString().Replace(GameController.DecSeparator, ".") & vbNewLine &
-                "ForceMusic|" & Me.ForceMusic.ToNumberString() & vbNewLine &
-                "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & vbNewLine &
-                "UpdateDisabled|" & Me.UpdateDisabled.ToNumberString() & vbNewLine &
+            Dim Data As String = "Music|" & CInt(MusicManager.MasterVolume * 100) & Environment.NewLine &
+                "Sound|" & CInt(SoundManager.Volume * 100) & Environment.NewLine &
+                "Muted|" & mutedString & Environment.NewLine &
+                "RenderDistance|" & Me.RenderDistance.ToString() & Environment.NewLine &
+                "ShowDebug|" & showDebugString & Environment.NewLine &
+                "ShowBoundingBoxes|" & Entity.drawViewBox.ToNumberString() & Environment.NewLine &
+                "ShowDebugConsole|" & Logger.DisplayLog.ToNumberString() & Environment.NewLine &
+                "ShowGUI|" & Me.ShowGUI.ToNumberString() & Environment.NewLine &
+                "GraphicStyle|" & Me.GraphicStyle.ToString() & Environment.NewLine &
+                "LoadOffsetMaps|" & Me.LoadOffsetMaps.ToString() & Environment.NewLine &
+                "Language|" & Localization.LanguageSuffix & Environment.NewLine &
+                "ViewBobbing|" & Me.ViewBobbing.ToNumberString() & Environment.NewLine &
+                "GamePadEnabled|" & Me.GamePadEnabled.ToNumberString() & Environment.NewLine &
+                "LightningEnabled|" & Me.LightingEnabled.ToNumberString() & Environment.NewLine &
+                "StartedOfflineGame|" & Me.StartedOfflineGame.ToNumberString() & Environment.NewLine &
+                "PreferMultiSampling|" & Core.GraphicsManager.PreferMultiSampling.ToNumberString() & Environment.NewLine &
+                "ContentPacks|" & ContentPackString & Environment.NewLine &
+                "WindowSize|" & Core.windowSize.Width.ToString() & "," & Core.windowSize.Height.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
+                "ForceMusic|" & Me.ForceMusic.ToNumberString() & Environment.NewLine &
+                "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & Environment.NewLine &
+                "UpdateDisabled|" & Me.UpdateDisabled.ToNumberString() & Environment.NewLine &
                 "Extras|" & String.Join(";", Me.Extras)
 
             File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
@@ -163,27 +163,27 @@
     End Sub
 
     Private Sub CreateOptions()
-        Dim s As String = "Music|50" & vbNewLine &
-            "Sound|50" & vbNewLine &
-            "Muted|0" & vbNewLine &
-            "RenderDistance|2" & vbNewLine &
-            "ShowDebug|0" & vbNewLine &
-            "ShowBoundingBoxes|0" & vbNewLine &
-            "ShowDebugConsole|0" & vbNewLine &
-            "ShowGUI|1" & vbNewLine &
-            "GraphicStyle|1" & vbNewLine &
-            "LoadOffsetMaps|10" & vbNewLine &
-            "Language|en" & vbNewLine &
-            "ViewBobbing|1" & vbNewLine &
-            "GamePadEnabled|1" & vbNewLine &
-            "LightningEnabled|1" & vbNewLine &
-            "StartedOfflineGame|0" & vbNewLine &
-            "PreferMultiSampling|1" & vbNewLine &
-            "ContentPacks|" & vbNewLine &
-            "WindowSize|1200,680" & vbNewLine &
-            "ForceMusic|0" & vbNewLine &
-            "MaxOffsetLevel|0" & vbNewLine &
-            "UpdateDisabled|0" & vbNewLine &
+        Dim s As String = "Music|50" & Environment.NewLine &
+            "Sound|50" & Environment.NewLine &
+            "Muted|0" & Environment.NewLine &
+            "RenderDistance|2" & Environment.NewLine &
+            "ShowDebug|0" & Environment.NewLine &
+            "ShowBoundingBoxes|0" & Environment.NewLine &
+            "ShowDebugConsole|0" & Environment.NewLine &
+            "ShowGUI|1" & Environment.NewLine &
+            "GraphicStyle|1" & Environment.NewLine &
+            "LoadOffsetMaps|10" & Environment.NewLine &
+            "Language|en" & Environment.NewLine &
+            "ViewBobbing|1" & Environment.NewLine &
+            "GamePadEnabled|1" & Environment.NewLine &
+            "LightningEnabled|1" & Environment.NewLine &
+            "StartedOfflineGame|0" & Environment.NewLine &
+            "PreferMultiSampling|1" & Environment.NewLine &
+            "ContentPacks|" & Environment.NewLine &
+            "WindowSize|1200,680" & Environment.NewLine &
+            "ForceMusic|0" & Environment.NewLine &
+            "MaxOffsetLevel|0" & Environment.NewLine &
+            "UpdateDisabled|0" & Environment.NewLine &
             "Extras|"
 
         File.WriteAllText(GameController.GamePath & "\Save\options.dat", s)

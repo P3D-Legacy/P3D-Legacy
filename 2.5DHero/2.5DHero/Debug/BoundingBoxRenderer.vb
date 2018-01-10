@@ -9,7 +9,7 @@
 #End Region
 
     Public Shared Sub Render(ByVal box As BoundingBox, ByVal graphicsDevice As GraphicsDevice, ByVal view As Matrix, ByVal projection As Matrix, ByVal color As Color)
-        If IsNothing(effect) = True Then
+        If effect Is Nothing Then
             effect = New BasicEffect(graphicsDevice)
             effect.VertexColorEnabled = True
             effect.LightingEnabled = False
@@ -32,7 +32,7 @@
     End Sub
 
     Public Shared Sub Render(ByVal frustum As BoundingFrustum, ByVal graphicsDevice As GraphicsDevice, ByVal view As Matrix, ByVal projection As Matrix, ByVal color As Color)
-        If IsNothing(effect) = True Then
+        If effect Is Nothing Then
             effect = New BasicEffect(graphicsDevice)
             effect.VertexColorEnabled = True
             effect.LightingEnabled = False

@@ -84,7 +84,7 @@
         Public BattleMapOffset As New Vector3(0)
 
         Public Overrides Function GetScreenStatus() As String
-            Dim pokemonString As String = "OwnPokemon=OWNEMPTY" & vbNewLine &
+            Dim pokemonString As String = "OwnPokemon=OWNEMPTY" & Environment.NewLine &
                 "OppPokemon=OPPEMPTY"
 
             If Not Me.OwnPokemon Is Nothing Then
@@ -98,14 +98,14 @@
                 "; CanReceiveEXP=" & CanReceiveEXP.ToString() & "; RoamingBattle=" & RoamingBattle.ToString() & "; CanUseItems=" & CanUseItems.ToString() &
                 "; DiveBattle=" & DiveBattle.ToString() & "; TempPokeFile=" & TempPokeFile & "; IsInverseBattle=" & IsInverseBattle.ToString()
 
-            Dim s As String = "BattleMode=" & Me.BattleMode.ToString() & vbNewLine &
-                "IsTrainerBattle=" & Me.IsTrainerBattle.ToString() & vbNewLine &
-                "IsPVPBattle=" & Me.IsPVPBattle.ToString() & vbNewLine &
-                "LoadedBattleMap=" & Level.LevelFile & vbNewLine &
-                pokemonString & vbNewLine &
-                values & vbNewLine &
-                "IsRemoteBattle=" & Me.IsRemoteBattle.ToString() & vbNewLine &
-                "IsHost=" & Me.IsHost.ToString() & vbNewLine &
+            Dim s As String = "BattleMode=" & Me.BattleMode.ToString() & Environment.NewLine &
+                "IsTrainerBattle=" & Me.IsTrainerBattle.ToString() & Environment.NewLine &
+                "IsPVPBattle=" & Me.IsPVPBattle.ToString() & Environment.NewLine &
+                "LoadedBattleMap=" & Level.LevelFile & Environment.NewLine &
+                pokemonString & Environment.NewLine &
+                values & Environment.NewLine &
+                "IsRemoteBattle=" & Me.IsRemoteBattle.ToString() & Environment.NewLine &
+                "IsHost=" & Me.IsHost.ToString() & Environment.NewLine &
                 "MenuVisible=" & BattleMenu.Visible.ToString()
 
             Return s
@@ -713,7 +713,7 @@
             BattleScreen.CanRun = False
             BattleScreen.CanUseItems = False
             PVPLobbyScreen.StoppedBattle = True
-            PVPLobbyScreen.DisconnectMessage = "The battle has ended." & vbNewLine & vbNewLine & "Press any key to exit."
+            PVPLobbyScreen.DisconnectMessage = "The battle has ended." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
             PVPLobbyScreen.ScreenState = PVPLobbyScreen.ScreenStates.Stopped
             InitializeTrainer(PVPTrainer, OverworldScreen, 0)
             Me.CanBePaused = False
@@ -861,7 +861,7 @@ nextIndex:
                 BattleQuery.Add(FocusBattle())
                 BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
 
-                If IsNumeric(lockArgument) = True Then
+                If StringHelper.IsNumeric(lockArgument) = True Then
                     SendClientCommand("MOVE|" & CStr(CInt(lockArgument)))
                 Else
                     SendClientCommand("TEXT|" & lockArgument)
@@ -1296,7 +1296,7 @@ nextIndex:
                     Next
                     If partnerOnServer = False Then
                         PVPLobbyScreen.StoppedBattle = True
-                        PVPLobbyScreen.DisconnectMessage = "The other player disconnected." & vbNewLine & vbNewLine & "Press any key to exit."
+                        PVPLobbyScreen.DisconnectMessage = "The other player disconnected." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
                         PVPLobbyScreen.ScreenState = PVPLobbyScreen.ScreenStates.Stopped
                         Battle.Won = True
                         EndBattle(False)
@@ -1305,7 +1305,7 @@ nextIndex:
                     End If
                 Else
                     PVPLobbyScreen.StoppedBattle = True
-                    PVPLobbyScreen.DisconnectMessage = "You got disconnected from the server." & vbNewLine & vbNewLine & "Press any key to exit."
+                    PVPLobbyScreen.DisconnectMessage = "You got disconnected from the server." & Environment.NewLine & Environment.NewLine & "Press any key to exit."
                     PVPLobbyScreen.ScreenState = PVPLobbyScreen.ScreenStates.Stopped
                     Battle.Won = False
                     EndBattle(False)
@@ -1344,7 +1344,7 @@ nextIndex:
                 If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
                     Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
                 End If
-                Dim shownData As String = data.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                Dim shownData As String = data.Replace("}{", "}" & Environment.NewLine & "{").Replace("}|{", "}|" & Environment.NewLine & Environment.NewLine & "{")
                 IO.File.WriteAllText(GameController.GamePath & "\PvP Log\HostEndRoundData.dat", shownData)
             End If
             'Converts the single string received as data into a list of string 
@@ -1429,7 +1429,7 @@ nextIndex:
                     If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
                         Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
                     End If
-                    Dim shownData As String = data.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                    Dim shownData As String = data.Replace("}{", "}" & Environment.NewLine & "{").Replace("}|{", "}|" & Environment.NewLine & Environment.NewLine & "{")
                     IO.File.WriteAllText(GameController.GamePath & "\PvP Log\HostData.dat", shownData)
                 End If
             End If
@@ -1490,7 +1490,7 @@ nextIndex:
                 If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
                     Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
                 End If
-                Dim shownData As String = data.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                Dim shownData As String = data.Replace("}{", "}" & Environment.NewLine & "{").Replace("}|{", "}|" & Environment.NewLine & Environment.NewLine & "{")
                 IO.File.WriteAllText(GameController.GamePath & "\PvP Log\ClientCommand.dat", shownData)
             End If
 
@@ -1544,7 +1544,7 @@ nextIndex:
                 If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
                     Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
                 End If
-                Dim shownData As String = d.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                Dim shownData As String = d.Replace("}{", "}" & Environment.NewLine & "{").Replace("}|{", "}|" & Environment.NewLine & Environment.NewLine & "{")
                 IO.File.WriteAllText(GameController.GamePath & "\PvP Log\SentEndRoundData.dat", shownData)
             End If
             Logger.Debug("[Battle]: Sent End Round data")
@@ -1577,7 +1577,7 @@ nextIndex:
                 If Directory.Exists(GameController.GamePath & "\PvP Log\") = False Then
                     Directory.CreateDirectory(GameController.GamePath & "\PvP Log\")
                 End If
-                Dim shownData As String = d.Replace("}{", "}" & vbNewLine & "{").Replace("}|{", "}|" & vbNewLine & vbNewLine & "{")
+                Dim shownData As String = d.Replace("}{", "}" & Environment.NewLine & "{").Replace("}|{", "}|" & Environment.NewLine & Environment.NewLine & "{")
                 IO.File.WriteAllText(GameController.GamePath & "\PvP Log\SentHostQuery.dat", shownData)
             End If
             Core.ServersManager.ServerConnection.SendPackage(New Servers.Package(Servers.Package.PackageTypes.BattleHostData, Core.ServersManager.ID, Servers.Package.ProtocolTypes.TCP, {PartnerNetworkID.ToString(), d}.ToList()))

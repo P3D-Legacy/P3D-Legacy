@@ -102,7 +102,7 @@ Module Extensions
             Dim s As String = ""
             For i = 0 To Array.Length - 1
                 If i <> 0 Then
-                    s &= vbNewLine
+                    s &= Environment.NewLine
                 End If
 
                 s &= Array(i).ToString()
@@ -133,7 +133,7 @@ Module Extensions
 
     <Extension()>
     Public Function ToArray(ByVal s As String, ByVal Seperator As String) As String()
-        Return s.Replace(vbNewLine, Seperator).Split(CChar(Seperator))
+        Return s.Replace(Environment.NewLine, Seperator).Split(CChar(Seperator))
     End Function
 
     <Extension()>
@@ -199,7 +199,7 @@ Module Extensions
                 Dim newText As String = ""
                 While fulltext.Length > 0
                     If (font.MeasureString(newText & fulltext(0).ToString()).X * scale) > width Then
-                        newText &= vbNewLine
+                        newText &= Environment.NewLine
                         newText &= fulltext(0).ToString()
                         fulltext.Remove(0, 1)
                     Else
@@ -216,12 +216,12 @@ Module Extensions
         Dim currentWord As String = ""
 
         While fulltext.Length > 0
-            If fulltext.StartsWith(vbNewLine) = True Then
+            If fulltext.StartsWith(Environment.NewLine) = True Then
                 If currentLine <> "" Then
                     currentLine &= " "
                 End If
                 currentLine &= currentWord
-                output &= currentLine & vbNewLine
+                output &= currentLine & Environment.NewLine
                 currentLine = ""
                 currentWord = ""
                 fulltext = fulltext.Remove(0, 2)
@@ -236,11 +236,11 @@ Module Extensions
                 currentWord &= fulltext(0)
                 If (font.MeasureString(currentLine & currentWord).X * scale) >= width Then
                     If currentLine = "" Then
-                        output &= currentWord & vbNewLine
+                        output &= currentWord & Environment.NewLine
                         currentWord = ""
                         currentLine = ""
                     Else
-                        output &= currentLine & vbNewLine
+                        output &= currentLine & Environment.NewLine
                         currentLine = ""
                     End If
                 End If
@@ -313,7 +313,7 @@ Module Extensions
     <Extension()>
     Public Function SplitAtNewline(ByVal s As String) As String()
         If s.Contains("§") = False Then
-            Return s.Replace(vbNewLine, "§").Replace(vbLf, "§").Split(CChar("§"))
+            Return s.Replace(StringHelper.CrLf, "§").Replace(StringHelper.LineFeed, "§").Split(CChar("§"))
         Else
             Dim Data As New List(Of String)
 
@@ -323,7 +323,7 @@ Module Extensions
 
             Dim i As Integer = 0
             While s <> "" And i < s.Length
-                If s.Substring(i).StartsWith(vbNewLine) = False Or s.Substring(i).StartsWith(vbLf) = False Then
+                If s.Substring(i).StartsWith(StringHelper.CrLf) = False Or s.Substring(i).StartsWith(StringHelper.LineFeed) = False Then
                     i += 1
                 Else
                     Data.Add(s.Substring(0, i))

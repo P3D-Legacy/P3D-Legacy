@@ -436,17 +436,22 @@ Public Class NewInventoryScreen
         'Bring back when Monogame begins supporting this stuff
         '   Dim target As New RenderTarget2D(GraphicsDevice, _infoSize, 368, False, GraphicsDevice.PresentationParameters.BackBufferFormat, DepthFormat.Depth24Stencil8, 0, RenderTargetUsage.PreserveContents)
         GraphicsDevice.SetRenderTarget(target_2)
+        GraphicsDevice.Clear(Color.Transparent)
 
         'Render background:
         infoBatch.BeginBatch()
+        Dim alpha = CInt(CSng(_infoSize) / 500 * 255)
+
         For y = 0 To 368 Step 16
             For x = 0 To _infoSize + 16 Step 16
-                infoBatch.Draw(_menuTexture, New Rectangle(x, y, 16, 16), New Rectangle(0, 0, 4, 4), New Color(128, 128, 128))
+                If x < _infoSize - 16 Then
+                    infoBatch.Draw(_menuTexture, New Rectangle(x, y, 16, 16), New Rectangle(0, 0, 4, 4), New Color(128, 128, 128, alpha))
+                End If
             Next
         Next
 
-        Canvas.DrawGradient(infoBatch, New Rectangle(0, 0, 100, 368), New Color(0, 0, 0, 255), New Color(0, 0, 0, 0), True, -1)
-        Canvas.DrawGradient(infoBatch, New Rectangle(_infoSize - 100, 0, 100, 368), New Color(0, 0, 0, 0), New Color(0, 0, 0, 255), True, -1)
+        Canvas.DrawGradient(infoBatch, New Rectangle(0, 0, 100, 368), New Color(0, 0, 0, alpha), New Color(0, 0, 0, 0), True, -1)
+        Canvas.DrawGradient(infoBatch, New Rectangle(_infoSize - 100, 0, 100, 368), New Color(0, 0, 0, 0), New Color(0, 0, 0, alpha), True, -1)
 
         'Get item and gets its display texts based on the item category:
         Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
@@ -473,7 +478,7 @@ Public Class NewInventoryScreen
                     itemSubTitle = "Hidden Machine"
                 End If
 
-                itemDescription &= vbNewLine & techMachine.Attack.Description
+                itemDescription &= Environment.NewLine & techMachine.Attack.Description
             Case Items.ItemTypes.Standard
                 'JSON stuff
                 'itemSubTitle = _translation.STANDARD_ITEM_TITLE(cItem.ItemType.ToString())
@@ -510,7 +515,7 @@ Public Class NewInventoryScreen
 
         'Set the target that was previously active and render the new target on top of that:
         GraphicsDevice.SetRenderTarget(preTarget)
-        preBatch.Draw(target_2, New Rectangle(_infoPosition + 80, 0, target_2.Width, target_2.Height), Color.White)
+        preBatch.Draw(target_2, New Rectangle(_infoPosition + 80, 0, target_2.Width, target_2.Height), New Color(255, 255, 255, alpha))
     End Sub
 
     ''' <summary>
@@ -527,8 +532,8 @@ Public Class NewInventoryScreen
             Dim offsetX As Integer = 100
             Dim offsetY As Integer = Core.windowSize.Height - 390
 
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) + 180 + offSetX, 240 + offSetY, 128, 64))
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, trashText, New Vector2(CInt(Core.windowSize.Width / 2) - (FontManager.InGameFont.MeasureString(trashText).X / 2) + 256 + offSetX, 276 + offSetY), Color.Black)
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) + 180 + offsetX, 240 + offsetY, 128, 64))
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, trashText, New Vector2(CInt(Core.windowSize.Width / 2) - (FontManager.InGameFont.MeasureString(trashText).X / 2) + 256 + offsetX, 276 + offsetY), Color.Black)
         End If
     End Sub
 

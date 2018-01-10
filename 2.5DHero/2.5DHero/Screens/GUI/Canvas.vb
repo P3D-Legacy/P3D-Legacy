@@ -268,15 +268,17 @@
 
             Dim gConfig As GradientConfiguration = Nothing
             Dim foundConfig As Boolean = False
+            Dim textureWidth = Math.Min(Rectangle.Width, 2048)
+            Dim textureHeight = Math.Min(Rectangle.Height, 2048)
             For Each g As GradientConfiguration In gradientConfigs
-                If g.IsConfig(Rectangle.Width, Rectangle.Height, fromColor, toColor, Horizontal, Steps) Then
+                If g.IsConfig(textureWidth, textureHeight, fromColor, toColor, Horizontal, Steps) Then
                     gConfig = g
                     foundConfig = True
                     Exit For
                 End If
             Next
             If foundConfig = False Then
-                gConfig = New GradientConfiguration(Rectangle.Width, Rectangle.Height, fromColor, toColor, Horizontal, Steps)
+                gConfig = New GradientConfiguration(textureWidth, textureHeight, fromColor, toColor, Horizontal, Steps)
                 gradientConfigs.Add(gConfig)
             End If
             gConfig.Draw(spriteBatch, Rectangle)

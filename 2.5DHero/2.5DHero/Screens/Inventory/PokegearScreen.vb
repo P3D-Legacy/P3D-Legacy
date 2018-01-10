@@ -42,21 +42,21 @@
 
             Me.MouseVisible = True
 
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 Me.UserBanned = LogInScreen.UserBanned(Core.GameJoltSave.GameJoltID)
                 Dim APICall As New APICall(AddressOf GotPublicKeys)
-                APICall.GetKeys(False, "saveStorageV" & GameJolt.GamejoltSave.Version & "|*|*")
+                APICall.GetKeys(False, "saveStorageV" & GameJolt.GamejoltSave.VERSION & "|*|*")
             End If
 
             If Me.UserBanned = False Then
                 FunctionList.Add("PSS")
-                If API.LoggedIn = True And Core.Player.IsGamejoltSave = True And Core.Player.Pokemons.Count > 0 Then
+                If API.LoggedIn = True And Core.Player.IsGameJoltSave = True And Core.Player.Pokemons.Count > 0 Then
                     FunctionList.Add("Battle Spot")
                 End If
-                If (ActionScript.IsRegistered("pokegear_card_GTS") = True Or GameController.IS_DEBUG_ACTIVE = True) = True And API.LoggedIn = True And Core.Player.IsGamejoltSave = True Then
+                If (ActionScript.IsRegistered("pokegear_card_GTS") = True Or GameController.IS_DEBUG_ACTIVE = True) = True And API.LoggedIn = True And Core.Player.IsGameJoltSave = True Then
                     FunctionList.Add("GTS")
                 End If
-                If API.LoggedIn = True And Core.Player.IsGamejoltSave = True And Core.Player.Pokemons.Count > 0 Then
+                If API.LoggedIn = True And Core.Player.IsGameJoltSave = True And Core.Player.Pokemons.Count > 0 Then
                     FunctionList.Add("Wondertrade")
                 End If
             End If
@@ -427,7 +427,7 @@
 
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
 
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 ' Draw own information:
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 40), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
@@ -555,7 +555,7 @@
                 Me.RankingList.Clear()
                 InitializedRanklist = True
 
-                If Core.Player.IsGamejoltSave = True And UserBanned = False Then
+                If Core.Player.IsGameJoltSave = True And UserBanned = False Then
                     Dim APICall As New APICall(AddressOf GotDataRanklist)
 
                     APICall.FetchTable(100, "14908")
@@ -621,7 +621,7 @@
 
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
 
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 ' Draw own information:
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 40), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
@@ -886,7 +886,7 @@
                     Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 85), LocalList.Count, 9, LocalScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
                 Else
                     If ConnectScreen.Connected = True Then
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "No other players connected to server" & vbNewLine & """" & JoinServerScreen.SelectedServer.GetName() & """.", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "No other players connected to server" & Environment.NewLine & """" & JoinServerScreen.SelectedServer.GetName() & """.", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
                     Else
                         Core.SpriteBatch.DrawString(FontManager.MiniFont, "You are playing locally.", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
                     End If
@@ -1009,7 +1009,7 @@
             Dim sameServer As Boolean = False
             Dim sameConnection As Boolean = False
 
-            If Core.Player.IsGamejoltSave = True Then
+            If Core.Player.IsGameJoltSave = True Then
                 If Not UserEmblem Is Nothing Then
                     sameConnection = True
                 End If
@@ -1030,7 +1030,7 @@
             For x = 0 To 4
                 Dim c As Color = Color.White
                 Dim t As String = ""
-                Dim texV As Vector2 = Nothing
+                Dim texV As Vector2 = New Vector2
                 Select Case x
                     Case 0
                         t = "Battle"
@@ -1061,7 +1061,7 @@
                         End If
                 End Select
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 96) + 76), CInt(startPos.Y + 100), 64, 64), New Rectangle(0, 0, 32, 32), c)
-                If IsNothing(texV) = False Then
+                If texV <> Vector2.Zero Then
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 96) + 76), CInt(startPos.Y + 100), 64, 64), New Rectangle(CInt(texV.X), CInt(texV.Y), 32, 32), c)
                 End If
                 If Cursors(1) = x Then
@@ -1089,7 +1089,7 @@
                 Dim sameServer As Boolean = False
                 Dim sameConnection As Boolean = False
 
-                If Core.Player.IsGamejoltSave = True Then
+                If Core.Player.IsGameJoltSave = True Then
                     If Not UserEmblem Is Nothing Then
                         sameConnection = True
                     End If
@@ -1461,17 +1461,17 @@
             Me.InitializedFrontier = True
 
             If ActionScript.IsRegistered("gold ability") = True Then
-                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Ability", .Description = "You defeated the Frontier Brain of" & vbNewLine & "Battle Tower a second time and you've" & vbNewLine & "your real strength when it comes to battles.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(50, 200, 50, 50), "")})
+                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Ability", .Description = "You defeated the Frontier Brain of" & Environment.NewLine & "Battle Tower a second time and you've" & Environment.NewLine & "your real strength when it comes to battles.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(50, 200, 50, 50), "")})
             Else
                 If ActionScript.IsRegistered("silver ability") = True Then
-                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Ability", .Description = "You defeated the Frontier Brain of" & vbNewLine & "Battle Tower and showed him how" & vbNewLine & "you and your Pokémon really are.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(0, 200, 50, 50), "")})
+                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Ability", .Description = "You defeated the Frontier Brain of" & Environment.NewLine & "Battle Tower and showed him how" & Environment.NewLine & "you and your Pokémon really are.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(0, 200, 50, 50), "")})
                 End If
             End If
             If ActionScript.IsRegistered("gold knowledge") = True Then
-                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Knowledge", .Description = "This Emblem displays how great you can" & vbNewLine & "interact with Pokémon and how well" & vbNewLine & "you can adapt your strategy to a new situation.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(150, 200, 50, 50), "")})
+                Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Gold Knowledge", .Description = "This Emblem displays how great you can" & Environment.NewLine & "interact with Pokémon and how well" & Environment.NewLine & "you can adapt your strategy to a new situation.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(150, 200, 50, 50), "")})
             Else
                 If ActionScript.IsRegistered("silver knowledge") = True Then
-                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Knowledge", .Description = "Only few trainers achieved this emblem" & vbNewLine & "which shows what strength lies" & vbNewLine & "inside them.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(100, 200, 50, 50), "")})
+                    Me.FrontierList.Add(New FrontierSymbol() With {.Name = "Silver Knowledge", .Description = "Only few trainers achieved this emblem" & Environment.NewLine & "which shows what strength lies" & Environment.NewLine & "inside them.", .Texture = TextureManager.GetTexture("GUI\Badges", New Rectangle(100, 200, 50, 50), "")})
                 End If
             End If
         End Sub
@@ -1561,7 +1561,7 @@
 
                 Dim lDayTimes() As String = data(4).Split(CChar(","))
                 For Each daytime As String In lDayTimes
-                    If IsNumeric(daytime) = True Then
+                    If StringHelper.IsNumeric(daytime) = True Then
                         DayTimes.Add(CType(CInt(daytime), World.DayTime))
                     End If
                 Next
@@ -1758,16 +1758,16 @@
 
             Dim text1 As String = "...No channels found..."
             If Not CurrentStation Is Nothing Then
-                text1 = "You are listening to:" & vbNewLine & CurrentStation.Name
+                text1 = "You are listening to:" & Environment.NewLine & CurrentStation.Name
             End If
             Core.SpriteBatch.DrawString(FontManager.MainFont, text1, New Vector2(startPos.X + 150 - CInt(FontManager.MainFont.MeasureString(text1).X / 2), startPos.Y + 160), Color.Black)
 
             Dim text2 As String = ""
             If Screen.Level.IsRadioOn = True Then
-                text2 = "Background station:" & vbNewLine & Screen.Level.SelectedRadioStation.Name & "." & vbNewLine & "Press Accept to remove."
+                text2 = "Background station:" & Environment.NewLine & Screen.Level.SelectedRadioStation.Name & "." & Environment.NewLine & "Press Accept to remove."
             Else
                 If Not CurrentStation Is Nothing Then
-                    text2 = "Press Accept to listen" & vbNewLine & "to this station in" & vbNewLine & "the background."
+                    text2 = "Press Accept to listen" & Environment.NewLine & "to this station in" & Environment.NewLine & "the background."
                 End If
             End If
             If text2 <> "" Then

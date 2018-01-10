@@ -116,7 +116,7 @@
         For Each line As String In Core.Player.HallOfFameData.SplitAtNewline()
             If line.Contains(",") = True Then
                 Dim s As String = line.Remove(line.IndexOf(","))
-                If IsNumeric(s) = True Then
+                If StringHelper.IsNumeric(s) = True Then
                     If IDs.Contains(CInt(s)) = False Then
                         IDs.Add(CInt(s))
                         AmountOfEntries = CInt(s) + 1
@@ -242,19 +242,19 @@
 
         If id = -1 Then
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Player " & SelectedEntry.Name, New Vector2(pos.X + 4, pos.Y + 4), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Playtime" & vbNewLine & vbNewLine & "OT" & vbNewLine & vbNewLine & "Points", New Vector2(pos.X + 10, pos.Y + 54), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, SelectedEntry.PlayTime & vbNewLine & vbNewLine & SelectedEntry.OT & vbNewLine & vbNewLine & SelectedEntry.Points, New Vector2(pos.X + 116, pos.Y + 55), New Color(173, 216, 230), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Playtime" & Environment.NewLine & Environment.NewLine & "OT" & Environment.NewLine & Environment.NewLine & "Points", New Vector2(pos.X + 10, pos.Y + 54), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, SelectedEntry.PlayTime & Environment.NewLine & Environment.NewLine & SelectedEntry.OT & Environment.NewLine & Environment.NewLine & SelectedEntry.Points, New Vector2(pos.X + 116, pos.Y + 55), New Color(173, 216, 230), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         Else
             Dim p As Pokemon = SelectedEntry.PokemonList(id).GetPokemon()
             Core.SpriteBatch.Draw(p.GetMenuTexture(), New Rectangle(CInt(pos.X + 4), CInt(pos.Y + 6), 32, 32), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(pos.X + 40, pos.Y + 4), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Level" & vbNewLine & vbNewLine & "OT" & vbNewLine & vbNewLine & "Type 1" & vbNewLine & vbNewLine & "Type 2", New Vector2(pos.X + 10, pos.Y + 43), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Level" & Environment.NewLine & Environment.NewLine & "OT" & Environment.NewLine & Environment.NewLine & "Type 1" & Environment.NewLine & Environment.NewLine & "Type 2", New Vector2(pos.X + 10, pos.Y + 43), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
-            Dim s As String = p.Level & vbNewLine & vbNewLine & p.OT & " / " & p.CatchTrainerName & vbNewLine & vbNewLine & p.Type1.Type.ToString()
+            Dim s As String = p.Level & Environment.NewLine & Environment.NewLine & p.OT & " / " & p.CatchTrainerName & Environment.NewLine & Environment.NewLine & p.Type1.Type.ToString()
             If p.Type2.Type <> Element.Types.Blank Then
-                s &= vbNewLine & vbNewLine & p.Type2.Type.ToString()
+                s &= Environment.NewLine & Environment.NewLine & p.Type2.Type.ToString()
             Else
-                s &= vbNewLine & vbNewLine & "none"
+                s &= Environment.NewLine & Environment.NewLine & "none"
             End If
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, s, New Vector2(pos.X + 116, pos.Y + 44), New Color(173, 216, 230), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)

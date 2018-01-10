@@ -12,7 +12,7 @@
 
             Select Case command.ToLower()
                 Case "wait"
-                    If IsNumeric(Value) = False Then
+                    If StringHelper.IsNumeric(Value) = False Then
                         Value = argument
                     End If
                     If int(Value) > 0 Then

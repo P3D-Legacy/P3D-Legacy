@@ -28,7 +28,7 @@
         End Sub
 
         Shared Sub Ping()
-            Dim diff As Integer = CInt(DateDiff(DateInterval.Second, LastPing, Date.Now))
+            Dim diff As Integer = (Date.Now - LastPing).Seconds
 
             If diff >= 30 Then
                 Logger.Debug("Ping session...")
@@ -101,7 +101,7 @@
                 API.LoggedIn = False
                 SessionStarted = False
                 Status = "Idle"
-                If Core.Player.IsGamejoltSave = True Then
+                If Core.Player.IsGameJoltSave = True Then
                     ConnectScreen.Setup(New ConnectScreen(ConnectScreen.Modes.Disconnect, "Disconnected", "The GameJolt server doesn't respond.", Core.CurrentScreen))
                 End If
             End If

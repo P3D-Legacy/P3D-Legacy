@@ -101,11 +101,11 @@
                             Core.SpriteBatch.Draw(D.Pokemon.Item.Texture, New Rectangle(882, 314, 24, 24), Color.White)
                         End If
 
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & D.Pokemon.Level & vbNewLine & vbNewLine &
-                                                     "Gender: " & D.Pokemon.Gender.ToString() & vbNewLine & vbNewLine &
-                                                     "OT: " & D.Pokemon.CatchTrainerName & "/" & D.Pokemon.OT & vbNewLine & vbNewLine &
-                                                     "Item: " & ItemString & vbNewLine & vbNewLine &
-                                                     "Message: " & vbNewLine & D.Message, New Vector2(524, 360), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & D.Pokemon.Level & Environment.NewLine & Environment.NewLine &
+                                                     "Gender: " & D.Pokemon.Gender.ToString() & Environment.NewLine & Environment.NewLine &
+                                                     "OT: " & D.Pokemon.CatchTrainerName & "/" & D.Pokemon.OT & Environment.NewLine & Environment.NewLine &
+                                                     "Item: " & ItemString & Environment.NewLine & Environment.NewLine &
+                                                     "Message: " & Environment.NewLine & D.Message, New Vector2(524, 360), Color.Black)
 
                         'Stars:
                         GTSMainScreen.DrawStars(D.Pokemon.TradeValue, New Vector2(630, 256))
@@ -122,16 +122,16 @@
                             Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(930, 205), Color.Black)
                         End If
 
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Request:" & vbNewLine & vbNewLine &
-                                                     "Number: " & D.RequestID & vbNewLine & vbNewLine &
-                                                     "Level: " & D.RequestLevel & vbNewLine & vbNewLine &
+                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Request:" & Environment.NewLine & Environment.NewLine &
+                                                     "Number: " & D.RequestID & Environment.NewLine & Environment.NewLine &
+                                                     "Level: " & D.RequestLevel & Environment.NewLine & Environment.NewLine &
                                                      "Gender: " & D.RequestGender, New Vector2(824, 360), Color.Black)
 
                         'Stars:
                         GTSMainScreen.DrawStars(p.TradeValue, New Vector2(930, 256))
 
                         'From:
-                        If Core.Player.IsGamejoltSave = True Then
+                        If Core.Player.IsGameJoltSave = True Then
                             Core.SpriteBatch.DrawString(FontManager.MiniFont, "From:", New Vector2(516, 320), Color.Black)
                             Dim ownEmblem As Emblem = New Emblem(API.username, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem)
 
@@ -330,7 +330,7 @@
                 For Each Item As API.JoltValue In l
                     If Item.Name.ToLower() = "key" Then
                         If BufferList.ContainsKey(Item.Value) = True Then
-                            GotData("success:""true""" & vbNewLine & "data:""" & BufferList(Item.Value) & """")
+                            GotData("success:""true""" & Environment.NewLine & "data:""" & BufferList(Item.Value) & """")
                         Else
                             Dim APICall As New APICall(AddressOf GotData)
                             APICall.GetStorageData(Item.Value, False)
@@ -446,9 +446,9 @@
                         Core.SpriteBatch.Draw(D.Pokemon.Item.Texture, New Rectangle(124, 475, 24, 24), Color.White)
                     End If
 
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & D.Pokemon.Level & vbNewLine & vbNewLine &
-                                                 "Gender: " & D.Pokemon.Gender.ToString() & vbNewLine & vbNewLine &
-                                                 "OT: " & D.Pokemon.CatchTrainerName & "/" & D.Pokemon.OT & vbNewLine & vbNewLine &
+                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level: " & D.Pokemon.Level & Environment.NewLine & Environment.NewLine &
+                                                 "Gender: " & D.Pokemon.Gender.ToString() & Environment.NewLine & Environment.NewLine &
+                                                 "OT: " & D.Pokemon.CatchTrainerName & "/" & D.Pokemon.OT & Environment.NewLine & Environment.NewLine &
                                                  "Item: " & ItemString, New Vector2(74, 356), Color.Black)
 
                     'Stars:
@@ -463,7 +463,7 @@
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "Request:", New Vector2(420, 140), Color.Black)
 
-                If IsNumeric(D.RequestID) = True Then
+                If StringHelper.IsNumeric(D.RequestID) = True Then
                     DrawFilter(New Vector2(420, 200), 4, "Pokémon:", Pokemon.GetPokemonByID(CInt(D.RequestID)).GetDisplayName() & " (" & D.RequestID & ")")
                 Else
                     DrawFilter(New Vector2(420, 200), 4, "Pokémon:", "")
@@ -483,7 +483,7 @@
                     DrawFilter(New Vector2(600, 280), 4, "To (" & D.ToUserID & "):", RecipientName)
                 End If
 
-                If IsNumeric(D.RequestID) = True Then
+                If StringHelper.IsNumeric(D.RequestID) = True Then
                     If CInt(D.RequestID) > 0 Then
                         If TempPokemon Is Nothing OrElse TempPokemon.Number <> CInt(D.RequestID) Then
                             TempPokemon = Pokemon.GetPokemonByID(CInt(D.RequestID))
@@ -532,7 +532,7 @@
                     If NewTrade = True Then
                         If IsPresent() = True Then
                             If Not ToEmblem Is Nothing And Not D.Pokemon Is Nothing Then
-                                Core.SpriteBatch.DrawString(FontManager.MiniFont, "You will send " & D.Pokemon.GetDisplayName() & " to " & vbNewLine & ToEmblem.Username & " and you cannot get it back!", New Vector2(480, 495), Color.Black)
+                                Core.SpriteBatch.DrawString(FontManager.MiniFont, "You will send " & D.Pokemon.GetDisplayName() & " to " & Environment.NewLine & ToEmblem.Username & " and you cannot get it back!", New Vector2(480, 495), Color.Black)
                             End If
                             DrawButton(New Vector2(480, 540), "Send", 3)
                         Else
@@ -879,7 +879,7 @@
                     Dim d As List(Of String) = System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Pokemon\Data\").ToList()
                     For Each file As String In d
                         Dim fileName As String = System.IO.Path.GetFileNameWithoutExtension(file)
-                        If IsNumeric(fileName) = True Then
+                        If StringHelper.IsNumeric(fileName) = True Then
                             If CInt(fileName) > 0 And CInt(fileName) <= Pokedex.POKEMONCOUNT Then
                                 If GTSMainScreen.GTSPokemon.Contains(CInt(fileName)) = True Then
                                     fileList.Add(CInt(fileName))

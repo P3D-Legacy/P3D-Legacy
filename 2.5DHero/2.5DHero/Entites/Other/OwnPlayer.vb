@@ -36,12 +36,12 @@
 
         Dim texturePath As String = "Textures\NPC\"
         Dim isPokemon As Boolean = False
-        If TextureID.StartsWith("[POKEMON|N]") = True Or TextureID.StartsWith("[Pokémon|N]") = True Then
+        If TextureID.StartsWith("[POKEMON|N]") Or TextureID.StartsWith("[Pokémon|N]") Then
             TextureID = TextureID.Remove(0, 11)
             isPokemon = True
             texturePath = "Pokemon\Overworld\Normal\"
             HasPokemonTexture = True
-        ElseIf TextureID.StartsWith("[POKEMON|S]") = True Or TextureID.StartsWith("[Pokémon|S]") = True Then
+        ElseIf TextureID.StartsWith("[POKEMON|S]") Or TextureID.StartsWith("[Pokémon|S]") Then
             TextureID = TextureID.Remove(0, 11)
             isPokemon = True
             texturePath = "Pokemon\Overworld\Shiny\"
@@ -49,17 +49,17 @@
         End If
 
         Dim PokemonAddition As String = ""
-        If IsNumeric(TextureID) = True And texturePath.StartsWith("Pokemon\Overworld\") = True Then
+        If StringHelper.IsNumeric(TextureID) And texturePath.StartsWith("Pokemon\Overworld\") Then
             PokemonAddition = PokemonForms.GetDefaultOverworldSpriteAddition(CInt(TextureID))
         End If
 
-        If Core.Player.IsGameJoltSave = True Then
+        If Core.Player.IsGameJoltSave Then
             If texturePath & TextureID & PokemonAddition = "Textures\NPC\" & GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(Core.GameJoltSave.Points), Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Gender) Then
                 UseGameJoltID = True
             End If
         End If
 
-        If UseGameJoltID = True And Core.Player.IsGameJoltSave = True And GameJolt.API.LoggedIn = True AndAlso Not GameJolt.Emblem.GetOnlineSprite(Core.GameJoltSave.GameJoltID) Is Nothing Then
+        If UseGameJoltID And Core.Player.IsGameJoltSave And GameJolt.API.LoggedIn AndAlso Not GameJolt.Emblem.GetOnlineSprite(Core.GameJoltSave.GameJoltID) Is Nothing Then
             Logger.Debug("Change player texture to the online sprite.")
             Me.Texture = GameJolt.Emblem.GetOnlineSprite(Core.GameJoltSave.GameJoltID)
             UsingGameJoltTexture = True
@@ -71,8 +71,8 @@
         End If
     End Sub
 
-    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
-        Return MyBase.CalculateCameraDistance(CPosition) - 0.2f
+    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) As Single
+        Return MyBase.CalculateCameraDistance(CPosition) - 0.2F
     End Function
 
     Public Overrides Sub UpdateEntity()
@@ -126,7 +126,7 @@
             spriteIndex = 0
 
             If Screen.Camera.Name = "Overworld" Then
-                spriteIndex = Screen.Camera.GetPlayerFacingDirection() - Screen.Camera.GetFacingDirection() 
+                spriteIndex = Screen.Camera.GetPlayerFacingDirection() - Screen.Camera.GetFacingDirection()
                 While spriteIndex > 3
                     spriteIndex -= 4
                 End While

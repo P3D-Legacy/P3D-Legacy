@@ -89,10 +89,10 @@ Public Class OverworldScreen
     ''' </summary>
     ''' <remarks>Implements the GetScreenStatus method.</remarks>
     Public Overrides Function GetScreenStatus() As String
-        Dim s As String = "IsSurfing=" & Level.Surfing.ToString() & vbNewLine &
-            "IsRiding=" & Level.Riding.ToString() & vbNewLine &
-            "LevelFile=" & Level.LevelFile & vbNewLine &
-            "UsedStrength=" & Level.UsedStrength.ToString() & vbNewLine &
+        Dim s As String = "IsSurfing=" & Level.Surfing.ToString() & Environment.NewLine &
+            "IsRiding=" & Level.Riding.ToString() & Environment.NewLine &
+            "LevelFile=" & Level.LevelFile & Environment.NewLine &
+            "UsedStrength=" & Level.UsedStrength.ToString() & Environment.NewLine &
             "EntityCount=" & Level.Entities.Count
 
         Return s

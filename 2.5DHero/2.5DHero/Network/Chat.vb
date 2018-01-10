@@ -199,7 +199,7 @@
 
                         If s.Identification = Screen.Identifications.OverworldScreen Then
                             If testForScript = False Then
-                                CType(s, OverworldScreen).ActionScript.StartScript("version=2" & vbNewLine & text & vbNewLine & ":end", 2, False)
+                                CType(s, OverworldScreen).ActionScript.StartScript("version=2" & Environment.NewLine & text & Environment.NewLine & ":end", 2, False)
                             End If
 
                             Return text

@@ -25,11 +25,11 @@
         ''' <param name="data">The data to work with.</param>
         Public Shared Function HandleData(ByVal data As String) As List(Of JoltValue)
             'Old system:
-            If data.Contains("data:""" & vbNewLine) = True Then
-                data = data.Replace("data:""" & vbNewLine, "data:""")
+            If data.Contains("data:""" & Environment.NewLine) = True Then
+                data = data.Replace("data:""" & Environment.NewLine, "data:""")
             End If
 
-            Dim arg() As String = {vbCrLf, vbLf}
+            Dim arg() As String = {StringHelper.CrLf, StringHelper.LineFeed}
 
             Dim list As List(Of String) = data.Split(arg, StringSplitOptions.None).ToList()
             Dim joltList As New List(Of JoltValue)

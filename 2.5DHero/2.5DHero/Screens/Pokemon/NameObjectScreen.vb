@@ -119,8 +119,8 @@ Public Class NameObjectScreen
             Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - 182 + 22, 90), Color.White)
 
             If genderUnicode <> 0 Then
-                Core.SpriteBatch.DrawString(FontManager.TextFont, ChrW(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Rename " & Me._defaultName).X - 147, 93), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.TextFont, ChrW(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Rename " & Me._defaultName).X - 150, 90), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.TextFont, StringHelper.GetChar(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Rename " & Me._defaultName).X - 147, 93), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.TextFont, StringHelper.GetChar(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Rename " & Me._defaultName).X - 150, 90), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
             End If
 
             ChooseBox.Showing = False
@@ -142,14 +142,14 @@ Public Class NameObjectScreen
                 Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - 182 + 22, 90), Color.White)
 
                 If genderUnicode <> 0 Then
-                    Core.SpriteBatch.DrawString(FontManager.TextFont, ChrW(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName).X - 150, 93), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
-                    Core.SpriteBatch.DrawString(FontManager.TextFont, ChrW(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName).X - 153, 90), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.TextFont, StringHelper.GetChar(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName).X - 150, 93), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.TextFont, StringHelper.GetChar(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName).X - 153, 90), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
                 End If
 
                 Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2) - 89, 136, 208, 32), New Color(101, 142, 255))
-                    DrawTextBox()
-                End If
+                DrawTextBox()
             End If
+        End If
 
         PokemonImageView.Draw()
     End Sub

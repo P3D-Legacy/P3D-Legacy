@@ -553,41 +553,41 @@
             End If
         End If
 
-        Dim s As String = "version=2" & vbNewLine &
-            "@text.show(" & p.GetDisplayName() & " used~Fly.)" & vbNewLine
+        Dim s As String = "version=2" & Environment.NewLine &
+            "@text.show(" & p.GetDisplayName() & " used~Fly.)" & Environment.NewLine
 
         If CType(Screen.Camera, OverworldCamera).ThirdPerson = False Then
-            s &= "@camera.activateThirdPerson" & vbNewLine
+            s &= "@camera.activateThirdPerson" & Environment.NewLine
         End If
 
-        s &= "@camera.setposition(0,0.9,3)" & vbNewLine &
-            "@level.wait(30)" & vbNewLine &
-            "@pokemon.cry(" & p.Number & ")" & vbNewLine &
-            "@player.wearskin([POKEMON|" & isShiny & "]" & p.Number & PokemonForms.GetOverworldAddition(p) & ")" & vbNewLine &
-            "@player.turnto(2)" & vbNewLine &
-            "@player.move(2)" & vbNewLine &
-            "@camera.fix" & vbNewLine &
-            "@player.setmovement(0,2,3)" & vbNewLine &
-            "@player.move(3)" & vbNewLine &
-            "@screen.fadeout(10)" & vbNewLine &
-            "@camera.defix" & vbNewLine &
-            "@camera.reset" & vbNewLine &
-            "@player.turnto(0)" & vbNewLine &
-            "@player.warp(" & FlyToFile & "," & FlyToPosition.X.ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Y - 4 + 0.1F).ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Z + 6).ToString().ReplaceDecSeparator() & ",0)" & vbNewLine &
-            "@camera.setyaw(0)" & vbNewLine &
-            "@camera.setposition(0,-3.7,-4.5)" & vbNewLine &
-            "@sound.play(Battle\Effects\effect_fly)" & vbNewLine &
-            "@level.update" & vbNewLine &
-            "@player.setmovement(0,-2,-3)" & vbNewLine &
-            "@screen.fadein(10)" & vbNewLine &
-            "@camera.fix" & vbNewLine &
-            "@player.move(2)" & vbNewLine &
-            "@camera.reset" & vbNewLine &
-            "@camera.defix(1)" & vbNewLine &
-            "@player.setmovement(0,-2,0)" & vbNewLine &
-            "@player.move(2)" & vbNewLine &
-            "@player.turnto(2)" & vbNewLine &
-            "@player.wearskin(" & skinName & ")" & vbNewLine
+        s &= "@camera.setposition(0,0.9,3)" & Environment.NewLine &
+            "@level.wait(30)" & Environment.NewLine &
+            "@pokemon.cry(" & p.Number & ")" & Environment.NewLine &
+            "@player.wearskin([POKEMON|" & isShiny & "]" & p.Number & PokemonForms.GetOverworldAddition(p) & ")" & Environment.NewLine &
+            "@player.turnto(2)" & Environment.NewLine &
+            "@player.move(2)" & Environment.NewLine &
+            "@camera.fix" & Environment.NewLine &
+            "@player.setmovement(0,2,3)" & Environment.NewLine &
+            "@player.move(3)" & Environment.NewLine &
+            "@screen.fadeout(10)" & Environment.NewLine &
+            "@camera.defix" & Environment.NewLine &
+            "@camera.reset" & Environment.NewLine &
+            "@player.turnto(0)" & Environment.NewLine &
+            "@player.warp(" & FlyToFile & "," & FlyToPosition.X.ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Y - 4 + 0.1F).ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Z + 6).ToString().ReplaceDecSeparator() & ",0)" & Environment.NewLine &
+            "@camera.setyaw(0)" & Environment.NewLine &
+            "@camera.setposition(0,-3.7,-4.5)" & Environment.NewLine &
+            "@sound.play(Battle\Effects\effect_fly)" & Environment.NewLine &
+            "@level.update" & Environment.NewLine &
+            "@player.setmovement(0,-2,-3)" & Environment.NewLine &
+            "@screen.fadein(10)" & Environment.NewLine &
+            "@camera.fix" & Environment.NewLine &
+            "@player.move(2)" & Environment.NewLine &
+            "@camera.reset" & Environment.NewLine &
+            "@camera.defix(1)" & Environment.NewLine &
+            "@player.setmovement(0,-2,0)" & Environment.NewLine &
+            "@player.move(2)" & Environment.NewLine &
+            "@player.turnto(2)" & Environment.NewLine &
+            "@player.wearskin(" & skinName & ")" & Environment.NewLine
 
         While Core.CurrentScreen.Identification <> Identifications.OverworldScreen
             If Core.CurrentScreen.PreScreen.Identification = Identifications.OverworldScreen Then
@@ -599,10 +599,10 @@
         End While
 
         If CType(Screen.Camera, OverworldCamera).ThirdPerson = False Then
-            s &= "@camera.deactivatethirdperson" & vbNewLine
+            s &= "@camera.deactivatethirdperson" & Environment.NewLine
         End If
 
-        s &= "@level.wait(1)" & vbNewLine &
+        s &= "@level.wait(1)" & Environment.NewLine &
              ":end"
         PlayerStatistics.Track("Fly used", 1)
         Core.Player.IsFlying = True
@@ -854,7 +854,7 @@
             Return New Rectangle(CInt(Me.getPosition().X + PositionOffset.X + offset.X), CInt(Me.getPosition().Y + PositionOffset.Y + offset.Y), CInt(sizeX), CInt(sizeY))
         End Function
 
-        Public Function getTexture(ByVal FullTexture As Texture2D, ByVal isSelected As Boolean)  As Texture2D
+        Public Function getTexture(ByVal FullTexture As Texture2D, ByVal isSelected As Boolean) As Texture2D
             If Me.T Is Nothing Or isSelected = True Then
                 Dim r As Rectangle
 
