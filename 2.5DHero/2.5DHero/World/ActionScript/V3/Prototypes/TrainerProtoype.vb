@@ -16,6 +16,7 @@ Namespace Scripting.V3.Prototypes
         End Sub
 
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
+        <ApiMethodSignature("file", GetType(String))>
         Public Shared Function Constructor(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(String)}) Then
@@ -30,6 +31,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="defeatMessage")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetDefeatMessage(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim wrapper = CType(This, TrainerPrototype)
@@ -40,6 +42,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="introMessage")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetIntroMessage(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim wrapper = CType(This, TrainerPrototype)
@@ -50,6 +53,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="outroMessage")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetOutroMessage(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim wrapper = CType(This, TrainerPrototype)

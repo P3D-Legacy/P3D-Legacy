@@ -51,6 +51,7 @@ Namespace Scripting.V3.Prototypes
         End Sub
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="reset")>
+        <ApiMethodSignature()>
         Public Shared Function Reset(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             objLink.SetMember("canRun", True)
@@ -69,6 +70,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startWild")>
+        <ApiMethodSignature({"pokemon", "music", "introType"}, {GetType(PokemonPrototype), GetType(String), GetType(Integer)}, 2)>
         Public Shared Function StartWild(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(PokemonPrototype), GetType(String), GetType(Integer)}, 2) Then
@@ -103,6 +105,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="startTrainer")>
+        <ApiMethodSignature("trainer", GetType(TrainerPrototype))>
         Public Shared Function StartTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(TrainerPrototype)) Then
@@ -129,6 +132,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="encounterTrainer")>
+        <ApiMethodSignature("trainer", GetType(TrainerPrototype))>
         Public Shared Function EncounterTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(TrainerPrototype)) Then
@@ -184,6 +188,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="wonLast", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function WonLast(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return BattleSystem.Battle.Won

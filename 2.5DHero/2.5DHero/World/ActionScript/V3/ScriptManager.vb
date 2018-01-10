@@ -186,7 +186,7 @@ Namespace Scripting.V3
                                                                                    End Function)
                 Dim attr = CType(o.GetCustomAttribute(GetType(ApiClassAttribute)), ApiClassAttribute)
                 Dim methods = o.GetMethods(BindingFlags.Public Or BindingFlags.Static).Where(Function(m As MethodInfo)
-                                                                                                 Return m.GetCustomAttributes(GetType(ApiClassMethodAttribute), True).Length > 0
+                                                                                                 Return m.GetCustomAttributes(GetType(ApiMethodSignatureAttribute), True).Length > 0
                                                                                              End Function).ToArray()
                 If methods.Length > 0 Then
                     _apiClasses.Add(attr.ClassName, methods)

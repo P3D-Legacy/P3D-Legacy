@@ -20,6 +20,7 @@ Namespace Scripting.V3.Prototypes
         End Sub
 
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
+        <ApiMethodSignature("id", GetType(Integer))>
         Public Shared Function Constructor(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then
@@ -33,6 +34,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="name")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetName(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim a = GetAbility(This)
@@ -41,6 +43,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="id")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function GetId(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim a = GetAbility(This)
@@ -49,6 +52,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="description")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetDescription(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim a = GetAbility(This)

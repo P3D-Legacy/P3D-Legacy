@@ -37,16 +37,18 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="update", IsStatic:=True)>
+        <ApiMethodSignature()>
         Public Shared Function Update(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             UpdateCamera(True)
             ScriptManager.Instance.WaitFrames(1)
 
-            Return Nothing
+            Return NetUndefined.Instance
 
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="setBehindPlayer", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function SetBehindPlayer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim facing = Screen.Camera.GetPlayerFacingDirection() * MathHelper.PiOver2
@@ -60,6 +62,7 @@ Namespace Scripting.V3.Prototypes
 #Region "Position"
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="position", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Vector3Prototype))>
         Public Shared Function GetPosition(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim position = GetCamera().ThirdPersonOffset
@@ -68,6 +71,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="position", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Vector3Prototype))>
         Public Shared Function SetPosition(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(Vector3Prototype)}) Then
@@ -90,6 +94,7 @@ Namespace Scripting.V3.Prototypes
 #Region "Yaw"
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="yaw", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function GetYaw(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return GetCamera().Yaw
@@ -97,6 +102,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="yaw", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function SetYaw(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {TypeContract.Number}) Then
@@ -115,6 +121,7 @@ Namespace Scripting.V3.Prototypes
 #Region "Pitch"
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="pitch", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function GetPitch(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return GetCamera().Pitch
@@ -122,6 +129,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="pitch", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function SetPitch(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {TypeContract.Number}) Then
@@ -140,6 +148,7 @@ Namespace Scripting.V3.Prototypes
 #Region "X, Y, Z"
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="x", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function GetX(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return GetCamera().ThirdPersonOffset.X
@@ -147,6 +156,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="x", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function SetX(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {TypeContract.Number}) Then
@@ -161,6 +171,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="y", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function GetY(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return GetCamera().ThirdPersonOffset.Y
@@ -168,6 +179,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="y", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function SetY(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {TypeContract.Number}) Then
@@ -182,6 +194,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="z", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function GetZ(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return GetCamera().ThirdPersonOffset.Z
@@ -189,6 +202,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="z", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Double))>
         Public Shared Function SetZ(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {TypeContract.Number}) Then
@@ -207,6 +221,7 @@ Namespace Scripting.V3.Prototypes
 #Region "ThirdPerson"
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="thirdPerson", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function GetThirdPerson(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return GetCamera().ThirdPerson
@@ -214,6 +229,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="thirdPerson", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function SetThirdPerson(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Boolean)) Then
@@ -231,6 +247,7 @@ Namespace Scripting.V3.Prototypes
 #Region "Fixed"
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="fixed", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function GetFixed(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return GetCamera().Fixed
@@ -238,6 +255,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="fixed", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function SetFixed(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Boolean)) Then
@@ -255,6 +273,7 @@ Namespace Scripting.V3.Prototypes
 #Region "Focus"
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="setupFocus", IsStatic:=True)>
+        <ApiMethodSignature({"type", "id"}, {GetType(String), GetType(Integer)})>
         Public Shared Function SetupFocus(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(String), GetType(Integer)}) Then
@@ -275,6 +294,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="resetFocus", IsStatic:=True)>
+        <ApiMethodSignature()>
         Public Shared Function ResetFocus(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             GetCamera().SetupFocus(OverworldCamera.CameraFocusTypes.Player, -1)
@@ -285,6 +305,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="focusType", IsStatic:=True)>
+        <ApiMethodSignature("type", GetType(String))>
         Public Shared Function SetFocusType(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(String)) Then
@@ -299,6 +320,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="focusId", IsStatic:=True)>
+        <ApiMethodSignature("id", GetType(Integer))>
         Public Shared Function SetFocusId(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then

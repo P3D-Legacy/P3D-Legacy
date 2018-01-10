@@ -34,6 +34,7 @@ Namespace Scripting.V3.Prototypes
         End Sub
 
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
+        <ApiMethodSignature({"x", "y", "z"}, {GetType(Double), GetType(Double), GetType(Double)}, 3)>
         Public Shared Function Constructor(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {TypeContract.Number, TypeContract.Number, TypeContract.Number}, 3) Then

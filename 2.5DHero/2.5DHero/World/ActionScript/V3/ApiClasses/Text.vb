@@ -9,7 +9,7 @@ Namespace Scripting.V3.ApiClasses
 
         Inherits ApiClass
 
-        <ApiClassMethod>
+        <ApiMethodSignature("message", GetType(String))>
         Public Shared Function show(processor As ScriptProcessor, parameters As SObject()) As SObject
 
             Dim netObjects As Object() = Nothing
@@ -26,7 +26,7 @@ Namespace Scripting.V3.ApiClasses
 
         End Function
 
-        <ApiClassMethod>
+        <ApiMethodSignature(GetType(String), "fontName", GetType(String))>
         Public Shared Function setFont(processor As ScriptProcessor, parameters As SObject()) As SObject
 
             Dim netObjects = New Object(0) {}
@@ -46,7 +46,7 @@ Namespace Scripting.V3.ApiClasses
 
         End Function
 
-        <ApiClassMethod>
+        <ApiMethodSignature("message", GetType(String))>
         Public Shared Function debug(processor As ScriptProcessor, parameters As SObject()) As SObject
 
             Dim netObjects = New Object(0) {}
@@ -61,7 +61,7 @@ Namespace Scripting.V3.ApiClasses
 
         End Function
 
-        <ApiClassMethod>
+        <ApiMethodSignature("message", GetType(String))>
         Public Shared Function log(processor As ScriptProcessor, parameters As SObject()) As SObject
 
             Dim netObjects = New Object(0) {}
@@ -76,7 +76,8 @@ Namespace Scripting.V3.ApiClasses
 
         End Function
 
-        <ApiClassMethod>
+        <ApiMethodSignature("colorType", GetType(String))>
+        <ApiMethodSignature({"red", "green", "blue", "alpha"}, {GetType(Integer), GetType(Integer), GetType(Integer), GetType(Integer)}, 1)>
         Public Shared Function setColor(processor As ScriptProcessor, parameters As SObject()) As SObject
 
             Dim netObjects As Object() = Nothing

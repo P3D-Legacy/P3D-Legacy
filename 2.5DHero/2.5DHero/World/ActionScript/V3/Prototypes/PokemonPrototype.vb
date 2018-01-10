@@ -20,6 +20,8 @@ Namespace Scripting.V3.Prototypes
         End Sub
 
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
+        <ApiMethodSignature("rawData", GetType(String))>
+        <ApiMethodSignature({"id", "level", "additionalData"}, {GetType(Integer), GetType(Integer), GetType(String)}, 1)>
         Public Shared Function Constructor(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If parameters.Length = 1 AndAlso TypeContract.Ensure(parameters, GetType(String)) Then
@@ -47,6 +49,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="getLegendaryIds", IsStatic:=True)>
+        <ApiMethodSignature(GetType(Integer()))>
         Public Shared Function GetLegendaryIds(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Return Pokemon.Legendaries
@@ -54,6 +57,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="getSprite")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetOverworldSprite(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -62,6 +66,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="id")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function GetId(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -70,6 +75,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="name")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetName(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -78,6 +84,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="translatedName")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetTranslatedName(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -86,6 +93,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="nickname")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetNickname(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -94,6 +102,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="nickname")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function SetNickname(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(String)) Then
@@ -108,6 +117,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="displayName")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetDisplayName(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -116,6 +126,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="isShiny")>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function GetIsShiny(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -124,6 +135,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="isShiny")>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function SetIsShiny(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Boolean)) Then
@@ -138,6 +150,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="canSwim")>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function GetCanSwim(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -146,6 +159,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="level")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function GetLevel(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -154,6 +168,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="cry")>
+        <ApiMethodSignature()>
         Public Shared Function PlayCry(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -163,6 +178,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="additionalData")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetAdditionalData(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -171,6 +187,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="additionalData")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function SetAdditionalData(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(String)) Then
@@ -185,6 +202,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="isEgg")>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function GetIsEgg(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -193,14 +211,16 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="nature")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function GetNature(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
-            Return p.Nature.ToString()
+            Return CInt(p.Nature)
 
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="nature")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function SetNature(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then
@@ -215,6 +235,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="friendship")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function GetFriendship(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -223,6 +244,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="friendship")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function SetFriendship(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then
@@ -237,6 +259,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="ot")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetOT(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -245,6 +268,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="ot")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function SetOT(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(String)) Then
@@ -259,6 +283,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="catchTrainer")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetCatchTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -267,6 +292,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="catchTrainer")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function SetCatchTrainer(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(String)) Then
@@ -281,6 +307,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="catchMethod")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetCatchMethod(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -289,6 +316,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="catchMethod")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function SetCatchMethod(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(String)) Then
@@ -303,6 +331,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="catchLocation")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetCatchLocation(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -311,6 +340,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="catchLocation")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function SetCatchLocation(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(String)) Then
@@ -325,6 +355,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="catchBall")>
+        <ApiMethodSignature(GetType(ItemPrototype))>
         Public Shared Function GetCatchBall(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -333,6 +364,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="catchBall")>
+        <ApiMethodSignature(GetType(ItemPrototype))>
         Public Shared Function SetCatchBall(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(ItemPrototype)) Then
@@ -347,6 +379,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="item")>
+        <ApiMethodSignature(GetType(ItemPrototype))>
         Public Shared Function GetItem(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -360,6 +393,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="item")>
+        <ApiMethodSignature(GetType(ItemPrototype))>
         Public Shared Function SetItem(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(ItemPrototype)) Then
@@ -382,14 +416,16 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="gender")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetGender(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
-            Return p.Gender
+            Return p.Gender.ToString()
 
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="gender")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function SetGender(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(String)) Then
@@ -410,6 +446,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="ability")>
+        <ApiMethodSignature(GetType(AbilityPrototype))>
         Public Shared Function GetAbility(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -418,6 +455,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="ability")>
+        <ApiMethodSignature(GetType(AbilityPrototype))>
         Public Shared Function SetAbility(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(AbilityPrototype)) Then
@@ -432,6 +470,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="types")>
+        <ApiMethodSignature(GetType(String()))>
         Public Shared Function GetTypes(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -447,6 +486,7 @@ Namespace Scripting.V3.Prototypes
 #Region "Stats"
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="stats")>
+        <ApiMethodSignature(GetType(Object))>
         Public Shared Function GetStats(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -464,6 +504,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="EVs")>
+        <ApiMethodSignature(GetType(Object))>
         Public Shared Function GetEVs(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -480,6 +521,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="setEV")>
+        <ApiMethodSignature({"evType", "value"}, {GetType(String), GetType(Integer)})>
         Public Shared Function SetEV(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(String), GetType(Integer)}) Then
@@ -511,6 +553,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="setIV")>
+        <ApiMethodSignature({"ivType", "value"}, {GetType(String), GetType(Integer)})>
         Public Shared Function SetIV(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(String), GetType(Integer)}) Then
@@ -542,6 +585,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="giveEVs")>
+        <ApiMethodSignature(GetType(Object))>
         Public Shared Function GetGiveEVs(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -558,6 +602,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="IVs")>
+        <ApiMethodSignature(GetType(Object))>
         Public Shared Function GetIVs(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -574,6 +619,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="hp")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function GetHP(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -582,6 +628,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="hp")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function SetHP(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then
@@ -596,6 +643,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="exp")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function GetExp(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -604,6 +652,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="exp")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function SetExp(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then
@@ -617,7 +666,12 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
-        <ScriptFunction(ScriptFunctionType.Setter, VariableName:="heal")>
+#End Region
+
+#Region "Moves"
+
+        <ScriptFunction(ScriptFunctionType.Standard, VariableName:="heal")>
+        <ApiMethodSignature("hp", GetType(Integer), 1)>
         Public Shared Function Heal(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer), 1) Then
@@ -632,11 +686,8 @@ Namespace Scripting.V3.Prototypes
 
         End Function
 
-#End Region
-
-#Region "Moves"
-
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="getMoves")>
+        <ApiMethodSignature(GetType(MovePrototype()))>
         Public Shared Function GetMoves(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -647,6 +698,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="removeMoveAt")>
+        <ApiMethodSignature("moveIndex", GetType(Integer))>
         Public Shared Function RemoveMoveAt(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then
@@ -665,6 +717,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="clearMoves")>
+        <ApiMethodSignature()>
         Public Shared Function ClearMoves(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -675,6 +728,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="addMove")>
+        <ApiMethodSignature("move", GetType(MovePrototype))>
         Public Shared Function AddMove(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(MovePrototype)) Then
@@ -696,6 +750,7 @@ Namespace Scripting.V3.Prototypes
 #End Region
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="reload")>
+        <ApiMethodSignature()>
         Public Shared Function ReloadDefinitions(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
@@ -706,14 +761,16 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="status")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function GetStatus(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim p = GetPokemon(This)
-            Return p.Status
+            Return p.Status.ToString()
 
         End Function
 
         <ScriptFunction(ScriptFunctionType.Setter, VariableName:="status")>
+        <ApiMethodSignature(GetType(String))>
         Public Shared Function SetStatus(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(String)) Then
@@ -734,9 +791,10 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="canEvolve")>
+        <ApiMethodSignature(GetType(Boolean), {"trigger", "evolutionArg"}, {GetType(String), GetType(String)}, 2)>
         Public Shared Function CanEvolve(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
-            If TypeContract.Ensure(parameters, GetType(String)) Then
+            If TypeContract.Ensure(parameters, {GetType(String), GetType(String)}, 2) Then
 
                 Dim helper = New ParamHelper(parameters)
 

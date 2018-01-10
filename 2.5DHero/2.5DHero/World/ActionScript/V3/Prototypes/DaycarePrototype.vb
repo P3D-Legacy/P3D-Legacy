@@ -16,6 +16,7 @@ Namespace Scripting.V3.Prototypes
         End Sub
 
         <ScriptFunction(ScriptFunctionType.Constructor, VariableName:="constructor")>
+        <ApiMethodSignature("id", GetType(Integer))>
         Public Shared Function Constructor(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then
@@ -29,6 +30,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.IndexerGet, VariableName:="indexerGet")>
+        <ApiMethodSignature({GetType(PokemonPrototype), GetType(NetUndefined)}, "pokemonIndex", GetType(Integer))>
         Public Shared Function IndexerGet(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim pokemonIndex = CType(parameters(0), Integer)
@@ -50,6 +52,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="getGrownLevels")>
+        <ApiMethodSignature(GetType(Integer), "pokemonIndex", GetType(Integer))>
         Public Shared Function GetGrownLevels(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(Integer)}) Then
@@ -79,6 +82,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="canBreed")>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function GetCanBreed(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim daycareId = CType(This, DaycarePrototype).daycareId
@@ -87,6 +91,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="hasEgg")>
+        <ApiMethodSignature(GetType(Boolean))>
         Public Shared Function GetHasEgg(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim daycareId = CType(This, DaycarePrototype).daycareId
@@ -112,6 +117,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Getter, VariableName:="pokemonCount")>
+        <ApiMethodSignature(GetType(Integer))>
         Public Shared Function GetPokemonCount(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim daycareId = CType(This, DaycarePrototype).daycareId
@@ -121,6 +127,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="takeEgg")>
+        <ApiMethodSignature({GetType(PokemonPrototype), GetType(NetUndefined)})>
         Public Shared Function TakeEgg(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim daycareId = CType(This, DaycarePrototype).daycareId
@@ -141,7 +148,7 @@ Namespace Scripting.V3.Prototypes
 
 
             If eggPokemon Is Nothing Then
-                Return Nothing
+                Return NetUndefined.Instance
             Else
 
                 Core.Player.DaycareData = newData
@@ -152,6 +159,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="takePokemon")>
+        <ApiMethodSignature({GetType(PokemonPrototype), GetType(NetUndefined)}, "pokemonIndex", GetType(Integer))>
         Public Shared Function TakePokemon(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, GetType(Integer)) Then
@@ -181,7 +189,7 @@ Namespace Scripting.V3.Prototypes
                 Next
 
                 If takenPokemon Is Nothing Then
-                    Return Nothing
+                    Return NetUndefined.Instance
                 Else
 
                     Core.Player.DaycareData = newData
@@ -196,6 +204,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="putPokemon")>
+        <ApiMethodSignature({"daycareIndex", "pokemon"}, {GetType(Integer), GetType(PokemonPrototype)})>
         Public Shared Function PutPokemon(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             If TypeContract.Ensure(parameters, {GetType(Integer), GetType(PokemonPrototype)}) Then
@@ -218,6 +227,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="cleanData")>
+        <ApiMethodSignature()>
         Public Shared Function CleanData(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim daycareId = CType(This, DaycarePrototype).daycareId
@@ -258,6 +268,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="clear")>
+        <ApiMethodSignature()>
         Public Shared Function Clear(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim daycareId = CType(This, DaycarePrototype).daycareId
@@ -279,6 +290,7 @@ Namespace Scripting.V3.Prototypes
         End Function
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="call")>
+        <ApiMethodSignature()>
         Public Shared Function CallPhone(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
 
             Dim daycareId = CType(This, DaycarePrototype).daycareId

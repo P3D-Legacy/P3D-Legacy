@@ -87,6 +87,7 @@
     <Content Include="Scripts\underwatercave\rocks\Clipboard Text %2823-10-16, 22.00.44%29.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Compile Include="World\ActionScript\V3\ApiMethodSignatureAttribute.vb" />
     <Compile Include="World\ActionScript\V3\Prototypes\CameraPrototype.vb" />
     <Compile Include="World\ActionScript\V3\Prototypes\DaycarePrototype.vb" />
     <None Include="maps\battle\fortune\altering.dat">
@@ -12682,7 +12683,6 @@
     <Compile Include="World\ActionScript\V2\ScriptV2.vb" />
     <Compile Include="World\ActionScript\V3\ApiClasses\ApiClass.vb" />
     <Compile Include="World\ActionScript\V3\ApiClasses\ApiClassAttribute.vb" />
-    <Compile Include="World\ActionScript\V3\ApiClasses\ApiClassMethodAttribute.vb" />
     <Compile Include="World\ActionScript\V3\ApiClasses\Chat.vb" />
     <Compile Include="World\ActionScript\V3\ApiClasses\Text.vb" />
     <Compile Include="World\ActionScript\V3\ParamHelper.vb" />
