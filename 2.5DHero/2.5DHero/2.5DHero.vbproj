@@ -6996,6 +6996,9 @@
     <None Include="Scripts\vermilion\snorlax.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Scripts\vermilion\steven.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Scripts\vermilion\snorlaxawake.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
