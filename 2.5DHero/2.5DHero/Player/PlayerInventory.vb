@@ -145,6 +145,19 @@ Public Class PlayerInventory
     End Property
 
     ''' <summary>
+    ''' If the player has the Mega Bracelet in their inventory.
+    ''' </summary>
+    Public ReadOnly Property HasMegaBracelet() As Boolean
+        Get
+            If Me.GetItemAmount(576) > 0 Then
+                Return True
+            End If
+
+            Return False
+        End Get
+    End Property
+
+    ''' <summary>
     ''' Returns a message that displays the event of putting an item into the inventory.
     ''' </summary>
     ''' <param name="Item">The Item to store in the inventory.</param>

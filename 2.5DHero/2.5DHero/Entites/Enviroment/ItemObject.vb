@@ -12,6 +12,7 @@
     Dim AnimationPath As String = ""
     Dim X, Y, width, height, rows, columns, animationSpeed, startRow, startColumn As Integer
     Dim CurrentRectangle As New Rectangle(0, 0, 0, 0)
+    Dim CanInteractWith As Boolean = True
 
     Public Overloads Sub Initialize(Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing)
         MyBase.Initialize()
@@ -26,34 +27,41 @@
             Me.Visible = False
             Me.Collision = False
         ElseIf Me.ActionValue = 2 Then
-            Me.Visible = Visible
-            'sparkles
-            If AnimationData IsNot Nothing Then
-                X = AnimationData(0)(0)
-                Y = AnimationData(0)(1)
-                width = AnimationData(0)(2)
-                height = AnimationData(0)(3)
-                rows = AnimationData(0)(4)
-                columns = AnimationData(0)(5)
-                animationSpeed = AnimationData(0)(6)
-                startRow = AnimationData(0)(7)
-                startColumn = AnimationData(0)(8)
-                AnimationPath = "ItemAnimations"
-            Else
-                X = 0
-                Y = 0
-                width = 48
-                height = 48
-                rows = 5
-                columns = 10
-                animationSpeed = 60
-                startRow = 0
-                startColumn = 0
-                AnimationPath = "SparkleAnimation"
-            End If
-            CreateAnimationTextureTemp()
+            If Core.Player.Inventory.HasMegaBracelet() Then
+                Me.Visible = Visible
+                'sparkles
+                If AnimationData IsNot Nothing Then
+                    X = AnimationData(0)(0)
+                    Y = AnimationData(0)(1)
+                    width = AnimationData(0)(2)
+                    height = AnimationData(0)(3)
+                    rows = AnimationData(0)(4)
+                    columns = AnimationData(0)(5)
+                    animationSpeed = AnimationData(0)(6)
+                    startRow = AnimationData(0)(7)
+                    startColumn = AnimationData(0)(8)
+                    AnimationPath = "ItemAnimations"
+                Else
+                    X = 0
+                    Y = 0
+                    width = 48
+                    height = 48
+                    rows = 5
+                    columns = 10
+                    animationSpeed = 60
+                    startRow = 0
+                    startColumn = 0
+                    AnimationPath = "SparkleAnimation"
+                End If
+                CreateAnimationTextureTemp()
 
-            Me.Animation = New Animation(TextureManager.GetTexture("Textures\Routes"), rows, columns, 16, 16, animationSpeed, startRow, startColumn)
+                Me.Animation = New Animation(TextureManager.GetTexture("Textures\Routes"), rows, columns, 16, 16, animationSpeed, startRow, startColumn)
+
+            Else
+                Me.Visible = False
+                Me.Collision = False
+                CanInteractWith = False
+            End If
         End If
 
         Me.NeedsUpdate = True
@@ -130,14 +138,16 @@
     End Sub
 
     Public Overrides Sub ClickFunction()
-        RemoveItem(Me)
-        SoundManager.PlaySound("item_found", True)
-        Screen.TextBox.TextColor = TextBox.PlayerColor
-        Screen.TextBox.Show(Core.Player.Name & " found~" & Me.Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
-        Core.Player.Inventory.AddItem(Me.Item.ID, 1)
-        PlayerStatistics.Track("Items found", 1)
+        If CanInteractWith Then
+            RemoveItem(Me)
+            SoundManager.PlaySound("item_found", True)
+            Screen.TextBox.TextColor = TextBox.PlayerColor
+            Screen.TextBox.Show(Core.Player.Name & " found~" & Me.Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
+            Core.Player.Inventory.AddItem(Me.Item.ID, 1)
+            PlayerStatistics.Track("Items found", 1)
 
-        Core.Player.AddPoints(1, "Found an item.")
+            Core.Player.AddPoints(1, "Found an item.")
+        End If
     End Sub
 
     Public Overrides Sub Render()
