@@ -698,6 +698,12 @@ Public Class Level
     ''' </summary>
     ''' <param name="Levelpath">The path to load the level from. Start with "|" to prevent loading a levelfile.</param>
     Public Sub Load(ByVal Levelpath As String)
+
+        ' copy all changed files
+#If DEBUG Then
+        DebugFileWatcher.TriggerReload()
+#End If
+
         ' Create a parameter array to pass over to the LevelLoader:
         Dim params As New List(Of Object)
         params.AddRange({Levelpath, False, New Vector3(0, 0, 0), 0, New List(Of String)})

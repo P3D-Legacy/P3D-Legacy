@@ -138,6 +138,11 @@ Public Class OverworldScreen
 
         'Load the particle texture.
         Me._particlesTexture = TextureManager.GetTexture("GUI\Overworld\Particles")
+
+        ' start watching files for changes
+#If DEBUG Then
+        DebugFileWatcher.StartWatching()
+#End If
     End Sub
 
     ''' <summary>
