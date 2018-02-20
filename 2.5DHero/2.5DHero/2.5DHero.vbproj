@@ -8504,9 +8504,6 @@
     <None Include="maps\elmlab.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="maps\embtower\Kings_Landing.dat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="maps\embtower\main.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
