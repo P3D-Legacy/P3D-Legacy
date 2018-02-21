@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Hector
+TrainerClass|PokéManiac
+Money|2640
+IntroMessage|I'm pretty familiar with the~land around these parts.
+OutroMessage|You don't need to be so pushy. I'll be happy to tell you.
+DefeatMessage|The door to the ruins...*It has these strange patterns~engraved on the outside.~I don't know what they mean,~though.
+TextureID|20
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|464,55
+Pokemon2|115,55
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|2
+IntroSequence|Blue,Blue

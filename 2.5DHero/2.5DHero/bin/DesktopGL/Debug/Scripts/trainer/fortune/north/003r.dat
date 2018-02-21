@@ -1,0 +1,9 @@
+version=2
+:if:<register.registered(trainer_fortune\north\003r)>=false
+:then
+@text.show(Geb: Big Sister, help!~Please battle with me!)
+:endif
+
+@battle.starttrainer(fortune\north\003r)
+@register.register(trainer_fortune\north\003l)
+:end

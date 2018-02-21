@@ -1,0 +1,4 @@
+version=2
+@pokemon.cry(115)
+@text.show(Kangaskhan: KHAN!)
+:end

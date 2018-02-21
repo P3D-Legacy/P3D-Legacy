@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Miah
+TrainerClass|Aroma Lady
+Money|1540
+IntroMessage|Kyahaha!~I'll flick you away~effortlessly!
+OutroMessage|Tch!~Too strong for me!
+DefeatMessage|What's that?~I don't act the way I look?*Heh, that's a part of my~strategy!
+TextureID|pinkshirtgirl
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|182,55
+Pokemon2|182,55
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|1
+AI|2
+IntroSequence|Blue,Blue

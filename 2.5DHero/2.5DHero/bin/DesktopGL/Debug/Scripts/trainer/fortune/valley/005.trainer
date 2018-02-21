@@ -1,0 +1,22 @@
+[TRAINER FORMAT]
+Name|Larry
+TrainerClass|Ruin Maniac
+Money|2640
+IntroMessage|It's been said that there are~mysterious stones on this~island.*I suspect it has something to~do with the ruins here.
+OutroMessage|Oh, interesting.
+DefeatMessage|Those ruins over there...*I haven't had any luck in~finding how I can get inside.
+TextureID|2
+Region|Sevii Islands
+IniMusic|johto_trainer_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_trainer
+Pokemon1|68,55
+Pokemon2|68,55
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|1
+IntroSequence|Blue,Blue

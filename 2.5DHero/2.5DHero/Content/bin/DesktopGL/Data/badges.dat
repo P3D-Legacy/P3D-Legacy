@@ -1,0 +1,17 @@
+1|Boulder|Texture=GUI\Badges,0,0,50,50|Region=Kanto
+2|Cascade|Texture=GUI\Badges,50,0,50,50|Region=Kanto
+3|Thunder|HM=Dive|Texture=GUI\Badges,100,0,50,50|Region=Kanto
+4|Rainbow|Texture=GUI\Badges,150,0,50,50|Region=Kanto
+5|Soul|Texture=GUI\Badges,200,0,50,50|Region=Kanto
+6|Marsh|Texture=GUI\Badges,250,0,50,50|Region=Kanto
+7|Volcano|Texture=GUI\Badges,300,0,50,50|Region=Kanto
+8|Earth|HM=RockClimb|Texture=GUI\Badges,350,0,50,50|Region=Kanto
+
+9|Zephyr|level=20|HM=Flash|Texture=GUI\Badges,0,50,50,50|Region=Johto
+10|Hive|level=30|HM=Cut|Texture=GUI\Badges,50,50,50,50|Region=Johto
+11|Plain|HM=Strength,Ride|Texture=GUI\Badges,100,50,50,50|Region=Johto
+12|Fog|level=50|HM=Surf|Texture=GUI\Badges,150,50,50,50|Region=Johto
+13|Storm|level=70|HM=Fly|Texture=GUI\Badges,200,50,50,50|Region=Johto
+14|Mineral|Texture=GUI\Badges,250,50,50,50|Region=Johto
+15|Glacier|HM=Whirlpool|Texture=GUI\Badges,300,50,50,50|Region=Johto
+16|Rising|level=100|HM=Waterfall|Texture=GUI\Badges,350,50,50,50|Region=Johto
