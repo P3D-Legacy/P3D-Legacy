@@ -86,12 +86,10 @@ Rival
 	- (get, set) name
 
 Player
-	- (get) inventory
 	- (get) pokegear
 	- (get) isRiding
 	- (get) isSurfing
 	- getPokedex
-	- (get, set) hasPokegear
 	- setSkin
 	- (get) skin
 	- move
