@@ -77,8 +77,8 @@
     </MonoGameContentReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.7.0.1289-develop\lib\net45\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.6.0.1625, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.6.0.1625\lib\net40\MonoGame.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -25856,6 +25856,7 @@
     <Content Include="credits.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="MonoGame.Framework.dll.config" />
     <None Include="packages.config" />
     <None Include="Pokemon\Items\_itemList.txt" />
     <None Include="My Project\app.manifest" />
@@ -27521,11 +27522,4 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Condition=" '$(Configuration)' != 'DebugNoContent' Or '$(Configuration)' != 'ReleaseNoContent' " Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\MonoGame.Framework.DesktopGL.3.7.0.1289-develop\build\MonoGame.Framework.DesktopGL.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MonoGame.Framework.DesktopGL.3.7.0.1289-develop\build\MonoGame.Framework.DesktopGL.targets'))" />
-  </Target>
-  <Import Project="..\packages\MonoGame.Framework.DesktopGL.3.7.0.1289-develop\build\MonoGame.Framework.DesktopGL.targets" Condition="Exists('..\packages\MonoGame.Framework.DesktopGL.3.7.0.1289-develop\build\MonoGame.Framework.DesktopGL.targets')" />
 </Project>
