@@ -5,12 +5,11 @@
 Public Class DebugFileWatcher
 
     Private Shared _changedFiles As List(Of String)
-    Private Shared _watchers As List(Of FileSystemWatcher)
+    Private Shared _watcher As FileSystemWatcher
     Private Shared _isWatching As Boolean = False
 
     Shared Sub New()
         _changedFiles = New List(Of String)()
-        _watchers = New List(Of FileSystemWatcher)()
     End Sub
 
     Public Shared Sub TriggerReload()
@@ -41,40 +40,42 @@ Public Class DebugFileWatcher
 
             Dim projectPath = GetProjectPath()
 
-            ' MAPS
-            Dim mapsPath = Path.Combine(projectPath, "Content\Data\maps")
-            Dim mapsWatcher = New FileSystemWatcher With {
-                .Path = mapsPath,
-                .NotifyFilter = NotifyFilters.LastWrite,
+            Dim contentPath = Path.Combine(projectPath, "Content")
+            _watcher = New FileSystemWatcher With {
+                .Path = contentPath,
+                .NotifyFilter = NotifyFilters.LastWrite Or NotifyFilters.LastAccess,
                 .IncludeSubdirectories = True
             }
 
-            AddHandler mapsWatcher.Changed, AddressOf OnChanged
-            mapsWatcher.EnableRaisingEvents = True
+            AddHandler _watcher.Changed, AddressOf OnChanged
+            _watcher.EnableRaisingEvents = True
 
-            _watchers.Add(mapsWatcher)
-
-            ' SCRIPTS
-            Dim scriptsPath = Path.Combine(projectPath, "Content\Data\Scripts")
-            Dim scriptsWatcher = New FileSystemWatcher With {
-                .Path = scriptsPath,
-                .NotifyFilter = NotifyFilters.LastWrite,
-                .IncludeSubdirectories = True
-            }
-
-            AddHandler scriptsWatcher.Changed, AddressOf OnChanged
-            scriptsWatcher.EnableRaisingEvents = True
-
-            _watchers.Add(scriptsWatcher)
         End If
     End Sub
 
     Private Shared Sub OnChanged(source As Object, e As FileSystemEventArgs)
         SyncLock _changedFiles
             Dim file = e.FullPath
-            If Not _changedFiles.Contains(file) Then
-                Logger.Debug("File changed: " + file)
-                _changedFiles.Add(file)
+            ' if files are edited with certain programs, FileSystemWatcher freaks out.
+            ' it replaces the filename with some random sequence of chars.
+            If IO.File.Exists(file) Then
+                If Not _changedFiles.Contains(file) Then
+                    Logger.Debug("File changed: " + file)
+                    _changedFiles.Add(file)
+                End If
+            Else
+                ' Distinct trait of these changes are that the filename ends with a tilde.
+                ' only thing that can be done is watch the entire folder instead of just a single file...
+                If file.EndsWith("~") Then
+                    Dim dir = Path.GetDirectoryName(file)
+                    Logger.Debug("Single file can't be watched. Watch folder """ + dir + """ instead.")
+                    For Each dirFile In Directory.GetFiles(dir)
+                        If Not _changedFiles.Contains(dirFile) Then
+                            Logger.Debug("File changed: " + dirFile)
+                            _changedFiles.Add(dirFile)
+                        End If
+                    Next
+                End If
             End If
         End SyncLock
     End Sub
