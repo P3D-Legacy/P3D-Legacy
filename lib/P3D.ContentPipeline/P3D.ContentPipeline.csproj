@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C0456069-ED23-4009-BC24-C5B35B25E63B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>P3D.ContentPipeline</RootNamespace>
+    <AssemblyName>P3D.ContentPipeline</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugNoStaticContent|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugNoStaticContent\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Content\Content.mgcb" />
+    <None Include="Content\Fonts\BMP\GameJolt.xnb" />
+    <None Include="Content\Fonts\BMP\miniFont.spritefont" />
+    <None Include="Content\Models\boat2\Boat.fbx" />
+    <None Include="Content\Models\boat\ferry.mtl" />
+    <None Include="Content\Models\boat\ferry.obj" />
+    <None Include="Content\Models\boat\Ship.mtl" />
+    <None Include="Content\Models\boat\Ship.obj" />
+    <None Include="Content\Models\boat\textures\boat.tga" />
+    <None Include="Content\Models\boat\textures\ferry.tga" />
+    <None Include="Content\Models\building\P3DBuilding.mtl" />
+    <None Include="Content\Models\building\P3DBuilding.obj" />
+    <None Include="Content\Models\Environment\arena_colleseum.mtl" />
+    <None Include="Content\Models\Environment\arena_colleseum.obj" />
+    <None Include="Content\Models\Environment\MtSilver\Mountain.mtl" />
+    <None Include="Content\Models\Environment\MtSilver\Mountain.obj" />
+    <None Include="Content\Models\Environment\Test_floor\Test_floor.mtl" />
+    <None Include="Content\Models\Environment\Test_floor\Test_floor.obj" />
+    <None Include="Content\Models\Environment\Test_floor\Texture\floor.tga" />
+    <None Include="Content\Models\Snorlax\Normal.mtl" />
+    <None Include="Content\Models\Snorlax\Normal.obj" />
+    <None Include="Content\Models\Snorlax\Shiny.mtl" />
+    <None Include="Content\Models\Snorlax\Shiny.obj" />
+    <None Include="Content\Models\Snorlax\Textures\kabigon_0_0.tga" />
+    <None Include="Content\Models\Snorlax\Textures\kabigon_0_3.tga" />
+    <None Include="Content\Models\Snorlax\Textures\kabigon_0_4.tga" />
+    <None Include="Content\Models\Snorlax\Textures\kabigon_1_0.tga" />
+    <None Include="Content\Models\Snorlax\Textures\kabigon_1_3.tga" />
+    <None Include="Content\Models\Snorlax\Textures\kabigon_1_4.tga" />
+    <None Include="Content\Models\truck2\Truck.mtl" />
+    <None Include="Content\Models\truck2\Truck.obj" />
+    <None Include="Content\SkyDomeResource\SkyDome.x" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Effects\BackdropShader.fx" />
+    <Content Include="Content\Effects\BlurEffect.fx" />
+    <Content Include="Content\Effects\DiffuseShader.fx" />
+    <Content Include="Content\Effects\GaussianBlur.fx" />
+    <Content Include="Content\Effects\Toon.fx" />
+    <Content Include="Content\Fonts\BMP\Braille.png" />
+    <Content Include="Content\Fonts\BMP\chatFont.png" />
+    <Content Include="Content\Fonts\BMP\GameJolt.png" />
+    <Content Include="Content\Fonts\BMP\InGame.png" />
+    <Content Include="Content\Fonts\BMP\mainFont.png" />
+    <Content Include="Content\Fonts\BMP\TextFont.png" />
+    <Content Include="Content\Fonts\BMP\Unown.png" />
+    <Content Include="Content\Models\boat2\Boat.png" />
+    <Content Include="Content\Models\building\textures\P3DBuilding.png" />
+    <Content Include="Content\Models\truck2\140l155.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
