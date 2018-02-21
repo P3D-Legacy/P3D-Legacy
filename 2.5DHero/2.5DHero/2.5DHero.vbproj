@@ -11029,6 +11029,9 @@
       <Link>MonoGame.Framework.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="..\2.5DHeroContent\Content\**\*.*">
+      <Link>Content\%(RecursiveDir)%(FileName)</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Battle\BattleAnimations\BAMove.vb" />
