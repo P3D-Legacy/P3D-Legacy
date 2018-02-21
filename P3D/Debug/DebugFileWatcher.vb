@@ -32,7 +32,7 @@ Public Class DebugFileWatcher
     End Sub
 
     Private Shared Function GetProjectPath() As String
-        Return New DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName
+        Return New DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName
     End Function
 
     Public Shared Sub StartWatching()
