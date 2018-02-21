@@ -1040,33 +1040,21 @@ Public Class Level
     End Sub
 
     ''' <summary>
-    ''' Returns a list of all NPCs on the map.
-    ''' </summary>
-    Public Function GetNPCs() As List(Of NPC)
-        Dim reList As New List(Of NPC)
-
-        For Each Entity As Entity In Me.Entities
-            If Entity.EntityID = "NPC" Then
-                reList.Add(CType(Entity, NPC))
-            End If
-        Next
-
-        Return reList
-    End Function
-
-    ''' <summary>
     ''' Returns an NPC based on their ID.
     ''' </summary>
     ''' <param name="ID">The ID of the NPC to return from the level.</param>
     ''' <returns>Returns either a matching NPC or Nothing.</returns>
     Public Function GetNPC(ByVal ID As Integer) As NPC
-        For Each NPC As NPC In GetNPCs()
-            If NPC.NPCID = ID Then
-                Return NPC
-            End If
-        Next
-
-        Return Nothing
+        Dim ent = Me.Entities.FirstOrDefault(Function(e As Entity) As Boolean
+                                                 Return e.EntityID = "NPC" And
+                                                        TypeOf e Is NPC And
+                                                        CType(e, NPC).NPCID = ID
+                                             End Function)
+        If ent IsNot Nothing Then
+            Return CType(ent, NPC)
+        Else
+            Return Nothing
+        End If
     End Function
 
     ''' <summary>

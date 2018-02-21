@@ -370,7 +370,7 @@ Namespace Scripting.V3.Prototypes
             If TypeContract.Ensure(parameters, GetType(ItemPrototype)) Then
 
                 Dim p = GetPokemon(This)
-                p.CatchBall = ItemPrototype.ToItem(parameters(0))
+                p.CatchBall = ItemPrototype.GetItem(parameters(0))
 
             End If
 
@@ -405,7 +405,7 @@ Namespace Scripting.V3.Prototypes
                 Else
 
                     Dim item = CType(parameters(0), ItemPrototype)
-                    p.Item = ItemPrototype.ToItem(item)
+                    p.Item = ItemPrototype.GetItem(item)
 
                 End If
 

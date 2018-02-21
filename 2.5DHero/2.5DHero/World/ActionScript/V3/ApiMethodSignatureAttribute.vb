@@ -51,6 +51,10 @@ Namespace Scripting.V3
             Me.New({returnType}, {paramName}, {paramType}, 0)
         End Sub
 
+        Public Sub New(returnType As Type, paramName As String, paramType As Type, optionalNum As Integer)
+            Me.New({returnType}, {paramName}, {paramType}, optionalNum)
+        End Sub
+
         Public Sub New(returnType As Type, paramNames As String(), paramTypes As Type(), optionalNum As Integer)
             Me.New({returnType}, paramNames, paramTypes, optionalNum)
         End Sub

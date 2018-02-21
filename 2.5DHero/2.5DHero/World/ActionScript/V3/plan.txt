@@ -1,0 +1,166 @@
+﻿???
+	Entity.showmessagebulb
+
+System
+	- save
+	- random
+	- createNewGame
+
+Text
+	- showItemGetMessage
+	- showBadgeGotMessage
+	- showOptions
+
+Level
+	- wait
+	- update
+	- load
+	- reload
+	- (get) file
+	- (get) music
+	- playMusic
+	- pauseMusic
+	- resumeMusic
+	- (get, set) canFly
+	- (get, set) canDig
+	- (get, set) canTeleport
+	- (get, set) wildPokemonGrass
+	- (get, set) wildPokemonWater
+	- (get, set) wildPokemonEverywhere
+	- (get, set) isSafariZone
+	- (get, set) isDark
+	- getEntity
+	- getNPC
+	- addEntity
+	- addNPC
+	- getFollowPokemon
+	
+World
+	- (get) daytime
+	- (get) season
+	- (get) weather
+	- (get, set) regionWeather
+	- useRepel
+	- (get) level
+	- showFishingRod
+	- hideFishingRod
+	- addRoamingPokemon
+
+Entity
+	- (get) id
+	- (get) type
+	- (get, set) opacity
+	- (get, set) isvisible
+	- (get, set) additionalData
+	- (get, set) actionValue
+	- (get, set) hasCollision
+	- setTexture
+
+NPC
+	- fromEntity
+	- (get) skin
+	- setSkin
+	- move
+	- moveVertical
+	- (get, set) direction
+	- (get, set) speed
+	- isMoving
+	- (get, set) name
+	- (get) npcid
+
+FollowPokemon
+	- getPokemon
+	- (get) position
+	- (get, set) isVisible
+	- (get) skin
+
+Register
+	- exists
+	- add
+	- remove
+	- changeValue
+	- addNPC
+	- removeNPC
+
+Rival
+	- (get, set) name
+
+Player
+	- (get) inventory
+	- (get) pokegear
+	- (get) isRiding
+	- (get) isSurfing
+	- getPokedex
+	- (get, set) hasPokegear
+	- setSkin
+	- (get) skin
+	- move
+	- (get) direction
+	- turnTo
+	- warp
+	- (get, set) position
+	- (get, set) money
+	- (get) badges
+	- addBadge
+	- removeBadge
+	- (get, set) battlePoints
+	- (get, set) name
+	- (get, set) OT
+	- (get, set) opacity
+	- (get) gender
+	- (get) party
+	- blackout
+
+Pokegear
+	- (get) isReceivingCall
+	- allowRadioChannel
+	- blockRadioChannel
+	- (get) currentRadioChannel
+
+Pokedex
+	- (get) id
+	- (get) caught
+	- (get) seen
+	- (get, set) autodetect
+	- (get) caughtTotal
+	- (get) seenTotal
+	- (get) shinyTotal
+
+Party
+	- (indexerGet) pokemon
+	- (indexerSet) pokemon
+	- (get) count
+	- add
+	- remove
+	- clear
+
+X Item
+	- id
+	- name
+
+HallOfFame
+	- recordParty
+
+Screen
+	- openStorageSystem
+	- openApricorn
+	- openStore
+	- openMap
+	- openDonations
+	- openPokemonPreview
+	- openCredits
+	- openHallOfFame
+	- openMoveTutor
+	- openMailSystem
+	- openPvPLobby
+	- openInput
+	- openMysteryEvent
+	- openSecretBase
+	- openSkinSelection
+	- openRivalName
+	- (get) selectedSkin
+	- fadeOut
+	- fadeIn
+	- (get, set) fadeValue
+	- showTitle
+	- clearTitles

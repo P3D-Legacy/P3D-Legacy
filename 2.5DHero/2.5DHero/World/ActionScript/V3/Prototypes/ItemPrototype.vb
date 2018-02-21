@@ -9,7 +9,7 @@ Namespace Scripting.V3.Prototypes
         <Reference>
         Public ref As Item
 
-        Public Shared Function ToItem(This As Object) As Item
+        Public Shared Function GetItem(This As Object) As Item
             Return CType(This, ItemPrototype).ref
         End Function
 
@@ -45,6 +45,24 @@ Namespace Scripting.V3.Prototypes
             End If
 
             Return NetUndefined.Instance
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="id")>
+        <ApiMethodSignature(GetType(Integer))>
+        Public Shared Function GetId(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim item = GetItem(This)
+            Return item.ID
+
+        End Function
+
+        <ScriptFunction(ScriptFunctionType.Getter, VariableName:="name")>
+        <ApiMethodSignature(GetType(String))>
+        Public Shared Function GetName(This As Object, objLink As ScriptObjectLink, parameters As Object()) As Object
+
+            Dim item = GetItem(This)
+            Return item.Name
 
         End Function
 

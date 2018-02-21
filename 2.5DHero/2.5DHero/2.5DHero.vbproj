@@ -90,6 +90,8 @@
     <Compile Include="World\ActionScript\V3\ApiMethodSignatureAttribute.vb" />
     <Compile Include="World\ActionScript\V3\Prototypes\CameraPrototype.vb" />
     <Compile Include="World\ActionScript\V3\Prototypes\DaycarePrototype.vb" />
+    <Content Include="World\ActionScript\V3\plan.txt" />
+    <Compile Include="World\ActionScript\V3\Prototypes\InventoryPrototype.vb" />
     <None Include="maps\battle\fortune\altering.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -12691,6 +12693,8 @@
     <Compile Include="World\ActionScript\V3\Prototypes\EntityPrototype.vb" />
     <Compile Include="World\ActionScript\V3\Prototypes\ItemPrototype.vb" />
     <Compile Include="World\ActionScript\V3\Prototypes\MovePrototype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\PlayerPrototype.vb" />
+    <Compile Include="World\ActionScript\V3\Prototypes\PokedexPrototype.vb" />
     <Compile Include="World\ActionScript\V3\Prototypes\PokemonPrototype.vb" />
     <Compile Include="World\ActionScript\V3\Prototypes\TrainerProtoype.vb" />
     <Compile Include="World\ActionScript\V3\Prototypes\TypeContract.vb" />
