@@ -1,9 +1,0 @@
-version=2
-:if:<register.registered(trainer_quest\canyonent\005r)>=false
-:then
-@text.show(Jon: When I'm with Eve, it feels~like we could never lose.)
-:endif
-
-@battle.starttrainer(quest\canyonent\005r)
-@register.register(trainer_quest\canyonent\005l)
-:end

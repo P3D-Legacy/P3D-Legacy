@@ -2,9 +2,9 @@ Name|Pokemon 3D
 Description|The normal game mode.
 Version|0.55
 Author|Kolben Games
-MapPath|\maps\
-ScriptPath|\Scripts\
-PokeFilePath|\maps\poke\
+MapPath|\Content\Data\maps\
+ScriptPath|\Content\Data\Scripts\
+PokeFilePath|\Content\Data\maps\poke\
 PokemonDataPath|\Content\Pokemon\Data\
 ContentPath|\Content\
 LocalizationsPath|\Content\Localization\

@@ -1,9 +1,0 @@
-version=2
-:if:<register.registered(trainer_fortune\north\003l)>=false
-:then
-@text.show(Ava: Let's have a two-on-two~marine battle!)
-:endif
-
-@battle.starttrainer(fortune\north\003l)
-@register.register(trainer_fortune\north\003r)
-:end

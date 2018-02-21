@@ -1,9 +1,0 @@
-version=2
-:if:<register.registered(trainer_quest\canyonent\005l)>=false
-:then
-@text.show(Eve: I'll team up with Jon and~battle together.)
-:endif
-
-@battle.starttrainer(quest\canyonent\005l)
-@register.register(trainer_quest\canyonent\005r)
-:end

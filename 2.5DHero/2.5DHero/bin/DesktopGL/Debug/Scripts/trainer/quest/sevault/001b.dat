@@ -1,9 +1,0 @@
-version=2
-:if:<register.registered(trainer_quest\sevault\001b)>=false
-:then
-@text.show(Nya: I'll do my best so I won't~drag down my mentor, Lex!)
-:endif
-
-@battle.starttrainer(quest\sevault\001b)
-@register.register(trainer_quest\sevault\001t)
-:end

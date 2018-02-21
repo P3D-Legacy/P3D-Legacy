@@ -1,4 +1,0 @@
-version=2
-@pokemon.cry(12)
-@text.show(Butterfree: Free!)
-:end
