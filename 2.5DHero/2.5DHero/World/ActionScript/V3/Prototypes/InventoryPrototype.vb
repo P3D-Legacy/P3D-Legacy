@@ -3,7 +3,7 @@ Imports Kolben.Adapters
 
 Namespace Scripting.V3.Prototypes
 
-    <ScriptPrototype(VariableName:="Player")>
+    <ScriptPrototype(VariableName:="Inventory")>
     Friend NotInheritable Class InventoryPrototype
 
         <ScriptFunction(ScriptFunctionType.Standard, VariableName:="add")>
