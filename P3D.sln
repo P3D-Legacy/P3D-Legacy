@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolben", "lib\kolben\Kolben
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{7877D883-AA51-4C27-ADA5-C4F85F86F4EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostBuild", "lib\tools\PostBuild\PostBuild.csproj", "{3B2AEA8E-4384-48D8-B26B-2C67466A1352}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,14 @@ Global
 		{ED665F9B-07F4-4415-BD72-A728CF1EA909}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED665F9B-07F4-4415-BD72-A728CF1EA909}.ReleaseNoContent|Any CPU.ActiveCfg = Release|Any CPU
 		{ED665F9B-07F4-4415-BD72-A728CF1EA909}.ReleaseNoContent|Any CPU.Build.0 = Release|Any CPU
+		{3B2AEA8E-4384-48D8-B26B-2C67466A1352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2AEA8E-4384-48D8-B26B-2C67466A1352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B2AEA8E-4384-48D8-B26B-2C67466A1352}.DebugNoContent|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B2AEA8E-4384-48D8-B26B-2C67466A1352}.DebugNoContent|Any CPU.Build.0 = Debug|Any CPU
+		{3B2AEA8E-4384-48D8-B26B-2C67466A1352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2AEA8E-4384-48D8-B26B-2C67466A1352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B2AEA8E-4384-48D8-B26B-2C67466A1352}.ReleaseNoContent|Any CPU.ActiveCfg = Release|Any CPU
+		{3B2AEA8E-4384-48D8-B26B-2C67466A1352}.ReleaseNoContent|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +63,7 @@ Global
 		{C0456069-ED23-4009-BC24-C5B35B25E63B} = {3CE8099E-129D-40F9-8D23-005DFF32E2A2}
 		{ED665F9B-07F4-4415-BD72-A728CF1EA909} = {3CE8099E-129D-40F9-8D23-005DFF32E2A2}
 		{7877D883-AA51-4C27-ADA5-C4F85F86F4EE} = {3CE8099E-129D-40F9-8D23-005DFF32E2A2}
+		{3B2AEA8E-4384-48D8-B26B-2C67466A1352} = {7877D883-AA51-4C27-ADA5-C4F85F86F4EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FE3951F-DE18-41FF-A035-32DF597A91F2}
