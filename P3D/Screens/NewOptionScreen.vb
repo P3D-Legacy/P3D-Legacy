@@ -461,7 +461,7 @@
         MusicManager.MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
         MusicManager.Mute(CBool(Me.Muted))
-        SoundManager.Mute(CBool(Me.Muted))
+        SoundManager.Muted = CBool(Me.Muted)
         Core.GameOptions.RenderDistance = Me.RenderDistance
         Core.GameOptions.GraphicStyle = Me.GraphicStyle
         Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
@@ -645,7 +645,7 @@
 
     Private Sub ApplyMusicChange()
         MusicManager.Mute(CBool(Me.Muted))
-        SoundManager.Mute(CBool(Me.Muted))
+        SoundManager.Muted = CBool(Me.Muted)
         MusicManager.MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
     End Sub
@@ -868,7 +868,7 @@
             Dim c As Color = New Color(255, 255, 255, CInt(255 * s._interfaceFade * s._pageFade))
 
 
-            Core.SpriteBatch.Draw(s._texture, New Rectangle(CInt(pos.X), CInt(pos.Y), size, size), New Rectangle(16, 16, 16, 16), c)
+            Core.SpriteBatch.Draw(s._texture, New Rectangle(CInt(pos.X), CInt(pos.Y), Size, Size), New Rectangle(16, 16, 16, 16), c)
             Core.SpriteBatch.Draw(s._texture, New Rectangle(CInt(pos.X) + Size, CInt(pos.Y), Size * ButtonWidth, Size), New Rectangle(32, 16, 16, 16), c)
             Core.SpriteBatch.Draw(s._texture, New Rectangle(CInt(pos.X) + Size * (ButtonWidth + 1), CInt(pos.Y), Size, Size), New Rectangle(16, 16, 16, 16), c, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 

@@ -77,8 +77,8 @@
                         Dim filePath As String = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".mp3"
                         song = CType(ctor.Invoke({Name, filePath, 0}), Song)
                     ElseIf System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".ogg") = True Then
-                        Dim filePath As String = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".ogg"
-                        Dim source = New Uri(filePath)
+                        Dim filePath As String = cContent.RootDirectory & "\Songs\" & Name & ".ogg"
+                        Dim source = New Uri(filePath, UriKind.Relative)
                         song = Song.FromUri(Name, source)
                     Else
                         Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: Song at """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & """ was not found!")

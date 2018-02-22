@@ -97,7 +97,6 @@
         TextureManager.InitializeTextures()
         MusicManager.Setup()
         MusicManager.LoadMusic(False)
-        SoundManager.LoadSounds(False)
         Logger.Debug("Loaded content.")
 
         Logger.Debug("Validated files. Result: " & Security.FileValidation.IsValid(True).ToString())

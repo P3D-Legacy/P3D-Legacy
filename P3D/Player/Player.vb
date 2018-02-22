@@ -520,7 +520,6 @@
 
         If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
             MusicManager.LoadMusic(True)
-            SoundManager.LoadSounds(True)
         End If
         SmashRock.Load()
         Badge.Load()

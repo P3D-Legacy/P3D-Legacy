@@ -25,7 +25,7 @@
             ToggleFullScreen()
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.MuteMusicKey) AndAlso Core.CurrentScreen.CanMuteMusic Then
             MusicManager.Mute(Not MediaPlayer.IsMuted)
-            SoundManager.Mute(MediaPlayer.IsMuted)
+            SoundManager.Muted = MediaPlayer.IsMuted
             Core.GameOptions.SaveOptions()
             Core.CurrentScreen.ToggledMute()
         End If
