@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3B2AEA8E-4384-48D8-B26B-2C67466A1352}</ProjectGuid>
+    <ProjectGuid>{417FEA8A-9334-4938-9370-519EF1551B05}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PostBuild</RootNamespace>
-    <AssemblyName>PostBuild</AssemblyName>
+    <RootNamespace>TearUp</RootNamespace>
+    <AssemblyName>TearUp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

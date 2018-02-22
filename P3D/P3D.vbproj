@@ -14026,7 +14026,9 @@
     <Content Include="Content\Songs\wind.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\chess.png" />
+    <Content Include="Content\Textures\chess.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="meta">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

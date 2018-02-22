@@ -11,6 +11,8 @@ namespace PostBuild
 
         static void Main(string[] args)
         {
+            // copies all binaries from /p3d/bin/debug to /lib/build
+
             // find solution folder
             var dir = AppDomain.CurrentDomain.BaseDirectory;
             string solutionFile = null;

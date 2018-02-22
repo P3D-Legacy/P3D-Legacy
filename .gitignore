@@ -301,8 +301,16 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Must include
-!2.5DHero/
-!2.5DHero/2.5DHero/
-!2.5DHero/2.5DHero/Debug/
-!2.5DHero/2.5DHero/Debug/**/*
+# ignore /lib/save
+lib/save/
+
+# ignore binaries in p3d project
+p3d/**/*.exe
+p3d/**/*.dll
+p3d/**/*.xnb
+
+# ignore generated files/folders by the game's exe in the p3d project
+p3d/ContentPacks/
+p3d/GameModes/
+p3d/save/
+p3d/log.dat
