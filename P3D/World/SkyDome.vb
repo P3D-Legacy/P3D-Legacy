@@ -85,7 +85,7 @@
             Roll = Math.PI
         End If
 
-        Core.GraphicsDevice.BlendState = BlendState.AlphaBlend
+        Core.GraphicsDevice.BlendState = BlendState.NonPremultiplied
 
         For Each ModelMesh As ModelMesh In SkydomeModel.Meshes
             For Each BasicEffect As BasicEffect In ModelMesh.Effects
