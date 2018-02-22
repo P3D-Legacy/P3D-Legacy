@@ -3,10 +3,10 @@
 
 /outputDir:bin
 /intermediateDir:obj
-/platform:DesktopGL
+/platform:Windows
 /config:
 /profile:Reach
-/compress:True
+/compress:False
 
 #-------------------------------- References --------------------------------#
 
@@ -18,24 +18,6 @@
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:Effects/BackdropShader.fx
-
-#begin Effects/BlurEffect.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Effects/BlurEffect.fx
-
-#begin Effects/DiffuseShader.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Effects/DiffuseShader.fx
-
-#begin Effects/Toon.fx
-/importer:EffectImporter
-/processor:EffectProcessor
-/processorParam:DebugMode=Auto
-/build:Effects/Toon.fx
 
 #begin Fonts/BMP/Braille.png
 /importer:TextureImporter

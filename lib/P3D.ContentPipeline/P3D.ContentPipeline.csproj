@@ -79,10 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Effects\BackdropShader.fx" />
-    <Content Include="Content\Effects\BlurEffect.fx" />
-    <Content Include="Content\Effects\DiffuseShader.fx" />
     <Content Include="Content\Effects\GaussianBlur.fx" />
-    <Content Include="Content\Effects\Toon.fx" />
     <Content Include="Content\Fonts\BMP\Braille.png" />
     <Content Include="Content\Fonts\BMP\chatFont.png" />
     <Content Include="Content\Fonts\BMP\GameJolt.png" />

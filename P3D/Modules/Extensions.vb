@@ -41,31 +41,6 @@ Module Extensions
     End Function
 
     <Extension()>
-    Public Function SetSplit(ByVal fullString As String, ByVal valueIndex As Integer, ByVal newValue As String, ByVal seperator As String, ByVal replace As Boolean) As String
-        Dim s() As String = fullString.Split({seperator}, System.StringSplitOptions.None)
-
-        fullString = ""
-
-        For x = 0 To s.Count - 1
-            If x = valueIndex Then
-                If replace = True Then
-                    fullString &= newValue
-                Else
-                    fullString &= newValue & seperator & s(x)
-                End If
-            Else
-                fullString &= s(x)
-            End If
-
-            If x <> s.Count - 1 Then
-                fullString &= seperator
-            End If
-        Next
-
-        Return fullString
-    End Function
-
-    <Extension()>
     Public Function CountSplits(ByVal fullString As String, ByVal seperator As String) As Integer
         Dim i As Integer = 0
         If fullString.Contains(seperator) = True Then

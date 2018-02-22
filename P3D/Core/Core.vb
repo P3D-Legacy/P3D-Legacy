@@ -1,17 +1,38 @@
 ﻿Public Module Core
 
+    Public GameInstance As GameController
+
+    Public ReadOnly Property GraphicsManager As GraphicsDeviceManager
+        Get
+            Return GameInstance.Graphics
+        End Get
+    End Property
+
+    Public ReadOnly Property GraphicsDevice As GraphicsDevice
+        Get
+            Return GameInstance.GraphicsDevice
+        End Get
+    End Property
+
+    Public ReadOnly Property Content As ContentManager
+        Get
+            Return GameInstance.Content
+        End Get
+    End Property
+
+    Public ReadOnly Property Window As GameWindow
+        Get
+            Return GameInstance.Window
+        End Get
+    End Property
+
     Public SpriteBatch As CoreSpriteBatch
     Public FontRenderer As SpriteBatch
-    Public GraphicsDevice As GraphicsDevice
-    Public GraphicsManager As GraphicsDeviceManager
-    Public Content As ContentManager
     Public GameTime As GameTime
-    Public GameInstance As GameController
     Public Random As System.Random = New System.Random()
 
     Public KeyboardInput As KeyboardInput
 
-    Public window As GameWindow
     Public windowSize As Rectangle = New Rectangle(0, 0, 1200, 680)
     Public GameMessage As GameMessage
 
@@ -33,17 +54,10 @@
     Public Sub Initialize(ByVal gameReference As GameController)
         GameInstance = gameReference
 
-        GraphicsManager = GameInstance.Graphics
-        GraphicsDevice = GameInstance.GraphicsDevice
-        Content = GameInstance.Content
-        SpriteBatch = New CoreSpriteBatch(GraphicsDevice)
-        FontRenderer = New CoreSpriteBatch(GraphicsDevice)
-        window = GameInstance.Window
-
         If CommandLineArgHandler.ForceGraphics = True Then
-            window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " (FORCED GRAPHICS)"
+            Window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " (FORCED GRAPHICS)"
         Else
-            window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION
+            Window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION
         End If
 
         GameOptions = New GameOptions()
@@ -57,8 +71,12 @@
         windowSize = New Rectangle(0, 0, CInt(GameOptions.WindowSize.X), CInt(GameOptions.WindowSize.Y))
 
         GraphicsManager.PreferMultiSampling = True
+        GraphicsManager.GraphicsProfile = GraphicsProfile.HiDef
 
         GraphicsManager.ApplyChanges()
+
+        SpriteBatch = New CoreSpriteBatch(GraphicsDevice)
+        FontRenderer = New CoreSpriteBatch(GraphicsDevice)
 
         Canvas.SetupCanvas()
         Player = New Player()

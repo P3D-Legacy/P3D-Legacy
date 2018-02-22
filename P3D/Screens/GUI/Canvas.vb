@@ -3,11 +3,8 @@
     Private Shared Canvas As Texture2D
 
     Public Shared Sub SetupCanvas()
-        Dim tempData(0) As Color
-        tempData(0) = Color.White
-
         Canvas = New Texture2D(Core.GraphicsDevice, 1, 1)
-        Canvas.SetData(tempData)
+        Canvas.SetData({Color.White})
     End Sub
 
     Public Shared Sub DrawRectangle(ByVal Rectangle As Rectangle, ByVal color As Color)
