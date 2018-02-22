@@ -48,6 +48,11 @@ namespace PostBuild
                 Console.WriteLine($"Created build folder at {buildFolder}");
                 Directory.CreateDirectory(buildFolder);
             }
+            else
+            {
+                // delete current lib/build
+                Directory.Delete(buildFolder, true);
+            }
 
             var binFolder = Path.Combine(solutionFolder, "p3d/bin/Debug");
             if (Directory.Exists(binFolder))

@@ -314,3 +314,6 @@ p3d/ContentPacks/
 p3d/GameModes/
 p3d/save/
 p3d/log.dat
+
+# include lib/build
+!lib/build
