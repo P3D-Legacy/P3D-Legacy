@@ -36,7 +36,7 @@
         SetCursorPosition(_menuIndex)
         _cursorPosition = _cursorDestPosition
 
-        _blur = New Resources.GaussianEffect(windowSize.Width, windowSize.Height)
+        _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
     End Sub
 
     Private Sub ConstructMenu()
@@ -61,7 +61,7 @@
         _menuOptions.Add("Options")
     End Sub
 
-    Private _blur As Resources.GaussianEffect
+    Private _blur As Resources.Blur.BlurHandler
 
     Private Sub DrawPrescreen()
         If _preScreenTexture Is Nothing OrElse _preScreenTexture.IsContentLost Then

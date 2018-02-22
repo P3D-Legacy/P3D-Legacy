@@ -107,11 +107,11 @@ Public Class PressStartScreen
         End If
     End Sub
 
-    Private _blurHandler As Resources.GaussianEffect
+    Private _blurHandler As Resources.Blur.BlurHandler
 
     Public Overrides Sub Draw()
         If _blurHandler Is Nothing Then
-            _blurHandler = New Resources.GaussianEffect(windowSize.Width, windowSize.Height)
+            _blurHandler = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
         End If
 
         GraphicsDevice.SetRenderTarget(target)
@@ -123,7 +123,8 @@ Public Class PressStartScreen
         GraphicsDevice.SetRenderTarget(Nothing)
 
         _backgroundRenderer.Begin()
-        _backgroundRenderer.Draw(_blurHandler.Perform(target), New Rectangle(0, 0, windowSize.Width, windowSize.Height), Color.White)
+        Dim blurred = _blurHandler.Perform(target)
+        _backgroundRenderer.Draw(blurred, New Rectangle(0, 0, windowSize.Width, windowSize.Height), Color.White)
         _backgroundRenderer.End()
 
         If IsCurrentScreen() Then

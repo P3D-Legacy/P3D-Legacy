@@ -134,7 +134,7 @@ Public Class NewInventoryScreen
     Public Sub New(ByVal currentScreen As Screen, ByVal AllowedPages As Integer(), ByVal StartPageIndex As Integer, ByVal DoStuff As DoStuff)
 
         _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height)
-        _blur = New Resources.GaussianEffect(windowSize.Width, windowSize.Height)
+        _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
 
         _tabIndex = StartPageIndex
         Me.AllowedPages = AllowedPages
@@ -211,7 +211,7 @@ Public Class NewInventoryScreen
         DrawAmount()
     End Sub
 
-    Private _blur As Resources.GaussianEffect
+    Private _blur As Resources.Blur.BlurHandler
 
     Private Sub DrawPrescreen()
         If _preScreenTexture Is Nothing OrElse _preScreenTexture.IsContentLost Then

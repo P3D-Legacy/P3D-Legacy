@@ -88,7 +88,7 @@ Public Class PartyScreen
     Public Sub New(ByVal currentScreen As Screen, ByVal Item As Item, ByVal ChoosePokemon As DoStuff, ByVal Title As String, ByVal canExit As Boolean, ByVal canChooseFainted As Boolean, ByVal canChooseEgg As Boolean, Optional ByVal _pokemonList As List(Of Pokemon) = Nothing, Optional ByVal ChooseMode As Boolean = True)
 
         _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
-        _blur = New Resources.GaussianEffect(windowSize.Width, windowSize.Height)
+        _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
 
         Me.Item = Item
         Me.POKEMON_TITLE = Title
@@ -189,7 +189,7 @@ Public Class PartyScreen
     End Sub
 
 
-    Private _blur As Resources.GaussianEffect
+    Private _blur As Resources.Blur.BlurHandler
 
     Private Sub DrawPrescreen()
         If _preScreenTexture Is Nothing OrElse _preScreenTexture.IsContentLost Then
