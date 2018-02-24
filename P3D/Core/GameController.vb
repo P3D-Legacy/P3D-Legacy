@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports GameDevCommon
 
 ''' <summary>
 ''' Controls the game's main workflow.
@@ -6,6 +7,7 @@
 Public Class GameController
 
     Inherits Microsoft.Xna.Framework.Game
+    Implements IGame
 
     ''' <summary>
     ''' The current version of the game.
@@ -50,6 +52,8 @@ Public Class GameController
     Public FPSMonitor As FPSMonitor
     Public Shared UpdateChecked As Boolean = False
 
+    Private _componentManager As ComponentManager
+
     Public Sub New()
         Graphics = New GraphicsDeviceManager(Me)
         Content.RootDirectory = "Content"
@@ -66,15 +70,18 @@ Public Class GameController
         If GameHacked = True Then
             Security.HackerAlerts.Activate()
         End If
+
+        _componentManager = New ComponentManager()
+        GameInstanceProvider.SetInstance(Me)
     End Sub
 
     Protected Overrides Sub Initialize()
+        _componentManager.LoadComponents()
         Core.Initialize(Me)
         MyBase.Initialize()
     End Sub
 
     Protected Overrides Sub LoadContent()
-
     End Sub
 
     Protected Overrides Sub UnloadContent()
@@ -130,6 +137,14 @@ Public Class GameController
     Private Sub DGame_Deactivated(sender As Object, e As System.EventArgs) Handles Me.Deactivated
         NetworkPlayer.ScreenRegionChanged()
     End Sub
+
+    Public Function GetGame() As Game Implements IGame.GetGame
+        Return Me
+    End Function
+
+    Public Function GetComponentManager() As ComponentManager Implements IGame.GetComponentManager
+        Return _componentManager
+    End Function
 
     Private Shared GameHacked As Boolean = False 'Temp value that stores if a hacking file was detected at game start.
 

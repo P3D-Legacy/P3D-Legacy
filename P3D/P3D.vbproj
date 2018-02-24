@@ -11044,6 +11044,24 @@
     <Content Include="Content\Data\smashrockitems.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\GUI\MainMenu\clouds.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GUI\MainMenu\ground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GUI\MainMenu\hooh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GUI\MainMenu\hoohParticles.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GUI\MainMenu\lugia.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\GUI\MainMenu\lugiaParticle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Localization\Tokens_de.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -27452,11 +27470,19 @@
     <Compile Include="Screens\MainMenu\IntroScreen.vb" />
     <Compile Include="Screens\MainMenu\JoinServerScreen.vb" />
     <Compile Include="Screens\MainMenu\MainMenuCamera.vb" />
+    <Compile Include="Screens\MainMenu\MainMenuEntity.vb" />
     <Compile Include="Screens\MainMenu\NewGameCamera.vb" />
     <Compile Include="Screens\MainMenu\NewNewGameScreen.vb" />
     <Compile Include="Screens\MainMenu\OfflineGameWarningScreen.vb" />
     <Compile Include="Screens\MainMenu\PauseScreen.vb" />
     <Compile Include="Screens\MainMenu\PressStartScreen.vb" />
+    <Compile Include="Screens\MainMenu\Scene\Clouds.vb" />
+    <Compile Include="Screens\MainMenu\Scene\Ground.vb" />
+    <Compile Include="Screens\MainMenu\Scene\LugiaParticle.vb" />
+    <Compile Include="Screens\MainMenu\Scene\Lugia.vb" />
+    <Compile Include="Screens\MainMenu\Scene\HoOh.vb" />
+    <Compile Include="Screens\MainMenu\Scene\HoOhParticle.vb" />
+    <Compile Include="Screens\MainMenu\Scene\MainMenuCamera.vb" />
     <Compile Include="Screens\MainMenu\SplashScreen.vb" />
     <Compile Include="Screens\MapPreview\MapPreviewCamera.vb" />
     <Compile Include="Screens\MapPreview\MapPreviewScreen.vb" />
@@ -27556,6 +27582,12 @@
     <Compile Include="World\SkyDome.vb" />
     <Compile Include="World\Terrain.vb" />
     <Compile Include="World\World.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lib\game-dev-common\src\GameDevCommon\GameDevCommon.csproj">
+      <Project>{087378ee-7591-47ce-979f-6824fc0606ef}</Project>
+      <Name>GameDevCommon</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Condition=" '$(Configuration)' != 'DebugNoContent' Or '$(Configuration)' != 'ReleaseNoContent' " Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

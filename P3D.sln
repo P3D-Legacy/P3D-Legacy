@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "P3D", "P3D\P3D.vbproj", "{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TearUp", "lib\tools\TearUp\TearUp.csproj", "{417FEA8A-9334-4938-9370-519EF1551B05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TearDown", "lib\tools\TearDown\TearDown.csproj", "{0AE314A4-6005-48C7-BCD4-33E4C5057CFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDevCommon", "lib\game-dev-common\src\GameDevCommon\GameDevCommon.csproj", "{087378EE-7591-47CE-979F-6824FC0606EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,14 @@ Global
 		{0AE314A4-6005-48C7-BCD4-33E4C5057CFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AE314A4-6005-48C7-BCD4-33E4C5057CFD}.ReleaseNoContent|Any CPU.ActiveCfg = Release|Any CPU
 		{0AE314A4-6005-48C7-BCD4-33E4C5057CFD}.ReleaseNoContent|Any CPU.Build.0 = Release|Any CPU
+		{087378EE-7591-47CE-979F-6824FC0606EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{087378EE-7591-47CE-979F-6824FC0606EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{087378EE-7591-47CE-979F-6824FC0606EF}.DebugNoContent|Any CPU.ActiveCfg = Debug|Any CPU
+		{087378EE-7591-47CE-979F-6824FC0606EF}.DebugNoContent|Any CPU.Build.0 = Debug|Any CPU
+		{087378EE-7591-47CE-979F-6824FC0606EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{087378EE-7591-47CE-979F-6824FC0606EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{087378EE-7591-47CE-979F-6824FC0606EF}.ReleaseNoContent|Any CPU.ActiveCfg = Release|Any CPU
+		{087378EE-7591-47CE-979F-6824FC0606EF}.ReleaseNoContent|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +96,7 @@ Global
 		{3B2AEA8E-4384-48D8-B26B-2C67466A1352} = {7877D883-AA51-4C27-ADA5-C4F85F86F4EE}
 		{417FEA8A-9334-4938-9370-519EF1551B05} = {7877D883-AA51-4C27-ADA5-C4F85F86F4EE}
 		{0AE314A4-6005-48C7-BCD4-33E4C5057CFD} = {7877D883-AA51-4C27-ADA5-C4F85F86F4EE}
+		{087378EE-7591-47CE-979F-6824FC0606EF} = {3CE8099E-129D-40F9-8D23-005DFF32E2A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FE3951F-DE18-41FF-A035-32DF597A91F2}

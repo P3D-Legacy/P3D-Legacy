@@ -1,4 +1,7 @@
-﻿''' <summary>
+﻿Imports GameDevCommon.Drawing
+Imports P3D.Screens.MainMenu
+
+''' <summary>
 ''' The "Press {BUTTON} to start" screen.
 ''' </summary>
 Public Class PressStartScreen
@@ -9,8 +12,6 @@ Public Class PressStartScreen
     Private _introDelay As Single = 4.0F
     Private _logoFade As Single = 1.0F
 
-    'Private _mainMenuMaps As DataModel.Json.Game.MainMenuMapModel()
-
     Private _logoTexture As Texture2D = Nothing
     Private _shineTexture As Texture2D = Nothing
 
@@ -19,6 +20,13 @@ Public Class PressStartScreen
     Private _backgroundRenderer As SpriteBatch
 
     Private target As RenderTarget2D
+
+    Private _shader As GameDevCommon.Rendering.Shader
+    Private _entities As List(Of MainMenuEntity) = New List(Of MainMenuEntity)()
+    Private _camera As Screens.MainMenu.Scene.MainMenuCamera
+    Private _fromColor As Color
+    Private _toColor As Color
+    Private _textColor As Color
 
     Dim tempF As Single = 0F
     Dim tempG As Single = 0F
@@ -35,17 +43,7 @@ Public Class PressStartScreen
 
         GameModeManager.SetGameModePointer("Kolben")
 
-        Effect = New BasicEffect(GraphicsDevice)
-        Effect.FogEnabled = True
-
-        SkyDome = New SkyDome()
-        Camera = New MainMenuCamera()
-
         Core.Player.Skin = "Hilbert"
-        World.IsMainMenu = True
-        Level = New Level()
-        ChangeLevel()
-        Level.World.Initialize(Level.EnvironmentType, Level.WeatherType)
 
         If IO.Directory.Exists(GameController.GamePath & "\Save\") = False Then
             IO.Directory.CreateDirectory(GameController.GamePath & "\Save\")
@@ -60,20 +58,71 @@ Public Class PressStartScreen
         _shineRenderer = New SpriteBatch(GraphicsDevice)
         _backgroundRenderer = New SpriteBatch(GraphicsDevice)
 
-        target = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+        target = New RenderTarget2D(GraphicsDevice, 1200, 680, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
 
         'crappy fix
         Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin = ""
         Core.Player.Unload()
+
+        _shader = New GameDevCommon.Rendering.BasicShader()
+        CType(_shader.Effect, BasicEffect).LightingEnabled = False
+        _camera = New Scene.MainMenuCamera()
+
+        Dim dayTime = World.GetTime
+
+        Select Case dayTime
+            Case World.DayTime.Morning
+                _fromColor = New Color(246, 170, 109)
+                _toColor = New Color(248, 248, 248)
+                _textColor = Color.Black
+            Case World.DayTime.Day
+                _fromColor = New Color(120, 160, 248)
+                _toColor = New Color(248, 248, 248)
+                _textColor = Color.Black
+            Case World.DayTime.Evening
+                _fromColor = New Color(32, 64, 168)
+                _toColor = New Color(40, 80, 88)
+                _textColor = Color.White
+            Case World.DayTime.Night
+                _fromColor = New Color(32, 64, 168)
+                _toColor = New Color(0, 0, 0)
+                _textColor = Color.White
+        End Select
+
+        If dayTime = World.DayTime.Day OrElse dayTime = World.DayTime.Morning Then
+            Dim clouds = New Scene.Clouds()
+            clouds.LoadContent()
+            _entities.Add(clouds)
+
+            Dim hooh = New Scene.HoOh(_entities)
+            hooh.LoadContent()
+            _entities.Add(hooh)
+        Else
+            Dim ground = New Scene.Ground()
+            ground.LoadContent()
+            _entities.Add(ground)
+
+            Dim lugia = New Scene.Lugia(_entities)
+            lugia.LoadContent()
+            _entities.Add(lugia)
+        End If
+
     End Sub
 
     Public Overrides Sub Update()
-        Lighting.UpdateLighting(Effect)
 
-        Camera.Update()
-        Level.Update()
-        SkyDome.Update()
-        Level.World.Initialize(Level.EnvironmentType, Level.WeatherType)
+        For i = 0 To _entities.Count - 1
+            If i < _entities.Count Then
+                _entities(i).Update()
+                If _entities(i).ToBeRemoved Then
+                    _entities(i).Dispose()
+                    _entities.RemoveAt(i)
+                    i -= 1
+                End If
+            End If
+        Next
+
+        _camera.Update()
 
         If _introDelay > 0F Then
             _introDelay -= 0.1F
@@ -112,20 +161,38 @@ Public Class PressStartScreen
 
     Public Overrides Sub Draw()
         If _blurHandler Is Nothing Then
-            _blurHandler = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
+            _blurHandler = New Resources.Blur.BlurHandler(target.Width, target.Height)
         End If
 
         GraphicsDevice.SetRenderTarget(target)
-        GraphicsDevice.Clear(BackgroundColor)
+        GraphicsDevice.ResetFull()
+        GraphicsDevice.Clear(_fromColor)
 
-        SkyDome.Draw(45.0F)
-        Level.Draw()
+
+        ' DRAW HERE
+        _backgroundRenderer.Begin()
+
+        _backgroundRenderer.DrawGradient(New Rectangle(0, CType(target.Height / 2, Integer), target.Width, CType(target.Height / 4, Integer)),
+                                         _fromColor, _toColor, False, 1, 10)
+        _backgroundRenderer.DrawRectangle(New Rectangle(0, CType(target.Height / 4 * 3, Integer), target.Width, CType(target.Height / 4, Integer)),
+                                          _toColor)
+
+        _backgroundRenderer.End()
+
+        GraphicsDevice.ResetFull()
+        _shader.Prepare(_camera)
+        For Each entity In _entities
+            _shader.Render(entity)
+        Next
 
         GraphicsDevice.SetRenderTarget(Nothing)
+
 
         _backgroundRenderer.Begin()
         Dim blurred = _blurHandler.Perform(target)
         _backgroundRenderer.Draw(blurred, New Rectangle(0, 0, windowSize.Width, windowSize.Height), Color.White)
+
+        '_backgroundRenderer.Draw(target, New Rectangle(0, 0, windowSize.Width, windowSize.Height), Color.White)
         _backgroundRenderer.End()
 
         If IsCurrentScreen() Then
@@ -135,7 +202,7 @@ Public Class PressStartScreen
         End If
         _shineRenderer.Begin(SpriteSortMode.Texture, BlendState.Additive)
 
-        _logoRenderer.Draw(_logoTexture, New Rectangle(CInt(ScreenSize.Width / 2) - 400, CInt(160 * _fadeIn), 768, 282), New Color(255, 255, 255, CInt(255 * _logoFade)))
+        _logoRenderer.Draw(_logoTexture, New Rectangle(CInt(ScreenSize.Width / 2) - 350, CInt(160 * _fadeIn), 700, 300), New Color(255, 255, 255, CInt(255 * _logoFade)))
         _shineRenderer.Draw(_shineTexture, New Rectangle(CInt(ScreenSize.Width / 2 - 250 + Math.Sin(tempF) * 240.0F), CInt(-100 + Math.Sin(tempG) * 10.0F + CInt(160 * _fadeIn)), 512, 512), New Color(255, 255, 255, CInt(255 * _logoFade)))
 
         If _fadeIn = 0F Then
@@ -150,11 +217,11 @@ Public Class PressStartScreen
                 Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
 
                 GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F,
-                                                                                       windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
+                                                                                       windowSize.Height - textSize.Y - 50), _textColor)
 
                 If ControllerHandler.IsConnected() Then
                     SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString("Press ").X),
-                                                                                                                   CInt(windowSize.Height / 2 - textSize.Y / 2 + 98), 40, 40), Color.White)
+                                                                                                                   CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
                 End If
             End If
         End If
@@ -163,20 +230,6 @@ Public Class PressStartScreen
         _shineRenderer.End()
 
         Canvas.DrawRectangle(windowSize, New Color(0, 0, 0, CInt(255 * _fadeIn)))
-    End Sub
-
-    Private Sub ChangeLevel()
-        Dim levelCount As Integer = 0
-        For Each levelPath As String In System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Data\maps\mainmenu\")
-            Dim levelFile As String = System.IO.Path.GetFileName(levelPath)
-            If levelFile.StartsWith("mainmenu") = True And levelFile.EndsWith(".dat") = True Then
-                levelCount += 1
-            End If
-        Next
-
-        Dim levelID As Integer = Core.Random.Next(0, levelCount)
-
-        Level.Load("mainmenu\mainmenu" & levelID & ".dat")
     End Sub
 
     Public Overrides Sub ChangeTo()

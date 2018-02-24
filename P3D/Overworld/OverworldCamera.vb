@@ -528,7 +528,7 @@ Public Class OverworldCamera
         If Core.GameOptions.ViewBobbing = False Then
             Return 0.0F
         End If
-        If Screen.Level.Riding = True Then
+        If Screen.Level?.Riding = True Then
             Return CSng(Math.Sin(_bobbingTemp) * 0.012)
         Else
             If Core.Player.IsRunning() = True Then

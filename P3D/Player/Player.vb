@@ -723,7 +723,9 @@
             Data = IO.File.ReadAllText(GameController.GamePath & "\Save\" & filePrefix & "\Player.dat").SplitAtNewline()
         End If
 
-        Screen.Level.Riding = False
+        If Not Screen.Level Is Nothing Then
+            Screen.Level.Riding = False
+        End If
 
         For Each Line As String In Data
             If Line <> "" And Line.Contains("|") = True Then
@@ -848,7 +850,6 @@
                         TempSurfSkin = Value
                     Case "surfing"
                         startSurfing = CBool(Value)
-                        Screen.Level.Surfing = CBool(Value)
                     Case "bp"
                         BP = CInt(Value)
                     Case "gtsstars"
@@ -867,7 +868,7 @@
             End If
         Next
 
-        If IsGameJoltSave = True And Screen.Level.Surfing = False Then
+        If IsGameJoltSave = True And startSurfing = False Then
             Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
             Select Case GameJoltSave.Gender
                 Case "0"
