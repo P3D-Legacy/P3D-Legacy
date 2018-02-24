@@ -9,6 +9,7 @@ Namespace Screens.MainMenu.Scene
         Inherits MainMenuEntity
 
         Private Shared _random As Random = New Random()
+        Private Shared _frames As Integer() = {0, 0, 0, 1, 2, 3}
 
         Private _entities As List(Of MainMenuEntity)
         Private _textures As Texture2D()
@@ -47,11 +48,11 @@ Namespace Screens.MainMenu.Scene
             If _animationDelay = 0 Then
                 _animationDelay = 12
                 _textureIndex += 1
-                If _textureIndex = _textures.Length Then
+                If _textureIndex = _frames.Length Then
                     _textureIndex = 0
                 End If
 
-                Texture = _textures(_textureIndex)
+                Texture = _textures(_frames(_textureIndex))
 
                 For i = 0 To _random.Next(1, 4)
 
@@ -61,7 +62,7 @@ Namespace Screens.MainMenu.Scene
 
                 Next
             End If
-
+            
             CreateWorld()
             MyBase.Update()
         End Sub

@@ -31,7 +31,7 @@ Namespace Screens.MainMenu.Scene
 
             Position.X += 1.2F
             Position.Y += CType(Math.Sin(_phase), Single)
-            Alpha -= 0.01F
+            Alpha -= 0.018F
 
             If Alpha <= 0F Then
                 ToBeRemoved = True
