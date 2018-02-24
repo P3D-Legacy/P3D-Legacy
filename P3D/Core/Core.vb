@@ -114,7 +114,6 @@
         KeyBindings.LoadKeys()
         TextureManager.InitializeTextures()
         MusicManager.Setup()
-        MusicManager.LoadMusic(False)
         Logger.Debug("Loaded content.")
 
         Logger.Debug("Validated files. Result: " & Security.FileValidation.IsValid(True).ToString())

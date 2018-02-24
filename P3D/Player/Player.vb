@@ -518,9 +518,6 @@
 
         Localization.ReloadGameModeTokens()
 
-        If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
-            MusicManager.LoadMusic(True)
-        End If
         SmashRock.Load()
         Badge.Load()
         Pokedex.Load()

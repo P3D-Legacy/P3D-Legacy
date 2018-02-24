@@ -36,7 +36,7 @@
 
             Core.Player.Unload()
 
-            MusicManager.StopMusic()
+            MusicManager.PlayNoMusic()
 
             'Initialize the World information with the loaded level.
             Level.World.Initialize(Level.EnvironmentType, Level.WeatherType)

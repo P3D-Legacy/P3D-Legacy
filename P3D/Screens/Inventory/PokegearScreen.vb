@@ -1862,7 +1862,7 @@
             CurrentSong = ""
             For Each station As RadioStation In Me.RadioStations
                 If station.IsInterfering(RadioCursor) = True Then
-                    MusicManager.PlayMusic(station.Music, True)
+                    MusicManager.Play(station.Music, True)
                     CurrentSong = station.Music
                     CurrentStation = station
                     Exit For
@@ -1870,7 +1870,7 @@
             Next
 
             If CurrentSong = "" Then
-                MusicManager.PlayMusic("nomusic", False)
+                MusicManager.PlayNoMusic()
                 CurrentStation = Nothing
             End If
         End Sub

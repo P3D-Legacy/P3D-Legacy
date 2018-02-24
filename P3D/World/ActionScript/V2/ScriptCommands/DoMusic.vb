@@ -12,24 +12,24 @@
 
             Select Case command.ToLower()
                 Case "play"
-                    MusicManager.PlayMusic(argument, True)
+                    MusicManager.Play(argument, True)
 
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         Screen.Level.MusicLoop = argument
                     End If
                 Case "forceplay"
-                    MusicManager.IgnoreLastSong()
-                    MusicManager.PlayMusic(argument)
+                    MusicManager.ClearCurrentlyPlaying()
+                    MusicManager.Play(argument)
                 Case "setmusicloop"
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         Screen.Level.MusicLoop = argument
                     End If
                 Case "stop"
-                    MusicManager.StopMusic()
+                    MusicManager.PlayNoMusic()
                 Case "pause"
                     MusicManager.Pause()
                 Case "resume"
-                    MusicManager.ResumeMusic()
+                    MusicManager.ResumePlayback()
             End Select
 
             IsReady = True

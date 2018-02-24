@@ -18,7 +18,7 @@
                             CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = True
 
                             If t.GetInSightMusic() <> "" And t.GetInSightMusic() <> "nomusic" Then
-                                MusicManager.PlayMusic(t.GetInSightMusic(), True, 0.0F, 0.0F)
+                                MusicManager.Play(t.GetInSightMusic(), True, 0.0F)
                             End If
 
                             If t.IntroMessage <> "" Then

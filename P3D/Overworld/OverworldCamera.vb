@@ -501,7 +501,7 @@ Public Class OverworldCamera
     End Sub
 
     Private Sub ClampPitch()
-        Pitch = MathHelper.Clamp(Pitch, -1.5f, 1.5f)
+        Pitch = MathHelper.Clamp(Pitch, -1.5F, 1.5F)
     End Sub
 
     'Changes the camera's pitch so you can see the stuff that is in front of you. Used when textboxes appear.
@@ -806,7 +806,7 @@ Public Class OverworldCamera
                 Screen.Level.OverworldPokemon.Visible = False
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                    MusicManager.PlayMusic(Screen.Level.MusicLoop)
+                    MusicManager.Play(Screen.Level.MusicLoop)
                 End If
             End If
         End If

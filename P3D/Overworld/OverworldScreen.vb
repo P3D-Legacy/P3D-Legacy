@@ -118,12 +118,12 @@ Public Class OverworldScreen
 
         'Play music depending on the player state in the level (surfing and riding):
         If Level.Surfing = True Then
-            MusicManager.PlayMusic("surf", True) 'Play "surf" when player is surfing.
+            MusicManager.Play("surf", True) 'Play "surf" when player is surfing.
         Else
             If Level.Riding = True Then
-                MusicManager.PlayMusic("ride", True) 'Play "ride" when player is riding.
+                MusicManager.Play("ride", True) 'Play "ride" when player is riding.
             Else
-                MusicManager.PlayMusic(Level.MusicLoop, True) 'Play default MusicLoop.
+                MusicManager.Play(Level.MusicLoop, True) 'Play default MusicLoop.
             End If
         End If
 
@@ -418,7 +418,7 @@ Public Class OverworldScreen
                 Level.IsRadioOn = False
             End If
 
-            MusicManager.PlayMusic(theme, True)
+            MusicManager.Play(theme, True)
         End If
     End Sub
 

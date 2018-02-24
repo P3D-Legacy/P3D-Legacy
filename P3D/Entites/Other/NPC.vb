@@ -377,7 +377,7 @@
 
                                 CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = True
                                 If InSightMusic <> "nomusic" And InSightMusic <> "" Then
-                                    MusicManager.PlayMusic(InSightMusic, True, 0.0F, 0.0F)
+                                    MusicManager.Play(InSightMusic, True, 0.0F)
                                 End If
                                 Screen.Camera.StopMovement()
                                 Me.Movement = Movements.Still

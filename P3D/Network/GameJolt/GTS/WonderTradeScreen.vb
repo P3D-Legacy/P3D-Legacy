@@ -231,7 +231,7 @@
                         ownPokemonPosition = Core.windowSize.Height
                         tState = 0
                         messageDelay = 220
-                        MusicManager.PlayMusic("evolution", True)
+                        MusicManager.Play("evolution", True)
                     End If
             End Select
         End Sub
@@ -409,7 +409,7 @@
             Me.ScreenState = ScreenStates.Stopped
             Me.DisconnectMessage = "Trade successful. Press any button to exit."
 
-            MusicManager.PlayMusic("gts", True)
+            MusicManager.Play("gts", True)
 
             If Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, "") = True Then
                 Core.SetScreen(New EvolutionScreen(Me, {Core.Player.Pokemons.Count - 1}.ToList(), Me.SelectedPokemon.Number.ToString(), EvolutionCondition.EvolutionTrigger.Trading))
@@ -425,7 +425,7 @@
         End Sub
 
         Public Overrides Sub ChangeTo()
-            MusicManager.PlayMusic("gts", True)
+            MusicManager.Play("gts", True)
         End Sub
 
     End Class

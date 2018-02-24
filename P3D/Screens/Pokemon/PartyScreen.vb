@@ -923,7 +923,7 @@ Public Class PartyScreen
             End If
 
             If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                MusicManager.PlayMusic(Level.MusicLoop)
+                MusicManager.Play(Level.MusicLoop)
             End If
         Else
             If Screen.Level.Surfing = False And Screen.Camera.IsMoving() = False And Screen.Camera.Turning = False And Level.CanRide() = True Then
@@ -952,7 +952,7 @@ Public Class PartyScreen
                 PlayerStatistics.Track("Ride used", 1)
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                    MusicManager.PlayMusic("ride", True)
+                    MusicManager.Play("ride", True)
                 End If
             Else
                 TextBox.Show("You cannot Ride here!", {}, True, False)

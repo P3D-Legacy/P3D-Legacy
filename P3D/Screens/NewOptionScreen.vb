@@ -460,7 +460,7 @@
         C.RotationSpeed = CSng(Me.MouseSpeed / 10000)
         MusicManager.MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
-        MusicManager.Mute(CBool(Me.Muted))
+        MusicManager.Muted = CBool(Me.Muted)
         SoundManager.Muted = CBool(Me.Muted)
         Core.GameOptions.RenderDistance = Me.RenderDistance
         Core.GameOptions.GraphicStyle = Me.GraphicStyle
@@ -644,7 +644,7 @@
     End Sub
 
     Private Sub ApplyMusicChange()
-        MusicManager.Mute(CBool(Me.Muted))
+        MusicManager.Muted = CBool(Me.Muted)
         SoundManager.Muted = CBool(Me.Muted)
         MusicManager.MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)

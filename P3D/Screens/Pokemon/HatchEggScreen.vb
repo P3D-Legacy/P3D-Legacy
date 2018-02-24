@@ -81,7 +81,7 @@
                 If size < 3.5F Then
                     size += 0.08F
                 Else
-                    MusicManager.PlayMusic("wild_defeat")
+                    MusicManager.Play("wild_defeat")
                     cPokemon.PlayCry()
                     SoundManager.PlaySound("success", True)
                     Stage = 7

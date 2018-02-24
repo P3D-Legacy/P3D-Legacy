@@ -106,7 +106,7 @@ namespace TearDown
                 var projFile = Path.Combine(p3dFolder, "p3d.vbproj");
                 var contentFolder = Path.Combine(p3dFolder, "Content");
                 var contentUri = new Uri(contentFolder);
-                var files = GetFiles(contentFolder, new[] { "*.dat", "*.poke", "*.trainer", "*.png", "*.ogg", "*.wav" }, SearchOption.AllDirectories);
+                var files = GetFiles(contentFolder, new[] { "*.dat", "*.poke", "*.trainer", "*.png", "*.mp3", "*.wav" }, SearchOption.AllDirectories);
 
                 var projContent = File.ReadAllText(projFile);
                 var startIndex = projContent.IndexOf(PROJECT_HOOK);

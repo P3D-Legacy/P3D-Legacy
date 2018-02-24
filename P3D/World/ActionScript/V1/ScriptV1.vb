@@ -888,7 +888,7 @@
     End Sub
 
     Private Sub DoMusic()
-        MusicManager.PlayMusic(Me.Value, True)
+        MusicManager.Play(Me.Value, True)
 
         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             Screen.Level.MusicLoop = Me.Value
@@ -1019,7 +1019,7 @@
         If t.IsBeaten() = False Then
             If started = False Then
                 CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = True
-                MusicManager.PlayMusic(t.GetInSightMusic(), True)
+                MusicManager.Play(t.GetInSightMusic(), True)
                 If t.IntroMessage <> "" Then
                     Screen.TextBox.reDelay = 0.0F
                     Screen.TextBox.Show(t.IntroMessage, {})

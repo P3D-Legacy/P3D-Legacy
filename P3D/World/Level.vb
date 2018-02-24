@@ -985,16 +985,16 @@ Public Class Level
 
             ' Play the correct music track:
             If IsRadioOn = True AndAlso GameJolt.PokegearScreen.StationCanPlay(Me.SelectedRadioStation) = True Then
-                MusicManager.PlayMusic(SelectedRadioStation.Music, True)
+                MusicManager.Play(SelectedRadioStation.Music, True)
             Else
                 IsRadioOn = False
                 If Me.Surfing = True Then
-                    MusicManager.PlayMusic("surf", True)
+                    MusicManager.Play("surf", True)
                 Else
                     If Me.Riding = True Then
-                        MusicManager.PlayMusic("ride", True)
+                        MusicManager.Play("ride", True)
                     Else
-                        MusicManager.PlayMusic(MusicLoop, True)
+                        MusicManager.Play(MusicLoop, True)
                     End If
                 End If
             End If

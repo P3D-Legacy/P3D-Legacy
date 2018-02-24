@@ -153,7 +153,7 @@
         End If
     End Sub
 
-    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) as Single
+    Protected Overrides Function CalculateCameraDistance(CPosition As Vector3) As Single
         Return MyBase.CalculateCameraDistance(CPosition) - 0.2F
     End Function
 
@@ -241,7 +241,7 @@
                 SoundManager.PlayPokemonCry(pokemonNumber)
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
-                    MusicManager.PlayMusic("surf", True)
+                    MusicManager.Play("surf", True)
                 End If
             End With
         End If

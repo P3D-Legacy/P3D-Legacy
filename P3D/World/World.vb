@@ -4,6 +4,8 @@ Public Class World
 
     Private Shared _regionWeather As Weathers = Weathers.Clear
     Private Shared _regionWeatherSet As Boolean = False
+
+    Public Shared IsMainMenu As Boolean = False
     Public Shared IsAurora As Boolean = False
 
     Public Enum Seasons As Integer
@@ -50,6 +52,10 @@ Public Class World
 
     Public Shared ReadOnly Property CurrentSeason() As Seasons
         Get
+            If IsMainMenu Then
+                Return Seasons.Summer
+            End If
+
             If NeedServerObject() = True Then
                 Return ServerSeason
             End If
@@ -69,6 +75,10 @@ Public Class World
 
     Public Shared ReadOnly Property GetTime() As DayTime
         Get
+            If IsMainMenu Then
+                Return DayTime.Day
+            End If
+
             Dim time As DayTime = DayTime.Day
 
             Dim Hour As Integer = My.Computer.Clock.LocalTime.Hour
@@ -363,6 +373,10 @@ endsub:
     End Sub
 
     Private Shared Function GetRegionWeather(ByVal Season As Seasons) As Weathers
+        If IsMainMenu Then
+            Return Weathers.Clear
+        End If
+
         Dim r As Integer = Core.Random.Next(0, 100)
 
         Select Case Season
@@ -411,6 +425,10 @@ endsub:
     End Sub
 
     Public Shared Function GetWeatherFromWeatherType(ByVal WeatherType As Integer) As Weathers
+        If IsMainMenu Then
+            Return Weathers.Clear
+        End If
+
         Select Case WeatherType
             Case 0 ' Region Weather
                 Return World.GetCurrentRegionWeather()
@@ -439,6 +457,10 @@ endsub:
     End Function
 
     Public Shared Function GetWeatherTypeFromWeather(ByVal Weather As Weathers) As Integer
+        If IsMainMenu Then
+            Return 1
+        End If
+
         Select Case Weather
             Case Weathers.Clear
                 Return 1

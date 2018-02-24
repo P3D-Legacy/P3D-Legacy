@@ -42,6 +42,7 @@ Public Class PressStartScreen
         Camera = New MainMenuCamera()
 
         Core.Player.Skin = "Hilbert"
+        World.IsMainMenu = True
         Level = New Level()
         ChangeLevel()
         Level.World.Initialize(Level.EnvironmentType, Level.WeatherType)
@@ -185,7 +186,7 @@ Public Class PressStartScreen
         TextBox.CanProceed = True
         OverworldScreen.FadeValue = 0
 
-        MusicManager.PlayMusic("title", True, 0.0F, 0.0F)
+        MusicManager.Play("title", True, 0.0F)
     End Sub
 
 End Class
@@ -803,6 +804,7 @@ Public Class NewMainMenuScreen
                 End If
             End If
         End Sub
+
         Public Sub UnSelectProfile()
             If IsGameJolt AndAlso _loaded Then
                 _loaded = False
@@ -813,8 +815,10 @@ Public Class NewMainMenuScreen
                 GameJolt.API.LoggedIn = False
             End If
         End Sub
+
         Public Sub SelectProfile()
             If _isNewGameButton Then
+                World.IsMainMenu = False
                 If GameModeManager.GameModeCount = 1 Then
                     'There's only the default GameMode available, so just load that one:
                     GameModeManager.SetGameModePointer("Kolben")
@@ -829,6 +833,8 @@ Public Class NewMainMenuScreen
                 Else
                     If _gameModeExists Then
                         GameModeManager.SetGameModePointer(_gameMode)
+
+                        World.IsMainMenu = False
 
                         If _isGameJolt Then
                             Core.Player.IsGameJoltSave = True

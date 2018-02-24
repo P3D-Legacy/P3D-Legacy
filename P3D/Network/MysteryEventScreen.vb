@@ -201,7 +201,7 @@
     End Sub
 
     Public Overrides Sub ChangeTo()
-        MusicManager.PlayMusic("gts", True)
+        MusicManager.Play("gts", True)
     End Sub
 
     Public Shared Sub ClearActivatedEvents()

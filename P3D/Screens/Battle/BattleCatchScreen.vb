@@ -210,7 +210,7 @@
         p.ResetTemp()
         Dim s As String = "Gotcha!~" & p.GetName() & " was caught!"
 
-        If Core.Player.hasPokedex = True Then
+        If Core.Player.HasPokedex = True Then
             If Pokedex.GetEntryType(Core.Player.PokedexData, p.Number) < 2 Then
                 s &= "*" & p.GetName() & "'s data was~added to the Pokédex."
                 showPokedexEntry = True
@@ -227,7 +227,7 @@
 
         p.SetCatchInfos(Me.Ball, "caught at")
 
-        MusicManager.PlayMusic("wild_defeat", True, 0.0F, 0.0F)
+        MusicManager.Play("wild_defeat", True, 0.0F)
         SoundManager.PlaySound("success", True)
         TextBox.Show(s, {}, False, False)
     End Sub

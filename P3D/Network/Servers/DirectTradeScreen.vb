@@ -32,7 +32,7 @@
         Me.PreScreen = currentScreen
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
 
-        MusicManager.PlayMusic("gts", True)
+        MusicManager.Play("gts", True)
 
         Me.MouseVisible = True
         Me.CanBePaused = False
@@ -406,7 +406,7 @@
         ownPokemonPosition = Core.windowSize.Height
         tState = 0
         messageDelay = 220
-        MusicManager.PlayMusic("evolution", True)
+        MusicManager.Play("evolution", True)
         Me.CanChat = False
         PlayerStatistics.Track("Trades", 1)
     End Sub
@@ -515,7 +515,7 @@
         SentTradeOffer = False
         ReceivedTradeOffer = False
 
-        MusicManager.PlayMusic("gts", True)
+        MusicManager.Play("gts", True)
 
         If Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, "") = True Then
             Core.SetScreen(New EvolutionScreen(Me, {Core.Player.Pokemons.Count - 1}.ToList(), offeredPokemonID.ToString(), EvolutionCondition.EvolutionTrigger.Trading))

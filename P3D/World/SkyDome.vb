@@ -238,6 +238,9 @@
         If FASTTIMECYCLE = True Then
             Return Hour * 60 + Minute
         Else
+            If World.IsMainMenu Then
+                Return 720
+            End If
             Return World.MinutesOfDay
         End If
     End Function

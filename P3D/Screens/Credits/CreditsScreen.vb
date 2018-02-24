@@ -44,7 +44,7 @@ Public Class CreditsScreen
 
         ExecuteCameraLevel()
 
-        MusicManager.PlayMusic("credits", True)
+        MusicManager.Play("credits", True)
         MediaPlayer.IsRepeating = False
     End Sub
 
@@ -63,7 +63,7 @@ Public Class CreditsScreen
         CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "William Lang", "Benjamin Smith", "Yong Jian Ming", "Jorge Luis Espinoza", """Aragas"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", """Godeken""", "Caleb Coleman", "Robert Nobbmann", "Manuel Lampe", "Miguel Nunez", "Grant Garrett", """Anvil555""", """Omega Ghost"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine", "Jason Houston", """oXFantaXo"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Andrew Leach", "Jason Houston", "Yong Jian Ming", """Aragas""" }.ToList()))
+        CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Andrew Leach", "Jason Houston", "Yong Jian Ming", """Aragas"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Yong Jian Ming", """Aragas"""}.ToList()))
         CreditsPages.Add(New CreditsPage("KolbenWindowWidget Development & LUA Implementation", Color.White, Color.Black, {"Jason Houston"}.ToList()))
         CreditsPages.Add(New CreditsPage("Launcher Programming", Color.White, Color.Black, {"Nils Drescher", "Daniel Billing", """ThuxCommix""", """Aragas"""}.ToList()))

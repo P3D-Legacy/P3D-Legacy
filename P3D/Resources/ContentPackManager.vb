@@ -104,7 +104,7 @@
         TextureReplacements.Clear()
         TextureResolutions.Clear()
         FilesExist.Clear()
-        MusicManager.ReloadMusic()
+        MusicManager.Clear()
         SoundManager.Clear()
         ModelManager.Clear()
         TextureManager.TextureList.Clear()

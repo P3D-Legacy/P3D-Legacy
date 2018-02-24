@@ -24,7 +24,7 @@
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.FullScreenKey) AndAlso Core.CurrentScreen.CanGoFullscreen Then
             ToggleFullScreen()
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.MuteMusicKey) AndAlso Core.CurrentScreen.CanMuteMusic Then
-            MusicManager.Mute(Not MediaPlayer.IsMuted)
+            MusicManager.Muted = Not MediaPlayer.IsMuted
             SoundManager.Muted = MediaPlayer.IsMuted
             Core.GameOptions.SaveOptions()
             Core.CurrentScreen.ToggledMute()
@@ -90,7 +90,7 @@
             If Core.GraphicsManager.IsFullScreen = False Then
                 Dim b As New Drawing.Bitmap(Core.windowSize.Width, Core.windowSize.Height)
                 Using g As Drawing.Graphics = Drawing.Graphics.FromImage(b)
-                    g.CopyFromScreen(Core.window.ClientBounds.X, Core.window.ClientBounds.Y, 0, 0, New Drawing.Size(b.Width, b.Height))
+                    g.CopyFromScreen(Core.Window.ClientBounds.X, Core.Window.ClientBounds.Y, 0, 0, New Drawing.Size(b.Width, b.Height))
                 End Using
 
                 b.Save(GameController.GamePath & "\screenshots\" & fileName, Drawing.Imaging.ImageFormat.Png)

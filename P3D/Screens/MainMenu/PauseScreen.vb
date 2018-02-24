@@ -22,7 +22,7 @@
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
-        If Core.Player.IsGamejoltSave = True Then
+        If Core.Player.IsGameJoltSave = True Then
             Me.canCreateAutosave = False
         Else
             If Not Me.PreScreen Is Nothing Then
@@ -267,11 +267,11 @@
 
     Public Overrides Sub ChangeTo()
         MusicManager.MasterVolume /= 4
-        MusicManager.ForceVolumeUpdate()
+        MusicManager.UpdateVolume()
     End Sub
 
     Public Overrides Sub ChangeFrom()
         MusicManager.MasterVolume *= 4
-        MusicManager.ForceVolumeUpdate()
+        MusicManager.UpdateVolume()
     End Sub
 End Class
