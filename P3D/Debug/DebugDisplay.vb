@@ -15,16 +15,23 @@
                 ActionscriptActive = CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
             End If
 
-            Dim thirdPersonString As String = ""
-            If Screen.Camera.Name = "Overworld" Then
-                Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
-                If c.ThirdPerson = True Then
-                    thirdPersonString = " / " & c.ThirdPersonOffset.ToString()
+            Dim cameraInformation = ""
+            If Not Screen.Camera Is Nothing Then
+
+                Dim thirdPersonString As String = ""
+                If Screen.Camera.Name = "Overworld" Then
+                    Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
+                    If c.ThirdPerson = True Then
+                        thirdPersonString = " / " & c.ThirdPersonOffset.ToString()
+                    End If
                 End If
+
+                cameraInformation = Screen.Camera.Position.ToString() & thirdPersonString & Environment.NewLine & Screen.Camera.Yaw & "; " & Screen.Camera.Pitch & Environment.NewLine
+
             End If
 
             Dim s As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " / FPS: " & Math.Round(Core.GameInstance.FPSMonitor.Value, 0) & isDebugString & Environment.NewLine &
-                Screen.Camera.Position.ToString() & thirdPersonString & Environment.NewLine & Screen.Camera.Yaw & "; " & Screen.Camera.Pitch & Environment.NewLine &
+                cameraInformation &
                 "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & Environment.NewLine &
                 "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString()
 
