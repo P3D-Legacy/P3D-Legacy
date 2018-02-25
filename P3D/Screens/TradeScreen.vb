@@ -693,7 +693,7 @@ Public Class TradeScreen
 
             ' Item preview:
             Core.SpriteBatch.EndBatch()
-            Core.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise)
+            Core.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Box\Sparkle"), New Rectangle(736 + 128, 160 + 128, 256, 256), Nothing, Color.White, BuySellSparkleRotation, New Vector2(128, 128), SpriteEffects.None, 0.0F)
             Core.SpriteBatch.End()
             Core.SpriteBatch.BeginBatch()
@@ -1034,7 +1034,7 @@ Public Class TradeScreen
 
             ' Item preview:
             Core.SpriteBatch.EndBatch()
-            Core.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise)
+            Core.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise)
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Box\Sparkle"), New Rectangle(736 + 128, 160 + 128, 256, 256), Nothing, Color.White, BuySellSparkleRotation, New Vector2(128, 128), SpriteEffects.None, 0.0F)
             Core.SpriteBatch.End()
             Core.SpriteBatch.BeginBatch()
