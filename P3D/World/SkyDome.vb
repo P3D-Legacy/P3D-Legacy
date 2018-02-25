@@ -85,6 +85,7 @@
             Roll = Math.PI
         End If
 
+        Dim previousBlendState = Core.GraphicsDevice.BlendState
         Core.GraphicsDevice.BlendState = BlendState.NonPremultiplied
 
         For Each ModelMesh As ModelMesh In SkydomeModel.Meshes
@@ -124,6 +125,9 @@
 
             ModelMesh.Draw()
         Next
+
+        Core.GraphicsDevice.BlendState = previousBlendState
+
     End Sub
 
     Shared DaycycleTextureData() As Color = Nothing

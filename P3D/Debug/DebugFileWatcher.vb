@@ -20,9 +20,11 @@ Public Class DebugFileWatcher
 
             For Each changedFile In _changedFiles
                 Dim relativeFile = changedFile.Remove(0, projectPath.Length + 1)
-                Dim targetFile = Path.Combine(targetPath, relativeFile)
 
-                File.Copy(changedFile, targetFile, True)
+                If File.Exists(relativeFile) Then
+                    Dim targetFile = Path.Combine(targetPath, relativeFile)
+                    File.Copy(changedFile, targetFile, True)
+                End If
             Next
 
             ' clear the changed files afterwards
