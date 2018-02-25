@@ -700,9 +700,9 @@ Public Class Level
     Public Sub Load(ByVal Levelpath As String)
 
         ' copy all changed files
-#If DEBUG Then
-        DebugFileWatcher.TriggerReload()
-#End If
+        If GameController.IS_DEBUG_ACTIVE Then
+            DebugFileWatcher.TriggerReload()
+        End If
 
         ' Create a parameter array to pass over to the LevelLoader:
         Dim params As New List(Of Object)
