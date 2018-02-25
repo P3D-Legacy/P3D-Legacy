@@ -183,6 +183,11 @@ Public Class MusicManager
         MediaPlayer.Pause()
     End Sub
 
+    Public Shared Sub [Stop]()
+        MediaPlayer.Stop()
+        _isIntroStarted = False
+    End Sub
+
     Public Shared Sub ResumePlayback()
         If Not _currentSong Is Nothing Then
 

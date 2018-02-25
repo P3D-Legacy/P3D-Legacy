@@ -25,7 +25,7 @@
                         Screen.Level.MusicLoop = argument
                     End If
                 Case "stop"
-                    MusicManager.PlayNoMusic()
+                    MusicManager.Stop()
                 Case "pause"
                     MusicManager.Pause()
                 Case "resume"
