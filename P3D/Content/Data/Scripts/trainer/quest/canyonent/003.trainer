@@ -4,7 +4,7 @@ TrainerClass|Pokémon Ranger
 Money|1980
 IntroMessage|This island is too spread out...~It's not easy patrolling~the place.
 OutroMessage|Uh-huh...
-DefeatMessage|Trainers like you from cities,~they sure are tough.*You'll be headed for he Tower,~won't you?
+DefeatMessage|Trainers like you from cities,~they sure are tough.*You'll be headed for the Tower,~won't you?
 TextureID|89
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

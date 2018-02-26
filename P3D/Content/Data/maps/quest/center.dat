@@ -122,7 +122,7 @@ Monitore:
 
 townmap:
 {"Entity"{ENT[{"Scale"{sngArr[0.6,0.6,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[13,0.2,-0.49]}}{"TexturePath"{str[House]}}{"Textures"{recArr[[48,80,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
-{"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[13,0,-1]}}{"TexturePath"{str[Lab]}}{"Textures"{recArr[[16,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[1]}}{"AdditionalValue"{str[johto\newbark\yourroom\townmap]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[13,0,-1]}}{"TexturePath"{str[Lab]}}{"Textures"{recArr[[16,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[1]}}{"AdditionalValue"{str[furniture\barktown\yourroom\townmap]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
 
 NPCs:
 {"NPC"{NPC[{"Position"{sngArr[7,0.2,1]}}{"TextureID"{str[0]}}{"ID"{int[0]}}{"Name"{str[NurseJoy]}}{"Action"{int[0]}}{"AdditionalValue"{str[center_script]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
@@ -130,6 +130,6 @@ NPCs:
 
 {"NPC"{NPC[{"Position"{sngArr[8,0.2,1]}}{"TextureID"{str[[POKEMON|N]113]}}{"ID"{int[4]}}{"Name"{str[Chansey]}}{"Action"{int[1]}}{"AdditionalValue"{str[gts\information]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
-{"NPC"{NPC[{"Position"{sngArr[4,0,3]}}{"TextureID"{str[1]}}{"ID"{int[3]}}{"Name"{str[Lass]}}{"Action"{int[0]}}{"AdditionalValue"{str[If you're confident, you should check out Trainer Tower.]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[2,3,3,1]]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[4,0,3]}}{"TextureID"{str[1]}}{"ID"{int[3]}}{"Name"{str[Lass]}}{"Action"{int[0]}}{"AdditionalValue"{str[If you're confident,~you should check out~Trainer Tower.]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[2,3,3,1]]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[10,0.2,4]}}{"TextureID"{str[32]}}{"ID"{int[5]}}{"Name"{str[Maniac]}}{"Action"{int[0]}}{"AdditionalValue"{str[On this island,~different events occur~depending on connections.*What are those connections?*They are for you to~discover on your own.]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[8,4,2,3]]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[12,0.2,5]}}{"TextureID"{str[32]}}{"ID"{int[5]}}{"Name"{str[Maniac]}}{"Action"{int[0]}}{"AdditionalValue"{str[Did you ride a Seagallop~ferry to get here?*There are at least~ten of those~high-speed ships.*I don't know where~they all go though.]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[8,4,2,3]]}}]}}
