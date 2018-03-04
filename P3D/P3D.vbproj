@@ -25945,11 +25945,20 @@
     <Content Include="Content\Data\maps\structures\stairs\3\e.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\switch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Pokemon3D.ico" />
     <Content Include="credits.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Resources\Blur\BlurHandler.vb" />
+    <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\ceruleancave\mewtwonite_x.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Pokemon\Items\_itemList.txt" />
     <None Include="My Project\app.manifest" />

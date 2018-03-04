@@ -859,6 +859,9 @@ Items:
 {"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[18,3.625,45]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[2,82]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.25,0.25,0.25]}}]}}
 {"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[125,1.625,62]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[1]}}{"AdditionalValue"{str[3,2000]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.25,0.25,0.25]}}]}}
 
+Mega Stone:
+{"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[16,3.8,44]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[2]}}{"AdditionalValue"{str[4,509]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.3,0.3,0.3]}}]}}
+
 Boulder:
 {"EntityField"{ENT[{"Size"{intArr[1,1]}}{"Scale"{sngArr[0.8,0.8,0.8]}}{"EntityID"{str[WallBill]}}{"Position"{sngArr[0,1.85,10]}}{"TexturePath"{str[Gym]}}{"Textures"{recArr[[64,112,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
