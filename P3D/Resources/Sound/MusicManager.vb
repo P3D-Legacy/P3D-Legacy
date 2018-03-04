@@ -117,7 +117,7 @@ Public Class MusicManager
 
                         If _fadeIntoIntro Then
                             _fadeIntoIntro = False
-                            _introEndTime = Date.Now.AddSeconds(-1) + song.Duration
+                            _introEndTime = Date.Now.AddSeconds(0) + song.Duration
                             _isIntroStarted = True
                             MediaPlayer.IsRepeating = False
                         Else
@@ -271,7 +271,7 @@ Public Class MusicManager
                         FadeInto(introSong, fadeSpeed)
                     Else
                         _isIntroStarted = True
-                        _introEndTime = Date.Now.AddSeconds(-1) + introSong.Duration
+                        _introEndTime = Date.Now.AddSeconds(0) + introSong.Duration
                         Play(introSong)
                     End If
 

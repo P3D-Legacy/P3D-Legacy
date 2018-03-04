@@ -505,7 +505,7 @@
         Player.Temp.BeforeBattlePosition = Screen.Camera.Position
         Player.Temp.BeforeBattleLevelFile = Screen.Level.LevelFile
         Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection()
-        MusicManager.Play(MusicLoop)
+        MusicManager.Play(MusicLoop, False, 0F)
         MediaPlayer.IsRepeating = False
 
         If Not MusicManager.CurrentSong Is Nothing Then
