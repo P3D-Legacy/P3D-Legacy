@@ -25952,6 +25952,7 @@
     <Content Include="credits.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
     <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
