@@ -270,6 +270,7 @@ Public Class JoinServerScreen
                 SelectedServer = Me.ServerList(selectIndex)
                 ServerList.Move(selectIndex, 1)
                 SaveServerlist()
+                Core.SetScreen(New OverworldScreen())
                 Core.SetScreen(New ConnectScreen(ConnectScreen.Modes.Connect, "Connecting to server", "Please wait...", Core.CurrentScreen))
             End If
         End If
