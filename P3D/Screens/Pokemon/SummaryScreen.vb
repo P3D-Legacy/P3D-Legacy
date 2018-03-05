@@ -393,7 +393,7 @@
 
             SpriteBatch.DrawString(FontManager.ChatFont, "Catch Method", New Vector2(DeltaX + 360, DeltaY + 366 + 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
-            Dim text As String = .CatchMethod.Replace(.CatchMethod(0), Char.ToUpper(.CatchMethod(0)) & " " & .CatchLocation)
+            Dim text As String = .CatchMethod.Replace(.CatchMethod(0), Char.ToUpper(.CatchMethod(0))) & " " & .CatchLocation
             SpriteBatch.DrawString(FontManager.ChatFont, text.CropStringToWidth(FontManager.ChatFont, 1.0F, 300 - 64), New Vector2(DeltaX + 358, DeltaY + 336 + 128), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
             'EV/IV values
