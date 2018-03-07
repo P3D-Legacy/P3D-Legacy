@@ -526,6 +526,14 @@ Public Class PokemonForms
                     Return New Vector2(29, 2)
             End Select
         End Function
+        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Size(34, 32)
+                Case Else
+                    Return New Size(32, 32)
+            End Select
+        End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
             Select Case AdditionalData.ToLower()
                 Case "mega"
@@ -971,6 +979,14 @@ Public Class PokemonForms
                     Return New Vector2(2, 29)
                 Case Else
                     Return New Vector2(21, 6)
+            End Select
+        End Function
+        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return New Size(34, 32)
+                Case Else
+                    Return New Size(32, 32)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String

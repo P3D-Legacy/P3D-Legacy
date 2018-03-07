@@ -194,6 +194,11 @@
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         Core.Player.Pokemons(Index).IsShiny = isShiny
                     End If
+                Case "setshinyall"
+                    Dim isShiny As Boolean = CBool(argument.GetSplit(0, ","))
+                    For i = 0 To Core.Player.Pokemons.Count - 1
+                        Core.Player.Pokemons(i).IsShiny = isShiny
+                    Next
                 Case "changelevel"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
                     Dim newLevel As Integer = int(argument.GetSplit(1, ","))
@@ -620,7 +625,53 @@
                     Dim PokemonIndex As Integer = int(argument)
                     If Core.Player.Pokemons.Count - 1 >= PokemonIndex Then
                         Core.Player.Pokemons(PokemonIndex).ReloadDefinitions()
+                        Core.Player.Pokemons(PokemonIndex).CalculateStats()
                     End If
+                Case "reloadall"
+                    For i = 0 To Core.Player.Pokemons.Count - 1
+                        Core.Player.Pokemons(i).ReloadDefinitions()
+                        Core.Player.Pokemons(i).CalculateStats()
+                    Next
+
+                ''Just debug testing tools.
+                ''Make sure X and Y megas hold the correct stone. Other megas may have no stone.
+                Case "megaevolve"
+                    Dim p As Pokemon = Core.Player.Pokemons(int(argument))
+                    If p.Item IsNot Nothing Then
+                        Select Case p.Item.ID
+                            Case 516, 529
+                                p.AdditionalData = "mega_x"
+                            Case 517, 530
+                                p.AdditionalData = "mega_y"
+                            Case Else
+                                p.AdditionalData = "mega"
+                        End Select
+                    Else
+                        p.AdditionalData = "mega"
+                    End If
+                    p.ReloadDefinitions()
+                    p.CalculateStats()
+                    p.LoadAltAbility()
+                Case "megaevolveall"
+                    For i = 0 To Core.Player.Pokemons.Count - 1
+                        Dim p As Pokemon = Core.Player.Pokemons(i)
+                        If p.Item IsNot Nothing Then
+                            Select Case p.Item.ID
+                                Case 516, 529
+                                    p.AdditionalData = "mega_x"
+                                Case 517, 530
+                                    p.AdditionalData = "mega_y"
+                                Case Else
+                                    p.AdditionalData = "mega"
+                            End Select
+                        Else
+                            p.AdditionalData = "mega"
+                        End If
+                        p.ReloadDefinitions()
+                        p.CalculateStats()
+                        p.LoadAltAbility()
+                    Next
+
                 Case "clone"
                     Dim PokemonIndex As Integer = int(argument)
 
