@@ -323,7 +323,12 @@ Public Class PartyScreen
             '108 pixels:
             With p
                 Dim hpV As Double = .HP / .MaxHP
-                Dim hpWidth As Integer = CInt((104 * _interfaceFade) * hpV)
+                Dim hpWidth As Integer
+                If _closing Then
+                    hpWidth = CInt(104 * hpV)
+                Else
+                    hpWidth = CInt((104 * _interfaceFade) * hpV)
+                End If
                 Dim hpColorX As Integer = 0
                 If hpV < 0.5F Then
                     hpColorX = 5
