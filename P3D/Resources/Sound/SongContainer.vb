@@ -4,12 +4,13 @@ Public Class SongContainer
 
     Public Song As Song
     Public Name As String
-    Public Duration As TimeSpan
 
     Public Sub New(song As Song, name As String, duration As TimeSpan)
         Me.Song = song
         Me.Name = name
-        Me.Duration = duration
+
+        Dim durationField = song.GetType().GetField("_duration", Reflection.BindingFlags.Instance Or Reflection.BindingFlags.NonPublic)
+        durationField.SetValue(song, duration)
     End Sub
 
 End Class

@@ -509,7 +509,7 @@
         MediaPlayer.IsRepeating = False
 
         If Not MusicManager.CurrentSong Is Nothing Then
-            Me.duration = MusicManager.CurrentSong.Duration
+            Me.duration = MusicManager.CurrentSong.Song.Duration
         Else
             Me.duration = New TimeSpan(0)
         End If

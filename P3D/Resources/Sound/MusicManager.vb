@@ -117,7 +117,7 @@ Public Class MusicManager
 
                         If _fadeIntoIntro Then
                             _fadeIntoIntro = False
-                            _introEndTime = Date.Now.AddSeconds(0) + song.Duration
+                            _introEndTime = Date.Now.AddSeconds(0) + song.Song.Duration
                             _isIntroStarted = True
                             MediaPlayer.IsRepeating = False
                         Else
@@ -194,7 +194,7 @@ Public Class MusicManager
             ' if an intro was playing while the media player was paused, calc its end time
             If MediaPlayer.State = MediaState.Paused AndAlso _isIntroStarted Then
 
-                _introEndTime = Date.Now + (_currentSong.Duration - MediaPlayer.PlayPosition)
+                _introEndTime = Date.Now + (_currentSong.Song.Duration - MediaPlayer.PlayPosition)
 
             End If
 
@@ -271,7 +271,7 @@ Public Class MusicManager
                         FadeInto(introSong, fadeSpeed)
                     Else
                         _isIntroStarted = True
-                        _introEndTime = Date.Now.AddSeconds(0) + introSong.Duration
+                        _introEndTime = Date.Now.AddSeconds(0) + introSong.Song.Duration
                         Play(introSong)
                     End If
 
