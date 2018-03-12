@@ -1559,8 +1559,8 @@
         ''' </summary>
         ''' <param name="Own">If the own Pokémon used the move.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        Public Overridable Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen) As Integer
-            Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen)
+        Public Overridable Function GetDamage(ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "") As Integer
+            Return BattleCalculation.CalculateDamage(Me, Critical, Own, targetPokemon, BattleScreen, ExtraParameter)
         End Function
 
         ''' <summary>

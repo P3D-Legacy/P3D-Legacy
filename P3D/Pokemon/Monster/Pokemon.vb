@@ -1012,10 +1012,7 @@ Public Class Pokemon
             Me._originalMoves = Nothing
         End If
 
-        If Not Me._originalAbility Is Nothing Then
-            Me.Ability = Me._originalAbility
-            Me._originalAbility = Nothing
-        End If
+        Me.Ability = Me._originalAbility
 
         'If Not Me._originalItem Is Nothing Then
         '    Me.Item = P3D.Item.GetItemByID(Me._originalItem.ID)
@@ -1031,11 +1028,12 @@ Public Class Pokemon
     'Just use these subs when doing/reverting mega evolutions.
     Public NormalAbility As Ability = New Abilities.Stench
     Public Sub LoadAltAbility()
-        NormalAbility = Ability
+        NormalAbility = OriginalAbility
         Me.Ability = NewAbilities(0)
     End Sub
     Public Sub RestoreAbility()
         Me.Ability = NormalAbility
+        SetOriginalAbility()
     End Sub
 
 #End Region
@@ -1118,16 +1116,14 @@ Public Class Pokemon
     ''' <summary>
     ''' The Pokémon's original ability.
     ''' </summary>
-    Public Property OriginalAbility() As Ability
+    Public ReadOnly Property OriginalAbility() As Ability
         Get
             Return Me._originalAbility
         End Get
-        Set(value As Ability)
-            If Me._originalAbility Is Nothing Then
-                Me._originalAbility = value
-            End If
-        End Set
     End Property
+    Public Sub SetOriginalAbility()
+        Me._originalAbility = Ability
+    End Sub
 
     ''' <summary>
     ''' The Pokémon's original hold item.
@@ -1579,6 +1575,8 @@ Public Class Pokemon
                     Me.OT = tagValue
                 Case "ability"
                     Me.Ability = P3D.Ability.GetAbilityByID(CInt(tagValue))
+                    'is this relevant for the client in PvP?
+                    SetOriginalAbility()
                     Me.NormalAbility = Ability
                 Case "status"
                     Select Case tagValue
@@ -1767,6 +1765,7 @@ Public Class Pokemon
 
         If Me.Ability Is Nothing Then
             Me.Ability = Me.NewAbilities(Core.Random.Next(0, Me.NewAbilities.Count))
+            SetOriginalAbility()
         End If
 
         Dim Data As String = "{""Pokemon""[" & Me.Number & "]}" &
@@ -1827,8 +1826,10 @@ Public Class Pokemon
             If Screen.Level IsNot Nothing Then
                 If Screen.Level.HiddenAbilityChance > Core.Random.Next(0, 100) And Me.HasHiddenAbility = True Then
                     Me.Ability = P3D.Ability.GetAbilityByID(Me.HiddenAbility.ID)
+                    SetOriginalAbility()
                 Else
                     Me.Ability = P3D.Ability.GetAbilityByID(Me.NewAbilities(Core.Random.Next(0, Me.NewAbilities.Count)).ID)
+                    SetOriginalAbility()
                 End If
             End If
 

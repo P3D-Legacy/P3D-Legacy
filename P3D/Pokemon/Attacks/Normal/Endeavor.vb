@@ -52,10 +52,10 @@ Namespace BattleSystem.Moves.Normal
             '#End
         End Sub
 
-        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen) As Integer
+        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen, Optional ExtraParameter As String = "") As Integer
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim o As Pokemon = BattleScreen.OppPokemon
-            If own = False Then
+            If Own = False Then
                 p = BattleScreen.OppPokemon
                 o = BattleScreen.OwnPokemon
             End If
@@ -68,6 +68,6 @@ Namespace BattleSystem.Moves.Normal
             Return (o.HP - p.HP)
         End Function
 
-	End Class
+    End Class
 
 End Namespace

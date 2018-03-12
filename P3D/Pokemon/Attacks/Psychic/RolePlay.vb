@@ -63,10 +63,6 @@ Namespace BattleSystem.Moves.Psychic
                 op = BattleScreen.OwnPokemon
             End If
 
-            If p.OriginalAbility Is Nothing Then
-                p.OriginalAbility = p.Ability
-            End If
-
             p.Ability = New Ability(op.Ability.ID, op.Ability.Name, op.Ability.Description)
 
             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copies " & op.Ability.Name & " from " & op.GetDisplayName() & "."))

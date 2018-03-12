@@ -79,7 +79,7 @@
             End If
         End Function
 
-        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen) As Integer
+        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen, Optional ExtraParameter As String = "") As Integer
             If Own = True Then
                 Dim damage As Integer = BattleScreen.FieldEffects.OwnBideDamage * 2
                 BattleScreen.FieldEffects.OwnBideDamage = 0

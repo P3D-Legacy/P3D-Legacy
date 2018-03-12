@@ -1696,9 +1696,44 @@
                         Dim Hits As Integer = 0
                         Dim TimesToAttack As Integer = moveUsed.GetTimesToAttack(own, BattleScreen)
 
+                        Dim useParentalBond As Boolean = False
+                        If TimesToAttack = 1 AndAlso p.Ability IsNot Nothing AndAlso p.Ability.Name.ToLower = "parental bond" Then
+                            Dim moveList As String() = {"endeavor",
+                                                        "fling",
+                                                        "explosion",
+                                                        "selfdestruct",
+                                                        "final gambit",
+                                                        "bounce",
+                                                        "dig",
+                                                        "dive",
+                                                        "fly",
+                                                        "freeze shock",
+                                                        "geomancy",
+                                                        "ice burn",
+                                                        "phantom force",
+                                                        "razor wind",
+                                                        "shadow force",
+                                                        "skull bash",
+                                                        "sky attack",
+                                                        "sky drop",
+                                                        "solar beam",
+                                                        "solar blade"
+                                                       }
+                            If Not moveList.Contains(moveUsed.Name.ToLower) Then
+                                useParentalBond = True
+                                TimesToAttack += 1
+                            End If
+                        End If
+
                         For i = 1 To TimesToAttack
                             Dim Critical As Boolean = BattleCalculation.IsCriticalHit(moveUsed, own, BattleScreen)
-                            Dim Damage As Integer = moveUsed.GetDamage(Critical, own, Not own, BattleScreen)
+                            Dim Damage As Integer = 0
+                            If useParentalBond AndAlso i = TimesToAttack Then
+                                Damage = moveUsed.GetDamage(Critical, own, Not own, BattleScreen, "parental bond")
+                            Else
+                                Damage = moveUsed.GetDamage(Critical, own, Not own, BattleScreen)
+                            End If
+
 
                             If effectiveness <> 0 Then
                                 Dim sturdyWorked As Boolean = False
@@ -1861,6 +1896,8 @@
 
                             If effectiveness <> 0 Then
                                 Dim canUseEffect As Boolean = True
+                                Dim canUseRecharge As Boolean = True
+
                                 If op.Ability.Name.ToLower() = "shield dust" AndAlso moveUsed.HasSecondaryEffect = True Then
                                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                                         canUseEffect = False
@@ -1869,6 +1906,39 @@
                                 If p.Ability.Name.ToLower() = "sheer force" AndAlso moveUsed.HasSecondaryEffect = True Then
                                     canUseEffect = False
                                 End If
+
+
+                                'Moves that only use secondary effects on the second turn of parental bond
+                                If p.Ability IsNot Nothing AndAlso p.Ability.Name.ToLower = "parental bond" AndAlso i <> TimesToAttack Then
+                                    Dim PBmoveList As String() = {"secret power",
+                                                                  "struggle",
+                                                                  "circle throw",
+                                                                  "dragon tail",
+                                                                  "bug bite",
+                                                                  "pluck",
+                                                                  "u-turn",
+                                                                  "volt switch",
+                                                                  "smelling salt",
+                                                                  "wake-up slap",
+                                                                  "knock off",
+                                                                  "relic song",
+                                                                  "outrage",
+                                                                  "thrash",
+                                                                  "petal dance",
+                                                                  "hyper beam",
+                                                                  "giga impact",
+                                                                  "blast burn",
+                                                                  "frenzy plant",
+                                                                  "hydro cannon",
+                                                                  "roar of time",
+                                                                  "rock wrecker"
+                                                                    }
+                                    If PBmoveList.Contains(moveUsed.Name.ToLower) Then
+                                        canUseEffect = False
+                                        canUseRecharge = False
+                                    End If
+                                End If
+
 
                                 If canUseEffect = True Then
                                     If substitute = 0 OrElse moveUsed.IsAffectedBySubstitute = False Then
@@ -1886,7 +1956,11 @@
                                 End If
 
                                 moveUsed.MoveRecoil(own, BattleScreen)
-                                moveUsed.MoveRecharge(own, BattleScreen)
+
+                                If canUseRecharge Then
+                                    moveUsed.MoveRecharge(own, BattleScreen)
+                                End If
+
 
                                 If op.HP > 0 Then
                                     If own = True Then
@@ -1985,7 +2059,6 @@
                                     Case "mummy"
                                         If moveUsed.MakesContact = True Then
                                             If p.Ability.Name.ToLower() <> "multitype" And p.Ability.Name.ToLower() <> "mummy" Then
-                                                p.OriginalAbility = p.Ability
                                                 p.Ability = Ability.GetAbilityByID(152)
                                                 ChangeCameraAngel(1, own, BattleScreen)
                                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s ability changed to Mummy!"))
@@ -4012,7 +4085,6 @@
                             LowerStat(Not own, own, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
                         Case "trace"
                             If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
-                                p.OriginalAbility = p.Ability
                                 p.Ability = op.Ability
                                 .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copied the ability " & op.Ability.Name & " from " & op.GetDisplayName() & "!"))
                             End If
@@ -4141,7 +4213,6 @@
                                 p.OriginalShiny = CInt(p.IsShiny.ToNumberString())
                                 p.OriginalMoves = New List(Of BattleSystem.Attack)
                                 p.OriginalMoves.AddRange(p.Attacks.ToArray())
-                                p.OriginalAbility = Ability.GetAbilityByID(p.Ability.ID)
 
                                 'Apply new stats:
                                 p.Number = op.Number
@@ -4672,6 +4743,11 @@
                             ElseIf .FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then
                                 HPChange = CInt(.OwnPokemon.MaxHP / 8)
                                 HPMessage = "Dry Skin"
+                            End If
+                        Case "solar power"
+                            If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
+                                HPChange = -CInt(.OwnPokemon.MaxHP / 8)
+                                HPMessage = "Solar Power"
                             End If
                         Case "rain dish"
                             If .FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then
@@ -5401,6 +5477,11 @@
                             ElseIf .FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then
                                 HPChange = CInt(.OppPokemon.MaxHP / 8)
                                 HPMessage = "Dry Skin"
+                            End If
+                        Case "solar power"
+                            If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
+                                HPChange = -CInt(.OppPokemon.MaxHP / 8)
+                                HPMessage = "Solar Power"
                             End If
                         Case "rain dish"
                             If .FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then

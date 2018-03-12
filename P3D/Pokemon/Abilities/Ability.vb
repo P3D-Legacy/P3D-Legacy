@@ -405,6 +405,10 @@
                 Return New Abilities.Pixilate
             Case 183
                 Return New Abilities.Gooey
+            Case 184
+                Return New Abilities.Aerilate
+            Case 185
+                Return New Abilities.ParentalBond
             Case 186
                 Return New Abilities.DarkAura
             Case 187

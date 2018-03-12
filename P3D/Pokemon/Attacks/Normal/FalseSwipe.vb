@@ -55,7 +55,7 @@
             Me.AIField2 = AIField.Nothing
         End Sub
 
-        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen) As Integer
+        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen, Optional ExtraParameter As String = "") As Integer
             Dim d As Integer = MyBase.GetDamage(Critical, Own, targetPokemon, BattleScreen)
 
             Dim subst As Integer = BattleScreen.FieldEffects.OppSubstitute

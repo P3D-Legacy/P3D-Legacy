@@ -77,7 +77,7 @@
             Return True
         End Function
 
-        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen) As Integer
+        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen, Optional ExtraParameter As String = "") As Integer
             If Own = True Then
                 Return CInt(BattleScreen.FieldEffects.OppLastDamage * 1.5)
             Else

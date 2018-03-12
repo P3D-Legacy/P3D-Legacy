@@ -49,6 +49,7 @@ Namespace Items.Standard
                 End While
 
                 p.Ability = Ability.GetAbilityByID(p.NewAbilities(newAbility).ID)
+                p.SetOriginalAbility()
 
                 Screen.TextBox.Show(p.GetDisplayName() & " forgot how~to use " & oldAbilityName & ".*It learned~" & p.NewAbilities(newAbility).Name & " instead." & RemoveItem())
                 Return True

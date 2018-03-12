@@ -79,7 +79,7 @@
                 p.OriginalShiny = CInt(p.IsShiny.ToNumberString())
                 p.OriginalMoves = New List(Of BattleSystem.Attack)
                 p.OriginalMoves.AddRange(p.Attacks.ToArray())
-                p.OriginalAbility = Ability.GetAbilityByID(p.Ability.ID)
+
 
                 'Apply new stats:
                 p.Number = op.Number

@@ -976,7 +976,7 @@
             Return True
         End Function
 
-        Public Shared Function CalculateDamage(ByVal Attack As Attack, ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen) As Integer
+        Public Shared Function CalculateDamage(ByVal Attack As Attack, ByVal Critical As Boolean, ByVal Own As Boolean, ByVal targetPokemon As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal ExtraParameter As String = "") As Integer
             Dim p As Pokemon = Nothing
             Dim Op As Pokemon = Nothing
             If Own = True Then
@@ -1220,6 +1220,10 @@
                 Case "fairy aura"
                     If Attack.Type.Type = Element.Types.Fairy Then
                         UA = 1.3F
+                    End If
+                Case "parental bond"
+                    If ExtraParameter = "parental bond" Then
+                        UA = 0.25
                     End If
                 Case Else
                     UA = 1.0F

@@ -69,9 +69,6 @@ Namespace BattleSystem.Moves.Psychic
                 Dim pAbility As Integer = p.Ability.ID
                 Dim opAbility As Integer = op.Ability.ID
 
-                p.OriginalAbility = Ability.GetAbilityByID(p.Ability.ID)
-                op.OriginalAbility = Ability.GetAbilityByID(op.Ability.ID)
-
                 p.Ability = Ability.GetAbilityByID(opAbility)
                 op.Ability = Ability.GetAbilityByID(pAbility)
 
