@@ -69,7 +69,7 @@ Public Class MusicManager
         _fadeSpeed = DEFAULT_FADE_SPEED
         _isFadingOut = False
         _isFadingIn = False
-        _muted = False
+        _muted = MediaPlayer.IsMuted
         MediaPlayer.IsRepeating = True
     End Sub
 

@@ -452,6 +452,8 @@
         Me.Muted = 0
         Me.GamePadEnabled = True
         Me.PreferMultiSampling = True
+        MusicManager.Muted = CBool(Me.Muted)
+        SoundManager.Muted = CBool(Me.Muted)
     End Sub
 
     Private Sub Save()
