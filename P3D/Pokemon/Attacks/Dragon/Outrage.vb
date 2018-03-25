@@ -56,7 +56,7 @@
             Me.AIField3 = AIField.ConfuseOwn
         End Sub
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+        Public Overrides Sub MoveMultiTurn(own As Boolean, BattleScreen As BattleScreen)
             Dim currentTurns As Integer = BattleScreen.FieldEffects.OwnOutrage
             If own = False Then
                 currentTurns = BattleScreen.FieldEffects.OppOutrage

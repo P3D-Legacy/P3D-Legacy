@@ -1030,6 +1030,7 @@ Public Class Pokemon
     Public Sub LoadAltAbility()
         NormalAbility = OriginalAbility
         Me.Ability = NewAbilities(0)
+        SetOriginalAbility()
     End Sub
     Public Sub RestoreAbility()
         Me.Ability = NormalAbility

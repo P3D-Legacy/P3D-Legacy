@@ -1717,7 +1717,9 @@
                                                         "sky attack",
                                                         "sky drop",
                                                         "solar beam",
-                                                        "solar blade"
+                                                        "solar blade",
+                                                        "bide",
+                                                        "struggle"
                                                        }
                             If Not moveList.Contains(moveUsed.Name.ToLower) Then
                                 useParentalBond = True
@@ -1896,7 +1898,7 @@
 
                             If effectiveness <> 0 Then
                                 Dim canUseEffect As Boolean = True
-                                Dim canUseRecharge As Boolean = True
+                                Dim multiUseEffect As Boolean = True
 
                                 If op.Ability.Name.ToLower() = "shield dust" AndAlso moveUsed.HasSecondaryEffect = True Then
                                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
@@ -1909,38 +1911,24 @@
 
 
                                 'Moves that only use secondary effects on the second turn of parental bond
-                                If p.Ability IsNot Nothing AndAlso p.Ability.Name.ToLower = "parental bond" AndAlso i <> TimesToAttack Then
+                                If useParentalBond Then
                                     Dim PBmoveList As String() = {"secret power",
-                                                                  "struggle",
-                                                                  "circle throw",
-                                                                  "dragon tail",
                                                                   "bug bite",
                                                                   "pluck",
-                                                                  "u-turn",
-                                                                  "volt switch",
                                                                   "smelling salt",
                                                                   "wake-up slap",
                                                                   "knock off",
                                                                   "relic song",
-                                                                  "outrage",
-                                                                  "thrash",
-                                                                  "petal dance",
-                                                                  "hyper beam",
-                                                                  "giga impact",
-                                                                  "blast burn",
-                                                                  "frenzy plant",
-                                                                  "hydro cannon",
-                                                                  "roar of time",
-                                                                  "rock wrecker"
+                                                                  "circle throw",
+                                                                  "dragon tail"
                                                                     }
                                     If PBmoveList.Contains(moveUsed.Name.ToLower) Then
-                                        canUseEffect = False
-                                        canUseRecharge = False
+                                        multiUseEffect = False
                                     End If
                                 End If
 
 
-                                If canUseEffect = True Then
+                                If canUseEffect AndAlso multiUseEffect OrElse (multiUseEffect = False AndAlso i = TimesToAttack) Then
                                     If substitute = 0 OrElse moveUsed.IsAffectedBySubstitute = False Then
                                         moveUsed.MoveHits(own, BattleScreen)
                                     End If
@@ -1956,11 +1944,6 @@
                                 End If
 
                                 moveUsed.MoveRecoil(own, BattleScreen)
-
-                                If canUseRecharge Then
-                                    moveUsed.MoveRecharge(own, BattleScreen)
-                                End If
-
 
                                 If op.HP > 0 Then
                                     If own = True Then
@@ -2220,6 +2203,12 @@
                             End If
                         Next
 
+                        If p.HP > 0 AndAlso p.Status <> Pokemon.StatusProblems.Fainted AndAlso effectiveness <> 0.0F Then
+                            moveUsed.MoveMultiTurn(own, BattleScreen)
+                            moveUsed.MoveRecharge(own, BattleScreen)
+                            moveUsed.MoveSwitch(own, BattleScreen)
+                        End If
+
                         If (Hits > 1 Or TimesToAttack > 1) And effectiveness <> 0.0F Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Hit " & Hits & " times!"))
                         End If
@@ -2255,7 +2244,7 @@
                                 End Select
                             End If
                         End If
-                    Else
+                    Else 'If not damaging move
                         Dim lastMove As Attack = BattleScreen.FieldEffects.OppLastMove
                         If own = False Then
                             lastMove = BattleScreen.FieldEffects.OwnLastMove

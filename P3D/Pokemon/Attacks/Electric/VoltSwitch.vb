@@ -52,7 +52,7 @@ Namespace BattleSystem.Moves.Electric
             '#End
         End Sub
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+        Public Overrides Sub MoveSwitch(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then
                 If Core.Player.CountFightablePokemon > 1 Then
                     BattleScreen.Battle.SwitchOutOwn(BattleScreen, GetPokemonIndex(BattleScreen, own), -1)

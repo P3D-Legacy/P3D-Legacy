@@ -81,7 +81,7 @@
             Return p
         End Function
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+        Public Overrides Sub MoveMultiTurn(own As Boolean, BattleScreen As BattleScreen)
             Dim iceball As Integer = BattleScreen.FieldEffects.OwnIceBallCounter
             If own = False Then
                 iceball = BattleScreen.FieldEffects.OppIceBallCounter

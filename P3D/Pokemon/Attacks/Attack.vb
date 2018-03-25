@@ -1590,11 +1590,15 @@
         End Sub
 
         Public Overridable Sub MoveRecharge(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            'DO NOTHING HERE (will do recoil if moves overrides it)
+            'DO NOTHING HERE (will do a one turn recharge if moves overrides it)
+        End Sub
+
+        Public Overridable Sub MoveMultiTurn(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+            'DO NOTHING HERE (will do the multi turn countdown if moves overrides it)
         End Sub
 
         Public Overridable Sub MoveSwitch(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            'DO NOTHING HERE (will do recoil if moves overrides it)
+            'DO NOTHING HERE (will force user switching if moves overrides it)
         End Sub
 
         ''' <summary>

@@ -52,7 +52,7 @@
             '#End
         End Sub
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+        Public Overrides Sub MoveMultiTurn(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then
                 If BattleScreen.FieldEffects.OwnUproar = 0 Then
                     BattleScreen.FieldEffects.OwnUproar = 3

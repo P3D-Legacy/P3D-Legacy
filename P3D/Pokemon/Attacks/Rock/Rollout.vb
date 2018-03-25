@@ -81,7 +81,7 @@ Namespace BattleSystem.Moves.Rock
             Return p
         End Function
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+        Public Overrides Sub MoveMultiTurn(own As Boolean, BattleScreen As BattleScreen)
             Dim rollout As Integer = BattleScreen.FieldEffects.OwnRolloutCounter
             If own = False Then
                 rollout = BattleScreen.FieldEffects.OppRolloutCounter
