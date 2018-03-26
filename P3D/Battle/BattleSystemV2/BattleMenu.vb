@@ -654,15 +654,19 @@
                 _mainMenuIndex = 0
             End If
 
-            For i = 0 To Core.Player.Pokemons.Count - 1
-                Dim _str As String = Core.Player.Pokemons(i).AdditionalData
-                Select Case _str
-                    Case "mega", "mega_x", "mega_y"
-                        Exit Sub
-                    Case Else
-                        'do nothing
-                End Select
-            Next
+            If BattleScreen.FieldEffects.OwnMegaEvolved Then
+                Exit Sub
+            End If
+
+            'For i = 0 To Core.Player.Pokemons.Count - 1
+            '    Dim _str As String = Core.Player.Pokemons(i).AdditionalData
+            '    Select Case _str
+            '        Case "mega", "mega_x", "mega_y"
+            '            Exit Sub
+            '        Case Else
+            '            'do nothing
+            '    End Select
+            'Next
             Dim PokeIndex As Integer = BattleScreen.OwnPokemonIndex
             If BattleScreen.FieldEffects.OwnMegaEvolved = False Then
                 If Not Core.Player.Pokemons(PokeIndex).Item Is Nothing Then
@@ -894,10 +898,14 @@
                 If BattleScreen.IsMegaEvolvingOwn Then
                     BattleScreen.SendClientCommand("MEGA|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString())
                     BattleScreen.IsMegaEvolvingOwn = False
+                    BattleScreen.FieldEffects.OwnMegaEvolved = True
                 Else
                     BattleScreen.SendClientCommand("MOVE|" & BattleScreen.OwnPokemon.Attacks(_moveMenuIndex).ID.ToString())
                 End If
             Else
+                If BattleScreen.IsMegaEvolvingOwn Then
+                    BattleScreen.FieldEffects.OwnMegaEvolved = True
+                End If
                 BattleScreen.OwnStatistics.Moves += 1
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
