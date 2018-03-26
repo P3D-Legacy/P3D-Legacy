@@ -2331,6 +2331,20 @@
                 message = p.GetDisplayName() & " fainted!"
             End If
             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
+
+            Dim str = p.AdditionalData.ToLower()
+            Select Case str
+                Case "mega", "mega_x", "mega_y", "primal", "blade"
+                    p.AdditionalData = PokemonForms.GetInitialAdditionalData(p)
+                    p.ReloadDefinitions()
+                    p.CalculateStats()
+                    If str <> "blade" Then
+                        p.RestoreAbility() 'currently only used for mega evolutions
+                    End If
+            End Select
+            If Not p.Ability Is Nothing Then
+                p.Ability.EndBattle(p)
+            End If
         End Sub
 
 #Region "Applystuff"
