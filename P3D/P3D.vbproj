@@ -13510,6 +13510,9 @@
     <Content Include="Content\Pokemon\Overworld\Shiny\319_mega.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\719_mega.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Songs\alph.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
