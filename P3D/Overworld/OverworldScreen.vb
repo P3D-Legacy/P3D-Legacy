@@ -419,7 +419,7 @@ Public Class OverworldScreen
                 Level.IsRadioOn = False
             End If
 
-            MusicManager.Play(theme, True)
+            MusicManager.Play(theme, True) 'remove when debugging music
         End If
     End Sub
 

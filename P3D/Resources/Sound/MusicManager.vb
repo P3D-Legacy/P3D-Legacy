@@ -119,7 +119,7 @@ Public Class MusicManager
                             _fadeIntoIntro = False
                             _introEndTime = Date.Now.AddSeconds(0) + song.Song.Duration
                             _isIntroStarted = True
-                            MediaPlayer.IsRepeating = False
+                            'MediaPlayer.IsRepeating = False
                         Else
                             MediaPlayer.IsRepeating = True
                         End If
@@ -263,7 +263,7 @@ Public Class MusicManager
                     ' setup the continue song
                     _introContinueSong = songName
                     ' do not repeat media player, do not want intro to loop
-                    MediaPlayer.IsRepeating = False
+                    'MediaPlayer.IsRepeating = False
 
                     If fadeSpeed > 0F Then
                         _isIntroStarted = False
@@ -279,9 +279,13 @@ Public Class MusicManager
 
                     ' load the next song so the end of the intro doesn't lag
                     GetSong(song)
-
+                Else
+                    _isIntroStarted = False
+                    _fadeIntoIntro = False
                 End If
-
+            Else
+                _isIntroStarted = False
+                _fadeIntoIntro = False
             End If
 
             ' intro was not requested or does not exist
