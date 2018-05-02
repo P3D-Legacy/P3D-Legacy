@@ -151,7 +151,7 @@ Public Class MusicManager
             If _isIntroStarted Then
 
                 If Date.Now >= _introEndTime Then
-
+                    MediaPlayer.Pause()
                     Dim song = GetSong(_introContinueSong)
                     MediaPlayer.IsRepeating = True
                     _isIntroStarted = False
@@ -339,11 +339,14 @@ Public Class MusicManager
         Dim iSong As SongContainer = Nothing
         If Not _songs.TryGetValue(key, iSong) Then
 
-            Dim songFilePath = Path.Combine(GameController.GamePath, "Content", "Songs", key + ".mp3")
+            Dim songFilePath = Path.Combine(GameController.GamePath, "Content", "Songs", key + ".wma")
+            Dim songPath = Path.Combine("Songs", key)
 
             If File.Exists(songFilePath) Then
-                Dim duration = GetSongDuration(songFilePath)
-                iSong = New SongContainer(Song.FromUri(key, New Uri(songFilePath)), key, duration)
+                Dim _song As Song = Content.Load(Of Song)(songPath)
+                Dim duration = _song.Duration
+                'Dim duration = GetSongDuration(songFilePath)
+                iSong = New SongContainer(_song, key, duration)
                 _songs.Add(key, iSong)
             End If
 
