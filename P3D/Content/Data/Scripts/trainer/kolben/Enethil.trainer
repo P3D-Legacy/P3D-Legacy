@@ -18,6 +18,6 @@ Pokemon5|{"Pokemon"[149]}{"Experience"[1250000]}{"Gender"[0]}{"EggSteps"[0]}{"It
 Pokemon6|{"Pokemon"[448]}{"Experience"[1059860]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[119]}{"ItemData"[]}{"NickName"[Anubis]}{"Level"[60]}{"OT"[00000]}{"Ability"[80]}{"Status"[]}{"Nature"[3]}{"CatchLocation"[]}{"CatchTrainer"[Enethil]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[370,10,10]}{"Attack2"[89,5,5]}{"Attack3"[398,15,15]}{"Attack4"[245,5,5]}{"EVs"[0,0,0,0,0,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
 Items|
 Gender|0
-AI|0
+AI|40
 IntroSequence|Green,Violet
 IntroType|11

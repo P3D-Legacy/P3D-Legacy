@@ -18,6 +18,6 @@ Pokemon5|{"Pokemon"[462]}{"Experience"[205379]}{"Gender"[2]}{"EggSteps"[0]}{"Ite
 Pokemon6|{"Pokemon"[490]}{"Experience"[270000]}{"Gender"[2]}{"EggSteps"[0]}{"Item"[146]}{"ItemData"[]}{"NickName"[Manaphy]}{"Level"[60]}{"OT"[00000]}{"Ability"[93]}{"Status"[]}{"Nature"[5]}{"CatchLocation"[]}{"CatchTrainer"[Darkfire]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[347,15,15]}{"Attack2"[156,10,10]}{"Attack3"[240,5,5]}{"Attack4"[503,15,15]}{"EVs"[252,0,240,0,0,16]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
 Items|14,14
 Gender|0
-AI|0
+AI|40
 IntroSequence|Green,Violet
 IntroType|11
