@@ -1185,8 +1185,8 @@ Public Class StorageSystemScreen
                         If IsLit(box.Pokemon(id).GetPokemon()) = False Then
                             c = New Color(65, 65, 65, 255)
                         End If
-
-                        Core.SpriteBatch.Draw(box.Pokemon(id).GetPokemon().GetMenuTexture(), New Rectangle(50 + x * 100, 200 + y * 84, 64, 64), c)
+                        Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
+                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100 - CInt(pokeTexture.Width - 32), 200 + y * 84, pokeTexture.Width * 2, 64), c)
                     End If
                 Next
             Else
@@ -1218,8 +1218,8 @@ Public Class StorageSystemScreen
                             If IsLit(box.Pokemon(id).GetPokemon()) = False Then
                                 c = New Color(65, 65, 65, 255)
                             End If
-
-                            Core.SpriteBatch.Draw(box.Pokemon(id).GetPokemon().GetMenuTexture(), New Rectangle(50 + x * 100, 200 + y * 84, 64, 64), c)
+                            Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
+                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100 - CInt(pokeTexture.Width - 32), 200 + y * 84, pokeTexture.Width * 2, 64), c)
                         End If
                     Next
                 Next
@@ -1249,7 +1249,8 @@ Public Class StorageSystemScreen
                                 c = New Color(65, 65, 65, 255)
                             End If
 
-                            Core.SpriteBatch.Draw(box.Pokemon(id).GetPokemon().GetMenuTexture(), New Rectangle(664 + x * 32, 215 + y * 32, 32, 32), c)
+                            Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
+                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(664 + x * 32 - CInt((pokeTexture.Width - 32) / 2), 215 + y * 32, pokeTexture.Width, 32), c)
 
                             If box.Pokemon(id).GetPokemon().Level < minLevel Or minLevel = -1 Then
                                 minLevel = box.Pokemon(id).GetPokemon().Level
@@ -1396,7 +1397,8 @@ Public Class StorageSystemScreen
                     c = New Color(65, 65, 65, 255)
                 End If
 
-                Core.SpriteBatch.Draw(Core.Player.Pokemons(i).GetMenuTexture(), New Rectangle(Core.windowSize.Width - 228, i * 100 + 60, 64, 64), c)
+                Dim pokeTexture = Core.Player.Pokemons(i).GetMenuTexture()
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(Core.windowSize.Width - 228 - CInt(pokeTexture.Width - 32), i * 100 + 60, pokeTexture.Width * 2, 64), c)
 
                 If Not Core.Player.Pokemons(i).Item Is Nothing And Core.Player.Pokemons(i).IsEgg() = False Then
                     Core.SpriteBatch.Draw(Core.Player.Pokemons(i).Item.Texture, New Rectangle(Core.windowSize.Width - 196, i * 100 + 92, 24, 24), Color.White)
@@ -1413,8 +1415,9 @@ Public Class StorageSystemScreen
         End If
 
         If Not Me.MovingPokemon Is Nothing Then
-            Core.SpriteBatch.Draw(Me.MovingPokemon.GetMenuTexture(), New Rectangle(CInt(cPosition.X - 10), CInt(cPosition.Y + 44), 64, 64), New Color(0, 0, 0, 150))
-            Core.SpriteBatch.Draw(Me.MovingPokemon.GetMenuTexture(), New Rectangle(CInt(cPosition.X - 20), CInt(cPosition.Y + 34), 64, 64), Color.White)
+            Dim pokeTexture = Me.MovingPokemon.GetMenuTexture()
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 10) - CInt(pokeTexture.Width - 32), CInt(cPosition.Y + 44), pokeTexture.Width * 2, 64), New Color(0, 0, 0, 150))
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 20) - CInt(pokeTexture.Width - 32), CInt(cPosition.Y + 34), pokeTexture.Width * 2, 64), Color.White)
 
             If Not Me.MovingPokemon.Item Is Nothing And Me.MovingPokemon.IsEgg() = False Then
                 Core.SpriteBatch.Draw(Me.MovingPokemon.Item.Texture, New Rectangle(CInt(cPosition.X - 20) + 32, CInt(cPosition.Y + 34) + 32, 24, 24), Color.White)

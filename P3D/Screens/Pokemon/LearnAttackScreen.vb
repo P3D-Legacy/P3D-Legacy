@@ -217,7 +217,8 @@
             Core.SpriteBatch.DrawString(FontManager.MiniFont, Pokemon.GetDisplayName() & " ", New Vector2(120, 20), Color.White)
         End If
         If currentCharIndex > (Pokemon.GetDisplayName() & " ").Length Then
-            Core.SpriteBatch.Draw(Pokemon.GetMenuTexture(), New Rectangle(CInt(FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 120), 12, 32, 32), Color.White)
+            Dim pokeTexture = Pokemon.GetMenuTexture()
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 120), 12, pokeTexture.Width, 32), Color.White)
         End If
         If currentCharIndex > (Pokemon.GetDisplayName() & " ").Length + 1 Then
             If currentCharIndex < GetText().Length Then

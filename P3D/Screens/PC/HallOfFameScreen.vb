@@ -190,7 +190,8 @@
                     Core.SpriteBatch.DrawString(FontManager.MainFont, "Entry No. " & (Me.Entries(i).ID + 1).ToString(), New Vector2(120, 116 + p * 96), New Color(0, 0, 0, alpha), 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
 
                     For d = 0 To Me.Entries(i).PokemonList.Count - 1
-                        Core.SpriteBatch.Draw(Me.Entries(i).PokemonList(d).GetPokemon().GetMenuTexture(), New Rectangle(360 + d * 40, 116 + p * 96, 32, 32), New Color(255, 255, 255, alpha))
+                        Dim pokeTexture = Me.Entries(i).PokemonList(d).GetPokemon().GetMenuTexture()
+                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(360 + d * 40 - CInt((pokeTexture.Width - 32) / 2), 116 + p * 96, pokeTexture.Width, 32), New Color(255, 255, 255, alpha))
                     Next
                 End If
             Next
@@ -246,7 +247,8 @@
             Core.SpriteBatch.DrawString(FontManager.MainFont, SelectedEntry.PlayTime & Environment.NewLine & Environment.NewLine & SelectedEntry.OT & Environment.NewLine & Environment.NewLine & SelectedEntry.Points, New Vector2(pos.X + 116, pos.Y + 55), New Color(173, 216, 230), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         Else
             Dim p As Pokemon = SelectedEntry.PokemonList(id).GetPokemon()
-            Core.SpriteBatch.Draw(p.GetMenuTexture(), New Rectangle(CInt(pos.X + 4), CInt(pos.Y + 6), 32, 32), Color.White)
+            Dim pokeTexture = p.GetMenuTexture()
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pos.X + 4) - CInt((pokeTexture.Width - 32) / 2), CInt(pos.Y + 6), pokeTexture.Width, 32), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(pos.X + 40, pos.Y + 4), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Level" & Environment.NewLine & Environment.NewLine & "OT" & Environment.NewLine & Environment.NewLine & "Type 1" & Environment.NewLine & Environment.NewLine & "Type 2", New Vector2(pos.X + 10, pos.Y + 43), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 

@@ -38,8 +38,8 @@
         Dim p As New Vector2(Core.windowSize.Width - (544), 32)
 
         Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(p.X), CInt(p.Y), 480, 352))
-
-        Core.SpriteBatch.Draw(Pokemon.GetMenuTexture(), New Rectangle(CInt(p.X + 20), CInt(p.Y + 20), 64, 64), Color.White)
+        Dim pokeTexture = Pokemon.GetMenuTexture()
+        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(p.X + 20), CInt(p.Y + 20), pokeTexture.Width * 2, 64), Color.White)
         Core.SpriteBatch.DrawString(FontManager.InGameFont, Pokemon.GetDisplayName(), New Vector2(p.X + 90, p.Y + 32), Color.Black)
         Core.SpriteBatch.DrawString(FontManager.MiniFont, " reached level " & Pokemon.Level & "!", New Vector2(p.X + 90 + FontManager.InGameFont.MeasureString(Pokemon.GetDisplayName()).X, p.Y + 41), Color.Black)
 

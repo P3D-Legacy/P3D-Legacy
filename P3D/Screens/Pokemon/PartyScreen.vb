@@ -295,7 +295,8 @@ Public Class PartyScreen
             Dim shakeMulti As Single = CSng((p.HP / p.MaxHP).Clamp(0.2F, 1.0F))
 
             'menu image:
-            SpriteBatch.Draw(p.GetMenuTexture(), New Rectangle(CInt(position.X) + 2 + 32, CInt(position.Y) - 4 + 32, 64, 64), Nothing, New Color(255, 255, 255, CInt(255 * _interfaceFade)),
+            Dim pokeTexture = p.GetMenuTexture()
+            SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(position.X) + 2 + 32 - CInt(pokeTexture.Width - 32), CInt(position.Y) - 4 + 32, pokeTexture.Width * 2, 64), Nothing, New Color(255, 255, 255, CInt(255 * _interfaceFade)),
                              _pokemonAnimations(index)._shakeV * shakeMulti, New Vector2(16, 16), SpriteEffects.None, 0F)
 
 
