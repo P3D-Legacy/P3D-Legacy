@@ -2,6 +2,10 @@
 Imports System.Net.Sockets
 Imports System.Net
 
+''' <summary>
+''' This is the game screen that displays the online server listing.
+''' </summary>
+
 Public Class JoinServerScreen
 
     Inherits Screen
@@ -84,7 +88,7 @@ Public Class JoinServerScreen
 
         Canvas.DrawRectangle(New Rectangle(0, 75, Core.ScreenSize.Width, Core.ScreenSize.Height - 240), New Color(0, 0, 0, 128), True)
 
-        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join a server", New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join a server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join A Server", New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join A Server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
 
         Dim endX As Integer = ServerList.Count - 1
         endX = CInt(MathHelper.Clamp(endX, 0, ServersToDisplay - 1))
@@ -93,7 +97,7 @@ Public Class JoinServerScreen
             Canvas.DrawScrollBar(New Vector2(CSng(Core.ScreenSize.Width / 2 + 266), 100), Me.ServerList.Count, 1, selectIndex, New Size(8, Core.ScreenSize.Height - 300), False, Color.Black, Color.Gray, True)
         End If
 
-        ' Draw default first:
+        ' Draw default first.
         For i = 0 To endX
             Dim index As Integer = i + scrollIndex
 
@@ -154,7 +158,7 @@ Public Class JoinServerScreen
         Dim vS As String = "Protocol version: " & Servers.ServersManager.PROTOCOLVERSION
         Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, vS, New Vector2(Core.ScreenSize.Width - FontManager.MiniFont.MeasureString(vS).X - 4, Core.ScreenSize.Height - FontManager.MiniFont.MeasureString(vS).Y - 1), Color.White)
 
-        ' Draw player list tooltip after everything else:
+        ' Draw player list tooltip after everything else.
         For i = 0 To endX
             Dim index As Integer = i + scrollIndex
 
@@ -391,7 +395,7 @@ Public Class JoinServerScreen
                 Me.MaxPlayersOnline = 1
                 Me.IP = "127.0.0.1"
                 Me.Port = "15124"
-                Me.ServerMessage = "Play on your local computer."
+                Me.ServerMessage = "Single-player: Play on your local computer."
                 Me.ServerProtocolVersion = Servers.ServersManager.PROTOCOLVERSION
             Else
                 Dim t As New Threading.Thread(AddressOf StartPing)
@@ -410,9 +414,9 @@ Public Class JoinServerScreen
             Dim sw As New Stopwatch()
             sw.Start()
 
-            ' TTL: 10000 ticks, usually at 60 Hz => 10000/60 seconds
+            ' TTL: 10000 ticks, usually at 60 Hz => 10000/60 seconds.
             While sw.ElapsedMilliseconds < 10000 And Me.Pinged = False
-                'Wait for server connection in the main thread.
+                ' Wait for server connection in the main thread.
                 Threading.Thread.Sleep(1)
             End While
 
@@ -570,7 +574,7 @@ Public Class JoinServerScreen
                     Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline, New Vector2(CInt(startPos.X) + width - 36 - FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X, CInt(startPos.Y) + 7), Color.LightGray)
                     Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * (4 - GetPingLevel()), 238, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
 
-                    ' Ping result tool tip:
+                    ' Ping result tool tip.
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
@@ -603,7 +607,7 @@ Public Class JoinServerScreen
                         tooltipText = PlayerList.ToArray().ArrayToString(True)
                     End If
 
-                    Dim v = FontManager.MiniFont.MeasureString("Player list:" & Environment.NewLine & tooltipText)
+                    Dim v = FontManager.MiniFont.MeasureString("Player List" & Environment.NewLine & tooltipText)
 
                     Dim drawY As Integer = MouseHandler.MousePosition.Y + 10
                     If drawY + v.Y + 12 > Core.windowSize.Height Then
@@ -616,18 +620,18 @@ Public Class JoinServerScreen
                     Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, drawY, CInt(v.X + 10), CInt(v.Y + 22)), Color.Black, True)
                     Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, drawY, CInt(v.X + 10), CInt(v.Y + 22)), Color.Gray, True)
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Player list:", New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6), Color.LightBlue)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Player List", New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6), Color.LightBlue)
                     Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, tooltipText, New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6 + 34), Color.White)
                 End If
             End If
         End Sub
 
         Public Function GetAddressString() As String
-            If IsLocal = True Then
-                Return ""
-            Else
-                Return Me.IP & ":" & Me.Port
-            End If
+            'If IsLocal = True Then
+            'Return ""
+            ' Else
+            Return Me.IP & ":" & Me.Port
+            'End If
         End Function
 
         Private Function GetPingLevel() As Integer

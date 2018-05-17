@@ -2,7 +2,7 @@
 Imports P3D.Screens.MainMenu
 
 ''' <summary>
-''' The "Press {BUTTON} to start" screen.
+''' This is the game screen that includes the shimmering Pokémon 3D logo, the "Press {BUTTON} to start" text, and the time-dependent animated background.
 ''' </summary>
 Public Class PressStartScreen
 
@@ -60,7 +60,7 @@ Public Class PressStartScreen
 
         target = New RenderTarget2D(GraphicsDevice, 1200, 680, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
 
-        'crappy fix
+        ' TODO: Replace bad workaround.
         Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin = ""
         Core.Player.Unload()
 
@@ -206,12 +206,12 @@ Public Class PressStartScreen
         _shineRenderer.Draw(_shineTexture, New Rectangle(CInt(ScreenSize.Width / 2 - 250 + Math.Sin(tempF) * 240.0F), CInt(-100 + Math.Sin(tempG) * 10.0F + CInt(160 * _fadeIn)), 512, 512), New Color(255, 255, 255, CInt(255 * _logoFade)))
 
         If _fadeIn = 0F Then
-            If IsCurrentScreen() And CInt(Date.Now.Millisecond / 500) = 1 Then
+            If IsCurrentScreen() And Core.GameOptions.ShowGUI Then  ' Want to implement fading of text, but core doesn't seem to support this.
                 Dim text As String = String.Empty
                 If ControllerHandler.IsConnected() Then
-                    text = "Press      to start"
+                    text = "Press      to start."
                 Else
-                    text = "Press " & KeyBindings.EnterKey1.ToString() & " or click to start"
+                    text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
                 End If
 
                 Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
@@ -246,7 +246,7 @@ End Class
 
 Public Class NewMainMenuScreen
 
-    'TODO: Replace old MainMenuScreen.
+    ' TODO: Replace old MainMenuScreen.
 
     Inherits Screen
 
@@ -299,7 +299,7 @@ Public Class NewMainMenuScreen
                 End If
             Else
                 If Controls.Accept(True, False, False) Then
-                    'Click on profiles:
+                    ' Click on profiles.
                     For x = 0 To _profiles.Count - 1
                         Dim xOffset As Single = _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeIn))
 
@@ -317,7 +317,7 @@ Public Class NewMainMenuScreen
                     Next
                 End If
                 If Controls.Dismiss(True, False, False) Then
-                    'Click on profiles:
+                    ' Click on profiles.
                     For x = 0 To _profiles.Count - 1
                         Dim xOffset As Single = _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeIn))
 
@@ -347,7 +347,7 @@ Public Class NewMainMenuScreen
                     If Controls.Dismiss(False, True, True) Then
                         DismissProfile()
                     End If
-                    'Try to load the GameJolt profile once the player has logged in.
+                    ' Try to load the GameJolt profile once the player has logged in.
                     _profiles(0).LoadGameJolt()
                 End If
 
@@ -362,6 +362,11 @@ Public Class NewMainMenuScreen
                     _sliderPosition = MathHelper.Lerp(_sliderTarget, _sliderPosition, 0.8F)
                 ElseIf _sliderPosition > _sliderTarget Then
                     _sliderPosition = MathHelper.Lerp(_sliderTarget, _sliderPosition, 0.8F)
+                End If
+
+                If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey1) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey2) Or MouseHandler.ButtonPressed(MouseHandler.MouseButtons.RightButton) Or ControllerHandler.ButtonPressed(Buttons.B) Then
+                    'SetScreen(New TransitionScreen(CurrentScreen, Me.PreScreen, Color.White, False))
+                    SetScreen(New PressStartScreen())
                 End If
 
                 If _fadeIn = 1.0F Then
@@ -448,7 +453,7 @@ Public Class NewMainMenuScreen
     End Sub
 
     Private Sub DrawProfiles()
-        'Draw profiles:
+        ' Draw profiles.
         For x = 0 To _profiles.Count - 1
             Dim xOffset As Single = _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeIn))
 
@@ -456,18 +461,18 @@ Public Class NewMainMenuScreen
         Next
 
         If _fadeIn = 1.0F Then
-            'Draw arrow:
+            ' Draw arrow.
             SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_sliderPosition - 16), CInt(_screenOffset.Y + 170), 32, 16), New Rectangle(0, 16, 32, 16), Color.White)
 
             Dim displayRect = New Rectangle(CInt((_sliderPosition - 300).Clamp(20, windowSize.Width - 620)), CInt(_screenOffset.Y + 170 + 16), 600, CInt(240 * _expandDisplay))
 
-            'Draw display:
+            ' Draw display.
             If _expandDisplay > 0F Then
                 Canvas.DrawRectangle(displayRect, Screens.UI.ColorProvider.MainColor(False))
                 Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y + displayRect.Height - 3, displayRect.Width, 3), Screens.UI.ColorProvider.AccentColor(False, CInt(255 * _expandDisplay)))
             End If
 
-            'Dark theme:
+            ' Dark theme.
             If (_selectedProfile = 0 Or _selectedProfile = 1) And _sliderPosition <= GetSliderTarget(1) Then
                 Dim maxDistance As Integer = 180
                 Dim distance As Integer = CInt(Math.Abs(_sliderTarget - _sliderPosition))
@@ -484,7 +489,7 @@ Public Class NewMainMenuScreen
                 End If
             End If
 
-            'Draw profile info:
+            ' Draw profile info.
             Dim tmpProfile = _profiles(_selectedProfile)
 
             If _expandDisplay = 1.0F Then
@@ -492,13 +497,13 @@ Public Class NewMainMenuScreen
                     For i = 0 To tmpProfile.PokemonTextures.Count - 1
                         SpriteBatch.Draw(tmpProfile.PokemonTextures(i), New Rectangle(displayRect.X + 30 + i * 70, displayRect.Y + 70, 64, 64), Color.White)
                     Next
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Name: " & tmpProfile.Name & Environment.NewLine &
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Player Name: " & tmpProfile.Name & Environment.NewLine &
                                                                         "GameMode: " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
                     GetFontRenderer().DrawString(FontManager.GameJoltFont, "Badges: " & tmpProfile.Badges.ToString() & Environment.NewLine &
-                                                                        "Time played: " & tmpProfile.TimePlayed & Environment.NewLine &
+                                                                        "Play time: " & tmpProfile.TimePlayed & Environment.NewLine &
                                                                         "Location: " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
                 Else
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Name: " & tmpProfile.Name & Environment.NewLine &
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, "Player Name: " & tmpProfile.Name & Environment.NewLine &
                                                                         "GameMode: " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
 
                     SpriteBatch.Draw(_menuTexture, New Rectangle(displayRect.X + 30, displayRect.Y + 70, 32, 32), New Rectangle(0, 32, 32, 32), Color.White)
@@ -772,7 +777,7 @@ Public Class NewMainMenuScreen
             End If
 
             If _isNewGameButton Then
-                Dim text As String = "NEW" & Environment.NewLine & "GAME"
+                Dim text As String = "New" & Environment.NewLine & "Game"
 
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
                     FontRenderer.DrawString(FontManager.GameJoltFont, text, New Vector2(offset.X + 80 - (FontManager.GameJoltFont.MeasureString(text).X) / 2,
@@ -873,11 +878,11 @@ Public Class NewMainMenuScreen
             If _isNewGameButton Then
                 World.IsMainMenu = False
                 If GameModeManager.GameModeCount = 1 Then
-                    'There's only the default GameMode available, so just load that one:
+                    ' There's only the default GameMode available, so just load that one.
                     GameModeManager.SetGameModePointer("Kolben")
                     SetScreen(New Screens.MainMenu.NewNewGameScreen(CurrentScreen))
                 Else
-                    'There is more than one GameMode, prompt a selection screen:
+                    ' There is more than one GameMode, prompt a selection screen:
                     SetScreen(New GameModeSelectionScreen(CurrentScreen))
                 End If
             Else
@@ -948,7 +953,7 @@ Public Class GameModeSelectionScreen
     Public Overrides Sub Draw()
         PreScreen.Draw()
 
-        Dim text = "Select a GameMode" + Environment.NewLine + "to start the new game with"
+        Dim text = "Select a GameMode" + Environment.NewLine + "to start the new game with."
 
         GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(30, 30), Color.White)
 
@@ -971,7 +976,7 @@ Public Class GameModeSelectionScreen
     End Sub
 
     Public Overrides Sub Update()
-        ' PreScreen is the MainMenuScreen, so update the pre screen of that to achieve the background world:
+        ' PreScreen is the MainMenuScreen, so update the previous screen of that to achieve the background world.
         PreScreen.PreScreen.Update()
 
         If _index > 0 AndAlso Controls.Up(True, True, True, True, True, True) Then

@@ -1,12 +1,17 @@
 ﻿Imports System.Threading
 
+''' <summary>
+''' This is the game screen that includes the MonoGame logo and the relevant license text.
+''' </summary>
+
 Friend Class SplashScreen
 
     Inherits Screen
 
     Private Const LICENSE_TEXT As String =
-"""MonoGame"", the MonoGame Logo and source code are copyrights of MonoGame Team (monogame.net).
-Pokémon 3D is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc."
+    """MonoGame"", the MonoGame Logo, and its source code are copyrights of MonoGame Team (monogame.net).
+    Pokémon 3D is not affiliated with The Pokémon Company, Nintendo, Creatures inc. or GAME FREAK inc. 
+    Please support the official release!"
 
     Private ReadOnly _monoGameLogo As Texture2D
     Private ReadOnly _licenseFont As SpriteFont
@@ -21,12 +26,12 @@ Pokémon 3D is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc."
         _game = GameReference
 
         CanBePaused = False
-        CanMuteMusic = False
+        CanMuteMusic = True
         CanChat = False
-        CanTakeScreenshot = False
-        CanDrawDebug = False
-        MouseVisible = True
-        CanGoFullscreen = False
+        CanTakeScreenshot = True
+        CanDrawDebug = True
+        MouseVisible = False
+        CanGoFullscreen = True
 
         _monoGameLogo = TextureManager.LoadDirect("GUI\Logos\MonoGame.png")
         _licenseFont = Core.Content.Load(Of SpriteFont)("Fonts\BMP\mainFont")
@@ -64,7 +69,7 @@ Pokémon 3D is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc."
                 Else
                     Core.SetScreen(New PressStartScreen())
                 End If
-                ' Core.SetScreen(New TransitionScreen(Me, New IntroScreen(), Color.Black, False))
+                'Core.SetScreen(New TransitionScreen(Me, New IntroScreen(), Color.Black, False))
             End If
         End If
 
