@@ -539,42 +539,42 @@ item_category_BattleItems,Kampobjekter
 item_category_Mail,Post
 ---
 GameMessages:
-game_message_screenshot,Screenshot saved as 
-game_message_screenshot_failed,Cannot create screenshot
-game_message_fullscreen_on,Fullscreen on
-game_message_fullscreen_off,Fullscreen off
-game_message_third_person_on,Third person mode on.
-game_message_third_person_off,Third person mode off.
-game_message_free_camera_on,Free camera mode on
-game_message_free_camera_off,Free camera mode off
-game_message_music_on,Music on
-game_message_music_off,Music off
-game_message_continue_autosave,Continued save state:
+game_message_screenshot,Skjermbilde lagret som
+game_message_screenshot_failed,Kan ikke lagre skjermbilde
+game_message_fullscreen_on,Fullskjerm på
+game_message_fullscreen_off,Fullskjerm av
+game_message_third_person_on,Tredje personmodus på.
+game_message_third_person_off,Tredje personmodus av.
+game_message_free_camera_on,Fri bevegelses kameramodus på
+game_message_free_camera_off,Fri bevegelses kameramodus på
+game_message_music_on,Musikk på
+game_message_music_off,Musikk av
+game_message_continue_autosave,Fortsatt lagret tilstand:
 ---
 Online:
-game_message_close_connection,You closed the co-op game.
-game_message_disconncet,You disconnected from the host.
-game_message_cannot_connect_client_1,Cannot connect to host (
+game_message_close_connection,Du lukket co-op spillet.
+game_message_disconncet,Du koblet fra verten.
+game_message_cannot_connect_client_1,Kan ikke koble til verten (
 game_message_cannot_connect_client_2,)!
-game_message_client_connect_1,You joined the game (
+game_message_client_connect_1,Du ble med i spillet (
 game_message_client_connect_2,)!
-game_message_client_host_closed_1,The host (
-game_message_client_host_closed_2,) closed the connection.
-game_message_client_outdated_newer_version,You have an outdated or newer version of the game.
-game_message_host_session_started,You (host) started a Co-Op session.
-game_message_host_outdated_newer_version,The client has an outdated or newer version of the game!
-game_message_host_client_accept,A client joined the game!
-game_message_host_client_disconnect,The client disconnected! The Co-Op session has been closed.
+game_message_client_host_closed_1,Verten (
+game_message_client_host_closed_2,) lukket tilkoblingen.
+game_message_client_outdated_newer_version,Du har en utdatert eller nyere versjon av spillet.
+game_message_host_session_started,Du (vert) startet en co-op-sesjon.
+game_message_host_outdated_newer_version,Klienten har en utdatert eller nyere versjon av spillet!
+game_message_host_client_accept,En klient ble med i spillet!
+game_message_host_client_disconnect,Klienten koblet fra! Co-Op-sesjonen ble lukket.
 ---
 General:
 HP,HP
 PP,PP
 Lv.,Lv.
 Level,Level
-Attack,Attack
-Defense,Defense
-Special_Attack,Special Attack
-Special_Defense,Special Defense
+Attack,Angrep
+Defense,Forsvar
+Special_Attack,Spesielt Angrep
+Special_Defense,Spesielt Forsvar
 Speed,Speed
 ---
 Pokemon:
