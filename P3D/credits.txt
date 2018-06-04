@@ -1,8 +1,10 @@
-Pokémon created by Nintendo, Game Freak and The Pokémon Company / Creatures Inc.
+PokÃ©mon created by Nintendo, Game Freak and The PokÃ©mon Company / Creatures Inc.
 
-Pokémon 3D staff
-created by Kolben Games
-Trademark (TM) 2012 - 2018
+PokÃ©mon 3D
+
+	Created by Kolben Games 
+	2012 - 2018
+
 	Team Kolben
 		Nils Drescher
 		Andrew Leach
@@ -50,7 +52,7 @@ Trademark (TM) 2012 - 2018
 		Hunter Graves
 		Manuel Lampe
 		Rovert Nobbmann
-		Maximilian Schröder
+		Maximilian SchrÃ¶der
 		Jan Mika Eine
 		Jason Houston
 		"Fanta"
@@ -80,7 +82,7 @@ Trademark (TM) 2012 - 2018
 		"ThuxCommix"
 		"Aragas"
 
-	Pokéditor Programming
+	PokÃ©ditor Programming
 		Nils Drescher 
 		Jason Houston 
 		Hunter Graves
@@ -118,10 +120,10 @@ Trademark (TM) 2012 - 2018
 		"TrUShade"
 		"Isaaking6"
 		Davey Van Raaij
-		Diego López
+		Diego LÃ³pez
 		The GameJolt Team
 		The AppSharp Team
 		The Smogon University Team
 
-Gen 6 Pokémon sprite art:
+Gen 6 PokÃ©mon sprite art:
 	Smogon University (http://www.smogon.com/forums/threads/xy-sprite-project-read-1st-post-the-face-of-the-metagame.3486712/)
