@@ -1,0 +1,838 @@
+language_name,Русский
+---
+MainMenuScreen:
+main_menu_continue,Продолжить
+main_menu_load_game,Загрузить сохранение
+main_menu_new_game,Новая игра
+main_menu_quit_game,Выйти
+LoadScreen:
+load_menu_name,Имя
+load_menu_badges,Значки
+load_menu_location,Локация
+load_menu_time,Время
+load_menu_back,Назад
+load_menu_load,Загрузить
+load_menu_delete,Удалить
+load_menu_gamemode,Режим игры
+DeleteScreen:
+delete_menu_delete_confirm,Вы уверены что хотите удалить сохранение
+delete_menu_delete,Удалить
+delete_menu_cancel,Отмена
+LanguageScreen:
+language_menu_apply,Применить
+language_menu_back,Назад
+PacksScreen:
+pack_menu_up,Вверх
+pack_menu_down,Вниз
+pack_menu_toggle_on,Включено
+pack_menu_toggle_off,Выключено
+pack_menu_information,Информация
+pack_menu_enabled,Включено
+pack_menu_apply,Применить
+pack_menu_back,Назад
+pack_menu_songs,Музыка
+pack_menu_sounds,Звуки
+pack_menu_textures,Текстуры
+pack_menu_name,Имя
+pack_menu_version,Версия
+pack_menu_by,Кем
+pack_menu_content,Контент
+pack_menu_description,Описание
+---
+GameModeMenu:
+gamemode_menu_name,Имя
+gamemode_menu_description,Описание
+gamemode_menu_version,Версия
+gamemode_menu_author,Автор
+gamemode_menu_contentpath,Путь
+gamemode_menu_create,Создать
+gamemode_menu_back,Назад
+---
+Pausescreen:
+pause_menu_title,Меню
+pause_menu_back_to_game,Вернуться к игре
+pause_menu_disconnect,Отключиться
+pause_menu_quit_to_menu,Выйти в меню
+pause_menu_autosave_fail,Невозможно сделать сохранение.
+pause_menu_yes,Да
+pause_menu_no,Нет
+pause_menu_confirmation,Вы уверенны что хотите выйти?Несохраненный прогресс будет потерян.
+---
+IngameMenu:
+game_menu_pokedex,Покедекс
+game_menu_party,Покемон
+game_menu_bag,Сумка
+game_menu_trainer_card,<playername>
+game_menu_save,Сохранить
+game_menu_options,Опции
+game_menu_exit,Выйти
+---
+InventoryScreen:
+inventory_menu_bag,Сумка
+inventory_menu_backadvice,НАЖМИТЕ У ЧТОБЫ ВЕРНУТСЯ
+inventory_menu_items,Предметы
+inventory_menu_description,Описание
+---
+NewGameScreen:
+new_game_oak_1,Привет! * Добро пожаловать в мир ~ Покемонов! * Меня зовут Оак. ~ Люди называют меня ~ Проффесор Покемон * Этот мир населен ~ существами, которые мы называем
+new_game_oak_2,Покемонами.*Люди и покемоны живут бок о бок и помогают друг другу.Некоторые люди предпочитают играть с покемонами другие участвуют с ними в сражениях*Однако нам еще не все известно о покемонах, поэтому я и изучаю покемонов каждый день.Теперь повтори свое имя?
+new_game_oak_3,~ты готов?*Твоя история начинается.*Тебе прийдется преодолевать трудности, и конечно же, веселиться.~Мир мечты и покемонов ждет!*Увидимся позже.
+new_game_oak_weird_name_1,Отлично! Так какое твое имя?~
+new_game_oak_weird_name_2,!*Хм, какое странное имя.
+new_game_oak_known_name_1,Отлично! Так какое твое имя?~
+new_game_oak_known_name_2,!*Хм я уверена что слышала это имя.
+new_game_oak_same_name_1,Да мы тески*У меня такое же~
+new_game_oak_same_name_2,!
+new_game_oak_name_1,Отлично! Так какое твое имя?~
+new_game_oak_name_2,!
+new_game_your_name,Твое имя
+new_game_choose_skin,Выбери внешний вид
+new_game_name_too_short,Имя слишком короткое
+---
+MapScreen:
+map_screen_cities,Города
+map_screen_routes,Маршруты
+map_screen_places,Место
+map_screen_roaming,Роуминг-покс
+---
+PokedexScreen:
+pokedex_screen_seen,Видели
+pokedex_screen_obtained,Полученный
+pokedex_screen_rare,Редкий
+pokedex_screen_backadvice,НАЖМИТЕ У ЧТОБЫ ВЕРНУТЬСЯ
+---
+PokemonScreen:
+pokemon_screen_choose_a_pokemon,Выбери покемона
+pokemon_screen_backadvice,НАЖМИТЕ У ЧТОБЫ ВЕРНУТЬСЯ
+pokemon_screen_item_give,Дать
+pokemon_screen_item_take,Взять
+pokemon_screen_item_back,Назад
+pokemon_screen_doesnt_hold_item,~пусто
+pokemon_screen_take_item_1,Взял
+pokemon_screen_take_item_2, из~
+pokemon_screen_take_item_3,~и положил в~
+pokemon_screen_take_item_4, карман!
+pokemon_screen_give_item_1,Дал 
+pokemon_screen_give_item_2,
+pokemon_screen_give_item_3,
+pokemon_screen_give_item_4,~и забрал
+pokemon_screen_give_item_5,~обратно в инвентарь.
+pokemon_screen_summary,Сводка
+pokemon_screen_switch,Переключить
+pokemon_screen_item,Предмет
+pokemon_screen_back,Назад
+pokemon_screen_EMPTY,ПУСТО
+---
+Pokemon Status Screen:
+All pages:
+poke_status_screen_nature,Характеристики
+poke_status_screen_backadvice,НАЖМИТЕ У ЧТОБЫ ВЕРНУТЬСЯ
+poke_status_screen_closeadvice,НАЖМИТЕ У ЧТОБЫ ЗАКРЫТЬ
+poke_status_screen_number,# 
+Page 1:
+poke_status_screen_all_exp,Весь опыт
+poke_status_screen_nxt_lv,След. ур.
+poke_status_screen_stats_page,Страница статистики
+Page 2:
+poke_status_screen_OT,OT
+poke_status_screen_Item,Предмет
+poke_status_screen_no_item,Нет предмета
+poke_status_screen_ability,Способность
+poke_status_screen_details_page,Подробности
+Page 3:
+poke_status_screen_power,Мощь
+poke_status_screen_accuracy,Точность
+poke_status_screen_moves_page,Перемещение
+---
+Trainer Card Screen:
+trainer_screen_trainer_card,Карточка тренера
+trainer_screen_name,Имя
+trainer_screen_points,Очки
+trainer_screen_money,Деньги
+trainer_screen_pokedex,Покедекс
+trainer_screen_time,Время
+trainer_screen_collected_badges,Коллекции значков
+trainer_screen_badge,Значки
+trainer_screen_backadvice,НАЖМИТЕ У ЧТОБЫ ВЕРНУТЬСЯ
+trainer_screen_empty_badge,???
+---
+Save Screen:
+save_screen_title,Вы хотите сохранить игру?
+save_screen_name,Имя
+save_screen_badges,Значки
+save_screen_money,Деньги
+save_screen_time,Время
+save_screen_yes,Да
+save_screen_no,Нет
+save_screen_success,Игра сохранена.
+---
+Options Screen:
+option_screen_title,Настройки
+option_screen_warning,Настройки не сохранены, опуститесь вниз и нажмите "Применить"
+option_screen_backadvice,НАЖМИТЕ У ЧТОБЫ ВЕРНУТЬСЯ
+option_screen_description,Описание
+option_screen_textspeed,Скорость текста
+option_screen_textspeed_description,Скорость появления и смены текста в диалогах
+option_screen_fov,Поле зрения
+option_screen_fov_description,Поле зрения, чем выше значение тем большую область вы можете видеть. При большом значение могут быть лаги.
+option_screen_mousespeed,Чувствительность
+option_screen_mousespeed_description,Скорость движения указателя.
+option_screen_volume,Громкость
+option_screen_volume_description,Громкость фоновой музыки
+option_screen_render_distance,Расстояние прорисовки
+option_screen_render_distance_tiny,Очень близко
+option_screen_render_distance_short,Близко
+option_screen_render_distance_normal,Нормально
+option_screen_render_distance_far,Далеко
+option_screen_render_distance_extreme,Очень далеко
+option_screen_render_distance_description,Расстояние прорисовки объектов
+option_screen_graphics,Графика
+option_screen_graphics_fancy,Качество
+option_screen_graphics_fast,Скорость
+option_screen_graphics_description,Наличие эффектов, отображать или нет некоторые объекты
+option_screen_offset_map_quality,Качество карты
+option_screen_offset_map_off,Выключено
+option_screen_offset_map_quality_description,Устанавливает детализацию отображения карты
+option_screen_animations_in_battle,Анимация во время битвы
+option_screen_animations_in_battle_no,Нет
+option_screen_animations_in_battle_attacks_off,Атаки выключены
+option_screen_animations_in_battle_yes,Да
+option_screen_animations_in_battle_description,Показывать анимацию во время битвы или нет
+option_screen_difficulty,Сложность
+option_screen_difficulty_description,Устанавливает уровень сложности
+option_screen_battle_style,Стиль битвы
+option_screen_battle_style_shift,Смена
+option_screen_battle_style_set,Установить
+option_screen_battle_style_description,Battle Style~Set: Не спрашивать о смене покемона во время битвы
+option_screen_view_bobbing,Покачивание экрана
+option_screen_view_bobbing_description,Определает покачивание камеры
+option_screen_reset_options,Сброс настроек
+option_screen_reset_options_description,Сброс всех настроек
+option_screen_save_options,Применить
+option_screen_save_options_description,Сохранить настройки и выйти из меню
+option_screen_close_menu,Закрыть меню
+option_screen_close_menu_description,Закрывает меню и НЕ сохраняет изменения
+---
+Item Detail Screen:
+item_detail_screen_use,Использовать
+item_detail_screen_give,Дать
+item_detail_screen_trash,Мусор
+item_detail_screen_back,Назад
+item_detail_screen_give_item,Дать 
+---
+Apricorn Screen:
+apricorn_screen_apricorns,Априкорн
+apricorn_screen_producing,Я занять изготовлением покеболлов.~Возвращайся позже.
+apricorn_screen_backadvice,НАЖМИТЕ У ЧТОБЫ ВЕРНУТЬСЯ
+apricorn_screen_choose_apricorns,Выбери априкорны, из них я сделаю покеболлы
+apricorn_screen_ok,ОК
+apricorn_screen_clear,Очистить
+apricorn_screen_take,Взять
+apricorn_screen_ready,Я доделал покеболы, можешь взглянуть:
+apricorn_screen_obtain, получено
+---
+Daycare Screen:
+daycare_screen_daycare,Уход
+daycare_screen_money, / Деньги: 
+daycare_screen_deposit,Депозит
+daycare_screen_grown,Выращенный: 
+daycare_screen_lv, / лвл. 
+daycare_screen_costs, / Стоит:
+daycare_screen_pokedollar, Покедоллар
+daycare_screen_withdraw,Изымать
+daycare_screen_backadvice,НАЖМИТЕ У ЧТОБЫ ВЕРНУТЬСЯ
+daycare_screen_pokemon_choose_header,Заложить покемона
+Egg,Яйцо
+---
+Network Screen:
+network_screen_isonline,Вы готовы к совместной игре! Закройте подключения~чтобы начать игру или подключиться вновь!~~~НАЖМИТЕ У ЧТОБЫ ВЕРНУТЬСЯ!
+network_screen_header,Совместная игра
+network_screen_main_header,Вы можете либо присоединиться к игре, либо принять новую игру, чтобы играть вместе с другом.
+network_screen_main_join,Войти
+network_screen_main_host,Создать сервер
+network_screen_main_close,Закрыть
+network_screen_join_header,Войти в игру:~Введите ip адресс сервера.
+network_screen_join_cancel,Отмена
+network_screen_join_join,Войти
+network_screen_host_header,Создать сервер:~Вы открываете свою игру~для остальных игроков в вашей сети.
+network_screen_host_cancel,Отмена
+network_screen_host_host,Создать сервер
+---
+Donation screen:
+donation_screen_donators,Донаты
+donation_screen_backadvice,НАЖМИТЕ У ЧТОБЫ ЗАКРЫТЬ
+---
+Blackout Screen:
+black_out_screen_line1,Ваш покемон травмирован!
+black_out_screen_line2,Вас перенесут
+black_out_screen_line3,в ближайший Покецентр
+black_out_screen_line4,для предотвращения дальнейших травм
+black_out_screen_line5,для вашего покемона.
+---
+Battle:
+---
+main:
+battle_main_trainer_sent_out_1, выслан~
+battle_main_trainer_sent_out_2,.
+battle_main_trainer_sent_out_3, примерно ~ отправить ~
+battle_main_trainer_sent_out_4,!~Вы хотите заменить покемона?
+battle_main_trainer_sent_out_5,Да
+battle_main_trainer_sent_out_6,Нет
+battle_main_choose_pokemon,Выберите покемона
+battle_main_wild_appear_1,Дикий 
+battle_main_wild_appear_2,~появился!
+battle_main_trainer_intro_1, и~
+battle_main_trainer_intro_2, хочет~вступить в битву!
+battle_main_trainer_intro_3, хочет~вступить в битву!
+battle_main_intro_1,Вперед! 
+battle_main_intro_2,!
+battle_main_trainer_defeat_1,~терпит поражение!
+battle_main_trainer_defeat_2, и~
+battle_main_trainer_defeat_3,~терпит поражение!
+battle_main_trainer_defeat_4, получает 
+battle_main_trainer_defeat_5,~Покедоллары за победу!
+---
+attackTurn:
+battle_attack_poison_damage,~был отравлен!
+battle_attack_curse_damage,~проклят!
+battle_attack_fire_damage,~подожжен!
+battle_attack_trainer_item_1, использовал~
+battle_attack_trainer_item_2,!
+battle_attack_asleep, стремительно~уснул.
+battle_attack_woke_up, просыпайся!
+battle_attack_paralyzed, парализован!~онт не может двинуться!
+battle_attack_frozen_free, больше не~заморожен!
+battle_attack_frozen, заморожен~полностью!
+battle_attack_flinched, вздрогнул!
+battle_attack_no_longer_confused, больше не оглушен!
+battle_attack_confused, оглушен.
+battle_attack_hit_self_confusion, оглушил!
+battle_attack_no_PP_left, не осталось PP!*
+battle_attack_used, использовал
+---
+Badges:
+badge_Boulder,Валун
+badge_Cascade,Каскадный
+badge_Thunder,Гроза
+badge_Rainbow,Радуга
+badge_Soul,Душа
+badge_Marsh,Болото
+badge_Volcano,Вулканичесикй
+badge_Earth,Земляной
+badge_Zephyr,Зефир
+badge_Hive,Улей
+badge_Plain,Гладкий
+badge_Fog,Туман
+badge_Storm,Шторм
+badge_Mineral,Минеральный
+badge_Glacier,Ледник
+badge_Rising,Поднимающийся
+---
+Regions:
+Johto,Джото
+Kanto,Канто
+---
+Places:
+Places_???,???
+
+Towns:
+Places_New Bark Town,New Bark Town
+Places_Cherrygrove City,Cherrygrove City
+Places_Violet City,Violet City
+Places_Azalea Town,Azalea Town
+Places_Goldenrod City,Goldenrod City
+Places_Ecruteak City,Ecruteak City
+Places_Olivine City,Olivine City
+Places_Cianwood City,Cianwood City
+Places_Mahogany Town,Mahogany Town
+Places_Blackthorn City,Blackthorn City
+Places_Pallet Town,Pallet Town
+Places_Viridian City,Viridian City
+Places_Saffron City,Saffron City
+Places_Pewter City,Pewter City
+Places_Cerulean City,Cerulean City
+Places_Celadon City,Celadon City
+Places_Vermilion City,Vermilion City
+Places_Fuchsia City,Fuchsia City
+Places_Cinnabar Island,Cinnabar Island
+Places_Lavender Town,Lavender Town
+Places_One Island,One Island
+Places_Two Island,Two Island
+Places_Three Island,Three Island
+Places_Four Island,Four Island
+Places_Five Island,Five Island
+Places_Six Island,Six Island
+Places_Seven Island,Seven Island
+
+Special Houses:
+Places_Gate,Врата
+Places_Pokemon Center,Центр покемонов
+Places_Pokemon Mart,Магазин покемонов
+Places_Elms lab,Лабаратория Элма
+Places_Oak's lab,Лабаратория Оаки
+Places_Azalea Town Gym,Azalea Town Gym
+Places_Violet City Gym,Violet City Gym
+Places_Goldenrod City Gym,Goldenrod City Gym
+Places_Ecruteak City Gym,Ecruteak City Gym
+Places_Cianwood City Gym,Cianwood City Gym
+Places_Olivine City Gym,Olivine City Gym
+Places_Mahogany City Gym,Mahogany City Gym
+Places_Blackthorn City Gym,Blackthorn City Gym
+Places_Your House,Ваш дом
+Places_Your Room,Ваша комната
+Places_Daycare,Daycare
+Places_Pewter City Gym,Pewter City Gym
+Places_Cerulean City Gym,Cerulean City Gym
+Places_Vermilion City Gym,Vermilion City Gym
+Places_Celadon City Gym,Celadon City Gym
+Places_Fuchsania City Gym,Fuchsania City Gym
+Places_Saffron City Gym,Saffron City Gym
+Places_Cinnabar Gym,Cinnabar Gym
+Places_Viridian City Gym,Viridian City Gym
+Places_Dance Theater,Dance Theater
+Places_Lighthouse,Маяк
+Places_Team Rocket HQ,Team Rocket HQ
+Places_Radio Tower,Радио вышка
+
+Dungeons:
+Places_Ilex Forest,Ilex Forest
+Places_Dark Cave,Dark Cave
+Places_Ruins of Alph,Ruins of Alph
+Places_Slowpoke Well,Slowpoke Well
+Places_Sprout Tower,Sprout Tower
+Places_Union Cave,Union Cave
+Places_Mt. Mortar,Mt. Mortar
+Places_Bell Tower,Tin Tower
+Places_Tin Tower,Tin Tower
+Places_Tin Tower Peak,Tin Tower Peak
+Places_Burned Tower,Burned Tower
+Places_Glitter Lighthouse,Glitter Lighthouse
+Places_Ice Path,Ice Path
+Places_National Park,National Park
+Places_Whirl Islands,Whirl Islands
+Places_Lake of Rage,Lake of Rage
+Places_Underground,Underground
+Places_Dragon's Den,Dragon's Den
+Places_Tohjo Falls,Tohjo Falls
+Places_Victory Road,Victory Road
+Places_Mt. Silver,Mt. Silver
+Places_Indigo Plateau,Indigo Plateau
+Places_Safari Zone,Safari Zone
+Places_Viridian Forest,Viridian Forest
+Places_Cerulean Cave,Cerulean Cave
+Places_Power Plant,Power Plant
+Places_Rock Tunnel,Rock Tunnel
+Places_Seafoam Islands,Seafoam Islands
+Places_Pal Park,Pal Park
+Places_Diglett's Cave,Diglett's Cave
+Places_Mt. Moon,Mt. Moon
+Places_Mt. Ember,Mt. Ember
+Places_Three Isle Path,Three Isle Path
+Places_Berry Forest,Berry Forest
+Places_Icefall Cave,Icefall Cave
+Places_Lost Cave,Lost Cave
+Places_Trainer Tower,Trainer Tower
+Places_Altering Cave,Altering Cave
+Places_Pattern Bush,Pattern Bush
+Places_Dotted Hole,Dotted Hole
+Places_Tanoby Chambers,Tanoby Chambers
+Places_Tanoby Key,Tanoby Key
+Places_Monean Chamber,Monean Chamber
+Places_Liptoo Chamber,Liptoo Chamber
+Places_Weepth Chamber,Weepth Chamber
+Places_Dilford Chamber,Dilford Chamber
+Places_Scrufib Chamber,Scrufib Chamber
+Places_Rixy Chamber,Rixy Chamber
+Places_Viapois Chamber,Viapois Chamber
+Places_Ancient Ruins,Ancient Ruins
+Places_Millenial Star Tower,Millenial Star Tower
+Places_Kolben Tower,Kolben Tower
+Places_Faraway Island,Faraway Island
+
+Routes:
+Places_Route 1,Route 1
+Places_Route 2,Route 2
+Places_Route 3,Route 3
+Places_Route 4,Route 4
+Places_Route 5,Route 5
+Places_Route 6,Route 6
+Places_Route 7,Route 7
+Places_Route 8,Route 8
+Places_Route 9,Route 9
+Places_Route 10,Route 10
+Places_Route 11,Route 11
+Places_Route 12,Route 12
+Places_Route 13,Route 13
+Places_Route 14,Route 14
+Places_Route 15,Route 15
+Places_Route 16,Route 16
+Places_Route 17,Route 17
+Places_Route 18,Route 18
+Places_Route 19,Route 19
+Places_Route 20,Route 20
+Places_Route 21,Route 21
+Places_Route 22,Route 22
+Places_Route 23,Route 23
+Places_Route 24,Route 24
+Places_Route 25,Route 25
+Places_Route 26,Route 26
+Places_Route 27,Route 27
+Places_Route 28,Route 28
+Places_Route 29,Route 29
+Places_Route 30,Route 30
+Places_Route 31,Route 31
+Places_Route 32,Route 32
+Places_Route 33,Route 33
+Places_Route 34,Route 34
+Places_Route 35,Route 35
+Places_Route 36,Route 36
+Places_Route 37,Route 37
+Places_Route 38,Route 38
+Places_Route 39,Route 39
+Places_Route 40,Route 40
+Places_Route 41,Route 41
+Places_Route 42,Route 42
+Places_Route 43,Route 43
+Places_Route 44,Route 44
+Places_Route 45,Route 45
+Places_Route 46,Route 46
+Places_Route 47,Route 47
+Places_Route 48,Route 48
+
+Places_Treasure Beach,Treasure Beach
+Places_Kindle Road,Kindle Road
+Places_Cape Brink,Cape Brink
+Places_Three Isle Port,Three Isle Port
+Places_Bond Bridge,Bond Bridge
+Places_Five Isle Meadow,Five Isle Meadow
+Places_Memorial Pillar,Memorial Pillar
+Places_Water Labyrinth,Water Labyrinth
+Places_Resort Gorgeous,Resort Gorgeous
+Places_Water Path,Water Path
+Places_Grass Path,Grass Path
+Places_Outcast Island,Outcast Island
+Places_Ruin Valley,Ruin Valley
+Places_Canyon Entrance,Canyon Entrance
+Places_Sevault Canyon,Sevault Canyon
+Places_Tanoby Ruins,Tanoby Ruins
+Places_Safari Zone Gate,Safari Zone Gate
+Places_S.S. Aqua,S.S. Aqua
+Places_Elite 4,Elite 4
+Places_Indigo Plateau,Indigo Plateau
+Places_Twirl Forest,Twirl Forest
+Places_Berry Vista,Berry Vista
+Places_Battle Frontier,Battle Frontier
+Places_Battle Tower,Battle Tower
+Places_Battle Factory,Battle Factory
+Places_Rocket Warehouse,Rocket Warehouse
+Places_Secret Laboratory,Secret Laboratory
+
+---
+Item categories:
+item_category_Standard,Обычные
+item_category_Medicine,Медикаменты
+item_category_Machines,Устройства
+item_category_Pokéballs,Покеболлы
+item_category_Plants,Растения
+item_category_KeyItems,Ключевые предметы
+item_category_BattleItems,Боевые принадлежности
+item_category_Mail,Письмо
+---
+GameMessages:
+game_message_screenshot,Скриншот сохранен как 
+game_message_screenshot_failed,Невозможно сделать скриншот
+game_message_fullscreen_on,Полноэкранные режим включен
+game_message_fullscreen_off,Полноэкранные режим выключен
+game_message_third_person_on,Вид от третьего лица включен
+game_message_third_person_off,Вид от третьего лица выключен
+game_message_free_camera_on,Свободная камера включена
+game_message_free_camera_off,Свободная камера выключена
+game_message_music_on,Музыка включена
+game_message_music_off,Музыка выключена
+game_message_continue_autosave,Продолжить сохранять статистику:
+---
+Online:
+game_message_close_connection,Вы закрыли совместные игры.
+game_message_disconncet,Вы отключены от сервера.
+game_message_cannot_connect_client_1,невозможно подключиться к серверу (
+game_message_cannot_connect_client_2,)!
+game_message_client_connect_1,Вы зашли в игру (
+game_message_client_connect_2,)!
+game_message_client_host_closed_1,Сервер (
+game_message_client_host_closed_2,) закрыл подключение.
+game_message_client_outdated_newer_version,У вас старая версия игры.
+game_message_host_session_started,вы начинаете совместную игру.
+game_message_host_outdated_newer_version,Игрок имеет старую версию игры!
+game_message_host_client_accept,Игрок зашел!
+game_message_host_client_disconnect,Игрок отключен! Совместная игра была закрыта.
+---
+General:
+HP,HP
+PP,PP
+Lv.,Lv.
+Level,Уровент
+Attack,Атака
+Defense,Защита
+Special_Attack,Специальная атака
+Special_Defense,Специальная защита
+Speed,Скорость
+---
+Pokemon:
+pokemon_name_Bulbasaur,Bulbasaur
+pokemon_name_Ivysaur,Ivysaur
+pokemon_name_Venusaur,Venusaur
+pokemon_name_Charmander,Charmander
+pokemon_name_Charmeleon,Charmeleon
+pokemon_name_Charizard,Charizard
+pokemon_name_Squirtle,Squirtle
+pokemon_name_Wartortle,Wartortle
+pokemon_name_Blastoise,Blastoise
+pokemon_name_Caterpie,Caterpie
+pokemon_name_Metapod,Metapod
+pokemon_name_Butterfree,Butterfree
+pokemon_name_Weedle,Weedle
+pokemon_name_Kakuna,Kakuna
+pokemon_name_Beedrill,Beedrill
+pokemon_name_Pidgey,Pidgey
+pokemon_name_Pidgeotto,Pidgeotto
+pokemon_name_Pidgeot,Pidgeot
+pokemon_name_Rattata,Rattata
+pokemon_name_Raticate,Raticate
+pokemon_name_Spearow,Spearow
+pokemon_name_Fearow,Fearow
+pokemon_name_Ekans,Ekans
+pokemon_name_Arbok,Arbok
+pokemon_name_Pikachu,Pikachu
+pokemon_name_Raichu,Raichu
+pokemon_name_Sandshrew,Sandshrew
+pokemon_name_Sandshlash,Sandslash
+pokemon_name_Nidoran,Nidoran
+pokemon_name_Nidorina,Nidorina
+pokemon_name_Nidoqueen,Nidoqueen
+pokemon_name_Nidorino,Nidorino
+pokemon_name_Nidoking,Nidoking
+pokemon_name_Clefairy,Clefairy
+pokemon_name_Clefable,Clefable
+pokemon_name_Vulpix,Vulpix
+pokemon_name_Ninetails,Ninetails
+pokemon_name_Jigglypuff,Jigglypuff
+pokemon_name_Wigglytuff,Wigglytuff
+pokemon_name_Zubat,Zubat
+pokemon_name_Golbat,Golbat
+pokemon_name_Oddish,Oddish
+pokemon_name_Gloom,Gloom
+pokemon_name_Vileplume,Vileplume
+pokemon_name_Paras,Paras
+pokemon_name_Parasect,Parasect
+pokemon_name_Venonat,Venonat
+pokemon_name_Venomoth,Venomoth
+pokemon_name_Diglett,Diglett
+pokemon_name_Dugtrio,Dugtrio
+pokemon_name_Meowth,Meowth
+pokemon_name_Persian,Persian
+pokemon_name_Psyduck,Psyduck
+pokemon_name_Golduck,Golduck
+pokemon_name_Mankey,Mankey
+pokemon_name_Primeape,Primeape
+pokemon_name_Growlithe,Growlithe
+pokemon_name_Arcanine,Arcanine
+pokemon_name_Poliwag,Poliwag
+pokemon_name_Poliwhirl,Poliwhirl
+pokemon_name_Poliwrath,Poliwrath
+pokemon_name_Abra,Abra
+pokemon_name_Kadabra,Kadabra
+pokemon_name_Alakazam,Alakazam
+pokemon_name_Machop,Machop
+pokemon_name_Machoke,Machoke
+pokemon_name_Machamp,Machamp
+pokemon_name_Bellsprout,Bellsprout
+pokemon_name_Weepinbell,Weepinbell
+pokemon_name_Victreebel,Victreebel
+pokemon_name_Tentacool,Tentacool
+pokemon_name_Tentacruel,Tentacruel
+pokemon_name_Geodude,Geodude
+pokemon_name_Graveler,Graveler
+pokemon_name_Golem,Golem
+pokemon_name_Ponyta,Ponyta
+pokemon_name_Rapidash,Rapidash
+pokemon_name_Slowpoke,Slowpoke
+pokemon_name_Slowbro,Slowbro
+pokemon_name_Magnemite,Magnemite
+pokemon_name_Magneton,Magneton
+pokemon_name_Farfetch'd,Farfetch'd
+pokemon_name_Doduo,Doduo
+pokemon_name_Dodrio,Dodrio
+pokemon_name_Seel,Seel
+pokemon_name_Dewgong,Dewgong
+pokemon_name_Grimer,Grimer
+pokemon_name_Muk,Muk
+pokemon_name_Shellder,Shellder
+pokemon_name_Cloyster,Cloyster
+pokemon_name_Gastly,Gastly
+pokemon_name_Haunter,Haunter
+pokemon_name_Gengar,Gengar
+pokemon_name_Onix,Onix
+pokemon_name_Drowzee,Drowzee
+pokemon_name_Hypno,Hypno
+pokemon_name_Krabby,Krabby
+pokemon_name_Kingler,Kingler
+pokemon_name_Voltorb,Voltorb
+pokemon_name_Electrode,Electrode
+pokemon_name_Exeggcute,Exeggcute
+pokemon_name_Exeggutor,Exeggutor
+pokemon_name_Cubone,Cubone
+pokemon_name_Marowak,Marowak
+pokemon_name_Hitmonlee,Hitmonlee
+pokemon_name_Hitmonchan,Hitmonchan
+pokemon_name_Lickitung,Lickitung
+pokemon_name_Koffing,Koffing
+pokemon_name_Weezing,Weezing
+pokemon_name_Rhyhorn,Rhyhorn
+pokemon_name_Rhydon,Rhydon
+pokemon_name_Chansey,Chansey
+pokemon_name_Tangela,Tangela
+pokemon_name_Kangaskhan,Kangaskhan
+pokemon_name_Horsea,Horsea
+pokemon_name_Seedra,Seedra
+pokemon_name_Goldeen,Goldeen
+pokemon_name_Seaking,Seaking
+pokemon_name_Staryu,Staryu
+pokemon_name_Starmie,Starmie
+pokemon_name_Mr. Mime,Mr. Mime
+pokemon_name_Scyther,Scyther
+pokemon_name_Jynx,Jynx
+pokemon_name_Electabuzz,Electabuzz
+pokemon_name_Magmar,Magmar
+pokemon_name_Pinsir,Pinsir
+pokemon_name_Tauros,Tauros
+pokemon_name_Magikarp,Magikarp
+pokemon_name_Gyarados,Gyarados
+pokemon_name_Lapras,Lapras
+pokemon_name_Ditto,Ditto
+pokemon_name_Eevee,Eevee
+pokemon_name_Vaporeon,Vaporeon
+pokemon_name_Jolteon,Jolteon
+pokemon_name_Flareon,Flareon
+pokemon_name_Porygon,Porygon
+pokemon_name_Omanyte,Omanyte
+pokemon_name_Omastar,Omastar
+pokemon_name_Kabuto,Kabuto
+pokemon_name_Kabutops,Kabutops
+pokemon_name_Aerodactyl,Aerodactyl
+pokemon_name_Snorlax,Snorlax
+pokemon_name_Articuno,Articuno
+pokemon_name_Zapdos,Zapdos
+pokemon_name_Moltres,Moltres
+pokemon_name_Dratini,Dratini
+pokemon_name_Dragonair,Dragonair
+pokemon_name_Dragonite,Dragonite
+pokemon_name_Mewtwo,Mewtwo
+pokemon_name_Mew,Mew
+pokemon_name_Chikorita,Chikorita
+pokemon_name_Bayleef,Bayleef
+pokemon_name_Meganium,Meganium
+pokemon_name_Cyndaquil,Cyndaquil
+pokemon_name_Quilava,Quilava
+pokemon_name_Typhlosion,Typhlosion
+pokemon_name_Totodile,Totodile
+pokemon_name_Croconaw,Croconaw
+pokemon_name_Feraligatr,Feraligatr
+pokemon_name_Sentret,Sentret
+pokemon_name_Furret,Furret
+pokemon_name_Hoothoot,Hoothoot
+pokemon_name_Noctowl,Noctowl
+pokemon_name_Ledyba,Ledyba
+pokemon_name_Ledian,Ledian
+pokemon_name_Spinarak,Spinarak
+pokemon_name_Ariados,Ariados
+pokemon_name_Crobat,Crobat
+pokemon_name_Chinchou,Chinchou
+pokemon_name_Lanturn,Lanturn
+pokemon_name_Pichu,Pichu
+pokemon_name_Cleffa,Cleffa
+pokemon_name_Igglybuff,Igglybuff
+pokemon_name_Togepi,Togepi
+pokemon_name_Togetic,Togetic
+pokemon_name_Natu,Natu
+pokemon_name_Xatu,Xatu
+pokemon_name_Mareep,Mareep
+pokemon_name_Flaaffy,Flaaffy
+pokemon_name_Ampharos,Ampharos
+pokemon_name_Bellossom,Bellossom
+pokemon_name_Marill,Marill
+pokemon_name_Azumarill,Azumarill
+pokemon_name_Sudowoodo,Sudowoodo
+pokemon_name_Politoed,Politoed
+pokemon_name_Hoppip,Hoppip
+pokemon_name_Skiploom,Skiploom
+pokemon_name_Jumpluff,Jumpluff
+pokemon_name_Aipom,Aipom
+pokemon_name_Sunkern,Sunkern
+pokemon_name_Sunflora,Sunflora
+pokemon_name_Yanma,Yanma
+pokemon_name_Wooper,Wooper
+pokemon_name_Quagsire,Quagsire
+pokemon_name_Espeon,Espeon
+pokemon_name_Umbreon,Umbreon
+pokemon_name_Murkrow,Murkrow
+pokemon_name_Slowking,Slowking
+pokemon_name_Misdreavus,Misdreavus
+pokemon_name_Unown,Unown
+pokemon_name_Wobbuffet,Wobbuffet
+pokemon_name_Girafarig,Girafarig
+pokemon_name_Pineco,Pineco
+pokemon_name_Forretress,Forretress
+pokemon_name_Dunsparce,Dunsparce
+pokemon_name_Gligar,Gligar
+pokemon_name_Steelix,Steelix
+pokemon_name_Snubbull,Snubbull
+pokemon_name_Granbull,Granbull
+pokemon_name_Qwilfish,Qwilfish
+pokemon_name_Scizor,Scizor
+pokemon_name_Shuckle,Shuckle
+pokemon_name_Heracross,Heracross
+pokemon_name_Sneasel,Sneasel
+pokemon_name_Teddiursa,Teddiursa
+pokemon_name_Ursaring,Ursaring
+pokemon_name_Slugma,Slugma
+pokemon_name_Magcargo,Magcargo
+pokemon_name_Swinub,Swinub
+pokemon_name_Piloswine,Piloswine
+pokemon_name_Corsola,Corsola
+pokemon_name_Remoraid,Remoraid
+pokemon_name_Octillery,Octillery
+pokemon_name_Delibird,Delibird
+pokemon_name_Mantine,Mantine
+pokemon_name_Skarmory,Skarmory
+pokemon_name_Houndour,Houndour
+pokemon_name_Houndoom,Houndoom
+pokemon_name_Kingdra,Kingdra
+pokemon_name_Phanpy,Phanpy
+pokemon_name_Donphan,Donphan
+pokemon_name_Porygon2,Porygon2
+pokemon_name_Stantler,Stantler
+pokemon_name_Smeargle,Smeargle
+pokemon_name_Tyrogue,Tyrogue
+pokemon_name_Hitmontop,Hitmontop
+pokemon_name_Smoochum,Smoochum
+pokemon_name_Elekid,Elekid
+pokemon_name_Magby,Magby
+pokemon_name_Miltank,Miltank
+pokemon_name_Blissey,Blissey
+pokemon_name_Raikou,Raikou
+pokemon_name_Entei,Entei
+pokemon_name_Suicune,Suicune
+pokemon_name_Larvitar,Larvitar
+pokemon_name_Pupitar,Pupitar
+pokemon_name_Tyranitar,Tyranitar
+pokemon_name_Lugia,Lugia
+pokemon_name_Ho-Oh,Ho-Oh
+pokemon_name_Celebi,Celebi
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Story translation:
+---
+New Bark Town:
+---
+barktown.dat:
+---
+barktown_player_house,Дом игрока "<playername>"
