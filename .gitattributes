@@ -1,0 +1,2 @@
+# This will make it easier to track .dat files, since they where treated as binary. So lets track them as text.
+*.dat text
