@@ -15,7 +15,7 @@ load_menu_load,Загрузить
 load_menu_delete,Удалить
 load_menu_gamemode,Режим игры
 DeleteScreen:
-delete_menu_delete_confirm,Вы уверены что хотите удалить сохранение
+delete_menu_delete_confirm,Вы уверены, что хотите удалить сохранение
 delete_menu_delete,Удалить
 delete_menu_cancel,Отмена
 LanguageScreen:
@@ -56,7 +56,7 @@ pause_menu_quit_to_menu,Выйти в меню
 pause_menu_autosave_fail,Невозможно сделать сохранение.
 pause_menu_yes,Да
 pause_menu_no,Нет
-pause_menu_confirmation,Вы уверенны что хотите выйти?Несохраненный прогресс будет потерян.
+pause_menu_confirmation,Вы уверенны, что хотите выйти?Несохраненный прогресс будет потерян.
 ---
 IngameMenu:
 game_menu_pokedex,Покедекс
@@ -74,7 +74,7 @@ inventory_menu_items,Предметы
 inventory_menu_description,Описание
 ---
 NewGameScreen:
-new_game_oak_1,Привет! * Добро пожаловать в мир ~ Покемонов! * Меня зовут Оак. ~ Люди называют меня ~ Проффесор Покемон * Этот мир населен ~ существами, которые мы называем
+new_game_oak_1,Привет! * Добро пожаловать в мир ~ Покемонов! * Меня зовут Оак. ~ Люди называют меня ~ Профессор Покемон * Этот мир населен ~ существами, которые мы называем
 new_game_oak_2,Покемонами.*Люди и покемоны живут бок о бок и помогают друг другу.Некоторые люди предпочитают играть с покемонами другие участвуют с ними в сражениях*Однако нам еще не все известно о покемонах, поэтому я и изучаю покемонов каждый день.Теперь повтори свое имя?
 new_game_oak_3,~ты готов?*Твоя история начинается.*Тебе прийдется преодолевать трудности, и конечно же, веселиться.~Мир мечты и покемонов ждет!*Увидимся позже.
 new_game_oak_weird_name_1,Отлично! Так какое твое имя?~
@@ -259,7 +259,7 @@ network_screen_host_cancel,Отмена
 network_screen_host_host,Создать сервер
 ---
 Donation screen:
-donation_screen_donators,Донаты
+donation_screen_donators,Донаторы/жертвователи
 donation_screen_backadvice,НАЖМИТЕ У ЧТОБЫ ЗАКРЫТЬ
 ---
 Blackout Screen:
@@ -300,7 +300,7 @@ battle_attack_trainer_item_1, использовал~
 battle_attack_trainer_item_2,!
 battle_attack_asleep, стремительно~уснул.
 battle_attack_woke_up, просыпайся!
-battle_attack_paralyzed, парализован!~онт не может двинуться!
+battle_attack_paralyzed, парализован!~он не может двинуться!
 battle_attack_frozen_free, больше не~заморожен!
 battle_attack_frozen, заморожен~полностью!
 battle_attack_flinched, вздрогнул!
@@ -321,7 +321,7 @@ badge_Volcano,Вулканичесикй
 badge_Earth,Земляной
 badge_Zephyr,Зефир
 badge_Hive,Улей
-badge_Plain,Гладкий
+badge_Plain,Простой
 badge_Fog,Туман
 badge_Storm,Шторм
 badge_Mineral,Минеральный
@@ -336,33 +336,33 @@ Places:
 Places_???,???
 
 Towns:
-Places_New Bark Town,New Bark Town
-Places_Cherrygrove City,Cherrygrove City
-Places_Violet City,Violet City
-Places_Azalea Town,Azalea Town
-Places_Goldenrod City,Goldenrod City
-Places_Ecruteak City,Ecruteak City
-Places_Olivine City,Olivine City
-Places_Cianwood City,Cianwood City
-Places_Mahogany Town,Mahogany Town
-Places_Blackthorn City,Blackthorn City
-Places_Pallet Town,Pallet Town
-Places_Viridian City,Viridian City
-Places_Saffron City,Saffron City
-Places_Pewter City,Pewter City
-Places_Cerulean City,Cerulean City
-Places_Celadon City,Celadon City
-Places_Vermilion City,Vermilion City
-Places_Fuchsia City,Fuchsia City
-Places_Cinnabar Island,Cinnabar Island
-Places_Lavender Town,Lavender Town
-Places_One Island,One Island
-Places_Two Island,Two Island
-Places_Three Island,Three Island
-Places_Four Island,Four Island
-Places_Five Island,Five Island
-Places_Six Island,Six Island
-Places_Seven Island,Seven Island
+Places_New Bark Town,Город Нью Барк
+Places_Cherrygrove City,Город Черригроу
+Places_Violet City,Город Фиолетовый
+Places_Azalea Town,Городок Азалея
+Places_Goldenrod City,Золотодорожный город
+Places_Ecruteak City,Город Эркутик
+Places_Olivine City,Оливковый город
+Places_Cianwood City,Город Кианвуд
+Places_Mahogany Town,Город Махогония
+Places_Blackthorn City,Город Чероколючий
+Places_Pallet Town,Город Палетт
+Places_Viridian City,Город Вирдиан
+Places_Saffron City,Город Сафрон
+Places_Pewter City,Оловянный город
+Places_Cerulean City,Город Геролеан
+Places_Celadon City,Город Целадон
+Places_Vermilion City,Город Вермиллиан
+Places_Fuchsia City,Город Фуши
+Places_Cinnabar Island,Киноварный остров
+Places_Lavender Town,Город Лаванда
+Places_One Island,Первый остров
+Places_Two Island,Второй остров
+Places_Three Island,Третий остров
+Places_Four Island,Четвертый остров
+Places_Five Island,Пятый остров
+Places_Six Island,Шестой остров
+Places_Seven Island,Седьмой остров
 
 Special Houses:
 Places_Gate,Врата
