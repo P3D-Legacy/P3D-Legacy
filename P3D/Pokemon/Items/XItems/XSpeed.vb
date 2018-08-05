@@ -27,7 +27,7 @@ Namespace Items.XItems
                 Dim p As Pokemon = CType(s, BattleSystem.BattleScreen).OwnPokemon
 
                 If p.StatSpeed < 6 Then
-                    p.StatSpeed += 1
+                    p.StatSpeed += 2
 
                     Screen.TextBox.Show("Boosted " & p.GetDisplayName() & "'s~Speed!" & RemoveItem(), {}, False, False)
                     PlayerStatistics.Track("[53]Status booster used", 1)
