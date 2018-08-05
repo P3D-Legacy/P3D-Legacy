@@ -75,11 +75,12 @@
                 End If
             End If
 
-            If ownPokemon.Ability.Name.ToLower() = "gale wings" And ownAttack.Type.Type = Element.Types.Flying Then
+            'Added condition to check for full HP
+			If ownPokemon.Ability.Name.ToLower() = "gale wings" And ownAttack.Type.Type = Element.Types.Flying And p.HP = p.MaxHP Then
                 ownPriority += 1
             End If
 
-            If oppPokemon.Ability.Name.ToLower() = "gale wings" And oppAttack.Type.Type = Element.Types.Flying Then
+            If oppPokemon.Ability.Name.ToLower() = "gale wings" And oppAttack.Type.Type = Element.Types.Flying And Op.HP = Op.MaxHP Then
                 oppPriority += 1
             End If
 
@@ -226,7 +227,7 @@
             End If
 
             If p.Status = P3D.Pokemon.StatusProblems.Paralyzed And p.Ability.Name.ToLower() <> "quick feet" Then
-                speed = CInt(speed / 4) 'Divide the speed by 4 if the Pokemon is paralyzed.
+                speed = CInt(speed / 2) 'Divide the speed by 2 (gen 7 standards) if the Pokemon is paralyzed.
             End If
 
             If Not p.Item Is Nothing Then
@@ -1195,15 +1196,23 @@
                     End If
                 Case "refrigerate"
                     If Attack.Type.Type = Element.Types.Normal Then
-                        UA = 1.3F
+                        UA = 1.2F
                     End If
                 Case "pixilate"
                     If Attack.Type.Type = Element.Types.Normal Then
-                        UA = 1.3F
+                        UA = 1.2F
+                    End If
+				Case "normalize"
+                    If Attack.Type.Type = Element.Types.Normal Then
+                        UA = 1.2F
+                    End If
+				Case "galvanize"
+                    If Attack.Type.Type = Element.Types.Normal Then
+                        UA = 1.2F
                     End If
                 Case "aerilate"
                     If Attack.Type.Type = Element.Types.Normal Then
-                        UA = 1.3F
+                        UA = 1.2F
                     End If
                 Case "mega launcher"
                     If Attack.IsPulseMove = True Then
@@ -1382,6 +1391,7 @@
                             If p.Number = 25 Then
                                 IM = 2.0F
                             End If
+						'Soul Dew now boosts Lati@s Psychic & Dragon moves by 20% instead of Sp. Atk, this will have to be changed
                         Case "soul dew"
                             If p.Number = 380 Or p.Number = 381 Then
                                 IM = 1.5F
@@ -1493,6 +1503,7 @@
 
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     Select Case Op.Item.Name.ToLower()
+						'Soul Dew now boosts Lati@s Psychic & Dragon moves by 20% instead of Sp. Atk, this will have to be changed
                         Case "soul dew"
                             If Op.Number = 380 Or p.Number = 381 Then
                                 DMod = 1.5F

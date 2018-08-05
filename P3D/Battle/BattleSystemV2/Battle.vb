@@ -1231,7 +1231,8 @@
                     p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Else
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is confused!"))
-                    If Core.Random.Next(0, 2) = 0 Then
+					'Previously 'If Core.Random.Next(0, 2) = 0 Then' (Updated to gen 7's 33% instead of 50%)
+                    If Core.Random.Next(0, 3) = 0 Then
                         Dim a As Attack = New ConfusionAttack()
                         Dim damage As Integer = BattleCalculation.CalculateDamage(a, False, True, True, BattleScreen)
                         ReduceHP(damage, own, own, BattleScreen, p.GetDisplayName() & " hurt itself in confusion.", "confusiondamage")
@@ -2061,7 +2062,7 @@
                                         End If
                                     Case "weak armor"
                                         If moveUsed.Category = Attack.Categories.Physical Then
-                                            RaiseStat(Not own, Not own, BattleScreen, "Speed", 1, "Weak Armor causes the Speed to increase!", "weakarmor")
+                                            RaiseStat(Not own, Not own, BattleScreen, "Speed", 2, "Weak Armor causes the Speed to increase!", "weakarmor")
                                             LowerStat(Not own, Not own, BattleScreen, "Defense", 1, "Weak Armor causes the Defense to decrease!", "weakarmor")
                                         End If
                                     Case "pickpocket"
@@ -3725,7 +3726,15 @@
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:sitrus") = True Then
                                         UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
                                     End If
-                                Case "figy"
+                            End Select
+                        End If
+                    End If
+                End If
+                If p.HP > 0 And p.HP < CInt(Math.Ceiling(p.MaxHP / 4)) Then
+                    If Not p.Item Is Nothing Then
+                        If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                            Select Case p.Item.Name.ToLower()
+								Case "figy"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:figy") = True Then
                                         UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
                                     End If
@@ -3745,14 +3754,6 @@
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:iapapa") = True Then
                                         UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
                                     End If
-                            End Select
-                        End If
-                    End If
-                End If
-                If p.HP > 0 And p.HP < CInt(Math.Ceiling(p.MaxHP / 4)) Then
-                    If Not p.Item Is Nothing Then
-                        If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                            Select Case p.Item.Name.ToLower()
                                 Case "liechi"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:liechi") = True Then
                                         UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
@@ -3813,31 +3814,31 @@
                 Case "sitrus"
                     GainHP(CInt(p.MaxHP / 4), own, own, BattleScreen, "The Sitrus Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:sitrus")
                 Case "figy"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 8))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
                     GainHP(healHP, own, own, BattleScreen, "The Figy Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:figy")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Figy Berry!", "berry:figy")
                     End If
                 Case "wiki"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 8))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
                     GainHP(healHP, own, own, BattleScreen, "The Wiki Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:wiki")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Wiki Berry!", "berry:wiki")
                     End If
                 Case "mago"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 8))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
                     GainHP(healHP, own, own, BattleScreen, "The Mago Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:mago")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Mago Berry!", "mago")
                     End If
                 Case "aguav"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 8))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
                     GainHP(healHP, own, own, BattleScreen, "The Aguav Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:aguav")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Aguav Berry!", "aguav")
                     End If
                 Case "iapapa"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 8))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
                     GainHP(healHP, own, own, BattleScreen, "The Iapapa Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:iapapa")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Iapapa Berry!", "berry:iapapa")
@@ -4901,9 +4902,9 @@
                 If .OwnPokemon.HP > 0 Then 'Burn
                     If .OwnPokemon.Status = Pokemon.StatusProblems.Burn Then
                         If .OwnPokemon.Ability.Name.ToLower() <> "water veil" And .OwnPokemon.Ability.Name.ToLower() <> "magic guard" Then
-                            Dim reduceAmount As Integer = CInt(.OwnPokemon.MaxHP / 8)
+                            Dim reduceAmount As Integer = CInt(.OwnPokemon.MaxHP / 16)
                             If .OwnPokemon.Ability.Name.ToLower() = "heatproof" Then
-                                reduceAmount = CInt(.OwnPokemon.MaxHP / 16)
+                                reduceAmount = CInt(.OwnPokemon.MaxHP / 32)
                             End If
 
                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_ember", False))
