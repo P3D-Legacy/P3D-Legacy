@@ -2772,12 +2772,12 @@ Public Class Pokemon
             'Macho Brace
             Case 581 : EVfactor *= 2
             'Power Items
-            Case 582 : gainEVHP += 4
-            Case 583 : gainEVAttack += 4
-            Case 584 : gainEVDefense += 4
-            Case 585 : gainEVSpAttack += 4
-            Case 586 : gainEVSpDefense += 4
-            Case 587 : gainEVSpeed += 4
+            Case 582 : gainEVHP += 8
+            Case 583 : gainEVAttack += 8
+            Case 584 : gainEVDefense += 8
+            Case 585 : gainEVSpAttack += 8
+            Case 586 : gainEVSpDefense += 8
+            Case 587 : gainEVSpeed += 8
         End Select
 
         'HP gain
