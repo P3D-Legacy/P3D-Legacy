@@ -8,9 +8,9 @@
             '#Definitions
             Me.Type = New Element(Element.Types.Dark)
             Me.ID = 282
-            Me.OriginalPP = 25
-            Me.CurrentPP = 25
-            Me.MaxPP = 25
+            Me.OriginalPP = 20
+            Me.CurrentPP = 20
+            Me.MaxPP = 20
             Me.Power = 65
             Me.Accuracy = 100
             Me.Category = Categories.Physical
