@@ -25,7 +25,7 @@ Namespace Items.Medicine
         End Sub
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
-            Return HealPokemon(PokeIndex, 80)
+            Return HealPokemon(PokeIndex, 70)
         End Function
 
     End Class
