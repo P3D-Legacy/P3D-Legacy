@@ -307,18 +307,22 @@
         Select Case Ball.Name.ToLower()
             Case "repeat ball"
                 If Pokedex.GetEntryType(Core.Player.PokedexData, cp.Number) > 1 Then
-                    BallRate = 1.5F
+                    BallRate = 2.5F
                 End If
             Case "nest ball"
-                BallRate = CSng((40 - cp.Level) / 10)
+                BallRate = CSng((41 - cp.Level) / 10)
                 BallRate = CInt(MathHelper.Clamp(BallRate, 1, 4))
             Case "net ball"
                 If cp.IsType(Element.Types.Bug) = True Or cp.IsType(Element.Types.Water) = True Then
-                    BallRate = 3.0F
+                    BallRate = 3.5F
                 End If
             Case "dive ball"
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 3.5F
+                End If
+			Case "lure ball"
+                If BattleSystem.BattleScreen.DiveBattle = True Then
+                    BallRate = 5.0F
                 End If
             Case "dusk ball"
                 If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Or Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Dark Then
@@ -372,7 +376,7 @@
                     BallRate = 5.0F
                 End If
             Case "timer ball"
-                BallRate = CInt(((BattleScreen.FieldEffects.Rounds + 10) / 10)).Clamp(1, 4)
+                BallRate = CInt(1 + BattleScreen.FieldEffects.Rounds * 0.3).Clamp(1, 4)
         End Select
 
         Dim Status As Single = 1.0F
@@ -380,7 +384,7 @@
             Case Pokemon.StatusProblems.Poison, Pokemon.StatusProblems.BadPoison, Pokemon.StatusProblems.Burn, Pokemon.StatusProblems.Paralyzed
                 Status = 1.5F
             Case Pokemon.StatusProblems.Sleep, Pokemon.StatusProblems.Freeze
-                Status = 2.0F
+                Status = 2.5F
         End Select
 
         Dim CaptureRate As Integer = CInt(Math.Floor(((1 + (MaxHP * 3 - CurrentHP * 2) * CatchRate * BallRate * Status) / (MaxHP * 3))))
