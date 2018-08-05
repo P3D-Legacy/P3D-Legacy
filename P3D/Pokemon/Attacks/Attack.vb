@@ -1478,6 +1478,230 @@
                     returnMove = New Moves.Ground.LandsWrath()
                     'Case 617
                     'Light of Ruin
+					'Case 618
+					'Origin Pulse
+					'Case 619
+					'Precipice Blades
+					'Case 620
+					'Dragon Ascent
+					'Case 621
+					'Hyperspace Fury
+					'Case 622
+					'Breakneck Blitz - Physical
+					'Case 623
+					'Breakneck Blitz - Special
+					'Case 624
+					'All-Out Pummeling - Physical
+					'Case 625
+					'All-Out Pummeling - Special
+					'Case 626
+					'Supersonic Skystrike - Physical
+					'Case 627
+					'Supersonic Skystrike - Special
+					'Case 628
+					'Acid Downpour - Physical
+					'Case 629
+					'Acid Downpour - Special
+					'Case 630
+					'Tectonic Rage - Physical
+					'Case 631
+					'Tectonic Rage - Special
+					'Case 632
+					'Continental Crush - Physical
+					'Case 633
+					'Continental Crush - Special
+					'Case 634
+					'Savage Spin-Out - Physical
+					'Case 635
+					'Savage Spin-Out - Special
+					'Case 636
+					'Never-Ending Nightmare - Physical
+					'Case 637
+					'Never-Ending Nightmare - Special
+					'Case 638
+					'Corkscrew Crash - Physical
+					'Case 639
+					'Corkscrew Crash - Special
+					'Case 640
+					'Inferno Overdrive - Physical
+					'Case 641
+					'Inferno Overdrive - Special
+					'Case 642
+					'Hydro Vortex - Physical
+					'Case 643
+					'Hydro Vortex - Special
+					'Case 644
+					'Bloom Doom - Physical
+					'Case 645
+					'Bloom Doom - Special
+					'Case 646
+					'Gigavolt Havoc - Physical
+					'Case 647
+					'Gigavolt Havoc - Special
+					'Case 648
+					'Shattered Psyche - Physical
+					'Case 649
+					'Shattered Psyche - Special
+					'Case 650
+					'Subzero Slammer - Physical
+					'Case 651
+					'Subzero Slammer - Special
+					'Case 652
+					'Devastating Drake - Physical
+					'Case 653
+					'Devastating Drake - Special
+					'Case 654
+					'Black Hole Eclipse - Physical
+					'Case 655
+					'Black Hole Eclipse - Special
+					'Case 656
+					'Twinkle Tackle - Physical
+					'Case 657
+					'Twinkle Tackle - Special
+					'Case 658
+					'Catastropika
+					'Case 659
+					'Shore Up
+					'Case 660
+					'First Impression
+					'Case 661
+					'Baneful Bunker
+					'Case 662
+					'Spirit Shackle
+					'Case 663
+					'Darkest Lariat
+					'Case 664
+					'Sparkling Aria
+					'Case 665
+					'Ice Hammer
+					'Case 666
+					'Floral Healing
+					'Case 667
+					'High Horsepower
+					'Case 668
+					'Strength Sap
+					'Case 669
+					'Solar Blade
+					'Case 670
+					'Leafage
+					'Case 671
+					'Spotlight
+					'Case 672
+					'Toxic Thread
+					'Case 673
+					'Laser Focus
+					'Case 674
+					'Gear Up
+					'Case 675
+					'Throat Chop
+					'Case 676
+					'Pollen Puff
+					'Case 677
+					'Anchor Shot
+					'Case 678
+					'Psychic Terrain
+					'Case 679
+					'Lunge
+					'Case 680
+					'Fire Lash
+					'Case 681
+					'Power Trip
+					'Case 682
+					'Burn Up
+					'Case 683
+					'Speed Swap
+					'Case 684
+					'Smart Strike
+					'Case 685
+					'Purify
+					'Case 686
+					'Revelation Dance
+					'Case 687
+					'Core Enforcer
+					'Case 688
+					'Trop Kick
+					'Case 689
+					'Instruct
+					'Case 690
+					'Beak Blast
+					'Case 691
+					'Clanging Scales
+					'Case 692
+					'Dragon Hammer
+					'Case 693
+					'Brutal Swing
+					'Case 694
+					'Aurora Veil
+					'Case 695
+					'Sinister Arrow Raid
+					'Case 696
+					'Malicious Moonsault
+					'Case 697
+					'Oceanic Operetta
+					'Case 698
+					'Guardian of Alola
+					'Case 699
+					'Soul-Stealing 7-Star Strike
+					'Case 700
+					'Stoked Sparksurfer
+					'Case 701
+					'Pulverizing Pancake
+					'Case 702
+					'Extreme Evoboost
+					'Case 703
+					'Genesis Supernova
+					'Case 704
+					'Shell Trap
+					'Case 705
+					'Fleur Cannon
+					'Case 706
+					'Psychic Fangs
+					'Case 707
+					'Stomping Tantrum
+					'Case 708
+					'Shadow Bone
+					'Case 709
+					'Accelerock
+					'Case 710
+					'Liquidation
+					'Case 711
+					'Prismatic Laser
+					'Case 712
+					'Spectral Thief
+					'Case 713
+					'Sunsteel Strike
+					'Case 714
+					'Moongeist Beam
+					'Case 715
+					'Tearful Look
+					'Case 716
+					'Zing Zap
+					'Case 717
+					'Nature's Madness
+					'Case 718
+					'Multi-Attack
+					'Case 719
+					'10,000,000 Volt Thunderbolt
+					'Case 720
+					'Mind Blown
+					'Case 721
+					'Plasma Fists
+					'Case 722
+					'Photon Geyser
+					'Case 723
+					'Light That Burns The Sky
+					'Case 724
+					'Searing Sunraze Smash
+					'Case 725
+					'Menacing Moonraze Maelstrom
+					'Case 726
+					'Let's Snuggle Forever
+					'Case 727
+					'Splintered Stormshards
+					'Case 728
+					'Clangorous Soulblaze
+					'Case 729
+					'Blank
                 Case 999
                     If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         returnMove = New Moves.Special.TheDerpMove()
