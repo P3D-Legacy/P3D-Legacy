@@ -11,7 +11,7 @@ Namespace BattleSystem.Moves.Fire
             Me.OriginalPP = 10
             Me.CurrentPP = 10
             Me.MaxPP = 10
-            Me.Power = 65
+            Me.Power = 75
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
