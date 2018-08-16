@@ -827,7 +827,7 @@ nextIndex:
                 Next
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Battle system not final!", New Vector2(0, Core.windowSize.Height - 20), Color.White)
+            'Core.SpriteBatch.DrawString(FontManager.MiniFont, "Battle system not final!", New Vector2(0, Core.windowSize.Height - 20), Color.White)
 
             TextBox.Draw()
 

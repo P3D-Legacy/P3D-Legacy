@@ -211,7 +211,8 @@ Public Class PressStartScreen
                 If ControllerHandler.IsConnected() Then
                     text = "Press      to start."
                 Else
-                    text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
+                    text = "Press " & KeyBindings.EnterKey1.ToString().ToUpper & " to start."
+                    'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
                 End If
 
                 Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)

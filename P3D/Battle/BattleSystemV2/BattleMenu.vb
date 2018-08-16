@@ -83,8 +83,8 @@
                 End If
 
                 'HP indicator:
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 102, pos.Y + 37), New Color(0, 0, 0, _moveMenuAlpha))
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 100, pos.Y + 35), shinyHue)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 102, pos.Y + 37 + 3), New Color(0, 0, 0, _moveMenuAlpha))
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 100, pos.Y + 35 + 3), shinyHue)
 
                 'EXP Bar:
                 If BattleScreen.CanReceiveEXP = True Then
