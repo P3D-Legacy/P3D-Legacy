@@ -76,11 +76,11 @@
             End If
 
             'Added condition to check for full HP
-			If ownPokemon.Ability.Name.ToLower() = "gale wings" And ownAttack.Type.Type = Element.Types.Flying And p.HP = p.MaxHP Then
+            If ownPokemon.Ability.Name.ToLower() = "gale wings" And ownAttack.Type.Type = Element.Types.Flying And ownPokemon.HP = ownPokemon.MaxHP Then
                 ownPriority += 1
             End If
 
-            If oppPokemon.Ability.Name.ToLower() = "gale wings" And oppAttack.Type.Type = Element.Types.Flying And Op.HP = Op.MaxHP Then
+            If oppPokemon.Ability.Name.ToLower() = "gale wings" And oppAttack.Type.Type = Element.Types.Flying And oppPokemon.HP = oppPokemon.MaxHP Then
                 oppPriority += 1
             End If
 
