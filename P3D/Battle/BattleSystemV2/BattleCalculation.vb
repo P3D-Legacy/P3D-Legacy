@@ -1036,6 +1036,12 @@
                                 IT = 1.2F
                             End If
                         End If
+                    Case "soul dew"
+                        If p.Number = 380 OrElse p.Number = 381 Then
+                            If Attack.Type.Type = Element.Types.Dragon Or Attack.Type.Type = Element.Types.Psychic Then
+                                IT = 1.2F
+                            End If
+                        End If
                     Case Else
                         IT = 1.0F
                 End Select
@@ -1391,11 +1397,6 @@
                             If p.Number = 25 Then
                                 IM = 2.0F
                             End If
-						'Soul Dew now boosts Lati@s Psychic & Dragon moves by 20% instead of Sp. Atk, this will have to be changed
-                        Case "soul dew"
-                            If p.Number = 380 Or p.Number = 381 Then
-                                IM = 1.5F
-                            End If
                         Case "deepseatooth"
                             If p.Number = 366 Then
                                 IM = 2.0F
@@ -1503,11 +1504,6 @@
 
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     Select Case Op.Item.Name.ToLower()
-						'Soul Dew now boosts Lati@s Psychic & Dragon moves by 20% instead of Sp. Atk, this will have to be changed
-                        Case "soul dew"
-                            If Op.Number = 380 Or p.Number = 381 Then
-                                DMod = 1.5F
-                            End If
                         Case "metal powder"
                             If Op.Number = 132 Then
                                 DMod = 1.5F
