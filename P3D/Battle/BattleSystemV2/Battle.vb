@@ -2278,6 +2278,14 @@
                                     oppSubstitute = BattleScreen.FieldEffects.OppSubstitute
                                 End If
 
+                                If moveUsed.MagicCoatAffected Then
+                                    If p.IsType(Element.Types.Dark) Then
+                                        If op.Ability.Name.ToLower = "prankster" AndAlso BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) Then
+                                            effectiveness = 0.0F
+                                        End If
+                                    End If
+                                End If
+
                                 If effectiveness = 0.0F Then
                                     BattleScreen.BattleQuery.Add(New TextQueryObject("It has no effect..."))
                                     moveUsed.MoveHasNoEffect(Not own, BattleScreen)
@@ -2289,6 +2297,13 @@
                                     End If
                                 End If
                             Else
+                                If moveUsed.MagicCoatAffected Then
+                                    If op.IsType(Element.Types.Dark) Then
+                                        If p.Ability.Name.ToLower = "prankster" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) Then
+                                            effectiveness = 0.0F
+                                        End If
+                                    End If
+                                End If
                                 If effectiveness = 0.0F Then
                                     BattleScreen.BattleQuery.Add(New TextQueryObject("It has no effect..."))
                                     moveUsed.MoveHasNoEffect(own, BattleScreen)

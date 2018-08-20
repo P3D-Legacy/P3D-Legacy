@@ -65,6 +65,9 @@
             End If
 
             Dim acc As Integer = ((p.Level - op.Level) + 30)
+            If Not p.IsType(Element.Types.Ice) Then
+                acc = CInt(acc * 0.8F)
+            End If
             Return acc
         End Function
 

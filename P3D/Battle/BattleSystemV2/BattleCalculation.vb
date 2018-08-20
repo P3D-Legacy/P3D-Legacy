@@ -664,6 +664,13 @@
                 End If
             End If
 
+            'Sheer Cold
+            If move.ID = 329 Then
+                If op.IsType(Element.Types.Ice) Then
+                    effectiveness = 0
+                End If
+            End If
+
             Dim _targetHasIronBall As Boolean = False
             If Not op.Item Is Nothing Then
                 If op.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
