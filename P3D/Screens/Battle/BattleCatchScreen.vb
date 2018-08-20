@@ -286,7 +286,7 @@
                 For i = 0 To 2
                     Dim v As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z)
 
-                    Animations.Add(New BAMove(v, TextureManager.GetTexture("Textures\Battle\Other\YellowCloud"), New Vector3(0.1F), New Vector3(v.X, v.Y + 0.4F, v.Z - ((1 - i) * 0.4F)), 0.01F, 0.0F, 0.0F))
+                    Animations.Add(New BAMove(v, TextureManager.GetTexture("Textures\Battle\Other\Star"), New Vector3(0.1F), New Vector3(v.X, v.Y + 0.4F, v.Z - ((1 - i) * 0.4F)), 0.01F, 0.0F, 0.0F))
                 Next
                 Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), 0.02F, 0.0F, 6.0F))
             Case 8
