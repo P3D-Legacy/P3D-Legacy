@@ -65,6 +65,20 @@
                             IsReady = True
                         End If
                     End If
+                Case "dance"
+                    Screen.Level.OwnPlayer().isDancing = True
+                    If Started = False Then
+                        Screen.Camera.Move(sng(argument))
+                        Started = True
+                        Screen.Level.OverworldPokemon.Visible = False
+                    Else
+                        Screen.Level.UpdateEntities()
+                        Screen.Camera.Update()
+                        If Screen.Camera.IsMoving() = False Then
+                            IsReady = True
+                            Screen.Level.OverworldPokemon.Visible = False
+                        End If
+                    End If
                 Case "turnasync"
                     Screen.Camera.Turn(int(argument))
                     IsReady = True

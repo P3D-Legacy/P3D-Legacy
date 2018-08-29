@@ -95,7 +95,7 @@
     End Sub
 
     Private Sub Move()
-        If Screen.Camera.IsMoving() = True And Me.DoAnimation = True Then
+        If (Screen.Camera.IsMoving() = True And Me.DoAnimation = True) OrElse (Screen.Level.OwnPlayer IsNot Nothing AndAlso Screen.Level.OwnPlayer.isDancing) Then
             Me.AnimationDelay -= 0.13F
             If AnimationDelay <= 0.0F Then
                 AnimationDelay = GetAnimationDelay()

@@ -1378,3 +1378,15 @@
 /processorParam:Quality=Best
 /build:Songs/wind.ogg
 
+#begin Songs/trainerschool.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/trainerschool.ogg
+
+#begin Songs/intro/trainerschool.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/intro/trainerschool.ogg
+
