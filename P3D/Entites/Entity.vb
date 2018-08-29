@@ -23,12 +23,15 @@
     Public Shader As New Vector3(1.0F)
     Public Shaders As New List(Of Vector3)
 
+    Public CameraDistanceDelta As Single = 0.0F
+
     Public SeasonColorTexture As String = ""
 
     Public FaceDirection As Integer = 0
     Public Moved As Single = 0.0F
     Public Speed As Single = 0.04F
     Public CanMove As Boolean = False
+    Public isDancing As Boolean = False
 
     Public Opacity As Single = 1.0F
     Private _normalOpactity As Single = 1.0F
@@ -122,7 +125,7 @@
         Me.UpdateEntity()
     End Sub
 
-    Public Shared Function GetNewEntity(ByVal EntityID As String, ByVal Position As Vector3, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Vector3, ByVal Scale As Vector3, ByVal Model As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Visible As Boolean, ByVal Shader As Vector3, ByVal ID As Integer, ByVal MapOrigin As String, ByVal SeasonColorTexture As String, ByVal Offset As Vector3, Optional ByVal Params() As Object = Nothing, Optional ByVal Opacity As Single = 1.0F, Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing) As Entity
+    Public Shared Function GetNewEntity(ByVal EntityID As String, ByVal Position As Vector3, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Vector3, ByVal Scale As Vector3, ByVal Model As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Visible As Boolean, ByVal Shader As Vector3, ByVal ID As Integer, ByVal MapOrigin As String, ByVal SeasonColorTexture As String, ByVal Offset As Vector3, Optional ByVal Params() As Object = Nothing, Optional ByVal Opacity As Single = 1.0F, Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing, Optional ByVal CameraDistanceDelta As Single = 0.0F) As Entity
         Dim newEnt As New Entity()
         Dim propertiesEnt As New Entity()
 
@@ -144,6 +147,7 @@
         propertiesEnt.MapOrigin = MapOrigin
         propertiesEnt.SeasonColorTexture = SeasonColorTexture
         propertiesEnt.Offset = Offset
+        propertiesEnt.CameraDistanceDelta = CameraDistanceDelta
 
         Select Case EntityID.ToLower()
             Case "animatedblock"
@@ -285,6 +289,7 @@
         newEnt.SeasonColorTexture = PropertiesEnt.SeasonColorTexture
         newEnt.Offset = PropertiesEnt.Offset
         newEnt.NormalOpacity = PropertiesEnt.Opacity
+        newEnt.CameraDistanceDelta = PropertiesEnt.CameraDistanceDelta
     End Sub
 
     Public Shared Function GetRotationFromInteger(ByVal i As Integer) As Vector3
@@ -360,7 +365,7 @@
     End Function
 
     Protected Overridable Function CalculateCameraDistance(CPosition As Vector3) As Single
-        Return Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition)
+        Return Vector3.Distance(Me.GetCameraDistanceCenterPoint(), CPosition) + CameraDistanceDelta
     End Function
 
     Public Overridable Sub UpdateEntity()
@@ -399,6 +404,7 @@
             End Select
 
             movement *= Speed
+
             Me.Position += movement
             Me.CreatedWorld = False
 
@@ -407,6 +413,7 @@
 
                 Me.Position.X = CInt(Me.Position.X)
                 Me.Position.Z = CInt(Me.Position.Z)
+
             End If
         End If
 

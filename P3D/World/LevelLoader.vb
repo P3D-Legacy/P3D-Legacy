@@ -859,6 +859,11 @@
             Opacity = CSng(GetTag(Tags, "Opacity"))
         End If
 
+        Dim CameraDistanceDelta As Single = 0.0F
+        If TagExists(Tags, "CameraDistanceDelta") = True Then
+            CameraDistanceDelta = CSng(GetTag(Tags, "CameraDistanceDelta"))
+        End If
+
         For X = 0 To Size.Width - 1 Step Steps.X
             For Z = 0 To Size.Height - 1 Step Steps.Z
                 For Y = 0 To SizeY - 1 Step Steps.Y
@@ -906,7 +911,8 @@
                                                                    Offset,
                                                                    {},
                                                                    Opacity,
-                                                                   AnimationData)
+                                                                   AnimationData,
+                                                                   CameraDistanceDelta)
                         newEnt.IsOffsetMapContent = loadOffsetMap
 
                         If Not newEnt Is Nothing Then

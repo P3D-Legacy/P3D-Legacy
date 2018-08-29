@@ -547,12 +547,15 @@ Public Class OverworldCamera
         If _moved > 0.0F And Turning = False Then
             Dim v As Vector3 = PlannedMovement * Speed
 
-            Position += v
+            If Not Screen.Level.OwnPlayer().isDancing Then
+                Position += v
+            End If
+
 
             _moved -= Speed
             If _moved <= 0.0F Then
                 StopMovement()
-
+                Screen.Level.OwnPlayer().isDancing = False
                 Position.X = Position.X.ToInteger()
                 Position.Y = Position.Y.ToInteger() + 0.1F
                 Position.Z = Position.Z.ToInteger()
