@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Omega
+TrainerClass|Developer
+Money|6969
+IntroMessage|
+OutroMessage|Okay, this is epic.
+DefeatMessage|Told ya.
+TextureID|Omega
+Region|Sevii Islands
+IniMusic|brain_battle_intro
+DefeatMusic|leader_defeat
+BattleMusic|brain_battle
+Pokemon1|{"Pokemon"[279]}{"Gender"[0]}{"Item"[293]}{"ItemData"[]}{"Level"[74]}{"OT"[00000]}{"Ability"[2]}{"Nature"[5]}{"CatchLocation"[Somewhere]}{"CatchTrainer"[Omega]}{"CatchBall"[79]}{"CatchMethod"[]}{"Friendship"[200]}{"isShiny"[0]}{"Attack1"[503,15,15]}{"Attack2"[542,10,10]}{"Attack3"[282,20,20]}{"Attack4"[355,10,10]}{"EVs"[252,0,4,0,0,252]}{"IVs"[31,31,31,31,31,31]}
+Pokemon2|{"Pokemon"[260]}{"Gender"[0]}{"Item"[553]}{"ItemData"[]}{"Level"[75]}{"OT"[00000]}{"Ability"[33]}{"Nature"[3]}{"CatchLocation"[Somewhere]}{"CatchTrainer"[Omega]}{"CatchBall"[79]}{"CatchMethod"[]}{"Friendship"[200]}{"isShiny"[0]}{"Attack1"[127,15,15]}{"Attack2"[89,10,10]}{"Attack3"[8,15,15]}{"Attack4"[444,5,5]}{"EVs"[0,252,4,0,0,252]}{"IVs"[31,31,31,31,31,31]}
+Pokemon3|{"Pokemon"[73]}{"Gender"[0]}{"Item"[182]}{"ItemData"[]}{"Level"[76]}{"OT"[00000]}{"Ability"[44]}{"Nature"[10]}{"CatchLocation"[Somewhere]}{"CatchTrainer"[Omega]}{"CatchBall"[79]}{"CatchMethod"[]}{"Friendship"[200]}{"isShiny"[0]}{"Attack1"[92,10,10]}{"Attack2"[57,15,15]}{"Attack3"[58,10,10]}{"Attack4"[240,5,5]}{"EVs"[252,0,252,0,0,4]}{"IVs"[31,31,31,31,31,31]}
+Pokemon4|{"Pokemon"[186]}{"Gender"[0]}{"Item"[2001]}{"ItemData"[]}{"Level"[78]}{"OT"[00000]}{"Ability"[2]}{"Nature"[20]}{"CatchLocation"[Somewhere]}{"CatchTrainer"[Omega]}{"CatchBall"[79]}{"CatchMethod"[]}{"Friendship"[200]}{"isShiny"[0]}{"Attack1"[503,15,15]}{"Attack2"[58,10,10]}{"Attack3"[240,5,5]}{"Attack4"[156,10,10]}{"EVs"[0,0,0,252,4,252]}{"IVs"[31,31,31,31,31,31]}
+Pokemon5|{"Pokemon"[212]}{"Gender"[0]}{"Item"[506]}{"ItemData"[]}{"Level"[78]}{"OT"[00000]}{"Ability"[101]}{"Nature"[3]}{"CatchLocation"[Somewhere]}{"CatchTrainer"[Omega]}{"CatchBall"[79]}{"CatchMethod"[]}{"Friendship"[200]}{"isShiny"[0]}{"Attack1"[418,30,30]}{"Attack2"[450,20,20]}{"Attack3"[17,35,35]}{"Attack4"[240,5,5]}{"EVs"[0,252,0,0,4,252]}{"IVs"[31,31,31,31,31,31]}
+Pokemon6|{"Pokemon"[149]}{"Gender"[0]}{"Item"[2009]}{"ItemData"[]}{"Level"[80]}{"OT"[00000]}{"Ability"[136]}{"Nature"[20]}{"CatchLocation"[Somewhere]}{"CatchTrainer"[Omega]}{"CatchBall"[79]}{"CatchMethod"[]}{"Friendship"[200]}{"isShiny"[0]}{"Attack1"[87,10,10]}{"Attack2"[542,10,10]}{"Attack3"[57,15,15]}{"Attack4"[406,10,10]}{"EVs"[252,0,0,4,252,0]}{"IVs"[31,31,31,31,31,31]}
+Items|14
+Gender|0
+AI|100
+IntroSequence|Red,Violet
+IntroType|11

@@ -1,0 +1,24 @@
+version=2
+	:if:<register.registered(segisbattle)>=False
+		@text.show(Segis: Hello! Wanna walk~the plank today?)
+		@options.show(Yes,No)
+			:when:Yes
+				@text.show(Then check my forum league team!)
+				@battle.setvar(canblackout,false)
+				@battle.trainer(kolben\segis)
+				:if:<battle.won>=true
+					@text.show(Flushed away...)
+				:else
+					@text.show(Cool.)
+				:endif				
+				@pokemon.heal
+				@register.registertime(segisbattle,1,day)
+				:end
+			:when:No
+				@text.show(Water disappointment.)
+				:end
+		:endwhen
+	:else
+		@text.show(Flushed away...)
+	:endif
+:end

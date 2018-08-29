@@ -1,0 +1,30 @@
+version=2
+:if:<register.registered(maidmet)>=false
+	@text.show(Hello, I'm Maideline,~pleased to meet you!*I perform general tasks~around here.)
+	@register.register(maidmet)
+:endif
+
+@text.show(Do you need anything?)	
+	:if:<register.registered(omega1)>=true <and> <register.registered(pcpreceive)>=false
+		:if:<pokemon.count>>5
+			@text.show(Oh, your party is full.~Go open some space to claim~your Pokémon!)
+		:else
+			@pokemon.add(172,40,A gift from Omega,45,at Kolben Tower,0,Omega)
+			@text.show(Ah yes, your prize.*This Pichu is special:~I heard it was found~near the shrine in~Ilex Forest.*I wonder what happens if~you take it back there.*Anyway, here it is!)
+			
+			@pokemon.setshiny(<pokemon.count>-1,1)
+			@pokemon.setgender(<pokemon.count>-1,0)
+			@pokemon.clearattacks(<pokemon.count>-1)
+			@pokemon.addattack(<pokemon.count>-1,344)
+			@pokemon.addattack(<pokemon.count>-1,57)
+			@pokemon.addattack(<pokemon.count>-1,19)
+			@pokemon.addattack(<pokemon.count>-1,231)
+			
+			@sound.play(success_small)
+			@text.show(<player.name> received~Pichu!)
+			@pokemon.rename(last)
+			
+			@register.register(pcpreceive)										
+		:endif
+	:endif
+:end

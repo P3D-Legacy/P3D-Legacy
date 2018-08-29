@@ -1834,7 +1834,7 @@ Public Class Pokemon
                 End If
             End If
 
-            Dim shinyRate As Integer = 8192
+            Dim shinyRate As Integer = 4096
 
             For Each mysteryEvent As MysteryEventScreen.MysteryEvent In MysteryEventScreen.ActivatedMysteryEvents
                 If mysteryEvent.EventType = MysteryEventScreen.EventTypes.ShinyMultiplier Then

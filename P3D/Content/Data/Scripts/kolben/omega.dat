@@ -1,0 +1,98 @@
+version=2
+
+:if:<register.registered(omegamet)>=false
+	@text.show(Omega: Greetings, I'm Omega,~the ghost!*I repurposed this basement~into a neat workplace.~Sure, it's a bit clumsy, but~that's better than nothing.)
+	@register.register(omegamet)
+:endif
+
+:if:<register.registered(shrinecelebi)>=true
+	:if:<register.registered(omega1)>=false
+		@text.show(Omega: Tell me, do you~like shinies?)
+		@options.show(Yes,No)
+			:when:Yes
+				@text.show(Omega: Good, good...*I have accumulated a wide~selection of shiny Pokémon~over the years.*I might even give you one.*Let's settle it like this:~If you win against my strongest~Pokémon you get the shiny.*Deal?)
+				@options.show(Deal,No Way)
+					:when:Deal
+						@battle.setvar(canblackout,false)
+						@battle.trainer(kolben\omega1)
+							:if:<battle.won>=true
+								@pokemon.heal
+								@register.register(omega1)
+								@text.show(As expected, you did it!~Now let me see...*...*You'll get a Pikachu-colored~Pichu to call your own!)		
+							:else
+								@pokemon.heal
+								@text.show(That's a bit disappointing.*Well, try again later!)
+							:endif
+					:when:No Way			
+						@text.show(Oke.)
+				:endwhen
+			:when:No
+				@text.show(That's heartless.)
+		:endwhen
+	:endif
+	
+	:if:<register.registered(pcpreceive)>=false <and> <register.registered(omega1)>=true
+		@text.show(Omega: Talk to Maideline~to claim your prize.)
+	:endif	
+	
+	:if:<register.registered(omega1)>=true <and> <register.registered(pcpreceive)>=true <and> <register.registered(omega2)>=false
+		@text.show(Omega: It's a pleasure~to see you once again.*Say, do you want a real~battle now?)
+		@options.show(Yes,No)
+			:when:Yes
+				@text.show(Omega: Very well.*Pick your favorite biome.)
+				@battle.setvar(canblackout,false)
+				@options.show(Savanna,Rainforest,Desert,Taiga)
+					:when:Savanna
+						@battle.trainer(kolben\omega\omegas)
+						:if:<battle.won>=true
+							@pokemon.heal
+							@register.registertime(omega2,1,day)
+							@text.show(Impressive, I was bested.)		
+						:else
+							@pokemon.heal
+							@text.show(A winner I am!)
+						:endif
+					:when:Rainforest
+						@battle.trainer(kolben\omega\omegar)
+						:if:<battle.won>=true
+							@pokemon.heal
+							@register.registertime(omega2,1,day)
+							@text.show(Impressive, I was bested.)		
+						:else
+							@pokemon.heal
+							@text.show(A winner I am!)
+						:endif
+					:when:Desert
+						@battle.trainer(kolben\omega\omegad)
+						:if:<battle.won>=true
+							@pokemon.heal
+							@register.registertime(omega2,1,day)
+							@text.show(Impressive, I was bested.)		
+						:else
+							@pokemon.heal
+							@text.show(A winner I am!)
+						:endif
+					:when:Taiga
+						@battle.trainer(kolben\omega\omegat)
+						:if:<battle.won>=true
+							@pokemon.heal
+							@register.registertime(omega2,1,day)
+							@text.show(Impressive, I was bested.)		
+						:else
+							@pokemon.heal
+							@text.show(A winner I am!)
+						:endif
+				:endwhen
+			:when:No			
+				@text.show(Oke.)
+		:endwhen
+	:endif
+	
+	:if:<register.registered(omega1)>=true <and> <register.registered(pcpreceive)>=true <and> <register.registered(omega2)>=true
+		@text.show(We can have another~battle tomorrow!)
+	:endif
+	
+:else
+	@text.show(Omega: I might have~something for you in the~future.*That is, talk to me~again when you have~finished a time-bending~adventure.)
+:endif
+:end
