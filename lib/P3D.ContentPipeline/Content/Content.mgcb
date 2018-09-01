@@ -1390,3 +1390,9 @@
 /processorParam:Quality=Best
 /build:Songs/intro/trainerschool.ogg
 
+#begin Songs/sovietmarch.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/sovietmarch.ogg
+

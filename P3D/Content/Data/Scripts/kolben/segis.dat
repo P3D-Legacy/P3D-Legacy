@@ -3,7 +3,7 @@ version=2
 		@text.show(Segis: Hello! Wanna walk~the plank today?)
 		@options.show(Yes,No)
 			:when:Yes
-				@text.show(Then check my forum league team!)
+				@text.show(Then let me show you the power~of the master type!)
 				@battle.setvar(canblackout,false)
 				@battle.trainer(kolben\segis)
 				:if:<battle.won>=true

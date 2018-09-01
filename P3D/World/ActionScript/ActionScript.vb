@@ -435,7 +435,10 @@ nextScript:
 
     Public Shared Function UnixToTime(ByVal strUnixTime As String) As Date
         Dim unixDate = New Date(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
-        unixDate.AddSeconds(Convert.ToInt64(strUnixTime)).ToLocalTime()
+        strUnixTime = strUnixTime.Split(".")(0)
+        Dim a = Convert.ToInt64(strUnixTime)
+        unixDate = unixDate.AddSeconds(a)
+        unixDate = unixDate.ToLocalTime()
         Return unixDate
     End Function
 
