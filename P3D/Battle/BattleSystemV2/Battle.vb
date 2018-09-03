@@ -5718,7 +5718,7 @@
                     If .FieldEffects.OppWhirlpool > 0 Then 'Whirlpool
                         .FieldEffects.OppWhirlpool -= 1
                         If .FieldEffects.OppWhirlpool = 0 Then
-                            .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " was freed from Whirlpool!"))
+                            .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " was freed from Whirlpool!"))
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
