@@ -18,9 +18,9 @@ Ability1|26
 Ability2|Nothing
 HiddenAbility|Nothing
 Machines|174,205,92,192,237,173,59,63,196,182,203,218,76,216,104,207,214,111,197,156,213,36,58,99,102,115,117,120,153,164,352,258,113,263,290,416,419,445,363,398,430,496,512,524,590
-BaseHP|70
+BaseHP|80
 BaseAttack|50
-BaseDefense|30
+BaseDefense|50
 BaseSpAttack|95
 BaseSpDefense|135
 BaseSpeed|105
