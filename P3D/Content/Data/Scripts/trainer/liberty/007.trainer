@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Grunt
+TrainerClass|Team Rocket
+Money|5040
+IntroMessage|Huh?*What are you doing here?
+OutroMessage|I didn't really want to battle...
+DefeatMessage|I was picking flowers,~not fights.
+TextureID|gruntm
+Region|Sevii Islands
+insightmusic|johto_rocket_encounter
+IniMusic|Johto_rocket_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_rocket
+Pokemon1|57,62
+Pokemon2|73,62
+Pokemon3|560,64
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|40
+IntroSequence|Blue,Blue

@@ -218,7 +218,6 @@ NPCs:
 {"NPC"{NPC[{"Position"{sngArr[3,-0.05,11]}}{"TextureID"{str[[POKEMON|S]196]}}{"ID"{int[2]}}{"Name"{str[Espeon]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\chachamaru]}}{"RotationXYZ"{sngArr[1.57,2.61,3.14]}}{"Movement"{str[Walk]}}{"MoveRectangles"{recArr[[2,10,4,11]]}}]}}
 
 {"NPC"{NPC[{"Position"{sngArr[3,0,7]}}{"TextureID"{str[darkfire]}}{"ID"{int[2]}}{"Name"{str[bot]}}{"Action"{int[0]}}{"AdditionalValue"{str[BEEP BOOP CRASH WHIRRR*It's a 'Soonbot v0.55',~an annoying and extremely~overused roadblock.*This one appears to be~malfunctioning.]}}{"RotationXYZ"{sngArr[1.57,2.61,3.14]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[9,0,9]}}{"TextureID"{str[47]}}{"ID"{int[3]}}{"Name"{str[Maid]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\maid]}}{"Rotation"{int[0]}}{"Movement"{str[Walk]}}{"MoveRectangles"{recArr[[8,1,10,10]]}}]}}
 
 Figures:
 {"NPC"{NPC[{"Scale"{sngArr[0.4,0.4,0.4]}}{"Position"{sngArr[7,0.05,12.8]}}{"TextureID"{str[[POKEMON|N]494]}}{"ID"{int[62]}}{"Name"{str[Figure]}}{"Action"{int[0]}}{"AdditionalValue"{str[It's a rare collection~of Pokémon figures.]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
