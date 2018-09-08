@@ -3,7 +3,7 @@ version=2
 @player.move(1)
 @player.turnto(2)
 @text.show(Which floor would~you like to go to?)
-@Options.show(1 - Pkmn Center,2 - Lounge,3 - Staff Offices,4 - Dev. Offices,B6 - Basement)
+@Options.show(1 - Pkmn Center,2 - Lounge,3 - Staff Offices,4 - Ass. Offices,5 - Dev. Offices,B6 - Basement)
 	:when:1 - Pkmn Center
 		@text.show(...)
 		@player.move(1)
@@ -25,7 +25,14 @@ version=2
 		@level.update
 		@player.move(1)
 		:end
-	:when:4 - Dev. Offices
+	:when:4 - Ass. Offices
+		@text.show(...)
+		@player.move(1)
+		@player.warp(kolben\assoffices.dat,9,0.1,-1,0)
+		@level.update
+		@player.move(1)
+		:end
+	:when:5 - Dev. Offices
 		@text.show(...)
 		@player.move(1)
 		@player.warp(kolben\devoffices.dat,9,0.1,-1,0)
@@ -36,13 +43,6 @@ version=2
 		@text.show(...)
 		@player.move(1)
 		@player.warp(kolben\basement.dat,9,0.1,-1,0)
-		@level.update
-		@player.move(1)
-		:end
-	:when:5 - Penthouse
-		@text.show(...)
-		@player.move(1)
-		@player.warp(kolben\center.dat,12,0.1,-1,0)
 		@level.update
 		@player.move(1)
 		:end

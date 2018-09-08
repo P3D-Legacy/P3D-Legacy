@@ -73,7 +73,7 @@ version=2
 		:end
 	:endif
 	
-	if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=false
+	:if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=false
 		@options.show(Open Sea,Quit)
 			:when:Open Sea
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -87,7 +87,7 @@ version=2
 		:end
 	:endif
 	
-	if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertypasstonav)>=true
+	:if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertypasstonav)>=true
 		@options.show(Liberty Garden,Quit)
 			:when:Liberty Garden
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -101,7 +101,7 @@ version=2
 		:end
 	:endif
 	
-	if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=false
+	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=false
 		@options.show(Faraway Island,Open Sea,Quit)
 			:when:Faraway Island
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -122,7 +122,7 @@ version=2
 		:end
 	:endif
 	
-	if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=true
+	:if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=true
 		@options.show(Open Sea,Liberty Garden,Quit)
 			:when:Open Sea
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -144,7 +144,7 @@ version=2
 		:end	
 	:endif
 	
-	if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertypasstonav)>=true
+	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertypasstonav)>=true
 		@options.show(Faraway Island,Liberty Garden,Quit)
 			:when:Faraway Island
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -165,7 +165,7 @@ version=2
 		:end
 	:endif
 	
-	if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=true
+	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=true
 		@options.show(Faraway Island,Open Sea,Liberty Garden,Quit)
 			:when:Faraway Island
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
