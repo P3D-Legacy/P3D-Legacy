@@ -13526,6 +13526,9 @@
     <Content Include="Content\Textures\NPC\Segis.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Seasons\PlantColoringAlt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\TVs\aragas.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -13544,6 +13547,9 @@
     <Content Include="Content\Textures\TVs\F.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\TVs\Flower.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\TVs\Lilli.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -13556,6 +13562,7 @@
     <Content Include="Content\Textures\TVs\pat.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\TVs\Portrait.png" />
     <Content Include="Content\Textures\TVs\segis.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -25492,6 +25499,27 @@
     <None Include="Content\Data\maps\battle\kolben\basement.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Data\maps\battle\kolben\biome\desert.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\battle\kolben\biome\rainforest.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\battle\kolben\biome\savanna.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\battle\kolben\biome\taiga.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\battle\liberty\garden.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\battle\liberty\interior.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\battle\liberty\room.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\maps\fortune\0.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -25510,6 +25538,27 @@
     <Content Include="Content\Data\Scripts\kolben\soviet.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Data\maps\kolben\biome\desert.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\kolben\biome\rainforest.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\kolben\biome\savanna.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\kolben\biome\taiga.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\liberty\garden.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\liberty\interior.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\maps\liberty\room.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\kolben\maid.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -25517,6 +25566,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\kolben\segis.dat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\liberty\victini.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\trainer\kolben\Segis.trainer">
