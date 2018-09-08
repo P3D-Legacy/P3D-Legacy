@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Grunt
+TrainerClass|Team Rocket
+Money|4930
+IntroMessage|The lighthouse and every last~corner of this island are now~property of Team Rocket!
+OutroMessage|We're not giving it back.
+DefeatMessage|First come, first served.
+TextureID|gruntm
+Region|Sevii Islands
+insightmusic|johto_rocket_encounter
+IniMusic|Johto_rocket_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_rocket
+Pokemon1|97,59
+Pokemon2|94,59
+Pokemon3|545,60
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|40
+IntroSequence|Blue,Blue

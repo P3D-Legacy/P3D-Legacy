@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Grunt
+TrainerClass|Team Rocket
+Money|4930
+IntroMessage|We will liberate Victini~from its confinement and~use its power to make a~fortune!
+OutroMessage|You're sabotaging our prosperity plan!
+DefeatMessage|Maybe we were too ambitious~to begin with.
+TextureID|gruntf
+Region|Sevii Islands
+insightmusic|johto_rocket_encounter
+IniMusic|Johto_rocket_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_rocket
+Pokemon1|89,59
+Pokemon2|53,59
+Pokemon3|563,60
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|1
+AI|40
+IntroSequence|Blue,Blue

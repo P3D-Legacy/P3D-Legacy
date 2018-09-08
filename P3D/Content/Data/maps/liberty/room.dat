@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Lighthouse Basement]}}{"MusicLoop"{str[darkcave]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"Weather"{int[1]}}{"MapScript"{str[liberty\room]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[7,4]}}{"Position"{intArr[1,0,6]}}{"TexturePath"{str[park]}}{"Texture"{rec[0,80,16,16]}}]}}
@@ -85,3 +85,4 @@ Warps:
 
 NPC:
 {"NPC"{NPC[{"Position"{sngArr[4,0,3]}}{"TextureID"{str[[POKEMON|N]494]}}{"AnimateIdle"{bool[1]}}{"ID"{int[0]}}{"Name"{str[Rival]}}{"Action"{int[1]}}{"AdditionalValue"{str[liberty/victini]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[4,-3,5]}}{"TextureID"{str[Petrel]}}{"ID"{int[6]}}{"Name"{str[Petrel]}}{"Action"{int[0]}}{"AdditionalValue"{str[Derp]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}

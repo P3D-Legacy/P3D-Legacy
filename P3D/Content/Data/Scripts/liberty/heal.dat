@@ -1,0 +1,25 @@
+version=2
+:if:<register.registered(petrelliberty)>=false
+@text.show(It's good to have responsible~trainers like you help us~ward off those thugs.*Tell me, do you need healing?)
+	@options.show(Yes,No)
+	:when:Yes
+		@screen.fadeout
+		@pokemon.heal
+		@sound.play(healing,false)
+		@level.wait(180)
+		@screen.fadein
+		@text.show(Keep up the good work and~stop their raid!)
+	:endwhen
+:else
+	@text.show(Everything seems to be~under control now.*Do you still need healing?)
+	@options.show(Yes,No)
+	:when:Yes
+		@screen.fadeout
+		@pokemon.heal
+		@sound.play(healing,false)
+		@level.wait(180)
+		@screen.fadein
+		@text.show(Thanks for your help!)	
+	:endwhen
+:endif
+:end

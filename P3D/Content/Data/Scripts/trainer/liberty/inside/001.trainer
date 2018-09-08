@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Grunt
+TrainerClass|Team Rocket
+Money|5040
+IntroMessage|Victini is capable of~potent fire attacks.*We need to exploit its energy!
+OutroMessage|You're just a kid, how is this possible?
+DefeatMessage|We're not letting up!
+TextureID|gruntf
+Region|Sevii Islands
+insightmusic|johto_rocket_encounter
+IniMusic|Johto_rocket_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_rocket
+Pokemon1|31,62
+Pokemon2|49,62
+Pokemon3|505,64
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|1
+AI|40
+IntroSequence|Blue,Blue

@@ -1,11 +1,10 @@
 version=2
 
-:if:<register.registered(omegamet)>=false
-	@text.show(Omega: Greetings, I'm Omega,~the ghost!*I repurposed this basement~into a neat workplace.*Sure, it's a bit clumsy, but~that's better than nothing.)
-	@register.register(omegamet)
-:endif
+	:if:<register.registered(omegamet)>=false
+		@text.show(Omega: Greetings, I'm Omega,~the ghost!*I repurposed this basement~into a neat workplace.*Sure, it's a bit clumsy, but~that's better than nothing,~am I right or am I right?)
+		@register.register(omegamet)
+	:endif
 
-:if:<register.registered(shrinecelebi)>=true
 	:if:<register.registered(omega1)>=false
 		@text.show(Omega: Tell me, do you~like shinies?)
 		@options.show(Yes,No)
@@ -32,7 +31,27 @@ version=2
 	:endif
 	
 	:if:<register.registered(pcpreceive)>=false <and> <register.registered(omega1)>=true
-		@text.show(Omega: Talk to Maideline~to claim your prize.)
+		:if:<register.registered(omega1)>=true <and> <register.registered(pcpreceive)>=false
+			:if:<pokemon.count>>5
+				@text.show(Oh, your party is full.~Go open some space to claim~your Pokémon!)
+				:end
+			:else
+				@pokemon.add(172,40,A gift from Omega,45,at Kolben Tower,0,Omega)
+				@text.show(Ah yes, your prize.*This Pichu is special:~I found it near the Ilex~Forest shrine.*I wonder what happens if~you take it back there.*Anyway, here it is!)
+				@pokemon.setshiny(<pokemon.count>-1,1)
+				@pokemon.setgender(<pokemon.count>-1,0)
+				@pokemon.clearattacks(<pokemon.count>-1)
+				@pokemon.addattack(<pokemon.count>-1,344)
+				@pokemon.addattack(<pokemon.count>-1,57)
+				@pokemon.addattack(<pokemon.count>-1,19)
+				@pokemon.addattack(<pokemon.count>-1,231)
+				@sound.play(success_small)
+				@text.show(<player.name> received~Pichu!)
+				@pokemon.rename(last)
+				@register.register(pcpreceive)
+				:end				
+			:endif
+		:endif
 	:endif	
 	
 	:if:<register.registered(omega1)>=true <and> <register.registered(pcpreceive)>=true <and> <register.registered(omega2)>=false
@@ -180,7 +199,4 @@ version=2
 		@text.show(We can have another~battle tomorrow!)
 	:endif
 	
-:else
-	@text.show(Omega: I might have~something for you in the~future.*That is, talk to me~again when you have~finished a time-bending~adventure.)
-:endif
 :end

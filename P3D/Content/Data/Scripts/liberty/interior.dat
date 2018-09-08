@@ -1,0 +1,6 @@
+version=2
+:if:<register.registered(petrelliberty)>=false
+@npc.warp(2,1,-1,8)
+@npc.warp(3,7,-2,4)
+:endif
+:end

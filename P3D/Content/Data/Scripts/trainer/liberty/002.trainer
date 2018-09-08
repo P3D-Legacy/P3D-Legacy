@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Grunt
+TrainerClass|Team Rocket
+Money|3200
+IntroMessage|A meddling brat?*I'll show you why I was~picked for this mission!
+OutroMessage|No! My brilliant career!
+DefeatMessage|There goes my promotion...
+TextureID|gruntf
+Region|Sevii Islands
+insightmusic|johto_rocket_encounter
+IniMusic|Johto_rocket_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_rocket
+Pokemon1|24,57
+Pokemon2|45,57
+Pokemon3|510,58
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|1
+AI|40
+IntroSequence|Blue,Blue

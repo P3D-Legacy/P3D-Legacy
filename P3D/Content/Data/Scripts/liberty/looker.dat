@@ -1,0 +1,27 @@
+version=2
+@npc.warp(10,21,3,22)
+@npc.warp(11,19,3,23)
+@npc.warp(12,20,3,23)
+@npc.warp(13,22,3,23)
+@npc.warp(14,23,3,23)
+@camera.set(0,1,1.5,3.14,-0.46)
+@player.move(0)
+@level.update
+@music.play(looker_encounter)
+@text.show(Looker: <player.name>,~we meet again!*The International Police has~been investigating Team~Rocket's activity and they~seem to be reduced to~just a few rebel grunts.*They tried to escape in the~submarine after their leader's~defeat, but were surrounded~by our ships.~They'll face trial for~their misdeeds.*The International Police~expresses utmost gratitude~for your continued help~against Team Rocket with~this reward in money.)
+@player.money(100000)
+@text.show(You got a 100,000~Pokédollars reward!)
+@text.show(Looker: We might end up~meeting again.*Farewell.)
+@register.register(lookerliberty)
+@screen.fadeout
+@level.wait(15)
+@npc.warp(10,21,-1,22)
+@npc.warp(11,19,-1,23)
+@npc.warp(12,20,-1,23)
+@npc.warp(13,22,-1,23)
+@npc.warp(14,23,-1,23)
+@level.update
+@level.wait(15)
+@screen.fadein
+@music.play(routemusic7)
+:end

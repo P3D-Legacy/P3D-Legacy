@@ -1,3 +1,14 @@
 version=2
+@text.show(Stay back, kid!*I was asked not to let~anyone enter this crucial~spot for our future~operations.*...)
 @battle.starttrainer(fortune\north\006)
+@text.show(My Pokémon...*Gah!~Who even cares~about those stupid islands~and their weird Pokémon~anyway?*I'll go back to the~Unova branch...)
+@screen.fadeout
+@level.wait(15)
+@npc.register(fortune\outcast.dat|5|remove|0)
+@npc.remove(5)
+@level.update
+@level.wait(15)
+@screen.fadein
+@text.show(He left something behind.*It's a boat pass!)
+@item.messagegive(500,1)
 :end
