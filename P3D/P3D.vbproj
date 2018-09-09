@@ -25628,6 +25628,9 @@
     <None Include="Content\Data\maps\liberty\room.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Data\Scripts\ilex\spiky.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\kolben\botoff.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -25639,6 +25642,9 @@
     </None>
     <None Include="Content\Data\Scripts\kolben\omega.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\kolben\omega2.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\kolben\segis.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
