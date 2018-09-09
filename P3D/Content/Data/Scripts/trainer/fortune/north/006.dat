@@ -10,5 +10,5 @@ version=2
 @level.wait(15)
 @screen.fadein
 @text.show(He left something behind.*It's a boat pass!)
-@item.messagegive(500,1)
+@item.messagegive(592,1)
 :end

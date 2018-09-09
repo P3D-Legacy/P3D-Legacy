@@ -25548,6 +25548,7 @@
     </Content>
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
     <Compile Include="Pokemon\Abilities\ParentalBond.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\LibertyPass.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
     <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">

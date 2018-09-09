@@ -1,6 +1,6 @@
 Namespace Items.KeyItems
 
-    <Item(500, "Liberty Pass")>
+    <Item(592, "Liberty Pass")>
     Public Class LibertyPass
 
         Inherits KeyItem

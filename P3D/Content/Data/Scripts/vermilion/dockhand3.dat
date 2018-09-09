@@ -39,7 +39,7 @@ version=2
 	:end
 :endif
 
-:if:<inventory.countitem(500)>>0 <and> <register.registered(libertypasstonav)>=false
+:if:<inventory.countitem(592)>>0 <and> <register.registered(libertypasstonav)>=false
 	@text.show(Oh, this is a nice pass!*It's a tourist trip to~"Liberty Garden" in Unova.*We can take you~there if you want.)
 	@register.register(libertypasstonav)
 	@register.register(specialmap-tixreg)
