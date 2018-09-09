@@ -1,4 +1,4 @@
-﻿{"Level"{LEV[{"Name"{str[Ilex Forest]}}{"MusicLoop"{str[ilex_forest]}}{"WildPokemon"{bool[1]}}]}}
+{"Level"{LEV[{"Name"{str[Ilex Forest]}}{"MusicLoop"{str[ilex_forest]}}{"WildPokemon"{bool[1]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[5]}}{"Weather"{int[0]}}{"Lightning"{int[2]}}]}}
 
 Floors:
@@ -263,16 +263,21 @@ Items:
 {"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[19,-0.375,9]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[1]}}{"AdditionalValue"{str[2,17]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.25,0.25,0.25]}}]}}
 {"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[29,-0.375,3]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[0]}}{"AdditionalValue"{str[3,63]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.25,0.25,0.25]}}]}}
 
+Mega Stone:
+{"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[27,-0.2,24]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[2]}}{"AdditionalValue"{str[5,544]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.3,0.3,0.3]}}]}}
+
 ScriptBlocks:
 {"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[10,0,35]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[ilex\farfetchd_start]}}{"Rotation"{int[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[9,0,31]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[ilex\charcoal_intro]}}{"Rotation"{int[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[4,0,35]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[ilex\charcoal_defeat]}}{"Rotation"{int[0]}}]}}
 
 NPCs:
-{"NPC"{NPC[{"Position"{sngArr[2,-2,24]}}{"TextureID"{str[31]}}{"ID"{int[9]}}{"Name"{str[KimonoAkemi]}}{"Action"{int[1]}}{"AdditionalValue"{str[ilex\kimonogirl]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[2,-2,24]}}{"TextureID"{str[31]}}{"ID"{int[9]}}{"Name"{str[Kimono]}}{"Action"{int[1]}}{"AdditionalValue"{str[ilex\kimonogirl]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[2,-2,24]}}{"TextureID"{str[[POKEMON|N]251]}}{"ID"{int[10]}}{"Name"{str[Celebi]}}{"Action"{int[1]}}{"AdditionalValue"{str[ilex\celebi]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[5,-2,33]}}{"TextureID"{str[22]}}{"ID"{int[2]}}{"Name"{str[Male]}}{"Action"{int[1]}}{"AdditionalValue"{str[azalea\charcoal_teacher]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[9,-2,30]}}{"TextureID"{str[8]}}{"ID"{int[0]}}{"Name"{str[Helper]}}{"Action"{int[1]}}{"AdditionalValue"{str[ilex\charcoal_guy]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[12,-2,37]}}{"TextureID"{str[Farfetch'd]}}{"ID"{int[1]}}{"Name"{str[farfetchd]}}{"Action"{int[1]}}{"AdditionalValue"{str[ilex\farfetchd]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[17,0,16]}}{"TextureID"{str[28]}}{"ID"{int[3]}}{"Name"{str[HeadbuttGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[ilex\headbutt]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[10,0,24]}}{"Scale"{sngArr[0,0,0]}}{"TextureID"{str[0]}}{"ID"{int[15]}}{"Name"{str[Shrine]}}{"Action"{int[1]}}{"AdditionalValue"{str[ilex\shrine]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[11,-2,24]}}{"TextureID"{str[[POKEMON|N]172_spiky-eared]}}{"ID"{int[25]}}{"Name"{str[Spiky]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[4,-2,26]}}{"TextureID"{str[5]}}{"ID"{int[26]}}{"Name"{str[Old Man]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
