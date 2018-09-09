@@ -1,0 +1,138 @@
+version=2
+@text.show(Omega: Very well.*Pick your favorite biome.)
+	@battle.setvar(canblackout,false)
+	@options.show(Savanna,Rainforest,Desert,Taiga)
+		:when:Savanna
+			@text.show(Omega: Initialize biome~simulation...)
+			@screen.fadeout
+			@player.warp(kolben\biome\savanna.dat,9,0.1,13,0)
+			@level.wait(30)
+			@level.update
+			@player.turnto(3)
+			@camera.set(0,1,1,4.75,-0.25)
+			@screen.fadein
+			@level.wait(60)
+			@text.show(Omega: Here I come!)
+			@battle.trainer(kolben\omega\omegas)
+			:if:<battle.won>=true
+				@pokemon.heal
+				@register.registertime(omega2,1,day)
+				@text.show(Impressive, I was bested.)		
+			:else
+				@pokemon.heal
+				@text.show(A winner I am!)
+			:endif
+			@text.show(Omega: Shut down biome~simulation...)
+			@level.wait(30)
+			@screen.fadeout
+			@player.warp(kolben\basement.dat,9,0.1,16,0)
+			@level.wait(30)
+			@level.update
+			@player.turnto(2)
+			@npc.turn(4,0)
+			@camera.set(0,1,1,3.14,-0.25)
+			@screen.fadein
+			@level.wait(60)
+			@text.show(Omega: That was good.)
+			:end
+		:when:Rainforest
+			@text.show(Omega: Initialize biome~simulation...)
+			@screen.fadeout
+			@player.warp(kolben\biome\rainforest.dat,9,0.1,13,0)
+			@level.wait(30)
+			@level.update
+			@player.turnto(3)
+			@camera.set(0,1,1,4.75,-0.25)
+			@screen.fadein
+			@level.wait(60)
+			@text.show(Omega: Here I come!)
+			@battle.trainer(kolben\omega\omegar)
+			:if:<battle.won>=true
+				@pokemon.heal
+				@register.registertime(omega2,1,day)
+				@text.show(Impressive, I was bested.)		
+			:else
+				@pokemon.heal
+				@text.show(A winner I am!)
+			:endif
+			@text.show(Omega: Shut down biome~simulation...)
+			@level.wait(30)
+			@screen.fadeout
+			@player.warp(kolben\basement.dat,9,0.1,16,0)
+			@level.wait(30)
+			@level.update
+			@player.turnto(2)
+			@npc.turn(4,0)
+			@camera.set(0,1,1,3.14,-0.25)
+			@screen.fadein
+			@level.wait(60)
+			@text.show(Omega: That was good.)
+			:end
+		:when:Desert
+			@text.show(Omega: Initialize biome~simulation...)
+			@screen.fadeout
+			@player.warp(kolben\biome\desert.dat,9,0.1,13,0)
+			@level.wait(30)
+			@level.update
+			@player.turnto(3)
+			@camera.set(0,1,1,4.75,-0.25)
+			@screen.fadein
+			@level.wait(60)
+			@text.show(Omega: Here I come!)
+			@battle.trainer(kolben\omega\omegad)
+			:if:<battle.won>=true
+				@pokemon.heal
+				@register.registertime(omega2,1,day)
+				@text.show(Impressive, I was bested.)		
+			:else
+				@pokemon.heal
+				@text.show(A winner I am!)
+			:endif
+			@text.show(Omega: Shut down biome~simulation...)
+			@level.wait(30)
+			@screen.fadeout
+			@player.warp(kolben\basement.dat,9,0.1,16,0)
+			@level.wait(30)
+			@level.update
+			@player.turnto(2)
+			@npc.turn(4,0)
+			@camera.set(0,1,1,3.14,-0.25)
+			@screen.fadein
+			@level.wait(60)
+			@text.show(Omega: That was good.)
+			:end
+		:when:Taiga
+			@text.show(Omega: Initialize biome~simulation...)
+			@screen.fadeout
+			@player.warp(kolben\biome\taiga.dat,9,0.1,13,0)
+			@level.wait(30)
+			@level.update
+			@player.turnto(3)
+			@camera.set(0,1,1,4.75,-0.25)
+			@screen.fadein
+			@level.wait(60)
+			@text.show(Omega: Here I come!)
+			@battle.trainer(kolben\omega\omegat)
+			:if:<battle.won>=true
+				@pokemon.heal
+				@register.registertime(omega2,1,day)
+				@text.show(Impressive, I was bested.)		
+			:else
+				@pokemon.heal
+				@text.show(A winner I am!)
+			:endif
+			@text.show(Omega: Shut down biome~simulation...)
+			@level.wait(30)
+			@screen.fadeout
+			@player.warp(kolben\basement.dat,9,0.1,16,0)
+			@level.wait(30)
+			@level.update
+			@player.turnto(2)
+			@npc.turn(4,0)
+			@camera.set(0,1,1,3.14,-0.25)
+			@screen.fadein
+			@level.wait(60)
+			@text.show(Omega: That was good.)
+			:end
+	:endwhen
+:end
