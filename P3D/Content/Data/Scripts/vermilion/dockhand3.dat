@@ -47,7 +47,7 @@ version=2
 		:when:Yes
 			@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 			@script.start(vermilion\fastshipleaving)
-			@player.warp(liberty\exterior.dat,12,2.1,11)
+			@player.warp(liberty\garden.dat,12,2.1,11)
 			@level.update
 			@player.turnto(1)
 			@screen.fadein
@@ -92,7 +92,7 @@ version=2
 			:when:Liberty Garden
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 				@script.start(vermilion\fastshipleaving)
-				@player.warp(liberty\exterior.dat,12,2.1,11)
+				@player.warp(liberty\garden.dat,12,2.1,11)
 				@level.update
 				@player.turnto(1)
 				@screen.fadein
@@ -135,7 +135,7 @@ version=2
 			:when:Liberty Garden
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 				@script.start(vermilion\fastshipleaving)
-				@player.warp(liberty\exterior.dat,12,2.1,11)
+				@player.warp(liberty\garden.dat,12,2.1,11)
 				@level.update
 				@player.turnto(1)
 				@screen.fadein
@@ -156,7 +156,7 @@ version=2
 			:when:Liberty Garden
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 				@script.start(vermilion\fastshipleaving)
-				@player.warp(liberty\exterior.dat,12,2.1,11)
+				@player.warp(liberty\garden.dat,12,2.1,11)
 				@level.update
 				@player.turnto(1)
 				@screen.fadein
@@ -185,7 +185,7 @@ version=2
 			:when:Liberty Garden
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 				@script.start(vermilion\fastshipleaving)
-				@player.warp(liberty\exterior.dat,12,2.1,11)
+				@player.warp(liberty\garden.dat,12,2.1,11)
 				@level.update
 				@player.turnto(1)
 				@screen.fadein
