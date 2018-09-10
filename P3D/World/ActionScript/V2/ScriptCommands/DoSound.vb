@@ -20,6 +20,10 @@
                         stopMusic = CBool(argument.GetSplit(1))
                     End If
 
+                    If sound = "healing" Then
+                        sound = "pokemon_heal"
+                    End If
+
                     SoundManager.PlaySound(sound, stopMusic)
                 Case "playadvanced"
                     Dim args() As String = argument.Split(CChar(","))

@@ -1396,3 +1396,9 @@
 /processorParam:Quality=Best
 /build:Songs/sovietmarch.ogg
 
+#begin Songs/gameintro.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/gameintro.ogg
+
