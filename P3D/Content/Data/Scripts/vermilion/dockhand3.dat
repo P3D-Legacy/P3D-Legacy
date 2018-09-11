@@ -1,7 +1,7 @@
 version=2
 
 :if:<register.registered(specialmap-tixreg)>=false
-	@text.show(Yo!*I am the navigator.*If you ever find any odd~maps or specialty tickets, come~talk to me.*For our regularly scheduled~trips, talk to the first~mate next to me.)
+	@text.show(Yo!*I am the navigator.*If you ever find any odd~maps, come talk to me.*For our regularly scheduled~trips, talk to the first~mate next to me.)
 :endif
 
 :if:<inventory.countitem(285)>>0 <and> <register.registered(oldseamaptonav)>=false
@@ -39,15 +39,15 @@ version=2
 	:end
 :endif
 
-:if:<inventory.countitem(500)>>0 <and> <register.registered(libertypasstonav)>=false
-	@text.show(Oh, this is a nice pass!*It's a tourist trip to~"Liberty Garden" in Unova.*We can take you~there if you want.)
-	@register.register(libertypasstonav)
+:if:<inventory.countitem(592)>>0 <and> <register.registered(libertyseamaptonav)>=false
+	@text.show(Oh, this is a nice map!*It's a map to "Liberty Garden"~in far-off Unova.*We can take you~there if you want.)
+	@register.register(libertyseamaptonav)
 	@register.register(specialmap-tixreg)
 	@options.show(Yes,No)
 		:when:Yes
 			@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 			@script.start(vermilion\fastshipleaving)
-			@player.warp(liberty\exterior.dat,12,2.1,11)
+			@player.warp(liberty\garden.dat,12,2.1,11)
 			@level.update
 			@player.turnto(1)
 			@screen.fadein
@@ -60,7 +60,7 @@ version=2
 :if:<register.registered(specialmap-tixreg)>=true
 @text.show(Where would you like to go?)
 
-	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertypasstonav)>=false
+	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertyseamaptonav)>=false
 		@options.show(Faraway Island,Quit)
 			:when:Faraway Island
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -73,7 +73,7 @@ version=2
 		:end
 	:endif
 	
-	:if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=false
+	:if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertyseamaptonav)>=false
 		@options.show(Open Sea,Quit)
 			:when:Open Sea
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -87,12 +87,12 @@ version=2
 		:end
 	:endif
 	
-	:if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertypasstonav)>=true
+	:if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertyseamaptonav)>=true
 		@options.show(Liberty Garden,Quit)
 			:when:Liberty Garden
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 				@script.start(vermilion\fastshipleaving)
-				@player.warp(liberty\exterior.dat,12,2.1,11)
+				@player.warp(liberty\garden.dat,12,2.1,11)
 				@level.update
 				@player.turnto(1)
 				@screen.fadein
@@ -101,7 +101,7 @@ version=2
 		:end
 	:endif
 	
-	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=false
+	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertyseamaptonav)>=false
 		@options.show(Faraway Island,Open Sea,Quit)
 			:when:Faraway Island
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -122,7 +122,7 @@ version=2
 		:end
 	:endif
 	
-	:if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=true
+	:if:<register.registered(oldseamaptonav)>=false <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertyseamaptonav)>=true
 		@options.show(Open Sea,Liberty Garden,Quit)
 			:when:Open Sea
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -135,7 +135,7 @@ version=2
 			:when:Liberty Garden
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 				@script.start(vermilion\fastshipleaving)
-				@player.warp(liberty\exterior.dat,12,2.1,11)
+				@player.warp(liberty\garden.dat,12,2.1,11)
 				@level.update
 				@player.turnto(1)
 				@screen.fadein
@@ -144,7 +144,7 @@ version=2
 		:end	
 	:endif
 	
-	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertypasstonav)>=true
+	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=false <and> <register.registered(libertyseamaptonav)>=true
 		@options.show(Faraway Island,Liberty Garden,Quit)
 			:when:Faraway Island
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -156,7 +156,7 @@ version=2
 			:when:Liberty Garden
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 				@script.start(vermilion\fastshipleaving)
-				@player.warp(liberty\exterior.dat,12,2.1,11)
+				@player.warp(liberty\garden.dat,12,2.1,11)
 				@level.update
 				@player.turnto(1)
 				@screen.fadein
@@ -165,7 +165,7 @@ version=2
 		:end
 	:endif
 	
-	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertypasstonav)>=true
+	:if:<register.registered(oldseamaptonav)>=true <and> <register.registered(emptyseamaptonav)>=true <and> <register.registered(libertyseamaptonav)>=true
 		@options.show(Faraway Island,Open Sea,Liberty Garden,Quit)
 			:when:Faraway Island
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
@@ -185,7 +185,7 @@ version=2
 			:when:Liberty Garden
 				@text.show(All right!*All aboard the~Seagallop Hi-Speed 11!)
 				@script.start(vermilion\fastshipleaving)
-				@player.warp(liberty\exterior.dat,12,2.1,11)
+				@player.warp(liberty\garden.dat,12,2.1,11)
 				@level.update
 				@player.turnto(1)
 				@screen.fadein
