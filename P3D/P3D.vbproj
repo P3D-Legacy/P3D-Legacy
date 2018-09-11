@@ -13523,6 +13523,9 @@
     <Content Include="Content\Pokemon\Overworld\Shiny\719_mega.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Battle\Other\Star.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\chess.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -13622,7 +13625,9 @@
     <Content Include="Content\Textures\TVs\PerpendStone.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TVs\Portrait.png" />
+    <Content Include="Content\Textures\TVs\Portrait.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\TVs\segis.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
