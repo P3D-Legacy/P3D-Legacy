@@ -29,7 +29,7 @@ Friend Class SplashScreen
         CanMuteMusic = True
         CanChat = False
         CanTakeScreenshot = True
-        CanDrawDebug = True
+        CanDrawDebug = False
         MouseVisible = False
         CanGoFullscreen = True
 
