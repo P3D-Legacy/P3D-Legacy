@@ -17,7 +17,27 @@ version=2
 						:if:<battle.won>=true
 							@pokemon.heal
 							@register.register(omega1)
-							@text.show(As expected, you did it!~Now let me see...*...*You'll get a Pikachu-colored~Pichu to call your own!)		
+							@text.show(As expected, you did it!~Now let me see...*...*You'll get a Pikachu-colored~Pichu to call your own!)
+								:if:<pokemon.count>>5
+									@text.show(Oh, your party is full.~Go open some space to claim~your Pokémon!)
+									:end
+								:else
+									@pokemon.add(172,50,A gift from Omega,45,at Kolben Tower,0,Omega)
+									@text.show(Ah yes, your prize.*This Pichu is special:~I found it near the Ilex~Forest shrine.*I wonder what happens if~you take it back there.*Anyway, here it is!)
+									@pokemon.setshiny(<pokemon.count>-1,1)
+									@pokemon.setgender(<pokemon.count>-1,0)
+									@pokemon.clearattacks(<pokemon.count>-1)
+									@pokemon.addattack(<pokemon.count>-1,344)
+									@pokemon.addattack(<pokemon.count>-1,57)
+									@pokemon.addattack(<pokemon.count>-1,19)
+									@pokemon.addattack(<pokemon.count>-1,231)
+									@sound.play(success_small)
+									@text.show(<player.name> received~Pichu!)
+									@pokemon.setot(<pokemon.count>-1,42069)
+									@pokemon.rename(last)
+									@register.register(pcpreceive)
+									:end				
+								:endif
 						:else
 							@pokemon.heal
 							@text.show(That's a bit disappointing.*Well, try again later!)

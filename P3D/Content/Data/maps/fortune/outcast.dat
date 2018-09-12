@@ -348,7 +348,7 @@ Items:
 
 Warps:
 Altering:
-{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[7,0,21]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16][176,16,16,16]]}}{"TextureIndex"{intArr[1,1,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[fortune\altering.dat,17,0.1,21,0]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[7,0,21]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16][176,16,16,16]]}}{"TextureIndex"{intArr[1,1,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[fortune\roost.dat,17,0.1,21,0]}}{"Rotation"{int[0]}}]}}
 Green:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,240,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[fortune\green.dat,9,0,-1,0]}}{"Rotation"{int[0]}}{"Position"{sngArr[9,0,80]}}{"Visible"{bool[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,240,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[fortune\green.dat,10,0,-1,0]}}{"Rotation"{int[0]}}{"Position"{sngArr[10,0,80]}}{"Visible"{bool[0]}}]}}
