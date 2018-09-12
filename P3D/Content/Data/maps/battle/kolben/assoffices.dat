@@ -1,0 +1,11 @@
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}]}}
+
+Walls:
+{"EntityField"{ENT[{"EntityID"{str[WallBlock]}}{"Size"{intArr[16,3,9]}}{"Fill"{bool[0]}}{"Position"{sngArr[6,0,9]}}{"TexturePath"{str[kolben]}}{"Textures"{recArr[[0,32,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Floor:
+{"Floor"{ENT[{"Size"{intArr[14,7]}}{"Position"{intArr[7,0,10]}}{"TexturePath"{str[kolben]}}{"Texture"{rec[0,0,16,16]}}]}}
+
+Ceiling:
+{"EntityField"{ENT[{"Size"{intArr[14,7]}}{"EntityID"{str[AllSidesObject]}}{"Position"{sngArr[7,3,10]}}{"TexturePath"{str[kolben]}}{"Textures"{recArr[[0,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+

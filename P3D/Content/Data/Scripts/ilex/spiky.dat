@@ -47,8 +47,8 @@ version=2
 	
 	@register.register(spiky)
 	@pokemon.cry(172)
-	@pokemon.add(172,50,Obtained at,5,Ilex Forest)
-	@pokemon.setadditionalvalue(<pokemon.count>-1,spiky-eared)
+	@pokemon.add(172_spiky-eared,50,Obtained at,161,Ilex Forest)
+
 	@pokemon.setshiny(<pokemon.count>-1,0)
 	@pokemon.setgender(<pokemon.count>-1,1)
 	@pokemon.clearattacks(<pokemon.count>-1)
@@ -56,7 +56,6 @@ version=2
 	@pokemon.addattack(<pokemon.count>-1,207)
 	@pokemon.addattack(<pokemon.count>-1,344)
 	@pokemon.addattack(<pokemon.count>-1,220)
-	@pokemon.reloadall
 	@sound.play(success_small)
 	@text.show(Spiky-Eared Pichu has~joined your party!)
 	@pokemon.rename(last)
