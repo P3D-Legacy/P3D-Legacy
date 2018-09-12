@@ -185,7 +185,7 @@
                             Core.Player.Badges.Add(int(argument))
                             SoundManager.PlaySound("badge_acquired", True)
                             Screen.TextBox.TextColor = TextBox.PlayerColor
-                            Screen.TextBox.Show(Core.Player.Name & " received the~" & Badge.GetBadgeName(int(argument)) & "badge.", {}, False, False)
+                            Screen.TextBox.Show(Core.Player.Name & " received the~" & Badge.GetBadgeName(int(argument)) & " Badge.", {}, False, False)
 
                             Core.Player.AddPoints(10, "Got a badge.")
                         End If
