@@ -3,8 +3,8 @@ Name|Clifford
 TrainerClass|Gentleman
 Money|3888
 IntroMessage|Today, in addition to our~lesson, we came to see the~chamber.
-OutroMessage|My, how extraodrinary.
-DefeatMessage|Ah, so you are studying~Pokémon on your own...*Yes, you cetainly are quite the~extraodrinary person, indeed.
+OutroMessage|My, how extraordinary.
+DefeatMessage|Ah, so you are studying~Pokémon on your own...*Yes, you certainly are quite the~extraordinary person, indeed.
 TextureID|oldhatman
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

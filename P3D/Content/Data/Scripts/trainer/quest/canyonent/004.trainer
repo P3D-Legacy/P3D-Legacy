@@ -4,7 +4,7 @@ TrainerClass|Pokémon Ranger
 Money|1980
 IntroMessage|I punish people who abuse~Pokémon!
 OutroMessage|You don't seem to be a problem trainer.
-DefeatMessage|If you treat your Pokémin with~kindness, they'll understand.
+DefeatMessage|If you treat your Pokémon with~kindness, they'll understand.
 TextureID|90
 Region|Sevii Islands
 IniMusic|johto_trainer_intro

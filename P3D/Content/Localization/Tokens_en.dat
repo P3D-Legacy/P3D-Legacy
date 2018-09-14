@@ -331,6 +331,7 @@ badge_Rising,Rising
 Regions:
 Johto,Johto
 Kanto,Kanto
+Sevii Islands,Sevii Islands
 ---
 Places:
 Places_???,???
@@ -448,6 +449,7 @@ Places_Ancient Ruins,Ancient Ruins
 Places_Millenial Star Tower,Millenial Star Tower
 Places_Kolben Tower,Kolben Tower
 Places_Faraway Island,Faraway Island
+Places_Underwater cave,Underwater cave
 
 Routes:
 Places_Route 1,Route 1
@@ -509,7 +511,7 @@ Places_Memorial Pillar,Memorial Pillar
 Places_Water Labyrinth,Water Labyrinth
 Places_Resort Gorgeous,Resort Gorgeous
 Places_Water Path,Water Path
-Places_Grass Path,Grass Path
+Places_Green Path,Green Path
 Places_Outcast Island,Outcast Island
 Places_Ruin Valley,Ruin Valley
 Places_Canyon Entrance,Canyon Entrance
