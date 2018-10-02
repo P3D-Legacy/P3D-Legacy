@@ -131,6 +131,10 @@ Public Class MusicManager
                         ClearCurrentlyPlaying()
                         _isFadingIn = False
                         _volume = 1.0F
+                        If _nextSong = NO_MUSIC Then
+                            MusicManager.Stop()
+                            _nextSong = ""
+                        End If
 
                     End If
 
