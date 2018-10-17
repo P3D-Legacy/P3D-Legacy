@@ -431,6 +431,9 @@ Public Class NewInventoryScreen
     ''' Draws the info popup.
     ''' </summary>
     Private Sub DrawInfo(ByVal preBatch As SpriteBatch, ByVal preTarget As RenderTarget2D)
+        If _items.Count = 0 Then
+            Exit Sub
+        End If
         'Create a new render target and set it.
 
         'Bring back when Monogame begins supporting this stuff
@@ -454,7 +457,8 @@ Public Class NewInventoryScreen
         Canvas.DrawGradient(infoBatch, New Rectangle(_infoSize - 100, 0, 100, 368), New Color(0, 0, 0, 0), New Color(0, 0, 0, alpha), True, -1)
 
         'Get item and gets its display texts based on the item category:
-        Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
+        Dim getIndex As Integer = ItemIndex + PageIndex * 10
+        Dim cItem As Item = Item.GetItemByID(_items(getIndex).ItemID)
 
         infoBatch.Draw(cItem.Texture, New Rectangle(24, 24, 48, 48), Color.White)
 
@@ -983,6 +987,20 @@ Public Class NewInventoryScreen
             _items = (From i In _items Order By Item.GetItemByID(i.ItemID).SortValue Ascending).ToArray()
         Else
             _items = (From i In _items Order By Item.GetItemByID(i.ItemID).Name Ascending).ToArray()
+        End If
+        If _items.Count <= ItemIndex + PageIndex * 10 Then
+            ItemIndex -= 1
+            If ItemIndex = -1 Then
+                If PageIndex > 0 Then
+                    PageIndex -= 1
+                    ItemIndex = 9
+                Else
+                    ItemIndex = 0
+                    PageIndex = 0
+                    _tabInControl = True
+                End If
+            End If
+            CloseInfoScreen()
         End If
     End Sub
 
