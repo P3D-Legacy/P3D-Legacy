@@ -224,6 +224,12 @@
         If GetPokemon().IsEgg() = False Then
             SpriteBatch.DrawString(FontManager.ChatFont, "Lv. " & GetPokemon().Level, New Vector2(DeltaX + 50, DeltaY + 48), New Color(255, 255, 255, CInt(220 * _fadeIn)))
 
+            'Draw status condition
+            Dim StatusTexture As Texture2D = BattleStats.GetStatImage(GetPokemon().Status)
+            If Not StatusTexture Is Nothing Then
+                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(DeltaX + 180, DeltaY + 48 + 3, 59, 18), New Color(255, 255, 255, CInt(255 * _fadeIn)))
+            End If
+
             'Draw shiny star:
             If GetPokemon().IsShiny = True Then
                 SpriteBatch.Draw(t, New Rectangle(DeltaX + 19, DeltaY + 300, 18, 18), New Rectangle(16, 0, 9, 9), New Color(255, 255, 255, CInt(255 * _fadeIn)))

@@ -320,7 +320,7 @@ Public Class PartyScreen
             GetFontRenderer().DrawString(FontManager.MiniFont, "Lv. " & p.Level.ToString(), New Vector2(position.X + 4, position.Y + 56), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
             'HP Bar:
-            SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 78, CInt(position.Y) + 32, 135, 15), New Rectangle(0, 32, 90, 10), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
+            SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 102, CInt(position.Y) + 32, 111, 15), New Rectangle(16, 32, 74, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
             '108 pixels:
             With p
                 Dim hpV As Double = .HP / .MaxHP
@@ -357,8 +357,13 @@ Public Class PartyScreen
             'status condition
             Dim StatusTexture As Texture2D = BattleStats.GetStatImage(p.Status)
             If Not StatusTexture Is Nothing Then
-                Canvas.DrawRectangle(New Rectangle(CInt(position.X + 58), CInt(position.Y + 32), 42, 16), Color.Gray)
-                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(CInt(position.X + 60), CInt(position.Y + 34), 38, 12), Color.White)
+                'Canvas.DrawRectangle(New Rectangle(CInt(position.X + 60), CInt(position.Y + 32), 42, 15), Color.Black)
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 68, CInt(position.Y) + 32, 6, 15), New Rectangle(0, 32, 4, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 74, CInt(position.Y) + 32, 28, 15), New Rectangle(16, 32, 4, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+
+                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(CInt(position.X + 66), CInt(position.Y + 33), 38, 12), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            Else
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 78, CInt(position.Y) + 32, 24, 15), New Rectangle(0, 32, 16, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
             End If
 
             'Able/unable display (when using TM/HM)

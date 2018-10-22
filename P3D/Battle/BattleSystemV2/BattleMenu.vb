@@ -174,7 +174,7 @@
             Dim caughtX As Integer = 0
             Dim StatusTexture As Texture2D = BattleStats.GetStatImage(p.Status)
             If Not StatusTexture Is Nothing Then
-                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(CInt(pos.X) + 10, CInt(pos.Y) + 26, 38, 12), New Color(255, 255, 255, _moveMenuAlpha))
+                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(CInt(pos.X) + 12, CInt(pos.Y) + 26, 38, 12), New Color(255, 255, 255, _moveMenuAlpha))
                 caughtX = -16
             End If
 
