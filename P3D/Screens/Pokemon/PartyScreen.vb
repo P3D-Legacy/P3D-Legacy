@@ -354,6 +354,13 @@ Public Class PartyScreen
             'HP display:
             GetFontRenderer().DrawString(FontManager.MiniFont, p.HP & " / " & p.MaxHP, New Vector2(position.X + 100, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
+            'status condition
+            Dim StatusTexture As Texture2D = BattleStats.GetStatImage(p.Status)
+            If Not StatusTexture Is Nothing Then
+                Canvas.DrawRectangle(New Rectangle(CInt(position.X + 58), CInt(position.Y + 32), 42, 16), Color.Gray)
+                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(CInt(position.X + 60), CInt(position.Y + 34), 38, 12), Color.White)
+            End If
+
             'Able/unable display (when using TM/HM)
             Dim AttackLabel As String = ""
             If LearnType > 0 Then
