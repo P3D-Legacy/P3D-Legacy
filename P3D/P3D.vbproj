@@ -25508,6 +25508,24 @@
     </Content>
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
     <Compile Include="Pokemon\Abilities\ParentalBond.vb" />
+    <Compile Include="Pokemon\Attacks\Dark\DarkVoid.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Dragon\SpacialRend.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Fighting\StormThrow.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Ghost\ShadowForce.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Ground\ThousandWaves.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Ice\Avalanche.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Pokemon\Items\KeyItems\LibertySeaMap.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
@@ -25763,9 +25781,13 @@
     <Compile Include="Battle\BattleAnimations\BASize.vb" />
     <Compile Include="Battle\BattleAnimations\BattleAnimation3D.vb" />
     <Compile Include="Battle\BattleStats.vb" />
-    <Compile Include="Battle\BattleSystemV2\Battle.vb" />
+    <Compile Include="Battle\BattleSystemV2\Battle.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Battle\BattleSystemV2\BattleAnimationScreenV2.vb" />
-    <Compile Include="Battle\BattleSystemV2\BattleCalculation.vb" />
+    <Compile Include="Battle\BattleSystemV2\BattleCalculation.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Battle\BattleSystemV2\BattleCameraV2.vb" />
     <Compile Include="Battle\BattleSystemV2\BattleMenu.vb" />
     <Compile Include="Battle\BattleSystemV2\BattleScreen.vb" />
@@ -26106,7 +26128,9 @@
     <Compile Include="Pokemon\Abilities\WonderGuard.vb" />
     <Compile Include="Pokemon\Abilities\WonderSkin.vb" />
     <Compile Include="Pokemon\Abilities\ZenMode.vb" />
-    <Compile Include="Pokemon\Attacks\Attack.vb" />
+    <Compile Include="Pokemon\Attacks\Attack.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Pokemon\Attacks\AttackSpecialFunctions.vb" />
     <Compile Include="Pokemon\Attacks\Bug\AttackOrder.vb" />
     <Compile Include="Pokemon\Attacks\Bug\BugBite.vb" />

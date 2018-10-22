@@ -1080,8 +1080,8 @@
                     returnMove = New Moves.Dark.NastyPlot()
                 Case 418
                     returnMove = New Moves.Steel.BulletPunch()
-                    'Case 419
-                    'Avalanche
+                Case 419
+                    returnMove = New Moves.Ice.Avalanche()
                 Case 420
                     returnMove = New Moves.Ice.IceShard()
                 Case 421
@@ -1162,22 +1162,22 @@
                     returnMove = New Moves.Normal.DoubleHit()
                 Case 459
                     returnMove = New Moves.Dragon.RoarOfTime()
-                    'Case 460
-                    'Spacial Rend
+                Case 460
+                    returnMove = New Moves.Dragon.SpacialRend()
                     'Case 461
                     'Lunar Dance
                 Case 462
                     returnMove = New Moves.Normal.CrushGrip()
                 Case 463
                     returnMove = New Moves.Fire.MagmaStorm()
-                    'Case 464
-                    'Dark Void
+                Case 464
+                    returnMove = New Moves.Dark.DarkVoid()
                 Case 465
                     returnMove = New Moves.Grass.Seedflare()
                 Case 466
                     returnMove = New Moves.Ghost.OminousWind()
-                    'Case 467
-                    'Shadow Force
+                Case 467
+                    returnMove = New Moves.Ghost.ShadowForce()
                 Case 468
                     returnMove = New Moves.Dark.HoneClaws()
                     'Case 469
@@ -1202,8 +1202,8 @@
                     'Magic Room
                 Case 479
                     returnMove = New Moves.Rock.SmackDown()
-                    'Case 480
-                    'Storm Throw
+                Case 480
+                    returnMove = New Moves.Fighting.StormThrow()
                 Case 481
                     returnMove = New Moves.Fire.FlameBurst()
                 Case 482
@@ -1471,9 +1471,9 @@
                 Case 613
                     returnMove = New Moves.Flying.OblivionWing()
                     'Case 614
-                    'Tousand Arrows
-                    'Case 615
-                    'Thousand Waves
+                    'Thousand Arrows
+                Case 615
+                    returnMove = New Moves.Ground.ThousandWaves()
                 Case 616
                     returnMove = New Moves.Ground.LandsWrath()
                     'Case 617

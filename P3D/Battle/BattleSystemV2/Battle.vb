@@ -124,11 +124,13 @@
                 Exit Sub
             End If
 
-            'If Shadow Force gets programmed, put this in.
-            'If BattleScreen.FieldEffects.OwnShadowForceCounter = 1 Then
-            '    InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, xxx)})
-            '    Exit Sub
-            'End If
+            'Shadow Force:
+            If BattleScreen.FieldEffects.OwnShadowForceCounter = 1 Then
+                SelectedMoveOwn = False
+                DeleteHostQuery(BattleScreen)
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 467)})
+                Exit Sub
+            End If
 
             'If Sky Drop gets programmed, put this in.
             'If BattleScreen.FieldEffects.OwnSkyDropCounter = 1 Then
@@ -301,10 +303,11 @@
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 291)}
                 End If
 
-                ''Shadow Force:
-                'If BattleScreen.FieldEffects.OppShadowForceCounter = 1 Then
-                '    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = (19).ToString()}
-                'End If
+                'Shadow Force:
+                If BattleScreen.FieldEffects.OppShadowForceCounter = 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 467)}
+                End If
 
                 ''Sky Drop:
                 'If BattleScreen.FieldEffects.OppSkyDropCounter = 1 Then
@@ -944,7 +947,7 @@
             Dim dig As Integer
             Dim dive As Integer
             Dim skyDrop As Integer      'not implemented yet
-            Dim shadowForce As Integer  'not implemented yet
+            Dim shadowForce As Integer 
             Dim skullBash As Integer
             Dim skyAttack As Integer
             Dim solarBeam As Integer

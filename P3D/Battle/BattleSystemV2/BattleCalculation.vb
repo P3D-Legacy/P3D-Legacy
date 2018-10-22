@@ -575,6 +575,9 @@
             If UsedAttack.ID = 524 Then
                 Return True
             End If
+            If UsedAttack.ID = 480 Then
+                Return True
+            End If
 
             Return False
         End Function
