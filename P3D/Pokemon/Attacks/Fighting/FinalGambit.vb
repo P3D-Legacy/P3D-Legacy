@@ -1,23 +1,23 @@
-﻿Namespace BattleSystem.Moves.Poison
+﻿Namespace BattleSystem.Moves.Fighting
 
-    Public Class Venoshock
+    Public Class FinalGambit
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Poison)
-            Me.ID = 474
-            Me.OriginalPP = 10
-            Me.CurrentPP = 10
-            Me.MaxPP = 10
-            Me.Power = 65
+            Me.Type = New Element(Element.Types.Fighting)
+            Me.ID = 515
+            Me.OriginalPP = 5
+            Me.CurrentPP = 5
+            Me.MaxPP = 5
+            Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Venoshock"
-            Me.Description = "The user drenches the target in a special poisonous liquid. This move's power is doubled if the target is poisoned."
-            Me.CriticalChance = 1
+            Me.ContestCategory = ContestCategories.Tough
+            Me.Name = "Final Gambit"
+            Me.Description = "The user risks everything to attack its target. The user faints but does damage equal to its HP."
+            Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
@@ -30,14 +30,14 @@
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
-            Me.KingsrockAffected = True
+            Me.KingsrockAffected = False
             Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
-            Me.UseEffectiveness = True
+            Me.UseEffectiveness = False
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
@@ -52,20 +52,18 @@
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.Nothing
+            Me.AIField2 = AIField.Selfdestruct
         End Sub
 
-        Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
-            Dim op As Pokemon = BattleScreen.OppPokemon
+        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+            Dim p As Pokemon = BattleScreen.OwnPokemon
             If own = False Then
-                op = BattleScreen.OwnPokemon
+                p = BattleScreen.OppPokemon
             End If
-            If op.Status = Pokemon.StatusProblems.Poison OrElse op.Status = Pokemon.StatusProblems.BadPoison Then
-                Return 130
-            Else
-                Return Me.Power
-            End If
-        End Function
+            Dim dmg As Integer = p.HP
+            BattleScreen.Battle.ReduceHP(dmg, own, own, BattleScreen, "", "move:finalgambit")
+            BattleScreen.Battle.ReduceHP(dmg, Not own, own, BattleScreen, "", "move:finalgambit")
+        End Sub
 
     End Class
 

@@ -1,22 +1,22 @@
-Namespace BattleSystem.Moves.Normal
+﻿Namespace BattleSystem.Moves.Bug
 
-    Public Class PayDay
+    Public Class FellStinger
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Normal)
-            Me.ID = 6
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
+            Me.Type = New Element(Element.Types.Bug)
+            Me.ID = 565
+            Me.OriginalPP = 25
+            Me.CurrentPP = 25
+            Me.MaxPP = 25
+            Me.Power = 50
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Pay Day"
-            Me.Description = "Numerous coins are hurled at the target to inflict damage. Money is earned after the battle."
+            Me.ContestCategory = ContestCategories.Cool
+            Me.Name = "Fell Stinger"
+            Me.Description = "When the user knocks out a target with this move, the user's Attack stat rises drastically."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
@@ -36,8 +36,8 @@ Namespace BattleSystem.Moves.Normal
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.RemovesFrozen = False
             Me.HasSecondaryEffect = False
+            Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
@@ -59,22 +59,9 @@ Namespace BattleSystem.Moves.Normal
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
-
-            Dim coinAmount As Integer = p.Level * 5
-
-            If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "amulet coin" Or p.Item.Name.ToLower() = "luck incense" Then
-                    coinAmount *= 2
-                End If
+            If op.HP = 0 Then
+                BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 3, "", "move:fellstinger")
             End If
-
-            If own = True Then
-                BattleScreen.FieldEffects.OwnPayDayCounter += coinAmount
-            Else
-                BattleScreen.FieldEffects.OppPayDayCounter += coinAmount
-            End If
-
-            BattleScreen.BattleQuery.Add(New TextQueryObject("Coins were scattered everywhere!"))
         End Sub
 
     End Class

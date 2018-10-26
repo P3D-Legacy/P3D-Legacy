@@ -1018,8 +1018,8 @@
                     returnMove = New Moves.Dark.Punishment()
                 Case 387
                     returnMove = New Moves.Normal.LastResort()
-                    'Case 388
-                    'Worry Seed
+                Case 388
+                    returnMove = New Moves.Grass.WorrySeed()
                 Case 389
                     returnMove = New Moves.Dark.SuckerPunch()
                 Case 390
@@ -1140,8 +1140,8 @@
                     returnMove = New Moves.Grass.GrassKnot()
                 Case 448
                     returnMove = New Moves.Flying.Chatter()
-                    'Case 449
-                    'Judgment
+                Case 449
+                    returnMove = New Moves.Normal.Judgement()
                 Case 450
                     returnMove = New Moves.Bug.BugBite()
                 Case 451
@@ -1212,8 +1212,8 @@
                     returnMove = New Moves.Bug.QuiverDance()
                 Case 484
                     returnMove = New Moves.Steel.HeavySlam()
-                    'Case 485
-                    'Synchronoise
+                Case 485
+                    returnMove = New Moves.Psychic.Synchronoise()
                 Case 486
                     returnMove = New Moves.Electric.ElectroBall()
                     'Case 487
@@ -1228,16 +1228,16 @@
                     returnMove = New Moves.Poison.AcidSpray()
                 Case 492
                     returnMove = New Moves.Dark.FoulPlay()
-                    'Case 493
-                    'Simple Beam
-                    'Case 494
-                    'Entertainment
+                Case 493
+                    returnMove = New Moves.Normal.SimpleBeam()
+                Case 494
+                    returnMove = New Moves.Normal.Entrainment()
                     'Case 495
                     'After You
-                    'Case 496
-                    'Round
-                    'Case 497
-                    'Echoed Voice
+                Case 496
+                    returnMove = New Moves.Normal.Round()
+                Case 497
+                    returnMove = New Moves.Normal.EchoedVoice()
                 Case 498
                     returnMove = New Moves.Normal.ChipAway()
                 Case 499
@@ -1262,20 +1262,20 @@
                     returnMove = New Moves.Steel.ShiftGear()
                 Case 509
                     returnMove = New Moves.Fighting.CircleThrow()
-                    'Case 510
-                    'Incinerate
+                Case 510
+                    returnMove = New Moves.Fire.Incinerate()
                     'Case 511
                     'Quash
                 Case 512
                     returnMove = New Moves.Flying.Acrobatics()
-                    'Case 513
-                    'Reflect Type
+                Case 513
+                    returnMove = New Moves.Normal.ReflectType()
                     'Case 514
                     'Retaliate
-                    'Case 515
-                    'Final Gambit
-                    'Case 516
-                    'Bestow
+                Case 515
+                    returnMove = New Moves.Fighting.FinalGambit()
+                Case 516
+                    returnMove = New Moves.Normal.Bestow()
                 Case 517
                     returnMove = New Moves.Fire.Inferno()
                 Case 518
@@ -1322,8 +1322,8 @@
                     returnMove = New Moves.Grass.CottonGuard()
                 Case 539
                     returnMove = New Moves.Dark.NightDaze()
-                    'Case 540
-                    'Psystrike
+                Case 540
+                    returnMove = New Moves.Psychic.Psystrike()
                 Case 541
                     returnMove = New Moves.Normal.TailSlap()
                 Case 542
@@ -1334,14 +1334,14 @@
                     returnMove = New Moves.Steel.GearGrind()
                 Case 545
                     returnMove = New Moves.Fire.SearingShot()
-                    'Case 546
-                    'Techno Blast
+                Case 546
+                    returnMove = New Moves.Normal.TechnoBlast()
                     'Case 547
                     'Relic Song
                 Case 548
                     returnMove = New Moves.Fighting.SecretSword()
-                    'Case 549
-                    'Glaciate
+                Case 549
+                    returnMove = New Moves.Ice.Glaciate()
                 Case 550
                     returnMove = New Moves.Electric.BoltStrike()
                 Case 551
@@ -1372,10 +1372,10 @@
                     'Rototiller
                 Case 564
                     returnMove = New Moves.Bug.StickyWeb()
-                    'Case 565
-                    'Fell Stinger
-                    'Case 566
-                    'Phantom Force
+                Case 565
+                    returnMove = New Moves.Bug.FellStinger()
+                Case 566
+                    returnMove = New Moves.Ghost.PhantomForce()
                     'Case 567
                     'Trick-or-Treat
                 Case 568
@@ -1392,8 +1392,8 @@
                     returnMove = New Moves.Ice.FreezeDry()
                 Case 574
                     returnMove = New Moves.Fairy.DisarmingVoice()
-                    'Case 575
-                    'Parting Shot
+                Case 575
+                    returnMove = New Moves.Dark.PartingShot()
                     'Case 576
                     'Topsy-Turvy
                 Case 577
@@ -1424,12 +1424,12 @@
                     returnMove = New Moves.Normal.PlayNice()
                 Case 590
                     returnMove = New Moves.Normal.Confide()
-                    'Case 591
-                    'Diamond Storm
+                Case 591
+                    returnMove = New Moves.Rock.DiamondStorm()
                 Case 592
                     returnMove = New Moves.Water.SteamEruption()
-                    'Case 593
-                    'Hyperspace Hole
+                Case 593
+                    returnMove = New Moves.Psychic.HyperspaceHole()
                 Case 594
                     returnMove = New Moves.Water.WaterShuriken()
                 Case 595
@@ -1437,277 +1437,281 @@
                     'Case 596
                     'Spiky Shield
                     'Case 597
-                    'Aromatic Mist
+                    'Aromatic Mist - Double Battles
                 Case 598
                     returnMove = New Moves.Electric.EerieImpulse()
-                    'Case 599
-                    'Vemon Drench
+                Case 599
+                    returnMove = New Moves.Poison.VenomDrench()
                     'Case 600
                     'Powder
-                    'Case 601
-                    'Geomancy
+                Case 601
+                    returnMove = New Moves.Fairy.Geomancy()
                     'Case 602
-                    'Macnetic Flux
+                    'Magnetic Flux - Double Battles
                     'Case 603
                     'Happy Hour
                     'Case 604
                     'Electric Terrain
                 Case 605
                     returnMove = New Moves.Fairy.DazzlingGleam()
-                    'Case 606
-                    'Celebrate
+                Case 606
+                    returnMove = New Moves.Normal.Celebrate()
                     'Case 607
                     'Hold Hands
                 Case 608
                     returnMove = New Moves.Fairy.BabyDollEyes()
                 Case 609
                     returnMove = New Moves.Electric.Nuzzle()
-                    'Case 610
-                    'Hold Back
+                Case 610
+                    returnMove = New Moves.Normal.HoldBack()
                 Case 611
                     returnMove = New Moves.Bug.Infestation()
                 Case 612
                     returnMove = New Moves.Fighting.PowerUpPunch()
                 Case 613
                     returnMove = New Moves.Flying.OblivionWing()
-                    'Case 614
-                    'Thousand Arrows
+                Case 614
+                    returnMove = New Moves.Ground.ThousandArrows()
                 Case 615
                     returnMove = New Moves.Ground.ThousandWaves()
                 Case 616
                     returnMove = New Moves.Ground.LandsWrath()
-                    'Case 617
-                    'Light of Ruin
-					'Case 618
-					'Origin Pulse
-					'Case 619
-					'Precipice Blades
-					'Case 620
-					'Dragon Ascent
-					'Case 621
-					'Hyperspace Fury
-					'Case 622
-					'Breakneck Blitz - Physical
-					'Case 623
-					'Breakneck Blitz - Special
-					'Case 624
-					'All-Out Pummeling - Physical
-					'Case 625
-					'All-Out Pummeling - Special
-					'Case 626
-					'Supersonic Skystrike - Physical
-					'Case 627
-					'Supersonic Skystrike - Special
-					'Case 628
-					'Acid Downpour - Physical
-					'Case 629
-					'Acid Downpour - Special
-					'Case 630
-					'Tectonic Rage - Physical
-					'Case 631
-					'Tectonic Rage - Special
-					'Case 632
-					'Continental Crush - Physical
-					'Case 633
-					'Continental Crush - Special
-					'Case 634
-					'Savage Spin-Out - Physical
-					'Case 635
-					'Savage Spin-Out - Special
-					'Case 636
-					'Never-Ending Nightmare - Physical
-					'Case 637
-					'Never-Ending Nightmare - Special
-					'Case 638
-					'Corkscrew Crash - Physical
-					'Case 639
-					'Corkscrew Crash - Special
-					'Case 640
-					'Inferno Overdrive - Physical
-					'Case 641
-					'Inferno Overdrive - Special
-					'Case 642
-					'Hydro Vortex - Physical
-					'Case 643
-					'Hydro Vortex - Special
-					'Case 644
-					'Bloom Doom - Physical
-					'Case 645
-					'Bloom Doom - Special
-					'Case 646
-					'Gigavolt Havoc - Physical
-					'Case 647
-					'Gigavolt Havoc - Special
-					'Case 648
-					'Shattered Psyche - Physical
-					'Case 649
-					'Shattered Psyche - Special
-					'Case 650
-					'Subzero Slammer - Physical
-					'Case 651
-					'Subzero Slammer - Special
-					'Case 652
-					'Devastating Drake - Physical
-					'Case 653
-					'Devastating Drake - Special
-					'Case 654
-					'Black Hole Eclipse - Physical
-					'Case 655
-					'Black Hole Eclipse - Special
-					'Case 656
-					'Twinkle Tackle - Physical
-					'Case 657
-					'Twinkle Tackle - Special
-					'Case 658
-					'Catastropika
-					'Case 659
-					'Shore Up
-					'Case 660
-					'First Impression
-					'Case 661
-					'Baneful Bunker
-					'Case 662
-					'Spirit Shackle
-					'Case 663
-					'Darkest Lariat
-					'Case 664
-					'Sparkling Aria
-					'Case 665
-					'Ice Hammer
-					'Case 666
-					'Floral Healing
-					'Case 667
-					'High Horsepower
-					'Case 668
-					'Strength Sap
-					'Case 669
-					'Solar Blade
-					'Case 670
-					'Leafage
-					'Case 671
-					'Spotlight
-					'Case 672
-					'Toxic Thread
-					'Case 673
-					'Laser Focus
-					'Case 674
-					'Gear Up
-					'Case 675
-					'Throat Chop
-					'Case 676
-					'Pollen Puff
-					'Case 677
-					'Anchor Shot
-					'Case 678
-					'Psychic Terrain
-					'Case 679
-					'Lunge
-					'Case 680
-					'Fire Lash
-					'Case 681
-					'Power Trip
-					'Case 682
-					'Burn Up
-					'Case 683
-					'Speed Swap
-					'Case 684
-					'Smart Strike
-					'Case 685
-					'Purify
-					'Case 686
-					'Revelation Dance
-					'Case 687
-					'Core Enforcer
-					'Case 688
-					'Trop Kick
-					'Case 689
-					'Instruct
-					'Case 690
-					'Beak Blast
-					'Case 691
-					'Clanging Scales
-					'Case 692
-					'Dragon Hammer
-					'Case 693
-					'Brutal Swing
-					'Case 694
-					'Aurora Veil
-					'Case 695
-					'Sinister Arrow Raid
-					'Case 696
-					'Malicious Moonsault
-					'Case 697
-					'Oceanic Operetta
-					'Case 698
-					'Guardian of Alola
-					'Case 699
-					'Soul-Stealing 7-Star Strike
-					'Case 700
-					'Stoked Sparksurfer
-					'Case 701
-					'Pulverizing Pancake
-					'Case 702
-					'Extreme Evoboost
-					'Case 703
-					'Genesis Supernova
-					'Case 704
-					'Shell Trap
-					'Case 705
-					'Fleur Cannon
-					'Case 706
-					'Psychic Fangs
-					'Case 707
-					'Stomping Tantrum
-					'Case 708
-					'Shadow Bone
-					'Case 709
-					'Accelerock
-					'Case 710
-					'Liquidation
-					'Case 711
-					'Prismatic Laser
-					'Case 712
-					'Spectral Thief
-					'Case 713
-					'Sunsteel Strike
-					'Case 714
-					'Moongeist Beam
-					'Case 715
-					'Tearful Look
-					'Case 716
-					'Zing Zap
-					'Case 717
-					'Nature's Madness
-					'Case 718
-					'Multi-Attack
-					'Case 719
-					'10,000,000 Volt Thunderbolt
-					'Case 720
-					'Mind Blown
-					'Case 721
-					'Plasma Fists
-					'Case 722
-					'Photon Geyser
-					'Case 723
-					'Light That Burns The Sky
-					'Case 724
-					'Searing Sunraze Smash
-					'Case 725
-					'Menacing Moonraze Maelstrom
-					'Case 726
-					'Let's Snuggle Forever
-					'Case 727
-					'Splintered Stormshards
-					'Case 728
-					'Clangorous Soulblaze
-					'Case 729
-					'Blank
+                Case 617
+                    returnMove = New Moves.Fairy.LightOfRuin()
+                Case 618
+                    returnMove = New Moves.Water.OriginPulse()
+                Case 619
+                    returnMove = New Moves.Ground.PrecipiceBlades()
+                Case 620
+                    returnMove = New Moves.Flying.DragonAscent()
+                Case 621
+                    returnMove = New Moves.Dark.HyperspaceFury()
+                    '------------------------------------------------BEGIN Z MOVE STREAK
+                    'Case 622
+                    'Breakneck Blitz - Physical
+                    'Case 623
+                    'Breakneck Blitz - Special
+                    'Case 624
+                    'All-Out Pummeling - Physical
+                    'Case 625
+                    'All-Out Pummeling - Special
+                    'Case 626
+                    'Supersonic Skystrike - Physical
+                    'Case 627
+                    'Supersonic Skystrike - Special
+                    'Case 628
+                    'Acid Downpour - Physical
+                    'Case 629
+                    'Acid Downpour - Special
+                    'Case 630
+                    'Tectonic Rage - Physical
+                    'Case 631
+                    'Tectonic Rage - Special
+                    'Case 632
+                    'Continental Crush - Physical
+                    'Case 633
+                    'Continental Crush - Special
+                    'Case 634
+                    'Savage Spin-Out - Physical
+                    'Case 635
+                    'Savage Spin-Out - Special
+                    'Case 636
+                    'Never-Ending Nightmare - Physical
+                    'Case 637
+                    'Never-Ending Nightmare - Special
+                    'Case 638
+                    'Corkscrew Crash - Physical
+                    'Case 639
+                    'Corkscrew Crash - Special
+                    'Case 640
+                    'Inferno Overdrive - Physical
+                    'Case 641
+                    'Inferno Overdrive - Special
+                    'Case 642
+                    'Hydro Vortex - Physical
+                    'Case 643
+                    'Hydro Vortex - Special
+                    'Case 644
+                    'Bloom Doom - Physical
+                    'Case 645
+                    'Bloom Doom - Special
+                    'Case 646
+                    'Gigavolt Havoc - Physical
+                    'Case 647
+                    'Gigavolt Havoc - Special
+                    'Case 648
+                    'Shattered Psyche - Physical
+                    'Case 649
+                    'Shattered Psyche - Special
+                    'Case 650
+                    'Subzero Slammer - Physical
+                    'Case 651
+                    'Subzero Slammer - Special
+                    'Case 652
+                    'Devastating Drake - Physical
+                    'Case 653
+                    'Devastating Drake - Special
+                    'Case 654
+                    'Black Hole Eclipse - Physical
+                    'Case 655
+                    'Black Hole Eclipse - Special
+                    'Case 656
+                    'Twinkle Tackle - Physical
+                    'Case 657
+                    'Twinkle Tackle - Special
+                    'Case 658
+                    'Catastropika
+                    '------------------------------------------------END Z MOVE STREAK
+                'Case 659
+                    'returnMove = New Moves.Ground.ShoreUp()
+                'Case 660
+                    'returnMove = New Moves.Bug.FirstImpression()
+                    'Case 661
+                    'Baneful Bunker
+                'Case 662
+                    'returnMove = New Moves.Ghost.SpiritShackle()
+                'Case 663
+                    'returnMove = New Moves.Dark.DarkestLariat()
+                'Case 664
+                    'returnMove = New Moves.Water.SparklingAria()
+                'Case 665
+                    'returnMove = New Moves.Ice.IceHammer()
+                    'Case 666
+                    'Floral Healing - Double Battles
+                'Case 667
+                    'returnMove = New Moves.Ground.HighHorsepower()
+                'Case 668
+                    'returnMove = New Moves.Grass.StrengthSap()
+                'Case 669
+                    'returnMove = New Moves.Grass.SolarBlade()
+                'Case 670
+                    'returnMove = New Moves.Grass.Leafage()
+                    'Case 671
+                    'Spotlight
+                'Case 672
+                    'returnMove = New Moves.Poison.ToxicThread()
+                    'Case 673
+                    'Laser Focus
+                'Case 674
+                    'returnMove = New Moves.Steel.GearUp()
+                    'Case 675
+                    'Throat Chop
+                'Case 676
+                    'returnMove = New Moves.Bug.PollenPuff()
+                'Case 677
+                    'returnMove = New Moves.Steel.AnchorShot()
+                    'Case 678
+                    'Psychic Terrain
+                'Case 679
+                    'returnMove = New Moves.Bug.Lunge()
+                'Case 680
+                    'returnMove = New Moves.Fire.FireLash()
+                'Case 681
+                    'returnMove = New Moves.Dark.PowerTrip()
+                'Case 682
+                    'returnMove = New Moves.Fire.BurnUp()
+                    'Case 683
+                    'Speed Swap
+                'Case 684
+                    'returnMove = New Moves.Steel.SmartStrike()
+                    'Case 685
+                    'Purify - Double Battles
+                'Case 686
+                    'returnMove = New Moves.Normal.RevelationDance()
+                    'Case 687
+                    'Core Enforcer
+                'Case 688
+                    'returnMove = New Moves.Grass.TropKick()
+                    'Case 689
+                    'Instruct
+                    'Case 690
+                    'Beak Blast
+                'Case 691
+                    'returnMove = New Moves.Dragon.ClangingScales()
+                'Case 692
+                    'returnMove = New Moves.Dragon.DragonHammer()
+                'Case 693
+                    'returnMove = New Moves.Dark.BrutalSwing()
+                'Case 694
+                    'returnMove = New Moves.Ice.AuroraVeil()
+                    'Case 695
+                    'Sinister Arrow Raid - Z-Move
+                    'Case 696
+                    'Malicious Moonsault - Z-Move
+                    'Case 697
+                    'Oceanic Operetta - Z-Move
+                    'Case 698
+                    'Guardian of Alola - Z-Move
+                    'Case 699
+                    'Soul-Stealing 7-Star Strike - Z-Move
+                    'Case 700
+                    'Stoked Sparksurfer - Z-Move
+                    'Case 701
+                    'Pulverizing Pancake - Z-Move
+                    'Case 702
+                    'Extreme Evoboost - Z-Move
+                    'Case 703
+                    'Genesis Supernova - Z-Move
+                    'Case 704
+                    'Shell Trap
+                'Case 705
+                    'returnMove = New Moves.Fairy.FleurCannon()
+                'Case 706
+                    'returnMove = New Moves.Psychic.PsychicFangs()
+                    'Case 707
+                    'Stomping Tantrum
+                'Case 708
+                    'returnMove = New Moves.Ghost.ShadowBone()
+                'Case 709
+                    'returnMove = New Moves.Rock.Accelerock()
+                'Case 710
+                    'returnMove = New Moves.Water.Liquidation()
+                'Case 711
+                    'returnMove = New Moves.Psychic.PrismaticLaser()
+                    'Case 712
+                    'Spectral Thief
+                'Case 713
+                    'returnMove = New Moves.Steel.SunsteelStrike()
+                'Case 714
+                    'returnMove = New Moves.Ghost.MoongeistBeam()
+                'Case 715
+                    'returnMove = New Moves.Normal.TearfulLook()
+                'Case 716
+                    'returnMove = New Moves.Electric.ZingZap()
+                'Case 717
+                    'returnMove = New Moves.Fairy.NaturesMadness()
+                'Case 718
+                    'returnMove = New Moves.Normal.Multi-Attack()
+                    'Case 719
+                    '10,000,000 Volt Thunderbolt - Z-Move
+                'Case 720
+                    'returnMove = New Moves.Fire.MindBlown()
+                    'Case 721
+                    'Plasma Fists
+                    'Case 722
+                    'Photon Geyser
+                    'Case 723
+                    'Light That Burns The Sky - Z-Move
+                    'Case 724
+                    'Searing Sunraze Smash - Z-Move
+                    'Case 725
+                    'Menacing Moonraze Maelstrom - Z-Move
+                    'Case 726
+                    'Let's Snuggle Forever - Z-Move
+                    'Case 727
+                    'Splintered Stormshards - Z-Move
+                    'Case 728
+                    'Clangorous Soulblaze - Z-Move
+                    'Case 729
+                    'Blank
                 Case 999
                     If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         returnMove = New Moves.Special.TheDerpMove()
                     Else
                         returnMove = New Moves.Normal.Pound()
                     End If
+                Case 9999
+                    returnMove = New Moves.Fighting.FlyingPress()
                 Case Else
                     'Try to load a GameMode move.
                     Dim gameModeMove As Attack = GameModeAttackLoader.GetAttackByID(ID)

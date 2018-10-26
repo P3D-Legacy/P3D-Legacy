@@ -1,25 +1,25 @@
-﻿Namespace BattleSystem.Moves.Poison
+﻿Namespace BattleSystem.Moves.Psychic
 
-    Public Class Venoshock
+    Public Class Synchronoise
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Poison)
-            Me.ID = 474
+            Me.Type = New Element(Element.Types.Psychic)
+            Me.ID = 485
             Me.OriginalPP = 10
             Me.CurrentPP = 10
             Me.MaxPP = 10
-            Me.Power = 65
+            Me.Power = 120
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Venoshock"
-            Me.Description = "The user drenches the target in a special poisonous liquid. This move's power is doubled if the target is poisoned."
+            Me.Name = "Synchronoise"
+            Me.Description = "Using an odd shock wave, the user inflicts damage on any Pokémon of the same type in the area around it."
             Me.CriticalChance = 1
             Me.IsHMMove = False
-            Me.Target = Targets.OneAdjacentTarget
+            Me.Target = Targets.AllAdjacentTargets
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
@@ -36,8 +36,8 @@
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
@@ -55,16 +55,32 @@
             Me.AIField2 = AIField.Nothing
         End Sub
 
-        Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
+        Public Overrides Function MoveFailBeforeAttack(Own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
             If own = False Then
+                p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
-            If op.Status = Pokemon.StatusProblems.Poison OrElse op.Status = Pokemon.StatusProblems.BadPoison Then
-                Return 130
+
+            If op.Type2.Type = Element.Types.Blank Then
+                'Solo type
+                If op.Type1.Type = p.Type1.Type OrElse op.Type1.Type = p.Type2.Type Then
+                    Return False
+                Else
+                    Return True
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                End If
             Else
-                Return Me.Power
+                'Dual type
+                If op.Type1.Type = p.Type1.Type OrElse op.Type1.Type = p.Type2.Type OrElse op.Type2.Type = p.Type1.Type OrElse op.Type2.Type = p.Type2.Type Then
+                    Return False
+                Else
+                    Return True
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                End If
             End If
+
         End Function
 
     End Class

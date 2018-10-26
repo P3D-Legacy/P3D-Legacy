@@ -1,25 +1,25 @@
-﻿Namespace BattleSystem.Moves.Dark
+﻿Namespace BattleSystem.Moves.Grass
 
-    Public Class DarkVoid
+    Public Class WorrySeed
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Dark)
-            Me.ID = 464
+            Me.Type = New Element(Element.Types.Grass)
+            Me.ID = 388
             Me.OriginalPP = 10
             Me.CurrentPP = 10
             Me.MaxPP = 10
             Me.Power = 0
-            Me.Accuracy = 50
+            Me.Accuracy = 100
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Dark Void"
-            Me.Description = "Opposing Pokémon are dragged into a world of total darkness that makes them sleep."
+            Me.ContestCategory = ContestCategories.Beauty
+            Me.Name = "Worry Seed"
+            Me.Description = "A seed that causes worry is planted on the target. It prevents sleep by making the target's Ability Insomnia."
             Me.CriticalChance = 0
             Me.IsHMMove = False
-            Me.Target = Targets.AllAdjacentFoes
+            Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
@@ -35,13 +35,13 @@
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = False
-            Me.ImmunityAffected = False
-            Me.RemovesFrozen = False
-            Me.HasSecondaryEffect = False
-
             Me.IsHealingMove = False
+            Me.HasSecondaryEffect = False
+            Me.RemovesFrozen = False
+
             Me.IsRecoilMove = False
             Me.IsPunchingMove = False
+            Me.ImmunityAffected = True
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -51,30 +51,18 @@
             Me.IsWonderGuardAffected = False
             '#End
 
-            Me.AIField1 = AIField.Sleep
-            Me.AIField2 = AIField.Nothing
         End Sub
 
-        Public Overrides Function MoveFailBeforeAttack(Own As Boolean, BattleScreen As BattleScreen) As Boolean
-            Dim p As Pokemon = BattleScreen.OwnPokemon
-            If Own = False Then
-                p = BattleScreen.OppPokemon
-            End If
-            If p.Number = 491 Then
-                Return False
-            Else
-                BattleScreen.BattleQuery.Add(New TextQueryObject("But " & p.GetDisplayName() & " can't use the move!"))
-                Return True
-            End If
-        End Function
-
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim op As Pokemon = BattleScreen.OppPokemon
             If own = False Then
-                p = BattleScreen.OppPokemon
+                op = BattleScreen.OwnPokemon
             End If
-            Dim b As Boolean = BattleScreen.Battle.InflictSleep(Not own, own, BattleScreen, -1, "", "move:darkvoid")
-            If b = False Then
+            Dim bannedAbilities() As String = {"insomnia", "truant", "multitype", "stance change", "schooling", "comatose", "shields down", "disguise", "rks system", "battle bond"}
+            If bannedAbilities.Contains(op.Ability.Name.ToLower()) = False Then
+                op.Ability = Ability.GetAbilityByID(15)
+                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " acquired Insomnia!"))
+            Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
         End Sub

@@ -1,52 +1,52 @@
-﻿Namespace BattleSystem.Moves.Ice
+﻿Namespace BattleSystem.Moves.Normal
 
-    Public Class Avalanche
+    Public Class Round
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Ice)
-            Me.ID = 419
-            Me.OriginalPP = 10
-            Me.CurrentPP = 10
-            Me.MaxPP = 10
+            Me.Type = New Element(Element.Types.Normal)
+            Me.ID = 496
+            Me.OriginalPP = 15
+            Me.CurrentPP = 15
+            Me.MaxPP = 15
             Me.Power = 60
             Me.Accuracy = 100
-            Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Avalanche"
-            Me.Description = "The power of this attack move is doubled if the user has been hurt by the target in the same turn."
+            Me.Category = Categories.Special
+            Me.ContestCategory = ContestCategories.Beauty
+            Me.Name = "Round"
+            Me.Description = "The user attacks the target with a song. Others can join in the Round to increase the power of the attack."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
-            Me.Priority = -4
+            Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
 
             '#SpecialDefinitions
-            Me.MakesContact = True
+            Me.MakesContact = False
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
             Me.KingsrockAffected = True
-            Me.CounterAffected = True
+            Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.RemovesFrozen = False
             Me.HasSecondaryEffect = False
+            Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
             Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+            Me.IsSoundMove = True
 
-            Me.IsAffectedBySubstitute = True
+            Me.IsAffectedBySubstitute = False
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
@@ -56,7 +56,7 @@
             If own = True Then
                 If BattleScreen.FieldEffects.OppTurnCounts > BattleScreen.FieldEffects.OwnTurnCounts Then
                     If Not BattleScreen.FieldEffects.OppLastMove Is Nothing Then
-                        If BattleScreen.FieldEffects.OppLastMove.IsDamagingMove = True Then
+                        If BattleScreen.FieldEffects.OppLastMove.ID = 496 Then
                             Return Me.Power * 2
                         End If
                     End If
@@ -64,7 +64,7 @@
             Else
                 If BattleScreen.FieldEffects.OwnTurnCounts > BattleScreen.FieldEffects.OppTurnCounts Then
                     If Not BattleScreen.FieldEffects.OwnLastMove Is Nothing Then
-                        If BattleScreen.FieldEffects.OwnLastMove.IsDamagingMove = True Then
+                        If BattleScreen.FieldEffects.OwnLastMove.ID = 496 Then
                             Return Me.Power * 2
                         End If
                     End If

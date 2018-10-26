@@ -1,25 +1,25 @@
-﻿Namespace BattleSystem.Moves.Normal
+﻿Namespace BattleSystem.Moves.Psychic
 
-    Public Class HyperVoice
+    Public Class Psystrike
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Normal)
-            Me.ID = 304
+            Me.Type = New Element(Element.Types.Psychic)
+            Me.ID = 540
             Me.OriginalPP = 10
             Me.CurrentPP = 10
             Me.MaxPP = 10
-            Me.Power = 90
+            Me.Power = 100
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Hyper Voice"
-            Me.Description = "The user lets loose a horribly echoing shout with the power to inflict damage."
+            Me.Name = "Psystrike"
+            Me.Description = "The user materializes an odd psychic wave to attack the target. This attack does physical damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False
-            Me.Target = Targets.AllAdjacentFoes
+            Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
@@ -30,27 +30,31 @@
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
-            Me.KingsrockAffected = False
+            Me.KingsrockAffected = True
             Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
             Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = True
+            Me.IsSoundMove = False
 
-            Me.IsAffectedBySubstitute = False
+            Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
         End Sub
+
+        Public Overrides Function GetUseDefenseStat(p As Pokemon) As Integer
+            Return p.Defense
+        End Function
 
     End Class
 

@@ -25508,16 +25508,55 @@
     </Content>
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
     <Compile Include="Pokemon\Abilities\ParentalBond.vb" />
+    <Compile Include="Pokemon\Attacks\Bug\FellStinger.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Pokemon\Attacks\Dark\DarkVoid.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Dark\HyperspaceFury.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Dark\PartingShot.vb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Pokemon\Attacks\Dragon\SpacialRend.vb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Pokemon\Attacks\Fairy\Geomancy.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Fairy\LightOfRuin.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Fighting\FinalGambit.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Fighting\FlyingPress.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Pokemon\Attacks\Fighting\StormThrow.vb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Pokemon\Attacks\Fire\Incinerate.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Flying\DragonAscent.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Ghost\PhantomForce.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Pokemon\Attacks\Ghost\ShadowForce.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Grass\WorrySeed.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Ground\PrecipiceBlades.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Ground\ThousandArrows.vb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Pokemon\Attacks\Ground\ThousandWaves.vb">
@@ -25526,7 +25565,64 @@
     <Compile Include="Pokemon\Attacks\Ice\Avalanche.vb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Pokemon\Attacks\Ice\Glaciate.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Normal\Bestow.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Normal\Celebrate.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Normal\HoldBack.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\Round.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Normal\Judgement.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Normal\Entrainment.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Normal\TechnoBlast.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Normal\ReflectType.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Normal\EchoedVoice.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\SimpleBeam.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Poison\VenomDrench.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Psychic\HyperspaceHole.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Psychic\Synchronoise.vb" />
+    <Compile Include="Pokemon\Attacks\Psychic\Psystrike.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Rock\DiamondStorm.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Attacks\Water\OriginPulse.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Pokemon\Items\KeyItems\LibertySeaMap.vb" />
+    <Compile Include="Pokemon\Items\Standard\DouseDrive.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Items\Standard\ChillDrive.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Items\Standard\ShockDrive.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Pokemon\Items\Standard\BurnDrive.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
     <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">
@@ -25770,7 +25866,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="Pokemon\Items\_itemList.txt" />
+    <None Include="Pokemon\Items\_itemList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="My Project\app.manifest" />
     <None Include="app.config" />
   </ItemGroup>
@@ -25792,8 +25890,12 @@
     <Compile Include="Battle\BattleSystemV2\BattleMenu.vb" />
     <Compile Include="Battle\BattleSystemV2\BattleScreen.vb" />
     <Compile Include="Battle\BattleSystemV2\BattleWeather.vb" />
-    <Compile Include="Battle\BattleSystemV2\FieldEffects.vb" />
-    <Compile Include="Battle\BattleSystemV2\PokemonProfile.vb" />
+    <Compile Include="Battle\BattleSystemV2\FieldEffects.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Battle\BattleSystemV2\PokemonProfile.vb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Battle\BattleSystemV2\QueryObjects\CameraQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\ChoosePokemonQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\AfterFaintQueryObject.vb" />
