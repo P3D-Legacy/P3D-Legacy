@@ -1,22 +1,22 @@
-﻿Namespace BattleSystem.Moves.Normal
+﻿Namespace BattleSystem.Moves.Water
 
-    Public Class HyperVoice
+    Public Class OriginPulse
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Normal)
-            Me.ID = 304
+            Me.Type = New Element(Element.Types.Water)
+            Me.ID = 618
             Me.OriginalPP = 10
             Me.CurrentPP = 10
             Me.MaxPP = 10
-            Me.Power = 90
-            Me.Accuracy = 100
+            Me.Power = 110
+            Me.Accuracy = 85
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Hyper Voice"
-            Me.Description = "The user lets loose a horribly echoing shout with the power to inflict damage."
+            Me.ContestCategory = ContestCategories.Beauty
+            Me.Name = "Origin Pulse"
+            Me.Description = "The user attacks opposing Pokémon with countless beams of light that glow a deep and brilliant blue."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentFoes
@@ -30,7 +30,7 @@
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
-            Me.KingsrockAffected = False
+            Me.KingsrockAffected = True
             Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
@@ -44,11 +44,12 @@
             Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = True
+            Me.IsSoundMove = False
 
-            Me.IsAffectedBySubstitute = False
+            Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
+            Me.IsPulseMove = True
             '#End
         End Sub
 

@@ -1,22 +1,22 @@
-﻿Namespace BattleSystem.Moves.Poison
+Namespace BattleSystem.Moves.Fairy
 
-    Public Class Venoshock
+    Public Class LightOfRuin
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Poison)
-            Me.ID = 474
-            Me.OriginalPP = 10
-            Me.CurrentPP = 10
-            Me.MaxPP = 10
-            Me.Power = 65
-            Me.Accuracy = 100
+            Me.Type = New Element(Element.Types.Fairy)
+            Me.ID = 617
+            Me.OriginalPP = 5
+            Me.CurrentPP = 5
+            Me.MaxPP = 5
+            Me.Power = 140
+            Me.Accuracy = 90
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Venoshock"
-            Me.Description = "The user drenches the target in a special poisonous liquid. This move's power is doubled if the target is poisoned."
+            Me.ContestCategory = ContestCategories.Beauty
+            Me.Name = "Light of Ruin"
+            Me.Description = "Drawing power from the Eternal Flower, the user fires a powerful beam of light. This also damages the user quite a lot."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
@@ -40,7 +40,7 @@
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
-            Me.IsRecoilMove = False
+            Me.IsRecoilMove = True
             Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
@@ -52,20 +52,21 @@
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.Nothing
+            Me.AIField2 = AIField.Recoil
         End Sub
 
-        Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
-            Dim op As Pokemon = BattleScreen.OppPokemon
+        Public Overrides Sub MoveRecoil(own As Boolean, BattleScreen As BattleScreen)
+            Dim lastDamage As Integer = BattleScreen.FieldEffects.OwnLastDamage
             If own = False Then
-                op = BattleScreen.OwnPokemon
+                lastDamage = BattleScreen.FieldEffects.OppLastDamage
             End If
-            If op.Status = Pokemon.StatusProblems.Poison OrElse op.Status = Pokemon.StatusProblems.BadPoison Then
-                Return 130
-            Else
-                Return Me.Power
+            Dim recoilDamage As Integer = CInt(Math.Floor(lastDamage / 2))
+            If recoilDamage <= 0 Then
+                recoilDamage = 1
             End If
-        End Function
+
+            BattleScreen.Battle.InflictRecoil(own, own, BattleScreen, Me, recoilDamage, "", "move:lightofruin")
+        End Sub
 
     End Class
 

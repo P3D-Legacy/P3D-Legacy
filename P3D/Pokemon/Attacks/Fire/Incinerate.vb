@@ -1,43 +1,43 @@
-Namespace BattleSystem.Moves.Normal
+﻿Namespace BattleSystem.Moves.Fire
 
-    Public Class PayDay
+    Public Class Incinerate
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Normal)
-            Me.ID = 6
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
+            Me.Type = New Element(Element.Types.Fire)
+            Me.ID = 510
+            Me.OriginalPP = 15
+            Me.CurrentPP = 15
+            Me.MaxPP = 15
+            Me.Power = 60
             Me.Accuracy = 100
-            Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Pay Day"
-            Me.Description = "Numerous coins are hurled at the target to inflict damage. Money is earned after the battle."
+            Me.Category = Categories.Special
+            Me.ContestCategory = ContestCategories.Tough
+            Me.Name = "Incinerate"
+            Me.Description = "The user attacks opposing Pokémon with fire. If a Pokémon is holding a certain item, such as a Berry, the item becomes burned up and unusable."
             Me.CriticalChance = 1
             Me.IsHMMove = False
-            Me.Target = Targets.OneAdjacentTarget
+            Me.Target = Targets.AllAdjacentFoes
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
 
             '#SpecialDefinitions
-            Me.MakesContact = True
+            Me.MakesContact = False
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
             Me.KingsrockAffected = True
-            Me.CounterAffected = True
+            Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
+            Me.HasSecondaryEffect = True
             Me.RemovesFrozen = False
-            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
@@ -50,6 +50,9 @@ Namespace BattleSystem.Moves.Normal
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
+
+            Me.AIField1 = AIField.Damage
+            Me.AIField2 = AIField.Nothing
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
@@ -60,21 +63,12 @@ Namespace BattleSystem.Moves.Normal
                 op = BattleScreen.OwnPokemon
             End If
 
-            Dim coinAmount As Integer = p.Level * 5
-
-            If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "amulet coin" Or p.Item.Name.ToLower() = "luck incense" Then
-                    coinAmount *= 2
+            If Not op.Item Is Nothing Then
+                If op.Item.IsBerry = True OrElse op.Item.Name.ToLower().EndsWith(" gem") Then
+                    Dim ItemID As Integer = op.Item.ID
+                    BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, op.GetDisplayName() & "'s " & op.Item.Name & " got burned up!", "move:incinerate")
                 End If
             End If
-
-            If own = True Then
-                BattleScreen.FieldEffects.OwnPayDayCounter += coinAmount
-            Else
-                BattleScreen.FieldEffects.OppPayDayCounter += coinAmount
-            End If
-
-            BattleScreen.BattleQuery.Add(New TextQueryObject("Coins were scattered everywhere!"))
         End Sub
 
     End Class

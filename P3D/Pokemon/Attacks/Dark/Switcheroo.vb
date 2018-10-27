@@ -75,13 +75,28 @@ Namespace BattleSystem.Moves.Dark
             If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
                 CanSwitchItems = False
             End If
-            If CheckMultitypePlate(p, op) = False Then
-                CanSwitchItems = False
-            End If
             If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
                 CanSwitchItems = False
             End If
             If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+                CanSwitchItems = False
+            End If
+            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" plate") = True AndAlso p.Number = 493 Then
+                CanSwitchItems = False
+            End If
+            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" plate") = True AndAlso op.Number = 493 Then
+                CanSwitchItems = False
+            End If
+            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" memory") = True AndAlso p.Number = 773 Then
+                CanSwitchItems = False
+            End If
+            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" memory") = True AndAlso op.Number = 773 Then
+                CanSwitchItems = False
+            End If
+            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" mail") = True Then
+                CanSwitchItems = False
+            End If
+            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" mail") = True Then
                 CanSwitchItems = False
             End If
             If (p.Item IsNot Nothing AndAlso p.Item.IsMegaStone) OrElse (op.Item IsNot Nothing AndAlso op.Item.IsMegaStone) Then
@@ -104,25 +119,6 @@ Namespace BattleSystem.Moves.Dark
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
         End Sub
-
-        Private Function CheckMultitypePlate(ByVal p As Pokemon, ByVal op As Pokemon) As Boolean
-            If p.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "multitype" Then
-                Return True
-            Else
-                If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower().EndsWith(" plate") = True Then
-                        Return False
-                    End If
-                End If
-                If Not op.Item Is Nothing Then
-                    If op.Item.Name.ToLower().EndsWith(" plate") = True Then
-                        Return False
-                    End If
-                End If
-            End If
-
-            Return True
-        End Function
 
     End Class
 

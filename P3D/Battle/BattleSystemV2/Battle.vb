@@ -132,11 +132,27 @@
                 Exit Sub
             End If
 
+            'Phantom Force:
+            If BattleScreen.FieldEffects.OwnPhantomForceCounter = 1 Then
+                SelectedMoveOwn = False
+                DeleteHostQuery(BattleScreen)
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 566)})
+                Exit Sub
+            End If
+
             'If Sky Drop gets programmed, put this in.
             'If BattleScreen.FieldEffects.OwnSkyDropCounter = 1 Then
             '    InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, xxx)})
             '    Exit Sub
             'End If
+
+            'Geomancy:
+            If BattleScreen.FieldEffects.OwnGeomancyCounter = 1 Then
+                SelectedMoveOwn = False
+                DeleteHostQuery(BattleScreen)
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 601)})
+                Exit Sub
+            End If
 
             'Solar Beam:
             If BattleScreen.FieldEffects.OwnSolarBeam >= 1 Then
@@ -309,10 +325,22 @@
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 467)}
                 End If
 
+                'Phantom Force:
+                If BattleScreen.FieldEffects.OppPhantomForceCounter = 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 566)}
+                End If
+
                 ''Sky Drop:
                 'If BattleScreen.FieldEffects.OppSkyDropCounter = 1 Then
                 '    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = (19).ToString()}
                 'End If
+
+                'Geomancy:
+                If BattleScreen.FieldEffects.OppGeomancyCounter = 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 601)}
+                End If
 
                 'Solar Beam:
                 If BattleScreen.FieldEffects.OppSolarBeam >= 1 Then
@@ -947,7 +975,9 @@
             Dim dig As Integer
             Dim dive As Integer
             Dim skyDrop As Integer      'not implemented yet
-            Dim shadowForce As Integer 
+            Dim geomancy As Integer
+            Dim shadowForce As Integer
+            Dim phantomForce As Integer
             Dim skullBash As Integer
             Dim skyAttack As Integer
             Dim solarBeam As Integer
@@ -966,7 +996,9 @@
                     dig = .OwnDigCounter
                     dive = .OwnDiveCounter
                     skyDrop = .OwnSkyDropCounter
+                    geomancy = .OwnGeomancyCounter
                     shadowForce = .OwnShadowForceCounter
+                    phantomForce = .OwnPhantomForceCounter
                     skullBash = .OwnSkullBashCounter
                     skyAttack = .OwnSkyAttackCounter
                     solarBeam = .OwnSolarBeam
@@ -978,7 +1010,9 @@
                     dig = .OppDigCounter
                     dive = .OppDiveCounter
                     skyDrop = .OppSkyDropCounter
+                    geomancy = .OppGeomancyCounter
                     shadowForce = .OppShadowForceCounter
+                    phantomForce = .OppPhantomForceCounter
                     skullBash = .OppSkullBashCounter
                     skyAttack = .OppSkyAttackCounter
                     solarBeam = .OppSolarBeam
@@ -1011,8 +1045,16 @@
                     If skyDrop = 0 Then
                         Return True
                     End If
+                Case "geomancy"
+                    If geomancy = 0 Then
+                        Return True
+                    End If
                 Case "shadow force"
                     If shadowForce = 0 Then
+                        Return True
+                    End If
+                Case "phantom force"
+                    If phantomForce = 0 Then
                         Return True
                     End If
                 Case "skull bash"
@@ -1362,7 +1404,7 @@
             If moveUsed.ProtectAffected = False Then
                 NoTargetCheck = False
                 Select Case moveUsed.Name.ToLower
-                    Case "accupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
+                    Case "accupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "geomancy", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
                         NoTargetCheck = True
                 End Select
             End If
@@ -1411,7 +1453,7 @@
             If moveUsed.ProtectAffected = False Then
                 UseTwoTurnCheck = False
                 Select Case moveUsed.Name.ToLower
-                    Case "accupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
+                    Case "accupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "geomancy", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
                         UseTwoTurnCheck = True
                 End Select
             End If
@@ -1471,6 +1513,17 @@
                 End If
             End If
 
+            If DoesNotMiss = True And UseTwoTurnCheck Then 'phantomforce check
+                Dim phantomforce As Integer = BattleScreen.FieldEffects.OppPhantomForceCounter
+                If own = False Then
+                    phantomforce = BattleScreen.FieldEffects.OwnPhantomForceCounter
+                End If
+
+                If phantomforce > 0 Then
+                    DoesNotMiss = False
+                End If
+            End If
+
             If DoesNotMiss = True And UseTwoTurnCheck Then 'sky drop check
                 Dim skydrop As Integer = BattleScreen.FieldEffects.OppSkyDropCounter
                 If own = False Then
@@ -1478,6 +1531,17 @@
                 End If
 
                 If skydrop > 0 And moveUsed.CanHitInMidAir = False Then
+                    DoesNotMiss = False
+                End If
+            End If
+
+            If DoesNotMiss = True And UseTwoTurnCheck Then 'geomancy check
+                Dim geomancy As Integer = BattleScreen.FieldEffects.OppGeomancyCounter
+                If own = False Then
+                    geomancy = BattleScreen.FieldEffects.OwnGeomancyCounter
+                End If
+
+                If geomancy > 0 Then
                     DoesNotMiss = False
                 End If
             End If
@@ -6119,6 +6183,7 @@
                     .OwnCustapBerry = 0
                     .OwnTrappedCounter = 0
                     .OwnFuryCutter = 0
+                    .OwnEchoedVoice = 0
                     .OwnPokemonTurns = 0
                     .OwnStockpileCount = 0
                     .OwnDestinyBond = False
@@ -6133,7 +6198,9 @@
                     .OwnBounceCounter = 0
                     .OwnDiveCounter = 0
                     .OwnShadowForceCounter = 0
+                    .OwnPhantomForceCounter = 0
                     .OwnSkyDropCounter = 0
+                    .OwnGeomancyCounter = 0
                     .OwnSkyAttackCounter = 0
                     .OwnRazorWindCounter = 0
                     .OwnSkullBashCounter = 0
@@ -6454,6 +6521,7 @@
                     .OppCustapBerry = 0
                     .OppTrappedCounter = 0
                     .OppFuryCutter = 0
+                    .OppEchoedVoice = 0
                     .OppPokemonTurns = 0
                     .OppStockpileCount = 0
                     .OppDestinyBond = False
@@ -6464,7 +6532,9 @@
                     .OppBounceCounter = 0
                     .OppDiveCounter = 0
                     .OppShadowForceCounter = 0
+                    .OppPhantomForceCounter = 0
                     .OppSkyDropCounter = 0
+                    .OppGeomancyCounter = 0
                     .OppSkyAttackCounter = 0
                     .OppRazorWindCounter = 0
                     .OppSkullBashCounter = 0

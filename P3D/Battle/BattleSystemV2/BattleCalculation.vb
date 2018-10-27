@@ -667,6 +667,28 @@
                 End If
             End If
 
+            'Flying Press
+            If move.ID = 9999 Then
+                If op.Type1.Type = Element.Types.Fighting Or op.Type2.Type = Element.Types.Fighting Then
+                    effectiveness *= 2
+                End If
+                If op.Type1.Type = Element.Types.Grass Or op.Type2.Type = Element.Types.Grass Then
+                    effectiveness *= 2
+                End If
+                If op.Type1.Type = Element.Types.Bug Or op.Type2.Type = Element.Types.Bug Then
+                    effectiveness *= 2
+                End If
+                If op.Type1.Type = Element.Types.Rock Or op.Type2.Type = Element.Types.Rock Then
+                    effectiveness /= 2
+                End If
+                If op.Type1.Type = Element.Types.Steel Or op.Type2.Type = Element.Types.Steel Then
+                    effectiveness /= 2
+                End If
+                If op.Type1.Type = Element.Types.Electric Or op.Type2.Type = Element.Types.Electric Then
+                    effectiveness /= 2
+                End If
+            End If
+
             'Sheer Cold
             If move.ID = 329 Then
                 If op.IsType(Element.Types.Ice) Then
@@ -1470,7 +1492,7 @@
             Dim SX As Single = 1.0F
             Dim DMod As Single = 1.0F
 
-            If Attack.Category = Attack.Categories.Physical OrElse Attack.ID = 473 OrElse Attack.ID = 548 Then 'Psyshock and Secret Sword.
+            If Attack.Category = Attack.Categories.Physical OrElse Attack.ID = 473 OrElse Attack.ID = 540 OrElse Attack.ID = 548 Then 'Psyshock, Psystrike and Secret Sword.
                 DStat = Attack.GetUseDefenseStat(Op)
                 DSM = GetMultiplierFromStat(Op.StatDefense)
 

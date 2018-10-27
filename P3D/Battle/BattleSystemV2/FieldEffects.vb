@@ -62,6 +62,7 @@
         Public OwnMiracleEye As Integer = 0 'Own Dark type Pokémon can be hit by Psychic type attacks
         Public OwnProtectMovesCount As Integer = 0 'Counts uses of protect moves
         Public OwnFuryCutter As Integer = 0 'Counter for the move fury cutter
+        Public OwnEchoedVoice As Integer = 0 'Counter for the move echoed voice
         Public OwnPokemonTurns As Integer = 0 'Turns for how long the own pokemon has been in battle
         Public OwnStockpileCount As Integer = 0 'A counter for the stockpile moves used for Swallow and Spit Up
         Public OwnIceBurnCounter As Integer = 0 'Counter for the Ice Burn move.
@@ -76,7 +77,9 @@
         Public OwnBounceCounter As Integer = 0
         Public OwnDiveCounter As Integer = 0
         Public OwnShadowForceCounter As Integer = 0
+        Public OwnPhantomForceCounter As Integer = 0
         Public OwnSkyDropCounter As Integer = 0
+        Public OwnGeomancyCounter As Integer = 0
         Public OwnWrap As Integer = 0
         Public OwnWhirlpool As Integer = 0
         Public OwnBind As Integer = 0
@@ -187,6 +190,7 @@
         Public OppMiracleEye As Integer = 0
         Public OppProtectMovesCount As Integer = 0
         Public OppFuryCutter As Integer = 0
+        Public OppEchoedVoice As Integer = 0
         Public OppPokemonTurns As Integer = 0
         Public OppStockpileCount As Integer = 0
         Public OppIceBurnCounter As Integer = 0
@@ -210,7 +214,9 @@
         Public OppBounceCounter As Integer = 0
         Public OppDiveCounter As Integer = 0
         Public OppShadowForceCounter As Integer = 0
+        Public OppPhantomForceCounter As Integer = 0
         Public OppSkyDropCounter As Integer = 0
+        Public OppGeomancyCounter As Integer = 0
 
         Public OppWrap As Integer = 0
         Public OppWhirlpool As Integer = 0

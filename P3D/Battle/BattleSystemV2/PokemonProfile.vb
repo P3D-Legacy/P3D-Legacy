@@ -247,9 +247,17 @@
         ''' </summary>
         Public ShadowForce As Integer = 0
         ''' <summary>
+        ''' Phantom Force move counter.
+        ''' </summary>
+        Public PhantomForce As Integer = 0
+        ''' <summary>
         ''' Sky Drop move counter.
         ''' </summary>
         Public SkyDrop As Integer = 0
+        ''' <summary>
+        ''' Geomancy move counter.
+        ''' </summary>
+        Public Geomancy As Integer = 0
 
         ''' <summary>
         ''' Turns this Pokémon is trapped in Wrap.
@@ -296,6 +304,10 @@
         ''' Counter for the Fury Cutter move.
         ''' </summary>
         Public FuryCutter As Integer = 0
+        ''' <summary>
+        ''' Counter for the Echoed Voice move.
+        ''' </summary>
+        Public EchoedVoice As Integer = 0
         ''' <summary>
         ''' Counter for the Stockpile move.
         ''' </summary>
@@ -449,6 +461,7 @@
             Me.CustapBerry = 0
             Me.Trapped = 0
             Me.FuryCutter = 0
+            Me.EchoedVoice = 0
             Me.TurnsInBattle = 0
             Me.StockPile = 0
             Me.DestinyBond = 0
@@ -461,7 +474,9 @@
             Me.Bounce = 0
             Me.Dive = 0
             Me.ShadowForce = 0
+            Me.PhantomForce = 0
             Me.SkyDrop = 0
+            Me.Geomancy = 0
             Me.SkyAttack = 0
             Me.RazorWind = 0
             Me.SkullBash = 0

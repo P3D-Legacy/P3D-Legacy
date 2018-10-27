@@ -1,22 +1,22 @@
-Namespace BattleSystem.Moves.Normal
+﻿Namespace BattleSystem.Moves.Normal
 
-    Public Class PayDay
+    Public Class HoldBack
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
             Me.Type = New Element(Element.Types.Normal)
-            Me.ID = 6
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
+            Me.ID = 610
+            Me.OriginalPP = 40
+            Me.CurrentPP = 40
+            Me.MaxPP = 40
             Me.Power = 40
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Pay Day"
-            Me.Description = "Numerous coins are hurled at the target to inflict damage. Money is earned after the battle."
+            Me.ContestCategory = ContestCategories.Cool
+            Me.Name = "Hold Back"
+            Me.Description = "The user holds back when it attacks, and the target is left with at least 1 HP."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
@@ -36,8 +36,8 @@ Namespace BattleSystem.Moves.Normal
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.RemovesFrozen = False
             Me.HasSecondaryEffect = False
+            Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
@@ -50,32 +50,32 @@ Namespace BattleSystem.Moves.Normal
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
+
+            Me.AIField1 = AIField.Damage
+            Me.AIField2 = AIField.Nothing
         End Sub
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim p As Pokemon = BattleScreen.OwnPokemon
-            Dim op As Pokemon = BattleScreen.OppPokemon
-            If own = False Then
-                p = BattleScreen.OppPokemon
-                op = BattleScreen.OwnPokemon
+        Public Overrides Function GetDamage(Critical As Boolean, Own As Boolean, targetPokemon As Boolean, BattleScreen As BattleScreen, Optional ExtraParameter As String = "") As Integer
+            Dim d As Integer = MyBase.GetDamage(Critical, Own, targetPokemon, BattleScreen)
+
+            Dim subst As Integer = BattleScreen.FieldEffects.OppSubstitute
+            If Own = False Then
+                subst = BattleScreen.FieldEffects.OwnSubstitute
             End If
 
-            Dim coinAmount As Integer = p.Level * 5
+            If subst = 0 Then
+                Dim op As Pokemon = BattleScreen.OppPokemon
+                If Own = False Then
+                    op = BattleScreen.OwnPokemon
+                End If
 
-            If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "amulet coin" Or p.Item.Name.ToLower() = "luck incense" Then
-                    coinAmount *= 2
+                If d >= op.HP Then
+                    d = op.HP - 1
                 End If
             End If
 
-            If own = True Then
-                BattleScreen.FieldEffects.OwnPayDayCounter += coinAmount
-            Else
-                BattleScreen.FieldEffects.OppPayDayCounter += coinAmount
-            End If
-
-            BattleScreen.BattleQuery.Add(New TextQueryObject("Coins were scattered everywhere!"))
-        End Sub
+            Return d
+        End Function
 
     End Class
 

@@ -1,25 +1,25 @@
 ﻿Namespace BattleSystem.Moves.Poison
 
-    Public Class Venoshock
+    Public Class VenomDrench
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
             Me.Type = New Element(Element.Types.Poison)
-            Me.ID = 474
-            Me.OriginalPP = 10
-            Me.CurrentPP = 10
-            Me.MaxPP = 10
-            Me.Power = 65
+            Me.ID = 599
+            Me.OriginalPP = 20
+            Me.CurrentPP = 20
+            Me.MaxPP = 20
+            Me.Power = 0
             Me.Accuracy = 100
-            Me.Category = Categories.Special
+            Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Venoshock"
-            Me.Description = "The user drenches the target in a special poisonous liquid. This move's power is doubled if the target is poisoned."
-            Me.CriticalChance = 1
+            Me.Name = "Venom Drench"
+            Me.Description = "Opposing Pokémon are drenched in an odd poisonous liquid. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target."
+            Me.CriticalChance = 0
             Me.IsHMMove = False
-            Me.Target = Targets.OneAdjacentTarget
+            Me.Target = Targets.AllAdjacentFoes
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
@@ -27,10 +27,10 @@
             '#SpecialDefinitions
             Me.MakesContact = False
             Me.ProtectAffected = True
-            Me.MagicCoatAffected = False
+            Me.MagicCoatAffected = True
             Me.SnatchAffected = False
-            Me.MirrorMoveAffected = True
-            Me.KingsrockAffected = True
+            Me.MirrorMoveAffected = False
+            Me.KingsrockAffected = False
             Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
@@ -42,30 +42,30 @@
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
             Me.IsPunchingMove = False
-            Me.IsDamagingMove = True
+            Me.IsDamagingMove = False
             Me.IsProtectMove = False
             Me.IsSoundMove = False
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
-            Me.IsWonderGuardAffected = True
+            Me.IsWonderGuardAffected = False
             '#End
 
-            Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.Nothing
         End Sub
 
-        Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
+        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             Dim op As Pokemon = BattleScreen.OppPokemon
             If own = False Then
                 op = BattleScreen.OwnPokemon
             End If
             If op.Status = Pokemon.StatusProblems.Poison OrElse op.Status = Pokemon.StatusProblems.BadPoison Then
-                Return 130
+                BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Attack", 1, "", "move:venomdrench")
+                BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Special Attack", 1, "", "move:venomdrench")
+                BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Speed", 1, "", "move:venomdrench")
             Else
-                Return Me.Power
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
-        End Function
+        End Sub
 
     End Class
 

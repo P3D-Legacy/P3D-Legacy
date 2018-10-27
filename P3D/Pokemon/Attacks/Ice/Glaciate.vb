@@ -1,22 +1,22 @@
-﻿Namespace BattleSystem.Moves.Normal
+﻿Namespace BattleSystem.Moves.Ice
 
-    Public Class HyperVoice
+    Public Class Glaciate
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Normal)
-            Me.ID = 304
+            Me.Type = New Element(Element.Types.Ice)
+            Me.ID = 549
             Me.OriginalPP = 10
             Me.CurrentPP = 10
             Me.MaxPP = 10
-            Me.Power = 90
-            Me.Accuracy = 100
+            Me.Power = 65
+            Me.Accuracy = 95
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Hyper Voice"
-            Me.Description = "The user lets loose a horribly echoing shout with the power to inflict damage."
+            Me.ContestCategory = ContestCategories.Beauty
+            Me.Name = "Glaciate"
+            Me.Description = "The user attacks by blowing freezing cold air at opposing Pokémon. This lowers their Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentFoes
@@ -36,20 +36,27 @@
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
+            Me.HasSecondaryEffect = True
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
             Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = True
+            Me.IsSoundMove = False
 
-            Me.IsAffectedBySubstitute = False
+            Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
+
+            Me.AIField1 = AIField.Damage
+            Me.AIField2 = AIField.LowerSpeed
+        End Sub
+
+        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+            BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Speed", 1, "", "move:glaciate")
         End Sub
 
     End Class
