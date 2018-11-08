@@ -137,6 +137,9 @@ Public Class NewInventoryScreen
         _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
 
         _tabIndex = StartPageIndex
+        _pageIndex = Player.Temp.BagPageIndex
+        _itemindex = Player.Temp.BagItemIndex
+
         Me.AllowedPages = AllowedPages
         ReturnItem = DoStuff
 
@@ -869,6 +872,12 @@ Public Class NewInventoryScreen
         _isInfoShowing = False
     End Sub
 
+    Private Sub SaveBagIndex()
+        Player.Temp.BagIndex = _tabIndex
+        Player.Temp.BagPageIndex = _pageIndex
+        Player.Temp.BagItemIndex = _itemindex
+    End Sub
+
     Private Sub SelectedItemOption()
         If _infoItemOptionsNormal.Count > 0 Then
             Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
@@ -888,6 +897,7 @@ Public Class NewInventoryScreen
                     CloseInfoScreen()
                     _closing = True
             End Select
+            SaveBagIndex()
         End If
     End Sub
 

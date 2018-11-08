@@ -426,6 +426,8 @@
         Public Shared PokemonScreenIndex As Integer = 0
         Public Shared PokemonStatusPageIndex As Integer = 0
         Public Shared BagIndex As Integer = 0
+        Public Shared BagPageIndex As Integer() = {0, 0, 0, 0, 0, 0, 0, 0}
+        Public Shared BagItemIndex As Integer() = {0, 0, 0, 0, 0, 0, 0, 0}
         Public Shared BagSelectIndex As Integer = 0
         Public Shared MenuIndex As Integer = 0
         Public Shared PokedexIndex As Integer = 0
@@ -456,6 +458,8 @@
         Temp.PokemonScreenIndex = 0
         Temp.PokemonStatusPageIndex = 0
         Temp.BagIndex = 0
+        Temp.BagPageIndex = {0, 0, 0, 0, 0, 0, 0, 0}
+        Temp.BagItemIndex = {0, 0, 0, 0, 0, 0, 0, 0}
         Temp.BagSelectIndex = 0
         Temp.MenuIndex = 0
         Temp.PokedexIndex = 0
