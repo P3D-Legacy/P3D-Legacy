@@ -1,37 +1,37 @@
-Namespace BattleSystem.Moves.Fighting
+Namespace BattleSystem.Moves.Dragon
 
-    Public Class PowerUpPunch
+    Public Class ClangingScales
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
+            Me.Type = New Element(Element.Types.Dragon)
+            Me.ID = 691
+            Me.OriginalPP = 5
+            Me.CurrentPP = 5
+            Me.MaxPP = 5
+            Me.Power = 110
             Me.Accuracy = 100
-            Me.Category = Categories.Physical
+            Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.Name = "Clanging Scales"
+            Me.Description = "The user rubs the scales on its entire body and makes a huge noise to attack the opposing Pokémon. The user's Defense stat goes down after the attack."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
-            Me.Target = Targets.OneAdjacentTarget
+            Me.Target = Targets.AllAdjacentFoes
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
 
             '#SpecialDefinitions
-            Me.MakesContact = True
+            Me.MakesContact = False
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
             Me.KingsrockAffected = True
-            Me.CounterAffected = True
+            Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
@@ -41,22 +41,22 @@ Namespace BattleSystem.Moves.Fighting
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+            Me.IsSoundMove = True
 
-            Me.IsAffectedBySubstitute = True
+            Me.IsAffectedBySubstitute = False
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
+            Me.AIField2 = AIField.LowerDefense
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
+            BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Defense", 1, "", "move:clangingscales")
         End Sub
 
     End Class

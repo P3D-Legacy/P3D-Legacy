@@ -1,23 +1,23 @@
-Namespace BattleSystem.Moves.Fighting
+Namespace BattleSystem.Moves.Fairy
 
-    Public Class PowerUpPunch
+    Public Class FleurCannon
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
-            Me.Accuracy = 100
-            Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.Type = New Element(Element.Types.Fairy)
+            Me.ID = 705
+            Me.OriginalPP = 5
+            Me.CurrentPP = 5
+            Me.MaxPP = 5
+            Me.Power = 130
+            Me.Accuracy = 90
+            Me.Category = Categories.Special
+            Me.ContestCategory = ContestCategories.Cute
+            Me.Name = "Fleur Cannon"
+            Me.Description = "The user unleashes a strong beam. The attack's recoil harshly lowers the user's Sp. Atk stat."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
@@ -25,23 +25,23 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             '#SpecialDefinitions
-            Me.MakesContact = True
+            Me.MakesContact = False
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
-            Me.KingsrockAffected = True
-            Me.CounterAffected = True
+            Me.KingsrockAffected = False
+            Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -52,11 +52,11 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
+            Me.AIField2 = AIField.LowerSpAttack
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
+            BattleScreen.Battle.LowerStat(own, own, BattleScreen, "Special Attack", 2, "", "move:fleurcannon")
         End Sub
 
     End Class

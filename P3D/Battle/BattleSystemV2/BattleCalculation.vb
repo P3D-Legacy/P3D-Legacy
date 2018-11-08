@@ -1500,6 +1500,10 @@
                     DSM = 1.0F
                 End If
 
+                If Attack.ID = 663 Then 'Darkest Lariat
+                    DSM = 1.0F
+                End If
+
                 If Attack.Name.ToLower() = "selfdestruct" Or Attack.Name.ToLower() = "explosion" Then
                     SX = 1.0F
                 End If
@@ -1525,6 +1529,10 @@
                 DSM = GetMultiplierFromStat(Op.StatSpDefense)
 
                 If p.Ability.Name.ToLower() = "unaware" Or Attack.UseOppDefense = False Then
+                    DSM = 1.0F
+                End If
+
+                If Attack.ID = 663 Then 'Darkest Lariat
                     DSM = 1.0F
                 End If
 

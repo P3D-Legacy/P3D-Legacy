@@ -51,6 +51,7 @@
         Public OwnLastDamage As Integer = 0 'Last Damage the own Pokémon has done by moves.
         Public OwnLeechSeed As Integer = 0 'The opponent used leech seed
         Public OwnSolarBeam As Integer = 0 'Charge counter for solar beam
+        Public OwnSolarBlade As Integer = 0 'Charge counter for solar blade
         Public OwnLockOn As Integer = 0 'Counter for the moves lock-on and mind reader
         Public OwnBideCounter As Integer = 0 'Counter for the Bide move
         Public OwnBideDamage As Integer = 0 'Half of the damage dealt by bide
@@ -179,6 +180,7 @@
         Public OppLastDamage As Integer = 0
         Public OppLeechSeed As Integer = 0
         Public OppSolarBeam As Integer = 0
+        Public OppSolarBlade As Integer = 0
         Public OppLockOn As Integer = 0
         Public OppBideCounter As Integer = 0
         Public OppBideDamage As Integer = 0

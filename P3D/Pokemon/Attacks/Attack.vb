@@ -1486,7 +1486,7 @@
                     returnMove = New Moves.Flying.DragonAscent()
                 Case 621
                     returnMove = New Moves.Dark.HyperspaceFury()
-                    '------------------------------------------------BEGIN Z MOVE STREAK
+                    '------------------------------------------------BEGIN Z MOVE STREAK 1
                     'Case 622
                     'Breakneck Blitz - Physical
                     'Case 623
@@ -1561,79 +1561,80 @@
                     'Twinkle Tackle - Special
                     'Case 658
                     'Catastropika
-                    '------------------------------------------------END Z MOVE STREAK
-                'Case 659
-                    'returnMove = New Moves.Ground.ShoreUp()
-                'Case 660
-                    'returnMove = New Moves.Bug.FirstImpression()
+                    '------------------------------------------------END Z MOVE STREAK 1
+                Case 659
+                    returnMove = New Moves.Ground.ShoreUp()
+                Case 660
+                    returnMove = New Moves.Bug.FirstImpression()
                     'Case 661
                     'Baneful Bunker
-                'Case 662
-                    'returnMove = New Moves.Ghost.SpiritShackle()
-                'Case 663
-                    'returnMove = New Moves.Dark.DarkestLariat()
-                'Case 664
-                    'returnMove = New Moves.Water.SparklingAria()
-                'Case 665
-                    'returnMove = New Moves.Ice.IceHammer()
+                Case 662
+                    returnMove = New Moves.Ghost.SpiritShackle()
+                Case 663
+                    returnMove = New Moves.Dark.DarkestLariat()
+                Case 664
+                    returnMove = New Moves.Water.SparklingAria()
+                Case 665
+                    returnMove = New Moves.Ice.IceHammer()
                     'Case 666
                     'Floral Healing - Double Battles
-                'Case 667
-                    'returnMove = New Moves.Ground.HighHorsepower()
-                'Case 668
-                    'returnMove = New Moves.Grass.StrengthSap()
-                'Case 669
-                    'returnMove = New Moves.Grass.SolarBlade()
-                'Case 670
-                    'returnMove = New Moves.Grass.Leafage()
+                Case 667
+                    returnMove = New Moves.Ground.HighHorsepower()
+                Case 668
+                    returnMove = New Moves.Grass.StrengthSap()
+                Case 669
+                    returnMove = New Moves.Grass.SolarBlade()
+                Case 670
+                    returnMove = New Moves.Grass.Leafage()
                     'Case 671
                     'Spotlight
-                'Case 672
-                    'returnMove = New Moves.Poison.ToxicThread()
+                Case 672
+                    returnMove = New Moves.Poison.ToxicThread()
                     'Case 673
                     'Laser Focus
-                'Case 674
-                    'returnMove = New Moves.Steel.GearUp()
+                Case 674
+                    returnMove = New Moves.Steel.GearUp()
                     'Case 675
                     'Throat Chop
-                'Case 676
-                    'returnMove = New Moves.Bug.PollenPuff()
-                'Case 677
-                    'returnMove = New Moves.Steel.AnchorShot()
+                Case 676
+                    returnMove = New Moves.Bug.PollenPuff()
+                Case 677
+                    returnMove = New Moves.Steel.AnchorShot()
                     'Case 678
                     'Psychic Terrain
-                'Case 679
-                    'returnMove = New Moves.Bug.Lunge()
-                'Case 680
-                    'returnMove = New Moves.Fire.FireLash()
-                'Case 681
-                    'returnMove = New Moves.Dark.PowerTrip()
-                'Case 682
-                    'returnMove = New Moves.Fire.BurnUp()
+                Case 679
+                    returnMove = New Moves.Bug.Lunge()
+                Case 680
+                    returnMove = New Moves.Fire.FireLash()
+                Case 681
+                    returnMove = New Moves.Dark.PowerTrip()
+                Case 682
+                    returnMove = New Moves.Fire.BurnUp()
                     'Case 683
                     'Speed Swap
-                'Case 684
-                    'returnMove = New Moves.Steel.SmartStrike()
+                Case 684
+                    returnMove = New Moves.Steel.SmartStrike()
                     'Case 685
                     'Purify - Double Battles
-                'Case 686
-                    'returnMove = New Moves.Normal.RevelationDance()
+                Case 686
+                    returnMove = New Moves.Normal.RevelationDance()
                     'Case 687
                     'Core Enforcer
-                'Case 688
-                    'returnMove = New Moves.Grass.TropKick()
+                Case 688
+                    returnMove = New Moves.Grass.TropKick()
                     'Case 689
                     'Instruct
                     'Case 690
                     'Beak Blast
-                'Case 691
-                    'returnMove = New Moves.Dragon.ClangingScales()
-                'Case 692
-                    'returnMove = New Moves.Dragon.DragonHammer()
-                'Case 693
-                    'returnMove = New Moves.Dark.BrutalSwing()
-                'Case 694
-                    'returnMove = New Moves.Ice.AuroraVeil()
+                Case 691
+                    returnMove = New Moves.Dragon.ClangingScales()
+                Case 692
+                    returnMove = New Moves.Dragon.DragonHammer()
+                Case 693
+                    returnMove = New Moves.Dark.BrutalSwing()
+                    'Case 694
+                    'Aurora Veil
+                    '------------------------------------------------BEGIN Z MOVE STREAK 2
                     'Case 695
                     'Sinister Arrow Raid - Z-Move
                     'Case 696
@@ -1652,44 +1653,46 @@
                     'Extreme Evoboost - Z-Move
                     'Case 703
                     'Genesis Supernova - Z-Move
+                    '------------------------------------------------END Z MOVE STREAK 2
                     'Case 704
                     'Shell Trap
-                'Case 705
-                    'returnMove = New Moves.Fairy.FleurCannon()
-                'Case 706
-                    'returnMove = New Moves.Psychic.PsychicFangs()
+                Case 705
+                    returnMove = New Moves.Fairy.FleurCannon()
+                Case 706
+                    returnMove = New Moves.Psychic.PsychicFangs()
                     'Case 707
                     'Stomping Tantrum
-                'Case 708
-                    'returnMove = New Moves.Ghost.ShadowBone()
-                'Case 709
-                    'returnMove = New Moves.Rock.Accelerock()
-                'Case 710
-                    'returnMove = New Moves.Water.Liquidation()
-                'Case 711
-                    'returnMove = New Moves.Psychic.PrismaticLaser()
+                Case 708
+                    returnMove = New Moves.Ghost.ShadowBone()
+                Case 709
+                    returnMove = New Moves.Rock.Accelerock()
+                Case 710
+                    returnMove = New Moves.Water.Liquidation()
+                Case 711
+                    returnMove = New Moves.Psychic.PrismaticLaser()
                     'Case 712
                     'Spectral Thief
-                'Case 713
+                    'Case 713
                     'returnMove = New Moves.Steel.SunsteelStrike()
-                'Case 714
+                    'Case 714
                     'returnMove = New Moves.Ghost.MoongeistBeam()
-                'Case 715
-                    'returnMove = New Moves.Normal.TearfulLook()
-                'Case 716
-                    'returnMove = New Moves.Electric.ZingZap()
-                'Case 717
-                    'returnMove = New Moves.Fairy.NaturesMadness()
-                'Case 718
-                    'returnMove = New Moves.Normal.Multi-Attack()
+                Case 715
+                    returnMove = New Moves.Normal.TearfulLook()
+                Case 716
+                    returnMove = New Moves.Electric.ZingZap()
+                Case 717
+                    returnMove = New Moves.Fairy.NaturesMadness()
+                    'Case 718
+                    'returnMove = New Moves.Normal.MultiAttack()
                     'Case 719
                     '10,000,000 Volt Thunderbolt - Z-Move
-                'Case 720
+                    'Case 720
                     'returnMove = New Moves.Fire.MindBlown()
                     'Case 721
                     'Plasma Fists
                     'Case 722
                     'Photon Geyser
+                    '------------------------------------------------BEGIN Z MOVE STREAK 3
                     'Case 723
                     'Light That Burns The Sky - Z-Move
                     'Case 724
@@ -1702,6 +1705,7 @@
                     'Splintered Stormshards - Z-Move
                     'Case 728
                     'Clangorous Soulblaze - Z-Move
+                    '------------------------------------------------END Z MOVE STREAK 3
                     'Case 729
                     'Blank
                 Case 999

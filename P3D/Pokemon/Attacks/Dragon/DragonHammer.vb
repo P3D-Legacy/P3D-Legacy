@@ -1,23 +1,23 @@
-Namespace BattleSystem.Moves.Fighting
+﻿Namespace BattleSystem.Moves.Dragon
 
-    Public Class PowerUpPunch
+    Public Class DragonHammer
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
+            Me.Type = New Element(Element.Types.Dragon)
+            Me.ID = 692
+            Me.OriginalPP = 15
+            Me.CurrentPP = 15
+            Me.MaxPP = 15
+            Me.Power = 90
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.Name = "Dragon Hammer"
+            Me.Description = "The user uses its body like a hammer to attack the target and inflict damage."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
@@ -30,7 +30,7 @@ Namespace BattleSystem.Moves.Fighting
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
-            Me.KingsrockAffected = True
+            Me.KingsrockAffected = False
             Me.CounterAffected = True
 
             Me.DisabledWhileGravity = False
@@ -41,7 +41,7 @@ Namespace BattleSystem.Moves.Fighting
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -52,11 +52,7 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
-        End Sub
-
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
+            Me.AIField2 = AIField.Nothing
         End Sub
 
     End Class

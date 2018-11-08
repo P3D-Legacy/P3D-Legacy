@@ -1,23 +1,23 @@
-Namespace BattleSystem.Moves.Fighting
+﻿Namespace BattleSystem.Moves.Psychic
 
-    Public Class PowerUpPunch
+    Public Class PrismaticLaser
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
+            Me.Type = New Element(Element.Types.Psychic)
+            Me.ID = 711
+            Me.OriginalPP = 10
+            Me.CurrentPP = 10
+            Me.MaxPP = 10
+            Me.Power = 160
             Me.Accuracy = 100
-            Me.Category = Categories.Physical
+            Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.Name = "Prismatic Laser"
+            Me.Description = "The user shoots powerful lasers using the power of a prism. The user can't move on the next turn."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
@@ -25,13 +25,13 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             '#SpecialDefinitions
-            Me.MakesContact = True
+            Me.MakesContact = False
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
             Me.KingsrockAffected = True
-            Me.CounterAffected = True
+            Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
@@ -41,7 +41,7 @@ Namespace BattleSystem.Moves.Fighting
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -52,11 +52,15 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
+            Me.AIField2 = AIField.Recharge
         End Sub
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
+        Public Overrides Sub MoveRecharge(Own As Boolean, BattleScreen As BattleScreen)
+            If Own = True Then
+                BattleScreen.FieldEffects.OwnRecharge += 1
+            Else
+                BattleScreen.FieldEffects.OppRecharge += 1
+            End If
         End Sub
 
     End Class

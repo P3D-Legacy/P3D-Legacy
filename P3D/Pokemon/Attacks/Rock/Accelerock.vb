@@ -1,13 +1,13 @@
-Namespace BattleSystem.Moves.Fighting
+﻿Namespace BattleSystem.Moves.Rock
 
-    Public Class PowerUpPunch
+    Public Class Accelerock
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
+            Me.Type = New Element(Element.Types.Rock)
+            Me.ID = 709
             Me.OriginalPP = 20
             Me.CurrentPP = 20
             Me.MaxPP = 20
@@ -15,12 +15,12 @@ Namespace BattleSystem.Moves.Fighting
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.Name = "Accelerock"
+            Me.Description = "The user smashes into the target at high speed. This move always goes first."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
-            Me.Priority = 0
+            Me.Priority = 1
             Me.TimesToAttack = 1
             '#End
 
@@ -36,12 +36,12 @@ Namespace BattleSystem.Moves.Fighting
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -52,11 +52,7 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
-        End Sub
-
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
+            Me.AIField2 = AIField.HighPriority
         End Sub
 
     End Class

@@ -219,6 +219,10 @@
         ''' </summary>
         Public SolarBeam As Integer = 0
         ''' <summary>
+        ''' Solar blade move counter.
+        ''' </summary>
+        Public SolarBlade As Integer = 0
+        ''' <summary>
         ''' Ice Burn move counter.
         ''' </summary>
         Public IceBurn As Integer = 0
@@ -457,6 +461,7 @@
             Me.DefenseCurl = 0
             Me.Charge = 0
             Me.SolarBeam = 0
+            Me.SolarBlade = 0
             Me.LansatBerry = 0
             Me.CustapBerry = 0
             Me.Trapped = 0

@@ -1,23 +1,23 @@
-Namespace BattleSystem.Moves.Fighting
+﻿Namespace BattleSystem.Moves.Ice
 
-    Public Class PowerUpPunch
+    Public Class IceHammer
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
-            Me.Accuracy = 100
+            Me.Type = New Element(Element.Types.Ice)
+            Me.ID = 665
+            Me.OriginalPP = 10
+            Me.CurrentPP = 10
+            Me.MaxPP = 10
+            Me.Power = 100
+            Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.Name = "Ice Hammer"
+            Me.Description = "The user swings and hits with its strong, heavy fist. It lowers the user's Speed, however."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
@@ -30,18 +30,18 @@ Namespace BattleSystem.Moves.Fighting
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
-            Me.KingsrockAffected = True
+            Me.KingsrockAffected = False
             Me.CounterAffected = True
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -50,13 +50,10 @@ Namespace BattleSystem.Moves.Fighting
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
-
-            Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
+            BattleScreen.Battle.LowerStat(own, own, BattleScreen, "Speed", 1, "", "move:icehammer")
         End Sub
 
     End Class

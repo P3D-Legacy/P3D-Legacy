@@ -162,6 +162,14 @@
                 Exit Sub
             End If
 
+            'Solar Blade:
+            If BattleScreen.FieldEffects.OwnSolarBlade >= 1 Then
+                SelectedMoveOwn = False
+                DeleteHostQuery(BattleScreen)
+                InitializeRound(BattleScreen, New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OwnPokemon, 669)})
+                Exit Sub
+            End If
+
             'Sky Attack:
             If BattleScreen.FieldEffects.OwnSkyAttackCounter >= 1 Then
                 SelectedMoveOwn = False
@@ -346,6 +354,12 @@
                 If BattleScreen.FieldEffects.OppSolarBeam >= 1 Then
                     SelectedMoveOpp = False
                     Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 76)}
+                End If
+
+                'Solar Blade:
+                If BattleScreen.FieldEffects.OppSolarBlade >= 1 Then
+                    SelectedMoveOpp = False
+                    Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = GetPokemonMoveFromID(BattleScreen.OppPokemon, 669)}
                 End If
 
                 'Sky Attack:
@@ -981,6 +995,7 @@
             Dim skullBash As Integer
             Dim skyAttack As Integer
             Dim solarBeam As Integer
+            Dim solarBlade As Integer
             Dim razorWind As Integer
             Dim bide As Integer
 
@@ -1002,6 +1017,7 @@
                     skullBash = .OwnSkullBashCounter
                     skyAttack = .OwnSkyAttackCounter
                     solarBeam = .OwnSolarBeam
+                    solarBlade = .OwnSolarBlade
                     razorWind = .OwnRazorWindCounter
                     bide = .OwnBideCounter
                 Else
@@ -1016,6 +1032,7 @@
                     skullBash = .OppSkullBashCounter
                     skyAttack = .OppSkyAttackCounter
                     solarBeam = .OppSolarBeam
+                    solarBlade = .OppSolarBlade
                     razorWind = .OppRazorWindCounter
                     bide = .OppBideCounter
                 End If
@@ -1067,6 +1084,10 @@
                     End If
                 Case "solar beam"
                     If solarBeam = 0 And BattleScreen.FieldEffects.Weather <> BattleWeather.WeatherTypes.Sunny Then
+                        Return True
+                    End If
+                Case "solar blade"
+                    If solarBlade = 0 And BattleScreen.FieldEffects.Weather <> BattleWeather.WeatherTypes.Sunny Then
                         Return True
                     End If
                 Case "razor wind"
@@ -6177,6 +6198,7 @@
                     .OwnDefenseCurl = 0
                     .OwnCharge = 0
                     .OwnSolarBeam = 0
+                    .OwnSolarBlade = 0
                     If .OwnUsedBatonPass = False Then .OwnLeechSeed = 0
                     If .OwnUsedBatonPass = False Then .OwnLockOn = 0
                     .OwnLansatBerry = 0
@@ -6515,6 +6537,7 @@
                     .OppDefenseCurl = 0
                     .OppCharge = 0
                     .OppSolarBeam = 0
+                    .OppSolarBlade = 0
                     If .OppUsedBatonPass = False Then .OppLeechSeed = 0
                     If .OppUsedBatonPass = False Then .OppLockOn = 0
                     .OppLansatBerry = 0

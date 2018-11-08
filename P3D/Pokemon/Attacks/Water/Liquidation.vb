@@ -1,23 +1,23 @@
-Namespace BattleSystem.Moves.Fighting
+﻿Namespace BattleSystem.Moves.Water
 
-    Public Class PowerUpPunch
+    Public Class Liquidation
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
+            Me.Type = New Element(Element.Types.Water)
+            Me.ID = 710
+            Me.OriginalPP = 10
+            Me.CurrentPP = 10
+            Me.MaxPP = 10
+            Me.Power = 85
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.ContestCategory = ContestCategories.Tough
+            Me.Name = "Liquidation"
+            Me.Description = "The user slams into the target using a full-force blast of water. This may also lower the target's Defense stat."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
@@ -36,12 +36,12 @@ Namespace BattleSystem.Moves.Fighting
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
+            Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -52,11 +52,15 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
+            Me.AIField2 = AIField.CanLowerDefense
+
+            Me.EffectChances.Add(20)
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
+            If Core.Random.Next(0, 100) < Me.GetEffectChance(0, own, BattleScreen) Then
+                BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Defense", 1, "", "move:liquidation")
+            End If
         End Sub
 
     End Class

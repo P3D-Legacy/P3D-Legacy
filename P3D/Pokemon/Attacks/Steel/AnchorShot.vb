@@ -1,23 +1,23 @@
-Namespace BattleSystem.Moves.Fighting
+﻿Namespace BattleSystem.Moves.Steel
 
-    Public Class PowerUpPunch
+    Public Class AnchorShot
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
+            Me.Type = New Element(Element.Types.Steel)
+            Me.ID = 677
             Me.OriginalPP = 20
             Me.CurrentPP = 20
             Me.MaxPP = 20
-            Me.Power = 40
+            Me.Power = 80
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.ContestCategory = ContestCategories.Tough
+            Me.Name = "Anchor Shot"
+            Me.Description = "The user entangles the target with its anchor chain while attacking. The target becomes unable to flee."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
@@ -25,12 +25,12 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             '#SpecialDefinitions
-            Me.MakesContact = True
+            Me.MakesContact = False
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
-            Me.KingsrockAffected = True
+            Me.KingsrockAffected = False
             Me.CounterAffected = True
 
             Me.DisabledWhileGravity = False
@@ -41,7 +41,7 @@ Namespace BattleSystem.Moves.Fighting
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -50,13 +50,27 @@ Namespace BattleSystem.Moves.Fighting
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
-
-            Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
+            Dim trapped As Integer = BattleScreen.FieldEffects.OppTrappedCounter
+            If own = False Then
+                trapped = BattleScreen.FieldEffects.OwnTrappedCounter
+            End If
+
+            Dim op As Pokemon = BattleScreen.OppPokemon
+            If own = False Then
+                op = BattleScreen.OwnPokemon
+            End If
+
+            If trapped = 0 Then
+                If own = True Then
+                    BattleScreen.FieldEffects.OppTrappedCounter = 1
+                Else
+                    BattleScreen.FieldEffects.OwnTrappedCounter = 1
+                End If
+                BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " can no longer escape!"))
+            End If
         End Sub
 
     End Class

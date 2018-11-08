@@ -1,23 +1,23 @@
-Namespace BattleSystem.Moves.Fighting
+Namespace BattleSystem.Moves.Grass
 
-    Public Class PowerUpPunch
+    Public Class TropKick
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
+            Me.Type = New Element(Element.Types.Grass)
+            Me.ID = 688
+            Me.OriginalPP = 15
+            Me.CurrentPP = 15
+            Me.MaxPP = 15
+            Me.Power = 70
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.Name = "Trop Kick"
+            Me.Description = "	The user lands an intense kick of tropical origins on the target. This also lowers the target's Attack stat."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
@@ -41,7 +41,7 @@ Namespace BattleSystem.Moves.Fighting
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -52,11 +52,11 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
+            Me.AIField2 = AIField.LowerAttack
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
+            BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Attack", 1, "", "move:tropkick")
         End Sub
 
     End Class

@@ -1,23 +1,23 @@
-Namespace BattleSystem.Moves.Fighting
+﻿Namespace BattleSystem.Moves.Normal
 
-    Public Class PowerUpPunch
+    Public Class RevelationDance
 
         Inherits Attack
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Fighting)
-            Me.ID = 612
-            Me.OriginalPP = 20
-            Me.CurrentPP = 20
-            Me.MaxPP = 20
-            Me.Power = 40
+            Me.Type = New Element(Element.Types.Normal)
+            Me.ID = 686
+            Me.OriginalPP = 15
+            Me.CurrentPP = 15
+            Me.MaxPP = 15
+            Me.Power = 90
             Me.Accuracy = 100
-            Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
-            Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
-            Me.CriticalChance = 0
+            Me.Category = Categories.Special
+            Me.ContestCategory = ContestCategories.Beauty
+            Me.Name = "Revelation Dance"
+            Me.Description = "The user attacks the target by dancing very hard. The user's type determines the type of this move."
+            Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
@@ -25,13 +25,13 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             '#SpecialDefinitions
-            Me.MakesContact = True
+            Me.MakesContact = False
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
             Me.KingsrockAffected = True
-            Me.CounterAffected = True
+            Me.CounterAffected = False
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
@@ -41,7 +41,7 @@ Namespace BattleSystem.Moves.Fighting
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
@@ -52,12 +52,19 @@ Namespace BattleSystem.Moves.Fighting
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.RaiseAttack
+            Me.AIField2 = AIField.Nothing
         End Sub
 
-        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:power-uppunch")
-        End Sub
+        Public Overrides Function GetAttackType(own As Boolean, BattleScreen As BattleScreen) As Element
+            Dim p As Pokemon = BattleScreen.OwnPokemon
+            If own = False Then
+                p = BattleScreen.OppPokemon
+            End If
+
+            Return New Element(p.Type1.Type)
+
+            Return Me.Type
+        End Function
 
     End Class
 
