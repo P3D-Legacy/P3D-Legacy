@@ -57,14 +57,93 @@ Namespace BattleSystem.Moves.Fairy
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim b As Boolean = BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Special Attack", 2, "", "move:geomancy")
-            Dim d As Boolean = BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Special Defense", 2, "", "move:geomancy")
-            Dim f As Boolean = BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Speed", 2, "", "move:geomancy")
-            If b = False And d = False And f = False Then
-                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+
+            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Special Attack", 2, "", "move:geomancy")
+            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Special Defense", 2, "", "move:geomancy")
+            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Speed", 2, "", "move:geomancy")
+        End Sub
+
+        Public Overrides Function MoveFailBeforeAttack(Own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim op As Pokemon = BattleScreen.OppPokemon
+            If Own = False Then
+                p = BattleScreen.OppPokemon
+                op = BattleScreen.OwnPokemon
+            End If
+
+            Dim geomancy As Integer = BattleScreen.FieldEffects.OwnGeomancyCounter
+            If Own = False Then
+                geomancy = BattleScreen.FieldEffects.OppGeomancyCounter
+            End If
+
+            If Not p.Item Is Nothing Then
+                If p.Item.Name.ToLower() = "power herb" And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
+                    If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "Power Herb pushed the use of Geomancy!", "move:geomancy") = True Then
+                        geomancy = 1
+                    End If
+                End If
+            End If
+
+            If geomancy = 0 Then
+                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is absorbing power!"))
+                If Own = True Then
+                    BattleScreen.FieldEffects.OwnGeomancyCounter = 1
+                Else
+                    BattleScreen.FieldEffects.OppGeomancyCounter = 1
+                End If
+                Return True
+            Else
+                If Own = True Then
+                    BattleScreen.FieldEffects.OwnGeomancyCounter = 0
+                Else
+                    BattleScreen.FieldEffects.OppGeomancyCounter = 0
+                End If
+                Return False
+            End If
+        End Function
+        Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnGeomancyCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppGeomancyCounter = 0
+            End If
+        End Sub
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim geomancy As Integer = BattleScreen.FieldEffects.OwnGeomancyCounter
+            If own = False Then
+                geomancy = BattleScreen.FieldEffects.OppGeomancyCounter
+            End If
+
+            If geomancy = 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
+
+        Private Sub MoveFails(own As Boolean, BattleScreen As BattleScreen)
+            If own = True Then
+                BattleScreen.FieldEffects.OwnGeomancyCounter = 0
+            Else
+                BattleScreen.FieldEffects.OppGeomancyCounter = 0
             End If
         End Sub
 
+        Public Overrides Sub InflictedFlinch(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsSleeping(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub HurtItselfInConfusion(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
+
+        Public Overrides Sub IsAttracted(own As Boolean, BattleScreen As BattleScreen)
+            MoveFails(own, BattleScreen)
+        End Sub
     End Class
 
 End Namespace

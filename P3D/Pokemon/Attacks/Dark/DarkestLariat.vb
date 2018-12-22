@@ -50,6 +50,8 @@
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             Me.IsJawMove = True
+            Me.UseOppEvasion = False
+            Me.UseOppDefense = False
             '#End
 
             Me.AIField1 = AIField.Damage

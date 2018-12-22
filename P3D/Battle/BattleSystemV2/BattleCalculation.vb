@@ -381,6 +381,10 @@
                 Return True
             End If
 
+            If UsedAttack.GetUseAccEvasion(own, BattleScreen) = False Then
+                Return True
+            End If
+
             Dim result As Single = 1.0F
 
             Dim INIT As Integer = UsedAttack.GetAccuracy(own, BattleScreen)
@@ -403,10 +407,6 @@
             ACC = ACC.Clamp(-6, 6)
 
             Dim ACCM As Single = GetMultiplierFromAccEvasion(ACC)
-
-            If UsedAttack.GetUseAccEvasion(own, BattleScreen) = False Then
-                ACCM = 1.0F
-            End If
 
             result = INIT * ACCM
 
@@ -572,10 +572,10 @@
             If Core.Random.Next(0, chance) = 0 Then
                 Return True
             End If
-            If UsedAttack.ID = 524 Then
+            If UsedAttack.ID = 524 Then 'frost breath
                 Return True
             End If
-            If UsedAttack.ID = 480 Then
+            If UsedAttack.ID = 480 Then 'storm throw
                 Return True
             End If
 
@@ -1500,10 +1500,6 @@
                     DSM = 1.0F
                 End If
 
-                If Attack.ID = 663 Then 'Darkest Lariat
-                    DSM = 1.0F
-                End If
-
                 If Attack.Name.ToLower() = "selfdestruct" Or Attack.Name.ToLower() = "explosion" Then
                     SX = 1.0F
                 End If
@@ -1529,10 +1525,6 @@
                 DSM = GetMultiplierFromStat(Op.StatSpDefense)
 
                 If p.Ability.Name.ToLower() = "unaware" Or Attack.UseOppDefense = False Then
-                    DSM = 1.0F
-                End If
-
-                If Attack.ID = 663 Then 'Darkest Lariat
                     DSM = 1.0F
                 End If
 
