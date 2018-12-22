@@ -497,10 +497,10 @@
 
                     l_canSelect = False
                 ElseIf _isExtracting = True Then
-                    If _selectedItemExtended < 175 Then
+                    If _selectedItemExtended < 200 Then
                         _selectedItemExtended += 40
-                        If _selectedItemExtended >= 175 Then
-                            _selectedItemExtended = 175
+                        If _selectedItemExtended >= 200 Then
+                            _selectedItemExtended = 200
                             _isExtracting = False
                         End If
                     End If
