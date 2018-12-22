@@ -3707,12 +3707,12 @@
                     Me.ChangeCameraAngel(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is damaged by recoil"))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is damaged by recoil!"))
                         Case "-1" 'Print no message at all
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is damaged by recoil"))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is damaged by recoil!"))
                     End Select
                     ReduceHP(Damage, own, from, BattleScreen, "", "recoildamage")
                 End If

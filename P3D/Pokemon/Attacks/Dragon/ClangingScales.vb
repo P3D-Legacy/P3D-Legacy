@@ -56,7 +56,7 @@ Namespace BattleSystem.Moves.Dragon
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Defense", 1, "", "move:clangingscales")
+            BattleScreen.Battle.LowerStat(own, own, BattleScreen, "Defense", 1, "", "move:clangingscales")
         End Sub
 
     End Class

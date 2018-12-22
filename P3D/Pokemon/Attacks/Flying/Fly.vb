@@ -18,7 +18,7 @@
             Me.Name = "Fly"
             Me.Description = "The user soars, then strikes its target on the second turn. It can also be used for flying to any familiar town."
             Me.CriticalChance = 1
-            Me.IsHMMove = False
+            Me.IsHMMove = True
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1

@@ -57,13 +57,13 @@
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim p As Pokemon = BattleScreen.OwnPokemon
             If own = False Then
-                op = BattleScreen.OwnPokemon
+                p = BattleScreen.OppPokemon
             End If
-            If op.Ability.ID = 57 OrElse op.Ability.ID = 58 Then
-                BattleScreen.Battle.RaiseStat(Not own, own, BattleScreen, "Attack", 1, "", "move:gearup")
-                BattleScreen.Battle.RaiseStat(Not own, own, BattleScreen, "Special Attack", 1, "", "move:gearup")
+            If p.Ability.ID = 57 OrElse p.Ability.ID = 58 Then
+                BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:gearup")
+                BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Special Attack", 1, "", "move:gearup")
             End If
         End Sub
 

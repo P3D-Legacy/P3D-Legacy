@@ -60,7 +60,9 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            Dim heal As Integer = op.StatAttack
+            Dim op_Attack As Integer = BattleCalculation.DetermineBattleAttack(Not own, BattleScreen)
+
+            Dim heal As Integer = op_Attack
 
             Dim b As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Attack", 1, "", "move:strengthsap")
             If b = True Then

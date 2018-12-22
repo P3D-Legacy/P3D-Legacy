@@ -18,7 +18,7 @@ Namespace BattleSystem.Moves.Water
             Me.Name = "Whirlpool"
             Me.Description = "Traps foes in a violent swirling whirlpool for four to five turns."
             Me.CriticalChance = 1
-            Me.IsHMMove = False
+            Me.IsHMMove = True
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1

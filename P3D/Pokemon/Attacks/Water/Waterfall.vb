@@ -18,7 +18,7 @@
             Me.Name = "Waterfall"
             Me.Description = "The user charges at the target and may make it flinch. It can also be used to climb a waterfall."
             Me.CriticalChance = 1
-            Me.IsHMMove = False
+            Me.IsHMMove = True
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1
