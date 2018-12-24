@@ -18,7 +18,7 @@
             Me.Name = "Rock Smash"
             Me.Description = "The user attacks with a punch that can shatter a rock. It may also lower the target's Defense stat."
             Me.CriticalChance = 1
-            Me.IsHMMove = False
+            Me.IsHMMove = True
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1

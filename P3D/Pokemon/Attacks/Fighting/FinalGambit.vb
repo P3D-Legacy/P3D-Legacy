@@ -61,8 +61,8 @@
                 p = BattleScreen.OppPokemon
             End If
             Dim dmg As Integer = p.HP
-            BattleScreen.Battle.ReduceHP(dmg, own, own, BattleScreen, "", "move:finalgambit")
-            BattleScreen.Battle.ReduceHP(dmg, Not own, own, BattleScreen, "", "move:finalgambit")
+            BattleScreen.Battle.ReduceHP(p.HP, own, own, BattleScreen, "", "move:finalgambit")
+            BattleScreen.Battle.ReduceHP(p.HP, Not own, own, BattleScreen, "", "move:finalgambit")
         End Sub
 
     End Class

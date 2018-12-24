@@ -18,7 +18,7 @@
             Me.Name = "Sparkling Aria"
             Me.Description = "The user bursts into song, emitting many bubbles. Any Pokémon suffering from a burn will be healed by the touch of these bubbles."
             Me.CriticalChance = 1
-            Me.IsHMMove = True
+            Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentTargets
             Me.Priority = 0
             Me.TimesToAttack = 1

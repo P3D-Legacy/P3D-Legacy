@@ -306,6 +306,86 @@
             Return speed
         End Function
 
+        Public Shared Function DetermineBattleAttack(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Integer
+            Dim p As Pokemon = BattleScreen.OwnPokemon
+            If own = False Then
+                p = BattleScreen.OppPokemon
+            End If
+
+            Dim attack As Integer = CInt(p.Attack * GetMultiplierFromStat(p.StatAttack)) 'Calculate the attack's basic value
+
+            If own = True Then
+                If BattleScreen.IsPVPBattle = False Then
+                    If Core.Player.Badges.Contains(1) = True Then
+                        attack = CInt(attack + (attack * (1 / 8))) 'Add 1/8 of the attack if the player has the 1st badge and it's not a PvP battle
+                    End If
+                End If
+            End If
+
+            If p.Status = P3D.Pokemon.StatusProblems.Burn And p.Ability.Name.ToLower() <> "guts" Then
+                attack = CInt(attack / 2)
+            End If
+
+            If Not p.Item Is Nothing Then
+                If p.Item.Name = "Choice Band" Then
+                    attack = CInt(attack * 1.5F)
+                End If
+                If p.Number = 25 Then
+                    If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
+                        If p.Item.Name = "Light Ball" Then
+                            attack *= 2
+                        End If
+                    End If
+                End If
+                If p.Number = 104 OrElse p.Number = 105 Then
+                    If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
+                        If p.Item.Name = "Thick Club" Then
+                            attack *= 2
+                        End If
+                    End If
+                End If
+            End If
+
+            Select Case p.Ability.Name.ToLower()
+                Case "huge power"
+                    attack *= 2
+                Case "pure power"
+                    attack *= 2
+                Case "defeatist"
+                    If p.HP / p.MaxHP <= 0.5 Then
+                        attack = CInt(attack / 2)
+                    End If
+                Case "hustle"
+                    attack = CInt(attack * 1.5F)
+                Case "flower gift"
+                    If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
+                        attack = CInt(attack * 1.5F)
+                    End If
+            End Select
+
+            If p.Ability.Name.ToLower() = "guts" Then
+                If p.Status = Pokemon.StatusProblems.Paralyzed Or p.Status = Pokemon.StatusProblems.Burn Or p.Status = Pokemon.StatusProblems.Poison Or p.Status = Pokemon.StatusProblems.Sleep Or p.Status = Pokemon.StatusProblems.Freeze Then
+                    attack = CInt(attack * 1.5F)
+                End If
+            End If
+
+            If p.Ability.Name.ToLower() = "slow start" Then
+                If own = True Then
+                    If BattleScreen.FieldEffects.OwnTurnCounts < 5 Then
+                        attack = CInt(attack / 2)
+                    End If
+                Else
+                    If BattleScreen.FieldEffects.OppTurnCounts < 5 Then
+                        attack = CInt(attack / 2)
+                    End If
+                End If
+            End If
+
+            attack = attack.Clamp(1, 999)
+
+            Return attack
+        End Function
+
         ''' <summary>
         ''' Outcome: 0=true/>1=false:1=sleeptalk/snore 2=other move 3=start sleep 4=X wont obey 5=X wont obey 6=X turned away 7=X is loafing around 8=X pretended to not notice
         ''' </summary>

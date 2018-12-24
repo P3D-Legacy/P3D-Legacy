@@ -18,7 +18,7 @@
             Me.Name = "Dive"
             Me.Description = "Diving on the first turn, the user floats up and attacks on the next turn."
             Me.CriticalChance = 1
-            Me.IsHMMove = False
+            Me.IsHMMove = True
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1

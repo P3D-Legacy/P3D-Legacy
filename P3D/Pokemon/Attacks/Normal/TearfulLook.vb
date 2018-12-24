@@ -51,13 +51,13 @@
             Me.IsWonderGuardAffected = False
             '#End
 
-            Me.AIField1 = AIField.LowerDefense
-            Me.AIField2 = AIField.LowerSpDefense
+            Me.AIField1 = AIField.LowerAttack
+            Me.AIField2 = AIField.LowerSpAttack
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim b As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Defense", 1, "", "move:tearfullook")
-            Dim d As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Special Defense", 1, "", "move:tearfullook")
+            Dim b As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Attack", 1, "", "move:tearfullook")
+            Dim d As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Special Attack", 1, "", "move:tearfullook")
             If b = False AndAlso DisabledWhileGravity = False Then
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
