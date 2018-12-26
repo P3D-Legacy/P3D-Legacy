@@ -56,11 +56,8 @@
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim b As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Attack", 1, "", "move:tearfullook")
-            Dim d As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Special Attack", 1, "", "move:tearfullook")
-            If b = False AndAlso DisabledWhileGravity = False Then
-                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-            End If
+            BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Attack", 1, "", "move:tearfullook")
+            BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Special Attack", 1, "", "move:tearfullook")
         End Sub
 
     End Class

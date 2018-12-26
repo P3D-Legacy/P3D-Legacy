@@ -59,7 +59,7 @@
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
-            If op.HP = 0 Then
+            If op.HP <= 0 OrElse op.Status = Pokemon.StatusProblems.Fainted Then
                 BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 3, "", "move:fellstinger")
             End If
         End Sub

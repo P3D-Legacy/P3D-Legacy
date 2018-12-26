@@ -512,7 +512,7 @@
             Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 2, 350, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade * _moveFade)))
             Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 3, 350, 32), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade * _moveFade)))
             Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 4, 350, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade * _moveFade)))
-            Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 5, 350, 128), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade * _moveFade)))
+            Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 5, 350, 160), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade * _moveFade)))
 
             'Type:
             SpriteBatch.DrawString(FontManager.ChatFont, "Type:", New Vector2(DeltaX + 710, DeltaY + 80), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
@@ -543,7 +543,7 @@
             SpriteBatch.DrawString(FontManager.ChatFont, accuracy, New Vector2(DeltaX + 824, DeltaY + 208), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
 
             'Description:
-            SpriteBatch.DrawString(FontManager.ChatFont, .Attacks(_moveIndex).Description.CropStringToWidth(FontManager.ChatFont, 300), New Vector2(DeltaX + 720, DeltaY + 240), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
+            SpriteBatch.DrawString(FontManager.ChatFont, .Attacks(_moveIndex).Description.CropStringToWidth(FontManager.ChatFont, 300), New Vector2(DeltaX + 720, DeltaY + 240), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)), 0.0F, New Vector2(0), 1.0F, SpriteEffects.None, 0.0F)
         End With
     End Sub
 

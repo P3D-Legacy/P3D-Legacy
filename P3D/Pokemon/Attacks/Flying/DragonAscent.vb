@@ -53,11 +53,8 @@
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim b As Boolean = BattleScreen.Battle.LowerStat(own, own, BattleScreen, "Defense", 1, "", "move:dragonascent")
-            Dim d As Boolean = BattleScreen.Battle.LowerStat(own, own, BattleScreen, "Special Defense", 1, "", "move:dragonascent")
-            If b = False And d = False Then
-                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
-            End If
+            BattleScreen.Battle.LowerStat(own, own, BattleScreen, "Defense", 1, "", "move:dragonascent")
+            BattleScreen.Battle.LowerStat(own, own, BattleScreen, "Special Defense", 1, "", "move:dragonascent")
         End Sub
 
     End Class

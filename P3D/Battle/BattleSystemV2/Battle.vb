@@ -1424,8 +1424,9 @@
             Dim NoTargetCheck As Boolean = True
             If moveUsed.ProtectAffected = False Then
                 NoTargetCheck = False
+                'Moves that target other pokemon and can go through protect.
                 Select Case moveUsed.Name.ToLower
-                    Case "accupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "geomancy", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
+                    Case "acupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
                         NoTargetCheck = True
                 End Select
             End If
@@ -1470,11 +1471,13 @@
                 DoesNotMiss = True
             End If
 
+            'if the target pokemon can't be hit because of a two-turn move (Fly, for example)
             Dim UseTwoTurnCheck As Boolean = True
             If moveUsed.ProtectAffected = False Then
                 UseTwoTurnCheck = False
+                'Moves that target other pokemon and can go through protect.
                 Select Case moveUsed.Name.ToLower
-                    Case "accupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "geomancy", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
+                    Case "acupressure", "confide", "feint", "hold hands", "hyperspace fury", "hyperspace hole", "phantom force", "psych up", "play nice", "roar", "role play", "shadow force", "sketch", "transform", "whirlwind"
                         UseTwoTurnCheck = True
                 End Select
             End If
