@@ -703,7 +703,7 @@
                     ' @Pokemon.AddToStorage(PokemonID, Level, [Method], [BallID], [Location], [isEgg], [trainerName])
 
                     If argument.StartsWith("{") = True Or argument.Remove(0, argument.IndexOf(",")).StartsWith(",{") = True Then
-                        Dim insertIndex As Integer = Core.Player.Pokemons.Count
+                        Dim insertIndex As Integer = -1
                         If argument.Remove(0, argument.IndexOf(",")).StartsWith(",{") = True Then
                             insertIndex = int(argument.GetSplit(0))
                         End If
