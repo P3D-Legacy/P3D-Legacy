@@ -71,8 +71,8 @@ Poster:
 NPCs:
 {"NPC"{NPC[{"Position"{sngArr[16,0,3]}}{"TextureID"{str[Fanta]}}{"ID"{int[2]}}{"Name"{str[Fanta]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\fanta]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[2,0,3]}}{"TextureID"{str[TornadoBot]}}{"ID"{int[6]}}{"Name"{str[Tornado]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\tornado]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"EntityField"{ENT[{"EntityID"{str[ScriptBlock]}}{"Size"{intArr[1,7]}}{"Position"{sngArr[5,0,0]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[kolben\botoff]}}{"Rotation"{int[0]}}]}}
-{"EntityField"{ENT[{"EntityID"{str[ScriptBlock]}}{"Size"{intArr[1,7]}}{"Position"{sngArr[6,0,0]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[kolben\boton]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"EntityID"{str[ScriptBlock]}}{"Size"{intArr[1,1]}}{"Position"{sngArr[6,0,3]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[kolben\botoff]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"EntityID"{str[ScriptBlock]}}{"Size"{intArr[1,1]}}{"Position"{sngArr[7,0,3]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[kolben\boton]}}{"Rotation"{int[0]}}]}}
 
 shelf:
 {"Entity"{ENT[{"Scale"{sngArr[1,1,0.8]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6.9,0,0]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[64,16,16,16][64,0,16,16][96,16,16,16]]}}{"TextureIndex"{intArr[0,0,2,2,2,2,2,2,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[1]}}{"AdditionalValue"{str[shelf]}}{"Rotation"{int[3]}}]}}
