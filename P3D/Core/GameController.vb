@@ -50,11 +50,14 @@ Public Class GameController
 
     Public Graphics As GraphicsDeviceManager
     Public FPSMonitor As FPSMonitor
+
+    Private window_change As Boolean = False
     Public Shared UpdateChecked As Boolean = False
 
     Private _componentManager As ComponentManager
 
     Public Sub New()
+        Me.window_change = False
         Graphics = New GraphicsDeviceManager(Me)
         Content.RootDirectory = "Content"
 
@@ -89,6 +92,10 @@ Public Class GameController
     End Sub
 
     Protected Overrides Sub Update(ByVal gameTime As GameTime)
+        If Me.window_change Then
+            SetWindowSize(New Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height))
+            Me.window_change = Not Me.window_change
+        End If
         Core.Update(gameTime)
         MyBase.Update(gameTime)
 
@@ -121,7 +128,9 @@ Public Class GameController
     End Sub
 
     Protected Sub Window_ClientSizeChanged(ByVal sender As Object, ByVal e As EventArgs)
+        Me.window_change = True
         Core.windowSize = New Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height)
+
 
         If Not Core.CurrentScreen Is Nothing Then
             Core.CurrentScreen.SizeChanged()

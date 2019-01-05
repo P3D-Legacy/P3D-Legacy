@@ -68,12 +68,13 @@
         GraphicsDevice.PresentationParameters.BackBufferFormat = SurfaceFormat.Rgba1010102
         GraphicsDevice.PresentationParameters.DepthStencilFormat = DepthFormat.Depth24Stencil8
 
-        windowSize = New Rectangle(0, 0, CInt(GameOptions.WindowSize.X), CInt(GameOptions.WindowSize.Y))
 
         GraphicsManager.PreferMultiSampling = True
         GraphicsManager.GraphicsProfile = GraphicsProfile.HiDef
 
         GraphicsManager.ApplyChanges()
+
+        windowSize = New Rectangle(0, 0, CInt(GameOptions.WindowSize.X), CInt(GameOptions.WindowSize.Y))
 
         SpriteBatch = New CoreSpriteBatch(GraphicsDevice)
         FontRenderer = New CoreSpriteBatch(GraphicsDevice)
