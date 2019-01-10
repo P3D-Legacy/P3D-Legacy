@@ -388,9 +388,10 @@ Public Class OverworldScreen
 
         'Center the mouse:
         Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
+
         c.oldX = MouseHandler.MousePosition.X
         c.oldY = MouseHandler.MousePosition.Y
-
+        c.ResetCursor()
         Player.Temp.IsInBattle = False
 
         'Set to correct music:
