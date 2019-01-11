@@ -147,9 +147,6 @@
     Public Sub Update(ByVal gameTime As GameTime)
         Core.GameTime = gameTime
 
-        KeyBoardHandler.Update()
-        ControllerHandler.Update()
-
         ConnectScreen.UpdateConnectSet()
 
         If Core.GameInstance.IsActive = False Then
@@ -157,6 +154,10 @@
                 Core.SetScreen(New PauseScreen(Core.CurrentScreen))
             End If
         Else
+            KeyBoardHandler.Update()
+            ControllerHandler.Update()
+            Controls.MakeMouseVisible()
+            MouseHandler.Update()
             If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True Or ControllerHandler.ButtonDown(Buttons.Start) = True Then
                 CurrentScreen.EscapePressed()
             End If
@@ -175,9 +176,6 @@
         MusicManager.Update()
 
         GameMessage.Update()
-        Controls.MakeMouseVisible()
-
-        MouseHandler.Update()
 
         LoadingDots.Update()
         ForcedCrash.Update()
