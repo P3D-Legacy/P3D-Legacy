@@ -377,9 +377,27 @@ Public Class OverworldCamera
 
     Public Sub ResetCursor()
         If GameInstance.IsActive = True Then
-            Mouse.SetPosition(CInt(windowSize.Width / 2), CInt(windowSize.Height / 2))
-            oldX = CInt(windowSize.Width / 2)
-            oldY = CInt(windowSize.Height / 2)
+            ' Only reset the mouse position when it's "close" to the border of the client rect
+            Dim horizontalCutoff = windowSize.Width / 10.0F
+            Dim verticalCutoff = windowSize.Height / 10.0F
+            Dim mousePos = Mouse.GetState().Position.ToVector2()
+
+            If mousePos.X <= horizontalCutoff OrElse
+               mousePos.X >= windowSize.Width - horizontalCutoff OrElse
+               mousePos.Y <= verticalCutoff OrElse
+               mousePos.Y >= windowSize.Height - verticalCutoff Then
+
+                Mouse.SetPosition(CInt(windowSize.Width / 2), CInt(windowSize.Height / 2))
+                oldX = CInt(windowSize.Width / 2)
+                oldY = CInt(windowSize.Height / 2)
+
+            Else
+
+                oldX = mousePos.X
+                oldY = mousePos.Y
+
+            End If
+
         End If
     End Sub
 
