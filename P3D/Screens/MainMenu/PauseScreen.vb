@@ -257,9 +257,6 @@
             Core.ServersManager.ServerConnection.Disconnect()
         End If
         Chat.ClearChat()
-        'If Core.Player.loadedSave = True And Me.canCreateAutosave = True Then
-        '    Core.Player.SaveGame(False)
-        'End If
         ScriptStorage.Clear()
         Core.SetScreen(New PressStartScreen())
         Core.Player.loadedSave = False

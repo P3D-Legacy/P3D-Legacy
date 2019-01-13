@@ -131,10 +131,6 @@
     <Import Include="Microsoft.Xna.Framework.Content" />
     <Import Include="Microsoft.Xna.Framework.Media" />
     <Import Include="Microsoft.Xna.Framework.Audio" />
-    <Reference Include="wmppia">
-      <HintPath>C:\WMSDK\WMPSDK9\redist\wmppia.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Data\badges.dat">

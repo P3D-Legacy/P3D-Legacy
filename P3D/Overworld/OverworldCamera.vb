@@ -7,6 +7,7 @@ Public Class OverworldCamera
     Public oldX, oldY As Single
 
     Private _thirdPerson As Boolean = False
+    Public _canToggleThirdPerson As Boolean = True
     Private _playerFacing As Integer = 0 'relative to the world, 0 means the player faces north, the camera might face in a different direction.
 
     Private _freeCameraMode As Boolean = False
@@ -294,7 +295,7 @@ Public Class OverworldCamera
                 If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     actionscriptReady = CType(CurrentScreen, OverworldScreen).ActionScript.IsReady
                 End If
-                If actionscriptReady = True Then
+                If actionscriptReady = True And _canToggleThirdPerson Then
                     SetThirdPerson(Not _thirdPerson, True)
                 End If
             End If
