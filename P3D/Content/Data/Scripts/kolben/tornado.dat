@@ -1,24 +1,24 @@
 version=2
-	:if:<register.registered(tornadobattle)>=False
-		@text.show(Tornado: Hi there! You may be~wondering... why is there a*Pokémon on the website staff?~Well... I'm no ordinary Pokémon.*Want to see something rather~barbaric?)
-		@options.show(Yes,No)
-			:when:Yes
-				@text.show(Then take a sneak peek at what~my forum league team will be!)
-				@battle.setvar(canblackout,false)
-				@battle.trainer(kolben\tornado)
-				:if:<battle.won>=true
-					@text.show(I'm not exactly a competitive~battler, as you can see.)
-				:else
-					@text.show(Pretty tough, huh?)
-				:endif				
-				@pokemon.heal
-				@register.registertime(tornadobattle,1,day)
-				:end
-			:when:No
-				@text.show(Well, I'll see you on the website~then.)
-				:end
-		:endwhen
-	:else
-		@text.show(I'm not exactly a competitive~battler, as you can see.)
-	:endif
+:if:<register.registered(tornadobattle)>=false
+	@text.show(Tornado: Hi there!~You may be wondering...~Why is there a Pokémon~on the website staff?*Well... I'm no ordinary Pokémon!*Want to see something rather~barbaric?)
+	@options.show(Yes,No)
+		:when:Yes
+			@text.show(Then take a sneak peek at what~my forum league team will be!)
+			@battle.setvar(canblackout,false)
+			@battle.trainer(kolben\tornado)
+			:if:<battle.won>=true
+				@text.show(I'm not exactly a competitive~battler, as you can see.)
+			:else
+				@text.show(Pretty tough, huh?)
+			:endif				
+			@pokemon.heal
+			@register.registertime(tornadobattle,1,day)
+			:end
+		:when:No
+			@text.show(Well, I'll see you on the website~then.)
+			:end
+	:endwhen
+:else
+	@text.show(I'm not exactly a competitive~battler, as you can see.)
+:endif
 :end

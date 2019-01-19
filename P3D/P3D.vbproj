@@ -13517,6 +13517,9 @@
     <Content Include="Content\Textures\NPC\95.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\NPC\Anakin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\NPC\Aragas.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
