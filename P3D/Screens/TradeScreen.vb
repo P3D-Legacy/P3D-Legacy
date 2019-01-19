@@ -689,6 +689,10 @@ Public Class TradeScreen
         Next
 
         If Me.BuyItemsList.Count > 0 Then
+
+            While BuyItemsList.Count <= Scroll + Cursor
+                Cursor -= 1
+            End While
             Dim selectedItem As TradeItem = Me.BuyItemsList(Scroll + Cursor)
 
             ' Item preview:

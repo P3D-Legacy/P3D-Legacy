@@ -6,8 +6,8 @@
         Shared _valid As Boolean = False
 
         Const RUNVALIDATION As Boolean = False
-        Const EXPECTEDSIZE As Integer = 977834
-        Const METAHASH As String = "MEEzNjIzMUE5RkEwNEFCQjgwQUQwODQ1NDVDRjVCNzQ="
+        Const EXPECTEDSIZE As Integer = 45951523
+        Const METAHASH As String = "OTBEOUM0RTgwQjFFNkJEQTVFNkIxQjM1OUJGM0ZDRkU="
 
         Public Shared ReadOnly Property IsValid(ByVal ForceResult As Boolean) As Boolean
             Get
@@ -28,7 +28,7 @@
             Dim MeasuredSize As Long = 0
 
             Dim files As New List(Of String)
-            Dim paths() As String = {"Content", "maps", "Scripts"}
+            Dim paths() As String = {"Content"}
             Dim includeExt() As String = {".dat", ".poke", ".lua", ".trainer"}
 
             If RUNVALIDATION = True Then
@@ -65,7 +65,10 @@
                 Core.GameInstance.Exit()
             Else
                 If System.IO.File.Exists(GameController.GamePath & "\meta") = True Then
-                    If GetMD5FromFile(GameController.GamePath & "\meta") = StringObfuscation.DeObfuscate(METAHASH) Then
+                    Dim A = GetMD5FromFile(GameController.GamePath & "\meta")
+                    Dim X = StringObfuscation.Obfuscate(A)
+                    Dim B = StringObfuscation.DeObfuscate(METAHASH)
+                    If A = B Then
                         files = System.IO.File.ReadAllText(GameController.GamePath & "\meta").Split(CChar(",")).ToList()
                         Logger.Debug("Meta loaded. Files to check: " & files.Count)
                     Else
@@ -111,7 +114,7 @@
         End Sub
 
         Private Shared Function ValidateFile(ByVal file As String, ByVal relativePath As Boolean) As String
-            If Core.Player.IsGamejoltSave = True And GameController.IS_DEBUG_ACTIVE = False Then
+            If Core.Player.IsGameJoltSave = True And GameController.IS_DEBUG_ACTIVE = False Then
                 Dim filePath As String = file.Replace("/", "\")
                 If relativePath = True Then
                     filePath = GameController.GamePath & "\" & file

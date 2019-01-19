@@ -213,7 +213,10 @@ Public Class MusicManager
         If Not song Is Nothing Then
             Logger.Debug($"Play song [{song.Name}]")
 
-            MediaPlayer.Play(song.Song)
+            ' We wait here for a short amount of time before playing the song
+            ' to mitigate an issue with the mediaplayer: without a timespan arg it sometimes does not play the song
+            ' and when started from 0, it plays the last few frames of the song and then starts at the beginning
+            MediaPlayer.Play(song.Song, New TimeSpan(0, 0, 0, 0, 25)) ' 25ms
 
             If MediaPlayer.IsMuted Then
                 MediaPlayer.Pause()
