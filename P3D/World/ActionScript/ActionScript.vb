@@ -1,3 +1,4 @@
+Imports System.Globalization
 Public Class ActionScript
 
     Public Scripts As New List(Of Script)
@@ -443,7 +444,8 @@ nextScript:
     End Function
 
     Public Shared Function TimeToUnix(ByVal dteDate As Date) As String
-        Return (dteDate.ToUniversalTime() - New Date(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds.ToString()
+        Dim invC = CultureInfo.InvariantCulture
+        Return (dteDate.ToUniversalTime() - New Date(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds.ToString(invC)
     End Function
 
     Public Shared Sub RegisterID(ByVal i As String)

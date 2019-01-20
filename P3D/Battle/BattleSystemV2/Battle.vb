@@ -1144,12 +1144,12 @@
                 End If
             End If
 
-            'Turn count
-            If own Then
-                BattleScreen.FieldEffects.OwnTurnCounts += 1
-            Else
-                BattleScreen.FieldEffects.OppTurnCounts += 1
-            End If
+            ''Turn count
+            'If own Then
+            '    BattleScreen.FieldEffects.OwnTurnCounts += 1
+            'Else
+            '    BattleScreen.FieldEffects.OppTurnCounts += 1
+            'End If
 
             'Reset Destiny Bond:
             If moveUsed.ID <> 194 Then
@@ -4652,7 +4652,11 @@
 
         Private Sub EndTurnOwn(ByVal BattleScreen As BattleScreen)
             With BattleScreen
-                'Turn count (currently used for Fake Out only)
+
+                'Turn count since battle started
+                .FieldEffects.OwnTurnCounts += 1
+
+                'Turn count since pokemon switched in(currently used for Fake Out only)
                 .FieldEffects.OwnPokemonTurns += 1
                 If HasSwitchedInOwn Then
                     .FieldEffects.OwnPokemonTurns = 0
@@ -5391,6 +5395,10 @@
 
         Private Sub EndTurnOpp(ByVal BattleScreen As BattleScreen)
             With BattleScreen
+
+                'Turn count since battle started
+                .FieldEffects.OppTurnCounts += 1
+
                 'Turn count (Currently used for Fake Out only)
                 .FieldEffects.OppPokemonTurns += 1
                 If HasSwitchedInOpp Then

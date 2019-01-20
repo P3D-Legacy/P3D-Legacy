@@ -16,7 +16,7 @@
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Nasty Plot"
-            Me.Description = "The user stimulates its brain by thinking bad thoughts. It sharply raises the user’s Sp. Atk."
+            Me.Description = "The user stimulates its brain by thinking bad thoughts. It sharply raises the user's Sp. Atk."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.Self

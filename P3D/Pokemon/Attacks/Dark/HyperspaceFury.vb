@@ -16,7 +16,7 @@
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Hyperspace Fury"
-            Me.Description = "Using its many arms, the user unleashes a barrage of attacks that ignore the effects of moves like Protect and Detect. But the user’s Defense stat falls."
+            Me.Description = "Using its many arms, the user unleashes a barrage of attacks that ignore the effects of moves like Protect and Detect. But the user's Defense stat falls."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
