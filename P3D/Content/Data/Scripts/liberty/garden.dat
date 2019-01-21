@@ -1,36 +1,29 @@
 version=2
-:if:<register.registered(petrelliberty)>=false
-	@npc.warp(1,12,2,14)
-	@npc.warp(2,13,2,15)
-	@npc.warp(3,14,2,15)
-	@npc.warp(4,15,2,12)
-	@npc.warp(5,16,2,9)
-	@npc.warp(6,26,2,9)
-
-	@npc.warp(21,15,2,15)
-	@npc.warp(22,33,2,26)
-	@npc.warp(23,34,2,12)
-	@npc.warp(24,30,2,16)
-	@npc.warp(25,36,2,20)
-	@npc.warp(26,28,2,24)
-	@npc.warp(27,20,2,27)
-	@npc.warp(28,23,3,22)
-	@npc.warp(29,14,2,23)
-	
-	@npc.warp(31,2,-7,28)
-	@npc.warp(32,8,-7,19)
-	@npc.warp(33,8,-7,18)
-	@npc.warp(34,13,-7,16)
-	@npc.warp(35,16,-7,9)
-	@npc.warp(36,26,-7,9)
-	@npc.warp(37,23,-7,20)
-	@npc.warp(38,17,-7,27)
-	@npc.warp(39,33,-7,17)
-	@npc.warp(40,41,-7,8)
-	@npc.warp(41,33,-7,26)
-:else
-	:if:<register.registered(lookerliberty)>=false
-		@script.start(liberty\looker)
-	:endif
+:if:<register.registered(petrelliberty)>=true <and> <register.registered(lookerliberty)>=false
+	@npc.warp(10,21,3,22)
+	@npc.warp(11,19,3,23)
+	@npc.warp(12,20,3,23)
+	@npc.warp(13,22,3,23)
+	@npc.warp(14,23,3,23)
+	@camera.set(0,1,1.5,3.14,-0.46)
+	@player.move(0)
+	@level.update
+	@music.play(looker_encounter)
+	@text.show(Looker: <player.name>,~we meet again!*The International Police has~been investigating Team~Rocket's activity and they~seem to be reduced to~just a few rebel grunts.*They tried to escape in the~submarine after their leader's~defeat, but were surrounded~by our ships.~They'll face trial for~their misdeeds.*The International Police~expresses utmost gratitude~for your continued help~against Team Rocket with~this reward in money.)
+	@player.money(100000)
+	@text.show(You got a 100,000~Pokédollars reward!)
+	@text.show(Looker: We might end up~meeting again.*Farewell.)
+	@register.register(lookerliberty)
+	@screen.fadeout
+	@level.wait(15)
+	@npc.remove(10)
+	@npc.remove(11)
+	@npc.remove(12)
+	@npc.remove(13)
+	@npc.remove(14)
+	@level.update
+	@level.wait(15)
+	@screen.fadein
+	@music.play(routemusic7)
 :endif
 :end
