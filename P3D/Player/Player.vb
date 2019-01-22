@@ -1246,8 +1246,8 @@
         Dim c As OverworldCamera = GetOverworldCamera()
         Dim freeCameraString As String = c.FreeCameraMode.ToNumberString()
 
-        Dim diff As Integer = (Date.Now - GameStart).Seconds
-        Dim p As TimeSpan = PlayTime + TimeHelpers.ConvertSecondToTime(diff)
+        Dim diff As TimeSpan = (Date.Now - GameStart)
+        Dim p As TimeSpan = PlayTime + diff
         Dim PlayTimeString As String = p.Hours & "," & p.Minutes & "," & p.Seconds & "," & p.Days
 
         Dim lastPokemonPosition As String = "999,999,999"

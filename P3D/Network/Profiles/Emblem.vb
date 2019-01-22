@@ -295,6 +295,9 @@
         End Function
 
         Public Shared Function GetPointsForLevel(ByVal level As Integer) As Integer
+            If level = 1 Then
+                Return 0
+            End If
             Dim points As Double = Math.Ceiling((5 / 4) * (Math.Pow(level, 3) / 10))
             Return CInt(points)
         End Function
