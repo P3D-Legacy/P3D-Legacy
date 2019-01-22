@@ -447,7 +447,7 @@
                             P2Pos.Y -= 2
 
                             If P1Pos.Y >= Core.windowSize.Height And P2Pos.Y <= -160 Then
-                                If D.Pokemon.CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, "") = True Then
+                                If D.Pokemon.CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, P.Number.ToString) = True Then
                                     Core.SetScreen(New EvolutionScreen(Me, {Core.Player.Pokemons.Count - 1}.ToList(), P.Number.ToString(), EvolutionCondition.EvolutionTrigger.Trading))
                                 End If
                                 state = 3

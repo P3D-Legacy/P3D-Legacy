@@ -517,7 +517,8 @@
 
         MusicManager.Play("gts", True)
 
-        If Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, "") = True Then
+        Dim p As Pokemon = Core.Player.Pokemons(Core.Player.Pokemons.Count - 1)
+        If p.CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, offeredPokemonID.ToString) Then
             Core.SetScreen(New EvolutionScreen(Me, {Core.Player.Pokemons.Count - 1}.ToList(), offeredPokemonID.ToString(), EvolutionCondition.EvolutionTrigger.Trading))
         End If
         Me.CanChat = True
