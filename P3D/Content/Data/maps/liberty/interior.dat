@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Liberty Lighthouse]}}{"MusicLoop"{str[darkcave]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"Weather"{int[1]}}{"MapScript"{str[liberty\interior]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[7,3]}}{"Position"{intArr[1,0,12]}}{"TexturePath"{str[park]}}{"Texture"{rec[0,80,16,16]}}]}}
@@ -69,5 +69,5 @@ Warps:
 NPC:
 {"NPC"{NPC[{"Position"{sngArr[2,0,13]}}{"TextureID"{str[95]}}{"ID"{int[1]}}{"Name"{str[Officer]}}{"Action"{int[1]}}{"AdditionalValue"{str[liberty\heal]}}{"Rotation"{int[3]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 
-{"NPC"{NPC[{"Position"{sngArr[1,-5,8]}}{"TextureID"{str[gruntf]}}{"ID"{int[2]}}{"Name"{str[GruntF]}}{"Action"{int[2]}}{"AdditionalValue"{str[7|trainer\liberty\inside\001]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[7,-5,4]}}{"TextureID"{str[gruntm]}}{"ID"{int[3]}}{"Name"{str[GruntM]}}{"Action"{int[2]}}{"AdditionalValue"{str[7|trainer\liberty\inside\002]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[1,-1,8]}}{"TextureID"{str[gruntf]}}{"ID"{int[2]}}{"Name"{str[GruntF]}}{"Action"{int[2]}}{"AdditionalValue"{str[7|trainer\liberty\inside\001]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[7,-2,4]}}{"TextureID"{str[gruntm]}}{"ID"{int[3]}}{"Name"{str[GruntM]}}{"Action"{int[2]}}{"AdditionalValue"{str[7|trainer\liberty\inside\002]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}

@@ -34,7 +34,14 @@ pillows:
 
 PC:
 {"Entity"{ENT[{"Scale"{sngArr[0.2,0.5,0.5]}}{"EntityID"{str[Cube]}}{"Position"{sngArr[10.15,-0.1,9]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[96,80,5,11][101,80,11,11][101,91,11,5]]}}{"TextureIndex"{intArr[2,2,1,1,1,1,0,0,2,2,2,2]}}{"Collision"{bool[0]}}{"ModelID"{int[12]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}{"RotationXYZ"{sngArr[0,0,1.57]}}]}}
-{"Entity"{ENT[{"Scale"{sngArr[0.1,0.2,0.25]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[9.44,-0.1,9]}}{"TexturePath"{str[House]}}{"Textures"{recArr[[80,32,6,16][86,32,14,16][100,32,6,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0,2,2]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+
+Wii:
+{"Entity"{ENT[{"Scale"{sngArr[0.1,0.2,0.25]}}{"EntityID"{str[Cube]}}{"Position"{sngArr[9,-0.45,9]}}{"TexturePath"{str[House]}}{"Textures"{recArr[[80,32,6,16][86,32,14,16][100,32,6,14][99,32,1,16][99,47,1,1]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,3,3,2,2,4,4]}}{"Collision"{bool[0]}}{"ModelID"{int[12]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"RotationXYZ"{sngArr[0,2,1.57]}}]}}
+
+Switch:
+{"Entity"{ENT[{"Scale"{sngArr[0.3,0.2,0.1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[9.77,-0.1,9]}}{"TexturePath"{str[Switch]}}{"Textures"{recArr[[10,39,44,28][54,39,10,28][0,39,10,28][64,39,44,28][10,29,43,10]]}}{"TextureIndex"{intArr[0,0,1,1,2,2,3,3,4,4]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
+{"Entity"{ENT[{"Scale"{sngArr[0.45,0.2,0.04]}}{"EntityID"{str[Cube]}}{"Position"{sngArr[9.75,-0.05,9]}}{"TexturePath"{str[Switch]}}{"Textures"{recArr[[66,0,62,29][128,0,4,29][62,0,4,29][0,0,62,29][66,33,62,4][66,29,62,4]]}}{"TextureIndex"{intArr[0,0,1,1,2,2,3,3,4,4,5,5]}}{"Collision"{bool[0]}}{"ModelID"{int[12]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
+
 
 Monitore:
 {"Entity"{ENT[{"Scale"{sngArr[4,2,0.2]}}{"EntityID"{str[Cube]}}{"Position"{sngArr[9,1.2,9.4]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[48,80,32,16][48,96,32,4][80,80,4,16]]}}{"TextureIndex"{intArr[-1,-1,2,2,2,2,-1,-1,1,1,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[12]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
