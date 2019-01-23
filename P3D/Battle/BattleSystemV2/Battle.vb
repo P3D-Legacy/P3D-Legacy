@@ -5177,7 +5177,7 @@
 
                 'Own bad dreams
                 If .OppPokemon.Ability.Name.ToLower() = "bad dreams" And .OwnPokemon.HP > 0 And .OwnPokemon.Status = Pokemon.StatusProblems.Sleep Then
-                    ReduceHP(CInt(.OwnPokemon.MaxHP / 8), True, False, BattleScreen, "The bad dreams haunted" & .OwnPokemon.GetDisplayName() & "!", "baddreams")
+                    ReduceHP(CInt(.OwnPokemon.MaxHP / 8), True, False, BattleScreen, "The bad dreams haunted " & .OwnPokemon.GetDisplayName() & "!", "baddreams")
                 End If
 
                 If .FieldEffects.OwnOutrage > 0 And .OwnPokemon.HP > 0 Then 'Outrage
@@ -5916,7 +5916,7 @@
 
                 'Opp bad dreams
                 If .OwnPokemon.Ability.Name.ToLower() = "bad dreams" And .OppPokemon.HP > 0 And .OppPokemon.Status = Pokemon.StatusProblems.Sleep Then
-                    ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, True, BattleScreen, "The bad dreams haunted" & .OppPokemon.GetDisplayName() & "!", "baddreams")
+                    ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, True, BattleScreen, "The bad dreams haunted " & .OppPokemon.GetDisplayName() & "!", "baddreams")
                 End If
 
                 If .FieldEffects.OppOutrage > 0 And .OppPokemon.HP > 0 Then 'Outrage
