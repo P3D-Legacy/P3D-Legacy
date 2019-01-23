@@ -11,7 +11,7 @@ version=2
 	@music.play(looker_encounter)
 	@text.show(Looker: <player.name>,~we meet again!*The International Police has~been investigating Team~Rocket's activity and they~seem to be reduced to~just a few rebel grunts.*They tried to escape in the~submarine after their leader's~defeat, but were surrounded~by our ships.~They'll face trial for~their misdeeds.*The International Police~expresses utmost gratitude~for your continued help~against Team Rocket with~this reward in money.)
 	@player.money(100000)
-	@text.show(You got a 100,000~Pokédollars reward!)
+	@text.show(You got a 100,000~PokÃ©dollars reward!)
 	@text.show(Looker: We might end up~meeting again.*Farewell.)
 	@register.register(lookerliberty)
 	@screen.fadeout
