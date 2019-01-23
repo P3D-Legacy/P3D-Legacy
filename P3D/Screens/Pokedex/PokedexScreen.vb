@@ -27,7 +27,7 @@
 
     Private Sub AchievePokedexEmblems()
         ' Eevee:
-        Dim eevee() As Integer = {134, 135, 136, 196, 197, 470, 471}
+        Dim eevee() As Integer = {134, 135, 136, 196, 197, 470, 471, 700}
         Dim hasEevee As Boolean = True
         For Each e As Integer In eevee
             If Pokedex.GetEntryType(Core.Player.PokedexData, e) < 2 Then
@@ -37,6 +37,24 @@
         Next
         If hasEevee = True Then
             GameJolt.Emblem.AchieveEmblem("eevee")
+        End If
+
+        ' Eruption:
+        Dim haseruption As Boolean = True
+        If Pokedex.GetEntryType(Core.Player.PokedexData, 721) < 2 Then
+            haseruption = False
+        End If
+        If haseruption = True Then
+            GameJolt.Emblem.AchieveEmblem("eruption")
+        End If
+
+        ' Shooting Star:
+        Dim hasshootingstar As Boolean = True
+        If Pokedex.GetEntryType(Core.Player.PokedexData, 385) < 2 Then
+            hasshootingstar = False
+        End If
+        If hasshootingstar = True Then
+            GameJolt.Emblem.AchieveEmblem("shooting star")
         End If
 
         ' Pokédex:
