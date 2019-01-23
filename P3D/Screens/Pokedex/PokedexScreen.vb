@@ -71,7 +71,7 @@
         If Pokedex.GetEntryType(Core.Player.PokedexData, 151) < 2 Then
             hasancestor = False
         End If
-        If hasvictorious = True Then
+        If hasancestor = True Then
             GameJolt.Emblem.AchieveEmblem("ancestor")
         End If
 
