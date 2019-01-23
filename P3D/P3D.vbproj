@@ -25730,6 +25730,9 @@
     <None Include="Content\Data\Scripts\liberty\victini.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Data\Scripts\mtember\eruptionemblemcheck.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\trainer\kolben\Segis.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
