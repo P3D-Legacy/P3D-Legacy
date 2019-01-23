@@ -57,6 +57,24 @@
             GameJolt.Emblem.AchieveEmblem("shooting star")
         End If
 
+        ' Victorious:
+        Dim hasvictorious As Boolean = True
+        If Pokedex.GetEntryType(Core.Player.PokedexData, 494) < 2 Then
+            hasvictorious = False
+        End If
+        If hasvictorious = True Then
+            GameJolt.Emblem.AchieveEmblem("victorious")
+        End If
+
+        ' Ancestor:
+        Dim hasancestor As Boolean = True
+        If Pokedex.GetEntryType(Core.Player.PokedexData, 151) < 2 Then
+            hasancestor = False
+        End If
+        If hasvictorious = True Then
+            GameJolt.Emblem.AchieveEmblem("ancestor")
+        End If
+
         ' Pokédex:
         If Core.Player.IsGameJoltSave = True Then
             If Me.Profiles(0).Pokedex.Obtained >= Me.Profiles(0).Pokedex.Count Then
