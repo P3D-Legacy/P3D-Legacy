@@ -286,9 +286,9 @@
 
         Public Shared Function GetEmblemFontColor(ByVal emblemName As String) As Color
             Select Case emblemName.ToLower()
-                Case "alph", "genetics", "legendary", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "earth", "shooting star"
+                Case "alph", "genetics", "legendary", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "earth", "shooting star", "victorious", "mega", "time", "deep sea"
                     Return Color.White
-                Case "eevee", "pokedex", "snow", "trainer", "kanto", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "johto"
+                Case "eevee", "pokedex", "snow", "trainer", "kanto", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "johto", "eruption", "ancestor"
                     Return Color.Black
             End Select
             Return Color.White
@@ -754,6 +754,22 @@
                     Return 17001
                 Case "shooting star"
                     Return 17559
+
+                    'Requires GameJolt side support
+
+                    'Case "victorious"
+                    '    Return ???
+                    'Case "deep sea"
+                    '    Return ???
+                    'Case "eruption"
+                    '    Return ???
+                    'Case "ancestor"
+                    '    Return ???
+                    'Case "time"
+                    '    Return ???
+                    'Case "mega"
+                    '    Return ???
+
                 Case Else
                     Return 0
             End Select
@@ -837,6 +853,22 @@
                     Return "earth"
                 Case 17559
                     Return "shooting star"
+
+                    'Requires GameJolt side support
+
+                    'Case ???
+                    '    Return "victorious"
+                    'Case ???
+                    '    Return "deep sea"
+                    'Case ???
+                    '    Return "eruption"
+                    'Case ???
+                    '    Return "ancestor"
+                    'Case ???
+                    '    Return "time"
+                    'Case ???
+                    '    Return "mega"
+
                 Case Else
                     Return "fail"
             End Select
@@ -848,27 +880,35 @@
         End Sub
 
         Private Shared Sub AddAchievedEmblems(ByVal result As String)
-            Dim list As List(Of API.JoltValue) = API.HandleData(result)
+            'Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
-            If CBool(list(0).Value) = True Then
-                Dim currentTrophyID As Integer = 0
+            'If CBool(list(0).Value) = True Then
+            '    Dim currentTrophyID As Integer = 0
 
-                For i = 0 To list.Count - 1
-                    Select Case list(i).Name
-                        Case "id"
-                            currentTrophyID = CInt(list(i).Value)
-                        Case "achieved"
-                            If list(i).Value <> "false" Then
-                                Dim newEmblem As String = TrophyIDToEmblem(currentTrophyID)
-                                If newEmblem <> "fail" Then
-                                    If Core.GameJoltSave.AchievedEmblems.Contains(newEmblem) = False Then
-                                        Core.GameJoltSave.AchievedEmblems.Add(newEmblem)
-                                    End If
-                                End If
-                            End If
-                    End Select
-                Next
-            End If
+            '    For i = 0 To list.Count - 1
+            '        Select Case list(i).Name
+            '            Case "id"
+            '                currentTrophyID = CInt(list(i).Value)
+            '            Case "achieved"
+            '                If list(i).Value <> "false" Then
+            '                    Dim newEmblem As String = TrophyIDToEmblem(currentTrophyID)
+            '                    If newEmblem <> "fail" Then
+            '                        If Core.GameJoltSave.AchievedEmblems.Contains(newEmblem) = False Then
+            '                            Core.GameJoltSave.AchievedEmblems.Add(newEmblem)
+            '                        End If
+            '                    End If
+            '                End If
+            '        End Select
+            '    Next
+            'End If
+
+            'Temporary workaround till Emblems get GJ support back again
+
+            For Each newEmblem In Core.Player.EarnedAchievements
+                If Not Core.GameJoltSave.AchievedEmblems.Contains(newEmblem) Then
+                    Core.GameJoltSave.AchievedEmblems.Add(newEmblem)
+                End If
+            Next
 
             If Core.GameJoltSave.AchievedEmblems.Contains("trainer") = False Then
                 Core.GameJoltSave.AchievedEmblems.Add("trainer")
@@ -876,17 +916,23 @@
         End Sub
 
         Public Shared Sub AchieveEmblem(ByVal emblem As String)
-            If Core.Player.IsGameJoltSave = True Then
-                If Core.GameJoltSave.AchievedEmblems.Contains(emblem.ToLower()) = False Then
-                    Dim trophy_id As Integer = EmblemToTrophyID(emblem)
+            'If Core.Player.IsGameJoltSave = True Then
+            '    If Core.GameJoltSave.AchievedEmblems.Contains(emblem.ToLower()) = False Then
+            '        Dim trophy_id As Integer = EmblemToTrophyID(emblem)
 
-                    Dim APICall As New APICall(AddressOf AddedAchievement)
-                    APICall.TrophyAchieved(trophy_id)
+            '        Dim APICall As New APICall(AddressOf AddedAchievement)
+            '        APICall.TrophyAchieved(trophy_id)
 
-                    Dim APICallShow As New APICall(AddressOf ShowAchievedEmblem)
-                    APICallShow.FetchTrophy(trophy_id)
-                End If
+            '        Dim APICallShow As New APICall(AddressOf ShowAchievedEmblem)
+            '        APICallShow.FetchTrophy(trophy_id)
+            '    End If
+            'End If
+
+            'Temporary, remove when GameJolt side support is brought back
+            If Not Core.GameJoltSave.AchievedEmblems.Contains(emblem) Then
+                Core.GameJoltSave.AchievedEmblems.Add(emblem)
             End If
+
             If Core.Player.EarnedAchievements.Contains(emblem.ToLower()) = False Then
                 If ConnectScreen.Connected = True Then
                     Core.ServersManager.ServerConnection.SendGameStateMessage("achieved the emblem """ & emblem.ToUpper() & """!")
