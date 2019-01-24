@@ -123,6 +123,7 @@ Pokémon 3D
 		Torben Carrington
 		Conner Joseph Brewster
 		"Fanta"
+		"Sanio"
 
 	Special Thanks
 		"MunchingOrange"
