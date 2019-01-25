@@ -891,7 +891,7 @@ Backdrops:
 {"Backdrop"{BAC[{"Position"{sngArr[37.5,-0.8,-20.5]}}{"Size"{intArr[102,100]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 {"Backdrop"{BAC[{"Position"{sngArr[81.5,-0.8,79.5]}}{"Size"{intArr[58,20]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[-24,-40]}}{"Map"{str[quest\main.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{intArr[-24,-40]}}{"Map"{str[quest\town.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{intArr[-24,-20]}}{"Map"{str[quest\canyonent.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{intArr[-48,80]}}{"Map"{str[quest\tanoby\main.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{intArr[-24,20]}}{"Map"{str[quest\offset\west.dat]}}]}}
