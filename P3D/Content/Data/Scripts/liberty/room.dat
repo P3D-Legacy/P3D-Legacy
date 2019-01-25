@@ -7,7 +7,7 @@ version=2
 @npc.turn(6,2)
 @entity.showmessagebulb(1|4|1|5)
 @level.wait(30)
-@npc.move(6,1)
+@npc.move(6,2)
 @battle.starttrainer(liberty\inside\Petrel)
 @text.show(Petrel: Ok, I give up!*I might have underestimated~your persistence.)
 @npc.turn(6,0)
