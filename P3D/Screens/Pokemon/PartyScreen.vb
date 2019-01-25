@@ -845,22 +845,22 @@ Public Class PartyScreen
 
     Private Sub CheckForBeastEmblem()
         'This sub checks if Entei, Raikou and Suicune are in the player's party.
-        Dim hasEntei As Boolean = False
         Dim hasRaikou As Boolean = False
-        Dim hasSuicune As Boolean = False
+        Dim hasEntei As Boolean = False
+        Dim hasSuicune2 As Boolean = False
 
         For Each p As Pokemon In PokemonList
             Select Case p.Number
-                Case 244
-                    hasEntei = True
                 Case 243
                     hasRaikou = True
+                Case 244
+                    hasEntei = True
                 Case 245
-                    hasSuicune = True
+                    hasSuicune2 = True
             End Select
         Next
 
-        If hasEntei And hasRaikou And hasSuicune Then
+        If hasRaikou And hasEntei And hasSuicune2 Then
             GameJolt.Emblem.AchieveEmblem("beast")
         End If
     End Sub
