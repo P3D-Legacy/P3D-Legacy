@@ -131,6 +131,7 @@ Public Class PartyScreen
 
         CheckForLegendaryEmblem()
         CheckForUnoDosTresEmblem()
+        CheckForBeastEmblem()
         CheckForOverkillEmblem()
 
         _menu = New UI.SelectMenu({""}.ToList(), 0, Nothing, 0)
