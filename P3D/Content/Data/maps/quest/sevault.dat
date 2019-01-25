@@ -884,7 +884,12 @@ Tanoby:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[16,0,80]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\tanoby\main.dat,64,0.1,-1,0]}}{"Rotation"{int[0]}}]}}
 
 Backdrops:
-{"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,-100.5]}}{"Size"{intArr[240,280]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,-100.5]}}{"Size"{intArr[240,80]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,-20.5]}}{"Size"{intArr[65,100]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,79.5]}}{"Size"{intArr[52,20]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,99.5]}}{"Size"{intArr[240,80]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[37.5,-0.8,-20.5]}}{"Size"{intArr[102,100]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
+{"Backdrop"{BAC[{"Position"{sngArr[81.5,-0.8,79.5]}}{"Size"{intArr[58,20]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 
 {"OffsetMap"{MAP[{"Offset"{intArr[-24,-40]}}{"Map"{str[quest\main.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{intArr[-24,-20]}}{"Map"{str[quest\canyonent.dat]}}]}}
