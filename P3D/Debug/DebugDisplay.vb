@@ -49,6 +49,8 @@
 
             Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, s, New Vector2(7, 7), Color.Black)
             Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, s, New Vector2(5, 5), Color.White)
+
+            ' DrawMediaInfo() To test music
         End If
     End Sub
 
@@ -82,6 +84,33 @@
             _maxVertices = value
         End Set
     End Property
+
+    ''' <summary>
+    ''' MediaPLayer state tracking method.
+    ''' </summary>
+    Private Shared Sub DrawMediaInfo()
+        Dim songName = "<NO SONG PLAYING>"
+        If MediaPlayer.Queue IsNot Nothing AndAlso MediaPlayer.Queue.ActiveSong IsNot Nothing Then
+            songName = MediaPlayer.Queue.ActiveSong.Name
+            If MusicManager.CurrentSong IsNot Nothing Then
+                songName += " (" + MusicManager.CurrentSong.Name + ")"
+            End If
+        End If
+
+        Dim field = GetType(MediaPlayer).GetField("_sessionState", Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Static)
+        Dim sessionState = field.GetValue(Nothing).ToString()
+
+        Dim str = "Song: " + songName + Environment.NewLine +
+            "Play position: " + MediaPlayer.PlayPosition.ToString() + Environment.NewLine +
+            "Session state: " + sessionState + Environment.NewLine +
+            "State: " + MediaPlayer.State.ToString() + Environment.NewLine +
+            "Volume: " + MediaPlayer.Volume.ToString() + Environment.NewLine +
+            "Is Muted: " + MediaPlayer.IsMuted.ToString() + Environment.NewLine +
+            "Is Repeating: " + MediaPlayer.IsRepeating.ToString()
+
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, str, New Vector2(7, 7), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, str, New Vector2(5, 5), Color.White)
+    End Sub
 
     ''' <summary>
     ''' The distance of the vertex to the camera, that is the furthest away from the camera.

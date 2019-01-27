@@ -13724,7 +13724,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="meta">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Effects\Shadow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
