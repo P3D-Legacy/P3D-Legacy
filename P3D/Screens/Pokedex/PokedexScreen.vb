@@ -27,7 +27,7 @@
 
     Private Sub AchievePokedexEmblems()
         ' Eevee:
-        Dim eevee() As Integer = {134, 135, 136, 196, 197, 470, 471}
+        Dim eevee() As Integer = {134, 135, 136, 196, 197, 470, 471, 700}
         Dim hasEevee As Boolean = True
         For Each e As Integer In eevee
             If Pokedex.GetEntryType(Core.Player.PokedexData, e) < 2 Then

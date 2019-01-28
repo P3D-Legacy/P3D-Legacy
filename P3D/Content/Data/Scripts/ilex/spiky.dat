@@ -58,7 +58,7 @@ version=2
 	@pokemon.addattack(<pokemon.count>-1,344)
 	@pokemon.addattack(<pokemon.count>-1,220)
 	@pokemon.reloadall
-	@sound.play(success_small)
+	@sound.play(success_small,1)
 	@text.show(Spiky-Eared Pichu has~joined your party!)
 	@pokemon.rename(last)
 	@npc.warp(25,11,-2,24)

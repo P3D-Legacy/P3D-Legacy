@@ -20,7 +20,7 @@ version=2
 			@pokemon.addattack(<pokemon.count>-1,19)
 			@pokemon.addattack(<pokemon.count>-1,231)
 			
-			@sound.play(success_small)
+			@sound.play(success_small,1)
 			@text.show(<player.name> received~Pichu!)
 			@pokemon.rename(last)
 			

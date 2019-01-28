@@ -286,9 +286,9 @@
 
         Public Shared Function GetEmblemFontColor(ByVal emblemName As String) As Color
             Select Case emblemName.ToLower()
-                Case "alph", "genetics", "legendary", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "earth", "shooting star"
+                Case "alph", "genetics", "legendary", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "earth", "shooting star", "victorious", "mega", "time", "deep sea"
                     Return Color.White
-                Case "eevee", "pokedex", "snow", "trainer", "kanto", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "johto"
+                Case "eevee", "pokedex", "snow", "trainer", "kanto", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "johto", "eruption", "ancestor"
                     Return Color.Black
             End Select
             Return Color.White
@@ -754,6 +754,22 @@
                     Return 17001
                 Case "shooting star"
                     Return 17559
+
+                    'Requires GameJolt side support
+
+                    'Case "victorious"
+                    '    Return ???
+                    'Case "deep sea"
+                    '    Return ???
+                    'Case "eruption"
+                    '    Return ???
+                    'Case "ancestor"
+                    '    Return ???
+                    'Case "time"
+                    '    Return ???
+                    'Case "mega"
+                    '    Return ???
+
                 Case Else
                     Return 0
             End Select
@@ -837,6 +853,22 @@
                     Return "earth"
                 Case 17559
                     Return "shooting star"
+
+                    'Requires GameJolt side support
+
+                    'Case ???
+                    '    Return "victorious"
+                    'Case ???
+                    '    Return "deep sea"
+                    'Case ???
+                    '    Return "eruption"
+                    'Case ???
+                    '    Return "ancestor"
+                    'Case ???
+                    '    Return "time"
+                    'Case ???
+                    '    Return "mega"
+
                 Case Else
                     Return "fail"
             End Select
@@ -848,27 +880,35 @@
         End Sub
 
         Private Shared Sub AddAchievedEmblems(ByVal result As String)
-            Dim list As List(Of API.JoltValue) = API.HandleData(result)
+            'Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
-            If CBool(list(0).Value) = True Then
-                Dim currentTrophyID As Integer = 0
+            'If CBool(list(0).Value) = True Then
+            '    Dim currentTrophyID As Integer = 0
 
-                For i = 0 To list.Count - 1
-                    Select Case list(i).Name
-                        Case "id"
-                            currentTrophyID = CInt(list(i).Value)
-                        Case "achieved"
-                            If list(i).Value <> "false" Then
-                                Dim newEmblem As String = TrophyIDToEmblem(currentTrophyID)
-                                If newEmblem <> "fail" Then
-                                    If Core.GameJoltSave.AchievedEmblems.Contains(newEmblem) = False Then
-                                        Core.GameJoltSave.AchievedEmblems.Add(newEmblem)
-                                    End If
-                                End If
-                            End If
-                    End Select
-                Next
-            End If
+            '    For i = 0 To list.Count - 1
+            '        Select Case list(i).Name
+            '            Case "id"
+            '                currentTrophyID = CInt(list(i).Value)
+            '            Case "achieved"
+            '                If list(i).Value <> "false" Then
+            '                    Dim newEmblem As String = TrophyIDToEmblem(currentTrophyID)
+            '                    If newEmblem <> "fail" Then
+            '                        If Core.GameJoltSave.AchievedEmblems.Contains(newEmblem) = False Then
+            '                            Core.GameJoltSave.AchievedEmblems.Add(newEmblem)
+            '                        End If
+            '                    End If
+            '                End If
+            '        End Select
+            '    Next
+            'End If
+
+            'Temporary workaround till Emblems get GJ support back again
+
+            For Each newEmblem In Core.Player.EarnedAchievements
+                If Not Core.GameJoltSave.AchievedEmblems.Contains(newEmblem) Then
+                    Core.GameJoltSave.AchievedEmblems.Add(newEmblem)
+                End If
+            Next
 
             If Core.GameJoltSave.AchievedEmblems.Contains("trainer") = False Then
                 Core.GameJoltSave.AchievedEmblems.Add("trainer")
@@ -876,17 +916,30 @@
         End Sub
 
         Public Shared Sub AchieveEmblem(ByVal emblem As String)
-            If Core.Player.IsGameJoltSave = True Then
-                If Core.GameJoltSave.AchievedEmblems.Contains(emblem.ToLower()) = False Then
-                    Dim trophy_id As Integer = EmblemToTrophyID(emblem)
+            'If Core.Player.IsGameJoltSave = True Then
+            '    If Core.GameJoltSave.AchievedEmblems.Contains(emblem.ToLower()) = False Then
+            '        Dim trophy_id As Integer = EmblemToTrophyID(emblem)
 
-                    Dim APICall As New APICall(AddressOf AddedAchievement)
-                    APICall.TrophyAchieved(trophy_id)
+            '        Dim APICall As New APICall(AddressOf AddedAchievement)
+            '        APICall.TrophyAchieved(trophy_id)
 
-                    Dim APICallShow As New APICall(AddressOf ShowAchievedEmblem)
-                    APICallShow.FetchTrophy(trophy_id)
-                End If
+            '        Dim APICallShow As New APICall(AddressOf ShowAchievedEmblem)
+            '        APICallShow.FetchTrophy(trophy_id)
+            '    End If
+            'End If
+
+            'Temporary, remove when GameJolt side support is brought back
+            If Not Core.GameJoltSave.AchievedEmblems.Contains(emblem) Then
+                Core.GameJoltSave.AchievedEmblems.Add(emblem)
+                Dim emblemTexture As Texture2D = TextureManager.GetTexture("Textures\Emblem\Square\" & emblem)
+                achieved_emblem_Texture = emblemTexture
+                achieved_emblem_title = GetEmblemTitle(emblem)
+                achieved_emblem_description = GetEmblemDescription(emblem)
+                achieved_emblem_difficulty = GetEmblemDifficulty(emblem)
+                displayEmblemDelay = 35.0F
             End If
+            'End Temporary
+
             If Core.Player.EarnedAchievements.Contains(emblem.ToLower()) = False Then
                 If ConnectScreen.Connected = True Then
                     Core.ServersManager.ServerConnection.SendGameStateMessage("achieved the emblem """ & emblem.ToUpper() & """!")
@@ -894,6 +947,217 @@
                 Core.Player.EarnedAchievements.Add(emblem.ToLower())
             End If
         End Sub
+
+        Private Shared Function GetEmblemTitle(ByVal emblem As String) As String
+            Select Case emblem
+                Case "alph"
+                    Return "Alph"
+                Case "material"
+                    Return "Material"
+                Case "cyber"
+                    Return "Cyber"
+                Case "johto"
+                    Return "Johto"
+                Case "kanto"
+                    Return "Kanto"
+                Case "legendary"
+                    Return "Legendary"
+                Case "genetics"
+                    Return "Genetics"
+                Case "unodostres"
+                    Return "UnoDosTres"
+                Case "champion"
+                    Return "Champion"
+                Case "snow"
+                    Return "Snow"
+                Case "eevee"
+                    Return "Eevee"
+                Case "stars"
+                    Return "Stars"
+                Case "glowing"
+                    Return "Glowing"
+                Case "overkill"
+                    Return "Overkill"
+                Case "pokedex"
+                    Return "Pokédex"
+                Case "zephyr"
+                    Return "Zephyr"
+                Case "hive"
+                    Return "Hive"
+                Case "plain"
+                    Return "Plain"
+                Case "fog"
+                    Return "Fog"
+                Case "storm"
+                    Return "Storm"
+                Case "mineral"
+                    Return "Mineral"
+                Case "glacier"
+                    Return "Glacier"
+                Case "rising"
+                    Return "Rising"
+                Case "eggsplosion"
+                    Return "Eggsplosion"
+                Case "mailman"
+                    Return "Mailman"
+                Case "silver ability"
+                    Return "Silver Ability"
+                Case "silver knowledge"
+                    Return "Silver Knowledge"
+                Case "gold ability"
+                    Return "Gold Ability"
+                Case "gold knowledge"
+                    Return "Gold Knowledge"
+                Case "boulder"
+                    Return "Boulder"
+                Case "cascade"
+                    Return "Cascade"
+                Case "thunder"
+                    Return "Thunder"
+                Case "rainbow"
+                    Return "Rainbow"
+                Case "marsh"
+                    Return "Marsh"
+                Case "soul"
+                    Return "Soul"
+                Case "volcano"
+                    Return "Volcano"
+                Case "earth"
+                    Return "Earth"
+                Case "shooting star"
+                    Return "Shooting Star"
+                Case "victorious"
+                    Return "Victorious"
+                Case "deep sea"
+                    Return "Deep Sea"
+                Case "eruption"
+                    Return "Eruption"
+                Case "ancestor"
+                    Return "Ancestor"
+                Case "time"
+                    Return "Time"
+                Case "mega"
+                    Return "Mega"
+                Case "beast"
+                    Return "Beast"
+                Case Else
+                    Return "???"
+            End Select
+        End Function
+
+        Private Shared Function GetEmblemDescription(ByVal emblem As String) As String
+            Select Case emblem
+                Case "alph"
+                    Return "Solve the Ruins of Alph puzzles."
+                Case "material"
+                    Return "Battle and defeat or catch the Red Gyarados in the Lake of Rage to obtain the Red Scale."
+                Case "cyber"
+                    Return "Trade on the GTS."
+                Case "johto"
+                    Return "Get all the badges from the Johto region."
+                Case "kanto"
+                    Return "Get all the badges from the Kanto region."
+                Case "legendary"
+                    Return "Have Ho-oh, Lugia and Suicune in your party."
+                Case "genetics"
+                    Return "Have a legendary encounter."
+                Case "unodostres"
+                    Return "Have Articuno, Zapdos, and Moltres in your party."
+                Case "champion"
+                    Return "Defeat Lance to become the Champion."
+                Case "snow"
+                    Return "Defeat Red on Mt. Silver."
+                Case "eevee"
+                    Return "Get the 8 eevolutions (Vaporeon, Flareon, Jolteon, Umbreon, Espeon, Leafeon, Glaceon and Sylveon)."
+                Case "stars"
+                    Return "Catch a shiny Pokémon (except a shiny Gyarados)."
+                Case "glowing"
+                    Return "???"
+                Case "overkill"
+                    Return "Get a full party of level 100 Pokemon."
+                Case "pokedex"
+                    Return "Complete the Johto Pokédex!"
+                Case "zephyr"
+                    Return "Get the Zephyr-Badge from Falkner."
+                Case "hive"
+                    Return "Get the Hive-Badge from Bugsy."
+                Case "plain"
+                    Return "Get the Plain-Badge from Whitney."
+                Case "fog"
+                    Return "Get the Fog-Badge from Morty."
+                Case "storm"
+                    Return "Get the Plain-Badge from Whitney."
+                Case "mineral"
+                    Return "Get the Mineral-Badge from Jasmine."
+                Case "glacier"
+                    Return "Get the Glacier-Badge from Pryce."
+                Case "rising"
+                    Return "Get the Rising-Badge from Clair."
+                Case "eggsplosion"
+                    Return "Breed a Pokémon and pass down an egg move."
+                Case "mailman"
+                    Return "Get all the available mail items in the game."
+                Case "silver ability"
+                    Return "Defeat 21 trainers in a row in Battle Tower Challenge Mode."
+                Case "silver knowledge"
+                    Return "Defeat 21 trainers in a row in Battle Factory Challenge Mode."
+                Case "gold ability"
+                    Return "Defeat the Battle Tower Brain once."
+                Case "gold knowledge"
+                    Return "Defeat the Battle Factory Brain once."
+                Case "boulder"
+                    Return "Get the Boulder-Badge from Brock."
+                Case "cascade"
+                    Return "Get the Cascade-Badge from Misty."
+                Case "thunder"
+                    Return "Get the Thunder-Badge from Lt.Surge."
+                Case "rainbow"
+                    Return "Get the Rainbow-Badge from Erika."
+                Case "marsh"
+                    Return "Get the Marsh-Badge from Sabrina."
+                Case "soul"
+                    Return "Get the Soul-Badge from Jasmine."
+                Case "volcano"
+                    Return "Get the Volcano-Badge from Blaine."
+                Case "earth"
+                    Return "Get the Earth-Badge from Blue."
+                Case "shooting star"
+                    Return "Have a stellar encounter."
+                Case "victorious"
+                    Return "Have a victorious encounter."
+                Case "deep sea"
+                    Return "Find a mysterious egg at the bottom of the sea."
+                Case "eruption"
+                    Return "Have an explosive enounter."
+                Case "ancestor"
+                    Return "Have a mythical encounter."
+                Case "time"
+                    Return "Have an adventure through time."
+                Case "mega"
+                    Return "Receive the Mega Bracelet from Professor Oak."
+                Case "beast"
+                    Return "Have Raikou, Entei, and Suicune in your party."
+                Case Else
+                    Return "Unknown emblem."
+            End Select
+        End Function
+
+        Private Shared Function GetEmblemDifficulty(ByVal emblem As String) As String
+            Select Case emblem
+                Case "alph", "material", "cyber", "mega", "zephyr", "hive", "plain", "fog", "storm", "mineral", "glacier", "rising", "boulder",
+                     "cascade", "thunder", "rainbow", "marsh", "soul", "volcano", "earth"
+                    Return "Bronze"
+                Case "johto", "kanto", "legendary", "shooting star", "genetics", "eggsplosion", "mailman", "silver ability", "silver knowledge",
+                     "deep sea", "eruption", "victorious"
+                    Return "Silver"
+                Case "champion", "snow", "eevee", "stars", "unodostres", "gold ability", "gold knowledge", "time", "ancestor", "beast"
+                    Return "Gold"
+                Case "overkill", "pokedex"
+                    Return "Platinum"
+                Case Else
+                    Return "Unknown emblem."
+            End Select
+        End Function
 
         Private Shared Sub AddedAchievement(ByVal result As String)
             Dim APICall As New APICall(AddressOf AddAchievedEmblems)

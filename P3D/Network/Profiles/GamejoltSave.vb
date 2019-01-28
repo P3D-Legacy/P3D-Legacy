@@ -345,9 +345,9 @@ Namespace GameJolt
             Dim APIPrivateCall As New APICall(AddressOf GotPrivateKeys)
             APIPrivateCall.GetKeys(True, "saveStorageV" & GameJolt.GamejoltSave.VERSION & "|" & GameJoltID & "|*")
 
-            If MainSave = True Then
-                GameJolt.Emblem.GetAchievedEmblems()
-            End If
+            'If MainSave = True Then
+            '    GameJolt.Emblem.GetAchievedEmblems()
+            'End If
 
             Dim APIFriendsCall As New APICall(AddressOf SaveFriends)
             APIFriendsCall.FetchFriendList(GameJoltID)

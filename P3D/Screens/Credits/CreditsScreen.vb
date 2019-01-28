@@ -2,7 +2,7 @@ Public Class CreditsScreen
 
     Inherits Screen
 
-    Private Const COPYRIGHTYEAR As String = "2018"
+    Private Const COPYRIGHTYEAR As String = "2019"
 
     Dim CreditsPages As New List(Of CreditsPage)
     Dim CurrentPageIndex As Integer = 0
@@ -70,7 +70,7 @@ Public Class CreditsScreen
         CreditsPages.Add(New CreditsPage("Pokéditor Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "Hunter Graves"}.ToList()))
         CreditsPages.Add(New CreditsPage("Website Host/Server Maintenance", Color.White, Color.Black, {"Daniel Billing", "Daniel Laube"}.ToList()))
         CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", "Nils Drescher"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Debug Testing", Color.White, Color.Black, {"Jan Mika Eine", "Tim Drescher", "Daniel Steinborn", "Andrew Leach", "Marc Boisvert-Dupras", "Matt Chambers", "Hunter Graves", "Benjamin Smith", "William Hunn", "Torben Carrington", """oXFantaXo""", "Conner Joseph Brewster"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Debug Testing", Color.White, Color.Black, {"Jan Mika Eine", "Tim Drescher", "Daniel Steinborn", "Andrew Leach", "Marc Boisvert-Dupras", "Matt Chambers", "Hunter Graves", "Benjamin Smith", "William Hunn", "Torben Carrington", """oXFantaXo""", "Conner Joseph Brewster", """Sanio"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"""MunchingOrange""", """TheFlamingSpade""", """SlyFoxHound""", """ArsenioDev""", """TrUShade""", """Isaaking6"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt Team", "The AppSharp Team", "The Smogon University Team"}.ToList()))
         CreditsPages.Add(New CreditsPage("", Color.White, Color.Black, {"And probably a lot more.", "Especially all the awesome people from", "the pokemon3d.net community.", "Thanks for helping and playing this great game."}.ToList()))

@@ -1,10 +1,10 @@
 version=2
 :if:<register.registered(petrelliberty)>=true <and> <register.registered(lookerliberty)>=false
-	@npc.warp(10,21,3,22)
-	@npc.warp(11,19,3,23)
-	@npc.warp(12,20,3,23)
-	@npc.warp(13,22,3,23)
-	@npc.warp(14,23,3,23)
+	@npc.warp(10,21,3,21)
+	@npc.warp(11,19,3,22)
+	@npc.warp(12,20,3,22)
+	@npc.warp(13,22,3,22)
+	@npc.warp(14,23,3,22)
 	@camera.set(0,1,1.5,3.14,-0.46)
 	@player.move(0)
 	@level.update

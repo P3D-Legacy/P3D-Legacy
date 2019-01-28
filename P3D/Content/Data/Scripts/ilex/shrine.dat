@@ -352,7 +352,7 @@ version=2
 				:endif
 				
 				@level.wait(30)
-				@sound.play(success_small)
+				@sound.play(success_small,1)
 				@npc.warp(10,10,-2,25)
 				@text.show(<player.name> caught~Celebi inside the GS Ball.)
 				@pokemon.rename(last)
@@ -370,6 +370,7 @@ version=2
 				@npc.warp(9,2,-2,23)
 				@level.wait(30)
 				@camera.reset
+				@player.achieveemblem(time)
 				
 			:when:No
 				:end
