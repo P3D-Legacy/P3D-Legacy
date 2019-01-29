@@ -1,53 +1,56 @@
 version=2
+:if:<register.registered(clubintro)>=true <and> <register.registered(ChuckRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe Monday/Wednesday/~Friday early mornings?*If you visit while~I am there maybe~we could battle.)
+    @register.register(ChuckRematchTalk)
+	@register.change(clubregisters,<register.value(clubregisters)>+1)
+    :end
+:endif
+
 :if:<register.registered(stormbadge_obtain)>=False
-@Music.play(trainer_encounter)
-@Text.show(WAHAHAHA!*So you've come~this far!*Let me tell you,~I'm tough!~My Pokémon will~crush stones and~shatter bones!~Watch this!)
-@npc.turn(0,3)
-@Level.wait(5)
-@Player.turnto(3)
-@player.move(1)
-@player.turnto(0)
-@text.show(CHUCK: Urggh!~...*Ooooarrgh!)
+	@Music.play(trainer_encounter)
+	@Text.show(WAHAHAHA!*So you've come~this far!*Let me tell you,~I'm tough!~My Pokémon will~crush stones and~shatter bones!~Watch this!)
+	@npc.turn(0,3)
+	@Level.wait(5)
+	@Player.turnto(3)
+	@player.move(1)
+	@player.turnto(0)
+	@text.show(CHUCK: Urggh!~...*Ooooarrgh!)
+	@sound.play(destroy)
 
-@sound.play(destroy)
-:while:<entity.positiony(5)><1
+	:while:<entity.positiony(5)><1
+		@entity.addtoposition(5,0,0.1,0)
+		@level.wait(2)
+		@level.update
+	:endwhile
 
-@entity.addtoposition(5,0,0.1,0)
-@level.wait(2)
-@level.update
+	:while:<entity.positiony(5)>>-0.3
+		@entity.addtoposition(5,0,-0.1,0)
+		@level.wait(2)
+		@level.update
+	:endwhile
 
-:endwhile
-
-:while:<entity.positiony(5)>>-0.3
-
-@entity.addtoposition(5,0,-0.1,0)
-@level.wait(2)
-@level.update
-
-:endwhile
-
-@Level.Update
-@sound.play(destroy)
-@Entity.Move(5,1)
-@Level.wait(10)
-@Player.turnto(1)
-@player.move(1)
-@player.turnto(0)
-@npc.turn(0,2)
-@battle.starttrainer(cianwood_gym\leader)
-@Music.play(gym)
-@register.register(stormbadge_obtain)
-@register.register(trainer_cianwood_gym\001)
-@register.register(trainer_cianwood_gym\002)
-@register.register(trainer_cianwood_gym\003)
-@register.register(trainer_cianwood_gym\004)
-@player.GetBadge(13)
-@player.AchieveEmblem(storm)
-@text.show(The Storm Badge makes~all Pokémon up to*Level 70 obey, even~traded ones.*It also lets your~Pokémon use Fly*when you're not in~a battle.*Here, take this too!)
-@item.give(191,1)
-@item.messagegive(191,1)
-@text.show(That is Dynamicpunch.*It doesn't always~hit, but when it*does, it causes~confusion!)
-:end
+	@Level.Update
+	@sound.play(destroy)
+	@Entity.Move(5,1)
+	@Level.wait(10)
+	@Player.turnto(1)
+	@player.move(1)
+	@player.turnto(0)
+	@npc.turn(0,2)
+	@battle.starttrainer(cianwood_gym\leader)
+	@Music.play(gym)
+	@register.register(stormbadge_obtain)
+	@register.register(trainer_cianwood_gym\001)
+	@register.register(trainer_cianwood_gym\002)
+	@register.register(trainer_cianwood_gym\003)
+	@register.register(trainer_cianwood_gym\004)
+	@player.GetBadge(13)
+	@player.AchieveEmblem(storm)
+	@text.show(The Storm Badge makes~all Pokémon up to*Level 70 obey, even~traded ones.*It also lets your~Pokémon use Fly*when you're not in~a battle.*Here, take this too!)
+	@item.give(191,1)
+	@item.messagegive(191,1)
+	@text.show(That is Dynamicpunch.*It doesn't always~hit, but when it*does, it causes~confusion!)
+	:end
 :endif
 
 @battle.starttrainer(cianwood_gym\leader)

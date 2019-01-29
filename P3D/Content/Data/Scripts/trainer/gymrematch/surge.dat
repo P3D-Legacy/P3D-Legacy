@@ -1,0 +1,4 @@
+version=2
+@storage.set(string,leader,surge)
+@script.start(trainer\gymrematch\main)
+:end

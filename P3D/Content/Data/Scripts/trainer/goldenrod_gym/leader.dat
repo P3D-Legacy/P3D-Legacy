@@ -1,4 +1,11 @@
 version=2
+:if:<register.registered(clubintro)>=true <and> <register.registered(WhitneyRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe evenings?*If you visit while~I am there maybe~we could battle.)
+    @register.register(WhitneyRematchTalk)
+	@register.change(clubregisters,<register.value(clubregisters)>+1)
+    :end
+:endif
+
 :if:<register.registered(whitneyTM)>=False <and> <register.registered(plainbadge_obtain)>=True
 	@item.give(235,1)
 	@register.register(whitneyTM)

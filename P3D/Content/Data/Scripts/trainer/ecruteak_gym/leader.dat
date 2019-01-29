@@ -1,16 +1,22 @@
 version=2
+:if:<register.registered(clubintro)>=true <and> <register.registered(MortyRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe around midnight?*If you visit while~I am there maybe~we could battle.)
+    @register.register(MortyRematchTalk)
+	@register.change(clubregisters,<register.value(clubregisters)>+1)
+    :end
+:endif
 @battle.starttrainer(ecruteak_gym\leader)
 @player.AchieveEmblem(fog)
 :if:<register.registered(fogbadge_obtain)>=False
-@register.register(fogbadge_obtain)
-@register.register(trainer_ecruteak_gym\001)
-@register.register(trainer_ecruteak_gym\002)
-@register.register(trainer_ecruteak_gym\003)
-@register.register(trainer_ecruteak_gym\004)
-@player.GetBadge(12)
-@Text.show(By having the Fog~Badge, Pokémon up*to Level 50 will obey~you.*Also, Pokémon that~know Surf will be*able to use that~move anytime.*I want you to have~this too)
-@item.give(220,1)
-@item.messagegive(220,1)
-@Text.show(It's Shadow Ball.~It causes damage*and may reduce~Special Defense.*Use it if it~appeals to you.)
+    @register.register(fogbadge_obtain)
+    @register.register(trainer_ecruteak_gym\001)
+    @register.register(trainer_ecruteak_gym\002)
+    @register.register(trainer_ecruteak_gym\003)
+    @register.register(trainer_ecruteak_gym\004)
+    @player.GetBadge(12)
+    @Text.show(By having Fog-~Badge, Pokémon up*to Level 50 will obey~you.*Also, Pokémon that~know Surf will be*able to use that~move anytime.*I want you to have~this too)
+    @item.add(220,1)
+    @item.messagegive(220,1)
+    @Text.show(It's Shadow Ball.~It causes damage*and may reduce~Special Defense.*Use it if it~appeals to you.)
 :endif
 :end
