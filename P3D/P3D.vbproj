@@ -25799,6 +25799,9 @@
     <None Include="Content\Data\maps\poke\routes\route28.poke">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Data\Scripts\dragonsden\dracotutor.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\faraway\ancestoremblemcheck.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

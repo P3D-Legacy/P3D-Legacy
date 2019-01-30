@@ -1,0 +1,19 @@
+version=2
+@text.show(If you've come to Dragon's~Den, you must be looking~to master the Dragon-type.)
+:if:<pokemon.type1(0)>=dragon <or> <pokemon.type2(0)>=dragon <or> <pokemon.number(0)>=493 <or> <pokemon.number(0)>=773
+	:if:<pokemon.hasattack(0,434)>=false
+		@text.show(Your <pokemon.name(0)>~seems capable.*Do you want it to learn~Draco Meteor, the most~powerful Dragon move?)
+		@options.show(Yes,No)
+		:when:Yes
+			@text.show(I shall teach it, then.)
+			@pokemon.learnattack(0,434)
+		:when:No
+			@text.show(Such a waste of potential.)
+		:endwhen	
+	:else
+		@text.show(Now that <pokemon.name(0)>~masters the draconic power,~nothing stands a chance!)
+	:endif
+:else
+	@text.show(But your <pokemon.name(0)>~is no Dragon-type.*If you catch any,~show it to me.)
+:endif
+:end
