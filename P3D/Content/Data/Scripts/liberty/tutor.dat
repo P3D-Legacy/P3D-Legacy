@@ -1,0 +1,22 @@
+version=2
+:if:<register.registered(v-tutor)>=false
+	@text.show(I seek a strong Pokémon~to pass down my teachings.*I don't, however, seek~just raw power, but~instead a Pokémon whose~body overflows with energy~and a burning passion~for victory!*Only such a creature~could use V-Create.)
+	@register.register(v-tutor)
+:endif
+:if:<pokemon.number(0)>=384 <or> <pokemon.number(0)>=494
+	:if:<pokemon.hasattack(0,557)>=false
+		@text.show(That <pokemon.name(0)>~of yours...~It's the one I've sought~for so long!*Tell me, do you think~it can master the~flaming technique known~as V-Create?)
+		@options.show(Yes,No)
+		:when:Yes
+			@text.show(I shall teach it, then.)
+			@pokemon.learnattack(0,557)
+		:when:No
+			@text.show(Such a waste of potential.)
+		:endwhen	
+	:else
+		@text.show(Now that it controls the~flaming power, nothing~can stop it!)
+	:endif
+:else
+	@text.show(That <pokemon.name(0)>~of yours...~It seems strong, but it's~not what I'm looking for.*Not without the~victorious flame...*If you find any other~Pokémon you think could~control the power of~V-Create, bring it to me.)
+:endif
+:end
