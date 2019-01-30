@@ -1,8 +1,4 @@
 version=2
-:if:<register.registered(petrelliberty)>=false
-	@text.show(I'm looking for the~strongest Pokémon to~pass down my teachings,~but those grunts want~to use the same power~for their greedy interests.)
-	:end
-:endif
 :if:<register.registered(v-tutor)>=false
 	@text.show(I seek a strong Pokémon~to pass down my teachings.*I don't, however, seek~just raw power, but~instead a Pokémon whose~body overflows with energy~and a burning passion~for victory!*Only such a creature~could use V-Create.)
 	@register.register(v-tutor)
