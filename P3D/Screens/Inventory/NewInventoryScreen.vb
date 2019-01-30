@@ -991,7 +991,7 @@ Public Class NewInventoryScreen
     ''' <summary>
     ''' Reloads the temporary item list.
     ''' </summary>
-    Private Sub LoadItems()
+    Public Sub LoadItems()
         _items = Core.Player.Inventory.Where(Function(x) Item.GetItemByID(x.ItemID).ItemType = _visibleItemTypes(_tabIndex)).ToArray()
         If _tabIndex = 4 Then 'TM/HM
             _items = (From i In _items Order By Item.GetItemByID(i.ItemID).SortValue Ascending).ToArray()
