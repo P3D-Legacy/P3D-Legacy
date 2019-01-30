@@ -1,13 +1,18 @@
 version=2
+:if:<register.registered(clubintro)>=true <and> <register.registered(JasmineRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe Monday/Wednesday/~Friday early afternoons?*If you visit while~I am there maybe~we could battle.)
+    @register.register(JasmineRematchTalk)
+	@register.change(clubregisters,<register.value(clubregisters)>+1)
+    :end
+:endif
 @battle.starttrainer(olivine_gym\leader)
 @player.AchieveEmblem(mineral)
 :if:<register.registered(mineralbadge_obtain)>=False
-:then
-@Register.register(mineralbadge_obtain)
-@player.GetBadge(14)
-@Text.show(The Mineral Badge~raises Pokémon's~Defense.*...Um... Please take~this too...)
-@item.give(213,1)
-@item.messagegive(213,1)
-@Text.show(...You could use~that TM to teach~Iron Tail.)
+    @register.register(mineralbadge_obtain)
+    @player.GetBadge(14)
+    @Text.show(Mineralbadge~raises Pokémon's~Defense.*...Um... Please take~this too...)
+    @item.add(213,1)
+    @item.messagegive(213,1)
+    @Text.show(...You could use~that TM to teach~Iron Tail.)
 :endif
 :end

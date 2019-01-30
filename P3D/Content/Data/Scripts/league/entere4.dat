@@ -14,11 +14,13 @@
 :endwhen
 
 @entity.setvisible(3,1)
+@entity.setcollision(1,0)
 
 :if:<register.registered(defeat<level.filename>)>=True
 :then
 @entity.remove(2)
 @entity.setvisible(1,0)
+@entity.setcollision(1,1)
 :endif
 
 @sound.play(shutter)

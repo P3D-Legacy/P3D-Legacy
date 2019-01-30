@@ -490,3 +490,5 @@ NPC:
 {"NPC"{NPC[{"Position"{sngArr[33,-2,17]}}{"TextureID"{str[45]}}{"ID"{int[39]}}{"Name"{str[Civilian]}}{"Action"{int[0]}}{"AdditionalValue"{str[The seasonal colors in Unova~are truly special.]}}{"Rotation"{int[3]}}{"Movement"{str[Walk]}}{"MoveRectangles"{recArr[30,13,37,19]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[41,-1,8]}}{"TextureID"{str[50]}}{"ID"{int[40]}}{"Name"{str[Civilian]}}{"Action"{int[0]}}{"AdditionalValue"{str[Unova has many cool Pokémon.*Do you also have cool Pokémon~in your home region?]}}{"Rotation"{int[0]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[33,-2,26]}}{"TextureID"{str[95]}}{"ID"{int[41]}}{"Name"{str[Officer]}}{"Action"{int[0]}}{"AdditionalValue"{str[We're keeping our own~watercraft to secure the~island now.]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+
+{"NPC"{NPC[{"Position"{sngArr[29,-2,22]}}{"TextureID"{str[Elder]}}{"ID"{int[42]}}{"Name"{str[Civilian]}}{"Action"{int[1]}}{"AdditionalValue"{str[liberty\tutor]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}

@@ -1,4 +1,10 @@
 version=2
+:if:<register.registered(clubintro)>=true <and> <register.registered(FalknerRematchTalk)>=false
+    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe mornings?*If you visit while~I am there maybe~we could battle.)
+    @register.register(FalknerRematchTalk)
+	@register.change(clubregisters,<register.value(clubregisters)>+1)
+    :end
+:endif
 
 @battle.starttrainer(violetgymleader)
 @player.AchieveEmblem(zephyr)

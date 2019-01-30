@@ -61,6 +61,8 @@
             Dim itemID As Integer = 0
             If Not p.Item Is Nothing Then
                 itemID = p.Item.ID
+            Else
+                Return New Element(Element.Types.Normal)
             End If
 
             Select Case p.Item.ID

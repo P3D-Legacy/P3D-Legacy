@@ -1,0 +1,261 @@
+version=2
+:if:<register.registered(First_time_champion)>=false
+    @player.move(0)
+    @player.turnto(1)
+    @text.show(I'm sorry this club~is for members only.*Please leave.)
+    @player.turnto(2)
+    @player.move(1)
+    @player.warp(goldenrod.dat,15,0.1,21,0)
+    @level.update
+    @player.move(1)
+    :end
+:endif
+
+:if:<register.registered(clubintro)>=false
+	@Register.register(clubregisters,int,0)
+    @player.move(0)
+    @player.turnto(1)
+	:if:<player.gender>=0
+	    @text.show(I'm sorry this club is for mem-*Wait.~Are you perhaps~Miss <player.name>?*I am so sorry~for my rudeness.*Any trainer who is good~enough to be champion is~welcome at this club.*This club is intended~to be a place for powerful~trainers to hangout,~relax, and engage in~friendly battles.*Currently all of the~Gym Leaders of Kanto~and Johto are members,~but they rarely come by.*I am sure if a trainer~as strong as you told~them about this club and~asked them to join you~here they would do so.*They might even come~here willing to battle!)
+    :else
+	    @text.show(I'm sorry this club is for mem-*Wait.~Are you perhaps~Mister <player.name>?*I am so sorry~for my rudeness.*Any trainer who is good~enough to be champion is~welcome at this club.*This club is intended~to be a place for powerful~trainers to hangout,~relax, and engage in~friendly battles.*Currently all of the~Gym Leaders of Kanto~and Johto are members,~but they rarely come by.*I am sure if a trainer~as strong as you told~them about this club and~asked them to join you~here they would do so.*They might even come~here willing to battle!)
+	:endif
+	@register.register(clubintro)
+:endif
+
+:if:<Register.registered(EusineHere)>=false <and> <register.registed(EusineRematchTalk)>=True
+	:if:<system.random(7)>=5
+		@register.registertime(EusineHere,20,hour)
+	:endif
+:endif
+
+:if:<Register.registered(LiHere)>=false <and> <Register.registered(LiNotHere)>=false <and> <register.registed(LiRematchTalk)>=True
+	:if:<system.random(10)>=5
+		@register.registertime(LiHere,4,hour)
+	:endif
+:endif
+:if:<Register.registered(LiHere)>=true
+	@npc.warp(19,~,0.2,~)
+:endif
+
+:if:<Environment.day>=Sunday
+	:if:<Environment.hour><4 <and> <Environment.hour>>0
+		:if:<register.registered(TRTPreTalk)>=true
+			@npc.warp(30,~,3.2,~)
+			@npc.warp(31,~,3.2,~)
+			@npc.warp(32,~,3.2,~)
+		:endif
+	:endif
+    :if:<Environment.hour><12 <and> <Environment.hour>>4
+        :if:<register.registered(BugsyRematchTalk)>=true
+            @npc.warp(10,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><15 <and> <Environment.hour>>6
+        :if:<register.registered(ErikaRematchTalk)>=true
+            @npc.warp(4,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><15 <and> <Environment.hour>>8
+        :if:<register.registered(BrockRematchTalk)>=true
+            @npc.warp(1,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><23 <and> <Environment.hour>>14
+        :if:<register.registered(MistyRematchTalk)>=true
+            @npc.warp(2,~,0.2,~)
+        :endif
+    :endif
+:endif
+
+:if:<Environment.day>=Monday
+    :if:<Environment.hour><9 <and> <Environment.hour>>2
+        :if:<register.registered(ChuckRematchTalk)>=true
+            @npc.warp(15,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><12 <and> <Environment.hour>>4
+        :if:<register.registered(BugsyRematchTalk)>=true
+            @npc.warp(10,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><15 <and> <Environment.hour>>8
+        :if:<register.registered(BrockRematchTalk)>=true
+            @npc.warp(1,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><19 <and> <Environment.hour>>12
+        :if:<register.registered(JasmineRematchTalk)>=true
+            @npc.warp(14,~,0.2,~)
+        :endif
+    :endif
+:endif
+
+:if:<Environment.day>=Tuesday
+    :if:<Environment.hour><11 <and> <Environment.hour>>2
+        :if:<register.registered(BlaineRematchTalk)>=true
+            @npc.warp(7,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><12 <and> <Environment.hour>>4
+        :if:<register.registered(BugsyRematchTalk)>=true
+            @npc.warp(10,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><15 <and> <Environment.hour>>8
+        :if:<register.registered(BrockRematchTalk)>=true
+            @npc.warp(1,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><23 <and> <Environment.hour>>14
+        :if:<register.registered(PryceRematchTalk)>=true
+            @npc.warp(15,~,0.2,~)
+        :endif
+    :endif
+:endif
+
+:if:<Environment.day>=Wednesday
+    :if:<Environment.hour><9 <and> <Environment.hour>>2
+        :if:<register.registered(ChuckRematchTalk)>=true
+            @npc.warp(15,~,0.2,~)
+        :endif
+        :if:<register.registered(KiyoRematchTalk)>=true
+            @npc.warp(18,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><22 <and> <Environment.hour>>6
+        :if:<register.registered(BlueRematchTalk)>=true
+            @npc.warp(8,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><19 <and> <Environment.hour>>12
+        :if:<register.registered(JasmineRematchTalk)>=true
+            @npc.warp(14,~,0.2,~)
+        :endif
+    :endif
+:endif
+
+:if:<Environment.day>=Thursday
+    :if:<Environment.hour><11 <and> <Environment.hour>>2
+        :if:<register.registered(BlaineRematchTalk)>=true
+            @npc.warp(7,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><15 <and> <Environment.hour>>8
+        :if:<register.registered(SurgeRematchTalk)>=true
+            @npc.warp(3,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><15 <and> <Environment.hour>>9
+        :if:<register.registered(OakRematchTalk)>=true
+            @npc.warp(30,~,3.2,~)
+            @npc.warp(31,~,3.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><23 <and> <Environment.hour>>14
+        :if:<register.registered(PryceRematchTalk)>=true
+            @npc.warp(15,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><23 <and> <Environment.hour>>16
+        :if:<register.registered(ClairRematchTalk)>=true
+            @npc.warp(16,~,0.2,~)
+        :endif
+    :endif
+:endif
+
+:if:<Environment.day>=Friday
+    :if:<Environment.hour><9 <and> <Environment.hour>>2
+        :if:<register.registered(ChuckRematchTalk)>=true
+            @npc.warp(15,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><15 <and> <Environment.hour>>8
+        :if:<register.registered(SurgeRematchTalk)>=true
+            @npc.warp(3,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><19 <and> <Environment.hour>>12
+        :if:<register.registered(JasmineRematchTalk)>=true
+            @npc.warp(14,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><23 <and> <Environment.hour>>16
+        :if:<register.registered(ClairRematchTalk)>=true
+            @npc.warp(16,~,0.2,~)
+        :endif
+    :endif
+:endif
+
+:if:<Environment.day>=Saturday
+    :if:<Environment.hour><15 <and> <Environment.hour>>6
+        :if:<register.registered(ErikaRematchTalk)>=true
+            @npc.warp(4,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><15 <and> <Environment.hour>>8
+        :if:<register.registered(SurgeRematchTalk)>=true
+            @npc.warp(3,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><23 <and> <Environment.hour>>14
+        :if:<register.registered(MistyRematchTalk)>=true
+            @npc.warp(2,~,0.2,~)
+        :endif
+    :endif
+    :if:<Environment.hour><23 <and> <Environment.hour>>16
+        :if:<register.registered(ClairRematchTalk)>=true
+            @npc.warp(16,~,0.2,~)
+        :endif
+    :endif
+:endif
+
+#Everyday
+:if:<Environment.hour><4 <and> <Environment.hour>>0
+    :if:<register.registered(JanineRematchTalk)>=true
+        @npc.warp(5,~,0.2,~)
+    :endif
+:endif
+
+:if:<Environment.hour><7 <and> <Environment.hour>>3
+    :if:<register.registered(FalknerRematchTalk)>=true
+        @npc.warp(9,~,0.2,~)
+    :endif
+:endif
+
+:if:<Environment.hour><17 <and> <Environment.hour>>13
+    :if:<register.registered(SabrinaRematchTalk)>=true
+        @npc.warp(6,~,0.2,~)
+    :endif
+:endif
+
+:if:<Environment.hour><22 <and> <Environment.hour>>18
+    :if:<register.registered(WhitneyRematchTalk)>=true
+        @npc.warp(11,~,0.2,~)
+    :endif
+:endif
+
+:if:<Environment.hour>=0 <or> <Environment.hour>=22 <or> <Environment.hour>=23
+    :if:<register.registered(MortyRematchTalk)>=true
+        @npc.warp(12,~,0.2,~)
+    :endif
+    :if:<register.registered(EusineHere)>=true 
+        @npc.warp(17,~,0.2,~)
+    :endif
+:endif
+
+:if:<register.registered(LeafAtClub)>=true
+	@npc.warp(99,~,3.2,~)
+:endif
+
+:if:<register.value(clubregisters)>>15 <and> <register.registered(clubextendinvite)>=false
+	@player.move(0)
+	@player.turnto(1)
+	:if:<player.gender>=0
+	    @text.show(Oh, Miss <player.name>.*It is so good to see you!*I am not sure what you told them, but all of the Gym Leaders from both Johto and Kanto have been frequenting the club!*The battles we have witnessed here have been spectacular!*I suspect our reputation for hosting the strongest trainers has begun to spread.*If you meet a worthy trainer feel free to invite them to visit us!)
+    :else
+	    @text.show(Oh, Mister <player.name>.*It is so good to see you!*I am not sure what you told them, but all of the Gym Leaders from both Johto and Kanto have been frequenting the club!*The battles we have witnessed here have been spectacular!*I suspect our reputation for hosting the strongest trainers has begun to spread.*If you meet a worthy trainer feel free to invite them to visit us!)
+	:endif
+	@register.register(clubextendinvite)
+:endif
+:end
