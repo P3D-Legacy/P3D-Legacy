@@ -1756,9 +1756,11 @@
         If CanFireStepEvent() = True Then
             Dim addEggSteps As Integer = stepAmount
             For Each p As Pokemon In Pokemons
-                If p.Ability.Name.ToLower() = "magma armor" Or p.Ability.Name.ToLower() = "flame body" Then
-                    addEggSteps *= Random.Next(1, 4)
-                    Exit For
+                If p.Ability IsNot Nothing Then
+                    If p.Ability.Name.ToLower() = "magma armor" OrElse p.Ability.Name.ToLower() = "flame body" Then
+                        addEggSteps *= Random.Next(1, 4)
+                        Exit For
+                    End If
                 End If
             Next
 
