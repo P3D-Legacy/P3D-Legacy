@@ -6,7 +6,7 @@ Namespace Items.Medicine
         Inherits MedicineItem
 
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 500
-        Public Overrides ReadOnly Property Description As String = "A bitter medicine powder. When consumed, it restores 50 HP to an injured Pokémon."
+        Public Overrides ReadOnly Property Description As String = "A bitter medicine powder. When consumed, it restores 60 HP to an injured Pokémon."
         Public Overrides ReadOnly Property IsHealingItem As Boolean = True
 
         Public Sub New()
@@ -25,7 +25,7 @@ Namespace Items.Medicine
         End Sub
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
-            Dim success As Boolean = HealPokemon(PokeIndex, 50)
+            Dim success As Boolean = HealPokemon(PokeIndex, 60)
             If success Then
                 Core.Player.Pokemons(PokeIndex).ChangeFriendShip(Pokemon.FriendShipCauses.EnergyPowder)
             End If

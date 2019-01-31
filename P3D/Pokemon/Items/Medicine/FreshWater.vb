@@ -6,7 +6,7 @@ Namespace Items.Medicine
         Inherits MedicineItem
 
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
-        Public Overrides ReadOnly Property Description As String = "Water with a high mineral content. When consumed, it restores 50 HP to an injured Pokémon."
+        Public Overrides ReadOnly Property Description As String = "Water with a high mineral content. When consumed, it restores 30 HP to an injured Pokémon."
         Public Overrides ReadOnly Property IsHealingItem As Boolean = True
 
         Public Sub New()
