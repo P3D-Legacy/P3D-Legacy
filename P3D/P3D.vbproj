@@ -25702,9 +25702,6 @@
     <Compile Include="Pokemon\Items\KeyItems\LibertySeaMap.vb" />
     <Compile Include="Pokemon\Items\Standard\DouseDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ChillDrive.vb" />
-    <Compile Include="Pokemon\Items\Standard\FlameOrb.vb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Pokemon\Items\Standard\ShockDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\BurnDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
@@ -25799,7 +25796,7 @@
     <None Include="Content\Data\maps\poke\routes\route28.poke">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\Data\Scripts\dragonsden\dracotutor.dat">
+    <None Include="Content\Data\Scripts\cerulean\novenu.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\faraway\ancestoremblemcheck.dat">
@@ -25883,6 +25880,9 @@
     <None Include="Content\Data\Scripts\mtember\eruptionemblemcheck.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Data\Scripts\route25\nochar.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\trainer\kolben\Segis.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -25956,6 +25956,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\trainer\liberty\inside\Petrel.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\trainer\mtsilver\red1.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\trainer\mtsilver\red2.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\trainer\mtsilver\red3.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\underwatercave\deepseaemblemcheck.dat">
