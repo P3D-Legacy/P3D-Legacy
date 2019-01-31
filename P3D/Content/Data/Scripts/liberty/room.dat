@@ -42,7 +42,6 @@ version=2
 @npc.register(liberty\garden.dat|39|position|33,2,17)
 @npc.register(liberty\garden.dat|40|position|41,1,8)
 @npc.register(liberty\garden.dat|41|position|33,2,26)
-@npc.register(liberty\garden.dat|42|position|29,2,22)
 
 @npc.register(liberty\garden.dat|1|remove|0)
 @npc.register(liberty\garden.dat|2|remove|0)

@@ -6,7 +6,7 @@ Namespace Items.Medicine
         Inherits MedicineItem
 
         Public Overrides ReadOnly Property IsHealingItem As Boolean = True
-        Public Overrides ReadOnly Property Description As String = "A spray-type medicine for treating wounds. It can be used to restore 200 HP to an injured Pokémon."
+        Public Overrides ReadOnly Property Description As String = "A spray-type medicine for treating wounds. It can be used to restore 120 HP to an injured Pokémon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1500
 
         Public Sub New()
