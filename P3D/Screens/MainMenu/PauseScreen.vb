@@ -25,7 +25,7 @@
         If Core.Player.IsGameJoltSave = True Then
             Me.canCreateAutosave = False
         Else
-            If Not Me.PreScreen Is Nothing Then
+            If Me.PreScreen IsNot Nothing AndAlso Camera.Name IsNot Nothing Then
                 If Camera.Name <> "Overworld" Then
                     Me.canCreateAutosave = False
                 Else

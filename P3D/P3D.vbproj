@@ -25702,6 +25702,7 @@
     <Compile Include="Pokemon\Items\KeyItems\LibertySeaMap.vb" />
     <Compile Include="Pokemon\Items\Standard\DouseDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ChillDrive.vb" />
+    <Compile Include="Pokemon\Items\Standard\FlameOrb.vb" />
     <Compile Include="Pokemon\Items\Standard\ShockDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\BurnDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
@@ -25797,6 +25798,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\cerulean\novenu.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\dragonsden\dracotutor.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\faraway\ancestoremblemcheck.dat">
