@@ -13642,6 +13642,9 @@
     <Content Include="Content\Textures\NPC\Kratos.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\NPC\Green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\NPC\Segis.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
