@@ -517,10 +517,17 @@ Public Class NewMainMenuScreen
     Public Sub DrawGameJoltButtons(ByVal offset As Vector2)
         Dim r As New Rectangle(CInt(offset.X + 400), CInt(offset.Y + 200), 512, 128)
         Dim y As Integer = 0
+
+        Dim fontColor As Color = Color.White
+        Dim dayTime = World.GetTime
+        If dayTime = World.DayTime.Day OrElse dayTime = World.DayTime.Morning Then
+            fontColor = Color.Black
+        End If
+
         If ScaleScreenRec(New Rectangle(r.X, r.Y, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 1 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Change to male.", New Vector2(r.X + 64 + 4, r.Y + 4), Color.White)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Change to male", New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y, 32, 32), New Rectangle(144, 32 + y, 16, 16), Color.White)
 
@@ -528,7 +535,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 2 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Change to female.", New Vector2(r.X + 64 + 4, r.Y + 4 + 48), Color.White)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Change to female", New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48, 32, 32), New Rectangle(160, 32 + y, 16, 16), Color.White)
 
@@ -536,7 +543,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 3 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Reset save.", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), Color.White)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Reset save", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48, 32, 32), New Rectangle(176, 32 + y, 16, 16), Color.White)
 
