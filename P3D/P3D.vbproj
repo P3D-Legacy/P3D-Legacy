@@ -20,7 +20,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <ApplicationIcon>Pokemon3D.ico</ApplicationIcon>
     <OptionExplicit>On</OptionExplicit>
-    <OptionCompare>Text</OptionCompare>
+    <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
     <StartupObject>P3D.Program</StartupObject>
