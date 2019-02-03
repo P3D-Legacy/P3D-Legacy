@@ -10,7 +10,7 @@ Namespace Abilities
 
         Public Shared Sub GatherHoney()
             For Each p As Pokemon In Core.Player.Pokemons
-                If p.Ability.Name.ToLower() = "honey gather" Then
+                If p.Ability IsNot Nothing AndAlso p.Ability.Name.ToLower() = "honey gather" Then
                     If p.Item Is Nothing Then
                         Dim chance As Integer = CInt(Math.Ceiling(p.Level / 10) * 5)
                         If Core.Random.Next(0, 100) < chance Then
