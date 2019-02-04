@@ -317,6 +317,11 @@ version=2
 				@screen.fadeout
 				@sound.play(teleport)
 				@player.warp(ilexforest.dat,10,0.1,26,0)
+				:if:<register.registered(clubextendinvite)>=true
+					@npc.register(tohjofalls\hideout.dat|3|position|~,0,~)
+					@npc.register(tohjofalls\hideout.dat|4|position|~,0,~)
+					@npc.register(tohjofalls\hideout.dat|5|position|~,0,~)
+				:endif
 				@level.update
 				
 				@camera.set(0.8,1.5,3,1.15,-0.5)

@@ -31,6 +31,13 @@ version=2
 	:endif
 :endif
 
+:if:<register.registered(clubextendinvite)>=true <and> <register.registered(kantostart1)>=true <and> <register.registered(OakPrematchTalk)>=false
+	@text.show( )
+	@register.register(OakPrematchTalk)
+	:end
+
+:endif
+
 #This sets a flag for the evaldist script so that it knows where the call came from:
 @storage.set(str,pallet_oak_scriptcaller,flag)
 @script.start(pallet\evaldist)
