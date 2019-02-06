@@ -26097,9 +26097,11 @@
     <None Include="Content\Data\Scripts\trainer\gymrematch\green.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Data\Scripts\trainer\gymrematch\james.dat" />
     <None Include="Content\Data\Scripts\trainer\gymrematch\james.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Data\Scripts\trainer\gymrematch\jessie.dat" />
     <None Include="Content\Data\Scripts\trainer\gymrematch\jessie.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -26109,6 +26111,7 @@
     <None Include="Content\Data\Scripts\trainer\gymrematch\kiyo.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Data\Scripts\trainer\gymrematch\meowth.dat" />
     <None Include="Content\Data\Scripts\trainer\gymrematch\oak.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
