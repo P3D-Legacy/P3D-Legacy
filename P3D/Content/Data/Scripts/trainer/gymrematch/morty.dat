@@ -1,4 +1,10 @@
 version=2
+:if:<register.registered(clubextendinvite)>=true <and> <register.registered(mortytruerematch)>=true <and> <register.registered(EusineRematchTalk)>=false
+	@text.show( )
+	@register.register(EusineRematchTalk)
+	:end
+:endif
+
 @storage.set(string,leader,morty<register.exists(earthbadge_obtain)>)
 @script.start(trainer\gymrematch\main)
 :end

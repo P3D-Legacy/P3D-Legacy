@@ -1,6 +1,6 @@
 Namespace Items.Standard
 
-    <Item(286, "Rock Incense")>
+    <Item(299, "Rock Incense")>
     Public Class RockIncense
 
         Inherits Item

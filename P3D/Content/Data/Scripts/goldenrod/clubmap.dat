@@ -32,6 +32,7 @@ version=2
 :if:<Register.registered(LiHere)>=false <and> <Register.registered(LiNotHere)>=false <and> <register.registed(LiRematchTalk)>=True
 	:if:<system.random(10)>=5
 		@register.registertime(LiHere,4,hour)
+		@register.registertime(LiNotHere,3,day)
 	:endif
 :endif
 :if:<Register.registered(LiHere)>=true
@@ -40,13 +41,13 @@ version=2
 
 :if:<Environment.day>=Sunday
 	:if:<Environment.hour><4 <and> <Environment.hour>>0
-		:if:<register.registered(TRTPreTalk)>=true
+		:if:<register.registered(TRTPrematchTalk)>=true
 			@npc.warp(30,~,3.2,~)
 			@npc.warp(31,~,3.2,~)
 			@npc.warp(32,~,3.2,~)
 		:endif
 	:endif
-    :if:<Environment.hour><12 <and> <Environment.hour>>4
+    :if:<Environment.hour><12 <and> <Environment.hour>>5
         :if:<register.registered(BugsyRematchTalk)>=true
             @npc.warp(10,~,0.2,~)
         :endif
@@ -147,7 +148,7 @@ version=2
         :endif
     :endif
     :if:<Environment.hour><15 <and> <Environment.hour>>9
-        :if:<register.registered(OakRematchTalk)>=true
+        :if:<register.registered(OakPrematchTalk)>=true
             @npc.warp(30,~,3.2,~)
             @npc.warp(31,~,3.2,~)
         :endif
@@ -244,7 +245,7 @@ version=2
     :endif
 :endif
 
-:if:<register.registered(LeafAtClub)>=true
+:if:<register.registered(GreenAtClub)>=true
 	@npc.warp(99,~,3.2,~)
 :endif
 
@@ -257,5 +258,10 @@ version=2
 	    @text.show(Oh, Mister <player.name>.*It is so good to see you!*I am not sure what you told them, but all of the Gym Leaders from both Johto and Kanto have been frequenting the club!*The battles we have witnessed here have been spectacular!*I suspect our reputation for hosting the strongest trainers has begun to spread.*If you meet a worthy trainer feel free to invite them to visit us!)
 	:endif
 	@register.register(clubextendinvite)
+	:if:<register.registered(shinycelebi)>=true
+		@npc.register(tohjofalls\hideout.dat|3|position|~,0,~)
+		@npc.register(tohjofalls\hideout.dat|4|position|~,0,~)
+		@npc.register(tohjofalls\hideout.dat|5|position|~,0,~)
+	:endif
 :endif
 :end
