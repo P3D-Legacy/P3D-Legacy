@@ -15,7 +15,7 @@ version=2
     @register.register(trainer_ecruteak_gym\004)
     @player.GetBadge(12)
     @Text.show(By having Fog-~Badge, Pokémon up*to Level 50 will obey~you.*Also, Pokémon that~know Surf will be*able to use that~move anytime.*I want you to have~this too)
-    @item.add(220,1)
+    @item.give(220,1)
     @item.messagegive(220,1)
     @Text.show(It's Shadow Ball.~It causes damage*and may reduce~Special Defense.*Use it if it~appeals to you.)
 :endif

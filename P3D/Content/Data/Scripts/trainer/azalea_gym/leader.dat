@@ -16,7 +16,7 @@ version=2
     @register.register(trainer_azalea_gym\005)
     @player.GetBadge(10)
     @Text.show(Do you know the~benefits of Hivebadge?*If you have it,~Pokémon up to Level 30 will~obey you.*Pokémon that know~Cut will be able*to use it outside~of battle too.*Here, I also want~you to have this.)
-    @item.add(239,1)
+    @item.give(239,1)
     @item.messagegive(239,1)
     @Text.show(TM49 contains~Fury Cutter.*If you don't miss,~it gets stronger~every turn.*The longer your~battle goes, the~better it gets.*Isn't that great?~I discovered it!)
 :endif
