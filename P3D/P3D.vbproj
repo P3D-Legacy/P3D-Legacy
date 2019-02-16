@@ -25739,6 +25739,9 @@
     <Content Include="Content\Data\maps\dungeon\2\mega.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Data\maps\battle\goldenrod\club.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\maps\battle\kolben\basement.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -26114,11 +26117,15 @@
     <None Include="Content\Data\Scripts\trainer\gymrematch\green.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\Data\Scripts\trainer\gymrematch\james.dat" />
+    <None Include="Content\Data\Scripts\trainer\gymrematch\james.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\trainer\gymrematch\james.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\Data\Scripts\trainer\gymrematch\jessie.dat" />
+    <None Include="Content\Data\Scripts\trainer\gymrematch\jessie.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\trainer\gymrematch\jessie.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -26128,7 +26135,9 @@
     <None Include="Content\Data\Scripts\trainer\gymrematch\kiyo.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Content\Data\Scripts\trainer\gymrematch\meowth.dat" />
+    <None Include="Content\Data\Scripts\trainer\gymrematch\meowth.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\trainer\gymrematch\oak.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -5,6 +5,6 @@ version=2
 	:end
 :endif
 
-@storage.set(string,leader,morty<register.exists(earthbadge_obtain)>)
+@storage.set(string,leader,morty<register.registered(earthbadge_obtain)>)
 @script.start(trainer\gymrematch\main)
 :end

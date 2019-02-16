@@ -1,4 +1,4 @@
 version=2
-@storage.set(string,leader,clair<register.exists(earthbadge_obtain)>)
+@storage.set(string,leader,clair<register.registered(earthbadge_obtain)>)
 @script.start(trainer\gymrematch\main)
 :end
