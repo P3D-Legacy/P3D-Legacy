@@ -49,7 +49,7 @@ version=2
 	@text.show(The Storm Badge makes~all Pokémon up to*Level 70 obey, even~traded ones.*It also lets your~Pokémon use Fly*when you're not in~a battle.*Here, take this too!)
 	@item.give(191,1)
 	@item.messagegive(191,1)
-	@text.show(That is Dynamicpunch.*It doesn't always~hit, but when it*does, it causes~confusion!)
+	@text.show(That is Dynamic Punch.*It doesn't always~hit, but when it*does, it causes~confusion!)
 	:end
 :endif
 
