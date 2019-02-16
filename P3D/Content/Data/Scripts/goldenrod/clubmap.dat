@@ -23,13 +23,13 @@ version=2
 	@register.register(clubintro)
 :endif
 
-:if:<Register.registered(EusineHere)>=false <and> <register.registed(EusineRematchTalk)>=True
+:if:<Register.registered(EusineHere)>=false <and> <register.registed(EusineRematchTalk)>=true
 	:if:<system.random(7)>=5
 		@register.registertime(EusineHere,20,hour)
 	:endif
 :endif
 
-:if:<Register.registered(LiHere)>=false <and> <Register.registered(LiNotHere)>=false <and> <register.registed(LiRematchTalk)>=True
+:if:<Register.registered(LiHere)>=false <and> <Register.registered(LiNotHere)>=false <and> <register.registed(LiRematchTalk)>=true
 	:if:<system.random(10)>=5
 		@register.registertime(LiHere,4,hour)
 		@register.registertime(LiNotHere,3,day)
@@ -72,7 +72,7 @@ version=2
 :if:<Environment.day>=Monday
     :if:<Environment.hour><9 <and> <Environment.hour>>2
         :if:<register.registered(ChuckRematchTalk)>=true
-            @npc.warp(15,~,0.2,~)
+            @npc.warp(13,~,0.2,~)
         :endif
     :endif
     :if:<Environment.hour><12 <and> <Environment.hour>>4
@@ -118,7 +118,7 @@ version=2
 :if:<Environment.day>=Wednesday
     :if:<Environment.hour><9 <and> <Environment.hour>>2
         :if:<register.registered(ChuckRematchTalk)>=true
-            @npc.warp(15,~,0.2,~)
+            @npc.warp(13,~,0.2,~)
         :endif
         :if:<register.registered(KiyoRematchTalk)>=true
             @npc.warp(18,~,0.2,~)
@@ -168,7 +168,7 @@ version=2
 :if:<Environment.day>=Friday
     :if:<Environment.hour><9 <and> <Environment.hour>>2
         :if:<register.registered(ChuckRematchTalk)>=true
-            @npc.warp(15,~,0.2,~)
+            @npc.warp(13,~,0.2,~)
         :endif
     :endif
     :if:<Environment.hour><15 <and> <Environment.hour>>8
@@ -253,12 +253,12 @@ version=2
 	@player.move(0)
 	@player.turnto(1)
 	:if:<player.gender>=0
-	    @text.show(Oh, Miss <player.name>.*It is so good to see you!*I am not sure what you told them, but all of the Gym Leaders from both Johto and Kanto have been frequenting the club!*The battles we have witnessed here have been spectacular!*I suspect our reputation for hosting the strongest trainers has begun to spread.*If you meet a worthy trainer feel free to invite them to visit us!)
+	    @text.show(Oh, Miss <player.name>.*It is so good to see you!*I am not sure what you~told them, but all of the~Gym Leaders from both Johto~and Kanto have been~frequenting the club!*The battles we have~witnessed here have been~spectacular!*I suspect our reputation~for hosting the strongest~trainers has begun to spread.*If you meet a worthy trainer~feel free to invite them~to visit us!)
     :else
-	    @text.show(Oh, Mister <player.name>.*It is so good to see you!*I am not sure what you told them, but all of the Gym Leaders from both Johto and Kanto have been frequenting the club!*The battles we have witnessed here have been spectacular!*I suspect our reputation for hosting the strongest trainers has begun to spread.*If you meet a worthy trainer feel free to invite them to visit us!)
+	    @text.show(Oh, Mister <player.name>.*It is so good to see you!*I am not sure what you~told them, but all of the~Gym Leaders from both Johto~and Kanto have been~frequenting the club!*The battles we have~witnessed here have been~spectacular!*I suspect our reputation~for hosting the strongest~trainers has begun to spread.*If you meet a worthy trainer~feel free to invite them~to visit us!)
 	:endif
 	@register.register(clubextendinvite)
-	:if:<register.registered(shinycelebi)>=true
+	:if:<register.registered(shrinecelebi)>=true
 		@npc.register(tohjofalls\hideout.dat|3|position|~,0,~)
 		@npc.register(tohjofalls\hideout.dat|4|position|~,0,~)
 		@npc.register(tohjofalls\hideout.dat|5|position|~,0,~)
