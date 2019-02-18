@@ -35,8 +35,11 @@ version=2
 	:if:<system.random(10)>=5
 		@register.registertime(LiHere,4,hour)
 		@register.registertime(LiNotHere,3,day)
+	:else
+		@register.registertime(LiNotHere,1,day)
 	:endif
 :endif
+
 :if:<Register.registered(LiHere)>=true
 	@npc.warp(19,~,0.2,~)
 :endif

@@ -313,9 +313,9 @@ version=2
 				@sound.play(teleport)
 				@player.warp(ilexforest.dat,10,0.1,26,0)
 				:if:<register.registered(clubextendinvite)>=true
-					@npc.register(tohjofalls\hideout.dat|3|position|~,0,~)
-					@npc.register(tohjofalls\hideout.dat|4|position|~,0,~)
-					@npc.register(tohjofalls\hideout.dat|5|position|~,0,~)
+					@npc.register(tohjofalls\hideout.dat|3|position|3,0,0)
+					@npc.register(tohjofalls\hideout.dat|4|position|4,0,1)
+					@npc.register(tohjofalls\hideout.dat|5|position|5,0,0)
 				:endif
 				@level.update
 				
