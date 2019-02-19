@@ -1,6 +1,6 @@
 version=2
 :if:<register.registered(clubintro)>=true <and> <register.registered(earthbadge_obtain)>=true <and> <register.registered(SurgeRematchTalk)>=false
-    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe afternoons during~the end of the week?*If you visit while~I am there maybe~we could battle.)
+    @text.show(Well look who it is!*What brings you~back here kid?*The battle bar?*Sounds like the perfect~place for some training!*How do a few afternoons~sound?*You'd better be there too~kiddo, that's a veterans~promise!)
     @register.register(SurgeRematchTalk)
 	@register.change(clubregisters,<register.value(clubregisters)>+1)
     :end

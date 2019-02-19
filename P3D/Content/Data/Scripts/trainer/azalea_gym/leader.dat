@@ -1,6 +1,6 @@
 version=2
 :if:<register.registered(clubintro)>=true <and> <register.registered(BugsyRematchTalk)>=false
-    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe mornings during~the beginning of the week?*If you visit while~I am there maybe~we could battle.)
+    @text.show(Hey <player.name>,~hear this.*Last season I was able to~catch a whole bunch of bug~Pokémon that migrated from~Kanto.*I am itching to test them~out in battle.*Rumor is that Goldenrod has~opened a new battle bar~in the city center.*I will make sure to be there~a few mornings if you are~interested in a rematch.)
     @register.register(BugsyRematchTalk)
 	@register.change(clubregisters,<register.value(clubregisters)>+1)
     :end

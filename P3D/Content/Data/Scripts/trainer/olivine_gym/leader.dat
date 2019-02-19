@@ -1,6 +1,6 @@
 version=2
 :if:<register.registered(clubintro)>=true <and> <register.registered(JasmineRematchTalk)>=false
-    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe Monday/Wednesday/~Friday early afternoons?*If you visit while~I am there maybe~we could battle.)
+    @text.show(...Um*hello <player.name>.*I would like to thank you~again for helping me back~then at the lighthouse.*Ampharos has been completely~healthy, all thanks to you...*Um...*a battle bar?*I don't usually leave the city~too much but I could start~showing up there.*How do a few afternoons sound?*Um...*I'll see you there then, ok?)
     @register.register(JasmineRematchTalk)
 	@register.change(clubregisters,<register.value(clubregisters)>+1)
     :end
