@@ -25638,6 +25638,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
+    <Compile Include="Pokemon\Abilities\TanglingHair.vb" />
+    <Compile Include="Pokemon\Abilities\SlushRush.vb" />
+    <Compile Include="Pokemon\Abilities\PowerofAlchemy.vb" />
+    <Compile Include="Pokemon\Abilities\Galvanize.vb" />
+    <Compile Include="Pokemon\Abilities\SurgeSurfer.vb" />
     <Compile Include="Pokemon\Abilities\ParentalBond.vb" />
     <Compile Include="Pokemon\Attacks\Bug\PollenPuff.vb" />
     <Compile Include="Pokemon\Attacks\Bug\FirstImpression.vb" />
@@ -25722,10 +25727,13 @@
     <Compile Include="Pokemon\Items\Machines\TM173.vb" />
     <Compile Include="Pokemon\Items\Standard\DouseDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ChillDrive.vb" />
+    <Compile Include="Pokemon\Items\Standard\Snowball.vb" />
+    <Compile Include="Pokemon\Items\Standard\CellBattery.vb" />
     <Compile Include="Pokemon\Items\Standard\FlameOrb.vb" />
     <Compile Include="Pokemon\Items\Standard\ShockDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\BurnDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
+    <Compile Include="Pokemon\Items\Stones\IceStone.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
     <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
