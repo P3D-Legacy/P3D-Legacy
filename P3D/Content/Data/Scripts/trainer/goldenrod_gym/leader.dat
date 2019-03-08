@@ -1,6 +1,6 @@
 version=2
 :if:<register.registered(clubintro)>=true <and> <register.registered(WhitneyRematchTalk)>=false
-    @text.show(Hi there!~So good to see you again!*I've been so bored lately,~we should totally have a~rematch!*Um, have you heard about~this new Battle bar?*It's supposed to be like the~coolest place in town!*If you want I could be~there in the evenings.*Don't be late!)
+    @text.show(Hi there!~So good to see you again!*I've been so bored lately,~we should totally have a~rematch!*Um, have you heard about~this new Battle Bar?*It's supposed to be like the~coolest place in town!*If you want I could be~there in the evenings.*Don't be late!)
     @register.register(WhitneyRematchTalk)
 	@register.change(clubregisters,<register.value(clubregisters)>+1)
     :end
