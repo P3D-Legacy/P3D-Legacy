@@ -47,9 +47,9 @@ version=2
 :if:<Environment.day>=Sunday
 	:if:<Environment.hour><4 <and> <Environment.hour>>0
 		:if:<register.registered(TRTPrematchTalk)>=true
-			@npc.warp(30,~,3.2,~)
-			@npc.warp(31,~,3.2,~)
-			@npc.warp(32,~,3.2,~)
+			@npc.warp(20,~,3.2,~)
+			@npc.warp(21,~,3.2,~)
+			@npc.warp(22,~,3.2,~)
 		:endif
 	:endif
     :if:<Environment.hour><12 <and> <Environment.hour>>5
