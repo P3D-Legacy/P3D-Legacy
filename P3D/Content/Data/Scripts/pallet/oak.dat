@@ -7,7 +7,7 @@ version=2
 	@level.wait(30)
 	@register.register(pokedex_national)
 	@register.register(nationaldex)
-	@text.show(It won't be easy to complete~the National Pokédex...*Infact I have another~gift to help you~do that!)
+	@text.show(It won't be easy to complete~the National Pokédex...*In fact I have another~gift to help you~do that!)
 	@item.give(284,1)
 	@item.messagegive(284,1)
 	@register.register(rainbowpass)
@@ -32,7 +32,7 @@ version=2
 :endif
 
 :if:<register.registered(clubextendinvite)>=true <and> <register.registered(kantostart1)>=true <and> <register.registered(OakPrematchTalk)>=false
-	@text.show( )
+	@text.show(Well, if it isn't,~<player.name>!*...*Hm, so they have~reformed the Battle~Club?*Well, my battling skills~might be a bit rusty,~however, I'll show up~for some practice.*I might even bring~someone along...)
 	@register.register(OakPrematchTalk)
 	:end
 
