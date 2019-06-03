@@ -13,7 +13,7 @@
             Me.Power = 80
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Tough
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Zing Zap"
             Me.Description = "A strong electric blast crashes down on the target, giving it an electric shock. This may also make the target flinch."
             Me.CriticalChance = 1

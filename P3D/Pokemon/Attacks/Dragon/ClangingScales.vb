@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Dragon
             Me.Power = 110
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Clanging Scales"
             Me.Description = "The user rubs the scales on its entire body and makes a huge noise to attack the opposing Pokémon. The user's Defense stat goes down after the attack."
             Me.CriticalChance = 1

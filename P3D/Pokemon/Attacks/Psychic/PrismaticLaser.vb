@@ -14,7 +14,7 @@
             Me.Power = 160
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Prismatic Laser"
             Me.Description = "The user shoots powerful lasers using the power of a prism. The user can't move on the next turn."
             Me.CriticalChance = 1

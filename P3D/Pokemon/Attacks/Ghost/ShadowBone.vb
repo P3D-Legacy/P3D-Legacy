@@ -14,7 +14,7 @@
             Me.Power = 85
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Tough
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Shadow Bone"
             Me.Description = "The user attacks by beating the target with a bone that contains a spirit. This may also lower the target's Defense stat."
             Me.CriticalChance = 1
