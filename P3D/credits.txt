@@ -24,7 +24,7 @@ Pokémon 3D
 		"Fanta" 
 		Jorge Luis Espinoza
 		Conner Joseph Brewster
-		"OmegaGhost"
+		"TheOmegaGhost"
 
 	Programming
 		Nils Drescher
@@ -45,7 +45,7 @@ Pokémon 3D
 		Miguel Nunez
 		Grant Garrett
 		"Anvil555"
-		"OmegaGhost"
+		"TheOmegaGhost"
 		"princess-phoenix"
 		"SageDeoxys"
 		"Swdfm"
@@ -53,9 +53,10 @@ Pokémon 3D
 		"nicomts"
 		"SweeperSnivy"
 		"Clara"
+		"piphybuilder88"
 		"SacredDragonair"
 		"Carlotta4th"
-		"WesleyFG
+		"WesleyFG"
 		"tebited15"
 
 	Map Design
