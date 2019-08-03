@@ -375,15 +375,15 @@ nextScript:
                         Dim diff = date1 - date2
                         Select Case format
                             Case "days", "day"
-                                If diff.Days >= value Then
+                                If CInt(diff.TotalDays) >= value Then
                                     remove = True
                                 End If
                             Case "minutes", "minute"
-                                If diff.Minutes >= value Then
+                                If CInt(diff.TotalMinutes) >= value Then
                                     remove = True
                                 End If
                             Case "seconds", "second"
-                                If diff.Seconds >= value Then
+                                If CInt(diff.TotalSeconds) >= value Then
                                     remove = True
                                 End If
                             Case "years", "year"
@@ -399,7 +399,7 @@ nextScript:
                                     remove = True
                                 End If
                             Case "hours", "hour"
-                                If diff.Hours >= value Then
+                                If CInt(diff.TotalHours) >= value Then
                                     remove = True
                                 End If
                             Case "dayofweek"

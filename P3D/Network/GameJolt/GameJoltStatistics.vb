@@ -32,7 +32,7 @@
             If IndicedStats.Contains(statName.ToLower()) = False Then
                 If statName.ToLower() = "steps taken" Then
                     TempSteps += 1
-                    If (Date.Now - lastStepTime).Seconds >= 20 Then
+                    If CInt((Date.Now - lastStepTime).TotalSeconds) >= 20 Then
                         lastStepTime = Date.Now
                         Return True
                     End If

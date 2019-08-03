@@ -28,7 +28,7 @@
         End Sub
 
         Shared Sub Ping()
-            Dim diff As Integer = (Date.Now - LastPing).Seconds
+            Dim diff As Integer = CInt((Date.Now - LastPing).TotalSeconds)
 
             If diff >= 30 Then
                 Logger.Debug("Ping session...")
