@@ -1,4 +1,4 @@
-{"Level"{LEV[{"Name"{str[Kolben Tower]}}{"MusicLoop"{str[battletower]}}{"CurrentRegion"{str[Sevii Islands]}}]}}
+{"Level"{LEV[{"Name"{str[Kolben Tower]}}{"MusicLoop"{str[battletower]}}{"CurrentRegion"{str[Sevii Islands]}}{"RegionalForm"{str[alola]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"MapScript"{str[kolben\randomscreen]}}{"Weather"{int[1]}}]}}
 
 Floor:
