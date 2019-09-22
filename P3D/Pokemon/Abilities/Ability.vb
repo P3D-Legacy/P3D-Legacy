@@ -485,18 +485,18 @@
             'Receiver
             Case 223
                 Return New Abilities.PowerofAlchemy()
-                'Case 224
-                'Beast Boost
-                'Case 225
-                'RKS System
-                'Case 226
-                'Electric Surge
-                'Case 227
-                'Psychic Surge
-                'Case 228
-                'Misty Surge
-                'Case 229
-                'Grassy Surge
+            'Case 224
+            'Beast Boost
+            'Case 225
+            'RKS System
+            Case 226
+                Return New Abilities.ElectricSurge()
+            Case 227
+                Return New Abilities.PsychicSurge()
+            Case 228
+                Return New Abilities.MistySurge()
+            Case 229
+                Return New Abilities.GrassySurge()
                 'Case 230
                 'Full Metal Body
                 'Case 231
@@ -505,8 +505,6 @@
                 'Prism Armor
                 'Case 233
                 'Neuroforce
-                'Case 234
-                'Blank
             Case Else
                 Return New Abilities.Stench
         End Select
