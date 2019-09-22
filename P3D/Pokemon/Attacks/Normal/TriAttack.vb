@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Tri attack"
+            Me.Name = "Tri Attack"
             Me.Description = "The user strikes with a simultaneous three-beam attack. May also burn, freeze, or leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False
