@@ -1,12 +1,12 @@
 Namespace Items.Berries
 
-    <Item(2063, "Rowap")>
-    Public Class RowapBerry
+    <Item(2065, "Kee")>
+    Public Class KeeBerry
 
         Inherits Berry
 
         Public Sub New()
-            MyBase.New(86400, "If held by a Pokémon and a special attack lands, the attacker takes damage. ", "13.2cm", "Very Soft", 1, 5)
+            MyBase.New(86400, "If held by a Pokémon, this Berry will increase the holder's Defense if it's hit with a physical move.", "5.0cm", "Very Soft", 1, 5)
 
             Me.Spicy = 10
             Me.Dry = 0
@@ -14,7 +14,7 @@ Namespace Items.Berries
             Me.Bitter = 0
             Me.Sour = 40
 
-            Me.Type = Element.Types.Dark
+            Me.Type = Element.Types.Fairy
             Me.Power = 100
         End Sub
 
