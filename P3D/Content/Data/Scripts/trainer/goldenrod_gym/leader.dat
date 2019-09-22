@@ -18,10 +18,10 @@ version=2
 :endif
 
 :if:<register.registered(defeat_whitney_2)>=True
-	@text.show(...Sniff...*What? What do you~want? A Badge?*Oh, right. I forgot.~Here's the Plain Badge.)
+	@text.show(...Sniff...*What? What do you~want? A badge?*Oh, right. I forgot.~Here's the Plain Badge.)
 	@player.GetBadge(11)
 	@player.AchieveEmblem(plain)
-	@text.show(Plainbadge lets~your Pokémon use~Strength outside~of battle.*It also boosts~your Pokémon's~Speed.)
+	@text.show(The Plain Badge lets~your Pokémon use~Strength and Ride~outside of battle.*It also boosts~your Pokémon's~Speed.)
 	@register.register(plainbadge_obtain)
 	@text.show(Oh, you can have this, too!)
 	@item.give(235,1)
