@@ -1402,10 +1402,10 @@
                     'Crafty Shield
                     'Case 579
                     'Flower Shield
-                    'Case 580
-                    'Grassy Terrain
-                    'Case 581
-                    'Misty Terrain
+                Case 580
+                    returnMove = New Moves.Grass.GrassyTerrain()
+                Case 581
+                    returnMove = New Moves.Fairy.MistyTerrain()
                     'Case 582
                     'Electrify
                 Case 583
@@ -1450,8 +1450,8 @@
                     'Magnetic Flux - Double Battles
                     'Case 603
                     'Happy Hour
-                    'Case 604
-                    'Electric Terrain
+                Case 604
+                    returnMove = New Moves.Electric.ElectricTerrain()
                 Case 605
                     returnMove = New Moves.Fairy.DazzlingGleam()
                 Case 606
@@ -1600,8 +1600,8 @@
                     returnMove = New Moves.Bug.PollenPuff()
                 Case 677
                     returnMove = New Moves.Steel.AnchorShot()
-                    'Case 678
-                    'Psychic Terrain
+                Case 678
+                    returnMove = New Moves.Psychic.PsychicTerrain()
                 Case 679
                     returnMove = New Moves.Bug.Lunge()
                 Case 680
