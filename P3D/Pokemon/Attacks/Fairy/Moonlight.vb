@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Normal
+﻿Namespace BattleSystem.Moves.Fairy
 
     Public Class Moonlight
 

@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Normal
 
-    Public Class SmellingSalt
+    Public Class SmellingSalts
 
         Inherits Attack
 
@@ -14,8 +14,8 @@
             Me.Power = 70
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Smelling Salt"
+            Me.ContestCategory = ContestCategories.Tough
+            Me.Name = "Smelling Salts"
             Me.Description = "This attack inflicts double damage on a target with paralysis. It also cures the target's paralysis, however."
             Me.CriticalChance = 1
             Me.IsHMMove = False

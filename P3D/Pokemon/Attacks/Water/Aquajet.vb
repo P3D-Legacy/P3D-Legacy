@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Water
 
-    Public Class Aquajet
+    Public Class AquaJet
 
         Inherits Attack
 
@@ -14,7 +14,7 @@
             Me.Power = 40
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Aqua Jet"
             Me.Description = "The user lunges at the target speed that makes it almost invisible. This move always goes first."
             Me.CriticalChance = 1

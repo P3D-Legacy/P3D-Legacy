@@ -14,7 +14,7 @@
             Me.Power = 90
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Earth Power"
             Me.Description = "The user makes the ground under the target erupt with power. This may also lower the target's Sp. Def."
             Me.CriticalChance = 1

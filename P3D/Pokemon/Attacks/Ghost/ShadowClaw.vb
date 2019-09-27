@@ -14,7 +14,7 @@
             Me.Power = 70
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cute
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Shadow Claw"
             Me.Description = "The user slashes with a sharp claw made from shadows. Critical hits land more easily."
             Me.CriticalChance = 2

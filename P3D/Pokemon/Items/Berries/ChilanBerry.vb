@@ -1,6 +1,6 @@
 Namespace Items.Berries
 
-    <Item(2051, "Chilian")>
+    <Item(2051, "Chilan")>
     Public Class ChilanBerry
 
         Inherits Berry

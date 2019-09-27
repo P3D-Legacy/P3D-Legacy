@@ -14,7 +14,7 @@
             Me.Power = 15
             Me.Accuracy = 85
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Tough
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Double Slap"
             Me.Description = "The target is slapped repeatedly, back and forth, two to five times in a row."
             Me.CriticalChance = 1

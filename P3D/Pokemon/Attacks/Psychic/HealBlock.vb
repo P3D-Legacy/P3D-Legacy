@@ -14,7 +14,7 @@
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cute
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Heal Block"
             Me.Description = "For five turns, the user prevents the opposing team from using any moves, Abilities, or held items that recover HP."
             Me.CriticalChance = 0

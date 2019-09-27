@@ -53,6 +53,25 @@
             '#End
         End Sub
 
+        Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+            Dim op As Pokemon = BattleScreen.OppPokemon
+            If own = False Then
+                op = BattleScreen.OwnPokemon
+            End If
+
+            If own = True Then
+                If BattleScreen.FieldEffects.OppSmacked = 0 Then
+                    BattleScreen.FieldEffects.OppSmacked = 1
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " fell straight down."))
+                End If
+            Else
+                If BattleScreen.FieldEffects.OwnSmacked = 0 Then
+                    BattleScreen.FieldEffects.OwnSmacked = 1
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " fell straight down."))
+                End If
+            End If
+        End Sub
+
     End Class
 
 End Namespace

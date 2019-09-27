@@ -14,7 +14,7 @@
             Me.Power = 100
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Judgement"
             Me.Description = "The user releases countless shots of light at the target. This move's type varies depending on the kind of Plate the user is holding."
             Me.CriticalChance = 1

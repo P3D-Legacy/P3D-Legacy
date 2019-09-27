@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Psycho Shift"
             Me.Description = "Using its psychic power of suggestion, the user transfers its status conditions to the target."
             Me.CriticalChance = 0

@@ -32,7 +32,7 @@
         Public FallGrow As Integer = 1
 
         Public Type As Element.Types
-        Public Power As Integer = 60
+        Public Power As Integer = 80
 
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
         Public Overrides ReadOnly Property FlingDamage As Integer = 10

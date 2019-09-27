@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Grass
 
-    Public Class Seedflare
+    Public Class SeedFlare
 
         Inherits Attack
 
@@ -14,7 +14,7 @@
             Me.Power = 120
             Me.Accuracy = 85
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Seed Flare"
             Me.Description = "The user emits a shock wave from its body to attack its target. It may harshly lower the target's Sp. Def."
             Me.CriticalChance = 1

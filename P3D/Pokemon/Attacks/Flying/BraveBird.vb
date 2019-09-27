@@ -14,7 +14,7 @@
             Me.Power = 120
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cute
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Brave Bird"
             Me.Description = "The user tucks in its wings and charges from a low altitude. The user also takes serious damage."
             Me.CriticalChance = 1

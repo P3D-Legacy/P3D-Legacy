@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Normal
 
-    Public Class SmokeScreen
+    Public Class Smokescreen
 
         Inherits Attack
 
@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Smoke Screen"
+            Me.Name = "Smokescreen"
             Me.Description = "The user releases an obscuring cloud of smoke or ink. It reduces the target's accuracy."
             Me.CriticalChance = 0
             Me.IsHMMove = False

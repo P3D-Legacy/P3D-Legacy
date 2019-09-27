@@ -19,7 +19,7 @@
             Me.Description = "An attack that makes use of nature’s power. Its effects vary depending on the user’s environment."
             Me.CriticalChance = 0
             Me.IsHMMove = False
-            Me.Target = Targets.Self
+            Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End

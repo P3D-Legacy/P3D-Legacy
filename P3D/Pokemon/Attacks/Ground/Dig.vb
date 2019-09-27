@@ -14,7 +14,7 @@
             Me.Power = 80
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Dig"
             Me.Description = "The user burrows, then attacks on the second turn. It can also be used to exit dungeons. "
             Me.CriticalChance = 1

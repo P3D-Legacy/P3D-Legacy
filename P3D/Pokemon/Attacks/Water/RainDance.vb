@@ -14,7 +14,7 @@
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Tough
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Rain Dance"
             Me.Description = "The user summons a heavy rain that falls for five turns, powering up Water-type moves."
             Me.CriticalChance = 0

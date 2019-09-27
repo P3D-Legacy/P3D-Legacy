@@ -1,16 +1,16 @@
 Namespace Items.Medicine
 
-    <Item(114, "Rage Candy Bar")>
-    Public Class RageCandyBar
+    <Item(152, "Pewter Crunchies")>
+    Public Class PewterCrunchies
 
         Inherits MedicineItem
 
         Public Overrides ReadOnly Property IsHealingItem As Boolean = True
-        Public Overrides ReadOnly Property Description As String = "A famous Mahogany Town candy tourists like to buy and take home. It can be used once to heal all the status conditions of a Pokémon."
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 300
+        Public Overrides ReadOnly Property Description As String = "Pewter City's famous crunchy snack. They can be used to heal all status conditions of a single Pokémon."
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 250
 
         Public Sub New()
-            _textureRectangle = New Rectangle(360, 96, 24, 24)
+            _textureRectangle = New Rectangle(96, 312, 24, 24)
         End Sub
 
         Public Overrides Sub Use()

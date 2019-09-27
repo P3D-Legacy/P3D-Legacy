@@ -14,7 +14,7 @@
             Me.Power = 130
             Me.Accuracy = 90
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Leaf Storm"
             Me.Description = "The user whips up a storm of leaves around the target. The attack's recoil harshly lowers the user's Sp. Atk stat."
             Me.CriticalChance = 1

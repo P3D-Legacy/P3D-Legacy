@@ -459,7 +459,7 @@
                 Case 107
                     returnMove = New Moves.Normal.Minimize()
                 Case 108
-                    returnMove = New Moves.Normal.SmokeScreen()
+                    returnMove = New Moves.Normal.Smokescreen()
                 Case 109
                     returnMove = New Moves.Ghost.ConfuseRay()
                 Case 110
@@ -483,7 +483,7 @@
                 Case 119
                     returnMove = New Moves.Flying.MirrorMove()
                 Case 120
-                    returnMove = New Moves.Normal.Selfdestruct()
+                    returnMove = New Moves.Normal.SelfDestruct()
                 Case 121
                     returnMove = New Moves.Normal.EggBomb()
                 Case 122
@@ -513,9 +513,9 @@
                 Case 134
                     returnMove = New Moves.Psychic.Kinesis()
                 Case 135
-                    returnMove = New Moves.Normal.Softboiled()
+                    returnMove = New Moves.Normal.SoftBoiled()
                 Case 136
-                    returnMove = New Moves.Fighting.HiJumpKick()
+                    returnMove = New Moves.Fighting.HighJumpKick()
                 Case 137
                     returnMove = New Moves.Normal.Glare()
                 Case 138
@@ -613,9 +613,9 @@
                 Case 184
                     returnMove = New Moves.Normal.ScaryFace()
                 Case 185
-                    returnMove = New Moves.Dark.FaintAttack()
+                    returnMove = New Moves.Dark.FeintAttack()
                 Case 186
-                    returnMove = New Moves.Normal.SweetKiss()
+                    returnMove = New Moves.Fairy.SweetKiss()
                 Case 187
                     returnMove = New Moves.Normal.BellyDrum()
                 Case 188
@@ -651,7 +651,7 @@
                 Case 203
                     returnMove = New Moves.Normal.Endure()
                 Case 204
-                    returnMove = New Moves.Normal.Charm()
+                    returnMove = New Moves.Fairy.Charm()
                 Case 205
                     returnMove = New Moves.Rock.Rollout()
                 Case 206
@@ -715,7 +715,7 @@
                 Case 235
                     returnMove = New Moves.Grass.Synthesis()
                 Case 236
-                    returnMove = New Moves.Normal.Moonlight()
+                    returnMove = New Moves.Fairy.Moonlight()
                 Case 237
                     returnMove = New Moves.Normal.HiddenPower()
                 Case 238
@@ -773,7 +773,7 @@
                 Case 264
                     returnMove = New Moves.Fighting.FocusPunch()
                 Case 265
-                    returnMove = New Moves.Normal.SmellingSalt()
+                    returnMove = New Moves.Normal.SmellingSalts()
                     'Case 266
                     'Follow me - Double Battles
                 Case 267

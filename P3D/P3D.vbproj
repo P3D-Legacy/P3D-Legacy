@@ -10999,6 +10999,15 @@
     <Content Include="Content\GUI\MainMenu\lugiaParticle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Items\Fossils.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Items\Gems.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Items\Memories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Localization\Tokens_de.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -26097,6 +26106,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
+    <Compile Include="Pokemon\Abilities\PsychicSurge.vb" />
+    <Compile Include="Pokemon\Abilities\MistySurge.vb" />
+    <Compile Include="Pokemon\Abilities\GrassySurge.vb" />
+    <Compile Include="Pokemon\Abilities\ElectricSurge.vb" />
     <Compile Include="Pokemon\Abilities\TanglingHair.vb" />
     <Compile Include="Pokemon\Abilities\SlushRush.vb" />
     <Compile Include="Pokemon\Abilities\PowerofAlchemy.vb" />
@@ -26116,6 +26129,8 @@
     <Compile Include="Pokemon\Attacks\Dragon\ClangingScales.vb" />
     <Compile Include="Pokemon\Attacks\Dragon\DragonHammer.vb" />
     <Compile Include="Pokemon\Attacks\Dragon\SpacialRend.vb" />
+    <Compile Include="Pokemon\Attacks\Electric\ElectricTerrain.vb" />
+    <Compile Include="Pokemon\Attacks\Fairy\MistyTerrain.vb" />
     <Compile Include="Pokemon\Attacks\Fairy\Geomancy.vb" />
     <Compile Include="Pokemon\Attacks\Fairy\LightOfRuin.vb" />
     <Compile Include="Pokemon\Attacks\Fairy\FleurCannon.vb" />
@@ -26132,6 +26147,7 @@
     <Compile Include="Pokemon\Attacks\Ghost\ShadowForce.vb" />
     <Compile Include="Pokemon\Attacks\Ghost\SpiritShackle.vb" />
     <Compile Include="Pokemon\Attacks\Grass\Leafage.vb" />
+    <Compile Include="Pokemon\Attacks\Grass\GrassyTerrain.vb" />
     <Compile Include="Pokemon\Attacks\Grass\TropKick.vb" />
     <Compile Include="Pokemon\Attacks\Grass\SolarBlade.vb" />
     <Compile Include="Pokemon\Attacks\Grass\Strength Sap.vb" />
@@ -26161,6 +26177,7 @@
     <Compile Include="Pokemon\Attacks\Psychic\PrismaticLaser.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\PsychicFangs.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\HyperspaceHole.vb" />
+    <Compile Include="Pokemon\Attacks\Psychic\PsychicTerrain.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\Synchronoise.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\Psystrike.vb" />
     <Compile Include="Pokemon\Attacks\Rock\DiamondStorm.vb" />
@@ -26172,6 +26189,9 @@
     <Compile Include="Pokemon\Attacks\Water\OriginPulse.vb" />
     <Compile Include="Pokemon\Attacks\Water\Liquidation.vb" />
     <Compile Include="Pokemon\Attacks\Water\SparklingAria.vb" />
+    <Compile Include="Pokemon\Items\Berries\MarangaBerry.vb" />
+    <Compile Include="Pokemon\Items\Berries\KeeBerry.vb" />
+    <Compile Include="Pokemon\Items\Berries\RoseliBerry.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LibertySeaMap.vb" />
     <Compile Include="Pokemon\Items\Machines\TM171.vb" />
     <Compile Include="Pokemon\Items\Machines\TM172.vb" />
@@ -26184,6 +26204,12 @@
     <Compile Include="Pokemon\Items\Machines\TM181.vb" />
     <Compile Include="Pokemon\Items\Machines\TM174.vb" />
     <Compile Include="Pokemon\Items\Machines\TM173.vb" />
+    <Compile Include="Pokemon\Items\Medicine\PewterCrunchies.vb" />
+    <Compile Include="Pokemon\Items\Standard\PsychicSeed.vb" />
+    <Compile Include="Pokemon\Items\Standard\MistySeed.vb" />
+    <Compile Include="Pokemon\Items\Standard\GrassySeed.vb" />
+    <Compile Include="Pokemon\Items\Standard\ElectricSeed.vb" />
+    <Compile Include="Pokemon\Items\Standard\TerrainExtender.vb" />
     <Compile Include="Pokemon\Items\Standard\DouseDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ChillDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\Snowball.vb" />
@@ -27099,15 +27125,15 @@
     <Compile Include="Pokemon\Attacks\Bug\StruggleBug.vb" />
     <Compile Include="Pokemon\Attacks\Bug\Tailglow.vb" />
     <Compile Include="Pokemon\Attacks\Bug\Twineedle.vb" />
-    <Compile Include="Pokemon\Attacks\Bug\UTurn.vb" />
-    <Compile Include="Pokemon\Attacks\Bug\Xscissor.vb" />
+    <Compile Include="Pokemon\Attacks\Bug\U-Turn.vb" />
+    <Compile Include="Pokemon\Attacks\Bug\XScissor.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Assurance.vb" />
     <Compile Include="Pokemon\Attacks\Dark\BeatUp.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Bite.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Crunch.vb" />
     <Compile Include="Pokemon\Attacks\Dark\DarkPulse.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Embargo.vb" />
-    <Compile Include="Pokemon\Attacks\Dark\FaintAttack.vb" />
+    <Compile Include="Pokemon\Attacks\Dark\FeintAttack.vb" />
     <Compile Include="Pokemon\Attacks\Dark\FakeTears.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Flatter.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Fling.vb" />
@@ -27117,7 +27143,7 @@
     <Compile Include="Pokemon\Attacks\Dark\Memento.vb" />
     <Compile Include="Pokemon\Attacks\Dark\NastyPlot.vb" />
     <Compile Include="Pokemon\Attacks\Dark\NightDaze.vb" />
-    <Compile Include="Pokemon\Attacks\Dark\Nightslash.vb" />
+    <Compile Include="Pokemon\Attacks\Dark\NightSlash.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Payback.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Punishment.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Pursuit.vb" />
@@ -27186,7 +27212,7 @@
     <Compile Include="Pokemon\Attacks\Fighting\FocusPunch.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\ForcePalm.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\HammerArm.vb" />
-    <Compile Include="Pokemon\Attacks\Fighting\HiJumpKick.vb" />
+    <Compile Include="Pokemon\Attacks\Fighting\HighJumpKick.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\JumpKick.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\KarateChop.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\LowKick.vb" />
@@ -27299,7 +27325,7 @@
     <Compile Include="Pokemon\Attacks\Grass\PowerWhip.vb" />
     <Compile Include="Pokemon\Attacks\Grass\RazorLeaf.vb" />
     <Compile Include="Pokemon\Attacks\Grass\SeedBomb.vb" />
-    <Compile Include="Pokemon\Attacks\Grass\Seedflare.vb" />
+    <Compile Include="Pokemon\Attacks\Grass\SeedFlare.vb" />
     <Compile Include="Pokemon\Attacks\Grass\SleepPowder.vb" />
     <Compile Include="Pokemon\Attacks\Grass\SolarBeam.vb" />
     <Compile Include="Pokemon\Attacks\Grass\Spore.vb" />
@@ -27322,7 +27348,7 @@
     <Compile Include="Pokemon\Attacks\Ground\MudBomb.vb" />
     <Compile Include="Pokemon\Attacks\Ground\MudShot.vb" />
     <Compile Include="Pokemon\Attacks\Ground\MudSport.vb" />
-    <Compile Include="Pokemon\Attacks\Ground\Sand-Attack.vb" />
+    <Compile Include="Pokemon\Attacks\Ground\SandAttack.vb" />
     <Compile Include="Pokemon\Attacks\Ground\SandTomb.vb" />
     <Compile Include="Pokemon\Attacks\Ground\Spikes.vb" />
     <Compile Include="Pokemon\Attacks\Ice\AuroraBeam.vb" />
@@ -27356,7 +27382,7 @@
     <Compile Include="Pokemon\Attacks\Normal\BodySlam.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Boomburst.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Captivate.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\Charm.vb" />
+    <Compile Include="Pokemon\Attacks\Fairy\Charm.vb" />
     <Compile Include="Pokemon\Attacks\Normal\ChipAway.vb" />
     <Compile Include="Pokemon\Attacks\Normal\CometPunch.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Confide.vb" />
@@ -27417,7 +27443,7 @@
     <Compile Include="Pokemon\Attacks\Normal\Mimic.vb" />
     <Compile Include="Pokemon\Attacks\Normal\MindReader.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Minimize.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\Moonlight.vb" />
+    <Compile Include="Pokemon\Attacks\Fairy\Moonlight.vb" />
     <Compile Include="Pokemon\Attacks\Normal\MorningSun.vb" />
     <Compile Include="Pokemon\Attacks\Normal\NaturalGift.vb" />
     <Compile Include="Pokemon\Attacks\Normal\NaturePower.vb" />
@@ -27445,7 +27471,7 @@
     <Compile Include="Pokemon\Attacks\Normal\ScaryFace.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Scratch.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Screech.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\Selfdestruct.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\Self-Destruct.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Sharpen.vb" />
     <Compile Include="Pokemon\Attacks\Normal\ShellSmash.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Sing.vb" />
@@ -27455,11 +27481,11 @@
     <Compile Include="Pokemon\Attacks\Normal\Slam.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Slash.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SleepTalk.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\SmellingSalt.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\SmokeScreen.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\SmellingSalts.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\Smokescreen.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Snatch.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Snore.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\Softboiled.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\Soft-Boiled.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SonicBoom.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SpikeCannon.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SpitUp.vb" />
@@ -27473,7 +27499,7 @@
     <Compile Include="Pokemon\Attacks\Normal\Supersonic.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Swagger.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Swallow.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\SweetKiss.vb" />
+    <Compile Include="Pokemon\Attacks\Fairy\SweetKiss.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SweetScent.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Swift.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SwordsDance.vb" />
@@ -27582,7 +27608,7 @@
     <Compile Include="Pokemon\Attacks\Steel\GyroBall.vb" />
     <Compile Include="Pokemon\Attacks\Steel\HeavySlam.vb" />
     <Compile Include="Pokemon\Attacks\Steel\IronDefense.vb" />
-    <Compile Include="Pokemon\Attacks\Steel\Ironhead.vb" />
+    <Compile Include="Pokemon\Attacks\Steel\IronHead.vb" />
     <Compile Include="Pokemon\Attacks\Steel\IronTail.vb" />
     <Compile Include="Pokemon\Attacks\Steel\KingsShield.vb" />
     <Compile Include="Pokemon\Attacks\Steel\MagnetBomb.vb" />
@@ -27595,18 +27621,18 @@
     <Compile Include="Pokemon\Attacks\Steel\SteelWing.vb" />
     <Compile Include="Pokemon\Attacks\StruggleAttack.vb" />
     <Compile Include="Pokemon\Attacks\TheDerpMove.vb" />
-    <Compile Include="Pokemon\Attacks\Water\Aquajet.vb" />
+    <Compile Include="Pokemon\Attacks\Water\AquaJet.vb" />
     <Compile Include="Pokemon\Attacks\Water\AquaRing.vb" />
-    <Compile Include="Pokemon\Attacks\Water\Aquatail.vb" />
+    <Compile Include="Pokemon\Attacks\Water\AquaTail.vb" />
     <Compile Include="Pokemon\Attacks\Water\Brine.vb" />
     <Compile Include="Pokemon\Attacks\Water\Bubble.vb" />
     <Compile Include="Pokemon\Attacks\Water\BubbleBeam.vb" />
     <Compile Include="Pokemon\Attacks\Water\Clamp.vb" />
     <Compile Include="Pokemon\Attacks\Water\Crabhammer.vb" />
     <Compile Include="Pokemon\Attacks\Water\Dive.vb" />
-    <Compile Include="Pokemon\Attacks\Water\Hydrocannon.vb" />
+    <Compile Include="Pokemon\Attacks\Water\HydroCannon.vb" />
     <Compile Include="Pokemon\Attacks\Water\HydroPump.vb" />
-    <Compile Include="Pokemon\Attacks\Water\Muddywater.vb" />
+    <Compile Include="Pokemon\Attacks\Water\MuddyWater.vb" />
     <Compile Include="Pokemon\Attacks\Water\Octazooka.vb" />
     <Compile Include="Pokemon\Attacks\Water\RainDance.vb" />
     <Compile Include="Pokemon\Attacks\Water\RazorShell.vb" />
@@ -28135,7 +28161,7 @@
     <Compile Include="Pokemon\Items\Standard\PinkBow.vb" />
     <Compile Include="Pokemon\Items\Standard\PoisonBarb.vb" />
     <Compile Include="Pokemon\Items\Standard\PokeDoll.vb" />
-    <Compile Include="Pokemon\Items\Standard\PolkadotBow.vb" />
+    <Compile Include="Pokemon\Items\Standard\BerserkGene.vb" />
     <Compile Include="Pokemon\Items\Standard\PowerAnklet.vb" />
     <Compile Include="Pokemon\Items\Standard\PowerBand.vb" />
     <Compile Include="Pokemon\Items\Standard\PowerBelt.vb" />

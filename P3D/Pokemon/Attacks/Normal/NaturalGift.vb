@@ -64,15 +64,19 @@ Namespace BattleSystem.Moves.Normal
             End If
 
             If 1999 < itemID And itemID < 2016 Then
-                Return 60
+                Return 80
             ElseIf 2034 < itemID And itemID < 2052 Then
-                Return 60
-            ElseIf 2015 < itemID And itemID < 2031 Then
-                Return 70
-            ElseIf 2031 < itemID And itemID < 2036 Then
                 Return 80
+            ElseIf 2063 < itemID And itemID < 2065 Then
+                Return 80
+            ElseIf 2015 < itemID And itemID < 2032 Then
+                Return 90
+            ElseIf 2031 < itemID And itemID < 2035 Then
+                Return 100
             ElseIf 2051 < itemID And itemID < 2064 Then
-                Return 80
+                Return 100
+            ElseIf 2064 < itemID And itemID < 2067 Then
+                Return 100
             Else
                 Return 0
             End If
@@ -89,6 +93,7 @@ Namespace BattleSystem.Moves.Normal
                     Return New Element(CType(p.Item, Items.Berry).Type)
                 End If
             End If
+
             Return New Element(Element.Types.Normal)
         End Function
 
@@ -101,18 +106,22 @@ Namespace BattleSystem.Moves.Normal
             End If
 
             If p.Item Is Nothing Then
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 Return True
             Else
                 If p.Item.isBerry = False Then
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                     Return True
                 End If
             End If
 
             If op.Ability.Name.ToLower() = "unnerve" And BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 Return True
             End If
 
             If BattleScreen.FieldEffects.CanUseItem(Own) = False Or BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = False Then
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 Return True
             End If
 

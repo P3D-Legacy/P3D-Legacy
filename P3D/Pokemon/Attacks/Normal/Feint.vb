@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Power = 30
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Feint"
             Me.Description = "An attack that hits a target using Protect or Detect. This also lifts the effects of those moves."
             Me.CriticalChance = 0

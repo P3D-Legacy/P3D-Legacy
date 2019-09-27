@@ -1,6 +1,6 @@
 Namespace Items.Standard
 
-    <Item(595, "CellBattery")>
+    <Item(595, "Cell Battery")>
     Public Class CellBattery
 
         Inherits Item

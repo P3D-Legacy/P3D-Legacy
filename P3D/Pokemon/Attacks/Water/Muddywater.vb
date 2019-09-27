@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Water
 
-    Public Class Muddywater
+    Public Class MuddyWater
 
         Inherits Attack
 

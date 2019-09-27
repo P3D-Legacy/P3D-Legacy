@@ -48,14 +48,14 @@
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
-            Me.IsWonderGuardAffected = True
+            Me.IsWonderGuardAffected = False
             '#End
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             Dim b As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Attack", 1, "", "move:partingshot")
             Dim d As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Special Attack", 1, "", "move:partingshot")
-            If b = False Or d = False Then
+            If b = False And d = False Then
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
         End Sub

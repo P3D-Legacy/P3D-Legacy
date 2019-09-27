@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Steel
             Me.Power = 140
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Doom Desire"
             Me.Description = "Two turns after this move is used, the user blasts the target with a concentrated bundle of light."
             Me.CriticalChance = 0

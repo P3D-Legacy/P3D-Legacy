@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Sand-Attack"
+            Me.Name = "Sand Attack"
             Me.Description = "Sand is hurled in the target's face, reducing its accuracy."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -60,11 +60,11 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            Dim op_Attack As Integer = BattleCalculation.DetermineBattleAttack(Not own, BattleScreen)
+            Dim b As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Attack", 1, "", "move:strengthsap")
 
+            Dim op_Attack As Integer = BattleCalculation.DetermineBattleAttack(Not own, BattleScreen)
             Dim heal As Integer = op_Attack
 
-            Dim b As Boolean = BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Attack", 1, "", "move:strengthsap")
             If b = True Then
                 If op.Ability.Name.ToLower() = "liquid ooze" And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                     BattleScreen.Battle.ReduceHP(heal, own, own, BattleScreen, "Liquid Ooze damaged " & p.GetDisplayName() & "!", "liquidooze")

@@ -55,6 +55,19 @@ Namespace BattleSystem.Moves.Water
             Me.AIField2 = AIField.Trap
         End Sub
 
+        Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
+            Dim dive As Integer = BattleScreen.FieldEffects.OppDiveCounter
+            If own = False Then
+                dive = BattleScreen.FieldEffects.OwnDiveCounter
+            End If
+
+            If dive > 0 Then
+                Return Me.Power * 2
+            Else
+                Return Me.Power
+            End If
+        End Function
+
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon

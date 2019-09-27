@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Normal
 
-    Public Class Selfdestruct
+    Public Class SelfDestruct
 
         Inherits Attack
 
@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Selfdestruct"
+            Me.Name = "Self-Destruct"
             Me.Description = "The user attacks everything around it by causing an explosion. The user faints upon using this move."
             Me.CriticalChance = 1
             Me.IsHMMove = False

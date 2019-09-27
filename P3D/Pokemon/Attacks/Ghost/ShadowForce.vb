@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Ghost
             Me.Power = 120
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Shadow Force"
             Me.Description = "The user disappears, then strikes the target on the next turn. This move hits even if the target protects itself."
             Me.CriticalChance = 1

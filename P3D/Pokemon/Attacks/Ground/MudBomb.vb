@@ -14,7 +14,7 @@
             Me.Power = 65
             Me.Accuracy = 85
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Mud Bomb"
             Me.Description = "The user launches a hard-packed mud ball to attack. This may also lower the target's accuracy."
             Me.CriticalChance = 1
