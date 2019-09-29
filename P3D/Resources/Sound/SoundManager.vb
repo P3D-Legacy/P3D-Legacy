@@ -72,15 +72,15 @@
     End Sub
 
     Public Shared Sub PlayPokemonCry(pokemonId As Integer)
-        PlaySound("Cries/" + pokemonId.ToString(), 0F, 0F, Volume * POKEMON_CRY_VOLUME_MULTIPLIER, False)
+        PlaySound("Cries\" + pokemonId.ToString(), 0F, 0F, Volume * POKEMON_CRY_VOLUME_MULTIPLIER, False)
     End Sub
 
     Public Shared Sub PlayPokemonCry(pokemonId As Integer, pitch As Single, pan As Single)
-        PlaySound("Cries/" + pokemonId.ToString(), pitch, pan, Volume * POKEMON_CRY_VOLUME_MULTIPLIER, False)
+        PlaySound("Cries\" + pokemonId.ToString(), pitch, pan, Volume * POKEMON_CRY_VOLUME_MULTIPLIER, False)
     End Sub
 
     Public Shared Sub PlayPokemonCry(pokemonId As Integer, pitch As Single, pan As Single, volume As Single)
-        PlaySound("Cries/" + pokemonId.ToString(), pitch, pan, volume * POKEMON_CRY_VOLUME_MULTIPLIER, False)
+        PlaySound("Cries\" + pokemonId.ToString(), pitch, pan, volume * POKEMON_CRY_VOLUME_MULTIPLIER, False)
     End Sub
 
 End Class
