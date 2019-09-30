@@ -2298,6 +2298,24 @@
                                                         End If
                                                     End If
                                                 End If
+                                            Case "snowball"
+                                                If moveUsed.Type.Type = Element.Types.Ice Then
+                                                    If AllDamage > 0 And op.StatAttack < 6 Then
+                                                        If RemoveHeldItem(Not own, Not own, BattleScreen, "-1", "item:snowball") = True Then
+                                                            BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Snowball was consumed!"))
+                                                            BattleScreen.Battle.RaiseStat(Not own, Not own, BattleScreen, "Attack", 1, "", "item:snowball")
+                                                        End If
+                                                    End If
+                                                End If
+                                            Case "cell battery"
+                                                If moveUsed.Type.Type = Element.Types.Electric Then
+                                                    If AllDamage > 0 And op.StatAttack < 6 Then
+                                                        If RemoveHeldItem(Not own, Not own, BattleScreen, "-1", "item:cell battery") = True Then
+                                                            BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Cell Battery was consumed!"))
+                                                            BattleScreen.Battle.RaiseStat(Not own, Not own, BattleScreen, "Attack", 1, "", "item:cell battery")
+                                                        End If
+                                                    End If
+                                                End If
                                         End Select
                                     End If
                                 End If
