@@ -1,9 +1,9 @@
 Namespace Items
 
     ''' <summary>
-    ''' The base item for all Arceus plates.
+    ''' The base item for all elemental gems.
     ''' </summary>
-    Public MustInherit Class PlateItem
+    Public MustInherit Class GemItem
 
         Inherits Item
 
@@ -11,16 +11,16 @@ Namespace Items
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Standard
         Public Overrides ReadOnly Property Description As String
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1000
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
 
         Public Sub New(ByVal Type As Element.Types)
-            Description = "An item to be held by a Pokémon. It's a stone tablet that boosts the power of " & Type.ToString() & "-type moves."
-            _textureSource = "Items\Plates"
+            Description = "Increases the power of the holder's first " & Type.ToString() & "-type move by 30%, and is consumed after use."
+            _textureSource = "Items\Gems"
             _textureRectangle = GetTextureRectangle(Type)
         End Sub
 
         Private Function GetTextureRectangle(ByVal Type As Element.Types) As Rectangle
-            Dim typeArray As List(Of Element.Types) = {Element.Types.Bug, Element.Types.Dark, Element.Types.Dragon, Element.Types.Electric, Element.Types.Fairy, Element.Types.Fighting, Element.Types.Fire, Element.Types.Flying, Element.Types.Ghost, Element.Types.Grass, Element.Types.Ground, Element.Types.Ice, Element.Types.Poison, Element.Types.Psychic, Element.Types.Rock, Element.Types.Steel, Element.Types.Water}.ToList()
+            Dim typeArray As List(Of Element.Types) = {Element.Types.Bug, Element.Types.Dark, Element.Types.Dragon, Element.Types.Electric, Element.Types.Fairy, Element.Types.Fighting, Element.Types.Fire, Element.Types.Flying, Element.Types.Ghost, Element.Types.Grass, Element.Types.Ground, Element.Types.Ice, Element.Types.Poison, Element.Types.Psychic, Element.Types.Rock, Element.Types.Steel, Element.Types.Water, Element.Types.Normal}.ToList()
             Dim i As Integer = typeArray.IndexOf(Type)
 
             Dim x As Integer = i
