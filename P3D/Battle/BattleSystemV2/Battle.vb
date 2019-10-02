@@ -3349,6 +3349,12 @@
                     printMessage &= " sharply rose!"
                 Case 3
                     printMessage &= " rose drastically!"
+                Case 4
+                    printMessage &= " rose drastically!"
+                Case 5
+                    printMessage &= " rose drastically!"
+                Case 6
+                    printMessage &= " was maximized!"
                 Case Else
                     printMessage &= " slightly rose."
             End Select
