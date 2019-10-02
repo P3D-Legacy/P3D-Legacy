@@ -3347,11 +3347,7 @@
             Select Case val
                 Case 2
                     printMessage &= " sharply rose!"
-                Case 3
-                    printMessage &= " rose drastically!"
-                Case 4
-                    printMessage &= " rose drastically!"
-                Case 5
+                Case 3, 4, 5
                     printMessage &= " rose drastically!"
                 Case 6
                     printMessage &= " was maximized!"
@@ -3611,8 +3607,10 @@
             Select Case val
                 Case 2
                     printMessage &= " sharply fell!"
-                Case 3
+                Case 3, 4, 5
                     printMessage &= " fell drastically!"
+                Case 6
+                    printMessage &= " was minimized!"
                 Case Else
                     printMessage &= " slightly fell."
             End Select
