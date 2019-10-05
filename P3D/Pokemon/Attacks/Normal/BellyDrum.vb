@@ -55,6 +55,20 @@
             Me.AIField2 = AIField.Nothing
         End Sub
 
+        Public Overrides Function MoveFailBeforeAttack(Own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim p As Pokemon = BattleScreen.OwnPokemon
+            If Own = False Then
+                p = BattleScreen.OppPokemon
+            End If
+
+            If p.StatAttack = 6 Then
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                Return True
+            Else
+                Return False
+            End If
+        End Function
+
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             Dim p As Pokemon = BattleScreen.OwnPokemon
             If own = False Then
