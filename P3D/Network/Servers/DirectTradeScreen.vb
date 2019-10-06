@@ -293,6 +293,7 @@
 
                 Core.SetScreen(selScreen)
                 CType(Core.CurrentScreen, PartyScreen).CanChooseHMPokemon = False
+                CType(Core.CurrentScreen, PartyScreen).CanChooseFusedPokemon = False
 
             Case 2
                 Me.QuitTrade()
