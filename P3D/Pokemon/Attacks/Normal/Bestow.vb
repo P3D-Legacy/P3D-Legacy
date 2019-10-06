@@ -64,40 +64,50 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            If p.Item Is Nothing Then
-                Exit Sub
-            End If
-            If p.Item.IsMegaStone = True Then
-                Exit Sub
-            End If
-            If p.Ability.Name.ToLower() = "multitype" AndAlso p.Item.Name.ToLower().EndsWith(" plate") Then
-                Exit Sub
-            End If
-            If p.Ability.Name.ToLower() = "rks system" AndAlso p.Item.Name.ToLower().EndsWith(" memory") Then
-                Exit Sub
-            End If
-            If p.Item.Name.ToLower() = "griseous orb" And p.Number = 487 Then
-                Exit Sub
-            End If
-            If p.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
-                Exit Sub
-            End If
-            If p.Item.Name.ToLower().EndsWith(" mail") = True Then
+            Dim a As Boolean = False
+            Dim b As Boolean = False
+
+            If Not p.Item Is Nothing Then
+                a = True
+                If p.Item.IsMegaStone = True Then
+                    b = True
+                End If
+                If p.Ability.Name.ToLower() = "multitype" AndAlso p.Item.Name.ToLower().EndsWith(" plate") Then
+                    b = True
+                End If
+                If p.Ability.Name.ToLower() = "rks system" AndAlso p.Item.Name.ToLower().EndsWith(" memory") Then
+                    b = True
+                End If
+                'Giratina
+                If p.Item.Name.ToLower() = "griseous orb" And p.Number = 487 Then
+                    b = True
+                End If
+                'Genesect
+                If p.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
+                    b = True
+                End If
+                If p.Item.Name.ToLower().EndsWith(" mail") = True Then
+                    b = True
+                End If
+            Else
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 Exit Sub
             End If
 
-            If op.Item Is Nothing Then
+            If op.Item Is Nothing And a = True And b = False Then
                 Dim ItemID As Integer = p.Item.ID
 
                 p.OriginalItem = Item.GetItemByID(p.Item.ID)
                 p.OriginalItem.AdditionalData = p.Item.AdditionalData
 
                 If BattleScreen.Battle.RemoveHeldItem(own, own, BattleScreen, op.GetDisplayName() & " received the item " & p.Item.Name & " from " & p.GetDisplayName() & "!", "move:bestow") Then
-                    If own = False Then
+                    If own = True Then
                         BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
                     End If
                     op.Item = Item.GetItemByID(ItemID)
                 End If
+            Else
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
 
         End Sub

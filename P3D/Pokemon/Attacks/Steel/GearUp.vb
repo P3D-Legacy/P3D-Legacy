@@ -61,9 +61,16 @@
             If own = False Then
                 p = BattleScreen.OppPokemon
             End If
+            'Plus and Minus
             If p.Ability.ID = 57 OrElse p.Ability.ID = 58 Then
-                BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:gearup")
-                BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Special Attack", 1, "", "move:gearup")
+                Dim a As Boolean = BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Attack", 1, "", "move:gearup")
+                Dim b As Boolean = BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Special Attack", 1, "", "move:gearup")
+
+                If a = False And b = False Then
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                End If
+            Else
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             End If
         End Sub
 

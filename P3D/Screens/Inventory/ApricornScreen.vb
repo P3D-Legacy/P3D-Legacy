@@ -419,7 +419,7 @@
                         Dim d() As String = ApricornData(2).Split(CChar(","))
                         Dim gaveDate As Date = New Date(CInt(d(0)), CInt(d(1)), CInt(d(2)), CInt(d(3)), CInt(d(4)), CInt(d(5)))
 
-                        diff = (Date.Now - gaveDate).Minutes
+                        diff = CInt((Date.Now - gaveDate).TotalMinutes)
                     End If
                 End If
             Next

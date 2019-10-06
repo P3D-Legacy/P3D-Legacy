@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Acupressure"
             Me.Description = "The user applies pressure to stress points, sharply boosting one of its or its allies' stats."
             Me.CriticalChance = 0

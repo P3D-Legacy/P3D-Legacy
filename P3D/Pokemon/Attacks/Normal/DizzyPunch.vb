@@ -14,7 +14,7 @@
             Me.Power = 70
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Tough
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Pound"
             Me.Description = "The target is physically pounded with a long tail or a foreleg, etc."
             Me.CriticalChance = 1

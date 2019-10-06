@@ -23,18 +23,23 @@ version=2
 	@register.register(clubintro)
 :endif
 
-:if:<Register.registered(EusineHere)>=false <and> <register.registed(EusineRematchTalk)>=true
+:if:<Register.registered(EusineHere)>=false <and> <Register.registered(EusineNotHere)>=false <and> <register.registered(EusineRematchTalk)>=true
 	:if:<system.random(7)>=5
 		@register.registertime(EusineHere,20,hour)
+	:else
+		@register.registertime(EusineNotHere,20,hour)
 	:endif
 :endif
 
-:if:<Register.registered(LiHere)>=false <and> <Register.registered(LiNotHere)>=false <and> <register.registed(LiRematchTalk)>=true
+:if:<Register.registered(LiHere)>=false <and> <Register.registered(LiNotHere)>=false <and> <register.registered(LiRematchTalk)>=true
 	:if:<system.random(10)>=5
 		@register.registertime(LiHere,4,hour)
 		@register.registertime(LiNotHere,3,day)
+	:else
+		@register.registertime(LiNotHere,1,day)
 	:endif
 :endif
+
 :if:<Register.registered(LiHere)>=true
 	@npc.warp(19,~,0.2,~)
 :endif
@@ -42,9 +47,9 @@ version=2
 :if:<Environment.day>=Sunday
 	:if:<Environment.hour><4 <and> <Environment.hour>>0
 		:if:<register.registered(TRTPrematchTalk)>=true
-			@npc.warp(30,~,3.2,~)
-			@npc.warp(31,~,3.2,~)
-			@npc.warp(32,~,3.2,~)
+			@npc.warp(20,~,3.2,~)
+			@npc.warp(21,~,3.2,~)
+			@npc.warp(22,~,3.2,~)
 		:endif
 	:endif
     :if:<Environment.hour><12 <and> <Environment.hour>>5
@@ -259,9 +264,9 @@ version=2
 	:endif
 	@register.register(clubextendinvite)
 	:if:<register.registered(shrinecelebi)>=true
-		@npc.register(tohjofalls\hideout.dat|3|position|~,0,~)
-		@npc.register(tohjofalls\hideout.dat|4|position|~,0,~)
-		@npc.register(tohjofalls\hideout.dat|5|position|~,0,~)
+		@npc.register(tohjofalls\hideout.dat|3|position|3,0,0)
+		@npc.register(tohjofalls\hideout.dat|4|position|4,0,1)
+		@npc.register(tohjofalls\hideout.dat|5|position|5,0,0)
 	:endif
 :endif
 :end

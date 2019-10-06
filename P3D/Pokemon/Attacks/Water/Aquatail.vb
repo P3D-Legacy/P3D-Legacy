@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Water
 
-    Public Class Aquatail
+    Public Class AquaTail
 
         Inherits Attack
 
@@ -14,7 +14,7 @@
             Me.Power = 90
             Me.Accuracy = 90
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cute
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Aqua Tail"
             Me.Description = "The user attacks by swinging its tail as if it were a vicious wave in a raging storm."
             Me.CriticalChance = 1

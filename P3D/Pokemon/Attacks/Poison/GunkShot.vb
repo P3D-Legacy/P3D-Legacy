@@ -14,7 +14,7 @@
             Me.Power = 120
             Me.Accuracy = 80
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Gunk Shot"
             Me.Description = "The user shoots filthy garbage at the target to attack. It may also poison the target."
             Me.CriticalChance = 1

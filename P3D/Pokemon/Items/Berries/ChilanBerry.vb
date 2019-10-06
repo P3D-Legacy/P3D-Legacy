@@ -1,6 +1,6 @@
 Namespace Items.Berries
 
-    <Item(2051, "Chilian")>
+    <Item(2051, "Chilan")>
     Public Class ChilanBerry
 
         Inherits Berry
@@ -15,7 +15,7 @@ Namespace Items.Berries
             Me.Sour = 0
 
             Me.Type = Element.Types.Normal
-            Me.Power = 60
+            Me.Power = 80
         End Sub
 
     End Class

@@ -14,7 +14,7 @@
             Me.Power = 80
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Discharge"
             Me.Description = "The user strikes everything around it by letting loose a flare of electricity. This may also cause paralysis."
             Me.CriticalChance = 1

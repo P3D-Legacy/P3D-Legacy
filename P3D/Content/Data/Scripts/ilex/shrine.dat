@@ -2,29 +2,27 @@ version=2
 
 @text.show(It is an old shrine.)
 
-	:if:<pokemon.ot(0)>=42069 <and> <pokemon.isshiny(0)>=true <and> <pokemon.catchball(0)>=45 <and> <register.registered(spiky)>=false
-		:if:<pokemon.count>>5
-			@text.show(Something seems wrong.*Maybe you should come~back with less Pokémon?)
-			:end
-		:else
-			@script.start(ilex/spiky)
-			:end
-		:endif
+:if:<pokemon.ot(0)>=42069 <and> <pokemon.isshiny(0)>=true <and> <pokemon.catchball(0)>=45 <and> <register.registered(spiky)>=false
+	:if:<pokemon.count>>5
+		@text.show(Something seems wrong.*Maybe you should come~back with less Pokémon?)
+		:end
+	:else
+		@script.start(ilex/spiky)
+		:end
 	:endif
-	
-	:if:<register.registered(shrinecelebi)>=false <and> <inventory.countitem(115)>>0
+:endif
+
+:if:<register.registered(shrinecelebi)>=false <and> <inventory.countitem(115)>>0
 	@text.show(The GS Ball is~reacting to the shrine!)
 	:if:<pokemon.count>>5
 		@text.show(Something seems wrong.*Maybe you should come~back with less Pokémon?)
 		:end
 	:else
-	
-	@text.show(Place the GS Ball~in the shrine?)
+		@text.show(Place the GS Ball~in the shrine?)
 		@options.show(Yes,No)
 			:when:Yes
 				@camera.reset
 				:if:<system.random(1,2048)>=1
-				:then
 					@register.register(shinycelebi)
 				:else
 					@register.unregister(shinycelebi)
@@ -73,7 +71,6 @@ version=2
 				@npc.turn(9,1)
 				
 				:if:<register.registered(shinycelebi)>=true
-				:then
 					@npc.wearskin(10,[POKEMON|S]251)
 					@level.update
 				:endif
@@ -108,7 +105,6 @@ version=2
 				
 				@camera.set(0,0.4,3,1,0)
 				:if:<register.registered(shinycelebi)>=true
-				:then
 					@npc.wearskin(0,[POKEMON|S]251)
 					@level.update
 				:endif
@@ -220,7 +216,6 @@ version=2
 				
 				@camera.set(0,1,3.75,5,-0.25)
 				:if:<register.registered(shinycelebi)>=true
-				:then
 					@npc.wearskin(0,[POKEMON|S]251)
 					@level.update
 				:endif
@@ -318,15 +313,14 @@ version=2
 				@sound.play(teleport)
 				@player.warp(ilexforest.dat,10,0.1,26,0)
 				:if:<register.registered(clubextendinvite)>=true
-					@npc.register(tohjofalls\hideout.dat|3|position|~,0,~)
-					@npc.register(tohjofalls\hideout.dat|4|position|~,0,~)
-					@npc.register(tohjofalls\hideout.dat|5|position|~,0,~)
+					@npc.register(tohjofalls\hideout.dat|3|position|3,0,0)
+					@npc.register(tohjofalls\hideout.dat|4|position|4,0,1)
+					@npc.register(tohjofalls\hideout.dat|5|position|5,0,0)
 				:endif
 				@level.update
 				
 				@camera.set(0.8,1.5,3,1.15,-0.5)
 				:if:<register.registered(shinycelebi)>=true
-				:then
 					@npc.wearskin(10,[POKEMON|S]251)
 					@level.update
 				:endif
@@ -350,7 +344,6 @@ version=2
 				@pokemon.add(251,60,Obtained at,115,Ilex Forest)
 				
 				:if:<register.registered(shinycelebi)>=true
-				:then
 					@pokemon.setshiny(<pokemon.count>-1,1)
 				:else
 					@pokemon.setshiny(<pokemon.count>-1,0)
@@ -376,7 +369,6 @@ version=2
 				@level.wait(30)
 				@camera.reset
 				@player.achieveemblem(time)
-				
 			:when:No
 				:end
 		:endwhen

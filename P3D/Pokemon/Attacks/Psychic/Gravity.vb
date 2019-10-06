@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Gravity"
             Me.Description = "Gravity is intensified for five turns, making moves involving flying unusable and negating Levitate."
             Me.CriticalChance = 0

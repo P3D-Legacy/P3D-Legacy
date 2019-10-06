@@ -1,6 +1,6 @@
 version=2
 :if:<register.registered(clubintro)>=true <and> <register.registered(ClairRematchTalk)>=false
-    @text.show(Hello, <player.name>.*Battle Bar?*I remember hearing a~little about it.*I might start hanging~out there.*Maybe evenings during~the end of the week?*If you visit while~I am there maybe~we could battle.)
+    @text.show(Ah, here is our~new champion.*So you made it huh?*Well don't get too cocky,~you just got lucky last time.*Huh? A battle bar?*Sounds like the perfect~opportunity to have my~revenge!*If you are up to it,~I will be present some~evenings.*You'd better be~ready <player.name>,~I won't stand for another~loss!)
     @register.register(ClairRematchTalk)
 	@register.change(clubregisters,<register.value(clubregisters)>+1)
     :end

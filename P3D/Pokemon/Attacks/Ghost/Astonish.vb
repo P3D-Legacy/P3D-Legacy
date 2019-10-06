@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Ghost
             Me.Power = 30
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Astonish"
             Me.Description = "The user attacks the target while shouting in a startling fashion. This may also make the target flinch."
             Me.CriticalChance = 1

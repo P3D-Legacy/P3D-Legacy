@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "ViceGrip"
+            Me.Name = "Vice Grip"
             Me.Description = "The target is gripped and squeezed from both sides to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

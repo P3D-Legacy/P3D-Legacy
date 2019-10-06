@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Power Trick"
             Me.Description = "The user employs its psychic power to switch its Attack with its Defense stat."
             Me.CriticalChance = 0

@@ -14,7 +14,7 @@
             Me.Power = 70
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Wake-Up Slap"
             Me.Description = "This attack inflicts big damage on a sleeping target. It also wakes the target up, however."
             Me.CriticalChance = 1

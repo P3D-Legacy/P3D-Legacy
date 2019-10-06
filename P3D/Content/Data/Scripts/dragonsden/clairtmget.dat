@@ -6,17 +6,17 @@ version=2
 :endif
 
 :if:<register.registered(clairtmget)>=False <and> <register.registered(ddenquizpass)>=True
-	@player.move(0)
 	@npc.warp(0,11,0,26)
+	@player.move(0)
+	@level.update
 	@text.show(Wait!)
 	@npc.turn(0,3)
-	@player.move(0)
 	@player.turnto(1)
 	@npc.move(0,3)
 	@text.show(Clair: I'm sorry~about this.*Here, take this as~my apology.)
 	@item.give(214,1)
 	@item.messagegive(214,1)
-	@Text.show(That contains~Dragonbreath.*No, it doesn't~have anything to~do with my breath.*If you don't want~it, you don't have~to take it.)
+	@Text.show(That contains~Dragon Breath.*No, it doesn't~have anything to~do with my breath.*If you don't want~it, you don't have~to take it.)
 	@Text.show(Clair: What's the matter?*Aren't you going on~to the Pokémon League?*Do you know how to~get there?*From here, go to~New Bark Town.*Then Surf east to~the Pokémon League.*The route there is~very tough.*Don't you dare~lose at the~Pokémon League!*If you do, I'll~feel even worse*about having lost~to you!*Give it everything~you've got.)
 	@register.register(clairtmget)
 :endif

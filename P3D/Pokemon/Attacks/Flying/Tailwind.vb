@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Flying
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Tailwind"
             Me.Description = "The user whips up a turbulent whirlwind that ups the Speed stat of the user and its allies for four turns."
             Me.CriticalChance = 1

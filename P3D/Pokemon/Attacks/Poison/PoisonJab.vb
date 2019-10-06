@@ -14,7 +14,7 @@
             Me.Power = 80
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Poison Jab"
             Me.Description = "The target is stabbed with a tentacle or arm steeped in poison. It may also poison the target."
             Me.CriticalChance = 1

@@ -14,7 +14,7 @@
             Me.Power = 100
             Me.Accuracy = 75
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Tough
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Egg Bomb"
             Me.Description = "A large egg is hurled at the target with maximum force to inflict damage."
             Me.CriticalChance = 1

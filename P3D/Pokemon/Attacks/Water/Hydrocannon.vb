@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Water
 
-    Public Class Hydrocannon
+    Public Class HydroCannon
 
         Inherits Attack
 

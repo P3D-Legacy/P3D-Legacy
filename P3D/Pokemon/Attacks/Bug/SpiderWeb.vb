@@ -26,7 +26,7 @@
 
             '#SpecialDefinitions
             Me.MakesContact = False
-            Me.ProtectAffected = True
+            Me.ProtectAffected = False
             Me.MagicCoatAffected = True
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True

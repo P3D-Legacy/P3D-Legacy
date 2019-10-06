@@ -42,7 +42,7 @@
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
             Me.IsPunchingMove = False
-            Me.IsDamagingMove = True
+            Me.IsDamagingMove = False
             Me.IsProtectMove = False
             Me.IsSoundMove = False
 
@@ -55,14 +55,23 @@
             Me.AIField2 = AIField.Selfdestruct
         End Sub
 
+        Dim dmg As Integer
+
+        Public Overrides Sub PreAttack(Own As Boolean, BattleScreen As BattleScreen)
+            Dim p As Pokemon = BattleScreen.OwnPokemon
+            If Own = False Then
+                p = BattleScreen.OppPokemon
+            End If
+            dmg = p.HP
+            BattleScreen.Battle.ReduceHP(dmg, Own, Own, BattleScreen, p.GetDisplayName() & " risked everything!", "move:finalgambit")
+        End Sub
+
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             Dim p As Pokemon = BattleScreen.OwnPokemon
             If own = False Then
                 p = BattleScreen.OppPokemon
             End If
-            Dim dmg As Integer = p.HP
-            BattleScreen.Battle.ReduceHP(p.HP, own, own, BattleScreen, "", "move:finalgambit")
-            BattleScreen.Battle.ReduceHP(p.HP, Not own, own, BattleScreen, "", "move:finalgambit")
+            BattleScreen.Battle.ReduceHP(dmg, Not own, own, BattleScreen, "", "move:finalgambit")
         End Sub
 
     End Class

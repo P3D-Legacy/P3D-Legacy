@@ -29,6 +29,21 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'DebugNoContent'">
     <DebugSymbols>true</DebugSymbols>
@@ -10999,6 +11014,15 @@
     <Content Include="Content\GUI\MainMenu\lugiaParticle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Items\Fossils.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Items\Gems.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Items\Memories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Localization\Tokens_de.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -13438,7 +13462,28 @@
     <Content Include="Content\Pokemon\Data\frontier\2.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\103_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\105_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\19_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pokemon\Overworld\Normal\208_mega.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\20_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\26_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\27_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\28_alola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Pokemon\Overworld\Normal\303_mega.png">
@@ -13447,7 +13492,190 @@
     <Content Include="Content\Pokemon\Overworld\Normal\319_mega.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\37_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\38_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\50_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\51_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\52_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\53_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\723.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\724.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\726.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\727.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\729.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\730.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\731.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\732.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\733.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\734.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\736.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\737.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\738.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\739.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\740.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\742.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\743.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\744.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\745_dusk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\745_midday.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\745_midnight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\747.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\748.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\749.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\74_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\750.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\751.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\752.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\753.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\754.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\757.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\759.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\75_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\76_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\778.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\781.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\782.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\783.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\784.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\785.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\786.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\787.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\788.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\802.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\803.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\806.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\808.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\89_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\103_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\105_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\19_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pokemon\Overworld\Shiny\208_mega.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\20_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\26_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\27_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\28_alola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Pokemon\Overworld\Shiny\303_mega.png">
@@ -13456,7 +13684,241 @@
     <Content Include="Content\Pokemon\Overworld\Shiny\319_mega.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\37_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\382_primal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\383_primal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\38_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\50_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\51_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\52_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\53_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pokemon\Overworld\Shiny\719_mega.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\723.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\724.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\726.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\727.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\729.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\730.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\731.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\732.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\733.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\734.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\736.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\737.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\738.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\739.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\740.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\742.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\743.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\744.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\745_dusk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\745_midday.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\745_midnight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\747.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\748.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\749.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\74_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\750.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\751.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\752.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\753.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\754.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\757.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\759.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\75_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\76_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\778.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\781.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\782.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\783.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\784.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\785.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\786.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\787.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\788.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\802.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\803.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\806.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\808.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\89_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Diglett_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Dugtrio_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Exeggutor_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Geodude_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Golem_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Graveler_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Grimer_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Marowak_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Melmetal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Meltan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Meowth_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Muk_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Ninetales_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Persian_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Raichu_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Raticate_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Rattata_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Sandshrew_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Sandslash_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Vulpix_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Zygarde_Complete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Zygarde_Dog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Battle\Other\Star.png">
@@ -13645,10 +14107,31 @@
     <Content Include="Content\Textures\NPC\Aragas.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\NPC\DP.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\NPC\James-O.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\NPC\James.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\NPC\Jessie-O.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\NPC\Jessie.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\NPC\Kratos.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\NPC\Green.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\NPC\Meowth-O.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\NPC\Meowth.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\NPC\Segis.png">
@@ -25638,6 +26121,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
+    <Compile Include="Pokemon\Abilities\PsychicSurge.vb" />
+    <Compile Include="Pokemon\Abilities\MistySurge.vb" />
+    <Compile Include="Pokemon\Abilities\GrassySurge.vb" />
+    <Compile Include="Pokemon\Abilities\ElectricSurge.vb" />
+    <Compile Include="Pokemon\Abilities\TanglingHair.vb" />
+    <Compile Include="Pokemon\Abilities\SlushRush.vb" />
+    <Compile Include="Pokemon\Abilities\PowerofAlchemy.vb" />
+    <Compile Include="Pokemon\Abilities\Galvanize.vb" />
+    <Compile Include="Pokemon\Abilities\SurgeSurfer.vb" />
     <Compile Include="Pokemon\Abilities\ParentalBond.vb" />
     <Compile Include="Pokemon\Attacks\Bug\PollenPuff.vb" />
     <Compile Include="Pokemon\Attacks\Bug\FirstImpression.vb" />
@@ -25652,6 +26144,8 @@
     <Compile Include="Pokemon\Attacks\Dragon\ClangingScales.vb" />
     <Compile Include="Pokemon\Attacks\Dragon\DragonHammer.vb" />
     <Compile Include="Pokemon\Attacks\Dragon\SpacialRend.vb" />
+    <Compile Include="Pokemon\Attacks\Electric\ElectricTerrain.vb" />
+    <Compile Include="Pokemon\Attacks\Fairy\MistyTerrain.vb" />
     <Compile Include="Pokemon\Attacks\Fairy\Geomancy.vb" />
     <Compile Include="Pokemon\Attacks\Fairy\LightOfRuin.vb" />
     <Compile Include="Pokemon\Attacks\Fairy\FleurCannon.vb" />
@@ -25668,6 +26162,7 @@
     <Compile Include="Pokemon\Attacks\Ghost\ShadowForce.vb" />
     <Compile Include="Pokemon\Attacks\Ghost\SpiritShackle.vb" />
     <Compile Include="Pokemon\Attacks\Grass\Leafage.vb" />
+    <Compile Include="Pokemon\Attacks\Grass\GrassyTerrain.vb" />
     <Compile Include="Pokemon\Attacks\Grass\TropKick.vb" />
     <Compile Include="Pokemon\Attacks\Grass\SolarBlade.vb" />
     <Compile Include="Pokemon\Attacks\Grass\Strength Sap.vb" />
@@ -25697,6 +26192,7 @@
     <Compile Include="Pokemon\Attacks\Psychic\PrismaticLaser.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\PsychicFangs.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\HyperspaceHole.vb" />
+    <Compile Include="Pokemon\Attacks\Psychic\PsychicTerrain.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\Synchronoise.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\Psystrike.vb" />
     <Compile Include="Pokemon\Attacks\Rock\DiamondStorm.vb" />
@@ -25708,6 +26204,27 @@
     <Compile Include="Pokemon\Attacks\Water\OriginPulse.vb" />
     <Compile Include="Pokemon\Attacks\Water\Liquidation.vb" />
     <Compile Include="Pokemon\Attacks\Water\SparklingAria.vb" />
+    <Compile Include="Pokemon\Items\Berries\MarangaBerry.vb" />
+    <Compile Include="Pokemon\Items\Berries\KeeBerry.vb" />
+    <Compile Include="Pokemon\Items\Berries\RoseliBerry.vb" />
+    <Compile Include="Pokemon\Items\Gems\BugGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\DarkGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\DragonGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\ElectricGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\FairyGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\FightingGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\FireGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\FlyingGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\GhostGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\GrassGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\GroundGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\IceGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\NormalGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\PoisonGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\PsychicGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\RockGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\SteelGem.vb" />
+    <Compile Include="Pokemon\Items\Gems\WaterGem.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LibertySeaMap.vb" />
     <Compile Include="Pokemon\Items\Machines\TM171.vb" />
     <Compile Include="Pokemon\Items\Machines\TM172.vb" />
@@ -25720,12 +26237,22 @@
     <Compile Include="Pokemon\Items\Machines\TM181.vb" />
     <Compile Include="Pokemon\Items\Machines\TM174.vb" />
     <Compile Include="Pokemon\Items\Machines\TM173.vb" />
+    <Compile Include="Pokemon\Items\Medicine\PewterCrunchies.vb" />
+    <Compile Include="Pokemon\Items\GemItem.vb" />
+    <Compile Include="Pokemon\Items\Standard\PsychicSeed.vb" />
+    <Compile Include="Pokemon\Items\Standard\MistySeed.vb" />
+    <Compile Include="Pokemon\Items\Standard\GrassySeed.vb" />
+    <Compile Include="Pokemon\Items\Standard\ElectricSeed.vb" />
+    <Compile Include="Pokemon\Items\Standard\TerrainExtender.vb" />
     <Compile Include="Pokemon\Items\Standard\DouseDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ChillDrive.vb" />
+    <Compile Include="Pokemon\Items\Standard\Snowball.vb" />
+    <Compile Include="Pokemon\Items\Standard\CellBattery.vb" />
     <Compile Include="Pokemon\Items\Standard\FlameOrb.vb" />
     <Compile Include="Pokemon\Items\Standard\ShockDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\BurnDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
+    <Compile Include="Pokemon\Items\Stones\IceStone.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
     <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -25779,6 +26306,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Data\Scripts\quest\sevault\danceguy.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\fuchsia\rarestore.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Content\Data\maps\goldenrod\club.dat">
@@ -25871,6 +26401,12 @@
     <Content Include="Content\Data\Scripts\ilex\spiky.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Data\Scripts\fuchsia\rarestore1.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\fuchsia\rarestoremap.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\kin\berryforestitems\2051.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -25905,6 +26441,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\kin\berryforestitems\2062.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\kin\berryforestitems\2066.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\kin\berryforestitems\2065.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\kin\berryforestitems\2064.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\kin\berryforestitems\2063.dat">
@@ -26084,6 +26629,12 @@
     <Content Include="Content\Data\Scripts\trainer\gymrematch\whitneytrue.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Data\Scripts\league\rarestore1.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\marts\pewter.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\mtmortar\bf1map.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -26237,11 +26788,17 @@
     <Content Include="Content\Data\Scripts\viridian\gymmap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Data\Scripts\vermilion\crunchies.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\violet\towertopmap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Pokemon\Data\172_spiky-eared.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="meta">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Pokemon\Items\_itemList.txt" />
@@ -26620,15 +27177,15 @@
     <Compile Include="Pokemon\Attacks\Bug\StruggleBug.vb" />
     <Compile Include="Pokemon\Attacks\Bug\Tailglow.vb" />
     <Compile Include="Pokemon\Attacks\Bug\Twineedle.vb" />
-    <Compile Include="Pokemon\Attacks\Bug\UTurn.vb" />
-    <Compile Include="Pokemon\Attacks\Bug\Xscissor.vb" />
+    <Compile Include="Pokemon\Attacks\Bug\U-Turn.vb" />
+    <Compile Include="Pokemon\Attacks\Bug\XScissor.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Assurance.vb" />
     <Compile Include="Pokemon\Attacks\Dark\BeatUp.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Bite.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Crunch.vb" />
     <Compile Include="Pokemon\Attacks\Dark\DarkPulse.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Embargo.vb" />
-    <Compile Include="Pokemon\Attacks\Dark\FaintAttack.vb" />
+    <Compile Include="Pokemon\Attacks\Dark\FeintAttack.vb" />
     <Compile Include="Pokemon\Attacks\Dark\FakeTears.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Flatter.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Fling.vb" />
@@ -26638,7 +27195,7 @@
     <Compile Include="Pokemon\Attacks\Dark\Memento.vb" />
     <Compile Include="Pokemon\Attacks\Dark\NastyPlot.vb" />
     <Compile Include="Pokemon\Attacks\Dark\NightDaze.vb" />
-    <Compile Include="Pokemon\Attacks\Dark\Nightslash.vb" />
+    <Compile Include="Pokemon\Attacks\Dark\NightSlash.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Payback.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Punishment.vb" />
     <Compile Include="Pokemon\Attacks\Dark\Pursuit.vb" />
@@ -26707,7 +27264,7 @@
     <Compile Include="Pokemon\Attacks\Fighting\FocusPunch.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\ForcePalm.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\HammerArm.vb" />
-    <Compile Include="Pokemon\Attacks\Fighting\HiJumpKick.vb" />
+    <Compile Include="Pokemon\Attacks\Fighting\HighJumpKick.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\JumpKick.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\KarateChop.vb" />
     <Compile Include="Pokemon\Attacks\Fighting\LowKick.vb" />
@@ -26820,7 +27377,7 @@
     <Compile Include="Pokemon\Attacks\Grass\PowerWhip.vb" />
     <Compile Include="Pokemon\Attacks\Grass\RazorLeaf.vb" />
     <Compile Include="Pokemon\Attacks\Grass\SeedBomb.vb" />
-    <Compile Include="Pokemon\Attacks\Grass\Seedflare.vb" />
+    <Compile Include="Pokemon\Attacks\Grass\SeedFlare.vb" />
     <Compile Include="Pokemon\Attacks\Grass\SleepPowder.vb" />
     <Compile Include="Pokemon\Attacks\Grass\SolarBeam.vb" />
     <Compile Include="Pokemon\Attacks\Grass\Spore.vb" />
@@ -26843,7 +27400,7 @@
     <Compile Include="Pokemon\Attacks\Ground\MudBomb.vb" />
     <Compile Include="Pokemon\Attacks\Ground\MudShot.vb" />
     <Compile Include="Pokemon\Attacks\Ground\MudSport.vb" />
-    <Compile Include="Pokemon\Attacks\Ground\Sand-Attack.vb" />
+    <Compile Include="Pokemon\Attacks\Ground\SandAttack.vb" />
     <Compile Include="Pokemon\Attacks\Ground\SandTomb.vb" />
     <Compile Include="Pokemon\Attacks\Ground\Spikes.vb" />
     <Compile Include="Pokemon\Attacks\Ice\AuroraBeam.vb" />
@@ -26877,7 +27434,7 @@
     <Compile Include="Pokemon\Attacks\Normal\BodySlam.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Boomburst.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Captivate.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\Charm.vb" />
+    <Compile Include="Pokemon\Attacks\Fairy\Charm.vb" />
     <Compile Include="Pokemon\Attacks\Normal\ChipAway.vb" />
     <Compile Include="Pokemon\Attacks\Normal\CometPunch.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Confide.vb" />
@@ -26938,7 +27495,7 @@
     <Compile Include="Pokemon\Attacks\Normal\Mimic.vb" />
     <Compile Include="Pokemon\Attacks\Normal\MindReader.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Minimize.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\Moonlight.vb" />
+    <Compile Include="Pokemon\Attacks\Fairy\Moonlight.vb" />
     <Compile Include="Pokemon\Attacks\Normal\MorningSun.vb" />
     <Compile Include="Pokemon\Attacks\Normal\NaturalGift.vb" />
     <Compile Include="Pokemon\Attacks\Normal\NaturePower.vb" />
@@ -26966,7 +27523,7 @@
     <Compile Include="Pokemon\Attacks\Normal\ScaryFace.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Scratch.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Screech.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\Selfdestruct.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\Self-Destruct.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Sharpen.vb" />
     <Compile Include="Pokemon\Attacks\Normal\ShellSmash.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Sing.vb" />
@@ -26976,11 +27533,11 @@
     <Compile Include="Pokemon\Attacks\Normal\Slam.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Slash.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SleepTalk.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\SmellingSalt.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\SmokeScreen.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\SmellingSalts.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\Smokescreen.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Snatch.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Snore.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\Softboiled.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\Soft-Boiled.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SonicBoom.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SpikeCannon.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SpitUp.vb" />
@@ -26994,7 +27551,7 @@
     <Compile Include="Pokemon\Attacks\Normal\Supersonic.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Swagger.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Swallow.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\SweetKiss.vb" />
+    <Compile Include="Pokemon\Attacks\Fairy\SweetKiss.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SweetScent.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Swift.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SwordsDance.vb" />
@@ -27103,7 +27660,7 @@
     <Compile Include="Pokemon\Attacks\Steel\GyroBall.vb" />
     <Compile Include="Pokemon\Attacks\Steel\HeavySlam.vb" />
     <Compile Include="Pokemon\Attacks\Steel\IronDefense.vb" />
-    <Compile Include="Pokemon\Attacks\Steel\Ironhead.vb" />
+    <Compile Include="Pokemon\Attacks\Steel\IronHead.vb" />
     <Compile Include="Pokemon\Attacks\Steel\IronTail.vb" />
     <Compile Include="Pokemon\Attacks\Steel\KingsShield.vb" />
     <Compile Include="Pokemon\Attacks\Steel\MagnetBomb.vb" />
@@ -27116,18 +27673,18 @@
     <Compile Include="Pokemon\Attacks\Steel\SteelWing.vb" />
     <Compile Include="Pokemon\Attacks\StruggleAttack.vb" />
     <Compile Include="Pokemon\Attacks\TheDerpMove.vb" />
-    <Compile Include="Pokemon\Attacks\Water\Aquajet.vb" />
+    <Compile Include="Pokemon\Attacks\Water\AquaJet.vb" />
     <Compile Include="Pokemon\Attacks\Water\AquaRing.vb" />
-    <Compile Include="Pokemon\Attacks\Water\Aquatail.vb" />
+    <Compile Include="Pokemon\Attacks\Water\AquaTail.vb" />
     <Compile Include="Pokemon\Attacks\Water\Brine.vb" />
     <Compile Include="Pokemon\Attacks\Water\Bubble.vb" />
     <Compile Include="Pokemon\Attacks\Water\BubbleBeam.vb" />
     <Compile Include="Pokemon\Attacks\Water\Clamp.vb" />
     <Compile Include="Pokemon\Attacks\Water\Crabhammer.vb" />
     <Compile Include="Pokemon\Attacks\Water\Dive.vb" />
-    <Compile Include="Pokemon\Attacks\Water\Hydrocannon.vb" />
+    <Compile Include="Pokemon\Attacks\Water\HydroCannon.vb" />
     <Compile Include="Pokemon\Attacks\Water\HydroPump.vb" />
-    <Compile Include="Pokemon\Attacks\Water\Muddywater.vb" />
+    <Compile Include="Pokemon\Attacks\Water\MuddyWater.vb" />
     <Compile Include="Pokemon\Attacks\Water\Octazooka.vb" />
     <Compile Include="Pokemon\Attacks\Water\RainDance.vb" />
     <Compile Include="Pokemon\Attacks\Water\RazorShell.vb" />
@@ -27656,7 +28213,7 @@
     <Compile Include="Pokemon\Items\Standard\PinkBow.vb" />
     <Compile Include="Pokemon\Items\Standard\PoisonBarb.vb" />
     <Compile Include="Pokemon\Items\Standard\PokeDoll.vb" />
-    <Compile Include="Pokemon\Items\Standard\PolkadotBow.vb" />
+    <Compile Include="Pokemon\Items\Standard\BerserkGene.vb" />
     <Compile Include="Pokemon\Items\Standard\PowerAnklet.vb" />
     <Compile Include="Pokemon\Items\Standard\PowerBand.vb" />
     <Compile Include="Pokemon\Items\Standard\PowerBelt.vb" />
@@ -27921,7 +28478,13 @@
       <Name>GameDevCommon</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Condition=" '$(Configuration)' != 'DebugNoContent' Or '$(Configuration)' != 'ReleaseNoContent' " Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <PropertyGroup>

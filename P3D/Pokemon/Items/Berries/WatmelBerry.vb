@@ -15,8 +15,8 @@ Public Class WatmelBerry
         Me.Sour = 0
 
         Me.Type = Element.Types.Fire
-        Me.Power = 80
-    End Sub
+            Me.Power = 100
+        End Sub
 
 End Class
 

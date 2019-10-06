@@ -14,7 +14,7 @@
             Me.Power = 90
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Dragon Hammer"
             Me.Description = "The user uses its body like a hammer to attack the target and inflict damage."
             Me.CriticalChance = 1

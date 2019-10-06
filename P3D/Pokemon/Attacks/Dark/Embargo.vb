@@ -14,7 +14,7 @@
             Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cute
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Embargo"
             Me.Description = "This move prevents the target from using its held item. Its Trainer is also prevented from using items on it."
             Me.CriticalChance = 0

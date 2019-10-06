@@ -1,6 +1,6 @@
 Namespace Items.Medicine
 
-    <Item(114, "RageCandyBar")>
+    <Item(114, "Rage Candy Bar")>
     Public Class RageCandyBar
 
         Inherits MedicineItem

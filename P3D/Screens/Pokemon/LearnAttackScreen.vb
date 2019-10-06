@@ -171,7 +171,7 @@
 
             Dim drawText As String = ""
             If AttackIndex = 4 Then
-                drawText = "Don't learn """ & newAttack.Name & """?"
+                drawText = "Give up on learning """ & newAttack.Name & """?"
             Else
                 drawText = "Forget """ & Pokemon.Attacks(AttackIndex).Name & """ to learn """ & newAttack.Name & """?"
                 If canForget = False Then
@@ -271,7 +271,7 @@
 
             If AttackIndex <> 4 Then
                 TeachMovesScreen.LearnedMove = True
-                Text = "1...2...3...and*Ta-da!*" & Pokemon.GetDisplayName() & " forgot~" & Pokemon.Attacks(AttackIndex).Name & "! And..."
+                Text = "1... 2... 3... and...*Ta-da!*" & Pokemon.GetDisplayName() & " forgot~" & Pokemon.Attacks(AttackIndex).Name & " and..."
                 Pokemon.Attacks.RemoveAt(AttackIndex)
                 Pokemon.Attacks.Insert(AttackIndex, newAttack)
 

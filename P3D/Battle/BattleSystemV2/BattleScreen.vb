@@ -8,6 +8,10 @@
         Public OwnFaint As Boolean = False
         Public OppFaint As Boolean = False
 
+        'Used for moves like U-turn (self-switch)
+        Public OwnSelfSwitch As Boolean = False
+        Public OppSelfSwitch As Boolean = False
+
         'Used for lead picking in PvP Battles
         Public Shared OwnLeadIndex As Integer = 0
         Public Shared OppLeadIndex As Integer = 0
@@ -284,7 +288,7 @@
             q3.PassThis = True
 
             Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F)
-            Dim q4 As TextQueryObject = New TextQueryObject("GO, " & Me.OwnPokemon.GetDisplayName() & "!")
+            Dim q4 As TextQueryObject = New TextQueryObject("Go, " & Me.OwnPokemon.GetDisplayName() & "!")
 
             Dim q5 As ToggleMenuQueryObject = New ToggleMenuQueryObject(Me.BattleMenu.Visible)
 
@@ -428,7 +432,7 @@
             q3.PassThis = True
 
             Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F)
-            Dim q4 As TextQueryObject = New TextQueryObject("GO, " & Me.OwnPokemon.GetDisplayName() & "!")
+            Dim q4 As TextQueryObject = New TextQueryObject("Go, " & Me.OwnPokemon.GetDisplayName() & "!")
 
             Dim q5 As ToggleMenuQueryObject = New ToggleMenuQueryObject(Me.BattleMenu.Visible)
 
@@ -680,7 +684,7 @@
             q3.PassThis = True
 
             Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F)
-            Dim q4 As TextQueryObject = New TextQueryObject("GO, " & Me.OwnPokemon.GetDisplayName() & "!")
+            Dim q4 As TextQueryObject = New TextQueryObject("Go, " & Me.OwnPokemon.GetDisplayName() & "!")
 
             Dim q5 As ToggleMenuQueryObject = New ToggleMenuQueryObject(Me.BattleMenu.Visible)
 

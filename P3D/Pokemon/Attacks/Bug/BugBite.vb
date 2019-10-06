@@ -14,7 +14,7 @@
             Me.Power = 60
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Tough
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Bug Bite"
             Me.Description = "The user bites the target. If the target is holding a Berry, the user eats it and gains its effect."
             Me.CriticalChance = 1

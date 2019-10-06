@@ -14,7 +14,7 @@
             Me.Power = 150
             Me.Accuracy = 90
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Roar of Time"
             Me.Description = "The user blasts the target with power that distorts even time. The user can't move on the next turn."
             Me.CriticalChance = 1

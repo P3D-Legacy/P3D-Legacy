@@ -7,6 +7,7 @@ Namespace Items.Machines
 
         Public Sub New()
             MyBase.New(False, 100, 291)
+            _textureRectangle = New Rectangle(96, 192, 24, 24)
         End Sub
 
     End Class

@@ -393,7 +393,7 @@ Public Class NewInventoryScreen
                         If _tabIndex = 4 Then
                             nameTextHeight = 40
                         End If
-                        Canvas.DrawRectangle(itemBatch, New Rectangle(CInt(itemLoc.X) - 16, CInt(itemLoc.Y) + 48, 128, nameTextHeight), New Color(0, 0, 0, CInt(If(_tabInControl, 64, 128) * _interfaceFade)))
+                        Canvas.DrawRectangle(itemBatch, New Rectangle(CInt(itemLoc.X) - 16 - 9, CInt(itemLoc.Y) + 48, 128 + 18, nameTextHeight), New Color(0, 0, 0, CInt(If(_tabInControl, 64, 128) * _interfaceFade)))
 
                         Dim fontWidth As Integer = CInt(FontManager.MiniFont.MeasureString(cItem.Name).X)
                         itemBatch.DrawString(FontManager.MiniFont, cItem.Name, itemLoc + New Vector2(48 - fontWidth / 2.0F, 51), New Color(255, 255, 255, itemPanelAlpha))
@@ -974,13 +974,13 @@ Public Class NewInventoryScreen
     ''' </summary>
     Private Sub UpdateShakeAnimation()
         If _itemAnimation._shakeLeft = True Then
-            _itemAnimation._shakeV -= 0.035F
+            _itemAnimation._shakeV -= 0.0275F
             If _itemAnimation._shakeV <= -0.4F Then
                 _itemAnimation._shakeCount -= 1
                 _itemAnimation._shakeLeft = False
             End If
         Else
-            _itemAnimation._shakeV += 0.035F
+            _itemAnimation._shakeV += 0.0275F
             If _itemAnimation._shakeV >= 0.4F Then
                 _itemAnimation._shakeCount -= 1
                 _itemAnimation._shakeLeft = True

@@ -14,7 +14,7 @@
             Me.Power = 65
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Cute
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Mirror Shot"
             Me.Description = "The user lets loose a flash of energy at the target from its polished body. This may also lower the target's accuracy."
             Me.CriticalChance = 1

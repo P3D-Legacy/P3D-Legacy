@@ -68,16 +68,16 @@
                 If op.Type1.Type = p.Type1.Type OrElse op.Type1.Type = p.Type2.Type Then
                     Return False
                 Else
-                    Return True
                     BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                    Return True
                 End If
             Else
                 'Dual type
                 If op.Type1.Type = p.Type1.Type OrElse op.Type1.Type = p.Type2.Type OrElse op.Type2.Type = p.Type1.Type OrElse op.Type2.Type = p.Type2.Type Then
                     Return False
                 Else
-                    Return True
                     BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
+                    Return True
                 End If
             End If
 

@@ -50,7 +50,41 @@
 
             If y > -1 Then
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\WeatherIcons"), New Rectangle(22, Core.windowSize.Height - 90, 176, 68), New Rectangle(x, y, 88, 34), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(110 - FontManager.MiniFont.MeasureString(t).X / 2, Core.windowSize.Height - 42), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(110 - FontManager.MiniFont.MeasureString(t).X / 2, Core.windowSize.Height - 44), Color.Black)
+            End If
+        End Sub
+
+        Private Sub DrawTerrain(ByVal BattleScreen As BattleScreen)
+            Dim y As Integer = -1
+            Dim x As Integer = 0
+            Dim t As String = ""
+
+            With BattleScreen.FieldEffects
+                If .ElectricTerrain > 0 Then
+                    x = 352
+                    y = 0
+                    t = "Electric Terrain"
+                End If
+                If .GrassyTerrain > 0 Then
+                    x = 352
+                    y = 34
+                    t = "Grassy Terrain"
+                End If
+                If .MistyTerrain > 0 Then
+                    x = 352
+                    y = 68
+                    t = "Misty Terrain"
+                End If
+                If .PsychicTerrain > 0 Then
+                    x = 352
+                    y = 102
+                    t = "Psychic Terrain"
+                End If
+            End With
+
+            If y > -1 Then
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\WeatherIcons"), New Rectangle(222, Core.windowSize.Height - 90, 176, 68), New Rectangle(x, y, 88, 34), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(310 - FontManager.MiniFont.MeasureString(t).X / 2, Core.windowSize.Height - 44), Color.Black)
             End If
         End Sub
 
@@ -268,6 +302,7 @@
                 End Select
 
                 DrawWeather(BattleScreen)
+                DrawTerrain(BattleScreen)
             End If
         End Sub
 

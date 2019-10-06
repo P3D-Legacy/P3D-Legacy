@@ -19,7 +19,7 @@
             Me.Description = "The user releases cotton-like spores that cling to the target, harshly reducing its Speed stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False
-            Me.Target = Targets.OneAdjacentTarget
+            Me.Target = Targets.AllAdjacentFoes
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End

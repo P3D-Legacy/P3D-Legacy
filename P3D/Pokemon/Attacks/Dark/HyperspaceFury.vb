@@ -76,17 +76,35 @@
             Dim op As Pokemon = BattleScreen.OppPokemon
 
             If own = True Then
+                If BattleScreen.FieldEffects.OppDetectCounter > 0 OrElse BattleScreen.FieldEffects.OppProtectCounter > 0 OrElse BattleScreen.FieldEffects.OppKingsShieldCounter > 0 OrElse BattleScreen.FieldEffects.OppSpikyShieldCounter > 0 OrElse BattleScreen.FieldEffects.OppBanefulBunkerCounter > 0 OrElse BattleScreen.FieldEffects.OppCraftyShieldCounter > 0 OrElse BattleScreen.FieldEffects.OppMatBlockCounter > 0 OrElse BattleScreen.FieldEffects.OppWideGuardCounter > 0 OrElse BattleScreen.FieldEffects.OppQuickGuardCounter > 0 Then
+                    BattleScreen.BattleQuery.Add(New TextQueryObject("Hyperspace Fury lifted " & op.GetDisplayName() & "'s protection!"))
+                End If
                 BattleScreen.FieldEffects.OppDetectCounter = 0
                 BattleScreen.FieldEffects.OppProtectCounter = 0
+                BattleScreen.FieldEffects.OppKingsShieldCounter = 0
+                BattleScreen.FieldEffects.OppSpikyShieldCounter = 0
+                BattleScreen.FieldEffects.OppBanefulBunkerCounter = 0
+                BattleScreen.FieldEffects.OppCraftyShieldCounter = 0
+                BattleScreen.FieldEffects.OppMatBlockCounter = 0
+                BattleScreen.FieldEffects.OppWideGuardCounter = 0
+                BattleScreen.FieldEffects.OppQuickGuardCounter = 0
             Else
                 op = BattleScreen.OwnPokemon
-
+                If BattleScreen.FieldEffects.OwnDetectCounter > 0 OrElse BattleScreen.FieldEffects.OwnProtectCounter > 0 OrElse BattleScreen.FieldEffects.OwnKingsShieldCounter > 0 OrElse BattleScreen.FieldEffects.OwnSpikyShieldCounter > 0 OrElse BattleScreen.FieldEffects.OwnBanefulBunkerCounter > 0 OrElse BattleScreen.FieldEffects.OwnCraftyShieldCounter > 0 OrElse BattleScreen.FieldEffects.OwnMatBlockCounter > 0 OrElse BattleScreen.FieldEffects.OwnWideGuardCounter > 0 OrElse BattleScreen.FieldEffects.OwnQuickGuardCounter > 0 Then
+                    BattleScreen.BattleQuery.Add(New TextQueryObject("Hyperspace Fury lifted " & op.GetDisplayName() & "'s protection!"))
+                End If
                 BattleScreen.FieldEffects.OwnDetectCounter = 0
                 BattleScreen.FieldEffects.OwnProtectCounter = 0
+                BattleScreen.FieldEffects.OwnKingsShieldCounter = 0
+                BattleScreen.FieldEffects.OwnSpikyShieldCounter = 0
+                BattleScreen.FieldEffects.OwnBanefulBunkerCounter = 0
+                BattleScreen.FieldEffects.OwnCraftyShieldCounter = 0
+                BattleScreen.FieldEffects.OwnMatBlockCounter = 0
+                BattleScreen.FieldEffects.OwnWideGuardCounter = 0
+                BattleScreen.FieldEffects.OwnQuickGuardCounter = 0
             End If
 
             BattleScreen.Battle.LowerStat(own, own, BattleScreen, "Defense", 1, "", "move:hyperspacefury")
-            BattleScreen.BattleQuery.Add(New TextQueryObject("Hyperspace Fury lifted " & op.GetDisplayName() & "'s protection!"))
         End Sub
 
     End Class

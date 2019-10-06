@@ -1,4 +1,4 @@
-{"Level"{LEV[{"Name"{str[Monean Chamber]}}{"MusicLoop"{str[alph]}}{"CurrentRegion"{str[sevii islands]}}{"WildPokemon"{bool[0]}}]}}
+{"Level"{LEV[{"Name"{str[Monean Chamber]}}{"MusicLoop"{str[alph]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}{"WildPokemon"{bool[0]}}]}}
 {"Actions"{LEV[{"RadioChannels"{str[13.5]}}{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"MapScript"{str[quest\tanoby\moneanmap]}}{"Weather"{int[1]}}{"Lightning"{int[1]}}]}}
 
 floors:

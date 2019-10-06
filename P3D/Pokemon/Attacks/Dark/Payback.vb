@@ -14,7 +14,7 @@
             Me.Power = 50
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Payback"
             Me.Description = "If the user moves after the target, this attack's power will be doubled"
             Me.CriticalChance = 1

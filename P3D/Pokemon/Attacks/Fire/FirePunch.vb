@@ -14,7 +14,7 @@
             Me.Power = 75
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Fire Punch"
             Me.Description = "The target is punched with a fiery fist. It may also leave the target with a burn."
             Me.CriticalChance = 1

@@ -1,8 +1,8 @@
 version=2
 :if:<register.registered(<storage.get(string,leader)>rematch)>=false
-    @text.show(<battle.intromessage(gymrematch\\<storage.get(string,leader)>)>)
-    @battle.trainer(gymrematch\\<storage.get(string,leader)>)
+    @text.show(<battle.intromessage(gymrematch\<storage.get(string,leader)>)>)
+    @battle.trainer(gymrematch\<storage.get(string,leader)>)
     @register.registertime(<storage.get(string,leader)>rematch,12,hours)
 :endif
-@text.show(<battle.defeatmessage(gymrematch\\<storage.get(string,leader)>)>)
+@text.show(<battle.defeatmessage(gymrematch\<storage.get(string,leader)>)>)
 :end

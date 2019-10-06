@@ -51,8 +51,8 @@
             Me.IsWonderGuardAffected = True
             '#End
 
-            Me.AIField1 = AIField.Flinch
-            Me.AIField2 = AIField.Nothing
+            Me.AIField1 = AIField.Damage
+            Me.AIField2 = AIField.Flinch
         End Sub
 
         Public Overrides Function MoveFailBeforeAttack(Own As Boolean, BattleScreen As BattleScreen) As Boolean

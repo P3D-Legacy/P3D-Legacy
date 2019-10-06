@@ -60,7 +60,7 @@
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             If Core.Random.Next(0, 100) < Me.GetEffectChance(0, own, BattleScreen) Then
-                BattleScreen.Battle.InflictConfusion(Not own, own, BattleScreen, "", "move:hurrican")
+                BattleScreen.Battle.InflictConfusion(Not own, own, BattleScreen, "", "move:hurricane")
             End If
         End Sub
 

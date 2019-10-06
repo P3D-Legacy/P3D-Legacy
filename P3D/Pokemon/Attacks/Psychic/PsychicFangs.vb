@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Power = 85
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Psychic Fangs"
             Me.Description = "The user bites the target with its psychic capabilities. This can also destroy Light Screen and Reflect."
             Me.CriticalChance = 1

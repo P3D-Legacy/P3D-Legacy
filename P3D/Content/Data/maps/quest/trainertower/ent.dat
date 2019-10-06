@@ -1,4 +1,4 @@
-{"Level"{LEV[{"Name"{str[Trainer Tower]}}{"MusicLoop"{str[gym]}}{"CurrentRegion"{str[sevii islands]}}]}}
+{"Level"{LEV[{"Name"{str[Trainer Tower]}}{"MusicLoop"{str[gym]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}]}}
 
 Floor:

@@ -33,6 +33,12 @@
                         If moveName = "light screen" Or moveName = "reflect" Then
                             turns = 8
                         End If
+                    Case "terrain extender"
+                        If moveName = "electric terrain" Or moveName = "grassy terrain" Or moveName = "misty terrain" Or moveName = "psychic terrain" Then
+                            turns = 8
+                        ElseIf ability = "electric surge" Or ability = "grassy surge" Or ability = "misty surge" Or ability = "psychic surge" Then
+                            turns = 8
+                        End If
                 End Select
             End If
             Return turns
@@ -272,6 +278,14 @@
                     If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
                         speed *= 2
                     End If
+                Case "slush rush"
+                    If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
+                        speed *= 2
+                    End If
+                Case "surge surfer"
+                    If BattleScreen.FieldEffects.ElectricTerrain > 0 Then
+                        speed *= 2
+                    End If
             End Select
 
             Dim grassPledge As Integer = BattleScreen.FieldEffects.OppGrassPledge
@@ -291,11 +305,11 @@
 
             If p.Ability.Name.ToLower() = "slow start" Then
                 If own = True Then
-                    If BattleScreen.FieldEffects.OwnTurnCounts < 5 Then
+                    If BattleScreen.FieldEffects.OwnPokemonTurns < 5 Then
                         speed = CInt(speed / 2)
                     End If
                 Else
-                    If BattleScreen.FieldEffects.OppTurnCounts < 5 Then
+                    If BattleScreen.FieldEffects.OppPokemonTurns < 5 Then
                         speed = CInt(speed / 2)
                     End If
                 End If
@@ -371,11 +385,11 @@
 
             If p.Ability.Name.ToLower() = "slow start" Then
                 If own = True Then
-                    If BattleScreen.FieldEffects.OwnTurnCounts < 5 Then
+                    If BattleScreen.FieldEffects.OwnPokemonTurns < 5 Then
                         attack = CInt(attack / 2)
                     End If
                 Else
-                    If BattleScreen.FieldEffects.OppTurnCounts < 5 Then
+                    If BattleScreen.FieldEffects.OppPokemonTurns < 5 Then
                         attack = CInt(attack / 2)
                     End If
                 End If
@@ -491,7 +505,7 @@
             result = INIT * ACCM
 
             If Not op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not own) = True Then
-                If op.Item.Name.ToLower() = "brightpowder" Or op.Item.Name.ToLower() = "lax incense" Then
+                If op.Item.Name.ToLower() = "bright powder" Or op.Item.Name.ToLower() = "lax incense" Then
                     result *= 0.9F
                 End If
             End If
@@ -674,30 +688,45 @@
                 op = BattleScreen.OwnPokemon
             End If
 
+            If p.Type1.Type = Element.Types.Ghost Or p.Type2.Type = Element.Types.Ghost Then
+                Return True
+            End If
+
             If p.Ability.Name.ToLower() = "run away" Then
                 Return True
             End If
 
-            If op.Ability.Name.ToLower() = "shadow tag" And p.Ability.Name.ToLower() <> "shadow tag" Then
+            If Not p.Item Is Nothing Then
+                If p.Item.Name.ToLower() = "smoke ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    Return True
+                End If
+            End If
+
+            If op.Ability.Name.ToLower() = "shadow tag" And p.Ability.Name.ToLower() <> "shadow tag" And op.HP > 0 Then
                 Return False
             End If
 
-            If op.Ability.Name.ToLower() = "arena trap" Then
-                Dim magnetRise As Integer = BattleScreen.FieldEffects.OwnMagnetRise
-                If own = False Then
-                    magnetRise = BattleScreen.FieldEffects.OppMagnetRise
-                End If
-
-                If p.Type1.Type <> Element.Types.Flying And p.Type2.Type <> Element.Types.Flying And p.Ability.Name.ToLower() <> "levitate" And magnetRise = 0 Then
-                    Return False
-                End If
+            If op.Ability.Name.ToLower() = "arena trap" And op.HP > 0 And BattleScreen.FieldEffects.IsGrounded(own, BattleScreen) = True Then
+                Return False
             End If
 
-            If op.Ability.Name.ToLower() = "magnet pull" Then
+            If op.Ability.Name.ToLower() = "magnet pull" And op.HP > 0 Then
                 If p.Type1.Type = Element.Types.Steel Or p.Type2.Type = Element.Types.Steel Then
                     Return False
                 End If
             End If
+
+            With BattleScreen.FieldEffects
+                If own = True Then
+                    If .OwnWrap > 0 Or .OwnBind > 0 Or .OwnClamp > 0 Or .OwnFireSpin > 0 Or .OwnMagmaStorm > 0 Or .OwnSandTomb > 0 Or .OwnWhirlpool > 0 Or .OwnInfestation > 0 Then
+                        Return False
+                    End If
+                Else
+                    If .OppWrap > 0 Or .OppBind > 0 Or .OppClamp > 0 Or .OppFireSpin > 0 Or .OppMagmaStorm > 0 Or .OppSandTomb > 0 Or .OppWhirlpool > 0 Or .OppInfestation > 0 Then
+                        Return False
+                    End If
+                End If
+            End With
 
             Dim ingrain As Integer = BattleScreen.FieldEffects.OwnIngrain
             If own = False Then
@@ -710,13 +739,6 @@
             If p.Speed > op.Speed Then
                 Return True
             Else
-                If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                    If p.Item.Name.ToLower() = "smoke ball" Then
-                        BattleScreen.FieldEffects.RunTries += 1
-                        Return True
-                    End If
-                End If
-
                 Dim A As Integer = p.Speed
                 Dim B As Integer = op.Speed
                 If B = 0 Then
@@ -772,37 +794,84 @@
             'Sheer Cold
             If move.ID = 329 Then
                 If op.IsType(Element.Types.Ice) Then
-                    effectiveness = 0
-                End If
-            End If
-
-            Dim _targetHasIronBall As Boolean = False
-            If Not op.Item Is Nothing Then
-                If op.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                    _targetHasIronBall = True
-                End If
-            End If
-
-            If op.Ability.Name.ToLower() = "levitate" And move.GetAttackType(own, BattleScreen).Type = Element.Types.Ground And BattleScreen.FieldEffects.Gravity = 0 And _targetHasIronBall = False Then
-                If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                     effectiveness = 0.0F
                 End If
             End If
 
-            Dim ingrain As Integer = BattleScreen.FieldEffects.OppIngrain
-            If own = False Then
-                ingrain = BattleScreen.FieldEffects.OwnIngrain
+            Dim digHit As Boolean = False
+            Dim airHit As Boolean = False
+            Dim regHit As Boolean = False
+
+            'Grounded condition
+            If move.GetAttackType(own, BattleScreen).Type = Element.Types.Ground And BattleScreen.FieldEffects.IsGrounded(Not own, BattleScreen) = False Then
+                Dim targetDig As Boolean = False
+                Dim targetAir As Boolean = False
+
+                With BattleScreen.FieldEffects
+                    If own = True Then
+                        If .OppDigCounter > 0 Then
+                            targetDig = True
+                        End If
+                        If .OppFlyCounter > 0 Or .OppBounceCounter > 0 Or .OppSkyDropCounter > 0 Then
+                            targetAir = True
+                        End If
+                    Else
+                        If .OwnDigCounter > 0 Then
+                            targetDig = True
+                        End If
+                        If .OwnFlyCounter > 0 Or .OwnBounceCounter > 0 Or .OwnSkyDropCounter > 0 Then
+                            targetAir = True
+                        End If
+                    End If
+                End With
+
+                Select Case move.ID
+                    Case 89, 90, 222 'Earthquake, Fissure, Magnitude
+                        effectiveness = 0.0F
+                        If targetDig = True Then
+                            digHit = True
+                        End If
+                    Case 614 'Thousand Arrows
+                        airHit = True
+                        If targetAir = True Then
+                            If own = True Then
+                                BattleScreen.FieldEffects.OppFlyCounter = 0
+                                BattleScreen.FieldEffects.OppBounceCounter = 0
+                            Else
+                                BattleScreen.FieldEffects.OwnFlyCounter = 0
+                                BattleScreen.FieldEffects.OwnBounceCounter = 0
+                            End If
+                        End If
+                    Case Else
+                        effectiveness = 0.0F
+                End Select
+            ElseIf move.GetAttackType(own, BattleScreen).Type = Element.Types.Ground And BattleScreen.FieldEffects.IsGrounded(Not own, BattleScreen) = True Then
+                regHit = True
             End If
 
-            If move.GetAttackType(own, BattleScreen).Type = Element.Types.Ground Then
-                If BattleScreen.FieldEffects.Gravity = 0 And ingrain = 0 And _targetHasIronBall = False Then
-                    Dim magnetRise As Integer = BattleScreen.FieldEffects.OppMagnetRise
-                    If own = False Then
-                        magnetRise = BattleScreen.FieldEffects.OwnMagnetRise
-                    End If
-                    If magnetRise > 0 Then
-                        effectiveness = 0.0F
-                    End If
+            'Grounded hit effectiveness
+            If digHit = True Or airHit = True Or regHit = True Then
+                effectiveness = 1.0F
+                If op.IsType(Element.Types.Electric) Then
+                    effectiveness *= 2
+                End If
+                If op.IsType(Element.Types.Fire) Then
+                    effectiveness *= 2
+                End If
+                If op.IsType(Element.Types.Poison) Then
+                    effectiveness *= 2
+                End If
+                If op.IsType(Element.Types.Rock) Then
+                    effectiveness *= 2
+                End If
+                If op.IsType(Element.Types.Steel) Then
+                    effectiveness *= 2
+                End If
+                If op.IsType(Element.Types.Bug) Then
+                    effectiveness /= 2
+                End If
+                If op.IsType(Element.Types.Grass) Then
+                    effectiveness /= 2
                 End If
             End If
 
@@ -831,7 +900,6 @@
                     effectiveness = 1.0F
                 End If
             End If
-
 
             If op.IsType(Element.Types.Ghost) = True Then
                 Dim CanHitGhost = False
@@ -1018,28 +1086,37 @@
                     Return True
                 End If
 
+                If BattleScreen.OwnPokemon.Type1.Type = Element.Types.Ghost Or BattleScreen.OwnPokemon.Type2.Type = Element.Types.Ghost Then
+                    Return True
+                End If
+
+                With BattleScreen
+                    If Not .OwnPokemon.Item Is Nothing Then
+                        If .OwnPokemon.Item.Name.ToLower() = "shed shell" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            Return True
+                        End If
+                    End If
+                End With
+
                 If BattleScreen.IsRemoteBattle AndAlso BattleScreen.IsPVPBattle AndAlso Not BattleScreen.IsHost Then
                     If BattleScreen.FieldEffects.ClientCanSwitch = False Then
                         Return False
                     End If
                 End If
 
-                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "shadow tag" And BattleScreen.OwnPokemon.Ability.Name.ToLower() <> "shadow tag" Then
+                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "shadow tag" And BattleScreen.OwnPokemon.Ability.Name.ToLower() <> "shadow tag" And BattleScreen.OppPokemon.HP > 0 Then
                     Return False
                 End If
+
                 If BattleScreen.FieldEffects.OwnTrappedCounter > 0 Then
                     Return False
                 End If
 
-                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "arena trap" Then
-                    Dim magnetRise As Integer = BattleScreen.FieldEffects.OwnMagnetRise
-
-                    If BattleScreen.OwnPokemon.IsType(Element.Types.Flying) = False And BattleScreen.OwnPokemon.Ability.Name.ToLower() <> "levitate" And magnetRise = 0 Then
-                        Return False
-                    End If
+                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "arena trap" And BattleScreen.OppPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(True, BattleScreen) = True Then
+                    Return False
                 End If
 
-                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "magnet pull" And BattleScreen.OwnPokemon.IsType(Element.Types.Ghost) = False And BattleScreen.OwnPokemon.IsType(Element.Types.Steel) = True Then
+                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "magnet pull" And BattleScreen.OwnPokemon.IsType(Element.Types.Steel) = True And BattleScreen.OppPokemon.HP > 0 Then
                     Return False
                 End If
 
@@ -1056,22 +1133,32 @@
                 If BattleScreen.OppPokemon.Status = Pokemon.StatusProblems.Fainted Or BattleScreen.OppPokemon.HP <= 0 Then
                     Return True
                 End If
-                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "shadow tag" And BattleScreen.OppPokemon.Ability.Name.ToLower() <> "shadow tag" Then
+
+                If BattleScreen.OppPokemon.Type1.Type = Element.Types.Ghost Or BattleScreen.OppPokemon.Type2.Type = Element.Types.Ghost Then
+                    Return True
+                End If
+
+                With BattleScreen
+                    If Not .OppPokemon.Item Is Nothing Then
+                        If .OppPokemon.Item.Name.ToLower() = "shed shell" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            Return True
+                        End If
+                    End If
+                End With
+
+                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "shadow tag" And BattleScreen.OppPokemon.Ability.Name.ToLower() <> "shadow tag" And BattleScreen.OwnPokemon.HP > 0 Then
                     Return False
                 End If
+
                 If BattleScreen.FieldEffects.OppTrappedCounter > 0 Then
                     Return False
                 End If
 
-                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "arena trap" Then
-                    Dim magnetRise As Integer = BattleScreen.FieldEffects.OppMagnetRise
-
-                    If BattleScreen.OppPokemon.IsType(Element.Types.Flying) = False And BattleScreen.OppPokemon.Ability.Name.ToLower() <> "levitate" And magnetRise = 0 Then
-                        Return False
-                    End If
+                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "arena trap" And BattleScreen.OwnPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(False, BattleScreen) = True Then
+                    Return False
                 End If
 
-                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "magnet pull" And BattleScreen.OppPokemon.IsType(Element.Types.Ghost) = False And BattleScreen.OppPokemon.IsType(Element.Types.Steel) = True Then
+                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "magnet pull" And BattleScreen.OppPokemon.IsType(Element.Types.Steel) = True And BattleScreen.OwnPokemon.HP > 0 Then
                     Return False
                 End If
 
@@ -1210,7 +1297,7 @@
                         If Attack.Type.Type = Element.Types.Flying Then
                             IT = 1.2F
                         End If
-                    Case 88, 273 'Silver powder, Insect Plate
+                    Case 88, 273 'Silver Powder, Insect Plate
                         If Attack.Type.Type = Element.Types.Bug Then
                             IT = 1.2F
                         End If
@@ -1225,6 +1312,138 @@
                     Case 96, 263, 276 'Twisted Spoon, Odd Incense, Mind Plate
                         If Attack.Type.Type = Element.Types.Psychic Then
                             IT = 1.2F
+                        End If
+                    Case 90 'Silk Scarf
+                        If Attack.Type.Type = Element.Types.Normal Then
+                            IT = 1.2F
+                        End If
+                End Select
+                Select Case p.Item.ID
+                    Case 635 'Fighting Gem
+                        If Attack.Type.Type = Element.Types.Fighting Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fighting gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Fighting Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 644 'Dark Gem
+                        If Attack.Type.Type = Element.Types.Dark Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:dark gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Dark Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 630 'Fire Gem
+                        If Attack.Type.Type = Element.Types.Fire Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fire gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Fire Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 643 'Dragon Gem
+                        If Attack.Type.Type = Element.Types.Dragon Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:dragon gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Dragon Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 641 'Rock Gem
+                        If Attack.Type.Type = Element.Types.Rock Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:rock gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Rock Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 632 'Electric Gem
+                        If Attack.Type.Type = Element.Types.Electric Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:electric gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Electric Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 645 'Steel Gem
+                        If Attack.Type.Type = Element.Types.Steel Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:steel gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Steel Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 633 'Grass Gem
+                        If Attack.Type.Type = Element.Types.Grass Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:grass gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Grass Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 631 'Water Gem
+                        If Attack.Type.Type = Element.Types.Water Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:water gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Water Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 634 'Ice Gem
+                        If Attack.Type.Type = Element.Types.Ice Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:ice gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Ice Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 647 'Fairy Gem
+                        If Attack.Type.Type = Element.Types.Fairy Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:fairy gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Fairy Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 636 'Poison Gem
+                        If Attack.Type.Type = Element.Types.Poison Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:poison gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Poison Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 638 'Flying Gem
+                        If Attack.Type.Type = Element.Types.Flying Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:flying gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Flying Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 640 'Bug Gem
+                        If Attack.Type.Type = Element.Types.Bug Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:bug gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Bug Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 637 'Ground Gem
+                        If Attack.Type.Type = Element.Types.Ground Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:ground gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Ground Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 642 'Ghost Gem
+                        If Attack.Type.Type = Element.Types.Ghost Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:ghost gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Ghost Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 639 'Psychic Gem
+                        If Attack.Type.Type = Element.Types.Psychic Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:psychic gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Psychic Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
+                        End If
+                    Case 646 'Normal Gem
+                        If Attack.Type.Type = Element.Types.Normal Then
+                            If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "-1", "item:normal gem") = True Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject("The Normal Gem boosted " & p.GetDisplayName() & "'s " & Attack.Name & "!"))
+                                IT = 1.3F
+                            End If
                         End If
                 End Select
             End If
@@ -1307,10 +1526,6 @@
                 Case "strong jaw"
                     If Attack.IsJawMove = True Then
                         UA = 1.5F
-                    End If
-                Case "fur coat"
-                    If Attack.Category = Attack.Categories.Physical Then
-                        UA = 0.5F
                     End If
                 Case "refrigerate"
                     If Attack.Type.Type = Element.Types.Normal Then
@@ -1436,11 +1651,11 @@
                         AM = 1.5F
                     Case "slow start"
                         If Own = True Then
-                            If BattleScreen.FieldEffects.OwnTurnCounts < 5 Then
+                            If BattleScreen.FieldEffects.OwnPokemonTurns < 5 Then
                                 AM = 0.5F
                             End If
                         Else
-                            If BattleScreen.FieldEffects.OppTurnCounts < 5 Then
+                            If BattleScreen.FieldEffects.OppPokemonTurns < 5 Then
                                 AM = 0.5F
                             End If
                         End If
@@ -1580,7 +1795,7 @@
                     DSM = 1.0F
                 End If
 
-                If Attack.Name.ToLower() = "selfdestruct" Or Attack.Name.ToLower() = "explosion" Then
+                If Attack.Name.ToLower() = "self-destruct" Or Attack.Name.ToLower() = "explosion" Then
                     SX = 1.0F
                 End If
 
@@ -1588,6 +1803,10 @@
                     Select Case Op.Item.Name.ToLower()
                         Case "metal powder"
                             If Op.Number = 132 Then
+                                DMod = 1.5F
+                            End If
+                        Case "eviolite"
+                            If Op.IsFullyEvolved = False Then
                                 DMod = 1.5F
                             End If
                     End Select
@@ -1600,6 +1819,15 @@
                         End If
                     End If
                 End If
+
+                If Op.Ability.Name.ToLower() = "fur coat" And BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
+                    DMod = 2.0F
+                End If
+
+                If BattleScreen.FieldEffects.GrassyTerrain > 0 And Op.Ability.Name.ToLower() = "grass pelt" And BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
+                    DMod = 1.5F
+                End If
+
             ElseIf Attack.Category = Attack.Categories.Special Then
                 DStat = Attack.GetUseDefenseStat(Op)
                 DSM = GetMultiplierFromStat(Op.StatSpDefense)
@@ -1717,6 +1945,18 @@
                     End If
                 Case Element.Types.Ice
                     If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Snow Then
+                        SR = 1.5F
+                    End If
+                Case Element.Types.Electric
+                    If BattleScreen.FieldEffects.ElectricTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
+                        SR = 1.5F
+                    End If
+                Case Element.Types.Grass
+                    If BattleScreen.FieldEffects.GrassyTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
+                        SR = 1.5F
+                    End If
+                Case Element.Types.Psychic
+                    If BattleScreen.FieldEffects.PsychicTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
                         SR = 1.5F
                     End If
             End Select
@@ -1904,6 +2144,12 @@
                                         TRB = 0.5F
                                     End If
                                 End If
+                            Case "roseli"
+                                If Attack.Type.Type = Element.Types.Fairy Then
+                                    If BattleScreen.Battle.RemoveHeldItem(Not Own, Not Own, BattleScreen, "The Roseli Berry weakened the effect of " & Attack.Name & " on " & Op.GetDisplayName() & "!", "berry:roseli") = True Then
+                                        TRB = 0.5F
+                                    End If
+                                End If
                         End Select
                     End If
                 End If
@@ -1933,6 +2179,19 @@
 
             If p.Ability.Name.ToLower() = "multiscale" And p.HP = p.MaxHP And BattleScreen.FieldEffects.CanUseAbility(Own, BattleScreen) = True Then
                 damage = CInt(damage / 2)
+            End If
+
+            If BattleScreen.FieldEffects.MistyTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
+                If Attack.Type.Type = Element.Types.Dragon Then
+                    damage = CInt(damage / 2)
+                End If
+            End If
+
+            If BattleScreen.FieldEffects.GrassyTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
+                'Earthquake, Bulldoze, Magnitude
+                If Attack.ID = 89 Or Attack.ID = 523 Or Attack.ID = 222 Then
+                    damage = CInt(damage / 2)
+                End If
             End If
 
             If Attack.IsOneHitKOMove = True Then

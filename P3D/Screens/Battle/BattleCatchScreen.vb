@@ -327,7 +327,7 @@
                 End If
             Case "dusk ball"
                 If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Or Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Dark Then
-                    BallRate = 3.0F
+                    BallRate = 3.5F
                 ElseIf Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.GetTime() = 0 Then
                     BallRate = 3.5F
                 End If

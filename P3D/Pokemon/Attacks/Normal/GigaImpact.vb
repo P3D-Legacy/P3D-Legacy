@@ -14,7 +14,7 @@
             Me.Power = 150
             Me.Accuracy = 90
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Giga Impact"
             Me.Description = "The user charges at the target using every bit of its power. The user can't move on the next turn."
             Me.CriticalChance = 1

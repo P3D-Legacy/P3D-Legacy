@@ -14,7 +14,7 @@
             Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Worry Seed"
             Me.Description = "A seed that causes worry is planted on the target. It prevents sleep by making the target's Ability Insomnia."
             Me.CriticalChance = 0

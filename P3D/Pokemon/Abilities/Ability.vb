@@ -415,98 +415,96 @@
                 Return New Abilities.FairyAura
             Case 188
                 Return New Abilities.AuraBreak
-			'Case 189
-			'Primordial Sea
-			'Case 190
-			'Desolate Land
-			'Case 191
-			'Delta Stream
-			'Case 192
-			'Stamina
-			'Case 193
-			'Wimp Out
-			'Case 194
-			'Emergency Exit
-			'Case 195
-			'Water Compaction
-			'Case 196
-			'Merciless
-			'Case 197
-			'Shields Down
-			'Case 198
-			'Stakeout
-			'Case 199
-			'Water Bubble
-			'Case 200
-			'Steelworker
-			'Case 201
-			'Berserk
-			'Case 202
-			'Slush Rush
-			'Case 203
-			'Long Reach
-			'Case 204
-			'Liquid Voice
-			'Case 205
-			'Triage
-			'Case 206
-			'Galvanize
-			'Case 207
-			'Surge Surfer
-			'Case 208
-			'Schooling
-			'Case 209
-			'Disguise
-			'Case 210
-			'Battle Bond
-			'Case 211
-			'Power Construct
-			'Case 212
-			'Corrosion
-			'Case 213
-			'Comatose
-			'Case 214
-			'Queenly Majesty
-			'Case 215
-			'Innards Out
-			'Case 216
-			'Dancer
-			'Case 217
-			'Battery
-			'Case 218
-			'Fluffy
-			'Case 219
-			'Dazzling
-			'Case 220
-			'Soul-Heart
-			'Case 221
-			'Tangling Hair
-			'Case 222
-			'Receiver
-			'Case 223
-			'Power of Alchemy
-			'Case 224
-			'Beast Boost
-			'Case 225
-			'RKS System
-			'Case 226
-			'Electric Surge
-			'Case 227
-			'Psychic Surge
-			'Case 228
-			'Misty Surge
-			'Case 229
-			'Grassy Surge
-			'Case 230
-			'Full Metal Body
-			'Case 231
-			'Shadow Shield
-			'Case 232
-			'Prism Armor
-			'Case 233
-			'Neuroforce
-			'Case 234
-			'Blank
+            'Case 189
+            'Primordial Sea
+            'Case 190
+            'Desolate Land
+            'Case 191
+            'Delta Stream
+            'Case 192
+            'Stamina
+            'Case 193
+            'Wimp Out
+            'Case 194
+            'Emergency Exit
+            'Case 195
+            'Water Compaction
+            'Case 196
+            'Merciless
+            'Case 197
+            'Shields Down
+            'Case 198
+            'Stakeout
+            'Case 199
+            'Water Bubble
+            'Case 200
+            'Steelworker
+            'Case 201
+            'Berserk
+            Case 202
+                Return New Abilities.SlushRush()
+            'Case 203
+            'Long Reach
+            'Case 204
+            'Liquid Voice
+            'Case 205
+            'Triage
+            Case 206
+                Return New Abilities.Galvanize()
+            Case 207
+                Return New Abilities.SurgeSurfer()
+            'Case 208
+            'Schooling
+            'Case 209
+            'Disguise
+            'Case 210
+            'Battle Bond
+            'Case 211
+            'Power Construct
+            'Case 212
+            'Corrosion
+            'Case 213
+            'Comatose
+            'Case 214
+            'Queenly Majesty
+            'Case 215
+            'Innards Out
+            'Case 216
+            'Dancer
+            'Case 217
+            'Battery
+            'Case 218
+            'Fluffy
+            'Case 219
+            'Dazzling
+            'Case 220
+            'Soul-Heart
+            Case 221
+                Return New Abilities.TanglingHair()
+            'Case 222
+            'Receiver
+            Case 223
+                Return New Abilities.PowerofAlchemy()
+            'Case 224
+            'Beast Boost
+            'Case 225
+            'RKS System
+            Case 226
+                Return New Abilities.ElectricSurge()
+            Case 227
+                Return New Abilities.PsychicSurge()
+            Case 228
+                Return New Abilities.MistySurge()
+            Case 229
+                Return New Abilities.GrassySurge()
+                'Case 230
+                'Full Metal Body
+                'Case 231
+                'Shadow Shield
+                'Case 232
+                'Prism Armor
+                'Case 233
+                'Neuroforce
             Case Else
                 Return New Abilities.Stench
         End Select

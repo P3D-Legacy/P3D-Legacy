@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Dark
             Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Switcheroo"
             Me.Description = "The user trades held items with the target faster than the eye can follow."
             Me.CriticalChance = 0

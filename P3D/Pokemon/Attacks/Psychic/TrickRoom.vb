@@ -14,7 +14,7 @@
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cute
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Trick Room"
             Me.Description = "The user creates a bizarre area in which slower Pokémon get to move first for five turns."
             Me.CriticalChance = 0

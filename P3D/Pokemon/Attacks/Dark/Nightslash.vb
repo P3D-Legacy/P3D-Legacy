@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Dark
 
-    Public Class Nightslash
+    Public Class NightSlash
 
         Inherits Attack
 
@@ -14,7 +14,7 @@
             Me.Power = 70
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Night Slash"
             Me.Description = "The user slashes the target the instant an opportunity arises. Critical hits land more easily."
             Me.CriticalChance = 2

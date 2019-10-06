@@ -14,7 +14,7 @@
             Me.Power = 130
             Me.Accuracy = 90
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Draco Meteor"
             Me.Description = "Comets are summoned down from the sky onto the target. The attack's recoil harshly reduces the user's Sp. Atk stat."
             Me.CriticalChance = 1
