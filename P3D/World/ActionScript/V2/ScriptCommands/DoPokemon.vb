@@ -33,7 +33,7 @@
 
                         argument = argument.Remove(0, argument.IndexOf("{"))
 
-                        Dim p As Pokemon = Pokemon.GetPokemonByData(argument.Replace("§", ","))
+                        Dim p As Pokemon = Pokemon.GetPokemonByData(argument.Replace("§", ",").Replace("«", "[").Replace("»", "]"))
                         Core.Player.Pokemons.Insert(insertIndex, p)
 
                         Dim pokedexType As Integer = 2
@@ -710,7 +710,7 @@
 
                         argument = argument.Remove(0, argument.IndexOf("{"))
 
-                        Dim p As Pokemon = Pokemon.GetPokemonByData(argument.Replace("§", ","))
+                        Dim p As Pokemon = Pokemon.GetPokemonByData(argument.Replace("§", ",").Replace("«", "[").Replace("»", "]"))
                         StorageSystemScreen.DepositPokemon(p, insertIndex)
 
                         Dim pokedexType As Integer = 2
