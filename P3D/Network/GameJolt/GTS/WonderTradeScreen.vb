@@ -207,6 +207,7 @@
 
                             Core.SetScreen(selScreen)
                             CType(Core.CurrentScreen, PartyScreen).CanChooseHMPokemon = False
+                            CType(Core.CurrentScreen, PartyScreen).CanChooseFusedPokemon = False
                             Me.OpenedSelect = True
                         End If
                     Else

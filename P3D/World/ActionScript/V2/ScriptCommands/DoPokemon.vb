@@ -33,7 +33,7 @@
 
                         argument = argument.Remove(0, argument.IndexOf("{"))
 
-                        Dim p As Pokemon = Pokemon.GetPokemonByData(argument.Replace("§", ","))
+                        Dim p As Pokemon = Pokemon.GetPokemonByData(argument.Replace("§", ",").Replace("«", "[").Replace("»", "]"))
                         Core.Player.Pokemons.Insert(insertIndex, p)
 
                         Dim pokedexType As Integer = 2
@@ -168,6 +168,20 @@
                         If p.Attacks.Count - 1 >= attackIndex Then
                             p.Attacks.RemoveAt(attackIndex)
                         End If
+                    End If
+                Case "removeattackid"
+                    Dim Index As Integer = int(argument.GetSplit(0, ","))
+                    Dim attackId As Integer = int(argument.GetSplit(1, ","))
+
+                    If Core.Player.Pokemons.Count - 1 >= Index Then
+                        Dim p As Pokemon = Core.Player.Pokemons(Index)
+
+                        For a = 0 To (p.Attacks.Count - 1)
+                            If p.Attacks(a).ID = attackId Then
+                                p.Attacks.RemoveAt(a)
+                                Exit For
+                            End If
+                        Next
                     End If
                 Case "clearattacks"
                     Dim Index As Integer = int(argument)
@@ -710,7 +724,7 @@
 
                         argument = argument.Remove(0, argument.IndexOf("{"))
 
-                        Dim p As Pokemon = Pokemon.GetPokemonByData(argument.Replace("§", ","))
+                        Dim p As Pokemon = Pokemon.GetPokemonByData(argument.Replace("§", ",").Replace("«", "[").Replace("»", "]"))
                         StorageSystemScreen.DepositPokemon(p, insertIndex)
 
                         Dim pokedexType As Integer = 2

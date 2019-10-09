@@ -16,7 +16,7 @@
                     Return Core.Player.Pokemons(index).Number
                 Case "data"
                     Dim index As Integer = int(argument.GetSplit(0))
-                    Return Core.Player.Pokemons(index).GetSaveData().Replace(",", "§")
+                    Return Core.Player.Pokemons(index).GetSaveData().Replace(",", "§").Replace("[", "«").Replace("]", "»")
                 Case "level"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).Level
@@ -274,16 +274,16 @@
                         Next
                     End If
 
-                    Return FrontierSpawner.GetPokemon(level, pokemon_class, IDPreset).GetSaveData().Replace(",", "§")
+                    Return FrontierSpawner.GetPokemon(level, pokemon_class, IDPreset).GetSaveData().Replace(",", "§").Replace("[", "«").Replace("]", "»")
                 Case "spawnwild"
-                    Return Spawner.GetPokemon(Screen.Level.LevelFile, CType(int(argument), Spawner.EncounterMethods)).GetSaveData().Replace(",", "§")
+                    Return Spawner.GetPokemon(Screen.Level.LevelFile, CType(int(argument), Spawner.EncounterMethods)).GetSaveData().Replace(",", "§").Replace("[", "«").Replace("]", "»")
                 Case "spawn"
                     Dim ID As Integer = int(argument.GetSplit(0))
                     Dim level As Integer = int(argument.GetSplit(1))
 
                     Dim p As Pokemon = Pokemon.GetPokemonByID(ID)
                     p.Generate(level, True)
-                    Return p.GetSaveData().Replace(",", "§")
+                    Return p.GetSaveData().Replace(",", "§").Replace("[", "«").Replace("]", "»")
                 Case "otmatch"
                     ' Arguments: has: returns boolean, ID: returns Pokédex number, Name: returns name, maxhits: returns the maximum number of equal chars.
 

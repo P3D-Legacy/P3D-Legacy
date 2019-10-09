@@ -65,6 +65,7 @@ Public Class PartyScreen
     Public CanChooseFainted As Boolean = True
     Public CanChooseEgg As Boolean = True
     Public CanChooseHMPokemon As Boolean = True
+    Public CanChooseFusedPokemon As Boolean = True
 
     Public Delegate Sub DoStuff(ByVal PokeIndex As Integer)
     Dim ChoosePokemon As DoStuff
@@ -583,6 +584,13 @@ Public Class PartyScreen
         If Me.CanChooseHMPokemon = False Then
             If p.HasHMMove() = True Then
                 Return False
+            End If
+        End If
+        If Me.CanChooseFusedPokemon = False Then
+            If p.OriginalNumber = 646 Then
+                If p.AdditionalData = "black" Or p.AdditionalData = "white" Then
+                    Return False
+                End If
             End If
         End If
         Return True

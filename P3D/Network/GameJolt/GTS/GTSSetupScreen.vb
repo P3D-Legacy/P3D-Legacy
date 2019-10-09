@@ -721,6 +721,7 @@
 
                             Core.SetScreen(selScreen)
                             CType(Core.CurrentScreen, PartyScreen).CanChooseHMPokemon = False
+                            CType(Core.CurrentScreen, PartyScreen).CanChooseFusedPokemon = False
                         End If
                         If New Rectangle(700, 540, 32 * 3 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                             Me.GTSSetupScreen.loaded = False
