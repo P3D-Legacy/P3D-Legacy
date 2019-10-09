@@ -1243,6 +1243,34 @@
                 Exit Sub
             End If
 
+            If own = True Then
+                If Not p.Item Is Nothing Then
+                    If p.Item.Name.ToLower() = "choice band" Or p.Item.Name.ToLower() = "choice specs" Or p.Item.Name.ToLower() = "choice scarf" Then
+                        If Not BattleScreen.FieldEffects.OwnChoiceMove Is Nothing Then
+                            If Not moveUsed Is BattleScreen.FieldEffects.OwnChoiceMove Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.Name & "!"))
+                                Exit Sub
+                            End If
+                        Else
+                            BattleScreen.FieldEffects.OwnChoiceMove = moveUsed
+                        End If
+                    End If
+                End If
+            Else
+                If Not p.Item Is Nothing Then
+                    If p.Item.Name.ToLower() = "choice band" Or p.Item.Name.ToLower() = "choice specs" Or p.Item.Name.ToLower() = "choice scarf" Then
+                        If Not BattleScreen.FieldEffects.OppChoiceMove Is Nothing Then
+                            If Not moveUsed Is BattleScreen.FieldEffects.OppChoiceMove Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.Name & "!"))
+                                Exit Sub
+                            End If
+                        Else
+                            BattleScreen.FieldEffects.OppChoiceMove = moveUsed
+                        End If
+                    End If
+                End If
+            End If
+
             Dim imprisoned As Integer = BattleScreen.FieldEffects.OwnImprison
             If own = False Then
                 imprisoned = BattleScreen.FieldEffects.OppImprison
@@ -1338,7 +1366,7 @@
             End If
             If taunt > 0 Then
                 If moveUsed.Category = Attack.Categories.Status Then
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " move was prevented due to Taunt!"))
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to Taunt!"))
                     Exit Sub
                 End If
             End If
@@ -1346,7 +1374,7 @@
             Dim gravity As Integer = BattleScreen.FieldEffects.Gravity
             If gravity > 0 Then
                 If moveUsed.DisabledWhileGravity = True Then
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " move was prevented due to Gravity!"))
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to Gravity!"))
                     Exit Sub
                 End If
             End If
