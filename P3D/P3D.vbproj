@@ -26242,6 +26242,9 @@
     <Compile Include="Pokemon\Items\Machines\TM173.vb" />
     <Compile Include="Pokemon\Items\Medicine\PewterCrunchies.vb" />
     <Compile Include="Pokemon\Items\GemItem.vb" />
+    <Compile Include="Pokemon\Items\Standard\ChoiceBand.vb" />
+    <Compile Include="Pokemon\Items\Standard\ChoiceScarf.vb" />
+    <Compile Include="Pokemon\Items\Standard\ChoiceSpecs.vb" />
     <Compile Include="Pokemon\Items\Standard\PsychicSeed.vb" />
     <Compile Include="Pokemon\Items\Standard\MistySeed.vb" />
     <Compile Include="Pokemon\Items\Standard\GrassySeed.vb" />
