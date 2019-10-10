@@ -42,6 +42,8 @@
                     End With
                 Case "visible"
                     Return ReturnBoolean(Screen.Level.OverworldPokemon.IsVisible())
+                Case "id"
+                    Return Screen.Level.OverworldPokemon.PokemonID
                 Case "skin"
                     If Screen.Level.OverworldPokemon.PokemonReference IsNot Nothing Then
                         Dim shinyString As String = "Normal"
