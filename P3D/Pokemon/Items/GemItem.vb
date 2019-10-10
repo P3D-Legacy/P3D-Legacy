@@ -10,11 +10,9 @@ Namespace Items
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Standard
-        Public Overrides ReadOnly Property Description As String
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
 
         Public Sub New(ByVal Type As Element.Types)
-            Description = "Increases the power of the holder's first " & Type.ToString() & "-type move by 30%, and is consumed after use."
             _textureSource = "Items\Gems"
             _textureRectangle = GetTextureRectangle(Type)
         End Sub
