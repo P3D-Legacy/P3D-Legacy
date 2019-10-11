@@ -9,7 +9,8 @@ Public Class OverworldScreen
 
 #Region "Fields"
 
-    Private Shared _fadeValue As Integer = 0 'Fade progress value for the black screen fade.
+    Private Shared _fadeColor As Color = Color.Black 'Fade screen color.
+    Private Shared _fadeValue As Integer = 0 'Fade progress value for the screen fade.
     Private Shared _drawRodID As Integer = -1 'The rod ID to display on the screen during the fishing animation.
 
     Private _actionScript As ActionScript 'Private ActionScript instance.
@@ -57,7 +58,19 @@ Public Class OverworldScreen
     End Property
 
     ''' <summary>
-    ''' Fade progress value for the black screen fade.
+    ''' Fade color for the screen.
+    ''' </summary>
+    Public Shared Property FadeColor() As Color
+        Get
+            Return _fadeColor
+        End Get
+        Set(value As Color)
+            _fadeColor = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Fade progress value for the screen fade.
     ''' </summary>
     Public Shared Property FadeValue() As Integer
         Get
@@ -378,7 +391,7 @@ Public Class OverworldScreen
 
         'If the black fade is visible, render it:
         If FadeValue > 0 Then
-            Canvas.DrawRectangle(Core.windowSize, New Color(0, 0, 0, FadeValue))
+            Canvas.DrawRectangle(Core.windowSize, New Color(FadeColor.R, FadeColor.G, FadeColor.B, FadeValue))
         End If
     End Sub
 

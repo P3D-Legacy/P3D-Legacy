@@ -106,7 +106,7 @@
             End If
 
             If FadeValue > 0 Then
-                Canvas.DrawRectangle(windowSize, New Color(0, 0, 0, FadeValue))
+                Canvas.DrawRectangle(windowSize, New Color(FadeColor.R, FadeColor.G, FadeColor.B, FadeValue))
             End If
         End Sub
 
