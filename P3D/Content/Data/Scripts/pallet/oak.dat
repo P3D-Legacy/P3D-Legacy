@@ -11,6 +11,8 @@ version=2
 	@item.give(284,1)
 	@item.messagegive(284,1)
 	@register.register(rainbowpass)
+	@npc.register(mtember\exterior.dat|4|position|~,1,~)
+	@register.register(taostart)
 	@text.show(That pass will allow~you to take the~Sea Gallop Ferries~from Vermilion to all~of the Sevii Islands.*I have heard many~ruins and secrets lie~on those islands.*I am sure visiting~those islands will be~an amazing experience!)
 	@register.register(postblueoak)
 	:end
