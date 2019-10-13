@@ -26231,6 +26231,8 @@
     <Compile Include="Pokemon\Items\Gems\RockGem.vb" />
     <Compile Include="Pokemon\Items\Gems\SteelGem.vb" />
     <Compile Include="Pokemon\Items\Gems\WaterGem.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\LightStone.vb" />
+    <Compile Include="Pokemon\Items\KeyItems\DarkStone.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LibertySeaMap.vb" />
     <Compile Include="Pokemon\Items\Machines\TM171.vb" />
     <Compile Include="Pokemon\Items\Machines\TM172.vb" />
