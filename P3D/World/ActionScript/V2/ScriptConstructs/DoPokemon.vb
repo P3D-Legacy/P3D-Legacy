@@ -96,6 +96,19 @@
                 Case "catchlocation"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).CatchLocation
+                Case "hasattackinparty"
+                    Dim attackID As Integer = int(argument.GetSplit(0))
+                    Dim i As Integer = 0
+                    For Each p As Pokemon In Core.Player.Pokemons
+                        For Each a As BattleSystem.Attack In p.Attacks
+                            If a.ID = attackID Then
+                                Return i
+                            End If
+                        Next
+                        i += 1
+                    Next
+
+                    Return "-1"
                 Case "hasattack"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Dim attackID As Integer = int(argument.GetSplit(1))
