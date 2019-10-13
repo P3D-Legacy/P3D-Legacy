@@ -26458,10 +26458,10 @@
     <Content Include="Content\Data\Scripts\fuchsia\rarestoremap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\Scripts\fortune\dot\bstone.dat">
+    <Content Include="Content\Data\Scripts\fortune\dot\dstone.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\Scripts\fortune\dot\bstonemap.dat">
+    <Content Include="Content\Data\Scripts\fortune\dot\dstonemap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Data\Scripts\fortune\dot\n.dat">
@@ -26701,10 +26701,10 @@
     <Content Include="Content\Data\Scripts\mtember\n.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\Scripts\mtember\wstone.dat">
+    <Content Include="Content\Data\Scripts\mtember\lstone.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\Scripts\mtember\wstonemap.dat">
+    <Content Include="Content\Data\Scripts\mtember\lstonemap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Content\Data\Scripts\mtmortar\bf1map.dat">
