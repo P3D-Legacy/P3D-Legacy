@@ -26308,28 +26308,28 @@
     <None Include="Content\Data\maps\ecruteak\event.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Content\Data\maps\embtower\BWStatic.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\main2.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\embtower\FullGrayStatic.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\main.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\embtower\GrayIntoB&amp;W.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\pkyurem.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\embtower\GrayIntoBOnly.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\bstone.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\embtower\GrayIntoWOnly.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\wstone.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\embtower\main.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\kyurem.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\embtower\OnlyBlackAnimated.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\zekrom.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\embtower\OnlyWhiteAnimated.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\reshiram.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Content\Data\maps\fortune\0.dat">
