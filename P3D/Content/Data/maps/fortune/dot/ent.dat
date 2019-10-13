@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Dotted Hole]}}{"MusicLoop"{str[diglettscave]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[2]}}{"Weather"{int[1]}}{"Lightning"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[2]}}{"Weather"{int[1]}}{"MapScript"{str[fortune\dot\n]}}{"Lightning"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[14,10]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[Sevii]}}{"Texture"{rec[32,128,16,16]}}]}}
@@ -66,7 +66,11 @@ valley:
 1:
 {"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[5,0,4]}}{"TexturePath"{str[Sevii]}}{"Textures"{recArr[[16,128,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[4]}}{"AdditionalValue"{str[fortune\dot\drop0]}}{"Rotation"{int[0]}}{"Visible"{bool[1]}}]}}
 end:
-{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[12,0,4]}}{"TexturePath"{str[Sevii]}}{"Textures"{recArr[[16,128,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[fortune\dot\end.dat,8,0.1,4,0,2]}}{"Rotation"{int[0]}}{"Visible"{bool[1]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[12,0,4]}}{"TexturePath"{str[Sevii]}}{"Textures"{recArr[[16,128,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[fortune\dot\end.dat,8,0.1,4,2,0|2]}}{"Rotation"{int[0]}}{"Visible"{bool[1]}}]}}
 {"Entity"{ENT[{"EntityID"{str[Cube]}}{"Scale"{sngArr[1,1,0.25]}}{"Position"{sngArr[12,0,4]}}{"TexturePath"{str[WoodTower]}}{"Textures"{recArr[[16,80,16,16][16,80,4,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0,0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
+
+NPC:
+{"NPC"{NPC[{"Position"{sngArr[42,0,40]}}{"TextureID"{str[N]}}{"ID"{int[0]}}{"Name"{str[Father]}}{"Action"{int[1]}}{"AdditionalValue"{str[fortune\dot\n]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[42,0,40]}}{"TextureID"{str[N]}}{"ID"{int[1]}}{"Name"{str[Father]}}{"Action"{int[1]}}{"AdditionalValue"{str[mtember\n]}}{"AnimateIdle"{bool[1]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 
