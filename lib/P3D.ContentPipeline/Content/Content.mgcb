@@ -652,6 +652,12 @@
 /processorParam:Quality=Best
 /build:Songs/intro/suicune_battle.ogg
 
+#begin Songs/intro/tao_legend_battle.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/intro/tao_legend_battle.ogg
+
 #begin Songs/intro/trainer_encounter.ogg
 /importer:OggImporter
 /processor:SongProcessor
@@ -1317,6 +1323,18 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Songs/surf.ogg
+
+#begin Songs/tao_legend_battle.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/tao_legend_battle.ogg
+
+#begin Songs/tao_legend_battle_intro.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Songs/tao_legend_battle_intro.ogg
 
 #begin Songs/tintower.ogg
 /importer:OggImporter
