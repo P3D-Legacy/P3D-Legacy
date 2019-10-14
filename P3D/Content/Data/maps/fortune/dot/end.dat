@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Dotted Hole]}}{"MusicLoop"{str[diglettscave]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[2]}}{"Weather"{int[1]}}{"MapScript"{str[fortune\dot\bstonemap]}}{"Lightning"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[2]}}{"Weather"{int[1]}}{"MapScript"{str[fortune\dot\dstonemap]}}{"Lightning"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[9,9]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[Sevii]}}{"Texture"{rec[32,128,16,16]}}]}}
@@ -90,4 +90,5 @@ ent:
 {"Entity"{ENT[{"EntityID"{str[Cube]}}{"Scale"{sngArr[1,2.05,0.25]}}{"Position"{sngArr[8,0.5,4]}}{"TexturePath"{str[WoodTower]}}{"Textures"{recArr[[16,83,16,32][16,83,4,32]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0,0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
 NPC:
-{"NPC"{NPC[{"Position"{sngArr[4,-1,5]}}{"TextureID"{str[N]}}{"ID"{int[0]}}{"Name"{str[Father]}}{"Action"{int[1]}}{"AdditionalValue"{str[mtember\n]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[4,-1,5]}}{"TextureID"{str[N]}}{"ID"{int[0]}}{"Name"{str[Father]}}{"Action"{int[1]}}{"AdditionalValue"{str[fortune\dot\n]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[4,0.25,4]}}{"TextureID"{str[N]}}{"ID"{int[1]}}{"Name"{str[Father]}}{"Action"{int[1]}}{"AdditionalValue"{str[fortune\dot\dstone]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
