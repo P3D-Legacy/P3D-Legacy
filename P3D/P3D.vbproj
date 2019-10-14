@@ -26319,10 +26319,10 @@
     <Content Include="Content\Data\maps\routes\route47\embtower\pkyurem.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\routes\route47\embtower\bstone.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\dstone.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\routes\route47\embtower\wstone.dat">
+    <Content Include="Content\Data\maps\routes\route47\embtower\lstone.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Data\maps\routes\route47\embtower\kyurem.dat">
