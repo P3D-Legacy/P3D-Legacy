@@ -91,4 +91,4 @@ ent:
 
 NPC:
 {"NPC"{NPC[{"Position"{sngArr[4,-1,5]}}{"TextureID"{str[N]}}{"ID"{int[0]}}{"Name"{str[Father]}}{"Action"{int[1]}}{"AdditionalValue"{str[fortune\dot\n]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[4,0.25,4]}}{"TextureID"{str[N]}}{"ID"{int[1]}}{"Name"{str[Father]}}{"Action"{int[1]}}{"AdditionalValue"{str[fortune\dot\dstone]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Scale"{sngArr[0.5,0.5,0.5]}}{"Position"{sngArr[4,-0.0625,4]}}{"TextureID"{str[darkstone]}}{"ID"{int[1]}}{"Name"{str[Bulbasaur]}}{"Action"{int[1]}}{"AdditionalValue"{str[fortune\dot\dstone]}}{"Rotation"{int[1]}}{"Movement"{str[Pokeball]}}{"MoveRectangles"{recArr[]}}]}}
