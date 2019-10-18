@@ -161,7 +161,7 @@ nextScript:
         Dim l As ScriptLevel = ScriptLevels(ScriptLevelIndex)
         For Each newScript As String In ScriptData
             If i = 0 And newScript.ToLower().StartsWith("version=") Then
-                l.ScriptVersion = CInt(newScript.Remove(0, ("version=").Length))
+                l.ScriptVersion = CInt(newScript.ToLower().Remove(0, ("version=").Length))
                 l.CurrentLine += 1
             Else
                 While newScript.StartsWith(" ") = True Or newScript.StartsWith(StringHelper.Tab) = True
