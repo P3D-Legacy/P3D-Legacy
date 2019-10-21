@@ -52,6 +52,7 @@ Pokémon 3D
 		"Zender1752"
 		"nicomts"
 		"Wolfang62"
+		"PowerCrystal"
 		"SweeperSnivy"
 		"Clara"
 		"piphybuilder88"
@@ -59,6 +60,8 @@ Pokémon 3D
 		"Carlotta4th"
 		"WesleyFG"
 		"tebited15"
+		"Eli-eli76"
+		"Zyon17"
 
 	Map Design
 		Nils Drescher
