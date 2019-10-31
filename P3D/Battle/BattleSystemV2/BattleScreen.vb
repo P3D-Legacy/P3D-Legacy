@@ -122,6 +122,8 @@
             Me.IsTrainerBattle = False
             Me.MouseVisible = False
             Me.PVPGameJoltID = ""
+            'Reset variable when new battle starts
+            BattleSystem.Battle.Caught = False
         End Sub
 
         Public Sub New(ByVal Trainer As Trainer, ByVal OverworldScreen As Screen, ByVal defaultMapType As Integer)

@@ -4,6 +4,7 @@
 
         Public Shared Won As Boolean = False
         Public Shared Fled As Boolean = False
+        Public Shared Caught As Boolean = False
 
 
         Public IsAfterFaint As Boolean = False

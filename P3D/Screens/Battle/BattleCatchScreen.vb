@@ -161,6 +161,7 @@
                                 AnimationStarted = False
                                 SetupAnimation()
                                 CatchPokemon()
+                                BattleSystem.Battle.Caught = True
                             Case 8
                                 AnimationIndex = 9
                                 If showPokedexEntry = True Then
