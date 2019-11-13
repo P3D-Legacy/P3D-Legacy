@@ -363,7 +363,7 @@
                         End If
                     End If
 
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = canExit}
                     AddHandler selScreen.SelectedObject, Nothing
 
                     Core.SetScreen(selScreen)
