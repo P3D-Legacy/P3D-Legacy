@@ -1,5 +1,4 @@
-﻿Imports Microsoft.VisualBasic
-Public Class MusicManager
+﻿Public Class MusicManager
 
     Private Const NO_MUSIC As String = "*nomusic*" ' contains * as character, which cannot be in a filename
     Private Const DEFAULT_FADE_SPEED As Single = 0.02F
@@ -90,7 +89,18 @@ Public Class MusicManager
         Play(NO_MUSIC)
     End Sub
 
+    'Private Shared Property IsPlaying As Date = Date.Now
+
     Public Shared Sub Update()
+        'If Date.Now > IsPlaying.AddSeconds(1) AndAlso MediaPlayer.PlayPosition = TimeSpan.Zero Then
+        '    Logger.Debug("Music stopped playing!")
+        'End If
+
+        'If MediaPlayer.State = MediaState.Playing AndAlso MediaPlayer.PlayPosition = TimeSpan.Zero Then
+        'Else
+        '    IsPlaying = Date.Now
+        'End If
+
         If _isPausedForSound Then
             If Date.Now >= _pausedUntil Then
                 _isPausedForSound = False
@@ -208,7 +218,7 @@ Public Class MusicManager
     End Sub
 
     Private Shared Sub Play(song As SongContainer)
-        MediaPlayer.Stop()
+        'MediaPlayer.Stop()
 
         If Not song Is Nothing Then
             Logger.Debug($"Play song [{song.Name}]")
