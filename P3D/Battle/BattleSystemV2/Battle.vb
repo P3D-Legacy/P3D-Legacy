@@ -4327,8 +4327,13 @@
                         Case "cloud nine"
                             ChangeWeather(own, own, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
                         Case "intimidate"
-                            If Not op.Ability.Name.ToLower() = "Oblivious" Or Not op.Ability.Name.ToLower() = "Inner Focus" Or Not op.Ability.Name.ToLower() = "Own Tempo" Or Not op.Ability.Name.ToLower() = "Scrappy" Then
+                            If op.Ability.Name.ToLower() = "oblivious" Or op.Ability.Name.ToLower() = "inner focus" Or op.Ability.Name.ToLower() = "own tempo" Or op.Ability.Name.ToLower() = "scrappy" Then
+                                .BattleQuery.Add(New TextQueryObject("Intimidate's effect was prevented!"))
+                            Else
                                 LowerStat(Not own, own, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
+                            End If
+                            If op.Ability.Name.ToLower() = "rattled" Then
+                                RaiseStat(Not own, Not own, BattleScreen, "Speed", 1, op.GetDisplayName() & "'s Rattled affected it's clairaudience.", "rattled")
                             End If
                         Case "trace"
                             If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
