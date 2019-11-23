@@ -4583,10 +4583,12 @@
                                 End If
                             Case "berserk gene"
                                 If p.StatAttack <> 6 OrElse p.StatSpAttack <> 6 Then
-                                    If RemoveHeldItem(own, own, BattleScreen, "-1", "") = True Then
-                                        InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " went berserk due to the Berserk Gene!", "item:berserkgene")
-                                        RaiseStat(own, own, BattleScreen, "Attack", 1, "", "item:berserkgene")
-                                        RaiseStat(own, own, BattleScreen, "Special Attack", 1, "", "item:berserkgene")
+                                    If p.HP < CInt(Math.Floor(p.MaxHP / 3)) Then
+                                        If RemoveHeldItem(own, own, BattleScreen, "-1", "") = True Then
+                                            InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " went berserk due to the Berserk Gene!", "item:berserkgene")
+                                            RaiseStat(own, own, BattleScreen, "Attack", 2, "", "item:berserkgene")
+                                            RaiseStat(own, own, BattleScreen, "Special Attack", 2, "", "item:berserkgene")
+                                        End If
                                     End If
                                 End If
                         End Select
