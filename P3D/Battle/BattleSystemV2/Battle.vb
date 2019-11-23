@@ -4055,31 +4055,31 @@
                 Case "sitrus"
                     GainHP(CInt(p.MaxHP / 4), own, own, BattleScreen, "The Sitrus Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:sitrus")
                 Case "figy"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Figy Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:figy")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Figy Berry!", "berry:figy")
                     End If
                 Case "wiki"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Wiki Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:wiki")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Wiki Berry!", "berry:wiki")
                     End If
                 Case "mago"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Mago Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:mago")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Mago Berry!", "mago")
                     End If
                 Case "aguav"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Aguav Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:aguav")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Aguav Berry!", "aguav")
                     End If
                 Case "iapapa"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Iapapa Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:iapapa")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Iapapa Berry!", "berry:iapapa")
