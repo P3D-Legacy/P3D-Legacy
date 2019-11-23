@@ -4055,31 +4055,31 @@
                 Case "sitrus"
                     GainHP(CInt(p.MaxHP / 4), own, own, BattleScreen, "The Sitrus Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:sitrus")
                 Case "figy"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Figy Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:figy")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Figy Berry!", "berry:figy")
                     End If
                 Case "wiki"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Wiki Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:wiki")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Wiki Berry!", "berry:wiki")
                     End If
                 Case "mago"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Mago Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:mago")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Mago Berry!", "mago")
                     End If
                 Case "aguav"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Aguav Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:aguav")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Aguav Berry!", "aguav")
                     End If
                 Case "iapapa"
-                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 2))
+                    Dim healHP As Integer = CInt(Math.Ceiling(p.MaxHP / 3))
                     GainHP(healHP, own, own, BattleScreen, "The Iapapa Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:iapapa")
                     If berry.PokemonLikes(p) = False Then
                         InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " disliked the Iapapa Berry!", "berry:iapapa")
@@ -4327,8 +4327,13 @@
                         Case "cloud nine"
                             ChangeWeather(own, own, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
                         Case "intimidate"
-                            If Not op.Ability.Name.ToLower() = "Oblivious" Or Not op.Ability.Name.ToLower() = "Inner Focus" Or Not op.Ability.Name.ToLower() = "Own Tempo" Or Not op.Ability.Name.ToLower() = "Scrappy" Then
+                            If op.Ability.Name.ToLower() = "oblivious" Or op.Ability.Name.ToLower() = "inner focus" Or op.Ability.Name.ToLower() = "own tempo" Or op.Ability.Name.ToLower() = "scrappy" Then
+                                .BattleQuery.Add(New TextQueryObject("Intimidate's effect was prevented!"))
+                            Else
                                 LowerStat(Not own, own, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
+                            End If
+                            If op.Ability.Name.ToLower() = "rattled" Then
+                                RaiseStat(Not own, Not own, BattleScreen, "Speed", 1, op.GetDisplayName() & "'s Rattled affected it's clairaudience.", "rattled")
                             End If
                         Case "trace"
                             If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
@@ -4578,10 +4583,12 @@
                                 End If
                             Case "berserk gene"
                                 If p.StatAttack <> 6 OrElse p.StatSpAttack <> 6 Then
-                                    If RemoveHeldItem(own, own, BattleScreen, "-1", "") = True Then
-                                        InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " went berserk due to the Berserk Gene!", "item:berserkgene")
-                                        RaiseStat(own, own, BattleScreen, "Attack", 1, "", "item:berserkgene")
-                                        RaiseStat(own, own, BattleScreen, "Special Attack", 1, "", "item:berserkgene")
+                                    If p.HP < CInt(Math.Floor(p.MaxHP / 3)) Then
+                                        If RemoveHeldItem(own, own, BattleScreen, "-1", "") = True Then
+                                            InflictConfusion(own, own, BattleScreen, p.GetDisplayName() & " went berserk due to the Berserk Gene!", "item:berserkgene")
+                                            RaiseStat(own, own, BattleScreen, "Attack", 2, "", "item:berserkgene")
+                                            RaiseStat(own, own, BattleScreen, "Special Attack", 2, "", "item:berserkgene")
+                                        End If
                                     End If
                                 End If
                         End Select
@@ -5588,21 +5595,21 @@
                         ElseIf .OwnPokemon.StatSpeed = -6 Then
                             cannotLower.Add(4)
                         End If
-                        If .OwnPokemon.Accuracy = 6 Then
-                            cannotRaise.Add(5)
-                        ElseIf .OwnPokemon.Accuracy = -6 Then
-                            cannotLower.Add(5)
-                        End If
-                        If .OwnPokemon.Evasion = 6 Then
-                            cannotRaise.Add(6)
-                        ElseIf .OwnPokemon.Evasion = -6 Then
-                            cannotLower.Add(6)
-                        End If
+                        'If .OwnPokemon.Accuracy = 6 Then
+                        '    cannotRaise.Add(5)
+                        'ElseIf .OwnPokemon.Accuracy = -6 Then
+                        '    cannotLower.Add(5)
+                        'End If
+                        'If .OwnPokemon.Evasion = 6 Then
+                        '    cannotRaise.Add(6)
+                        'ElseIf .OwnPokemon.Evasion = -6 Then
+                        '    cannotLower.Add(6)
+                        'End If
 
-                        If cannotRaise.Count < 7 Then
-                            Dim statToRaise As Integer = Core.Random.Next(0, 7)
+                        If cannotRaise.Count < 5 Then
+                            Dim statToRaise As Integer = Core.Random.Next(0, 5)
                             While cannotRaise.Contains(statToRaise) = True
-                                statToRaise = Core.Random.Next(0, 7)
+                                statToRaise = Core.Random.Next(0, 5)
                             End While
 
                             Select Case statToRaise
@@ -5616,10 +5623,10 @@
                                     RaiseStat(True, True, BattleScreen, "Special Defense", 2, "Moody raised a stat.", "moody")
                                 Case 4
                                     RaiseStat(True, True, BattleScreen, "Speed", 2, "Moody raised a stat.", "moody")
-                                Case 5
-                                    RaiseStat(True, True, BattleScreen, "Accuracy", 2, "Moody raised a stat.", "moody")
-                                Case 6
-                                    RaiseStat(True, True, BattleScreen, "Evasion", 2, "Moody raised a stat.", "moody")
+                                    'Case 5
+                                    '    RaiseStat(True, True, BattleScreen, "Accuracy", 2, "Moody raised a stat.", "moody")
+                                    'Case 6
+                                    '    RaiseStat(True, True, BattleScreen, "Evasion", 2, "Moody raised a stat.", "moody")
                             End Select
 
                             If cannotLower.Contains(statToRaise) = False Then
@@ -5627,10 +5634,10 @@
                             End If
                         End If
 
-                        If cannotLower.Count < 7 Then
-                            Dim statToLower As Integer = Core.Random.Next(0, 7)
+                        If cannotLower.Count < 5 Then
+                            Dim statToLower As Integer = Core.Random.Next(0, 5)
                             While cannotLower.Contains(statToLower) = True
-                                statToLower = Core.Random.Next(0, 7)
+                                statToLower = Core.Random.Next(0, 5)
                             End While
 
                             Select Case statToLower
@@ -5644,10 +5651,10 @@
                                     LowerStat(True, True, BattleScreen, "Special Defense", 1, "Moody lowered a stat.", "moody")
                                 Case 4
                                     LowerStat(True, True, BattleScreen, "Speed", 1, "Moody lowered a stat.", "moody")
-                                Case 5
-                                    LowerStat(True, True, BattleScreen, "Accuracy", 1, "Moody lowered a stat.", "moody")
-                                Case 6
-                                    LowerStat(True, True, BattleScreen, "Evasion", 1, "Moody lowered a stat.", "moody")
+                                    'Case 5
+                                    '    LowerStat(True, True, BattleScreen, "Accuracy", 1, "Moody lowered a stat.", "moody")
+                                    'Case 6
+                                    '    LowerStat(True, True, BattleScreen, "Evasion", 1, "Moody lowered a stat.", "moody")
                             End Select
                         End If
                     End If
@@ -6337,21 +6344,21 @@
                         ElseIf .OppPokemon.StatSpeed = -6 Then
                             cannotLower.Add(4)
                         End If
-                        If .OppPokemon.Accuracy = 6 Then
-                            cannotRaise.Add(5)
-                        ElseIf .OppPokemon.Accuracy = -6 Then
-                            cannotLower.Add(5)
-                        End If
-                        If .OppPokemon.Evasion = 6 Then
-                            cannotRaise.Add(6)
-                        ElseIf .OppPokemon.Evasion = -6 Then
-                            cannotLower.Add(6)
-                        End If
+                        'If .OppPokemon.Accuracy = 6 Then
+                        '    cannotRaise.Add(5)
+                        'ElseIf .OppPokemon.Accuracy = -6 Then
+                        '    cannotLower.Add(5)
+                        'End If
+                        'If .OppPokemon.Evasion = 6 Then
+                        '    cannotRaise.Add(6)
+                        'ElseIf .OppPokemon.Evasion = -6 Then
+                        '    cannotLower.Add(6)
+                        'End If
 
-                        If cannotRaise.Count < 7 Then
-                            Dim statToRaise As Integer = Core.Random.Next(0, 7)
+                        If cannotRaise.Count < 5 Then
+                            Dim statToRaise As Integer = Core.Random.Next(0, 5)
                             While cannotRaise.Contains(statToRaise) = True
-                                statToRaise = Core.Random.Next(0, 7)
+                                statToRaise = Core.Random.Next(0, 5)
                             End While
 
                             Select Case statToRaise
@@ -6365,10 +6372,10 @@
                                     RaiseStat(False, False, BattleScreen, "Special Defense", 2, "Moody raised a stat.", "moody")
                                 Case 4
                                     RaiseStat(False, False, BattleScreen, "Speed", 2, "Moody raised a stat.", "moody")
-                                Case 5
-                                    RaiseStat(False, False, BattleScreen, "Accuracy", 2, "Moody raised a stat.", "moody")
-                                Case 6
-                                    RaiseStat(False, False, BattleScreen, "Evasion", 2, "Moody raised a stat.", "moody")
+                                    'Case 5
+                                    '    RaiseStat(False, False, BattleScreen, "Accuracy", 2, "Moody raised a stat.", "moody")
+                                    'Case 6
+                                    '    RaiseStat(False, False, BattleScreen, "Evasion", 2, "Moody raised a stat.", "moody")
                             End Select
 
                             If cannotLower.Contains(statToRaise) = False Then
@@ -6376,10 +6383,10 @@
                             End If
                         End If
 
-                        If cannotLower.Count < 7 Then
-                            Dim statToLower As Integer = Core.Random.Next(0, 7)
+                        If cannotLower.Count < 5 Then
+                            Dim statToLower As Integer = Core.Random.Next(0, 5)
                             While cannotLower.Contains(statToLower) = True
-                                statToLower = Core.Random.Next(0, 7)
+                                statToLower = Core.Random.Next(0, 5)
                             End While
 
                             Select Case statToLower
@@ -6393,10 +6400,10 @@
                                     LowerStat(False, False, BattleScreen, "Special Defense", 1, "Moody lowered a stat.", "moody")
                                 Case 4
                                     LowerStat(False, False, BattleScreen, "Speed", 1, "Moody lowered a stat.", "moody")
-                                Case 5
-                                    LowerStat(False, False, BattleScreen, "Accuracy", 1, "Moody lowered a stat.", "moody")
-                                Case 6
-                                    LowerStat(False, False, BattleScreen, "Evasion", 1, "Moody lowered a stat.", "moody")
+                                    'Case 5
+                                    '    LowerStat(False, False, BattleScreen, "Accuracy", 1, "Moody lowered a stat.", "moody")
+                                    'Case 6
+                                    '    LowerStat(False, False, BattleScreen, "Evasion", 1, "Moody lowered a stat.", "moody")
                             End Select
                         End If
                     End If

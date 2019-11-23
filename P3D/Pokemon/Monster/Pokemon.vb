@@ -1818,9 +1818,9 @@ Public Class Pokemon
             'Synchronize ability:
             If Core.Player.Pokemons.Count > 0 Then
                 If Core.Player.Pokemons(0).Ability.Name.ToLower() = "synchronize" Then
-                    If Core.Random.Next(0, 100) < 50 Then
-                        Me.Nature = Core.Player.Pokemons(0).Nature
-                    End If
+                    'If Core.Random.Next(0, 100) < 50 Then # GEN 8 FORCES A NATURE 100% OF TIME
+                    Me.Nature = Core.Player.Pokemons(0).Nature
+                    'End If
                 End If
             End If
 

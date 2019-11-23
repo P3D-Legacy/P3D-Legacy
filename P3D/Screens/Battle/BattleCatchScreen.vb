@@ -379,6 +379,10 @@
                 End If
             Case "timer ball"
                 BallRate = CInt(1 + BattleScreen.FieldEffects.Rounds * 0.3).Clamp(1, 4)
+            Case "dream ball"
+                If cp.Status = Pokemon.StatusProblems.Sleep Then
+                    BallRate = 3.0F
+                End If
         End Select
 
         Dim Status As Single = 1.0F
