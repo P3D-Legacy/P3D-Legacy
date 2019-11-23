@@ -1689,9 +1689,9 @@
                     'Case 720
                     'returnMove = New Moves.Fire.MindBlown()
                     'Case 721
-                    'Plasma Fists
+                    'returnMove = New Moves.Electric.PlasmaFists()
                     'Case 722
-                    'Photon Geyser
+                    'returnMove = New Moves.Psychic.PhotonGeyser()
                     '------------------------------------------------BEGIN Z MOVE STREAK 3
                     'Case 723
                     'Light That Burns The Sky - Z-Move
@@ -1706,7 +1706,147 @@
                     'Case 728
                     'Clangorous Soulblaze - Z-Move
                     '------------------------------------------------END Z MOVE STREAK 3
+                    '------------------------------------------------BEGIN LGPE MOVE STREAK
                     'Case 729
+                    'returnMove = New Moves.Electric.ZippyZap()
+                    'Case 730
+                    'returnMove = New Moves.Water.SplishySplash()
+                    'Case 731
+                    'returnMove = New Moves.Flying.FloatyFall()
+                    'Case 732
+                    'returnMove = New Moves.Electric.PikaPapow()
+                    'Case 733
+                    'returnMove = New Moves.Water.BouncyBubble()
+                    'Case 734
+                    'returnMove = New Moves.Electric.BuzzyBuzz()
+                    'Case 735
+                    'returnMove = New Moves.Fire.SizzlySlide()
+                    'Case 736
+                    'returnMove = New Moves.Psychic.GlitzyGlow()
+                    'Case 737
+                    'returnMove = New Moves.Dark.BaddyBad()
+                    'Case 738
+                    'returnMove = New Moves.Grass.SappySeed()
+                    'Case 739
+                    'returnMove = New Moves.Ice.FreezyFrost()
+                    'Case 740
+                    'returnMove = New Moves.Fairy.SparklySwirl()
+                    'Case 741
+                    'returnMove = New Moves.Normal.VeeveeVolley()
+                    '------------------------------------------------END LGPE MOVE STREAK
+                    'Case 742
+                    'returnMove = New Moves.Steel.DoubleIronBash()
+                    'Case 743
+                    'Max Guard - Max Move
+                    'Case 744
+                    'returnMove = New Moves.Dragon.DynamaxCannon()
+                    'Case 745
+                    'returnMove = New Moves.Water.SnipeShot()
+                    'Case 746
+                    'returnMove = New Moves.Dark.JawLock()
+                    'Case 747
+                    'returnMove = New Moves.Normal.StuffCheeks()
+                    'Case 748
+                    'returnMove = New Moves.Fighting.NoRetreat()
+                    'Case 749
+                    'returnMove = New Moves.Rock.TarShot()
+                    'Case 750
+                    'returnMove = New Moves.Psychic.MagicPowder()
+                    'Case 751
+                    'returnMove = New Moves.Dragon.DragonDarts()
+                    'Case 752
+                    'returnMove = New Moves.Normal.Teatime()
+                    'Case 753
+                    'returnMove = New Moves.Fighting.Octolock()
+                    'Case 754
+                    'returnMove = New Moves.Electric.BoltBeak()
+                    'Case 755
+                    'returnMove = New Moves.Water.FishiousRend()
+                    'Case 756
+                    'returnMove = New Moves.Normal.CourtChange()
+                    '------------------------------------------------BEGIN MAX MOVE STREAK
+                    'Case 757
+                    'Max Flare - Max Move
+                    'Case 758
+                    'Max Flutterby - Max Move
+                    'Case 759
+                    'Max Lightning - Max Move
+                    'Case 760
+                    'Max Strike - Max Move
+                    'Case 761
+                    'Max Knuckle - Max Move
+                    'Case 762
+                    'Max Phantasm - Max Move
+                    'Case 763
+                    'Max Hailstorm - Max Move
+                    'Case 764
+                    'Max Ooze - Max Move
+                    'Case 765
+                    'Max Geyser - Max Move
+                    'Case 766
+                    'Max Aistream - Max Move
+                    'Case 767
+                    'Max Starfall - Max Move
+                    'Case 768
+                    'Max Wyrmwind - Max Move
+                    'Case 769
+                    'Max Mindstorm - Max Move
+                    'Case 770
+                    'Max Rockfall - Max Move
+                    'Case 771
+                    'Max Quake - Max Move
+                    'Case 772
+                    'Max Darkness - Max Move
+                    'Case 773
+                    'Max Overgrowth - Max Move
+                    'Case 774
+                    'Max Steelspike - Max Move
+                    '------------------------------------------------END MAX MOVE STREAK
+                    'Case 775
+                    'returnMove = New Moves.Dragon.ClangorousSoul()
+                    'Case 776
+                    'returnMove = New Moves.Fighting.BodyPress()
+                    'Case 777
+                    'returnMove = New Moves.Fairy.Decorate()
+                    'Case 778
+                    'returnMove = New Moves.Grass.DrumBeating()
+                    'Case 779
+                    'returnMove = New Moves.Grass.SnapTrap()
+                    'Case 780
+                    'returnMove = New Moves.Fire.PyroBall()
+                    'Case 781
+                    'returnMove = New Moves.Steel.BehemothBlade()
+                    'Case 782
+                    'returnMove = New Moves.Steel.BehemothBash()
+                    'Case 783
+                    'returnMove = New Moves.Electric.AuraWheel()
+                    'Case 784
+                    'returnMove = New Moves.Dragon.BreakingSwipe()
+                    'Case 785
+                    'returnMove = New Moves.Grass.BranchPoke()
+                    'Case 786
+                    'returnMove = New Moves.Electric.Overdrive()
+                    'Case 787
+                    'returnMove = New Moves.Grass.AppleAcid()
+                    'Case 788
+                    'returnMove = New Moves.Grass.GravApple()
+                    'Case 789
+                    'returnMove = New Moves.Fairy.SpiritBreak()
+                    'Case 790
+                    'returnMove = New Moves.Fairy.StrangeSteam()
+                    'Case 791
+                    'returnMove = New Moves.Water.LifeDew()
+                    'Case 792
+                    'returnMove = New Moves.Dark.Obstruct()
+                    'Case 793
+                    'returnMove = New Moves.Dark.FalseSurrender()
+                    'Case 794
+                    'returnMove = New Moves.Fighting.MeteorAssault()
+                    'Case 795
+                    'returnMove = New Moves.Dragon.Eternabeam()
+                    'Case 796
+                    'returnMove = New Moves.Steel.SteelBeam()
+                    'Case 797
                     'Blank
                 Case 999
                     If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then

@@ -1807,7 +1807,7 @@
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " protected itself!"))
 
                                 If moveUsed.MakesContact = True Then
-                                    Me.LowerStat(own, Not own, BattleScreen, "Attack", 2, "", "move:kingsshield")
+                                    Me.LowerStat(own, Not own, BattleScreen, "Attack", 1, "", "move:kingsshield")
                                 End If
 
                                 Exit Sub
@@ -4327,7 +4327,9 @@
                         Case "cloud nine"
                             ChangeWeather(own, own, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
                         Case "intimidate"
-                            LowerStat(Not own, own, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
+                            If Not op.Ability.Name.ToLower() = "Oblivious" Or Not op.Ability.Name.ToLower() = "Inner Focus" Or Not op.Ability.Name.ToLower() = "Own Tempo" Or Not op.Ability.Name.ToLower() = "Scrappy" Then
+                                LowerStat(Not own, own, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
+                            End If
                         Case "trace"
                             If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
                                 p.Ability = op.Ability

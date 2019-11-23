@@ -505,6 +505,56 @@
                 'Prism Armor
                 'Case 233
                 'Neuroforce
+                'Case 234
+                'Intrepid Sword
+                'Case 235
+                'Dauntless Shield
+                'Case 236
+                'Libero
+                'Case 237
+                'Ball Fetch
+                'Case 238
+                'Cotton Down
+                'Case 239
+                'Propeller Tail
+                'Case 240
+                'Mirror Armor
+                'Case 241
+                'Gulp Missile
+                'Case 242
+                'Stalwart
+                'Case 243
+                'Steam Engine
+                'Case 244
+                'Punk Rock
+                'Case 245
+                'Sand Spit
+                'Case 246
+                'Ice Scales
+                'Case 247
+                'Ripen
+                'Case 248
+                'Ice Face
+                'Case 249
+                'Power Spot
+                'Case 250
+                'Mimicry
+                'Case 251
+                'Screen Cleaner
+                'Case 252
+                'Steely Spirit
+                'Case 253
+                'Perish Body
+                'Case 254
+                'Wandering Spirit
+                'Case 255
+                'Gorilla Tactics
+                'Case 256
+                'Neutralizing Gas
+                'Case 257
+                'Pastel Veil
+                'Case 258
+                'Hunger Switch
             Case Else
                 Return New Abilities.Stench
         End Select
