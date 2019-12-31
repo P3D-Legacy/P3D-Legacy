@@ -443,12 +443,10 @@ NPC:
 {"NPC"{NPC[{"Position"{sngArr[14,17,7]}}{"TextureID"{str[TowerOwner]}}{"ID"{int[0]}}{"Name"{str[IDlotto]}}{"Action"{int[1]}}{"AdditionalValue"{str[quest\tower\owner]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[12,0,30]}}{"TextureID"{str[29]}}{"ID"{int[1]}}{"Name"{str[IDlotto]}}{"Action"{int[2]}}{"AdditionalValue"{str[1|trainer\quest\tower\outside\002]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[12,1,33]}}{"TextureID"{str[29]}}{"ID"{int[2]}}{"Name"{str[IDlotto]}}{"Action"{int[2]}}{"AdditionalValue"{str[2|trainer\quest\tower\outside\001]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[16,10,3,2]]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[14,0,10]}}{"TextureID"{str[darkfire]}}{"ID"{int[10]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Soon...]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[15,0,10]}}{"TextureID"{str[[POKEMON|S]6]}}{"ID"{int[11]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Char!]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 Signs:
-{"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[12,0,10]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[16,32,16,16][32,32,16,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Trainer Tower Ahead]}}{"Rotation"{int[0]}}]}}
-{"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[6,0,34]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[16,32,16,16][32,32,16,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Trainer Tower Entrance*Rise to the challenge,~trainers!]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[6,0,34]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[16,32,16,16][32,32,16,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Trainer Tower Ahead]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[12,0,10]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[16,32,16,16][32,32,16,16]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Trainer Tower Entrance*Rise to the challenge,~trainers!]}}{"Rotation"{int[0]}}]}}
 
 Tower:
 {"EntityField"{ENT[{"Size"{intArr[7,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[11,1,8]}}{"TexturePath"{str[trainertower]}}{"Textures"{recArr[[0,0,16,16][96,144,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,-1,-1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
