@@ -61,6 +61,6 @@ Stairs:
 
 NPCs:
 {"Entity"{ENT[{"EntityID"{str[ScriptBlock]}}{"Position"{sngArr[8,0,7]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[trainer\quest\tower\mixed\006]}}{"Rotation"{int[0]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[8,0,10]}}{"TextureID"{str[60]}}{"ID"{int[0]}}{"Name"{str[Lass]}}{"Action"{int[2]}}{"AdditionalValue"{str[1|trainer\quest\tower\mixed\006_1]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[8,0,4]}}{"TextureID"{str[59]}}{"ID"{int[1]}}{"Name"{str[Lass]}}{"Action"{int[2]}}{"AdditionalValue"{str[1|trainer\quest\tower\mixed\006_2]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[12,0,7]}}{"TextureID"{str[23]}}{"ID"{int[2]}}{"Name"{str[Lass]}}{"Action"{int[2]}}{"AdditionalValue"{str[1|trainer\quest\tower\mixed\006_3]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[8,0,10]}}{"TextureID"{str[60]}}{"ID"{int[0]}}{"Name"{str[Lass]}}{"Action"{int[1]}}{"AdditionalValue"{str[trainer\quest\tower\mixed\006_1]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[8,0,4]}}{"TextureID"{str[59]}}{"ID"{int[1]}}{"Name"{str[Lass]}}{"Action"{int[1]}}{"AdditionalValue"{str[trainer\quest\tower\mixed\006_2]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[12,0,7]}}{"TextureID"{str[13]}}{"ID"{int[2]}}{"Name"{str[Lass]}}{"Action"{int[1]}}{"AdditionalValue"{str[trainer\quest\tower\mixed\006_3]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
