@@ -61,7 +61,7 @@
                 p = BattleScreen.OppPokemon
             End If
 
-            BattleScreen.Battle.InflictRecoil(own, own, BattleScreen, Me, CInt(Math.Floor(p.HP / 2)), p.GetDisplayName() & " struggled and crashed!", "move:hijumpkick")
+            BattleScreen.Battle.InflictRecoil(own, own, BattleScreen, Me, CInt(Math.Floor(p.MaxHP / 2)), p.GetDisplayName() & " struggled and crashed!", "move:hijumpkick")
         End Sub
 
         Public Overrides Sub MoveMisses(own As Boolean, BattleScreen As BattleScreen)
