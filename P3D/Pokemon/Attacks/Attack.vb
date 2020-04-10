@@ -265,7 +265,7 @@
                 Case 10
                     returnMove = New Moves.Normal.Scratch()
                 Case 11
-                    returnMove = New Moves.Normal.ViceGrip()
+                    returnMove = New Moves.Normal.ViseGrip()
                 Case 12
                     returnMove = New Moves.Normal.Guillotine()
                 Case 13
@@ -1844,8 +1844,8 @@
                     'returnMove = New Moves.Fighting.MeteorAssault()
                     'Case 795
                     'returnMove = New Moves.Dragon.Eternabeam()
-                    'Case 796
-                    'returnMove = New Moves.Steel.SteelBeam()
+                Case 796
+                    returnMove = New Moves.Steel.SteelBeam()
                     'Case 797
                     'Blank
                 Case 999

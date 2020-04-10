@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Normal
 
-    Public Class ViceGrip
+    Public Class ViseGrip
 
         Inherits Attack
 
@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Vice Grip"
+            Me.Name = "Vise Grip"
             Me.Description = "The target is gripped and squeezed from both sides to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

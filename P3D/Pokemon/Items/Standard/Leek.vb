@@ -1,7 +1,7 @@
 Namespace Items.Standard
 
-    <Item(105, "Stick")>
-    Public Class Stick
+    <Item(105, "Leek")>
+    Public Class Leek
 
         Inherits Item
 

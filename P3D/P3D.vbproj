@@ -26196,6 +26196,7 @@
     <Compile Include="Pokemon\Attacks\Steel\GearUp.vb" />
     <Compile Include="Pokemon\Attacks\Steel\AnchorShot.vb" />
     <Compile Include="Pokemon\Attacks\Electric\ZingZap.vb" />
+    <Compile Include="Pokemon\Attacks\Steel\SteelBeam.vb" />
     <Compile Include="Pokemon\Attacks\Water\OriginPulse.vb" />
     <Compile Include="Pokemon\Attacks\Water\Liquidation.vb" />
     <Compile Include="Pokemon\Attacks\Water\SparklingAria.vb" />
@@ -28217,7 +28218,7 @@
     <Compile Include="Pokemon\Attacks\Normal\TriAttack.vb" />
     <Compile Include="Pokemon\Attacks\Normal\TrumpCard.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Uproar.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\ViceGrip.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\ViseGrip.vb" />
     <Compile Include="Pokemon\Attacks\Normal\WeatherBall.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Whirlwind.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Wish.vb" />
@@ -28898,7 +28899,7 @@
     <Compile Include="Pokemon\Items\Standard\SpellTag.vb" />
     <Compile Include="Pokemon\Items\Standard\Stardust.vb" />
     <Compile Include="Pokemon\Items\Standard\StarPiece.vb" />
-    <Compile Include="Pokemon\Items\Standard\Stick.vb" />
+    <Compile Include="Pokemon\Items\Standard\Leek.vb" />
     <Compile Include="Pokemon\Items\Standard\StickyBarb.vb" />
     <Compile Include="Pokemon\Items\Standard\ThickClub.vb" />
     <Compile Include="Pokemon\Items\Standard\TinyMushroom.vb" />

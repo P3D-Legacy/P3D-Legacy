@@ -638,7 +638,7 @@
                         If p.Number = 113 Then
                             C += 2
                         End If
-                    Case "stick"
+                    Case "leek"
                         If p.Number = 83 Then
                             C += 2
                         End If
