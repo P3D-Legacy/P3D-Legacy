@@ -52,37 +52,16 @@ Namespace BattleSystem.Moves.Steel
             '#End
 
             Me.AIField1 = AIField.Damage
-            Me.AIField2 = AIField.Recoil
+            Me.AIField2 = AIField.Nothing
         End Sub
 
-        Private Sub InflictCrashDamage(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+        Public Overrides Sub PreAttack(Own As Boolean, BattleScreen As BattleScreen)
             Dim p As Pokemon = BattleScreen.OwnPokemon
-            If own = False Then
+            If Own = False Then
                 p = BattleScreen.OppPokemon
             End If
 
-            BattleScreen.Battle.InflictRecoil(own, own, BattleScreen, Me, CInt(Math.Floor(p.MaxHP / 2)), "-1", "move:steelbeam")
-        End Sub
-
-        Public Overrides Sub MoveMisses(own As Boolean, BattleScreen As BattleScreen)
-            InflictCrashDamage(own, BattleScreen)
-        End Sub
-
-        Public Overrides Sub MoveProtectedDetected(own As Boolean, BattleScreen As BattleScreen)
-            InflictCrashDamage(own, BattleScreen)
-        End Sub
-
-        Public Overrides Sub MoveHasNoEffect(own As Boolean, BattleScreen As BattleScreen)
-            InflictCrashDamage(own, BattleScreen)
-        End Sub
-
-        Public Overrides Sub MoveRecoil(own As Boolean, BattleScreen As BattleScreen)
-            Dim p As Pokemon = BattleScreen.OwnPokemon
-            If own = False Then
-                p = BattleScreen.OppPokemon
-            End If
-
-            BattleScreen.Battle.InflictRecoil(own, own, BattleScreen, Me, CInt(Math.Floor(p.MaxHP / 2)), "-1", "move:steelbeam")
+            BattleScreen.Battle.ReduceHP(CInt(Math.Floor(p.MaxHP / 2)), Own, Own, BattleScreen, "", "move:steelbeam")
         End Sub
 
     End Class
