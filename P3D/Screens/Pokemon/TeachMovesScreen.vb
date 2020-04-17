@@ -20,9 +20,8 @@
             Dim tutorMove As BattleSystem.Attack = Pokemon.AttackLearns.Values(i)
             Dim learnLevel As Integer = Pokemon.AttackLearns.Keys(i)
 
-            'Commented those to test Tutor Gen 6+ behavior
-            'If learnLevel <= Pokemon.Level Then
-            Dim canLearnMove As Boolean = True
+            If learnLevel <= Pokemon.Level Then
+                Dim canLearnMove As Boolean = True
 
                 For Each learnedAttack As BattleSystem.Attack In Pokemon.Attacks
                     If learnedAttack.ID = tutorMove.ID Then
@@ -39,7 +38,7 @@
                 If canLearnMove = True Then
                     MovesList.Add(tutorMove)
                 End If
-            'End If
+            End If
         Next
 
         Me.MouseVisible = False
@@ -210,6 +209,9 @@
         If Pokemon.Attacks.Count < 4 Then
             LearnedMove = True
             Pokemon.Attacks.Add(BattleSystem.Attack.GetAttackByID(a.ID))
+            TextBox.Show("... " & Pokemon.GetDisplayName() & " learned~" & a.Name & "!")
+            SoundManager.PlaySound("success_small", False)
+            Core.SetScreen(Me.PreScreen)
         Else
             Core.SetScreen(New LearnAttackScreen(Core.CurrentScreen.PreScreen, Me.Pokemon, BattleSystem.Attack.GetAttackByID(a.ID)))
         End If
