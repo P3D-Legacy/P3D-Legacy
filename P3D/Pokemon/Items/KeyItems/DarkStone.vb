@@ -1,6 +1,6 @@
 Namespace Items.KeyItems
 
-    <Item(652, "Dark stone")>
+    <Item(652, "Dark Stone")>
     Public Class DarkStone
 
         Inherits KeyItem

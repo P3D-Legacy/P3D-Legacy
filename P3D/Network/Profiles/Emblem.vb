@@ -286,9 +286,9 @@
 
         Public Shared Function GetEmblemFontColor(ByVal emblemName As String) As Color
             Select Case emblemName.ToLower()
-                Case "alph", "genetics", "legendary", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "earth", "shooting star", "victorious", "mega", "time", "deep sea"
+                Case "alph", "genetics", "legendary", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "earth", "shooting star", "victorious", "mega", "time", "deep sea", "heart gold", "soul silver"
                     Return Color.White
-                Case "eevee", "pokedex", "snow", "trainer", "kanto", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "johto", "eruption", "ancestor"
+                Case "eevee", "pokedex", "snow", "trainer", "kanto", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "johto", "eruption", "ancestor", "tao", "floral"
                     Return Color.Black
             End Select
             Return Color.White
@@ -769,6 +769,14 @@
                     '    Return ???
                     'Case "mega"
                     '    Return ???
+                    'Case "heart gold"
+                    '    Return ???
+                    'Case "soul silver"
+                    '    Return ???
+                    'Case "tao"
+                    '    Return ???
+                    'Case "floral"
+                    '    Return ???
 
                 Case Else
                     Return 0
@@ -868,6 +876,14 @@
                     '    Return "time"
                     'Case ???
                     '    Return "mega"
+                    'Case "heart gold"
+                    '    Return ???
+                    'Case "soul silver"
+                    '    Return ???
+                    'Case "tao"
+                    '    Return ???
+                    'Case "floral"
+                    '    Return ???
 
                 Case Else
                     Return "fail"
@@ -1040,6 +1056,14 @@
                     Return "Mega"
                 Case "beast"
                     Return "Beast"
+                Case "heart gold"
+                    Return "Heart Gold"
+                Case "soul silver"
+                    Return "Soul Silver"
+                Case "tao"
+                    Return "Tao"
+                Case "floral"
+                    Return "Floral"
                 Case Else
                     Return "???"
             End Select
@@ -1137,6 +1161,14 @@
                     Return "Receive the Mega Bracelet from Professor Oak."
                 Case "beast"
                     Return "Have Raikou, Entei, and Suicune in your party."
+                Case "heart gold"
+                    Return "Have an encounter with the magnificent Ho-oh."
+                Case "soul silver"
+                    Return "Have an encounter with the mysterious Lugia."
+                Case "tao"
+                    Return "Have a heroic encounter."
+                Case "floral"
+                    Return "Have a mythical encounter."
                 Case Else
                     Return "Unknown emblem."
             End Select
@@ -1148,9 +1180,9 @@
                      "cascade", "thunder", "rainbow", "marsh", "soul", "volcano", "earth"
                     Return "Bronze"
                 Case "johto", "kanto", "legendary", "shooting star", "genetics", "eggsplosion", "mailman", "silver ability", "silver knowledge",
-                     "deep sea", "eruption", "victorious"
+                     "deep sea", "eruption", "victorious", "floral"
                     Return "Silver"
-                Case "champion", "snow", "eevee", "stars", "unodostres", "gold ability", "gold knowledge", "time", "ancestor", "beast"
+                Case "champion", "snow", "eevee", "stars", "unodostres", "gold ability", "gold knowledge", "time", "ancestor", "beast", "tao", "heart gold", "soul silver"
                     Return "Gold"
                 Case "overkill", "pokedex"
                     Return "Platinum"

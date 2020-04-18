@@ -13931,7 +13931,13 @@
     <Content Include="Content\Textures\Emblem\floral.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Emblem\heart gold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Emblem\mega.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Emblem\soul silver.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\Square\alph.png">
@@ -13970,6 +13976,9 @@
     <Content Include="Content\Textures\Emblem\Square\eruption.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Emblem\Square\floral.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Emblem\Square\fog.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -13983,6 +13992,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\Square\gold knowledge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Emblem\Square\heart gold.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\Square\hive.png">
@@ -14012,6 +14024,9 @@
     <Content Include="Content\Textures\Emblem\Square\mineral.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Emblem\Square\missingno.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Emblem\Square\overkill.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -14039,6 +14054,9 @@
     <Content Include="Content\Textures\Emblem\Square\snow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Emblem\Square\soul silver.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Emblem\Square\soul.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -14048,10 +14066,16 @@
     <Content Include="Content\Textures\Emblem\Square\storm.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Emblem\Square\tao.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Emblem\Square\thunder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\Square\time.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Emblem\Square\trainer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\Square\unodostres.png">
@@ -14065,6 +14089,9 @@
     </Content>
     <Content Include="Content\Textures\Emblem\Square\zephyr.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Emblem\tao.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\time.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -24957,9 +24984,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\glacier.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Emblem\glowing.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\gold ability.png">
