@@ -3326,7 +3326,7 @@
 
             If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 If cause <> "contrary" Then
-                    Return LowerStat(own, own, BattleScreen, Stat, val, message & Environment.NewLine & "Contrary reverted the stat change!", "contrary")
+                    Return LowerStat(own, own, BattleScreen, Stat, val, message & "Contrary reverted the stat change!", "contrary")
                 End If
             End If
 
@@ -3545,7 +3545,7 @@
 
             If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 If cause <> "contrary" Then
-                    Return RaiseStat(own, own, BattleScreen, Stat, val, message & Environment.NewLine & "Contrary reverted the stat change!", "contrary")
+                    Return RaiseStat(own, own, BattleScreen, Stat, val, message & "Contrary reverted the stat change!", "contrary")
                 End If
             End If
 
