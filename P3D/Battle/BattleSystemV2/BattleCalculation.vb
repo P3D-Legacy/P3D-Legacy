@@ -1961,20 +1961,32 @@
                     End If
             End Select
 
-            If p.Ability.Name.ToLower() = "flash fire" Then
-                If BattleScreen.FieldEffects.CanUseAbility(Own, BattleScreen) = True Then
-                    If Own = True Then
-                        If Not BattleScreen.FieldEffects.OppLastMove Is Nothing Then
-                            If BattleScreen.FieldEffects.OppLastMove.Type.Type = Element.Types.Fire And Attack.Type.Type = Element.Types.Fire Then
-                                FF = 1.5F
-                            End If
-                        End If
-                    Else
-                        If Not BattleScreen.FieldEffects.OwnLastMove Is Nothing Then
-                            If BattleScreen.FieldEffects.OwnLastMove.Type.Type = Element.Types.Fire And Attack.Type.Type = Element.Types.Fire Then
-                                FF = 1.5F
-                            End If
-                        End If
+            'If p.Ability.Name.ToLower() = "flash fire" Then
+            '    If BattleScreen.FieldEffects.CanUseAbility(Own, BattleScreen) = True Then
+            '        If Own = True Then
+            '            If Not BattleScreen.FieldEffects.OppLastMove Is Nothing Then
+            '                If BattleScreen.FieldEffects.OppLastMove.Type.Type = Element.Types.Fire And Attack.Type.Type = Element.Types.Fire Then
+            '                    FF = 1.5F
+            '                End If
+            '            End If
+            '        Else
+            '            If Not BattleScreen.FieldEffects.OwnLastMove Is Nothing Then
+            '                If BattleScreen.FieldEffects.OwnLastMove.Type.Type = Element.Types.Fire And Attack.Type.Type = Element.Types.Fire Then
+            '                    FF = 1.5F
+            '                End If
+            '            End If
+            '        End If
+            '    End If
+            'End If
+
+            If Attack.Type.Type = Element.Types.Fire Then
+                If Own = True Then
+                    If BattleScreen.FieldEffects.OwnFlashFire = 1 Then
+                        FF = 1.5F
+                    End If
+                Else
+                    If BattleScreen.FieldEffects.OppFlashFire = 1 Then
+                        FF = 1.5F
                     End If
                 End If
             End If

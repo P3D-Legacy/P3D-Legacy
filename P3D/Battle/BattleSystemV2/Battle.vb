@@ -1700,7 +1700,19 @@
                         If op.StatAttack = 6 Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Sap Sipper made " & moveUsed.Name & " useless!"))
                         Else
-                            RaiseStat(Not own, Not own, BattleScreen, "Attack", 1, op.GetDisplayName() & "'s Sap Sipper absorbed the attack!", "sapsnipper")
+                            RaiseStat(Not own, Not own, BattleScreen, "Attack", 1, op.GetDisplayName() & "'s Sap Sipper absorbed the attack!", "sapsipper")
+                        End If
+                    End If
+                End If
+                If op.Ability.Name.ToLower() = "flash fire" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Fire AndAlso moveWorks = True Then
+                    If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
+                        moveWorks = False
+                        ChangeCameraAngel(2, own, BattleScreen)
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Flash Fire made " & moveUsed.Name & " useless!"))
+                        If own = True Then
+                            BattleScreen.FieldEffects.OppFlashFire = 1
+                        Else
+                            BattleScreen.FieldEffects.OwnFlashFire = 1
                         End If
                     End If
                 End If
@@ -3153,7 +3165,7 @@
                                             'Do nothing
                                         Case Else 'Print message given in 'message'
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is poisoned"))
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is poisoned!"))
                                     End Select
                                 End If
                                 If p.Ability.Name.ToLower() = "synchronize" AndAlso from <> own Then
@@ -6457,6 +6469,7 @@
                     .OwnTruantRound = 0
                     .OwnTaunt = 0
                     .OwnSmacked = 0
+                    .OwnFlashFire = 0
                     .OwnRageCounter = 0
                     .OwnUproar = 0
                     If .OwnUsedBatonPass = False Then .OwnFocusEnergy = 0
@@ -6783,6 +6796,7 @@
                     .OppTruantRound = 0
                     .OppTaunt = 0
                     .OppSmacked = 0
+                    .OppFlashFire = 0
                     .OppRageCounter = 0
                     .OppUproar = 0
                     If .OppUsedBatonPass = False Then .OppFocusEnergy = 0

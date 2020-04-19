@@ -14,6 +14,7 @@
         Public OwnRageCounter As Integer = 0 'Rage move counter
         Public OwnUproar As Integer = 0 'Uproar move counter
         Public OwnFocusEnergy As Integer = 0 'Focus energy move counter
+        Public OwnFlashFire As Integer = 0 'Flash Fire move counter
         Public OwnEndure As Integer = 0 'Endure move counter
         Public OwnProtectCounter As Integer = 0 'Protect move counter
         Public OwnKingsShieldCounter As Integer = 0 'Kings Shield move counter
@@ -146,6 +147,7 @@
         Public OppRageCounter As Integer = 0
         Public OppUproar As Integer = 0
         Public OppFocusEnergy As Integer = 0
+        Public OppFlashFire As Integer = 0
         Public OppEndure As Integer = 0
         Public OppProtectCounter As Integer = 0
         Public OppKingsShieldCounter As Integer = 0
