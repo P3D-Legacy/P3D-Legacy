@@ -683,6 +683,8 @@ Public Class NewMainMenuScreen
         Private _sprite As Texture2D
         Private _gameModeExists As Boolean
         Private _skin As String = ""
+        Private _surfing As Boolean = False
+        Private _tempSurfSkin As String = ""
 
         Private _fontSize As Single = 0.75F
         Private _spriteIndex As Integer = 0
@@ -820,7 +822,11 @@ Public Class NewMainMenuScreen
                 Next
 
                 If _isGameJolt = False Then
-                    _sprite = TextureManager.GetTexture("Textures\NPC\" & _skin)
+                    If _surfing Then
+                        _sprite = TextureManager.GetTexture("Textures\NPC\" & _tempSurfSkin)
+                    Else
+                        _sprite = TextureManager.GetTexture("Textures\NPC\" & _skin)
+                    End If
                 End If
             Else
                 _gameModeExists = False
@@ -862,6 +868,13 @@ Public Class NewMainMenuScreen
                             _gameMode = content
                         Case "skin"
                             _skin = content
+                        Case "surfing"
+                            If content = "1" Then
+                                _surfing = True
+                            End If
+                        Case "tempsurfskin"
+                            _tempSurfSkin = content
+
                     End Select
                 End If
             Next
