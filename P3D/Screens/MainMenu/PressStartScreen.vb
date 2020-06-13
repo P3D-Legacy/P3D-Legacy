@@ -1116,11 +1116,15 @@ Public Class GameModeSelectionScreen
             SetScreen(PreScreen)
         End If
         If Controls.Accept(True, True, True) Then
-            GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
-            SetScreen(New Screens.MainMenu.NewNewGameScreen(PreScreen))
-        End If
+			GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
+			If GameModeManager.ActiveGameMode.IntroType = "0" Then
+				SetScreen(New Screens.MainMenu.NewNewGameScreen(PreScreen))
+			Else
+				SetScreen(New TransitionScreen(Me.PreScreen, New NewGameScreen(), Color.Black, False))
+			End If
+		End If
 
-        Dim targetOffset = GetTargetOffset()
+			Dim targetOffset = GetTargetOffset()
 
         If _offset <> targetOffset Then
             _offset = MathHelper.Lerp(_offset, targetOffset, 0.25F)

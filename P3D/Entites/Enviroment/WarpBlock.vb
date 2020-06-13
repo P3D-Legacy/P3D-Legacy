@@ -6,11 +6,11 @@
         Me.Draw(Me.Model, Textures, False)
     End Sub
 
-    Public Overrides Function WalkAgainstFunction() As Boolean
-        Return Warp(False)
-    End Function
+	Public Overrides Function WalkAgainstFunction() As Boolean
+		Return Warp(False)
+	End Function
 
-    Public Function Warp(ByVal MapViewMode As Boolean) As Boolean
+	Public Function Warp(ByVal MapViewMode As Boolean) As Boolean
         If IsValidLink(Me.AdditionalValue) = True And ScriptBlock.TriggeredScriptBlock = False Then
             Dim destination As String = Me.AdditionalValue.GetSplit(0)
 
@@ -40,11 +40,11 @@
                     Screen.Level.WarpData.WarpRotations = CInt(Me.AdditionalValue.GetSplit(4))
                     Screen.Level.WarpData.DoWarpInNextTick = True
                     Screen.Level.WarpData.CorrectCameraYaw = Screen.Camera.Yaw
-                    Screen.Level.WarpData.IsWarpBlock = True
-                    Logger.Debug("Lock Camera")
-                    CType(Screen.Camera, OverworldCamera).YawLocked = True
-                Else
-                    Screen.Level = New Level()
+					Screen.Level.WarpData.IsWarpBlock = True
+					Logger.Debug("Lock Camera")
+					CType(Screen.Camera, OverworldCamera).YawLocked = True
+					Else
+						Screen.Level = New Level()
                     Screen.Level.Load(Me.AdditionalValue.GetSplit(0))
                     Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
 

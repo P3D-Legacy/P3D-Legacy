@@ -80,8 +80,8 @@ Public Class GameController
 
     Protected Overrides Sub Initialize()
         _componentManager.LoadComponents()
-        Core.Initialize(Me)
-        MyBase.Initialize()
+		Core.Initialize(Me)
+		MyBase.Initialize()
     End Sub
 
     Protected Overrides Sub LoadContent()

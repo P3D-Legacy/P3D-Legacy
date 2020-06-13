@@ -45,8 +45,8 @@
                         SoundManager.Volume = CSng(CDbl(value) / 100)
                     Case "muted"
                         SoundManager.Muted = CBool(value)
-                        MediaPlayer.IsMuted = CBool(value)
-                    Case "renderdistance"
+						MusicManager.Muted = CBool(value)
+					Case "renderdistance"
                         Me.RenderDistance = CInt(value)
                     Case "showdebug"
                         Me.ShowDebug = CInt(value)

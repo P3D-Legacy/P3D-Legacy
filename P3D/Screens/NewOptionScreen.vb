@@ -85,8 +85,8 @@
         Me.Difficulty = Core.Player.DifficultyMode
         Me.BattleStyle = Core.Player.BattleStyle
         Me.ShowModels = CInt(Core.Player.ShowModelsInBattle)
-        Me.Muted = CInt(MediaPlayer.IsMuted.ToNumberString())
-        If Core.GameOptions.LoadOffsetMaps = 0 Then
+		Me.Muted = CInt(MusicManager.Muted.ToNumberString())
+		If Core.GameOptions.LoadOffsetMaps = 0 Then
             Me.LoadOffsetMaps = 0
         Else
             Me.LoadOffsetMaps = 101 - Core.GameOptions.LoadOffsetMaps

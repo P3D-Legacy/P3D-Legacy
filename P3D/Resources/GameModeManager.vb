@@ -360,60 +360,62 @@ Public Class GameMode
         Load(FileName)
     End Sub
 
-    ''' <summary>
-    ''' Create a new GameMode.
-    ''' </summary>
-    ''' <param name="Name">The name of the new GameMode.</param>
-    ''' <param name="Description">The description of the new GameMode.</param>
-    ''' <param name="Version">The version of the new GameMode. Warning: This doesn't have to be a number!</param>
-    ''' <param name="Author">The author of the new GameMode.</param>
-    ''' <param name="MapPath">The MapPath used from the new GameMode to load maps from.</param>
-    ''' <param name="ScriptPath">The ScriptPath used from the new GameMode to load scripts from.</param>
-    ''' <param name="PokemonDataPath">The Pokemon-Datapath to load Pokemon data from.</param>
-    ''' <param name="ContentPath">The path to load images, sound and music from.</param>
-    ''' <param name="GameRules">The GameRules that apply to the new GameMode.</param>
-    ''' <param name="StartMap">The start map for the new GameMode.</param>
-    ''' <param name="StartPosition">The start position for the new GameMode.</param>
-    ''' <param name="StartRotation">The start rotation for the new GameMode.</param>
-    ''' <param name="StartLocationName">The start location name for the new GameMode.</param>
-    ''' <param name="PokemonAppear">The Pokémon that appear on the new game screen for the new GameMode.</param>
-    ''' <param name="IntroMusic">The intro music that plays on the new game screen for the new GameMode.</param>
-    ''' <param name="SkinColors">The skin colors for the new GameMode. Must be the same amount as SkinFiles and SkinNames.</param>
-    ''' <param name="SkinFiles">The skin files for the new GameMode. Must be the same amount as SkinColors and SkinNames.</param>
-    ''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
-    Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule),
-                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String))
-        Me._name = Name
-        Me._description = Description
-        Me._version = Version
-        Me._author = Author
-        Me._mapPath = MapPath
-        Me._scriptPath = ScriptPath
-        Me._pokeFilePath = PokeFilePath
-        Me._pokemonDataPath = PokemonDataPath
-        Me._contentPath = ContentPath
-        Me._localizationsPath = LocalizationsPath
-        Me._gameRules = GameRules
+	''' <summary>
+	''' Create a new GameMode.
+	''' </summary>
+	''' <param name="Name">The name of the new GameMode.</param>
+	''' <param name="Description">The description of the new GameMode.</param>
+	''' <param name="Version">The version of the new GameMode. Warning: This doesn't have to be a number!</param>
+	''' <param name="Author">The author of the new GameMode.</param>
+	''' <param name="MapPath">The MapPath used from the new GameMode to load maps from.</param>
+	''' <param name="ScriptPath">The ScriptPath used from the new GameMode to load scripts from.</param>
+	''' <param name="PokemonDataPath">The Pokemon-Datapath to load Pokemon data from.</param>
+	''' <param name="ContentPath">The path to load images, sound and music from.</param>
+	''' <param name="GameRules">The GameRules that apply to the new GameMode.</param>
+	''' <param name="StartMap">The start map for the new GameMode.</param>
+	''' <param name="StartPosition">The start position for the new GameMode.</param>
+	''' <param name="StartRotation">The start rotation for the new GameMode.</param>
+	''' <param name="StartLocationName">The start location name for the new GameMode.</param>
+	''' <param name="PokemonAppear">The Pokémon that appear on the new game screen for the new GameMode.</param>
+	''' <param name="IntroMusic">The intro music that plays on the new game screen for the new GameMode.</param>
+	''' <param name="IntroType">The type of intro used when starting a new game for the GameMode (0 = New Intro (3D), 1 = Old Intro (2D)).</param>
+	''' <param name="SkinColors">The skin colors for the new GameMode. Must be the same amount as SkinFiles and SkinNames.</param>
+	''' <param name="SkinFiles">The skin files for the new GameMode. Must be the same amount as SkinColors and SkinNames.</param>
+	''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
+	Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule),
+				   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String))
+		Me._name = Name
+		Me._description = Description
+		Me._version = Version
+		Me._author = Author
+		Me._mapPath = MapPath
+		Me._scriptPath = ScriptPath
+		Me._pokeFilePath = PokeFilePath
+		Me._pokemonDataPath = PokemonDataPath
+		Me._contentPath = ContentPath
+		Me._localizationsPath = LocalizationsPath
+		Me._gameRules = GameRules
 
-        Me._startMap = StartMap
-        Me._startPosition = StartPosition
-        Me._startRotation = StartRotation
-        Me._startLocationName = StartLocationName
-        Me._startDialogue = StartDialogue
-        Me._startColor = StartColor
-        Me._pokemonAppear = PokemonAppear
-        Me._introMusic = IntroMusic
-        Me._skinColors = SkinColors
-        Me._skinFiles = SkinFiles
-        Me._skinNames = SkinNames
+		Me._startMap = StartMap
+		Me._startPosition = StartPosition
+		Me._startRotation = StartRotation
+		Me._startLocationName = StartLocationName
+		Me._startDialogue = StartDialogue
+		Me._startColor = StartColor
+		Me._pokemonAppear = PokemonAppear
+		Me._introMusic = IntroMusic
+		Me._introType = IntroType
+		Me._skinColors = SkinColors
+		Me._skinFiles = SkinFiles
+		Me._skinNames = SkinNames
 
-        Me._loaded = True
-    End Sub
+		Me._loaded = True
+	End Sub
 
-    ''' <summary>
-    ''' This loads the GameMode.
-    ''' </summary>
-    Private Sub Load(ByVal FileName As String)
+	''' <summary>
+	''' This loads the GameMode.
+	''' </summary>
+	Private Sub Load(ByVal FileName As String)
         If System.IO.File.Exists(FileName) = True Then
             Dim Data() As String = System.IO.File.ReadAllLines(FileName)
 
@@ -494,8 +496,10 @@ Public Class GameMode
                                 End If
                             End If
                         Case "intromusic"
-                            Me._introMusic = Value
-                        Case "skincolors"
+							Me._introMusic = Value
+						Case "introtype"
+							Me._introType = Value
+						Case "skincolors"
                             Dim l As New List(Of Color)
                             For Each color As String In Value.Split(CChar(","))
                                 Dim c As New Color(CInt(color.GetSplit(0, ";")), CInt(color.GetSplit(1, ";")), CInt(color.GetSplit(2, ";")))
@@ -553,10 +557,10 @@ Public Class GameMode
         Dim SkinFiles As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
         Dim SkinNames As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
 
-        Dim gameMode As New GameMode("Pokemon 3D", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule),
-                                     "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", SkinColors, SkinFiles, SkinNames)
+		Dim gameMode As New GameMode("Pokemon 3D", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule),
+									 "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", "0", SkinColors, SkinFiles, SkinNames)
 
-        Dim gameRules As New List(Of GameRule)
+		Dim gameRules As New List(Of GameRule)
         gameRules.Add(New GameRule("MaxLevel", "100"))
         gameRules.Add(New GameRule("OnlyCaptureFirst", "0"))
         gameRules.Add(New GameRule("ForceRename", "0"))
@@ -830,7 +834,8 @@ Public Class GameMode
     Private _startColor As Color = New Color(59, 123, 165)
     Private _pokemonAppear As String = ""
     Private _introMusic As String = ""
-    Private _skinColors As New List(Of Color)
+	Private _introType As String = ""
+	Private _skinColors As New List(Of Color)
     Private _skinFiles As New List(Of String)
     Private _skinNames As New List(Of String)
     Private _pokemonRange() As Integer
@@ -953,10 +958,22 @@ Public Class GameMode
         End Set
     End Property
 
-    ''' <summary>
-    ''' The skin colors for this GameMode. Must be the same amount as SkinFiles and SkinNames.
-    ''' </summary>
-    Public Property SkinColors() As List(Of Color)
+	''' <summary>
+	''' The type of intro used when starting a new game for the GameMode (0 = New Intro (3D), 1 = Old Intro (2D)).
+	''' </summary>
+	Public Property IntroType() As String
+		Get
+			Return Me._introType
+		End Get
+		Set(value As String)
+			Me._introType = value
+		End Set
+	End Property
+
+	''' <summary>
+	''' The skin colors for this GameMode. Must be the same amount as SkinFiles and SkinNames.
+	''' </summary>
+	Public Property SkinColors() As List(Of Color)
         Get
             Return Me._skinColors
         End Get

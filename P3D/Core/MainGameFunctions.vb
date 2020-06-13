@@ -24,13 +24,17 @@
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.FullScreenKey) AndAlso Core.CurrentScreen.CanGoFullscreen Then
             ToggleFullScreen()
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.MuteMusicKey) AndAlso Core.CurrentScreen.CanMuteMusic Then
-            MusicManager.Muted = Not MediaPlayer.IsMuted
-            SoundManager.Muted = MediaPlayer.IsMuted
-            Core.GameOptions.SaveOptions()
-            Core.CurrentScreen.ToggledMute()
-        End If
+			If MusicManager.Muted Then
+				MusicManager.Muted = False
+			Else
+				MusicManager.Muted = True
+			End If
+			SoundManager.Muted = MediaPlayer.IsMuted
+			Core.GameOptions.SaveOptions()
+				Core.CurrentScreen.ToggledMute()
+			End If
 
-        If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
+			If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
             If KeyBoardHandler.KeyPressed(Keys.F) Then
                 TextureManager.TextureList.Clear()
                 Core.GameMessage.ShowMessage(Localization.GetString("game_message_debug_texture_list_clear", "Texture list have cleared"), 12, FontManager.MainFont, Color.White)
