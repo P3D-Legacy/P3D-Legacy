@@ -120,8 +120,8 @@
 
     Public Sub SaveOptions()
         If MapPreviewScreen.MapViewMode = False Then
-            Dim mutedString As String = MediaPlayer.IsMuted.ToNumberString()
-            Dim showDebugString As String = Me.ShowDebug.ToString()
+			Dim mutedString As String = MusicManager.Muted.ToNumberString()
+			Dim showDebugString As String = Me.ShowDebug.ToString()
             Dim ContentPackString As String = ""
             If Me.ContentPackNames.Count > 0 Then
                 For Each c As String In Me.ContentPackNames
