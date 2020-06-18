@@ -294,7 +294,6 @@
             If Me.minDelay = 0.0F And SongOver() Then
                 Core.SetScreen(Me.NewScreen)
                 If Me.NewScreen.GetType() Is GetType(BattleSystem.BattleScreen) Then
-					MusicManager._isLooping = True
 
 					Dim b As BattleSystem.BattleScreen = CType(Me.NewScreen, BattleSystem.BattleScreen)
 
@@ -342,13 +341,13 @@
     End Sub
 
     Private Sub UpdateFaceshotIntro()
-        Me.barOffset += 14
-        Me.blackPosition = (Me.blackPosition + 6).Clamp(0, CInt(Core.windowSize.Height / 2 - 128))
-        If blackPosition >= CInt(Core.windowSize.Height / 2 - 128) Then
-            trainerPosition = (trainerPosition + 16).Clamp(0, 420)
-            If trainerPosition >= 420 Then
-                textPosition += CInt(Math.Ceiling(Core.windowSize.Width / 75))
-                If textPosition >= CInt(Core.windowSize.Width / 2 - CInt(FontManager.InGameFont.MeasureString(Trainer.Name).X) / 2) + 1200 Then
+		Me.barOffset += 18
+		Me.blackPosition = (Me.blackPosition + 10).Clamp(0, CInt(Core.windowSize.Height / 2 - 128))
+		If blackPosition >= CInt(Core.windowSize.Height / 2 - 128) Then
+			trainerPosition = (trainerPosition + 20).Clamp(0, 420)
+			If trainerPosition >= 420 Then
+				textPosition += CInt(Math.Ceiling(Core.windowSize.Width / 50))
+				If textPosition >= CInt(Core.windowSize.Width / 2 - CInt(FontManager.InGameFont.MeasureString(Trainer.Name).X) / 2) + 1200 Then
                     Me.ready = True
                 End If
             End If
@@ -516,7 +515,7 @@
 	End Sub
 
 	Private Function SongOver() As Boolean
-		Return startTime + duration < Date.Now.AddSeconds(0.21)
+		Return startTime + duration < Date.Now.AddSeconds(0.1)
 	End Function
 
 	'Protected Overrides Sub Finalize()

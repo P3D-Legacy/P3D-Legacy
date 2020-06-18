@@ -181,7 +181,7 @@ Public Class MusicManager
 
                         If _fadeIntoIntro Then
 							_fadeIntoIntro = False
-							_introEndTime = Date.Now.AddSeconds(0.1) + song.Duration
+							_introEndTime = Date.Now.AddSeconds(0) + song.Duration
 							_isIntroStarted = True
 						Else
 							_isLooping = True
@@ -216,7 +216,7 @@ Public Class MusicManager
 
 			' intro
 			If _isIntroStarted Then
-				If Date.Now.AddSeconds(0.21) >= _introEndTime Then
+				If Date.Now.AddSeconds(0) >= _introEndTime Then
 					Dim song = GetSong(_introContinueSong)
 					_isLooping = True
 					_isIntroStarted = False
@@ -372,6 +372,7 @@ Public Class MusicManager
 						Else
 							_isIntroStarted = True
 							_introStartTime = Date.Now
+							_introEndTime = Date.Now.AddSeconds(0) + introSong.Duration
 							Play(introSong)
 						End If
 
