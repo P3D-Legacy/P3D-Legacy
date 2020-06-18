@@ -5,11 +5,13 @@ Public Class SongContainer
 	Public Song As String
 	Public Name As String
 	Public Origin As String
+	Public Duration As TimeSpan
 
-	Public Sub New(song As String, name As String, origin As String)
+	Public Sub New(song As String, name As String, duration As TimeSpan, origin As String)
 		Me.Song = song
 		Me.Name = name
 		Me.Origin = origin
+		Me.Duration = duration
 	End Sub
 
 

@@ -768,18 +768,18 @@ Public Class OverworldCamera
             Else
                 'Walked against something, set player transparent
                 If Screen.Level.Surfing = False Then
-                    If _thirdPerson = True Then
-                        If _didWalkAgainst = True Then
-                            Screen.Level.OwnPlayer.Opacity = 0.5F
-                        End If
-                        If _bumpSoundDelay = 0 Then
-                            If _didWalkAgainst = True Then
-                                SoundManager.PlaySound("bump")
-                            End If
-                            _bumpSoundDelay = 35
-                        End If
-                    End If
-                End If
+					If _thirdPerson = True Then
+						If _didWalkAgainst = True Then
+							Screen.Level.OwnPlayer.Opacity = 0.5F
+						End If
+					End If
+					If _bumpSoundDelay = 0 Then
+						If _didWalkAgainst = True Then
+							SoundManager.PlaySound("bump")
+						End If
+						_bumpSoundDelay = 35
+					End If
+				End If
             End If
         End If
     End Sub

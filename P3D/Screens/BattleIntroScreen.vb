@@ -294,9 +294,9 @@
             If Me.minDelay = 0.0F And SongOver() Then
                 Core.SetScreen(Me.NewScreen)
                 If Me.NewScreen.GetType() Is GetType(BattleSystem.BattleScreen) Then
-                    MediaPlayer.IsRepeating = True
+					MusicManager._isLooping = True
 
-                    Dim b As BattleSystem.BattleScreen = CType(Me.NewScreen, BattleSystem.BattleScreen)
+					Dim b As BattleSystem.BattleScreen = CType(Me.NewScreen, BattleSystem.BattleScreen)
 
                     If b.IsPVPBattle = True Then
                         b.InitializePVP(b.Trainer, b.OverworldScreen)
@@ -505,19 +505,23 @@
         Player.Temp.BeforeBattlePosition = Screen.Camera.Position
         Player.Temp.BeforeBattleLevelFile = Screen.Level.LevelFile
         Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection()
-        MusicManager.Play(MusicLoop, False, 0F)
-		MusicManager._isLooping = False
+		MusicManager.Play(MusicLoop, False, 0F, False)
 
-        Me.startTime = Date.Now
-    End Sub
+		If Not MusicManager.CurrentSong Is Nothing Then
+			Me.duration = MusicManager.CurrentSong.Duration
+		Else
+			Me.duration = New TimeSpan(0)
+		End If
+		Me.startTime = Date.Now
+	End Sub
 
-    Private Function SongOver() As Boolean
-        Return startTime + duration < Date.Now.AddSeconds(1)
-    End Function
+	Private Function SongOver() As Boolean
+		Return startTime + duration < Date.Now.AddSeconds(0.21)
+	End Function
 
-    'Protected Overrides Sub Finalize()
-    '    If blurTexture IsNot Nothing
-    '        blurTexture.Dispose()
-    '    End If
-    'End Sub
+	'Protected Overrides Sub Finalize()
+	'    If blurTexture IsNot Nothing
+	'        blurTexture.Dispose()
+	'    End If
+	'End Sub
 End Class
