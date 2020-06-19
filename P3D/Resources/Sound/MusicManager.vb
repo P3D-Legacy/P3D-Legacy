@@ -314,11 +314,11 @@ Public Class MusicManager
 					outputDevice.Play()
 				End If
 				outputDevice.Volume = _volume * MasterVolume
-					_currentSongExists = True
-					_currentSongName = song.Name
-					_currentSong = song
-				Else
-					_currentSongExists = False
+				_currentSongExists = True
+				_currentSongName = song.Name
+				_currentSong = song
+			Else
+				_currentSongExists = False
 				_currentSongName = NO_MUSIC
 				_currentSong = Nothing
 			End If
