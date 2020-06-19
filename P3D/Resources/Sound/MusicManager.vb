@@ -116,8 +116,9 @@ Public Class MusicManager
 					If outputDevice IsNot Nothing Then
 						outputDevice.Pause()
 						_introMuteTime = Date.Now
+						Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_off"), 12, FontManager.MainFont, Color.White)
 					End If
-					Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_off"), 12, FontManager.MainFont, Color.White)
+
 				Else
 					ResumePlayback()
 					Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_on"), 12, FontManager.MainFont, Color.White)
@@ -272,8 +273,6 @@ Public Class MusicManager
 
 				End If
 
-				MediaPlayer.Resume()
-
 			End If
 		End If
 
@@ -311,13 +310,15 @@ Public Class MusicManager
 				audioFile = New VorbisWaveReader(song.Song)
 				_loop = New LoopStream(audioFile, False)
 				outputDevice.Init(_loop)
-				outputDevice.Play()
+				If MusicManager.Muted = False Then
+					outputDevice.Play()
+				End If
 				outputDevice.Volume = _volume * MasterVolume
-				_currentSongExists = True
-				_currentSongName = song.Name
-				_currentSong = song
-			Else
-				_currentSongExists = False
+					_currentSongExists = True
+					_currentSongName = song.Name
+					_currentSong = song
+				Else
+					_currentSongExists = False
 				_currentSongName = NO_MUSIC
 				_currentSong = Nothing
 			End If
