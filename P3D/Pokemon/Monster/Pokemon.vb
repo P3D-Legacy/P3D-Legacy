@@ -2420,18 +2420,19 @@ Public Class Pokemon
                 Case 4
                     Dim v As Vector2 = PokemonForms.GetMenuImagePosition(Me)
                     Dim s As Size = PokemonForms.GetMenuImageSize(Me)
+                    Dim sheet As String = PokemonForms.GetSheetName(Me)
 
-                    Dim shiny As String = ""
+                    Dim shinypos As Integer = 0
                     If Me.IsShiny = True Then
-                        shiny = "Shiny"
+                        shinypos = 512
                     End If
 
-                    Textures(index) = P3D.TextureManager.GetTexture("GUI\PokemonMenu" & shiny, New Rectangle(CInt(v.X) * 32, CInt(v.Y) * 32, s.Width, s.Height), "")
+                    Textures(index) = P3D.TextureManager.GetTexture("GUI\PokemonMenu\" & sheet, New Rectangle(CInt(v.X) * 32 + shinypos, CInt(v.Y) * 32, s.Width, s.Height), "")
                 Case 5
                     If Me.Number = 490 Then
-                        Textures(index) = P3D.TextureManager.GetTexture("GUI\PokemonMenu", New Rectangle(928, 992, 32, 32), "")
+                        Textures(index) = P3D.TextureManager.GetTexture("GUI\PokemonMenu\OtherForms", New Rectangle(64, 0, 32, 32), "")
                     Else
-                        Textures(index) = EggCreator.CreateEggSprite(Me, P3D.TextureManager.GetTexture("GUI\PokemonMenu", New Rectangle(992, 992, 32, 32), ""), P3D.TextureManager.GetTexture("Pokemon\Egg\Templates\Menu"))
+                        Textures(index) = EggCreator.CreateEggSprite(Me, P3D.TextureManager.GetTexture("GUI\PokemonMenu\OtherForms", New Rectangle(32, 0, 32, 32), ""), P3D.TextureManager.GetTexture("Pokemon\Egg\Templates\Menu"))
                     End If
                 Case 6
                     If Me.Number = 490 Then

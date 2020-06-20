@@ -415,19 +415,32 @@
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).GetDisplayName()
                 Case "menusprite"
+                    'Dim index As Integer = int(argument.GetSplit(0))
+                    '
+                    'Dim p As Pokemon = Core.Player.Pokemons(index)
+                    '
+                    'Dim pos As Vector2 = PokemonForms.GetMenuImagePosition(p)
+                    'Dim size As Size = PokemonForms.GetMenuImageSize(p)
+                    '
+                    'Dim sheet As String = "GUI\PokemonMenu"
+                    'If p.IsShiny = True Then
+                    'sheet = "GUI\PokemonMenuShiny"
+                    'End If
+                    '
+                    'Return sheet & "|" & CStr(pos.X * 32) & "|" & CStr(pos.Y * 32) & "|" & CStr(size.Width) & "|" & CStr(size.Height)
                     Dim index As Integer = int(argument.GetSplit(0))
-
                     Dim p As Pokemon = Core.Player.Pokemons(index)
 
-                    Dim pos As Vector2 = PokemonForms.GetMenuImagePosition(p)
-                    Dim size As Size = PokemonForms.GetMenuImageSize(p)
+                    Dim v As Vector2 = PokemonForms.GetMenuImagePosition(p)
+                    Dim s As Size = PokemonForms.GetMenuImageSize(p)
+                    Dim sheet As String = PokemonForms.GetSheetName(p)
 
-                    Dim sheet As String = "GUI\PokemonMenu"
+                    Dim shinypos As Integer = 0
                     If p.IsShiny = True Then
-                        sheet = "GUI\PokemonMenuShiny"
+                        shinypos = 512
                     End If
 
-                    Return sheet & "|" & CStr(pos.X * 32) & "|" & CStr(pos.Y * 32) & "|" & CStr(size.Width) & "|" & CStr(size.Height)
+                    Return "GUI\PokemonMenu\" & sheet & "|" & CStr(CInt(v.X) * 32 + shinypos) & "|" & CStr(CInt(v.Y) * 32) & "|" & CStr(s.Width) & "|" & CStr(s.Height)
                 Case "getsteps"
                     ' <Pokemon.GetSteps(PokemonIndex)>
 
