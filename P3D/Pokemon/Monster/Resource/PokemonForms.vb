@@ -1,3 +1,5 @@
+Imports P3D
+
 Public Class PokemonForms
 
     Private Shared _pokemonList As New List(Of PokemonForm)
@@ -39,13 +41,45 @@ Public Class PokemonForms
                         _name = _name.Remove(_name.Length - 9, 2)
                     End If
                 ElseIf _name.StartsWith("primal ") Then
-                        _name = _name.Remove(0, 7)
+                    _name = _name.Remove(0, 7)
                 End If
                 Return _name
             End If
         Next
-       
+
         Return P.OriginalName
+    End Function
+
+    ''' <summary>
+    ''' Returns the name of spritesheet containing the Pokémon's menu sprite.
+    ''' </summary>
+    Public Shared Function GetSheetName(ByVal P As Pokemon) As String
+        For Each listP In _pokemonList
+            If listP.IsNumber(P.Number) = True Then
+                Return listP.GetSheetName(P)
+            End If
+        Next
+
+        Dim n As Integer = P.Number
+
+        Select Case n
+            Case 0 To 151
+                Return "Gen1"
+            Case 152 To 251
+                Return "Gen2"
+            Case 252 To 386
+                Return "Gen3"
+            Case 387 To 493
+                Return "Gen4"
+            Case 494 To 649
+                Return "Gen5"
+            Case 650 To 721
+                Return "Gen6"
+            Case 722 To 809
+                Return "Gen7"
+            Case Else
+                Return "Gen8"
+        End Select
     End Function
 
     ''' <summary>
@@ -61,11 +95,32 @@ Public Class PokemonForms
         Dim x As Integer = 0
         Dim y As Integer = 0
         Dim n As Integer = P.Number
-        While n > 32
-            n -= 32
+        Dim r As Integer = 0
+
+        Select Case n
+            Case 0 To 151
+                r = n
+            Case 152 To 251
+                r = n - 151
+            Case 252 To 386
+                r = n - 251
+            Case 387 To 493
+                r = n - 386
+            Case 494 To 649
+                r = n - 493
+            Case 650 To 721
+                r = n - 649
+            Case 722 To 809
+                r = n - 721
+            Case Else
+                r = n - 809
+        End Select
+
+        While r > 16
+            r -= 16
             y += 1
         End While
-        x = n - 1
+        x = r - 1
         Return New Vector2(x, y)
     End Function
 
@@ -165,15 +220,58 @@ Public Class PokemonForms
             Return P.OriginalName
         End Function
 
+        Public Overridable Function GetSheetName(ByVal P As Pokemon) As String
+            Dim n As Integer = P.Number
+            Select Case n
+                Case 0 To 151
+                    Return "Gen1"
+                Case 152 To 251
+                    Return "Gen2"
+                Case 252 To 386
+                    Return "Gen3"
+                Case 387 To 493
+                    Return "Gen4"
+                Case 494 To 649
+                    Return "Gen5"
+                Case 650 To 721
+                    Return "Gen6"
+                Case 722 To 809
+                    Return "Gen7"
+                Case Else
+                    Return "Gen8"
+            End Select
+        End Function
+
         Public Overridable Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Dim x As Integer = 0
             Dim y As Integer = 0
             Dim n As Integer = P.Number
-            While n > 32
-                n -= 32
+            Dim r As Integer = 0
+
+            Select Case n
+                Case 0 To 151
+                    r = n
+                Case 152 To 251
+                    r = n - 151
+                Case 252 To 386
+                    r = n - 251
+                Case 387 To 493
+                    r = n - 386
+                Case 494 To 649
+                    r = n - 493
+                Case 650 To 721
+                    r = n - 649
+                Case 722 To 809
+                    r = n - 721
+                Case Else
+                    r = n - 809
+            End Select
+
+            While r > 16
+                r -= 16
                 y += 1
             End While
-            x = n - 1
+            x = r - 1
             Return New Vector2(x, y)
         End Function
 
@@ -202,12 +300,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(3)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(24, 29)
+                    Return New Vector2(0, 0)
                 Case Else
-                    Return New Vector2(2, 0)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -242,24 +348,22 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(6)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega_x", "mega_y"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega_x"
-                    Return New Vector2(7, 29)
+                    Return New Vector2(1, 0)
                 Case "mega_y"
-                    Return New Vector2(18, 29)
+                    Return New Vector2(2, 0)
                 Case Else
-                    Return New Vector2(5, 0)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "mega_x"
-                    Return New Size(40, 32)
-                Case "mega_y"
-                    Return New Size(38, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -300,12 +404,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(9)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(29, 29)
+                    Return New Vector2(3, 0)
                 Case Else
-                    Return New Vector2(8, 0)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -340,12 +452,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(15)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(15, 26)
+                    Return New Vector2(12, 1)
                 Case Else
-                    Return New Vector2(14, 0)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -380,12 +500,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(18)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(16, 26)
+                    Return New Vector2(13, 1)
                 Case Else
-                    Return New Vector2(17, 0)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -438,12 +566,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(65)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(27, 29)
+                    Return New Vector2(4, 0)
                 Case Else
-                    Return New Vector2(0, 2)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -478,12 +614,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(80)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(18, 26)
+                    Return New Vector2(14, 1)
                 Case Else
-                    Return New Vector2(15, 2)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -518,20 +662,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(94)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(21, 29)
+                    Return New Vector2(5, 0)
                 Case Else
-                    Return New Vector2(29, 2)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "mega"
-                    Return New Size(34, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -566,12 +710,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(115)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(26, 29)
+                    Return New Vector2(6, 0)
                 Case Else
-                    Return New Vector2(18, 3)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -606,12 +758,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(127)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(0, 29)
+                    Return New Vector2(7, 0)
                 Case Else
-                    Return New Vector2(30, 3)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -646,12 +806,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(130)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(31, 27)
+                    Return New Vector2(8, 0)
                 Case Else
-                    Return New Vector2(1, 4)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -686,12 +854,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(142)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(20, 29)
+                    Return New Vector2(9, 0)
                 Case Else
-                    Return New Vector2(13, 4)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -726,14 +902,22 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(150)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega_x", "mega_y"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega_x"
-                    Return New Vector2(14, 29)
+                    Return New Vector2(10, 0)
                 Case "mega_y"
-                    Return New Vector2(28, 29)
+                    Return New Vector2(11, 0)
                 Case Else
-                    Return New Vector2(21, 4)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -776,7 +960,14 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(172)
         End Sub
-
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "spiky-eared"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
             If P.AdditionalData.ToLower() = "spiky-eared" Then
                 Return P.OriginalName & "_spiky-eared"
@@ -795,7 +986,7 @@ Public Class PokemonForms
 
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             If P.AdditionalData.ToLower() = "spiky-eared" Then
-                Return New Vector2(13, 26)
+                Return New Vector2(0, 2)
             Else
                 Return MyBase.GetMenuImagePosition(P)
             End If
@@ -808,12 +999,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(181)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(9, 29)
+                    Return New Vector2(12, 0)
                 Case Else
-                    Return New Vector2(20, 5)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -855,6 +1054,10 @@ Public Class PokemonForms
             Return CStr(Core.Random.Next(0, 28))
         End Function
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Return "Unown"
+        End Function
+
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
             Dim AlphabetArray() As String = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "question", "exclamation"}
             If CInt(P.AdditionalData) > 0 Then
@@ -864,12 +1067,16 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
-            Dim x As Integer = 8
-            Dim y As Integer = 6
-            If CInt(P.AdditionalData) > 0 Then
-                y = 31
-                x = CInt(P.AdditionalData) - 1
-            End If
+            Dim x As Integer = 0
+            Dim y As Integer = 0
+            Select Case CInt(P.AdditionalData)
+                Case 1 To 16
+                    y = 0
+                    x = CInt(P.AdditionalData)
+                Case Else
+                    y = 1
+                    x = CInt(P.AdditionalData) - 16
+            End Select
             Return New Vector2(x, y)
         End Function
 
@@ -887,20 +1094,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(208)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(29, 28)
+                    Return New Vector2(15, 1)
                 Case Else
-                    Return New Vector2(11, 26)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "mega"
-                    Return New Size(39, 32)
-                Case Else
-                    Return New Size(35, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -934,12 +1141,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(212)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(1, 29)
+                    Return New Vector2(13, 0)
                 Case Else
-                    Return New Vector2(19, 6)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -973,20 +1188,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(214)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(2, 29)
+                    Return New Vector2(14, 0)
                 Case Else
-                    Return New Vector2(21, 6)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "mega"
-                    Return New Size(34, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1021,12 +1236,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(229)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(4, 29)
+                    Return New Vector2(15, 0)
                 Case Else
-                    Return New Vector2(4, 7)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1061,12 +1284,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(248)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(5, 29)
+                    Return New Vector2(0, 1)
                 Case Else
-                    Return New Vector2(23, 7)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1101,20 +1332,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(254)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(0, 26)
+                    Return New Vector2(0, 2)
                 Case Else
-                    Return New Vector2(29, 7)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "mega"
-                    Return New Size(37, 32)
-                Case Else
-                    Return New Size(35, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1149,12 +1380,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(257)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(15, 29)
+                    Return New Vector2(1, 1)
                 Case Else
-                    Return New Vector2(0, 8)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1189,12 +1428,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(260)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(31, 28)
+                    Return New Vector2(1, 2)
                 Case Else
-                    Return New Vector2(3, 8)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1229,12 +1476,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(282)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(12, 29)
+                    Return New Vector2(2, 1)
                 Case Else
-                    Return New Vector2(25, 8)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1269,12 +1524,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(302)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(19, 26)
+                    Return New Vector2(2, 2)
                 Case Else
-                    Return New Vector2(13, 9)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1309,12 +1572,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(303)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(13, 29)
+                    Return New Vector2(3, 1)
                 Case Else
-                    Return New Vector2(14, 9)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1349,12 +1620,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(306)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(30, 29)
+                    Return New Vector2(4, 1)
                 Case Else
-                    Return New Vector2(17, 9)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1389,12 +1668,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(308)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(16, 29)
+                    Return New Vector2(5, 1)
                 Case Else
-                    Return New Vector2(19, 9)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1429,12 +1716,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(310)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(11, 29)
+                    Return New Vector2(6, 1)
                 Case Else
-                    Return New Vector2(21, 9)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1469,12 +1764,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(319)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(20, 26)
+                    Return New Vector2(3, 2)
                 Case Else
-                    Return New Vector2(30, 9)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1509,12 +1812,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(323)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(21, 26)
+                    Return New Vector2(4, 2)
                 Case Else
-                    Return New Vector2(2, 10)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1549,12 +1860,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(334)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(22, 26)
+                    Return New Vector2(5, 2)
                 Case Else
-                    Return New Vector2(13, 10)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1589,12 +1908,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(354)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(23, 29)
+                    Return New Vector2(7, 1)
                 Case Else
-                    Return New Vector2(1, 11)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1629,12 +1956,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(359)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(6, 29)
+                    Return New Vector2(8, 1)
                 Case Else
-                    Return New Vector2(6, 11)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1669,12 +2004,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(362)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(29, 27)
+                    Return New Vector2(6, 2)
                 Case Else
-                    Return New Vector2(9, 11)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1709,20 +2052,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(373)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(23, 26)
+                    Return New Vector2(7, 2)
                 Case Else
-                    Return New Vector2(20, 11)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "mega"
-                    Return New Size(35, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1757,12 +2100,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(376)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(30, 27)
+                    Return New Vector2(8, 2)
                 Case Else
-                    Return New Vector2(23, 11)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1797,20 +2148,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(380)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(28, 26)
+                    Return New Vector2(9, 2)
                 Case Else
-                    Return New Vector2(27, 11)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "mega"
-                    Return New Size(35, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1844,20 +2195,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(381)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(30, 26)
+                    Return New Vector2(10, 2)
                 Case Else
-                    Return New Vector2(28, 11)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "mega"
-                    Return New Size(35, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1891,20 +2242,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(382)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "primal"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "primal"
-                    Return New Vector2(30, 25)
+                    Return New Vector2(3, 3)
                 Case Else
-                    Return New Vector2(29, 11)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "primal"
-                    Return New Size(36, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1939,20 +2290,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(383)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "primal"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "primal"
-                    Return New Vector2(28, 25)
+                    Return New Vector2(4, 3)
                 Case Else
-                    Return New Vector2(30, 11)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "primal"
-                    Return New Size(36, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -1987,20 +2338,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(384)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(26, 25)
+                    Return New Vector2(11, 2)
                 Case Else
-                    Return New Vector2(31, 11)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "mega"
-                    Return New Size(38, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -2037,6 +2388,15 @@ Public Class PokemonForms
             MyBase.New(386)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "attack", "defense", "speed"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
             Select Case P.AdditionalData.ToLower()
                 Case "attack", "defense", "speed"
@@ -2049,13 +2409,13 @@ Public Class PokemonForms
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData.ToLower()
                 Case "attack"
-                    Return New Vector2(8, 28)
+                    Return New Vector2(5, 3)
                 Case "defense"
-                    Return New Vector2(7, 28)
+                    Return New Vector2(6, 3)
                 Case "speed"
-                    Return New Vector2(9, 28)
+                    Return New Vector2(7, 3)
                 Case Else
-                    Return New Vector2(1, 12)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
 
@@ -2101,6 +2461,15 @@ Public Class PokemonForms
             Return "plant"
         End Function
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "sandy", "trash"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
     End Class
 
     Private Class Shellos
@@ -2111,11 +2480,20 @@ Public Class PokemonForms
             MyBase.New(422)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "1"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             If P.AdditionalData = "1" Then
-                Return New Vector2(8, 30)
+                Return New Vector2(5, 4)
             Else
-                Return New Vector2(5, 13)
+                Return MyBase.GetMenuImagePosition(P)
             End If
         End Function
 
@@ -2145,11 +2523,20 @@ Public Class PokemonForms
             MyBase.New(423)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "1"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             If P.AdditionalData = "1" Then
-                Return New Vector2(9, 30)
+                Return New Vector2(6, 4)
             Else
-                Return New Vector2(6, 13)
+                Return MyBase.GetMenuImagePosition(P)
             End If
         End Function
 
@@ -2176,12 +2563,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(428)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(25, 26)
+                    Return New Vector2(12, 2)
                 Case Else
-                    Return New Vector2(11, 13)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -2216,12 +2611,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(445)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(10, 29)
+                    Return New Vector2(9, 1)
                 Case Else
-                    Return New Vector2(28, 13)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -2256,12 +2659,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(448)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(17, 29)
+                    Return New Vector2(10, 1)
                 Case Else
-                    Return New Vector2(31, 13)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -2296,12 +2707,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(460)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(25, 29)
+                    Return New Vector2(11, 1)
                 Case Else
-                    Return New Vector2(11, 14)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -2336,12 +2755,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(475)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(26, 26)
+                    Return New Vector2(13, 2)
                 Case Else
-                    Return New Vector2(26, 14)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -2379,6 +2806,15 @@ Public Class PokemonForms
             MyBase.New(479)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "fan", "frost", "heat", "mow", "wash"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
             Select Case P.AdditionalData.ToLower()
                 Case "fan", "frost", "heat", "mow", "wash"
@@ -2391,17 +2827,17 @@ Public Class PokemonForms
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData.ToLower()
                 Case "fan"
-                    Return New Vector2(13, 30)
+                    Return New Vector2(12, 4)
                 Case "frost"
-                    Return New Vector2(14, 30)
+                    Return New Vector2(11, 4)
                 Case "heat"
-                    Return New Vector2(15, 30)
+                    Return New Vector2(9, 4)
                 Case "mow"
-                    Return New Vector2(16, 30)
+                    Return New Vector2(13, 4)
                 Case "wash"
-                    Return New Vector2(17, 30)
+                    Return New Vector2(10, 4)
                 Case Else
-                    Return New Vector2(30, 14)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
 
@@ -2426,7 +2862,7 @@ Public Class PokemonForms
     End Class
 
     Private Class Dialga
-
+        'Leaving this untouched because Primal Dialga is stupid and not canon - Omega
         Inherits PokemonForm
 
         Public Sub New()
@@ -2474,52 +2910,56 @@ Public Class PokemonForms
             MyBase.New(493)
         End Sub
 
-        Private Function GetTypeAdditionFromPlate(ByVal P As Pokemon) As Tuple(Of String, Integer)
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Return "Arceus"
+        End Function
+
+        Private Function GetTypeAdditionFromPlate(ByVal P As Pokemon) As Tuple(Of String, Integer, Integer)
             If Not P.Item Is Nothing Then
                 If P.Item.IsPlate = False Then
-                    Return New Tuple(Of String, Integer)("", 0)
+                    Return New Tuple(Of String, Integer, Integer)("", 0, 0)
                 Else
                     Select Case P.Item.ID
                         Case 267
-                            Return New Tuple(Of String, Integer)("dragon", 15)
+                            Return New Tuple(Of String, Integer, Integer)("dragon", 14, 0)
                         Case 268
-                            Return New Tuple(Of String, Integer)("dark", 10)
+                            Return New Tuple(Of String, Integer, Integer)("dark", 15, 0)
                         Case 269
-                            Return New Tuple(Of String, Integer)("ground", 9)
+                            Return New Tuple(Of String, Integer, Integer)("ground", 8, 0)
                         Case 270
-                            Return New Tuple(Of String, Integer)("fighting", 13)
+                            Return New Tuple(Of String, Integer, Integer)("fighting", 6, 0)
                         Case 271
-                            Return New Tuple(Of String, Integer)("fire", 1)
+                            Return New Tuple(Of String, Integer, Integer)("fire", 1, 0)
                         Case 272
-                            Return New Tuple(Of String, Integer)("ice", 14)
+                            Return New Tuple(Of String, Integer, Integer)("ice", 5, 0)
                         Case 273
-                            Return New Tuple(Of String, Integer)("bug", 4)
+                            Return New Tuple(Of String, Integer, Integer)("bug", 11, 0)
                         Case 274
-                            Return New Tuple(Of String, Integer)("steel", 12)
+                            Return New Tuple(Of String, Integer, Integer)("steel", 0, 1)
                         Case 275
-                            Return New Tuple(Of String, Integer)("grass", 0)
+                            Return New Tuple(Of String, Integer, Integer)("grass", 4, 0)
                         Case 276
-                            Return New Tuple(Of String, Integer)("psychic", 7)
+                            Return New Tuple(Of String, Integer, Integer)("psychic", 10, 0)
                         Case 277
-                            Return New Tuple(Of String, Integer)("fairy", 16)
+                            Return New Tuple(Of String, Integer, Integer)("fairy", 1, 1)
                         Case 278
-                            Return New Tuple(Of String, Integer)("flying", 3)
+                            Return New Tuple(Of String, Integer, Integer)("flying", 9, 0)
                         Case 279
-                            Return New Tuple(Of String, Integer)("water", 2)
+                            Return New Tuple(Of String, Integer, Integer)("water", 2, 0)
                         Case 280
-                            Return New Tuple(Of String, Integer)("ghost", 11)
+                            Return New Tuple(Of String, Integer, Integer)("ghost", 13, 0)
                         Case 281
-                            Return New Tuple(Of String, Integer)("rock", 8)
+                            Return New Tuple(Of String, Integer, Integer)("rock", 12, 0)
                         Case 282
-                            Return New Tuple(Of String, Integer)("poison", 5)
+                            Return New Tuple(Of String, Integer, Integer)("poison", 7, 0)
                         Case 283
-                            Return New Tuple(Of String, Integer)("electric", 6)
+                            Return New Tuple(Of String, Integer, Integer)("electric", 3, 0)
                         Case Else
-                            Return New Tuple(Of String, Integer)("", 0)
+                            Return New Tuple(Of String, Integer, Integer)("", 0, 0)
                     End Select
                 End If
             Else
-                Return New Tuple(Of String, Integer)("", 0)
+                Return New Tuple(Of String, Integer, Integer)("", 0, 0)
             End If
         End Function
 
@@ -2534,11 +2974,7 @@ Public Class PokemonForms
 
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Dim data = GetTypeAdditionFromPlate(P)
-            If data.Item1 = "" Then
-                Return New Vector2(12, 15) 'Default Arceus sprite
-            Else
-                Return New Vector2(data.Item2, 27) 'Type Arceus sprite
-            End If
+            Return New Vector2(data.Item2, data.Item3)
         End Function
 
         Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
@@ -2556,12 +2992,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(531)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(27, 26)
+                    Return New Vector2(14, 2)
                 Case Else
-                    Return New Vector2(18, 16)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -2599,6 +3043,15 @@ Public Class PokemonForms
             MyBase.New(550)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "blue"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetDataFileAddition(AdditionalData As String) As String
             If AdditionalData.ToLower() = "blue" Then
                 Return "_blue"
@@ -2617,7 +3070,7 @@ Public Class PokemonForms
 
         Public Overrides Function GetMenuImagePosition(P As Pokemon) As Vector2
             If P.AdditionalData.ToLower() = "blue" Then
-                Return New Vector2(0, 28)
+                Return New Vector2(0, 5)
             Else
                 Return MyBase.GetMenuImagePosition(P)
             End If
@@ -2641,16 +3094,25 @@ Public Class PokemonForms
             MyBase.New(585)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case World.CurrentSeason
+                Case World.Seasons.Summer, World.Seasons.Fall, World.Seasons.Winter
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case World.CurrentSeason
-                Case World.Seasons.Fall
-                    Return New Vector2(1, 30)
-                Case World.Seasons.Spring
-                    Return New Vector2(8, 18)
                 Case World.Seasons.Summer
-                    Return New Vector2(0, 30)
+                    Return New Vector2(3, 5)
+                Case World.Seasons.Fall
+                    Return New Vector2(4, 5)
                 Case World.Seasons.Winter
-                    Return New Vector2(2, 30)
+                    Return New Vector2(5, 5)
+                Case Else
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
 
@@ -2692,16 +3154,25 @@ Public Class PokemonForms
             MyBase.New(586)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case World.CurrentSeason
+                Case World.Seasons.Summer, World.Seasons.Fall, World.Seasons.Winter
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case World.CurrentSeason
-                Case World.Seasons.Fall
-                    Return New Vector2(4, 30)
-                Case World.Seasons.Spring
-                    Return New Vector2(9, 18)
                 Case World.Seasons.Summer
-                    Return New Vector2(3, 30)
+                    Return New Vector2(6, 5)
+                Case World.Seasons.Fall
+                    Return New Vector2(7, 5)
                 Case World.Seasons.Winter
-                    Return New Vector2(5, 30)
+                    Return New Vector2(8, 5)
+                Case Else
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
 
@@ -2743,12 +3214,21 @@ Public Class PokemonForms
             MyBase.New(592)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.Gender
+                Case Pokemon.Genders.Female
+                    Return "Gender"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.Gender
                 Case Pokemon.Genders.Female
-                    Return New Vector2(6, 30)
+                    Return New Vector2(1, 0)
                 Case Else
-                    Return New Vector2(15, 18)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
 
@@ -2780,12 +3260,21 @@ Public Class PokemonForms
             MyBase.New(593)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.Gender
+                Case Pokemon.Genders.Female
+                    Return "Gender"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.Gender
                 Case Pokemon.Genders.Female
-                    Return New Vector2(7, 30)
+                    Return New Vector2(2, 0)
                 Case Else
-                    Return New Vector2(16, 18)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
 
@@ -2817,6 +3306,15 @@ Public Class PokemonForms
             MyBase.New(641)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "therian"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetAnimationName(P As Pokemon) As String
             If P.AdditionalData.ToLower() = "therian" Then
                 Return P.OriginalName & "_therian"
@@ -2827,7 +3325,7 @@ Public Class PokemonForms
 
         Public Overrides Function GetMenuImagePosition(P As Pokemon) As Vector2
             If P.AdditionalData.ToLower() = "therian" Then
-                Return New Vector2(10, 30)
+                Return New Vector2(9, 5)
             Else
                 Return MyBase.GetMenuImagePosition(P)
             End If
@@ -2851,6 +3349,15 @@ Public Class PokemonForms
             MyBase.New(642)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "therian"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetAnimationName(P As Pokemon) As String
             If P.AdditionalData.ToLower() = "therian" Then
                 Return P.OriginalName & "_therian"
@@ -2861,7 +3368,7 @@ Public Class PokemonForms
 
         Public Overrides Function GetMenuImagePosition(P As Pokemon) As Vector2
             If P.AdditionalData.ToLower() = "therian" Then
-                Return New Vector2(11, 30)
+                Return New Vector2(10, 5)
             Else
                 Return MyBase.GetMenuImagePosition(P)
             End If
@@ -2885,6 +3392,15 @@ Public Class PokemonForms
             MyBase.New(645)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "therian"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetAnimationName(P As Pokemon) As String
             If P.AdditionalData.ToLower() = "therian" Then
                 Return P.OriginalName & "_therian"
@@ -2895,7 +3411,7 @@ Public Class PokemonForms
 
         Public Overrides Function GetMenuImagePosition(P As Pokemon) As Vector2
             If P.AdditionalData.ToLower() = "therian" Then
-                Return New Vector2(12, 30)
+                Return New Vector2(11, 5)
             Else
                 Return MyBase.GetMenuImagePosition(P)
             End If
@@ -2918,6 +3434,15 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(646)
         End Sub
+
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "black", "white"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
 
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
             Select Case P.AdditionalData.ToLower()
@@ -2944,22 +3469,11 @@ Public Class PokemonForms
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData.ToLower()
                 Case "black"
-                    Return New Vector2(22, 30)
+                    Return New Vector2(13, 5)
                 Case "white"
-                    Return New Vector2(24, 30)
+                    Return New Vector2(12, 5)
                 Case Else
-                    Return New Vector2(5, 20)
-            End Select
-        End Function
-
-        Public Overrides Function GetMenuImageSize(P As Pokemon) As Size
-            Select Case P.AdditionalData.ToLower()
-                Case "black"
-                    Return New Size(37, 32)
-                Case "white"
-                    Return New Size(33, 32)
-                Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
 
@@ -2972,50 +3486,54 @@ Public Class PokemonForms
             MyBase.New(666)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Return "Vivillon"
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "archipelago"
-                    Return New Vector2(18, 28)
+                    Return New Vector2(1, 0)
                 Case "continental"
-                    Return New Vector2(12, 28)
+                    Return New Vector2(2, 0)
                 Case "elegant"
-                    Return New Vector2(14, 28)
+                    Return New Vector2(3, 0)
                 Case "fancy"
-                    Return New Vector2(28, 28)
+                    Return New Vector2(4, 0)
                 Case "garden"
-                    Return New Vector2(13, 28)
+                    Return New Vector2(5, 0)
                 Case "high_planes"
-                    Return New Vector2(19, 28)
+                    Return New Vector2(6, 0)
                 Case "icy_snow"
-                    Return New Vector2(15, 28)
+                    Return New Vector2(7, 0)
                 Case "jungle"
-                    Return New Vector2(26, 28)
+                    Return New Vector2(8, 0)
                 Case "marine"
-                    Return New Vector2(17, 28)
+                    Return New Vector2(9, 0)
                 Case "meadow"
-                    Return New Vector2(25, 20)
+                    Return New Vector2(0, 0)
                 Case "modern"
-                    Return New Vector2(16, 28)
+                    Return New Vector2(10, 0)
                 Case "monsoon"
-                    Return New Vector2(22, 28)
+                    Return New Vector2(11, 0)
                 Case "ocean"
-                    Return New Vector2(25, 28)
+                    Return New Vector2(12, 0)
                 Case "pokeball"
-                    Return New Vector2(27, 28)
+                    Return New Vector2(13, 0)
                 Case "polar"
-                    Return New Vector2(10, 28)
+                    Return New Vector2(14, 0)
                 Case "river"
-                    Return New Vector2(21, 28)
+                    Return New Vector2(15, 0)
                 Case "sandstorm"
-                    Return New Vector2(20, 28)
+                    Return New Vector2(0, 1)
                 Case "savanna"
-                    Return New Vector2(23, 28)
+                    Return New Vector2(1, 1)
                 Case "sun"
-                    Return New Vector2(24, 28)
+                    Return New Vector2(2, 1)
                 Case "tundra"
-                    Return New Vector2(11, 28)
+                    Return New Vector2(3, 1)
                 Case Else
-                    Return New Vector2(25, 20)
+                    Return New Vector2(0, 0)
             End Select
         End Function
 
@@ -3075,21 +3593,21 @@ Public Class PokemonForms
             MyBase.New(668)
         End Sub
 
-        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+        Public Overrides Function GetSheetName(P As Pokemon) As String
             Select Case P.Gender
-                Case Pokemon.Genders.Male
-                    Return New Vector2(27, 20)
+                Case Pokemon.Genders.Female
+                    Return "Gender"
                 Case Else
-                    Return New Vector2(27, 31)
+                    Return MyBase.GetSheetName(P)
             End Select
         End Function
 
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.Gender
-                Case Pokemon.Genders.Male
-                    Return New Size(32, 32)
+                Case Pokemon.Genders.Female
+                    Return New Vector2(3, 0)
                 Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
 
@@ -3118,16 +3636,25 @@ Public Class PokemonForms
             MyBase.New(669)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "yellow", "blue", "orange", "white"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "yellow"
-                    Return New Vector2(17, 27)
+                    Return New Vector2(0, 7)
                 Case "blue"
-                    Return New Vector2(18, 27)
+                    Return New Vector2(1, 7)
                 Case "orange"
-                    Return New Vector2(19, 27)
+                    Return New Vector2(2, 7)
                 Case "white"
-                    Return New Vector2(20, 27)
+                    Return New Vector2(3, 7)
                 Case Else
                     Return MyBase.GetMenuImagePosition(P)
             End Select
@@ -3170,18 +3697,27 @@ Public Class PokemonForms
             MyBase.New(670)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "yellow", "blue", "orange", "white"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "yellow"
-                    Return New Vector2(21, 27)
+                    Return New Vector2(5, 7)
                 Case "blue"
-                    Return New Vector2(22, 27)
+                    Return New Vector2(6, 7)
                 Case "orange"
-                    Return New Vector2(23, 27)
+                    Return New Vector2(7, 7)
                 Case "white"
-                    Return New Vector2(24, 27)
+                    Return New Vector2(8, 7)
                 Case "eternal"
-                    Return New Vector2(28, 31)
+                    Return New Vector2(4, 7)
                 Case Else
                     Return MyBase.GetMenuImagePosition(P)
             End Select
@@ -3237,16 +3773,25 @@ Public Class PokemonForms
             MyBase.New(671)
         End Sub
 
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "yellow", "blue", "orange", "white"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
+
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "yellow"
-                    Return New Vector2(25, 27)
+                    Return New Vector2(9, 7)
                 Case "blue"
-                    Return New Vector2(26, 27)
+                    Return New Vector2(10, 7)
                 Case "orange"
-                    Return New Vector2(27, 27)
+                    Return New Vector2(11, 7)
                 Case "white"
-                    Return New Vector2(28, 27)
+                    Return New Vector2(12, 7)
                 Case Else
                     Return MyBase.GetMenuImagePosition(P)
             End Select
@@ -3292,21 +3837,21 @@ Public Class PokemonForms
             MyBase.New(681)
         End Sub
 
-        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
+        Public Overrides Function GetSheetName(P As Pokemon) As String
             Select Case P.AdditionalData
                 Case "blade"
-                    Return New Vector2(20, 30)
+                    Return "OtherForms"
                 Case Else
-                    Return New Vector2(8, 21)
+                    Return MyBase.GetSheetName(P)
             End Select
         End Function
 
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
+        Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "blade"
-                    Return New Size(35, 32)
+                    Return New Vector2(6, 8)
                 Case Else
-                    Return New Size(32, 32)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
 
@@ -3344,12 +3889,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(719)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "mega"
+                    Return "Megas"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "mega"
-                    Return New Vector2(25, 25)
+                    Return New Vector2(15, 2)
                 Case Else
-                    Return New Vector2(14, 22)
+                    Return MyBase.GetMenuImagePosition(P)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
@@ -3384,20 +3937,20 @@ Public Class PokemonForms
         Public Sub New()
             MyBase.New(720)
         End Sub
+        Public Overrides Function GetSheetName(P As Pokemon) As String
+            Select Case P.AdditionalData
+                Case "unbound"
+                    Return "OtherForms"
+                Case Else
+                    Return MyBase.GetSheetName(P)
+            End Select
+        End Function
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
             Select Case P.AdditionalData
                 Case "unbound"
-                    Return New Vector2(23, 25)
+                    Return New Vector2(0, 9)
                 Case Else
                     Return MyBase.GetMenuImagePosition(P)
-            End Select
-        End Function
-        Public Overrides Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Select Case P.AdditionalData
-                Case "unbound"
-                    Return New Size(38, 32)
-                Case Else
-                    Return New Size(32, 32)
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String

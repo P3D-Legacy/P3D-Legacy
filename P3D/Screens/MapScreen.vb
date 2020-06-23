@@ -1063,12 +1063,14 @@
         Public PositionX As Integer
         Public PositionY As Integer
         Public Distance As Double
+        Public Species As Pokemon
 
         Dim T As Texture2D = Nothing
 
         Public Sub New(ByVal ID As Integer, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal Location As String)
             Me.ID = ID
             Me.Name = Pokemon.GetPokemonByID(ID).GetName
+            Me.Species = Pokemon.GetPokemonByID(ID)
             Me.PositionX = PositionX
             Me.PositionY = PositionY
             Me.Location = Location
@@ -1089,19 +1091,27 @@
             Return New Rectangle(CInt(Me.getPosition().X + offset.X), CInt(Me.getPosition().Y + offset.Y), sizeX, sizeY)
         End Function
 
+        'Public Function getTexture() As Texture2D
+        'Dim Texture As Texture2D = TextureManager.GetTexture("GUI\PokemonMenu")
+        'Dim IndexX As Integer = 0
+        'Dim IndexY As Integer = 0
+        'Dim SizeX As Integer = 32
+        'Dim SizeY As Integer = 32
+        '
+        'IndexY = CInt(Math.Floor(ID / 33))
+        'IndexX = (ID - (IndexY * 32)) - 1
+        '
+        'T = TextureManager.GetTexture(Texture, New Rectangle(IndexX * 32, IndexY * 32, SizeX, SizeY))
+        '
+        'Return T
+        'End Function
+
         Public Function getTexture() As Texture2D
-            Dim Texture As Texture2D = TextureManager.GetTexture("GUI\PokemonMenu")
-            Dim IndexX As Integer = 0
-            Dim IndexY As Integer = 0
-            Dim SizeX As Integer = 32
-            Dim SizeY As Integer = 32
+            Dim v As Vector2 = PokemonForms.GetMenuImagePosition(Species)
+            Dim s As Size = PokemonForms.GetMenuImageSize(Species)
+            Dim sheet As String = PokemonForms.GetSheetName(Species)
 
-            IndexY = CInt(Math.Floor(ID / 33))
-            IndexX = (ID - (IndexY * 32)) - 1
-
-            T = TextureManager.GetTexture(Texture, New Rectangle(IndexX * 32, IndexY * 32, SizeX, SizeY))
-
-            Return T
+            Return P3D.TextureManager.GetTexture("GUI\PokemonMenu\" & sheet, New Rectangle(CInt(v.X) * 32, CInt(v.Y) * 32, s.Width, s.Height), "")
         End Function
 
         Public Function getSkipIndex() As Integer
