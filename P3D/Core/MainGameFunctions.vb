@@ -1,35 +1,37 @@
 ﻿Public Class MainGameFunctions
 
     Public Shared Sub FunctionKeys()
-        If KeyBoardHandler.KeyPressed(KeyBindings.GUIControlKey) = True Then
-            Core.GameOptions.ShowGUI = Not Core.GameOptions.ShowGUI
-            Core.GameOptions.SaveOptions()
-        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.ScreenshotKey) AndAlso Core.CurrentScreen.CanTakeScreenshot Then
-            CaptureScreen()
-        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.DebugKey) Then
-            Core.GameOptions.ShowDebug += 1
-            If Core.GameOptions.ShowDebug >= 2 Then
-                Core.GameOptions.ShowDebug = 0
-            End If
-            Core.GameOptions.SaveOptions()
-        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.LightKey) Then
-            Core.GameOptions.LightingEnabled = Not Core.GameOptions.LightingEnabled
-            Core.GameOptions.SaveOptions()
+		If KeyBoardHandler.KeyPressed(KeyBindings.GUIControlKey) = True Then
+			Core.GameOptions.ShowGUI = Not Core.GameOptions.ShowGUI
+			Core.GameOptions.SaveOptions()
+		ElseIf KeyBoardHandler.KeyPressed(KeyBindings.ScreenshotKey) AndAlso Core.CurrentScreen.CanTakeScreenshot Then
+			CaptureScreen()
+		ElseIf KeyBoardHandler.KeyPressed(KeyBindings.DebugKey) Then
+			Core.GameOptions.ShowDebug += 1
+			If Core.GameOptions.ShowDebug >= 2 Then
+				Core.GameOptions.ShowDebug = 0
+			End If
+			Core.GameOptions.SaveOptions()
+		ElseIf KeyBoardHandler.KeyPressed(KeyBindings.LightKey) Then
+			Core.GameOptions.LightingEnabled = Not Core.GameOptions.LightingEnabled
+			Core.GameOptions.SaveOptions()
 
-            If Core.GameOptions.LightingEnabled Then
-                Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_on", "Lighting Enabled"), 12, FontManager.MainFont, Color.White)
-            Else
-                Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_off", "Lighting Disabled"), 12, FontManager.MainFont, Color.White)
-            End If
-        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.FullScreenKey) AndAlso Core.CurrentScreen.CanGoFullscreen Then
-            ToggleFullScreen()
-        ElseIf KeyBoardHandler.KeyPressed(KeyBindings.MuteMusicKey) AndAlso Core.CurrentScreen.CanMuteMusic Then
+			If Core.GameOptions.LightingEnabled Then
+				Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_on", "Lighting Enabled"), 12, FontManager.MainFont, Color.White)
+			Else
+				Core.GameMessage.ShowMessage(Localization.GetString("game_message_lighting_off", "Lighting Disabled"), 12, FontManager.MainFont, Color.White)
+			End If
+		ElseIf KeyBoardHandler.KeyPressed(KeyBindings.FullScreenKey) AndAlso Core.CurrentScreen.CanGoFullscreen Then
+			ToggleFullScreen()
+		ElseIf KeyBoardHandler.KeyPressed(KeyBindings.MuteAudioKey) AndAlso Core.CurrentScreen.CanMuteMusic Then
 			If MusicManager.Muted Then
 				MusicManager.Muted = False
+				SoundManager.Muted = False
 			Else
 				MusicManager.Muted = True
+				SoundManager.Muted = True
 			End If
-			SoundManager.Muted = MediaPlayer.IsMuted
+
 			Core.GameOptions.SaveOptions()
 				Core.CurrentScreen.ToggledMute()
 			End If

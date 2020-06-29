@@ -542,8 +542,8 @@ game_message_third_person_on,Tredje person på.
 game_message_third_person_off,Tredje person av.
 game_message_free_camera_on,Fri kamera på
 game_message_free_camera_off,Fri kamera av
-game_message_music_on,Musik på
-game_message_music_off,Musik av
+game_message_audio_on,Audio på
+game_message_audio_off,Audio av
 game_message_continue_autosave,Fortsatt sparat spel:
 ---
 Online:

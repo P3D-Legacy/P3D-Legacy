@@ -547,8 +547,8 @@ game_message_third_person_on,Tredje personmodus på.
 game_message_third_person_off,Tredje personmodus av.
 game_message_free_camera_on,Fri bevegelses kameramodus på
 game_message_free_camera_off,Fri bevegelses kameramodus på
-game_message_music_on,Musikk på
-game_message_music_off,Musikk av
+game_message_audio_on,Lyd på
+game_message_audio_off,Lyd av
 game_message_continue_autosave,Fortsatt lagret tilstand:
 ---
 Online:

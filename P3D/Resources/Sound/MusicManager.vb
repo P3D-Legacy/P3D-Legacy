@@ -115,7 +115,7 @@ Public Class MusicManager
 					If outputDevice IsNot Nothing Then
 						outputDevice.Pause()
 						_introMuteTime = Date.Now
-						Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_off"), 12, FontManager.MainFont, Color.White)
+						Core.GameMessage.ShowMessage(Localization.GetString("game_message_audio_off"), 12, FontManager.MainFont, Color.White)
 					End If
 
 				Else
@@ -123,7 +123,7 @@ Public Class MusicManager
 						_muted = True
 					Else
 						ResumePlayback()
-						Core.GameMessage.ShowMessage(Localization.GetString("game_message_music_on"), 12, FontManager.MainFont, Color.White)
+						Core.GameMessage.ShowMessage(Localization.GetString("game_message_audio_on"), 12, FontManager.MainFont, Color.White)
 					End If
 				End If
 			End If
@@ -338,11 +338,11 @@ Public Class MusicManager
 		_fadeSpeed = fadeSpeed
 	End Sub
 
-	Public Shared Function Play(song As String) As SongContainer
+	Public Shared Function Play(song As String, Optional loopSong As Boolean = True) As SongContainer
 		Return Play(song, False, DEFAULT_FADE_SPEED)
 	End Function
 
-	Public Shared Function Play(song As String, playIntro As Boolean) As SongContainer
+	Public Shared Function Play(song As String, playIntro As Boolean, Optional loopSong As Boolean = True) As SongContainer
 		Return Play(song, playIntro, DEFAULT_FADE_SPEED)
 	End Function
 

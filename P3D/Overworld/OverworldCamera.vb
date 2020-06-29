@@ -762,9 +762,6 @@ Public Class OverworldCamera
                 Screen.Level.OwnPlayer.DoAnimation = (walkSteps <= 1)
 
                 Move(walkSteps)
-                If _thirdPerson = False Then
-                    _bumpSoundDelay = 35
-                End If
             Else
                 'Walked against something, set player transparent
                 If Screen.Level.Surfing = False Then
