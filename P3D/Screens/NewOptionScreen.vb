@@ -489,8 +489,8 @@
 
     Public Overrides Sub ToggledMute()
         If Me.ScreenIndex = 5 Then
-            Me.Muted = CInt(MediaPlayer.IsMuted)
-            InitializeControls()
+			Me.Muted = CInt(MusicManager.Muted)
+			InitializeControls()
         End If
     End Sub
 
