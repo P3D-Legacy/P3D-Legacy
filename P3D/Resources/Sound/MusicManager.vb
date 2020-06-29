@@ -78,7 +78,7 @@ Public Class MusicManager
 
 	' time until the intro of a song plays
 	Private Shared _introMuteTime As Date
-	Private Shared _introEndTime As Date
+	Public Shared _introEndTime As Date
 	Private Shared _isIntroStarted As Boolean = False
     ' song that gets played after the intro finished
     Private Shared _introContinueSong As String
@@ -338,7 +338,7 @@ Public Class MusicManager
 		_fadeSpeed = fadeSpeed
 	End Sub
 
-	Public Shared Function Play(song As String, Optional loopSong As Boolean = True) As SongContainer
+	Public Shared Function Play(song As String) As SongContainer
 		Return Play(song, False, DEFAULT_FADE_SPEED)
 	End Function
 
@@ -404,9 +404,9 @@ Public Class MusicManager
 					FadeInto(nextSong, fadeSpeed)
 				Else
 					Play(nextSong)
-					End If
+				End If
 
-					playedSong = nextSong
+				playedSong = nextSong
 
 				End If
 
