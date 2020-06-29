@@ -283,11 +283,11 @@ Public Class CreditsScreen
 	End Class
 
 	Public Overrides Sub ChangeFrom()
-		MusicManager.Muted = True
+		MusicManager._isLooping = True
 	End Sub
 
 	Public Overrides Sub ChangeTo()
-		MusicManager.Muted = False
+		MusicManager._isLooping = False
 	End Sub
 
 End Class
