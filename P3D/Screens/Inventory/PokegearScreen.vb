@@ -1228,10 +1228,11 @@
                         For i = 0 To 8
                             Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
-                                If PhoneSelect = i + PhoneScroll Then
-                                    SelectPhoneContact()
-                                Else
-                                    PhoneSelect = i + PhoneScroll
+								If PhoneSelect = i + PhoneScroll Then
+									SoundManager.PlaySound("select")
+									SelectPhoneContact()
+								Else
+									PhoneSelect = i + PhoneScroll
                                 End If
                                 Exit For
                             End If
@@ -1248,15 +1249,17 @@
                     PhoneScroll = PhoneScroll.Clamp(0, PhoneContacts.Count - 9)
                     PhoneSelect = PhoneSelect.Clamp(0, PhoneContacts.Count - 1)
 
-                    If Controls.Accept(False, True, True) = True Then
-                        SelectPhoneContact()
-                    End If
-                End If
+					If Controls.Accept(False, True, True) = True Then
+						SoundManager.PlaySound("select")
+						SelectPhoneContact()
+					End If
+				End If
             End If
-            If Controls.Dismiss(True, True, True) = True Then
-                menuIndex = MenuScreens.Main
-            End If
-        End Sub
+			If Controls.Dismiss(True, True, True) = True Then
+				SoundManager.PlaySound("select")
+				menuIndex = MenuScreens.Main
+			End If
+		End Sub
 
         Private Sub SelectPhoneContact()
             Dim chosenID As String = PhoneContacts(PhoneSelect).ID
@@ -1855,10 +1858,11 @@
                 End If
             End If
 
-            If Controls.Dismiss(True, True, True) = True Then
-                Me.menuIndex = MenuScreens.Main
-            End If
-        End Sub
+			If Controls.Dismiss(True, True, True) = True Then
+				SoundManager.PlaySound("select")
+				Me.menuIndex = MenuScreens.Main
+			End If
+		End Sub
 
         Private Function GetSelectedStation() As RadioStation
             For Each station As RadioStation In Me.RadioStations
@@ -2019,11 +2023,13 @@
                             If New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 150 + i * 64), 160, 32).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Me.TradeRequestCursor Then
                                     Select Case i
-                                        Case 0
-                                            CloseTradeRequest()
+										Case 0
+											SoundManager.PlaySound("select")
+											CloseTradeRequest()
                                             Core.SetScreen(New DirectTradeScreen(Core.CurrentScreen, TradeRequestNetworkID, False))
-                                        Case 1
-                                            CloseTradeRequest()
+										Case 1
+											SoundManager.PlaySound("select")
+											CloseTradeRequest()
                                     End Select
                                 Else
                                     Me.TradeRequestCursor = i
@@ -2034,17 +2040,20 @@
 
                     If Controls.Accept(False, True, True) = True Then
                         Select Case Me.TradeRequestCursor
-                            Case 0
-                                CloseTradeRequest()
+							Case 0
+								SoundManager.PlaySound("select")
+								CloseTradeRequest()
                                 Core.SetScreen(New DirectTradeScreen(Core.CurrentScreen, TradeRequestNetworkID, False))
-                            Case 1
-                                CloseTradeRequest()
+							Case 1
+								SoundManager.PlaySound("select")
+								CloseTradeRequest()
                         End Select
                     End If
-                    If Controls.Dismiss() = True Then
-                        CloseTradeRequest()
-                    End If
-                End If
+					If Controls.Dismiss() = True Then
+						SoundManager.PlaySound("select")
+						CloseTradeRequest()
+					End If
+				End If
             End If
         End Sub
 
@@ -2150,11 +2159,13 @@
                             If New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 150 + i * 64), 160, 32).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Me.BattleRequestCursor Then
                                     Select Case i
-                                        Case 0
-                                            CloseBattleRequest()
+										Case 0
+											SoundManager.PlaySound("select")
+											CloseBattleRequest()
                                             Core.SetScreen(New PVPLobbyScreen(Core.CurrentScreen, BattleRequestNetworkID, False))
-                                        Case 1
-                                            CloseBattleRequest()
+										Case 1
+											SoundManager.PlaySound("select")
+											CloseBattleRequest()
                                     End Select
                                 Else
                                     Me.BattleRequestCursor = i
@@ -2165,17 +2176,20 @@
 
                     If Controls.Accept(False, True, True) = True Then
                         Select Case Me.BattleRequestCursor
-                            Case 0
-                                CloseBattleRequest()
+							Case 0
+								SoundManager.PlaySound("select")
+								CloseBattleRequest()
                                 Core.SetScreen(New PVPLobbyScreen(Core.CurrentScreen, BattleRequestNetworkID, False))
-                            Case 1
-                                CloseBattleRequest()
+							Case 1
+								SoundManager.PlaySound("select")
+								CloseBattleRequest()
                         End Select
                     End If
-                    If Controls.Dismiss() = True Then
-                        CloseBattleRequest()
-                    End If
-                End If
+					If Controls.Dismiss() = True Then
+						SoundManager.PlaySound("select")
+						CloseBattleRequest()
+					End If
+				End If
             End If
         End Sub
 

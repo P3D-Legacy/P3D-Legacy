@@ -111,12 +111,13 @@
             End If
 
             If Controls.Dismiss(True, True) = True Then
-                If Selected > -1 Then
-                    Selected = -1
-                Else
-                    Core.SetScreen(Me.PreScreen)
-                End If
-            End If
+				If Selected > -1 Then
+					Selected = -1
+				Else
+					Core.SetScreen(Me.PreScreen)
+				End If
+				SoundManager.PlaySound("select")
+			End If
         End Sub
 
         Private Sub WithdrawCurrent()

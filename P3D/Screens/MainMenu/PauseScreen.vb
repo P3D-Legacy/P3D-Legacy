@@ -122,10 +122,12 @@
 
                     If Controls.Accept(True, False) = True Then
                         Select Case Me.mainIndex
-                            Case 0
-                                ClickContinue()
-                            Case 1
-                                ClickQuit()
+							Case 0
+								SoundManager.PlaySound("select")
+								ClickContinue()
+							Case 1
+								SoundManager.PlaySound("select")
+								ClickQuit()
                         End Select
                     End If
                 End If
@@ -219,10 +221,12 @@
 
                     If Controls.Accept(True, False) = True Then
                         Select Case Me.quitIndex
-                            Case 0
-                                ClickBack()
-                            Case 1
-                                ClickConfirmationQuit()
+							Case 0
+								SoundManager.PlaySound("select")
+								ClickBack()
+							Case 1
+								SoundManager.PlaySound("select")
+								ClickConfirmationQuit()
                         End Select
                     End If
                 End If
@@ -233,17 +237,20 @@
 
         If Controls.Accept(False, True) = True Then
             Select Case Me.quitIndex
-                Case 0
-                    ClickBack()
-                Case 1
-                    ClickConfirmationQuit()
+				Case 0
+					SoundManager.PlaySound("select")
+					ClickBack()
+				Case 1
+					SoundManager.PlaySound("select")
+					ClickConfirmationQuit()
             End Select
         End If
 
-        If Controls.Dismiss(False, True) = True Then
-            ClickBack()
-        End If
-    End Sub
+		If Controls.Dismiss(False, True) = True Then
+			SoundManager.PlaySound("select")
+			ClickBack()
+		End If
+	End Sub
 
     Private Sub ClickBack()
         Me.menuIndex = 0

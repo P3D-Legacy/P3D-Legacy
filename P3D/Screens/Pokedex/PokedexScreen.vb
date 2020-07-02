@@ -122,10 +122,12 @@
             For i = 0 To Me.Profiles.Count
                 If New Rectangle(100, 100 + i * 96, 64 * 7, 64).Contains(MouseHandler.MousePosition) = True Then
                     If i = Cursor Then
-                        If Me.Cursor = Me.Profiles.Count Then
-                            Core.SetScreen(New PokedexHabitatScreen(Me))
-                        Else
-                            Core.SetScreen(New PokedexScreen(Me, Me.Profiles(Me.Cursor), Nothing))
+						If Me.Cursor = Me.Profiles.Count Then
+							SoundManager.PlaySound("select")
+							Core.SetScreen(New PokedexHabitatScreen(Me))
+						Else
+							SoundManager.PlaySound("select")
+							Core.SetScreen(New PokedexScreen(Me, Me.Profiles(Me.Cursor), Nothing))
                         End If
                     Else
                         Cursor = i
@@ -279,20 +281,22 @@ Public Class PokedexHabitatScreen
                 For i = Scroll To Scroll + 5
                     If i <= Me.HabitatList.Count - 1 Then
                         If New Rectangle(100, 100 + (i - Scroll) * 96, 640, 64).Contains(MouseHandler.MousePosition) = True Then
-                            If i = Cursor + Scroll Then
-                                Core.SetScreen(New PokedexScreen(Me, Nothing, Me.HabitatList(Cursor + Scroll)))
-                            Else
-                                Cursor = i - Scroll
+							If i = Cursor + Scroll Then
+								SoundManager.PlaySound("select")
+								Core.SetScreen(New PokedexScreen(Me, Nothing, Me.HabitatList(Cursor + Scroll)))
+							Else
+								Cursor = i - Scroll
                             End If
                         End If
                     End If
                 Next
             End If
 
-            If Controls.Accept(False, True, True) = True Then
-                Core.SetScreen(New PokedexScreen(Me, Nothing, Me.HabitatList(Cursor + Scroll)))
-            End If
-        End If
+			If Controls.Accept(False, True, True) = True Then
+				SoundManager.PlaySound("select")
+				Core.SetScreen(New PokedexScreen(Me, Nothing, Me.HabitatList(Cursor + Scroll)))
+			End If
+		End If
 
         If Controls.Dismiss(True, True, True) = True Then
             Core.SetScreen(Me.PreScreen)
@@ -752,10 +756,11 @@ Public Class PokedexScreen
 
                     If New Rectangle(50 + x * 100, 140 + y * 100, 64, 92).Contains(MouseHandler.MousePosition) = True Then
                         If Cursor.X + Cursor.Y * 6 = i Then
-                            If TempPokemonDexType(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)) > 0 Then
-                                Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)), False))
-                            End If
-                        Else
+							If TempPokemonDexType(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)) > 0 Then
+								SoundManager.PlaySound("select")
+								Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)), False))
+							End If
+						Else
                             Cursor.X = x
                             Cursor.Y = y
                         End If
@@ -766,10 +771,11 @@ Public Class PokedexScreen
             ClampCursor()
 
             If Controls.Accept(False, True, True) = True Then
-                If TempPokemonDexType(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)) > 0 Then
-                    Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)), False))
-                End If
-            End If
+				If TempPokemonDexType(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)) > 0 Then
+					SoundManager.PlaySound("select")
+					Core.SetScreen(New PokedexViewScreen(Me, TempPokemonStorage(CInt((Cursor.Y + Scroll) * 6 + Cursor.X + 1)), False))
+				End If
+			End If
 
             If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
                 Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
@@ -1679,15 +1685,17 @@ Public Class PokedexViewScreen
             If Controls.Accept(True, False, False) = True Then
                 If Me.Page = 0 Or Me.Page = 1 Then
                     If New Rectangle(Core.windowSize.Width - 70, CInt(Core.windowSize.Height / 2 - 32), 64, 64).Contains(MouseHandler.MousePosition) = True Then
-                        Me.Page += 1
-                    End If
+						SoundManager.PlaySound("select")
+						Me.Page += 1
+					End If
                 End If
-                If Me.Page = 1 Or Me.Page = 2 Then
-                    If New Rectangle(6, CInt(Core.windowSize.Height / 2 - 32), 64, 64).Contains(MouseHandler.MousePosition) = True Then
-                        Me.Page -= 1
-                    End If
-                End If
-            End If
+				If Me.Page = 1 Or Me.Page = 2 Then
+					SoundManager.PlaySound("select")
+					If New Rectangle(6, CInt(Core.windowSize.Height / 2 - 32), 64, 64).Contains(MouseHandler.MousePosition) = True Then
+						Me.Page -= 1
+					End If
+				End If
+			End If
 
             Me.Page = Me.Page.Clamp(0, 2)
 
@@ -1735,11 +1743,12 @@ Public Class PokedexViewScreen
     End Sub
 
     Private Sub UpdatePage1()
-        If Controls.Accept(True, True, True) = True Then
-            Me.FrontView = Not Me.FrontView
-            Me.GetYOffset()
-        End If
-    End Sub
+		If Controls.Accept(True, True, True) = True Then
+			SoundManager.PlaySound("select")
+			Me.FrontView = Not Me.FrontView
+			Me.GetYOffset()
+		End If
+	End Sub
 
     Private Sub UpdatePage2()
         If Me.HabitatList.Count > 0 Then
@@ -1775,20 +1784,22 @@ Public Class PokedexViewScreen
                 For i = Scroll To Scroll + 4
                     If i <= Me.HabitatList.Count - 1 Then
                         If New Rectangle(100, 160 + (i - Scroll) * 96, 640, 64).Contains(MouseHandler.MousePosition) = True Then
-                            If i = Cursor + Scroll Then
-                                Core.SetScreen(New PokedexScreen(Me, Nothing, Me.HabitatList(Cursor + Scroll)))
-                            Else
-                                Cursor = i - Scroll
+							If i = Cursor + Scroll Then
+								SoundManager.PlaySound("select")
+								Core.SetScreen(New PokedexScreen(Me, Nothing, Me.HabitatList(Cursor + Scroll)))
+							Else
+								Cursor = i - Scroll
                             End If
                         End If
                     End If
                 Next
             End If
 
-            If Controls.Accept(False, True, True) = True Then
-                Core.SetScreen(New PokedexScreen(Me, Nothing, Me.HabitatList(Cursor + Scroll)))
-            End If
-        End If
+			If Controls.Accept(False, True, True) = True Then
+				SoundManager.PlaySound("select")
+				Core.SetScreen(New PokedexScreen(Me, Nothing, Me.HabitatList(Cursor + Scroll)))
+			End If
+		End If
     End Sub
 
     Private Sub UpdatePage3()

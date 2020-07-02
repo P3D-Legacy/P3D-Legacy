@@ -257,11 +257,10 @@
             End If
         End If
 
-        If Controls.Dismiss() = True Then
-            SoundManager.PlaySound("select")
-            Core.SetScreen(PreScreen)
-        End If
-    End Sub
+		If Controls.Dismiss() = True Then
+			Core.SetScreen(PreScreen)
+		End If
+	End Sub
 
     Private Sub PressButton()
         Select Case _menuOptions(_menuIndex)

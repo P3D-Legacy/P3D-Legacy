@@ -884,17 +884,18 @@
 
 
             If r.Contains(MouseHandler.MousePosition) = True Then
-                If P3D.Controls.Accept(True, False, False) = True Then
-                    OnClickTrigger(Me)
-                End If
-            End If
+				If P3D.Controls.Accept(True, False, False) = True Then
+					SoundManager.PlaySound("select")
+					OnClickTrigger(Me)
+				End If
+			End If
 
             If Controls.Accept(False, True, True) Then
-                If Position = s._cursorDestPosition Then
-                    OnClickTrigger(Me)
-                    SoundManager.PlaySound("select")
-                End If
-            End If
+				If Position = s._cursorDestPosition Then
+					SoundManager.PlaySound("select")
+					OnClickTrigger(Me)
+				End If
+			End If
         End Sub
     End Class
 

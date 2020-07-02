@@ -58,10 +58,11 @@
                     Me._textIndex = Me._text.Length
                 End If
             Else
-                If Controls.Accept(True, True) = True Then
-                    Me._ready = True
-                End If
-            End If
+				If Controls.Accept(True, True) = True Then
+					SoundManager.PlaySound("select")
+					Me._ready = True
+				End If
+			End If
         End Sub
 
         Public Overrides Sub Draw(BV2Screen As BattleScreen)

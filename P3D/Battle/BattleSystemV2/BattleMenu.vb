@@ -890,8 +890,9 @@
                 UpdateMenuOptions(_moveMenuIndex, _moveMenuNextIndex, _moveMenuItemList.Count)
 
                 If Controls.Dismiss(True, True, True) = True And _retractMenu = False And _isExtracting = False And _isRetracting = False Then
-                    _retractMenu = True
-                    _nextMenuState = MenuStates.Main
+					SoundManager.PlaySound("select")
+					_retractMenu = True
+					_nextMenuState = MenuStates.Main
 
                     BattleScreen.BattleQuery.Clear()
                     For i = 0 To 99
