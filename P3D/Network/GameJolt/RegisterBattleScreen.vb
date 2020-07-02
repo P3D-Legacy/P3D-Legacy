@@ -181,6 +181,7 @@
                 For i = 0 To Me.MainMenuItems.Count - 1
                     If New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 400 + i * 96, 64 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                         If i = MainCursor Then
+                            SoundManager.PlaySound("select")
                             Me.SelectMainMenuEntry()
                         Else
                             MainCursor = i
@@ -190,9 +191,11 @@
             End If
 
             If Controls.Accept(False, True, True) = True Then
+                SoundManager.PlaySound("select")
                 Me.SelectMainMenuEntry()
             End If
             If Controls.Dismiss(True, True, True) = True Then
+                SoundManager.PlaySound("select")
                 Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.White, False))
             End If
         End Sub
@@ -274,6 +277,7 @@
                 For i = 0 To Me.TeamRegisterMenuItems.Count - 1
                     If New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 400 + i * 96, 64 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                         If i = TeamRegisterCursor Then
+                            SoundManager.PlaySound("select")
                             Me.SelectTeamRegisterMenuEntry()
                         Else
                             TeamRegisterCursor = i
@@ -283,9 +287,11 @@
             End If
 
             If Controls.Accept(False, True, True) = True Then
+                SoundManager.PlaySound("select")
                 Me.SelectTeamRegisterMenuEntry()
             End If
             If Controls.Dismiss(True, True, True) = True Then
+                SoundManager.PlaySound("select")
                 Me.ScreenState = ScreenStates.MainMenu
             End If
         End Sub
@@ -444,17 +450,21 @@
                 If New Rectangle(CInt(Core.windowSize.Width / 2) + 120, 230, 290, 360).Contains(MouseHandler.MousePosition) = True Then
                     If ChooseTeamCursor = 0 Then
                         ChooseTeamCursor = 1
+                        SoundManager.PlaySound("select")
                     Else
                         UseBattleBox = False
+                        SoundManager.PlaySound("select")
                         Me.PrepareBattle()
                     End If
                 End If
                 If New Rectangle(CInt(Core.windowSize.Width / 2) - 410, 230, 290, 360).Contains(MouseHandler.MousePosition) = True Then
                     If ChooseTeamCursor = 1 Then
+                        SoundManager.PlaySound("select")
                         ChooseTeamCursor = 0
                     Else
                         If hasBattleBoxPokemon = True Then
                             UseBattleBox = True
+                            SoundManager.PlaySound("select")
                             Me.PrepareBattle()
                         End If
                     End If
@@ -468,11 +478,13 @@
                     Else
                         UseBattleBox = False
                     End If
+                    SoundManager.PlaySound("select")
                     Me.PrepareBattle()
                 End If
             End If
 
             If Controls.Dismiss(True, True, True) = True Then
+                SoundManager.PlaySound("select")
                 Me.ScreenState = ScreenStates.MainMenu
             End If
         End Sub

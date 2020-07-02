@@ -70,6 +70,7 @@
                                         Selected = -1
                                     Else
                                         Selected = i + ScrollIndex
+                                        SoundManager.PlaySound("select")
                                         Emblem = New Emblem(InboxList(Selected).FromUserID, 0)
                                     End If
                                 End If
@@ -100,6 +101,7 @@
                         If New Rectangle(600, 440, 32 * 3 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                             If Controls.Accept(True, False) = True Then
                                 If Core.Player.Pokemons.Count < 6 Then
+                                    SoundManager.PlaySound("select")
                                     WithdrawCurrent()
                                 End If
                             End If

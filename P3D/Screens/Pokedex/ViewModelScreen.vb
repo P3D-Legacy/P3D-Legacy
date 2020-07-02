@@ -72,8 +72,10 @@
         If Controls.Accept(True, True, True) = True And CanViewShiny = True Then
             Me.normalModel = Not Me.normalModel
             If Me.normalModel = False Then
+                SoundManager.PlaySound("select")
                 Me.Model.LoadModel("Models\" & Me.PokemonAnimationName & "\Shiny")
             Else
+                SoundManager.PlaySound("select")
                 Me.Model.LoadModel("Models\" & Me.PokemonAnimationName & "\Normal")
             End If
         End If
@@ -87,6 +89,7 @@
         If Controls.Dismiss(True, True, True) = True Then
             Screen.Camera = c
             Core.SetScreen(Me.PreScreen)
+            SoundManager.PlaySound("select")
         End If
     End Sub
 

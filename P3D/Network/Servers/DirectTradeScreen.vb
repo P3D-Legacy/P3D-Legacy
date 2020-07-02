@@ -230,6 +230,7 @@
                 Me.UpdateIdle()
             Case ScreenStates.Stopped
                 If KeyBoardHandler.GetPressedKeys().Count > 0 Or ControllerHandler.HasControlerInput() = True Or Controls.Accept() = True Or Controls.Dismiss() = True Then
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(Me.PreScreen)
                 End If
             Case ScreenStates.Trading
@@ -264,6 +265,7 @@
                     For i = 0 To Me.menuItems.Count - 1
                         If New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 200 + i * 96, 64 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             If i = Cursor Then
+                                SoundManager.PlaySound("select")
                                 Me.SelectMenuEntry()
                             Else
                                 Cursor = i
@@ -273,11 +275,13 @@
                 End If
 
                 If Controls.Accept(False, True, True) = True Then
+                    SoundManager.PlaySound("select")
                     Me.SelectMenuEntry()
                 End If
             End If
         Else
             If Controls.Dismiss() = True Then
+                SoundManager.PlaySound("select")
                 QuitTrade()
             End If
         End If

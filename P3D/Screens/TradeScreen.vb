@@ -268,6 +268,7 @@ Public Class TradeScreen
             For i = 0 To mainMenuButtons.Count - 1
                 If New Rectangle(100, 100 + i * 96, 64 * 7, 64).Contains(MouseHandler.MousePosition) = True Then
                     If i = Me.Cursor Then
+                        SoundManager.PlaySound("select")
                         Me.ClickMainButton()
                     Else
                         Cursor = i
@@ -277,10 +278,12 @@ Public Class TradeScreen
         End If
 
         If Controls.Accept(False, True, True) = True Then
+            SoundManager.PlaySound("select")
             Me.ClickMainButton()
         End If
 
         If Controls.Dismiss(True, True, True) = True Then
+            SoundManager.PlaySound("select")
             Me.ButtonMainExit()
         End If
     End Sub
@@ -406,6 +409,7 @@ Public Class TradeScreen
                     If i <= Me.loadedBuyCategories.Count - 1 Then
                         If New Rectangle(100, 100 + (i - Me.Scroll) * 96, 64 * 7, 64).Contains(MouseHandler.MousePosition) = True Then
                             If i = Scroll + Cursor Then
+                                SoundManager.PlaySound("select")
                                 Me.ButtonBuyCategoriesAccept()
                             Else
                                 Cursor = i - Scroll
@@ -416,11 +420,13 @@ Public Class TradeScreen
             End If
 
             If Controls.Accept(False, True, True) = True Then
+                SoundManager.PlaySound("select")
                 Me.ButtonBuyCategoriesAccept()
             End If
         End If
 
         If Controls.Dismiss(True, True, True) = True Then
+            SoundManager.PlaySound("select")
             Me.MenuState = MenuStates.MainPage
         End If
     End Sub
@@ -584,8 +590,10 @@ Public Class TradeScreen
 
         If Controls.Dismiss(True, True, True) = True Then
             If Me.BuyItemsShowDescription = True Then
+                SoundManager.PlaySound("select")
                 Me.BuyItemsShowDescription = False
             Else
+                SoundManager.PlaySound("select")
                 Me.MenuState = MenuStates.BuyItemsCategory
             End If
         End If
@@ -820,6 +828,7 @@ Public Class TradeScreen
                     If i <= Me.loadedSellCategories.Count - 1 Then
                         If New Rectangle(100, 100 + (i - Me.Scroll) * 96, 64 * 7, 64).Contains(MouseHandler.MousePosition) = True Then
                             If i = Scroll + Cursor Then
+                                SoundManager.PlaySound("select")
                                 Me.ButtonSellCategoriesAccept()
                             Else
                                 Cursor = i - Scroll
@@ -830,11 +839,13 @@ Public Class TradeScreen
             End If
 
             If Controls.Accept(False, True, True) = True Then
+                SoundManager.PlaySound("select")
                 Me.ButtonSellCategoriesAccept()
             End If
         End If
 
         If Controls.Dismiss(True, True, True) = True Then
+            SoundManager.PlaySound("select")
             Me.MenuState = MenuStates.MainPage
         End If
     End Sub
@@ -939,6 +950,7 @@ Public Class TradeScreen
 
             ' Buy button:
             If New Rectangle(664 + 64, 484 + 64 + 22, 64 * 3, 64).Contains(MouseHandler.MousePosition) = True Then
+                SoundManager.PlaySound("select")
                 Me.ButtonSellItemsSell()
             End If
         End If
@@ -952,14 +964,17 @@ Public Class TradeScreen
         End If
 
         If Controls.Accept(False, True, True) = True Then
+            SoundManager.PlaySound("select")
             Me.ButtonSellItemsSell()
         End If
 
         If Controls.Dismiss(True, True, True) = True Then
             If Me.SellItemsShowDescription = True Then
                 Me.SellItemsShowDescription = False
+                SoundManager.PlaySound("select")
             Else
                 Me.MenuState = MenuStates.SellItemsCategory
+                SoundManager.PlaySound("select")
             End If
         End If
 

@@ -694,10 +694,12 @@ Public Class NewInventoryScreen
 
             If Not TextBox.Showing Then
                 If Controls.Accept Then
+                    SoundManager.PlaySound("select")
                     Core.Player.Inventory.RemoveItem(cItem.ID, _tossValue)
                     LoadItems()
                     _tossingItems = False
                 ElseIf Controls.Dismiss Then
+                    SoundManager.PlaySound("select")
                     _tossingItems = False
                 End If
                 _tossValue = 1
@@ -752,9 +754,11 @@ Public Class NewInventoryScreen
         End If
         If _tabInControl Then
             If Controls.Dismiss() And CanExit Then
+                SoundManager.PlaySound("select")
                 _closing = True
             End If
             If Controls.Accept() And _items.Length > 0 Then
+                SoundManager.PlaySound("select")
                 _tabInControl = False
             End If
         End If
@@ -813,11 +817,13 @@ Public Class NewInventoryScreen
         If Controls.Accept() AndAlso _items.Length > 0 Then
             _infoItemOptionSelection = 0
             _isInfoShowing = True
+            SoundManager.PlaySound("select")
             SetInfoSettings()
             SetItemOptions()
         End If
 
         If Controls.Dismiss() Then
+            SoundManager.PlaySound("select")
             _tabInControl = True
         End If
     End Sub
@@ -855,10 +861,12 @@ Public Class NewInventoryScreen
         End If
 
         If Controls.Accept() Then
+            SoundManager.PlaySound("select")
             SelectedItemOption()
         End If
 
         If Controls.Dismiss() Then
+            SoundManager.PlaySound("select")
             CloseInfoScreen()
         End If
     End Sub

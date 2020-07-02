@@ -259,6 +259,7 @@
 
 
                 If Controls.Dismiss() Then
+                    SoundManager.PlaySound("select")
                     If Me.ScreenIndex = 0 Then
                         _closing = True
                     Else
@@ -787,7 +788,7 @@
                 If P3D.Controls.Accept(True, False, False) = True Then
                     Me._toggled = Not Me._toggled
                     OnToggleTrigger(Me)
-                    ' SoundManager.PlaySound("select")
+                    SoundManager.PlaySound("select")
                 End If
             End If
 
@@ -795,7 +796,7 @@
                 If Position = s._cursorDestPosition Then
                     Me._toggled = Not Me._toggled
                     OnToggleTrigger(Me)
-                    'SoundManager.PlaySound("select")
+                    SoundManager.PlaySound("select")
                 End If
             End If
         End Sub

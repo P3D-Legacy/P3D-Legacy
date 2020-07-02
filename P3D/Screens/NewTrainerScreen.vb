@@ -252,6 +252,7 @@
             End If
         Else
             If Controls.Dismiss() Then
+                SoundManager.PlaySound("select")
                 SetScreen(PreScreen)
             End If
         End If

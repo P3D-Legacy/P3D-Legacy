@@ -134,6 +134,7 @@ Public Class CreditsScreen
 
 		If TheEnd = True Then
 			If Controls.Accept(True, True) = True Then
+				SoundManager.PlaySound("select")
 				Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, Color.Black, False, AddressOf ChangeSavedScreen))
 			End If
 		End If

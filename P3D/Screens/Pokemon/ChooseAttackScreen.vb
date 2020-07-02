@@ -54,10 +54,12 @@
             Me.AttackIndex = CInt(MathHelper.Clamp(Me.AttackIndex, 0, Pokemon.Attacks.Count - 1))
 
             If Controls.Accept() = True Then
+                SoundManager.PlaySound("select")
                 ClickYes()
             End If
             If Controls.Dismiss() = True Then
                 If canExit = True Then
+                    SoundManager.PlaySound("select")
                     ClickNo()
                 End If
             End If

@@ -266,6 +266,7 @@
         End If
 
         If Controls.Dismiss() = True Then
+            SoundManager.PlaySound("select")
             Player.Temp.MapSwitch = Me.drawObjects
             Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.Black, False))
         End If

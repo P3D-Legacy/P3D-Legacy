@@ -26,11 +26,15 @@
                     End If
                 Case "stop"
                     MusicManager.Stop()
-				Case "mute"
-					MusicManager.Muted() = True
-				Case "unmute"
-					MusicManager.Muted() = False
-			End Select
+                Case "mute"
+                    MusicManager.Muted() = True
+                Case "unmute"
+                    MusicManager.Muted() = False
+                Case "pause"
+                    MusicManager.Paused() = True
+                Case "resume"
+                    MusicManager.Paused() = False
+            End Select
 
             IsReady = True
         End Sub

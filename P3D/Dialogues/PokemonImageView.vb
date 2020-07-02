@@ -45,6 +45,7 @@
         ElseIf Delay = 0.0F Then
             If Controls.Accept() = True Or Controls.Dismiss() = True Then
                 Me.Showing = False
+                SoundManager.PlaySound("select")
             End If
         End If
     End Sub

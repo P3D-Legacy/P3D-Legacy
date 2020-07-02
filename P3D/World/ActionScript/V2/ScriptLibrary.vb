@@ -170,6 +170,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("music", "play", {New ScriptArgument("musicFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the currently playing music to a new one."))
             r(New ScriptCommand("music", "setmusicloop", {New ScriptArgument("musicFile", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the map musicloop to a new musicfile."))
             r(New ScriptCommand("music", "stop", "Stops the music playback."))
+            r(New ScriptCommand("music", "mute", "Silences the music playback."))
+            r(New ScriptCommand("music", "unmute", "Reverts the volume of the music playback."))
             r(New ScriptCommand("music", "pause", "Pauses the music playback."))
             r(New ScriptCommand("music", "resume", "Resumes the music playback."))
         End Sub

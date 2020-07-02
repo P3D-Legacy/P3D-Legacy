@@ -90,6 +90,7 @@
 
         If Controls.Accept() = True Then
             If Delay >= 13.0F Then
+                SoundManager.PlaySound("select")
                 Core.SetScreen(Me.PreScreen)
             End If
         End If

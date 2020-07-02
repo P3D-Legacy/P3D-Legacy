@@ -205,12 +205,14 @@
             End If
 
             If Controls.Dismiss() And ready = False Then
+                SoundManager.PlaySound("select")
                 ChooseBox.Showing = False
                 _closing = True
                 'Core.SetScreen(Me.PreScreen)
             End If
         Else
             If Controls.Dismiss() = True Then
+                SoundManager.PlaySound("select")
                 ChooseBox.Showing = False
                 _closing = True
                 'Core.SetScreen(Me.PreScreen)

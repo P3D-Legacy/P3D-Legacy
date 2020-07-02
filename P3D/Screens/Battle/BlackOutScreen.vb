@@ -34,6 +34,7 @@
     Public Overrides Sub Update()
         If Me.IsGameOver = True Then
             If Controls.Accept(True, False) = True Then
+                SoundManager.PlaySound("select")
                 Core.SetScreen(New PressStartScreen())
                 Core.Player.loadedSave = False
             End If

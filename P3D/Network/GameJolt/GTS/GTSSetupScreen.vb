@@ -246,6 +246,7 @@
                                             Selected = -1
                                         Else
                                             Selected = i + ScrollIndex
+                                            SoundManager.PlaySound("select")
                                             TempPokemon = Pokemon.GetPokemonByID(CInt(SetupList(Selected).RequestID))
                                             If SetupList(Selected).SecurityArea = GTSDataItem.SecurityCode.Private Then
                                                 Emblem = New Emblem(SetupList(Selected).ToUserID, 0)
@@ -278,12 +279,14 @@
                         If Selected > -1 Then
                             If New Rectangle(600, 610, 32 * 3 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                                 If Controls.Accept(True, False) = True Then
+                                    SoundManager.PlaySound("select")
                                     Core.SetScreen(New GTSEditTradeScreen(Me, SetupList(Selected)))
                                 End If
                             End If
                             If New Rectangle(800, 610, 32 * 3 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                                 If Controls.Accept(True, False) = True Then
                                     If Core.Player.Pokemons.Count < 6 Then
+                                        SoundManager.PlaySound("select")
                                         Working = True
                                         FetchBack = Me.SetupList(Selected)
                                         Dim APICall As New APICall(AddressOf FetchTradeBack)
@@ -297,6 +300,7 @@
                     If CanSetup() = True Then
                         If New Rectangle(180, 200 + (SetupList.Count - ScrollIndex) * 64, 32 * 4 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                             If Controls.Accept(True, False) = True Then
+                                SoundManager.PlaySound("select")
                                 Core.SetScreen(New GTSEditTradeScreen(Me, Nothing))
                             End If
                         End If
@@ -304,8 +308,10 @@
 
                     If Controls.Dismiss(True, True) = True Then
                         If Selected > -1 Then
+                            SoundManager.PlaySound("select")
                             Selected = -1
                         Else
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.PreScreen)
                         End If
                     End If
@@ -734,6 +740,7 @@
                             Dim APICall As New APICall(AddressOf GotTradeID)
                             APICall.GetStorageData("GTSTRADEID", False)
                         End If
+                        SoundManager.PlaySound("select")
                     End If
 
                     If Controls.Dismiss(True, True) = True Then
@@ -985,7 +992,7 @@
                                     ElseIf Mode = "Offer" Then
                                         Me.GTSEditTradeScreen.D.RequestID = CurrentPokemon.Keys(i).ToString()
                                     End If
-
+                                    SoundManager.PlaySound("select")
                                     Close()
                                 End If
                             End If
@@ -1143,16 +1150,19 @@
                                         newSetting = "90 - 100"
                                 End Select
                                 Me.GTSEditTradeScreen.D.RequestLevel = newSetting
+                                SoundManager.PlaySound("select")
                                 Core.SetScreen(Me.GTSEditTradeScreen)
                             End If
                         Next
 
                         If New Rectangle(900, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
                     End If
 
                     If Controls.Dismiss(True, True) = True Then
+                        SoundManager.PlaySound("select")
                         Core.SetScreen(Me.GTSEditTradeScreen)
                     End If
                 End Sub
@@ -1223,30 +1233,36 @@
                     If Controls.Accept(True, False) = True Then
                         If New Rectangle(100, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             Me.GTSEditTradeScreen.D.RequestGender = "Male"
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
 
                         If New Rectangle(260, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             Me.GTSEditTradeScreen.D.RequestGender = "Female"
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
 
                         If New Rectangle(420, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             Me.GTSEditTradeScreen.D.RequestGender = "Genderless"
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
 
                         If New Rectangle(580, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             Me.GTSEditTradeScreen.D.RequestGender = ""
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
 
                         If New Rectangle(900, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
                     End If
 
                     If Controls.Dismiss(True, True) = True Then
+                        SoundManager.PlaySound("select")
                         Core.SetScreen(Me.GTSEditTradeScreen)
                     End If
                 End Sub
@@ -1315,20 +1331,24 @@
                     If Controls.Accept(True, False) = True Then
                         If New Rectangle(100, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             Me.GTSEditTradeScreen.D.SecurityArea = GTSDataItem.SecurityCode.Global
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
 
                         If New Rectangle(260, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             Me.GTSEditTradeScreen.D.SecurityArea = GTSDataItem.SecurityCode.Private
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
 
                         If New Rectangle(900, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
                     End If
 
                     If Controls.Dismiss(True, True) = True Then
+                        SoundManager.PlaySound("select")
                         Core.SetScreen(Me.GTSEditTradeScreen)
                     End If
                 End Sub
@@ -1447,6 +1467,7 @@
 
                                 If New Rectangle(100 + x * 160, 200 + y * 100, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                                     Me.GTSEditTradeScreen.D.ToUserID = Users.Keys(i + Page * 20).ToString()
+                                    SoundManager.PlaySound("select")
                                     Core.SetScreen(Me.GTSEditTradeScreen)
                                 End If
                             End If
@@ -1454,19 +1475,23 @@
                         If New Rectangle(900, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             If Page > 0 Then
                                 Page -= 1
+                                SoundManager.PlaySound("select")
                             End If
                         End If
                         If New Rectangle(900, 300, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             If Users.Count - Page * 20 > 20 Then
                                 Page += 1
+                                SoundManager.PlaySound("select")
                             End If
                         End If
                         If New Rectangle(900, 400, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             Me.GTSEditTradeScreen.D.ToUserID = ""
                             Me.GTSEditTradeScreen.ToEmblem = Nothing
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
                         If New Rectangle(900, 500, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(Me.GTSEditTradeScreen)
                         End If
                     End If
@@ -1474,6 +1499,7 @@
                     Users = (From entry In Users Order By entry.Value Ascending).ToDictionary(Function(pair) pair.Key, Function(pair) pair.Value)
 
                     If Controls.Dismiss(True, True) = True Then
+                        SoundManager.PlaySound("select")
                         Core.SetScreen(Me.GTSEditTradeScreen)
                     End If
                 End Sub

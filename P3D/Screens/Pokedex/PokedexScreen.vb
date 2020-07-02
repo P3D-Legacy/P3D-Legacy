@@ -137,12 +137,15 @@
         If Controls.Accept(False, True, True) = True Then
             If Me.Cursor = Me.Profiles.Count Then
                 Core.SetScreen(New PokedexHabitatScreen(Me))
+                SoundManager.PlaySound("select")
             Else
                 Core.SetScreen(New PokedexScreen(Me, Me.Profiles(Me.Cursor), Nothing))
+                SoundManager.PlaySound("select")
             End If
         End If
 
         If Controls.Dismiss(True, True, True) = True Then
+            SoundManager.PlaySound("select")
             Core.SetScreen(New TransitionScreen(Core.CurrentScreen, Me.PreScreen, Color.White, False))
         End If
 
@@ -293,6 +296,7 @@ Public Class PokedexHabitatScreen
 
         If Controls.Dismiss(True, True, True) = True Then
             Core.SetScreen(Me.PreScreen)
+            SoundManager.PlaySound("select")
         End If
 
         PokedexScreen.TileOffset += 1
@@ -773,11 +777,13 @@ Public Class PokedexScreen
 
             If Controls.Dismiss(True, True, True) = True Then
                 If Me.Filters.Count > 0 Or Me.Order <> OrderType.Numeric Or Me.ReverseOrder = True Then
+                    SoundManager.PlaySound("select")
                     Me.Filters.Clear()
                     Me.ReverseOrder = False
                     Me.Order = OrderType.Numeric
                     Me.SetList()
                 Else
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(Me.PreScreen)
                 End If
             End If
@@ -973,6 +979,7 @@ Public Class PokedexScreen
 
                             If Not ClickHandler Is Nothing Then
                                 ClickHandler(Me)
+                                SoundManager.PlaySound("select")
                             End If
                             Me.Visible = False
                         End If
@@ -980,6 +987,7 @@ Public Class PokedexScreen
                             Me.Index = Me.BackIndex
                             If Not ClickHandler Is Nothing Then
                                 ClickHandler(Me)
+                                SoundManager.PlaySound("select")
                             End If
                             Me.Visible = False
                         End If
@@ -1650,8 +1658,10 @@ Public Class PokedexViewScreen
     Public Overrides Sub Update()
         If Controls.Dismiss(True, True, True) = True Then
             If Me._transitionOut = True Then
+                SoundManager.PlaySound("select")
                 Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.White, False))
             Else
+                SoundManager.PlaySound("select")
                 Core.SetScreen(Me.PreScreen)
             End If
         End If

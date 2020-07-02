@@ -312,6 +312,7 @@
                 If pressedIndex > -1 Then
                     If FunctionList.Count - 1 >= pressedIndex Then
                         If Cursors(0) = pressedIndex Then
+                            SoundManager.PlaySound("select")
                             PressedMainMenuButton()
                         Else
                             Cursors(0) = pressedIndex
@@ -321,6 +322,7 @@
             End If
 
             If Controls.Accept(False, True, True) = True Then
+                SoundManager.PlaySound("select")
                 PressedMainMenuButton()
             End If
 
@@ -524,6 +526,7 @@
                             Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If RankListSelect = i + RankListScroll Then
+                                    SoundManager.PlaySound("select")
                                     PSSRanklistDisplayUser()
                                 Else
                                     RankListSelect = i + RankListScroll
@@ -544,6 +547,7 @@
                     RankListSelect = RankListSelect.Clamp(0, RankingList.Count - 1)
 
                     If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
                         PSSRanklistDisplayUser()
                     End If
                 End If
@@ -718,6 +722,7 @@
                             Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If FriendListSelect = i + FriendListScroll Then
+                                    SoundManager.PlaySound("select")
                                     PSSFriendlistDisplayUser()
                                 Else
                                     FriendListSelect = i + FriendListScroll
@@ -738,6 +743,7 @@
                     FriendListSelect = FriendListSelect.Clamp(0, FriendList.Count - 1)
 
                     If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
                         PSSFriendlistDisplayUser()
                     End If
                 End If
@@ -932,6 +938,7 @@
                             Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If LocalSelect = i + LocalScroll Then
+                                    SoundManager.PlaySound("select")
                                     PSSLocallistDisplayUser()
                                 Else
                                     LocalSelect = i + LocalScroll
@@ -952,6 +959,7 @@
                     LocalSelect = LocalSelect.Clamp(0, LocalList.Count - 1)
 
                     If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
                         PSSLocallistDisplayUser()
                     End If
                 End If
@@ -1110,10 +1118,12 @@
                 Select Case Cursors(1)
                     Case 0
                         If sameServer = True Then
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(New PVPLobbyScreen(Core.CurrentScreen, UserNetworkID, True))
                         End If
                     Case 1
                         If sameServer = True And sameConnection = True Then
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(New DirectTradeScreen(Core.CurrentScreen, UserNetworkID, True))
                         End If
                     Case 2
@@ -1128,6 +1138,7 @@
             End If
 
             If Controls.Dismiss(True, True, True) = True Then
+                SoundManager.PlaySound("select")
                 menuIndex = UserViewPreMenu
             End If
         End Sub

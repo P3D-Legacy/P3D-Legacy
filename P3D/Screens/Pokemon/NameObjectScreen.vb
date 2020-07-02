@@ -213,6 +213,7 @@ Public Class NameObjectScreen
                 Me._currentText = Me.ReplaceInvalidChars(Me._currentText)
 
                 If Controls.Dismiss(True, False, True) = True And _canChooseNo = True Then
+                    SoundManager.PlaySound("select")
                     ClickNo()
                 End If
             End If
