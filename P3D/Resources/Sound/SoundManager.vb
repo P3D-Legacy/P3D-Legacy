@@ -1,6 +1,6 @@
 ﻿Public Class SoundManager
 
-    Const POKEMON_CRY_VOLUME_MULTIPLIER As Single = 0.6F
+	Const POKEMON_CRY_VOLUME_MULTIPLIER As Single = 1.4F
 
 	Shared _sounds As Dictionary(Of String, SoundContainer) = New Dictionary(Of String, SoundContainer)
 
