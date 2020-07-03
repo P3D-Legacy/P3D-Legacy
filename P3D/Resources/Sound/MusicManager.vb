@@ -182,7 +182,7 @@ Public Class MusicManager
 	Public Shared Sub Update()
 		If _isPausedForSound Then
 			If Date.Now >= _pausedUntil Then
-				If MusicManager.Paused = False Then
+				If MusicManager.Paused = True Then
 					_isPausedForSound = False
 					ResumePlayback()
 				End If
