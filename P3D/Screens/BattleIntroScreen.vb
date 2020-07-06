@@ -295,7 +295,7 @@
                 Core.SetScreen(Me.NewScreen)
                 If Me.NewScreen.GetType() Is GetType(BattleSystem.BattleScreen) Then
 
-					Dim b As BattleSystem.BattleScreen = CType(Me.NewScreen, BattleSystem.BattleScreen)
+                    Dim b As BattleSystem.BattleScreen = CType(Me.NewScreen, BattleSystem.BattleScreen)
 
                     If b.IsPVPBattle = True Then
                         b.InitializePVP(b.Trainer, b.OverworldScreen)
@@ -341,13 +341,13 @@
     End Sub
 
     Private Sub UpdateFaceshotIntro()
-		Me.barOffset += 18
-		Me.blackPosition = (Me.blackPosition + 10).Clamp(0, CInt(Core.windowSize.Height / 2 - 128))
-		If blackPosition >= CInt(Core.windowSize.Height / 2 - 128) Then
-			trainerPosition = (trainerPosition + 20).Clamp(0, 420)
-			If trainerPosition >= 420 Then
-				textPosition += CInt(Math.Ceiling(Core.windowSize.Width / 50))
-				If textPosition >= CInt(Core.windowSize.Width / 2 - CInt(FontManager.InGameFont.MeasureString(Trainer.Name).X) / 2) + 1200 Then
+        Me.barOffset += 18
+        Me.blackPosition = (Me.blackPosition + 10).Clamp(0, CInt(Core.windowSize.Height / 2 - 128))
+        If blackPosition >= CInt(Core.windowSize.Height / 2 - 128) Then
+            trainerPosition = (trainerPosition + 20).Clamp(0, 420)
+            If trainerPosition >= 420 Then
+                textPosition += CInt(Math.Ceiling(Core.windowSize.Width / 50))
+                If textPosition >= CInt(Core.windowSize.Width / 2 - CInt(FontManager.InGameFont.MeasureString(Trainer.Name).X) / 2) + 1200 Then
                     Me.ready = True
                 End If
             End If
@@ -504,23 +504,23 @@
         Player.Temp.BeforeBattlePosition = Screen.Camera.Position
         Player.Temp.BeforeBattleLevelFile = Screen.Level.LevelFile
         Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection()
-		MusicManager.Play(MusicLoop, False, 0F, False)
+        MusicManager.Play(MusicLoop, False, 0F, False)
 
-		If Not MusicManager.CurrentSong Is Nothing Then
-			Me.duration = MusicManager.CurrentSong.Duration
-		Else
-			Me.duration = New TimeSpan(0)
-		End If
-		Me.startTime = Date.Now
-	End Sub
+        If Not MusicManager.CurrentSong Is Nothing Then
+            Me.duration = MusicManager.CurrentSong.Duration
+        Else
+            Me.duration = New TimeSpan(0)
+        End If
+        Me.startTime = Date.Now
+    End Sub
 
-	Private Function SongOver() As Boolean
-		Return startTime + duration < Date.Now.AddSeconds(0.1)
-	End Function
+    Private Function SongOver() As Boolean
+        Return startTime + duration < Date.Now.AddSeconds(0.1)
+    End Function
 
-	'Protected Overrides Sub Finalize()
-	'    If blurTexture IsNot Nothing
-	'        blurTexture.Dispose()
-	'    End If
-	'End Sub
+    'Protected Overrides Sub Finalize()
+    '    If blurTexture IsNot Nothing
+    '        blurTexture.Dispose()
+    '    End If
+    'End Sub
 End Class

@@ -60,8 +60,8 @@ Public Class KeyBindings
                             ChatKey = binding
                         Case "special", "pokegear"
                             SpecialKey = binding
-						Case "muteaudio", "mutemusic"
-							MuteAudioKey = binding
+                        Case "muteaudio", "mutemusic"
+                            MuteAudioKey = binding
                         Case "cameraleft"
                             LeftKey = binding
                         Case "cameraright"
@@ -231,67 +231,67 @@ Public Class KeyBindings
     Public Shared Sub CreateKeySave(ByVal force As Boolean)
         If IO.Directory.Exists(GameController.GamePath & "\Save") = True Then
             If IO.File.Exists(GameController.GamePath & "\Save\Keyboard.dat") = False Or force = True Then
-				Dim s As String = "[ForwardMove]=W" & Environment.NewLine &
-				"[LeftMove]=" & GetKeyName(Keys.A) & Environment.NewLine &
-				"[BackwardMove]=" & GetKeyName(Keys.S) & Environment.NewLine &
-				"[RightMove]=" & GetKeyName(Keys.D) & Environment.NewLine &
-				"[Inventory]=" & GetKeyName(Keys.E) & Environment.NewLine &
-				"[Chat]=" & GetKeyName(Keys.T) & Environment.NewLine &
-				"[Special]=" & GetKeyName(Keys.Q) & Environment.NewLine &
-				"[MuteAudio]=" & GetKeyName(Keys.M) & Environment.NewLine &
-				"[Up]=" & GetKeyName(Keys.Up) & Environment.NewLine &
-				"[Down]=" & GetKeyName(Keys.Down) & Environment.NewLine &
-				"[Left]=" & GetKeyName(Keys.Left) & Environment.NewLine &
-				"[Right]=" & GetKeyName(Keys.Right) & Environment.NewLine &
-				"[CameraLock]=" & GetKeyName(Keys.C) & Environment.NewLine &
-				"[GUIControl]=" & GetKeyName(Keys.F1) & Environment.NewLine &
-				"[ScreenShot]=" & GetKeyName(Keys.F2) & Environment.NewLine &
-				"[DebugControl]=" & GetKeyName(Keys.F3) & Environment.NewLine &
-				"[LightKey]=" & GetKeyName(Keys.F4) & Environment.NewLine &
-				"[PerspectiveSwitch]=" & GetKeyName(Keys.F5) & Environment.NewLine &
-				"[FullScreen]=" & GetKeyName(Keys.F11) & Environment.NewLine &
-				"[Enter1]=" & GetKeyName(Keys.Enter) & Environment.NewLine &
-				"[Enter2]=" & GetKeyName(Keys.Space) & Environment.NewLine &
-				"[Back1]=" & GetKeyName(Keys.E) & Environment.NewLine &
-				"[Back2]=" & GetKeyName(Keys.E) & Environment.NewLine &
-				"[Escape]=" & GetKeyName(Keys.Escape) & Environment.NewLine &
-				"[OnlineStatus]=" & GetKeyName(Keys.Tab)
-				IO.File.WriteAllText(GameController.GamePath & "\Save\Keyboard.dat", s)
-			End If
-		End If
-	End Sub
+                Dim s As String = "[ForwardMove]=W" & Environment.NewLine &
+                "[LeftMove]=" & GetKeyName(Keys.A) & Environment.NewLine &
+                "[BackwardMove]=" & GetKeyName(Keys.S) & Environment.NewLine &
+                "[RightMove]=" & GetKeyName(Keys.D) & Environment.NewLine &
+                "[Inventory]=" & GetKeyName(Keys.E) & Environment.NewLine &
+                "[Chat]=" & GetKeyName(Keys.T) & Environment.NewLine &
+                "[Special]=" & GetKeyName(Keys.Q) & Environment.NewLine &
+                "[MuteAudio]=" & GetKeyName(Keys.M) & Environment.NewLine &
+                "[Up]=" & GetKeyName(Keys.Up) & Environment.NewLine &
+                "[Down]=" & GetKeyName(Keys.Down) & Environment.NewLine &
+                "[Left]=" & GetKeyName(Keys.Left) & Environment.NewLine &
+                "[Right]=" & GetKeyName(Keys.Right) & Environment.NewLine &
+                "[CameraLock]=" & GetKeyName(Keys.C) & Environment.NewLine &
+                "[GUIControl]=" & GetKeyName(Keys.F1) & Environment.NewLine &
+                "[ScreenShot]=" & GetKeyName(Keys.F2) & Environment.NewLine &
+                "[DebugControl]=" & GetKeyName(Keys.F3) & Environment.NewLine &
+                "[LightKey]=" & GetKeyName(Keys.F4) & Environment.NewLine &
+                "[PerspectiveSwitch]=" & GetKeyName(Keys.F5) & Environment.NewLine &
+                "[FullScreen]=" & GetKeyName(Keys.F11) & Environment.NewLine &
+                "[Enter1]=" & GetKeyName(Keys.Enter) & Environment.NewLine &
+                "[Enter2]=" & GetKeyName(Keys.Space) & Environment.NewLine &
+                "[Back1]=" & GetKeyName(Keys.E) & Environment.NewLine &
+                "[Back2]=" & GetKeyName(Keys.E) & Environment.NewLine &
+                "[Escape]=" & GetKeyName(Keys.Escape) & Environment.NewLine &
+                "[OnlineStatus]=" & GetKeyName(Keys.Tab)
+                IO.File.WriteAllText(GameController.GamePath & "\Save\Keyboard.dat", s)
+            End If
+        End If
+    End Sub
 
-	''' <summary>
-	''' Saves the current keyboard configuration to the keyboard.dat file.
-	''' </summary>
-	Public Shared Sub SaveKeys()
-		If IO.Directory.Exists(GameController.GamePath & "\Save") = True Then
-			Dim s As String = "[ForwardMove]=" & GetKeyName(ForwardMoveKey) & Environment.NewLine &
-				"[LeftMove]=" & GetKeyName(LeftMoveKey) & Environment.NewLine &
-				"[BackwardMove]=" & GetKeyName(BackwardMoveKey) & Environment.NewLine &
-				"[RightMove]=" & GetKeyName(RightMoveKey) & Environment.NewLine &
-				"[Inventory]=" & GetKeyName(OpenInventoryKey) & Environment.NewLine &
-				"[Chat]=" & GetKeyName(ChatKey) & Environment.NewLine &
-				"[Special]=" & GetKeyName(SpecialKey) & Environment.NewLine &
-				"[MuteAudio]=" & GetKeyName(MuteAudioKey) & Environment.NewLine &
-				"[Up]=" & GetKeyName(UpKey) & Environment.NewLine &
-				"[Down]=" & GetKeyName(DownKey) & Environment.NewLine &
-				"[Left]=" & GetKeyName(LeftKey) & Environment.NewLine &
-				"[Right]=" & GetKeyName(RightKey) & Environment.NewLine &
-				"[CameraLock]=" & GetKeyName(CameraLockKey) & Environment.NewLine &
-				"[GUIControl]=" & GetKeyName(GUIControlKey) & Environment.NewLine &
-				"[ScreenShot]=" & GetKeyName(ScreenshotKey) & Environment.NewLine &
-				"[DebugControl]=" & GetKeyName(DebugKey) & Environment.NewLine &
-				"[LightKey]=" & GetKeyName(LightKey) & Environment.NewLine &
-				"[PerspectiveSwitch]=" & GetKeyName(PerspectiveSwitchKey) & Environment.NewLine &
-				"[FullScreen]=" & GetKeyName(FullScreenKey) & Environment.NewLine &
-				"[Enter1]=" & GetKeyName(EnterKey1) & Environment.NewLine &
-				"[Enter2]=" & GetKeyName(EnterKey2) & Environment.NewLine &
-				"[Back1]=" & GetKeyName(BackKey1) & Environment.NewLine &
-				"[Back2]=" & GetKeyName(BackKey2) & Environment.NewLine &
-				"[Escape]=" & GetKeyName(EscapeKey) & Environment.NewLine &
-				"[OnlineStatus]=" & GetKeyName(OnlineStatusKey)
-			IO.File.WriteAllText(GameController.GamePath & "\Save\Keyboard.dat", s)
+    ''' <summary>
+    ''' Saves the current keyboard configuration to the keyboard.dat file.
+    ''' </summary>
+    Public Shared Sub SaveKeys()
+        If IO.Directory.Exists(GameController.GamePath & "\Save") = True Then
+            Dim s As String = "[ForwardMove]=" & GetKeyName(ForwardMoveKey) & Environment.NewLine &
+                "[LeftMove]=" & GetKeyName(LeftMoveKey) & Environment.NewLine &
+                "[BackwardMove]=" & GetKeyName(BackwardMoveKey) & Environment.NewLine &
+                "[RightMove]=" & GetKeyName(RightMoveKey) & Environment.NewLine &
+                "[Inventory]=" & GetKeyName(OpenInventoryKey) & Environment.NewLine &
+                "[Chat]=" & GetKeyName(ChatKey) & Environment.NewLine &
+                "[Special]=" & GetKeyName(SpecialKey) & Environment.NewLine &
+                "[MuteAudio]=" & GetKeyName(MuteAudioKey) & Environment.NewLine &
+                "[Up]=" & GetKeyName(UpKey) & Environment.NewLine &
+                "[Down]=" & GetKeyName(DownKey) & Environment.NewLine &
+                "[Left]=" & GetKeyName(LeftKey) & Environment.NewLine &
+                "[Right]=" & GetKeyName(RightKey) & Environment.NewLine &
+                "[CameraLock]=" & GetKeyName(CameraLockKey) & Environment.NewLine &
+                "[GUIControl]=" & GetKeyName(GUIControlKey) & Environment.NewLine &
+                "[ScreenShot]=" & GetKeyName(ScreenshotKey) & Environment.NewLine &
+                "[DebugControl]=" & GetKeyName(DebugKey) & Environment.NewLine &
+                "[LightKey]=" & GetKeyName(LightKey) & Environment.NewLine &
+                "[PerspectiveSwitch]=" & GetKeyName(PerspectiveSwitchKey) & Environment.NewLine &
+                "[FullScreen]=" & GetKeyName(FullScreenKey) & Environment.NewLine &
+                "[Enter1]=" & GetKeyName(EnterKey1) & Environment.NewLine &
+                "[Enter2]=" & GetKeyName(EnterKey2) & Environment.NewLine &
+                "[Back1]=" & GetKeyName(BackKey1) & Environment.NewLine &
+                "[Back2]=" & GetKeyName(BackKey2) & Environment.NewLine &
+                "[Escape]=" & GetKeyName(EscapeKey) & Environment.NewLine &
+                "[OnlineStatus]=" & GetKeyName(OnlineStatusKey)
+            IO.File.WriteAllText(GameController.GamePath & "\Save\Keyboard.dat", s)
 
             Logger.Debug("---Saved Keybindings---")
         End If

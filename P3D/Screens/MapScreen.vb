@@ -561,36 +561,36 @@
             s &= "@camera.activateThirdPerson" & Environment.NewLine
         End If
 
-		s &= "@camera.setposition(0,0.9,3)" & Environment.NewLine &
-			"@level.wait(30)" & Environment.NewLine &
-			"@pokemon.cry(" & p.Number & ")" & Environment.NewLine &
-			"@player.wearskin([POKEMON|" & isShiny & "]" & p.Number & PokemonForms.GetOverworldAddition(p) & ")" & Environment.NewLine &
-			"@player.turnto(2)" & Environment.NewLine &
-			"@player.move(2)" & Environment.NewLine &
-			"@sound.play(Battle\Effects\effect_fly)" & Environment.NewLine &
-			"@camera.fix" & Environment.NewLine &
-			"@player.setmovement(0,2,3)" & Environment.NewLine &
-			"@player.move(3)" & Environment.NewLine &
-			"@screen.fadeout(10)" & Environment.NewLine &
-			"@camera.defix" & Environment.NewLine &
-			"@camera.reset" & Environment.NewLine &
-			"@player.turnto(0)" & Environment.NewLine &
-			"@player.warp(" & FlyToFile & "," & FlyToPosition.X.ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Y - 4 + 0.1F).ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Z + 6).ToString().ReplaceDecSeparator() & ",0)" & Environment.NewLine &
-			"@camera.setyaw(0)" & Environment.NewLine &
-			"@camera.setposition(0,-3.7,-4.5)" & Environment.NewLine &
-			"@level.update" & Environment.NewLine &
-			"@player.setmovement(0,-2,-3)" & Environment.NewLine &
-			"@screen.fadein(10)" & Environment.NewLine &
-			"@camera.fix" & Environment.NewLine &
-			"@player.move(2)" & Environment.NewLine &
-			"@camera.reset" & Environment.NewLine &
-			"@camera.defix(1)" & Environment.NewLine &
-			"@player.setmovement(0,-2,0)" & Environment.NewLine &
-			"@player.move(2)" & Environment.NewLine &
-			"@player.turnto(2)" & Environment.NewLine &
-			"@player.wearskin(" & skinName & ")" & Environment.NewLine
+        s &= "@camera.setposition(0,0.9,3)" & Environment.NewLine &
+            "@level.wait(30)" & Environment.NewLine &
+            "@pokemon.cry(" & p.Number & ")" & Environment.NewLine &
+            "@player.wearskin([POKEMON|" & isShiny & "]" & p.Number & PokemonForms.GetOverworldAddition(p) & ")" & Environment.NewLine &
+            "@player.turnto(2)" & Environment.NewLine &
+            "@player.move(2)" & Environment.NewLine &
+            "@sound.play(Battle\Effects\effect_fly)" & Environment.NewLine &
+            "@camera.fix" & Environment.NewLine &
+            "@player.setmovement(0,2,3)" & Environment.NewLine &
+            "@player.move(3)" & Environment.NewLine &
+            "@screen.fadeout(10)" & Environment.NewLine &
+            "@camera.defix" & Environment.NewLine &
+            "@camera.reset" & Environment.NewLine &
+            "@player.turnto(0)" & Environment.NewLine &
+            "@player.warp(" & FlyToFile & "," & FlyToPosition.X.ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Y - 4 + 0.1F).ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Z + 6).ToString().ReplaceDecSeparator() & ",0)" & Environment.NewLine &
+            "@camera.setyaw(0)" & Environment.NewLine &
+            "@camera.setposition(0,-3.7,-4.5)" & Environment.NewLine &
+            "@level.update" & Environment.NewLine &
+            "@player.setmovement(0,-2,-3)" & Environment.NewLine &
+            "@screen.fadein(10)" & Environment.NewLine &
+            "@camera.fix" & Environment.NewLine &
+            "@player.move(2)" & Environment.NewLine &
+            "@camera.reset" & Environment.NewLine &
+            "@camera.defix(1)" & Environment.NewLine &
+            "@player.setmovement(0,-2,0)" & Environment.NewLine &
+            "@player.move(2)" & Environment.NewLine &
+            "@player.turnto(2)" & Environment.NewLine &
+            "@player.wearskin(" & skinName & ")" & Environment.NewLine
 
-		While Core.CurrentScreen.Identification <> Identifications.OverworldScreen
+        While Core.CurrentScreen.Identification <> Identifications.OverworldScreen
             If Core.CurrentScreen.PreScreen.Identification = Identifications.OverworldScreen Then
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, Core.CurrentScreen.PreScreen, Color.White, False))
                 Exit While

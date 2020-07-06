@@ -47,12 +47,12 @@ Namespace Items.Standard
                 If setToFirstPerson = True Then
                     s &= Environment.NewLine & "@camera.deactivatethirdperson"
                 End If
-				s &= Environment.NewLine &
+                s &= Environment.NewLine &
 "@level.update
 @screen.fadein
 :end"
 
-				CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
             Else
                 Screen.TextBox.Show("Cannot use the Escape~Rope here!", {}, True, True)
             End If

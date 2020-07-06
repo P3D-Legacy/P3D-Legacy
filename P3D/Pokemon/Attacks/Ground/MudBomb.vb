@@ -51,7 +51,7 @@
             Me.IsWonderGuardAffected = True
             Me.IsBulletMove = True
             '#End
-			
+            
             Me.EffectChances.Add(30)
 
             Me.AIField1 = AIField.Damage

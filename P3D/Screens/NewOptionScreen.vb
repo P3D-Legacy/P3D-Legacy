@@ -85,8 +85,8 @@
         Me.Difficulty = Core.Player.DifficultyMode
         Me.BattleStyle = Core.Player.BattleStyle
         Me.ShowModels = CInt(Core.Player.ShowModelsInBattle)
-		Me.Muted = CInt(MusicManager.Muted.ToNumberString())
-		If Core.GameOptions.LoadOffsetMaps = 0 Then
+        Me.Muted = CInt(MusicManager.Muted.ToNumberString())
+        If Core.GameOptions.LoadOffsetMaps = 0 Then
             Me.LoadOffsetMaps = 0
         Else
             Me.LoadOffsetMaps = 101 - Core.GameOptions.LoadOffsetMaps
@@ -490,8 +490,8 @@
 
     Public Overrides Sub ToggledMute()
         If Me.ScreenIndex = 5 Then
-			Me.Muted = CInt(MusicManager.Muted)
-			InitializeControls()
+            Me.Muted = CInt(MusicManager.Muted)
+            InitializeControls()
         End If
     End Sub
 
@@ -884,18 +884,18 @@
 
 
             If r.Contains(MouseHandler.MousePosition) = True Then
-				If P3D.Controls.Accept(True, False, False) = True Then
-					SoundManager.PlaySound("select")
-					OnClickTrigger(Me)
-				End If
-			End If
+                If P3D.Controls.Accept(True, False, False) = True Then
+                    SoundManager.PlaySound("select")
+                    OnClickTrigger(Me)
+                End If
+            End If
 
             If Controls.Accept(False, True, True) Then
-				If Position = s._cursorDestPosition Then
-					SoundManager.PlaySound("select")
-					OnClickTrigger(Me)
-				End If
-			End If
+                If Position = s._cursorDestPosition Then
+                    SoundManager.PlaySound("select")
+                    OnClickTrigger(Me)
+                End If
+            End If
         End Sub
     End Class
 

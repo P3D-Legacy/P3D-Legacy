@@ -2068,9 +2068,9 @@ Public Class StorageSystemFilterScreen
                         If i <= Me.mainMenuItems.Count - 1 Then
                             If New Rectangle(100, 100 + (i - Scroll) * 96, 640, 64).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Cursor + Scroll Then
-									SelectFilter()
-									SoundManager.PlaySound("select")
-								Else
+                                    SelectFilter()
+                                    SoundManager.PlaySound("select")
+                                Else
                                     Cursor = i - Scroll
                                 End If
                             End If
