@@ -153,7 +153,11 @@ Public Class MusicManager
 	End Property
 	Public Shared Sub Setup()
         MasterVolume = 1.0F
-		Volume = 1.0F
+		If Muted = True Then
+			Volume = 0.0F
+		Else
+			Volume = 1.0F
+		End If
 		_nextSong = ""
 		_fadeSpeed = DEFAULT_FADE_SPEED
 		_isFadingOut = False
