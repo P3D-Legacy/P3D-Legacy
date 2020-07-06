@@ -1665,14 +1665,14 @@
     Public IsFlying As Boolean = False
 
     '===STEP EVENT INFORMATION===
-    'Events when taking a step    | Priority    | Event Type    | Resolution if Not fired
+    'Events when taking a step	| Priority	| Event Type    | Resolution if Not fired
     '---------------------------|-----------|---------------|--------------------------------------------------------------------------------
-    'ScriptBlock trigger        | 0            | ScriptBlock    | Always fire!
-    'Trainer Is in sight        | 1            | Script        | Ignore, will be activated when walked by on a different tile. Design failure.
-    'Egg hatches                | 2            | Screen change    | Will happen On Next Step automatically.
-    'Repel wears out            | 3            | Script        | Add one Step To the repel counter, so the Event happens On the Next Step.
-    'Wild Pokémon appears        | 4            | WildPokemon    | Just ignore, random Event
-    'Pokegear call                | 5            | Script        | Just ignore, Not too important
+    'ScriptBlock trigger		| 0		    | ScriptBlock	| Always fire!
+    'Trainer Is in sight		| 1		    | Script		| Ignore, will be activated when walked by on a different tile. Design failure.
+    'Egg hatches			    | 2		    | Screen change	| Will happen On Next Step automatically.
+    'Repel wears out			| 3		    | Script		| Add one Step To the repel counter, so the Event happens On the Next Step.
+    'Wild Pokémon appears		| 4		    | WildPokemon	| Just ignore, random Event
+    'Pokegear call			    | 5		    | Script		| Just ignore, Not too important
     '----------------------------------------------------------------------------------------------------------------------------------------
     'All Script Events need a special check condition set.
     'Script Blocks are handled externally.
