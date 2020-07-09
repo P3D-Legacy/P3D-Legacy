@@ -196,16 +196,22 @@ Public Class JoinServerScreen
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True AndAlso MouseHandler.ButtonPressed(MouseHandler.MouseButtons.RightButton) = False Then
                         Select Case Me.buttonIndex
                             Case 0
+                                SoundManager.PlaySound("select")
                                 JoinButton()
                             Case 1
+                                SoundManager.PlaySound("select")
                                 RefreshButton()
                             Case 2
+                                SoundManager.PlaySound("select")
                                 AddServerButton()
                             Case 3
+                                SoundManager.PlaySound("select")
                                 EditServerButton()
                             Case 4
+                                SoundManager.PlaySound("select")
                                 RemoveServerButton()
                             Case 5
+                                SoundManager.PlaySound("select")
                                 CancelButton()
                         End Select
                     End If
@@ -233,16 +239,22 @@ Public Class JoinServerScreen
         If Controls.Accept(False, True) = True Then
             Select Case Me.buttonIndex
                 Case 0
+                    SoundManager.PlaySound("select")
                     JoinButton()
                 Case 1
+                    SoundManager.PlaySound("select")
                     RefreshButton()
                 Case 2
+                    SoundManager.PlaySound("select")
                     AddServerButton()
                 Case 3
+                    SoundManager.PlaySound("select")
                     EditServerButton()
                 Case 4
+                    SoundManager.PlaySound("select")
                     RemoveServerButton()
                 Case 5
+                    SoundManager.PlaySound("select")
                     CancelButton()
             End Select
         End If
@@ -251,6 +263,7 @@ Public Class JoinServerScreen
             ''CType(Me.PreScreen, NewMainMenuScreen)._menuIndex = 0
             Core.Player.Unload()
             Core.SetScreen(Me.PreScreen)
+            SoundManager.PlaySound("select")
         End If
 
         BarAnimationState += 1

@@ -312,6 +312,7 @@
                 If pressedIndex > -1 Then
                     If FunctionList.Count - 1 >= pressedIndex Then
                         If Cursors(0) = pressedIndex Then
+                            SoundManager.PlaySound("select")
                             PressedMainMenuButton()
                         Else
                             Cursors(0) = pressedIndex
@@ -321,6 +322,7 @@
             End If
 
             If Controls.Accept(False, True, True) = True Then
+                SoundManager.PlaySound("select")
                 PressedMainMenuButton()
             End If
 
@@ -524,6 +526,7 @@
                             Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If RankListSelect = i + RankListScroll Then
+                                    SoundManager.PlaySound("select")
                                     PSSRanklistDisplayUser()
                                 Else
                                     RankListSelect = i + RankListScroll
@@ -544,6 +547,7 @@
                     RankListSelect = RankListSelect.Clamp(0, RankingList.Count - 1)
 
                     If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
                         PSSRanklistDisplayUser()
                     End If
                 End If
@@ -718,6 +722,7 @@
                             Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If FriendListSelect = i + FriendListScroll Then
+                                    SoundManager.PlaySound("select")
                                     PSSFriendlistDisplayUser()
                                 Else
                                     FriendListSelect = i + FriendListScroll
@@ -738,6 +743,7 @@
                     FriendListSelect = FriendListSelect.Clamp(0, FriendList.Count - 1)
 
                     If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
                         PSSFriendlistDisplayUser()
                     End If
                 End If
@@ -932,6 +938,7 @@
                             Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If LocalSelect = i + LocalScroll Then
+                                    SoundManager.PlaySound("select")
                                     PSSLocallistDisplayUser()
                                 Else
                                     LocalSelect = i + LocalScroll
@@ -952,6 +959,7 @@
                     LocalSelect = LocalSelect.Clamp(0, LocalList.Count - 1)
 
                     If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
                         PSSLocallistDisplayUser()
                     End If
                 End If
@@ -1110,10 +1118,12 @@
                 Select Case Cursors(1)
                     Case 0
                         If sameServer = True Then
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(New PVPLobbyScreen(Core.CurrentScreen, UserNetworkID, True))
                         End If
                     Case 1
                         If sameServer = True And sameConnection = True Then
+                            SoundManager.PlaySound("select")
                             Core.SetScreen(New DirectTradeScreen(Core.CurrentScreen, UserNetworkID, True))
                         End If
                     Case 2
@@ -1128,6 +1138,7 @@
             End If
 
             If Controls.Dismiss(True, True, True) = True Then
+                SoundManager.PlaySound("select")
                 menuIndex = UserViewPreMenu
             End If
         End Sub
@@ -1218,6 +1229,7 @@
                             Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If PhoneSelect = i + PhoneScroll Then
+                                    SoundManager.PlaySound("select")
                                     SelectPhoneContact()
                                 Else
                                     PhoneSelect = i + PhoneScroll
@@ -1238,11 +1250,13 @@
                     PhoneSelect = PhoneSelect.Clamp(0, PhoneContacts.Count - 1)
 
                     If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
                         SelectPhoneContact()
                     End If
                 End If
             End If
             If Controls.Dismiss(True, True, True) = True Then
+                SoundManager.PlaySound("select")
                 menuIndex = MenuScreens.Main
             End If
         End Sub
@@ -1845,6 +1859,7 @@
             End If
 
             If Controls.Dismiss(True, True, True) = True Then
+                SoundManager.PlaySound("select")
                 Me.menuIndex = MenuScreens.Main
             End If
         End Sub
@@ -2009,9 +2024,11 @@
                                 If i = Me.TradeRequestCursor Then
                                     Select Case i
                                         Case 0
+                                            SoundManager.PlaySound("select")
                                             CloseTradeRequest()
                                             Core.SetScreen(New DirectTradeScreen(Core.CurrentScreen, TradeRequestNetworkID, False))
                                         Case 1
+                                            SoundManager.PlaySound("select")
                                             CloseTradeRequest()
                                     End Select
                                 Else
@@ -2024,13 +2041,16 @@
                     If Controls.Accept(False, True, True) = True Then
                         Select Case Me.TradeRequestCursor
                             Case 0
+                                SoundManager.PlaySound("select")
                                 CloseTradeRequest()
                                 Core.SetScreen(New DirectTradeScreen(Core.CurrentScreen, TradeRequestNetworkID, False))
                             Case 1
+                                SoundManager.PlaySound("select")
                                 CloseTradeRequest()
                         End Select
                     End If
                     If Controls.Dismiss() = True Then
+                        SoundManager.PlaySound("select")
                         CloseTradeRequest()
                     End If
                 End If
@@ -2140,9 +2160,11 @@
                                 If i = Me.BattleRequestCursor Then
                                     Select Case i
                                         Case 0
+                                            SoundManager.PlaySound("select")
                                             CloseBattleRequest()
                                             Core.SetScreen(New PVPLobbyScreen(Core.CurrentScreen, BattleRequestNetworkID, False))
                                         Case 1
+                                            SoundManager.PlaySound("select")
                                             CloseBattleRequest()
                                     End Select
                                 Else
@@ -2155,13 +2177,16 @@
                     If Controls.Accept(False, True, True) = True Then
                         Select Case Me.BattleRequestCursor
                             Case 0
+                                SoundManager.PlaySound("select")
                                 CloseBattleRequest()
                                 Core.SetScreen(New PVPLobbyScreen(Core.CurrentScreen, BattleRequestNetworkID, False))
                             Case 1
+                                SoundManager.PlaySound("select")
                                 CloseBattleRequest()
                         End Select
                     End If
                     If Controls.Dismiss() = True Then
+                        SoundManager.PlaySound("select")
                         CloseBattleRequest()
                     End If
                 End If

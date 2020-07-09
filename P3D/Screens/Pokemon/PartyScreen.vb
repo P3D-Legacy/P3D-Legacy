@@ -509,7 +509,7 @@ Public Class PartyScreen
                         If _switchIndex <> _index Then
                             Dim p1 As Pokemon = PokemonList(_switchIndex)
                             Dim p2 As Pokemon = PokemonList(_index)
-
+                            SoundManager.PlaySound("select")
                             PokemonList(_switchIndex) = p2
                             PokemonList(_index) = p1
                         End If
@@ -528,6 +528,7 @@ Public Class PartyScreen
                             used = True
                             ExitedSub(_index)
                         End If
+                        SoundManager.PlaySound("select")
                         _closing = True
                     End If
                 End If

@@ -85,7 +85,7 @@
         Me.Difficulty = Core.Player.DifficultyMode
         Me.BattleStyle = Core.Player.BattleStyle
         Me.ShowModels = CInt(Core.Player.ShowModelsInBattle)
-        Me.Muted = CInt(MediaPlayer.IsMuted.ToNumberString())
+        Me.Muted = CInt(MusicManager.Muted.ToNumberString())
         If Core.GameOptions.LoadOffsetMaps = 0 Then
             Me.LoadOffsetMaps = 0
         Else
@@ -259,6 +259,7 @@
 
 
                 If Controls.Dismiss() Then
+                    SoundManager.PlaySound("select")
                     If Me.ScreenIndex = 0 Then
                         _closing = True
                     Else
@@ -489,7 +490,7 @@
 
     Public Overrides Sub ToggledMute()
         If Me.ScreenIndex = 5 Then
-            Me.Muted = CInt(MediaPlayer.IsMuted)
+            Me.Muted = CInt(MusicManager.Muted)
             InitializeControls()
         End If
     End Sub
@@ -787,7 +788,7 @@
                 If P3D.Controls.Accept(True, False, False) = True Then
                     Me._toggled = Not Me._toggled
                     OnToggleTrigger(Me)
-                    ' SoundManager.PlaySound("select")
+                    SoundManager.PlaySound("select")
                 End If
             End If
 
@@ -795,7 +796,7 @@
                 If Position = s._cursorDestPosition Then
                     Me._toggled = Not Me._toggled
                     OnToggleTrigger(Me)
-                    'SoundManager.PlaySound("select")
+                    SoundManager.PlaySound("select")
                 End If
             End If
         End Sub
@@ -884,14 +885,15 @@
 
             If r.Contains(MouseHandler.MousePosition) = True Then
                 If P3D.Controls.Accept(True, False, False) = True Then
+                    SoundManager.PlaySound("select")
                     OnClickTrigger(Me)
                 End If
             End If
 
             If Controls.Accept(False, True, True) Then
                 If Position = s._cursorDestPosition Then
-                    OnClickTrigger(Me)
                     SoundManager.PlaySound("select")
+                    OnClickTrigger(Me)
                 End If
             End If
         End Sub

@@ -1535,11 +1535,11 @@
                     If Attack.Type.Type = Element.Types.Normal Then
                         UA = 1.2F
                     End If
-				Case "normalize"
+                Case "normalize"
                     If Attack.Type.Type = Element.Types.Normal Then
                         UA = 1.2F
                     End If
-				Case "galvanize"
+                Case "galvanize"
                     If Attack.Type.Type = Element.Types.Normal Then
                         UA = 1.2F
                     End If

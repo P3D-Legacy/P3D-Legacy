@@ -375,6 +375,7 @@
             If Controls.Accept(True, False, False) = True And New Rectangle(CInt(p.X), CInt(p.Y), Size, RasterSize).Contains(MouseHandler.MousePosition) = True Then
                 If Selector = Me.RelPosition Then
                     enterKey = True
+                    SoundManager.PlaySound("select")
                 Else
                     Selector = Me.RelPosition
                 End If
@@ -382,11 +383,13 @@
             If Controls.Accept(False, False, True) = True Then
                 If Selector = Me.RelPosition Then
                     enterKey = True
+                    SoundManager.PlaySound("select")
                 End If
             End If
             If KeyBoardHandler.KeyPressed(Keys.Enter) = True Then
                 If Selector = Me.RelPosition Then
                     enterKey = True
+                    SoundManager.PlaySound("select")
                 End If
             End If
 

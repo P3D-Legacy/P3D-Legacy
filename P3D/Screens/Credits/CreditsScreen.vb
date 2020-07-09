@@ -44,8 +44,7 @@ Public Class CreditsScreen
 
         ExecuteCameraLevel()
 
-        MusicManager.Play("credits", True)
-        MediaPlayer.IsRepeating = False
+        MusicManager.Play("credits", True, False)
     End Sub
 
     ' The text that shows during the credits:
@@ -135,6 +134,7 @@ Public Class CreditsScreen
 
         If TheEnd = True Then
             If Controls.Accept(True, True) = True Then
+                SoundManager.PlaySound("select")
                 Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, Color.Black, False, AddressOf ChangeSavedScreen))
             End If
         End If
@@ -284,11 +284,11 @@ Public Class CreditsScreen
     End Class
 
     Public Overrides Sub ChangeFrom()
-        MediaPlayer.IsRepeating = True
+        MusicManager._isLooping = True
     End Sub
 
     Public Overrides Sub ChangeTo()
-        MediaPlayer.IsRepeating = False
+        MusicManager._isLooping = False
     End Sub
 
 End Class

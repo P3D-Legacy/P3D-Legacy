@@ -195,13 +195,16 @@
         If Controls.Accept(True, True, True) = True Then
             If Me.MovesList.Count = 0 Then
                 Core.SetScreen(Me.PreScreen)
+                SoundManager.PlaySound("select")
             Else
                 LearnMove(MovesList(index))
+                SoundManager.PlaySound("select")
             End If
         End If
 
         If Controls.Dismiss(True, True, True) = True Then
             Core.SetScreen(Me.PreScreen)
+            SoundManager.PlaySound("select")
         End If
     End Sub
 

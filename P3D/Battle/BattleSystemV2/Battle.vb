@@ -946,33 +946,46 @@
             'Potion,Super Point,Hyper Potion,Full Heal,Full Restore,Burn Heal,Antidote,Paralyze heal,Awakening,Ice Heal,Revive,Max Revive,Max Potion
             Select Case ItemID
                 Case 18 'Potion
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(20, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Potion on " & p.GetDisplayName() & "!", "item:potion")
                 Case 17 'Super Potion
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(50, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Super Potion on " & p.GetDisplayName() & "!", "item:superpotion")
                 Case 16 'Hyper Potion
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(100, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Hyper Potion on " & p.GetDisplayName() & "!", "item:hyperpotion")
                 Case 15 'Max Potion
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(p.MaxHP, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Max Potion on " & p.GetDisplayName() & "!", "item:maxpotion")
                 Case 14 'Full Restore
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(p.MaxHP, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Full Restore on " & p.GetDisplayName() & "!", "item:fullrestore")
                     Me.CureStatusProblem(False, False, BattleScreen, "", "item:fullrestore")
                 Case 38 'Full Heal
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Full Heal on " & p.GetDisplayName() & "!", "item:fullheal")
                 Case 9 'Antidote
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used an Antidote on " & p.GetDisplayName() & "!", "item:antidote")
                 Case 10 'Burn Heal
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Burn Heal on " & p.GetDisplayName() & "!", "item:burnheal")
                 Case 11 'Ice Heal
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used an Ice Heal on " & p.GetDisplayName() & "!", "item:iceheal")
                 Case 12 'Awakening
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used an Awakening on " & p.GetDisplayName() & "!", "item:awakening")
                 Case 13 'Paralyze Heal
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Paralyze Heal on " & p.GetDisplayName() & "!", "item:paralyzeheal")
                 Case 39 'Revive
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & " used a Revive on " & p.GetDisplayName() & "!"))
                     p.Status = Pokemon.StatusProblems.None
                     p.HP = CInt(Math.Ceiling(p.MaxHP / 2))
                 Case 40 'Max Revive
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & " used a Revive on " & p.GetDisplayName() & "!"))
                     p.Status = Pokemon.StatusProblems.None
                     p.HP = p.MaxHP
@@ -3987,7 +4000,7 @@
                     If Not p.Item Is Nothing Then
                         If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                             Select Case p.Item.Name.ToLower()
-								Case "figy"
+                                Case "figy"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:figy") = True Then
                                         UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
                                     End If

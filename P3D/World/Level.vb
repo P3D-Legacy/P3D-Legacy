@@ -1025,6 +1025,10 @@ Public Class Level
             ' Check if the enter sound should be played by checking if CanDig or CanFly properties are different from the last map:
             If tempProperties <> Me.CanDig.ToString() & "," & Me.CanFly.ToString() Then
                 SoundManager.PlaySound("enter", False)
+            ElseIf tempProperties = "True,False" And Me.CanDig = True And Me.CanFly = False Then
+                SoundManager.PlaySound("enter", False)
+            ElseIf tempProperties = "False,False" And Me.CanDig = False And Me.CanFly = False Then
+                SoundManager.PlaySound("enter", False)
             End If
 
             ' Unlock the yaw on the camera:
@@ -1042,6 +1046,7 @@ Public Class Level
                 ' Update network players:
                 Core.ServersManager.PlayerManager.NeedsUpdate = True
             End If
+
         End If
     End Sub
 

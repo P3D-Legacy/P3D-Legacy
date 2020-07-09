@@ -1,4 +1,6 @@
-﻿Public Class DebugDisplay
+﻿Imports NAudio.Wave
+
+Public Class DebugDisplay
 
     ''' <summary>
     ''' Renders the debug information.
@@ -86,7 +88,7 @@
     End Property
 
     ''' <summary>
-    ''' MediaPLayer state tracking method.
+    ''' MediaPlayer state tracking method.
     ''' </summary>
     Private Shared Sub DrawMediaInfo()
         Dim songName = "<NO SONG PLAYING>"
@@ -100,13 +102,19 @@
         Dim field = GetType(MediaPlayer).GetField("_sessionState", Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Static)
         Dim sessionState = field.GetValue(Nothing).ToString()
 
+        Dim _outputDevice As WaveOutEvent
+        If Not MusicManager.outputDevice Is Nothing Then
+            _outputdevice = MusicManager.outputDevice
+        Else
+            _outputDevice = New WaveOutEvent()
+        End If
         Dim str = "Song: " + songName + Environment.NewLine +
-            "Play position: " + MediaPlayer.PlayPosition.ToString() + Environment.NewLine +
+            "Play position: " + _outputDevice.GetPosition.ToString() + Environment.NewLine +
             "Session state: " + sessionState + Environment.NewLine +
-            "State: " + MediaPlayer.State.ToString() + Environment.NewLine +
-            "Volume: " + MediaPlayer.Volume.ToString() + Environment.NewLine +
-            "Is Muted: " + MediaPlayer.IsMuted.ToString() + Environment.NewLine +
-            "Is Repeating: " + MediaPlayer.IsRepeating.ToString()
+            "State: " + _outputDevice.PlaybackState.ToString() + Environment.NewLine +
+            "Volume: " + MusicManager.MasterVolume.ToString() + Environment.NewLine +
+            "Is Muted: " + MusicManager.Muted.ToString() + Environment.NewLine +
+            "Is Repeating: " + MusicManager._isLooping.ToString()
 
         Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, str, New Vector2(7, 7), Color.Black)
         Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, str, New Vector2(5, 5), Color.White)

@@ -266,6 +266,7 @@
         End If
 
         If Controls.Dismiss() = True Then
+            SoundManager.PlaySound("select")
             Player.Temp.MapSwitch = Me.drawObjects
             Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.Black, False))
         End If
@@ -566,6 +567,7 @@
             "@player.wearskin([POKEMON|" & isShiny & "]" & p.Number & PokemonForms.GetOverworldAddition(p) & ")" & Environment.NewLine &
             "@player.turnto(2)" & Environment.NewLine &
             "@player.move(2)" & Environment.NewLine &
+            "@sound.play(Battle\Effects\effect_fly)" & Environment.NewLine &
             "@camera.fix" & Environment.NewLine &
             "@player.setmovement(0,2,3)" & Environment.NewLine &
             "@player.move(3)" & Environment.NewLine &
@@ -576,7 +578,6 @@
             "@player.warp(" & FlyToFile & "," & FlyToPosition.X.ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Y - 4 + 0.1F).ToString().ReplaceDecSeparator() & "," & (FlyToPosition.Z + 6).ToString().ReplaceDecSeparator() & ",0)" & Environment.NewLine &
             "@camera.setyaw(0)" & Environment.NewLine &
             "@camera.setposition(0,-3.7,-4.5)" & Environment.NewLine &
-            "@sound.play(Battle\Effects\effect_fly)" & Environment.NewLine &
             "@level.update" & Environment.NewLine &
             "@player.setmovement(0,-2,-3)" & Environment.NewLine &
             "@screen.fadein(10)" & Environment.NewLine &

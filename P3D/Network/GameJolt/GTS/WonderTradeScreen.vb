@@ -186,6 +186,7 @@
                         For i = 0 To Me.MenuItems.Count - 1
                             If New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 400 + i * 96, 64 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Cursor Then
+                                    SoundManager.PlaySound("select")
                                     Me.SelectMenuEntry()
                                 Else
                                     Cursor = i
@@ -195,6 +196,7 @@
                     End If
 
                     If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
                         Me.SelectMenuEntry()
                     End If
                 Case ScreenStates.Idle
@@ -221,6 +223,7 @@
                     End If
                 Case ScreenStates.Stopped
                     If KeyBoardHandler.GetPressedKeys().Count > 0 Or ControllerHandler.HasControlerInput() = True Or Controls.Accept() = True Or Controls.Dismiss() = True Then
+                        SoundManager.PlaySound("select")
                         CloseScreen()
                     End If
                 Case ScreenStates.Trading

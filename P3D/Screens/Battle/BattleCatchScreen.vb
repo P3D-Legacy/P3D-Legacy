@@ -322,7 +322,7 @@
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 3.5F
                 End If
-			Case "lure ball"
+            Case "lure ball"
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 5.0F
                 End If

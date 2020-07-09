@@ -134,6 +134,7 @@
                 Me.UpdateIdle()
             Case ScreenStates.Stopped
                 If KeyBoardHandler.GetPressedKeys().Count > 0 Or ControllerHandler.HasControlerInput() = True Or Controls.Accept() = True Or Controls.Dismiss() = True Then
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(Me.PreScreen)
                 End If
             Case ScreenStates.ChooseTeam
@@ -268,6 +269,7 @@
                     For i = 0 To Me.menuItems.Count - 1
                         If New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 200 + i * 96, 64 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                             If i = Cursor Then
+                                SoundManager.PlaySound("select")
                                 Me.SelectMenuEntry()
                             Else
                                 Cursor = i
@@ -277,11 +279,13 @@
                 End If
 
                 If Controls.Accept(False, True, True) = True Then
+                    SoundManager.PlaySound("select")
                     Me.SelectMenuEntry()
                 End If
             End If
         Else
             If Controls.Dismiss() = True Then
+                SoundManager.PlaySound("select")
                 QuitBattle()
             End If
         End If
@@ -417,15 +421,19 @@
             If New Rectangle(CInt(Core.windowSize.Width / 2) + 120, 230, 290, 360).Contains(MouseHandler.MousePosition) = True Then
                 If ChooseTeamCursor = 0 Then
                     ChooseTeamCursor = 1
+                    SoundManager.PlaySound("select")
                 Else
+                    SoundManager.PlaySound("select")
                     SelectTeam()
                 End If
             End If
             If New Rectangle(CInt(Core.windowSize.Width / 2) - 410, 230, 290, 360).Contains(MouseHandler.MousePosition) = True Then
                 If ChooseTeamCursor = 1 Then
                     ChooseTeamCursor = 0
+                    SoundManager.PlaySound("select")
                 Else
                     If hasBattleBoxPokemon = True Then
+                        SoundManager.PlaySound("select")
                         SelectTeam()
                     End If
                 End If
@@ -434,11 +442,13 @@
 
         If hasBattleBoxPokemon = True Or ChooseTeamCursor = 1 Then
             If Controls.Accept(False, True, True) = True Then
+                SoundManager.PlaySound("select")
                 SelectTeam()
             End If
         End If
 
         If Controls.Dismiss(True, True, True) = True Then
+            SoundManager.PlaySound("select")
             ScreenState = ScreenStates.Idle
         End If
     End Sub
@@ -821,6 +831,7 @@
 
     Private Sub UpdateBattleResults()
         If Controls.Accept() = True Then
+            SoundManager.PlaySound("select")
             ScreenState = ScreenStates.Stopped
         End If
     End Sub

@@ -161,6 +161,7 @@
         End If
 
         If Controls.Dismiss() = True Then
+            SoundManager.PlaySound("select")
             Core.SetScreen(New TransitionScreen(Me, Me.PreScreen, Color.White, False))
         End If
 

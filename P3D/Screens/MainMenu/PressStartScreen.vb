@@ -310,6 +310,7 @@ Public Class NewMainMenuScreen
                         If New Rectangle(CInt(xOffset), CInt(_screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
                             If _selectedProfile = x Then
                                 ClickedProfile()
+                                SoundManager.PlaySound("select")
                             Else
                                 Dim diff As Integer = x - _selectedProfile
                                 _screenOffsetTarget.X -= diff * 180
@@ -339,6 +340,7 @@ Public Class NewMainMenuScreen
 
                         If New Rectangle(CInt(xOffset), CInt(_screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
                             If _selectedProfile = x Then
+                                SoundManager.PlaySound("select")
                                 DismissProfile()
                             End If
                             Exit For
@@ -372,16 +374,21 @@ Public Class NewMainMenuScreen
                     If Controls.Accept(False, True, True) Then
                         Select Case _yIndex
                             Case 0
+                                SoundManager.PlaySound("select")
                                 ClickedProfile()
                             Case 1
+                                SoundManager.PlaySound("select")
                                 ButtonChangeMale()
                             Case 2
+                                SoundManager.PlaySound("select")
                                 ButtonChangeFemale()
                             Case 3
+                                SoundManager.PlaySound("select")
                                 ButtonResetSave()
                         End Select
                     End If
                     If Controls.Dismiss(False, True, True) Then
+                        SoundManager.PlaySound("select")
                         DismissProfile()
                         _yIndex = 0
                     End If
@@ -1113,14 +1120,20 @@ Public Class GameModeSelectionScreen
             _index += 1
         End If
         If Controls.Dismiss(True, True, True) Then
+            SoundManager.PlaySound("select")
             SetScreen(PreScreen)
         End If
         If Controls.Accept(True, True, True) Then
             GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
-            SetScreen(New Screens.MainMenu.NewNewGameScreen(PreScreen))
+            SoundManager.PlaySound("select")
+            If GameModeManager.ActiveGameMode.IntroType = "0" Then
+                SetScreen(New Screens.MainMenu.NewNewGameScreen(PreScreen))
+            Else
+                SetScreen(New TransitionScreen(Me.PreScreen, New NewGameScreen(), Color.Black, False))
+            End If
         End If
 
-        Dim targetOffset = GetTargetOffset()
+            Dim targetOffset = GetTargetOffset()
 
         If _offset <> targetOffset Then
             _offset = MathHelper.Lerp(_offset, targetOffset, 0.25F)

@@ -550,8 +550,8 @@ game_message_third_person_on,Third person mode on.
 game_message_third_person_off,Third person mode off.
 game_message_free_camera_on,Free camera mode on
 game_message_free_camera_off,Free camera mode off
-game_message_music_on,Music on
-game_message_music_off,Music off
+game_message_audio_on,Audio on
+game_message_audio_off,Audio off
 game_message_continue_autosave,Continued save state:
 ---
 Online:

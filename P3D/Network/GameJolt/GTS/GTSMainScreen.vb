@@ -250,12 +250,16 @@
             If Controls.Accept(False, True) = True Then
                 Select Case Me.menuIndex
                     Case 0
+                        SoundManager.PlaySound("select")
                         InboxButton()
                     Case 1
+                        SoundManager.PlaySound("select")
                         SearchButton()
                     Case 2
+                        SoundManager.PlaySound("select")
                         SetupButton()
                     Case 3
+                        SoundManager.PlaySound("select")
                         ExitButton()
                 End Select
             End If

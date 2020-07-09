@@ -675,12 +675,15 @@
                     If Controls.Accept() = True Then
                         If _pageIndex = 0 Then
                             _isFront = Not _isFront
+                            SoundManager.PlaySound("select")
                         ElseIf _pageIndex = 1 Then
+                            SoundManager.PlaySound("select")
                             _moveSelected = True
                         End If
                     End If
                 End If
                 If Controls.Dismiss() = True Then
+                    SoundManager.PlaySound("select")
                     _closing = True
                 End If
             Else
@@ -705,7 +708,7 @@
                         Dim switchingMove As BattleSystem.Attack = GetPokemon().Attacks(_switchMoveIndex)
                         GetPokemon().Attacks.RemoveAt(_switchMoveIndex)
                         GetPokemon().Attacks.Insert(_moveIndex, switchingMove)
-
+                        SoundManager.PlaySound("select")
                         _switchingMoves = False
                         _switchMoveIndex = -1
                     Else
@@ -719,8 +722,10 @@
                     If _switchingMoves = True Then
                         _switchingMoves = False
                         _switchMoveIndex = -1
+                        SoundManager.PlaySound("select")
                     Else
                         _moveSelected = False
+                        SoundManager.PlaySound("select")
                     End If
                 End If
             End If

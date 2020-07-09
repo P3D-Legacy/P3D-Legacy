@@ -165,8 +165,10 @@
                     If ButtonIndex = i Then
                         If Controls.Accept(True, False, False) = True Then
                             If i = 0 Then
+                                SoundManager.PlaySound("select")
                                 ButtonDone()
                             Else
+                                SoundManager.PlaySound("select")
                                 ButtonCancel()
                             End If
                         End If
@@ -199,15 +201,18 @@
         Select Case ButtonIndex
             Case 0
                 If Controls.Accept(False, False, True) = True Or KeyBoardHandler.KeyPressed(Keys.Enter) = True Then
+                    SoundManager.PlaySound("select")
                     ButtonDone()
                 End If
             Case 1
                 If Controls.Accept(False, False, True) = True Or KeyBoardHandler.KeyPressed(Keys.Enter) = True Then
+                    SoundManager.PlaySound("select")
                     ButtonCancel()
                 End If
         End Select
 
         If Controls.Dismiss(True, False, True) = True Then
+            SoundManager.PlaySound("select")
             Core.SetScreen(Me.PreScreen)
         End If
     End Sub

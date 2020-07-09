@@ -6,13 +6,13 @@
     Public Sub Initialize(ByVal args() As String)
         If args.Length > 0 Then
             If args.Any(Function(arg As String)
-					 Return arg = "-forcegraphics"
-				     End Function) Then
+                     Return arg = "-forcegraphics"
+                     End Function) Then
                 _forceGraphics = True
             End If
             If args.Any(Function(arg As String)
-					 Return arg = "-nosplash"
-				     End Function) Then
+                     Return arg = "-nosplash"
+                     End Function) Then
                 _nosplash = True
             End If
         End If

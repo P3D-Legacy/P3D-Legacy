@@ -189,7 +189,9 @@
                             Exit For
                         End If
                     Next
+                    SoundManager.PlaySound("select")
                 Else
+                    SoundManager.PlaySound("select")
                     ActivatedMysteryEvents.Add(cEvent)
                 End If
             End If

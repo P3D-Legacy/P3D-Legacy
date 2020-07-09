@@ -1897,7 +1897,7 @@
     End Sub
 
     Private Sub PlayWildPokemonNoise(ByVal number As Integer)
-        SoundManager.PlayPokemonCry(number, Random.Next(0, 6) / 10.0F, Random.Next(0, 20) / 10.0F - 1, SoundManager.Volume * 0.35F)
+        SoundManager.PlayPokemonCry(number, Random.Next(0, 6) / 10.0F, Random.Next(0, 20) / 10.0F - 1, SoundManager.Volume * 0.5F)
     End Sub
 
 #End Region

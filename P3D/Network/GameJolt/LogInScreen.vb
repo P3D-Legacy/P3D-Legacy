@@ -157,6 +157,7 @@ Namespace GameJolt
                             Select Case True
                                 Case Core.ScaleScreenRec(OkButton.GetRectangle()).Contains(MouseHandler.MousePosition)
                                     If OkButton.IsActive = True Then
+                                        SoundManager.PlaySound("select")
                                         OkButton.DoPress()
                                     Else
                                         Deactivate()
@@ -195,6 +196,7 @@ Namespace GameJolt
                                 Token.IsActive = True
                             Case Core.ScaleScreenRec(LogInButton.GetRectangle()).Contains(MouseHandler.MousePosition)
                                 If LogInButton.IsActive = True Then
+                                    SoundManager.PlaySound("select")
                                     LogInButton.DoPress()
                                 Else
                                     Deactivate()
@@ -202,6 +204,7 @@ Namespace GameJolt
                                 End If
                             Case Core.ScaleScreenRec(CloseButton.GetRectangle()).Contains(MouseHandler.MousePosition)
                                 If CloseButton.IsActive = True Then
+                                    SoundManager.PlaySound("select")
                                     CloseButton.DoPress()
                                 Else
                                     Deactivate()
@@ -209,6 +212,7 @@ Namespace GameJolt
                                 End If
                             Case Core.ScaleScreenRec(CreateAccountButton.GetRectangle()).Contains(MouseHandler.MousePosition)
                                 If CreateAccountButton.IsActive = True Then
+                                    SoundManager.PlaySound("select")
                                     CreateAccountButton.DoPress()
                                 Else
                                     Deactivate()
@@ -219,14 +223,19 @@ Namespace GameJolt
                     If Controls.Accept(False, False, True) = True Or KeyBoardHandler.KeyPressed(KeyBindings.EnterKey1) = True Then
                         Select Case True
                             Case UserName.IsActive
+                                SoundManager.PlaySound("select")
                                 UserName.DoPress()
                             Case Token.IsActive
+                                SoundManager.PlaySound("select")
                                 Token.DoPress()
                             Case LogInButton.IsActive
+                                SoundManager.PlaySound("select")
                                 LogInButton.DoPress()
                             Case CloseButton.IsActive
+                                SoundManager.PlaySound("select")
                                 CloseButton.DoPress()
                             Case CreateAccountButton.IsActive
+                                SoundManager.PlaySound("select")
                                 CreateAccountButton.DoPress()
                         End Select
                     End If
