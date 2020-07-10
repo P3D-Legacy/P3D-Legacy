@@ -466,12 +466,14 @@ Public Class JoinServerScreen
 
                 Dim connectIP As IPAddress = Nothing
 
-                For Each ipaddress In System.Net.Dns.GetHostEntry(Me.IP).AddressList
-                    If ipaddress.AddressFamily = AddressFamily.InterNetwork Then
-                        connectIP = ipaddress
-                        Exit For
-                    End If
-                Next
+                If Not IPAddress.TryParse(IP, connectIP) Then
+                    For Each ipaddress In Dns.GetHostEntry(IP).AddressList
+                        If ipaddress.AddressFamily = AddressFamily.InterNetwork Then
+                            connectIP = ipaddress
+                            Exit For
+                        End If
+                    Next
+                End If
 
                 sw.Start()
                 client.Connect(connectIP, CInt(Me.Port))
