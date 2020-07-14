@@ -253,7 +253,7 @@ Public Class MusicManager
 
             ' intro
             If _isIntroStarted Then
-                If Muted = False Then
+                If Paused = False Then
                     If Date.Now >= _introEndTime Then
                         Dim song = GetSong(_introContinueSong)
                         _isLooping = True
@@ -304,6 +304,7 @@ Public Class MusicManager
                     _introEndTime = _introEndTime + pauseTime
 
                 End If
+                Paused = False
                 outputDevice.Play()
             End If
         End If
