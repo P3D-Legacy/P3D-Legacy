@@ -228,7 +228,6 @@
 
         p.SetCatchInfos(Me.Ball, "caught at")
 
-        MusicManager.Stop()
         MusicManager.Play("wild_defeat", False, 0.2F)
         SoundManager.PlaySound("success", True)
         TextBox.Show(s, {}, False, False)
