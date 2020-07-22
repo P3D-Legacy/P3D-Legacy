@@ -1,10 +1,45 @@
 language_name,Norwegian
 ---
+---
+---
+Global:
+global_join,Bli med
+global_play,Spill
+global_refresh,Oppdater
+global_add,Legg til
+global_edit,Endre
+global_remove,Fjern
+global_back,Tilbake
+---
+JoinServerScreen:
+server_title,Bli med på en server
+server_protocol_version,Protokoll versjon
+server_connecting_to_server,Kobler til server
+server_please_wait,Vennligst vent
+server_single_player_name,Lokal
+server_single_player_message,Enkeltspiller: Spill på din lokale datamaskin.
+server_received_error,Kan ikke nå server.
+server_pinged,Server online
+server_polling,Polling
+server_no_connection,Ingen forbindelse
+server_full,Serveren er full.
+server_version_mismatch,Versjonen samsvarer ikke med serverens versjon.
+server_ping,Ping
+server_no_players,Ingen spillere på serveren.
+server_player_list,Spillerliste
+---
+---
+---
+OLD TRANSLATIONS:
+---
+---
+---
 MainMenuScreen:
 main_menu_continue,Fortsett
 main_menu_load_game,Last Spill
 main_menu_new_game,Nytt Spill
 main_menu_quit_game,Avslutt Spill
+---
 LoadScreen:
 load_menu_name,Navn
 load_menu_badges,Merker
@@ -14,13 +49,16 @@ load_menu_back,Tilbake
 load_menu_load,Last
 load_menu_delete,Slett
 load_menu_gamemode,GameMode
+---
 DeleteScreen:
 delete_menu_delete_confirm,Vil du virkelig slette det du har lagret
 delete_menu_delete,Slett
 delete_menu_cancel,Avbryt
+---
 LanguageScreen:
 language_menu_apply,Anvend
 language_menu_back,Tilbake
+---
 PacksScreen:
 pack_menu_up,Opp
 pack_menu_down,Ned
