@@ -36,7 +36,7 @@ press_start_play_time,Spilltid
 press_start_location,Lokasjon
 ---
 JoinServerScreen:
-server_title,Bli med på en server
+server_title,Velg hvor du skal spille
 server_protocol_version,Protokoll versjon
 server_connecting_to_server,Kobler til server
 server_single_player_name,Lokal

@@ -36,7 +36,7 @@ press_start_play_time,Play Time
 press_start_location,Location
 ---
 JoinServerScreen:
-server_title,Join A Server
+server_title,Choose where to play
 server_protocol_version,Protocol version
 server_connecting_to_server,Connecting to server
 server_single_player_name,Local
