@@ -17,6 +17,10 @@ global_game,Spill
 global_login,Logg inn
 global_male,Mann
 global_female,Kvinne
+global_yes,Ja
+global_no,Nei
+global_accept,Aksepterer
+global_go_back,Gå tilbake
 ---
 PressStartScreen:
 press_start_1,Trykk
@@ -41,6 +45,13 @@ server_version_mismatch,Versjonen samsvarer ikke med serverens versjon.
 server_ping,Ping
 server_no_players,Ingen spillere på serveren.
 server_player_list,Spillerliste
+---
+Pausescreen:
+pause_menu_title,Spill meny
+pause_menu_back_to_game,Tilbake til spillet
+pause_menu_quit_to_menu,Avslutt til hovedmenyen
+pause_menu_autosave_fail,Klarte ikke lagre automatisk.
+pause_menu_confirmation,Vil du virkelig avslutte? Fremgang som ikke er lagret vil gå tapt.
 ---
 ---
 ---
@@ -99,16 +110,6 @@ gamemode_menu_author,Forfatter
 gamemode_menu_contentpath,Innhold Filbane
 gamemode_menu_create,Lag
 gamemode_menu_back,Tilbake
----
-Pausescreen:
-pause_menu_title,Spill menu
-pause_menu_back_to_game,Tilbake til spillet
-pause_menu_disconnect,Koble fra
-pause_menu_quit_to_menu,Avslutt til hovedmenyen
-pause_menu_autosave_fail,Kunne ikke lagre automatisk.
-pause_menu_yes,Ja
-pause_menu_no,Nei
-pause_menu_confirmation,Vil du virkelig avslutte? Fremgang som ikke er lagret vil gå tapt.
 ---
 IngameMenu:
 game_menu_pokedex,Pokédex
