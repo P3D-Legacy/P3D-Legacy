@@ -211,7 +211,7 @@ Public Class PressStartScreen
                 If ControllerHandler.IsConnected() Then
                     text = Localization.GetString("press_start_1") & "      " & Localization.GetString("press_start_2")
                 Else
-                    text = Localization.GetString("press_start_1") & KeyBindings.EnterKey1.ToString().ToUpper & Localization.GetString("press_start_2")
+                    text = Localization.GetString("press_start_1") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.GetString("press_start_2")
                     'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
                 End If
 
