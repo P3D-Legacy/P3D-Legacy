@@ -66,7 +66,7 @@
 
         Dim d As New Dictionary(Of Buttons, String)
         d.Add(Buttons.A, Localization.GetString("global_accept"))
-        d.Add(Buttons.B, Localization.GetString("global_go_back"))
+        d.Add(Buttons.B, Localization.GetString("global_cancel"))
 
         DrawGamePadControls(d)
     End Sub
