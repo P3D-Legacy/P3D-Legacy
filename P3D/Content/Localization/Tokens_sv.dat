@@ -13,6 +13,7 @@ load_menu_time,Tid
 load_menu_back,Tillbaka
 load_menu_load,Ladda
 load_menu_delete,Ta bort
+load_menu_gamemode,Spelläge
 DeleteScreen:
 delete_menu_delete_confirm,Vill du verkligen to bort sparningen
 delete_menu_delete,Ta bort
@@ -20,7 +21,6 @@ delete_menu_cancel,Avbryt
 LanguageScreen:
 language_menu_apply,Applicera
 language_menu_back,Tillbaka
----
 PacksScreen:
 pack_menu_up,Upp
 pack_menu_down,Ned
@@ -54,6 +54,9 @@ pause_menu_back_to_game,Tillbaka till spelet
 pause_menu_disconnect,Koppla bort
 pause_menu_quit_to_menu,Avsluta till huvudmenyn
 pause_menu_autosave_fail,Kan inte skapa automatisk sparning.
+pause_menu_yes,Ja
+pause_menu_no,Nej
+pause_menu_confirmation,Vill du verkligen sluta? O sparade framsteg kommer att gå förlorade.
 ---
 IngameMenu:
 game_menu_pokedex,Pokédex
@@ -90,6 +93,7 @@ MapScreen:
 map_screen_cities,Städer
 map_screen_routes,Rutter
 map_screen_places,Platser
+map_screen_roaming,Roaming Pokes
 ---
 PokedexScreen:
 pokedex_screen_seen,Sedda
@@ -256,7 +260,7 @@ network_screen_host_host,Bli värd
 ---
 Donation screen:
 donation_screen_donators,Donatorer
-donation_screen_backadvice,Tryck E för att stänga.
+donation_screen_backadvice,Tryck E för att stänga
 ---
 Blackout Screen:
 black_out_screen_line1,Du har slut på Pokémon!
@@ -290,6 +294,7 @@ battle_main_trainer_defeat_5,~PokéDollar för att du vann!
 ---
 attackTurn:
 battle_attack_poison_damage,~blev skadad av gift!
+battle_attack_curse_damage,~är drabbad av förbannelsen!
 battle_attack_fire_damage,~blev skadad av dess brännskada!
 battle_attack_trainer_item_1, Använde en~
 battle_attack_trainer_item_2,!
@@ -326,6 +331,7 @@ badge_Rising,Rising
 Regions:
 Johto,Johto
 Kanto,Kanto
+Sevii Islands,Sevii öar
 ---
 Places:
 Places_???,???
@@ -443,6 +449,8 @@ Places_Ancient Ruins,Forntida ruiner
 Places_Millenial Star Tower,Tusenåriga stjärnatornet
 Places_Kolben Tower,Kolben Tornet
 Places_Faraway Island,Avlägsen Ö
+Places_Underwater Cave,Undervattensgrotta
+Places_Embedded Tower,Inbäddat torn
 
 Routes:
 Places_Route 1,Rutt 1
@@ -830,4 +838,4 @@ New Bark Town:
 ---
 barktown.dat:
 ---
-barktown_player_house,<playername>'s House
+barktown_player_house,<playername>s hus
