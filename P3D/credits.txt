@@ -1,9 +1,11 @@
 Pokémon created by Nintendo, Game Freak and The Pokémon Company / Creatures Inc.
 
+Pokémon 3D is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc.
+
 Pokémon 3D
 
 	Created by Kolben Games 
-	2012 - 2019
+	2012-2020
 
 	Team Kolben
 		Nils Drescher
@@ -11,7 +13,7 @@ Pokémon 3D
 		Marc Boisvert-Dupras
 		Grant Garrett
 		Jason Houston
-		Daniel Billing
+		Daniel "RTRD" Billing
 		Benjamin Smith
 		Hunter Graves
 
@@ -95,7 +97,7 @@ Pokémon 3D
 
 	Launcher Programming
 		Nils Drescher
-		Daniel Billing
+		Daniel "RTRD" Billing
 		"ThuxCommix"
 		"Aragas"
 
@@ -108,7 +110,7 @@ Pokémon 3D
 		Nils Drescher
 
 	Website Host/Server Maintenance
-		Daniel Billing
+		Daniel "RTRD" Billing
 		Daniel Laube
 
 	GameJolt Service/API Programming

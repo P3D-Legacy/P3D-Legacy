@@ -10,7 +10,7 @@ It is built using the MonoGame framework as graphics middleware.
 In order to build the game's solution, you need the following:
 * Microsoft Windows operating system (XP and up)
 * [Microsoft Visual Studio](https://www.visualstudio.com/) (2010 and up)
-* [MonoGame 3.6](http://www.monogame.net/downloads/)
+* [MonoGame 3.7](http://www.monogame.net/downloads/)
 
 To run the game after a successful build, you also need an applicable graphics card that supports DirectX (version 9 minimum).
 
