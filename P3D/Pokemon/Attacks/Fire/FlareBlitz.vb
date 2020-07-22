@@ -14,7 +14,7 @@
             Me.Power = 120
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Flare Blitz"
             Me.Description = "The user cloaks itself in fire and charges at the target. The user sustains serious damage and may leave the target burned."
             Me.CriticalChance = 1

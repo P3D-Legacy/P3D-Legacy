@@ -14,7 +14,7 @@
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Roost"
             Me.Description = "The user lands and rests its body. It restores the user's HP by up to half of its max HP."
             Me.CriticalChance = 0

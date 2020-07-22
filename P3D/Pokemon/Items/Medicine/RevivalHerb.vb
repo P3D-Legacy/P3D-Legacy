@@ -29,7 +29,7 @@ Namespace Items.Medicine
 
             If Pokemon.Status = P3D.Pokemon.StatusProblems.Fainted Then
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
-                Pokemon.HP = CInt(Math.Floor(Pokemon.MaxHP / 2))
+                Pokemon.HP = CInt(Math.Floor(Pokemon.MaxHP))
                 Pokemon.ChangeFriendShip(Pokemon.FriendShipCauses.RevivalHerb)
 
                 SoundManager.PlaySound("single_heal", False)

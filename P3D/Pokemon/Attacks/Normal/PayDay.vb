@@ -74,7 +74,7 @@ Namespace BattleSystem.Moves.Normal
                 BattleScreen.FieldEffects.OppPayDayCounter += coinAmount
             End If
 
-            BattleScreen.BattleQuery.Add(New TextQueryObject("Coins were scattered anywhere!"))
+            BattleScreen.BattleQuery.Add(New TextQueryObject("Coins were scattered everywhere!"))
         End Sub
 
     End Class

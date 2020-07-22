@@ -14,7 +14,7 @@
             Me.Power = 120
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Close Combat"
             Me.Description = "The user fights the target up close without guarding itself. It also cuts the user's Defense and Sp. Def."
             Me.CriticalChance = 1

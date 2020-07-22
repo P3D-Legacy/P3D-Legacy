@@ -478,67 +478,10 @@ Namespace GameJolt
         Public Sub FetchFriendList(ByVal user_id As String)
             Dim url As New APIURL("/friends/")
             url.AddKeyValuePair("game_id", GameID)
-            url.AddKeyValuePair("user_id", user_id)
-
-            Initialize(url.GetURL(), RequestMethod.GET)
-        End Sub
-
-        Public Sub FetchSentFriendRequest()
-            Dim url As New APIURL("/friends/sent-requests/")
-            url.AddKeyValuePair("game_id", GameID)
             url.AddKeyValuePair("username", username)
             url.AddKeyValuePair("user_token", token)
 
             Initialize(url.GetURL(), RequestMethod.GET)
-        End Sub
-
-        Public Sub FetchReceivedFriendRequests()
-            Dim url As New APIURL("/friends/received-requests/")
-            url.AddKeyValuePair("game_id", GameID)
-            url.AddKeyValuePair("username", username)
-            url.AddKeyValuePair("user_token", token)
-
-            Initialize(url.GetURL(), RequestMethod.GET)
-        End Sub
-
-        Public Sub SendFriendRequest(ByVal targetuserID As String)
-            Dim url As New APIURL("/friends/send-request/")
-            url.AddKeyValuePair("game_id", GameID)
-            url.AddKeyValuePair("username", username)
-            url.AddKeyValuePair("user_token", token)
-            url.AddKeyValuePair("target_user_id", targetuserID)
-
-            Initialize(url.GetURL(), RequestMethod.POST)
-        End Sub
-
-        Public Sub CancelFriendRequest(ByVal targetUserID As String)
-            Dim url As New APIURL("/friends/cancel-request/")
-            url.AddKeyValuePair("game_id", GameID)
-            url.AddKeyValuePair("username", username)
-            url.AddKeyValuePair("user_token", token)
-            url.AddKeyValuePair("target_user_id", targetUserID)
-
-            Initialize(url.GetURL(), RequestMethod.POST)
-        End Sub
-
-        Public Sub AcceptFriendRequest(ByVal targetUserID As String)
-            Dim url As New APIURL("/friends/accept-request/")
-            url.AddKeyValuePair("game_id", GameID)
-            url.AddKeyValuePair("username", username)
-            url.AddKeyValuePair("user_token", token)
-            url.AddKeyValuePair("target_user_id", targetUserID)
-
-            Initialize(url.GetURL(), RequestMethod.POST)
-        End Sub
-
-        Public Sub DeclineFriendRequest(ByVal targetUserID As String)
-            Dim url As New APIURL("/friends/decline-request/")
-            url.AddKeyValuePair("game_id", GameID)
-            url.AddKeyValuePair("username", username)
-            url.AddKeyValuePair("user_token", token)
-            url.AddKeyValuePair("target_user_id", targetUserID)
-
-            Initialize(url.GetURL(), RequestMethod.POST)
         End Sub
 
 #End Region

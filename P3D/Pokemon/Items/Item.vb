@@ -201,7 +201,16 @@ Public MustInherit Class Item
     End Sub
 
     Public Sub UseItemhandler(ByVal params As Object())
-        UseOnPokemon(CInt(params(0)))
+        If UseOnPokemon(CInt(params(0))) Then
+            Dim s As Screen = Core.CurrentScreen
+            While Not s.PreScreen Is Nothing And s.Identification <> Screen.Identifications.InventoryScreen
+                s = s.PreScreen
+            End While
+
+            If s.Identification = Screen.Identifications.InventoryScreen Then
+                CType(s, NewInventoryScreen).LoadItems()
+            End If
+        End If
     End Sub
 
     ''' <summary>

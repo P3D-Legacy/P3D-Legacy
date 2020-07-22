@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Grunt
+TrainerClass|Team Rocket
+Money|3200
+IntroMessage|We've finally hit gold with~a rare Pokémon!*I won't let you interrupt~our operation in the basement!
+OutroMessage|I've never been this disappointed in my life...
+DefeatMessage|The others won't be as easy!
+TextureID|gruntm
+Region|Sevii Islands
+insightmusic|johto_rocket_encounter
+IniMusic|Johto_rocket_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_rocket
+Pokemon1|169,57
+Pokemon2|20,57
+Pokemon3|569,58
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|40
+IntroSequence|Blue,Blue

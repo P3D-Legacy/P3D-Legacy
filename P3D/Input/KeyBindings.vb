@@ -15,7 +15,7 @@ Public Class KeyBindings
     Public Shared LeftKey As Keys = Keys.Left
 
     Public Shared CameraLockKey As Keys = Keys.C
-    Public Shared MuteMusicKey As Keys = Keys.M
+    Public Shared MuteAudioKey As Keys = Keys.M
     Public Shared OnlineStatusKey As Keys = Keys.Tab
 
     Public Shared GUIControlKey As Keys = Keys.F1
@@ -60,8 +60,8 @@ Public Class KeyBindings
                             ChatKey = binding
                         Case "special", "pokegear"
                             SpecialKey = binding
-                        Case "mutemusic"
-                            MuteMusicKey = binding
+                        Case "muteaudio", "mutemusic"
+                            MuteAudioKey = binding
                         Case "cameraleft"
                             LeftKey = binding
                         Case "cameraright"
@@ -238,7 +238,7 @@ Public Class KeyBindings
                 "[Inventory]=" & GetKeyName(Keys.E) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(Keys.T) & Environment.NewLine &
                 "[Special]=" & GetKeyName(Keys.Q) & Environment.NewLine &
-                "[MuteMusic]=" & GetKeyName(Keys.M) & Environment.NewLine &
+                "[MuteAudio]=" & GetKeyName(Keys.M) & Environment.NewLine &
                 "[Up]=" & GetKeyName(Keys.Up) & Environment.NewLine &
                 "[Down]=" & GetKeyName(Keys.Down) & Environment.NewLine &
                 "[Left]=" & GetKeyName(Keys.Left) & Environment.NewLine &
@@ -273,7 +273,7 @@ Public Class KeyBindings
                 "[Inventory]=" & GetKeyName(OpenInventoryKey) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(ChatKey) & Environment.NewLine &
                 "[Special]=" & GetKeyName(SpecialKey) & Environment.NewLine &
-                "[MuteMusic]=" & GetKeyName(MuteMusicKey) & Environment.NewLine &
+                "[MuteAudio]=" & GetKeyName(MuteAudioKey) & Environment.NewLine &
                 "[Up]=" & GetKeyName(UpKey) & Environment.NewLine &
                 "[Down]=" & GetKeyName(DownKey) & Environment.NewLine &
                 "[Left]=" & GetKeyName(LeftKey) & Environment.NewLine &

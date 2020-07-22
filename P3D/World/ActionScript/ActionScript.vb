@@ -1,3 +1,4 @@
+Imports System.Globalization
 Public Class ActionScript
 
     Public Scripts As New List(Of Script)
@@ -160,7 +161,7 @@ nextScript:
         Dim l As ScriptLevel = ScriptLevels(ScriptLevelIndex)
         For Each newScript As String In ScriptData
             If i = 0 And newScript.ToLower().StartsWith("version=") Then
-                l.ScriptVersion = CInt(newScript.Remove(0, ("version=").Length))
+                l.ScriptVersion = CInt(newScript.ToLower().Remove(0, ("version=").Length))
                 l.CurrentLine += 1
             Else
                 While newScript.StartsWith(" ") = True Or newScript.StartsWith(StringHelper.Tab) = True
@@ -374,15 +375,15 @@ nextScript:
                         Dim diff = date1 - date2
                         Select Case format
                             Case "days", "day"
-                                If diff.Days >= value Then
+                                If CInt(diff.TotalDays) >= value Then
                                     remove = True
                                 End If
                             Case "minutes", "minute"
-                                If diff.Minutes >= value Then
+                                If CInt(diff.TotalMinutes) >= value Then
                                     remove = True
                                 End If
                             Case "seconds", "second"
-                                If diff.Seconds >= value Then
+                                If CInt(diff.TotalSeconds) >= value Then
                                     remove = True
                                 End If
                             Case "years", "year"
@@ -398,7 +399,7 @@ nextScript:
                                     remove = True
                                 End If
                             Case "hours", "hour"
-                                If diff.Hours >= value Then
+                                If CInt(diff.TotalHours) >= value Then
                                     remove = True
                                 End If
                             Case "dayofweek"
@@ -435,12 +436,16 @@ nextScript:
 
     Public Shared Function UnixToTime(ByVal strUnixTime As String) As Date
         Dim unixDate = New Date(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
-        unixDate.AddSeconds(Convert.ToInt64(strUnixTime)).ToLocalTime()
+        strUnixTime = strUnixTime.Split(".")(0)
+        Dim a = Convert.ToInt64(strUnixTime)
+        unixDate = unixDate.AddSeconds(a)
+        unixDate = unixDate.ToLocalTime()
         Return unixDate
     End Function
 
     Public Shared Function TimeToUnix(ByVal dteDate As Date) As String
-        Return (dteDate.ToUniversalTime() - New Date(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds.ToString()
+        Dim invC = CultureInfo.InvariantCulture
+        Return (dteDate.ToUniversalTime() - New Date(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds.ToString(invC)
     End Function
 
     Public Shared Sub RegisterID(ByVal i As String)

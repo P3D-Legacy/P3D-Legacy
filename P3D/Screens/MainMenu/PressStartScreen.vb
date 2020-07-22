@@ -211,7 +211,8 @@ Public Class PressStartScreen
                 If ControllerHandler.IsConnected() Then
                     text = "Press      to start."
                 Else
-                    text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
+                    text = "Press " & KeyBindings.EnterKey1.ToString().ToUpper & " to start."
+                    'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
                 End If
 
                 Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
@@ -263,9 +264,11 @@ Public Class NewMainMenuScreen
     Private _sliderTarget As Integer = 0
 
     Private _menuTexture As Texture2D = Nothing
+    Private _oldMenuTexture As Texture2D
 
     Private _profiles As New List(Of GameProfile)
     Private _selectedProfile As Integer = 0
+    Private _yIndex As Integer = 0
     Private _menuIndex As Integer = 1 '0 = New Game, 1 = Profiles
 
     Private _messageBox As UI.MessageBox
@@ -279,6 +282,7 @@ Public Class NewMainMenuScreen
         CanChat = False
 
         _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
+        _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
         _screenOffset.X = CSng(windowSize.Width / 2 - 80)
         _screenOffsetTarget.X = _screenOffset.X
@@ -306,6 +310,7 @@ Public Class NewMainMenuScreen
                         If New Rectangle(CInt(xOffset), CInt(_screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
                             If _selectedProfile = x Then
                                 ClickedProfile()
+                                SoundManager.PlaySound("select")
                             Else
                                 Dim diff As Integer = x - _selectedProfile
                                 _screenOffsetTarget.X -= diff * 180
@@ -315,14 +320,27 @@ Public Class NewMainMenuScreen
                             Exit For
                         End If
                     Next
+                    If _profiles(_selectedProfile).IsGameJolt AndAlso _profiles(_selectedProfile).Loaded Then
+                        ' Click on gamejolt buttons
+                        Dim _xOffset As Single = _screenOffset.X + (100 * (1 - _fadeIn))
+                        Dim r As New Vector2(_xOffset + 400, _screenOffset.Y + 200)
+                        If New Rectangle(CInt(r.X), CInt(r.Y), 32, 32).Contains(MouseHandler.MousePosition) Then
+                            ButtonChangeMale()
+                        ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                            ButtonChangeFemale()
+                        ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                            ButtonResetSave()
+                        End If
+                    End If
                 End If
-                If Controls.Dismiss(True, False, False) Then
+                    If Controls.Dismiss(True, False, False) Then
                     ' Click on profiles.
                     For x = 0 To _profiles.Count - 1
                         Dim xOffset As Single = _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeIn))
 
                         If New Rectangle(CInt(xOffset), CInt(_screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
                             If _selectedProfile = x Then
+                                SoundManager.PlaySound("select")
                                 DismissProfile()
                             End If
                             Exit For
@@ -333,19 +351,46 @@ Public Class NewMainMenuScreen
                 If Controls.Right(True) And _selectedProfile < _profiles.Count - 1 Then
                     _selectedProfile += 1
                     _screenOffsetTarget.X -= 180
+                    _yIndex = 0
                 End If
                 If Controls.Left(True) And _selectedProfile > 0 Then
                     _selectedProfile -= 1
                     _screenOffsetTarget.X += 180
+                    _yIndex = 0
                 End If
+                If _profiles(_selectedProfile).IsGameJolt AndAlso _profiles(_selectedProfile).Loaded Then
+                    If Controls.Down(True, True, False) Then
+                        _yIndex += 1
+                    End If
+                    If Controls.Up(True, True, False) Then
+                        _yIndex -= 1
+                    End If
+                    _yIndex = Clamp(_yIndex, 0, 3)
+                End If
+
                 _selectedProfile = _selectedProfile.Clamp(0, _profiles.Count - 1)
 
                 If _fadeIn = 1.0F Then
                     If Controls.Accept(False, True, True) Then
-                        ClickedProfile()
+                        Select Case _yIndex
+                            Case 0
+                                SoundManager.PlaySound("select")
+                                ClickedProfile()
+                            Case 1
+                                SoundManager.PlaySound("select")
+                                ButtonChangeMale()
+                            Case 2
+                                SoundManager.PlaySound("select")
+                                ButtonChangeFemale()
+                            Case 3
+                                SoundManager.PlaySound("select")
+                                ButtonResetSave()
+                        End Select
                     End If
                     If Controls.Dismiss(False, True, True) Then
+                        SoundManager.PlaySound("select")
                         DismissProfile()
+                        _yIndex = 0
                     End If
                     ' Try to load the GameJolt profile once the player has logged in.
                     _profiles(0).LoadGameJolt()
@@ -390,6 +435,31 @@ Public Class NewMainMenuScreen
             UpdateScreenOffset()
         End If
     End Sub
+
+    Private Sub ButtonChangeMale()
+        If GameJoltSave.Gender = "0" Then
+            Exit Sub
+        End If
+        GameJoltSave.Gender = "0"
+
+        Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
+        _profiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
+    End Sub
+    Private Sub ButtonChangeFemale()
+        If GameJoltSave.Gender = "1" Then
+            Exit Sub
+        End If
+        GameJoltSave.Gender = "1"
+
+        Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
+        _profiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
+    End Sub
+    Private Sub ButtonResetSave()
+        GameJoltSave.ResetSave()
+        _profiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
+        _profiles(_selectedProfile).SetToDefault()
+    End Sub
+
 
     Private Sub ClickedProfile()
         If _selectedProfile = 0 And Security.FileValidation.IsValid(False) = False Then
@@ -451,13 +521,49 @@ Public Class NewMainMenuScreen
             End If
         End If
     End Sub
+    Public Sub DrawGameJoltButtons(ByVal offset As Vector2)
+        Dim r As New Rectangle(CInt(offset.X + 400), CInt(offset.Y + 200), 512, 128)
+        Dim y As Integer = 0
 
+        Dim fontColor As Color = Color.White
+        Dim dayTime = World.GetTime
+        If dayTime = World.DayTime.Day OrElse dayTime = World.DayTime.Morning Then
+            fontColor = Color.Black
+        End If
+
+        If ScaleScreenRec(New Rectangle(r.X, r.Y, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 1 Then
+            y = 16
+
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Change to male", New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
+        End If
+        SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y, 32, 32), New Rectangle(144, 32 + y, 16, 16), Color.White)
+
+        y = 0
+        If ScaleScreenRec(New Rectangle(r.X, r.Y + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 2 Then
+            y = 16
+
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Change to female", New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
+        End If
+        SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48, 32, 32), New Rectangle(160, 32 + y, 16, 16), Color.White)
+
+        y = 0
+        If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 3 Then
+            y = 16
+
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Reset save", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
+        End If
+        SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48, 32, 32), New Rectangle(176, 32 + y, 16, 16), Color.White)
+
+    End Sub
     Private Sub DrawProfiles()
         ' Draw profiles.
         For x = 0 To _profiles.Count - 1
             Dim xOffset As Single = _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeIn))
 
             _profiles(x).Draw(New Vector2(xOffset, _screenOffset.Y), CInt(_fadeIn * 255), (x = _selectedProfile), _menuTexture)
+            If _profiles(x).IsGameJolt AndAlso _profiles(x).Loaded AndAlso (x = _selectedProfile) Then
+                DrawGameJoltButtons(New Vector2(xOffset, _screenOffset.Y))
+            End If
         Next
 
         If _fadeIn = 1.0F Then
@@ -584,12 +690,23 @@ Public Class NewMainMenuScreen
         Private _sprite As Texture2D
         Private _gameModeExists As Boolean
         Private _skin As String = ""
+        Private _surfing As Boolean = False
+        Private _tempSurfSkin As String = ""
 
         Private _fontSize As Single = 0.75F
         Private _spriteIndex As Integer = 0
         Private _spriteDelay As Single = 1.5F
         Private _logoBounce As Single = 0F
         Private ReadOnly _spriteOrder As Integer() = {0, 1, 0, 2}
+
+        Public Property Sprite As Texture2D
+            Get
+                Return _sprite
+            End Get
+            Set(value As Texture2D)
+                _sprite = value
+            End Set
+        End Property
 
         Public ReadOnly Property IsGameJolt As Boolean
             Get
@@ -669,6 +786,13 @@ Public Class NewMainMenuScreen
             End Get
         End Property
 
+        Public Sub SetToDefault()
+            _timePlayed = "00:00:00"
+            _location = "Your Room"
+            _pokemonTextures.Clear()
+            _badges = 0
+        End Sub
+
         Public Sub New(ByVal path As String, ByVal isNewGameButton As Boolean)
             If isNewGameButton Then
                 _isNewGameButton = True
@@ -677,8 +801,6 @@ Public Class NewMainMenuScreen
                 If path = "" Then
                     _isGameJolt = True
                     _loaded = False
-
-
                     _sprite = TextureManager.GetTexture("Textures\UI\GameJolt\gameJoltIcon")
 
                     LoadGameJolt()
@@ -693,13 +815,13 @@ Public Class NewMainMenuScreen
             End If
         End Sub
 
-        Private Sub LoadContent(ByVal data As String)
+        Private Sub LoadContent(ByVal pokedata As String)
             If GameModeManager.GameModeExists(_gameMode) Then
                 _gameModeExists = True
 
                 GameModeManager.SetGameModePointer(_gameMode)
 
-                Dim pokemonData As String() = data.SplitAtNewline()
+                Dim pokemonData As String() = pokedata.SplitAtNewline()
                 For Each line As String In pokemonData
                     If line.StartsWith("{") Then
                         _pokemonTextures.Add(Pokemon.GetPokemonByData(line).GetMenuTexture(True))
@@ -707,7 +829,11 @@ Public Class NewMainMenuScreen
                 Next
 
                 If _isGameJolt = False Then
-                    _sprite = TextureManager.GetTexture("Textures\NPC\" & _skin)
+                    If _surfing Then
+                        _sprite = TextureManager.GetTexture("Textures\NPC\" & _tempSurfSkin)
+                    Else
+                        _sprite = TextureManager.GetTexture("Textures\NPC\" & _skin)
+                    End If
                 End If
             Else
                 _gameModeExists = False
@@ -749,6 +875,13 @@ Public Class NewMainMenuScreen
                             _gameMode = content
                         Case "skin"
                             _skin = content
+                        Case "surfing"
+                            If content = "1" Then
+                                _surfing = True
+                            End If
+                        Case "tempsurfskin"
+                            _tempSurfSkin = content
+
                     End Select
                 End If
             Next
@@ -897,6 +1030,7 @@ Public Class NewMainMenuScreen
                         If _isGameJolt Then
                             Core.Player.IsGameJoltSave = True
                             Core.Player.LoadGame("GAMEJOLTSAVE")
+                            GameJolt.Emblem.GetAchievedEmblems()
 
                             SetScreen(New JoinServerScreen(CurrentScreen))
                         Else
@@ -986,14 +1120,20 @@ Public Class GameModeSelectionScreen
             _index += 1
         End If
         If Controls.Dismiss(True, True, True) Then
+            SoundManager.PlaySound("select")
             SetScreen(PreScreen)
         End If
         If Controls.Accept(True, True, True) Then
             GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
-            SetScreen(New Screens.MainMenu.NewNewGameScreen(PreScreen))
+            SoundManager.PlaySound("select")
+            If GameModeManager.ActiveGameMode.IntroType = "0" Then
+                SetScreen(New Screens.MainMenu.NewNewGameScreen(PreScreen))
+            Else
+                SetScreen(New TransitionScreen(Me.PreScreen, New NewGameScreen(), Color.Black, False))
+            End If
         End If
 
-        Dim targetOffset = GetTargetOffset()
+            Dim targetOffset = GetTargetOffset()
 
         If _offset <> targetOffset Then
             _offset = MathHelper.Lerp(_offset, targetOffset, 0.25F)

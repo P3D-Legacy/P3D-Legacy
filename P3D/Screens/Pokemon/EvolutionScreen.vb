@@ -279,7 +279,7 @@
                         Core.Player.AddPoints(10, "Evolved Pokémon.")
 
                         If ConnectScreen.Connected = True Then
-                            Core.ServersManager.ServerConnection.SendGameStateMessage("evolved his " & currentPokemon.GetName() & " into a " & evolvedPokemon.GetName() & "!")
+                            Core.ServersManager.ServerConnection.SendGameStateMessage("evolved their " & currentPokemon.GetName() & " into a " & evolvedPokemon.GetName() & "!")
                         End If
 
                         TextBox.Show(t, {}, False, False)

@@ -117,6 +117,10 @@
         ''' </summary>
         Public Taunted As Integer = 0
         ''' <summary>
+        ''' Telekinesis move counter, if true, Pokémon will always be hit.
+        ''' </summary>
+        Public Telekinesis As Integer = 0
+        ''' <summary>
         ''' If the Pokémon is affected by Embargo.
         ''' </summary>
         Public Embargo As Integer = 0
@@ -219,6 +223,10 @@
         ''' </summary>
         Public SolarBeam As Integer = 0
         ''' <summary>
+        ''' Solar blade move counter.
+        ''' </summary>
+        Public SolarBlade As Integer = 0
+        ''' <summary>
         ''' Ice Burn move counter.
         ''' </summary>
         Public IceBurn As Integer = 0
@@ -247,9 +255,17 @@
         ''' </summary>
         Public ShadowForce As Integer = 0
         ''' <summary>
+        ''' Phantom Force move counter.
+        ''' </summary>
+        Public PhantomForce As Integer = 0
+        ''' <summary>
         ''' Sky Drop move counter.
         ''' </summary>
         Public SkyDrop As Integer = 0
+        ''' <summary>
+        ''' Geomancy move counter.
+        ''' </summary>
+        Public Geomancy As Integer = 0
 
         ''' <summary>
         ''' Turns this Pokémon is trapped in Wrap.
@@ -297,6 +313,10 @@
         ''' </summary>
         Public FuryCutter As Integer = 0
         ''' <summary>
+        ''' Counter for the Echoed Voice move.
+        ''' </summary>
+        Public EchoedVoice As Integer = 0
+        ''' <summary>
         ''' Counter for the Stockpile move.
         ''' </summary>
         Public StockPile As Integer = 0
@@ -337,6 +357,30 @@
         ''' King's Shield move counter.
         ''' </summary>
         Public KingsShield As Integer = 0
+        ''' <summary>
+        ''' Spiky Shield move counter.
+        ''' </summary>
+        Public SpikyShield As Integer = 0
+        ''' <summary>
+        ''' Baneful Bunker move counter.
+        ''' </summary>
+        Public BanefulBunker As Integer = 0
+        ''' <summary>
+        ''' Crafty Shield move counter.
+        ''' </summary>
+        Public CraftyShield As Integer = 0
+        ''' <summary>
+        ''' Mat Block move counter.
+        ''' </summary>
+        Public MatBlock As Integer = 0
+        ''' <summary>
+        ''' Wide Guard move counter.
+        ''' </summary>
+        Public WideGuard As Integer = 0
+        ''' <summary>
+        ''' Quick Guard move counter.
+        ''' </summary>
+        Public QuickGuard As Integer = 0
 
         ''' <summary>
         ''' Ingrain move counter.
@@ -358,6 +402,10 @@
         ''' If the Pokémon is affected by Curse.
         ''' </summary>
         Public Cursed As Integer = 0
+        ''' <summary>
+        ''' If the Pokémon is affected by Grounding.
+        ''' </summary>
+        Public Smacked As Integer = 0
         ''' <summary>
         ''' Turns until Perish Song faints Pokémon.
         ''' </summary>
@@ -420,12 +468,19 @@
             Me.SleepTurns = 0
             Me.TruantRound = 0
             Me.Taunted = 0
+            Me.Telekinesis = 0
             Me.Rage = 0
             Me.Uproar = 0
             Me.Endure = 0
             Me.Protect = 0
             Me.Detect = 0
             Me.KingsShield = 0
+            Me.SpikyShield = 0
+            Me.BanefulBunker = 0
+            Me.CraftyShield = 0
+            Me.MatBlock = 0
+            Me.WideGuard = 0
+            Me.QuickGuard = 0
             Me.ProtectMoveCounter = 0
             Me.ToxicRound = 0
             Me.Nightmare = 0
@@ -445,10 +500,12 @@
             Me.DefenseCurl = 0
             Me.Charge = 0
             Me.SolarBeam = 0
+            Me.SolarBlade = 0
             Me.LansatBerry = 0
             Me.CustapBerry = 0
             Me.Trapped = 0
             Me.FuryCutter = 0
+            Me.EchoedVoice = 0
             Me.TurnsInBattle = 0
             Me.StockPile = 0
             Me.DestinyBond = 0
@@ -461,7 +518,9 @@
             Me.Bounce = 0
             Me.Dive = 0
             Me.ShadowForce = 0
+            Me.PhantomForce = 0
             Me.SkyDrop = 0
+            Me.Geomancy = 0
             Me.SkyAttack = 0
             Me.RazorWind = 0
             Me.SkullBash = 0
@@ -475,6 +534,7 @@
             Me.Bide = 0
             Me.BideDamage = 0
             Me.Roost = 0
+            Me.Smacked = 0
 
             'If Baton Pass is not used to switch, also reset these variables:
             If BatonPassed = False Then

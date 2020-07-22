@@ -195,13 +195,16 @@
         If Controls.Accept(True, True, True) = True Then
             If Me.MovesList.Count = 0 Then
                 Core.SetScreen(Me.PreScreen)
+                SoundManager.PlaySound("select")
             Else
                 LearnMove(MovesList(index))
+                SoundManager.PlaySound("select")
             End If
         End If
 
         If Controls.Dismiss(True, True, True) = True Then
             Core.SetScreen(Me.PreScreen)
+            SoundManager.PlaySound("select")
         End If
     End Sub
 
@@ -209,6 +212,9 @@
         If Pokemon.Attacks.Count < 4 Then
             LearnedMove = True
             Pokemon.Attacks.Add(BattleSystem.Attack.GetAttackByID(a.ID))
+            TextBox.Show("... " & Pokemon.GetDisplayName() & " learned~" & a.Name & "!")
+            SoundManager.PlaySound("success_small", False)
+            Core.SetScreen(Me.PreScreen)
         Else
             Core.SetScreen(New LearnAttackScreen(Core.CurrentScreen.PreScreen, Me.Pokemon, BattleSystem.Attack.GetAttackByID(a.ID)))
         End If

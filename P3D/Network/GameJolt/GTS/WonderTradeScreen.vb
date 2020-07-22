@@ -186,6 +186,7 @@
                         For i = 0 To Me.MenuItems.Count - 1
                             If New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 400 + i * 96, 64 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Cursor Then
+                                    SoundManager.PlaySound("select")
                                     Me.SelectMenuEntry()
                                 Else
                                     Cursor = i
@@ -195,6 +196,7 @@
                     End If
 
                     If Controls.Accept(False, True, True) = True Then
+                        SoundManager.PlaySound("select")
                         Me.SelectMenuEntry()
                     End If
                 Case ScreenStates.Idle
@@ -207,6 +209,7 @@
 
                             Core.SetScreen(selScreen)
                             CType(Core.CurrentScreen, PartyScreen).CanChooseHMPokemon = False
+                            CType(Core.CurrentScreen, PartyScreen).CanChooseFusedPokemon = False
                             Me.OpenedSelect = True
                         End If
                     Else
@@ -220,6 +223,7 @@
                     End If
                 Case ScreenStates.Stopped
                     If KeyBoardHandler.GetPressedKeys().Count > 0 Or ControllerHandler.HasControlerInput() = True Or Controls.Accept() = True Or Controls.Dismiss() = True Then
+                        SoundManager.PlaySound("select")
                         CloseScreen()
                     End If
                 Case ScreenStates.Trading
@@ -411,7 +415,8 @@
 
             MusicManager.Play("gts", True)
 
-            If Core.Player.Pokemons(Core.Player.Pokemons.Count - 1).CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, "") = True Then
+            Dim p As Pokemon = Core.Player.Pokemons(Core.Player.Pokemons.Count - 1)
+            If p.CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, SelectedPokemon.Number.ToString) Then
                 Core.SetScreen(New EvolutionScreen(Me, {Core.Player.Pokemons.Count - 1}.ToList(), Me.SelectedPokemon.Number.ToString(), EvolutionCondition.EvolutionTrigger.Trading))
             End If
 

@@ -34,9 +34,9 @@ Namespace BattleSystem.Moves.Fighting
             Me.CounterAffected = True
 
             Me.DisabledWhileGravity = False
-            Me.UseEffectiveness = False
+            Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.HasSecondaryEffect = True
+            Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = False

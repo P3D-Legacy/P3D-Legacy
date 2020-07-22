@@ -351,8 +351,8 @@ game_message_third_person_on,Mode troisième personne.
 game_message_third_person_off,Mode première personne.
 game_message_free_camera_on,Mouvements libres de la caméra activé.
 game_message_free_camera_off,Mouvement libress de la caméra désactivé.
-game_message_music_on,Musique activé.
-game_message_music_off,Musique désactivé.
+game_message_audio_on,L'audio activé.
+game_message_audio_off,L'audio désactivé.
 ---
 Online:
 game_message_close_connection,Tu as fermé la partie en CO-OP.

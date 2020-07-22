@@ -1,4 +1,4 @@
-{"Level"{LEV[{"Name"{str[Seven Island]}}{"MusicLoop"{str[violet]}}{"CurrentRegion"{str[sevii islands]}}]}}
+{"Level"{LEV[{"Name"{str[Seven Island]}}{"MusicLoop"{str[violet]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[1]}}{"Lightning"{int[0]}}]}}
 
 Floor:
@@ -151,7 +151,7 @@ Dock:
 {"Structure"{STR[{"Map"{str[structures\sevii\dock]}}{"Offset"{sngArr[14,0,15]}}]}}
 
 NPC:
-{"NPC"{NPC[{"Position"{sngArr[9,1,7]}}{"TextureID"{str[oldlady]}}{"ID"{int[0]}}{"Name"{str[IDlotto]}}{"Action"{int[0]}}{"AdditionalValue"{str[These islands are called~the Sevii Islands~because there are seven.*...Or atleast that's~what the young~people believe.*The truth is,~these islands are~so named because~they are said to have~been made in seven days.]}}{"Rotation"{int[0]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[[16,10,3,2]]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[9,1,7]}}{"TextureID"{str[oldlady]}}{"ID"{int[0]}}{"Name"{str[IDlotto]}}{"Action"{int[0]}}{"AdditionalValue"{str[These islands are called~the Sevii Islands~because there are seven.*...Or at least that's~what the young~people believe.*The truth is,~these islands are~so named because~they are said to have~been made in seven days.]}}{"Rotation"{int[0]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[[16,10,3,2]]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[14,1,4]}}{"TextureID"{str[61]}}{"ID"{int[1]}}{"Name"{str[IDlotto]}}{"Action"{int[0]}}{"AdditionalValue"{str[This island has been~left virtually untouched~in its natural state.*It could be a little~difficult to hike around~because of that.]}}{"Rotation"{int[0]}}{"Movement"{str[Walk]}}{"MoveRectangles"{recArr[[14,4,3,3]]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[7,0,17]}}{"TextureID"{str[13]}}{"ID"{int[2]}}{"Name"{str[IDlotto]}}{"Action"{int[1]}}{"AdditionalValue"{str[quest\sdance]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[14,4,3,3]]}}]}}
 

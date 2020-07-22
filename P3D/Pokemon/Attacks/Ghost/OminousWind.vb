@@ -14,7 +14,7 @@
             Me.Power = 60
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Ominous Wind"
             Me.Description = "The user blasts the target with a gust of repulsive wind. It may also raise all the user's stats at once."
             Me.CriticalChance = 0

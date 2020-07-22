@@ -415,6 +415,146 @@
                 Return New Abilities.FairyAura
             Case 188
                 Return New Abilities.AuraBreak
+            'Case 189
+            'Primordial Sea
+            'Case 190
+            'Desolate Land
+            'Case 191
+            'Delta Stream
+            'Case 192
+            'Stamina
+            'Case 193
+            'Wimp Out
+            'Case 194
+            'Emergency Exit
+            'Case 195
+            'Water Compaction
+            'Case 196
+            'Merciless
+            'Case 197
+            'Shields Down
+            'Case 198
+            'Stakeout
+            'Case 199
+            'Water Bubble
+            'Case 200
+            'Steelworker
+            'Case 201
+            'Berserk
+            Case 202
+                Return New Abilities.SlushRush()
+            'Case 203
+            'Long Reach
+            'Case 204
+            'Liquid Voice
+            'Case 205
+            'Triage
+            Case 206
+                Return New Abilities.Galvanize()
+            Case 207
+                Return New Abilities.SurgeSurfer()
+            'Case 208
+            'Schooling
+            'Case 209
+            'Disguise
+            'Case 210
+            'Battle Bond
+            'Case 211
+            'Power Construct
+            'Case 212
+            'Corrosion
+            'Case 213
+            'Comatose
+            'Case 214
+            'Queenly Majesty
+            'Case 215
+            'Innards Out
+            'Case 216
+            'Dancer
+            'Case 217
+            'Battery
+            'Case 218
+            'Fluffy
+            'Case 219
+            'Dazzling
+            'Case 220
+            'Soul-Heart
+            Case 221
+                Return New Abilities.TanglingHair()
+            'Case 222
+            'Receiver
+            Case 223
+                Return New Abilities.PowerofAlchemy()
+            'Case 224
+            'Beast Boost
+            'Case 225
+            'RKS System
+            Case 226
+                Return New Abilities.ElectricSurge()
+            Case 227
+                Return New Abilities.PsychicSurge()
+            Case 228
+                Return New Abilities.MistySurge()
+            Case 229
+                Return New Abilities.GrassySurge()
+                'Case 230
+                'Full Metal Body
+                'Case 231
+                'Shadow Shield
+                'Case 232
+                'Prism Armor
+                'Case 233
+                'Neuroforce
+                'Case 234
+                'Intrepid Sword
+                'Case 235
+                'Dauntless Shield
+                'Case 236
+                'Libero
+                'Case 237
+                'Ball Fetch
+                'Case 238
+                'Cotton Down
+                'Case 239
+                'Propeller Tail
+                'Case 240
+                'Mirror Armor
+                'Case 241
+                'Gulp Missile
+                'Case 242
+                'Stalwart
+                'Case 243
+                'Steam Engine
+                'Case 244
+                'Punk Rock
+                'Case 245
+                'Sand Spit
+                'Case 246
+                'Ice Scales
+                'Case 247
+                'Ripen
+                'Case 248
+                'Ice Face
+                'Case 249
+                'Power Spot
+                'Case 250
+                'Mimicry
+                'Case 251
+                'Screen Cleaner
+                'Case 252
+                'Steely Spirit
+                'Case 253
+                'Perish Body
+                'Case 254
+                'Wandering Spirit
+                'Case 255
+                'Gorilla Tactics
+                'Case 256
+                'Neutralizing Gas
+                'Case 257
+                'Pastel Veil
+                'Case 258
+                'Hunger Switch
             Case Else
                 Return New Abilities.Stench
         End Select

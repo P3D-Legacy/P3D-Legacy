@@ -185,9 +185,11 @@ Public Class NameObjectScreen
         If Controls.Accept(True, False, True) = True Or KeyBoardHandler.KeyPressed(KeyBindings.EnterKey1) = True Then
             Select Case _index
                 Case 0
+                    SoundManager.PlaySound("select")
                     ClickYes()
                 Case 1
                     If _canChooseNo = True Then
+                        SoundManager.PlaySound("select")
                         ClickNo()
                     End If
             End Select
@@ -213,6 +215,7 @@ Public Class NameObjectScreen
                 Me._currentText = Me.ReplaceInvalidChars(Me._currentText)
 
                 If Controls.Dismiss(True, False, True) = True And _canChooseNo = True Then
+                    SoundManager.PlaySound("select")
                     ClickNo()
                 End If
             End If

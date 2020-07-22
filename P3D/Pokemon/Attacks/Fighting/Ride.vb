@@ -18,7 +18,7 @@
             Me.Name = "Ride"
             Me.Description = "The user runs over the target rapidly. The power rises when the user's accuracy stat is low."
             Me.CriticalChance = 1
-            Me.IsHMMove = False
+            Me.IsHMMove = True
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1

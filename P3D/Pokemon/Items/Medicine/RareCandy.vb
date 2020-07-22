@@ -34,7 +34,7 @@ Namespace Items.Medicine
 
                 Dim s As String =
                     "version=2" & Environment.NewLine &
-                    "@sound.play(success_small)" & Environment.NewLine &
+                    "@sound.play(success_small,1)" & Environment.NewLine &
                     "@text.show(" & Pokemon.GetDisplayName() & " reached~level " & Pokemon.Level & "!)" & Environment.NewLine
 
                 Dim removedItem As Boolean = False
@@ -52,7 +52,7 @@ Namespace Items.Medicine
                         Else
                             Pokemon.Attacks.Add(Pokemon.AttackLearns(Pokemon.Level))
 
-                            s &= "@sound.play(success_small)" & Environment.NewLine &
+                            s &= "@sound.play(success_small,1)" & Environment.NewLine &
                                  "@text.show(" & Pokemon.GetDisplayName() & " learned~" & Pokemon.AttackLearns(Pokemon.Level).Name & "!*" & Me.RemoveItem() & ")" & Environment.NewLine
                             removedItem = True
                             PlayerStatistics.Track("Moves learned", 1)

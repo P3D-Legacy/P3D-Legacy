@@ -6,7 +6,7 @@ Namespace Items.Standard
         Inherits Item
 
         Public Overrides ReadOnly Property Description As String = "A rare chunk of brick."
-        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
+        Public Overrides ReadOnly Property PokeDollarPrice As Integer = 2500
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
 

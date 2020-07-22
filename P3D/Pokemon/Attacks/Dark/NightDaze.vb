@@ -64,6 +64,6 @@
             End If
         End Sub
 
-		End Class
+        End Class
 
 End Namespace

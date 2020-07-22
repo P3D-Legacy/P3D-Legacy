@@ -14,7 +14,7 @@
             Me.Power = 75
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Drain Punch"
             Me.Description = "An energy-draining punch. The user's HP is restored by half the damage taken by the target."
             Me.CriticalChance = 1

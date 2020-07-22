@@ -47,24 +47,28 @@
 
                     Dim selScreen = New PartyScreen(Me, Item.GetItemByID(5), AddressOf ChosePokemon, "Choose Pokémon to trade", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf ChosePokemonHandler
-
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(selScreen)
                 End If
                 If New Rectangle(180, 510, 32 * 5 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                     PokeIndex = -1
+                    SoundManager.PlaySound("select")
                 End If
                 If New Rectangle(780, 560, 32 * 5 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                     Core.SetScreen(New SummaryScreen(Me, {D.Pokemon}, 0))
+                    SoundManager.PlaySound("select")
                     ''Core.SetScreen(New PokemonStatusScreen(Me, 0, {D.Pokemon}, D.Pokemon, False))
                 End If
                 If New Rectangle(520, 560, 32 * 3 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                     If MeetsCondition() = True Then
+                        SoundManager.PlaySound("select")
                         Core.SetScreen(New TradingScreen(Me, Me.D, Me.PokeIndex))
                     End If
                 End If
             End If
 
             If Controls.Dismiss(True, True) = True Then
+                SoundManager.PlaySound("select")
                 Core.SetScreen(Me.PreScreen)
             End If
         End Sub
@@ -447,7 +451,7 @@
                             P2Pos.Y -= 2
 
                             If P1Pos.Y >= Core.windowSize.Height And P2Pos.Y <= -160 Then
-                                If D.Pokemon.CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, "") = True Then
+                                If D.Pokemon.CanEvolve(EvolutionCondition.EvolutionTrigger.Trading, P.Number.ToString) = True Then
                                     Core.SetScreen(New EvolutionScreen(Me, {Core.Player.Pokemons.Count - 1}.ToList(), P.Number.ToString(), EvolutionCondition.EvolutionTrigger.Trading))
                                 End If
                                 state = 3

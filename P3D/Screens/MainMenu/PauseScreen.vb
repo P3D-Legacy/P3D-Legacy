@@ -25,7 +25,7 @@
         If Core.Player.IsGameJoltSave = True Then
             Me.canCreateAutosave = False
         Else
-            If Not Me.PreScreen Is Nothing Then
+            If Me.PreScreen IsNot Nothing AndAlso Camera.Name IsNot Nothing Then
                 If Camera.Name <> "Overworld" Then
                     Me.canCreateAutosave = False
                 Else
@@ -123,8 +123,10 @@
                     If Controls.Accept(True, False) = True Then
                         Select Case Me.mainIndex
                             Case 0
+                                SoundManager.PlaySound("select")
                                 ClickContinue()
                             Case 1
+                                SoundManager.PlaySound("select")
                                 ClickQuit()
                         End Select
                     End If
@@ -137,13 +139,16 @@
         If Controls.Accept(False, True) = True Then
             Select Case Me.mainIndex
                 Case 0
+                    SoundManager.PlaySound("select")
                     ClickContinue()
                 Case 1
+                    SoundManager.PlaySound("select")
                     ClickQuit()
             End Select
         End If
 
         If Controls.Dismiss() = True Or KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True And leftEscapeKey = True Or ControllerHandler.ButtonPressed(Buttons.Start) = True Then
+            SoundManager.PlaySound("select")
             ClickContinue()
         End If
 
@@ -217,8 +222,10 @@
                     If Controls.Accept(True, False) = True Then
                         Select Case Me.quitIndex
                             Case 0
+                                SoundManager.PlaySound("select")
                                 ClickBack()
                             Case 1
+                                SoundManager.PlaySound("select")
                                 ClickConfirmationQuit()
                         End Select
                     End If
@@ -231,13 +238,16 @@
         If Controls.Accept(False, True) = True Then
             Select Case Me.quitIndex
                 Case 0
+                    SoundManager.PlaySound("select")
                     ClickBack()
                 Case 1
+                    SoundManager.PlaySound("select")
                     ClickConfirmationQuit()
             End Select
         End If
 
         If Controls.Dismiss(False, True) = True Then
+            SoundManager.PlaySound("select")
             ClickBack()
         End If
     End Sub
@@ -257,9 +267,6 @@
             Core.ServersManager.ServerConnection.Disconnect()
         End If
         Chat.ClearChat()
-        'If Core.Player.loadedSave = True And Me.canCreateAutosave = True Then
-        '    Core.Player.SaveGame(False)
-        'End If
         ScriptStorage.Clear()
         Core.SetScreen(New PressStartScreen())
         Core.Player.loadedSave = False

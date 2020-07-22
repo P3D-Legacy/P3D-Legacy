@@ -1,4 +1,4 @@
-﻿language_name,Swedish
+language_name,Swedish
 ---
 MainMenuScreen:
 main_menu_continue,Fortsätt
@@ -20,6 +20,33 @@ delete_menu_cancel,Avbryt
 LanguageScreen:
 language_menu_apply,Applicera
 language_menu_back,Tillbaka
+---
+PacksScreen:
+pack_menu_up,Upp
+pack_menu_down,Ned
+pack_menu_toggle_on,Aktivera
+pack_menu_toggle_off,Deaktivera
+pack_menu_information,Informastion
+pack_menu_enabled,Aktiverad
+pack_menu_apply,Applicera
+pack_menu_back,Tillbaka
+pack_menu_songs,Låtar
+pack_menu_sounds,Ljuder
+pack_menu_textures,Textur
+pack_menu_name,Namn
+pack_menu_version,Versjon
+pack_menu_by,Av
+pack_menu_content,Innehåll
+pack_menu_description,Beskrivning
+---
+GameModeMenu:
+gamemode_menu_name,Namn
+gamemode_menu_description,Beskrivning
+gamemode_menu_version,Versjon
+gamemode_menu_author,Författar
+gamemode_menu_contentpath,Innehåll Filsökväg
+gamemode_menu_create,Laga
+gamemode_menu_back,Tillbaka
 ---
 Pausescreen:
 pause_menu_title,Spel meny
@@ -173,6 +200,8 @@ option_screen_battle_style,Stridsstil
 option_screen_battle_style_shift,Skiftande
 option_screen_battle_style_set,Fast
 option_screen_battle_style_description,Stridsstil~Fast: Du blir inte frågad om du vill byta ut din Pokémon~Skiftande: Du kan byta ut din Pokémon efter du har besegrat en utmanare.
+option_screen_view_bobbing,Visa bobbing
+option_screen_view_bobbing_description,Slår kamera skakar på eller av.
 option_screen_reset_options,Återställ alternativ.
 option_screen_reset_options_description,Återställer alla alternativ.
 option_screen_save_options,Spara alternativ.
@@ -209,6 +238,7 @@ daycare_screen_pokedollar, PokéDollar
 daycare_screen_withdraw,Ta ut
 daycare_screen_backadvice,TRYCK E FÖR ATT GÅ TILLBAKA
 daycare_screen_pokemon_choose_header,Sätt in Pokémon
+Egg,Ägg
 ---
 Network Screen:
 network_screen_isonline,Du är redan i ett co-op spel! Var god stäng anslutningen~för att öppna ett nytt spel eller ansluta igen!~~~Tryck E för att gå tillbaka!
@@ -311,17 +341,53 @@ Places_Olivine City,Olivine Staden
 Places_Cianwood City,Cianwood Staden
 Places_Mahogany Town,Mahogany Samhället
 Places_Blackthorn City,Blackthorn Staden
+Places_Pallet Town,Pallet Samhället
+Places_Viridian City,Viridian Staden
+Places_Saffron City,Saffron Staden
+Places_Pewter City,Pewter Staden
+Places_Cerulean City,Cerulean Staden
+Places_Celadon City,Celadon Staden
+Places_Vermilion City,Vermilion Staden
+Places_Fuchsia City,Fuchsia Staden
+Places_Cinnabar Island,Cinnabar Ö
 Places_Lavender Town,Lavender Samhället
+Places_One Island,One Ö
+Places_Two Island,Two Ö
+Places_Three Island,Three Ö
+Places_Four Island,Four Ö
+Places_Five Island,Five Ö
+Places_Six Island,Six Ö
+Places_Seven Island,Seven Ö
 
 Special Houses:
 Places_Gate,Genomfart
 Places_Pokemon Center,Pokémon Center
 Places_Pokemon Mart,Pokémon Handelsplats
 Places_Elms lab,Elm's Labb
+Places_Oak's lab,Oak's Lab
 Places_Azalea Town Gym,Azalea Samhällets Gym
 Places_Violet City Gym,Violet Stadens Gym
+Places_Goldenrod City Gym,Goldenrod Stadens Gym
+Places_Ecruteak City Gym,Ecruteak Stadens Gym
+Places_Cianwood City Gym,Cianwood Stadens Gym
+Places_Olivine City Gym,Olivine Stadens Gym
+Places_Mahogany City Gym,Mahogany Stadens Gym
+Places_Blackthorn City Gym,Blackthorn Stadens Gym
 Places_Your House,Ditt Hus
 Places_Your Room,Ditt Rum
+Places_Daycare,Daycare
+Places_Pewter City Gym,Pewter Stadens Gym
+Places_Cerulean City Gym,Cerulean Stadens Gym
+Places_Vermilion City Gym,Vermilion Stadens Gym
+Places_Celadon City Gym,Celadon Stadens Gym
+Places_Fuchsania City Gym,Fuchsania Stadens Gym
+Places_Saffron City Gym,Saffron Stadens Gym
+Places_Cinnabar Gym,Cinnabar Gym
+Places_Viridian City Gym,Viridian Stadens Gym
+Places_Dance Theater,Dansteater
+Places_Lighthouse,Fyr
+Places_Team Rocket HQ,Team Rocket HQ
+Places_Radio Tower,Radio Torn
 
 Dungeons:
 Places_Ilex Forest,Ilex Skogen
@@ -332,12 +398,51 @@ Places_Sprout Tower,Groddtornet
 Places_Union Cave,Union Grottan
 Places_Mt. Mortar,Mortar Berget
 Places_Bell Tower,Klocktornet
+Places_Tin Tower,Tenntorn
+Places_Tin Tower Peak,Tenntorn Toppen
 Places_Burned Tower,Det Brända Tornet
 Places_Glitter Lighthouse,Glitterfyren
 Places_Ice Path,Ispassagen
 Places_National Park,National Parken
 Places_Whirl Islands,Virvel Öarna
 Places_Lake of Rage,Raseri Sjön
+Places_Underground,Underjordisk
+Places_Dragon's Den,Draknäste
+Places_Tohjo Falls,Tohjo Falls
+Places_Victory Road,Segervägen
+Places_Mt. Silver,Mt. Silver
+Places_Indigo Plateau,Indigo Platå
+Places_Safari Zone,Safari Zon
+Places_Viridian Forest,Viridian Skog
+Places_Cerulean Cave,Cerulean Grotta
+Places_Power Plant,Kraftverk
+Places_Rock Tunnel,Bergtunnel
+Places_Seafoam Islands,Seafoamöarna
+Places_Pal Park,Pal Park
+Places_Diglett's Cave,Diglett's Grotta
+Places_Mt. Moon,Mt. Måne
+Places_Mt. Ember,Mt. Glödande kol
+Places_Three Isle Path,Tre Ö Vägen
+Places_Berry Forest,Bärskog
+Places_Icefall Cave,Isfall Grotta
+Places_Lost Cave,Förlorat Grotta
+Places_Trainer Tower,Tränare Tornet
+Places_Altering Cave,Förändrande Grotta
+Places_Pattern Bush,Mönsterbusk
+Places_Dotted Hole,Prickad Hål
+Places_Tanoby Chambers,Tanoby Kammare
+Places_Tanoby Key,Tanoby Nyckel
+Places_Monean Chamber,Monean Kammare
+Places_Liptoo Chamber,Liptoo Kammare
+Places_Weepth Chamber,Weepth Kammare
+Places_Dilford Chamber,Dilford Kammare
+Places_Scrufib Chamber,Scrufib Kammare
+Places_Rixy Chamber,Rixy Kammare
+Places_Viapois Chamber,Viapois Kammare
+Places_Ancient Ruins,Forntida ruiner
+Places_Millenial Star Tower,Tusenåriga stjärnatornet
+Places_Kolben Tower,Kolben Tornet
+Places_Faraway Island,Avlägsen Ö
 
 Routes:
 Places_Route 1,Rutt 1
@@ -386,6 +491,37 @@ Places_Route 43,Rutt 43
 Places_Route 44,Rutt 44
 Places_Route 45,Rutt 45
 Places_Route 46,Rutt 46
+Places_Route 47,Rutt 47
+Places_Route 48,Rutt 48
+
+Places_Treasure Beach,Treasure Beach
+Places_Kindle Road,Kindle Road
+Places_Cape Brink,Cape Brink
+Places_Three Isle Port,Three Isle Port
+Places_Bond Bridge,Bond Bridge
+Places_Five Isle Meadow,Five Isle Meadow
+Places_Memorial Pillar,Memorial Pillar
+Places_Water Labyrinth,Water Labyrinth
+Places_Resort Gorgeous,Resort Gorgeous
+Places_Water Path,Water Path
+Places_Grass Path,Grass Path
+Places_Outcast Island,Outcast Island
+Places_Ruin Valley,Ruin Valley
+Places_Canyon Entrance,Canyon Entrance
+Places_Sevault Canyon,Sevault Canyon
+Places_Tanoby Ruins,Tanoby Ruins
+Places_Safari Zone Gate,Safari Zone Gate
+Places_S.S. Aqua,S.S. Aqua
+Places_Elite 4,Elite 4
+Places_Indigo Plateau,Indigo Plateau
+Places_Twirl Forest,Twirl Forest
+Places_Berry Vista,Berry Vista
+Places_Battle Frontier,Battle Frontier
+Places_Battle Tower,Battle Tower
+Places_Battle Factory,Battle Factory
+Places_Rocket Warehouse,Rocket Warehouse
+Places_Secret Laboratory,Secret Laboratory
+
 ---
 Item categories:
 item_category_Standard,Standard
@@ -393,7 +529,9 @@ item_category_Medicine,Medicin
 item_category_Machines,Maskiner
 item_category_Pokéballs,Pokébollar
 item_category_Plants,Plantor
-item_category_KeyItems,Huvudobjekt 
+item_category_KeyItems,Huvudobjekt
+item_category_BattleItems,Slagobjekt
+item_category_Mail,Post
 ---
 GameMessages:
 game_message_screenshot,Skärmdump sparad som 
@@ -404,8 +542,8 @@ game_message_third_person_on,Tredje person på.
 game_message_third_person_off,Tredje person av.
 game_message_free_camera_on,Fri kamera på
 game_message_free_camera_off,Fri kamera av
-game_message_music_on,Musik på
-game_message_music_off,Musik av
+game_message_audio_on,Audio på
+game_message_audio_off,Audio av
 game_message_continue_autosave,Fortsatt sparat spel:
 ---
 Online:

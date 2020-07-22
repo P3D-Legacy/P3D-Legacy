@@ -55,7 +55,7 @@
             Me.AIField1 = AIField.Damage
             Me.AIField2 = AIField.CanPoison
 
-            Me.EffectChances.Add(30)
+            Me.EffectChances.Add(50)
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)

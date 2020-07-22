@@ -14,7 +14,7 @@
             Me.Power = 60
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Assurance"
             Me.Description = "If the target has already taken some damage in the same turn, this attack's power is doubled."
             Me.CriticalChance = 1

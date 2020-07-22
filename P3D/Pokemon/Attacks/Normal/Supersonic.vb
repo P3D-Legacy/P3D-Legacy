@@ -35,7 +35,7 @@
 
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = False
-            Me.ImmunityAffected = True
+            Me.ImmunityAffected = False
             Me.HasSecondaryEffect = False
             Me.RemovesFrozen = False
 
@@ -46,7 +46,7 @@
             Me.IsProtectMove = False
             Me.IsSoundMove = True
 
-            Me.IsAffectedBySubstitute = True
+            Me.IsAffectedBySubstitute = False
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = False
             '#End

@@ -230,16 +230,19 @@ Public Class StorageSystemScreen
                 PressNumberButtons()
 
                 If GetRelativeMousePosition() <> New Vector2(-1) AndAlso GetRelativeMousePosition() = CursorPosition AndAlso Controls.Accept(True, False, False) = True Then
+                    SoundManager.PlaySound("select")
                     ChooseObject()
                 End If
 
                 ControlCursor()
 
                 If Controls.Accept(False, True, True) = True Then
+                    SoundManager.PlaySound("select")
                     ChooseObject()
                 End If
 
                 If Controls.Dismiss(True, True, True) = True Then
+                    SoundManager.PlaySound("select")
                     CloseScreen()
                 End If
             End If
@@ -1862,6 +1865,7 @@ Public Class StorageSystemFilterScreen
 
                             If Not ClickHandler Is Nothing Then
                                 ClickHandler(Me)
+                                SoundManager.PlaySound("select")
                             End If
                             Me.Visible = False
                         End If
@@ -1869,6 +1873,7 @@ Public Class StorageSystemFilterScreen
                             Me.Index = Me.BackIndex
                             If Not ClickHandler Is Nothing Then
                                 ClickHandler(Me)
+                                SoundManager.PlaySound("select")
                             End If
                             Me.Visible = False
                         End If
@@ -2064,6 +2069,7 @@ Public Class StorageSystemFilterScreen
                             If New Rectangle(100, 100 + (i - Scroll) * 96, 640, 64).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Cursor + Scroll Then
                                     SelectFilter()
+                                    SoundManager.PlaySound("select")
                                 Else
                                     Cursor = i - Scroll
                                 End If
@@ -2074,12 +2080,14 @@ Public Class StorageSystemFilterScreen
 
                 If Controls.Accept(False, True, True) = True Then
                     SelectFilter()
+                    SoundManager.PlaySound("select")
                 End If
             End If
 
             If Controls.Dismiss(True, True, True) = True Then
                 ApplyFilters()
                 Core.SetScreen(Me._storageSystemScreen)
+                SoundManager.PlaySound("select")
             End If
         End If
 

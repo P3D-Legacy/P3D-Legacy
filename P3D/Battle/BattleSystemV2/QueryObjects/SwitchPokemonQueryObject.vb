@@ -111,9 +111,10 @@
                 If _chooseIndex = 0 Then
                     Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, "Choose Pokémon to battle!", False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
-
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(selScreen)
                 Else
+                    SoundManager.PlaySound("select")
                     _ready = True
                 End If
             End If

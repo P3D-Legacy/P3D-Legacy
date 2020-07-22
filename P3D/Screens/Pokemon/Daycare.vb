@@ -314,12 +314,12 @@
             Dim Shiny1 As Boolean = parent1.IsShiny
             Dim Shiny2 As Boolean = parent2.IsShiny
 
-            Dim chances As List(Of Integer) = {1, 8192}.ToList()
+            Dim chances As List(Of Integer) = {1, 4096}.ToList()
 
             If Shiny1 = True And Shiny2 = True Then
-                chances = {12, 8192}.ToList()
+                chances = {12, 4096}.ToList()
             ElseIf Shiny1 = True Or Shiny2 = True Then
-                chances = {6, 8192}.ToList()
+                chances = {6, 4096}.ToList()
             End If
 
             If Core.Random.Next(0, chances(1)) < chances(0) Then

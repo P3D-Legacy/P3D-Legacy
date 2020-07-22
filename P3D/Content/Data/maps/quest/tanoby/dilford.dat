@@ -1,4 +1,4 @@
-{"Level"{LEV[{"Name"{str[Dilford Chamber]}}{"MusicLoop"{str[alph]}}{"CurrentRegion"{str[sevii islands]}}{"WildPokemon"{bool[0]}}]}}
+{"Level"{LEV[{"Name"{str[Dilford Chamber]}}{"MusicLoop"{str[alph]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}{"WildPokemon"{bool[0]}}]}}
 {"Actions"{LEV[{"RadioChannels"{str[13.5]}}{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"MapScript"{str[quest\tanoby\chambermap]}}{"Weather"{int[1]}}{"Lightning"{int[1]}}]}}
 
 floors:
@@ -48,10 +48,6 @@ Corners:
 {"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Scale"{sngArr[1,1.5,1]}}{"Position"{sngArr[2,0.25,11]}}{"TexturePath"{str[sevii]}}{"Textures"{recArr[[48,168,16,24][80,160,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[1]}}]}}
 {"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Scale"{sngArr[1,1.5,1]}}{"Position"{sngArr[18,0.25,2]}}{"TexturePath"{str[sevii]}}{"Textures"{recArr[[48,168,16,24][80,160,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
 {"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Scale"{sngArr[1,1.5,1]}}{"Position"{sngArr[18,0.25,11]}}{"TexturePath"{str[sevii]}}{"Textures"{recArr[[48,168,16,24][80,160,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
-
-NPCs:
-{"NPC"{NPC[{"Position"{sngArr[6,0,6]}}{"TextureID"{str[OldLady]}}{"ID"{int[0]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[This place has a~mystical quality~to it.*It feels sort of~ethereal even.]}}{"Rotation"{int[0]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[7,0,18]}}{"TextureID"{str[2]}}{"ID"{int[1]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[I've seen an old man~walking down this way~yesterday.*He is still in this~cave.*Maybe he needs help.]}}{"Rotation"{int[0]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 
 Warp:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[10,0,14]}}{"TexturePath"{str[sevii]}}{"Textures"{recArr[[80,176,16,16][176,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[quest\tanoby\main.dat,44,0.1,10,0]}}{"Rotation"{int[0]}}]}}

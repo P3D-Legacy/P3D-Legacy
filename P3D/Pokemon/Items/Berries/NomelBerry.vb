@@ -15,7 +15,7 @@ Namespace Items.Berries
             Me.Sour = 20
 
             Me.Type = Element.Types.Dragon
-            Me.Power = 70
+            Me.Power = 90
         End Sub
 
     End Class

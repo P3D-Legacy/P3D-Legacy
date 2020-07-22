@@ -11,12 +11,12 @@ Namespace BattleSystem.Moves.Normal
             Me.OriginalPP = 40
             Me.CurrentPP = 40
             Me.MaxPP = 40
-            Me.Power = 20
+            Me.Power = 50
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Rapid Spin"
-            Me.Description = "A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes."
+            Me.Description = "A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes. This also raises the user's Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
@@ -50,9 +50,14 @@ Namespace BattleSystem.Moves.Normal
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End
+
+            Me.AIField1 = AIField.Damage
+            Me.AIField2 = AIField.RaiseSpeed
+            Me.AIField3 = AIField.Support
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
+            BattleScreen.Battle.RaiseStat(own, own, BattleScreen, "Speed", 1, "", "move:rapidspin")
             With BattleScreen.FieldEffects
                 If own = True Then
                     .OwnBind = 0

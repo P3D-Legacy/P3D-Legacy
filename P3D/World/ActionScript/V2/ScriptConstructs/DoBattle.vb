@@ -25,6 +25,8 @@
                     Return t.OutroMessage
                 Case "won"
                     Return ReturnBoolean(BattleSystem.Battle.Won)
+                Case "caught"
+                    Return ReturnBoolean(BattleSystem.Battle.Caught)
             End Select
 
             Return DEFAULTNULL

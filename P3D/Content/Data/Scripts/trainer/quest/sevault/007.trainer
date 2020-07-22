@@ -10,9 +10,9 @@ Region|Sevii Islands
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer
-Pokemon1|53,58
+Pokemon1|53,58,alola
 Pokemon2|523,60
-Pokemon3|38,61
+Pokemon3|38,61,alola
 Pokemon4|78,59
 Pokemon5|196,61
 Pokemon6|673,60

@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Dark
             Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Fake Tears"
             Me.Description = "The user feigns crying to fluster the target, harshly lowering its Sp. Def stat."
             Me.CriticalChance = 0

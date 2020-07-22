@@ -161,6 +161,7 @@
                                 AnimationStarted = False
                                 SetupAnimation()
                                 CatchPokemon()
+                                BattleSystem.Battle.Caught = True
                             Case 8
                                 AnimationIndex = 9
                                 If showPokedexEntry = True Then
@@ -227,7 +228,8 @@
 
         p.SetCatchInfos(Me.Ball, "caught at")
 
-        MusicManager.Play("wild_defeat", True, 0.0F)
+        MusicManager.Stop()
+        MusicManager.Play("wild_defeat", False, 0.2F)
         SoundManager.PlaySound("success", True)
         TextBox.Show(s, {}, False, False)
     End Sub
@@ -286,7 +288,7 @@
                 For i = 0 To 2
                     Dim v As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z)
 
-                    Animations.Add(New BAMove(v, TextureManager.GetTexture("Textures\Battle\Other\YellowCloud"), New Vector3(0.1F), New Vector3(v.X, v.Y + 0.4F, v.Z - ((1 - i) * 0.4F)), 0.01F, 0.0F, 0.0F))
+                    Animations.Add(New BAMove(v, TextureManager.GetTexture("Textures\Battle\Other\Star"), New Vector3(0.1F), New Vector3(v.X, v.Y + 0.4F, v.Z - ((1 - i) * 0.4F)), 0.01F, 0.0F, 0.0F))
                 Next
                 Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), 0.02F, 0.0F, 6.0F))
             Case 8
@@ -307,22 +309,26 @@
         Select Case Ball.Name.ToLower()
             Case "repeat ball"
                 If Pokedex.GetEntryType(Core.Player.PokedexData, cp.Number) > 1 Then
-                    BallRate = 1.5F
+                    BallRate = 2.5F
                 End If
             Case "nest ball"
-                BallRate = CSng((40 - cp.Level) / 10)
+                BallRate = CSng((41 - cp.Level) / 10)
                 BallRate = CInt(MathHelper.Clamp(BallRate, 1, 4))
             Case "net ball"
                 If cp.IsType(Element.Types.Bug) = True Or cp.IsType(Element.Types.Water) = True Then
-                    BallRate = 3.0F
+                    BallRate = 3.5F
                 End If
             Case "dive ball"
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 3.5F
                 End If
+            Case "lure ball"
+                If BattleSystem.BattleScreen.DiveBattle = True Then
+                    BallRate = 5.0F
+                End If
             Case "dusk ball"
                 If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Or Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Dark Then
-                    BallRate = 3.0F
+                    BallRate = 3.5F
                 ElseIf Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.GetTime() = 0 Then
                     BallRate = 3.5F
                 End If
@@ -372,7 +378,11 @@
                     BallRate = 5.0F
                 End If
             Case "timer ball"
-                BallRate = CInt(((BattleScreen.FieldEffects.Rounds + 10) / 10)).Clamp(1, 4)
+                BallRate = CInt(1 + BattleScreen.FieldEffects.Rounds * 0.3).Clamp(1, 4)
+            Case "dream ball"
+                If cp.Status = Pokemon.StatusProblems.Sleep Then
+                    BallRate = 3.0F
+                End If
         End Select
 
         Dim Status As Single = 1.0F
@@ -380,7 +390,7 @@
             Case Pokemon.StatusProblems.Poison, Pokemon.StatusProblems.BadPoison, Pokemon.StatusProblems.Burn, Pokemon.StatusProblems.Paralyzed
                 Status = 1.5F
             Case Pokemon.StatusProblems.Sleep, Pokemon.StatusProblems.Freeze
-                Status = 2.0F
+                Status = 2.5F
         End Select
 
         Dim CaptureRate As Integer = CInt(Math.Floor(((1 + (MaxHP * 3 - CurrentHP * 2) * CatchRate * BallRate * Status) / (MaxHP * 3))))

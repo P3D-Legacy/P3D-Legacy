@@ -50,7 +50,41 @@
 
             If y > -1 Then
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\WeatherIcons"), New Rectangle(22, Core.windowSize.Height - 90, 176, 68), New Rectangle(x, y, 88, 34), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(110 - FontManager.MiniFont.MeasureString(t).X / 2, Core.windowSize.Height - 42), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(110 - FontManager.MiniFont.MeasureString(t).X / 2, Core.windowSize.Height - 44), Color.Black)
+            End If
+        End Sub
+
+        Private Sub DrawTerrain(ByVal BattleScreen As BattleScreen)
+            Dim y As Integer = -1
+            Dim x As Integer = 0
+            Dim t As String = ""
+
+            With BattleScreen.FieldEffects
+                If .ElectricTerrain > 0 Then
+                    x = 352
+                    y = 0
+                    t = "Electric Terrain"
+                End If
+                If .GrassyTerrain > 0 Then
+                    x = 352
+                    y = 34
+                    t = "Grassy Terrain"
+                End If
+                If .MistyTerrain > 0 Then
+                    x = 352
+                    y = 68
+                    t = "Misty Terrain"
+                End If
+                If .PsychicTerrain > 0 Then
+                    x = 352
+                    y = 102
+                    t = "Psychic Terrain"
+                End If
+            End With
+
+            If y > -1 Then
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\WeatherIcons"), New Rectangle(222, Core.windowSize.Height - 90, 176, 68), New Rectangle(x, y, 88, 34), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(310 - FontManager.MiniFont.MeasureString(t).X / 2, Core.windowSize.Height - 44), Color.Black)
             End If
         End Sub
 
@@ -83,8 +117,8 @@
                 End If
 
                 'HP indicator:
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 102, pos.Y + 37), New Color(0, 0, 0, _moveMenuAlpha))
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 100, pos.Y + 35), shinyHue)
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 102, pos.Y + 37 + 3), New Color(0, 0, 0, _moveMenuAlpha))
+                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 100, pos.Y + 35 + 3), shinyHue)
 
                 'EXP Bar:
                 If BattleScreen.CanReceiveEXP = True Then
@@ -174,7 +208,7 @@
             Dim caughtX As Integer = 0
             Dim StatusTexture As Texture2D = BattleStats.GetStatImage(p.Status)
             If Not StatusTexture Is Nothing Then
-                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(CInt(pos.X) + 10, CInt(pos.Y) + 26, 38, 12), New Color(255, 255, 255, _moveMenuAlpha))
+                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(CInt(pos.X) + 12, CInt(pos.Y) + 26, 38, 12), New Color(255, 255, 255, _moveMenuAlpha))
                 caughtX = -16
             End If
 
@@ -268,6 +302,7 @@
                 End Select
 
                 DrawWeather(BattleScreen)
+                DrawTerrain(BattleScreen)
             End If
         End Sub
 
@@ -383,11 +418,13 @@
             Public Sub Activate(ByVal BattleScreen As BattleScreen, ByVal AllExtended As Integer, ByVal isSelected As Boolean)
                 If BattleScreen.BattleMenu._isExtracting = False And BattleScreen.BattleMenu._isRetracting = False Then
                     If Controls.Accept(False, True, True) = True And isSelected = True Then
+                        SoundManager.PlaySound("select")
                         Me.ClickAction(BattleScreen)
                     End If
                     If Controls.Accept(True, False, False) = True Then
                         If MouseHandler.IsInRectangle(New Rectangle(Core.ScreenSize.Width - 255, 116 + Index * 96, 255, 80)) = True Then
                             If isSelected = True Then
+                                SoundManager.PlaySound("select")
                                 Me.ClickAction(BattleScreen)
                             Else
                                 BattleScreen.BattleMenu._mainMenuNextIndex = Me.Index
@@ -462,11 +499,13 @@
                 If BattleScreen.BattleMenu._isExtracting = False And BattleScreen.BattleMenu._isRetracting = False Then
                     If Me.Move.CurrentPP > 0 Or isSelected = False Then
                         If Controls.Accept(False, True, True) = True And isSelected = True Then
+                            SoundManager.PlaySound("select")
                             Me.ClickAction(BattleScreen)
                         End If
                         If Controls.Accept(True, False, False) = True Then
                             If MouseHandler.IsInRectangle(New Rectangle(Core.ScreenSize.Width - 255, 116 + Index * 96, 255, 80)) = True Then
                                 If isSelected = True Then
+                                    SoundManager.PlaySound("select")
                                     Me.ClickAction(BattleScreen)
                                 Else
                                     BattleScreen.BattleMenu._moveMenuNextIndex = Me.Index
@@ -497,10 +536,10 @@
 
                     l_canSelect = False
                 ElseIf _isExtracting = True Then
-                    If _selectedItemExtended < 175 Then
+                    If _selectedItemExtended < 200 Then
                         _selectedItemExtended += 40
-                        If _selectedItemExtended >= 175 Then
-                            _selectedItemExtended = 175
+                        If _selectedItemExtended >= 200 Then
+                            _selectedItemExtended = 200
                             _isExtracting = False
                         End If
                     End If
@@ -851,6 +890,7 @@
                 UpdateMenuOptions(_moveMenuIndex, _moveMenuNextIndex, _moveMenuItemList.Count)
 
                 If Controls.Dismiss(True, True, True) = True And _retractMenu = False And _isExtracting = False And _isRetracting = False Then
+                    SoundManager.PlaySound("select")
                     _retractMenu = True
                     _nextMenuState = MenuStates.Main
 

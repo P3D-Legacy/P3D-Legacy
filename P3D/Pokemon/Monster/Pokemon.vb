@@ -1818,9 +1818,9 @@ Public Class Pokemon
             'Synchronize ability:
             If Core.Player.Pokemons.Count > 0 Then
                 If Core.Player.Pokemons(0).Ability.Name.ToLower() = "synchronize" Then
-                    If Core.Random.Next(0, 100) < 50 Then
-                        Me.Nature = Core.Player.Pokemons(0).Nature
-                    End If
+                    'If Core.Random.Next(0, 100) < 50 Then # GEN 8 FORCES A NATURE 100% OF TIME
+                    Me.Nature = Core.Player.Pokemons(0).Nature
+                    'End If
                 End If
             End If
 
@@ -1834,7 +1834,7 @@ Public Class Pokemon
                 End If
             End If
 
-            Dim shinyRate As Integer = 8192
+            Dim shinyRate As Integer = 4096
 
             For Each mysteryEvent As MysteryEventScreen.MysteryEvent In MysteryEventScreen.ActivatedMysteryEvents
                 If mysteryEvent.EventType = MysteryEventScreen.EventTypes.ShinyMultiplier Then
@@ -2420,18 +2420,19 @@ Public Class Pokemon
                 Case 4
                     Dim v As Vector2 = PokemonForms.GetMenuImagePosition(Me)
                     Dim s As Size = PokemonForms.GetMenuImageSize(Me)
+                    Dim sheet As String = PokemonForms.GetSheetName(Me)
 
-                    Dim shiny As String = ""
+                    Dim shinypos As Integer = 0
                     If Me.IsShiny = True Then
-                        shiny = "Shiny"
+                        shinypos = 512
                     End If
 
-                    Textures(index) = P3D.TextureManager.GetTexture("GUI\PokemonMenu" & shiny, New Rectangle(CInt(v.X) * 32, CInt(v.Y) * 32, s.Width, s.Height), "")
+                    Textures(index) = P3D.TextureManager.GetTexture("GUI\PokemonMenu\" & sheet, New Rectangle(CInt(v.X) * 32 + shinypos, CInt(v.Y) * 32, s.Width, s.Height), "")
                 Case 5
                     If Me.Number = 490 Then
-                        Textures(index) = P3D.TextureManager.GetTexture("GUI\PokemonMenu", New Rectangle(928, 992, 32, 32), "")
+                        Textures(index) = P3D.TextureManager.GetTexture("GUI\PokemonMenu\OtherForms", New Rectangle(64, 0, 32, 32), "")
                     Else
-                        Textures(index) = EggCreator.CreateEggSprite(Me, P3D.TextureManager.GetTexture("GUI\PokemonMenu", New Rectangle(992, 992, 32, 32), ""), P3D.TextureManager.GetTexture("Pokemon\Egg\Templates\Menu"))
+                        Textures(index) = EggCreator.CreateEggSprite(Me, P3D.TextureManager.GetTexture("GUI\PokemonMenu\OtherForms", New Rectangle(32, 0, 32, 32), ""), P3D.TextureManager.GetTexture("Pokemon\Egg\Templates\Menu"))
                     End If
                 Case 6
                     If Me.Number = 490 Then
@@ -2772,12 +2773,12 @@ Public Class Pokemon
             'Macho Brace
             Case 581 : EVfactor *= 2
             'Power Items
-            Case 582 : gainEVHP += 4
-            Case 583 : gainEVAttack += 4
-            Case 584 : gainEVDefense += 4
-            Case 585 : gainEVSpAttack += 4
-            Case 586 : gainEVSpDefense += 4
-            Case 587 : gainEVSpeed += 4
+            Case 582 : gainEVHP += 8
+            Case 583 : gainEVAttack += 8
+            Case 584 : gainEVDefense += 8
+            Case 585 : gainEVSpAttack += 8
+            Case 586 : gainEVSpDefense += 8
+            Case 587 : gainEVSpeed += 8
         End Select
 
         'HP gain

@@ -59,6 +59,7 @@
                 End If
             Else
                 If Controls.Accept(True, True) = True Then
+                    SoundManager.PlaySound("select")
                     Me._ready = True
                 End If
             End If

@@ -19,7 +19,7 @@
             Me.Description = "An attack that makes use of nature’s power. Its effects vary depending on the user’s environment."
             Me.CriticalChance = 0
             Me.IsHMMove = False
-            Me.Target = Targets.Self
+            Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1
             '#End
@@ -52,37 +52,46 @@
             '#End
         End Sub
 
-        Public Shared Function GetMoveID() As Integer
-            Select Case Screen.Level.Terrain.TerrainType
-                Case Terrain.TerrainTypes.Plain
-                    Return 161
-                Case Terrain.TerrainTypes.Cave
-                    Return 247
-                Case Terrain.TerrainTypes.DisortionWorld
-                    Return 185
-                Case Terrain.TerrainTypes.LongGrass
-                    Return 75
-                Case Terrain.TerrainTypes.Magma
-                    Return 172
-                Case Terrain.TerrainTypes.PondWater
-                    Return 61
-                Case Terrain.TerrainTypes.Puddles
-                    Return 426
-                Case Terrain.TerrainTypes.Rock
-                    Return 157
-                Case Terrain.TerrainTypes.Sand
-                    Return 89
-                Case Terrain.TerrainTypes.SeaWater
-                    Return 56
-                Case Terrain.TerrainTypes.Snow
-                    Return 58
-                Case Terrain.TerrainTypes.TallGrass
-                    Return 402
-                Case Terrain.TerrainTypes.Underwater
-                    Return 291
-            End Select
-
-            Return 89
+        Public Shared Function GetMoveID(own As Boolean, Battlescreen As BattleScreen) As Integer
+            If Battlescreen.FieldEffects.ElectricTerrain > 0 Then
+                Return 85
+            ElseIf Battlescreen.FieldEffects.GrassyTerrain > 0 Then
+                Return 412
+            ElseIf Battlescreen.FieldEffects.MistyTerrain > 0 Then
+                Return 585
+            ElseIf Battlescreen.FieldEffects.PsychicTerrain > 0 Then
+                Return 94
+            Else
+                Select Case Screen.Level.Terrain.TerrainType
+                    Case Terrain.TerrainTypes.Plain
+                        Return 161
+                    Case Terrain.TerrainTypes.Cave
+                        Return 247
+                    Case Terrain.TerrainTypes.DisortionWorld
+                        Return 185
+                    Case Terrain.TerrainTypes.LongGrass
+                        Return 75
+                    Case Terrain.TerrainTypes.Magma
+                        Return 172
+                    Case Terrain.TerrainTypes.PondWater
+                        Return 61
+                    Case Terrain.TerrainTypes.Puddles
+                        Return 426
+                    Case Terrain.TerrainTypes.Rock
+                        Return 157
+                    Case Terrain.TerrainTypes.Sand
+                        Return 89
+                    Case Terrain.TerrainTypes.SeaWater
+                        Return 56
+                    Case Terrain.TerrainTypes.Snow
+                        Return 58
+                    Case Terrain.TerrainTypes.TallGrass
+                        Return 402
+                    Case Terrain.TerrainTypes.Underwater
+                        Return 291
+                End Select
+                Return 89
+            End If
         End Function
 
     End Class

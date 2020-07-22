@@ -38,7 +38,7 @@
         Me.CreateWorldEveryFrame = True
     End Sub
 
-    Private Sub InitBerry(ByVal oldDate As String)
+     Private Sub InitBerry(ByVal oldDate As String)
         Dim Data() As String = oldDate.Split(CChar(","))
         Dim d As New Date(CInt(Data(0)), CInt(Data(1)), CInt(Data(2)), CInt(Data(3)), CInt(Data(4)), CInt(Data(5)))
 
@@ -48,7 +48,7 @@
             NewTexture()
         Else
             With My.Computer.Clock.LocalTime
-                Dim diff As Integer = (Date.Now - d).Seconds
+                Dim diff As Integer = CInt((Date.Now - d).TotalSeconds)
 
                 Grow += diff
 

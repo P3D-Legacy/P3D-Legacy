@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cute
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Healing Wish"
             Me.Description = "The user faints. In return, the Pokemon taking its place will have its HP restored and status conditions cured."
             Me.CriticalChance = 0

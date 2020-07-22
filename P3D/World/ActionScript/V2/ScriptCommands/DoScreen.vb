@@ -91,6 +91,14 @@
                     Else
                         IsReady = True
                     End If
+                Case "fadeoutcolor"
+                    If Not String.IsNullOrEmpty(argument) Then
+                        Dim colorR As Integer = int(argument.GetSplit(0))
+                        Dim colorG As Integer = int(argument.GetSplit(1))
+                        Dim colorB As Integer = int(argument.GetSplit(2))
+                        OverworldScreen.FadeColor = New Color(colorR, colorG, colorB)
+                    End If
+                    IsReady = True
                 Case "setfade"
                     OverworldScreen.FadeValue = int(argument).Clamp(0, 255)
                     IsReady = True

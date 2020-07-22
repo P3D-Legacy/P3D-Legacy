@@ -213,7 +213,7 @@
                         If New Rectangle(CInt(pos.X), CInt(pos.Y), 64 * 6, 64).Contains(MouseHandler.MousePosition) Then
                             If _menuIndex = i Then
                                 _cursorPosition.X = _cursorDestPosition.X
-
+                                SoundManager.PlaySound("select")
                                 PressButton()
                             Else
                                 _menuIndex = i
@@ -226,7 +226,7 @@
                 End If
                 If Controls.Accept(False, True, True) = True Then
                     _cursorPosition.X = _cursorDestPosition.X
-
+                    SoundManager.PlaySound("select")
                     PressButton()
                 End If
             End If

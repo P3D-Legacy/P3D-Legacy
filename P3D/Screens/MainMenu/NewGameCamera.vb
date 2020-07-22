@@ -16,8 +16,10 @@
         FOV = 45
 
 
+
         CreateProjectionMatrix()
         Update()
+        Me._canToggleThirdPerson = False
     End Sub
 
     Private Sub CreateProjectionMatrix()

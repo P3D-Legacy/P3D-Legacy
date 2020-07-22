@@ -238,6 +238,7 @@
             End If
 
             If Controls.Dismiss(True, True, True) = True Then
+                SoundManager.PlaySound("select")
                 If Me.index <> -1 Then
                     Me.index = -1
                 Else
@@ -292,6 +293,7 @@
 
             If Controls.Dismiss(True, False, True) = True Then
                 Me.index = -1
+                SoundManager.PlaySound("select")
             End If
         End If
     End Sub

@@ -5,7 +5,7 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property Description As String = "Powers up Fairy-type moves."
+        Public Overrides ReadOnly Property Description As String = "An item to be held by a Pokémon. It's a pretty bow that boosts the power of Fairy-type moves."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 100
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False

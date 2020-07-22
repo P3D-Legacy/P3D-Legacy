@@ -5,6 +5,7 @@ Namespace Items.Balls
 
         Inherits BallItem
 
+        Public Overrides ReadOnly Property CanBeHold As Boolean = False
         Public Overrides ReadOnly Property Description As String = "A special Pokéball that is used only in the Great Marsh and the Safari Zone. It is decorated in a camouflage pattern."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
         Public Overrides ReadOnly Property CatchMultiplier As Single = 1.5F

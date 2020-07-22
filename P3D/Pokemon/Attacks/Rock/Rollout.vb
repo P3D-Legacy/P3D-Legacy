@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Rock
             Me.Power = 30
             Me.Accuracy = 90
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Tough
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Rollout"
             Me.Description = "The user continually rolls into the target over five turns. It becomes stronger each time it hits."
             Me.CriticalChance = 1

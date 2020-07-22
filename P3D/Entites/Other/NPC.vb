@@ -621,7 +621,9 @@
 
     Private Sub Move()
         If Moved > 0.0F Then
-            Me.Position += GetMove()
+            If Not isDancing Then
+                Me.Position += GetMove()
+            End If
 
             If Me.Speed < 0 Then
                 Moved += Me.Speed

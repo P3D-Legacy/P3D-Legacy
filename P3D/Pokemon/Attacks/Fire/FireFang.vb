@@ -14,7 +14,7 @@
             Me.Power = 65
             Me.Accuracy = 95
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Fire Fang"
             Me.Description = "The user bites with flame cloaked fangs. It may also make the target flinch or leave it burned."
             Me.CriticalChance = 1

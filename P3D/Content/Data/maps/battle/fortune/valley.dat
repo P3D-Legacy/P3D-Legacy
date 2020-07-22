@@ -50,7 +50,7 @@ Mountain:
 {"Floor"{ENT[{"Size"{intArr[48,1]}}{"Position"{intArr[0,3,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[15,1]}}{"Position"{intArr[0,3,1]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[12,1]}}{"Position"{intArr[36,3,1]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}
-{"Floor"{ENT[{"Size"{intArr[8,1]}}{"Position"{intArr[40,3,2]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[7,1]}}{"Position"{intArr[41,3,2]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[10,1]}}{"Position"{intArr[0,3,2]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[7,1]}}{"Position"{intArr[0,3,3]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[3,3]}}{"Position"{intArr[45,3,3]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}

@@ -40,13 +40,13 @@
             Me.RemovesFrozen = False
 
             Me.IsHealingMove = False
-            Me.IsRecoilMove = True
+            Me.IsRecoilMove = False
             Me.IsPunchingMove = False
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = True
 
-            Me.IsAffectedBySubstitute = True
+            Me.IsAffectedBySubstitute = False
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             '#End

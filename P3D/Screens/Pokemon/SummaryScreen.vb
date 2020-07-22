@@ -224,6 +224,12 @@
         If GetPokemon().IsEgg() = False Then
             SpriteBatch.DrawString(FontManager.ChatFont, "Lv. " & GetPokemon().Level, New Vector2(DeltaX + 50, DeltaY + 48), New Color(255, 255, 255, CInt(220 * _fadeIn)))
 
+            'Draw status condition
+            Dim StatusTexture As Texture2D = BattleStats.GetStatImage(GetPokemon().Status)
+            If Not StatusTexture Is Nothing Then
+                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(DeltaX + 180, DeltaY + 48 + 3, 59, 18), New Color(255, 255, 255, CInt(255 * _fadeIn)))
+            End If
+
             'Draw shiny star:
             If GetPokemon().IsShiny = True Then
                 SpriteBatch.Draw(t, New Rectangle(DeltaX + 19, DeltaY + 300, 18, 18), New Rectangle(16, 0, 9, 9), New Color(255, 255, 255, CInt(255 * _fadeIn)))
@@ -506,7 +512,7 @@
             Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 2, 350, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade * _moveFade)))
             Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 3, 350, 32), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade * _moveFade)))
             Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 4, 350, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade * _moveFade)))
-            Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 5, 350, 128), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade * _moveFade)))
+            Canvas.DrawRectangle(New Rectangle(DeltaX + 700, DeltaY + 76 + 32 * 5, 350, 160), New Color(0, 0, 0, CInt(70 * _interfaceFade * _pageFade * _moveFade)))
 
             'Type:
             SpriteBatch.DrawString(FontManager.ChatFont, "Type:", New Vector2(DeltaX + 710, DeltaY + 80), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
@@ -537,7 +543,7 @@
             SpriteBatch.DrawString(FontManager.ChatFont, accuracy, New Vector2(DeltaX + 824, DeltaY + 208), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
 
             'Description:
-            SpriteBatch.DrawString(FontManager.ChatFont, .Attacks(_moveIndex).Description.CropStringToWidth(FontManager.ChatFont, 300), New Vector2(DeltaX + 720, DeltaY + 240), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
+            SpriteBatch.DrawString(FontManager.ChatFont, .Attacks(_moveIndex).Description.CropStringToWidth(FontManager.ChatFont, 300), New Vector2(DeltaX + 720, DeltaY + 240), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)), 0.0F, New Vector2(0), 1.0F, SpriteEffects.None, 0.0F)
         End With
     End Sub
 
@@ -669,12 +675,15 @@
                     If Controls.Accept() = True Then
                         If _pageIndex = 0 Then
                             _isFront = Not _isFront
+                            SoundManager.PlaySound("select")
                         ElseIf _pageIndex = 1 Then
+                            SoundManager.PlaySound("select")
                             _moveSelected = True
                         End If
                     End If
                 End If
                 If Controls.Dismiss() = True Then
+                    SoundManager.PlaySound("select")
                     _closing = True
                 End If
             Else
@@ -699,7 +708,7 @@
                         Dim switchingMove As BattleSystem.Attack = GetPokemon().Attacks(_switchMoveIndex)
                         GetPokemon().Attacks.RemoveAt(_switchMoveIndex)
                         GetPokemon().Attacks.Insert(_moveIndex, switchingMove)
-
+                        SoundManager.PlaySound("select")
                         _switchingMoves = False
                         _switchMoveIndex = -1
                     Else
@@ -713,8 +722,10 @@
                     If _switchingMoves = True Then
                         _switchingMoves = False
                         _switchMoveIndex = -1
+                        SoundManager.PlaySound("select")
                     Else
                         _moveSelected = False
+                        SoundManager.PlaySound("select")
                     End If
                 End If
             End If

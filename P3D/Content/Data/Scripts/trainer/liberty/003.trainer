@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Grunt
+TrainerClass|Team Rocket
+Money|4110
+IntroMessage|Team Rocket is much more~than an organization, it's~an idea.*We're everywhere!
+OutroMessage|Our philosophy has failed us...
+DefeatMessage|We still stand strong.
+TextureID|gruntf
+Region|Sevii Islands
+insightmusic|johto_rocket_encounter
+IniMusic|Johto_rocket_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_rocket
+Pokemon1|168,58
+Pokemon2|202,58
+Pokemon3|528,59
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|1
+AI|40
+IntroSequence|Blue,Blue

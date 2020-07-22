@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Wring Out"
             Me.Description = "The user powerfully wrings the target. The more HP the target has, the greater the move's power."
             Me.CriticalChance = 1

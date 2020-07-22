@@ -675,8 +675,8 @@ game_message_third_person_on,Trečiojo asmens rėžimas įjungtas.
 game_message_third_person_off,Trečiojo asmens rėžimas išjungtas.
 game_message_free_camera_on,Laisvos kameros rėžimas įjungtas.
 game_message_free_camera_off,Laisvos kameros rėžimas išjungtas.
-game_message_music_on,Muzika įjungta
-game_message_music_off,Muzika išjungta
+game_message_audio_on,Garso įjungta
+game_message_audio_off,Garso išjungta
 game_message_continue_autosave,Continued save state:
 ---
 Online:

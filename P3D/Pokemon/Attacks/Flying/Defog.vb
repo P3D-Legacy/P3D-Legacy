@@ -14,7 +14,7 @@
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Defog"
             Me.Description = "A strong wind blows away the target's barriers such as Reflect or Light Screen. This also lowers the target's evasiveness."
             Me.CriticalChance = 1

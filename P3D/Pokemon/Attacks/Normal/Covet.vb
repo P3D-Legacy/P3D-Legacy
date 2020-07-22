@@ -73,10 +73,16 @@ Namespace BattleSystem.Moves.Normal
             If op.Ability.Name.ToLower() = "multitype" AndAlso op.Item.Name.ToLower().EndsWith(" plate") Then
                 Exit Sub
             End If
+            If op.Ability.Name.ToLower() = "rks system" AndAlso op.Item.Name.ToLower().EndsWith(" memory") Then
+                Exit Sub
+            End If
             If op.Item.Name.ToLower() = "griseous orb" And op.Number = 487 Then
                 Exit Sub
             End If
             If op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+                Exit Sub
+            End If
+            If op.Item.Name.ToLower().EndsWith(" mail") = True Then
                 Exit Sub
             End If
 

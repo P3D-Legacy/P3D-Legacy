@@ -27,7 +27,7 @@ Namespace Items.XItems
                 Dim p As Pokemon = CType(s, BattleSystem.BattleScreen).OwnPokemon
 
                 If p.Accuracy < 6 Then
-                    p.Accuracy += 1
+                    p.Accuracy += 2
 
                     Screen.TextBox.Show("Boosted " & p.GetDisplayName() & "'s~Accuracy!" & RemoveItem(), {}, False, False)
                     PlayerStatistics.Track("[53]Status booster used", 1)

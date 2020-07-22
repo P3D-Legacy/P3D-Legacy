@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Dark
             Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Punishment"
             Me.Description = "This attack's power increases the more the target has powered up with stat changes."
             Me.CriticalChance = 1

@@ -1,4 +1,6 @@
-﻿Public Class DebugDisplay
+﻿Imports NAudio.Wave
+
+Public Class DebugDisplay
 
     ''' <summary>
     ''' Renders the debug information.
@@ -49,6 +51,8 @@
 
             Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, s, New Vector2(7, 7), Color.Black)
             Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, s, New Vector2(5, 5), Color.White)
+
+            ' DrawMediaInfo() To test music
         End If
     End Sub
 
@@ -82,6 +86,39 @@
             _maxVertices = value
         End Set
     End Property
+
+    ''' <summary>
+    ''' MediaPlayer state tracking method.
+    ''' </summary>
+    Private Shared Sub DrawMediaInfo()
+        Dim songName = "<NO SONG PLAYING>"
+        If MediaPlayer.Queue IsNot Nothing AndAlso MediaPlayer.Queue.ActiveSong IsNot Nothing Then
+            songName = MediaPlayer.Queue.ActiveSong.Name
+            If MusicManager.CurrentSong IsNot Nothing Then
+                songName += " (" + MusicManager.CurrentSong.Name + ")"
+            End If
+        End If
+
+        Dim field = GetType(MediaPlayer).GetField("_sessionState", Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Static)
+        Dim sessionState = field.GetValue(Nothing).ToString()
+
+        Dim _outputDevice As WaveOutEvent
+        If Not MusicManager.outputDevice Is Nothing Then
+            _outputdevice = MusicManager.outputDevice
+        Else
+            _outputDevice = New WaveOutEvent()
+        End If
+        Dim str = "Song: " + songName + Environment.NewLine +
+            "Play position: " + _outputDevice.GetPosition.ToString() + Environment.NewLine +
+            "Session state: " + sessionState + Environment.NewLine +
+            "State: " + _outputDevice.PlaybackState.ToString() + Environment.NewLine +
+            "Volume: " + MusicManager.MasterVolume.ToString() + Environment.NewLine +
+            "Is Muted: " + MusicManager.Muted.ToString() + Environment.NewLine +
+            "Is Repeating: " + MusicManager._isLooping.ToString()
+
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, str, New Vector2(7, 7), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, str, New Vector2(5, 5), Color.White)
+    End Sub
 
     ''' <summary>
     ''' The distance of the vertex to the camera, that is the furthest away from the camera.

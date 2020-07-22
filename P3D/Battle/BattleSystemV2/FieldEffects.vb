@@ -10,13 +10,21 @@
         Public OwnTruantRound As Integer = 0 'Truant move counter
         Public OwnImprison As Integer = 0 'Imprison move counter
         Public OwnTaunt As Integer = 0 'Taunt move counter
+        Public OwnTelekinesis As Integer = 0 'Telekinesis move counter
         Public OwnRageCounter As Integer = 0 'Rage move counter
         Public OwnUproar As Integer = 0 'Uproar move counter
         Public OwnFocusEnergy As Integer = 0 'Focus energy move counter
+        Public OwnFlashFire As Integer = 0 'Flash Fire move counter
         Public OwnEndure As Integer = 0 'Endure move counter
         Public OwnProtectCounter As Integer = 0 'Protect move counter
         Public OwnKingsShieldCounter As Integer = 0 'Kings Shield move counter
+        Public OwnSpikyShieldCounter As Integer = 0 'Spiky Shield move counter
         Public OwnDetectCounter As Integer = 0 'Detect move counter
+        Public OwnBanefulBunkerCounter As Integer = 0 'Baneful Bunker move counter
+        Public OwnCraftyShieldCounter As Integer = 0 'Crafty Shield move counter
+        Public OwnMatBlockCounter As Integer = 0 'Mat Block move counter
+        Public OwnWideGuardCounter As Integer = 0 'Wide Guard move counter
+        Public OwnQuickGuardCounter As Integer = 0 'Quick Guard move counter
         Public OwnIngrain As Integer = 0 'Ingrain move counter
         Public OwnSubstitute As Integer = 0 'Substitute HP left
         Public OwnLuckyChant As Integer = 0 'Lucky chant move counter
@@ -51,6 +59,7 @@
         Public OwnLastDamage As Integer = 0 'Last Damage the own Pokémon has done by moves.
         Public OwnLeechSeed As Integer = 0 'The opponent used leech seed
         Public OwnSolarBeam As Integer = 0 'Charge counter for solar beam
+        Public OwnSolarBlade As Integer = 0 'Charge counter for solar blade
         Public OwnLockOn As Integer = 0 'Counter for the moves lock-on and mind reader
         Public OwnBideCounter As Integer = 0 'Counter for the Bide move
         Public OwnBideDamage As Integer = 0 'Half of the damage dealt by bide
@@ -62,6 +71,7 @@
         Public OwnMiracleEye As Integer = 0 'Own Dark type Pokémon can be hit by Psychic type attacks
         Public OwnProtectMovesCount As Integer = 0 'Counts uses of protect moves
         Public OwnFuryCutter As Integer = 0 'Counter for the move fury cutter
+        Public OwnEchoedVoice As Integer = 0 'Counter for the move echoed voice
         Public OwnPokemonTurns As Integer = 0 'Turns for how long the own pokemon has been in battle
         Public OwnStockpileCount As Integer = 0 'A counter for the stockpile moves used for Swallow and Spit Up
         Public OwnIceBurnCounter As Integer = 0 'Counter for the Ice Burn move.
@@ -76,7 +86,9 @@
         Public OwnBounceCounter As Integer = 0
         Public OwnDiveCounter As Integer = 0
         Public OwnShadowForceCounter As Integer = 0
+        Public OwnPhantomForceCounter As Integer = 0
         Public OwnSkyDropCounter As Integer = 0
+        Public OwnGeomancyCounter As Integer = 0
         Public OwnWrap As Integer = 0
         Public OwnWhirlpool As Integer = 0
         Public OwnBind As Integer = 0
@@ -88,6 +100,7 @@
         Public OwnUsedMoves As New List(Of Integer)
         Public OwnMagicCoat As Integer = 0
         Public OwnConsumedItem As Item = Nothing
+        Public OwnSmacked As Integer = 0 'Smack Down effect condition
         Public OwnPursuit As Boolean = False
         Public OwnMegaEvolved As Boolean = False
         Public OwnRoostUsed As Boolean = False 'If roost got used, this is true and will get set false and revert types at the end of a turn.
@@ -130,13 +143,21 @@
         Public OppImprison As Integer = 0
         Public OppHealBlock As Integer = 0
         Public OppTaunt As Integer = 0
+        Public OppTelekinesis As Integer = 0
         Public OppRageCounter As Integer = 0
         Public OppUproar As Integer = 0
         Public OppFocusEnergy As Integer = 0
+        Public OppFlashFire As Integer = 0
         Public OppEndure As Integer = 0
         Public OppProtectCounter As Integer = 0
         Public OppKingsShieldCounter As Integer = 0
+        Public OppSpikyShieldCounter As Integer = 0
         Public OppDetectCounter As Integer = 0
+        Public OppBanefulBunkerCounter As Integer = 0
+        Public OppCraftyShieldCounter As Integer = 0
+        Public OppMatBlockCounter As Integer = 0
+        Public OppWideGuardCounter As Integer = 0
+        Public OppQuickGuardCounter As Integer = 0
         Public OppIngrain As Integer = 0
         Public OppSubstitute As Integer = 0
         Public OppSafeguard As Integer = 0
@@ -176,6 +197,7 @@
         Public OppLastDamage As Integer = 0
         Public OppLeechSeed As Integer = 0
         Public OppSolarBeam As Integer = 0
+        Public OppSolarBlade As Integer = 0
         Public OppLockOn As Integer = 0
         Public OppBideCounter As Integer = 0
         Public OppBideDamage As Integer = 0
@@ -187,6 +209,7 @@
         Public OppMiracleEye As Integer = 0
         Public OppProtectMovesCount As Integer = 0
         Public OppFuryCutter As Integer = 0
+        Public OppEchoedVoice As Integer = 0
         Public OppPokemonTurns As Integer = 0
         Public OppStockpileCount As Integer = 0
         Public OppIceBurnCounter As Integer = 0
@@ -198,6 +221,7 @@
         Public OppPokemonDamagedLastTurn As Boolean = False
         Public OppMagicCoat As Integer = 0
         Public OppConsumedItem As Item = Nothing
+        Public OppSmacked As Integer = 0
         Public OppPursuit As Boolean = False
         Public OppMegaEvolved As Boolean = False
         Public OppRoostUsed As Boolean = False
@@ -210,7 +234,9 @@
         Public OppBounceCounter As Integer = 0
         Public OppDiveCounter As Integer = 0
         Public OppShadowForceCounter As Integer = 0
+        Public OppPhantomForceCounter As Integer = 0
         Public OppSkyDropCounter As Integer = 0
+        Public OppGeomancyCounter As Integer = 0
 
         Public OppWrap As Integer = 0
         Public OppWhirlpool As Integer = 0
@@ -244,6 +270,11 @@
         Public WaterSport As Integer = 0
         Public Rounds As Integer = 0
         Public AmuletCoin As Integer = 0
+
+        Public ElectricTerrain As Integer = 0
+        Public GrassyTerrain As Integer = 0
+        Public MistyTerrain As Integer = 0
+        Public PsychicTerrain As Integer = 0
 
         'Special stuff
         Public RunTries As Integer = 0
@@ -315,6 +346,63 @@
             End If
 
             Return True
+        End Function
+
+        Public Function IsGrounded(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
+            Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim grounded As Boolean = True
+            If own = True Then
+                If p.Type1.Type = Element.Types.Flying Or p.Type2.Type = Element.Types.Flying Or p.Ability.Name.ToLower() = "levitate" And BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen) = True Then
+                    grounded = False
+                End If
+                If BattleScreen.FieldEffects.Gravity > 0 Or BattleScreen.FieldEffects.OwnSmacked > 0 Or BattleScreen.FieldEffects.OwnIngrain > 0 Then
+                    grounded = True
+                Else
+                    If BattleScreen.FieldEffects.OwnTelekinesis > 0 Or BattleScreen.FieldEffects.OwnMagnetRise > 0 Then
+                        grounded = False
+                    End If
+                    If Not p.Item Is Nothing Then
+                        If p.Item.Name.ToLower() = "air balloon" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            grounded = False
+                        End If
+                        If p.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            grounded = True
+                        End If
+                    End If
+                End If
+                If OwnBounceCounter > 0 Or OwnDigCounter > 0 Or OwnDiveCounter > 0 Or OwnFlyCounter > 0 Or OwnPhantomForceCounter > 0 Or OwnShadowForceCounter > 0 Or OwnSkyDropCounter > 0 Then
+                    grounded = False
+                End If
+            Else
+                p = BattleScreen.OppPokemon
+                If p.Type1.Type = Element.Types.Flying Or p.Type2.Type = Element.Types.Flying Or p.Ability.Name.ToLower() = "levitate" And BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen) = True Then
+                    grounded = False
+                End If
+                If BattleScreen.FieldEffects.Gravity > 0 Or BattleScreen.FieldEffects.OppSmacked > 0 Or BattleScreen.FieldEffects.OppIngrain > 0 Then
+                    grounded = True
+                Else
+                    If BattleScreen.FieldEffects.OppTelekinesis > 0 Or BattleScreen.FieldEffects.OppMagnetRise > 0 Then
+                        grounded = False
+                    End If
+                    If Not p.Item Is Nothing Then
+                        If p.Item.Name.ToLower() = "air balloon" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            grounded = False
+                        End If
+                        If p.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            grounded = True
+                        End If
+                    End If
+                End If
+                If OppBounceCounter > 0 Or OppDigCounter > 0 Or OppDiveCounter > 0 Or OppFlyCounter > 0 Or OppPhantomForceCounter > 0 Or OppShadowForceCounter > 0 Or OppSkyDropCounter > 0 Then
+                    grounded = False
+                End If
+            End If
+
+            If grounded = True Then
+                Return True
+            Else
+                Return False
+            End If
         End Function
 
         Public Function GetPokemonWeight(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Single

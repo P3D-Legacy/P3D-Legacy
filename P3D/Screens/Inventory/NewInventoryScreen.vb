@@ -137,6 +137,9 @@ Public Class NewInventoryScreen
         _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
 
         _tabIndex = StartPageIndex
+        _pageIndex = Player.Temp.BagPageIndex
+        _itemindex = Player.Temp.BagItemIndex
+
         Me.AllowedPages = AllowedPages
         ReturnItem = DoStuff
 
@@ -390,7 +393,7 @@ Public Class NewInventoryScreen
                         If _tabIndex = 4 Then
                             nameTextHeight = 40
                         End If
-                        Canvas.DrawRectangle(itemBatch, New Rectangle(CInt(itemLoc.X) - 16, CInt(itemLoc.Y) + 48, 128, nameTextHeight), New Color(0, 0, 0, CInt(If(_tabInControl, 64, 128) * _interfaceFade)))
+                        Canvas.DrawRectangle(itemBatch, New Rectangle(CInt(itemLoc.X) - 16 - 9, CInt(itemLoc.Y) + 48, 128 + 18, nameTextHeight), New Color(0, 0, 0, CInt(If(_tabInControl, 64, 128) * _interfaceFade)))
 
                         Dim fontWidth As Integer = CInt(FontManager.MiniFont.MeasureString(cItem.Name).X)
                         itemBatch.DrawString(FontManager.MiniFont, cItem.Name, itemLoc + New Vector2(48 - fontWidth / 2.0F, 51), New Color(255, 255, 255, itemPanelAlpha))
@@ -431,6 +434,9 @@ Public Class NewInventoryScreen
     ''' Draws the info popup.
     ''' </summary>
     Private Sub DrawInfo(ByVal preBatch As SpriteBatch, ByVal preTarget As RenderTarget2D)
+        If _items.Count = 0 Then
+            Exit Sub
+        End If
         'Create a new render target and set it.
 
         'Bring back when Monogame begins supporting this stuff
@@ -454,7 +460,8 @@ Public Class NewInventoryScreen
         Canvas.DrawGradient(infoBatch, New Rectangle(_infoSize - 100, 0, 100, 368), New Color(0, 0, 0, 0), New Color(0, 0, 0, alpha), True, -1)
 
         'Get item and gets its display texts based on the item category:
-        Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
+        Dim getIndex As Integer = ItemIndex + PageIndex * 10
+        Dim cItem As Item = Item.GetItemByID(_items(getIndex).ItemID)
 
         infoBatch.Draw(cItem.Texture, New Rectangle(24, 24, 48, 48), Color.White)
 
@@ -687,10 +694,12 @@ Public Class NewInventoryScreen
 
             If Not TextBox.Showing Then
                 If Controls.Accept Then
+                    SoundManager.PlaySound("select")
                     Core.Player.Inventory.RemoveItem(cItem.ID, _tossValue)
                     LoadItems()
                     _tossingItems = False
                 ElseIf Controls.Dismiss Then
+                    SoundManager.PlaySound("select")
                     _tossingItems = False
                 End If
                 _tossValue = 1
@@ -745,9 +754,11 @@ Public Class NewInventoryScreen
         End If
         If _tabInControl Then
             If Controls.Dismiss() And CanExit Then
+                SoundManager.PlaySound("select")
                 _closing = True
             End If
             If Controls.Accept() And _items.Length > 0 Then
+                SoundManager.PlaySound("select")
                 _tabInControl = False
             End If
         End If
@@ -806,11 +817,13 @@ Public Class NewInventoryScreen
         If Controls.Accept() AndAlso _items.Length > 0 Then
             _infoItemOptionSelection = 0
             _isInfoShowing = True
+            SoundManager.PlaySound("select")
             SetInfoSettings()
             SetItemOptions()
         End If
 
         If Controls.Dismiss() Then
+            SoundManager.PlaySound("select")
             _tabInControl = True
         End If
     End Sub
@@ -848,10 +861,12 @@ Public Class NewInventoryScreen
         End If
 
         If Controls.Accept() Then
+            SoundManager.PlaySound("select")
             SelectedItemOption()
         End If
 
         If Controls.Dismiss() Then
+            SoundManager.PlaySound("select")
             CloseInfoScreen()
         End If
     End Sub
@@ -863,6 +878,12 @@ Public Class NewInventoryScreen
         _itemColumnLeftOffsetTarget = 0
 
         _isInfoShowing = False
+    End Sub
+
+    Private Sub SaveBagIndex()
+        Player.Temp.BagIndex = _tabIndex
+        Player.Temp.BagPageIndex = _pageIndex
+        Player.Temp.BagItemIndex = _itemindex
     End Sub
 
     Private Sub SelectedItemOption()
@@ -884,6 +905,7 @@ Public Class NewInventoryScreen
                     CloseInfoScreen()
                     _closing = True
             End Select
+            SaveBagIndex()
         End If
     End Sub
 
@@ -960,13 +982,13 @@ Public Class NewInventoryScreen
     ''' </summary>
     Private Sub UpdateShakeAnimation()
         If _itemAnimation._shakeLeft = True Then
-            _itemAnimation._shakeV -= 0.035F
+            _itemAnimation._shakeV -= 0.0275F
             If _itemAnimation._shakeV <= -0.4F Then
                 _itemAnimation._shakeCount -= 1
                 _itemAnimation._shakeLeft = False
             End If
         Else
-            _itemAnimation._shakeV += 0.035F
+            _itemAnimation._shakeV += 0.0275F
             If _itemAnimation._shakeV >= 0.4F Then
                 _itemAnimation._shakeCount -= 1
                 _itemAnimation._shakeLeft = True
@@ -977,12 +999,26 @@ Public Class NewInventoryScreen
     ''' <summary>
     ''' Reloads the temporary item list.
     ''' </summary>
-    Private Sub LoadItems()
+    Public Sub LoadItems()
         _items = Core.Player.Inventory.Where(Function(x) Item.GetItemByID(x.ItemID).ItemType = _visibleItemTypes(_tabIndex)).ToArray()
         If _tabIndex = 4 Then 'TM/HM
             _items = (From i In _items Order By Item.GetItemByID(i.ItemID).SortValue Ascending).ToArray()
         Else
             _items = (From i In _items Order By Item.GetItemByID(i.ItemID).Name Ascending).ToArray()
+        End If
+        If _items.Count <= ItemIndex + PageIndex * 10 Then
+            ItemIndex -= 1
+            If ItemIndex = -1 Then
+                If PageIndex > 0 Then
+                    PageIndex -= 1
+                    ItemIndex = 9
+                Else
+                    ItemIndex = 0
+                    PageIndex = 0
+                    _tabInControl = True
+                End If
+            End If
+            CloseInfoScreen()
         End If
     End Sub
 

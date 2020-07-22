@@ -26,14 +26,12 @@ Namespace GameJolt
         Private Const ID_PLAYEREMBLEM As Integer = 1
         Private Const ID_PLAYERGENDER As Integer = 2
         Private Const ID_FRIENDS As Integer = 3
-        Private Const ID_SENTREQUESTS As Integer = 4
-        Private Const ID_RECEIVEDREQUESTS As Integer = 5
 
         'The amount of files to download.
         'SAVEFILEs represent the amount of files that would get stored in an offline save.
         'EXTRADATA is stuff that does get saved extra and that offline profiles don't have, like global points, friends etc.
         Public Const SAVEFILECOUNT As Integer = 16
-        Public Const EXTRADATADOWNLOADCOUNT As Integer = 6
+        Public Const EXTRADATADOWNLOADCOUNT As Integer = 4
         Public Const EXTRADATAUPLOADCOUNT As Integer = 3
 
         'The current version of the save files.
@@ -347,18 +345,12 @@ Namespace GameJolt
             Dim APIPrivateCall As New APICall(AddressOf GotPrivateKeys)
             APIPrivateCall.GetKeys(True, "saveStorageV" & GameJolt.GamejoltSave.VERSION & "|" & GameJoltID & "|*")
 
-            If MainSave = True Then
-                GameJolt.Emblem.GetAchievedEmblems()
-            End If
+            'If MainSave = True Then
+            '    GameJolt.Emblem.GetAchievedEmblems()
+            'End If
 
             Dim APIFriendsCall As New APICall(AddressOf SaveFriends)
             APIFriendsCall.FetchFriendList(GameJoltID)
-
-            Dim APISentCall As New APICall(AddressOf SaveSentRequests)
-            APISentCall.FetchSentFriendRequest()
-
-            Dim APIReceivedCall As New APICall(AddressOf SaveReceivedRequests)
-            APIReceivedCall.FetchReceivedFriendRequests()
 
             If MainSave = True Then
                 Dim t As New Threading.Thread(AddressOf DownloadSpriteSub)
@@ -860,47 +852,7 @@ Namespace GameJolt
             _downloadedFlags(SAVEFILECOUNT + ID_FRIENDS) = True
         End Sub
 
-        Private Sub SaveSentRequests(ByVal result As String)
-            Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
-            If list.Count > 1 Then
-                SentRequests = ""
-
-                For Each Item As API.JoltValue In list
-                    If Item.Name = "user_id" Then
-                        If SentRequests <> "" Then
-                            SentRequests &= ","
-                        End If
-                        SentRequests &= Item.Value
-                    End If
-                Next
-            Else
-                SentRequests = ""
-            End If
-
-            _downloadedFlags(SAVEFILECOUNT + ID_SENTREQUESTS) = True
-        End Sub
-
-        Private Sub SaveReceivedRequests(ByVal result As String)
-            Dim list As List(Of API.JoltValue) = API.HandleData(result)
-
-            If list.Count > 1 Then
-                ReceivedRequests = ""
-
-                For Each Item As API.JoltValue In list
-                    If Item.Name = "user_id" Then
-                        If ReceivedRequests <> "" Then
-                            ReceivedRequests &= ","
-                        End If
-                        ReceivedRequests &= Item.Value
-                    End If
-                Next
-            Else
-                ReceivedRequests = ""
-            End If
-
-            _downloadedFlags(SAVEFILECOUNT + ID_RECEIVEDREQUESTS) = True
-        End Sub
 
 #Region "DefaultData"
 

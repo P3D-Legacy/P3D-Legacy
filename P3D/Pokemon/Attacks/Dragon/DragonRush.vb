@@ -14,7 +14,7 @@
             Me.Power = 100
             Me.Accuracy = 75
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Dragon Rush"
             Me.Description = "The user tackles the target while exhibiting overwhelming menace. It may also make the target flinch."
             Me.CriticalChance = 1

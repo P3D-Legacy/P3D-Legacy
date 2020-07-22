@@ -7,6 +7,7 @@ Public Class OverworldCamera
     Public oldX, oldY As Single
 
     Private _thirdPerson As Boolean = False
+    Public _canToggleThirdPerson As Boolean = True
     Private _playerFacing As Integer = 0 'relative to the world, 0 means the player faces north, the camera might face in a different direction.
 
     Private _freeCameraMode As Boolean = False
@@ -28,6 +29,9 @@ Public Class OverworldCamera
     Public LastStepPosition As Vector3 = New Vector3(0, -2, 0)
     Public YawLocked As Boolean = False
     Public ThirdPersonOffset As Vector3 = New Vector3(0F, 0.3F, 1.5F)
+
+    'Debug variables
+    Public oldDate As Date = Date.Now
 
 #End Region
 
@@ -193,6 +197,7 @@ Public Class OverworldCamera
     Private Sub ControlCamera()
         Dim mState As MouseState = Mouse.GetState()
         Dim gState As GamePadState = GamePad.GetState(PlayerIndex.One)
+        Dim text As String = ""
 
         Dim dx As Single = mState.X - oldX
         If gState.ThumbSticks.Right.X <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
@@ -204,7 +209,7 @@ Public Class OverworldCamera
             dy = gState.ThumbSticks.Right.Y * 40.0F * -1.0F
         End If
 
-        If _isFixed = False Then
+        If _isFixed = False AndAlso (dx <> 0 OrElse dy <> 0) Then
             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Dim OS As OverworldScreen = CType(CurrentScreen, OverworldScreen)
 
@@ -216,8 +221,12 @@ Public Class OverworldCamera
             End If
 
             Pitch += -RotationSpeed * dy
+            'text = " (Moving)"
         End If
-
+        'Dim interval As TimeSpan
+        'interval = Date.Now - oldDate
+        'Logger.Debug("ControlCamera: " & interval.Milliseconds.ToString & " ms" & text)
+        'oldDate = Date.Now
         ClampYaw()
         ClampPitch()
     End Sub
@@ -286,7 +295,7 @@ Public Class OverworldCamera
                 If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     actionscriptReady = CType(CurrentScreen, OverworldScreen).ActionScript.IsReady
                 End If
-                If actionscriptReady = True Then
+                If actionscriptReady = True And _canToggleThirdPerson Then
                     SetThirdPerson(Not _thirdPerson, True)
                 End If
             End If
@@ -369,9 +378,27 @@ Public Class OverworldCamera
 
     Public Sub ResetCursor()
         If GameInstance.IsActive = True Then
-            Mouse.SetPosition(CInt(windowSize.Width / 2), CInt(windowSize.Height / 2))
-            oldX = CInt(windowSize.Width / 2)
-            oldY = CInt(windowSize.Height / 2)
+            ' Only reset the mouse position when it's "close" to the border of the client rect
+            Dim horizontalCutoff = windowSize.Width / 10.0F
+            Dim verticalCutoff = windowSize.Height / 10.0F
+            Dim mousePos = Mouse.GetState().Position.ToVector2()
+
+            If mousePos.X <= horizontalCutoff OrElse
+               mousePos.X >= windowSize.Width - horizontalCutoff OrElse
+               mousePos.Y <= verticalCutoff OrElse
+               mousePos.Y >= windowSize.Height - verticalCutoff Then
+
+                Mouse.SetPosition(CInt(windowSize.Width / 2), CInt(windowSize.Height / 2))
+                oldX = CInt(windowSize.Width / 2)
+                oldY = CInt(windowSize.Height / 2)
+
+            Else
+
+                oldX = mousePos.X
+                oldY = mousePos.Y
+
+            End If
+
         End If
     End Sub
 
@@ -547,12 +574,15 @@ Public Class OverworldCamera
         If _moved > 0.0F And Turning = False Then
             Dim v As Vector3 = PlannedMovement * Speed
 
-            Position += v
+            If Not Screen.Level.OwnPlayer().isDancing Then
+                Position += v
+            End If
+
 
             _moved -= Speed
             If _moved <= 0.0F Then
                 StopMovement()
-
+                Screen.Level.OwnPlayer().isDancing = False
                 Position.X = Position.X.ToInteger()
                 Position.Y = Position.Y.ToInteger() + 0.1F
                 Position.Z = Position.Z.ToInteger()
@@ -732,9 +762,6 @@ Public Class OverworldCamera
                 Screen.Level.OwnPlayer.DoAnimation = (walkSteps <= 1)
 
                 Move(walkSteps)
-                If _thirdPerson = False Then
-                    _bumpSoundDelay = 35
-                End If
             Else
                 'Walked against something, set player transparent
                 If Screen.Level.Surfing = False Then
@@ -742,12 +769,12 @@ Public Class OverworldCamera
                         If _didWalkAgainst = True Then
                             Screen.Level.OwnPlayer.Opacity = 0.5F
                         End If
-                        If _bumpSoundDelay = 0 Then
-                            If _didWalkAgainst = True Then
-                                SoundManager.PlaySound("bump")
-                            End If
-                            _bumpSoundDelay = 35
+                    End If
+                    If _bumpSoundDelay = 0 Then
+                        If _didWalkAgainst = True Then
+                            SoundManager.PlaySound("bump")
                         End If
+                        _bumpSoundDelay = 35
                     End If
                 End If
             End If

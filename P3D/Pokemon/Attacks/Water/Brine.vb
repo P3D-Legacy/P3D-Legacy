@@ -14,7 +14,7 @@
             Me.Power = 65
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Brine"
             Me.Description = "If the target's HP is down to about half, this attack will hit with double the power."
             Me.CriticalChance = 0

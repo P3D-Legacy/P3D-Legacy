@@ -2,7 +2,7 @@ Public Class CreditsScreen
 
     Inherits Screen
 
-    Private Const COPYRIGHTYEAR As String = "2018"
+    Private Const COPYRIGHTYEAR As String = "2019"
 
     Dim CreditsPages As New List(Of CreditsPage)
     Dim CurrentPageIndex As Integer = 0
@@ -44,8 +44,7 @@ Public Class CreditsScreen
 
         ExecuteCameraLevel()
 
-        MusicManager.Play("credits", True)
-        MediaPlayer.IsRepeating = False
+        MusicManager.Play("credits", True, False)
     End Sub
 
     ' The text that shows during the credits:
@@ -59,9 +58,9 @@ Public Class CreditsScreen
         End If
         CreditsPages.Add(New CreditsPage("Team Kolben", Color.White, Color.Black, {"Nils Drescher", "Andrew Leach", "Marc Boisvert-Dupras", "Grant Garrett", "Jason Houston", "Daniel Billing", "Benjamin Smith", "Hunter Graves"}.ToList()))
         CreditsPages.Add(New CreditsPage("Director", Color.White, Color.Black, {"Nils Drescher"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Open Source Development Team", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", """oXFantaXo""", "Jorge Luis Espinoza", "Conner Joseph Brewster", """OmegaGhost"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("Open Source Development Team", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", """oXFantaXo""", "Jorge Luis Espinoza", "Conner Joseph Brewster", """The Omega Ghost"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "William Lang", "Benjamin Smith", "Yong Jian Ming", "Jorge Luis Espinoza", """Aragas"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", """Godeken""", "Caleb Coleman", "Robert Nobbmann", "Manuel Lampe", "Miguel Nunez", "Grant Garrett", """Anvil555""", """Omega Ghost"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", """Godeken""", "Caleb Coleman", "Robert Nobbmann", "Manuel Lampe", "Miguel Nunez", "Grant Garrett", """Anvil555""", """The Omega Ghost""", """princess-phoenix"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine", "Jason Houston", """oXFantaXo"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Andrew Leach", "Jason Houston", "Yong Jian Ming", """Aragas"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Yong Jian Ming", """Aragas"""}.ToList()))
@@ -70,9 +69,9 @@ Public Class CreditsScreen
         CreditsPages.Add(New CreditsPage("Pokéditor Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "Hunter Graves"}.ToList()))
         CreditsPages.Add(New CreditsPage("Website Host/Server Maintenance", Color.White, Color.Black, {"Daniel Billing", "Daniel Laube"}.ToList()))
         CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", "Nils Drescher"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Debug Testing", Color.White, Color.Black, {"Jan Mika Eine", "Tim Drescher", "Daniel Steinborn", "Andrew Leach", "Marc Boisvert-Dupras", "Matt Chambers", "Hunter Graves", "Benjamin Smith", "William Hunn", "Torben Carrington", """oXFantaXo""", "Conner Joseph Brewster"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Debug Testing", Color.White, Color.Black, {"Jan Mika Eine", "Tim Drescher", "Daniel Steinborn", "Andrew Leach", "Marc Boisvert-Dupras", "Matt Chambers", "Hunter Graves", "Benjamin Smith", "William Hunn", "Torben Carrington", """oXFantaXo""", "Conner Joseph Brewster", """Sanio"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"""MunchingOrange""", """TheFlamingSpade""", """SlyFoxHound""", """ArsenioDev""", """TrUShade""", """Isaaking6"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt Team", "The AppSharp Team", "The Smogon University Team"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt Team", "The AppSharp Team", "The Smogon University Sprite Project Team"}.ToList()))
         CreditsPages.Add(New CreditsPage("", Color.White, Color.Black, {"And probably a lot more.", "Especially all the awesome people from", "the pokemon3d.net community.", "Thanks for helping and playing this great game."}.ToList()))
         CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
         CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
@@ -135,6 +134,7 @@ Public Class CreditsScreen
 
         If TheEnd = True Then
             If Controls.Accept(True, True) = True Then
+                SoundManager.PlaySound("select")
                 Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, Color.Black, False, AddressOf ChangeSavedScreen))
             End If
         End If
@@ -284,11 +284,11 @@ Public Class CreditsScreen
     End Class
 
     Public Overrides Sub ChangeFrom()
-        MediaPlayer.IsRepeating = True
+        MusicManager._isLooping = True
     End Sub
 
     Public Overrides Sub ChangeTo()
-        MediaPlayer.IsRepeating = False
+        MusicManager._isLooping = False
     End Sub
 
 End Class

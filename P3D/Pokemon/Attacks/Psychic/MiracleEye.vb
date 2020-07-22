@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cute
+            Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Miracle Eye"
             Me.Description = "Enables a Dark-type target to be hit by Psychic-type attacks. This also enables an evasive target to be hit."
             Me.CriticalChance = 0

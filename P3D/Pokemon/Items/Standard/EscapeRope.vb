@@ -33,12 +33,12 @@ Namespace Items.Standard
 @camera.reset
 @camera.fix
 @player.turnto(0)
+@sound.play(teleport)
 :while:<player.position(y)><" & yFinish & "
 @player.turn(1)
 @player.warp(~,~+0.1,~)
 @level.wait(1)
 :endwhile
-@sound.play(destroy)
 @screen.fadeout
 @camera.defix
 @player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)

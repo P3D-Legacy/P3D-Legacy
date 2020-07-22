@@ -426,6 +426,8 @@
         Public Shared PokemonScreenIndex As Integer = 0
         Public Shared PokemonStatusPageIndex As Integer = 0
         Public Shared BagIndex As Integer = 0
+        Public Shared BagPageIndex As Integer() = {0, 0, 0, 0, 0, 0, 0, 0}
+        Public Shared BagItemIndex As Integer() = {0, 0, 0, 0, 0, 0, 0, 0}
         Public Shared BagSelectIndex As Integer = 0
         Public Shared MenuIndex As Integer = 0
         Public Shared PokedexIndex As Integer = 0
@@ -456,6 +458,8 @@
         Temp.PokemonScreenIndex = 0
         Temp.PokemonStatusPageIndex = 0
         Temp.BagIndex = 0
+        Temp.BagPageIndex = {0, 0, 0, 0, 0, 0, 0, 0}
+        Temp.BagItemIndex = {0, 0, 0, 0, 0, 0, 0, 0}
         Temp.BagSelectIndex = 0
         Temp.MenuIndex = 0
         Temp.PokedexIndex = 0
@@ -1242,8 +1246,8 @@
         Dim c As OverworldCamera = GetOverworldCamera()
         Dim freeCameraString As String = c.FreeCameraMode.ToNumberString()
 
-        Dim diff As Integer = (Date.Now - GameStart).Seconds
-        Dim p As TimeSpan = PlayTime + TimeHelpers.ConvertSecondToTime(diff)
+        Dim diff As TimeSpan = (Date.Now - GameStart)
+        Dim p As TimeSpan = PlayTime + diff
         Dim PlayTimeString As String = p.Hours & "," & p.Minutes & "," & p.Seconds & "," & p.Days
 
         Dim lastPokemonPosition As String = "999,999,999"
@@ -1752,9 +1756,11 @@
         If CanFireStepEvent() = True Then
             Dim addEggSteps As Integer = stepAmount
             For Each p As Pokemon In Pokemons
-                If p.Ability.Name.ToLower() = "magma armor" Or p.Ability.Name.ToLower() = "flame body" Then
-                    addEggSteps *= Random.Next(1, 4)
-                    Exit For
+                If p.Ability IsNot Nothing Then
+                    If p.Ability.Name.ToLower() = "magma armor" OrElse p.Ability.Name.ToLower() = "flame body" Then
+                        addEggSteps *= Random.Next(1, 4)
+                        Exit For
+                    End If
                 End If
             Next
 
@@ -1891,7 +1897,7 @@
     End Sub
 
     Private Sub PlayWildPokemonNoise(ByVal number As Integer)
-        SoundManager.PlayPokemonCry(number, Random.Next(0, 6) / 10.0F, Random.Next(0, 20) / 10.0F - 1, SoundManager.Volume * 0.35F)
+        SoundManager.PlayPokemonCry(number, Random.Next(0, 6) / 10.0F, Random.Next(0, 20) / 10.0F - 1, SoundManager.Volume * 0.5F)
     End Sub
 
 #End Region

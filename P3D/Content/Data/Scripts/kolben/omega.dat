@@ -1,0 +1,92 @@
+version=2
+
+:if:<register.registered(omegamet)>=false
+	@text.show(Omega: Greetings, I'm Omega,~the ghost!*I repurposed this basement~into a neat workplace.*Sure, it's a bit clumsy, but~that's better than nothing,~am I right or am I right?)
+	@register.register(omegamet)
+:endif
+
+:if:<register.registered(omega1)>=false
+	@text.show(Omega: Tell me, do you~like shinies?)
+	@options.show(Yes,No)
+		:when:Yes
+			@text.show(Omega: Good, good...*I have accumulated a wide~selection of shiny Pokémon~over the years.*I might even give you one.*Let's settle it like this:~If you win against my strongest~Pokémon you get the shiny.*Deal?)
+			@options.show(Deal,No Way)
+				:when:Deal
+					@battle.setvar(canblackout,false)
+					@battle.trainer(kolben\omega1)
+						:if:<battle.won>=true
+							@pokemon.heal
+							@register.register(omega1)
+							@text.show(As expected, you did it!~Now let me see...*...*You'll get a Pikachu-colored~Pichu to call your own!)
+								:if:<pokemon.count>>5
+									@text.show(Oh, your party is full.~Go open some space to claim~your Pokémon!)
+									:end
+								:else
+									@pokemon.add(172,50,A gift from Omega,45,at Kolben Tower,0,Omega)
+									@text.show(Ah yes, your prize.*This Pichu is special:~I found it near the Ilex~Forest shrine.*I wonder what happens if~you take it back there.*Anyway, here it is!)
+									@pokemon.setshiny(<pokemon.count>-1,1)
+									@pokemon.setgender(<pokemon.count>-1,0)
+									@pokemon.clearattacks(<pokemon.count>-1)
+									@pokemon.addattack(<pokemon.count>-1,344)
+									@pokemon.addattack(<pokemon.count>-1,57)
+									@pokemon.addattack(<pokemon.count>-1,19)
+									@pokemon.addattack(<pokemon.count>-1,231)
+									@sound.play(success_small,1)
+									@text.show(<player.name> received~Pichu!)
+									@pokemon.setot(<pokemon.count>-1,42069)
+									@pokemon.rename(last)
+									@register.register(pcpreceive)
+									:end				
+								:endif
+						:else
+							@pokemon.heal
+							@text.show(That's a bit disappointing.*Well, try again later!)
+							:end
+						:endif
+				:when:No Way			
+					@text.show(Oke.)
+					:end
+			:endwhen
+		:when:No
+			@text.show(That's heartless.)
+			:end
+	:endwhen
+:else
+	:if:<register.registered(pcpreceive)>=false
+		:if:<pokemon.count>>5
+			@text.show(Oh, your party is full.~Go open some space to claim~your Pokémon!)
+			:end
+		:else
+			@pokemon.add(172,50,A gift from Omega,45,at Kolben Tower,0,Omega)
+			@text.show(Ah yes, your prize.*This Pichu is special:~I found it near the Ilex~Forest shrine.*I wonder what happens if~you take it back there.*Anyway, here it is!)
+			@pokemon.setshiny(<pokemon.count>-1,1)
+			@pokemon.setgender(<pokemon.count>-1,0)
+			@pokemon.clearattacks(<pokemon.count>-1)
+			@pokemon.addattack(<pokemon.count>-1,344)
+			@pokemon.addattack(<pokemon.count>-1,57)
+			@pokemon.addattack(<pokemon.count>-1,19)
+			@pokemon.addattack(<pokemon.count>-1,231)
+			@sound.play(success_small,1)
+			@text.show(<player.name> received~Pichu!)
+			@pokemon.setot(<pokemon.count>-1,42069)
+			@pokemon.rename(last)
+			@register.register(pcpreceive)
+			:end				
+		:endif
+	:else
+		:if:<register.registered(omega2)>=false
+			@text.show(Omega: It's a pleasure~to see you once again.*Say, do you want a real~battle now?)
+			@options.show(Yes,No)
+				:when:Yes
+					@script.start(kolben/omega2)
+				:when:No			
+					@text.show(Oke.)
+					:end
+			:endwhen
+		:else
+			@text.show(We can have another~battle tomorrow!)
+		:endif
+	:endif	
+:endif
+
+:end

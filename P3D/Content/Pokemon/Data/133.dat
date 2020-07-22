@@ -62,3 +62,5 @@ EvolutionCondition|196,daytime,1;2,level
 EvolutionCondition|196,friendship,220,level
 EvolutionCondition|470,location,Ilex Forest,level
 EvolutionCondition|471,location,Ice Path,level
+EvolutionCondition|700,inpartytype,fairy,level
+EvolutionCondition|700,friendship,220,level

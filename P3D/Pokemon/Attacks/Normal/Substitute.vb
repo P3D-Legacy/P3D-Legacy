@@ -14,7 +14,7 @@
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Substitute"
             Me.Description = "The user makes a copy of itself using some of its HP. The copy serves as the user’s decoy."
             Me.CriticalChance = 0

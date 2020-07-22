@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Cosmic Power"
             Me.Description = "The user absorbs a mystical power from space to raise its Defense and Sp. Def stats."
             Me.CriticalChance = 0

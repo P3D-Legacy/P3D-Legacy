@@ -14,7 +14,7 @@
             Me.Power = 85
             Me.Accuracy = 90
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Blaze Kick"
             Me.Description = "The user launches a kick that lands a critical hit more easily. It may also leave the target with a burn."
             Me.CriticalChance = 2

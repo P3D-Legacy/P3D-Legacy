@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Grunt
+TrainerClass|Team Rocket
+Money|4110
+IntroMessage|We will use this rare~Pokémon and its powers~to do our bidding.
+OutroMessage|Not even the Pokémon around me are doing my bidding!
+DefeatMessage|Give up, it's still ours!
+TextureID|gruntm
+Region|Sevii Islands
+insightmusic|johto_rocket_encounter
+IniMusic|Johto_rocket_intro
+DefeatMusic|trainer_defeat
+BattleMusic|johto_rocket
+Pokemon1|110,58
+Pokemon2|105,58
+Pokemon3|553,59
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|40
+IntroSequence|Blue,Blue

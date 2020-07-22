@@ -378,11 +378,12 @@ Public Class GameMode
     ''' <param name="StartLocationName">The start location name for the new GameMode.</param>
     ''' <param name="PokemonAppear">The Pokémon that appear on the new game screen for the new GameMode.</param>
     ''' <param name="IntroMusic">The intro music that plays on the new game screen for the new GameMode.</param>
+    ''' <param name="IntroType">The type of intro used when starting a new game for the GameMode (0 = New Intro (3D), 1 = Old Intro (2D)).</param>
     ''' <param name="SkinColors">The skin colors for the new GameMode. Must be the same amount as SkinFiles and SkinNames.</param>
     ''' <param name="SkinFiles">The skin files for the new GameMode. Must be the same amount as SkinColors and SkinNames.</param>
     ''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
     Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule),
-                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String))
+                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String))
         Me._name = Name
         Me._description = Description
         Me._version = Version
@@ -403,6 +404,7 @@ Public Class GameMode
         Me._startColor = StartColor
         Me._pokemonAppear = PokemonAppear
         Me._introMusic = IntroMusic
+        Me._introType = IntroType
         Me._skinColors = SkinColors
         Me._skinFiles = SkinFiles
         Me._skinNames = SkinNames
@@ -495,6 +497,8 @@ Public Class GameMode
                             End If
                         Case "intromusic"
                             Me._introMusic = Value
+                        Case "introtype"
+                            Me._introType = Value
                         Case "skincolors"
                             Dim l As New List(Of Color)
                             For Each color As String In Value.Split(CChar(","))
@@ -554,7 +558,7 @@ Public Class GameMode
         Dim SkinNames As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
 
         Dim gameMode As New GameMode("Pokemon 3D", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule),
-                                     "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", SkinColors, SkinFiles, SkinNames)
+                                     "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", "0", SkinColors, SkinFiles, SkinNames)
 
         Dim gameRules As New List(Of GameRule)
         gameRules.Add(New GameRule("MaxLevel", "100"))
@@ -830,6 +834,7 @@ Public Class GameMode
     Private _startColor As Color = New Color(59, 123, 165)
     Private _pokemonAppear As String = ""
     Private _introMusic As String = ""
+    Private _introType As String = ""
     Private _skinColors As New List(Of Color)
     Private _skinFiles As New List(Of String)
     Private _skinNames As New List(Of String)
@@ -950,6 +955,18 @@ Public Class GameMode
         End Get
         Set(value As String)
             Me._introMusic = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' The type of intro used when starting a new game for the GameMode (0 = New Intro (3D), 1 = Old Intro (2D)).
+    ''' </summary>
+    Public Property IntroType() As String
+        Get
+            Return Me._introType
+        End Get
+        Set(value As String)
+            Me._introType = value
         End Set
     End Property
 

@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Bug
 
-    Public Class Xscissor
+    Public Class XScissor
 
         Inherits Attack
 
@@ -14,7 +14,7 @@
             Me.Power = 80
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "X-Scissor"
             Me.Description = "The user slashes at the target by crossing its scythes or claws as if they were a pair of scissors."
             Me.CriticalChance = 1

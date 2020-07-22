@@ -65,6 +65,7 @@ Public Class PartyScreen
     Public CanChooseFainted As Boolean = True
     Public CanChooseEgg As Boolean = True
     Public CanChooseHMPokemon As Boolean = True
+    Public CanChooseFusedPokemon As Boolean = True
 
     Public Delegate Sub DoStuff(ByVal PokeIndex As Integer)
     Dim ChoosePokemon As DoStuff
@@ -131,6 +132,7 @@ Public Class PartyScreen
 
         CheckForLegendaryEmblem()
         CheckForUnoDosTresEmblem()
+        CheckForBeastEmblem()
         CheckForOverkillEmblem()
 
         _menu = New UI.SelectMenu({""}.ToList(), 0, Nothing, 0)
@@ -320,7 +322,7 @@ Public Class PartyScreen
             GetFontRenderer().DrawString(FontManager.MiniFont, "Lv. " & p.Level.ToString(), New Vector2(position.X + 4, position.Y + 56), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
             'HP Bar:
-            SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 78, CInt(position.Y) + 32, 135, 15), New Rectangle(0, 32, 90, 10), New Color(255, 255, 255, CInt(220 * _interfaceFade)))
+            SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 102, CInt(position.Y) + 32, 111, 15), New Rectangle(16, 32, 74, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
             '108 pixels:
             With p
                 Dim hpV As Double = .HP / .MaxHP
@@ -353,6 +355,18 @@ Public Class PartyScreen
 
             'HP display:
             GetFontRenderer().DrawString(FontManager.MiniFont, p.HP & " / " & p.MaxHP, New Vector2(position.X + 100, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+
+            'status condition
+            Dim StatusTexture As Texture2D = BattleStats.GetStatImage(p.Status)
+            If Not StatusTexture Is Nothing Then
+                'Canvas.DrawRectangle(New Rectangle(CInt(position.X + 60), CInt(position.Y + 32), 42, 15), Color.Black)
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 68, CInt(position.Y) + 32, 6, 15), New Rectangle(0, 32, 4, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 74, CInt(position.Y) + 32, 28, 15), New Rectangle(16, 32, 4, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+
+                Core.SpriteBatch.Draw(StatusTexture, New Rectangle(CInt(position.X + 66), CInt(position.Y + 33), 38, 12), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            Else
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 78, CInt(position.Y) + 32, 24, 15), New Rectangle(0, 32, 16, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            End If
 
             'Able/unable display (when using TM/HM)
             Dim AttackLabel As String = ""
@@ -495,7 +509,7 @@ Public Class PartyScreen
                         If _switchIndex <> _index Then
                             Dim p1 As Pokemon = PokemonList(_switchIndex)
                             Dim p2 As Pokemon = PokemonList(_index)
-
+                            SoundManager.PlaySound("select")
                             PokemonList(_switchIndex) = p2
                             PokemonList(_index) = p1
                         End If
@@ -514,6 +528,7 @@ Public Class PartyScreen
                             used = True
                             ExitedSub(_index)
                         End If
+                        SoundManager.PlaySound("select")
                         _closing = True
                     End If
                 End If
@@ -570,6 +585,13 @@ Public Class PartyScreen
         If Me.CanChooseHMPokemon = False Then
             If p.HasHMMove() = True Then
                 Return False
+            End If
+        End If
+        If Me.CanChooseFusedPokemon = False Then
+            If p.OriginalNumber = 646 Then
+                If p.AdditionalData = "black" Or p.AdditionalData = "white" Then
+                    Return False
+                End If
             End If
         End If
         Return True
@@ -828,6 +850,28 @@ Public Class PartyScreen
 
         If hasArticuno And hasZapdos And hasMoltres Then
             GameJolt.Emblem.AchieveEmblem("unodostres")
+        End If
+    End Sub
+
+    Private Sub CheckForBeastEmblem()
+        'This sub checks if Entei, Raikou and Suicune are in the player's party.
+        Dim hasRaikou As Boolean = False
+        Dim hasEntei As Boolean = False
+        Dim hasSuicune2 As Boolean = False
+
+        For Each p As Pokemon In PokemonList
+            Select Case p.Number
+                Case 243
+                    hasRaikou = True
+                Case 244
+                    hasEntei = True
+                Case 245
+                    hasSuicune2 = True
+            End Select
+        Next
+
+        If hasRaikou And hasEntei And hasSuicune2 Then
+            GameJolt.Emblem.AchieveEmblem("beast")
         End If
     End Sub
 

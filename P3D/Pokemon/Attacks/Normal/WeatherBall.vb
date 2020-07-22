@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Power = 50
             Me.Accuracy = 100
             Me.Category = Categories.Special
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Beauty
             Me.Name = "Weather Ball"
             Me.Description = "An attack move that varies in power and type depending on the weather."
             Me.CriticalChance = 1

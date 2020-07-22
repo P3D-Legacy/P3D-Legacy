@@ -11,7 +11,7 @@ Namespace BattleSystem.Moves.Electric
             Me.OriginalPP = 20
             Me.CurrentPP = 20
             Me.MaxPP = 20
-            Me.Power = 50
+            Me.Power = 65
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart

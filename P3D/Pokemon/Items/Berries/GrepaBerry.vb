@@ -15,7 +15,7 @@ Namespace Items.Berries
             Me.Sour = 10
 
             Me.Type = Element.Types.Flying
-            Me.Power = 70
+            Me.Power = 90
         End Sub
 
         Public Overrides Sub Use()

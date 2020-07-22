@@ -107,7 +107,7 @@
             Canvas.DrawRectangle(_textBatch, New Rectangle(-10, 300, 190, 30), New Color(0, 0, 0, 150))
 
             Dim emblemName = GameJoltSave.Emblem
-            _textBatch.DrawString(FontManager.MiniFont, emblemName(0).ToString().ToUpper() & emblemName.Substring(1, emblemName.Length - 1), New Vector2(0, 305), Color.White)
+            _textBatch.DrawString(FontManager.MiniFont, emblemName(0).ToString().ToUpper() & emblemName.Substring(1, emblemName.Length - 1), New Vector2(15, 305), Color.White)
 
             DrawLevelProgress()
         End If
@@ -189,21 +189,23 @@
 
         Dim needPoints As Integer = 0
         Dim totalNeedPoints As Integer = 0
+        Dim hasPointsThisLevel As Integer = 0
+
 
         Dim hasPoints As Integer = Core.GameJoltSave.Points
         Dim needPointsCurrentLevel As Integer = GameJolt.Emblem.GetPointsForLevel(currentLevel)
         Dim needPointsNextLevel As Integer = GameJolt.Emblem.GetPointsForLevel(currentLevel + 1)
 
         totalNeedPoints = needPointsNextLevel - needPointsCurrentLevel
-        needPoints = totalNeedPoints - (hasPoints - needPointsCurrentLevel) + 1
+        hasPointsThisLevel = hasPoints - needPointsCurrentLevel
 
-        Dim hasPointsThisLevel As Integer = totalNeedPoints - needPoints
+        needPoints = totalNeedPoints - hasPointsThisLevel
 
         Dim nextSprite As Texture2D = GameJolt.Emblem.GetPlayerSprite(currentLevel + 1, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Gender)
 
         _spriteBatch.Draw(nextSprite, New Rectangle(570, 310, 32, 32), New Rectangle(0, 64, 32, 32), Color.White)
 
-        Dim value = hasPointsThisLevel / totalNeedPoints * 310
+        Dim value = Clamp(hasPointsThisLevel / totalNeedPoints * 310, 0, 310)
 
         If currentLevel >= 100 Then
             value = 310
@@ -250,6 +252,7 @@
             End If
         Else
             If Controls.Dismiss() Then
+                SoundManager.PlaySound("select")
                 SetScreen(PreScreen)
             End If
         End If

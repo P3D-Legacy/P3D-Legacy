@@ -279,6 +279,7 @@
                                     Selected = -1
                                 Else
                                     Selected = i + ScrollIndex
+                                    SoundManager.PlaySound("select")
                                     TempPokemon = Pokemon.GetPokemonByID(CInt(SearchResults(Selected).RequestID))
                                     Emblem = New Emblem(SearchResults(Selected).FromUserID, 0)
                                 End If
@@ -290,15 +291,19 @@
 
             If Controls.Accept(True, False) = True Then
                 If New Rectangle(280, 48, 5 * 32, 64).Contains(MouseHandler.MousePosition) = True Then
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(New SelectPokemonScreen(Me, "Offer"))
                 End If
                 If New Rectangle(472, 48, 4 * 32, 64).Contains(MouseHandler.MousePosition) = True Then
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(New SelectLevelScreen(Me))
                 End If
                 If New Rectangle(632, 48, 4 * 32, 64).Contains(MouseHandler.MousePosition) = True Then
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(New SelectGenderScreen(Me))
                 End If
                 If New Rectangle(792, 48, 5 * 32, 64).Contains(MouseHandler.MousePosition) = True Then
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(New SelectPokemonScreen(Me, "Request"))
                 End If
                 If New Rectangle(1000, 64, 32 * 3 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
@@ -328,9 +333,11 @@
                     Selected = -1
                     ScrollIndex = 0
                     'End If
+                    SoundManager.PlaySound("select")
                 End If
                 If New Rectangle(600, 610, 32 * 3 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
                     If Selected > -1 Then
+                        SoundManager.PlaySound("select")
                         Core.SetScreen(New GTSTradeScreen(Me, SearchResults(Selected)))
                     End If
                 End If
@@ -339,7 +346,9 @@
             If Controls.Dismiss(True, True) = True Then
                 If Selected > -1 Then
                     Selected = -1
+                    SoundManager.PlaySound("select")
                 Else
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(Me.PreScreen)
                 End If
             End If
@@ -539,17 +548,20 @@
                                 Case 9
                                     newSetting = "90 - 100"
                             End Select
+                            SoundManager.PlaySound("select")
                             Me.GTSSearchScreen.LevelFilter = newSetting
                             Core.SetScreen(Me.GTSSearchScreen)
                         End If
                     Next
 
                     If New Rectangle(900, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
+                        SoundManager.PlaySound("select")
                         Core.SetScreen(Me.GTSSearchScreen)
                     End If
                 End If
 
                 If Controls.Dismiss(True, True) = True Then
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(Me.GTSSearchScreen)
                 End If
             End Sub
@@ -706,7 +718,7 @@
                                 ElseIf Mode = "Offer" Then
                                     Me.GTSSearchScreen.OfferFilter = newSetting
                                 End If
-
+                                SoundManager.PlaySound("select")
                                 Close()
                             End If
                         End If
@@ -716,6 +728,7 @@
                         If Me.Page > 0 Then
                             Me.Page -= 1
                             GetPokemon()
+                            SoundManager.PlaySound("select")
                             If Me.Mode = "Request" Then
                                 TempRequestPage = Me.Page
                             ElseIf Me.Mode = "Offer" Then
@@ -727,6 +740,7 @@
                         If CurrentPokemon.Count = 20 Then
                             Me.Page += 1
                             GetPokemon()
+                            SoundManager.PlaySound("select")
                             If Me.Mode = "Request" Then
                                 TempRequestPage = Me.Page
                             ElseIf Me.Mode = "Offer" Then
@@ -740,15 +754,17 @@
                         ElseIf Mode = "Offer" Then
                             Me.GTSSearchScreen.OfferFilter = ""
                         End If
-
+                        SoundManager.PlaySound("select")
                         Close()
                     End If
                     If New Rectangle(900, 500, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
+                        SoundManager.PlaySound("select")
                         Close()
                     End If
                 End If
 
                 If Controls.Dismiss(True, True) = True Then
+                    SoundManager.PlaySound("select")
                     Close()
                 End If
             End Sub
@@ -849,9 +865,11 @@
                     If New Rectangle(900, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                         Core.SetScreen(Me.GTSSearchScreen)
                     End If
+                    SoundManager.PlaySound("select")
                 End If
 
                 If Controls.Dismiss(True, True) = True Then
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(Me.GTSSearchScreen)
                 End If
             End Sub
@@ -931,9 +949,11 @@
                     If New Rectangle(900, 200, 32 * 4, 64).Contains(MouseHandler.MousePosition) = True Then
                         Core.SetScreen(Me.GTSSearchScreen.PreScreen)
                     End If
+                    SoundManager.PlaySound("select")
                 End If
 
                 If Controls.Dismiss(True, True) = True Then
+                    SoundManager.PlaySound("select")
                     Core.SetScreen(Me.GTSSearchScreen.PreScreen)
                 End If
             End Sub

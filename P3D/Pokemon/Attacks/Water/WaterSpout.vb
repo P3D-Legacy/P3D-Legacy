@@ -61,6 +61,6 @@ Namespace BattleSystem.Moves.Water
             Return CInt(150 * (p.HP / p.MaxHP))
         End Function
 
-	End Class
+    End Class
 
 End Namespace

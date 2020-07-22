@@ -18,7 +18,7 @@ Namespace BattleSystem.Moves.Water
             Me.Name = "Whirlpool"
             Me.Description = "Traps foes in a violent swirling whirlpool for four to five turns."
             Me.CriticalChance = 1
-            Me.IsHMMove = False
+            Me.IsHMMove = True
             Me.Target = Targets.OneAdjacentTarget
             Me.Priority = 0
             Me.TimesToAttack = 1
@@ -54,6 +54,19 @@ Namespace BattleSystem.Moves.Water
             Me.AIField1 = AIField.Damage
             Me.AIField2 = AIField.Trap
         End Sub
+
+        Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
+            Dim dive As Integer = BattleScreen.FieldEffects.OppDiveCounter
+            If own = False Then
+                dive = BattleScreen.FieldEffects.OwnDiveCounter
+            End If
+
+            If dive > 0 Then
+                Return Me.Power * 2
+            Else
+                Return Me.Power
+            End If
+        End Function
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             Dim p As Pokemon = BattleScreen.OwnPokemon

@@ -1,0 +1,23 @@
+[TRAINER FORMAT]
+Name|Omega
+TrainerClass|Pokémon Trainer
+Money|1337
+IntroMessage|
+OutroMessage|Oke.
+DefeatMessage|
+TextureID|Omega
+Region|Sevii Islands
+IniMusic|kanto_leader_intro
+DefeatMusic|leader_defeat
+BattleMusic|kanto_leader
+Pokemon1|{"Pokemon"[94]}{"Gender"[0]}{"Item"[113]}{"ItemData"[]}{"Level"[80]}{"OT"[00000]}{"Ability"[26]}{"Nature"[10]}{"CatchLocation"[Somewhere]}{"CatchTrainer"[Omega]}{"CatchBall"[158]}{"CatchMethod"[]}{"Friendship"[200]}{"isShiny"[0]}{"Attack1"[247,24,24]}{"Attack2"[411,8,8]}{"Attack3"[482,16,16]}{"Attack4"[412,16,16]}{"EVs"[0,0,0,252,4,252]}{"IVs"[31,31,31,31,31,31]}
+Pokemon2|
+Pokemon3|
+Pokemon4|
+Pokemon5|
+Pokemon6|
+Items|
+Gender|0
+AI|80
+IntroSequence|Red,Violet
+IntroType|11

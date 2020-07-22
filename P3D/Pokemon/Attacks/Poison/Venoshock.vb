@@ -56,11 +56,11 @@
         End Sub
 
         Public Overrides Function GetBasePower(own As Boolean, BattleScreen As BattleScreen) As Integer
-            Dim p As Pokemon = BattleScreen.OppPokemon
+            Dim op As Pokemon = BattleScreen.OppPokemon
             If own = False Then
-                p = BattleScreen.OwnPokemon
+                op = BattleScreen.OwnPokemon
             End If
-            If p.Status = Pokemon.StatusProblems.Poison Then
+            If op.Status = Pokemon.StatusProblems.Poison OrElse op.Status = Pokemon.StatusProblems.BadPoison Then
                 Return 130
             Else
                 Return Me.Power

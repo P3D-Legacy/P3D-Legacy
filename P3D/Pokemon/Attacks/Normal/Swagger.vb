@@ -12,7 +12,7 @@
             Me.CurrentPP = 15
             Me.MaxPP = 15
             Me.Power = 0
-            Me.Accuracy = 90
+            Me.Accuracy = 85
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Swagger"

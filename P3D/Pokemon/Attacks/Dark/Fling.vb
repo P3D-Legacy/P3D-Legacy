@@ -14,7 +14,7 @@
             Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Tough
+            Me.ContestCategory = ContestCategories.Cute
             Me.Name = "Fling"
             Me.Description = "The user flings its held item at the target to attack. This move's power and effects depend on the item."
             Me.CriticalChance = 1

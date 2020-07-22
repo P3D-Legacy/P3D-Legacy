@@ -126,6 +126,63 @@
                     targetNPC.MoveAsync = True
 
                     IsReady = True
+                Case "dance"
+                    Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
+                    Dim steps As Integer = int(argument.GetSplit(1))
+
+                    Screen.Level.UpdateEntities()
+                    targetNPC.isDancing = True
+                    If ScriptV2.started = False Then
+                        If steps < 0 Then
+                            If targetNPC.Speed > 0 Then
+                                targetNPC.Speed *= -1
+                            End If
+                        Else
+                            If targetNPC.Speed < 0 Then
+                                targetNPC.Speed *= -1
+                            End If
+                        End If
+
+                        steps = steps.ToPositive()
+
+                        targetNPC.Moved += steps
+                        ScriptV2.started = True
+                    Else
+                        If targetNPC.Moved <= 0.0F Then
+                            If targetNPC.Speed < 0 Then
+                                targetNPC.Speed *= -1
+                            End If
+                            IsReady = True
+                        Else
+                            If targetNPC.InCameraFocus() = True Then
+                                Screen.Camera.Update()
+                            End If
+                        End If
+                    End If
+                Case "danceasync"
+
+                    Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
+                    Dim steps As Integer = int(argument.GetSplit(1))
+
+                    Screen.Level.UpdateEntities()
+
+                    targetNPC.isDancing = True
+                    If steps < 0 Then
+                        If targetNPC.Speed > 0 Then
+                            targetNPC.Speed *= -1
+                        End If
+                    Else
+                        If targetNPC.Speed < 0 Then
+                            targetNPC.Speed *= -1
+                        End If
+                    End If
+
+                    steps = steps.ToPositive()
+
+                    targetNPC.Moved += steps
+                    targetNPC.MoveAsync = True
+
+                    IsReady = True
                 Case "turn"
                     Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
 

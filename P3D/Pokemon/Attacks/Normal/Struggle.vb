@@ -14,7 +14,7 @@
             Me.Power = 50
             Me.Accuracy = 0
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Cool
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Struggle"
             Me.Description = "An attack that is used in desperation only if the user has no PP. It also hurts the user slightly."
             Me.CriticalChance = 0

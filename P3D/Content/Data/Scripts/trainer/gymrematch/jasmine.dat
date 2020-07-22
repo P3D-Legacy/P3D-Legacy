@@ -1,0 +1,4 @@
+version=2
+@storage.set(string,leader,jasmine<register.registered(earthbadge_obtain)>)
+@script.start(trainer\gymrematch\main)
+:end

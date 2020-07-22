@@ -14,7 +14,7 @@ Namespace BattleSystem.Moves.Fighting
             Me.Power = 0
             Me.Accuracy = 100
             Me.Category = Categories.Status
-            Me.ContestCategory = ContestCategories.Beauty
+            Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Bulk Up"
             Me.Description = "The user tenses its muscles to bulk up its body, raising both its Attack and Defense stats."
             Me.CriticalChance = 0

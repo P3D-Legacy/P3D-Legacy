@@ -14,7 +14,7 @@
             Me.Power = 40
             Me.Accuracy = 100
             Me.Category = Categories.Physical
-            Me.ContestCategory = ContestCategories.Smart
+            Me.ContestCategory = ContestCategories.Tough
             Me.Name = "Bullet Punch"
             Me.Description = "The user strikes the target with tough punches as fast as bullets. This move always goes first."
             Me.CriticalChance = 1
