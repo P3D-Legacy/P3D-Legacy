@@ -6,16 +6,30 @@ Global:
 global_join,Join
 global_play,Play
 global_refresh,Refresh
+global_new,New
 global_add,Add
 global_edit,Edit
 global_remove,Remove
 global_back,Back
+global_please_wait,Please wait
+global_loading,Loading
+global_game,Game
+global_login,Log in
+global_male,Male
+global_female,Female
+---
+PressStartScreen:
+press_start_1,Press
+press_start_2,to start.
+press_start_change_to,Change to
+press_start_reset_save,Reset save
+press_start_select_gamemode_1,Select a GameMode
+press_start_select_gamemode_2,to start the new game with.
 ---
 JoinServerScreen:
 server_title,Join A Server
 server_protocol_version,Protocol version
 server_connecting_to_server,Connecting to server
-server_please_wait,Please wait
 server_single_player_name,Local
 server_single_player_message,Single-player: Play on your local computer.
 server_received_error,Cannot reach server.
