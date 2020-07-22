@@ -65,8 +65,8 @@
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Buttons.A, "Accept")
-        d.Add(Buttons.B, "Go back")
+        d.Add(Buttons.A, Localization.GetString("global_accept"))
+        d.Add(Buttons.B, Localization.GetString("global_go_back"))
 
         DrawGamePadControls(d)
     End Sub
@@ -184,10 +184,10 @@
             Dim x As Integer = 0
             Select Case i
                 Case 0
-                    Text = Localization.GetString("pause_menu_no")
+                    Text = Localization.GetString("global_no")
                     x = -200
                 Case 1
-                    Text = Localization.GetString("pause_menu_yes")
+                    Text = Localization.GetString("global_yes")
                     x = 200
             End Select
 
