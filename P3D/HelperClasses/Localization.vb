@@ -44,13 +44,18 @@
 
     Private Shared Sub LoadTokenFile(ByVal path As String, ByVal IsGameModeFile As Boolean)
         Dim fullpath As String = GameController.GamePath & path
+        Dim tokenFullpath As String = fullpath & "Tokens_" & LanguageSuffix & ".dat"
+
+        Logger.Debug("Token filepath: " & tokenFullpath)
 
         If System.IO.Directory.GetFiles(fullpath).Count > 0 Then
-            If System.IO.File.Exists(fullpath & "Tokens_" & LanguageSuffix & ".dat") = False Then
+            If System.IO.File.Exists(tokenFullpath) = False Then
+                Logger.Debug("Did NOT find token file for suffix: " & LanguageSuffix)
                 LanguageSuffix = "en"
             End If
 
-            If System.IO.File.Exists(fullpath & "Tokens_" & LanguageSuffix & ".dat") = True Then
+            If System.IO.File.Exists(tokenFullpath) = True Then
+                Logger.Debug("Found token file for suffix: " & LanguageSuffix)
                 Dim TokensFile() As String = System.IO.File.ReadAllLines(fullpath & "Tokens_" & LanguageSuffix & ".dat")
                 Dim splitIdx As Integer = 0
                 For Each TokenLine As String In TokensFile
