@@ -209,9 +209,9 @@ Public Class PressStartScreen
             If IsCurrentScreen() And Core.GameOptions.ShowGUI Then  ' Want to implement fading of text, but core doesn't seem to support this.
                 Dim text As String = String.Empty
                 If ControllerHandler.IsConnected() Then
-                    text = "Press      to start."
+                    text = Localization.GetString("press_start_1") & "      " & Localization.GetString("press_start_2")
                 Else
-                    text = "Press " & KeyBindings.EnterKey1.ToString().ToUpper & " to start."
+                    text = Localization.GetString("press_start_1") & KeyBindings.EnterKey1.ToString().ToUpper & Localization.GetString("press_start_2")
                     'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
                 End If
 
@@ -221,7 +221,7 @@ Public Class PressStartScreen
                                                                                        windowSize.Height - textSize.Y - 50), _textColor)
 
                 If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString("Press ").X),
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.GetString("press_start_1") & " ").X),
                                                                                                                    CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
                 End If
             End If
@@ -513,8 +513,8 @@ Public Class NewMainMenuScreen
 
         If IsCurrentScreen() Then
             If _loading Then
-                Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString("Please wait..")
-                GetFontRenderer().DrawString(FontManager.GameJoltFont, "Please wait" & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F,
+                Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(Localization.GetString("global_please_wait") & "...")
+                GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.GetString("global_please_wait") & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F,
                                                                                                                         windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
             Else
                 DrawProfiles()
@@ -534,7 +534,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 1 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Change to male", New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.GetString("press_start_change_to") & " " & Localization.GetString("global_male").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y, 32, 32), New Rectangle(144, 32 + y, 16, 16), Color.White)
 
@@ -542,7 +542,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 2 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Change to female", New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.GetString("press_start_change_to") & " " & Localization.GetString("global_female").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48, 32, 32), New Rectangle(160, 32 + y, 16, 16), Color.White)
 
@@ -550,7 +550,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 3 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Reset save", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.GetString("press_start_reset_save"), New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48, 32, 32), New Rectangle(176, 32 + y, 16, 16), Color.White)
 
@@ -910,7 +910,7 @@ Public Class NewMainMenuScreen
             End If
 
             If _isNewGameButton Then
-                Dim text As String = "New" & Environment.NewLine & "Game"
+                Dim text As String = Localization.GetString("global_new") & Environment.NewLine & Localization.GetString("global_game")
 
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
                     FontRenderer.DrawString(FontManager.GameJoltFont, text, New Vector2(offset.X + 80 - (FontManager.GameJoltFont.MeasureString(text).X) / 2,
@@ -949,9 +949,9 @@ Public Class NewMainMenuScreen
                         _logoBounce = 0F
                     End If
 
-                    Dim text As String = "Log in"
+                    Dim text As String = Localization.GetString("global_login")
                     If _isLoading Then
-                        text = "Loading..."
+                        text = Localization.GetString("global_loading") & "..."
                     End If
 
                     SpriteBatch.Draw(_sprite, New Rectangle(CInt(offset.X + 46), CInt(offset.Y + 36 + Math.Sin(_logoBounce) * 8.0F), 68, 72), New Color(255, 255, 255, alpha))
@@ -1087,7 +1087,7 @@ Public Class GameModeSelectionScreen
     Public Overrides Sub Draw()
         PreScreen.Draw()
 
-        Dim text = "Select a GameMode" + Environment.NewLine + "to start the new game with."
+        Dim text As String = Localization.GetString("press_start_select_gamemode_1") & Environment.NewLine & Localization.GetString("press_start_select_gamemode_2")
 
         GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(30, 30), Color.White)
 
