@@ -17,6 +17,10 @@ global_game,Game
 global_login,Log in
 global_male,Male
 global_female,Female
+global_yes,Yes
+global_no,No
+global_accept,Accept
+global_go_back,Go back
 ---
 PressStartScreen:
 press_start_1,Press
@@ -41,6 +45,13 @@ server_version_mismatch,Version doesn't match the server's version.
 server_ping,Ping
 server_no_players,No players on the server.
 server_player_list,Player List
+---
+PauseScreen:
+pause_menu_title,Game menu
+pause_menu_back_to_game,Back to game
+pause_menu_quit_to_menu,Quit to menu
+pause_menu_autosave_fail,Autosave failed.
+pause_menu_confirmation,Do you really want to quit? Unsaved progress will be lost.
 ---
 ---
 ---
@@ -98,16 +109,6 @@ gamemode_menu_author,Author
 gamemode_menu_contentpath,ContentPath
 gamemode_menu_create,Create
 gamemode_menu_back,Back
----
-Pausescreen:
-pause_menu_title,Game menu
-pause_menu_back_to_game,Back to game
-pause_menu_disconnect,Disconnect
-pause_menu_quit_to_menu,Quit to menu
-pause_menu_autosave_fail,Cannot create autosave.
-pause_menu_yes,Yes
-pause_menu_no,No
-pause_menu_confirmation,Do you really want to quit? Unsaved progress will be lost.
 ---
 IngameMenu:
 game_menu_pokedex,Pokédex
