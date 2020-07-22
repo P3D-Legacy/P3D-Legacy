@@ -288,7 +288,7 @@ Public Class JoinServerScreen
                 ServerList.Move(selectIndex, 1)
                 SaveServerlist()
                 Core.SetScreen(New OverworldScreen())
-                Core.SetScreen(New ConnectScreen(ConnectScreen.Modes.Connect, Localization.GetString("server_connecting_to_server"), Localization.GetString("server_please_wait") & "...", Core.CurrentScreen))
+                Core.SetScreen(New ConnectScreen(ConnectScreen.Modes.Connect, Localization.GetString("server_connecting_to_server"), Localization.GetString("global_please_wait") & "...", Core.CurrentScreen))
             End If
         End If
     End Sub
