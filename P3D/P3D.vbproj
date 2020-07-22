@@ -28880,6 +28880,9 @@
     <None Include="Content\Data\Scripts\violet\towertopmap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Localization\Tokens_no.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Pokemon\Data\172_spiky-eared.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
