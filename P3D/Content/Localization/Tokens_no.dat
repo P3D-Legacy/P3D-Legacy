@@ -1,4 +1,4 @@
-language_name,Norwegian
+﻿language_name,Norwegian
 ---
 ---
 ---
@@ -19,9 +19,10 @@ global_male,Mann
 global_female,Kvinne
 global_yes,Ja
 global_no,Nei
-global_accept,Aksepterer
-global_go_back,Gå tilbake
+global_accept,Godta
+global_cancel,Kanseller
 global_gamemode,Spillmodus
+global_clear,Tøm
 ---
 PressStartScreen:
 press_start_1,Trykk
@@ -51,7 +52,12 @@ server_ping,Ping
 server_no_players,Ingen spillere på serveren.
 server_player_list,Spillerliste
 ---
-Pausescreen:
+AddServerScreen:
+add_server_title,Legg til en server
+add_server_name,Server navn
+add_server_address,Server adresse
+---
+PauseScreen:
 pause_menu_title,Spill meny
 pause_menu_back_to_game,Tilbake til spillet
 pause_menu_quit_to_menu,Avslutt til hovedmenyen
