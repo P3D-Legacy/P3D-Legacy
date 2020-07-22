@@ -13,13 +13,13 @@ load_menu_time,Tid
 load_menu_back,Tilbake
 load_menu_load,Last
 load_menu_delete,Slett
-load_menu_gamemode,SpillModus
+load_menu_gamemode,Spillmodus
 DeleteScreen:
 delete_menu_delete_confirm,Vil du virkelig slette det du har lagret
 delete_menu_delete,Slett
 delete_menu_cancel,Avbryt
 LanguageScreen:
-language_menu_apply,Anvend
+language_menu_apply,Bruk
 language_menu_back,Tilbake
 PacksScreen:
 pack_menu_up,Opp
@@ -28,7 +28,7 @@ pack_menu_toggle_on,Aktiver
 pack_menu_toggle_off,Deaktiver
 pack_menu_information,Informasjon
 pack_menu_enabled,Aktivert
-pack_menu_apply,Anvend
+pack_menu_apply,Bruk
 pack_menu_back,Tilbake
 pack_menu_songs,Sanger
 pack_menu_sounds,Lyder
