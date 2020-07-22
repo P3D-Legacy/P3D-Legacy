@@ -54,9 +54,9 @@
 
         Canvas.DrawRectangle(New Rectangle(0, 75, Core.windowSize.Width, 680 - 240), New Color(0, 0, 0, 128))
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Add a server", New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString("Add a server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("add_server_title"), New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString("Add a server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Name:", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 140), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("add_server_name") & ":", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 140), Color.White)
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 170, 600, 40), New Color(40, 40, 40, 255))
 
         If Index = 0 Then
@@ -74,7 +74,7 @@
         End If
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - 294), 175), Color.White)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Address:", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 270), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("add_server_address") & ":", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 270), Color.White)
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 300, 600, 40), New Color(40, 40, 40, 255))
 
         If Index = 1 Then
@@ -121,10 +121,10 @@
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Input.Buttons.A, "Accept")
-        d.Add(Input.Buttons.B, "Back")
-        d.Add(Input.Buttons.Y, "Edit")
-        d.Add(Input.Buttons.X, "Clear")
+        d.Add(Input.Buttons.A, Localization.GetString("global_accept"))
+        d.Add(Input.Buttons.B, Localization.GetString("global_cancel"))
+        d.Add(Input.Buttons.Y, Localization.GetString("global_edit"))
+        d.Add(Input.Buttons.X, Localization.GetString("global_clear"))
         Me.DrawGamePadControls(d)
     End Sub
 
