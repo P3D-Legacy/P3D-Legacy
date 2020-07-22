@@ -13,7 +13,7 @@ load_menu_time,Tid
 load_menu_back,Tilbake
 load_menu_load,Last
 load_menu_delete,Slett
-load_menu_gamemode,GameMode
+load_menu_gamemode,SpillModus
 DeleteScreen:
 delete_menu_delete_confirm,Vil du virkelig slette det du har lagret
 delete_menu_delete,Slett
@@ -32,7 +32,7 @@ pack_menu_apply,Anvend
 pack_menu_back,Tilbake
 pack_menu_songs,Sanger
 pack_menu_sounds,Lyder
-pack_menu_textures,Textur
+pack_menu_textures,Tekstur
 pack_menu_name,Navn
 pack_menu_version,Versjon
 pack_menu_by,Av
@@ -44,8 +44,8 @@ gamemode_menu_name,Navn
 gamemode_menu_description,Beskrivelse
 gamemode_menu_version,Versjon
 gamemode_menu_author,Forfatter
-gamemode_menu_contentpath,Innhold Filbane
-gamemode_menu_create,Lag
+gamemode_menu_contentpath,Filbane for innhold
+gamemode_menu_create,Opprett
 gamemode_menu_back,Tilbake
 ---
 Pausescreen:
@@ -98,7 +98,7 @@ map_screen_roaming,Roaming Pokes
 PokedexScreen:
 pokedex_screen_seen,Sett
 pokedex_screen_obtained,Fanget
-pokedex_screen_rare,Sjeldne
+pokedex_screen_rare,Sjelden
 pokedex_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
 ---
 PokemonScreen:
@@ -107,7 +107,7 @@ pokemon_screen_backadvice,Trykk E for å gå tilbake.
 pokemon_screen_item_give,Gi
 pokemon_screen_item_take,Ta
 pokemon_screen_item_back,Tilbake
-pokemon_screen_doesnt_hold_item,~holder ikke et element.
+pokemon_screen_doesnt_hold_item,~holder ikke et objekt.
 pokemon_screen_take_item_1,Tok 
 pokemon_screen_take_item_2, fra~
 pokemon_screen_take_item_3,~og la det inn i~
@@ -119,7 +119,7 @@ pokemon_screen_give_item_4,~og la
 pokemon_screen_give_item_5,~tilbake i sekken.
 pokemon_screen_summary,	Sammendrag
 pokemon_screen_switch,Bytt
-pokemon_screen_item,Element
+pokemon_screen_item,Objekt
 pokemon_screen_back,Tilbake
 pokemon_screen_EMPTY,TOMT
 ---
@@ -132,11 +132,11 @@ poke_status_screen_number,#
 Page 1:
 poke_status_screen_all_exp,All Exp
 poke_status_screen_nxt_lv,Neste Lv.
-poke_status_screen_stats_page,Stats side
+poke_status_screen_stats_page,Statistikk side
 Page 2:
 poke_status_screen_OT,OT
-poke_status_screen_Item,Element
-poke_status_screen_no_item,no elemtn
+poke_status_screen_Item,Objekt
+poke_status_screen_no_item,Ingen objekter
 poke_status_screen_ability,Evne
 poke_status_screen_details_page,Detaljer side
 Page 3:
@@ -152,7 +152,7 @@ trainer_screen_money,Penger
 trainer_screen_pokedex,Pokédex
 trainer_screen_time,Tid
 trainer_screen_collected_badges,Samlede merker
-trainer_screen_badge,merke
+trainer_screen_badge, Merke
 trainer_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
 trainer_screen_empty_badge,???
 ---
@@ -204,7 +204,7 @@ option_screen_battle_style,Kampstil
 option_screen_battle_style_shift,Shift
 option_screen_battle_style_set,Set
 option_screen_battle_style_description,Kampstil~Set: Du blir ikke bedt om å bytte ut Pokémon~Shift: Du kan slå ut Pokémonen din etter å ha beseiret en motstander.
-option_screen_view_bobbing,Se bobbing
+option_screen_view_bobbing,Se bevegelse
 option_screen_view_bobbing_description,Slår kamera risting på eller av.
 option_screen_reset_options,Tilbakestill alternativer.
 option_screen_reset_options_description,Tilbakestill alle alternativer.
@@ -224,7 +224,7 @@ Apricorn Screen:
 apricorn_screen_apricorns,Apricorns
 apricorn_screen_producing,Jeg produserer Pokéballene for øyeblikket.~Kom tilbake senere.
 apricorn_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
-apricorn_screen_choose_apricorns,Vennligst velg Apricorn jeg skal ta for å produsere Pokéballer.
+apricorn_screen_choose_apricorns,Vennligst velg Apricorn jeg skal bruke for å produsere Pokéballer.
 apricorn_screen_ok,OK
 apricorn_screen_clear,Tøm
 apricorn_screen_take,Ta
@@ -245,7 +245,7 @@ daycare_screen_pokemon_choose_header,Sett inn Pokémon
 Egg,Egg
 ---
 Network Screen:
-network_screen_isonline,Du er allerede i et co-op spill! Vennligst lukk forbindelsen~for å åpne et nytt spill eller koble igjen!~~~TRYKK E FOR Å GÅ TILBAKE!
+network_screen_isonline,Du er allerede i et co-op spill! Vennligst lukk forbindelsen~for å åpne et nytt spill eller koble igjen!~~~Trykk E for å gå tilbake!
 network_screen_header,Co-Op Spilling
 network_screen_main_header,Du kan enten delta i et spill eller være vert~for et nytt spill for å spille sammen med en venn.
 network_screen_main_join,Bli med
@@ -260,7 +260,7 @@ network_screen_host_host,Sett opp
 ---
 Donation screen:
 donation_screen_donators,Donasjoner
-donation_screen_backadvice,TRYKK E FOR Å GÅ TILBAKE
+donation_screen_backadvice,Trykk E for å gå tilbake
 ---
 Blackout Screen:
 black_out_screen_line1,Du har gått tom for Pokémon!
@@ -295,7 +295,7 @@ battle_main_trainer_defeat_5,~PokéDollars for å vinne!
 attackTurn:
 battle_attack_poison_damage,~ble skadet av gift!
 battle_attack_curse_damage,~er plaget av forbannelsen!
-battle_attack_fire_damage,~ble skadet av brenningen!
+battle_attack_fire_damage,~ble skadet av flammene!
 battle_attack_trainer_item_1, brukte en~
 battle_attack_trainer_item_2,!
 battle_attack_asleep, sovnet~fort.
@@ -331,6 +331,7 @@ badge_Rising,Stigende
 Regions:
 Johto,Johto
 Kanto,Kanto
+Sevii Islands,Sevii Øyene
 ---
 Places:
 Places_???,???
@@ -366,10 +367,10 @@ Places_Seven Island,Syv Øy
 
 Special Houses:
 Places_Gate,Gate
-Places_Pokemon Center,Pokémon Center
+Places_Pokemon Center,Pokémon Senter
 Places_Pokemon Mart,Pokémon Marked
-Places_Elms lab,Elm's Labb
-Places_Oak's lab,Oak's Labb
+Places_Elms lab,Elm sitt laboratorium
+Places_Oak's lab,Oak sitt laboratorium
 Places_Azalea Town Gym,Asalea Landsby Gym
 Places_Violet City Gym,Fiolett By Gym
 Places_Goldenrod City Gym,Oker By Gym
@@ -390,64 +391,66 @@ Places_Saffron City Gym,Safran Byen Gym
 Places_Cinnabar Gym,Sinober Gym
 Places_Viridian City Gym,Viridian By Gym
 Places_Dance Theater,Danseteater
-Places_Lighthouse,Fyr
+Places_Lighthouse,Fyrtårn
 Places_Team Rocket HQ,Team Rocket Hovedkvarter
 Places_Radio Tower,Radio Tårn
 
 Dungeons:
-Places_Ilex Forest,Ilex Forest
-Places_Dark Cave,Dark Cave
-Places_Ruins of Alph,Ruins of Alph
-Places_Slowpoke Well,Slowpoke Well
-Places_Sprout Tower,Sprout Tower
-Places_Union Cave,Union Cave
-Places_Mt. Mortar,Mt. Mortar
-Places_Bell Tower,Tin Tower
-Places_Tin Tower,Tin Tower
-Places_Tin Tower Peak,Tin Tower Peak
-Places_Burned Tower,Burned Tower
-Places_Glitter Lighthouse,Glitter Lighthouse
-Places_Ice Path,Ice Path
-Places_National Park,National Park
-Places_Whirl Islands,Whirl Islands
-Places_Lake of Rage,Lake of Rage
-Places_Underground,Underground
-Places_Dragon's Den,Dragon's Den
-Places_Tohjo Falls,Tohjo Falls
-Places_Victory Road,Victory Road
-Places_Mt. Silver,Mt. Silver
-Places_Indigo Plateau,Indigo Plateau
-Places_Safari Zone,Safari Zone
-Places_Viridian Forest,Viridian Forest
-Places_Cerulean Cave,Cerulean Cave
-Places_Power Plant,Power Plant
-Places_Rock Tunnel,Rock Tunnel
-Places_Seafoam Islands,Seafoam Islands
-Places_Pal Park,Pal Park
-Places_Diglett's Cave,Diglett's Cave
-Places_Mt. Moon,Mt. Moon
-Places_Mt. Ember,Mt. Ember
-Places_Three Isle Path,Three Isle Path
-Places_Berry Forest,Berry Forest
-Places_Icefall Cave,Icefall Cave
-Places_Lost Cave,Lost Cave
-Places_Trainer Tower,Trainer Tower
-Places_Altering Cave,Altering Cave
-Places_Pattern Bush,Pattern Bush
-Places_Dotted Hole,Dotted Hole
-Places_Tanoby Chambers,Tanoby Chambers
+Places_Ilex Forest,Ilex skogen
+Places_Dark Cave,Mørk Hule
+Places_Ruins of Alph,Ruinene av Alph
+Places_Slowpoke Well,Slowpoke Brønn
+Places_Sprout Tower,Sprout Tårn
+Places_Union Cave,Union Hule
+Places_Mt. Mortar,Mt. Mørtel
+Places_Bell Tower,Tin Tårn
+Places_Tin Tower,Tin Tårn
+Places_Tin Tower Peak,Tin Tårntopp
+Places_Burned Tower,Brent Tårn
+Places_Glitter Lighthouse,Glitter Fyrtårn
+Places_Ice Path,Is Sti
+Places_National Park,Nasjonalpark
+Places_Whirl Islands,Virvel øyene
+Places_Lake of Rage,Rasende innsjø
+Places_Underground,Undergrunnen
+Places_Dragon's Den,Dragens hule
+Places_Tohjo Falls,Tohjo fossen
+Places_Victory Road,Seiersveien
+Places_Mt. Silver,Mt. Sølv
+Places_Indigo Plateau,Indigo platå
+Places_Safari Zone,Safari sone
+Places_Viridian Forest,Viridian skogen
+Places_Cerulean Cave,Cerulean hule
+Places_Power Plant,Kraftverk
+Places_Rock Tunnel,Bergtunnel
+Places_Seafoam Islands,Sjøskum øyene
+Places_Pal Park,Kompis parken
+Places_Diglett's Cave,Digletts hule
+Places_Mt. Moon,Mt. Måne
+Places_Mt. Ember,Mt. Glo
+Places_Three Isle Path,Tre øyer stien
+Places_Berry Forest,Bærskog
+Places_Icefall Cave,Isfallhule
+Places_Lost Cave,Mistet hule
+Places_Trainer Tower,Trenertårn
+Places_Altering Cave,Forandrende grotte
+Places_Pattern Bush,Mønsterbusk
+Places_Dotted Hole,Prikkete hull
+Places_Tanoby Chambers,Tanoby kamre
 Places_Tanoby Key,Tanoby Key
-Places_Monean Chamber,Monean Chamber
-Places_Liptoo Chamber,Liptoo Chamber
-Places_Weepth Chamber,Weepth Chamber
-Places_Dilford Chamber,Dilford Chamber
-Places_Scrufib Chamber,Scrufib Chamber
-Places_Rixy Chamber,Rixy Chamber
-Places_Viapois Chamber,Viapois Chamber
-Places_Ancient Ruins,Ancient Ruins
-Places_Millenial Star Tower,Millenial Star Tower
-Places_Kolben Tower,Kolben Tower
-Places_Faraway Island,Faraway Island
+Places_Monean Chamber,Monean kamre
+Places_Liptoo Chamber,Liptoo kamre
+Places_Weepth Chamber,Weepth kamre
+Places_Dilford Chamber,Dilford kamre
+Places_Scrufib Chamber,Scrufib kamre
+Places_Rixy Chamber,Rixy kamre
+Places_Viapois Chamber,Viapois kamre
+Places_Ancient Ruins,Gamle ruiner
+Places_Millenial Star Tower,Tusenårsstjernetårnet
+Places_Kolben Tower,Kolben tårnet
+Places_Faraway Island,Fjerne øyen
+Places_Underwater Cave,Undervannshulen
+Places_Embedded Tower,Innebygd tårn
 
 Routes:
 Places_Route 1,Rute 1
@@ -499,33 +502,33 @@ Places_Route 46,Rute 46
 Places_Route 47,Rute 47
 Places_Route 48,Rute 48
 
-Places_Treasure Beach,Treasure Beach
-Places_Kindle Road,Kindle Road
-Places_Cape Brink,Cape Brink
-Places_Three Isle Port,Three Isle Port
-Places_Bond Bridge,Bond Bridge
-Places_Five Isle Meadow,Five Isle Meadow
-Places_Memorial Pillar,Memorial Pillar
-Places_Water Labyrinth,Water Labyrinth
-Places_Resort Gorgeous,Resort Gorgeous
-Places_Water Path,Water Path
-Places_Grass Path,Grass Path
-Places_Outcast Island,Outcast Island
-Places_Ruin Valley,Ruin Valley
-Places_Canyon Entrance,Canyon Entrance
-Places_Sevault Canyon,Sevault Canyon
-Places_Tanoby Ruins,Tanoby Ruins
-Places_Safari Zone Gate,Safari Zone Gate
-Places_S.S. Aqua,S.S. Aqua
+Places_Treasure Beach,Skattestrand
+Places_Kindle Road,Tenne vei
+Places_Cape Brink,Kappe randen
+Places_Three Isle Port,Tre øyene porten
+Places_Bond Bridge,Bindingsbro
+Places_Five Isle Meadow,Fem øy-eng
+Places_Memorial Pillar,Minnesøyle
+Places_Water Labyrinth,Vannlabyrint
+Places_Resort Gorgeous,Feriestedet Nydelig
+Places_Water Path,Vannsti
+Places_Grass Path,Gresssti
+Places_Outcast Island,Utstøtt øy
+Places_Ruin Valley,Ruindalen
+Places_Canyon Entrance,Dal inngang
+Places_Sevault Canyon,Sevault dalen
+Places_Tanoby Ruins,Tanoby ruinene
+Places_Safari Zone Gate,Safari sone porten
+Places_S.S. Aqua,S.S. Vann
 Places_Elite 4,Elite 4
-Places_Indigo Plateau,Indigo Plateau
-Places_Twirl Forest,Twirl Forest
-Places_Berry Vista,Berry Vista
-Places_Battle Frontier,Battle Frontier
-Places_Battle Tower,Battle Tower
-Places_Battle Factory,Battle Factory
-Places_Rocket Warehouse,Rocket Warehouse
-Places_Secret Laboratory,Secret Laboratory
+Places_Indigo Plateau,Indigo platået
+Places_Twirl Forest,Virvelskogen
+Places_Berry Vista,Bærutsikten
+Places_Battle Frontier,Kampgrensen
+Places_Battle Tower,Kamptårnet
+Places_Battle Factory,Kampfabrikken
+Places_Rocket Warehouse,Rakettlager
+Places_Secret Laboratory,Hemmelig laboratorium
 
 ---
 Item categories:
@@ -534,7 +537,7 @@ item_category_Medicine,Medisin
 item_category_Machines,Maskiner
 item_category_Pokéballs,PokéBaller
 item_category_Plants,Planter
-item_category_KeyItems,Nøkkelelementer
+item_category_KeyItems,Nøkkelobjekter
 item_category_BattleItems,Kampobjekter
 item_category_Mail,Post
 ---
@@ -575,7 +578,7 @@ Attack,Angrep
 Defense,Forsvar
 Special_Attack,Spesielt Angrep
 Special_Defense,Spesielt Forsvar
-Speed,Speed
+Speed,Hastighet
 ---
 Pokemon:
 pokemon_name_Bulbasaur,Bulbasaur
@@ -835,4 +838,4 @@ New Bark Town:
 ---
 barktown.dat:
 ---
-barktown_player_house,<playername>'s House
+barktown_player_house,<playername>s Hus
