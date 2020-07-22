@@ -60,8 +60,8 @@ add_server_address,Server adresse
 PauseScreen:
 pause_menu_title,Spill meny
 pause_menu_back_to_game,Tilbake til spillet
-pause_menu_quit_to_menu,Avslutt til hovedmenyen
-pause_menu_autosave_fail,Klarte ikke lagre automatisk.
+pause_menu_quit_to_menu,Avslutt til menyen
+pause_menu_autosave_fail,Klarte ikke å lagre automatisk.
 pause_menu_confirmation,Vil du virkelig avslutte? Fremgang som ikke er lagret vil gå tapt.
 ---
 ---
