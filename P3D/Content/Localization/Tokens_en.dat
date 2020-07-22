@@ -20,8 +20,9 @@ global_female,Female
 global_yes,Yes
 global_no,No
 global_accept,Accept
-global_go_back,Go back
+global_cancel,Cancel
 global_gamemode,GameMode
+global_clear,Clear
 ---
 PressStartScreen:
 press_start_1,Press
@@ -50,6 +51,11 @@ server_version_mismatch,Version doesn't match the server's version.
 server_ping,Ping
 server_no_players,No players on the server.
 server_player_list,Player List
+---
+AddServerScreen:
+add_server_title,Add a server
+add_server_name,Server Name
+add_server_address,Server Address
 ---
 PauseScreen:
 pause_menu_title,Game menu
