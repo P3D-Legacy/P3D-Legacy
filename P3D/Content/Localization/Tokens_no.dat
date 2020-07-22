@@ -49,7 +49,7 @@ gamemode_menu_create,Opprett
 gamemode_menu_back,Tilbake
 ---
 Pausescreen:
-pause_menu_title,Spill menu
+pause_menu_title,Spill meny
 pause_menu_back_to_game,Tilbake til spillet
 pause_menu_disconnect,Koble fra
 pause_menu_quit_to_menu,Avslutt til hovedmenyen
