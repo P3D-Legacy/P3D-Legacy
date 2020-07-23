@@ -64,6 +64,465 @@ pause_menu_quit_to_menu,Avslutt til menyen
 pause_menu_autosave_fail,Klarte ikke å lagre automatisk.
 pause_menu_confirmation,Vil du virkelig avslutte? Fremgang som ikke er lagret vil gå tapt.
 ---
+OfflineGameWarningScreen:
+offline_game_title,Start a new offline game
+offline_game_description,If you start a game in ""Offline Mode"" by pressing the ""New Game"" button, you cannot access the online features of Pokémon 3D such as trading and trainer customization. Click on the GameJolt button in the lower right corner in order to start a game in ""Online Mode"".
+---
+MapScreen:
+map_screen_cities,Byer
+map_screen_routes,Ruter
+map_screen_places,Steder
+map_screen_roaming,Gående Pokemon
+---
+Places:
+places_???,???
+---
+Places Towns:
+places_new_bark_town,New Bark Town
+places_cherrygrove_city,Cherrygrove City
+places_violet_city,Violet City
+places_azalea_town,Azalea Town
+places_goldenrod_city,Goldenrod City
+places_ecruteak_city,Ecruteak City
+places_olivine_city,Olivine City
+places_cianwood_city,Cianwood City
+places_mahogany_town,Mahogany Town
+places_blackthorn_city,Blackthorn City
+places_pallet_town,Pallet Town
+places_viridian_city,Viridian City
+places_saffron_city,Saffron City
+places_pewter_city,Pewter City
+places_cerulean_city,Cerulean City
+places_celadon_city,Celadon City
+places_vermilion_city,Vermilion City
+places_fuchsia_city,Fuchsia City
+places_cinnabar_island,Cinnabar Island
+places_lavender_town,Lavender Town
+places_one_island,One Island
+places_two_island,Two Island
+places_three_island,Three Island
+places_four_island,Four Island
+places_five_island,Five Island
+places_six_island,Six Island
+places_seven_island,Seven Island
+---
+Places Special Houses:
+places_gate,Gate
+places_pokemon_center,Pokémon Center
+places_pokemon_mart,Pokémon Mart
+places_elms_lab,Elm's Lab
+places_oaks_lab,Oak's Lab
+places_azalea_town_gym,Azalea Town Gym
+places_violet_city_gym,Violet City Gym
+places_goldenrod_city_gym,Goldenrod City Gym
+places_ecruteak_city_gym,Ecruteak City Gym
+places_cianwood_city_gym,Cianwood City Gym
+places_olivine_city_gym,Olivine City Gym
+places_mahogany_city_gym,Mahogany City Gym
+places_blackthorn_city_gym,Blackthorn City Gym
+places_your_house,Your House
+places_your_room,Your Room
+places_daycare,Daycare
+places_pewter_city_gym,Pewter City Gym
+places_cerulean_city_gym,Cerulean City Gym
+places_vermilion_city_gym,Vermilion City Gym
+places_celadon_city_gym,Celadon City Gym
+places_fuchsania_city_gym,Fuchsania City Gym
+places_saffron_city_gym,Saffron City Gym
+places_cinnabar_gym,Cinnabar Gym
+places_viridian_city_gym,Viridian City Gym
+places_dance_theater,Dance Theater
+places_lighthouse,Lighthouse
+places_team_rocket_hq,Team Rocket HQ
+places_radio_tower,Radio Tower
+---
+Places Dungeons:
+places_ilex_forest,Ilex Forest
+places_dark_cave,Dark Cave
+places_ruins_of_alph,Ruins of Alph
+places_slowpoke_well,Slowpoke Well
+places_sprout_tower,Sprout Tower
+places_union_cave,Union Cave
+places_mt_mortar,Mt. Mortar
+places_bell_tower,Tin Tower
+places_tin_tower,Tin Tower
+places_tin_tower_peak,Tin Tower Peak
+places_burned_tower,Burned Tower
+places_glitter_lighthouse,Glitter Lighthouse
+places_ice_path,Ice Path
+places_national_park,National Park
+places_whirl_islands,Whirl Islands
+places_lake_of_rage,Lake of Rage
+places_underground,Underground
+places_dragons_den,Dragon's Den
+places_tohjo_falls,Tohjo Falls
+places_victory_road,Victory Road
+places_mt_silver,Mt. Silver
+places_indigo_plateau,Indigo Plateau
+places_safari_zone,Safari Zone
+places_viridian_forest,Viridian Forest
+places_cerulean_cave,Cerulean Cave
+places_power_plant,Power Plant
+places_rock_tunnel,Rock Tunnel
+places_seafoam_islands,Seafoam Islands
+places_pal_park,Pal Park
+places_digletts_cave,Diglett's Cave
+places_mt_moon,Mt. Moon
+places_mt_ember,Mt. Ember
+places_three_isle_path,Three Isle Path
+places_berry_forest,Berry Forest
+places_icefall_cave,Icefall Cave
+places_lost_cave,Lost Cave
+places_trainer_tower,Trainer Tower
+places_altering_cave,Altering Cave
+places_pattern_bush,Pattern Bush
+places_dotted_hole,Dotted Hole
+places_tanoby_chambers,Tanoby Chambers
+places_tanoby_key,Tanoby Key
+places_monean_chamber,Monean Chamber
+places_liptoo_chamber,Liptoo Chamber
+places_weepth_chamber,Weepth Chamber
+places_dilford_chamber,Dilford Chamber
+places_scrufib_chamber,Scrufib Chamber
+places_rixy_chamber,Rixy Chamber
+places_viapois_chamber,Viapois Chamber
+places_ancient_ruins,Ancient Ruins
+places_millenial_star_tower,Millenial Star Tower
+places_kolben_tower,Kolben Tower
+places_faraway_island,Faraway Island
+places_underwater_cave,Underwater Cave
+places_embedded_tower,Embedded Tower
+---
+Places Routes:
+places_route_1,Rute 1
+places_route_2,Rute 2
+places_route_3,Rute 3
+places_route_4,Rute 4
+places_route_5,Rute 5
+places_route_6,Rute 6
+places_route_7,Rute 7
+places_route_8,Rute 8
+places_route_9,Rute 9
+places_route_10,Rute 10
+places_route_11,Rute 11
+places_route_12,Rute 12
+places_route_13,Rute 13
+places_route_14,Rute 14
+places_route_15,Rute 15
+places_route_16,Rute 16
+places_route_17,Rute 17
+places_route_18,Rute 18
+places_route_19,Rute 19
+places_route_20,Rute 20
+places_route_21,Rute 21
+places_route_22,Rute 22
+places_route_23,Rute 23
+places_route_24,Rute 24
+places_route_25,Rute 25
+places_route_26,Rute 26
+places_route_27,Rute 27
+places_route_28,Rute 28
+places_route_29,Rute 29
+places_route_30,Rute 30
+places_route_31,Rute 31
+places_route_32,Rute 32
+places_route_33,Rute 33
+places_route_34,Rute 34
+places_route_35,Rute 35
+places_route_36,Rute 36
+places_route_37,Rute 37
+places_route_38,Rute 38
+places_route_39,Rute 39
+places_route_40,Rute 40
+places_route_41,Rute 41
+places_route_42,Rute 42
+places_route_43,Rute 43
+places_route_44,Rute 44
+places_route_45,Rute 45
+places_route_46,Rute 46
+places_route_47,Rute 47
+places_route_48,Rute 48
+---
+places_treasure_beach,Treasure Beach
+places_kindle_road,Kindle Road
+places_cape_brink,Cape Brink
+places_three_isle_port,Three Isle Port
+places_bond_bridge,Bond Bridge
+places_five_isle_meadow,Five Isle Meadow
+places_memorial_pillar,Memorial Pillar
+places_water_labyrinth,Water Labyrinth
+places_resort_gorgeous,Resort Gorgeous
+places_water_path,Water Path
+places_green_path,Green Path
+places_outcast_island,Outcast Island
+places_ruin_valley,Ruin Valley
+places_canyon_entrance,Canyon Entrance
+places_sevault_canyon,Sevault Canyon
+places_tanoby_ruins,Tanoby Ruins
+places_safari_zone_gate,Safari Zone Gate
+places_ss_aqua,S.S. Aqua
+places_elite_4,Elite 4
+places_indigo_plateau,Indigo Plateau
+places_twirl_forest,Twirl Forest
+places_berry_vista,Berry Vista
+places_battle_frontier,Battle Frontier
+places_battle_tower,Battle Tower
+places_battle_factory,Battle Factory
+places_rocket_warehouse,Rocket Warehouse
+places_secret_laboratory,Secret Laboratory
+---
+PokemonNames:
+pokemon_name_bulbasaur,Bulbasaur
+pokemon_name_ivysaur,Ivysaur
+pokemon_name_venusaur,Venusaur
+pokemon_name_charmander,Charmander
+pokemon_name_charmeleon,Charmeleon
+pokemon_name_charizard,Charizard
+pokemon_name_squirtle,Squirtle
+pokemon_name_wartortle,Wartortle
+pokemon_name_blastoise,Blastoise
+pokemon_name_caterpie,Caterpie
+pokemon_name_metapod,Metapod
+pokemon_name_butterfree,Butterfree
+pokemon_name_weedle,Weedle
+pokemon_name_kakuna,Kakuna
+pokemon_name_beedrill,Beedrill
+pokemon_name_pidgey,Pidgey
+pokemon_name_pidgeotto,Pidgeotto
+pokemon_name_pidgeot,Pidgeot
+pokemon_name_rattata,Rattata
+pokemon_name_raticate,Raticate
+pokemon_name_spearow,Spearow
+pokemon_name_fearow,Fearow
+pokemon_name_ekans,Ekans
+pokemon_name_arbok,Arbok
+pokemon_name_pikachu,Pikachu
+pokemon_name_raichu,Raichu
+pokemon_name_sandshrew,Sandshrew
+pokemon_name_sandshlash,Sandslash
+pokemon_name_nidoran,Nidoran
+pokemon_name_nidorina,Nidorina
+pokemon_name_nidoqueen,Nidoqueen
+pokemon_name_nidorino,Nidorino
+pokemon_name_nidoking,Nidoking
+pokemon_name_clefairy,Clefairy
+pokemon_name_clefable,Clefable
+pokemon_name_vulpix,Vulpix
+pokemon_name_ninetails,Ninetails
+pokemon_name_jigglypuff,Jigglypuff
+pokemon_name_wigglytuff,Wigglytuff
+pokemon_name_zubat,Zubat
+pokemon_name_golbat,Golbat
+pokemon_name_oddish,Oddish
+pokemon_name_gloom,Gloom
+pokemon_name_vileplume,Vileplume
+pokemon_name_paras,Paras
+pokemon_name_parasect,Parasect
+pokemon_name_venonat,Venonat
+pokemon_name_venomoth,Venomoth
+pokemon_name_diglett,Diglett
+pokemon_name_dugtrio,Dugtrio
+pokemon_name_meowth,Meowth
+pokemon_name_persian,Persian
+pokemon_name_psyduck,Psyduck
+pokemon_name_golduck,Golduck
+pokemon_name_mankey,Mankey
+pokemon_name_primeape,Primeape
+pokemon_name_growlithe,Growlithe
+pokemon_name_arcanine,Arcanine
+pokemon_name_poliwag,Poliwag
+pokemon_name_poliwhirl,Poliwhirl
+pokemon_name_poliwrath,Poliwrath
+pokemon_name_abra,Abra
+pokemon_name_kadabra,Kadabra
+pokemon_name_alakazam,Alakazam
+pokemon_name_machop,Machop
+pokemon_name_machoke,Machoke
+pokemon_name_machamp,Machamp
+pokemon_name_bellsprout,Bellsprout
+pokemon_name_weepinbell,Weepinbell
+pokemon_name_victreebel,Victreebel
+pokemon_name_tentacool,Tentacool
+pokemon_name_tentacruel,Tentacruel
+pokemon_name_geodude,Geodude
+pokemon_name_graveler,Graveler
+pokemon_name_golem,Golem
+pokemon_name_ponyta,Ponyta
+pokemon_name_rapidash,Rapidash
+pokemon_name_slowpoke,Slowpoke
+pokemon_name_slowbro,Slowbro
+pokemon_name_magnemite,Magnemite
+pokemon_name_magneton,Magneton
+pokemon_name_farfetchd,Farfetch'd
+pokemon_name_doduo,Doduo
+pokemon_name_dodrio,Dodrio
+pokemon_name_seel,Seel
+pokemon_name_dewgong,Dewgong
+pokemon_name_grimer,Grimer
+pokemon_name_muk,Muk
+pokemon_name_shellder,Shellder
+pokemon_name_cloyster,Cloyster
+pokemon_name_gastly,Gastly
+pokemon_name_haunter,Haunter
+pokemon_name_gengar,Gengar
+pokemon_name_onix,Onix
+pokemon_name_drowzee,Drowzee
+pokemon_name_hypno,Hypno
+pokemon_name_krabby,Krabby
+pokemon_name_kingler,Kingler
+pokemon_name_voltorb,Voltorb
+pokemon_name_electrode,Electrode
+pokemon_name_exeggcute,Exeggcute
+pokemon_name_exeggutor,Exeggutor
+pokemon_name_cubone,Cubone
+pokemon_name_marowak,Marowak
+pokemon_name_hitmonlee,Hitmonlee
+pokemon_name_hitmonchan,Hitmonchan
+pokemon_name_lickitung,Lickitung
+pokemon_name_koffing,Koffing
+pokemon_name_weezing,Weezing
+pokemon_name_rhyhorn,Rhyhorn
+pokemon_name_rhydon,Rhydon
+pokemon_name_chansey,Chansey
+pokemon_name_tangela,Tangela
+pokemon_name_kangaskhan,Kangaskhan
+pokemon_name_horsea,Horsea
+pokemon_name_seedra,Seedra
+pokemon_name_goldeen,Goldeen
+pokemon_name_seaking,Seaking
+pokemon_name_staryu,Staryu
+pokemon_name_starmie,Starmie
+pokemon_name_mr_mime,Mr. Mime
+pokemon_name_scyther,Scyther
+pokemon_name_jynx,Jynx
+pokemon_name_electabuzz,Electabuzz
+pokemon_name_magmar,Magmar
+pokemon_name_pinsir,Pinsir
+pokemon_name_tauros,Tauros
+pokemon_name_magikarp,Magikarp
+pokemon_name_gyarados,Gyarados
+pokemon_name_lapras,Lapras
+pokemon_name_ditto,Ditto
+pokemon_name_eevee,Eevee
+pokemon_name_vaporeon,Vaporeon
+pokemon_name_jolteon,Jolteon
+pokemon_name_flareon,Flareon
+pokemon_name_porygon,Porygon
+pokemon_name_omanyte,Omanyte
+pokemon_name_omastar,Omastar
+pokemon_name_kabuto,Kabuto
+pokemon_name_kabutops,Kabutops
+pokemon_name_aerodactyl,Aerodactyl
+pokemon_name_snorlax,Snorlax
+pokemon_name_articuno,Articuno
+pokemon_name_zapdos,Zapdos
+pokemon_name_moltres,Moltres
+pokemon_name_dratini,Dratini
+pokemon_name_dragonair,Dragonair
+pokemon_name_dragonite,Dragonite
+pokemon_name_mewtwo,Mewtwo
+pokemon_name_mew,Mew
+pokemon_name_chikorita,Chikorita
+pokemon_name_bayleef,Bayleef
+pokemon_name_meganium,Meganium
+pokemon_name_cyndaquil,Cyndaquil
+pokemon_name_quilava,Quilava
+pokemon_name_typhlosion,Typhlosion
+pokemon_name_totodile,Totodile
+pokemon_name_croconaw,Croconaw
+pokemon_name_feraligatr,Feraligatr
+pokemon_name_sentret,Sentret
+pokemon_name_furret,Furret
+pokemon_name_hoothoot,Hoothoot
+pokemon_name_noctowl,Noctowl
+pokemon_name_ledyba,Ledyba
+pokemon_name_ledian,Ledian
+pokemon_name_spinarak,Spinarak
+pokemon_name_ariados,Ariados
+pokemon_name_crobat,Crobat
+pokemon_name_chinchou,Chinchou
+pokemon_name_lanturn,Lanturn
+pokemon_name_pichu,Pichu
+pokemon_name_cleffa,Cleffa
+pokemon_name_igglybuff,Igglybuff
+pokemon_name_togepi,Togepi
+pokemon_name_togetic,Togetic
+pokemon_name_natu,Natu
+pokemon_name_xatu,Xatu
+pokemon_name_mareep,Mareep
+pokemon_name_flaaffy,Flaaffy
+pokemon_name_ampharos,Ampharos
+pokemon_name_bellossom,Bellossom
+pokemon_name_marill,Marill
+pokemon_name_azumarill,Azumarill
+pokemon_name_sudowoodo,Sudowoodo
+pokemon_name_politoed,Politoed
+pokemon_name_hoppip,Hoppip
+pokemon_name_skiploom,Skiploom
+pokemon_name_jumpluff,Jumpluff
+pokemon_name_aipom,Aipom
+pokemon_name_sunkern,Sunkern
+pokemon_name_sunflora,Sunflora
+pokemon_name_yanma,Yanma
+pokemon_name_wooper,Wooper
+pokemon_name_quagsire,Quagsire
+pokemon_name_espeon,Espeon
+pokemon_name_umbreon,Umbreon
+pokemon_name_murkrow,Murkrow
+pokemon_name_slowking,Slowking
+pokemon_name_misdreavus,Misdreavus
+pokemon_name_unown,Unown
+pokemon_name_wobbuffet,Wobbuffet
+pokemon_name_girafarig,Girafarig
+pokemon_name_pineco,Pineco
+pokemon_name_forretress,Forretress
+pokemon_name_dunsparce,Dunsparce
+pokemon_name_gligar,Gligar
+pokemon_name_steelix,Steelix
+pokemon_name_snubbull,Snubbull
+pokemon_name_granbull,Granbull
+pokemon_name_qwilfish,Qwilfish
+pokemon_name_scizor,Scizor
+pokemon_name_shuckle,Shuckle
+pokemon_name_heracross,Heracross
+pokemon_name_sneasel,Sneasel
+pokemon_name_teddiursa,Teddiursa
+pokemon_name_ursaring,Ursaring
+pokemon_name_slugma,Slugma
+pokemon_name_magcargo,Magcargo
+pokemon_name_swinub,Swinub
+pokemon_name_piloswine,Piloswine
+pokemon_name_corsola,Corsola
+pokemon_name_remoraid,Remoraid
+pokemon_name_octillery,Octillery
+pokemon_name_delibird,Delibird
+pokemon_name_mantine,Mantine
+pokemon_name_skarmory,Skarmory
+pokemon_name_houndour,Houndour
+pokemon_name_houndoom,Houndoom
+pokemon_name_kingdra,Kingdra
+pokemon_name_phanpy,Phanpy
+pokemon_name_donphan,Donphan
+pokemon_name_porygon2,Porygon2
+pokemon_name_stantler,Stantler
+pokemon_name_smeargle,Smeargle
+pokemon_name_tyrogue,Tyrogue
+pokemon_name_hitmontop,Hitmontop
+pokemon_name_smoochum,Smoochum
+pokemon_name_elekid,Elekid
+pokemon_name_magby,Magby
+pokemon_name_miltank,Miltank
+pokemon_name_blissey,Blissey
+pokemon_name_raikou,Raikou
+pokemon_name_entei,Entei
+pokemon_name_suicune,Suicune
+pokemon_name_larvitar,Larvitar
+pokemon_name_pupitar,Pupitar
+pokemon_name_tyranitar,Tyranitar
+pokemon_name_lugia,Lugia
+pokemon_name_ho-oh,Ho-Oh
+pokemon_name_celebi,Celebi
+---
 ---
 ---
 OLD TRANSLATIONS:
@@ -514,54 +973,54 @@ Places_Kolben Tower,Kolben Tower
 Places_Faraway Island,Faraway Island
 
 Routes:
-Places_Route 1,Rute 1
-Places_Route 2,Rute 2
-Places_Route 3,Rute 3
-Places_Route 4,Rute 4
-Places_Route 5,Rute 5
-Places_Route 6,Rute 6
-Places_Route 7,Rute 7
-Places_Route 8,Rute 8
-Places_Route 9,Rute 9
-Places_Route 10,Rute 10
-Places_Route 11,Rute 11
-Places_Route 12,Rute 12
-Places_Route 13,Rute 13
-Places_Route 14,Rute 14
-Places_Route 15,Rute 15
-Places_Route 16,Rute 16
-Places_Route 17,Rute 17
-Places_Route 18,Rute 18
-Places_Route 19,Rute 19
-Places_Route 20,Rute 20
-Places_Route 21,Rute 21
-Places_Route 22,Rute 22
-Places_Route 23,Rute 23
-Places_Route 24,Rute 24
-Places_Route 25,Rute 25
-Places_Route 26,Rute 26
-Places_Route 27,Rute 27
-Places_Route 28,Rute 28
-Places_Route 29,Rute 29
-Places_Route 30,Rute 30
-Places_Route 31,Rute 31
-Places_Route 32,Rute 32
-Places_Route 33,Rute 33
-Places_Route 34,Rute 34
-Places_Route 35,Rute 35
-Places_Route 36,Rute 36
-Places_Route 37,Rute 37
-Places_Route 38,Rute 38
-Places_Route 39,Rute 39
-Places_Route 40,Rute 40
-Places_Route 41,Rute 41
-Places_Route 42,Rute 42
-Places_Route 43,Rute 43
-Places_Route 44,Rute 44
-Places_Route 45,Rute 45
-Places_Route 46,Rute 46
-Places_Route 47,Rute 47
-Places_Route 48,Rute 48
+Places_Rute 1,Rute 1
+Places_Rute 2,Rute 2
+Places_Rute 3,Rute 3
+Places_Rute 4,Rute 4
+Places_Rute 5,Rute 5
+Places_Rute 6,Rute 6
+Places_Rute 7,Rute 7
+Places_Rute 8,Rute 8
+Places_Rute 9,Rute 9
+Places_Rute 10,Rute 10
+Places_Rute 11,Rute 11
+Places_Rute 12,Rute 12
+Places_Rute 13,Rute 13
+Places_Rute 14,Rute 14
+Places_Rute 15,Rute 15
+Places_Rute 16,Rute 16
+Places_Rute 17,Rute 17
+Places_Rute 18,Rute 18
+Places_Rute 19,Rute 19
+Places_Rute 20,Rute 20
+Places_Rute 21,Rute 21
+Places_Rute 22,Rute 22
+Places_Rute 23,Rute 23
+Places_Rute 24,Rute 24
+Places_Rute 25,Rute 25
+Places_Rute 26,Rute 26
+Places_Rute 27,Rute 27
+Places_Rute 28,Rute 28
+Places_Rute 29,Rute 29
+Places_Rute 30,Rute 30
+Places_Rute 31,Rute 31
+Places_Rute 32,Rute 32
+Places_Rute 33,Rute 33
+Places_Rute 34,Rute 34
+Places_Rute 35,Rute 35
+Places_Rute 36,Rute 36
+Places_Rute 37,Rute 37
+Places_Rute 38,Rute 38
+Places_Rute 39,Rute 39
+Places_Rute 40,Rute 40
+Places_Rute 41,Rute 41
+Places_Rute 42,Rute 42
+Places_Rute 43,Rute 43
+Places_Rute 44,Rute 44
+Places_Rute 45,Rute 45
+Places_Rute 46,Rute 46
+Places_Rute 47,Rute 47
+Places_Rute 48,Rute 48
 
 Places_Treasure Beach,Treasure Beach
 Places_Kindle Road,Kindle Road
