@@ -106,7 +106,7 @@
                 Return s
             Else
                 Dim result As String = resultToken.TokenContent
-                If Not Core.Player Is Nothing Then
+                If Core.Player IsNot Nothing Then
                     result = result.Replace("<playername>", Core.Player.Name)
                     result = result.Replace("<rivalname>", Core.Player.RivalName)
                 End If
