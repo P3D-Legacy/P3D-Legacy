@@ -472,11 +472,11 @@
         End If
 
         If Me.hoverText <> "" And Me.pokehoverText <> "" Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 30, Me.CursorPosition.Y - 31), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 30, Me.CursorPosition.Y - 31), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
         ElseIf Me.hoverText <> "" And Me.pokehoverText = "" Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 30, Me.CursorPosition.Y - 31), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 30, Me.CursorPosition.Y - 31), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
         End If
 
         Dim regionString As String = Localization.GetString(Me.currentRegion(0).ToString().ToUpper() & Me.currentRegion.Remove(0, 1))
