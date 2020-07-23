@@ -6,7 +6,7 @@
     '3 = shiny + caught + seen
 
     Public Shared AutoDetect As Boolean = True
-    Public Const POKEMONCOUNT As Integer = 721
+    Public Const POKEMONCOUNT As Integer = 893
 
 #Region "PlayerData"
 
