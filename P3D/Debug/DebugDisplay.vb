@@ -35,7 +35,8 @@ Public Class DebugDisplay
             Dim s As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " / FPS: " & Math.Round(Core.GameInstance.FPSMonitor.Value, 0) & isDebugString & Environment.NewLine &
                 cameraInformation &
                 "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & Environment.NewLine &
-                "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString()
+                "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString() & Environment.NewLine &
+                "Lang: " & Localization.LanguageSuffix
 
             If Core.GameOptions.ContentPackNames.Count() > 0 Then
                 Dim contentPackString As String = ""
