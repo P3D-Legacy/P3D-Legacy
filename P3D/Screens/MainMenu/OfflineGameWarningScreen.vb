@@ -22,16 +22,16 @@
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 310), 90, 620, 420), New Color(16, 16, 16))
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 100, 600, 400), New Color(39, 39, 39))
 
-        Core.SpriteBatch.DrawString(FontManager.InGameFont, "Start a new offline game", New Vector2(CSng(Core.windowSize.Width / 2 - 280), 130), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("offline_game_title"), New Vector2(CSng(Core.windowSize.Width / 2 - 280), 130), Color.White)
 
-        Dim t As String = "If you start a game in ""Offline Mode"" by pressing the ""New Game"" button, you cannot access the online features of Pokémon 3D such as trading and trainer customization. Click on the GameJolt button in the lower right corner in order to start a game in ""Online Mode""."
+        Dim t As String = Localization.GetString("offline_game_description")
         t = t.CropStringToWidth(FontManager.MainFont, 450)
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - 310) + 50, 240), Color.White)
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Buttons.A, "Accept")
-        d.Add(Buttons.B, "Dismiss")
+        d.Add(Buttons.A, Localization.GetString("global_accept"))
+        d.Add(Buttons.B, Localization.GetString("global_cancel"))
         DrawGamePadControls(d, New Vector2(CSng(Core.windowSize.Width / 2) - 140, 420))
     End Sub
 
