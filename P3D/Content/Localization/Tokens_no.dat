@@ -23,6 +23,12 @@ global_accept,Godta
 global_cancel,Kanseller
 global_gamemode,Spillmodus
 global_clear,Tøm
+global_save,Lagre
+global_close,Lukk
+global_on,På
+global_off,Av
+global_enabled,Aktivert
+global_disabled,Deaktivert
 ---
 PressStartScreen:
 press_start_1,Trykk
@@ -73,6 +79,58 @@ map_screen_cities,Byer
 map_screen_routes,Ruter
 map_screen_places,Steder
 map_screen_roaming,Gående Pokemon
+---
+NewOptionScreen:
+option_title,Alternativer
+option_game,Spill
+option_graphics,Grafikk
+option_battle,Kamp
+option_controls,Kontroll
+option_audio,Lyd
+option_advanced,Avansert
+option_game_text_speed,Tekst hastighet
+option_game_difficulty,Vanskelighetsgrad
+option_game_difficulty_easy,Lett
+option_game_difficulty_hard,Vanskelig
+option_game_difficulty_super_hard,Super Vanskelig
+option_game_bobbing,Vis animert gange
+option_graphics_fov,Synsfelt
+option_graphics_render_distance,Gjengivelsesavstand
+option_graphics_render_distance_tiny,Veldig Liten
+option_graphics_render_distance_small,Liten
+option_graphics_render_distance_normal,Normal
+option_graphics_render_distance_far,Lang
+option_graphics_render_distance_extreme,Ekstrem
+option_graphics_offset_map_quality,Forskjøvet kartkvalitet
+option_graphics_fast,Kjapp
+option_graphics_fancy,Fancy
+option_graphics_multisampling,Multisampling
+option_battle_3d_models,3D Modeller
+option_battle_animations,Animasjoner
+option_battle_style,Kampstil
+option_battle_style_shift,Skift
+option_battle_style_set,Sett
+option_controls_mouse_speed,Musens hastighet
+option_controls_mouse_speed_slow,Slowpoke
+option_controls_mouse_speed_standard,Standard
+option_controls_mouse_speed_fast,Kjapp
+option_controls_mouse_speed_super_fast,Super Kjapp
+option_controls_reset_key_bindings,Tilbakestill tastebindinger
+option_controls_xbox_controler,Xbox Kontroller
+option_audio_music_volume,Musikk volum
+option_audio_sound_volume,Lyd volum
+option_audio_muted,Dempet
+option_reset,Resett alternativene
+---
+SaveScreen:
+save_title_1,Vil du
+save_title_2,lagre spillet?
+save_saving_failed,Lagring feilet!
+save_saved_game,Lagret spillet
+save_press_continue_1,Trykk
+save_press_continue_2,for å fortsette
+save_saving,Lagrer, vennligst vent
+save_validating,Validerer data
 ---
 Places:
 places_???,???
@@ -855,202 +913,6 @@ Regions:
 Johto,Johto
 Kanto,Kanto
 ---
-Places:
-Places_???,???
-
-Towns:
-Places_New Bark Town,Ny Bark Landsby
-Places_Cherrygrove City,Kirsebær Lund Byen
-Places_Violet City,Fiolett Byen
-Places_Azalea Town,Asalea Landsby
-Places_Goldenrod City,Oker Byen
-Places_Ecruteak City,Ecruteak By
-Places_Olivine City,Olivin By
-Places_Cianwood City,Cianwood By
-Places_Mahogany Town,Mahogni Landsby
-Places_Blackthorn City,Slåpetorn By
-Places_Pallet Town,Pall Landsby
-Places_Viridian City,Viridian By
-Places_Saffron City,Safran Byen
-Places_Pewter City,Tinn Byen
-Places_Cerulean City,Dypblå Byen
-Places_Celadon City,Celadon By
-Places_Vermilion City,Vermilion By
-Places_Fuchsia City,Fuksia By
-Places_Cinnabar Island,Sinober Øyen
-Places_Lavender Town,Lavendel Landsbyen
-Places_One Island,En Øy
-Places_Two Island,To Øy
-Places_Three Island,Tre Øy
-Places_Four Island,Fire Øy
-Places_Five Island,Fem Øy
-Places_Six Island,Seks Øy
-Places_Seven Island,Syv Øy
-
-Special Houses:
-Places_Gate,Gate
-Places_Pokemon Center,Pokémon Center
-Places_Pokemon Mart,Pokémon Marked
-Places_Elms lab,Elm's Labb
-Places_Oak's lab,Oak's Labb
-Places_Azalea Town Gym,Asalea Landsby Gym
-Places_Violet City Gym,Fiolett By Gym
-Places_Goldenrod City Gym,Oker By Gym
-Places_Ecruteak City Gym,Ecruteak By Gym
-Places_Cianwood City Gym,Cianwood By Gym
-Places_Olivine City Gym,Olivin By Gym
-Places_Mahogany City Gym,Mahogni By Gym
-Places_Blackthorn City Gym,Slåpetorn By Gym
-Places_Your House,Ditt Hus
-Places_Your Room,Ditt Rom
-Places_Daycare,Barnehage
-Places_Pewter City Gym,Tinn Byen Gym
-Places_Cerulean City Gym,Dypblå Byen Gym
-Places_Vermilion City Gym,Vermilion By Gym
-Places_Celadon City Gym,Celadon By Gym
-Places_Fuchsania City Gym,Fuksia By Gym
-Places_Saffron City Gym,Safran Byen Gym
-Places_Cinnabar Gym,Sinober Gym
-Places_Viridian City Gym,Viridian By Gym
-Places_Dance Theater,Danseteater
-Places_Lighthouse,Fyr
-Places_Team Rocket HQ,Team Rocket Hovedkvarter
-Places_Radio Tower,Radio Tårn
-
-Dungeons:
-Places_Ilex Forest,Ilex Forest
-Places_Dark Cave,Dark Cave
-Places_Ruins of Alph,Ruins of Alph
-Places_Slowpoke Well,Slowpoke Well
-Places_Sprout Tower,Sprout Tower
-Places_Union Cave,Union Cave
-Places_Mt. Mortar,Mt. Mortar
-Places_Bell Tower,Tin Tower
-Places_Tin Tower,Tin Tower
-Places_Tin Tower Peak,Tin Tower Peak
-Places_Burned Tower,Burned Tower
-Places_Glitter Lighthouse,Glitter Lighthouse
-Places_Ice Path,Ice Path
-Places_National Park,National Park
-Places_Whirl Islands,Whirl Islands
-Places_Lake of Rage,Lake of Rage
-Places_Underground,Underground
-Places_Dragon's Den,Dragon's Den
-Places_Tohjo Falls,Tohjo Falls
-Places_Victory Road,Victory Road
-Places_Mt. Silver,Mt. Silver
-Places_Indigo Plateau,Indigo Plateau
-Places_Safari Zone,Safari Zone
-Places_Viridian Forest,Viridian Forest
-Places_Cerulean Cave,Cerulean Cave
-Places_Power Plant,Power Plant
-Places_Rock Tunnel,Rock Tunnel
-Places_Seafoam Islands,Seafoam Islands
-Places_Pal Park,Pal Park
-Places_Diglett's Cave,Diglett's Cave
-Places_Mt. Moon,Mt. Moon
-Places_Mt. Ember,Mt. Ember
-Places_Three Isle Path,Three Isle Path
-Places_Berry Forest,Berry Forest
-Places_Icefall Cave,Icefall Cave
-Places_Lost Cave,Lost Cave
-Places_Trainer Tower,Trainer Tower
-Places_Altering Cave,Altering Cave
-Places_Pattern Bush,Pattern Bush
-Places_Dotted Hole,Dotted Hole
-Places_Tanoby Chambers,Tanoby Chambers
-Places_Tanoby Key,Tanoby Key
-Places_Monean Chamber,Monean Chamber
-Places_Liptoo Chamber,Liptoo Chamber
-Places_Weepth Chamber,Weepth Chamber
-Places_Dilford Chamber,Dilford Chamber
-Places_Scrufib Chamber,Scrufib Chamber
-Places_Rixy Chamber,Rixy Chamber
-Places_Viapois Chamber,Viapois Chamber
-Places_Ancient Ruins,Ancient Ruins
-Places_Millenial Star Tower,Millenial Star Tower
-Places_Kolben Tower,Kolben Tower
-Places_Faraway Island,Faraway Island
-
-Routes:
-Places_Rute 1,Rute 1
-Places_Rute 2,Rute 2
-Places_Rute 3,Rute 3
-Places_Rute 4,Rute 4
-Places_Rute 5,Rute 5
-Places_Rute 6,Rute 6
-Places_Rute 7,Rute 7
-Places_Rute 8,Rute 8
-Places_Rute 9,Rute 9
-Places_Rute 10,Rute 10
-Places_Rute 11,Rute 11
-Places_Rute 12,Rute 12
-Places_Rute 13,Rute 13
-Places_Rute 14,Rute 14
-Places_Rute 15,Rute 15
-Places_Rute 16,Rute 16
-Places_Rute 17,Rute 17
-Places_Rute 18,Rute 18
-Places_Rute 19,Rute 19
-Places_Rute 20,Rute 20
-Places_Rute 21,Rute 21
-Places_Rute 22,Rute 22
-Places_Rute 23,Rute 23
-Places_Rute 24,Rute 24
-Places_Rute 25,Rute 25
-Places_Rute 26,Rute 26
-Places_Rute 27,Rute 27
-Places_Rute 28,Rute 28
-Places_Rute 29,Rute 29
-Places_Rute 30,Rute 30
-Places_Rute 31,Rute 31
-Places_Rute 32,Rute 32
-Places_Rute 33,Rute 33
-Places_Rute 34,Rute 34
-Places_Rute 35,Rute 35
-Places_Rute 36,Rute 36
-Places_Rute 37,Rute 37
-Places_Rute 38,Rute 38
-Places_Rute 39,Rute 39
-Places_Rute 40,Rute 40
-Places_Rute 41,Rute 41
-Places_Rute 42,Rute 42
-Places_Rute 43,Rute 43
-Places_Rute 44,Rute 44
-Places_Rute 45,Rute 45
-Places_Rute 46,Rute 46
-Places_Rute 47,Rute 47
-Places_Rute 48,Rute 48
-
-Places_Treasure Beach,Treasure Beach
-Places_Kindle Road,Kindle Road
-Places_Cape Brink,Cape Brink
-Places_Three Isle Port,Three Isle Port
-Places_Bond Bridge,Bond Bridge
-Places_Five Isle Meadow,Five Isle Meadow
-Places_Memorial Pillar,Memorial Pillar
-Places_Water Labyrinth,Water Labyrinth
-Places_Resort Gorgeous,Resort Gorgeous
-Places_Water Path,Water Path
-Places_Grass Path,Grass Path
-Places_Outcast Island,Outcast Island
-Places_Ruin Valley,Ruin Valley
-Places_Canyon Entrance,Canyon Entrance
-Places_Sevault Canyon,Sevault Canyon
-Places_Tanoby Ruins,Tanoby Ruins
-Places_Safari Zone Gate,Safari Zone Gate
-Places_S.S. Aqua,S.S. Aqua
-Places_Elite 4,Elite 4
-Places_Indigo Plateau,Indigo Plateau
-Places_Twirl Forest,Twirl Forest
-Places_Berry Vista,Berry Vista
-Places_Battle Frontier,Battle Frontier
-Places_Battle Tower,Battle Tower
-Places_Battle Factory,Battle Factory
-Places_Rocket Warehouse,Rocket Warehouse
-Places_Secret Laboratory,Secret Laboratory
-
----
 Item categories:
 item_category_Standard,Standard
 item_category_Medicine,Medisin
@@ -1099,258 +961,6 @@ Defense,Forsvar
 Special_Attack,Spesielt Angrep
 Special_Defense,Spesielt Forsvar
 Speed,Speed
----
-Pokemon:
-pokemon_name_Bulbasaur,Bulbasaur
-pokemon_name_Ivysaur,Ivysaur
-pokemon_name_Venusaur,Venusaur
-pokemon_name_Charmander,Charmander
-pokemon_name_Charmeleon,Charmeleon
-pokemon_name_Charizard,Charizard
-pokemon_name_Squirtle,Squirtle
-pokemon_name_Wartortle,Wartortle
-pokemon_name_Blastoise,Blastoise
-pokemon_name_Caterpie,Caterpie
-pokemon_name_Metapod,Metapod
-pokemon_name_Butterfree,Butterfree
-pokemon_name_Weedle,Weedle
-pokemon_name_Kakuna,Kakuna
-pokemon_name_Beedrill,Beedrill
-pokemon_name_Pidgey,Pidgey
-pokemon_name_Pidgeotto,Pidgeotto
-pokemon_name_Pidgeot,Pidgeot
-pokemon_name_Rattata,Rattata
-pokemon_name_Raticate,Raticate
-pokemon_name_Spearow,Spearow
-pokemon_name_Fearow,Fearow
-pokemon_name_Ekans,Ekans
-pokemon_name_Arbok,Arbok
-pokemon_name_Pikachu,Pikachu
-pokemon_name_Raichu,Raichu
-pokemon_name_Sandshrew,Sandshrew
-pokemon_name_Sandshlash,Sandslash
-pokemon_name_Nidoran,Nidoran
-pokemon_name_Nidorina,Nidorina
-pokemon_name_Nidoqueen,Nidoqueen
-pokemon_name_Nidorino,Nidorino
-pokemon_name_Nidoking,Nidoking
-pokemon_name_Clefairy,Clefairy
-pokemon_name_Clefable,Clefable
-pokemon_name_Vulpix,Vulpix
-pokemon_name_Ninetails,Ninetails
-pokemon_name_Jigglypuff,Jigglypuff
-pokemon_name_Wigglytuff,Wigglytuff
-pokemon_name_Zubat,Zubat
-pokemon_name_Golbat,Golbat
-pokemon_name_Oddish,Oddish
-pokemon_name_Gloom,Gloom
-pokemon_name_Vileplume,Vileplume
-pokemon_name_Paras,Paras
-pokemon_name_Parasect,Parasect
-pokemon_name_Venonat,Venonat
-pokemon_name_Venomoth,Venomoth
-pokemon_name_Diglett,Diglett
-pokemon_name_Dugtrio,Dugtrio
-pokemon_name_Meowth,Meowth
-pokemon_name_Persian,Persian
-pokemon_name_Psyduck,Psyduck
-pokemon_name_Golduck,Golduck
-pokemon_name_Mankey,Mankey
-pokemon_name_Primeape,Primeape
-pokemon_name_Growlithe,Growlithe
-pokemon_name_Arcanine,Arcanine
-pokemon_name_Poliwag,Poliwag
-pokemon_name_Poliwhirl,Poliwhirl
-pokemon_name_Poliwrath,Poliwrath
-pokemon_name_Abra,Abra
-pokemon_name_Kadabra,Kadabra
-pokemon_name_Alakazam,Alakazam
-pokemon_name_Machop,Machop
-pokemon_name_Machoke,Machoke
-pokemon_name_Machamp,Machamp
-pokemon_name_Bellsprout,Bellsprout
-pokemon_name_Weepinbell,Weepinbell
-pokemon_name_Victreebel,Victreebel
-pokemon_name_Tentacool,Tentacool
-pokemon_name_Tentacruel,Tentacruel
-pokemon_name_Geodude,Geodude
-pokemon_name_Graveler,Graveler
-pokemon_name_Golem,Golem
-pokemon_name_Ponyta,Ponyta
-pokemon_name_Rapidash,Rapidash
-pokemon_name_Slowpoke,Slowpoke
-pokemon_name_Slowbro,Slowbro
-pokemon_name_Magnemite,Magnemite
-pokemon_name_Magneton,Magneton
-pokemon_name_Farfetch'd,Farfetch'd
-pokemon_name_Doduo,Doduo
-pokemon_name_Dodrio,Dodrio
-pokemon_name_Seel,Seel
-pokemon_name_Dewgong,Dewgong
-pokemon_name_Grimer,Grimer
-pokemon_name_Muk,Muk
-pokemon_name_Shellder,Shellder
-pokemon_name_Cloyster,Cloyster
-pokemon_name_Gastly,Gastly
-pokemon_name_Haunter,Haunter
-pokemon_name_Gengar,Gengar
-pokemon_name_Onix,Onix
-pokemon_name_Drowzee,Drowzee
-pokemon_name_Hypno,Hypno
-pokemon_name_Krabby,Krabby
-pokemon_name_Kingler,Kingler
-pokemon_name_Voltorb,Voltorb
-pokemon_name_Electrode,Electrode
-pokemon_name_Exeggcute,Exeggcute
-pokemon_name_Exeggutor,Exeggutor
-pokemon_name_Cubone,Cubone
-pokemon_name_Marowak,Marowak
-pokemon_name_Hitmonlee,Hitmonlee
-pokemon_name_Hitmonchan,Hitmonchan
-pokemon_name_Lickitung,Lickitung
-pokemon_name_Koffing,Koffing
-pokemon_name_Weezing,Weezing
-pokemon_name_Rhyhorn,Rhyhorn
-pokemon_name_Rhydon,Rhydon
-pokemon_name_Chansey,Chansey
-pokemon_name_Tangela,Tangela
-pokemon_name_Kangaskhan,Kangaskhan
-pokemon_name_Horsea,Horsea
-pokemon_name_Seedra,Seedra
-pokemon_name_Goldeen,Goldeen
-pokemon_name_Seaking,Seaking
-pokemon_name_Staryu,Staryu
-pokemon_name_Starmie,Starmie
-pokemon_name_Mr. Mime,Mr. Mime
-pokemon_name_Scyther,Scyther
-pokemon_name_Jynx,Jynx
-pokemon_name_Electabuzz,Electabuzz
-pokemon_name_Magmar,Magmar
-pokemon_name_Pinsir,Pinsir
-pokemon_name_Tauros,Tauros
-pokemon_name_Magikarp,Magikarp
-pokemon_name_Gyarados,Gyarados
-pokemon_name_Lapras,Lapras
-pokemon_name_Ditto,Ditto
-pokemon_name_Eevee,Eevee
-pokemon_name_Vaporeon,Vaporeon
-pokemon_name_Jolteon,Jolteon
-pokemon_name_Flareon,Flareon
-pokemon_name_Porygon,Porygon
-pokemon_name_Omanyte,Omanyte
-pokemon_name_Omastar,Omastar
-pokemon_name_Kabuto,Kabuto
-pokemon_name_Kabutops,Kabutops
-pokemon_name_Aerodactyl,Aerodactyl
-pokemon_name_Snorlax,Snorlax
-pokemon_name_Articuno,Articuno
-pokemon_name_Zapdos,Zapdos
-pokemon_name_Moltres,Moltres
-pokemon_name_Dratini,Dratini
-pokemon_name_Dragonair,Dragonair
-pokemon_name_Dragonite,Dragonite
-pokemon_name_Mewtwo,Mewtwo
-pokemon_name_Mew,Mew
-pokemon_name_Chikorita,Chikorita
-pokemon_name_Bayleef,Bayleef
-pokemon_name_Meganium,Meganium
-pokemon_name_Cyndaquil,Cyndaquil
-pokemon_name_Quilava,Quilava
-pokemon_name_Typhlosion,Typhlosion
-pokemon_name_Totodile,Totodile
-pokemon_name_Croconaw,Croconaw
-pokemon_name_Feraligatr,Feraligatr
-pokemon_name_Sentret,Sentret
-pokemon_name_Furret,Furret
-pokemon_name_Hoothoot,Hoothoot
-pokemon_name_Noctowl,Noctowl
-pokemon_name_Ledyba,Ledyba
-pokemon_name_Ledian,Ledian
-pokemon_name_Spinarak,Spinarak
-pokemon_name_Ariados,Ariados
-pokemon_name_Crobat,Crobat
-pokemon_name_Chinchou,Chinchou
-pokemon_name_Lanturn,Lanturn
-pokemon_name_Pichu,Pichu
-pokemon_name_Cleffa,Cleffa
-pokemon_name_Igglybuff,Igglybuff
-pokemon_name_Togepi,Togepi
-pokemon_name_Togetic,Togetic
-pokemon_name_Natu,Natu
-pokemon_name_Xatu,Xatu
-pokemon_name_Mareep,Mareep
-pokemon_name_Flaaffy,Flaaffy
-pokemon_name_Ampharos,Ampharos
-pokemon_name_Bellossom,Bellossom
-pokemon_name_Marill,Marill
-pokemon_name_Azumarill,Azumarill
-pokemon_name_Sudowoodo,Sudowoodo
-pokemon_name_Politoed,Politoed
-pokemon_name_Hoppip,Hoppip
-pokemon_name_Skiploom,Skiploom
-pokemon_name_Jumpluff,Jumpluff
-pokemon_name_Aipom,Aipom
-pokemon_name_Sunkern,Sunkern
-pokemon_name_Sunflora,Sunflora
-pokemon_name_Yanma,Yanma
-pokemon_name_Wooper,Wooper
-pokemon_name_Quagsire,Quagsire
-pokemon_name_Espeon,Espeon
-pokemon_name_Umbreon,Umbreon
-pokemon_name_Murkrow,Murkrow
-pokemon_name_Slowking,Slowking
-pokemon_name_Misdreavus,Misdreavus
-pokemon_name_Unown,Unown
-pokemon_name_Wobbuffet,Wobbuffet
-pokemon_name_Girafarig,Girafarig
-pokemon_name_Pineco,Pineco
-pokemon_name_Forretress,Forretress
-pokemon_name_Dunsparce,Dunsparce
-pokemon_name_Gligar,Gligar
-pokemon_name_Steelix,Steelix
-pokemon_name_Snubbull,Snubbull
-pokemon_name_Granbull,Granbull
-pokemon_name_Qwilfish,Qwilfish
-pokemon_name_Scizor,Scizor
-pokemon_name_Shuckle,Shuckle
-pokemon_name_Heracross,Heracross
-pokemon_name_Sneasel,Sneasel
-pokemon_name_Teddiursa,Teddiursa
-pokemon_name_Ursaring,Ursaring
-pokemon_name_Slugma,Slugma
-pokemon_name_Magcargo,Magcargo
-pokemon_name_Swinub,Swinub
-pokemon_name_Piloswine,Piloswine
-pokemon_name_Corsola,Corsola
-pokemon_name_Remoraid,Remoraid
-pokemon_name_Octillery,Octillery
-pokemon_name_Delibird,Delibird
-pokemon_name_Mantine,Mantine
-pokemon_name_Skarmory,Skarmory
-pokemon_name_Houndour,Houndour
-pokemon_name_Houndoom,Houndoom
-pokemon_name_Kingdra,Kingdra
-pokemon_name_Phanpy,Phanpy
-pokemon_name_Donphan,Donphan
-pokemon_name_Porygon2,Porygon2
-pokemon_name_Stantler,Stantler
-pokemon_name_Smeargle,Smeargle
-pokemon_name_Tyrogue,Tyrogue
-pokemon_name_Hitmontop,Hitmontop
-pokemon_name_Smoochum,Smoochum
-pokemon_name_Elekid,Elekid
-pokemon_name_Magby,Magby
-pokemon_name_Miltank,Miltank
-pokemon_name_Blissey,Blissey
-pokemon_name_Raikou,Raikou
-pokemon_name_Entei,Entei
-pokemon_name_Suicune,Suicune
-pokemon_name_Larvitar,Larvitar
-pokemon_name_Pupitar,Pupitar
-pokemon_name_Tyranitar,Tyranitar
-pokemon_name_Lugia,Lugia
-pokemon_name_Ho-Oh,Ho-Oh
-pokemon_name_Celebi,Celebi
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---

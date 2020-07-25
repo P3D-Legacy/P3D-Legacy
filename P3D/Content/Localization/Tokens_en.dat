@@ -23,6 +23,12 @@ global_accept,Accept
 global_cancel,Cancel
 global_gamemode,GameMode
 global_clear,Clear
+global_save,Save
+global_close,Close
+global_on,On
+global_off,Off
+global_enabled,Enabled
+global_disabled,Disabled
 ---
 PressStartScreen:
 press_start_1,Press
@@ -73,6 +79,58 @@ map_screen_cities,Cities
 map_screen_routes,Routes
 map_screen_places,Places
 map_screen_roaming,Roaming Pokes
+---
+NewOptionScreen:
+option_title,Options
+option_game,Game
+option_graphics,Graphics
+option_battle,Battle
+option_controls,Controls
+option_audio,Audio
+option_advanced,Advanced
+option_game_text_speed,Text Speed
+option_game_difficulty,Difficulty
+option_game_difficulty_easy,Easy
+option_game_difficulty_hard,Hard
+option_game_difficulty_super_hard,Super Hard
+option_game_bobbing,View bobbing
+option_graphics_fov,Field of View
+option_graphics_render_distance,Render Distance
+option_graphics_render_distance_tiny,Tiny
+option_graphics_render_distance_small,Small
+option_graphics_render_distance_normal,Normal
+option_graphics_render_distance_far,Far
+option_graphics_render_distance_extreme,Extreme
+option_graphics_offset_map_quality,Offset Map quality
+option_graphics_fast,Fast
+option_graphics_fancy,Fancy
+option_graphics_multisampling,Multisampling
+option_battle_3d_models,3D Models
+option_battle_animations,Animations
+option_battle_style,Battle Style
+option_battle_style_shift,Shift
+option_battle_style_set,Set
+option_controls_mouse_speed,Mouse Speed
+option_controls_mouse_speed_slow,Slowpoke
+option_controls_mouse_speed_standard,Standard
+option_controls_mouse_speed_fast,Fast
+option_controls_mouse_speed_super_fast,Super Fast
+option_controls_reset_key_bindings,Reset Key Bindings
+option_controls_xbox_controler,Xbox Controller
+option_audio_music_volume,Music Volume
+option_audio_sound_volume,Sound Volume
+option_audio_muted,Muted
+option_reset,Reset Options
+---
+SaveScreen:
+save_title_1,Would you like to
+save_title_2,save the game?
+save_saving_failed,Saving failed!
+save_saved_game,Saved the game
+save_press_continue_1,Press
+save_press_continue_2,to continue
+save_saving,Saving, please wait
+save_validating,Validating data
 ---
 Places:
 places_???,???
