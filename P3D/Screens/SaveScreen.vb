@@ -123,7 +123,7 @@
                     End If
                 Next
 
-                .DrawString(FontManager.MiniFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_money") & ": " & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
+                .DrawString(FontManager.MiniFont, Localization.GetString("global_player_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.GetString("global_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.GetString("global_money") & ": " & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.GetString("global_play_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
             End If
         End With
         Screen.ChooseBox.Draw(New Vector2(Delta_X + 115, Delta_Y + 155), False, 1.5F)

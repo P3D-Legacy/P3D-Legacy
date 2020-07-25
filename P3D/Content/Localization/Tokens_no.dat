@@ -29,6 +29,13 @@ global_on,På
 global_off,Av
 global_enabled,Aktivert
 global_disabled,Deaktivert
+global_player_name,Spillernavn
+global_badges,Merker
+global_play_time,Spilltid
+global_location,Lokasjon
+global_money,Penger
+global_points,Poeng
+global_name,Navn
 ---
 PressStartScreen:
 press_start_1,Trykk
@@ -37,10 +44,6 @@ press_start_change_to,Endre til
 press_start_reset_save,Tilbakestill lagringen av spillet
 press_start_select_gamemode_1,Velg en spillmodus
 press_start_select_gamemode_2,å starte det nye spillet med.
-press_start_player_name,Spiller navn
-press_start_badges,Merker
-press_start_play_time,Spilltid
-press_start_location,Lokasjon
 ---
 JoinServerScreen:
 server_title,Velg hvor du skal spille

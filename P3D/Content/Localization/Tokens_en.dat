@@ -29,6 +29,13 @@ global_on,On
 global_off,Off
 global_enabled,Enabled
 global_disabled,Disabled
+global_player_name,Player name
+global_badges,Badges
+global_play_time,Play Time
+global_location,Location
+global_money,Money
+global_points,Points
+global_name,Name
 ---
 PressStartScreen:
 press_start_1,Press
@@ -37,10 +44,6 @@ press_start_change_to,Change to
 press_start_reset_save,Reset save
 press_start_select_gamemode_1,Select a GameMode
 press_start_select_gamemode_2,to start the new game with.
-press_start_player_name,Player name
-press_start_badges,Badges
-press_start_play_time,Play Time
-press_start_location,Location
 ---
 JoinServerScreen:
 server_title,Choose where to play

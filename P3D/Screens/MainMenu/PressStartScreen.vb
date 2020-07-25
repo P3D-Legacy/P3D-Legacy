@@ -603,13 +603,13 @@ Public Class NewMainMenuScreen
                     For i = 0 To tmpProfile.PokemonTextures.Count - 1
                         SpriteBatch.Draw(tmpProfile.PokemonTextures(i), New Rectangle(displayRect.X + 30 + i * 70, displayRect.Y + 70, 64, 64), Color.White)
                     Next
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.GetString("press_start_player_name") & ": " & tmpProfile.Name & Environment.NewLine &
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.GetString("global_player_name") & ": " & tmpProfile.Name & Environment.NewLine &
                                                                         Localization.GetString("global_gamemode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.GetString("press_start_badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
-                                                                        Localization.GetString("press_start_play_time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
-                                                                        Localization.GetString("press_start_location") & ": " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.GetString("global_badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
+                                                                        Localization.GetString("global_play_time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
+                                                                        Localization.GetString("global_location") & ": " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
                 Else
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.GetString("press_start_player_name") & ": " & tmpProfile.Name & Environment.NewLine &
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.GetString("global_player_name") & ": " & tmpProfile.Name & Environment.NewLine &
                                                                         Localization.GetString("global_gamemode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
 
                     SpriteBatch.Draw(_menuTexture, New Rectangle(displayRect.X + 30, displayRect.Y + 70, 32, 32), New Rectangle(0, 32, 32, 32), Color.White)
