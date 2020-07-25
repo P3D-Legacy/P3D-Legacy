@@ -79,7 +79,7 @@
                         "Discord server" & Environment.NewLine &
                         "www.discord.me/p3d" & Environment.NewLine & Environment.NewLine &
                         "Official Forum" & Environment.NewLine &
-                        "pokemon3d.net/forum/news", New Vector2(Delta_X + 390, Delta_Y + 100), Color.Black)
+                        "pokemon3d.net/forum", New Vector2(Delta_X + 390, Delta_Y + 100), Color.Black)
                 End If
 
                 Dim text As String = String.Empty
