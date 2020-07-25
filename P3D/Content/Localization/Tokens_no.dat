@@ -135,6 +135,11 @@ save_press_continue_2,for å fortsette
 save_saving,Lagrer, vennligst vent
 save_validating,Validerer data
 ---
+NewTrainerScreen:
+trainer_card_title,Trenerkort
+trainer_card_collected_badges,Innsamlede merker
+trainer_card_badge,Merket
+---
 Regions:
 Johto,Johto
 Kanto,Kanto

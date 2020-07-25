@@ -135,6 +135,11 @@ save_press_continue_2,to continue
 save_saving,Saving, please wait
 save_validating,Validating data
 ---
+NewTrainerScreen:
+trainer_card_title,Trainer Card
+trainer_card_collected_badges,Collected Badges
+trainer_card_badge,Badge
+---
 Regions:
 Johto,Johto
 Kanto,Kanto
