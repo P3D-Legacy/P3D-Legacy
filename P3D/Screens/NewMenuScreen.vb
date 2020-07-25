@@ -46,19 +46,19 @@
 
         If Screen.Level.IsBugCatchingContest = True Then
             _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177),
-                                    "Bag",
+                                    Localization.GetString("bag_title"),
                                     "|||" & Core.Player.Name, 'Trainer card
                                     "End Contest"})
         Else
             If Core.Player.Pokemons.Count > 0 Then
                 _menuOptions.Add("Pokémon")
             End If
-            _menuOptions.AddRange({"Bag",
+            _menuOptions.AddRange({Localization.GetString("bag_title"),
                                      "|||" & Core.Player.Name,
-                                    "Save"})
+                                    Localization.GetString("global_save")})
         End If
 
-        _menuOptions.Add("Options")
+        _menuOptions.Add(Localization.GetString("option_title"))
     End Sub
 
     Private _blur As Resources.Blur.BlurHandler
@@ -268,15 +268,15 @@
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PokedexSelectScreen(Me), Color.White, False))
             Case "Pokémon"
                 SetScreen(New PartyScreen(Me))
-            Case "Bag"
+            Case Localization.GetString("bag_title")
                 Core.SetScreen(New NewInventoryScreen(Me))
             Case "|||" & Core.Player.Name
                 Core.SetScreen(New NewTrainerScreen(Me))
-            Case "Save"
+            Case Localization.GetString("global_save")
                 Core.SetScreen(New SaveScreen(Me))
-            Case "Options"
+            Case Localization.GetString("option_title")
                 Core.SetScreen(New NewOptionScreen(Me))
-            Case "Exit"
+            Case Localization.GetString("global_close")
                 Core.SetScreen(PreScreen)
             Case Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177)
                 Me.ShowBalls()
