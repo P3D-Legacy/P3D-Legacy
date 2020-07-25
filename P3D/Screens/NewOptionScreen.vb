@@ -674,7 +674,6 @@
 
         Inherits Control
 
-
         Private _buttonWidth As Integer = 1
         Private _size As Integer = 1
         Private _text As String = ""
@@ -863,7 +862,6 @@
             Me.OnClickTrigger = ClickSub
         End Sub
 
-
         Public Overrides Sub Draw()
             Dim s As NewOptionScreen = CType(CurrentScreen, NewOptionScreen)
 
@@ -881,7 +879,6 @@
 
         Public Overrides Sub Update(ByRef s As NewOptionScreen)
             Dim r As New Rectangle(CInt(_position.X), CInt(_position.Y), (2 + ButtonWidth) * Size, Size)
-
 
             If r.Contains(MouseHandler.MousePosition) = True Then
                 If P3D.Controls.Accept(True, False, False) = True Then
