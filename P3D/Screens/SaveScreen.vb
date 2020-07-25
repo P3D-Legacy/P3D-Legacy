@@ -25,7 +25,7 @@
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
         Me.menuTexture = TextureManager.GetTexture("GUI\Menus\SaveBook")
-        ChooseBox.Show({Localization.GetString("save_screen_yes"), Localization.GetString("save_screen_no")}, 0, {})
+        ChooseBox.Show({Localization.GetString("global_yes"), Localization.GetString("global_no")}, 0, {})
 
         SaveGameHelpers.ResetSaveCounter()
     End Sub
@@ -46,7 +46,7 @@
             .Draw(menuTexture, New Rectangle(Delta_X, Delta_Y, 700, 440), Color.White)
 
             If saveSessionFailed = True Then
-                .DrawString(FontManager.InGameFont, "Saving failed!", New Vector2(Delta_X + 90, Delta_Y + 50), Color.Red)
+                .DrawString(FontManager.InGameFont, Localization.GetString("save_saving_failed"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.Red)
 
                 If Core.GameOptions.Extras.Contains("Backup Save Feature") Then
                     .DrawString(FontManager.MiniFont,
@@ -84,34 +84,32 @@
 
                 Dim text As String = String.Empty
                 If ControllerHandler.IsConnected() Then
-                    text = "Press      to continue"
+                    text = Localization.GetString("save_press_continue_1") & "      " & Localization.GetString("save_press_continue_2")
                 Else
-                    text = "Press " & KeyBindings.BackKey1.ToString() & " to continue"
+                    text = Localization.GetString("save_press_continue_1") & " " & KeyBindings.BackKey1.ToString() & " " & Localization.GetString("save_press_continue_2")
                 End If
 
                 Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
 
-                GetFontRenderer().DrawString(FontManager.MiniFont, text, New Vector2(Delta_X + 610 - textSize.X / 2.0F,
-                                                                                   Delta_Y + 350 - textSize.Y / 2.0F), Color.DarkBlue)
+                GetFontRenderer().DrawString(FontManager.MiniFont, text, New Vector2(Delta_X + 610 - textSize.X / 2.0F, Delta_Y + 350 - textSize.Y / 2.0F), Color.DarkBlue)
 
                 If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonB"), New Rectangle(CInt(Delta_X + 610 - textSize.X / 2 + FontManager.MiniFont.MeasureString("Press ").X),
-                                                                                                               CInt(Delta_Y + 350 - textSize.Y / 2), 20, 20), Color.White)
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonB"), New Rectangle(CInt(Delta_X + 610 - textSize.X / 2 + FontManager.MiniFont.MeasureString(Localization.GetString("save_press_continue_1") & " ").X), CInt(Delta_Y + 350 - textSize.Y / 2), 20, 20), Color.White)
                 End If
 
             Else
                 If ready = True Then
-                    .DrawString(FontManager.InGameFont, "Saved the game.", New Vector2(Delta_X + 90, Delta_Y + 50), Color.DarkBlue)
+                    .DrawString(FontManager.InGameFont, Localization.GetString("save_saved_game"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.DarkBlue)
                 Else
                     If SaveGameHelpers.GameJoltSaveDone() = False And savingStarted = True Then
                         If SaveGameHelpers.StartedDownloadCheck = True Then
-                            .DrawString(FontManager.InGameFont, "Validating data" & LoadingDots.Dots, New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
+                            .DrawString(FontManager.InGameFont, Localization.GetString("save_validating") & LoadingDots.Dots, New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
                         Else
-                            .DrawString(FontManager.InGameFont, "Saving, please wait" & LoadingDots.Dots, New Vector2(Delta_X + 77, Delta_Y + 50), Color.Black)
+                            .DrawString(FontManager.InGameFont, Localization.GetString("save_saving") & LoadingDots.Dots, New Vector2(Delta_X + 77, Delta_Y + 50), Color.Black)
                         End If
                     Else
-                        .DrawString(FontManager.InGameFont, "Would you like to", New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
-                        .DrawString(FontManager.InGameFont, "save the game?", New Vector2(Delta_X + 90, Delta_Y + 80), Color.Black)
+                        .DrawString(FontManager.InGameFont, Localization.GetString("save_title_1"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
+                        .DrawString(FontManager.InGameFont, Localization.GetString("save_title_2"), New Vector2(Delta_X + 90, Delta_Y + 80), Color.Black)
                     End If
                 End If
 
