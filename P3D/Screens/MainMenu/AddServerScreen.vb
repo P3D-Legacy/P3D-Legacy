@@ -54,7 +54,7 @@
 
         Canvas.DrawRectangle(New Rectangle(0, 75, Core.windowSize.Width, 680 - 240), New Color(0, 0, 0, 128))
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("add_server_title"), New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString("Add a server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("add_server_title"), New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(Localization.GetString("add_server_title")).X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("add_server_name") & ":", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 140), Color.White)
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 170, 600, 40), New Color(40, 40, 40, 255))
