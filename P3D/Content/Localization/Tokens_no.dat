@@ -123,7 +123,7 @@ option_controls_xbox_controler,Xbox Kontroller
 option_audio_music_volume,Musikk volum
 option_audio_sound_volume,Lyd volum
 option_audio_muted,Dempet
-option_reset,Resett alternativene
+option_reset,Nullstill alternativene
 ---
 SaveScreen:
 save_title_1,Vil du
