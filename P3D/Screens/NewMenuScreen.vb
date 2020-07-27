@@ -46,14 +46,14 @@
 
         If Screen.Level.IsBugCatchingContest = True Then
             _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177),
-                                    Localization.GetString("bag_title"),
+                                    Localization.GetString("menu_bag_title"),
                                     "|||" & Core.Player.Name, 'Trainer card
                                     "End Contest"})
         Else
             If Core.Player.Pokemons.Count > 0 Then
                 _menuOptions.Add("Pokémon")
             End If
-            _menuOptions.AddRange({Localization.GetString("bag_title"),
+            _menuOptions.AddRange({Localization.GetString("menu_bag_title"),
                                      "|||" & Core.Player.Name,
                                     Localization.GetString("global_save")})
         End If
@@ -268,7 +268,7 @@
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PokedexSelectScreen(Me), Color.White, False))
             Case "Pokémon"
                 SetScreen(New PartyScreen(Me))
-            Case Localization.GetString("bag_title")
+            Case Localization.GetString("menu_bag_title")
                 Core.SetScreen(New NewInventoryScreen(Me))
             Case "|||" & Core.Player.Name
                 Core.SetScreen(New NewTrainerScreen(Me))

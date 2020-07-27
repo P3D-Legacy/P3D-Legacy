@@ -97,6 +97,9 @@ pause_menu_quit_to_menu,Avslutt til menyen
 pause_menu_autosave_fail,Klarte ikke å lagre automatisk.
 pause_menu_confirmation,Vil du virkelig avslutte? Fremgang som ikke er lagret vil gå tapt.
 ---
+NewMenuScreen:
+menu_bag_title,Sekk
+---
 OfflineGameWarningScreen:
 offline_game_title,Start a new offline game
 offline_game_description,If you start a game in ""Offline Mode"" by pressing the ""New Game"" button, you cannot access the online features of Pokémon 3D such as trading and trainer customization. Click on the GameJolt button in the lower right corner in order to start a game in ""Online Mode"".
