@@ -283,7 +283,7 @@ Public Class NewInventoryScreen
             End If
         Next
 
-        Dim TabDesriptionWidth As Integer = 176
+        Dim TabDesriptionWidth As Integer = 200
         Dim TbgColor As New Color(128, 128, 128)
         If _closing Then
             TbgColor = New Color(TbgColor.R, TbgColor.G, TbgColor.B, CInt(CInt(TbgColor.A) * _interfaceFade))
@@ -293,7 +293,7 @@ Public Class NewInventoryScreen
                 SpriteBatch.Draw(_menuTexture, New Rectangle(halfWidth - 400 + x + 384, halfHeight - 200 + y, 16, 16), New Rectangle(0, 0, 4, 4), TbgColor)
             Next
         Next
-        Canvas.DrawGradient(Core.SpriteBatch, New Rectangle(halfWidth - 400 + 384 + TabDesriptionWidth + 16, halfHeight - 200, 800 - (384 + TabDesriptionWidth), 48), New Color(0, 0, 0, CInt(TbgColor.A * 0.5)), New Color(0, 0, 0, CInt(TbgColor.A * 0.00)), True, -1)
+        Canvas.DrawGradient(Core.SpriteBatch, New Rectangle(halfWidth - 400 + 384 + TabDesriptionWidth + 8, halfHeight - 200, 800 - (384 + TabDesriptionWidth), 48), New Color(0, 0, 0, CInt(TbgColor.A * 0.5)), New Color(0, 0, 0, CInt(TbgColor.A * 0.00)), True, -1)
         Dim TabName As String = ""
         Select Case _tabIndex
             Case 0 : TabName = "Standard"
