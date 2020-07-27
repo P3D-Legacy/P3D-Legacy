@@ -192,6 +192,31 @@ pokedex_reverse,Reverse
 pokedex_height,Height
 pokedex_weight,Weight
 ---
+NewInventoryScreen:
+inventory_title,Inventory
+inventory_use,Use
+inventory_give,Give
+inventory_toss,Toss
+inventory_select,Select
+inventory_tab_standard,Standard
+inventory_tab_medicine,Medicine
+inventory_tab_plants,Plants
+inventory_tab_pokeball,Pokéball
+inventory_tab_tm_hm,TM/HM
+inventory_tab_mail,Mail
+inventory_tab_battle_items,Battle Items
+inventory_tab_key_items,Key Items
+iventory_eggs_cannot_hold,Eggs cannot hold items
+inventory_item_type_tm,Technical Machine
+inventory_item_type_hm,Hidden Machine
+inventory_item_type_standard,Item
+inventory_item_type_key_item,Key Item
+inventory_item_type_pokeball,Pokéball
+inventory_item_type_plant,Plant
+inventory_item_type_battle_item,Battle Item
+inventory_toss_item_question,Are you sure you want to toss~this item?%Yes|No%
+inventory_toss_item_question_amount,Select the amount to toss
+---
 Regions:
 Johto,Johto
 Kanto,Kanto

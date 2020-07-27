@@ -192,6 +192,31 @@ pokedex_reverse,Omvendt
 pokedex_height,Høyde
 pokedex_weight,Vekt
 ---
+NewInventoryScreen:
+inventory_title,Inventar
+inventory_use,Bruk
+inventory_give,Gi
+inventory_toss,Kast
+inventory_select,Vedlg
+inventory_tab_standard,Standard
+inventory_tab_medicine,Medisin
+inventory_tab_plants,Planter
+inventory_tab_pokeball,Pokéball
+inventory_tab_tm_hm,TM/HM
+inventory_tab_mail,Post
+inventory_tab_battle_items,Kamp gjenstander
+inventory_tab_key_items,Viktige gjenstander
+iventory_eggs_cannot_hold,Egg kan ikke holde på gjenstander
+inventory_item_type_tm,Teknisk maskin
+inventory_item_type_hm,Skjult maskin
+inventory_item_type_standard,Gjenstand
+inventory_item_type_key_item,Viktige gjenstand
+inventory_item_type_pokeball,Pokéball
+inventory_item_type_plant,Plante
+inventory_item_type_battle_item,Kamp gjenstand
+inventory_toss_item_question,Er du sikker på at du vil kaste~denne gjenstanden?%Ja|Nei%
+inventory_toss_item_question_amount,Velg antallet du vil kaste
+---
 Regions:
 Johto,Johto
 Kanto,Kanto
