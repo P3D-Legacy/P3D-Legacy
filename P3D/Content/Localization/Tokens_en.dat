@@ -36,6 +36,30 @@ global_location,Location
 global_money,Money
 global_points,Points
 global_name,Name
+global_order,Order
+global_filter,Filter
+global_reset,Reset
+global_pokemon_type_normal,Normal
+global_pokemon_type_fire,Fire
+global_pokemon_type_flying,Flying
+global_pokemon_type_fighting,Fighting
+global_pokemon_type_water,Water
+global_pokemon_type_grass,Grass
+global_pokemon_type_poison,Poison
+global_pokemon_type_ground,Ground
+global_pokemon_type_electric,Electric
+global_pokemon_type_psychic,Psychic
+global_pokemon_type_rock,Rock
+global_pokemon_type_ice,Ice
+global_pokemon_type_bug,Bug
+global_pokemon_type_dragon,Dragon
+global_pokemon_type_ghost,Ghost
+global_pokemon_type_dark,Dark
+global_pokemon_type_steel,Steel
+global_pokemon_type_fairy,Fairy
+global_pokemon_type_blank,Blank
+global_true,True
+global_false,False
 ---
 PressStartScreen:
 press_start_1,Press
@@ -142,6 +166,28 @@ NewTrainerScreen:
 trainer_card_title,Trainer Card
 trainer_card_collected_badges,Collected Badges
 trainer_card_badge,Badge
+---
+PokedexScreen:
+pokedex_select,Select a Pokédex
+pokedex_habitat,Habitat-Dex
+pokedex_habitat_select,Select a Habitat
+pokedex_seen,Seen
+pokedex_obtained,Obtained
+pokedex_available,Available
+pokedex_search_description,Press Q on the keyboard to search
+pokedex_search_no_result,No search results
+pokedex_order_numeric,Numeric
+pokedex_order_a_z,A-Z
+pokedex_filter_none,None
+pokedex_filter_name,Name
+pokedex_filter_type_1,Type 1
+pokedex_filter_type_2,Type 2
+pokedex_number_short,No.
+pokedex_species,Species
+pokedex_type,Type
+pokedex_reverse,Reverse
+pokedex_height,Height
+pokedex_weight,Weight
 ---
 Regions:
 Johto,Johto

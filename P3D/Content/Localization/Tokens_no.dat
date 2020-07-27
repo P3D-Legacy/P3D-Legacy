@@ -36,6 +36,30 @@ global_location,Lokasjon
 global_money,Penger
 global_points,Poeng
 global_name,Navn
+global_order,Rekkefølge
+global_filter,Filter
+global_reset,Resett
+global_pokemon_type_normal,Normal
+global_pokemon_type_fire,Ild
+global_pokemon_type_flying,Flying
+global_pokemon_type_fighting,Slåssing
+global_pokemon_type_water,Vann
+global_pokemon_type_grass,Gress
+global_pokemon_type_poison,Gift
+global_pokemon_type_ground,Bakke
+global_pokemon_type_electric,Elektrisk
+global_pokemon_type_psychic,Synsk
+global_pokemon_type_rock,Stein
+global_pokemon_type_ice,Is
+global_pokemon_type_bug,Insekt
+global_pokemon_type_dragon,Drage
+global_pokemon_type_ghost,Spøkelse
+global_pokemon_type_dark,Mørk
+global_pokemon_type_steel,Stål
+global_pokemon_type_fairy,Fe
+global_pokemon_type_blank,Blank
+global_true,Ja
+global_false,Nei
 ---
 PressStartScreen:
 press_start_1,Trykk
@@ -139,6 +163,28 @@ NewTrainerScreen:
 trainer_card_title,Trenerkort
 trainer_card_collected_badges,Innsamlede merker
 trainer_card_badge,Merket
+---
+PokedexScreen:
+pokedex_select,Velg en Pokédex
+pokedex_habitat,Habitat-Dex
+pokedex_habitat_select,Velg et habitat
+pokedex_seen,Sett
+pokedex_obtained,Skaffet
+pokedex_available,Tilgjengelig
+pokedex_search_description,Trykk Q på tastaturet for å søke
+pokedex_search_no_result,Ingen søkeresultater
+pokedex_order_numeric,Numerisk
+pokedex_order_a_z,A-Z
+pokedex_filter_none,Ingen
+pokedex_filter_name,Navn
+pokedex_filter_type_1,Type 1
+pokedex_filter_type_2,Type 2
+pokedex_number_short,Nr.
+pokedex_species,Art
+pokedex_type,Type
+pokedex_reverse,Omvendt
+pokedex_height,Høyde
+pokedex_weight,Vekt
 ---
 Regions:
 Johto,Johto
