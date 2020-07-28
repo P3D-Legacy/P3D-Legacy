@@ -961,7 +961,7 @@ Public Class NewInventoryScreen
         Else
             'JSON Stuff
             'ShowMessage(_translation.MESSAGE_EGG_ERROR)
-            ShowMessage(Localization.GetString("iventory_eggs_cannot_hold"))
+            ShowMessage(Localization.GetString("inventory_eggs_cannot_hold"))
         End If
     End Sub
 

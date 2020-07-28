@@ -206,7 +206,7 @@ inventory_tab_tm_hm,TM/HM
 inventory_tab_mail,Post
 inventory_tab_battle_items,Kamp gjenstander
 inventory_tab_key_items,Viktige gjenstander
-iventory_eggs_cannot_hold,Egg kan ikke holde på gjenstander
+inventory_eggs_cannot_hold,Egg kan ikke holde på gjenstander
 inventory_item_type_tm,Teknisk maskin
 inventory_item_type_hm,Skjult maskin
 inventory_item_type_standard,Gjenstand
