@@ -143,7 +143,7 @@ Public Class PartyScreen
         Me.New(currentScreen, Item, ChoosePokemon, Title, canExit, True, True)
     End Sub
     Public Sub New(ByVal currentScreen As Screen)
-        Me.New(currentScreen, New Items.Balls.Pokeball, Nothing, "Pokémon", True, True, True, Nothing, False)
+        Me.New(currentScreen, New Items.Balls.Pokeball, Nothing, Localization.GetString("party_screen_title"), True, True, True, Nothing, False)
     End Sub
 
     Private Sub GetPokemonList()
@@ -371,11 +371,11 @@ Public Class PartyScreen
             'Able/unable display (when using TM/HM)
             Dim AttackLabel As String = ""
             If LearnType > 0 Then
-                AttackLabel = "Unable!"
+                AttackLabel = Localization.GetString("party_screen_unable").ToUpper()
                 Select Case LearnType
                     Case 1 ' Technical/Hidden Machine
                         If CType(moveLearnArg, Items.TechMachine).CanTeach(p) = "" Then
-                            AttackLabel = "Able!"
+                            AttackLabel = Localization.GetString("party_screen_able").ToUpper()
                         End If
                 End Select
             End If
@@ -509,7 +509,7 @@ Public Class PartyScreen
                         If _switchIndex <> _index Then
                             Dim p1 As Pokemon = PokemonList(_switchIndex)
                             Dim p2 As Pokemon = PokemonList(_index)
-                            SoundManager.PlaySound("select")
+                            SoundManager.PlaySound(Localization.GetString("global_select"))
                             PokemonList(_switchIndex) = p2
                             PokemonList(_index) = p1
                         End If
@@ -528,7 +528,7 @@ Public Class PartyScreen
                             used = True
                             ExitedSub(_index)
                         End If
-                        SoundManager.PlaySound("select")
+                        SoundManager.PlaySound(Localization.GetString("global_select"))
                         _closing = True
                     End If
                 End If
@@ -539,7 +539,7 @@ Public Class PartyScreen
 
     Private Sub CreateMainMenu()
         If Mode = ISelectionScreen.ScreenMode.Default Then
-            CreateNormalMenu("Summary")
+            CreateNormalMenu(Localization.GetString("global_summary"))
         ElseIf Mode = ISelectionScreen.ScreenMode.Selection Then
             CreateSelectionMenu()
         End If
@@ -547,16 +547,16 @@ Public Class PartyScreen
 
     Private Sub CreateSelectionMenu()
         Dim items As New List(Of String)
-        items.Add("Select")
-        items.Add("Summary")
-        items.Add("Back")
+        items.Add(Localization.GetString("global_select"))
+        items.Add(Localization.GetString("global_summary"))
+        items.Add(Localization.GetString("global_back"))
 
         _menu = New UI.SelectMenu(items, 0, AddressOf SelectSelectionMenuItem, items.Count - 1)
     End Sub
 
     Private Sub SelectSelectionMenuItem(ByVal selectMenu As UI.SelectMenu)
         Select Case selectMenu.SelectedItem
-            Case "Select"
+            Case Localization.GetString("global_select")
                 'When a Pokémon got selected in Selection Mode, raise the selected event and close the screen.
                 If CanChoosePokemon(Me.PokemonList(_index)) = True Then
                     Selected = _index
@@ -566,7 +566,7 @@ Public Class PartyScreen
                 Else
                     TextBox.Show("Cannot choose this~Pokémon.")
                 End If
-            Case "Summary"
+            Case Localization.GetString("global_summary")
                 SetScreen(New SummaryScreen(Me, PokemonList.ToArray(), _index))
         End Select
     End Sub
@@ -602,7 +602,7 @@ Public Class PartyScreen
         Dim p As Pokemon = PokemonList(_index)
 
         Dim items As New List(Of String)
-        items.Add("Summary")
+        items.Add(Localization.GetString("global_summary"))
 
         If p.IsEgg() = False Then
             If CanUseMove(p, "Fly", Badge.HMMoves.Fly) Or
@@ -612,17 +612,17 @@ Public Class PartyScreen
             CanUseMove(p, "Teleport", -1) Or
             CanUseMove(p, "Dig", -1) Then
 
-                items.Add("Field Move")
+                items.Add(Localization.GetString("party_screen_field_move"))
             End If
         End If
 
-        items.Add("Switch")
+        items.Add(Localization.GetString("global_switch"))
 
         If p.IsEgg() = False Then
-            items.Add("Item")
+            items.Add(Localization.GetString("global_item"))
         End If
 
-        items.Add("Back")
+        items.Add(Localization.GetString("global_back"))
 
         _menu = New UI.SelectMenu(items, items.IndexOf(selectedItem), AddressOf SelectedMainMenuItem, items.Count - 1)
     End Sub
@@ -650,7 +650,7 @@ Public Class PartyScreen
             items.Add("Dig")
         End If
 
-        items.Add("Back")
+        items.Add(Localization.GetString("global_back"))
 
         _menu = New UI.SelectMenu(items, 0, AddressOf SelectedFieldMoveMenuItem, items.Count - 1)
     End Sub
@@ -660,11 +660,11 @@ Public Class PartyScreen
 
         Dim items As New List(Of String)
 
-        items.Add("Give")
+        items.Add(Localization.GetString("global_give"))
         If p.Item IsNot Nothing Then
-            items.Add("Take")
+            items.Add(Localization.GetString("global_take"))
         End If
-        items.Add("Back")
+        items.Add(Localization.GetString("global_back"))
 
         _menu = New UI.SelectMenu(items, 0, AddressOf SelectedItemMenuItem, items.Count - 1)
     End Sub
@@ -695,14 +695,14 @@ Public Class PartyScreen
 
     Private Sub SelectedMainMenuItem(ByVal selectMenu As UI.SelectMenu)
         Select Case selectMenu.SelectedItem
-            Case "Summary"
+            Case Localization.GetString("global_summary")
                 SetScreen(New SummaryScreen(Me, PokemonList.ToArray(), _index))
-            Case "Field Move"
+            Case Localization.GetString("party_screen_field_move")
                 CreateFieldMoveMenu()
-            Case "Switch"
+            Case Localization.GetString("global_switch")
                 _switchIndex = _index
                 _isSwitching = True
-            Case "Item"
+            Case Localization.GetString("global_item")
                 CreateItemMenu()
         End Select
     End Sub
@@ -721,14 +721,14 @@ Public Class PartyScreen
                 UseTeleport()
             Case "Dig"
                 UseDig()
-            Case "Back"
-                CreateNormalMenu("Field Move")
+            Case Localization.GetString("global_back")
+                CreateNormalMenu(Localization.GetString("party_screen_field_move"))
         End Select
     End Sub
 
     Private Sub SelectedItemMenuItem(ByVal selectMenu As UI.SelectMenu)
         Select Case selectMenu.SelectedItem
-            Case "Give"
+            Case Localization.GetString("global_give")
 
                 Dim selScreen As New NewInventoryScreen(Core.CurrentScreen)
                 selScreen.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection
@@ -737,7 +737,7 @@ Public Class PartyScreen
                 AddHandler selScreen.SelectedObject, AddressOf GiveItemHandler
 
                 Core.SetScreen(selScreen)
-            Case "Take"
+            Case Localization.GetString("global_take")
                 Dim p As Pokemon = PokemonList(_index)
 
                 If p.Item.IsMail And p.Item.AdditionalData <> "" Then
@@ -752,8 +752,8 @@ Public Class PartyScreen
                     Core.Player.Inventory.AddItem(p.Item.ID, 1)
                     p.Item = Nothing
                 End If
-            Case "Back"
-                CreateNormalMenu("Item")
+            Case Localization.GetString("global_back")
+                CreateNormalMenu(Localization.GetString("global_item"))
         End Select
     End Sub
 

@@ -60,6 +60,14 @@ global_pokemon_type_fairy,Fe
 global_pokemon_type_blank,Blank
 global_true,Ja
 global_false,Nei
+global_select,Velg
+global_summary,Sammendrag
+global_item,Gjenstand
+global_use,Bruk
+global_give,Gi
+global_take,Ta
+global_toss,Kast
+global_switch,Bytt
 ---
 PressStartScreen:
 press_start_1,Trykk
@@ -197,7 +205,6 @@ inventory_title,Inventar
 inventory_use,Bruk
 inventory_give,Gi
 inventory_toss,Kast
-inventory_select,Vedlg
 inventory_tab_standard,Standard
 inventory_tab_medicine,Medisin
 inventory_tab_plants,Planter
@@ -234,6 +241,11 @@ game_message_fullscreen,Fullskjerm
 game_message_third_person,Tredepersons modus
 game_message_free_camera,Fri bevegelses kameramodus
 game_message_audio,Lyd
+---
+PartyScreen:
+party_screen_title,Pokémon
+party_screen_choose_a_pokemon,Velg en Pokémon
+party_screen_field_move,Trekk
 ---
 Regions:
 Johto,Johto
