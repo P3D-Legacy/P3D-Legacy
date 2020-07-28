@@ -1081,25 +1081,25 @@ Public Class NewInventoryScreen
             If cItem.CanBeUsed Then
                 'JSON Stuff
                 '_infoItemOptions.Add(_translation.INFO_ITEM_OPTION_USE)
-                _infoItemOptions.Add(Localization.GetString("inventory_use"))
+                _infoItemOptions.Add(Localization.GetString("global_use"))
                 _infoItemOptionsNormal.Add(INFO_ITEM_OPTION_USE)
             End If
             If cItem.CanBeHold Then
                 'JSON Stuff
                 ' _infoItemOptions.Add(_translation.INFO_ITEM_OPTION_GIVE)
-                _infoItemOptions.Add(Localization.GetString("inventory_give"))
+                _infoItemOptions.Add(Localization.GetString("global_give"))
                 _infoItemOptionsNormal.Add(INFO_ITEM_OPTION_GIVE)
             End If
             If cItem.CanBeTossed Then
                 'JSON Stuff
                 '_infoItemOptions.Add(_translation.INFO_ITEM_OPTION_TOSS)
-                _infoItemOptions.Add(Localization.GetString("inventory_toss"))
+                _infoItemOptions.Add(Localization.GetString("global_toss"))
                 _infoItemOptionsNormal.Add(INFO_ITEM_OPTION_TOSS)
             End If
         ElseIf _mode = ISelectionScreen.ScreenMode.Selection Then
             'JSON Stuff
             '_infoItemOptions.Add(_translation.INFO_ITEM_OPTION_SELECT)
-            _infoItemOptions.Add(Localization.GetString("inventory_select"))
+            _infoItemOptions.Add(Localization.GetString("global_select"))
             _infoItemOptionsNormal.Add(INFO_ITEM_OPTION_SELECT)
         End If
     End Sub
