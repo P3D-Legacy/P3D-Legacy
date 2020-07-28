@@ -945,11 +945,11 @@ Public Class NewInventoryScreen
             If reItem Is Nothing Then
                 'JSON Stuff
                 'ShowMessage(_translation.MESSAGE_GIVE_ITEM(Pokemon.GetDisplayName(), cItem.Name))
-                ShowMessage("Gave " & Pokemon.GetDisplayName() & " a " & cItem.Name & ".")
+                ShowMessage(Localization.GetString("inventory_give_item_gave") & " " & Pokemon.GetDisplayName() & " " & Localization.GetString("inventory_give_item_a") & " " & cItem.Name & ".")
             Else
                 'JSON Stuff
                 'ShowMessage(_translation.MESSAGE_SWITCH_ITEM(Pokemon.GetDisplayName(), reItem.Name, cItem.Name))
-                ShowMessage("Switched " & Pokemon.GetDisplayName() & "'s " & reItem.Name & " with a " & cItem.Name & ".")
+                ShowMessage(Localization.GetString("inventory_switched_item_switched") & " " & Pokemon.GetDisplayName() & "'s " & reItem.Name & " " & Localization.GetString("inventory_switched_item_with_a") & " " & cItem.Name & ".")
             End If
 
             LoadItems()

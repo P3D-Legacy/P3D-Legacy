@@ -216,6 +216,10 @@ inventory_item_type_plant,Plant
 inventory_item_type_battle_item,Battle Item
 inventory_toss_item_question,Are you sure you want to toss~this item?%Yes|No%
 inventory_toss_item_question_amount,Select the amount to toss
+inventory_give_item_gave,Gave
+inventory_give_item_a,a
+inventory_switched_item_switched,Switched
+inventory_switched_item_with_a,with a
 ---
 Regions:
 Johto,Johto

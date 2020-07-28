@@ -216,6 +216,10 @@ inventory_item_type_plant,Plante
 inventory_item_type_battle_item,Kamp gjenstand
 inventory_toss_item_question,Er du sikker på at du vil kaste~denne gjenstanden?%Ja|Nei%
 inventory_toss_item_question_amount,Velg antallet du vil kaste
+inventory_give_item_gave,Ga
+inventory_give_item_a,en
+inventory_switched_item_switched,Byttet
+inventory_switched_item_with_a,med en
 ---
 Regions:
 Johto,Johto
