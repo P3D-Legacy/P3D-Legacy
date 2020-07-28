@@ -225,6 +225,16 @@ DonationScreen:
 donation_donators,Donører
 donation_close,Trykk E for å lukke
 ---
+GameMessage:
+game_message_lighting,Lys
+game_message_xbox_controller,Xbox Controller-støtte
+game_message_screenshot,Skjermbilde lagret som
+game_message_screenshot_failed,Kunne ikke lagre skjermdumpen
+game_message_fullscreen,Fullskjerm
+game_message_third_person,Tredepersons modus
+game_message_free_camera,Fri bevegelses kameramodus
+game_message_audio,Lyd
+---
 Regions:
 Johto,Johto
 Kanto,Kanto
