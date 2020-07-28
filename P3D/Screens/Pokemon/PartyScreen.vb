@@ -379,7 +379,7 @@ Public Class PartyScreen
                         End If
                 End Select
             End If
-            GetFontRenderer().DrawString(FontManager.MiniFont, AttackLabel, New Vector2(position.X + 210, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MiniFont, AttackLabel, New Vector2(position.X + 210, position.Y + 56), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
         End If
 
