@@ -210,7 +210,7 @@ inventory_eggs_cannot_hold,Egg kan ikke holde på gjenstander
 inventory_item_type_tm,Teknisk maskin
 inventory_item_type_hm,Skjult maskin
 inventory_item_type_standard,Gjenstand
-inventory_item_type_key_item,Viktige gjenstand
+inventory_item_type_key_item,Viktig gjenstand
 inventory_item_type_pokeball,Pokéball
 inventory_item_type_plant,Plante
 inventory_item_type_battle_item,Kamp gjenstand
