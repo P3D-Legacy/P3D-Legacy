@@ -221,6 +221,10 @@ inventory_give_item_a,en
 inventory_switched_item_switched,Byttet
 inventory_switched_item_with_a,med en
 ---
+DonationScreen:
+donation_donators,Donører
+donation_close,Trykk E for å lukke
+---
 Regions:
 Johto,Johto
 Kanto,Kanto

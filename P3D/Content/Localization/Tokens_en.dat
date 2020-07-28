@@ -221,6 +221,10 @@ inventory_give_item_a,a
 inventory_switched_item_switched,Switched
 inventory_switched_item_with_a,with a
 ---
+DonationScreen:
+donation_donators,Donators
+donation_close,Press E to close
+---
 Regions:
 Johto,Johto
 Kanto,Kanto
