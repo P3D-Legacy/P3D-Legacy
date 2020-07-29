@@ -68,6 +68,12 @@ global_give,Give
 global_take,Take
 global_toss,Toss
 global_switch,Switch
+global_pokemon_move_fly,Fly
+global_pokemon_move_ride,Ride
+global_pokemon_move_flash,Flash
+global_pokemon_move_cut,Cut
+global_pokemon_move_teleport,Teleport
+global_pokemon_move_dig,Dig
 ---
 PressStartScreen:
 press_start_1,Press
@@ -245,6 +251,23 @@ party_screen_choose_a_pokemon,Choose a Pokémon
 party_screen_field_move,Field Move
 party_screen_able,Able
 party_screen_unable,Unable
+party_screen_cannot_choose,You cannot choose~this Pokémon.
+party_screen_mail_taken,The Mail was taken to your inbox on your PC.
+party_screen_take_item_1,Taken
+party_screen_take_item_2,from
+party_screen_give_item_mail_1,Gave
+party_screen_give_item_mail_2,to
+party_screen_give_item_mail_3,and took the Mail to the PC
+party_screen_switched_item_1,Switched
+party_screen_switched_item_2,with a
+party_screen_give_item_1,Gave
+party_screen_give_item_2,a
+party_screen_cannot_give,cannot be given to a Pokémon
+party_screen_cannot_fly,You cannot Fly~from here
+party_screen_cannot_cut,There is nothing~to be Cut
+party_screen_cannot_ride,You cannot Ride here
+party_screen_cannot_dig,You cannot use Dig here
+party_screen_cannot_teleport,You cannot use Teleport here
 ---
 Regions:
 Johto,Johto

@@ -564,7 +564,7 @@ Public Class PartyScreen
                     GetPokemonList()
                     _closing = True
                 Else
-                    TextBox.Show("Cannot choose this~Pokémon.")
+                    TextBox.Show(Localization.GetString("party_screen_cannot_choose"))
                 End If
             Case Localization.GetString("global_summary")
                 SetScreen(New SummaryScreen(Me, PokemonList.ToArray(), _index))
@@ -632,22 +632,22 @@ Public Class PartyScreen
 
         Dim items As New List(Of String)
         If CanUseMove(p, "Fly", Badge.HMMoves.Fly) Then
-            items.Add("Fly")
+            items.Add(Localization.GetString("global_pokemon_move_fly"))
         End If
         If CanUseMove(p, "Ride", Badge.HMMoves.Ride) Then
-            items.Add("Ride")
+            items.Add(Localization.GetString("global_pokemon_move_ride"))
         End If
         If CanUseMove(p, "Flash", Badge.HMMoves.Flash) Then
-            items.Add("Flash")
+            items.Add(Localization.GetString("global_pokemon_move_flash"))
         End If
         If CanUseMove(p, "Cut", Badge.HMMoves.Cut) Then
-            items.Add("Cut")
+            items.Add(Localization.GetString("global_pokemon_move_cut"))
         End If
         If CanUseMove(p, "Teleport", -1) Then
-            items.Add("Teleport")
+            items.Add(Localization.GetString("global_pokemon_move_teleport"))
         End If
         If CanUseMove(p, "Dig", -1) Then
-            items.Add("Dig")
+            items.Add(Localization.GetString("global_pokemon_move_dig"))
         End If
 
         items.Add(Localization.GetString("global_back"))
@@ -709,17 +709,17 @@ Public Class PartyScreen
 
     Private Sub SelectedFieldMoveMenuItem(ByVal selectMenu As UI.SelectMenu)
         Select Case selectMenu.SelectedItem
-            Case "Fly"
+            Case Localization.GetString("global_pokemon_move_fly")
                 UseFly()
-            Case "Ride"
+            Case Localization.GetString("global_pokemon_move_ride")
                 UseRide()
-            Case "Flash"
+            Case Localization.GetString("global_pokemon_move_flash")
                 UseFlash()
-            Case "Cut"
+            Case Localization.GetString("global_pokemon_move_cut")
                 UseCut()
-            Case "Teleport"
+            Case Localization.GetString("global_pokemon_move_teleport")
                 UseTeleport()
-            Case "Dig"
+            Case Localization.GetString("global_pokemon_move_dig")
                 UseDig()
             Case Localization.GetString("global_back")
                 CreateNormalMenu(Localization.GetString("party_screen_field_move"))
@@ -741,13 +741,13 @@ Public Class PartyScreen
                 Dim p As Pokemon = PokemonList(_index)
 
                 If p.Item.IsMail And p.Item.AdditionalData <> "" Then
-                    ShowMessage("The Mail was taken to your inbox on your PC.")
+                    ShowMessage(Localization.GetString("party_screen_mail_taken"))
 
                     Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(p.Item.AdditionalData))
 
                     p.Item = Nothing
                 Else
-                    ShowMessage("Taken " & p.Item.Name & "  from " & p.GetDisplayName() & ".")
+                    ShowMessage(Localization.GetString("party_screen_take_item_1") & " " & p.Item.Name & " " & Localization.GetString("party_screen_take_item_2") & " " & p.GetDisplayName() & ".")
 
                     Core.Player.Inventory.AddItem(p.Item.ID, 1)
                     p.Item = Nothing
@@ -779,21 +779,21 @@ Public Class PartyScreen
                 If reItem.IsMail And reItem.AdditionalData <> "" Then
                     Core.Player.Mails.Add(Items.MailItem.GetMailDataFromString(reItem.AdditionalData))
 
-                    message = "Gave " & i.Name & " to " & p.GetDisplayName() & " and took the Mail to the PC."
+                    message = Localization.GetString("party_screen_give_item_mail_1") & " " & i.Name & " " & Localization.GetString("party_screen_give_item_mail_2") & " " & p.GetDisplayName() & " " & Localization.GetString("party_screen_give_item_mail_3") & "."
                 Else
                     Core.Player.Inventory.AddItem(reItem.ID, 1)
 
-                    message = "Switched " & p.GetDisplayName() & "'s " & i.Name & " with a " & reItem.Name & "."
+                    message = Localization.GetString("party_screen_switched_item_1") & " " & p.GetDisplayName() & "'s " & i.Name & " " & Localization.GetString("party_screen_switched_item_2") & " " & reItem.Name & "."
                 End If
             Else
-                message = "Gave " & p.GetDisplayName() & " a " & i.Name & "."
+                message = Localization.GetString("party_screen_give_item_1") & " " & p.GetDisplayName() & " " & Localization.GetString("party_screen_give_item_2") & " " & i.Name & "."
             End If
 
             p.Item = i
 
             ShowMessage(message)
         Else
-            ShowMessage(i.Name & " cannot be given to a Pokémon.")
+            ShowMessage(i.Name & " " & Localization.GetString("party_screen_cannot_give") & ".")
         End If
     End Sub
 
@@ -903,19 +903,19 @@ Public Class PartyScreen
         End If
         If Screen.Level.IsDark = True Then
             Dim s As String = "version=2" & Environment.NewLine &
-                              "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
-                              "@environment.toggledarkness" & Environment.NewLine &
-                              "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
-                              "@text.show(The area got lit up!)" & Environment.NewLine &
-                              ":end"
+                "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
+                "@environment.toggledarkness" & Environment.NewLine &
+                "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
+                "@text.show(The area got lit up!)" & Environment.NewLine &
+                ":end"
             PlayerStatistics.Track("Flash used", 1)
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         Else
             Dim s As String = "version=2" & Environment.NewLine &
                 "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
-                                            "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
-                                            "@text.show(The area is already~lit up!)" & Environment.NewLine &
-                                            ":end"
+                "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
+                "@text.show(The area is already~lit up!)" & Environment.NewLine &
+                ":end"
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         End If
     End Sub
@@ -936,7 +936,7 @@ Public Class PartyScreen
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"Fly", PokemonList(_index)}), Color.White, False))
             End If
         Else
-            TextBox.Show("You cannot Fly~from here!", {}, True, False)
+            TextBox.Show(Localization.GetString("party_screen_cannot_fly") & "!", {}, True, False)
         End If
     End Sub
 
@@ -956,7 +956,7 @@ Public Class PartyScreen
                 Screen.Level.Entities.Remove(e)
             Next
         Else
-            TextBox.Show("There is nothing~to be Cut!", {}, True, False)
+            TextBox.Show(Localization.GetString("party_screen_cannot_cut") & "!", {}, True, False)
         End If
     End Sub
 
@@ -1005,7 +1005,7 @@ Public Class PartyScreen
                     MusicManager.Play("ride", True)
                 End If
             Else
-                TextBox.Show("You cannot Ride here!", {}, True, False)
+                TextBox.Show(Localization.GetString("party_screen_cannot_ride") & "!", {}, True, False)
             End If
         End If
     End Sub
@@ -1021,35 +1021,35 @@ Public Class PartyScreen
             Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
             Dim s As String = "version=2
-@text.show(" & PokemonList(_index).GetDisplayName() & " used Dig!)
-@level.wait(20)
-@camera.activatethirdperson
-@camera.reset
-@camera.fix
-@player.turnto(0)
-@sound.play(destroy)
-:while:<player.position(y)>>" & (Screen.Camera.Position.Y - 1.4).ToString().ReplaceDecSeparator() & "
-@player.turn(1)
-@player.warp(~,~-0.1,~)
-@level.wait(1)
-:endwhile
-@screen.fadeout
-@camera.defix
-@player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)" & Environment.NewLine &
-"@player.turnto(2)"
+                @text.show(" & PokemonList(_index).GetDisplayName() & " used Dig!)
+                @level.wait(20)
+                @camera.activatethirdperson
+                @camera.reset
+                @camera.fix
+                @player.turnto(0)
+                @sound.play(destroy)
+                :while:<player.position(y)>>" & (Screen.Camera.Position.Y - 1.4).ToString().ReplaceDecSeparator() & "
+                @player.turn(1)
+                @player.warp(~,~-0.1,~)
+                @level.wait(1)
+                :endwhile
+                @screen.fadeout
+                @camera.defix
+                @player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)" & Environment.NewLine &
+                "@player.turnto(2)"
 
             If setToFirstPerson = True Then
                 s &= Environment.NewLine & "@camera.deactivatethirdperson"
             End If
             s &= Environment.NewLine &
-"@level.update
-@screen.fadein
-:end"
+                "@level.update
+                @screen.fadein
+                :end"
 
             PlayerStatistics.Track("Dig used", 1)
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         Else
-            TextBox.Show("Cannot use Dig here.", {}, True, False)
+            TextBox.Show(Localization.GetString("party_screen_cannot_dig") & "!", {}, True, False)
         End If
     End Sub
 
@@ -1066,35 +1066,35 @@ Public Class PartyScreen
             Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
             Dim s As String = "version=2
-@text.show(" & PokemonList(_index).GetDisplayName() & "~used Teleport!)
-@level.wait(20)
-@camera.activatethirdperson
-@camera.reset
-@camera.fix
-@player.turnto(0)
-@sound.play(teleport)
-:while:<player.position(y)><" & yFinish & "
-@player.turn(1)
-@player.warp(~,~+0.1,~)
-@level.wait(1)
-:endwhile
-@screen.fadeout
-@camera.defix
-@player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)
-@player.turnto(2)"
+                @text.show(" & PokemonList(_index).GetDisplayName() & "~used Teleport!)
+                @level.wait(20)
+                @camera.activatethirdperson
+                @camera.reset
+                @camera.fix
+                @player.turnto(0)
+                @sound.play(teleport)
+                :while:<player.position(y)><" & yFinish & "
+                @player.turn(1)
+                @player.warp(~,~+0.1,~)
+                @level.wait(1)
+                :endwhile
+                @screen.fadeout
+                @camera.defix
+                @player.warp(" & Core.Player.LastRestPlace & "," & Core.Player.LastRestPlacePosition & ",0)
+                @player.turnto(2)"
 
             If setToFirstPerson = True Then
                 s &= Environment.NewLine & "@camera.deactivatethirdperson"
             End If
             s &= Environment.NewLine &
-"@level.update
-@screen.fadein
-:end"
+                "@level.update
+                @screen.fadein
+                :end"
 
             PlayerStatistics.Track("Teleport used", 1)
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         Else
-            TextBox.Show("Cannot use Teleport here.", {}, True, False)
+            TextBox.Show(Localization.GetString("party_screen_cannot_teleport") & "!", {}, True, False)
         End If
     End Sub
 

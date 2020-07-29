@@ -68,6 +68,12 @@ global_give,Gi
 global_take,Ta
 global_toss,Kast
 global_switch,Bytt
+global_pokemon_move_fly,Fly
+global_pokemon_move_ride,Ri
+global_pokemon_move_flash,Blits
+global_pokemon_move_cut,Kutt
+global_pokemon_move_teleport,Teleport
+global_pokemon_move_dig,Grave
 ---
 PressStartScreen:
 press_start_1,Trykk
@@ -246,6 +252,25 @@ PartyScreen:
 party_screen_title,Pokémon
 party_screen_choose_a_pokemon,Velg en Pokémon
 party_screen_field_move,Trekk
+party_screen_able,Dyktig
+party_screen_unable,Udyktig
+party_screen_cannot_choose,Du kan ikke velge~denne Pokémon-en.
+party_screen_mail_taken,Posten ble ført til innboksen på din PC.
+party_screen_take_item_1,Tatt
+party_screen_take_item_2,fra
+party_screen_give_item_mail_1,Ga
+party_screen_give_item_mail_2,til
+party_screen_give_item_mail_3,og tok posten til PC-en
+party_screen_switched_item_1,Byttet om
+party_screen_switched_item_2,med en
+party_screen_give_item_1,Ga
+party_screen_give_item_2,en
+party_screen_cannot_give,kan ikke gis til en Pokémon
+party_screen_cannot_fly,Du kan ikke~fly herfra
+party_screen_cannot_cut,Det er ingenting~som kan kuttes
+party_screen_cannot_ride,Du kan ikke ri her
+party_screen_cannot_dig,Du kan ikke grave her
+party_screen_cannot_teleport,Du kan ikke teleportere her
 ---
 Regions:
 Johto,Johto
