@@ -88,6 +88,10 @@ Public Class ChatScreen
         'Crops too long input text:
         If FontManager.TextFont.MeasureString(Me.currentText).X * 2.0F > Core.windowSize.Width - 200 Then
             While FontManager.TextFont.MeasureString(Me.currentText).X * 2.0F > Core.windowSize.Width - 200
+                If Me.currentText.Length = 0 Then
+                    Exit While
+                End If
+
                 Me.currentText = Me.currentText.Remove(Me.currentText.Length - 1, 1)
             End While
         End If
