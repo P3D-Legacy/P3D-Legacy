@@ -903,10 +903,10 @@ Public Class PartyScreen
         End If
         If Screen.Level.IsDark = True Then
             Dim s As String = "version=2" & Environment.NewLine &
-                "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
+                "@text.show(" & PokemonList(_index).GetDisplayName() & " " & Localization.GetString("global_used").ToLower() & " " & Localization.GetString("global_pokemon_move_flash") & "!)" & Environment.NewLine &
                 "@environment.toggledarkness" & Environment.NewLine &
                 "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
-                "@text.show(The area got lit up!)" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("party_screen_flash_lit") & "!)" & Environment.NewLine &
                 ":end"
             PlayerStatistics.Track("Flash used", 1)
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
@@ -914,7 +914,7 @@ Public Class PartyScreen
             Dim s As String = "version=2" & Environment.NewLine &
                 "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
                 "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
-                "@text.show(The area is already~lit up!)" & Environment.NewLine &
+                "@text.show(" & Localization.GetString("party_screen_flash_already_lit") & "!)" & Environment.NewLine &
                 ":end"
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         End If
@@ -950,7 +950,7 @@ Public Class PartyScreen
             End If
 
             PlayerStatistics.Track("Cut used", 1)
-            TextBox.Show(PokemonList(_index).GetDisplayName() & "~used Cut!", {}, True, False)
+            TextBox.Show(PokemonList(_index).GetDisplayName() & "~" & Localization.GetString("global_used").ToLower() & " " & Localization.GetString("global_pokemon_move_cut") & "!", {}, True, False)
             PokemonList(_index).PlayCry()
             For Each e As Entity In grassEntities
                 Screen.Level.Entities.Remove(e)
@@ -998,7 +998,7 @@ Public Class PartyScreen
 
                 SoundManager.PlayPokemonCry(PokemonList(_index).Number)
 
-                TextBox.Show(PokemonList(_index).GetDisplayName() & " used~Ride!", {}, True, False)
+                TextBox.Show(PokemonList(_index).GetDisplayName() & "~" & Localization.GetString("global_used").ToLower() & " " & Localization.GetString("global_pokemon_move_ride") & "!", {}, True, False)
                 PlayerStatistics.Track("Ride used", 1)
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
@@ -1021,7 +1021,7 @@ Public Class PartyScreen
             Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
             Dim s As String = "version=2
-                @text.show(" & PokemonList(_index).GetDisplayName() & " used Dig!)
+                @text.show(" & PokemonList(_index).GetDisplayName() & "~" & Localization.GetString("global_used").ToLower() & " " & Localization.GetString("global_pokemon_move_dig") & "!)
                 @level.wait(20)
                 @camera.activatethirdperson
                 @camera.reset
@@ -1066,7 +1066,7 @@ Public Class PartyScreen
             Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
             Dim s As String = "version=2
-                @text.show(" & PokemonList(_index).GetDisplayName() & "~used Teleport!)
+                @text.show(" & PokemonList(_index).GetDisplayName() & "~" & Localization.GetString("global_used").ToLower() & " " & Localization.GetString("global_pokemon_move_teleport") & "!)
                 @level.wait(20)
                 @camera.activatethirdperson
                 @camera.reset

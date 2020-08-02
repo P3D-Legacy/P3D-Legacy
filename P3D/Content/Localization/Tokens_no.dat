@@ -74,6 +74,7 @@ global_pokemon_move_flash,Blits
 global_pokemon_move_cut,Kutt
 global_pokemon_move_teleport,Teleport
 global_pokemon_move_dig,Grave
+global_used,Bruke
 ---
 PressStartScreen:
 press_start_1,Trykk
@@ -271,6 +272,8 @@ party_screen_cannot_cut,Det er ingenting~som kan kuttes
 party_screen_cannot_ride,Du kan ikke ri her
 party_screen_cannot_dig,Du kan ikke grave her
 party_screen_cannot_teleport,Du kan ikke teleportere her
+party_screen_flash_lit,Området ble opplyst
+party_screen_flash_already_lit,Området er allerede~opplyst
 ---
 Regions:
 Johto,Johto
