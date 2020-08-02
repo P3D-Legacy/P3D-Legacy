@@ -273,9 +273,9 @@ party_screen_flash_lit,The area got lit up
 party_screen_flash_already_lit,The area is already~lit up
 ---
 Regions:
-Johto,Johto
-Kanto,Kanto
-Sevii Islands,Sevii Islands
+johto,Johto
+kanto,Kanto
+sevii_islands,Sevii Islands
 ---
 Places:
 places_???,???

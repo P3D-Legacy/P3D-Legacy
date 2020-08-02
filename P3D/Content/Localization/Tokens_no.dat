@@ -276,9 +276,9 @@ party_screen_flash_lit,Området ble opplyst
 party_screen_flash_already_lit,Området er allerede~opplyst
 ---
 Regions:
-Johto,Johto
-Kanto,Kanto
-Sevii Islands,Sevii Islands
+johto,Johto
+kanto,Kanto
+sevii_islands,Sevii Islands
 ---
 Places:
 places_???,???
