@@ -912,7 +912,7 @@ Public Class PartyScreen
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         Else
             Dim s As String = "version=2" & Environment.NewLine &
-                "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
+                "@text.show(" & PokemonList(_index).GetDisplayName() & " " & Localization.GetString("global_used").ToLower() & " " & Localization.GetString("global_pokemon_move_flash") & "!)" & Environment.NewLine &
                 "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
                 "@text.show(" & Localization.GetString("party_screen_flash_already_lit") & "!)" & Environment.NewLine &
                 ":end"
