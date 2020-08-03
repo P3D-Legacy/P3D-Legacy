@@ -188,7 +188,7 @@ Public Class MusicManager
             If Date.Now >= _pausedUntil Then
                 If MusicManager.Paused = True Then
                     _isPausedForSound = False
-                    ResumePlayback()
+                    Paused = False
                 End If
             End If
             Else
@@ -304,7 +304,6 @@ Public Class MusicManager
                     _introEndTime = _introEndTime + pauseTime
 
                 End If
-                Paused = False
                 outputDevice.Play()
             End If
         End If
@@ -312,51 +311,26 @@ Public Class MusicManager
     End Sub
 
     Private Shared Sub Play(song As SongContainer)
-        If _isLooping = True Then
-            If Not song Is Nothing Then
-                Logger.Debug($"Play song [{song.Name}]")
-                If Not outputDevice Is Nothing Then
-                    outputDevice.Dispose()
-                End If
-                outputDevice = New WaveOutEvent()
-                audioFile = New VorbisWaveReader(song.Song)
-                _loop = New LoopStream(audioFile)
-                outputDevice.Init(_loop)
-                If Paused = False Then
-                    outputDevice.Play()
-                End If
-                outputDevice.Volume = Volume * MasterVolume
-                _currentSongExists = True
-                _currentSongName = song.Name
-                _currentSong = song
-            Else
-                _currentSongExists = False
-                _currentSongName = NO_MUSIC
-                _currentSong = Nothing
+        If Not song Is Nothing Then
+            Logger.Debug($"Play song [{song.Name}]")
+            If Not outputDevice Is Nothing Then
+                outputDevice.Dispose()
             End If
+            outputDevice = New WaveOutEvent()
+            audioFile = New VorbisWaveReader(song.Song)
+            _loop = New LoopStream(audioFile, _isLooping)
+            outputDevice.Init(_loop)
+            If Paused = False Then
+                outputDevice.Play()
+            End If
+            outputDevice.Volume = Volume * MasterVolume
+            _currentSongExists = True
+            _currentSongName = song.Name
+            _currentSong = song
         Else
-            If Not song Is Nothing Then
-                Logger.Debug($"Play song [{song.Name}]")
-                If Not outputDevice Is Nothing Then
-                    outputDevice.Dispose()
-                End If
-
-                outputDevice = New WaveOutEvent()
-                audioFile = New VorbisWaveReader(song.Song)
-                _loop = New LoopStream(audioFile, False)
-                outputDevice.Init(_loop)
-                If Paused = False Then
-                    outputDevice.Play()
-                End If
-                outputDevice.Volume = Volume * MasterVolume
-                _currentSongExists = True
-                _currentSongName = song.Name
-                _currentSong = song
-            Else
-                _currentSongExists = False
-                _currentSongName = NO_MUSIC
-                _currentSong = Nothing
-            End If
+            _currentSongExists = False
+            _currentSongName = NO_MUSIC
+            _currentSong = Nothing
         End If
 
     End Sub
