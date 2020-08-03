@@ -207,7 +207,7 @@ Public Class Trainer
             Dim PokeData As String = PokeLine.GetSplit(1, "|")
             If PokeData <> "" Then
                 If ScriptCommander.Parse(PokeData).ToString().StartsWith("{") = True Then
-                    PokeData = ScriptCommander.Parse(PokeData).ToString().Replace("§", ",")
+                    PokeData = ScriptCommander.Parse(PokeData).ToString().Replace("§", ",").Replace("«", "[").Replace("»", "]")
                 End If
                 If PokeData.StartsWith("{") = True And PokeData.EndsWith("}") = True Then
                     Dim p As Pokemon = Pokemon.GetPokemonByData(PokeData)
