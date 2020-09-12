@@ -40,7 +40,7 @@ Public Class JoinServerScreen
     Private Sub LoadServers()
         Me.ServerList.Clear()
 
-        Dim localServer As New Server("Local", "127.0.0.1")
+        Dim localServer As New Server("Local Server", "127.0.0.1")
         localServer.IsLocal = True
 
         Me.ServerList.Add(localServer)
@@ -88,7 +88,7 @@ Public Class JoinServerScreen
 
         Canvas.DrawRectangle(New Rectangle(0, 75, Core.ScreenSize.Width, Core.ScreenSize.Height - 240), New Color(0, 0, 0, 128), True)
 
-        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join A Server", New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join A Server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join a server:", New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join A Server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
 
         Dim endX As Integer = ServerList.Count - 1
         endX = CInt(MathHelper.Clamp(endX, 0, ServersToDisplay - 1))
