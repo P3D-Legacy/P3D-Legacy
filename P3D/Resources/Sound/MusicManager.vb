@@ -94,221 +94,221 @@ Public Class MusicManager
     Private Shared _isFadingIn As Boolean = False
     ' NAudio properties
     Public Shared outputDevice As WaveOutEvent
-	Public Shared audioFile As WaveChannel32
-	Public Shared _loop As WaveStream
+	Public Shared audioFile As VorbisWaveReader
+	Public Shared _stream As WaveChannel32
 
-    Public Shared Property MasterVolume As Single = 1.0F
-    Public Shared ReadOnly Property CurrentSong As SongContainer
-        Get
-            Return _currentSong
-        End Get
-    End Property
+	Public Shared Property MasterVolume As Single = 1.0F
+	Public Shared ReadOnly Property CurrentSong As SongContainer
+		Get
+			Return _currentSong
+		End Get
+	End Property
 
-    Public Shared Property Muted As Boolean
-        Get
-            Return _muted
-        End Get
-        Set(value As Boolean)
-            If _muted <> value Then
-                _muted = value
+	Public Shared Property Muted As Boolean
+		Get
+			Return _muted
+		End Get
+		Set(value As Boolean)
+			If _muted <> value Then
+				_muted = value
 
-                If _muted = True Then
-                    If outputDevice IsNot Nothing Then
-                        Volume = 0.0F
-                        Core.GameMessage.ShowMessage(Localization.GetString("game_message_audio_off"), 12, FontManager.MainFont, Color.White)
-                    End If
+				If _muted = True Then
+					If outputDevice IsNot Nothing Then
+						Volume = 0.0F
+						Core.GameMessage.ShowMessage(Localization.GetString("game_message_audio_off"), 12, FontManager.MainFont, Color.White)
+					End If
 
-                Else
-                    If outputDevice IsNot Nothing Then
-                        If _isPausedForSound = True Then
-                            _muted = True
-                            Volume = 0.0F
-                        Else
-                            Volume = 1.0F
-                            Core.GameMessage.ShowMessage(Localization.GetString("game_message_audio_on"), 12, FontManager.MainFont, Color.White)
-                        End If
-                    End If
-                End If
-            End If
-        End Set
-    End Property
-    Public Shared Property Paused As Boolean
-        Get
-            Return _paused
-        End Get
-        Set(value As Boolean)
-            If _paused <> value Then
-                _paused = value
+				Else
+					If outputDevice IsNot Nothing Then
+						If _isPausedForSound = True Then
+							_muted = True
+							Volume = 0.0F
+						Else
+							Volume = 1.0F
+							Core.GameMessage.ShowMessage(Localization.GetString("game_message_audio_on"), 12, FontManager.MainFont, Color.White)
+						End If
+					End If
+				End If
+			End If
+		End Set
+	End Property
+	Public Shared Property Paused As Boolean
+		Get
+			Return _paused
+		End Get
+		Set(value As Boolean)
+			If _paused <> value Then
+				_paused = value
 
-                If _paused = True Then
-                    If outputDevice IsNot Nothing Then
-                        outputDevice.Pause()
-                        _introMuteTime = Date.Now
-                    End If
-                Else
-                    ResumePlayback()
-                End If
-            End If
-        End Set
-    End Property
-    Public Shared Sub Setup()
-        MasterVolume = 1.0F
-        If Muted = True Then
-            Volume = 0.0F
-        Else
-            Volume = 1.0F
-        End If
-        _nextSong = ""
-        _fadeSpeed = DEFAULT_FADE_SPEED
-        _isFadingOut = False
-        _isFadingIn = False
-        _isLooping = True
-    End Sub
-
-    Public Shared Sub Clear()
-        _songs.Clear()
-        LoadMusic(False)
-    End Sub
-
-    Public Shared Sub ClearCurrentlyPlaying()
-        ' cleans all remains of currently playing songs
-        _currentSongExists = False
-        _currentSong = Nothing
-        _currentSongName = NO_MUSIC
-        _isIntroStarted = False
-    End Sub
-
-    Public Shared Sub PlayNoMusic()
-        ' fades out current track and sets to NO_MUSIC
-        Play(NO_MUSIC)
-    End Sub
-
-    Public Shared Sub Update()
-        If _isPausedForSound Then
-            If Date.Now >= _pausedUntil Then
-                If MusicManager.Paused = True Then
-                    _isPausedForSound = False
-                    Paused = False
-                End If
-            End If
-            Else
-
-            ' fading
-            If _isFadingOut Then
-                Volume -= _fadeSpeed
-
-                If Volume <= 0F Then
-
-                    Volume = 0F
-                    _isFadingOut = False
-                    _isFadingIn = True
-
-                    Dim song = GetSong(_nextSong)
-
-                    If Not song Is Nothing Then
-
-                        Play(song)
-                        _nextSong = ""
-
-                        If _fadeIntoIntro Then
-                            _fadeIntoIntro = False
-                            _introEndTime = Date.Now + song.Duration
-                            _isIntroStarted = True
-                        Else
-                            _isLooping = True
-                        End If
-
-                    Else
-
-                        ' no song found, do not fade into anything
-                        _fadeIntoIntro = False
-                        ClearCurrentlyPlaying()
-                        _isFadingIn = False
-                        If Muted = True Then
-                            Volume = 0.0F
-                        Else
-                            Volume = 1.0F
-                        End If
-                        If _nextSong = NO_MUSIC Then
-                            _nextSong = ""
-                            MusicManager.Stop()
-                        End If
-
-                    End If
-
-                End If
-
-            ElseIf _isFadingIn Then
-                If Muted = True Then
-                    Volume = 0.0F
-                    _isFadingIn = False
-                Else
-                    Volume += _fadeSpeed
-                    If Volume >= 1.0F Then
-                        Volume = 1.0F
-                        _isFadingIn = False
-                    End If
-                End If
-            End If
-
-            ' intro
-            If _isIntroStarted Then
-                If Paused = False Then
-                    If Date.Now >= _introEndTime Then
-                        Dim song = GetSong(_introContinueSong)
-                        _isLooping = True
-                        _isIntroStarted = False
-                        Play(song)
-                    End If
-                End If
-            End If
-        End If
-
-        If Core.GameInstance.IsActive AndAlso _lastVolume <> (Volume * MasterVolume) Then
-            UpdateVolume()
-        End If
-    End Sub
-
-    Public Shared Sub UpdateVolume()
-        _lastVolume = Volume * MasterVolume
-		If Not audioFile Is Nothing Then
-			audioFile.Volume = Volume * MasterVolume
+				If _paused = True Then
+					If outputDevice IsNot Nothing Then
+						outputDevice.Pause()
+						_introMuteTime = Date.Now
+					End If
+				Else
+					ResumePlayback()
+				End If
+			End If
+		End Set
+	End Property
+	Public Shared Sub Setup()
+		MasterVolume = 1.0F
+		If Muted = True Then
+			Volume = 0.0F
+		Else
+			Volume = 1.0F
 		End If
-    End Sub
+		_nextSong = ""
+		_fadeSpeed = DEFAULT_FADE_SPEED
+		_isFadingOut = False
+		_isFadingIn = False
+		_isLooping = True
+	End Sub
 
-    Public Shared Sub PauseForSound(ByVal sound As SoundEffect)
-        _isPausedForSound = True
-        _pausedUntil = Date.Now + sound.Duration
-        MusicManager.Pause()
-    End Sub
+	Public Shared Sub Clear()
+		_songs.Clear()
+		LoadMusic(False)
+	End Sub
 
-    Public Shared Sub Pause()
-        MusicManager.Paused = True
-    End Sub
+	Public Shared Sub ClearCurrentlyPlaying()
+		' cleans all remains of currently playing songs
+		_currentSongExists = False
+		_currentSong = Nothing
+		_currentSongName = NO_MUSIC
+		_isIntroStarted = False
+	End Sub
 
-    Public Shared Sub [Stop]()
-        If Not outputDevice Is Nothing Then
-            outputDevice.Stop()
-            outputDevice.Dispose()
-        End If
-        _isIntroStarted = False
-    End Sub
+	Public Shared Sub PlayNoMusic()
+		' fades out current track and sets to NO_MUSIC
+		Play(NO_MUSIC)
+	End Sub
 
-    Public Shared Sub ResumePlayback()
-        If Not _currentSong Is Nothing Then
+	Public Shared Sub Update()
+		If _isPausedForSound Then
+			If Date.Now >= _pausedUntil Then
+				If MusicManager.Paused = True Then
+					_isPausedForSound = False
+					Paused = False
+				End If
+			End If
+		Else
 
-            If outputDevice IsNot Nothing Then
-                ' if an intro was playing while the music player was paused, calculate its end time
-                If outputDevice.PlaybackState = PlaybackState.Paused AndAlso _isIntroStarted Then
-                    Dim pauseTime As TimeSpan = Date.Now.Subtract(_introMuteTime)
-                    _introEndTime = _introEndTime + pauseTime
+			' fading
+			If _isFadingOut Then
+				Volume -= _fadeSpeed
 
-                End If
-                outputDevice.Play()
-            End If
-        End If
+				If Volume <= 0F Then
 
-    End Sub
+					Volume = 0F
+					_isFadingOut = False
+					_isFadingIn = True
+
+					Dim song = GetSong(_nextSong)
+
+					If Not song Is Nothing Then
+
+						Play(song)
+						_nextSong = ""
+
+						If _fadeIntoIntro Then
+							_fadeIntoIntro = False
+							_introEndTime = Date.Now + song.Duration
+							_isIntroStarted = True
+						Else
+							_isLooping = True
+						End If
+
+					Else
+
+						' no song found, do not fade into anything
+						_fadeIntoIntro = False
+						ClearCurrentlyPlaying()
+						_isFadingIn = False
+						If Muted = True Then
+							Volume = 0.0F
+						Else
+							Volume = 1.0F
+						End If
+						If _nextSong = NO_MUSIC Then
+							_nextSong = ""
+							MusicManager.Stop()
+						End If
+
+					End If
+
+				End If
+
+			ElseIf _isFadingIn Then
+				If Muted = True Then
+					Volume = 0.0F
+					_isFadingIn = False
+				Else
+					Volume += _fadeSpeed
+					If Volume >= 1.0F Then
+						Volume = 1.0F
+						_isFadingIn = False
+					End If
+				End If
+			End If
+
+			' intro
+			If _isIntroStarted Then
+				If Paused = False Then
+					If Date.Now >= _introEndTime Then
+						Dim song = GetSong(_introContinueSong)
+						_isLooping = True
+						_isIntroStarted = False
+						Play(song)
+					End If
+				End If
+			End If
+		End If
+
+		If Core.GameInstance.IsActive AndAlso _lastVolume <> (Volume * MasterVolume) Then
+			UpdateVolume()
+		End If
+	End Sub
+
+	Public Shared Sub UpdateVolume()
+		_lastVolume = Volume * MasterVolume
+		If Not _stream Is Nothing Then
+			_stream.Volume = Volume * MasterVolume
+		End If
+	End Sub
+
+	Public Shared Sub PauseForSound(ByVal sound As SoundEffect)
+		_isPausedForSound = True
+		_pausedUntil = Date.Now + sound.Duration
+		MusicManager.Pause()
+	End Sub
+
+	Public Shared Sub Pause()
+		MusicManager.Paused = True
+	End Sub
+
+	Public Shared Sub [Stop]()
+		If Not outputDevice Is Nothing Then
+			outputDevice.Stop()
+			outputDevice.Dispose()
+		End If
+		_isIntroStarted = False
+	End Sub
+
+	Public Shared Sub ResumePlayback()
+		If Not _currentSong Is Nothing Then
+
+			If outputDevice IsNot Nothing Then
+				' if an intro was playing while the music player was paused, calculate its end time
+				If outputDevice.PlaybackState = PlaybackState.Paused AndAlso _isIntroStarted Then
+					Dim pauseTime As TimeSpan = Date.Now.Subtract(_introMuteTime)
+					_introEndTime = _introEndTime + pauseTime
+
+				End If
+				outputDevice.Play()
+			End If
+		End If
+
+	End Sub
 
 	Private Shared Sub Play(song As SongContainer)
 		If Not song Is Nothing Then
@@ -317,13 +317,13 @@ Public Class MusicManager
 				outputDevice.Dispose()
 			End If
 			outputDevice = New WaveOutEvent()
-			audioFile = New NAudio.Wave.WaveChannel32(New VorbisWaveReader(song.Song))
-			_loop = New LoopStream(audioFile, _isLooping)
-			outputDevice.Init(_loop)
+			audioFile = New VorbisWaveReader(song.Song)
+			_stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFile, _isLooping))
+			outputDevice.Init(_stream)
 			If Paused = False Then
 				outputDevice.Play()
 			End If
-			audioFile.Volume = Volume * MasterVolume
+			_stream.Volume = Volume * MasterVolume
 			_currentSongExists = True
 			_currentSongName = song.Name
 			_currentSong = song
