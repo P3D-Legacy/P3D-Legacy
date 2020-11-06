@@ -54,12 +54,12 @@
     End Function
 
     Public Overrides Sub ClickFunction()
-		If Me.TriggerID = 1 Or Me.TriggerID = 2 Then
-			ActionScript.TempInputDirection = -1
-			Me.clickedToActivate = True
-			TriggerScript(False)
-		End If
-	End Sub
+        If Me.TriggerID = 1 Or Me.TriggerID = 2 Then
+            ActionScript.TempInputDirection = -1
+            Me.clickedToActivate = True
+            TriggerScript(False)
+        End If
+    End Sub
 
     Public Overrides Sub Update()
         If Me.ActivateScript = True And Screen.Camera.Position.X = Me.Position.X And Screen.Camera.Position.Z = Me.Position.Z And CInt(Screen.Camera.Position.Y) = CInt(Me.Position.Y) Then
@@ -81,13 +81,13 @@
                         Me.clickedToActivate = False
                         SoundManager.PlaySound("select")
                     End If
-					If Me.TriggerID = 2 Then
-						oS.ActionScript.StartScript(Me.AdditionalValue, GetActivationID())
-					Else
-						oS.ActionScript.StartScript(Me._scriptID, GetActivationID())
-						ActionScript.TempSpin = True
-					End If
-				End If
+                    If Me.TriggerID = 2 Then
+                        oS.ActionScript.StartScript(Me.AdditionalValue, GetActivationID())
+                    Else
+                        oS.ActionScript.StartScript(Me._scriptID, GetActivationID())
+                        ActionScript.TempSpin = True
+                    End If
+                End If
             End If
         End If
         TriggeredScriptBlock = False
