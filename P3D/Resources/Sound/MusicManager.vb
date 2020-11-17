@@ -51,7 +51,7 @@ Public Class LoopStream
             End If
             totalBytesRead += bytesRead
         End While
-            
+
         Return totalBytesRead
     End Function
 End Class
@@ -95,7 +95,7 @@ Public Class MusicManager
     ' NAudio properties
     Public Shared outputDevice As WaveOutEvent
     Public Shared audioFile As VorbisWaveReader
-    Public Shared _loop As WaveStream
+    Public Shared _stream As WaveChannel32
 
     Public Shared Property MasterVolume As Single = 1.0F
     Public Shared ReadOnly Property CurrentSong As SongContainer
@@ -188,10 +188,10 @@ Public Class MusicManager
             If Date.Now >= _pausedUntil Then
                 If MusicManager.Paused = True Then
                     _isPausedForSound = False
-                    ResumePlayback()
+                    Paused = False
                 End If
             End If
-            Else
+        Else
 
             ' fading
             If _isFadingOut Then
@@ -271,8 +271,8 @@ Public Class MusicManager
 
     Public Shared Sub UpdateVolume()
         _lastVolume = Volume * MasterVolume
-        If Not outputDevice Is Nothing Then
-            outputDevice.Volume = Volume * MasterVolume
+        If Not _stream Is Nothing Then
+            _stream.Volume = Volume * MasterVolume
         End If
     End Sub
 
@@ -304,7 +304,6 @@ Public Class MusicManager
                     _introEndTime = _introEndTime + pauseTime
 
                 End If
-                Paused = False
                 outputDevice.Play()
             End If
         End If
@@ -312,51 +311,26 @@ Public Class MusicManager
     End Sub
 
     Private Shared Sub Play(song As SongContainer)
-        If _isLooping = True Then
-            If Not song Is Nothing Then
-                Logger.Debug($"Play song [{song.Name}]")
-                If Not outputDevice Is Nothing Then
-                    outputDevice.Dispose()
-                End If
-                outputDevice = New WaveOutEvent()
-                audioFile = New VorbisWaveReader(song.Song)
-                _loop = New LoopStream(audioFile)
-                outputDevice.Init(_loop)
-                If Paused = False Then
-                    outputDevice.Play()
-                End If
-                outputDevice.Volume = Volume * MasterVolume
-                _currentSongExists = True
-                _currentSongName = song.Name
-                _currentSong = song
-            Else
-                _currentSongExists = False
-                _currentSongName = NO_MUSIC
-                _currentSong = Nothing
+        If Not song Is Nothing Then
+            Logger.Debug($"Play song [{song.Name}]")
+            If Not outputDevice Is Nothing Then
+                outputDevice.Dispose()
             End If
+            outputDevice = New WaveOutEvent()
+            audioFile = New VorbisWaveReader(song.Song)
+            _stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFile, _isLooping))
+            outputDevice.Init(_stream)
+            If Paused = False Then
+                outputDevice.Play()
+            End If
+            _stream.Volume = Volume * MasterVolume
+            _currentSongExists = True
+            _currentSongName = song.Name
+            _currentSong = song
         Else
-            If Not song Is Nothing Then
-                Logger.Debug($"Play song [{song.Name}]")
-                If Not outputDevice Is Nothing Then
-                    outputDevice.Dispose()
-                End If
-
-                outputDevice = New WaveOutEvent()
-                audioFile = New VorbisWaveReader(song.Song)
-                _loop = New LoopStream(audioFile, False)
-                outputDevice.Init(_loop)
-                If Paused = False Then
-                    outputDevice.Play()
-                End If
-                outputDevice.Volume = Volume * MasterVolume
-                _currentSongExists = True
-                _currentSongName = song.Name
-                _currentSong = song
-            Else
-                _currentSongExists = False
-                _currentSongName = NO_MUSIC
-                _currentSong = Nothing
-            End If
+            _currentSongExists = False
+            _currentSongName = NO_MUSIC
+            _currentSong = Nothing
         End If
 
     End Sub
@@ -441,9 +415,9 @@ Public Class MusicManager
 
                 playedSong = nextSong
 
-                End If
-
             End If
+
+        End If
 
         Return playedSong
 

@@ -25,7 +25,7 @@
                     Core.Player.HasPokegear = True
                     IsReady = True
                 Case "renamerival"
-                    Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, TextureManager.GetTexture("NPC\4", New Rectangle(0, 64, 32, 32)), False, False, "rival", "Silver", AddressOf Script.NameRival))
+                    Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, TextureManager.GetTexture("GUI\RenameRival"), False, False, "rival", "Silver", AddressOf Script.NameRival))
                     IsReady = True
                     CanContinue = False
                 Case "wearskin"

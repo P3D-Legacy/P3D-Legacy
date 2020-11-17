@@ -54,7 +54,7 @@
     End Function
 
     Public Overrides Sub ClickFunction()
-        If Me.TriggerID = 1 Then
+        If Me.TriggerID = 1 Or Me.TriggerID = 2 Then
             ActionScript.TempInputDirection = -1
             Me.clickedToActivate = True
             TriggerScript(False)
@@ -81,9 +81,12 @@
                         Me.clickedToActivate = False
                         SoundManager.PlaySound("select")
                     End If
-
-                    oS.ActionScript.StartScript(Me._scriptID, GetActivationID())
-                    ActionScript.TempSpin = True
+                    If Me.TriggerID = 2 Then
+                        oS.ActionScript.StartScript(Me.AdditionalValue, GetActivationID())
+                    Else
+                        oS.ActionScript.StartScript(Me._scriptID, GetActivationID())
+                        ActionScript.TempSpin = True
+                    End If
                 End If
             End If
         End If

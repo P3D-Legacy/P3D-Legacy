@@ -1230,7 +1230,7 @@ Public Class Pokemon
     ''' <param name="InputData">The data that defines the Pokémon.</param>
     Public Shared Function GetPokemonByData(ByVal InputData As String) As Pokemon
         Dim Tags As New Dictionary(Of String, String)
-        Dim Data() As String = InputData.Split(CChar("}"))
+        Dim Data() As String = InputData.Replace("§", ",").Replace("«", "[").Replace("»", "]").Split(CChar("}"))
         For Each Tag As String In Data
             If Tag.Contains("{") = True And Tag.Contains("[") = True Then
                 Dim TagName As String = Tag.Remove(0, 2)
@@ -1515,7 +1515,7 @@ Public Class Pokemon
         Dim loadedHP As Boolean = False
 
         Dim Tags As New Dictionary(Of String, String)
-        Dim Data() As String = InputData.Split(CChar("}"))
+        Dim Data() As String = InputData.Replace("§", ",").Replace("«", "[").Replace("»", "]").Split(CChar("}"))
         For Each Tag As String In Data
             If Tag.Contains("{") = True And Tag.Contains("[") = True Then
                 Dim TagName As String = Tag.Remove(0, 2)

@@ -85,6 +85,11 @@
                             heldItem = CInt(argument.GetSplit(7))
                         End If
 
+                        Dim isShiny As Boolean = False
+                        If commas > 7 Then
+                            isShiny = CBool(argument.GetSplit(8))
+                        End If
+
                         Dim Pokemon As Pokemon = Pokemon.GetPokemonByID(PokemonID)
                         Pokemon.Generate(Level, True)
 
@@ -105,6 +110,8 @@
                         If heldItem <> 0 Then
                             Pokemon.Item = Item.GetItemByID(heldItem)
                         End If
+
+                        Pokemon.IsShiny = isShiny
 
                         Core.Player.Pokemons.Add(Pokemon)
 
@@ -714,7 +721,7 @@
                     End If
                 Case "addtostorage"
                     ' @Pokemon.AddToStorage([BoxIndex], PokemonData)
-                    ' @Pokemon.AddToStorage(PokemonID, Level, [Method], [BallID], [Location], [isEgg], [trainerName])
+                    ' @Pokemon.AddToStorage(PokemonID, Level, [Method], [BallID], [Location], [isEgg], [trainerName], [heldItem], [isShiny])
 
                     If argument.StartsWith("{") = True Or argument.Remove(0, argument.IndexOf(",")).StartsWith(",{") = True Then
                         Dim insertIndex As Integer = -1
@@ -771,6 +778,16 @@
                             catchTrainer = argument.GetSplit(6)
                         End If
 
+                        Dim heldItem As Integer = 0
+                        If commas > 6 Then
+                            heldItem = CInt(argument.GetSplit(7))
+                        End If
+
+                        Dim isShiny As Boolean = False
+                        If commas > 7 Then
+                            isShiny = CBool(argument.GetSplit(8))
+                        End If
+
                         Dim Pokemon As Pokemon = Pokemon.GetPokemonByID(PokemonID)
                         Pokemon.Generate(Level, True)
 
@@ -787,6 +804,12 @@
                         Else
                             Pokemon.EggSteps = 0
                         End If
+
+                        If heldItem <> 0 Then
+                            Pokemon.Item = Item.GetItemByID(heldItem)
+                        End If
+
+                        Pokemon.IsShiny = isShiny
 
                         StorageSystemScreen.DepositPokemon(Pokemon)
 

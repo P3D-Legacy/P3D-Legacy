@@ -1070,7 +1070,7 @@ Public Class PokemonForms
             Dim x As Integer = 0
             Dim y As Integer = 0
             Select Case CInt(P.AdditionalData)
-                Case 1 To 16
+                Case 0 To 15
                     y = 0
                     x = CInt(P.AdditionalData)
                 Case Else

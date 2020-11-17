@@ -40,7 +40,7 @@ Public Class JoinServerScreen
     Private Sub LoadServers()
         Me.ServerList.Clear()
 
-        Dim localServer As New Server("Local", "127.0.0.1")
+        Dim localServer As New Server("Local Server", "127.0.0.1")
         localServer.IsLocal = True
 
         Me.ServerList.Add(localServer)

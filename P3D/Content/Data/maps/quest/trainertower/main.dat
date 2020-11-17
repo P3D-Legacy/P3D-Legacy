@@ -440,7 +440,7 @@ Corners:
 {"Entity"{ENT[{"Position"{sngArr[28,2,39]}}{"EntityID"{str[WallBlock]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[96,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[5]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
 NPC:
-{"NPC"{NPC[{"Position"{sngArr[14,17,7]}}{"TextureID"{str[TowerOwner]}}{"ID"{int[0]}}{"Name"{str[IDlotto]}}{"Action"{int[1]}}{"AdditionalValue"{str[quest\tower\owner]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[14,17,7]}}{"TextureID"{str[TowerOwner]}}{"ID"{int[0]}}{"Name"{str[IDlotto]}}{"Action"{int[2]}}{"AdditionalValue"{str[1|quest\tower\owner]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[12,0,30]}}{"TextureID"{str[29]}}{"ID"{int[1]}}{"Name"{str[IDlotto]}}{"Action"{int[2]}}{"AdditionalValue"{str[1|trainer\quest\tower\outside\002]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[12,1,33]}}{"TextureID"{str[29]}}{"ID"{int[2]}}{"Name"{str[IDlotto]}}{"Action"{int[2]}}{"AdditionalValue"{str[2|trainer\quest\tower\outside\001]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[16,10,3,2]]}}]}}
 
