@@ -57,8 +57,8 @@ Public Class LoopStream
 End Class
 Public Class MusicManager
 
-    Private Const NO_MUSIC As String = "*nomusic*" ' contains * as character, which cannot be in a filename
     Private Const DEFAULT_FADE_SPEED As Single = 0.02F
+    Private Const NO_MUSIC As String = "silence"
 
     Private Shared _songs As Dictionary(Of String, SongContainer) = New Dictionary(Of String, SongContainer)()
     Public Shared Property Volume As Single = 1.0F
@@ -230,8 +230,7 @@ Public Class MusicManager
                             Volume = 1.0F
                         End If
                         If _nextSong = NO_MUSIC Then
-                            _nextSong = ""
-                            MusicManager.Stop()
+                            _nextSong = "Silence"
                         End If
 
                     End If
