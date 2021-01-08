@@ -205,25 +205,22 @@ Public Class PressStartScreen
         _logoRenderer.Draw(_logoTexture, New Rectangle(CInt(ScreenSize.Width / 2) - 350, CInt(160 * _fadeIn), 700, 300), New Color(255, 255, 255, CInt(255 * _logoFade)))
         _shineRenderer.Draw(_shineTexture, New Rectangle(CInt(ScreenSize.Width / 2 - 250 + Math.Sin(tempF) * 240.0F), CInt(-100 + Math.Sin(tempG) * 10.0F + CInt(160 * _fadeIn)), 512, 512), New Color(255, 255, 255, CInt(255 * _logoFade)))
 
-        If _fadeIn = 0F Then
-            If IsCurrentScreen() And Core.GameOptions.ShowGUI Then  ' Want to implement fading of text, but core doesn't seem to support this.
-                Dim text As String = String.Empty
-                If ControllerHandler.IsConnected() Then
-                    text = Localization.GetString("press_start_1") & "      " & Localization.GetString("press_start_2")
-                Else
-                    text = Localization.GetString("press_start_1") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.GetString("press_start_2")
-                    'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
-                End If
+        If _fadeIn = 0F And IsCurrentScreen() Then  ' Want to implement fading of text, but core doesn't seem to support this.
 
-                Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
+            Dim text As String = String.Empty
+            If ControllerHandler.IsConnected() Then
+                text = Localization.GetString("press_start_1") & "      " & Localization.GetString("press_start_2")
+            Else
+                text = Localization.GetString("press_start_1") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.GetString("press_start_2")
+                'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
+            End If
 
-                GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F,
-                                                                                       windowSize.Height - textSize.Y - 50), _textColor)
+            Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
 
-                If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.GetString("press_start_1") & " ").X),
-                                                                                                                   CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
-                End If
+            GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height - textSize.Y - 50), _textColor)
+
+            If ControllerHandler.IsConnected() Then
+                SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.GetString("press_start_1") & " ").X), CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
             End If
         End If
 
