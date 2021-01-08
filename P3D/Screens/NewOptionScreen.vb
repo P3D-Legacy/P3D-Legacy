@@ -2,7 +2,6 @@
 
     Inherits Screen
 
-
     Dim TextSpeed As Integer = 2
     Dim MouseSpeed As Integer = 12
     Dim FOV As Single = 45.0F
@@ -422,7 +421,7 @@
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back"), AddressOf SwitchToMain))
 
             Case 6 ' "Advanced" from the Options menu.
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 100), 2, 64, Localization.GetString("option_reset"), AddressOf Reset))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 100), 3, 64, Localization.GetString("option_reset"), AddressOf Reset))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back"), AddressOf SwitchToMain))
 
         End Select
