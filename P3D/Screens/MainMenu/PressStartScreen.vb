@@ -212,11 +212,9 @@ Public Class PressStartScreen
                 text = Localization.GetString("press_start_1") & "      " & Localization.GetString("press_start_2")
             Else
                 text = Localization.GetString("press_start_1") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.GetString("press_start_2")
-                'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
             End If
 
             Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
-
             GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height - textSize.Y - 50), _textColor)
 
             If ControllerHandler.IsConnected() Then
