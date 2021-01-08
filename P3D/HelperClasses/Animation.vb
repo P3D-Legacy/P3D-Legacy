@@ -32,7 +32,7 @@ Public Class Animation
 
 #End Region
 
-#Region "Propertys"
+#Region "Properties"
 
     Public Property totalElapsed As Single
         Get
