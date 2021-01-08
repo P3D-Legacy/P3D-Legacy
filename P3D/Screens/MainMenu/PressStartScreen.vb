@@ -253,7 +253,7 @@ Public Class NewMainMenuScreen
 
     Private _screenOffset As Vector2 = New Vector2(20, 180)
     Private _screenOffsetTarget As Vector2 = New Vector2(20, 180)
-
+    Private _lastWindowSize As Size = New Size(CInt(Core.GameOptions.WindowSize.X), CInt(Core.GameOptions.WindowSize.Y))
     Private _loading As Boolean = True
     Private _fadeIn As Single = 0F
     Private _expandDisplay As Single = 0F
@@ -284,8 +284,10 @@ Public Class NewMainMenuScreen
         _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
         _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
-        _screenOffset.X = CSng(windowSize.Width / 2 - 80)
+        _screenOffset.X = CInt(windowSize.Width / 2 - 80)
+        _screenOffset.Y = CInt(windowSize.Height / 2 - 80)
         _screenOffsetTarget.X = _screenOffset.X
+        _screenOffsetTarget.Y = _screenOffset.Y
         _sliderTarget = GetSliderTarget(_selectedProfile)
         _sliderPosition = _sliderTarget
 
@@ -294,6 +296,12 @@ Public Class NewMainMenuScreen
 
     Public Overrides Sub Update()
         PreScreen.Update()
+        If _lastWindowSize.Width <> windowSize.Width Or _lastWindowSize.Height <> windowSize.Height Then
+            _screenOffsetTarget.X = CInt(windowSize.Width / 2 - 80)
+            _screenOffsetTarget.Y = CInt(windowSize.Height / 2 - 80)
+            _lastWindowSize = New Size(windowSize.Width, windowSize.Height)
+            _screenOffset = _screenOffsetTarget
+        End If
         If _loading = False Then
             If _fadeIn < 1.0F Then
                 _fadeIn = MathHelper.Lerp(1.0F, _fadeIn, 0.93F)
