@@ -118,7 +118,7 @@
     End Sub
 
     Public Sub ChangeTexture()
-        If Not Me.Texture Is Nothing Then
+        If Me.Texture IsNot Nothing Then
             Dim r As New Rectangle(0, 0, 0, 0)
             Dim cameraRotation As Integer = 0
             Dim spriteIndex As Integer = 0

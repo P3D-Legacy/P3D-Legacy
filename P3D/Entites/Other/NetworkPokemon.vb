@@ -69,7 +69,7 @@
                 If Screen.Level.ShowOverworldPokemon = True Then
                     If IsCorrectScreen() = True Then
                         If Me.PokemonTexture <> "" Then
-                            If Not Me.Textures Is Nothing Then
+                            If Me.Textures IsNot Nothing Then
                                 Dim state = GraphicsDevice.DepthStencilState
                                 GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
                                 Draw(Me.Model, {Me.Textures(0)}, False)
@@ -93,7 +93,7 @@
                 End If
             Else
                 Dim c As Screen = Core.CurrentScreen
-                While Not c.PreScreen Is Nothing
+                While c.PreScreen IsNot Nothing
                     c = c.PreScreen
                 End While
                 If screens.Contains(c.Identification) = True Then

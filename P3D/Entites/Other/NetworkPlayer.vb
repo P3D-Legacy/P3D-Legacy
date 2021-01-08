@@ -208,7 +208,7 @@
         If Me.Rotation.Y <> Screen.Camera.Yaw Then
             Me.Rotation.Y = Screen.Camera.Yaw
         End If
-        If Not Me.TextureID Is Nothing AndAlso Me.TextureID.ToLower() = "nilllzz" And Me.GameJoltID = "17441" Then
+        If Me.TextureID IsNot Nothing AndAlso Me.TextureID.ToLower() = "nilllzz" And Me.GameJoltID = "17441" Then
             Me.Rotation.Z = MathHelper.Pi
             RotatedSprite = True
         Else
