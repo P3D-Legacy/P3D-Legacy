@@ -451,6 +451,7 @@ Namespace GameJolt
                 Me.DownloadedBanList = True
             Catch ex As Exception
                 Logger.Log(Logger.LogTypes.ErrorMessage, "Failed to fetch ban list data!")
+                Logger.Log(Logger.LogTypes.Debug, ex.Message)
             End Try
         End Sub
 
