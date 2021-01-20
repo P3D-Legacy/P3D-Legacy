@@ -45,7 +45,21 @@ Public Class LoopStream
                     _sourceStream.Position = 0
                 Else
                     If Not _sourceStream.Position = 0 Then
-                        Exit While
+                        If MusicManager._isIntroStarted = True Then
+                            Dim IntroContinueSong As SongContainer = MusicManager.GetSong(MusicManager._introContinueSong)
+                            If IntroContinueSong IsNot Nothing Then
+                                _sourceStream = New VorbisWaveReader(IntroContinueSong.Song)
+                                _enableLooping = True
+                                _sourceStream.Position = 0
+                            Else
+                                _sourceStream = New VorbisWaveReader(MusicManager.GetSong("silence").Song)
+                                _enableLooping = True
+                                _sourceStream.Position = 0
+                            End If
+                            MusicManager._isIntroStarted = False
+                        Else
+                            Exit While
+                        End If
                     End If
                 End If
             End If
@@ -57,8 +71,8 @@ Public Class LoopStream
 End Class
 Public Class MusicManager
 
-    Private Const NO_MUSIC As String = "*nomusic*" ' contains * as character, which cannot be in a filename
     Private Const DEFAULT_FADE_SPEED As Single = 0.02F
+    Private Const NO_MUSIC As String = "silence"
 
     Private Shared _songs As Dictionary(Of String, SongContainer) = New Dictionary(Of String, SongContainer)()
     Public Shared Property Volume As Single = 1.0F
@@ -80,9 +94,9 @@ Public Class MusicManager
     ' time until the intro of a song plays
     Private Shared _introMuteTime As Date
     Public Shared _introEndTime As Date
-    Private Shared _isIntroStarted As Boolean = False
+    Public Shared _isIntroStarted As Boolean = False
     ' song that gets played after the intro finished
-    Private Shared _introContinueSong As String
+    Public Shared _introContinueSong As String
 
     ' song that plays after fading is finished
     Private Shared _nextSong As String
@@ -230,8 +244,7 @@ Public Class MusicManager
                             Volume = 1.0F
                         End If
                         If _nextSong = NO_MUSIC Then
-                            _nextSong = ""
-                            MusicManager.Stop()
+                            _nextSong = "Silence"
                         End If
 
                     End If
@@ -252,16 +265,16 @@ Public Class MusicManager
             End If
 
             ' intro
-            If _isIntroStarted Then
-                If Paused = False Then
-                    If Date.Now >= _introEndTime Then
-                        Dim song = GetSong(_introContinueSong)
-                        _isLooping = True
-                        _isIntroStarted = False
-                        Play(song)
-                    End If
-                End If
-            End If
+            '  If _isIntroStarted Then
+            '      If Paused = False Then
+            'If Date.Now >= _introEndTime Then
+            'Dim song = GetSong(_introContinueSong)
+            '_isLooping = True
+            '_isIntroStarted = False
+            'Play(song)
+            'End If
+            'End If
+            'End If
         End If
 
         If Core.GameInstance.IsActive AndAlso _lastVolume <> (Volume * MasterVolume) Then
@@ -448,7 +461,7 @@ Public Class MusicManager
         End If
     End Function
 
-    Private Shared Function GetSong(songName As String) As SongContainer
+    Public Shared Function GetSong(songName As String) As SongContainer
         Dim key = GetSongName(songName)
 
         If _songs.ContainsKey(key) = True Then
