@@ -4,7 +4,7 @@ You are free to fork and redistribute the code under the [GNU GPLv3 license](htt
 
 # Build instructions (game)
 
-The game is written in Visual Basic and was compiled targeting the .NET Framework 4.5
+The game is written in Visual Basic and was compiled targeting the .NET Framework 4.6
 
 It is built using the MonoGame framework as graphics middleware.
 
