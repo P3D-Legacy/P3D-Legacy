@@ -322,7 +322,7 @@
                 Return tempT
             End If
 
-            Dim t As Texture2D = DownloadTexture2D.n_Remote_Texture2D(Core.GraphicsDevice, "" & GameJoltID & ".png", False) ' CLASSIFIED
+            Dim t As Texture2D = DownloadTexture2D.n_Remote_Texture2D(Core.GraphicsDevice, $"{Classified.Remote_Texture_URL}{GameJoltID}.png", False)
 
             If TempDownloadedSprites.ContainsKey(GameJoltID) = False Then
                 TempDownloadedSprites.Add(GameJoltID, t)
