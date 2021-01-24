@@ -1,11 +1,11 @@
 # P3D-Legacy
 
 <p align="center">
-<img src="https://img.shields.io/github/license/P3D-Legacy/P3D-Legacy" alt="License">
-<img src="https://img.shields.io/github/downloads/P3D-Legacy/P3D-Legacy/total" alt="Total Downloads">
-<img src="https://img.shields.io/github/contributors/P3D-Legacy/P3D-Legacy" alt="Contributors">
-<img src="https://img.shields.io/github/v/release/P3D-Legacy/P3D-Legacy" alt="Version">
-<img src="https://img.shields.io/github/release-date/P3D-Legacy/P3D-Legacy" alt="Release">
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/blob/master/LICENSE"><img src="https://img.shields.io/github/license/P3D-Legacy/P3D-Legacy" alt="License"></a>
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/releases"><img src="https://img.shields.io/github/downloads/P3D-Legacy/P3D-Legacy/total" alt="Total Downloads"></a>
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/graphs/contributors"><img src="https://img.shields.io/github/contributors/P3D-Legacy/P3D-Legacy" alt="Contributors"></a>
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/releases"><img src="https://img.shields.io/github/v/release/P3D-Legacy/P3D-Legacy" alt="Version"></a>
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/releases"><img src="https://img.shields.io/github/release-date/P3D-Legacy/P3D-Legacy" alt="Release"></a>
 <a href="https://discordapp.com/invite/EUhwdrq" target="_blank"><img src="https://img.shields.io/discord/299181628188524544" alt="Discord"></a>
 </p>
 
