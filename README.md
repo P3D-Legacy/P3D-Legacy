@@ -1,9 +1,10 @@
-The game is not in active development by nilllzz anymore, but few people from the community are maintaining the game and porting it to MonoGame platform. You are free to fork and redistribute the code under the [GNU GPLv3 license](http://choosealicense.com/licenses/gpl-3.0/).
+The game is not in active development by [nilllzz](https://github.com/nilllzz) anymore, but few people from the community are maintaining the game and porting it to MonoGame platform. 
 
-Build instructions (game)
-=========================
+You are free to fork and redistribute the code under the [GNU GPLv3 license](http://choosealicense.com/licenses/gpl-3.0/).
 
-The game is written in Visual Basic and was compiled targeting the .Net Framework 4.5 for my public builds.
+# Build instructions (game)
+
+The game is written in Visual Basic and was compiled targeting the .NET Framework 4.6
 
 It is built using the MonoGame framework as graphics middleware.
 
@@ -16,39 +17,35 @@ To run the game after a successful build, you also need an applicable graphics c
 
 The first build of the game will take a little longer due to the MonoGame Content Pipeline building all assets for the first time.
 
-Running the game
-================
+# Running the game
 
 In order to run the game, you will need the following:
 * [OpenAL](https://www.openal.org/downloads/oalinst.zip)
 
-Classified information
-----------------------
+# Classified information
 
 The game was configured to connect to several servers and internet APIs using private keys.
 To keep the private keys private, they have been redacted from the source code, along with a few URLs.
 
-If you want to add your own private keys/URL connections back into the game to enable certain online features, search for these comments in the source code:
+If you want to you can add your own private keys/URLs back into the game to enable certain online features. To find these places search for these comments in the source code:
 
     ' CLASSIFIED
 
-Every line that has the "CLASSIFIED" comment at the end of it had some string info removed from it.
+Every line that has the "CLASSIFIED" comment at the end of it had some kind of string removed from it.
 
-File Validation
----------------
+# File Validation
 
-To ensure that the game has the original files in place to ensure fair online gaming, the game does something called "File Validation".
+To ensure that the game has the original files, for fair online gaming, the game validates the files. It basically stores a hash for each map, script and data-file in a file called "meta". This is stored in the game's root directory.
 
-It basically stores a hash for each map, script and data file in a file called "meta" in the game's root directory.
 Hardcoded into the game's code is the hash for the *meta file*, to ensure that it did not get altered.
 
-To code responsible for this is located in *Security/FileValidation.vb*.
+The code responsible for this is located in *Security/FileValidation.vb*.
 
 To generate a valid meta file for the current state of the files in the game, go to the aforementioned code file and set this:
 
         Const RUNVALIDATION As Boolean = True ' Instead of False
 
-Also, be sure to turn off the *IS_DEBUG_ACTIVE* in the *Core/GameController.vb" file:
+Also, be sure to turn off the *IS_DEBUG_ACTIVE* in the *Core/GameController.vb* file.
 
 Then build and debug-run the game. The console output of during the game's launch will output an expected size and metahash value.
 
@@ -61,22 +58,21 @@ Stop the debugging of the game and copy these two values into the correct places
 
 Once you have done this, disable the *RUNVALIDATION* variable again and build the game again to have it boot up like normal.
 
-Development
-===========
+# Development
 
-The game includes a switch to enable debug mode that makes map development or general dicking around easier.
+The game includes a switch to enable debug mode that makes map development or general fooling around easier.
 
 Locate the file *Core/GameController.vb* and set the *IS_DEBUG_ACTIVE* const to *True*, then rebuild the game.
 
-This is basically the SandboxMode that can be enabled in the game's save files plus these features:
+This is basically the Sandbox Mode that can be enabled in the game's save files plus these features:
 
-* display last build time in the F3 menu
-* trade with yourself in the Game Jolt GTS
-* bypass current version checks in the Game Jolt login screen
-* update the game's current version on Game Jolt (set *UPDATEONLINEVERSION* to *True* in *Core/GameController.vb* and rebuild the game).
-* Move the 3rd person camera around freely with arrow keys (hold ctrl and up/down to move the camera on the Y axis)
+* Display last build time in the F3 menu.
+* Trade with yourself in the Game Jolt GTS.
+* Bypass current version checks in the Game Jolt login screen.
+* Update the game's current version on Game Jolt. Set *UPDATEONLINEVERSION* to *True* in *Core/GameController.vb* and rebuild the game.
+* Move the 3rd person camera around freely with arrow keys. Hold CTRL and up/down to move the camera on the Y axis.
 * Open the Pokégear even though the player has not received it yet and use its modules without receiving them.
-* Legacy diagonal movement support
-* Reduce Kolben Splash Screen delay as much as possible
+* Legacy diagonal movement support.
+* Reduce Kolben Splash Screen delay as much as possible.
 * All HM moves are present in every Pokémon's menu.
-* Ignore FileValidation warning
+* Ignore FileValidation warning.
