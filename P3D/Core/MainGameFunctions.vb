@@ -41,7 +41,7 @@
         If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
             If KeyBoardHandler.KeyPressed(Keys.F) Then
                 TextureManager.TextureList.Clear()
-                Core.GameMessage.ShowMessage("Texture list have cleared", 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage("Texture list has been cleared", 12, FontManager.MainFont, Color.White)
             ElseIf KeyBoardHandler.KeyPressed(Keys.S) Then
                 Core.SetWindowSize(New Vector2(1200, 680))
             ElseIf KeyBoardHandler.KeyPressed(Keys.L) Then
