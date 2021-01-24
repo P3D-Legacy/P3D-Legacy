@@ -27,7 +27,7 @@ In order to run the game, you will need the following:
 The game was configured to connect to several servers and internet APIs using private keys.
 To keep the private keys private, they have been redacted from the source code, along with a few URLs.
 
-If you want to you can add your own private keys/URLs back into the game to enable certain online features. To find these places search for these comments in the source code:
+If you want to you can add your own private keys/URLs back into the game to enable certain online features. To find these places search for these comments in the source code or open __Core/Classified.vb__:
 
     ' CLASSIFIED
 
