@@ -240,9 +240,9 @@ Public Class OverworldCamera
                     _freeCameraMode = Not _freeCameraMode
 
                     If _freeCameraMode = False Then
-                        Core.GameMessage.ShowMessage(Localization.GetString("game_message_free_camera") & ": " & Localization.GetString("global_on"), 12, FontManager.MainFont, Color.White)
-                    Else
                         Core.GameMessage.ShowMessage(Localization.GetString("game_message_free_camera") & ": " & Localization.GetString("global_off"), 12, FontManager.MainFont, Color.White)
+                    Else
+                        Core.GameMessage.ShowMessage(Localization.GetString("game_message_free_camera") & ": " & Localization.GetString("global_on"), 12, FontManager.MainFont, Color.White)
                     End If
                 End If
             End If
