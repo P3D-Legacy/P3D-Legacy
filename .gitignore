@@ -301,8 +301,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# ignore /lib/save
+# ignore /lib
 lib/save/
+lib/build/
 
 # ignore binaries in p3d project
 p3d/**/*.exe
@@ -315,6 +316,3 @@ p3d/GameModes/
 p3d/save/
 p3d/screenshots/
 p3d/log.dat
-
-# include lib/build
-!lib/build
