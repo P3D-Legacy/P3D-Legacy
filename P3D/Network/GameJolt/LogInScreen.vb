@@ -83,8 +83,8 @@ Namespace GameJolt
 
         Private Sub SaveSettings()
             If API.LoggedIn = True Then
-                Dim cUsername As String = Encryption.EncryptString(UserName.Text, "") 'CLASSIFIED
-                Dim cToken As String = Encryption.EncryptString(Token.Text, "") 'CLASSIFIED
+                Dim cUsername As String = Encryption.EncryptString(UserName.Text, Classified.Encryption_Password)
+                Dim cToken As String = Encryption.EncryptString(Token.Text, Classified.Encryption_Password)
 
                 System.IO.File.WriteAllText(GameController.GamePath & "\Save\gamejoltAcc.dat", cUsername & Environment.NewLine & cToken)
             End If
@@ -96,8 +96,8 @@ Namespace GameJolt
 
                 If content.Length >= 2 Then
                     Try
-                        Me.UserName.Text = Encryption.DecryptString(content(0), "") 'CLASSIFIED
-                        Me.Token.Text = Encryption.DecryptString(content(1), "") ' CLASSIFIED
+                        Me.UserName.Text = Encryption.DecryptString(content(0), Classified.Encryption_Password)
+                        Me.Token.Text = Encryption.DecryptString(content(1), Classified.Encryption_Password)
 
                         Deactivate()
                         Me.LogInButton.IsActive = True
