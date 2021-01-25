@@ -1,8 +1,28 @@
+# P3D-Legacy
+
+<p align="center">
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/blob/master/LICENSE"><img src="https://img.shields.io/github/license/P3D-Legacy/P3D-Legacy" alt="License"></a>
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/releases"><img src="https://img.shields.io/github/downloads/P3D-Legacy/P3D-Legacy/total" alt="Total Downloads"></a>
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/graphs/contributors"><img src="https://img.shields.io/github/contributors/P3D-Legacy/P3D-Legacy" alt="Contributors"></a>
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/releases"><img src="https://img.shields.io/github/v/release/P3D-Legacy/P3D-Legacy" alt="Version"></a>
+<a href="https://github.com/P3D-Legacy/P3D-Legacy/releases"><img src="https://img.shields.io/github/release-date/P3D-Legacy/P3D-Legacy" alt="Release"></a>
+<a href="https://discordapp.com/invite/EUhwdrq" target="_blank"><img src="https://img.shields.io/discord/299181628188524544" alt="Discord"></a>
+</p>
+
 The game is not in active development by [nilllzz](https://github.com/nilllzz) anymore, but few people from the community are maintaining the game and porting it to MonoGame platform. 
 
 You are free to fork and redistribute the code under the [GNU GPLv3 license](http://choosealicense.com/licenses/gpl-3.0/).
 
-# Build instructions (game)
+# Downloading the game
+
+You will find the latest release **[here](https://github.com/P3D-Legacy/P3D-Legacy/releases)**.
+
+# Requirements for the game
+
+In order to run the game, you will need the following:
+* [OpenAL](https://www.openal.org/downloads/oalinst.zip)
+
+# Build instructions for the game
 
 The game is written in Visual Basic and was compiled targeting the .NET Framework 4.6
 
@@ -17,19 +37,12 @@ To run the game after a successful build, you also need an applicable graphics c
 
 The first build of the game will take a little longer due to the MonoGame Content Pipeline building all assets for the first time.
 
-# Running the game
-
-In order to run the game, you will need the following:
-* [OpenAL](https://www.openal.org/downloads/oalinst.zip)
-
 # Classified information
 
 The game was configured to connect to several servers and internet APIs using private keys.
 To keep the private keys private, they have been redacted from the source code, along with a few URLs.
 
-If you want to you can add your own private keys/URLs back into the game to enable certain online features. To find these places search for these comments in the source code or open __Core/Classified.vb__:
-
-    ' CLASSIFIED
+If you want to you can add your own private keys/URLs back into the game to enable certain online features. To find these places search for these comments in the source code; `' CLASSIFIED` or you can open __Core/Classified.vb__.
 
 Every line that has the "CLASSIFIED" comment at the end of it had some kind of string removed from it.
 
