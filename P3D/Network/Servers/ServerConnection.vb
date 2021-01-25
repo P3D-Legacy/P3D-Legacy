@@ -153,7 +153,7 @@ Namespace Servers
 #Region "Ping"
 
         Dim LastPingTime As Date = Date.Now
-        Dim PingTimer As Timers.Timer
+        Dim PingTimer As New Timers.Timer
 
         ''' <summary>
         ''' Start the ping thread.
