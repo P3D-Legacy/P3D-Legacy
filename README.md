@@ -42,7 +42,7 @@ The first build of the game will take a little longer due to the MonoGame Conten
 The game was configured to connect to several servers and internet APIs using private keys.
 To keep the private keys private, they have been redacted from the source code, along with a few URLs.
 
-If you want to you can add your own private keys/URLs back into the game to enable certain online features. To find these places search for these comments in the source code; `' CLASSIFIED` or you can open __Core/Classified.vb__.
+If you want to you can add your own private keys/URLs back into the game to enable certain online features. To find these places search for these comments in the source code: `' CLASSIFIED`
 
 Every line that has the "CLASSIFIED" comment at the end of it had some kind of string removed from it.
 
