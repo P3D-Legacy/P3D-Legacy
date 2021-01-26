@@ -68,6 +68,8 @@
                     IsReady = True
                 Case "setsafari"
                     Screen.Level.IsSafariZone = CBool(argument)
+                Case "setdaytime"
+                    Screen.Level.DayTime = CInt(argument)
             End Select
         End Sub
 

@@ -998,6 +998,12 @@
             Screen.Level.WeatherType = 0
         End If
 
+        If TagExists(Tags, "DayTime") = True Then
+            Screen.Level.DayTime = CInt(GetTag(Tags, "DayTime"))
+        Else
+            Screen.Level.DayTime = 0
+        End If
+
         ' It's not my fault, I swear. The keyboard was slippy, I was partly sick, and there was fog on the road and I couldn't see.
         Dim lightningExists As Boolean = TagExists(Tags, "Lightning")
         Dim lightingExists As Boolean = TagExists(Tags, "Lighting")
