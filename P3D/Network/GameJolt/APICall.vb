@@ -70,8 +70,8 @@ Namespace GameJolt
 
         Dim loggedIn As Boolean
 
-        Const CONST_GAMEID As String = "" ' CLASSIFIED
-        Const CONST_GAMEKEY As String = "" ' CLASSIFIED
+        Const CONST_GAMEID As String = Classified.GameJolt_Game_ID
+        Const CONST_GAMEKEY As String = Classified.GameJolt_Game_Key
         Const HOST As String = "http://api.gamejolt.com/api/game/"
 
         Dim Exception As System.Exception = Nothing

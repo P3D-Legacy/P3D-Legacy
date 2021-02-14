@@ -1,6 +1,13 @@
 ﻿Imports System.Windows.Forms
 Imports GameDevCommon
 
+Public Class Classified
+    Public Shared Remote_Texture_URL As String = "" ' CLASSIFIED
+    Public Const GameJolt_Game_ID As String = "" ' CLASSIFIED
+    Public Const GameJolt_Game_Key As String = "" ' CLASSIFIED
+    Public Shared Encryption_Password As String = "" ' CLASSIFIED
+End Class
+
 ''' <summary>
 ''' Controls the game's main workflow.
 ''' </summary>
@@ -12,12 +19,12 @@ Public Class GameController
     ''' <summary>
     ''' The current version of the game.
     ''' </summary>
-    Public Const GAMEVERSION As String = "0.58"
+    Public Const GAMEVERSION As String = "0.58.1"
 
     ''' <summary>
     ''' The number of released iterations of the game.
     ''' </summary>
-    Public Const RELEASEVERSION As String = "100"
+    Public Const RELEASEVERSION As String = "101"
 
     ''' <summary>
     ''' The development stage the game is in.

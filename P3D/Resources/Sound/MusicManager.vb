@@ -324,7 +324,6 @@ Public Class MusicManager
 
     End Sub
 
-    Private Shared Sub Play(song As SongContainer)
     Private Shared Sub Play(song As SongContainer, Optional ByVal introSong As SongContainer = Nothing)
         If Not song Is Nothing Then
             Logger.Debug($"Play song [{song.Name}]")
