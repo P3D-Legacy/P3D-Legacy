@@ -18,7 +18,7 @@ Public Class DebugDisplay
             End If
 
             Dim cameraInformation = ""
-            If Not Screen.Camera Is Nothing Then
+            If Screen.Camera IsNot Nothing Then
 
                 Dim thirdPersonString As String = ""
                 If Screen.Camera.Name = "Overworld" Then

@@ -107,7 +107,7 @@ Public Class Logger
             End With
 
             Dim ContentPacks As String = "{}"
-            If Not Core.GameOptions Is Nothing Then
+            If Core.GameOptions IsNot Nothing Then
                 ContentPacks = Core.GameOptions.ContentPackNames.ArrayToString()
             End If
 
@@ -117,7 +117,7 @@ Public Class Logger
             End If
 
             Dim OnlineInformation As String = "GameJolt Account: FALSE"
-            If Not Core.Player Is Nothing Then
+            If Core.Player IsNot Nothing Then
                 OnlineInformation = "GameJolt Account: " & Core.Player.IsGameJoltSave.ToString().ToUpper()
                 If Core.Player.IsGameJoltSave = True Then
                     OnlineInformation &= " (" & GameJoltSave.GameJoltID & ")"
@@ -139,12 +139,12 @@ Public Class Logger
             End If
 
             Dim GameEnvironment As String = "[No Game Environment loaded]"
-            If Not CurrentScreen Is Nothing Then
+            If CurrentScreen IsNot Nothing Then
                 GameEnvironment = CurrentScreen.Identification.ToString()
             End If
 
             Dim IsSandboxMode As String = "False"
-            If Not Core.Player Is Nothing Then
+            If Core.Player IsNot Nothing Then
                 IsSandboxMode = Core.Player.SandBoxMode.ToString()
             End If
 
@@ -178,19 +178,19 @@ Public Class Logger
                 "Available logical processors: " & Environment.ProcessorCount.ToString()
 
             Dim innerException As String = "NOTHING"
-            If Not ex.InnerException Is Nothing Then
+            If ex.InnerException IsNot Nothing Then
                 innerException = ex.InnerException.Message
             End If
             Dim message As String = "NOTHING"
-            If Not ex.Message Is Nothing Then
+            If ex.Message IsNot Nothing Then
                 message = ex.Message
             End If
             Dim source As String = "NOTHING"
-            If Not ex.Source Is Nothing Then
+            If ex.Source IsNot Nothing Then
                 source = ex.Source
             End If
             Dim StackTrace As String = "NOTHING"
-            If Not ex.StackTrace Is Nothing Then
+            If ex.StackTrace IsNot Nothing Then
                 StackTrace = ex.StackTrace
             End If
 
@@ -202,7 +202,7 @@ Public Class Logger
             Dim BaseException As Exception = ex.GetBaseException()
 
             Dim data As String = "NOTHING"
-            If Not ex.Data Is Nothing Then
+            If ex.Data IsNot Nothing Then
                 data = "Items: " & ex.Data.Count
                 If ex.Data.Count > 0 Then
                     data = ""
