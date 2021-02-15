@@ -64,7 +64,7 @@
             Dim pName As String = "MissignNo."
             Dim pNumber As Integer = 23
 
-            If Not useP Is Nothing Then
+            If useP IsNot Nothing Then
                 pName = useP.GetDisplayName()
                 pNumber = useP.Number
             End If

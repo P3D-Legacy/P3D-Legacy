@@ -84,7 +84,7 @@
     End Sub
 
     Public Overrides Sub UpdateEntity()
-        If Not WaterAnimation Is Nothing Then
+        If WaterAnimation IsNot Nothing Then
             WaterAnimation.Update(0.01)
             If currentRectangle <> WaterAnimation.TextureRectangle Then
                 ChangeTexture()

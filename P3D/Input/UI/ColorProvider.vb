@@ -7,7 +7,7 @@
 
         Public Shared ReadOnly Property IsGameJolt() As Boolean
             Get
-                If Not Core.Player Is Nothing Then
+                If Core.Player IsNot Nothing Then
                     Return Core.Player.IsGameJoltSave
                 End If
                 Return False

@@ -112,7 +112,7 @@
             Me.CreatedWorld = False
         End If
 
-        If Not Animation Is Nothing Then
+        If Animation IsNot Nothing Then
             Animation.Update(0.01)
             If CurrentRectangle <> Animation.TextureRectangle Then
                 ChangeTexture()
