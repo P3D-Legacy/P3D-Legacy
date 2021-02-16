@@ -4281,7 +4281,7 @@
 
                     'Redundant with BattleCalculation.FieldEffectTurns
 
-                    'If Not p.Item Is Nothing Then
+                    'If p.Item IsNot Nothing Then
                     '    If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                     '        Select Case p.Item.Name.ToLower()
                     '            Case "damp rock"
