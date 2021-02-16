@@ -72,7 +72,7 @@
             Else
                 RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 8.0F, 1.0F)
 
-                If Not TextureDown Is Nothing Then
+                If TextureDown IsNot Nothing Then
                     RenderHalf(FOV, Yaw, 0.0F, False, TextureDown, 8.0F, 1.0F)
                 End If
             End If

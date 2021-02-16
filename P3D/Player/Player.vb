@@ -727,7 +727,7 @@
             Data = IO.File.ReadAllText(GameController.GamePath & "\Save\" & filePrefix & "\Player.dat").SplitAtNewline()
         End If
 
-        If Not Screen.Level Is Nothing Then
+        If Screen.Level IsNot Nothing Then
             Screen.Level.Riding = False
         End If
 
@@ -1869,7 +1869,7 @@
             If Random.Next(0, 193) = 0 Then
                 Dim p As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.Land, False, "")
 
-                If Not p Is Nothing Then
+                If p IsNot Nothing Then
                     PlayWildPokemonNoise(p.Number)
                 End If
             End If
@@ -1878,7 +1878,7 @@
             If Random.Next(0, 193) = 0 Then
                 Dim p As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.Land, False, "")
 
-                If Not p Is Nothing Then
+                If p IsNot Nothing Then
                     PlayWildPokemonNoise(p.Number)
                     Exit Sub
                 End If
@@ -1888,7 +1888,7 @@
             If Random.Next(0, 193) = 0 Then
                 Dim p As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Spawner.EncounterMethods.Surfing, False, "")
 
-                If Not p Is Nothing Then
+                If p IsNot Nothing Then
                     PlayWildPokemonNoise(p.Number)
                     Exit Sub
                 End If

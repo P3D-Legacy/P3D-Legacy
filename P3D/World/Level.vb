@@ -671,7 +671,7 @@ Public Class Level
     ''' Initializes the offset map update cycle.
     ''' </summary>
     Public Sub StartOffsetMapUpdate()
-        If Not Me._offsetTimer Is Nothing Then
+        If Me._offsetTimer IsNot Nothing Then
             Me._offsetTimer.Stop()
         End If
 
@@ -901,7 +901,7 @@ Public Class Level
         ' Render floors:
         For i = 0 To Me.OffsetmapFloors.Count - 1
             If i <= Me.OffsetmapFloors.Count - 1 Then
-                If Not Me.OffsetmapFloors(i) Is Nothing Then
+                If Me.OffsetmapFloors(i) IsNot Nothing Then
                     Me.OffsetmapFloors(i).Render()
                     DebugDisplay.MaxVertices += Me.OffsetmapFloors(i).VertexCount
                 End If
@@ -911,7 +911,7 @@ Public Class Level
         ' Render entities:
         For i = 0 To Me.OffsetmapEntities.Count - 1
             If i <= Me.OffsetmapEntities.Count - 1 Then
-                If Not Me.OffsetmapEntities(i) Is Nothing Then
+                If Me.OffsetmapEntities(i) IsNot Nothing Then
                     Me.OffsetmapEntities(i).Render()
                     DebugDisplay.MaxVertices += Me.OffsetmapEntities(i).VertexCount
                 End If

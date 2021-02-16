@@ -70,7 +70,7 @@
                         If dontDraw.Contains(e.EntityID) = False Then
                             Dim t As Texture2D = GetTextureFromEntity(e)
 
-                            If Not t Is Nothing Then
+                            If t IsNot Nothing Then
                                 Dim sO As Vector2 = GetScaleOffset(e.Scale)
 
                                 Me.Squares.Add(New MinimapSquare(New Rectangle(CInt((e.Position.X + sO.X) * ObjectScale), CInt((e.Position.Z + sO.Y) * ObjectScale), CInt(e.Scale.X * ObjectScale), CInt(e.Scale.Z * ObjectScale)), Color.Black, t, DrawTextures))

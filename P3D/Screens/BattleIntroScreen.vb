@@ -114,7 +114,7 @@
     Dim currentBlurZoom As Integer = 0
 
     Private Sub DrawBlurIntro()
-        If Not blurTexture Is Nothing Then
+        If blurTexture IsNot Nothing Then
             Dim startIndex As Integer = 0
             If blurLayers.Count > 10 Then
                 startIndex = blurLayers.Count - 10
@@ -188,7 +188,7 @@
         If Trainer.GameJoltID <> "" Then
             If GameJolt.Emblem.HasDownloadedSprite(Trainer.GameJoltID) = True Then
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
-                If Not t Is Nothing Then
+                If t IsNot Nothing Then
                     Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
                     t3 = TextureManager.GetTexture(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
@@ -250,7 +250,7 @@
         If Trainer.GameJoltID <> "" Then
             If GameJolt.Emblem.HasDownloadedSprite(Trainer.GameJoltID) = True Then
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
-                If Not t Is Nothing Then
+                If t IsNot Nothing Then
                     Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
                     t3 = TextureManager.GetTexture(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
@@ -506,7 +506,7 @@
         Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection()
         MusicManager.Play(MusicLoop, False, 0F, False)
 
-        If Not MusicManager.CurrentSong Is Nothing Then
+        If MusicManager.CurrentSong IsNot Nothing Then
             Me.duration = MusicManager.CurrentSong.Duration
         Else
             Me.duration = New TimeSpan(0)
