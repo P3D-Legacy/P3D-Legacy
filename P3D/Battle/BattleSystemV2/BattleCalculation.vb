@@ -109,7 +109,7 @@
                 'Quickclaw's 20% chance of hitting first:
                 Dim Claw As Integer = 0
 
-                If Not ownPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                If ownPokemon.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                     If ownPokemon.Item.ID = 73 Then
                         If Core.Random.Next(0, 100) < 20 Then
                             Claw += 1 'Own claw succeeded
@@ -117,7 +117,7 @@
                     End If
                 End If
 
-                If Not oppPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                If oppPokemon.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                     If oppPokemon.Item.ID = 73 Then
                         If Core.Random.Next(0, 100) < 20 Then
                             Claw += 10 'Opp's claw succeeded
@@ -139,12 +139,12 @@
                 End Select
 
                 Dim Tail As Integer = 0 'Uses effect of Lagging Tail
-                If Not ownPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                If ownPokemon.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                     If ownPokemon.Item.Name = "Lagging Tail" Then
                         Tail += 1
                     End If
                 End If
-                If Not oppPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                If oppPokemon.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                     If oppPokemon.Item.Name = "Lagging Tail" Then
                         Tail += 10
                     End If
@@ -163,12 +163,12 @@
                 End Select
 
                 Dim Full As Integer = 0 'Uses effect of Full Incense
-                If Not ownPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                If ownPokemon.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                     If ownPokemon.Item.Name = "Full Incense" Then
                         Full += 1
                     End If
                 End If
-                If Not oppPokemon.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                If oppPokemon.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                     If oppPokemon.Item.Name = "Full Incense" Then
                         Full += 10
                     End If
@@ -236,7 +236,7 @@
                 speed = CInt(speed / 2) 'Divide the speed by 2 (gen 7 standards) if the Pokemon is paralyzed.
             End If
 
-            If Not p.Item Is Nothing Then
+            If p.Item IsNot Nothing Then
                 If p.Item.Name = "Choice Scarf" Then
                     speed = CInt(speed * 1.5F)
                 End If
@@ -257,7 +257,7 @@
                 End If
 
                 If p.Number = 132 Then
-                    If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
+                    If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                         If p.Item.Name = "Quick Powder" Then
                             speed *= 2
                         End If
@@ -340,19 +340,19 @@
                 attack = CInt(attack / 2)
             End If
 
-            If Not p.Item Is Nothing Then
+            If p.Item IsNot Nothing Then
                 If p.Item.Name = "Choice Band" Then
                     attack = CInt(attack * 1.5F)
                 End If
                 If p.Number = 25 Then
-                    If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
+                    If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                         If p.Item.Name = "Light Ball" Then
                             attack *= 2
                         End If
                     End If
                 End If
                 If p.Number = 104 OrElse p.Number = 105 Then
-                    If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
+                    If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                         If p.Item.Name = "Thick Club" Then
                             attack *= 2
                         End If
@@ -504,13 +504,13 @@
 
             result = INIT * ACCM
 
-            If Not op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not own) = True Then
+            If op.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(Not own) = True Then
                 If op.Item.Name.ToLower() = "bright powder" Or op.Item.Name.ToLower() = "lax incense" Then
                     result *= 0.9F
                 End If
             End If
 
-            If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
+            If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                 Select Case p.Item.Name.ToLower()
                     Case "wide lens"
                         result *= 1.1F
@@ -632,7 +632,7 @@
                 C += 2
             End If
 
-            If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
+            If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                 Select Case p.Item.Name.ToLower()
                     Case "lucky punch"
                         If p.Number = 113 Then
@@ -696,7 +696,7 @@
                 Return True
             End If
 
-            If Not p.Item Is Nothing Then
+            If p.Item IsNot Nothing Then
                 If p.Item.Name.ToLower() = "smoke ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                     Return True
                 End If
@@ -875,7 +875,7 @@
                 End If
             End If
 
-            If Not op.Item Is Nothing Then
+            If op.Item IsNot Nothing Then
                 If op.Item.Name.ToLower() = "ring target" And BattleScreen.FieldEffects.CanUseItem(Not own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not own, BattleScreen) = True Then
                     If Type1 = 0 Then
                         effectiveness = Type2
@@ -989,7 +989,7 @@
             End If
 
             Dim e As Double = 1D
-            If Not p.Item Is Nothing Then
+            If p.Item IsNot Nothing Then
                 If p.Item.Name.ToLower() = "lucky egg" Then
                     e = 1.5D
                 End If
@@ -1002,7 +1002,7 @@
 
             Dim expShares As Integer = 0
             For Each po As Pokemon In Core.Player.Pokemons
-                If Not po.Item Is Nothing Then
+                If po.Item IsNot Nothing Then
                     If po.Item.Name.ToLower() = "exp share" Then
                         expShares += 1
                     End If
@@ -1010,7 +1010,7 @@
             Next
 
             If expShares > 0 Then
-                If Not p.Item Is Nothing Then
+                If p.Item IsNot Nothing Then
                     If p.Item.Name.ToLower() = "exp share" Then
                         s = 2D
                     Else
@@ -1091,7 +1091,7 @@
                 End If
 
                 With BattleScreen
-                    If Not .OwnPokemon.Item Is Nothing Then
+                    If .OwnPokemon.Item IsNot Nothing Then
                         If .OwnPokemon.Item.Name.ToLower() = "shed shell" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             Return True
                         End If
@@ -1139,7 +1139,7 @@
                 End If
 
                 With BattleScreen
-                    If Not .OppPokemon.Item Is Nothing Then
+                    If .OppPokemon.Item IsNot Nothing Then
                         If .OppPokemon.Item.Name.ToLower() = "shed shell" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             Return True
                         End If
@@ -1207,7 +1207,7 @@
             Dim FA As Single = 1.0F
 
             'IT (Item attack power modifier)
-            If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
+            If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
                 Select Case p.Item.Name.ToLower()
                     Case "muscle band"
                         If Attack.Category = Attack.Categories.Physical Then
@@ -1452,7 +1452,7 @@
             If Own = False Then
                 lastMove = BattleScreen.FieldEffects.OppLastMove
             End If
-            If Not lastMove Is Nothing Then
+            If lastMove IsNot Nothing Then
                 If lastMove.Name.ToLower() = "charge" And Attack.Type.Type = Element.Types.Electric Then
                     CHG = 2.0F
                 End If
@@ -1671,7 +1671,7 @@
                         AM = 1.0F
                 End Select
 
-                If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
+                If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
                     Select Case p.Item.Name.ToLower()
                         Case "choice band"
                             IM = 1.5F
@@ -1716,7 +1716,7 @@
                         AM = 1.0F
                 End Select
 
-                If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
+                If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
                     Select Case p.Item.Name.ToLower()
                         Case "choice specs"
                             IM = 1.5F
@@ -1731,15 +1731,15 @@
                         Case "metronome"
                             Dim lastAttack As Attack = Nothing
                             If Own = False Then
-                                If Not BattleScreen.FieldEffects.OppLastMove Is Nothing Then
+                                If BattleScreen.FieldEffects.OppLastMove IsNot Nothing Then
                                     lastAttack = BattleScreen.FieldEffects.OppLastMove
                                 End If
                             Else
-                                If Not BattleScreen.FieldEffects.OwnLastMove Is Nothing Then
+                                If BattleScreen.FieldEffects.OwnLastMove IsNot Nothing Then
                                     lastAttack = BattleScreen.FieldEffects.OwnLastMove
                                 End If
                             End If
-                            If Not lastAttack Is Nothing Then
+                            If lastAttack IsNot Nothing Then
                                 If lastAttack.ID = Attack.ID Then
                                     Dim multi As Integer = 1
                                     If Own = True Then
@@ -1799,7 +1799,7 @@
                     SX = 1.0F
                 End If
 
-                If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
+                If Op.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     Select Case Op.Item.Name.ToLower()
                         Case "metal powder"
                             If Op.Number = 132 Then
@@ -1842,7 +1842,7 @@
                     End If
                 End If
 
-                If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
+                If Op.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     Select Case Op.Item.Name.ToLower()
                         Case "metal powder"
                             If Op.Number = 132 Then
@@ -1964,13 +1964,13 @@
             'If p.Ability.Name.ToLower() = "flash fire" Then
             '    If BattleScreen.FieldEffects.CanUseAbility(Own, BattleScreen) = True Then
             '        If Own = True Then
-            '            If Not BattleScreen.FieldEffects.OppLastMove Is Nothing Then
+            '            If BattleScreen.FieldEffects.OppLastMove IsNot Nothing Then
             '                If BattleScreen.FieldEffects.OppLastMove.Type.Type = Element.Types.Fire And Attack.Type.Type = Element.Types.Fire Then
             '                    FF = 1.5F
             '                End If
             '            End If
             '        Else
-            '            If Not BattleScreen.FieldEffects.OwnLastMove Is Nothing Then
+            '            If BattleScreen.FieldEffects.OwnLastMove IsNot Nothing Then
             '                If BattleScreen.FieldEffects.OwnLastMove.Type.Type = Element.Types.Fire And Attack.Type.Type = Element.Types.Fire Then
             '                    FF = 1.5F
             '                End If
@@ -2007,7 +2007,7 @@
 
             Dim Mod2 As Single = 1.0F
 
-            If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
+            If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
                 If p.Item.Name.ToLower() = "life orb" Then
                     Mod2 = 1.3F
                 End If
@@ -2051,13 +2051,13 @@
                     End If
                 End If
 
-                If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
+                If p.Item IsNot Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
                     If p.Item.Name.ToLower() = "expert belt" Then
                         EB = 1.2F
                     End If
                 End If
 
-                If Not Op.Item Is Nothing Then
+                If Op.Item IsNot Nothing Then
                     If BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                         Select Case Op.Item.Name.ToLower()
                             Case "occa"
@@ -2167,7 +2167,7 @@
                 End If
             End If
 
-            If Not Op.Item Is Nothing Then
+            If Op.Item IsNot Nothing Then
                 If BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
                     If Op.Item.Name.ToLower() = "chilan" Then
                         If Attack.Type.Type = Element.Types.Normal Then
