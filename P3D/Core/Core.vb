@@ -255,6 +255,9 @@
         End If
 
         CurrentScreen.ChangeTo()
+
+        DiscordPresence.Update()
+
     End Sub
 
     Public Function GetMiddlePosition(ByVal OffsetFull As Size) As Vector2
