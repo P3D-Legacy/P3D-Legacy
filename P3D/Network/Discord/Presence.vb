@@ -8,7 +8,7 @@ Public Class Presence
     Private PreviousMapLevel As String = ""
 
     Public Sub Initialize()
-        If APP_ID IsNot Nothing Then
+        If APP_ID IsNot Nothing And Environment.Is64BitProcess = False Then
             Discord_Initialize(APP_ID, Handlers, 1, "")
             Update()
         End If
@@ -86,7 +86,7 @@ Public Class Presence
             .SmallImageText = APP_SmallImageText
         }
 
-        If ShouldUpdate Then
+        If ShouldUpdate And Environment.Is64BitProcess = False Then
             Logger.Log(Logger.LogTypes.Message, "Presence.vb: Updating Discord Presence.")
             Discord_UpdatePresence(NewPresence)
         End If
