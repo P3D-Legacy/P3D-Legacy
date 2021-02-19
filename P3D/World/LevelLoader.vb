@@ -264,6 +264,8 @@
         If Busy = 0 Then
             Screen.Level.StartOffsetMapUpdate()
         End If
+
+        DiscordPresence.Update()
     End Sub
 
     Private Function GetTags(ByVal line As String) As Dictionary(Of String, Object)
