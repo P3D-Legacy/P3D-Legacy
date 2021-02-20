@@ -82,13 +82,6 @@ Public Class Presence
         Dim CurrentMapLevelFileName As String = ""
         Dim CurrentMapLevelFileNames() As String = {"goldenrod_city"}
 
-        'Dim APP_Details As String = "Daniel is in Goldenrod City" ' Example: "Daniel is in Goldenrod City"
-        'Dim APP_State As String = "Playing Solo" ' Example: "Playing Solo" or "Playing Multiplayer"
-        'Dim APP_LargeImageName As String = "goldenrod_city" ' Image file name that has been uploaded to Discord. Example: "goldenrod_city"
-        'Dim APP_LargeImageText As String = "Goldenrod City" ' An explanation of what the image is of. Example: "Goldenrod City"
-        'Dim APP_SmallImageName As String = "logoxl" ' Image file name that has been uploaded to Discord. Example: "logoxl"
-        'Dim APP_SmallImageText As String = "Pokémon 3D" ' An explanation of what the image is of. Example: "Pokémon 3D"
-
         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             CurrentMapLevel = Screen.Level.MapName
         End If
