@@ -29,7 +29,7 @@ Public Class Presence
 
         Dim APP_Details As String = "" ' Defaults - DO NOT CHANGE
         Dim APP_State As String = "Playing Solo" ' Defaults - DO NOT CHANGE
-        Dim APP_LargeImageName As String = "logoxl" ' Defaults - DO NOT CHANGE
+        Dim APP_LargeImageName As String = "default" ' Defaults - DO NOT CHANGE
         Dim APP_LargeImageText As String = "Pokemon 3D" ' Defaults - DO NOT CHANGE
         Dim APP_SmallImageName As String = "" ' Defaults - DO NOT CHANGE
         Dim APP_SmallImageText As String = "" ' Defaults - DO NOT CHANGE
@@ -102,7 +102,7 @@ Public Class Presence
             If CurrentMapLevelFileNames.Contains(CurrentMapLevelFileName) Then
                 APP_LargeImageName = CurrentMapLevel.ToLower.Replace(" ", "_")
                 APP_LargeImageText = CurrentMapLevel
-                APP_SmallImageName = "logoxl" ' Defaults - DO NOT CHANGE
+                APP_SmallImageName = "default" ' Defaults - DO NOT CHANGE
                 APP_SmallImageText = "Pokemon 3D" ' Defaults - DO NOT CHANGE
             End If
             ShouldUpdate = True
