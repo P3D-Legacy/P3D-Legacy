@@ -125,6 +125,12 @@ Public Class Presence
             End If
         End If
 
+        If ServersManager.ServerConnection.Connected = True Then
+            APP_State = "Playing Multiplayer"
+        Else
+            APP_State = "Playing Solo"
+        End If
+
         Dim NewPresence As DiscordRichPresence = New DiscordRichPresence With {
             .Details = APP_Details,
             .State = APP_State,
