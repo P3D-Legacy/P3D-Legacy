@@ -79,6 +79,8 @@ Public Class Presence
         Dim BattleScreens() As String = {"BattleIntroScreen", "BattleSystem.BattleScreen"}
         Dim InventoryScreens() As String = {"NewInventoryScreen"}
         Dim CurrentMapLevel As String = ""
+        Dim CurrentMapLevelFileName As String = ""
+        Dim CurrentMapLevelFileNames() As String = {"goldenrod_city"}
 
         'Dim APP_Details As String = "Daniel is in Goldenrod City" ' Example: "Daniel is in Goldenrod City"
         'Dim APP_State As String = "Playing Solo" ' Example: "Playing Solo" or "Playing Multiplayer"
@@ -101,7 +103,15 @@ Public Class Presence
             If CurrentMapLevel <> PreviousMapLevel Then
                 PreviousMapLevel = CurrentMapLevel
             End If
+            CurrentMapLevelFileName = CurrentMapLevel.ToLower.Replace(" ", "_")
             APP_Details = "Walking in " & CurrentMapLevel
+            Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevelFileName: " & CurrentMapLevelFileName)
+            If CurrentMapLevelFileNames.Contains(CurrentMapLevelFileName) Then
+                APP_LargeImageName = CurrentMapLevel.ToLower.Replace(" ", "_")
+                APP_LargeImageText = CurrentMapLevel
+                APP_SmallImageName = "logoxl" ' Defaults - DO NOT CHANGE
+                APP_SmallImageText = "Pokemon 3D" ' Defaults - DO NOT CHANGE
+            End If
             ShouldUpdate = True
         ElseIf CurrentScreen IsNot PreviousScreen Then
             If MenuScreens.Contains(CurrentScreen) Then
