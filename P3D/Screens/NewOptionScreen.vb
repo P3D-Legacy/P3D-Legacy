@@ -20,6 +20,7 @@
     Dim ShowModels As Integer = 1
     Dim Muted As Integer = 0
     Dim GamePadEnabled As Boolean = True
+    Dim DiscordRPCEnabled As Boolean = True
     Dim PreferMultiSampling As Boolean = True
 
     Dim savedOptions As Boolean = True
@@ -94,6 +95,7 @@
         Me.ViewBobbing = Core.GameOptions.ViewBobbing
         Me.GamePadEnabled = Core.GameOptions.GamePadEnabled
         Me.PreferMultiSampling = Core.GraphicsManager.PreferMultiSampling
+        Me.DiscordRPCEnabled = Core.GameOptions.DiscordRPCEnabled
     End Sub
 
 
@@ -418,7 +420,8 @@
 
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain))
             Case 6 ' "Advanced" from the Options menu.
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 100), 2, 64, "Reset Options", AddressOf Reset))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 100), 3, 64, "Discord RPC", Me.DiscordRPCEnabled, AddressOf ToggleDiscordRPC, {"Disabled", "Enabled"}.ToList()))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 2, 64, "Reset Options", AddressOf Reset))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain))
         End Select
 
@@ -474,6 +477,7 @@
         Core.Player.BattleStyle = Me.BattleStyle
         Core.Player.ShowModelsInBattle = CBool(Me.ShowModels)
         Core.GameOptions.GamePadEnabled = Me.GamePadEnabled
+        Core.GameOptions.DiscordRPCEnabled = Me.DiscordRPCEnabled
         Core.GraphicsManager.PreferMultiSampling = Me.PreferMultiSampling
         If LoadOffsetMaps = 0 Then
             Core.GameOptions.LoadOffsetMaps = Me.LoadOffsetMaps
@@ -616,6 +620,10 @@
 
     Private Sub ChangeMouseSpeed(ByVal c As ScrollBar)
         Me.MouseSpeed = c.Value
+    End Sub
+
+    Private Sub ToggleDiscordRPC(ByVal c As ToggleButton)
+        Me.DiscordRPCEnabled = Not Me.DiscordRPCEnabled
     End Sub
 
     Private Sub ResetKeyBindings(ByVal c As CommandButton)
