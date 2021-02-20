@@ -6,11 +6,13 @@ Public Class Presence
 
     Private PreviousScreen As String = ""
     Private PreviousMapLevel As String = ""
+    Private APP_StartTimestamp As Long = Nothing
 
     Public Sub Initialize()
         If APP_ID IsNot Nothing And Environment.Is64BitProcess = False Then
             Discord_Initialize(APP_ID, Handlers, 1, "")
             Update()
+            APP_StartTimestamp = DateTime.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalMilliseconds
         End If
     End Sub
 
@@ -123,7 +125,8 @@ Public Class Presence
             .LargeImageKey = APP_LargeImageName,
             .LargeImageText = APP_LargeImageText,
             .SmallImageKey = APP_SmallImageName,
-            .SmallImageText = APP_SmallImageText
+            .SmallImageText = APP_SmallImageText,
+            .StartTimestamp = APP_StartTimestamp
         }
 
         If ShouldUpdate And Environment.Is64BitProcess = False Then
