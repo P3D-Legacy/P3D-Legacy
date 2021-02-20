@@ -101,7 +101,7 @@ Public Class Presence
                 PreviousMapLevel = CurrentMapLevel
             End If
             CurrentMapLevelFileName = CurrentMapLevel.ToLower.Replace(" ", "_")
-            APP_Details = "Walking in " & CurrentMapLevel
+            APP_Details = "In " & CurrentMapLevel
             Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevelFileName: " & CurrentMapLevelFileName)
             If CurrentMapLevelFileNames.Contains(CurrentMapLevelFileName) Then
                 APP_LargeImageName = CurrentMapLevel.ToLower.Replace(" ", "_")
