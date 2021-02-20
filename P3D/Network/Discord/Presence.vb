@@ -9,7 +9,7 @@ Public Class Presence
     Private APP_StartTimestamp As Long = Nothing
 
     Public Sub Initialize()
-        If APP_ID IsNot Nothing And Environment.Is64BitProcess = False Then
+        If APP_ID IsNot Nothing And Environment.Is64BitProcess = False And Core.GameOptions.DiscordRPCEnabled = True Then
             Discord_Initialize(APP_ID, Handlers, 1, "")
             Update()
             APP_StartTimestamp = DateTime.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalMilliseconds
@@ -23,6 +23,10 @@ Public Class Presence
     Public Sub Update()
 
         Logger.Log(Logger.LogTypes.Debug, "Presence.vb: Checking Discord Presence.")
+
+        If Core.GameOptions.DiscordRPCEnabled = False Then
+            Discord_Shutdown()
+        End If
 
         ' Description of fields is found here
         ' https://discord.com/developers/docs/rich-presence/how-to#updating-presence-update-presence-payload-fields
