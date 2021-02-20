@@ -126,6 +126,8 @@ Public Class Presence
             .LargeImageText = APP_LargeImageText,
             .SmallImageKey = APP_SmallImageName,
             .SmallImageText = APP_SmallImageText,
+            .PartySize = APP_Party_Size,
+            .PartyMax = APP_Party_Size_Max,
             .StartTimestamp = APP_StartTimestamp
         }
 
