@@ -22,12 +22,52 @@ Public Class Presence
 
         Logger.Log(Logger.LogTypes.Debug, "Presence.vb: Checking Discord Presence.")
 
-        Dim APP_Details As String = "" ' Example: "Daniel is in Goldenrod City"
-        Dim APP_State As String = "Playing Solo" ' Example: "Playing Solo" or "Playing Multiplayer"
-        Dim APP_LargeImageName As String = "logoxl" ' Image file name that has been uploaded to Discord. Example: "goldenrod_city"
-        Dim APP_LargeImageText As String = "Pokemon 3D" ' An explanation of what the image is of. Example: "Goldenrod City"
-        Dim APP_SmallImageName As String = "" ' Image file name that has been uploaded to Discord. Example: "logoxl"
-        Dim APP_SmallImageText As String = "" ' An explanation of what the image is of. Example: "Pokémon 3D"
+        ' Description of fields is found here
+        ' https://discord.com/developers/docs/rich-presence/how-to#updating-presence-update-presence-payload-fields
+
+        Dim APP_Details As String = "" ' Defaults - DO NOT CHANGE
+        Dim APP_State As String = "Playing Solo" ' Defaults - DO NOT CHANGE
+        Dim APP_LargeImageName As String = "logoxl" ' Defaults - DO NOT CHANGE
+        Dim APP_LargeImageText As String = "Pokemon 3D" ' Defaults - DO NOT CHANGE
+        Dim APP_SmallImageName As String = "" ' Defaults - DO NOT CHANGE
+        Dim APP_SmallImageText As String = "" ' Defaults - DO NOT CHANGE
+        Dim APP_Party_Size As Integer = 0 ' Defaults - DO NOT CHANGE
+        Dim APP_Party_Size_Max As Integer = 0 ' Defaults - DO NOT CHANGE
+
+        ' WHAT SHOULD THE FIELDS BE USED FOR?
+        ' 
+        ' APP_Details: Should be used for current state the user is in the game
+        ' Default should be: ""
+        ' Example: "Walking in Goldenrod City"
+        ' 
+        ' APP_State: Show if the user is in solo or multiplayer
+        ' Default should be: "Playing Solo"
+        ' Example: "Playing Solo" or "Playing Multiplayer"
+        ' 
+        ' APP_LargeImageName: Visible image in discord
+        ' Default should be: "logoxl"
+        ' Example: "logoxl" or when in a specific place "goldenrod_city"
+        ' 
+        ' APP_LargeImageText: Visible name of logo in discord
+        ' Default should be: "Pokemon 3D"
+        ' Example: "Pokemon 3D" or when in a specific place "Goldenrod City"
+        ' 
+        ' APP_SmallImageName: Visible image in discord
+        ' Default should be: ""
+        ' Example: "logoxl" only when user is in a specific place else default
+        ' 
+        ' APP_SmallImageText: Visible name of logo in discord
+        ' Default should be: ""
+        ' Example: "Pokemon 3D" only when user is in a specific place else default
+        ' 
+        ' APP_Party_Size: Visible name of logo in discord
+        ' Default should be: ""
+        ' Example: "Pokemon 3D" only when user is in a specific place else default
+        ' 
+        ' APP_Party_Size_Max: Visible name of logo in discord
+        ' Default should be: ""
+        ' Example: "Pokemon 3D" only when user is in a specific place else default
+        ' 
 
         Dim ShouldUpdate As Boolean = False
 
