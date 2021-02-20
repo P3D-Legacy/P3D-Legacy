@@ -107,6 +107,8 @@ Public Class Presence
             End If
             ShouldUpdate = True
         ElseIf CurrentScreen IsNot PreviousScreen Then
+            PreviousScreen = CurrentScreen
+            ShouldUpdate = True
             If MenuScreens.Contains(CurrentScreen) Then
                 APP_Details = "In the menus"
             ElseIf PokedexScreens.Contains(CurrentScreen) Then
@@ -115,11 +117,12 @@ Public Class Presence
                 APP_Details = "In a battle"
             ElseIf InventoryScreens.Contains(CurrentScreen) Then
                 APP_Details = "In the inventory"
-            Else
+            ElseIf GameController.IS_DEBUG_ACTIVE = True Then
                 APP_Details = CurrentScreen ' This is just for debug purposes
+                ShouldUpdate = True ' This is just for debug purposes
+            Else
+                ShouldUpdate = False
             End If
-            PreviousScreen = CurrentScreen
-            ShouldUpdate = True
         End If
 
         Dim NewPresence As DiscordRichPresence = New DiscordRichPresence With {
