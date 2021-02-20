@@ -12,7 +12,7 @@ Public Class Presence
         If APP_ID IsNot Nothing And Environment.Is64BitProcess = False And Core.GameOptions.DiscordRPCEnabled = True Then
             Discord_Initialize(APP_ID, Handlers, 1, "")
             Update()
-            APP_StartTimestamp = DateTime.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalMilliseconds
+            APP_StartTimestamp = CLng(DateTime.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalMilliseconds)
         End If
     End Sub
 
