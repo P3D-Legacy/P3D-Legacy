@@ -118,7 +118,7 @@ Public Class Presence
             ElseIf InventoryScreens.Contains(CurrentScreen) Then
                 APP_Details = "In the inventory"
             ElseIf GameController.IS_DEBUG_ACTIVE = True Then
-                APP_Details = CurrentScreen ' This is just for debug purposes
+                APP_Details = "Debuging: " & CurrentScreen ' This is just for debug purposes
                 ShouldUpdate = True ' This is just for debug purposes
             Else
                 ShouldUpdate = False
