@@ -159,9 +159,10 @@ Public Class Presence
         }
 
         If ShouldUpdate And Environment.Is64BitProcess = False Then
-            Logger.Log(Logger.LogTypes.Message, "Presence.vb: Updating Discord Presence.")
+            Logger.Log(Logger.LogTypes.Debug, "Presence.vb: Updating Discord RPC.")
             Discord_UpdatePresence(Presence)
         End If
+
     End Sub
 
 End Class
