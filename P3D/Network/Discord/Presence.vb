@@ -50,37 +50,37 @@ Public Class Presence
 
         ' WHAT SHOULD THE FIELDS BE USED FOR?
         ' 
-        ' APP_Details: Should be used for current state the user is in the game
+        ' Presence_Details: Should be used for current state the user is in the game
         ' Default should be: ""
-        ' Example: "Walking in Goldenrod City"
+        ' Example: "In Goldenrod City"
         ' 
-        ' APP_State: Show if the user is in solo or multiplayer
+        ' Presence_State: Show if the user is in solo or multiplayer
         ' Default should be: "Playing Solo"
         ' Example: "Playing Solo" or "Playing Multiplayer"
         ' 
-        ' APP_LargeImageName: Visible image in discord
-        ' Default should be: "logoxl"
-        ' Example: "logoxl" or when in a specific place "goldenrod_city"
+        ' Presence_LargeImageName: Visible image in discord
+        ' Default should be: "default"
+        ' Example: "default" or when in a specific place "goldenrod_city"
         ' 
-        ' APP_LargeImageText: Visible name of logo in discord
+        ' Presence_LargeImageText: Visible name of logo in discord
         ' Default should be: "Pokemon 3D"
         ' Example: "Pokemon 3D" or when in a specific place "Goldenrod City"
         ' 
-        ' APP_SmallImageName: Visible image in discord
+        ' Presence_SmallImageName: Visible image in discord
         ' Default should be: ""
-        ' Example: "logoxl" only when user is in a specific place else default
+        ' Example: "default" only when user is in a specific place else default
         ' 
-        ' APP_SmallImageText: Visible name of logo in discord
+        ' Presence_SmallImageText: Visible name of logo in discord
         ' Default should be: ""
         ' Example: "Pokemon 3D" only when user is in a specific place else default
         ' 
-        ' APP_Party_Size: Visible name of logo in discord
-        ' Default should be: ""
-        ' Example: "Pokemon 3D" only when user is in a specific place else default
+        ' Presence_Party_Size: Visible name of logo in discord
+        ' Default should be: "0"
+        ' Example: Will be used for servers in the future
         ' 
-        ' APP_Party_Size_Max: Visible name of logo in discord
-        ' Default should be: ""
-        ' Example: "Pokemon 3D" only when user is in a specific place else default
+        ' Presence_Party_Size_Max: Visible name of logo in discord
+        ' Default should be: "0"
+        ' Example: Will be used for servers in the future
         ' 
 
         Dim ShouldUpdate As Boolean = False
