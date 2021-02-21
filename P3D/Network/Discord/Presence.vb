@@ -95,7 +95,14 @@ Public Class Presence
         Dim InventoryScreens() As String = {"NewInventoryScreen"}
         Dim CurrentMapLevel As String = ""
         Dim CurrentMapLevelFileName As String = ""
-        Dim CurrentMapLevelFileNames() As String = {"goldenrod_city"}
+        Dim CurrentMapLevelFileNames As New List(Of String)
+
+        ' Checking valid filenames, in directory. These files also needs to be uploaded to the application
+        ' https://discord.com/developers/applications/*APPLICATION_ID_HERE*/rich-presence/assets
+        ' DanielRTRD has access here, ask if you need access!
+        For Each RPC_Image In Directory.GetFiles(GameController.GamePath & "\Content\DiscordRPC\")
+            CurrentMapLevelFileNames.Add(Path.GetFileName(RPC_Image).Replace(".png", "").Replace(".jpg", "").Replace(".jpeg", ""))
+        Next
 
         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             CurrentMapLevel = Screen.Level.MapName
