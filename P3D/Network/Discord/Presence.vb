@@ -119,6 +119,9 @@ Public Class Presence
                 PreviousMapLevel = CurrentMapLevel
             End If
             CurrentMapLevelFileName = CurrentMapLevel.ToLower.Replace(" ", "_")
+            If CurrentMapLevel = "Pokemon Center" Or CurrentMapLevel = "Pokemon Mart" Then
+                CurrentMapLevel = "a " & CurrentMapLevel
+            End If
             Presence_Details = "In " & CurrentMapLevel
             Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevelFileName: " & CurrentMapLevelFileName)
             If CurrentMapLevelFileNames.Contains(CurrentMapLevelFileName) Then
