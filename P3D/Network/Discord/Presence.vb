@@ -1,18 +1,26 @@
 ﻿
 Public Class Presence
 
-    ReadOnly APP_ID As String = Classified.Discord_Application_ID
+    ReadOnly Discord_App_ID As String = Classified.Discord_Application_ID
+    ReadOnly Default_Details As String = "" ' Defaults - DO NOT CHANGE
+    ReadOnly Default_State As String = "Playing Solo" ' Defaults - DO NOT CHANGE
+    ReadOnly Default_LargeImageName As String = "default" ' Defaults - DO NOT CHANGE
+    ReadOnly Default_LargeImageText As String = "Pokemon 3D" ' Defaults - DO NOT CHANGE
+    ReadOnly Default_SmallImageName As String = "" ' Defaults - DO NOT CHANGE
+    ReadOnly Default_SmallImageText As String = "" ' Defaults - DO NOT CHANGE
+    ReadOnly Default_Party_Size As Integer = 0 ' Defaults - DO NOT CHANGE
+    ReadOnly Default_Party_Size_Max As Integer = 0 ' Defaults - DO NOT CHANGE
     Private Handlers As DiscordEventHandlers = New DiscordEventHandlers With {.Ready = AddressOf IsReady}
 
     Private PreviousScreen As String = ""
     Private PreviousMapLevel As String = ""
-    Private APP_StartTimestamp As Long = Nothing
+    Private StartTimestamp As Long = Nothing
 
     Public Sub Initialize()
-        If APP_ID IsNot Nothing And Environment.Is64BitProcess = False And Core.GameOptions.DiscordRPCEnabled = True Then
-            Discord_Initialize(APP_ID, Handlers, 1, "")
+        If Discord_App_ID IsNot Nothing And Environment.Is64BitProcess = False Then
+            Discord_Initialize(Discord_App_ID, Handlers, 1, "")
             Update()
-            APP_StartTimestamp = CLng(DateTime.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalMilliseconds)
+            StartTimestamp = CLng(DateTime.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalMilliseconds)
         End If
     End Sub
 
