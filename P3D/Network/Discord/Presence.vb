@@ -25,7 +25,7 @@ Public Class Presence
     End Sub
 
     Private Sub IsReady(ByRef Request As DiscordUser)
-        Logger.Log(Logger.LogTypes.Message, "Presence.vb: Discord initialized successfully!")
+        ' Do nothing
     End Sub
 
     Public Sub Update()
