@@ -33,6 +33,8 @@ Public Class Presence
         Logger.Log(Logger.LogTypes.Debug, "Presence.vb: Checking Discord Presence.")
 
         If Core.GameOptions.DiscordRPCEnabled = False Then
+            ' Shutdown Discord if user decides to disable it in game
+            ' Restart of game is needed after enabling again to make it initialize again
             Discord_Shutdown()
         End If
 
