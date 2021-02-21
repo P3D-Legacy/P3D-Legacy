@@ -49,6 +49,17 @@ Public Class DebugDisplay
                 s &= Environment.NewLine & contentPackString
             End If
 
+            If Core.GameOptions.DiscordRPCEnabled = True Then
+                If Screen.Camera IsNot Nothing Then
+                    If Screen.Camera.Name = "Overworld" Then
+                        s &= Environment.NewLine & "Level.MapName: " & Screen.Level.MapName
+                        s &= Environment.NewLine & "Level.MapName File Name: " & Screen.Level.MapName.ToLower.Replace(" ", "_")
+                    End If
+                End If
+                s &= Environment.NewLine & "DiscordRPCEnabled: " & Core.GameOptions.DiscordRPCEnabled
+                s &= Environment.NewLine & "Is64BitProcess: " & Environment.Is64BitProcess
+            End If
+
             Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, s, New Vector2(7, 7), Color.Black)
             Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, s, New Vector2(5, 5), Color.White)
 
