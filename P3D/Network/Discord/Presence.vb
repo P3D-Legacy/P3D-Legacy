@@ -137,7 +137,7 @@ Public Class Presence
             If MenuScreens.Contains(CurrentScreen) Then
                 Presence_Details = "In the menus"
             ElseIf PokedexScreens.Contains(CurrentScreen) Then
-                Presence_Details = "In the Pokédex"
+                Presence_Details = "In the Pokedex"
             ElseIf BattleScreens.Contains(CurrentScreen) Then
                 Presence_Details = "In a battle"
             ElseIf InventoryScreens.Contains(CurrentScreen) Then
