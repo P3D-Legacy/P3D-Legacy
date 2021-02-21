@@ -39,14 +39,15 @@ Public Class Presence
         ' Description of fields is found here
         ' https://discord.com/developers/docs/rich-presence/how-to#updating-presence-update-presence-payload-fields
 
-        Dim APP_Details As String = "" ' Defaults - DO NOT CHANGE
-        Dim APP_State As String = "Playing Solo" ' Defaults - DO NOT CHANGE
-        Dim APP_LargeImageName As String = "default" ' Defaults - DO NOT CHANGE
-        Dim APP_LargeImageText As String = "Pokemon 3D" ' Defaults - DO NOT CHANGE
-        Dim APP_SmallImageName As String = "" ' Defaults - DO NOT CHANGE
-        Dim APP_SmallImageText As String = "" ' Defaults - DO NOT CHANGE
-        Dim APP_Party_Size As Integer = 0 ' Defaults - DO NOT CHANGE
-        Dim APP_Party_Size_Max As Integer = 0 ' Defaults - DO NOT CHANGE
+        ' Reset the local variables
+        Dim Presence_Details As String = Default_Details
+        Dim Presence_State As String = Default_State
+        Dim Presence_LargeImageName As String = Default_LargeImageName
+        Dim Presence_LargeImageText As String = Default_LargeImageText
+        Dim Presence_SmallImageName As String = Default_SmallImageName
+        Dim Presence_SmallImageText As String = Default_SmallImageText
+        Dim Presence_Party_Size As Integer = Default_Party_Size
+        Dim Presence_Party_Size_Max As Integer = Default_Party_Size_Max
 
         ' WHAT SHOULD THE FIELDS BE USED FOR?
         ' 
@@ -109,28 +110,28 @@ Public Class Presence
                 PreviousMapLevel = CurrentMapLevel
             End If
             CurrentMapLevelFileName = CurrentMapLevel.ToLower.Replace(" ", "_")
-            APP_Details = "In " & CurrentMapLevel
+            Presence_Details = "In " & CurrentMapLevel
             Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevelFileName: " & CurrentMapLevelFileName)
             If CurrentMapLevelFileNames.Contains(CurrentMapLevelFileName) Then
-                APP_LargeImageName = CurrentMapLevel.ToLower.Replace(" ", "_").Replace(".", "")
-                APP_LargeImageText = CurrentMapLevel
-                APP_SmallImageName = "default" ' Defaults - DO NOT CHANGE
-                APP_SmallImageText = "Pokemon 3D" ' Defaults - DO NOT CHANGE
+                Presence_LargeImageName = CurrentMapLevel.ToLower.Replace(" ", "_").Replace(".", "")
+                Presence_LargeImageText = CurrentMapLevel
+                Presence_SmallImageName = Default_LargeImageName ' When a map is show, icon should be moved to small
+                Presence_SmallImageText = Default_LargeImageText ' When a map is show, icon should be moved to small
             End If
             ShouldUpdate = True
         ElseIf CurrentScreen IsNot PreviousScreen Then
             PreviousScreen = CurrentScreen
             ShouldUpdate = True
             If MenuScreens.Contains(CurrentScreen) Then
-                APP_Details = "In the menus"
+                Presence_Details = "In the menus"
             ElseIf PokedexScreens.Contains(CurrentScreen) Then
-                APP_Details = "In the Pokedex"
+                Presence_Details = "In the Pokédex"
             ElseIf BattleScreens.Contains(CurrentScreen) Then
-                APP_Details = "In a battle"
+                Presence_Details = "In a battle"
             ElseIf InventoryScreens.Contains(CurrentScreen) Then
-                APP_Details = "In the inventory"
+                Presence_Details = "In the inventory"
             ElseIf GameController.IS_DEBUG_ACTIVE = True Then
-                APP_Details = "Debuging: " & CurrentScreen ' This is just for debug purposes
+                Presence_Details = "Debuging: " & CurrentScreen ' This is just for debug purposes
                 ShouldUpdate = True ' This is just for debug purposes
             Else
                 ShouldUpdate = False
@@ -138,26 +139,26 @@ Public Class Presence
         End If
 
         If ServersManager.ServerConnection.Connected = True Then
-            APP_State = "Playing Multiplayer"
+            Presence_State = "Playing Multiplayer"
         Else
-            APP_State = "Playing Solo"
+            Presence_State = "Playing Solo"
         End If
 
-        Dim NewPresence As DiscordRichPresence = New DiscordRichPresence With {
-            .Details = APP_Details,
-            .State = APP_State,
-            .LargeImageKey = APP_LargeImageName,
-            .LargeImageText = APP_LargeImageText,
-            .SmallImageKey = APP_SmallImageName,
-            .SmallImageText = APP_SmallImageText,
-            .PartySize = APP_Party_Size,
-            .PartyMax = APP_Party_Size_Max,
-            .StartTimestamp = APP_StartTimestamp
+        Dim Presence As DiscordRichPresence = New DiscordRichPresence With {
+            .Details = Presence_Details,
+            .State = Presence_State,
+            .LargeImageKey = Presence_LargeImageName,
+            .LargeImageText = Presence_LargeImageText,
+            .SmallImageKey = Presence_SmallImageName,
+            .SmallImageText = Presence_SmallImageText,
+            .PartySize = Presence_Party_Size,
+            .PartyMax = Presence_Party_Size_Max,
+            .StartTimestamp = StartTimestamp
         }
 
         If ShouldUpdate And Environment.Is64BitProcess = False Then
             Logger.Log(Logger.LogTypes.Message, "Presence.vb: Updating Discord Presence.")
-            Discord_UpdatePresence(NewPresence)
+            Discord_UpdatePresence(Presence)
         End If
     End Sub
 
