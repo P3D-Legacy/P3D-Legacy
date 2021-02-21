@@ -118,14 +118,14 @@ Public Class Presence
             If CurrentMapLevel <> PreviousMapLevel Then
                 PreviousMapLevel = CurrentMapLevel
             End If
-            CurrentMapLevelFileName = CurrentMapLevel.ToLower.Replace(" ", "_")
+            CurrentMapLevelFileName = CurrentMapLevel.ToLower.Replace(" ", "_").Replace(".", "")
             If CurrentMapLevel = "Pokemon Center" Or CurrentMapLevel = "Pokemon Mart" Then
                 CurrentMapLevel = "a " & CurrentMapLevel
             End If
             Presence_Details = "In " & CurrentMapLevel
             Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevelFileName: " & CurrentMapLevelFileName)
             If CurrentMapLevelFileNames.Contains(CurrentMapLevelFileName) Then
-                Presence_LargeImageName = CurrentMapLevel.ToLower.Replace(" ", "_").Replace(".", "")
+                Presence_LargeImageName = CurrentMapLevelFileName
                 Presence_LargeImageText = CurrentMapLevel
                 Presence_SmallImageName = Default_LargeImageName ' When a map is show, icon should be moved to small
                 Presence_SmallImageText = Default_LargeImageText ' When a map is show, icon should be moved to small
