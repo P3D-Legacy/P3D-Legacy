@@ -78,7 +78,7 @@ Public Class Presence
         Dim ShouldUpdate As Boolean = False
 
         Dim CurrentScreen As String = Core.CurrentScreen.ToString().Replace("P3D.", "")
-        Dim MenuScreens() As String = {"NewMainMenuScreen", "PauseScreen", "PressStartScreen", "JoinServerScreen", "NewMenuScreen", "AddServerScreen", "ConnectScreen", "NewTrainerScreen", "GameJolt.LogInScreen", "PartyScreen", "NewOptionScreen", "SaveScreen", "TransitionScreen"}
+        Dim MenuScreens() As String = {"NewMainMenuScreen", "PauseScreen", "PressStartScreen", "JoinServerScreen", "NewMenuScreen", "AddServerScreen", "ConnectScreen", "NewTrainerScreen", "GameJolt.LogInScreen", "PartyScreen", "NewOptionScreen", "SaveScreen", "TransitionScreen", "SplashScreen"}
         Dim PokedexScreens() As String = {"PokedexSelectScreen", "PokedexScreen", "PokedexViewScreen", "PokedexHabitatScreen"}
         Dim BattleScreens() As String = {"BattleIntroScreen", "BattleSystem.BattleScreen"}
         Dim InventoryScreens() As String = {"NewInventoryScreen"}
