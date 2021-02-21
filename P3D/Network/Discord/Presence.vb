@@ -104,7 +104,7 @@ Public Class Presence
             APP_Details = "In " & CurrentMapLevel
             Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevelFileName: " & CurrentMapLevelFileName)
             If CurrentMapLevelFileNames.Contains(CurrentMapLevelFileName) Then
-                APP_LargeImageName = CurrentMapLevel.ToLower.Replace(" ", "_")
+                APP_LargeImageName = CurrentMapLevel.ToLower.Replace(" ", "_").Replace(".", "")
                 APP_LargeImageText = CurrentMapLevel
                 APP_SmallImageName = "default" ' Defaults - DO NOT CHANGE
                 APP_SmallImageText = "Pokemon 3D" ' Defaults - DO NOT CHANGE
