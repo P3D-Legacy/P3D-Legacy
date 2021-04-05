@@ -104,9 +104,7 @@ Public Class Presence
             CurrentMapLevelFileNames.Add(Path.GetFileName(RPC_Image).Replace(".png", "").Replace(".jpg", "").Replace(".jpeg", ""))
         Next
 
-        If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-            CurrentMapLevel = Screen.Level.MapName
-        End If
+        CurrentMapLevel = GetCurrentMapLevel()
 
         Logger.Log(Logger.LogTypes.Debug, "Presence.vb: PreviousScreen: " & PreviousScreen)
         Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentScreen: " & CurrentScreen)
@@ -118,7 +116,7 @@ Public Class Presence
             If CurrentMapLevel <> PreviousMapLevel Then
                 PreviousMapLevel = CurrentMapLevel
             End If
-            CurrentMapLevelFileName = CurrentMapLevel.ToLower.Replace(" ", "_").Replace(".", "")
+            CurrentMapLevelFileName = GetCurrentMapLevelFileName()
             If CurrentMapLevel = "Pokemon Center" Or CurrentMapLevel = "Pokemon Mart" Then
                 CurrentMapLevel = "a " & CurrentMapLevel
             End If
@@ -174,5 +172,16 @@ Public Class Presence
         End If
 
     End Sub
+
+    Public Function GetCurrentMapLevel() As String
+        If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+            Return Screen.Level.MapName
+        End If
+        Return ""
+    End Function
+
+    Public Function GetCurrentMapLevelFileName() As String
+        Return GetCurrentMapLevel.ToLower.Replace(" ", "_").Replace(".", "").Replace("'", "")
+    End Function
 
 End Class
