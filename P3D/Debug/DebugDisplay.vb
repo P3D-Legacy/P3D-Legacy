@@ -52,8 +52,8 @@ Public Class DebugDisplay
             If Core.GameOptions.DiscordRPCEnabled = True Then
                 If Screen.Camera IsNot Nothing Then
                     If Screen.Camera.Name = "Overworld" Then
-                        s &= Environment.NewLine & "Level.MapName: " & Screen.Level.MapName
-                        s &= Environment.NewLine & "Level.MapName File Name: " & Screen.Level.MapName.ToLower.Replace(" ", "_").Replace(".", "")
+                        s &= Environment.NewLine & "Level.MapName: " & DiscordPresence.GetCurrentMapLevel
+                        s &= Environment.NewLine & "Level.MapName File Name: " & DiscordPresence.GetCurrentMapLevelFileName
                     End If
                 End If
                 s &= Environment.NewLine & "DiscordRPCEnabled: " & Core.GameOptions.DiscordRPCEnabled
