@@ -15,12 +15,24 @@ Public Class Presence
     Private PreviousScreen As String = ""
     Private PreviousMapLevel As String = ""
     Private StartTimestamp As Long = Nothing
+    Dim MapLevelFiles As New List(Of String)
 
     Public Sub Initialize()
+
+        ' Checking valid filenames, in directory. These files also needs to be uploaded to the application
+        ' https://discord.com/developers/applications/*APPLICATION_ID_HERE*/rich-presence/assets
+        ' DanielRTRD has access here, ask if you need access!
+        For Each RPC_Image In Directory.GetFiles(GameController.GamePath & "\Content\DiscordRPC\")
+            MapLevelFiles.Add(Path.GetFileName(RPC_Image).Replace(".png", "").Replace(".jpg", "").Replace(".jpeg", ""))
+            'Logger.Log(Logger.LogTypes.Debug, "Presence.vb: Adding file to MapLevelFiles: '" & RPC_Image & "'")
+        Next
+
+        ' Start Discord
         If Discord_App_ID IsNot Nothing And Environment.Is64BitProcess = False Then
             Discord_Initialize(Discord_App_ID, Handlers, 1, "")
             Update()
             StartTimestamp = CLng(DateTime.UtcNow.Subtract(New DateTime(1970, 1, 1)).TotalMilliseconds)
+            Logger.Log(Logger.LogTypes.Message, "Presence.vb: Discord RPC Initialized!")
         End If
     End Sub
 
@@ -95,22 +107,14 @@ Public Class Presence
         Dim InventoryScreens() As String = {"NewInventoryScreen"}
         Dim CurrentMapLevel As String = ""
         Dim CurrentMapLevelFileName As String = ""
-        Dim CurrentMapLevelFileNames As New List(Of String)
-
-        ' Checking valid filenames, in directory. These files also needs to be uploaded to the application
-        ' https://discord.com/developers/applications/*APPLICATION_ID_HERE*/rich-presence/assets
-        ' DanielRTRD has access here, ask if you need access!
-        For Each RPC_Image In Directory.GetFiles(GameController.GamePath & "\Content\DiscordRPC\")
-            CurrentMapLevelFileNames.Add(Path.GetFileName(RPC_Image).Replace(".png", "").Replace(".jpg", "").Replace(".jpeg", ""))
-        Next
 
         CurrentMapLevel = GetCurrentMapLevel()
 
-        Logger.Log(Logger.LogTypes.Debug, "Presence.vb: PreviousScreen: " & PreviousScreen)
-        Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentScreen: " & CurrentScreen)
+        'Logger.Log(Logger.LogTypes.Debug, "Presence.vb: PreviousScreen: " & PreviousScreen)
+        'Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentScreen: " & CurrentScreen)
 
-        Logger.Log(Logger.LogTypes.Debug, "Presence.vb: PreviousMapLevel: " & PreviousMapLevel)
-        Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevel: " & CurrentMapLevel)
+        'Logger.Log(Logger.LogTypes.Debug, "Presence.vb: PreviousMapLevel: " & PreviousMapLevel)
+        'Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevel: " & CurrentMapLevel)
 
         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             If CurrentMapLevel <> PreviousMapLevel Then
@@ -121,8 +125,8 @@ Public Class Presence
                 CurrentMapLevel = "a " & CurrentMapLevel
             End If
             Presence_Details = "In " & CurrentMapLevel
-            Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevelFileName: " & CurrentMapLevelFileName)
-            If CurrentMapLevelFileNames.Contains(CurrentMapLevelFileName) Then
+            Logger.Log(Logger.LogTypes.Debug, "Presence.vb: CurrentMapLevelFileName: '" & CurrentMapLevelFileName & "'")
+            If MapLevelFiles.Contains(CurrentMapLevelFileName) Then
                 Presence_LargeImageName = CurrentMapLevelFileName
                 Presence_LargeImageText = CurrentMapLevel
                 Presence_SmallImageName = Default_LargeImageName ' When a map is show, icon should be moved to small
