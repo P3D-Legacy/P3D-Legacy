@@ -14,6 +14,7 @@
     Public ForceMusic As Boolean = False
     Public MaxOffsetLevel As Integer = 0
     Public UpdateDisabled As Boolean = False
+    Public DiscordRPCEnabled As Boolean = True
     Public Extras As New List(Of String)
 
     Public Sub LoadOptions()
@@ -109,6 +110,8 @@
                         End If
                     Case "updatedisabled"
                         UpdateDisabled = CBool(value)
+                    Case "discordrpcenabled"
+                        Me.DiscordRPCEnabled = CBool(value)
                 End Select
             End If
         Next
@@ -153,6 +156,7 @@
                 "ForceMusic|" & Me.ForceMusic.ToNumberString() & Environment.NewLine &
                 "MaxOffsetLevel|" & Me.MaxOffsetLevel.ToString() & Environment.NewLine &
                 "UpdateDisabled|" & Me.UpdateDisabled.ToNumberString() & Environment.NewLine &
+                "DiscordRPCEnabled|" & Me.DiscordRPCEnabled.ToNumberString() & Environment.NewLine &
                 "Extras|" & String.Join(";", Me.Extras)
 
             File.WriteAllText(GameController.GamePath & "\Save\options.dat", Data)
@@ -183,6 +187,7 @@
             "WindowSize|1200,680" & Environment.NewLine &
             "ForceMusic|0" & Environment.NewLine &
             "MaxOffsetLevel|0" & Environment.NewLine &
+            "DiscordRPCEnabled|1" & Environment.NewLine &
             "UpdateDisabled|0" & Environment.NewLine &
             "Extras|"
 

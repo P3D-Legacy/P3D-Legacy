@@ -51,6 +51,8 @@
 
     Public OffsetMaps As New Dictionary(Of String, List(Of List(Of Entity)))
 
+    Public DiscordPresence As New Presence
+
     Public Sub Initialize(ByVal gameReference As GameController)
         GameInstance = gameReference
 
@@ -101,6 +103,8 @@
         Else
             SetScreen(New SplashScreen(GameInstance))
         End If
+
+        DiscordPresence.Initialize()
     End Sub
 
     Public Sub LoadContent()
@@ -251,6 +255,9 @@
         End If
 
         CurrentScreen.ChangeTo()
+
+        DiscordPresence.Update()
+
     End Sub
 
     Public Function GetMiddlePosition(ByVal OffsetFull As Size) As Vector2

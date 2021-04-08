@@ -316,3 +316,4 @@ p3d/GameModes/
 p3d/save/
 p3d/screenshots/
 p3d/log.dat
+!p3d/discord-rpc.dll
