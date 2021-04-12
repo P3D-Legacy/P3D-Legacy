@@ -1,14 +1,15 @@
-﻿Public Class Localization
+﻿Imports Newtonsoft.Json.Linq
 
-    Public Shared LanguageSuffix As String = "en"
+Public Class Localization
+    Public Shared CurrentLanguage As String = "en"
     Public Shared LocalizationTokens As Dictionary(Of String, Token) = New Dictionary(Of String, Token)
 
-    Public Shared Sub Load(ByVal LanguageSuffix As String)
+    Public Shared Sub Load(ByVal CurrentLanguage As String)
         LocalizationTokens.Clear()
 
-        Localization.LanguageSuffix = LanguageSuffix
+        Localization.CurrentLanguage = CurrentLanguage
 
-        Logger.Debug("Loaded language [" & LanguageSuffix & "]")
+        Logger.Debug("Loaded language [" & CurrentLanguage & "]")
 
         LoadTokenFile(GameMode.DefaultLocalizationsPath, False)
 
@@ -43,66 +44,75 @@
     End Sub
 
     Private Shared Sub LoadTokenFile(ByVal path As String, ByVal IsGameModeFile As Boolean)
-        Dim fullpath As String = GameController.GamePath & path
-        Dim tokenFullpath As String = fullpath & "Tokens_" & LanguageSuffix & ".dat"
+        Dim FullPath As String = GameController.GamePath & path
+        Dim LocaleFilePath As String = FullPath & CurrentLanguage & ".json"
+        Dim DefaultLanguagePath As String = FullPath & "en.json"
 
-        Logger.Debug("Token filepath: " & tokenFullpath)
+        Logger.Debug("Token filepath: " & LocaleFilePath)
 
-        If System.IO.Directory.GetFiles(fullpath).Count > 0 Then
-            If System.IO.File.Exists(tokenFullpath) = False Then
-                Logger.Debug("Did NOT find token file for suffix: " & LanguageSuffix)
-                LanguageSuffix = "en"
+        If System.IO.Directory.GetFiles(FullPath).Count > 0 Then
+            If System.IO.File.Exists(LocaleFilePath) = False Then
+                Logger.Debug("Did NOT find token file for suffix: " & CurrentLanguage)
+                CurrentLanguage = "en"
             End If
 
-            If System.IO.File.Exists(tokenFullpath) = True Then
-                Logger.Debug("Found token file for suffix: " & LanguageSuffix)
-                Dim TokensFile() As String = System.IO.File.ReadAllLines(fullpath & "Tokens_" & LanguageSuffix & ".dat")
-                Dim splitIdx As Integer = 0
-                For Each TokenLine As String In TokensFile
-                    If TokenLine.Contains(",") = True Then
-                        splitIdx = TokenLine.IndexOf(",")
-
-                        Dim TokenName As String = TokenLine.Substring(0, splitIdx)
-                        Dim TokenContent As String = ""
-                        If TokenLine.Length > TokenName.Length + 1 Then
-                            TokenContent = TokenLine.Substring(splitIdx + 1, TokenLine.Length - splitIdx - 1)
-                        End If
-
-                        If LocalizationTokens.ContainsKey(TokenName) = False Then
-                            LocalizationTokens.Add(TokenName, New Token(TokenContent, LanguageSuffix, IsGameModeFile))
-                        End If
+            If System.IO.File.Exists(LocaleFilePath) = True Then
+                Logger.Debug("Found token file for suffix: " & CurrentLanguage)
+                Dim TokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(DefaultLanguagePath))
+                Dim SelectedLanguage As String = TokensFile.SelectToken("language_name").ToString
+                Logger.Debug("Loaded Language file and its name is: " & SelectedLanguage)
+                For Each tokens In TokensFile.SelectToken("tokens").Values
+                    If tokens.HasValues Then
+                        For Each token In tokens
+                            If token.HasValues Then
+                                For Each subtoken In token
+                                    AddToken(token.Path, token.First.ToString, SelectedLanguage, IsGameModeFile)
+                                Next
+                            End If
+                            AddToken(token.Path, token.First.ToString, SelectedLanguage, IsGameModeFile)
+                        Next
+                    Else
+                        AddToken(tokens.Path, tokens.First.ToString, SelectedLanguage, IsGameModeFile)
                     End If
                 Next
             End If
 
-            If Not LanguageSuffix = "en" Then
-                If System.IO.File.Exists(fullpath & "Tokens_en.dat") Then
-                    Dim FallbackTokensFile() As String = System.IO.File.ReadAllLines(fullpath & "Tokens_en.dat")
-                    Dim splitIdx As Integer = 0
-                    For Each TokenLine As String In FallbackTokensFile
-                        If TokenLine.Contains(",") = True Then
-                            splitIdx = TokenLine.IndexOf(",")
-
-                            Dim TokenName As String = TokenLine.Substring(0, splitIdx)
-                            Dim TokenContent As String = ""
-                            If TokenLine.Length > TokenName.Length + 1 Then
-                                TokenContent = TokenLine.Substring(splitIdx + 1, TokenLine.Length - splitIdx - 1)
-                            End If
-
-                            If LocalizationTokens.ContainsKey(TokenName) = False Then
-                                LocalizationTokens.Add(TokenName, New Token(TokenContent, "en", IsGameModeFile))
-                            End If
+            If CurrentLanguage IsNot "en" Then
+                If System.IO.File.Exists(DefaultLanguagePath) Then
+                    Dim FallbackTokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(DefaultLanguagePath))
+                    Dim SelectedLanguage As String = FallbackTokensFile.SelectToken("language_name").ToString
+                    Logger.Debug("Loaded Fallback Language file and its name is: " & SelectedLanguage)
+                    For Each tokens In FallbackTokensFile.SelectToken("tokens").Values
+                        If tokens.HasValues Then
+                            For Each token In tokens
+                                If token.HasValues Then
+                                    For Each subtoken In token
+                                        AddToken(token.Path, token.First.ToString, SelectedLanguage, IsGameModeFile)
+                                    Next
+                                End If
+                                AddToken(token.Path, token.First.ToString, SelectedLanguage, IsGameModeFile)
+                            Next
+                        Else
+                            AddToken(tokens.Path, tokens.First.ToString, SelectedLanguage, IsGameModeFile)
                         End If
                     Next
                 End If
             End If
         End If
+
+        For Each lt In LocalizationTokens
+            If lt.Key.StartsWith("press_start") Then
+                Logger.Debug(lt.Key.ToString)
+            End If
+        Next
+
     End Sub
 
     Public Shared Function GetString(ByVal s As String, Optional ByVal DefaultValue As String = "") As String
         Dim resultToken As Token = Nothing
-        s = s.Replace(" ", "_").Replace(".", "").Replace("'", "").ToLower() ' Lets format the string before finding it
+        s = s.Replace(" ", "_").Replace("'", "").ToLower() ' Lets format the string before finding it
         If LocalizationTokens.ContainsKey(s) = True Then
+            Logger.Debug("GetString: " + s)
             If LocalizationTokens.TryGetValue(s, resultToken) = False Then
                 Return s
             Else
@@ -122,6 +132,18 @@
         End If
     End Function
 
+    Private Shared Function GetTokenName(ByVal s As String) As String
+        s = s.Replace("tokens.", "").ToLower() ' Lets format the string before finding it
+        Return s
+    End Function
+
+    Private Shared Function AddToken(ByVal key As String, ByVal value As String, ByVal lang As String, ByVal gmfile As Boolean) As String
+        key = GetTokenName(key)
+        If LocalizationTokens.ContainsKey(key) = False Then
+            LocalizationTokens.Add(key, New Token(value, lang, gmfile))
+        End If
+    End Function
+
     Public Shared Function TokenExists(ByVal TokenName As String) As Boolean
         Return LocalizationTokens.ContainsKey(TokenName)
     End Function
@@ -131,13 +153,13 @@ End Class
 Public Class Token
 
     Private _TokenContent As String = ""
-    Private _TokenLanguageSuffix As String = "en"
+    Private _TokenCurrentLanguage As String = "en"
     Private _IsGameModeToken As Boolean = False
 
-    Public Sub New(ByVal TokenContent As String, ByVal TokenLanguageSuffix As String, ByVal IsGameModeToken As Boolean)
+    Public Sub New(ByVal TokenContent As String, ByVal TokenCurrentLanguage As String, ByVal IsGameModeToken As Boolean)
         Me._IsGameModeToken = IsGameModeToken
         Me._TokenContent = TokenContent
-        Me._TokenLanguageSuffix = TokenLanguageSuffix
+        Me._TokenCurrentLanguage = TokenCurrentLanguage
     End Sub
 
     Public Property TokenContent() As String
@@ -149,12 +171,12 @@ Public Class Token
         End Set
     End Property
 
-    Public Property TokenLanguageSuffix() As String
+    Public Property TokenCurrentLanguage() As String
         Get
-            Return Me._TokenLanguageSuffix
+            Return Me._TokenCurrentLanguage
         End Get
         Set(value As String)
-            Me._TokenLanguageSuffix = value
+            Me._TokenCurrentLanguage = value
         End Set
     End Property
 
