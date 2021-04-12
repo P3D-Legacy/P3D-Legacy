@@ -136,12 +136,12 @@ Public Class Localization
         Return s
     End Function
 
-    Private Shared Function AddToken(ByVal key As String, ByVal value As String, ByVal lang As String, ByVal gmfile As Boolean) As String
+    Private Shared Sub AddToken(ByVal key As String, ByVal value As String, ByVal lang As String, ByVal gmfile As Boolean) As String
         key = GetTokenName(key)
         If LocalizationTokens.ContainsKey(key) = False Then
             LocalizationTokens.Add(key, New Token(value, lang, gmfile))
         End If
-    End Function
+    End Sub
 
     Public Shared Function TokenExists(ByVal TokenName As String) As Boolean
         Return LocalizationTokens.ContainsKey(TokenName)
