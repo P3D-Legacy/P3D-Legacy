@@ -172,7 +172,7 @@ Public Class Logger
             Dim specs As String = "Operating system: " & My.Computer.Info.OSFullName & " [" & My.Computer.Info.OSVersion & "]" & Environment.NewLine &
                 "Core architecture: " & architectureString & Environment.NewLine &
                 "System time: " & My.Computer.Clock.LocalTime.ToString() & Environment.NewLine &
-                "System language: " & Globalization.CultureInfo.CurrentCulture.EnglishName & "(" & Globalization.CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName & ") / Loaded game language: " & Localization.LanguageSuffix & Environment.NewLine &
+                "System language: " & Globalization.CultureInfo.CurrentCulture.EnglishName & "(" & Globalization.CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName & ") / Loaded game language: " & Localization.CurrentLanguage & Environment.NewLine &
                 "Decimal separator: " & GameController.DecSeparator & Environment.NewLine &
                 "Available physical memory: " & Math.Round((My.Computer.Info.TotalPhysicalMemory / Math.Pow(1024, 3)), 2).ToString() & " Gigabyte" & Environment.NewLine &
                 "Available logical processors: " & Environment.ProcessorCount.ToString()

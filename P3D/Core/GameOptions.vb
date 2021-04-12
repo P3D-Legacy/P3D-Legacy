@@ -142,7 +142,7 @@
                 "ShowGUI|" & Me.ShowGUI.ToNumberString() & Environment.NewLine &
                 "GraphicStyle|" & Me.GraphicStyle.ToString() & Environment.NewLine &
                 "LoadOffsetMaps|" & Me.LoadOffsetMaps.ToString() & Environment.NewLine &
-                "Language|" & Localization.LanguageSuffix & Environment.NewLine &
+                "Language|" & Localization.CurrentLanguage & Environment.NewLine &
                 "ViewBobbing|" & Me.ViewBobbing.ToNumberString() & Environment.NewLine &
                 "GamePadEnabled|" & Me.GamePadEnabled.ToNumberString() & Environment.NewLine &
                 "LightningEnabled|" & Me.LightingEnabled.ToNumberString() & Environment.NewLine &
