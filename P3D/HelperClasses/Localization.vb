@@ -48,19 +48,19 @@ Public Class Localization
         Dim LocaleFilePath As String = FullPath & CurrentLanguage & ".json"
         Dim DefaultLanguagePath As String = FullPath & "en.json"
 
-        Logger.Debug("Token filepath: " & LocaleFilePath)
+        Logger.Debug("Localization.vb: LocaleFilePath: " & LocaleFilePath)
 
         If System.IO.Directory.GetFiles(FullPath).Count > 0 Then
             If System.IO.File.Exists(LocaleFilePath) = False Then
-                Logger.Debug("Did NOT find token file for suffix: " & CurrentLanguage)
+                Logger.Debug("Localization.vb: Could not find file for: " & CurrentLanguage)
                 CurrentLanguage = "en"
             End If
 
             If System.IO.File.Exists(LocaleFilePath) = True Then
-                Logger.Debug("Found token file for suffix: " & CurrentLanguage)
+                Logger.Debug("Localization.vb: Found file for suffix: " & CurrentLanguage)
                 Dim TokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(DefaultLanguagePath))
                 Dim SelectedLanguage As String = TokensFile.SelectToken("language_name").ToString
-                Logger.Debug("Loaded Language file and its name is: " & SelectedLanguage)
+                Logger.Debug("Localization.vb: Loaded Language file and its name is: " & SelectedLanguage)
                 For Each tokens In TokensFile.SelectToken("tokens").Values
                     If tokens.HasValues Then
                         For Each token In tokens
@@ -81,7 +81,7 @@ Public Class Localization
                 If System.IO.File.Exists(DefaultLanguagePath) Then
                     Dim FallbackTokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(DefaultLanguagePath))
                     Dim SelectedLanguage As String = FallbackTokensFile.SelectToken("language_name").ToString
-                    Logger.Debug("Loaded Fallback Language file and its name is: " & SelectedLanguage)
+                    Logger.Debug("Localization.vb: Loaded Fallback Language file and its name is: " & SelectedLanguage)
                     For Each tokens In FallbackTokensFile.SelectToken("tokens").Values
                         If tokens.HasValues Then
                             For Each token In tokens
@@ -102,7 +102,7 @@ Public Class Localization
 
         For Each lt In LocalizationTokens
             If lt.Key.StartsWith("press_start") Then
-                Logger.Debug(lt.Key.ToString)
+                Logger.Debug("Localization.vb: " & lt.Key.ToString)
             End If
         Next
 
@@ -112,7 +112,6 @@ Public Class Localization
         Dim resultToken As Token = Nothing
         s = s.Replace(" ", "_").Replace("'", "").ToLower() ' Lets format the string before finding it
         If LocalizationTokens.ContainsKey(s) = True Then
-            Logger.Debug("GetString: " + s)
             If LocalizationTokens.TryGetValue(s, resultToken) = False Then
                 Return s
             Else
