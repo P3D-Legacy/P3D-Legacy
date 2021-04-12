@@ -106,6 +106,9 @@
     <Reference Include="NAudio.Vorbis, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.Vorbis.1.2.0\lib\net45\NAudio.Vorbis.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NVorbis, Version=0.10.0.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NVorbis.0.10.1\lib\net45\NVorbis.dll</HintPath>
     </Reference>
@@ -27989,6 +27992,7 @@
     <Content Include="credits.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Compile Include="HelperClasses\Localization.vb" />
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
     <Compile Include="Pokemon\Abilities\PsychicSurge.vb" />
     <Compile Include="Pokemon\Abilities\MistySurge.vb" />
@@ -29465,6 +29469,12 @@
     <Content Include="Content\Localization\Tokens_no.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Localization\en.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Localization\no.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Pokemon\Data\172_spiky-eared.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -29599,7 +29609,7 @@
     <Compile Include="HelperClasses\Camera.vb" />
     <Compile Include="HelperClasses\GameMessage.vb" />
     <Compile Include="HelperClasses\LoadingDots.vb" />
-    <Compile Include="HelperClasses\Localization.vb" />
+    <Compile Include="HelperClasses\Localization_rev1.vb" />
     <Compile Include="HelperClasses\PlayerStatistics.vb" />
     <Compile Include="HelperClasses\Size.vb" />
     <Compile Include="HelperClasses\StringHelper.vb" />
@@ -31189,4 +31199,9 @@
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)lib\tools\PostBuild.exe</PostBuildEvent>
   </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties content_4localization_4no_1json__JsonSchema="https://beaujs.com/schema.json" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
