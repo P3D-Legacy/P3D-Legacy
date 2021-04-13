@@ -20,6 +20,7 @@
     Dim Muted As Integer = 0
     Dim GamePadEnabled As Boolean = True
     Dim PreferMultiSampling As Boolean = True
+    Dim Language As Integer = 0
 
     Dim savedOptions As Boolean = True
 
@@ -93,6 +94,7 @@
         Me.ViewBobbing = Core.GameOptions.ViewBobbing
         Me.GamePadEnabled = Core.GameOptions.GamePadEnabled
         Me.PreferMultiSampling = Core.GraphicsManager.PreferMultiSampling
+        Me.Language = Localization.GetAvailableLanguagesList.Where(Function(x) x.Value = Localization.GetLanguageName(Core.GameOptions.Language)).Select(Function(y) y.Key).FirstOrDefault()
     End Sub
 
 
@@ -348,12 +350,13 @@
 
         Select Case Me.ScreenIndex
             Case 0 ' Main Options menu.
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 80), 1, 64, Localization.Translate("option.game"), AddressOf SwitchToGame))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 80), 1, 64, Localization.Translate("option.graphics"), AddressOf SwitchToGraphics))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 80), 1, 64, Localization.Translate("option.battle"), AddressOf SwitchToBattle))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 167), 1, 64, Localization.Translate("option.controls"), AddressOf SwitchToControls))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 167), 1, 64, Localization.Translate("option.audio"), AddressOf SwitchToVolume))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 167), 1, 64, Localization.Translate("option.advanced"), AddressOf SwitchToAdvanced))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 60), 1, 64, Localization.Translate("option.game"), AddressOf SwitchToGame))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 60), 1, 64, Localization.Translate("option.graphics"), AddressOf SwitchToGraphics))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 60), 1, 64, Localization.Translate("option.battle"), AddressOf SwitchToBattle))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 147), 1, 64, Localization.Translate("option.controls"), AddressOf SwitchToControls))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 147), 1, 64, Localization.Translate("option.audio"), AddressOf SwitchToVolume))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 147), 1, 64, Localization.Translate("option.advanced"), AddressOf SwitchToAdvanced))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 237), 1, 64, Localization.Translate("option.language"), AddressOf SwitchToLanguage))
 
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.save"), AddressOf Apply))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.close"), AddressOf Close))
@@ -424,6 +427,12 @@
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 100), 3, 64, Localization.Translate("option.reset"), AddressOf Reset))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.back"), AddressOf SwitchToMain))
 
+            Case 7 ' "Language" from the Options menu.
+                Dim d = Localization.GetAvailableLanguagesList
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 100), 400, Localization.Translate("option.language"), Me.Language, 0, d.Count - 1, AddressOf ChangeLanguage, d))
+
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.back"), AddressOf SwitchToMain))
+
         End Select
 
         '_cursorPosition = ControlList(0)._position
@@ -457,6 +466,7 @@
         Me.Muted = 0
         Me.GamePadEnabled = True
         Me.PreferMultiSampling = True
+        Me.Language = 0
         MusicManager.Muted = CBool(Me.Muted)
         SoundManager.Muted = CBool(Me.Muted)
     End Sub
@@ -485,6 +495,12 @@
             Core.GameOptions.LoadOffsetMaps = 101 - Me.LoadOffsetMaps
         End If
         Core.GameOptions.ViewBobbing = Me.ViewBobbing
+        Dim NewLanguage As String = Localization.GetLanguageISO(Localization.GetAvailableLanguagesList.Item(Me.Language))
+        If Core.GameOptions.Language IsNot NewLanguage Then
+            Core.GameOptions.Language = NewLanguage
+            Logger.Debug("NewOptionScreen.vb Changed Language: " & NewLanguage)
+            Localization.Load(NewLanguage)
+        End If
         Core.GameOptions.SaveOptions()
 
         SoundManager.PlaySound("save")
@@ -535,6 +551,11 @@
 
     Private Sub SwitchToAdvanced()
         Me._nextIndex = 6
+        Me._pageClosing = True
+    End Sub
+
+    Private Sub SwitchToLanguage()
+        Me._nextIndex = 7
         Me._pageClosing = True
     End Sub
 
@@ -655,6 +676,13 @@
         SoundManager.Muted = CBool(Me.Muted)
         MusicManager.MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
+    End Sub
+
+#End Region
+
+#Region "SettingsLanguage"
+    Private Sub ChangeLanguage(ByVal c As ScrollBar)
+        Me.Language = c.Value
     End Sub
 
 #End Region
