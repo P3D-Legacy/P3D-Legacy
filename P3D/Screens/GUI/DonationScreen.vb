@@ -68,8 +68,8 @@
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2) - 180, 100), Color.Black)
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2) - 285, 0, 570, 57), New Color(56, 56, 56))
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("donation_donators") & ": ", New Vector2(CInt(Core.windowSize.Width / 2) - FontManager.MainFont.MeasureString(Localization.GetString("donation_donators") & ":").X / 2, 20), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("donation_close"), New Vector2(CInt(Core.windowSize.Width / 2) - FontManager.MainFont.MeasureString(Localization.GetString("donation_close")).X / 2, 640), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("donation_donators") & ": ", New Vector2(CInt(Core.windowSize.Width / 2) - FontManager.MainFont.MeasureString(Localization.Translate("donation_donators") & ":").X / 2, 20), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("donation_close"), New Vector2(CInt(Core.windowSize.Width / 2) - FontManager.MainFont.MeasureString(Localization.Translate("donation_close")).X / 2, 640), Color.White)
     End Sub
 
 End Class

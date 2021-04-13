@@ -2113,7 +2113,7 @@ Public Class Pokemon
         Else
             If Me.NickName = "" Then
                 If Localization.TokenExists("pokemon_name_" & Me.Name) = True Then
-                    Return Localization.GetString("pokemon_name_" & Me.Name)
+                    Return Localization.Translate("pokemon_name_" & Me.Name)
                 Else
                     Return Me.Name
                 End If
@@ -2128,7 +2128,7 @@ Public Class Pokemon
     ''' </summary>
     Public Function GetName() As String
         If Localization.TokenExists("pokemon_name_" & Me.Name) = True Then
-            Return Localization.GetString("pokemon_name_" & Me.Name)
+            Return Localization.Translate("pokemon_name_" & Me.Name)
         Else
             Return Me.Name
         End If

@@ -25,7 +25,7 @@
 
         Me.mainTexture = TextureManager.GetTexture("GUI\Menus\Menu")
         Me.menuTexture = TextureManager.GetTexture("GUI\Menus\SaveBook")
-        ChooseBox.Show({Localization.GetString("global_yes"), Localization.GetString("global_no")}, 0, {})
+        ChooseBox.Show({Localization.Translate("global_yes"), Localization.Translate("global_no")}, 0, {})
 
         SaveGameHelpers.ResetSaveCounter()
     End Sub
@@ -46,7 +46,7 @@
             .Draw(menuTexture, New Rectangle(Delta_X, Delta_Y, 700, 440), Color.White)
 
             If saveSessionFailed = True Then
-                .DrawString(FontManager.InGameFont, Localization.GetString("save_saving_failed"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.Red)
+                .DrawString(FontManager.InGameFont, Localization.Translate("save_saving_failed"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.Red)
 
                 If Core.GameOptions.Extras.Contains("Backup Save Feature") Then
                     .DrawString(FontManager.MiniFont,
@@ -84,9 +84,9 @@
 
                 Dim text As String = String.Empty
                 If ControllerHandler.IsConnected() Then
-                    text = Localization.GetString("save_press_continue_1") & "      " & Localization.GetString("save_press_continue_2")
+                    text = Localization.Translate("save_press_continue_1") & "      " & Localization.Translate("save_press_continue_2")
                 Else
-                    text = Localization.GetString("save_press_continue_1") & " " & KeyBindings.BackKey1.ToString() & " " & Localization.GetString("save_press_continue_2")
+                    text = Localization.Translate("save_press_continue_1") & " " & KeyBindings.BackKey1.ToString() & " " & Localization.Translate("save_press_continue_2")
                 End If
 
                 Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
@@ -94,22 +94,22 @@
                 GetFontRenderer().DrawString(FontManager.MiniFont, text, New Vector2(Delta_X + 610 - textSize.X / 2.0F, Delta_Y + 350 - textSize.Y / 2.0F), Color.DarkBlue)
 
                 If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonB"), New Rectangle(CInt(Delta_X + 610 - textSize.X / 2 + FontManager.MiniFont.MeasureString(Localization.GetString("save_press_continue_1") & " ").X), CInt(Delta_Y + 350 - textSize.Y / 2), 20, 20), Color.White)
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonB"), New Rectangle(CInt(Delta_X + 610 - textSize.X / 2 + FontManager.MiniFont.MeasureString(Localization.Translate("save_press_continue_1") & " ").X), CInt(Delta_Y + 350 - textSize.Y / 2), 20, 20), Color.White)
                 End If
 
             Else
                 If ready = True Then
-                    .DrawString(FontManager.InGameFont, Localization.GetString("save_saved_game"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.DarkBlue)
+                    .DrawString(FontManager.InGameFont, Localization.Translate("save_saved_game"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.DarkBlue)
                 Else
                     If SaveGameHelpers.GameJoltSaveDone() = False And savingStarted = True Then
                         If SaveGameHelpers.StartedDownloadCheck = True Then
-                            .DrawString(FontManager.InGameFont, Localization.GetString("save_validating") & LoadingDots.Dots, New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
+                            .DrawString(FontManager.InGameFont, Localization.Translate("save_validating") & LoadingDots.Dots, New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
                         Else
-                            .DrawString(FontManager.InGameFont, Localization.GetString("save_saving") & LoadingDots.Dots, New Vector2(Delta_X + 77, Delta_Y + 50), Color.Black)
+                            .DrawString(FontManager.InGameFont, Localization.Translate("save_saving") & LoadingDots.Dots, New Vector2(Delta_X + 77, Delta_Y + 50), Color.Black)
                         End If
                     Else
-                        .DrawString(FontManager.InGameFont, Localization.GetString("save_title_1"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
-                        .DrawString(FontManager.InGameFont, Localization.GetString("save_title_2"), New Vector2(Delta_X + 90, Delta_Y + 80), Color.Black)
+                        .DrawString(FontManager.InGameFont, Localization.Translate("save_title_1"), New Vector2(Delta_X + 90, Delta_Y + 50), Color.Black)
+                        .DrawString(FontManager.InGameFont, Localization.Translate("save_title_2"), New Vector2(Delta_X + 90, Delta_Y + 80), Color.Black)
                     End If
                 End If
 
@@ -123,7 +123,7 @@
                     End If
                 Next
 
-                .DrawString(FontManager.MiniFont, Localization.GetString("global_player_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.GetString("global_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.GetString("global_money") & ": " & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.GetString("global_play_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
+                .DrawString(FontManager.MiniFont, Localization.Translate("global_player_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.Translate("global_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.Translate("global_money") & ": " & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.Translate("global_play_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
             End If
         End With
         Screen.ChooseBox.Draw(New Vector2(Delta_X + 115, Delta_Y + 155), False, 1.5F)

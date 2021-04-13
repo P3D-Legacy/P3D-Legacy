@@ -108,7 +108,7 @@ Public Class Localization
 
     End Sub
 
-    Public Shared Function GetString(ByVal s As String, Optional ByVal DefaultValue As String = "") As String
+    Public Shared Function Translate(ByVal s As String, Optional ByVal DefaultValue As String = "") As String
         Dim resultToken As Token = Nothing
         s = s.Replace(" ", "_").Replace("'", "").ToLower() ' Lets format the string before finding it
         If LocalizationTokens.ContainsKey(s) = True Then
