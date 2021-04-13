@@ -689,7 +689,6 @@
             "lighting": "Lighting",
             "xbox_controller": "Xbox Controller support",
             "screenshot": "Screenshot saved as",
-            "screenshot_failed": "Could not save screenshot",
             "fullscreen": "Fullscreen",
             "third_person": "Third person mode",
             "free_camera": "Free camera mode",
