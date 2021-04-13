@@ -617,7 +617,8 @@
             "audio_music_volume": "Music Volume",
             "audio_sound_volume": "Sound Volume",
             "audio_muted": "Muted",
-            "reset": "Reset Options"
+            "reset": "Reset Options",
+            "language": "Language"
         },
         "save": {
             "title_1": "Would you like to",

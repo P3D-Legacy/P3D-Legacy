@@ -617,7 +617,8 @@
             "audio_music_volume": "Musikk volum",
             "audio_sound_volume": "Lyd volum",
             "audio_muted": "Dempet",
-            "reset": "Nullstill alternativene"
+            "reset": "Nullstill alternativene",
+            "language": "Språk"
         },
         "save": {
             "title_1": "Vil du",
