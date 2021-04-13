@@ -632,22 +632,22 @@ Public Class PartyScreen
 
         Dim items As New List(Of String)
         If CanUseMove(p, "Fly", Badge.HMMoves.Fly) Then
-            items.Add(Localization.Translate("global.pokemon_move_fly"))
+            items.Add(Localization.Translate("pokemon.move.fly"))
         End If
         If CanUseMove(p, "Ride", Badge.HMMoves.Ride) Then
-            items.Add(Localization.Translate("global.pokemon_move_ride"))
+            items.Add(Localization.Translate("pokemon.move.ride"))
         End If
         If CanUseMove(p, "Flash", Badge.HMMoves.Flash) Then
-            items.Add(Localization.Translate("global.pokemon_move_flash"))
+            items.Add(Localization.Translate("pokemon.move.flash"))
         End If
         If CanUseMove(p, "Cut", Badge.HMMoves.Cut) Then
-            items.Add(Localization.Translate("global.pokemon_move_cut"))
+            items.Add(Localization.Translate("pokemon.move.cut"))
         End If
         If CanUseMove(p, "Teleport", -1) Then
-            items.Add(Localization.Translate("global.pokemon_move_teleport"))
+            items.Add(Localization.Translate("pokemon.move.teleport"))
         End If
         If CanUseMove(p, "Dig", -1) Then
-            items.Add(Localization.Translate("global.pokemon_move_dig"))
+            items.Add(Localization.Translate("pokemon.move.dig"))
         End If
 
         items.Add(Localization.Translate("global.back"))
@@ -709,17 +709,17 @@ Public Class PartyScreen
 
     Private Sub SelectedFieldMoveMenuItem(ByVal selectMenu As UI.SelectMenu)
         Select Case selectMenu.SelectedItem
-            Case Localization.Translate("global.pokemon_move_fly")
+            Case Localization.Translate("pokemon.move.fly")
                 UseFly()
-            Case Localization.Translate("global.pokemon_move_ride")
+            Case Localization.Translate("pokemon.move.ride")
                 UseRide()
-            Case Localization.Translate("global.pokemon_move_flash")
+            Case Localization.Translate("pokemon.move.flash")
                 UseFlash()
-            Case Localization.Translate("global.pokemon_move_cut")
+            Case Localization.Translate("pokemon.move.cut")
                 UseCut()
-            Case Localization.Translate("global.pokemon_move_teleport")
+            Case Localization.Translate("pokemon.move.teleport")
                 UseTeleport()
-            Case Localization.Translate("global.pokemon_move_dig")
+            Case Localization.Translate("pokemon.move.dig")
                 UseDig()
             Case Localization.Translate("global.back")
                 CreateNormalMenu(Localization.Translate("party_screen.field_move"))
@@ -903,7 +903,7 @@ Public Class PartyScreen
         End If
         If Screen.Level.IsDark = True Then
             Dim s As String = "version=2" & Environment.NewLine &
-                "@text.show(" & PokemonList(_index).GetDisplayName() & " " & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("global.pokemon_move_flash") & "!)" & Environment.NewLine &
+                "@text.show(" & PokemonList(_index).GetDisplayName() & " " & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("pokemon.move.flash") & "!)" & Environment.NewLine &
                 "@environment.toggledarkness" & Environment.NewLine &
                 "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
                 "@text.show(" & Localization.Translate("party_screen.flash_lit") & "!)" & Environment.NewLine &
@@ -912,7 +912,7 @@ Public Class PartyScreen
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
         Else
             Dim s As String = "version=2" & Environment.NewLine &
-                "@text.show(" & PokemonList(_index).GetDisplayName() & " " & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("global.pokemon_move_flash") & "!)" & Environment.NewLine &
+                "@text.show(" & PokemonList(_index).GetDisplayName() & " " & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("pokemon.move.flash") & "!)" & Environment.NewLine &
                 "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
                 "@text.show(" & Localization.Translate("party_screen.flash_already_lit") & "!)" & Environment.NewLine &
                 ":end"
@@ -950,7 +950,7 @@ Public Class PartyScreen
             End If
 
             PlayerStatistics.Track("Cut used", 1)
-            TextBox.Show(PokemonList(_index).GetDisplayName() & "~" & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("global.pokemon_move_cut") & "!", {}, True, False)
+            TextBox.Show(PokemonList(_index).GetDisplayName() & "~" & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("pokemon.move.cut") & "!", {}, True, False)
             PokemonList(_index).PlayCry()
             For Each e As Entity In grassEntities
                 Screen.Level.Entities.Remove(e)
@@ -998,7 +998,7 @@ Public Class PartyScreen
 
                 SoundManager.PlayPokemonCry(PokemonList(_index).Number)
 
-                TextBox.Show(PokemonList(_index).GetDisplayName() & "~" & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("global.pokemon_move_ride") & "!", {}, True, False)
+                TextBox.Show(PokemonList(_index).GetDisplayName() & "~" & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("pokemon.move.ride") & "!", {}, True, False)
                 PlayerStatistics.Track("Ride used", 1)
 
                 If Screen.Level.IsRadioOn = False OrElse GameJolt.PokegearScreen.StationCanPlay(Screen.Level.SelectedRadioStation) = False Then
@@ -1021,7 +1021,7 @@ Public Class PartyScreen
             Dim setToFirstPerson As Boolean = Not CType(Screen.Camera, OverworldCamera).ThirdPerson
 
             Dim s As String = "version=2
-                @text.show(" & PokemonList(_index).GetDisplayName() & "~" & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("global.pokemon_move_dig") & "!)
+                @text.show(" & PokemonList(_index).GetDisplayName() & "~" & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("pokemon.move.dig") & "!)
                 @level.wait(20)
                 @camera.activatethirdperson
                 @camera.reset
@@ -1066,7 +1066,7 @@ Public Class PartyScreen
             Dim yFinish As String = (Screen.Camera.Position.Y + 2.9F).ToString().ReplaceDecSeparator()
 
             Dim s As String = "version=2
-                @text.show(" & PokemonList(_index).GetDisplayName() & "~" & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("global.pokemon_move_teleport") & "!)
+                @text.show(" & PokemonList(_index).GetDisplayName() & "~" & Localization.Translate("global.used").ToLower() & " " & Localization.Translate("pokemon.move.teleport") & "!)
                 @level.wait(20)
                 @camera.activatethirdperson
                 @camera.reset
