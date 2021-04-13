@@ -296,7 +296,7 @@
 
                 DrawGradients(255)
 
-                SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("new_game_select_apperance"), New Vector2(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.Translate("new_game_select_apperance")).X, 100), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
+                SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("new_game.select_apperance"), New Vector2(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.Translate("new_game.select_apperance")).X, 100), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
 
                 For i = 0 To _sprites.Count - 1
                     Dim sprite As Texture2D = _sprites(i)

@@ -22,16 +22,16 @@
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 310), 90, 620, 420), New Color(16, 16, 16))
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 100, 600, 400), New Color(39, 39, 39))
 
-        Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("offline_game_title"), New Vector2(CSng(Core.windowSize.Width / 2 - 280), 130), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("offline_game.title"), New Vector2(CSng(Core.windowSize.Width / 2 - 280), 130), Color.White)
 
-        Dim t As String = Localization.Translate("offline_game_description")
+        Dim t As String = Localization.Translate("offline_game.description")
         t = t.CropStringToWidth(FontManager.MainFont, 450)
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - 310) + 50, 240), Color.White)
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Buttons.A, Localization.Translate("global_accept"))
-        d.Add(Buttons.B, Localization.Translate("global_cancel"))
+        d.Add(Buttons.A, Localization.Translate("global.accept"))
+        d.Add(Buttons.B, Localization.Translate("global.cancel"))
         DrawGamePadControls(d, New Vector2(CSng(Core.windowSize.Width / 2) - 140, 420))
     End Sub
 

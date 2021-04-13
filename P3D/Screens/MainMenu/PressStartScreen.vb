@@ -218,7 +218,7 @@ Public Class PressStartScreen
             GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height - textSize.Y - 50), _textColor)
 
             If ControllerHandler.IsConnected() Then
-                SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.Translate("press_start_1") & " ").X), CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
+                SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.Translate("press_start.1") & " ").X), CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
             End If
         End If
 
@@ -508,8 +508,8 @@ Public Class NewMainMenuScreen
 
         If IsCurrentScreen() Then
             If _loading Then
-                Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(Localization.Translate("global_please_wait") & "...")
-                GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.Translate("global_please_wait") & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F,
+                Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(Localization.Translate("global.please_wait") & "...")
+                GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.Translate("global.please_wait") & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F,
                                                                                                                         windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
             Else
                 DrawProfiles()
@@ -529,7 +529,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 1 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("press_start_change_to") & " " & Localization.Translate("global_male").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("press_start.change_to") & " " & Localization.Translate("global.male").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y, 32, 32), New Rectangle(144, 32 + y, 16, 16), Color.White)
 
@@ -537,7 +537,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 2 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("press_start_change_to") & " " & Localization.Translate("global_female").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("press_start.change_to") & " " & Localization.Translate("global.female").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48, 32, 32), New Rectangle(160, 32 + y, 16, 16), Color.White)
 
@@ -545,7 +545,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 3 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("press_start_reset_save"), New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("press_start.reset_save"), New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48, 32, 32), New Rectangle(176, 32 + y, 16, 16), Color.White)
 
@@ -598,14 +598,14 @@ Public Class NewMainMenuScreen
                     For i = 0 To tmpProfile.PokemonTextures.Count - 1
                         SpriteBatch.Draw(tmpProfile.PokemonTextures(i), New Rectangle(displayRect.X + 30 + i * 70, displayRect.Y + 70, 64, 64), Color.White)
                     Next
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.Translate("global_player_name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                        Localization.Translate("global_gamemode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.Translate("global_badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
-                                                                        Localization.Translate("global_play_time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
-                                                                        Localization.Translate("global_location") & ": " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.Translate("global.player_name") & ": " & tmpProfile.Name & Environment.NewLine &
+                                                                        Localization.Translate("global.gamemode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.Translate("global.badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
+                                                                        Localization.Translate("global.play_time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
+                                                                        Localization.Translate("global.location") & ": " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
                 Else
-                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.Translate("global_player_name") & ": " & tmpProfile.Name & Environment.NewLine &
-                                                                        Localization.Translate("global_gamemode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.GameJoltFont, Localization.Translate("global.player_name") & ": " & tmpProfile.Name & Environment.NewLine &
+                                                                        Localization.Translate("global.gamemode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 0.5F, SpriteEffects.None, 0F)
 
                     SpriteBatch.Draw(_menuTexture, New Rectangle(displayRect.X + 30, displayRect.Y + 70, 32, 32), New Rectangle(0, 32, 32, 32), Color.White)
                     Dim errorText As String = ""
@@ -905,7 +905,7 @@ Public Class NewMainMenuScreen
             End If
 
             If _isNewGameButton Then
-                Dim text As String = Localization.Translate("global_new") & Environment.NewLine & Localization.Translate("global_game")
+                Dim text As String = Localization.Translate("global.new") & Environment.NewLine & Localization.Translate("global.game")
 
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
                     FontRenderer.DrawString(FontManager.GameJoltFont, text, New Vector2(offset.X + 80 - (FontManager.GameJoltFont.MeasureString(text).X) / 2,
@@ -944,9 +944,9 @@ Public Class NewMainMenuScreen
                         _logoBounce = 0F
                     End If
 
-                    Dim text As String = Localization.Translate("global_login")
+                    Dim text As String = Localization.Translate("global.login")
                     If _isLoading Then
-                        text = Localization.Translate("global_loading") & "..."
+                        text = Localization.Translate("global.loading") & "..."
                     End If
 
                     SpriteBatch.Draw(_sprite, New Rectangle(CInt(offset.X + 46), CInt(offset.Y + 36 + Math.Sin(_logoBounce) * 8.0F), 68, 72), New Color(255, 255, 255, alpha))
@@ -1082,7 +1082,7 @@ Public Class GameModeSelectionScreen
     Public Overrides Sub Draw()
         PreScreen.Draw()
 
-        Dim text As String = Localization.Translate("press_start_select_gamemode_1") & Environment.NewLine & Localization.Translate("press_start_select_gamemode_2")
+        Dim text As String = Localization.Translate("press_start.select_gamemode_1") & Environment.NewLine & Localization.Translate("press_start.select_gamemode_2")
 
         GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(30, 30), Color.White)
 

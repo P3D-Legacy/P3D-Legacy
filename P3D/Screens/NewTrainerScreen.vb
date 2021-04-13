@@ -112,13 +112,13 @@
             DrawLevelProgress()
         End If
 
-        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("trainer_card_title"), New Vector2(260, 100), Color.Black, 0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("trainer_card.title"), New Vector2(260, 100), Color.Black, 0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0F)
 
-        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("global_name") & ": ", New Vector2(270, 160), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("global_money") & ": ", New Vector2(270, 190), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("global.name") & ": ", New Vector2(270, 160), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("global.money") & ": ", New Vector2(270, 190), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
         _textBatch.DrawString(FontManager.MainFont, "OT: ", New Vector2(270, 220), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("global_play_time") & ": ", New Vector2(270, 250), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("global_points") & ": ", New Vector2(270, 280), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("global.play_time") & ": ", New Vector2(270, 250), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, Localization.Translate("global.points") & ": ", New Vector2(270, 280), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
         _textBatch.DrawString(FontManager.MiniFont, Core.Player.Name, New Vector2(390, 165), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
@@ -157,7 +157,7 @@
     End Sub
 
     Private Sub DrawBadges()
-        _textBatch.DrawString(FontManager.MiniFont, Localization.Translate("trainer_card_collected_badges") & ": " & Core.Player.Badges.Count, New Vector2(50, 360), Color.Black)
+        _textBatch.DrawString(FontManager.MiniFont, Localization.Translate("trainer_card.collected_badges") & ": " & Core.Player.Badges.Count, New Vector2(50, 360), Color.Black)
 
         Dim selectedRegion As String = Badge.GetRegion(_badgeRegionIndex)
         Dim badgesCount As Integer = Badge.GetBadgesCount(selectedRegion)
@@ -167,7 +167,7 @@
             Dim badgeID As Integer = Badge.GetBadgeID(selectedRegion, i)
 
             Dim c As Color = Color.White
-            Dim t As String = Badge.GetBadgeName(badgeID) & " " & Localization.Translate("trainer_card_badge")
+            Dim t As String = Badge.GetBadgeName(badgeID) & " " & Localization.Translate("trainer_card.badge")
             Dim shake As Single = 0F
             If Badge.PlayerHasBadge(badgeID) = False Then
                 c = Color.Black

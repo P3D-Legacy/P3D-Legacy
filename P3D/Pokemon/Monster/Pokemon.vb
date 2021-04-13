@@ -2112,8 +2112,8 @@ Public Class Pokemon
             Return "Egg"
         Else
             If Me.NickName = "" Then
-                If Localization.TokenExists("pokemon_name_" & Me.Name) = True Then
-                    Return Localization.Translate("pokemon_name_" & Me.Name)
+                If Localization.TokenExists("pokemon_name." & Me.Name) = True Then
+                    Return Localization.Translate("pokemon_name." & Me.Name)
                 Else
                     Return Me.Name
                 End If
@@ -2127,8 +2127,8 @@ Public Class Pokemon
     ''' Returns the properly translated name of a Pokémon if defined in the language files.
     ''' </summary>
     Public Function GetName() As String
-        If Localization.TokenExists("pokemon_name_" & Me.Name) = True Then
-            Return Localization.Translate("pokemon_name_" & Me.Name)
+        If Localization.TokenExists("pokemon_name." & Me.Name) = True Then
+            Return Localization.Translate("pokemon_name." & Me.Name)
         Else
             Return Me.Name
         End If

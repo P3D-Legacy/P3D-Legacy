@@ -46,19 +46,19 @@
 
         If Screen.Level.IsBugCatchingContest = True Then
             _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177),
-                                    Localization.Translate("menu_bag_title"),
+                                    Localization.Translate("menu_bag.title"),
                                     "|||" & Core.Player.Name, 'Trainer card
                                     "End Contest"})
         Else
             If Core.Player.Pokemons.Count > 0 Then
                 _menuOptions.Add("Pokémon")
             End If
-            _menuOptions.AddRange({Localization.Translate("menu_bag_title"),
+            _menuOptions.AddRange({Localization.Translate("menu_bag.title"),
                                      "|||" & Core.Player.Name,
-                                    Localization.Translate("global_save")})
+                                    Localization.Translate("global.save")})
         End If
 
-        _menuOptions.Add(Localization.Translate("option_title"))
+        _menuOptions.Add(Localization.Translate("option.title"))
     End Sub
 
     Private _blur As Resources.Blur.BlurHandler
@@ -268,15 +268,15 @@
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PokedexSelectScreen(Me), Color.White, False))
             Case "Pokémon"
                 SetScreen(New PartyScreen(Me))
-            Case Localization.Translate("menu_bag_title")
+            Case Localization.Translate("menu_bag.title")
                 Core.SetScreen(New NewInventoryScreen(Me))
             Case "|||" & Core.Player.Name
                 Core.SetScreen(New NewTrainerScreen(Me))
-            Case Localization.Translate("global_save")
+            Case Localization.Translate("global.save")
                 Core.SetScreen(New SaveScreen(Me))
-            Case Localization.Translate("option_title")
+            Case Localization.Translate("option.title")
                 Core.SetScreen(New NewOptionScreen(Me))
-            Case Localization.Translate("global_close")
+            Case Localization.Translate("global.close")
                 Core.SetScreen(PreScreen)
             Case Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177)
                 Me.ShowBalls()

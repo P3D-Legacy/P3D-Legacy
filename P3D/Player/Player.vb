@@ -556,7 +556,7 @@
 
             Dim outputString As String = newFilePrefix
 
-            Core.GameMessage.ShowMessage(Localization.Translate("game_message_continue_autosave") & " """ & outputString & """", 12, FontManager.MainFont, Color.White)
+            Core.GameMessage.ShowMessage(Localization.Translate("game_message.continue_autosave") & " """ & outputString & """", 12, FontManager.MainFont, Color.White)
 
             newFilePrefix = ""
         End If

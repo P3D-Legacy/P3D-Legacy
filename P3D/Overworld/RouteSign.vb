@@ -54,7 +54,7 @@ Public Class RouteSign
     ''' </summary>
     Public Sub Draw()
         If Me._show = True Then
-            Dim placeString As String = Localization.Translate("Places_" & Me._text, Me._text)
+            Dim placeString As String = Localization.Translate("places." & Me._text, Me._text)
 
             'Get the point to render the text to.
             Dim pX As Integer = CInt(316 / 2) - CInt(FontManager.InGameFont.MeasureString(placeString).X / 2)

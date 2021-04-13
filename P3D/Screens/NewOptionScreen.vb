@@ -122,7 +122,7 @@
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
 
-        SpriteBatch.DrawString(FontManager.ChatFont, Localization.Translate("option_title"), New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
+        SpriteBatch.DrawString(FontManager.ChatFont, Localization.Translate("option.title"), New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
 
         For y = 0 To CInt(_enrollY) Step 16
             For x = 0 To 800 Step 16
@@ -348,81 +348,81 @@
 
         Select Case Me.ScreenIndex
             Case 0 ' Main Options menu.
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 80), 1, 64, Localization.Translate("option_game"), AddressOf SwitchToGame))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 80), 1, 64, Localization.Translate("option_graphics"), AddressOf SwitchToGraphics))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 80), 1, 64, Localization.Translate("option_battle"), AddressOf SwitchToBattle))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 167), 1, 64, Localization.Translate("option_controls"), AddressOf SwitchToControls))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 167), 1, 64, Localization.Translate("option_audio"), AddressOf SwitchToVolume))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 167), 1, 64, Localization.Translate("option_advanced"), AddressOf SwitchToAdvanced))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 80), 1, 64, Localization.Translate("option.game"), AddressOf SwitchToGame))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 80), 1, 64, Localization.Translate("option.graphics"), AddressOf SwitchToGraphics))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 80), 1, 64, Localization.Translate("option.battle"), AddressOf SwitchToBattle))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 167), 1, 64, Localization.Translate("option.controls"), AddressOf SwitchToControls))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 167), 1, 64, Localization.Translate("option.audio"), AddressOf SwitchToVolume))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 167), 1, 64, Localization.Translate("option.advanced"), AddressOf SwitchToAdvanced))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global_save"), AddressOf Apply))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global_close"), AddressOf Close))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.save"), AddressOf Apply))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.close"), AddressOf Close))
 
             Case 1 ' "Game" from the Options menu.
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.Translate("option_game_text_speed"), Me.TextSpeed, 1, 3, AddressOf ChangeTextspeed))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.Translate("option.game_text_speed"), Me.TextSpeed, 1, 3, AddressOf ChangeTextspeed))
 
                 If CBool(GameModeManager.GetGameRuleValue("LockDifficulty", "0")) = False Then
                     Dim d As New Dictionary(Of Integer, String)
-                    d.Add(0, Localization.Translate("option_game_difficulty_easy"))
-                    d.Add(1, Localization.Translate("option_game_difficulty_hard"))
-                    d.Add(2, Localization.Translate("option_game_difficulty_super_hard"))
+                    d.Add(0, Localization.Translate("option.game_difficulty_easy"))
+                    d.Add(1, Localization.Translate("option.game_difficulty_hard"))
+                    d.Add(2, Localization.Translate("option.game_difficulty_super_hard"))
 
-                    Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, Localization.Translate("option_game_difficulty"), Me.Difficulty, 0, 2, AddressOf ChangeDifficulty, d))
+                    Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, Localization.Translate("option.game_difficulty"), Me.Difficulty, 0, 2, AddressOf ChangeDifficulty, d))
                 End If
 
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 180), 3, 64, Localization.Translate("option_game_bobbing"), Me.ViewBobbing, AddressOf ToggleBobbing, {Localization.Translate("global_off"), Localization.Translate("global_on")}.ToList()))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 180), 3, 64, Localization.Translate("option.game_bobbing"), Me.ViewBobbing, AddressOf ToggleBobbing, {Localization.Translate("global.off"), Localization.Translate("global.on")}.ToList()))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global_back"), AddressOf SwitchToMain))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.back"), AddressOf SwitchToMain))
 
             Case 2 ' "Graphics" from the Options menu.
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 40), 400, Localization.Translate("option_graphics_fov"), CInt(Me.FOV), 45, 120, AddressOf ChangeFOV))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 40), 400, Localization.Translate("option.graphics_fov"), CInt(Me.FOV), 45, 120, AddressOf ChangeFOV))
 
                 Dim d As New Dictionary(Of Integer, String)
-                d.Add(0, Localization.Translate("option_graphics_render_distance_tiny"))
-                d.Add(1, Localization.Translate("option_graphics_render_distance_small"))
-                d.Add(2, Localization.Translate("option_graphics_render_distance_normal"))
-                d.Add(3, Localization.Translate("option_graphics_render_distance_far"))
-                d.Add(4, Localization.Translate("option_graphics_render_distance_extreme"))
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 100), 400, Localization.Translate("option_graphics_render_distance"), Me.RenderDistance, 0, 4, AddressOf ChangeRenderDistance, d))
+                d.Add(0, Localization.Translate("option.graphics_render_distance_tiny"))
+                d.Add(1, Localization.Translate("option.graphics_render_distance_small"))
+                d.Add(2, Localization.Translate("option.graphics_render_distance_normal"))
+                d.Add(3, Localization.Translate("option.graphics_render_distance_far"))
+                d.Add(4, Localization.Translate("option.graphics_render_distance_extreme"))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 100), 400, Localization.Translate("option.graphics_render_distance"), Me.RenderDistance, 0, 4, AddressOf ChangeRenderDistance, d))
 
                 Dim d1 As New Dictionary(Of Integer, String)
-                d1.Add(0, Localization.Translate("global_off"))
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 160), 400, Localization.Translate("option_graphics_offset_map_quality"), Me.LoadOffsetMaps, 0, 100, AddressOf ChangeOffsetMaps, d1))
+                d1.Add(0, Localization.Translate("global.off"))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 160), 400, Localization.Translate("option.graphics_offset_map_quality"), Me.LoadOffsetMaps, 0, 100, AddressOf ChangeOffsetMaps, d1))
 
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 220), 3, 64, Localization.Translate("option_graphics"), CBool(Me.GraphicStyle), AddressOf ToggleGraphicsStyle, {Localization.Translate("option_graphics_fast"), Localization.Translate("option_graphics_fancy")}.ToList()))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 300), 3, 64, Localization.Translate("option_graphics_multisampling"), Me.PreferMultiSampling, AddressOf ToggleMultiSampling, {Localization.Translate("global_off"), Localization.Translate("global_on")}.ToList()))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 220), 3, 64, Localization.Translate("option.graphics"), CBool(Me.GraphicStyle), AddressOf ToggleGraphicsStyle, {Localization.Translate("option.graphics_fast"), Localization.Translate("option.graphics_fancy")}.ToList()))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 300), 3, 64, Localization.Translate("option.graphics_multisampling"), Me.PreferMultiSampling, AddressOf ToggleMultiSampling, {Localization.Translate("global.off"), Localization.Translate("global.on")}.ToList()))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global_back"), AddressOf SwitchToMain))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.back"), AddressOf SwitchToMain))
 
             Case 3 ' "Battle" from the Options menu.
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 100), 2, 64, Localization.Translate("option_battle_3d_models"), CBool(ShowModels), AddressOf ToggleShowModels, {Localization.Translate("global_off"), Localization.Translate("global_on")}.ToList()))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 400 + 20, Delta_Y + 100), 2, 64, Localization.Translate("option_battle_animations"), CBool(Me.ShowBattleAnimations), AddressOf ToggleAnimations, {Localization.Translate("global_off"), Localization.Translate("global_on")}.ToList()))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 200), 2, 64, Localization.Translate("option_battle_style"), CBool(Me.BattleStyle), AddressOf ToggleBattleStyle, {Localization.Translate("option_battle_style_shift"), Localization.Translate("option_battle_style_set")}.ToList()))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 100), 2, 64, Localization.Translate("option.battle_3d_models"), CBool(ShowModels), AddressOf ToggleShowModels, {Localization.Translate("global.off"), Localization.Translate("global.on")}.ToList()))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 400 + 20, Delta_Y + 100), 2, 64, Localization.Translate("option.battle_animations"), CBool(Me.ShowBattleAnimations), AddressOf ToggleAnimations, {Localization.Translate("global.off"), Localization.Translate("global.on")}.ToList()))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 200), 2, 64, Localization.Translate("option.battle_style"), CBool(Me.BattleStyle), AddressOf ToggleBattleStyle, {Localization.Translate("option.battle_style_shift"), Localization.Translate("option.battle_style_set")}.ToList()))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global_back"), AddressOf SwitchToMain))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.back"), AddressOf SwitchToMain))
 
             Case 4 ' "Controls" from the Options menu.
                 Dim d As New Dictionary(Of Integer, String)
-                d.Add(1, Localization.Translate("option_controls_mouse_speed_slow"))
-                d.Add(12, Localization.Translate("option_controls_mouse_speed_standard"))
-                d.Add(38, Localization.Translate("option_controls_mouse_speed_fast"))
-                d.Add(50, Localization.Translate("option_controls_mouse_speed_super_fast"))
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.Translate("option_controls_mouse_speed"), Me.MouseSpeed, 1, 50, AddressOf ChangeMouseSpeed, d))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.Translate("option_controls_reset_key_bindings"), AddressOf ResetKeyBindings))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, Localization.Translate("option_controls_xbox_controler"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {Localization.Translate("global_disabled"), Localization.Translate("global_enabled")}.ToList()))
+                d.Add(1, Localization.Translate("option.controls_mouse_speed_slow"))
+                d.Add(12, Localization.Translate("option.controls_mouse_speed_standard"))
+                d.Add(38, Localization.Translate("option.controls_mouse_speed_fast"))
+                d.Add(50, Localization.Translate("option.controls_mouse_speed_super_fast"))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.Translate("option.controls_mouse_speed"), Me.MouseSpeed, 1, 50, AddressOf ChangeMouseSpeed, d))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.Translate("option.controls_reset_key_bindings"), AddressOf ResetKeyBindings))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, Localization.Translate("option.controls_xbox_controler"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {Localization.Translate("global.disabled"), Localization.Translate("global.enabled")}.ToList()))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global_back"), AddressOf SwitchToMain))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.back"), AddressOf SwitchToMain))
 
             Case 5 ' "Audio" from the Options menu.
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.Translate("option_audio_music_volume"), Me.Music, 0, 100, AddressOf ChangeMusicVolume))
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, Localization.Translate("option_audio_sound_volume"), Me.Sound, 0, 100, AddressOf ChangeSoundVolume))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 1, 64, Localization.Translate("option_audio_muted"), CBool(Me.Muted), AddressOf ToggleMute, {Localization.Translate("global_no"), Localization.Translate("global_yes")}.ToList()))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.Translate("option.audio_music_volume"), Me.Music, 0, 100, AddressOf ChangeMusicVolume))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, Localization.Translate("option.audio_sound_volume"), Me.Sound, 0, 100, AddressOf ChangeSoundVolume))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 1, 64, Localization.Translate("option.audio_muted"), CBool(Me.Muted), AddressOf ToggleMute, {Localization.Translate("global.no"), Localization.Translate("global.yes")}.ToList()))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global_back"), AddressOf SwitchToMain))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.back"), AddressOf SwitchToMain))
 
             Case 6 ' "Advanced" from the Options menu.
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 100), 3, 64, Localization.Translate("option_reset"), AddressOf Reset))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global_back"), AddressOf SwitchToMain))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 100), 3, 64, Localization.Translate("option.reset"), AddressOf Reset))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.Translate("global.back"), AddressOf SwitchToMain))
 
         End Select
 

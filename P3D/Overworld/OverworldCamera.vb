@@ -240,9 +240,9 @@ Public Class OverworldCamera
                     _freeCameraMode = Not _freeCameraMode
 
                     If _freeCameraMode = False Then
-                        Core.GameMessage.ShowMessage(Localization.Translate("game_message_free_camera") & ": " & Localization.Translate("global_off"), 12, FontManager.MainFont, Color.White)
+                        Core.GameMessage.ShowMessage(Localization.Translate("game_message.free_camera") & ": " & Localization.Translate("global.off"), 12, FontManager.MainFont, Color.White)
                     Else
-                        Core.GameMessage.ShowMessage(Localization.Translate("game_message_free_camera") & ": " & Localization.Translate("global_on"), 12, FontManager.MainFont, Color.White)
+                        Core.GameMessage.ShowMessage(Localization.Translate("game_message.free_camera") & ": " & Localization.Translate("global.on"), 12, FontManager.MainFont, Color.White)
                     End If
                 End If
             End If
@@ -345,12 +345,12 @@ Public Class OverworldCamera
             If _thirdPerson = True Then
                 Screen.Level.OwnPlayer.Opacity = 1.0F
                 If showMessage = True Then
-                    Core.GameMessage.ShowMessage(Localization.Translate("game_message_third_person") & ": " & Localization.Translate("global_on"), 12, FontManager.MainFont, Color.White)
+                    Core.GameMessage.ShowMessage(Localization.Translate("game_message.third_person") & ": " & Localization.Translate("global.on"), 12, FontManager.MainFont, Color.White)
                 End If
             Else
                 Yaw = GetAimYawFromDirection(_playerFacing)
                 If showMessage = True Then
-                    Core.GameMessage.ShowMessage(Localization.Translate("game_message_third_person") & ": " & Localization.Translate("global_off"), 12, FontManager.MainFont, Color.White)
+                    Core.GameMessage.ShowMessage(Localization.Translate("game_message.third_person") & ": " & Localization.Translate("global.off"), 12, FontManager.MainFont, Color.White)
                 End If
             End If
         End If

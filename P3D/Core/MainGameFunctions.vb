@@ -17,9 +17,9 @@
             Core.GameOptions.SaveOptions()
 
             If Core.GameOptions.LightingEnabled Then
-                Core.GameMessage.ShowMessage(Localization.Translate("game_message_lighting") & ": " & Localization.Translate("global_on"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.Translate("game_message.lighting") & ": " & Localization.Translate("global.on"), 12, FontManager.MainFont, Color.White)
             Else
-                Core.GameMessage.ShowMessage(Localization.Translate("game_message_lighting") & ": " & Localization.Translate("global_off"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.Translate("game_message.lighting") & ": " & Localization.Translate("global.off"), 12, FontManager.MainFont, Color.White)
             End If
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.FullScreenKey) AndAlso Core.CurrentScreen.CanGoFullscreen Then
             ToggleFullScreen()
@@ -27,11 +27,11 @@
             If MusicManager.Muted Then
                 MusicManager.Muted = False
                 SoundManager.Muted = False
-                Core.GameMessage.ShowMessage(Localization.Translate("game_message_audio") & ": " & Localization.Translate("global_on"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.Translate("game_message.audio") & ": " & Localization.Translate("global.on"), 12, FontManager.MainFont, Color.White)
             Else
                 MusicManager.Muted = True
                 SoundManager.Muted = True
-                Core.GameMessage.ShowMessage(Localization.Translate("game_message_audio") & ": " & Localization.Translate("global_off"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.Translate("game_message.audio") & ": " & Localization.Translate("global.off"), 12, FontManager.MainFont, Color.White)
             End If
 
             Core.GameOptions.SaveOptions()
@@ -54,9 +54,9 @@
         If ControllerHandler.ButtonPressed(Buttons.Back, True) = True Then
             Core.GameOptions.GamePadEnabled = Not Core.GameOptions.GamePadEnabled
             If Core.GameOptions.GamePadEnabled Then
-                Core.GameMessage.ShowMessage(Localization.Translate("game_message_xbox_controller") & ": " & Localization.Translate("global_enabled"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.Translate("game_message.xbox_controller") & ": " & Localization.Translate("global.enabled"), 12, FontManager.MainFont, Color.White)
             Else
-                Core.GameMessage.ShowMessage(Localization.Translate("game_message_xbox_controller") & ": " & Localization.Translate("global_disabled"), 12, FontManager.MainFont, Color.White)
+                Core.GameMessage.ShowMessage(Localization.Translate("game_message.xbox_controller") & ": " & Localization.Translate("global.disabled"), 12, FontManager.MainFont, Color.White)
             End If
             Core.GameOptions.SaveOptions()
         End If
@@ -115,10 +115,10 @@
                 stream.Dispose()
             End If
 
-            Core.GameMessage.SetupText(Localization.Translate("game_message_screenshot") & " " & fileName, FontManager.MainFont, Color.White)
+            Core.GameMessage.SetupText(Localization.Translate("game_message.screenshot") & " " & fileName, FontManager.MainFont, Color.White)
             Core.GameMessage.ShowMessage(12, Core.GraphicsDevice)
         Catch ex As Exception
-            Logger.Log(Logger.LogTypes.ErrorMessage, "Basic.vb: " & Localization.Translate("game_message_screenshot_failed") & ". More information: " & ex.Message)
+            Logger.Log(Logger.LogTypes.ErrorMessage, "Basic.vb: Could not save screenshot. More information: " & ex.Message)
         End Try
     End Sub
 
@@ -142,7 +142,7 @@
 
             Core.GraphicsManager.ToggleFullScreen()
 
-            Core.GameMessage.ShowMessage(Localization.Translate("game_message_fullscreen") & ": " & Localization.Translate("global_on"), 12, FontManager.MainFont, Color.White)
+            Core.GameMessage.ShowMessage(Localization.Translate("game_message.fullscreen") & ": " & Localization.Translate("global.on"), 12, FontManager.MainFont, Color.White)
         Else
             Core.GraphicsManager.PreferredBackBufferWidth = 1200
             Core.GraphicsManager.PreferredBackBufferHeight = 680
@@ -152,7 +152,7 @@
 
             Core.GraphicsManager.ToggleFullScreen()
 
-            Core.GameMessage.ShowMessage(Localization.Translate("game_message_fullscreen") & ": " & Localization.Translate("global_off"), 12, FontManager.MainFont, Color.White)
+            Core.GameMessage.ShowMessage(Localization.Translate("game_message.fullscreen") & ": " & Localization.Translate("global.off"), 12, FontManager.MainFont, Color.White)
         End If
 
         Core.GraphicsManager.ApplyChanges()
