@@ -62,18 +62,7 @@ Public Class Localization
                 Dim SelectedLanguage As String = TokensFile.SelectToken("language_name").ToString
                 Logger.Debug("Localization.vb: Loaded Language file and its name is: " & SelectedLanguage)
                 For Each tokens In TokensFile.SelectToken("tokens").Values
-                    If tokens.HasValues Then
-                        For Each token In tokens
-                            If token.HasValues Then
-                                For Each subtoken In token
-                                    AddToken(token.Path, token.First.ToString, SelectedLanguage, IsGameModeFile)
-                                Next
-                            End If
-                            AddToken(token.Path, token.First.ToString, SelectedLanguage, IsGameModeFile)
-                        Next
-                    Else
-                        AddToken(tokens.Path, tokens.First.ToString, SelectedLanguage, IsGameModeFile)
-                    End If
+                    ParseTokens(tokens, SelectedLanguage, IsGameModeFile)
                 Next
             End If
 
@@ -83,24 +72,25 @@ Public Class Localization
                     Dim SelectedLanguage As String = FallbackTokensFile.SelectToken("language_name").ToString
                     Logger.Debug("Localization.vb: Loaded Fallback Language file and its name is: " & SelectedLanguage)
                     For Each tokens In FallbackTokensFile.SelectToken("tokens").Values
-                        If tokens.HasValues Then
-                            For Each token In tokens
-                                If token.HasValues Then
-                                    For Each subtoken In token
-                                        AddToken(token.Path, token.First.ToString, SelectedLanguage, IsGameModeFile)
-                                    Next
-                                End If
-                                AddToken(token.Path, token.First.ToString, SelectedLanguage, IsGameModeFile)
-                            Next
-                        Else
-                            AddToken(tokens.Path, tokens.First.ToString, SelectedLanguage, IsGameModeFile)
-                        End If
+                        ParseTokens(tokens, SelectedLanguage, IsGameModeFile)
                     Next
                 End If
             End If
         End If
     End Sub
-
+    Private Shared Sub ParseTokens(ByVal token As JToken, ByVal SelectedLanguage As String, ByVal IsGameModeFile As Boolean)
+        If token.HasValues = True Then
+            For Each child In token.Values
+                ParseTokens(child, SelectedLanguage, IsGameModeFile)
+            Next
+        Else
+            Dim key As String = token.Path.Replace("tokens.", "").ToLower()
+            Dim value As String = token.Parent.First.ToString
+            If LocalizationTokens.ContainsKey(key) = False Then
+                LocalizationTokens.Add(key, New Token(value, SelectedLanguage, IsGameModeFile))
+            End If
+        End If
+    End Sub
     Public Shared Function Translate(ByVal s As String, Optional ByVal DefaultValue As String = "") As String
         Dim resultToken As Token = Nothing
         s = s.Replace(" ", "_").Replace("'", "").ToLower() ' Lets format the string before finding it
@@ -129,13 +119,6 @@ Public Class Localization
         Return s
     End Function
 
-    Private Shared Sub AddToken(ByVal key As String, ByVal value As String, ByVal lang As String, ByVal gmfile As Boolean)
-        key = GetTokenName(key)
-        If LocalizationTokens.ContainsKey(key) = False Then
-            LocalizationTokens.Add(key, New Token(value, lang, gmfile))
-        End If
-    End Sub
-
     Public Shared Function TokenExists(ByVal TokenName As String) As Boolean
         Return LocalizationTokens.ContainsKey(TokenName)
     End Function
@@ -150,6 +133,7 @@ Public Class Localization
             Dim SelectedLanguage As String = json.SelectToken("language_name").ToString
             AvailableLanguages.Add(i, SelectedLanguage)
             i += 1
+            'Logger.Debug("Localization.vb: GetAvailableLanguagesList: " & SelectedLanguage)
         Next
 
         Return AvailableLanguages
