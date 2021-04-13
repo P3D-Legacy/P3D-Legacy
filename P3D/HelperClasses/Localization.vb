@@ -99,13 +99,6 @@ Public Class Localization
                 End If
             End If
         End If
-
-        For Each lt In LocalizationTokens
-            If lt.Key.StartsWith("press_start") Then
-                Logger.Debug("Localization.vb: " & lt.Key.ToString)
-            End If
-        Next
-
     End Sub
 
     Public Shared Function Translate(ByVal s As String, Optional ByVal DefaultValue As String = "") As String
