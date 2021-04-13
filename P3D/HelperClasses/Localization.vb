@@ -140,6 +140,51 @@ Public Class Localization
         Return LocalizationTokens.ContainsKey(TokenName)
     End Function
 
+    Public Shared Function GetAvailableLanguagesList() As Dictionary(Of Integer, String)
+        Dim FullPath As String = GameController.GamePath & GameMode.DefaultLocalizationsPath
+        Dim AvailableLanguages As New Dictionary(Of Integer, String)
+        Dim i As Integer = 0
+
+        For Each TokenFile In IO.Directory.GetFiles(FullPath)
+            Dim json As JObject = JObject.Parse(System.IO.File.ReadAllText(TokenFile))
+            Dim SelectedLanguage As String = json.SelectToken("language_name").ToString
+            AvailableLanguages.Add(i, SelectedLanguage)
+            i += 1
+        Next
+
+        Return AvailableLanguages
+    End Function
+
+    Public Shared Function GetLanguageName(ByVal lang As String) As String
+        Dim FullPath As String = GameController.GamePath & GameMode.DefaultLocalizationsPath
+        Dim LanguageNames As New Dictionary(Of String, String)
+
+        For Each TokenFile In IO.Directory.GetFiles(FullPath)
+            Dim iso = IO.Path.GetFileName(TokenFile).Replace(".json", "")
+            Dim json As JObject = JObject.Parse(System.IO.File.ReadAllText(TokenFile))
+            Dim name As String = json.SelectToken("language_name").ToString
+            LanguageNames.Add(iso, name)
+        Next
+
+        'Logger.Debug("Localization.vb: GetLangugageName: " & lang & " / " & LanguageNames.Item(lang))
+        Return LanguageNames.Item(lang)
+    End Function
+
+    Public Shared Function GetLanguageISO(ByVal lang As String) As String
+        Dim FullPath As String = GameController.GamePath & GameMode.DefaultLocalizationsPath
+        Dim LanguageISOs As New Dictionary(Of String, String)
+
+        For Each TokenFile In IO.Directory.GetFiles(FullPath)
+            Dim iso = IO.Path.GetFileName(TokenFile).Replace(".json", "")
+            Dim json As JObject = JObject.Parse(System.IO.File.ReadAllText(TokenFile))
+            Dim name As String = json.SelectToken("language_name").ToString
+            LanguageISOs.Add(name, iso)
+        Next
+
+        'Logger.Debug("Localization.vb: GetLanguageISO: " & lang & " / " & LanguageISOs.Item(lang))
+        Return LanguageISOs.Item(lang)
+    End Function
+
 End Class
 
 Public Class Token
