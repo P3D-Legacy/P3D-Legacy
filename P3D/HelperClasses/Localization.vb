@@ -58,7 +58,7 @@ Public Class Localization
 
             If System.IO.File.Exists(LocaleFilePath) = True Then
                 Logger.Debug("Localization.vb: Found file for suffix: " & CurrentLanguage)
-                Dim TokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(DefaultLanguagePath))
+                Dim TokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(LocaleFilePath))
                 Dim SelectedLanguage As String = TokensFile.SelectToken("language_name").ToString
                 Logger.Debug("Localization.vb: Loaded Language file and its name is: " & SelectedLanguage)
                 For Each tokens In TokensFile.SelectToken("tokens").Values
