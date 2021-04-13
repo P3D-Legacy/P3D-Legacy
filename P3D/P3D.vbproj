@@ -11070,9 +11070,6 @@
     <Content Include="Content\Items\Memories.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Localization\Tokens_en.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Pokemon\Data\1.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -29466,9 +29463,6 @@
     <None Include="Content\Data\Scripts\violet\towertopmap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Content\Localization\Tokens_no.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Content\Localization\en.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -29609,7 +29603,6 @@
     <Compile Include="HelperClasses\Camera.vb" />
     <Compile Include="HelperClasses\GameMessage.vb" />
     <Compile Include="HelperClasses\LoadingDots.vb" />
-    <Compile Include="HelperClasses\Localization_rev1.vb" />
     <Compile Include="HelperClasses\PlayerStatistics.vb" />
     <Compile Include="HelperClasses\Size.vb" />
     <Compile Include="HelperClasses\StringHelper.vb" />
