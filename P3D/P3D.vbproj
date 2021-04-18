@@ -15199,6 +15199,7 @@
     <Content Include="Content\Textures\club.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\ddive.png" />
     <Content Include="Content\Textures\EmbeddedTower.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -27716,6 +27717,15 @@
     <Content Include="Content\Data\maps\battle\quest\trainertower\single\8f.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Data\maps\diamonddive\1f.dat" />
+    <None Include="Content\Data\maps\diamonddive\interior\1.dat" />
+    <None Include="Content\Data\maps\diamonddive\interior\2.dat" />
+    <None Include="Content\Data\maps\diamonddive\interior\3.dat" />
+    <None Include="Content\Data\maps\diamonddive\interior\4.dat" />
+    <None Include="Content\Data\maps\diamonddive\interior\5.dat" />
+    <None Include="Content\Data\maps\diamonddive\interior\6.dat" />
+    <None Include="Content\Data\maps\diamonddive\interior\7.dat" />
+    <None Include="Content\Data\maps\diamonddive\interior\interior.dat" />
     <None Include="Content\Data\maps\ecruteak\event.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -27920,6 +27930,9 @@
     <Content Include="Content\Data\maps\quest\trainertower\single\8f.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Data\maps\routes\offsettrees.dat" />
+    <None Include="Content\Data\maps\routes\offsettrees2.dat" />
+    <None Include="Content\Data\maps\routes\route50.dat" />
     <None Include="Content\Data\maps\structures\goldenrod\chair.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
