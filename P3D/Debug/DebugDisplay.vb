@@ -36,7 +36,8 @@ Public Class DebugDisplay
                 cameraInformation &
                 "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & Environment.NewLine &
                 "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString() & Environment.NewLine &
-                "Lang: " & Localization.CurrentLanguage
+                "Lang: " & Localization.CurrentLanguage & Environment.NewLine &
+                "Screen: " & Core.CurrentScreen.ToString
 
             If Core.GameOptions.ContentPackNames.Count() > 0 Then
                 Dim contentPackString As String = ""
