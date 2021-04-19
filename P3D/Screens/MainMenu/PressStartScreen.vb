@@ -209,16 +209,16 @@ Public Class PressStartScreen
 
             Dim text As String = String.Empty
             If ControllerHandler.IsConnected() Then
-                text = Localization.Translate("press_first") & "      " & Localization.Translate("press_last")
+                text = Localization.Translate("press_first", Me.GetType) & "      " & Localization.Translate("press_last", Me.GetType)
             Else
-                text = Localization.Translate("press_first") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.Translate("press_last")
+                text = Localization.Translate("press_first", Me.GetType) & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.Translate("press_last", Me.GetType)
             End If
 
             Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
             GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height - textSize.Y - 50), _textColor)
 
             If ControllerHandler.IsConnected() Then
-                SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.Translate("press_first") & " ").X), CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
+                SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.Translate("press_first", Me.GetType) & " ").X), CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
             End If
         End If
 
@@ -1082,7 +1082,7 @@ Public Class GameModeSelectionScreen
     Public Overrides Sub Draw()
         PreScreen.Draw()
 
-        Dim text As String = Localization.Translate("press_start.select_gamemode_1") & Environment.NewLine & Localization.Translate("press_start.select_gamemode_2")
+        Dim text As String = Localization.Translate("select_gamemode_1", Me.GetType) & Environment.NewLine & Localization.Translate("select_gamemode_2", Me.GetType)
 
         GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(30, 30), Color.White)
 

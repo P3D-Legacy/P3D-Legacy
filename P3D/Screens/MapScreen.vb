@@ -498,32 +498,32 @@
             r = New Rectangle(116, 0, 12, 12)
         End If
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 100, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("cities"), New Vector2(Core.windowSize.Width - 139, 101), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("cities"), New Vector2(Core.windowSize.Width - 140, 100), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("cities", Me.GetType), New Vector2(Core.windowSize.Width - 139, 101), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("cities", Me.GetType), New Vector2(Core.windowSize.Width - 140, 100), Color.White)
         ' Routes:
         r = New Rectangle(104, 12, 12, 12)
         If drawObjects(1) = False Then
             r = New Rectangle(116, 12, 12, 12)
         End If
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 130, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("routes"), New Vector2(Core.windowSize.Width - 139, 131), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("routes"), New Vector2(Core.windowSize.Width - 140, 130), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("routes", Me.GetType), New Vector2(Core.windowSize.Width - 139, 131), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("routes", Me.GetType), New Vector2(Core.windowSize.Width - 140, 130), Color.White)
         ' Places:
         r = New Rectangle(104, 24, 12, 12)
         If drawObjects(2) = False Then
             r = New Rectangle(116, 24, 12, 12)
         End If
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 170, 160, 24, 24), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("places"), New Vector2(Core.windowSize.Width - 139, 161), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("places"), New Vector2(Core.windowSize.Width - 140, 160), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("places", Me.GetType), New Vector2(Core.windowSize.Width - 139, 161), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("places", Me.GetType), New Vector2(Core.windowSize.Width - 140, 160), Color.White)
         ' Roaming:
         r = New Rectangle(113, 65, 14, 14)
         If drawObjects(3) = False Then
             r = New Rectangle(113, 81, 14, 14)
         End If
         Core.SpriteBatch.Draw(Me.objectsTexture, New Rectangle(Core.windowSize.Width - 172, 187, 28, 28), r, New Color(255, 255, 255, 220))
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("roaming"), New Vector2(Core.windowSize.Width - 139, 191), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("roaming"), New Vector2(Core.windowSize.Width - 140, 190), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("roaming", Me.GetType), New Vector2(Core.windowSize.Width - 139, 191), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.Translate("roaming", Me.GetType), New Vector2(Core.windowSize.Width - 140, 190), Color.White)
     End Sub
 
     Private Sub DrawCursor()
