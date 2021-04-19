@@ -553,12 +553,12 @@
 		"overworldscreen": {
 			"connecting_to_server": "Kobler til server"
 		},
-		"add_server": {
+		"addserverscreen": {
 			"title": "Legg til en server",
 			"name": "Server navn",
 			"address": "Server adresse"
 		},
-		"pause_menu": {
+		"pausescreen": {
 			"title": "Spill meny",
 			"back_to_game": "Tilbake til spillet",
 			"quit_to_menu": "Avslutt til menyen",

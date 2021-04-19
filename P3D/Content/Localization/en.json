@@ -552,12 +552,12 @@
 		"overworldscreen": {
 			"connecting_to_server": "Connecting to server"
 		},
-		"add_server": {
+		"addserverscreen": {
 			"title": "Add a server",
 			"name": "Server Name",
 			"address": "Server Address"
 		},
-		"pause_menu": {
+		"pausescreen": {
 			"title": "Game menu",
 			"back_to_game": "Back to game",
 			"quit_to_menu": "Quit to menu",
