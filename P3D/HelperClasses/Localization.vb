@@ -1,4 +1,5 @@
-﻿Imports Newtonsoft.Json.Linq
+﻿Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Public Class Localization
     Public Shared CurrentLanguage As String = "en"
@@ -106,6 +107,16 @@ Public Class Localization
                 Return result
             End If
         Else
+            Dim FullPath As String = GameController.GamePath & GameMode.DefaultLocalizationsPath
+            Dim LocaleFilePath As String = FullPath & "missing_tokens.json"
+            Dim TokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(LocaleFilePath))
+            If TokensFile.ContainsKey(NewTokenName) = False Then
+                Logger.Debug("Localization.vb: Did not find token for: " & NewTokenName)
+                'Dim nexttolastpart As String = NewTokenName.Substring(NewTokenName.LastIndexOf(".") + 1)
+                TokensFile.Add(NewTokenName, s)
+            End If
+            File.WriteAllText(LocaleFilePath, JsonConvert.SerializeObject(TokensFile, Newtonsoft.Json.Formatting.Indented))
+
             If DefaultValue = "" Then
                 Return s
             Else
@@ -123,7 +134,7 @@ Public Class Localization
         Dim AvailableLanguages As New Dictionary(Of Integer, String)
         Dim i As Integer = 0
 
-        For Each TokenFile In IO.Directory.GetFiles(FullPath)
+        For Each TokenFile In IO.Directory.GetFiles(FullPath).Where(Function(f) Not IO.Path.GetFileName(f).Equals("missing_tokens.json"))
             Dim json As JObject = JObject.Parse(System.IO.File.ReadAllText(TokenFile))
             Dim SelectedLanguage As String = json.SelectToken("language_name").ToString
             AvailableLanguages.Add(i, SelectedLanguage)
@@ -138,7 +149,7 @@ Public Class Localization
         Dim FullPath As String = GameController.GamePath & GameMode.DefaultLocalizationsPath
         Dim LanguageNames As New Dictionary(Of String, String)
 
-        For Each TokenFile In IO.Directory.GetFiles(FullPath)
+        For Each TokenFile In IO.Directory.GetFiles(FullPath).Where(Function(f) Not IO.Path.GetFileName(f).Equals("missing_tokens.json"))
             Dim iso = IO.Path.GetFileName(TokenFile).Replace(".json", "")
             Dim json As JObject = JObject.Parse(System.IO.File.ReadAllText(TokenFile))
             Dim name As String = json.SelectToken("language_name").ToString
@@ -153,7 +164,7 @@ Public Class Localization
         Dim FullPath As String = GameController.GamePath & GameMode.DefaultLocalizationsPath
         Dim LanguageISOs As New Dictionary(Of String, String)
 
-        For Each TokenFile In IO.Directory.GetFiles(FullPath)
+        For Each TokenFile In IO.Directory.GetFiles(FullPath).Where(Function(f) Not IO.Path.GetFileName(f).Equals("missing_tokens.json"))
             Dim iso = IO.Path.GetFileName(TokenFile).Replace(".json", "")
             Dim json As JObject = JObject.Parse(System.IO.File.ReadAllText(TokenFile))
             Dim name As String = json.SelectToken("language_name").ToString
