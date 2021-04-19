@@ -94,9 +94,9 @@ Public Class Localization
     End Sub
     Public Shared Function Translate(ByVal s As String, Optional ByVal DefaultValue As String = "") As String
         Dim resultToken As Token = Nothing
-        Dim CurrentScreen As String = Core.CurrentScreen.ToString.ToLower()
-        s = s.ToLower().Replace(" ", "_").Replace("'", "").Replace("p3d.", "") ' Lets format the string before finding it
-        Dim NewTokenName As String = CurrentScreen.Replace("p3d.", "") & "." & s
+        Dim CurrentScreen As String = GetCurrentScreen()
+        s = s.ToLower().Replace(" ", "_").Replace("'", "").Replace("p3d.", "").Replace("._", "_") ' Lets format the string before finding it
+        Dim NewTokenName As String = CurrentScreen & "." & s
         If s.Contains(".") = False Then
             'Logger.Debug("Localization.vb: s.Contains: " & s)
             s = NewTokenName
@@ -131,6 +131,14 @@ Public Class Localization
 
     Public Shared Function TokenExists(ByVal TokenName As String) As Boolean
         Return LocalizationTokens.ContainsKey(TokenName)
+    End Function
+
+    Public Shared Function GetCurrentScreen() As String
+        Dim CurrentScreen As String = Core.CurrentScreen.ToString.ToLower()
+        If CurrentScreen.Contains("+") Then
+            CurrentScreen = CurrentScreen.Split("+").Last.ToString
+        End If
+        Return CurrentScreen.Replace("p3d.", "")
     End Function
 
     Public Shared Function GetAvailableLanguagesList() As Dictionary(Of Integer, String)
