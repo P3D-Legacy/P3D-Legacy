@@ -94,7 +94,13 @@ Public Class Localization
     End Sub
     Public Shared Function Translate(ByVal s As String, Optional ByVal DefaultValue As String = "") As String
         Dim resultToken As Token = Nothing
-        s = s.Replace(" ", "_").Replace("'", "").ToLower() ' Lets format the string before finding it
+        Dim CurrentScreen As String = Core.CurrentScreen.ToString.ToLower()
+        s = s.ToLower().Replace(" ", "_").Replace("'", "").Replace("p3d.", "") ' Lets format the string before finding it
+        Dim NewTokenName As String = CurrentScreen.Replace("p3d.", "") & "." & s
+        If s.Contains(".") = False Then
+            'Logger.Debug("Localization.vb: s.Contains: " & s)
+            s = NewTokenName
+        End If
         If LocalizationTokens.ContainsKey(s) = True Then
             If LocalizationTokens.TryGetValue(s, resultToken) = False Then
                 Return s
