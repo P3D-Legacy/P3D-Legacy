@@ -114,11 +114,6 @@ Public Class Localization
         End If
     End Function
 
-    Private Shared Function GetTokenName(ByVal s As String) As String
-        s = s.Replace("tokens.", "").ToLower() ' Lets format the string before finding it
-        Return s
-    End Function
-
     Public Shared Function TokenExists(ByVal TokenName As String) As Boolean
         Return LocalizationTokens.ContainsKey(TokenName)
     End Function
