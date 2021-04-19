@@ -209,16 +209,16 @@ Public Class PressStartScreen
 
             Dim text As String = String.Empty
             If ControllerHandler.IsConnected() Then
-                text = Localization.Translate("press_start.1") & "      " & Localization.Translate("press_start.2")
+                text = Localization.Translate("press_first") & "      " & Localization.Translate("press_last")
             Else
-                text = Localization.Translate("press_start.1") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.Translate("press_start.2")
+                text = Localization.Translate("press_first") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.Translate("press_last")
             End If
 
             Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
             GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height - textSize.Y - 50), _textColor)
 
             If ControllerHandler.IsConnected() Then
-                SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.Translate("press_start.1") & " ").X), CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
+                SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.Translate("press_first") & " ").X), CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
             End If
         End If
 
@@ -529,7 +529,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 1 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("press_start.change_to") & " " & Localization.Translate("global.male").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("change_to") & " " & Localization.Translate("global.male").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y, 32, 32), New Rectangle(144, 32 + y, 16, 16), Color.White)
 
@@ -537,7 +537,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 2 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("press_start.change_to") & " " & Localization.Translate("global.female").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("change_to") & " " & Localization.Translate("global.female").ToLower, New Vector2(r.X + 64 + 4, r.Y + 4 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48, 32, 32), New Rectangle(160, 32 + y, 16, 16), Color.White)
 
@@ -545,7 +545,7 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _yIndex = 3 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("press_start.reset_save"), New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("reset_save"), New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48, 32, 32), New Rectangle(176, 32 + y, 16, 16), Color.White)
 
