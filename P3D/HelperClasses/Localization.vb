@@ -116,9 +116,7 @@ Public Class Localization
             Dim FullPath As String = GameController.GamePath & GameMode.DefaultLocalizationsPath
             Dim LocaleFilePath As String = FullPath & "missing_tokens.json"
             Dim TokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(LocaleFilePath))
-            If TokensFile.ContainsKey(NewTokenName) = False Then
-                Logger.Debug("Localization.vb: Did not find token for: " & NewTokenName)
-                'Dim nexttolastpart As String = NewTokenName.Substring(NewTokenName.LastIndexOf(".") + 1)
+            If TokensFile.ContainsKey(s) = False Then
                 TokensFile.Add(NewTokenName, s)
             End If
             File.WriteAllText(LocaleFilePath, JsonConvert.SerializeObject(TokensFile, Newtonsoft.Json.Formatting.Indented))
