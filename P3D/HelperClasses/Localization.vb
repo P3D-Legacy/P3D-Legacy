@@ -51,15 +51,15 @@ Public Class Localization
 
         Logger.Debug("Localization.vb: LocaleFilePath: " & LocaleFilePath)
 
-        If System.IO.Directory.GetFiles(FullPath).Count > 0 Then
-            If System.IO.File.Exists(LocaleFilePath) = False Then
+        If Directory.GetFiles(FullPath).Count > 0 Then
+            If File.Exists(LocaleFilePath) = False Then
                 Logger.Debug("Localization.vb: Could not find file for: " & CurrentLanguage)
                 CurrentLanguage = "en"
             End If
 
-            If System.IO.File.Exists(LocaleFilePath) = True Then
+            If File.Exists(LocaleFilePath) = True Then
                 Logger.Debug("Localization.vb: Found file for suffix: " & CurrentLanguage)
-                Dim TokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(LocaleFilePath))
+                Dim TokensFile As JObject = JObject.Parse(File.ReadAllText(LocaleFilePath))
                 Dim SelectedLanguage As String = TokensFile.SelectToken("language_name").ToString
                 Logger.Debug("Localization.vb: Loaded Language file and its name is: " & SelectedLanguage)
                 For Each tokens In TokensFile.SelectToken("p3d").Values
@@ -68,8 +68,8 @@ Public Class Localization
             End If
 
             If CurrentLanguage IsNot "en" Then
-                If System.IO.File.Exists(DefaultLanguagePath) Then
-                    Dim FallbackTokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(DefaultLanguagePath))
+                If File.Exists(DefaultLanguagePath) Then
+                    Dim FallbackTokensFile As JObject = JObject.Parse(File.ReadAllText(DefaultLanguagePath))
                     Dim SelectedLanguage As String = FallbackTokensFile.SelectToken("language_name").ToString
                     Logger.Debug("Localization.vb: Loaded Fallback Language file and its name is: " & SelectedLanguage)
                     For Each tokens In FallbackTokensFile.SelectToken("p3d").Values
@@ -115,11 +115,11 @@ Public Class Localization
         Else
             Dim FullPath As String = GameController.GamePath & GameMode.DefaultLocalizationsPath
             Dim LocaleFilePath As String = FullPath & "missing_tokens.json"
-            Dim TokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(LocaleFilePath))
+            Dim TokensFile As JObject = JObject.Parse(File.ReadAllText(LocaleFilePath))
             If TokensFile.ContainsKey(s) = False Then
                 TokensFile.Add(s, s)
             End If
-            File.WriteAllText(LocaleFilePath, JsonConvert.SerializeObject(TokensFile, Newtonsoft.Json.Formatting.Indented))
+            File.WriteAllText(LocaleFilePath, JsonConvert.SerializeObject(TokensFile, Formatting.Indented))
 
             If DefaultValue = "" Then
                 Return s
@@ -147,7 +147,7 @@ Public Class Localization
         Dim i As Integer = 0
 
         For Each TokenFile In IO.Directory.GetFiles(FullPath).Where(Function(f) Not IO.Path.GetFileName(f).Equals("missing_tokens.json"))
-            Dim json As JObject = JObject.Parse(System.IO.File.ReadAllText(TokenFile))
+            Dim json As JObject = JObject.Parse(File.ReadAllText(TokenFile))
             Dim SelectedLanguage As String = json.SelectToken("language_name").ToString
             AvailableLanguages.Add(i, SelectedLanguage)
             i += 1
