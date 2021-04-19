@@ -85,7 +85,7 @@ Public Class Localization
                 ParseTokens(child, SelectedLanguage, IsGameModeFile)
             Next
         Else
-            Dim key As String = token.Path.Replace("tokens.", "").ToLower()
+            Dim key As String = token.Path.ToLower().Replace("p3d.", "")
             Dim value As String = token.Parent.First.ToString
             If LocalizationTokens.ContainsKey(key) = False Then
                 LocalizationTokens.Add(key, New Token(value, SelectedLanguage, IsGameModeFile))
