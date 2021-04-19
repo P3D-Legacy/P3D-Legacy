@@ -54,9 +54,9 @@
 
         Canvas.DrawRectangle(New Rectangle(0, 75, Core.windowSize.Width, 680 - 240), New Color(0, 0, 0, 128))
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("add_server.title"), New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(Localization.Translate("add_server.title")).X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("title"), New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(Localization.Translate("title")).X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("add_server.name") & ":", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 140), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("name") & ":", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 140), Color.White)
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 170, 600, 40), New Color(40, 40, 40, 255))
 
         If Index = 0 Then
@@ -74,7 +74,7 @@
         End If
         Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CSng(Core.windowSize.Width / 2 - 294), 175), Color.White)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("add_server.address") & ":", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 270), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("address") & ":", New Vector2(CSng(Core.windowSize.Width / 2 - 300), 270), Color.White)
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 300, 600, 40), New Color(40, 40, 40, 255))
 
         If Index = 1 Then
