@@ -29466,6 +29466,7 @@
     <None Include="Content\Localization\en.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Localization\missing_tokens.json" />
     <None Include="Content\Localization\no.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
