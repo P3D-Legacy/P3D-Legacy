@@ -564,7 +564,7 @@
 			"autosave_fail": "Autosave failed.",
 			"confirmation": "Do you really want to quit? Unsaved progress will be lost."
 		},
-		"new_game": {
+		"characterselectionscreen": {
 			"select_apperance": "Select your appearance"
 		},
 		"menu_bag": {
@@ -574,7 +574,7 @@
 			"title": "Start a new offline game",
 			"description": "If you start a game in \"\"Offline Mode\"\" by pressing the \"\"New Game\"\" button, you cannot access the online features of Pokémon 3D such as trading and trainer customization. Click on the GameJolt button in the lower right corner in order to start a game in \"\"Online Mode\"\"."
 		},
-		"map_screen": {
+		"mapscreen": {
 			"cities": "Cities",
 			"routes": "Routes",
 			"places": "Places",
