@@ -92,11 +92,17 @@ Public Class Localization
             End If
         End If
     End Sub
-    Public Shared Function Translate(ByVal s As String, Optional ByVal DefaultValue As String = "") As String
+    Public Shared Function Translate(ByVal s As String, Optional ByVal type As Type = Nothing, Optional ByVal DefaultValue As String = "") As String
         Dim resultToken As Token = Nothing
         Dim CurrentScreen As String = GetCurrentScreen()
         s = s.ToLower().Replace(" ", "_").Replace("'", "").Replace("p3d.", "").Replace("._", "_") ' Lets format the string before finding it
-        Dim NewTokenName As String = CurrentScreen & "." & s
+        Dim prefix As String = ""
+        If type Is Nothing Then
+            prefix = CurrentScreen
+        Else
+            prefix = type.Name.ToString.ToLower
+        End If
+        Dim NewTokenName As String = prefix & "." & s
         If s.Contains(".") = False Then
             'Logger.Debug("Localization.vb: s.Contains: " & s)
             s = NewTokenName
