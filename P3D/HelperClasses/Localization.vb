@@ -61,7 +61,7 @@ Public Class Localization
                 Dim TokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(LocaleFilePath))
                 Dim SelectedLanguage As String = TokensFile.SelectToken("language_name").ToString
                 Logger.Debug("Localization.vb: Loaded Language file and its name is: " & SelectedLanguage)
-                For Each tokens In TokensFile.SelectToken("tokens").Values
+                For Each tokens In TokensFile.SelectToken("p3d").Values
                     ParseTokens(tokens, SelectedLanguage, IsGameModeFile)
                 Next
             End If
@@ -71,7 +71,7 @@ Public Class Localization
                     Dim FallbackTokensFile As JObject = JObject.Parse(System.IO.File.ReadAllText(DefaultLanguagePath))
                     Dim SelectedLanguage As String = FallbackTokensFile.SelectToken("language_name").ToString
                     Logger.Debug("Localization.vb: Loaded Fallback Language file and its name is: " & SelectedLanguage)
-                    For Each tokens In FallbackTokensFile.SelectToken("tokens").Values
+                    For Each tokens In FallbackTokensFile.SelectToken("p3d").Values
                         ParseTokens(tokens, SelectedLanguage, IsGameModeFile)
                     Next
                 End If
