@@ -88,7 +88,7 @@ Public Class JoinServerScreen
 
         Canvas.DrawRectangle(New Rectangle(0, 75, Core.ScreenSize.Width, Core.ScreenSize.Height - 240), New Color(0, 0, 0, 128), True)
 
-        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, Localization.Translate("server.title"), New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString(Localization.Translate("server.title")).X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, Localization.Translate("title"), New Vector2(CSng(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString(Localization.Translate("title")).X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
 
         Dim endX As Integer = ServerList.Count - 1
         endX = CInt(MathHelper.Clamp(endX, 0, ServersToDisplay - 1))
@@ -155,7 +155,7 @@ Public Class JoinServerScreen
             Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - 542 + i * 192, Core.ScreenSize.Height - 106), Color.Black)
         Next
 
-        Dim vS As String = Localization.Translate("server.protocol_version") & ": " & Servers.ServersManager.PROTOCOLVERSION
+        Dim vS As String = Localization.Translate("protocol_version") & ": " & Servers.ServersManager.PROTOCOLVERSION
         Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, vS, New Vector2(Core.ScreenSize.Width - FontManager.MiniFont.MeasureString(vS).X - 4, Core.ScreenSize.Height - FontManager.MiniFont.MeasureString(vS).Y - 1), Color.White)
 
         ' Draw player list tooltip after everything else.
@@ -288,7 +288,7 @@ Public Class JoinServerScreen
                 ServerList.Move(selectIndex, 1)
                 SaveServerlist()
                 Core.SetScreen(New OverworldScreen())
-                Core.SetScreen(New ConnectScreen(ConnectScreen.Modes.Connect, Localization.Translate("server.connecting_to_server"), Localization.Translate("global.please_wait") & "...", Core.CurrentScreen))
+                Core.SetScreen(New ConnectScreen(ConnectScreen.Modes.Connect, Localization.Translate("connecting_to_server"), Localization.Translate("global.please_wait") & "...", Core.CurrentScreen))
             End If
         End If
     End Sub
@@ -400,7 +400,7 @@ Public Class JoinServerScreen
 
         Public Sub Ping()
             If IsLocal = True Then
-                Me.Name = Localization.Translate("server.single_player_name")
+                Me.Name = Localization.Translate("single_player_name")
                 Me.PingResult = 0
                 Me.StartedPing = True
                 Me.Pinged = True
@@ -408,7 +408,7 @@ Public Class JoinServerScreen
                 Me.MaxPlayersOnline = 1
                 Me.IP = "127.0.0.1"
                 Me.Port = "15124"
-                Me.ServerMessage = Localization.Translate("server.single_player_message")
+                Me.ServerMessage = Localization.Translate("single_player_message")
                 Me.ServerProtocolVersion = Servers.ServersManager.PROTOCOLVERSION
             Else
                 Dim t As New Threading.Thread(AddressOf StartPing)
@@ -541,12 +541,12 @@ Public Class JoinServerScreen
 
         Public Function GetServerStatus() As String
             If ReceivedError = True Then
-                Return Localization.Translate("server.received_error")
+                Return Localization.Translate("received_error")
             End If
             If Me.Pinged = True Then
-                Return Localization.Translate("server.pinged")
+                Return Localization.Translate("pinged")
             Else
-                Return Localization.Translate("server.polling") & LoadingDots.Dots
+                Return Localization.Translate("polling") & LoadingDots.Dots
             End If
         End Function
 
@@ -566,7 +566,7 @@ Public Class JoinServerScreen
                 If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                     Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                     Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "(" & Localization.Translate("server.no_connection") & ")", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "(" & Localization.Translate("no_connection") & ")", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                 End If
             Else
                 If Pinged = True Then
@@ -575,10 +575,10 @@ Public Class JoinServerScreen
 
                     If CanJoin() = False Then
                         If CurrentPlayersOnline >= MaxPlayersOnline Then
-                            message = Localization.Translate("server.full")
+                            message = Localization.Translate("full")
                         End If
                         If ServerProtocolVersion <> Servers.ServersManager.PROTOCOLVERSION Then
-                            message = Localization.Translate("server.version_mismatch")
+                            message = Localization.Translate("version_mismatch")
                         End If
 
                         color = New Color(190, 0, 0, 255)
@@ -593,17 +593,17 @@ Public Class JoinServerScreen
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("server.ping") & ": " & PingResult & " ms", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("ping") & ": " & PingResult & " ms", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                     End If
                 Else
                     Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * CInt(Math.Floor(JoinServerScreen.BarAnimationState / 10)), 224, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("server.polling") & LoadingDots.Dots, New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("polling") & LoadingDots.Dots, New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                     End If
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("server.polling") & LoadingDots.Dots, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("polling") & LoadingDots.Dots, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                 End If
             End If
 
@@ -616,13 +616,13 @@ Public Class JoinServerScreen
                 startPos.X = CInt(Core.ScreenSize.Width / 2 - width / 2)
 
                 If Core.ScaleScreenRec(New Rectangle(CInt(startPos.X) + width - 36 - FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X.ToInteger(), CInt(startPos.Y) + 3, FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X.ToInteger(), 28)).Contains(MouseHandler.MousePosition) = True Then
-                    Dim tooltipText As String = Localization.Translate("server.no_players")
+                    Dim tooltipText As String = Localization.Translate("no_players")
 
                     If PlayerList.Count > 0 Then
                         tooltipText = PlayerList.ToArray().ArrayToString(True)
                     End If
 
-                    Dim v = FontManager.MiniFont.MeasureString(Localization.Translate("server.player_list") & Environment.NewLine & tooltipText)
+                    Dim v = FontManager.MiniFont.MeasureString(Localization.Translate("player_list") & Environment.NewLine & tooltipText)
 
                     Dim drawY As Integer = MouseHandler.MousePosition.Y + 10
                     If drawY + v.Y + 12 > Core.windowSize.Height Then
@@ -635,7 +635,7 @@ Public Class JoinServerScreen
                     Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, drawY, CInt(v.X + 10), CInt(v.Y + 22)), Color.Black, True)
                     Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, drawY, CInt(v.X + 10), CInt(v.Y + 22)), Color.Gray, True)
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("server.player_list"), New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6), Color.LightBlue)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Localization.Translate("player_list"), New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6), Color.LightBlue)
                     Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, tooltipText, New Vector2(MouseHandler.MousePosition.X + 14, drawY + 6 + 34), Color.White)
                 End If
             End If
