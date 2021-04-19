@@ -31192,9 +31192,5 @@
   <PropertyGroup>
     <PostBuildEvent>$(SolutionDir)lib\tools\PostBuild.exe</PostBuildEvent>
   </PropertyGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties content_4localization_4no_1json__JsonSchema="https://beaujs.com/schema.json" />
-    </VisualStudio>
-  </ProjectExtensions>
+  <ProjectExtensions />
 </Project>
