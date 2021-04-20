@@ -394,6 +394,7 @@ Places_Dance Theater,Dance Theater
 Places_Lighthouse,Lighthouse
 Places_Team Rocket HQ,Team Rocket HQ
 Places_Radio Tower,Radio Tower
+Places_Seaplane Port,Seaplane Port
 
 Dungeons:
 Places_Ilex Forest,Ilex Forest
@@ -417,6 +418,7 @@ Places_Dragon's Den,Dragon's Den
 Places_Tohjo Falls,Tohjo Falls
 Places_Victory Road,Victory Road
 Places_Mt. Silver,Mt. Silver
+Places_Diamond Dive,Diamond Dive
 Places_Indigo Plateau,Indigo Plateau
 Places_Safari Zone,Safari Zone
 Places_Viridian Forest,Viridian Forest
@@ -501,6 +503,8 @@ Places_Route 45,Route 45
 Places_Route 46,Route 46
 Places_Route 47,Route 47
 Places_Route 48,Route 48
+Places_Route 49,Route 49
+Places_Route 50,Route 50
 
 Places_Treasure Beach,Treasure Beach
 Places_Kindle Road,Kindle Road
