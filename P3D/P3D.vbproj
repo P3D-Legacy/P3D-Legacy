@@ -29323,7 +29323,7 @@
     <Compile Include="Pokemon\Attacks\Bug\Infestation.vb" />
     <Compile Include="Pokemon\Attacks\Bug\LeechLife.vb" />
     <Compile Include="Pokemon\Attacks\Bug\Megahorn.vb" />
-    <Compile Include="Pokemon\Attacks\Bug\PinMissle.vb" />
+    <Compile Include="Pokemon\Attacks\Bug\PinMissile.vb" />
     <Compile Include="Pokemon\Attacks\Bug\QuiverDance.vb" />
     <Compile Include="Pokemon\Attacks\Bug\SignalBeam.vb" />
     <Compile Include="Pokemon\Attacks\Bug\Silverwind.vb" />

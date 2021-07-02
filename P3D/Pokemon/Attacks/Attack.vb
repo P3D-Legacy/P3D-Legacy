@@ -327,7 +327,7 @@
                 Case 41
                     returnMove = New Moves.Bug.Twineedle()
                 Case 42
-                    returnMove = New Moves.Bug.PinMissle()
+                    returnMove = New Moves.Bug.PinMissile()
                 Case 43
                     returnMove = New Moves.Normal.Leer()
                 Case 44
