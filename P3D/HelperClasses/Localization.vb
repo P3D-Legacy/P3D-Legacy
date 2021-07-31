@@ -99,24 +99,24 @@ Public Class Localization
             End If
         End If
     End Sub
-    Public Shared Function Translate(ByVal s As String, Optional ByVal type As Type = Nothing, Optional ByVal DefaultValue As String = "") As String
+    Public Shared Function Translate(ByVal tokenInput As String, Optional ByVal type As Type = Nothing, Optional ByVal DefaultValue As String = "") As String
         Dim resultToken As Token = Nothing
         Dim CurrentScreen As String = GetCurrentScreen()
-        s = s.ToLower().Replace(" ", "_").Replace("'", "").Replace("p3d.", "").Replace("._", "_") ' Lets format the string before finding it
+        tokenInput = tokenInput.ToLower().Replace(" ", "_").Replace("'", "").Replace("p3d.", "").Replace("._", "_") ' Lets format the string before finding it
         Dim prefix As String = ""
         If type Is Nothing Then
             prefix = CurrentScreen
         Else
             prefix = type.Name.ToString.ToLower
         End If
-        Dim NewTokenName As String = prefix & "." & s
-        If s.Contains(".") = False Then
-            'Logger.Debug("Localization.vb: s.Contains: " & s)
-            s = NewTokenName
+        Dim NewTokenName As String = prefix & "." & tokenInput
+        If tokenInput.Contains(".") = False Then
+            'Logger.Debug("Localization.vb: tokenInput.Contains: " & tokenInput)
+            tokenInput = NewTokenName
         End If
-        If LocalizationTokens.ContainsKey(s) = True Then
-            If LocalizationTokens.TryGetValue(s, resultToken) = False Then
-                Return s
+        If LocalizationTokens.ContainsKey(tokenInput) = True Then
+            If LocalizationTokens.TryGetValue(tokenInput, resultToken) = False Then
+                Return tokenInput
             Else
                 Dim result As String = resultToken.TokenContent
                 If Core.Player IsNot Nothing Then
@@ -129,13 +129,13 @@ Public Class Localization
             Dim FullPath As String = GameController.GamePath & GameMode.DefaultLocalizationsPath
             Dim LocaleFilePath As String = FullPath & "missing_tokens.json"
             Dim TokensFile As JObject = JObject.Parse(File.ReadAllText(LocaleFilePath))
-            If TokensFile.ContainsKey(s) = False Then
-                TokensFile.Add(s, s)
+            If TokensFile.ContainsKey(tokenInput) = False Then
+                TokensFile.Add(tokenInput, tokenInput)
             End If
             File.WriteAllText(LocaleFilePath, JsonConvert.SerializeObject(TokensFile, Formatting.Indented))
 
             If DefaultValue = "" Then
-                Return s
+                Return tokenInput
             Else
                 Return DefaultValue
             End If
