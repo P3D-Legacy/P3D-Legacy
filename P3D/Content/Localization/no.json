@@ -753,6 +753,21 @@
 				"got_away_safely": "Slapp unna trygt!",
 				"run_away_failed": "Kunne ikke løpe vekk."
 			}
+		},
+		"summaryscreen": {
+			"type": "Type",
+			"item": "Gjenstand",
+			"nature": "Natur",
+			"dexno": "Dex Nr.",
+			"idno": "ID Nr.",
+			"ability": "Evne",
+			"catch_method": "Fangstmetode",
+			"exp_points": "Exp. Poeng",
+			"to_next_lv": "Til neste Lv.",
+			"egg_low": "Det ser ut som dette egget vil~ta lang tid å klekke.",
+			"egg_medium": "Det blir varmere og beveger seg~litt. Den klekker snart.",
+			"egg_high": "Det er sterk bevegelse.~Den klekker snart!",
+			"egg_watch": "Eggvakten"
 		}
 	}
 }

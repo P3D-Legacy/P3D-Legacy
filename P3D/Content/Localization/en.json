@@ -749,6 +749,21 @@
 				"got_away_safely": "Got away safely!",
 				"run_away_failed": "Failed to run away."
 			}
+		},
+		"summaryscreen": {
+			"type": "Type",
+			"item": "Item",
+			"nature": "Nature",
+			"dexno": "Dex No.",
+			"idno": "ID No.",
+			"ability": "Ability",
+			"catch_method": "Catch Method",
+			"exp_points": "Exp. Points",
+			"to_next_lv": "To next Lv.",
+			"egg_low": "It looks like this Egg will~take a long time to hatch.",
+			"egg_medium": "It's getting warmer and moves~a little. It will hatch soon.",
+			"egg_high": "There is strong movement~noticeable. It will hatch soon!",
+			"egg_watch": "The Egg Watch"
 		}
 	}
 }
