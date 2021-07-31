@@ -16,7 +16,7 @@
         Me.MouseVisible = True
         Me.CanChat = False
 
-        If Not currentScreen Is Nothing Then
+        If currentScreen IsNot Nothing Then
             Me.PreScreen = currentScreen
         End If
 
