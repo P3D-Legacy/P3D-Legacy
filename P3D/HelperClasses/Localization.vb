@@ -123,6 +123,9 @@ Public Class Localization
                     result = result.Replace("<playername>", Core.Player.Name)
                     result = result.Replace("<rivalname>", Core.Player.RivalName)
                 End If
+                If result.Contains("~") Then
+                    result = result.Replace("~", Environment.NewLine)
+                End If
                 Return result
             End If
         Else
