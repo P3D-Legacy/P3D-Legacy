@@ -1,6 +1,13 @@
 ﻿Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
+''' <summary>
+''' TODO:
+''' - Test and check if all screens has been passed thru this class
+''' - Do a QA build for the QA team and check over everything before translation team gets the files
+''' - Future todo: Pass dialog thru the localization class
+''' </summary>
+
 Public Class Localization
     Public Shared CurrentLanguage As String = "en"
     Public Shared LocalizationTokens As Dictionary(Of String, Token) = New Dictionary(Of String, Token)
