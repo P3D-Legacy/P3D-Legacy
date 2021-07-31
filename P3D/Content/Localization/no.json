@@ -1,6 +1,7 @@
 {
 	"author": "DanielRTRD",
 	"language_name": "Norwegian",
+	"version": "0.58.1",
 	"p3d": {
 		"global": {
 			"join": "Bli med",
@@ -753,6 +754,5 @@
 				"run_away_failed": "Kunne ikke løpe vekk."
 			}
 		}
-	},
-	"version": "0.58.1"
+	}
 }

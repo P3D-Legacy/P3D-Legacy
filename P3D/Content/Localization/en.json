@@ -1,6 +1,7 @@
 {
 	"author": "DanielRTRD",
 	"language_name": "English",
+	"version": "0.58.1",
 	"p3d": {
 		"global": {
 			"join": "Join",
@@ -749,6 +750,5 @@
 				"run_away_failed": "Failed to run away."
 			}
 		}
-	},
-	"version": "0.58.1"
+	}
 }
