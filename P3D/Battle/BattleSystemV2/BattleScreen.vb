@@ -1036,8 +1036,6 @@ nextIndex:
             End If
             TempPokeFile = ""
 
-            OwnPokemon.ResetTemp()
-
             If IsRemoteBattle = False Then
                 If ConnectScreen.Connected = True Then
                     If Battle.Won = False Then
@@ -1081,6 +1079,11 @@ nextIndex:
                     If p.hasLeveledUp = True Then
                         hasLevelUp = True
                     End If
+                    If IsRemoteBattle = True Or IsTrainerBattle = True Then
+                        p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                        p.Item.AdditionalData = p.OriginalItem.AdditionalData
+                        Screen.TextBox.Show(Core.Player.Name & " received" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                    End If
                     p.ResetTemp()
                 Next
                 If hasLevelUp = False Then
@@ -1118,6 +1121,14 @@ nextIndex:
                     End If
                 Next
             Else
+                For Each p As Pokemon In Core.Player.Pokemons
+                    If IsRemoteBattle = True Or IsTrainerBattle = True Then
+                        p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                        p.Item.AdditionalData = p.OriginalItem.AdditionalData
+                        Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                    End If
+                    p.ResetTemp()
+                Next
                 ResetVars()
                 Core.SetScreen(New TransitionScreen(Me, New BlackOutScreen(Me), Color.Black, False))
             End If
