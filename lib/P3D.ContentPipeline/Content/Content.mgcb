@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:ttf2bmp.exe
 
 #---------------------------------- Content ---------------------------------#
 
@@ -34,8 +35,9 @@
 /build:Fonts/BMP/Braille.png
 
 #begin Fonts/BMP/chatFont.png
-/importer:TextureImporter
-/processor:FontTextureProcessor
+/importer:LocalizedFontTextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
 /processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
@@ -45,16 +47,18 @@
 /copy:Fonts/BMP/GameJolt.xnb
 
 #begin Fonts/BMP/InGame.png
-/importer:TextureImporter
-/processor:FontTextureProcessor
+/importer:LocalizedFontTextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
 /processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/InGame.png
 
 #begin Fonts/BMP/mainFont.png
-/importer:TextureImporter
-/processor:FontTextureProcessor
+/importer:LocalizedFontTextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
 /processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
@@ -68,8 +72,9 @@
 /build:Fonts/BMP/miniFont.spritefont
 
 #begin Fonts/BMP/TextFont.png
-/importer:TextureImporter
-/processor:FontTextureProcessor
+/importer:LocalizedFontTextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
 /processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
