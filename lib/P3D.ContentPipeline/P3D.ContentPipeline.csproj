@@ -83,10 +83,14 @@
     <Content Include="Content\Effects\GaussianBlur.fx" />
     <Content Include="Content\Fonts\BMP\Braille.png" />
     <Content Include="Content\Fonts\BMP\chatFont.png" />
+    <Content Include="Content\Fonts\BMP\chatFont.txt" />
     <Content Include="Content\Fonts\BMP\GameJolt.png" />
     <Content Include="Content\Fonts\BMP\InGame.png" />
+    <Content Include="Content\Fonts\BMP\InGame.txt" />
     <Content Include="Content\Fonts\BMP\mainFont.png" />
+    <Content Include="Content\Fonts\BMP\mainFont.txt" />
     <Content Include="Content\Fonts\BMP\TextFont.png" />
+    <Content Include="Content\Fonts\BMP\TextFont.txt" />
     <Content Include="Content\Fonts\BMP\Unown.png" />
     <Content Include="Content\Models\boat2\Boat.png" />
     <Content Include="Content\Models\building\textures\P3DBuilding.png" />
