@@ -815,11 +815,16 @@ Public Class NewInventoryScreen
         End If
 
         If Controls.Accept() AndAlso _items.Length > 0 Then
-            _infoItemOptionSelection = 0
-            _isInfoShowing = True
+            Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
             SoundManager.PlaySound("select")
-            SetInfoSettings()
-            SetItemOptions()
+            If cItem.CanBeUsedInBattle = True Then
+                _infoItemOptionSelection = 0
+                _isInfoShowing = True
+                SetInfoSettings()
+                SetItemOptions()
+            Else
+                TextBox.Show("This item can't~be used in Battle.")
+            End If
         End If
 
         If Controls.Dismiss() Then
