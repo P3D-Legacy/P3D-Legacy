@@ -8,6 +8,7 @@ Namespace Items.Medicine
         Public Overrides ReadOnly Property Description As String = "A candy that is packed with energy. When consumed, it will instantly raise the level of a single Pokémon by one."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 4800
         Public Overrides ReadOnly Property BattlePointsPrice As Integer = 48
+        Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
         Public Sub New()
             _textureRectangle = New Rectangle(192, 24, 24, 24)
