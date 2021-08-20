@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Mt. Silver]}}{"MusicLoop"{str[wind]}}{"CurrentRegion"{str[Johto,Kanto]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[3]}}{"Lightning"{int[0]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[3]}}{"Lighting"{int[0]}}]}}
 
 Floor:
 Grass:

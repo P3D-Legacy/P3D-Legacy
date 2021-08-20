@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Route 28]}}{"MusicLoop"{str[RouteMusic5]}}{"CurrentRegion"{str[Kanto]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[0]}}{"Lightning"{int[0]}}{"BattleMap"{str[routes\route28.dat,10,0,-2]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}{"BattleMap"{str[routes\route28.dat,10,0,-2]}}]}}
 
 Floor:
 Grass:

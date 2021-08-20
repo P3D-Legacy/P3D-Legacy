@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Intro Map]}}{"MusicLoop"{str[RouteMusic1]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[1]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}{"Lightning"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[1]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[1]}}{"Weather"{int[1]}}{"Lighting"{int[1]}}]}}
 
 {"Floor"{ENT[{"Size"{intArr[50,40]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[intro]}}{"Texture"{rec[0,0,16,16]}}]}}
 

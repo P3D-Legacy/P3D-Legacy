@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Trainer Tower]}}{"MusicLoop"{str[gym]}}{"CurrentRegion"{str[sevii islands]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"MapScript"{str[quest\tower\entmap]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[1]}}{"MapScript"{str[quest\tower\entmap]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[19,16]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[trainertower]}}{"Texture"{rec[0,64,16,16]}}]}}

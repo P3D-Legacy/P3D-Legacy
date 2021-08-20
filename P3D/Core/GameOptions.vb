@@ -81,7 +81,7 @@
                         End If
                     Case "viewbobbing"
                         Me.ViewBobbing = CBool(value)
-                    Case "lightningenabled"
+                    Case "lightingenabled", "lightningenabled"
                         Me.LightingEnabled = CBool(value)
                     Case "gamepadenabled"
                         Me.GamePadEnabled = CBool(value)
@@ -145,7 +145,7 @@
                 "Language|" & Localization.LanguageSuffix & Environment.NewLine &
                 "ViewBobbing|" & Me.ViewBobbing.ToNumberString() & Environment.NewLine &
                 "GamePadEnabled|" & Me.GamePadEnabled.ToNumberString() & Environment.NewLine &
-                "LightningEnabled|" & Me.LightingEnabled.ToNumberString() & Environment.NewLine &
+                "LightingEnabled|" & Me.LightingEnabled.ToNumberString() & Environment.NewLine &
                 "StartedOfflineGame|" & Me.StartedOfflineGame.ToNumberString() & Environment.NewLine &
                 "PreferMultiSampling|" & Core.GraphicsManager.PreferMultiSampling.ToNumberString() & Environment.NewLine &
                 "ContentPacks|" & ContentPackString & Environment.NewLine &
@@ -176,7 +176,7 @@
             "Language|en" & Environment.NewLine &
             "ViewBobbing|1" & Environment.NewLine &
             "GamePadEnabled|1" & Environment.NewLine &
-            "LightningEnabled|1" & Environment.NewLine &
+            "LightingEnabled|1" & Environment.NewLine &
             "StartedOfflineGame|0" & Environment.NewLine &
             "PreferMultiSampling|1" & Environment.NewLine &
             "ContentPacks|" & Environment.NewLine &

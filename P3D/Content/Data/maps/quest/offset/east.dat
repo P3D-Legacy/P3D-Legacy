@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Canyon Entrance]}}{"MusicLoop"{str[RouteMusic4]}}{"CurrentRegion"{str[sevii islands]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[1]}}{"Lightning"{int[0]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[1]}}{"Lighting"{int[0]}}]}}
 
 Mountain:
 {"Floor"{ENT[{"Size"{intArr[1,49]}}{"Position"{intArr[0,7,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[64,16,16,16]}}]}}

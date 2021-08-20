@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Green Path]}}{"MusicLoop"{str[RouteMusic4]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[0]}}{"Lightning"{int[0]}}{"BattleMap"{str[fortune\green.dat,-10.7,0,-11]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}{"BattleMap"{str[fortune\green.dat,-10.7,0,-11]}}]}}
 
 Floor:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,4]}}{"Position"{intArr[38,1,9]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}

@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Rixy Chamber]}}{"MusicLoop"{str[alph]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}{"WildPokemon"{bool[0]}}]}}
-{"Actions"{LEV[{"RadioChannels"{str[13.5]}}{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"MapScript"{str[quest\tanoby\chambermap]}}{"Weather"{int[1]}}{"Lightning"{int[1]}}]}}
+{"Actions"{LEV[{"RadioChannels"{str[13.5]}}{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[3]}}{"MapScript"{str[quest\tanoby\chambermap]}}{"Weather"{int[1]}}{"Lighting"{int[1]}}]}}
 
 floors:
 {"Floor"{ENT[{"Size"{intArr[21,15]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[sevii]}}{"Texture"{rec[16,176,16,16]}}]}}

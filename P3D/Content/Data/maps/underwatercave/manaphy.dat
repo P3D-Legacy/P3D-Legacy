@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Underwater Cave]}}{"MusicLoop"{str[darkcave]}}{"WildPokemon"{bool[1]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}{"OverworldPokemon"{bool[0]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"MapScript"{str[underwatercave\deepseaemblemcheck]}}{"EnviromentType"{int[4]}}{"Weather"{int[4]}}{"Lightning"{int[3]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"MapScript"{str[underwatercave\deepseaemblemcheck]}}{"EnvironmentType"{int[4]}}{"Weather"{int[4]}}{"Lighting"{int[3]}}]}}
 Floor:
 	Normal Floor:
 		{"EntityField"{ENT[{"Size"{intArr[11,11]}}{"Position"{sngArr[0,-0.25,0]}}{"EntityID"{str[Water]}}{"Visible"{bool[1]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,0,16,16][0,0,16,16]]}}{"TextureIndex"{intArr[0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[routes,48,160,16,16]}}{"Rotation"{int[0]}}]}}

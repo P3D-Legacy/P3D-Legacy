@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Underwater Cave]}}{"MusicLoop"{str[darkcave]}}{"WildPokemon"{bool[1]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}{"OverworldPokemon"{bool[1]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"MapScript"{str[underwatercave\rocks\puzzlerocks]}}{"Weather"{int[1]}}{"Lightning"{int[3]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[3]}}{"MapScript"{str[underwatercave\rocks\puzzlerocks]}}{"Weather"{int[1]}}{"Lighting"{int[3]}}]}}
 
 	#Replace "PlaceHolderMap.dat" with the respective warping destination.
 

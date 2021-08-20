@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Pokemon Mart]}}{"MusicLoop"{str[mart]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[1]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[10,6]}}{"Position"{intArr[1,0,0]}}{"TexturePath"{str[Mart]}}{"Texture"{rec[0,0,16,16]}}]}}

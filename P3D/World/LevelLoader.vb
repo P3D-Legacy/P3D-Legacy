@@ -986,8 +986,8 @@
             Screen.Level.RideType = 0
         End If
 
-        If TagExists(Tags, "EnviromentType") = True Then
-            Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnviromentType"))
+        If TagExists(Tags, "EnvironmentType") = True Then
+            Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnvironmentType"))
         Else
             Screen.Level.EnvironmentType = 0
         End If
@@ -998,16 +998,14 @@
             Screen.Level.WeatherType = 0
         End If
 
-        ' It's not my fault, I swear. The keyboard was slippy, I was partly sick, and there was fog on the road and I couldn't see.
-        Dim lightningExists As Boolean = TagExists(Tags, "Lightning")
-        Dim lightingExists As Boolean = TagExists(Tags, "Lighting")
+        If TagExists(Tags, "DayTime") = True Then
+            Screen.Level.DayTime = CInt(GetTag(Tags, "DayTime"))
+        Else
+            Screen.Level.DayTime = 0
+        End If
 
-        If lightningExists = True And lightingExists = True Then
+        If TagExists(Tags, "Lighting") = True Then
             Screen.Level.LightingType = CInt(GetTag(Tags, "Lighting"))
-        ElseIf lightingExists = True Then
-            Screen.Level.LightingType = CInt(GetTag(Tags, "Lighting"))
-        ElseIf lightningExists = True Then
-            Screen.Level.LightingType = CInt(GetTag(Tags, "Lightning"))
         Else
             Screen.Level.LightingType = 1
         End If
@@ -1017,6 +1015,24 @@
         Else
             Screen.Level.IsDark = False
         End If
+
+        If Screen.Level.DayTime = World.DayTime.Night Then
+            If World.IsAurora = False Then
+                Dim chance = Random.Next(0, 250)
+                If chance = 0 Then
+                    World.IsAurora = True
+                End If
+            End If
+        Else
+            World.IsAurora = False
+        End If
+
+        If TagExists(Tags, "IsAurora") = True Then
+            World.IsAurora = CBool(GetTag(Tags, "IsAurora"))
+        Else
+            World.IsAurora = False
+        End If
+
 
         If TagExists(Tags, "Terrain") = True Then
             Screen.Level.Terrain.TerrainType = Terrain.FromString(CStr(GetTag(Tags, "Terrain")))

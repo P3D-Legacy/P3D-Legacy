@@ -94,7 +94,7 @@ Public Class KeyBindings
                             EscapeKey = binding
                         Case "onlinestatus"
                             OnlineStatusKey = binding
-                        Case "lightning"
+                        Case "lighting", "lightning"
                             LightKey = binding
                     End Select
                 End If

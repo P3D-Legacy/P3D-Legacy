@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Ilex Forest]}}{"MusicLoop"{str[ilex_forest]}}{"WildPokemon"{bool[1]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[5]}}{"Weather"{int[0]}}{"Lightning"{int[2]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[5]}}{"Weather"{int[0]}}{"Lighting"{int[2]}}]}}
 
 Floors:
 {"Floor"{ENT[{"Size"{intArr[34,10]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[32,80,16,16]}}]}}

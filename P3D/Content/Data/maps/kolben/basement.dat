@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Kolben Tower]}}{"MusicLoop"{str[battletower]}}{"CurrentRegion"{str[Sevii Islands]}}{"RegionalForm"{str[alola]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"MapScript"{str[kolben\BSOD]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[3]}}{"MapScript"{str[kolben\BSOD]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[5,19]}}{"Position"{intArr[7,0,0]}}{"TexturePath"{str[kolben]}}{"Texture"{rec[0,0,16,16]}}]}}

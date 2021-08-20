@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Underwater Path]}}{"MusicLoop"{str[darkcave]}}{"WildPokemon"{bool[1]}}{"OverworldPokemon"{bool[0]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[4]}}{"Weather"{int[4]}}{"Lightning"{int[3]}}{"SurfingBattleMap"{str[underwatercave\underwater.dat,-7,0,14]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[4]}}{"Weather"{int[4]}}{"Lighting"{int[3]}}{"SurfingBattleMap"{str[underwatercave\underwater.dat,-7,0,14]}}]}}
 
 
 \\Internal Part:

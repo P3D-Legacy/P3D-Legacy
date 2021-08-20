@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Seven Island]}}{"MusicLoop"{str[violet]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[1]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[1]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[15,4]}}{"Position"{intArr[0,0,-1]}}{"TexturePath"{str[Gym]}}{"Texture"{rec[112,32,16,16]}}]}}
