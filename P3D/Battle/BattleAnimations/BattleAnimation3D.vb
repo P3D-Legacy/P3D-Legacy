@@ -1,24 +1,26 @@
 ﻿Public Class BattleAnimation3D
 
     Inherits Entity
-
+    Public Enum AnchorTypes
+        Top
+        Left
+        Right
+        Bottom
+    End Enum
     Public Enum AnimationTypes
         [Nothing]
         Move
         Transition
         Size
-        Opacity
         Rotation
         Texture
         Wait
         ViewPokeBill
-        BillMove
         Sound
     End Enum
 
     Public AnimationType As AnimationTypes = AnimationTypes.Nothing
     Public CanRemove As Boolean = False
-
     Public Ready As Boolean = False
     Public startDelay As Single
     Public endDelay As Single
@@ -82,7 +84,9 @@
 
     Public Overrides Sub Render()
         If Me.startDelay <= 0.0F Then
-            Draw(Me.Model, Me.Textures, True)
+            If CanRemove = False Then
+                Draw(Me.Model, Me.Textures, True)
+            End If
         End If
     End Sub
 

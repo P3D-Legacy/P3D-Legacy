@@ -6,9 +6,9 @@
     Public FadeIn As Boolean = False
     Public EndState As Single = 0.0F
 
-    Public Sub New(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single)
+    Public Sub New(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal StartState As Single = 1.0F)
         MyBase.New(Position, Texture, Scale, startDelay, endDelay)
-
+        MyBase.Opacity = StartState
         Me.EndState = EndState
         Me.FadeIn = FadeIn
         Me.TransitionSpeed = TransitionSpeed

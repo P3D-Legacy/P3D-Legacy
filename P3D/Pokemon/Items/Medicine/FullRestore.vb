@@ -41,7 +41,7 @@ Namespace Items.Medicine
                     Dim t As String = "Healed " & p.GetDisplayName() & "!"
                     t &= RemoveItem()
 
-                    SoundManager.PlaySound("single_heal", False)
+                    SoundManager.PlaySound("Use_Item", False)
                     Screen.TextBox.Show(t, {})
                 End If
             End If

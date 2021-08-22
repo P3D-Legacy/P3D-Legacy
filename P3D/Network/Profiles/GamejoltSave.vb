@@ -881,7 +881,7 @@ Namespace GameJolt
                 "thirdPerson|0" & Environment.NewLine &
                 "skin|" & GameJolt.Emblem.GetPlayerSpriteFile(1, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Gender) & Environment.NewLine &
                 "location|Your Room" & Environment.NewLine &
-                "battleAnimations|2" & Environment.NewLine &
+                "battleAnimations|1" & Environment.NewLine &
                 "BoxAmount|5" & Environment.NewLine &
                 "LastRestPlace|yourroom.dat" & Environment.NewLine &
                 "LastRestPlacePosition|1,0.1,3" & Environment.NewLine &

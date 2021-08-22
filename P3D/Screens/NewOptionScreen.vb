@@ -11,7 +11,7 @@
     Dim Sound As Integer = 50
     Dim RenderDistance As Integer = 0
     Dim GraphicStyle As Integer = 1
-    Dim ShowBattleAnimations As Integer = 0
+    Dim ShowBattleAnimations As Integer = 1
     Dim DiagonalMovement As Boolean = True
     Dim Difficulty As Integer = 0
     Dim BattleStyle As Integer = 0
@@ -443,7 +443,7 @@
         Me.Sound = 50
         Me.RenderDistance = 2
         Me.GraphicStyle = 1
-        Me.ShowBattleAnimations = 2
+        Me.ShowBattleAnimations = 1
         Me.DiagonalMovement = False
         Me.Difficulty = 0
         Me.BattleStyle = 1
@@ -591,7 +591,7 @@
     End Sub
 
     Private Sub ToggleAnimations(ByVal c As ToggleButton)
-        If Me.ShowBattleAnimations = 0 Then
+        If Me.ShowBattleAnimations <> 1 Then
             Me.ShowBattleAnimations = 1
         Else
             Me.ShowBattleAnimations = 0

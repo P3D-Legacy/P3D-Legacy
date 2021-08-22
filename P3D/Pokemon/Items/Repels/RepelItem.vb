@@ -13,7 +13,7 @@
                 Core.Player.Inventory.RemoveItem(ID, 1)
                 Player.Temp.LastUsedRepel = ID
 
-                SoundManager.PlaySound("repel_use", False)
+                SoundManager.PlaySound("Use_Repel", False)
                 Screen.TextBox.Show(Core.Player.Name & " used a~" & Name, {}, True, True)
                 Core.Player.RepelSteps = RepelSteps
                 PlayerStatistics.Track("[42]Repels used", 1)

@@ -47,7 +47,7 @@ Namespace Items
                     Dim t As String = "Restored " & Pokemon.GetDisplayName() & "'s~HP by " & diff & "."
                     t &= RemoveItem()
 
-                    SoundManager.PlaySound("single_heal", False)
+                    SoundManager.PlaySound("Use_Item", False)
                     Screen.TextBox.Show(t, {})
                     PlayerStatistics.Track("[17]Medicine Items used", 1)
 
@@ -81,7 +81,7 @@ Namespace Items
                 t &= RemoveItem()
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
 
                 Return True
@@ -117,7 +117,7 @@ Namespace Items
                 Dim t As String = "Cures the sleep of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
@@ -154,7 +154,7 @@ Namespace Items
                 Dim t As String = "Cures the burn of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
@@ -193,7 +193,7 @@ Namespace Items
                 Dim t As String = "Cures the ice of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
@@ -232,7 +232,7 @@ Namespace Items
                 Dim t As String = "Cures the paralysis~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {})
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 

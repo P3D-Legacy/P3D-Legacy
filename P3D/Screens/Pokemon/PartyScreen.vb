@@ -905,7 +905,7 @@ Public Class PartyScreen
             Dim s As String = "version=2" & Environment.NewLine &
                               "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
                               "@environment.toggledarkness" & Environment.NewLine &
-                              "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
+                              "@sound.play(FieldMove_Flash)" & Environment.NewLine &
                               "@text.show(The area got lit up!)" & Environment.NewLine &
                               ":end"
             PlayerStatistics.Track("Flash used", 1)
@@ -913,7 +913,7 @@ Public Class PartyScreen
         Else
             Dim s As String = "version=2" & Environment.NewLine &
                 "@text.show(" & PokemonList(_index).GetDisplayName() & " used~Flash!)" & Environment.NewLine &
-                                            "@sound.play(Battle\Effects\effect_thunderbolt)" & Environment.NewLine &
+                                            "@sound.play(FieldMove_Flash)" & Environment.NewLine &
                                             "@text.show(The area is already~lit up!)" & Environment.NewLine &
                                             ":end"
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)

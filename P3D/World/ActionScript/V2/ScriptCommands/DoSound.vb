@@ -21,7 +21,7 @@
                     End If
 
                     If sound = "healing" Then
-                        sound = "pokemon_heal"
+                        sound = "Heal_Party"
                     End If
 
                     SoundManager.PlaySound(sound, stopMusic)

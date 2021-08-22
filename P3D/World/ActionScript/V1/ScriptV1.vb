@@ -1662,7 +1662,7 @@
         End If
 
         Core.Player.Inventory.AddItem(ItemID, Amount)
-        SoundManager.PlaySound("item_found", True)
+        SoundManager.PlaySound("Receive_Item", True)
 
         Screen.TextBox.reDelay = 0.0F
         Screen.TextBox.Show(Message, {})

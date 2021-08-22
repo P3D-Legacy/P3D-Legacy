@@ -30,7 +30,7 @@ Namespace Items.Medicine
                     End If
                 Next
 
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show("Your team has been~fully healed." & RemoveItem(), {})
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             Else

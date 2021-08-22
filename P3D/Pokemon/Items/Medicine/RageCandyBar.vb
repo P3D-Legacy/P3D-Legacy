@@ -45,7 +45,7 @@ Namespace Items.Medicine
                     Dim t As String = Pokemon.GetDisplayName() & "~gets healed up!"
                     t &= RemoveItem()
 
-                    SoundManager.PlaySound("single_heal", False)
+                    SoundManager.PlaySound("Use_Item", False)
                     Screen.TextBox.Show(t, {})
                     PlayerStatistics.Track("[17]Medicine Items used", 1)
 

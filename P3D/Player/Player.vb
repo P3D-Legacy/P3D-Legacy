@@ -356,7 +356,7 @@
     Public Trophies As New List(Of Integer)
 
     'Non-secure fields:
-    Public ShowBattleAnimations As Integer = 2
+    Public ShowBattleAnimations As Integer = 1
     Public BoxAmount As Integer = 10
     Public DiagonalMovement As Boolean = False
     Public DifficultyMode As Integer = 0
@@ -1807,7 +1807,7 @@
                                     "@Text.Show(Your repel effect wore off.*Do you want to use~another <inventory.name(" & Temp.LastUsedRepel & ")>?)" & Environment.NewLine &
                                     "@Options.Show(Yes,No)" & Environment.NewLine &
                                     ":when:Yes" & Environment.NewLine &
-                                    "@sound.play(repel_use)" & Environment.NewLine &
+                                    "@sound.play(Use_Repel)" & Environment.NewLine &
                                     "@Text.Show(<player.name> used~a <inventory.name(" & Temp.LastUsedRepel & ")>.)" & Environment.NewLine &
                                     "@item.repel(" & Temp.LastUsedRepel & ")" & Environment.NewLine &
                                     "@item.remove(" & Temp.LastUsedRepel & ",1,0)" & Environment.NewLine &
@@ -2029,7 +2029,7 @@
             Coins = 0
             HasPokedex = False
             HasPokegear = False
-            ShowBattleAnimations = 2
+            ShowBattleAnimations = 1
             BoxAmount = 10
             LastRestPlace = "yourroom.dat"
             LastRestPlacePosition = "1,0.1,3"

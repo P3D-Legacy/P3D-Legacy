@@ -120,7 +120,7 @@
 
             If Me._playIntroSound = False Then
                 Me._playIntroSound = True
-                SoundManager.PlaySound("Battle\throw")
+                SoundManager.PlaySound("Battle\Pokeball\throw")
             End If
 
             UpdateAnimations()
@@ -132,7 +132,7 @@
                     If Me.Animations.Count = 0 Then
                         Select Case Me.AnimationIndex
                             Case 0
-                                SoundManager.PlaySound("PokeballOpen")
+                                SoundManager.PlaySound("Battle\Pokeball\open")
                                 InBall = True
                                 AnimationIndex = 1
                                 AnimationStarted = False
@@ -143,10 +143,10 @@
                                 SetupAnimation()
                             Case 2, 3, 4, 5
                                 If StayInBall() = True Then
-                                    SoundManager.PlaySound("Battle\ballshake")
+                                    SoundManager.PlaySound("Battle\Pokeball\shake")
                                     AnimationIndex += 1
                                 Else
-                                    SoundManager.PlaySound("PokeballOpen")
+                                    SoundManager.PlaySound("Battle\Pokeball\open")
                                     AnimationIndex = 21
                                     InBall = False
                                 End If
@@ -209,6 +209,7 @@
 
     Private Sub CatchPokemon()
         p.ResetTemp()
+
         Dim s As String = "Gotcha!~" & p.GetName() & " was caught!"
 
         If Core.Player.HasPokedex = True Then
@@ -228,10 +229,13 @@
 
         p.SetCatchInfos(Me.Ball, "caught at")
 
-        MusicManager.Play("wild_defeat", False, 0.2F)
-        SoundManager.PlaySound("success", True)
-        TextBox.Show(s, {}, False, False)
-    End Sub
+		MusicManager.Stop()
+		SoundManager.PlaySound("Battle\Pokeball\catch", False)
+		SoundManager.PlaySound("success", True)
+		MusicManager.Play("wild_defeat", False, 0.2F)
+		TextBox.Show(s, {}, False, False)
+
+	End Sub
 
     Private Sub StorePokemon()
         Dim s As String = ""
@@ -273,8 +277,7 @@
                 BattleScreen.OppPokemonNPC.Visible = False
                 Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), 0.01F, 0.0F, 6.0F))
 
-                Dim Size As New BASize(BattleScreen.OppPokemonNPC.Position, BattleScreen.OppPokemonNPC.Textures(0), BattleScreen.OppPokemonNPC.Scale, False, New Vector3(0.05F), 0.02F, 0.0F, 0.0F)
-                Size.Anchor = {}
+                Dim Size As New BASize(BattleScreen.OppPokemonNPC.Position, BattleScreen.OppPokemonNPC.Textures(0), BattleScreen.OppPokemonNPC.Scale, False, New Vector3(0.05F), 0.02F, 0.0F, 0.0F, "1")
 
                 Animations.Add(Size)
             Case 2
@@ -321,7 +324,7 @@
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 3.5F
                 End If
-            Case "lure ball"
+			Case "lure ball"
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 5.0F
                 End If

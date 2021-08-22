@@ -112,7 +112,7 @@
             menuIndex = MenuScreens.TradeRequest
             Me.TradeRequestNetworkID = CInt(Data(0))
             Me.TradeRequestGameJoltID = CStr(Data(1))
-            SoundManager.PlaySound("single_heal", False)
+            SoundManager.PlaySound("Use_Item", False)
             TradeRequestData = -1
         End Sub
 
@@ -122,7 +122,7 @@
             menuIndex = MenuScreens.BattleRequest
             Me.BattleRequestNetworkID = CInt(Data(0))
             Me.BattleRequestGameJoltID = CStr(Data(1))
-            SoundManager.PlaySound("single_heal", False)
+            SoundManager.PlaySound("Use_Item", False)
             BattleRequestData = -1
         End Sub
 

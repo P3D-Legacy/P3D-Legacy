@@ -2,23 +2,17 @@
 
     Inherits BattleAnimation3D
 
-    Public Enum Anchors
-        Top
-        Left
-        Right
-        Bottom
-    End Enum
-
     Public Grow As Boolean = False
     Public EndSize As Vector3
     Public SizeSpeed As Single = 0.01F
-    Public Anchor() As Anchors = {Anchors.Bottom}
+    Public Anchors As String
 
     Public Change As New Vector3(1)
 
-    Public Sub New(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Grow As Boolean, ByVal EndSize As Vector3, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single)
+    Public Sub New(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Grow As Boolean, ByVal EndSize As Vector3, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Anchors As String)
         MyBase.New(Position, Texture, Scale, startDelay, endDelay)
 
+        Me.Anchors = Anchors
         Me.Grow = Grow
         Me.EndSize = EndSize
         Me.SizeSpeed = SizeSpeed
@@ -79,19 +73,23 @@
             End If
         End If
 
-        If Anchor.Contains(Anchors.Bottom) = True Then
+        'Bottom
+        If Anchors.Contains("1") = True Then
             Dim diffY As Single = saveScale.Y - Me.Scale.Y
             Me.Position.Y -= diffY / 2
         End If
-        If Anchor.Contains(Anchors.Top) = True Then
+        'Top
+        If Anchors.Contains("2") = True Then
             Dim diffY As Single = saveScale.Y - Me.Scale.Y
             Me.Position.Y += diffY / 2
         End If
-        If Anchor.Contains(Anchors.Left) = True Then
+        'Left
+        If Anchors.Contains("3") = True Then
             Dim diffX As Single = saveScale.X - Me.Scale.X
             Me.Position.X -= diffX / 2
         End If
-        If Anchor.Contains(Anchors.Right) = True Then
+        'Right
+        If Anchors.Contains("4") = True Then
             Dim diffX As Single = saveScale.X - Me.Scale.X
             Me.Position.X += diffX / 2
         End If

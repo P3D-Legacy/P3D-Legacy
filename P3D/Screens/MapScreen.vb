@@ -567,7 +567,7 @@
             "@player.wearskin([POKEMON|" & isShiny & "]" & p.Number & PokemonForms.GetOverworldAddition(p) & ")" & Environment.NewLine &
             "@player.turnto(2)" & Environment.NewLine &
             "@player.move(2)" & Environment.NewLine &
-            "@sound.play(Battle\Effects\effect_fly)" & Environment.NewLine &
+            "@sound.play(FieldMove_Fly)" & Environment.NewLine &
             "@camera.fix" & Environment.NewLine &
             "@player.setmovement(0,2,3)" & Environment.NewLine &
             "@player.move(3)" & Environment.NewLine &

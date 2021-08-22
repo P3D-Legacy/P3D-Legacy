@@ -72,7 +72,7 @@
                     If Stage = 6 Then
                         SoundManager.PlaySound("egg_hatch")
                     Else
-                        SoundManager.PlaySound("Battle\Effects\effect_pound")
+                        SoundManager.PlaySound("Battle\Attacks\Pound")
                     End If
 
                     Egg = GetEggTexture()

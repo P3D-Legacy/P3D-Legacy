@@ -24,7 +24,7 @@ Namespace Items.Medicine
 
             p.IsShiny = Not p.IsShiny
 
-            SoundManager.PlaySound("single_heal", False)
+            SoundManager.PlaySound("Use_Item", False)
             Screen.TextBox.Show("The Pokémon sparkled." & RemoveItem())
             PlayerStatistics.Track("[17]Medicine Items used", 1)
 

@@ -33,7 +33,7 @@ Namespace Items.Medicine
             Next
 
             If raisedPP = True Then
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Dim t As String = "Raised PP of~" & Pokemon.Attacks(AttackIndex).Name & "." & RemoveItem()
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 

@@ -2,7 +2,7 @@
 @text.show(Yeah, I am the designated healer.*Let me heal your Pokémon!)
 @screen.fadeout
 @pokemon.heal
-@sound.play(pokemon_heal,true)
+@sound.play(Heal_Party,true)
 @level.wait(200)
 @screen.fadein
 @text.show(There you go!*The boss said there should~be someone trying to stop us,~so we need to be in~tip-top shape!*Let me know if you~need to be healed up!)
