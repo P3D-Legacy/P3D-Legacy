@@ -1496,7 +1496,7 @@
             End If
 
             'Own Pokémon move animation! This displays any effects that should display on the user of the move.
-            moveUsed.UserPokemonMoveAnimation(BattleScreen, own)
+            moveUsed.UserPokemonMoveAnimation(BattleScreen)
 
             If moveUsed.Target <> Attack.Targets.Self And moveUsed.FocusOppPokemon = True Then
                 If own = True Then
@@ -1849,7 +1849,7 @@
                     End If
 
                     'Opp Pokémon move animation! This displays the move effects that target the other Pokémon and appear after the camera switched around.
-                    moveUsed.OpponentPokemonMoveAnimation(BattleScreen, own)
+                    moveUsed.OpponentPokemonMoveAnimation(BattleScreen)
 
                     If moveUsed.IsDamagingMove = True Then
                         ChangeCameraAngle(2, own, BattleScreen)
