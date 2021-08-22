@@ -65,36 +65,6 @@
             End If
         End Sub
 
-        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
-            MoveAnimation.AnimationSpawnMovingEntity(0.0, 0, 0.0, "Textures\Battle\Poison\Stinger", 0.5, 0.5, 0.5, 2.0, 0.0, 0.0, 0.05, False, False, 0.0, 0.0,,, 0)
-            MoveAnimation.AnimationPlaySound("Battle\Attacks\PoisonSting_Start", 0, 0)
-            BattleScreen.BattleQuery.Add(MoveAnimation)
-        End Sub
-
-        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
-
-            MoveAnimation.AnimationSpawnMovingEntity(2.0, 0, 0.0, "Textures\Battle\Poison\Stinger", 0.5, 0.5, 0.5, 0.0, 0.0, 0.0, 0.05, False, False, 0.0, 0.0,,, 0)
-
-            MoveAnimation.AnimationPlaySound("Battle\Attacks\PoisonSting_Hit", 1, 0)
-            MoveAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
-
-            MoveAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-            MoveAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-
-            MoveAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-            MoveAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-            MoveAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-
-            MoveAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 4, 1)
-            MoveAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 4, 1)
-
-            MoveAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 5, 2)
-
-            BattleScreen.BattleQuery.Add(MoveAnimation)
-        End Sub
-
     End Class
 
 End Namespace
