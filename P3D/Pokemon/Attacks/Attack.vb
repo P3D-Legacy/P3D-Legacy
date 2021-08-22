@@ -265,7 +265,7 @@
                 Case 10
                     returnMove = New Moves.Normal.Scratch()
                 Case 11
-                    returnMove = New Moves.Normal.ViseGrip()
+                    returnMove = New Moves.Normal.ViceGrip()
                 Case 12
                     returnMove = New Moves.Normal.Guillotine()
                 Case 13
@@ -1844,8 +1844,8 @@
                     'returnMove = New Moves.Fighting.MeteorAssault()
                     'Case 795
                     'returnMove = New Moves.Dragon.Eternabeam()
-                Case 796
-                    returnMove = New Moves.Steel.SteelBeam()
+                    'Case 796
+                    'returnMove = New Moves.Steel.SteelBeam()
                     'Case 797
                     'Blank
                 Case 999
@@ -2163,23 +2163,37 @@
 
 #Region "Animation"
 
-        Public Sub UserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen)
+        Public Sub UserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
             If Core.Player.ShowBattleAnimations = 1 Then
-                Me.InternalUserPokemonMoveAnimation(BattleScreen)
+                Dim CurrentPokemon As Pokemon = BattleScreen.OwnPokemon
+                Dim CurrentEntity As NPC = BattleScreen.OwnPokemonNPC
+                Dim CurrentModel As ModelEntity = BattleScreen.OwnPokemonModel
+                If own = False Then
+                    CurrentEntity = BattleScreen.OppPokemonNPC
+                    CurrentModel = BattleScreen.OppPokemonModel
+                End If
+                Me.InternalUserPokemonMoveAnimation(BattleScreen, own, CurrentPokemon, CurrentEntity, CurrentModel)
             End If
         End Sub
 
-        Public Overridable Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen)
+        Public Overridable Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             'Override this method in the attack class to insert the move animation query objects into the queue.
         End Sub
 
-        Public Sub OpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen)
+        Public Sub OpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
             If Core.Player.ShowBattleAnimations = 1 Then
-                Me.InternalOpponentPokemonMoveAnimation(BattleScreen)
+                Dim CurrentPokemon As Pokemon = BattleScreen.OppPokemon
+                Dim CurrentEntity As NPC = BattleScreen.OppPokemonNPC
+                Dim CurrentModel As ModelEntity = BattleScreen.OppPokemonModel
+                If own = False Then
+                    CurrentEntity = BattleScreen.OwnPokemonNPC
+                    CurrentModel = BattleScreen.OwnPokemonModel
+                End If
+                Me.InternalOpponentPokemonMoveAnimation(BattleScreen, own, CurrentPokemon, CurrentEntity, CurrentModel)
             End If
         End Sub
 
-        Public Overridable Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen)
+        Public Overridable Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             'Override this method in the attack class to insert the move animation query objects into the queue.
         End Sub
 

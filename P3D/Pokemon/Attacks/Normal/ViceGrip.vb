@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Normal
 
-    Public Class ViseGrip
+    Public Class ViceGrip
 
         Inherits Attack
 

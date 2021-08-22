@@ -1720,7 +1720,7 @@
                 If op.Ability.Name.ToLower() = "flash fire" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Fire AndAlso moveWorks = True Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
-                        ChangeCameraAngel(2, own, BattleScreen)
+                        ChangeCameraAngle(2, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Flash Fire made " & moveUsed.Name & " useless!"))
                         If own = True Then
                             BattleScreen.FieldEffects.OppFlashFire = 1
