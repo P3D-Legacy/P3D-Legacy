@@ -95,6 +95,7 @@
     <Content Include="Content\Models\boat2\Boat.png" />
     <Content Include="Content\Models\building\textures\P3DBuilding.png" />
     <Content Include="Content\Models\truck2\140l155.jpg" />
+    <Content Include="Content\ttf2bmp.exe" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">

@@ -1,5 +1,95 @@
 language_name,English
 ---
+---
+---
+Global:
+global_join,Join
+global_play,Play
+global_refresh,Refresh
+global_new,New
+global_add,Add
+global_edit,Edit
+global_remove,Remove
+global_back,Back
+global_please_wait,Please wait
+global_loading,Loading
+global_game,Game
+global_login,Log in
+global_male,Male
+global_female,Female
+global_yes,Yes
+global_no,No
+global_accept,Accept
+global_cancel,Cancel
+global_gamemode,GameMode
+global_clear,Clear
+global_save,Save
+global_close,Close
+global_on,On
+global_off,Off
+global_enabled,Enabled
+global_disabled,Disabled
+global_player_name,Player name
+global_badges,Badges
+global_play_time,Play Time
+global_location,Location
+global_money,Money
+global_points,Points
+global_name,Name
+global_order,Order
+global_filter,Filter
+global_reset,Reset
+global_pokemon_type_normal,Normal
+global_pokemon_type_fire,Fire
+global_pokemon_type_flying,Flying
+global_pokemon_type_fighting,Fighting
+global_pokemon_type_water,Water
+global_pokemon_type_grass,Grass
+global_pokemon_type_poison,Poison
+global_pokemon_type_ground,Ground
+global_pokemon_type_electric,Electric
+global_pokemon_type_psychic,Psychic
+global_pokemon_type_rock,Rock
+global_pokemon_type_ice,Ice
+global_pokemon_type_bug,Bug
+global_pokemon_type_dragon,Dragon
+global_pokemon_type_ghost,Ghost
+global_pokemon_type_dark,Dark
+global_pokemon_type_steel,Steel
+global_pokemon_type_fairy,Fairy
+global_pokemon_type_blank,Blank
+global_true,True
+global_false,False
+global_select,Select
+global_summary,Summary
+global_item,Item
+global_use,Use
+global_give,Give
+global_take,Take
+global_toss,Toss
+global_switch,Switch
+global_pokemon_move_fly,Fly
+global_pokemon_move_rocksmash,Rock Smash
+global_pokemon_move_ride,Ride
+global_pokemon_move_flash,Flash
+global_pokemon_move_cut,Cut
+global_pokemon_move_teleport,Teleport
+global_pokemon_move_dig,Dig
+global_used,Used
+global_apply,Apply
+global_eggs_cannot_hold,Eggs cannot hold items.
+---
+General:
+HP,HP
+PP,PP
+Lv.,Lv.
+Level,Level
+Attack,Attack
+Defense,Defense
+Special_Attack,Special Attack
+Special_Defense,Special Defense
+Speed,Speed
+---
 MainMenuScreen:
 main_menu_continue,Continue
 main_menu_load_game,Load Game
@@ -24,8 +114,8 @@ language_menu_back,Back
 PacksScreen:
 pack_menu_up,Up
 pack_menu_down,Down
-pack_menu_toggle_on,Enable
-pack_menu_toggle_off,Disable
+pack_menu_toggle_on,Enabled
+pack_menu_toggle_off,Disabled
 pack_menu_information,Information
 pack_menu_enabled,Enabled
 pack_menu_apply,Apply
