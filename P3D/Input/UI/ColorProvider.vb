@@ -14,7 +14,7 @@
             End Get
         End Property
 
-        Private Shared ReadOnly _gradientColor As Color = New Color(42, 167, 198)
+        Private Shared ReadOnly _gradientColor As Color = New Color(99, 204, 255)
         Private Shared ReadOnly _gameJolt_gradientColor As Color = New Color(45, 45, 45)
 
         Public Shared ReadOnly Property GradientColor() As Color
@@ -72,7 +72,7 @@
             End Get
         End Property
 
-        Private Shared ReadOnly _lightColor As Color = New Color(125, 204, 216)
+        Private Shared ReadOnly _lightColor As Color = New Color(111, 249, 255)
         Private Shared ReadOnly _gameJolt_lightColor As Color = New Color(70, 70, 70)
 
         Public Shared ReadOnly Property LightColor() As Color
@@ -101,7 +101,7 @@
             End Get
         End Property
 
-        Private Shared ReadOnly _accentColor As Color = New Color(30, 139, 227)
+        Private Shared ReadOnly _accentColor As Color = New Color(3, 155, 229)
         Private Shared ReadOnly _gameJolt_accentColor As Color = New Color(204, 255, 0)
 
         Public Shared ReadOnly Property AccentColor() As Color

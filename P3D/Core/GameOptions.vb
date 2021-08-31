@@ -4,7 +4,7 @@
     Public ShowDebug As Integer = 0
     Public ShowGUI As Boolean = True
     Public GraphicStyle As Integer = 1
-    Public LoadOffsetMaps As Integer = 10
+    Public LoadOffsetMaps As Integer = 1
     Public ContentPackNames() As String = {}
     Public ViewBobbing As Boolean = True
     Public LightingEnabled As Boolean = True
@@ -172,7 +172,7 @@
             "ShowDebugConsole|0" & Environment.NewLine &
             "ShowGUI|1" & Environment.NewLine &
             "GraphicStyle|1" & Environment.NewLine &
-            "LoadOffsetMaps|10" & Environment.NewLine &
+            "LoadOffsetMaps|1" & Environment.NewLine &
             "Language|en" & Environment.NewLine &
             "ViewBobbing|1" & Environment.NewLine &
             "GamePadEnabled|1" & Environment.NewLine &
