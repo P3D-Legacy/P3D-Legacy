@@ -28408,7 +28408,7 @@
     <Content Include="Content\Data\Scripts\league\badgecheck\8.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\Scripts\league\badgecheck\8keepeer.dat">
+    <Content Include="Content\Data\Scripts\league\badgecheck\8keeper.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Data\Scripts\league\badgecheck\1b.dat">
