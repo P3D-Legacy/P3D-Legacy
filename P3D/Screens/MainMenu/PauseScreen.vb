@@ -25,17 +25,21 @@
         If Core.Player.IsGameJoltSave = True Then
             Me.canCreateAutosave = False
         Else
-            If Me.PreScreen IsNot Nothing AndAlso Camera.Name IsNot Nothing Then
-                If Camera.Name <> "Overworld" Then
-                    Me.canCreateAutosave = False
-                Else
-                    Dim s As Screen = Me.PreScreen
-                    While s.Identification <> Identifications.OverworldScreen And Not s.PreScreen Is Nothing
-                        s = s.PreScreen
-                    End While
-                    If s.Identification = Identifications.OverworldScreen Then
-                        If CType(s, OverworldScreen).ActionScript.IsReady = False Then
-                            Me.canCreateAutosave = False
+            If Me.PreScreen IsNot Nothing Then
+                If Camera Is Nothing Then
+                    Camera = New OverworldCamera()
+                ElseIf Camera.Name IsNot Nothing Then
+                    If Camera.Name <> "Overworld" Then
+                        Me.canCreateAutosave = False
+                    Else
+                        Dim s As Screen = Me.PreScreen
+                        While s.Identification <> Identifications.OverworldScreen And Not s.PreScreen Is Nothing
+                            s = s.PreScreen
+                        End While
+                        If s.Identification = Identifications.OverworldScreen Then
+                            If CType(s, OverworldScreen).ActionScript.IsReady = False Then
+                                Me.canCreateAutosave = False
+                            End If
                         End If
                     End If
                 End If

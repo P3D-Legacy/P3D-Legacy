@@ -21,7 +21,7 @@
             Me.ServerNames.Add(s.IdentifierName.ToLower())
         Next
 
-        Me.CanBePaused = True
+        Me.CanBePaused = False
         Me.CanChat = False
         Me.CanMuteMusic = False
         Me.MouseVisible = True
