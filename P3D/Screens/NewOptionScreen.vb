@@ -583,12 +583,13 @@
         If PackNames.Count > 0 Then
             Core.GameOptions.ContentPackNames = EnabledPackNames.ToArray()
             Core.GameOptions.SaveOptions()
-            MusicManager.Stop()
+            MusicManager.PlayNoMusic()
             ContentPackManager.Clear()
             For Each s As String In Core.GameOptions.ContentPackNames
                 ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
             Next
-            MusicManager.PlayNoMusic()
+            SoundManager.PlaySound("save")
+            Core.GameOptions.ChangedPack = True
             Core.OffsetMaps.Clear()
         End If
     End Sub
@@ -1284,7 +1285,7 @@
         Public MustOverride Sub Draw()
         Public MustOverride Sub Update(ByRef s As NewOptionScreen)
         Public _position As Vector2 = New Vector2(0)
-        Private _size As Integer = 1
+        Public _size As Integer = 1
         Public Property ID As Integer
 
         Public Property Size As Integer
@@ -1529,7 +1530,6 @@
 
         Inherits Control
 
-        Private _size As Integer = 0
         Private _value As Integer = 0
         Private _max As Integer = 0
         Private _min As Integer = 0
@@ -1610,7 +1610,7 @@
         Public Sub New(ByVal Position As Vector2, ByVal Size As Integer, ByVal Text As String, ByVal Value As Integer, ByVal Min As Integer, ByVal Max As Integer, ByVal ChangeSub As OnChange, ByVal Settings As Dictionary(Of Integer, String), ID As Integer)
             MyBase.New
             Me._position = Position
-            Me._size = Size
+            Me.Size = Size
             Me._text = Text
             Me._value = Value
             Me._max = Max
@@ -1622,7 +1622,7 @@
         End Sub
 
         Public Overrides Sub Draw()
-            Dim length As Integer = _size + 16
+            Dim length As Integer = Size + 16
             Dim height As Integer = 36
 
             Dim s As NewOptionScreen = CType(CurrentScreen, NewOptionScreen)
@@ -1667,44 +1667,46 @@
         End Sub
 
         Public Overrides Sub Update(ByRef s As NewOptionScreen)
-            If s._pageClosing = False And s._pageOpening = False Then
-                If MouseHandler.ButtonDown(MouseHandler.MouseButtons.LeftButton) Then
-                    If GetSliderBox().Contains(MouseHandler.MousePosition.X, MouseHandler.MousePosition.Y) And Clicked = False Then
-                        Clicked = True
+            If MouseHandler.ButtonDown(MouseHandler.MouseButtons.LeftButton) Then
+                If GetSliderBox().Contains(MouseHandler.MousePosition.X, MouseHandler.MousePosition.Y) And Clicked = False Then
+                    Clicked = True
+                    Selected = False
+                    s._selectedScrollBar = False
+                End If
+                If Clicked = True Then
+                    Dim x As Double = MouseHandler.MousePosition.X - Me._position.X
+                    If x < 0 Then
+                        x = 0D
+                    End If
+                    If x > Me.Size + 16 Then
+                        x = Me.Size + 16
+                    End If
+
+                    Me.Value = CInt(x * ((Me._max - Min) / 100) * (100 / Me._size)) + Min
+                    Me.Value = Value.Clamp(Min, Max)
+
+                    OnChangeTrigger(Me)
+                End If
+            Else
+                Clicked = False
+                If Selected Then
+                    If Controls.Dismiss(False, True, True) OrElse Controls.Accept(False, True, True) Then
                         Selected = False
                         s._selectedScrollBar = False
-                    End If
-                    If Clicked = True Then
-                        Dim x As Double = MouseHandler.MousePosition.X - Me._position.X
-                        Dim distance As Double = Me._position.X + Me.Size + 16 + 1
-                        Dim percent As Double = x / distance * 100
-
-                        Me.Value = CInt(percent * (Max / Min))
+                    ElseIf Controls.Left(True) Then
+                        Me.Value = Me.Value - 1
                         Me.Value = Value.Clamp(Min, Max)
-
+                        OnChangeTrigger(Me)
+                    ElseIf Controls.Right(True) Then
+                        Me.Value = Me.Value + 1
+                        Me.Value = Value.Clamp(Min, Max)
                         OnChangeTrigger(Me)
                     End If
                 Else
-                    Clicked = False
-                    If Selected Then
-                        If Controls.Dismiss(False, True, True) OrElse Controls.Accept(False, True, True) Then
-                            Selected = False
-                            s._selectedScrollBar = False
-                        ElseIf Controls.Left(True) Then
-                            Me.Value = Me.Value - 1
-                            Me.Value = Value.Clamp(Min, Max)
-                            OnChangeTrigger(Me)
-                        ElseIf Controls.Right(True) Then
-                            Me.Value = Me.Value + 1
-                            Me.Value = Value.Clamp(Min, Max)
-                            OnChangeTrigger(Me)
-                        End If
-                    Else
-                        If Controls.Accept(False, True, True) Then
-                            If s._cursorDestPosition = Me.Position Then
-                                Selected = True
-                                s._selectedScrollBar = True
-                            End If
+                    If Controls.Accept(False, True, True) Then
+                        If s._cursorDestPosition = Me.Position Then
+                            Selected = True
+                            s._selectedScrollBar = True
                         End If
                     End If
                 End If
@@ -1712,7 +1714,7 @@
         End Sub
 
         Private Function GetSliderBox() As Rectangle
-            Dim x As Integer = CInt(((100 / (Me._max - Min)) * (Me._value - Min)) * (_size / 100))
+            Dim x As Integer = CInt(((100 / (Me._max - Min)) * (Me._value - Min)) * (Size / 100))
 
             If Me._value = Min Then
                 x = 0
