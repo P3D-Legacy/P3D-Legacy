@@ -498,7 +498,7 @@ Public Class OverworldCamera
 
             If clockwise = True Then
                 ClampYaw()
-                Yaw -= RotationSpeed * 35.0F
+                Yaw -= RotationSpeed * 40.0F
                 If Yaw <= yawAim Then
                     Turning = False
                     _aimDirection = -1
@@ -507,7 +507,7 @@ Public Class OverworldCamera
                 End If
             Else
                 ClampYaw()
-                Yaw += RotationSpeed * 35.0F
+                Yaw += RotationSpeed * 40.0F
                 If Yaw >= yawAim Then
                     Turning = False
                     _aimDirection = -1
@@ -539,12 +539,12 @@ Public Class OverworldCamera
         End If
 
         If Pitch > aim Then
-            Pitch -= RotationSpeed * 35.0F
+            Pitch -= RotationSpeed * 40.0F
             If Pitch < aim Then
                 Pitch = aim
             End If
         ElseIf Pitch < aim Then
-            Pitch += RotationSpeed * 35.0F
+            Pitch += RotationSpeed * 40.0F
             If Pitch > aim Then
                 Pitch = aim
             End If
@@ -644,7 +644,7 @@ Public Class OverworldCamera
         If YawLocked = False And Turning = False Then
             If (KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = True) And Turning = False Then
                 If _freeCameraMode = True Then
-                    Yaw += RotationSpeed * 35.0F
+                    Yaw += RotationSpeed * 40.0F
 
                     ClampYaw()
                 Else
@@ -662,7 +662,7 @@ Public Class OverworldCamera
             End If
             If (KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True) And Turning = False Then
                 If _freeCameraMode = True Then
-                    Yaw -= RotationSpeed * 35.0F
+                    Yaw -= RotationSpeed * 40.0F
 
                     ClampYaw()
                 Else
