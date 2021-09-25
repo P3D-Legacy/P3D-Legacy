@@ -13,8 +13,8 @@
     Dim lastTexture As String = ""
 
     Dim AnimationX As Integer = 1
-    Const AnimationDelayLenght As Single = 1.1F
-    Dim AnimationDelay As Single = AnimationDelayLenght
+    Const AnimationDelayLength As Single = 1.1F
+    Dim AnimationDelay As Single = AnimationDelayLength
     Public DoAnimation As Boolean = True
 
     Public UsingGameJoltTexture As Boolean = False
@@ -207,9 +207,9 @@
 
     Private Function GetAnimationDelay() As Single
         If Core.Player.IsRunning() = True Then
-            Return OwnPlayer.AnimationDelayLenght / 1.4F
+            Return OwnPlayer.AnimationDelayLength / 1.4F
         End If
-        Return OwnPlayer.AnimationDelayLenght
+        Return OwnPlayer.AnimationDelayLength
     End Function
 
 End Class

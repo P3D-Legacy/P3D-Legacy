@@ -12,8 +12,8 @@ Public Class OverworldPokemon
     Public warped As Boolean = True
 
     Dim AnimationX As Integer = 1
-    Dim AnimationDelayLenght As Single = 2.2F
-    Dim AnimationDelay As Single = AnimationDelayLenght
+    Dim AnimationDelayLength As Single = 2.2F
+    Dim AnimationDelay As Single = AnimationDelayLength
 
     Public Sub New(ByVal X As Single, ByVal Y As Single, ByVal Z As Single)
         MyBase.New(X, Y, Z, "OverworldPokemon", {P3D.TextureManager.DefaultTexture}, {0, 0}, False, 0, New Vector3(1.0F), BaseModel.BillModel, 0, "", New Vector3(1))
@@ -86,7 +86,7 @@ Public Class OverworldPokemon
 
             Me.AnimationDelay -= 0.1F
             If AnimationDelay <= 0.0F Then
-                AnimationDelay = AnimationDelayLenght
+                AnimationDelay = AnimationDelayLength
                 AnimationX += 1
                 If AnimationX > 2 Then
                     AnimationX = 1
@@ -162,10 +162,10 @@ Public Class OverworldPokemon
         If Screen.Camera.IsMoving() = True And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             If CInt(Me.Position.X) <> CInt(Screen.Camera.Position.X) Or CInt(Me.Position.Z) <> CInt(Screen.Camera.Position.Z) Then
                 Me.Position += GetMove()
-                Me.AnimationDelayLenght = 1.1F
+                Me.AnimationDelayLength = 1.1F
             End If
         Else
-            Me.AnimationDelayLenght = 2.2F
+            Me.AnimationDelayLength = 2.2F
         End If
     End Sub
 

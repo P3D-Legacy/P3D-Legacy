@@ -24,8 +24,8 @@
     Public moving As Boolean = False
     Dim lastRectangle As New Rectangle(0, 0, 0, 0)
     Dim AnimationX As Integer = 1
-    Const AnimationDelayLenght As Single = 1.1F
-    Dim AnimationDelay As Single = AnimationDelayLenght
+    Const AnimationDelayLength As Single = 1.1F
+    Dim AnimationDelay As Single = AnimationDelayLength
     Public HasPokemonTexture As Boolean = False
 
     Dim NameTexture As Texture2D
@@ -191,7 +191,7 @@
         If Me.moving = True Then
             Me.AnimationDelay -= 0.1F
             If Me.AnimationDelay <= 0.0F Then
-                Me.AnimationDelay = AnimationDelayLenght
+                Me.AnimationDelay = AnimationDelayLength
                 AnimationX += 1
                 If AnimationX > 4 Then
                     AnimationX = 1

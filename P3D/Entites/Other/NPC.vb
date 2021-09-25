@@ -32,8 +32,8 @@
 
     Dim AnimateIdle As Boolean = True
     Dim AnimationX As Integer = 1
-    Const AnimationDelayLenght As Single = 1.1F
-    Dim AnimationDelay As Single = AnimationDelayLenght
+    Const AnimationDelayLength As Single = 1.1F
+    Dim AnimationDelay As Single = AnimationDelayLength
 
     Public Movement As Movements = Movements.Still
     Public MoveRectangles As New List(Of Rectangle)
@@ -645,7 +645,7 @@
 
             Me.AnimationDelay -= CSng(0.13 * (Math.Abs(Me.Speed) / NPC.STANDARD_SPEED))
             If AnimationDelay <= 0.0F Then
-                AnimationDelay = AnimationDelayLenght
+                AnimationDelay = AnimationDelayLength
                 AnimationX += 1
                 If AnimationX > 4 Then
                     AnimationX = 1
@@ -657,8 +657,8 @@
                 Moved = 0.0F
                 MoveY = 0.0F
                 AnimationX = 1
-                AnimationDelay = AnimationDelayLenght
                 Me.Position = New Vector3(CInt(Me.Position.X), CInt(Me.Position.Y), CInt(Me.Position.Z))
+                AnimationDelay = AnimationDelayLength
                 ChangeTexture()
                 ApplyShaders()
                 Speed = NPC.STANDARD_SPEED
@@ -667,7 +667,7 @@
             If Me.AnimateIdle = True Then
                 Me.AnimationDelay -= 0.1F
                 If AnimationDelay <= 0.0F Then
-                    AnimationDelay = AnimationDelayLenght
+                    AnimationDelay = AnimationDelayLength
                     AnimationX += 1
                     If AnimationX > 4 Then
                         AnimationX = 1

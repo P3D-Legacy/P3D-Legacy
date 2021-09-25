@@ -12,8 +12,8 @@
     Dim loadedTexture As String = ""
 
     Dim AnimationX As Integer = 1
-    Dim AnimationDelayLenght As Single = 2.2F
-    Dim AnimationDelay As Single = AnimationDelayLenght
+    Dim AnimationDelayLength As Single = 2.2F
+    Dim AnimationDelay As Single = AnimationDelayLength
 
     Public Sub New(ByVal pos As Vector3, ByVal PokemonTexture As String, ByVal visible As Boolean)
         MyBase.New(pos.X, pos.Y, pos.Z, "NetworkPokemon", {TextureManager.DefaultTexture}, {0, 0}, False, 0, New Vector3(0.9F), BaseModel.BillModel, 0, "", New Vector3(1))
@@ -54,7 +54,7 @@
 
             Me.AnimationDelay -= 0.1F
             If AnimationDelay <= 0.0F Then
-                AnimationDelay = AnimationDelayLenght
+                AnimationDelay = AnimationDelayLength
                 AnimationX += 1
                 If AnimationX > 2 Then
                     AnimationX = 1
