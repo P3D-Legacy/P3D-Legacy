@@ -657,8 +657,8 @@
                 Moved = 0.0F
                 MoveY = 0.0F
                 AnimationX = 1
-                Me.Position = New Vector3(CInt(Me.Position.X), CInt(Me.Position.Y), CInt(Me.Position.Z))
                 AnimationDelay = AnimationDelayLength
+                Me.Position = New Vector3(CInt(Me.Position.X), CSng(Me.Position.Y), CInt(Me.Position.Z))
                 ChangeTexture()
                 ApplyShaders()
                 Speed = NPC.STANDARD_SPEED
