@@ -225,7 +225,7 @@ Public Class OverworldScreen
 
             'Open the PokégearScreen:
             If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
-                If Core.Player.HasPokegear = True Or GameController.IS_DEBUG_ACTIVE = True Then
+                If Core.Player.HasPokegear = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                     If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
                         Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
                     End If
