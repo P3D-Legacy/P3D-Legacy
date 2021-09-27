@@ -89,6 +89,11 @@
                     Return ReturnBoolean(Core.Player.HasPokedex)
                 Case "haspokegear"
                     Return ReturnBoolean(Core.Player.HasPokegear)
+                Case "isgamejolt"
+                    If argument = "1" Then
+                        ReturnBoolean(Core.Player.IsGameJoltSave = True AndAlso GameJolt.LogInScreen.UserBanned(GameJoltSave.GameJoltID) = False)
+                    End If
+                    Return ReturnBoolean(Core.Player.IsGameJoltSave)
             End Select
             Return DEFAULTNULL
         End Function
