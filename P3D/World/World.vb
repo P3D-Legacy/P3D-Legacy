@@ -588,7 +588,7 @@ endsub:
                 Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
                 Screen.SkyDome.TextureDown = TextureManager.GetTexture("SkyDomeResource\Stars")
             Case EnvironmentTypes.Inside
-                Core.BackgroundColor = New Color(56, 56, 56)
+                Core.BackgroundColor = New Color(57, 57, 57)
                 Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
                 Screen.SkyDome.TextureUp = Nothing
                 Screen.SkyDome.TextureDown = Nothing
