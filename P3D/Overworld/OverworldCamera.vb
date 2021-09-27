@@ -1020,7 +1020,7 @@ Public Class OverworldCamera
     End Sub
 
     Private Sub ControlThirdPersonCamera()
-        If GameController.IS_DEBUG_ACTIVE = True Then
+        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
             If Controls.CtrlPressed() = True Then
                 If KeyBoardHandler.KeyDown(KeyBindings.UpKey) = True Then
                     ThirdPersonOffset.Y += Speed
