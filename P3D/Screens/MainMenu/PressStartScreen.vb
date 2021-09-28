@@ -248,14 +248,24 @@ Public Class NewMainMenuScreen
 
     Inherits Screen
 
-    Private _screenOffset As Vector2 = New Vector2(0, 0) 'Position of the main menu relative to the _screenOrigin
-    Private _screenOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the main menu needs to move to
+    Private _screenOffset As Vector2 = New Vector2(0, 0) 'Position of the top row relative to the _screenOrigin
+    Private _screenOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the top needs to move to
     Private _screenOrigin As Vector2 = New Vector2(CSng(ScreenSize.Width / 2 - 80 - 180), CSng(ScreenSize.Height / 2 - 80)) 'Center of the game window. It's adjusted when resizing the window.
+
+    Private _mainOffset As Vector2 = _screenOffset
+
+    Private _optionsOffset As Vector2 = New Vector2(0, 0) 'Position of the options row relative to the _screenOrigin
+    Private _optionsOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the options row needs to move to
+
+    Private _gameJoltOffset As Vector2 = New Vector2(0, 0) 'Position of the gamejolt row relative to the _screenOrigin
+    Private _gameJoltOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the gamejolt needs to move to
+
 
     Private _loading As Boolean = True
     Private _fadeInMain As Single = 0F
     Private _fadeInOptions As Single = 0F
     Private _fadeInGameJolt As Single = 0F
+    Private _GameJoltOpacity As Single = 0F
     Private _expandDisplay As Single = 0F
     Private _closingDisplay As Boolean = False
     Private _displayTextFade As Single = 0F
@@ -268,8 +278,9 @@ Public Class NewMainMenuScreen
 
     Private _MainProfiles As New List(Of GameProfile)
     Private _GameJoltProfiles As New List(Of GameProfile)
-    Private _OptionProfiles As New List(Of GameProfile)
-    Private _selectedProfile As Integer = 1
+    Private _OptionsProfiles As New List(Of GameProfile)
+    Public Shared _selectedProfile As Integer = 1
+    Public Shared _selectedProfileTemp As Integer = _selectedProfile
     Private _GameJoltButtonIndex As Integer = 0 'This is to tell which button on a GameJolt profile is selected: the profile itself or the gender & reset buttons
     Public Shared _menuIndex As Integer = 0 '0 = Game Profiles, 1 = GameJolt Submenu, 2 = Options Submenu, 3 = GameJolt Options Submenu
 
@@ -286,10 +297,18 @@ Public Class NewMainMenuScreen
         _menuTexture = TextureManager.GetTexture("GUI\Menus\MainMenu")
         _oldMenuTexture = TextureManager.GetTexture("GUI\Menus\Menu")
 
-        _screenOffset.X = 0
-        _screenOffsetTarget.X = _screenOffset.X
-        _screenOffset.Y = 0
-        _screenOffsetTarget.Y = _screenOffset.Y
+        _screenOffset = New Vector2(0, 0)
+        _screenOffsetTarget = _screenOffset
+
+        _mainOffset = _screenOffset
+
+        _optionsOffset = New Vector2(0, 0)
+        _optionsOffsetTarget = _optionsOffset
+
+        _gameJoltOffset = New Vector2(0, 0)
+        _gameJoltOffsetTarget = _gameJoltOffset
+
+        _selectedProfile = 1
 
         _sliderTarget = GetSliderTarget(_selectedProfile)
         _sliderPosition = _sliderTarget
@@ -301,15 +320,23 @@ Public Class NewMainMenuScreen
     Public Overrides Sub Update()
         PreScreen.Update()
         If _loading = False Then
+            'Shift the top row horizontally
+            _mainOffset.X = _screenOffset.X
             'Shift the main menu vertically
             Select Case _menuIndex
                 Case 0
                     _screenOffsetTarget.Y = 0
-                Case 1, 2
+                    _optionsOffsetTarget.X = _screenOffsetTarget.X
+                Case 1
+                    _screenOffsetTarget.Y = -180 - 32
+                    _optionsOffsetTarget.X = _gameJoltOffsetTarget.X
+                Case 2
                     _screenOffsetTarget.Y = -180 - 32
                 Case 3
                     _screenOffsetTarget.Y = -320 - 32
             End Select
+
+            'Fade in Options row
             If _menuIndex = 2 Or _menuIndex = 3 Then
                 If _fadeInOptions < 1.0F Then
                     _fadeInOptions = MathHelper.Lerp(1.0F, _fadeInOptions, 0.93F)
@@ -318,14 +345,16 @@ Public Class NewMainMenuScreen
                     End If
                 End If
             Else
-                If _fadeInOptions > 1.0F Then
-                    _fadeInOptions = MathHelper.Lerp(0.0F, _fadeInOptions, -0.93F)
-                    If _fadeInOptions + 0.01F <= 0.0F Then
+                If _fadeInOptions > 0.0F Then
+                    _fadeInOptions = MathHelper.Lerp(0.0F, _fadeInOptions, 0.93F)
+                    If _fadeInOptions - 0.01F <= 0.0F Then
                         _fadeInOptions = 0.0F
                     End If
                 End If
             End If
-                If _fadeInMain < 1.0F Then
+
+            'Fade in the Top row
+            If _fadeInMain < 1.0F Then
                 _fadeInMain = MathHelper.Lerp(1.0F, _fadeInMain, 0.93F)
                 If _fadeInMain + 0.01F >= 1.0F Then
                     _fadeInMain = 1.0F
@@ -383,16 +412,39 @@ Public Class NewMainMenuScreen
                         Next
                     End If
                     If CurrentScreen.Identification = Screen.Identifications.MainMenuScreen Then
-                        If Controls.Right(True) And _selectedProfile < _MainProfiles.Count - 1 Then
-                            _selectedProfile += 1
-                            _screenOffsetTarget.X -= 180
-                            _GameJoltButtonIndex = 0
-                        End If
-                        If Controls.Left(True) And _selectedProfile > 0 Then
-                            _selectedProfile -= 1
-                            _screenOffsetTarget.X += 180
-                            _GameJoltButtonIndex = 0
-                        End If
+                        Select Case _menuIndex
+                            Case 0
+                                If Controls.Right(True) And _selectedProfile < _MainProfiles.Count - 1 Then
+                                    _selectedProfile += 1
+                                    _screenOffsetTarget.X -= 180
+                                    _GameJoltButtonIndex = 0
+                                End If
+                                If Controls.Left(True) And _selectedProfile > 0 Then
+                                    _selectedProfile -= 1
+                                    _screenOffsetTarget.X += 180
+                                    _GameJoltButtonIndex = 0
+                                End If
+                            Case 1
+                                If Controls.Right(True) And _selectedProfile < _GameJoltProfiles.Count - 1 Then
+                                    _selectedProfile += 1
+                                    _gameJoltOffsetTarget.X -= 180
+                                    _GameJoltButtonIndex = 0
+                                End If
+                                If Controls.Left(True) And _selectedProfile > 0 Then
+                                    _selectedProfile -= 1
+                                    _gameJoltOffsetTarget.X += 180
+                                    _GameJoltButtonIndex = 0
+                                End If
+                            Case 2, 3
+                                If Controls.Right(True) And _selectedProfile < _OptionsProfiles.Count - 1 Then
+                                    _selectedProfile += 1
+                                    _optionsOffsetTarget.X -= 180
+                                End If
+                                If Controls.Left(True) And _selectedProfile > 0 Then
+                                    _selectedProfile -= 1
+                                    _optionsOffsetTarget.X += 180
+                                End If
+                        End Select
                     End If
 
                     If _MainProfiles(_selectedProfile).IsGameJolt AndAlso _MainProfiles(_selectedProfile).Loaded Then
@@ -405,8 +457,14 @@ Public Class NewMainMenuScreen
                         _GameJoltButtonIndex = Clamp(_GameJoltButtonIndex, 0, 3)
                     End If
 
-                    _selectedProfile = _selectedProfile.Clamp(0, _MainProfiles.Count - 1)
-
+                    Select Case _menuIndex
+                        Case 0
+                            _selectedProfile = _selectedProfile.Clamp(0, _MainProfiles.Count - 1)
+                        Case 1
+                            _selectedProfile = _selectedProfile.Clamp(0, _GameJoltProfiles.Count - 1)
+                        Case 2, 3
+                            _selectedProfile = _selectedProfile.Clamp(0, _OptionsProfiles.Count - 1)
+                    End Select
                     If _fadeInMain = 1.0F Then
                         If Controls.Accept(False, True, True) Then
                             Select Case _GameJoltButtonIndex
@@ -454,29 +512,34 @@ Public Class NewMainMenuScreen
                                 End If
                             Case 1, 2
                                 _menuIndex = 0
+                                _selectedProfile = _selectedProfileTemp
+                                _sliderTarget = GetSliderTarget(_selectedProfile)
                             Case 3
                                 _menuIndex = 1
+                                _selectedProfile = _selectedProfileTemp
+                                _sliderTarget = GetSliderTarget(_selectedProfile)
                         End Select
                     End If
                     If _fadeInMain = 1.0F Then
-                            If _closingDisplay Then
-                                If _expandDisplay > 0.0F Then
-                                    _expandDisplay = MathHelper.Lerp(0.0F, _expandDisplay, 0.9F)
-                                    If _expandDisplay - 0.01F <= 0.0F Then
-                                        _expandDisplay = 0.0F
-                                    End If
+                        If _closingDisplay Then
+                            If _expandDisplay > 0.0F Then
+                                _expandDisplay = MathHelper.Lerp(0.0F, _expandDisplay, 0.9F)
+                                If _expandDisplay - 0.01F <= 0.0F Then
+                                    _expandDisplay = 0.0F
                                 End If
-                            Else
-                                If _expandDisplay < 1.0F Then
-                                    _expandDisplay = MathHelper.Lerp(1.0F, _expandDisplay, 0.9F)
-                                    If _expandDisplay + 0.01F >= 1.0F Then
-                                        _expandDisplay = 1.0F
-                                    End If
+                            End If
+                        Else
+                            If _expandDisplay < 1.0F Then
+                                _expandDisplay = MathHelper.Lerp(1.0F, _expandDisplay, 0.9F)
+                                If _expandDisplay + 0.01F >= 1.0F Then
+                                    _expandDisplay = 1.0F
                                 End If
                             End If
                         End If
                     End If
-                    UpdateScreenOffset()
+                End If
+                UpdateScreenOffset()
+                UpdateOptionsOffset()
             End If
         End If
     End Sub
@@ -545,6 +608,32 @@ Public Class NewMainMenuScreen
             End If
         End If
     End Sub
+    Private Sub UpdateOptionsOffset()
+        If _optionsOffset.X > _optionsOffsetTarget.X Then
+            _optionsOffset.X = MathHelper.Lerp(_optionsOffsetTarget.X, _optionsOffset.X, 0.93F)
+            If _optionsOffset.X - 0.01F <= _optionsOffsetTarget.X Then
+                _optionsOffset.X = _optionsOffsetTarget.X
+            End If
+        End If
+        If _optionsOffset.X < _optionsOffsetTarget.X Then
+            _optionsOffset.X = MathHelper.Lerp(_optionsOffsetTarget.X, _optionsOffset.X, 0.93F)
+            If _optionsOffset.X + 0.01F >= _optionsOffsetTarget.X Then
+                _optionsOffset.X = _optionsOffsetTarget.X
+            End If
+        End If
+        If _optionsOffset.Y > _optionsOffsetTarget.Y Then
+            _optionsOffset.Y = MathHelper.Lerp(_optionsOffsetTarget.Y, _optionsOffset.Y, 0.93F)
+            If _optionsOffset.Y - 0.01F <= _optionsOffsetTarget.Y Then
+                _optionsOffset.Y = _optionsOffsetTarget.Y
+            End If
+        End If
+        If _optionsOffset.Y < _optionsOffsetTarget.Y Then
+            _optionsOffset.Y = MathHelper.Lerp(_optionsOffsetTarget.Y, _optionsOffset.Y, 0.93F)
+            If _optionsOffset.Y + 0.01F >= _optionsOffsetTarget.Y Then
+                _optionsOffset.Y = _optionsOffsetTarget.Y
+            End If
+        End If
+    End Sub
 
     Public Overrides Sub Draw()
         PreScreen.Draw()
@@ -579,13 +668,13 @@ Public Class NewMainMenuScreen
                 Dim textSize As Vector2 = FontManager.InGameFont.MeasureString("Please wait..")
                 GetFontRenderer().DrawString(FontManager.InGameFont, "Please wait" & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
             Else
-                DrawMainProfiles()
                 Select Case _menuIndex
                     Case 2
-                        DrawOptionProfiles(False)
+                        DrawOptionsProfiles(False)
                     Case 3
-                        DrawOptionProfiles(True)
+                        DrawOptionsProfiles(True)
                 End Select
+                DrawMainProfiles()
             End If
         End If
     End Sub
@@ -624,18 +713,14 @@ Public Class NewMainMenuScreen
 
     End Sub
     Private Sub DrawMainProfiles()
-        Dim MoveOffset As Single = 0
-        If _menuIndex = 0 Then
-            MoveOffset = _screenOffset.X
-        End If
+
         For x = 0 To _MainProfiles.Count - 1
             ' Draw main profiles.
-
             Dim xmain As Boolean = x = _selectedProfile
             If _menuIndex <> 0 Then
                 xmain = False
             End If
-            Dim xOffset As Single = _screenOrigin.X + MoveOffset + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
+            Dim xOffset As Single = _screenOrigin.X + _mainOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
 
             _MainProfiles(x).Draw(New Vector2(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffset.Y)), CInt(_fadeInMain * 255), (xmain), _menuTexture)
             If _MainProfiles(x).IsGameJolt AndAlso _MainProfiles(x).Loaded AndAlso (xmain) Then
@@ -646,7 +731,7 @@ Public Class NewMainMenuScreen
         If _fadeInMain = 1.0F And _menuIndex = 0 Then
             ' Draw arrow.
             If _MainProfiles(_selectedProfile).IsGameJolt = False Then
-                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(0, 16, 32, 16), Color.White)
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(0, 16, 32, 16), New Color(0, 0, 0, CInt(_fadeInMain * 255)))
             Else
                 SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(32, 16, 32, 16), Color.White)
             End If
@@ -709,25 +794,28 @@ Public Class NewMainMenuScreen
         End If
     End Sub
 
-    Private Sub DrawOptionProfiles(IsGameJoltOptions As Boolean)
+    Private Sub DrawOptionsProfiles(IsGameJoltOptions As Boolean)
         ' Draw profiles.
-        For x = 0 To _OptionProfiles.Count - 1
-            Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + x * 180 + ((x + 1) * 100)
+        For x = 0 To _OptionsProfiles.Count - 1
+            Dim xOffset As Single = _screenOrigin.X + _optionsOffset.X + x * 180
 
-            _OptionProfiles(x).Draw(New Vector2(CInt(xOffset), CInt(_screenOrigin.Y)), CInt(_fadeInOptions * 255), (x = _selectedProfile), _menuTexture)
+            _OptionsProfiles(x).Draw(New Vector2(CInt(xOffset), CInt(_screenOrigin.Y)), CInt(_fadeInOptions * 255), (x = _selectedProfile), _menuTexture)
         Next
 
-        If _fadeInOptions = 1.0F Then
-            ' Draw arrow.
-            If _menuIndex <> 0 Then
-                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(32, 16, 32, 16), Color.White)
-            End If
+        ' Draw arrow.
+        If _menuIndex <> 0 Then
+            SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(32, 16, 32, 16), New Color(0, 0, 0, CInt(_fadeInOptions * 255)))
         End If
 
     End Sub
 
     Private Function GetSliderTarget(ByVal index As Integer) As Integer
-        Return CInt(_screenOffset.X + index * 180 + 80)
+        Select Case _menuIndex
+            Case 2, 3
+                Return CInt(_optionsOffset.X + index * 180 + 80)
+            Case Else
+                Return CInt(_screenOffset.X + index * 180 + 80)
+        End Select
     End Function
 
     Public Overrides Sub ChangeTo()
@@ -737,7 +825,7 @@ Public Class NewMainMenuScreen
             't.Start()
             LoadMainProfiles()
         End If
-        If _OptionProfiles.Count = 0 Then
+        If _OptionsProfiles.Count = 0 Then
             LoadOptionProfiles()
         End If
     End Sub
@@ -769,10 +857,10 @@ Public Class NewMainMenuScreen
         _loading = False
     End Sub
     Private Sub LoadOptionProfiles()
-        _OptionProfiles.Add(New GameProfile("", False, False, 0))
-        _OptionProfiles.Add(New GameProfile("", False, False, 1))
-        _OptionProfiles.Add(New GameProfile("", False, False, 2))
-        _OptionProfiles.Add(New GameProfile("", False, False, 3))
+        _OptionsProfiles.Add(New GameProfile("", False, False, 0))
+        _OptionsProfiles.Add(New GameProfile("", False, False, 1))
+        _OptionsProfiles.Add(New GameProfile("", False, False, 2))
+        _OptionsProfiles.Add(New GameProfile("", False, False, 3))
     End Sub
 
     Private Class GameProfile
@@ -1230,6 +1318,8 @@ Public Class NewMainMenuScreen
                         messageBox.Show("The required GameMode does not exist." & Environment.NewLine & "Reaquire the GameMode to play on this profile.")
                     Else
                         _menuIndex = 2
+                        _selectedProfileTemp = _selectedProfile
+                        _selectedProfile = 0
                         'SetScreen(New NewOptionScreen(CurrentScreen))
                     End If
                 End If
