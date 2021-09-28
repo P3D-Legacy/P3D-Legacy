@@ -201,16 +201,7 @@
                     End If
                 End If
             Else
-                Dim ySpeed As Single = 3.5F
-                Select Case TextSpeed
-                    Case 1
-                        ySpeed = 3.5F
-                    Case 2
-                        ySpeed = 4.5F
-                    Case 3
-                        ySpeed = 6.5F
-                End Select
-                Me.PositionY -= ySpeed
+                Me.PositionY -= 8.0F
             End If
         Else
             If reDelay > 0.0F Then

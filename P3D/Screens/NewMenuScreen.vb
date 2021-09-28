@@ -109,7 +109,7 @@
                         Core.SpriteBatch.Draw(_texture, New Rectangle(CInt(pos.X) + 64, CInt(pos.Y), 64 * 4, 64), New Rectangle(32, 16, 16, 16), Color.White)
                         Core.SpriteBatch.Draw(_texture, New Rectangle(CInt(pos.X) + 64 * 5, CInt(pos.Y), 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CInt(pos.X) + 20, CInt(pos.Y) + 16), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CInt(pos.X) + 20, CInt(pos.Y) + 20), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                     Else
                         Dim pos = GetButtonPosition(i)
 
@@ -117,7 +117,7 @@
                         Core.SpriteBatch.Draw(_texture, New Rectangle(CInt(pos.X) + 64, CInt(pos.Y), 64 * 4, 64), New Rectangle(32, 16, 16, 16), New Color(255, 255, 255, _currentButtonFade))
                         Core.SpriteBatch.Draw(_texture, New Rectangle(CInt(pos.X) + 64 * 5, CInt(pos.Y), 64, 64), New Rectangle(16, 16, 16, 16), New Color(255, 255, 255, _currentButtonFade), 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CInt(pos.X) + 20, CInt(pos.Y) + 16), New Color(0, 0, 0, _currentButtonFade), 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CInt(pos.X) + 20, CInt(pos.Y) + 20), New Color(0, 0, 0, _currentButtonFade), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
                         Exit For
                     End If

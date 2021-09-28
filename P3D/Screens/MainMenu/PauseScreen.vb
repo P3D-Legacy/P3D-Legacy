@@ -52,8 +52,8 @@
 
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.ScreenSize.Width, Core.ScreenSize.Height), New Color(0, 0, 0, 150))
         Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_title")).X / 2)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_title"), New Vector2(pX - 7, CInt(Core.ScreenSize.Height / 6.8) + 3), Color.Black)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_title"), New Vector2(pX - 10, CInt(Core.ScreenSize.Height / 6.8)), Color.White)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_title"), New Vector2(pX - 7, CInt(Core.ScreenSize.Height / 7.5) + 3), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_title"), New Vector2(pX - 10, CInt(Core.ScreenSize.Height / 7.5)), Color.White)
 
         If Me.menuIndex = 0 Then
             DrawMenu()
