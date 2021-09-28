@@ -3,7 +3,7 @@
     Inherits Screen
 
     Dim TextSpeed As Integer = 2
-    Dim MouseSpeed As Integer = 12
+    Dim CameraSpeed As Integer = 12
     Dim FOV As Single = 45.0F
     Dim Music As Integer = 50
     Dim Sound As Integer = 50
@@ -106,7 +106,7 @@
         If PreScreen.Identification <> Identifications.MainMenuScreen Then
             Me.FOV = Camera.FOV
             Me.TextSpeed = TextBox.TextSpeed
-            Me.MouseSpeed = CInt(Camera.RotationSpeed * 10000)
+            Me.CameraSpeed = CInt(Camera.RotationSpeed * 10000)
             Me.Difficulty = Core.Player.DifficultyMode
         End If
         Me.Music = CInt(MusicManager.MasterVolume * 100)
@@ -934,6 +934,7 @@
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, "Apply", AddressOf Apply, 6))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 286 + 24, Delta_Y + 336), 2, 48, "Reset Options", AddressOf Reset, 7))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, "Close", AddressOf Close, 8))
+
             Case 1 ' "Game" from the Options menu.
                 Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, "Text Speed", Me.TextSpeed, 1, 3, AddressOf ChangeTextspeed, 1))
                 If CBool(GameModeManager.GetGameRuleValue("LockDifficulty", "0")) = False Then
@@ -944,9 +945,7 @@
 
                     Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, "Difficulty", Me.Difficulty, 0, 2, AddressOf ChangeDifficulty, d, 2))
                 End If
-
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 180), 3, 64, "View Bobbing", Me.ViewBobbing, AddressOf ToggleBobbing, {"Off", "On"}.ToList(), 3))
-
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
 
             Case 2 ' "Graphics" from the Options menu.
@@ -968,24 +967,28 @@
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 300), 3, 64, "Multi Sampling", Me.PreferMultiSampling, AddressOf ToggleMultiSampling, {"Off", "On"}.ToList(), 5))
 
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 6))
+
             Case 3 ' "Battle" from the Options menu.
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 100), 2, 64, "3D Models", CBool(ShowModels), AddressOf ToggleShowModels, {"Off", "On"}.ToList(), 1))
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 400 + 20, Delta_Y + 100), 2, 64, "Animations", CBool(Me.ShowBattleAnimations), AddressOf ToggleAnimations, {"Off", "On"}.ToList(), 2))
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 200), 2, 64, "Battle Style", CBool(Me.BattleStyle), AddressOf ToggleBattleStyle, {"Shift", "Set"}.ToList(), 3))
 
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
+
             Case 4 ' "Controls" from the Options menu.
-                Dim d As New Dictionary(Of Integer, String)
-                d.Add(1, "...Slow...")
-                d.Add(12, "Standard")
-                d.Add(38, "Super fast!")
-                d.Add(50, "SPEED OF LIGHT!")
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, "Mouse Speed", Me.MouseSpeed, 1, 50, AddressOf ChangeMouseSpeed, d, 1))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, "Reset Key Bindings", AddressOf ResetKeyBindings, 2))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, "Xbox 360 Gamepad", Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 3))
                 If PreScreen.Identification = Identifications.MainMenuScreen Then
-                     Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf Close, 4))
+                    Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 100), 5, 64, "Xbox 360 Gamepad", Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 1))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, "Reset Key Bindings", AddressOf ResetKeyBindings, 2))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf ApplyControls, 3))
                 Else
+                    Dim d As New Dictionary(Of Integer, String)
+                    d.Add(1, "...Slow...")
+                    d.Add(12, "Standard")
+                    d.Add(38, "Super fast!")
+                    d.Add(50, "SPEED OF LIGHT!")
+                    Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, "Camera Speed", Me.CameraSpeed, 1, 50, AddressOf ChangeCameraSpeed, d, 1))
+                    Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, "Xbox 360 Gamepad", Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 2))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, "Reset Key Bindings", AddressOf ResetKeyBindings, 3))
                     Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
                 End If
 
@@ -994,7 +997,7 @@
                 Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, "Sound Volume", Me.Sound, 0, 100, AddressOf ChangeSoundVolume, 2))
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 1, 64, "Muted", CBool(Me.Muted), AddressOf ToggleMute, {"No", "Yes"}.ToList(), 3))
                 If PreScreen.Identification = Identifications.MainMenuScreen Then
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf Close, 4))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf AudioApply, 4))
                 Else
                     Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
                 End If
@@ -1032,11 +1035,15 @@
     Private Sub Close()
         _closing = True
     End Sub
+    Private Sub ApplyControls()
+        Core.GameOptions.GamePadEnabled = Me.GamePadEnabled
+        _closing = True
+    End Sub
 
     Private Sub Reset()
         Me.FOV = 45.0F
         Me.TextSpeed = 2
-        Me.MouseSpeed = 12
+        Me.CameraSpeed = 12
         Me.Music = 50
         Me.Sound = 50
         Me.RenderDistance = 2
@@ -1065,7 +1072,7 @@
         If PreScreen.Identification <> Identifications.MainMenuScreen Then
             Camera.CreateNewProjection(Me.FOV)
             TextBox.TextSpeed = Me.TextSpeed
-            Camera.RotationSpeed = CSng(Me.MouseSpeed / 10000)
+            Camera.RotationSpeed = CSng(Me.CameraSpeed / 10000)
             Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
             Me.PreScreen.Update()
         End If
@@ -1251,8 +1258,8 @@
         Me.GamePadEnabled = Not Me.GamePadEnabled
     End Sub
 
-    Private Sub ChangeMouseSpeed(ByVal c As ScrollBar)
-        Me.MouseSpeed = c.Value
+    Private Sub ChangeCameraSpeed(ByVal c As ScrollBar)
+        Me.CameraSpeed = c.Value
     End Sub
 
     Private Sub ResetKeyBindings(ByVal c As CommandButton)
@@ -1288,6 +1295,16 @@
         SoundManager.Muted = CBool(Me.Muted)
         MusicManager.MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
+    End Sub
+
+
+    Private Sub AudioApply()
+        MusicManager.MasterVolume = CSng(Me.Music / 100)
+        SoundManager.Volume = CSng(Me.Sound / 100)
+        MusicManager.Muted = CBool(Me.Muted)
+        SoundManager.Muted = CBool(Me.Muted)
+        Core.GameOptions.SaveOptions()
+        _closing = True
     End Sub
 
 #End Region
