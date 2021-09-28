@@ -19,6 +19,7 @@
     Dim Muted As Integer = 0
     Dim GamePadEnabled As Boolean = True
     Dim PreferMultiSampling As Boolean = True
+    Private _subMenu As Integer = 0
 
     Private Languages As New List(Of String)
     Private LanguageNames As New List(Of String)
@@ -86,7 +87,8 @@
         End If
         SetFunctionality()
         If Submenu > 0 Then
-            Select Case Submenu
+            _subMenu = Submenu
+            Select Case _subMenu
                 Case 1
                     SwitchToLanguage()
                 Case 2
@@ -153,15 +155,15 @@
     Private Sub DrawLanguageMenu()
 
         For i = 0 To 3
-            Dim c As Color = New Color(255, 255, 255, CInt(255 * _pageFade))
+            Dim c As Color = New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade))
             If i + languageMenuIndex(2) = languageMenuIndex(0) Then
-                c = New Color(77, 147, 198, CInt(255 * _pageFade))
+                c = New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade))
             End If
 
             Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2 - 258), CInt(Core.windowSize.Height / 2 - 128 + i * 50), 480, 48), c, True)
         Next
 
-        Canvas.DrawScrollBar(New Vector2(CInt(ScreenSize.Width / 2 + 250), CInt(Core.windowSize.Height / 2 - 128)), Languages.Count, 4, languageMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _pageFade)), New Color(255, 255, 255, CInt(255 * _pageFade)), True)
+        Canvas.DrawScrollBar(New Vector2(CInt(ScreenSize.Width / 2 + 250), CInt(Core.windowSize.Height / 2 - 128)), Languages.Count, 4, languageMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), True)
 
         Dim x As Integer = Languages.Count - 1
         x = CInt(MathHelper.Clamp(x, 0, 3))
@@ -170,10 +172,10 @@
             Dim Name As String = LanguageNames(i + languageMenuIndex(2))
 
             If i + languageMenuIndex(2) = languageMenuIndex(0) Then
-                SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2 - 246), CInt(Core.windowSize.Height / 2 - 128 + 8 + 2 + i * 50)), New Color(0, 0, 0, CInt(255 * _pageFade)))
-                SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2 - 248), CInt(Core.windowSize.Height / 2 - 128 + 8 + i * 50)), New Color(255, 255, 255, CInt(255 * _pageFade)))
+                SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2 - 246), CInt(Core.windowSize.Height / 2 - 128 + 8 + 2 + i * 50)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+                SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2 - 248), CInt(Core.windowSize.Height / 2 - 128 + 8 + i * 50)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
             Else
-                SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2 - 248), CInt(Core.windowSize.Height / 2 - 128 + 8 + i * 50)), New Color(0, 0, 0, CInt(255 * _pageFade)))
+                SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2 - 248), CInt(Core.windowSize.Height / 2 - 128 + 8 + i * 50)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
             End If
         Next
 
@@ -269,12 +271,11 @@
 #Region "PacksMenu"
 
     Private Sub DrawPacksMenu()
-        Dim CanvasTexture As Texture2D
 
         For i = 0 To 3
-            Dim c As Color = New Color(255, 255, 255, 255 * _pageFade)
+            Dim c As Color = New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade))
             If i + packsMenuIndex(2) = packsMenuIndex(0) Then
-                c = New Color(77, 147, 198, CInt(255 * _pageFade))
+                c = New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade))
 
                 If EnabledPackNames.Count > 0 Then
                     If EnabledPackNames.Contains(PackNames(i + packsMenuIndex(2))) = True Then
@@ -285,35 +286,31 @@
                 End If
             End If
 
-            Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 328, 212 + i * 50, 500, 48), c, True)
+            Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 328, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 500, 48), c, True)
         Next
 
-        Canvas.DrawScrollBar(New Vector2(CInt(ScreenSize.Width / 2) + 188, 204), PackNames.Count, 4, packsMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _pageFade)), New Color(255, 255, 255, CInt(255 * _pageFade)), True)
+        Canvas.DrawScrollBar(New Vector2(CInt(ScreenSize.Width / 2) + 188, CInt(Core.windowSize.Height / 2 - 128)), PackNames.Count, 4, packsMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), True)
 
         Dim x As Integer = PackNames.Count - 1
         x = CInt(MathHelper.Clamp(x, 0, 3))
-        Dim textColor As Color = New Color(0, 0, 0, CInt(255 * _pageFade))
+        Dim textColor As Color = New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade))
 
         If PackNames.Count > 0 Then
             For i = 0 To x
                 Dim Name As String = PackNames(i + packsMenuIndex(2))
                 If EnabledPackNames.Contains(Name) = True Then
                     Name &= " (" & Localization.GetString("pack_menu_enabled") & ")"
-                    textColor = New Color(0, 0, 0, CInt(255 * _pageFade))
+                    textColor = New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade))
                 End If
 
                 If i + packsMenuIndex(2) = packsMenuIndex(0) Then
                     SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 318, 220 + 2 + i * 50), textColor)
-                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 320, 220 + i * 50), New Color(255, 255, 255, CInt(255 * _pageFade)))
+                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 320, 220 + i * 50), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
                 Else
                     SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 320, 220 + i * 50), textColor)
                 End If
             Next
         End If
-
-        CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
-        Dim buttonRectangle = New Rectangle(0, 0, 16, 16)
-        Dim buttonColor = Color.White
 
     End Sub
 
@@ -482,12 +479,12 @@
 
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
-        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 240 + 4, 196, 480, 64), New Color(77, 147, 198, CInt(255 * _pageFade)))
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2) + 2, 212 + 2), New Color(0, 0, 0, CInt(255 * _pageFade)))
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2), 212), New Color(255, 255, 255, CInt(255 * _pageFade)))
+        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 240 + 4, 196, 480, 64), New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2) + 2, 212 + 2), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2), 212), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
 
-        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 272 + 4, 272, 544, 196), New Color(255, 255, 255, CInt(255 * _pageFade)))
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("pack_menu_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("pack_menu_content") & ": " & PInfoContent & Environment.NewLine & Localization.GetString("pack_menu_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine), New Vector2(CInt(ScreenSize.Width / 2) - 272 + 16, 280), New Color(0, 0, 0, CInt(255 * _pageFade)))
+        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 272 + 4, 272, 544, 196), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("pack_menu_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("pack_menu_content") & ": " & PInfoContent & Environment.NewLine & Localization.GetString("pack_menu_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine), New Vector2(CInt(ScreenSize.Width / 2) - 272 + 16, 280), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
 
         For i = 0 To 1
             If i = packInfoIndex Then
@@ -710,14 +707,16 @@
             End If
 
             If _pageClosing = True Then
-                If _pageFade >= 0F Then
-                    _pageFade -= 0.07F
-                    If _pageFade <= 0F Then
-                        _pageFade = 0F
-                        _pageClosing = False
-                        _pageOpening = True
-                        ScreenIndex = _nextIndex
-                        InitializeControls()
+                If PreScreen.Identification = Identifications.MainMenuScreen Then
+                    If _pageFade >= 0F Then
+                        _pageFade -= 0.07F
+                        If _pageFade <= 0F Then
+                            _pageFade = 0F
+                            _pageClosing = False
+                            _pageOpening = True
+                            ScreenIndex = _nextIndex
+                            InitializeControls()
+                        End If
                     End If
                 End If
             End If
@@ -768,7 +767,7 @@
                 If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey1) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey2) Or MouseHandler.ButtonPressed(MouseHandler.MouseButtons.RightButton) Or ControllerHandler.ButtonPressed(Buttons.B) Then
                     If _pageClosing = False And _pageOpening = False Then
                         SoundManager.PlaySound("select")
-                        If ScreenIndex = 0 Then
+                        If ScreenIndex = 0 Or _subMenu <> 0 Then
                             _closing = True
                         Else
                             SwitchToMain()
@@ -929,15 +928,12 @@
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 80), 1, 64, "Game", AddressOf SwitchToGame, 1))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 80), 1, 64, "Graphics", AddressOf SwitchToGraphics, 2))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 80), 1, 64, "Battle", AddressOf SwitchToBattle, 3))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 168), 1, 64, "Controls", AddressOf SwitchToControls, 4))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 168), 1, 64, "Audio", AddressOf SwitchToAudio, 5))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 168), 1, 64, "Language", AddressOf SwitchToLanguage, 6))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310 - 32, Delta_Y + 256), 2, 64, "Content Packs", AddressOf SwitchToContentPacks, 7))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 200, Delta_Y + 168), 1, 64, "Controls", AddressOf SwitchToControls, 4))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 420, Delta_Y + 168), 1, 64, "Audio", AddressOf SwitchToAudio, 5))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, "Apply", AddressOf Apply, 8))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 286 + 24, Delta_Y + 336), 2, 48, "Reset Options", AddressOf Reset, 9))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, "Close", AddressOf Close, 10))
-
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, "Apply", AddressOf Apply, 6))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 286 + 24, Delta_Y + 336), 2, 48, "Reset Options", AddressOf Reset, 7))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, "Close", AddressOf Close, 8))
             Case 1 ' "Game" from the Options menu.
                 Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, "Text Speed", Me.TextSpeed, 1, 3, AddressOf ChangeTextspeed, 1))
                 If CBool(GameModeManager.GetGameRuleValue("LockDifficulty", "0")) = False Then
@@ -987,24 +983,34 @@
                 Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, "Mouse Speed", Me.MouseSpeed, 1, 50, AddressOf ChangeMouseSpeed, d, 1))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, "Reset Key Bindings", AddressOf ResetKeyBindings, 2))
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, "Xbox 360 Gamepad", Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 3))
+                If PreScreen.Identification = Identifications.MainMenuScreen Then
+                     Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf Close, 4))
+                Else
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
+                End If
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
             Case 5 ' "Audio" from the Options menu.
                 Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, "Music Volume", Me.Music, 0, 100, AddressOf ChangeMusicVolume, 1))
                 Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, "Sound Volume", Me.Sound, 0, 100, AddressOf ChangeSoundVolume, 2))
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 1, 64, "Muted", CBool(Me.Muted), AddressOf ToggleMute, {"No", "Yes"}.ToList(), 3))
+                If PreScreen.Identification = Identifications.MainMenuScreen Then
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf Close, 4))
+                Else
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
+                End If
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
             Case 6 ' "Language" from the Options menu.
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 286 + 24, Delta_Y + 336), 1, 48, "Back", AddressOf LanguageApply, 1))
+
             Case 7 ' "ContentPacks" from the Options menu.
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 56), 2, 48, Localization.GetString("pack_menu_up"), AddressOf ButtonUp, 1))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 112), 2, 48, Localization.GetString("pack_menu_down"), AddressOf ButtonDown, 2))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 604, Delta_Y + 168), 2, 48, Localization.GetString("pack_menu_enabled"), isSelectedEnabled, AddressOf PackEnabledToggle, {Localization.GetString("global_no"), Localization.GetString("global_yes")}.ToList(), 3))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 222), 2, 48, Localization.GetString("pack_menu_information"), AddressOf SwitchToPackInformation, 4))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 64), 2, 48, Localization.GetString("pack_menu_up"), AddressOf ButtonUp, 1))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 120), 2, 48, Localization.GetString("pack_menu_down"), AddressOf ButtonDown, 2))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 604, Delta_Y + 176), 2, 48, Localization.GetString("pack_menu_enabled"), isSelectedEnabled, AddressOf PackEnabledToggle, {Localization.GetString("global_no"), Localization.GetString("global_yes")}.ToList(), 3))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 232), 2, 48, Localization.GetString("pack_menu_information"), AddressOf SwitchToPackInformation, 4))
 
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, "Apply", AddressOf PacksApply, 5))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 6))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf Close, 6))
+
             Case 8 ' "Information" from the ContentPacks menu.
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 2, 48, Localization.GetString("pack_menu_enabled"), isSelectedEnabled, AddressOf PackEnabledToggle, {Localization.GetString("global_no"), Localization.GetString("global_yes")}.ToList(), 1))
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, "Back", AddressOf SwitchToContentPacks, 2))
@@ -1114,12 +1120,22 @@
 
     Private Sub SwitchToControls()
         Me._nextIndex = 4
-        Me._pageClosing = True
+        If PreScreen.Identification = Identifications.MainMenuScreen Then
+            ScreenIndex = _nextIndex
+            InitializeControls()
+        Else
+            Me._pageClosing = True
+        End If
     End Sub
 
     Private Sub SwitchToAudio()
         Me._nextIndex = 5
-        Me._pageClosing = True
+        If PreScreen.Identification = Identifications.MainMenuScreen Then
+            ScreenIndex = _nextIndex
+            InitializeControls()
+        Else
+            Me._pageClosing = True
+        End If
     End Sub
 
     Private Sub SwitchToLanguage()
@@ -1130,7 +1146,8 @@
         languageMenuIndex(1) = 0
         languageMenuIndex(2) = 0
         Me._nextIndex = 6
-        Me._pageClosing = True
+        ScreenIndex = _nextIndex
+        InitializeControls()
     End Sub
 
     Private Sub SwitchToContentPacks()
@@ -1141,7 +1158,12 @@
             packsMenuIndex(2) = 0
         End If
         Me._nextIndex = 7
-        Me._pageClosing = True
+        If ScreenIndex = 8 Then
+            Me._pageClosing = True
+        Else
+            ScreenIndex = _nextIndex
+            InitializeControls()
+        End If
     End Sub
     Private Sub SwitchToPackInformation()
         Me._nextIndex = 8
@@ -1274,6 +1296,7 @@
         If currentLanguage <> Languages(languageMenuIndex(0)) Then
             currentLanguage = Languages(languageMenuIndex(0))
         End If
+        _closing = True
     End Sub
 #End Region
 #End Region

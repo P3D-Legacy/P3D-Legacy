@@ -364,52 +364,76 @@ Public Class NewMainMenuScreen
                 If CurrentScreen.Identification = Identifications.MainMenuScreen Then
                     If Controls.Accept(True, False, False) Then
                         ' Click on profiles.
-                        For x = 0 To _MainProfiles.Count - 1
-                            Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
+                        Select Case _menuIndex
+                            Case 0
+                                For x = 0 To _MainProfiles.Count - 1
+                                    Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
 
-                            If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
-                                If _selectedProfile = x Then
-                                    If CurrentScreen.Identification = Identifications.MainMenuScreen Then
-                                        ClickedProfile()
-                                        SoundManager.PlaySound("select")
+                                    If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
+                                        If _selectedProfile = x Then
+                                            If CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                                                ClickedProfile()
+                                                SoundManager.PlaySound("select")
+                                            End If
+                                        Else
+                                            If CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                                                Dim diff As Integer = x - _selectedProfile
+                                                _screenOffsetTarget.X -= diff * 180
+
+                                                _selectedProfile = x
+                                            End If
+                                            Exit For
+                                        End If
                                     End If
-                                Else
-                                    If CurrentScreen.Identification = Identifications.MainMenuScreen Then
-                                        Dim diff As Integer = x - _selectedProfile
-                                        _screenOffsetTarget.X -= diff * 180
-
-                                        _selectedProfile = x
+                                Next
+                                If _MainProfiles(_selectedProfile).IsGameJolt AndAlso _MainProfiles(_selectedProfile).Loaded Then
+                                    ' Click on gamejolt buttons
+                                    Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + (100 * (1 - _fadeInMain))
+                                    Dim r As New Vector2(xOffset + 400, _screenOrigin.Y + _screenOffset.Y + 200)
+                                    If New Rectangle(CInt(r.X), CInt(r.Y), 32, 32).Contains(MouseHandler.MousePosition) Then
+                                        ButtonChangeMale()
+                                    ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                                        ButtonChangeFemale()
+                                    ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                                        ButtonResetSave()
                                     End If
-                                    Exit For
                                 End If
-                            End If
-                        Next
-                        If _MainProfiles(_selectedProfile).IsGameJolt AndAlso _MainProfiles(_selectedProfile).Loaded Then
-                            ' Click on gamejolt buttons
-                            Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + (100 * (1 - _fadeInMain))
-                            Dim r As New Vector2(xOffset + 400, _screenOrigin.Y + _screenOffset.Y + 200)
-                            If New Rectangle(CInt(r.X), CInt(r.Y), 32, 32).Contains(MouseHandler.MousePosition) Then
-                                ButtonChangeMale()
-                            ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
-                                ButtonChangeFemale()
-                            ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
-                                ButtonResetSave()
-                            End If
-                        End If
-                    End If
-                    If Controls.Dismiss(True, False, False) Then
-                        ' Click on profiles.
-                        For x = 0 To _MainProfiles.Count - 1
-                            Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
+                                If Controls.Dismiss(True, False, False) Then
+                                    ' Click on profiles.
+                                    For x = 0 To _MainProfiles.Count - 1
+                                        Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
 
-                            If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
-                                If _selectedProfile = x Then
-                                    SoundManager.PlaySound("select")
-                                    DismissProfile()
+                                        If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
+                                            If _selectedProfile = x Then
+                                                SoundManager.PlaySound("select")
+                                                DismissProfile()
+                                            End If
+                                            Exit For
+                                        End If
+                                    Next
                                 End If
-                                Exit For
-                            End If
-                        Next
+                            Case 2, 3
+                                For x = 0 To _OptionsProfiles.Count - 1
+                                    Dim xOffset As Single = _screenOrigin.X + _optionsOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
+
+                                    If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _optionsOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
+                                        If _selectedProfile = x Then
+                                            If CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                                                ClickedProfile()
+                                                SoundManager.PlaySound("select")
+                                            End If
+                                        Else
+                                            If CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                                                Dim diff As Integer = x - _selectedProfile
+                                                _optionsOffsetTarget.X -= diff * 180
+
+                                                _selectedProfile = x
+                                            End If
+                                            Exit For
+                                        End If
+                                    End If
+                                Next
+                        End Select
                     End If
                     If CurrentScreen.Identification = Screen.Identifications.MainMenuScreen Then
                         Select Case _menuIndex
@@ -570,11 +594,16 @@ Public Class NewMainMenuScreen
 
 
     Private Sub ClickedProfile()
-        If _selectedProfile = 1 And Security.FileValidation.IsValid(False) = False Then
-            _messageBox.Show("File validation failed!" & Environment.NewLine & "Redownload the game's files to solve this problem.")
-        Else
-            _MainProfiles(_selectedProfile).SelectProfile()
-        End If
+        Select Case _menuIndex
+            Case 0
+                If _selectedProfile = 1 And Security.FileValidation.IsValid(False) = False Then
+                    _messageBox.Show("File validation failed!" & Environment.NewLine & "Redownload the game's files to solve this problem.")
+                Else
+                    _MainProfiles(_selectedProfile).SelectProfile()
+                End If
+            Case 2, 3
+                _OptionsProfiles(_selectedProfile).SelectProfile()
+        End Select
     End Sub
 
     Private Sub DismissProfile()
@@ -655,12 +684,6 @@ Public Class NewMainMenuScreen
                 Case Else
                     DrawGradients(CInt(255 * _fadeInMain), False)
             End Select
-
-            If _selectedProfile = 1 Then
-                DrawGradients(CInt(255 * _fadeInMain), True)
-            Else
-                DrawGradients(CInt(255 * _fadeInMain), False)
-            End If
         End If
 
         If IsCurrentScreen() Then
@@ -669,10 +692,10 @@ Public Class NewMainMenuScreen
                 GetFontRenderer().DrawString(FontManager.InGameFont, "Please wait" & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
             Else
                 Select Case _menuIndex
-                    Case 2
-                        DrawOptionsProfiles(False)
-                    Case 3
+                    Case 1, 3
                         DrawOptionsProfiles(True)
+                    Case Else
+                        DrawOptionsProfiles(False)
                 End Select
                 DrawMainProfiles()
             End If
@@ -1171,7 +1194,7 @@ Public Class NewMainMenuScreen
                     Case 2
                         text = "Controls"
                     Case 3
-                        text = "Content Packs"
+                        text = "Content" & Environment.NewLine & "Packs"
                 End Select
 
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
@@ -1188,7 +1211,7 @@ Public Class NewMainMenuScreen
                         _logoBounce = 0F
                     End If
                 End If
-                SpriteBatch.Draw(_sprite, New Rectangle(CInt(offset.X + 40), CInt(offset.Y + 36 + Math.Sin(_logoBounce) * 8.0F), 80, 80), New Color(255, 255, 255, alpha))
+                SpriteBatch.Draw(_sprite, New Rectangle(CInt(offset.X + 40), CInt(offset.Y + 24 + Math.Sin(_logoBounce) * 8.0F), 80, 80), New Color(255, 255, 255, alpha))
 
             Else
                 If _loaded Then
@@ -1280,51 +1303,55 @@ Public Class NewMainMenuScreen
         End Sub
 
         Public Sub SelectProfile()
-            If _isGameJolt And _loaded = False And GameJolt.API.LoggedIn = False Then
-                SetScreen(New GameJolt.LogInScreen(CurrentScreen))
-            ElseIf _isNewGameButton Then
-                World.IsMainMenu = False
-                If GameModeManager.GameModeCount = 1 Then
-                    ' There's only the default GameMode available, so just load that one.
-                    GameModeManager.SetGameModePointer("Kolben")
-                    SetScreen(New Screens.MainMenu.NewNewGameScreen(CurrentScreen))
-                Else
-                    ' There is more than one GameMode, prompt a selection screen:
-                    SetScreen(New GameModeSelectionScreen(CurrentScreen))
-                End If
-            Else
-                If _gameModeExists Then
-                    GameModeManager.SetGameModePointer(_gameMode)
-                    World.IsMainMenu = False
-                    If _isGameJolt Then
-                        Core.Player.IsGameJoltSave = True
-                        Core.Player.LoadGame("GAMEJOLTSAVE")
-                        GameJolt.Emblem.GetAchievedEmblems()
-
-                        SetScreen(New JoinServerScreen(CurrentScreen))
+            Select Case _menuIndex
+                Case 0
+                    If _isGameJolt And _loaded = False And GameJolt.API.LoggedIn = False Then
+                        SetScreen(New GameJolt.LogInScreen(CurrentScreen))
+                    ElseIf _isNewGameButton Then
+                        World.IsMainMenu = False
+                        If GameModeManager.GameModeCount = 1 Then
+                            ' There's only the default GameMode available, so just load that one.
+                            GameModeManager.SetGameModePointer("Kolben")
+                            SetScreen(New Screens.MainMenu.NewNewGameScreen(CurrentScreen))
+                        Else
+                            ' There is more than one GameMode, prompt a selection screen:
+                            SetScreen(New GameModeSelectionScreen(CurrentScreen))
+                        End If
                     Else
-                        Core.Player.IsGameJoltSave = False
-                        Core.Player.LoadGame(IO.Path.GetFileName(_path))
+                        If _gameModeExists Then
+                            GameModeManager.SetGameModePointer(_gameMode)
+                            World.IsMainMenu = False
+                            If _isGameJolt Then
+                                Core.Player.IsGameJoltSave = True
+                                Core.Player.LoadGame("GAMEJOLTSAVE")
+                                GameJolt.Emblem.GetAchievedEmblems()
 
-                        SetScreen(New JoinServerScreen(CurrentScreen))
-                    End If
-                Else
-                    If Me.IsGameJolt Then
-                        _loaded = False
-                        _sprite = TextureManager.GetTexture("Textures\UI\GameJolt\gameJoltIcon")
-                        LoadGameJolt()
-                    ElseIf IsOptionsMenuButton = False Then
-                        Dim messageBox As New UI.MessageBox(CurrentScreen)
-                        messageBox.Show("The required GameMode does not exist." & Environment.NewLine & "Reaquire the GameMode to play on this profile.")
-                    Else
-                        _menuIndex = 2
-                        _selectedProfileTemp = _selectedProfile
-                        _selectedProfile = 0
-                        'SetScreen(New NewOptionScreen(CurrentScreen))
+                                SetScreen(New JoinServerScreen(CurrentScreen))
+                            Else
+                                Core.Player.IsGameJoltSave = False
+                                Core.Player.LoadGame(IO.Path.GetFileName(_path))
+
+                                SetScreen(New JoinServerScreen(CurrentScreen))
+                            End If
+                        Else
+                            If Me.IsGameJolt Then
+                                _loaded = False
+                                _sprite = TextureManager.GetTexture("Textures\UI\GameJolt\gameJoltIcon")
+                                LoadGameJolt()
+                            ElseIf IsOptionsMenuButton = False Then
+                                Dim messageBox As New UI.MessageBox(CurrentScreen)
+                                messageBox.Show("The required GameMode does not exist." & Environment.NewLine & "Reaquire the GameMode to play on this profile.")
+                            Else
+                                _menuIndex = 2
+                            _selectedProfileTemp = _selectedProfile
+                            _selectedProfile = 0
+                            'SetScreen(New NewOptionScreen(CurrentScreen))
+                        End If
                     End If
                 End If
-            End If
-
+                Case 2, 3
+                    SetScreen(New NewOptionScreen(CurrentScreen, _OptionsMenuIndex + 1))
+            End Select
         End Sub
 
     End Class
