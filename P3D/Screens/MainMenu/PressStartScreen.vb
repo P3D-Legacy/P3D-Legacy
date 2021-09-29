@@ -320,7 +320,7 @@ Public Class NewMainMenuScreen
     Public Overrides Sub Update()
         PreScreen.Update()
         If _loading = False Then
-            'Shift the top row horizontally
+            'Shift the Top row horizontally
             _mainOffset.X = _screenOffset.X
             'Shift the main menu vertically
             Select Case _menuIndex
@@ -470,25 +470,27 @@ Public Class NewMainMenuScreen
                                 End If
                         End Select
                     End If
-
-                    If _MainProfiles(_selectedProfile).IsGameJolt AndAlso _MainProfiles(_selectedProfile).Loaded Then
-                        If Controls.Down(True, True, False) Then
-                            _GameJoltButtonIndex += 1
+                    If _menuIndex = 0 Then
+                        If _MainProfiles(_selectedProfile).IsGameJolt AndAlso _MainProfiles(_selectedProfile).Loaded Then
+                            If Controls.Down(True, True, False) Then
+                                _GameJoltButtonIndex += 1
+                            End If
+                            If Controls.Up(True, True, False) Then
+                                _GameJoltButtonIndex -= 1
+                            End If
+                            _GameJoltButtonIndex = Clamp(_GameJoltButtonIndex, 0, 3)
                         End If
-                        If Controls.Up(True, True, False) Then
-                            _GameJoltButtonIndex -= 1
-                        End If
-                        _GameJoltButtonIndex = Clamp(_GameJoltButtonIndex, 0, 3)
                     End If
 
                     Select Case _menuIndex
-                        Case 0
-                            _selectedProfile = _selectedProfile.Clamp(0, _MainProfiles.Count - 1)
-                        Case 1
-                            _selectedProfile = _selectedProfile.Clamp(0, _GameJoltProfiles.Count - 1)
-                        Case 2, 3
-                            _selectedProfile = _selectedProfile.Clamp(0, _OptionsProfiles.Count - 1)
-                    End Select
+                            Case 0
+                                _selectedProfile = _selectedProfile.Clamp(0, _MainProfiles.Count - 1)
+                            Case 1
+                                _selectedProfile = _selectedProfile.Clamp(0, _GameJoltProfiles.Count - 1)
+                            Case 2, 3
+                                _selectedProfile = _selectedProfile.Clamp(0, _OptionsProfiles.Count - 1)
+                        End Select
+
                     If _fadeInMain = 1.0F Then
                         If Controls.Accept(False, True, True) Then
                             Select Case _GameJoltButtonIndex
@@ -514,11 +516,12 @@ Public Class NewMainMenuScreen
                         ' Try to load the GameJolt profile once the player has logged in.
                         _MainProfiles(0).LoadGameJolt()
                     End If
-
-                    If _MainProfiles(_selectedProfile).Loaded = False Then
-                        _closingDisplay = True
-                    Else
-                        _closingDisplay = False
+                    If _menuIndex = 0 Then
+                        If _MainProfiles(_selectedProfile).Loaded = False Then
+                            _closingDisplay = True
+                        Else
+                            _closingDisplay = False
+                        End If
                     End If
 
                     _sliderTarget = GetSliderTarget(_selectedProfile)

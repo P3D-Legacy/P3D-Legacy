@@ -20,6 +20,8 @@
     Dim GamePadEnabled As Boolean = True
     Dim PreferMultiSampling As Boolean = True
     Private _subMenu As Integer = 0
+    Private _screenSize As Size = New Size(CInt(ScreenSize.Width), CInt(ScreenSize.Height))
+    Private LastControl As Integer = 0
 
     Private Languages As New List(Of String)
     Private LanguageNames As New List(Of String)
@@ -320,6 +322,7 @@
 
         For Each control As Control In ControlList
             If control._position = _cursorDestPosition Then
+                LastControl = control.ID
                 currentControl = control
                 Exit For
             End If
@@ -655,7 +658,14 @@
         'New stuff
         If _opening Then
             InitializeControls()
+            LastControl = 0
             _opening = False
+        End If
+
+        'Refresh button positions
+        If ScreenSize.Width <> _screenSize.Width Or ScreenSize.Height <> _screenSize.Height Then
+            _screenSize = New Size(CInt(ScreenSize.Width), CInt(ScreenSize.Height))
+            InitializeControls()
         End If
 
         If _closing Then
@@ -803,6 +813,7 @@
 
         For Each control As Control In ControlList
             If control._position = _cursorDestPosition Then
+                LastControl = control.ID
                 currentControl = control
                 Exit For
             End If
@@ -1020,8 +1031,7 @@
         End Select
 
         If ScreenIndex <> 7 Then
-            '_cursorPosition = ControlList(0)._position
-            _cursorDestPosition = ControlList(0)._position
+            _cursorDestPosition = ControlList(LastControl)._position
         Else
             _cursorDestPosition = ControlList(4)._position
         End If
