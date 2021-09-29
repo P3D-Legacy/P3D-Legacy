@@ -23,6 +23,8 @@
     Private _screenSize As Size = New Size(CInt(ScreenSize.Width), CInt(ScreenSize.Height))
     Private LastControl As Integer = 0
 
+    Private Property SelectPackNoiseDelay As Integer = 10
+
     Private Languages As New List(Of String)
     Private LanguageNames As New List(Of String)
     Private currentLanguage As String = "en"
@@ -334,6 +336,10 @@
                 If packsMenuIndex(0) - packsMenuIndex(2) < 0 Then
                     packsMenuIndex(2) -= 1
                 End If
+                If SelectPackNoiseDelay = 0 Then
+                    SoundManager.PlaySound("select", 0.0F, 0.0F, 0.5F, False)
+                    SelectPackNoiseDelay = 10
+                End If
             End If
         End If
         If Controls.Down(True, True, True) = True Then
@@ -341,6 +347,10 @@
                 packsMenuIndex(0) += 1
                 If packsMenuIndex(0) + packsMenuIndex(2) > 3 Then
                     packsMenuIndex(2) += 1
+                End If
+                If SelectPackNoiseDelay = 0 Then
+                    SoundManager.PlaySound("select", 0.0F, 0.0F, 0.5F, False)
+                    SelectPackNoiseDelay = 10
                 End If
             End If
         End If
@@ -355,6 +365,10 @@
         End If
         packsMenuIndex(0) = CInt(MathHelper.Clamp(packsMenuIndex(0), 0, PackNames.Count - 1))
         packsMenuIndex(2) = CInt(MathHelper.Clamp(packsMenuIndex(2), 0, PackNames.Count - 4))
+
+        If SelectPackNoiseDelay > 0 Then
+            SelectPackNoiseDelay -= 1
+        End If
 
     End Sub
 
@@ -859,14 +873,14 @@
                         If Math.Abs(R2.Y - R1.Y) <= (R2.X - R1.X) And R2.Y >= R1.Y Then
                             EligibleControls.Add(control)
                         End If
-                    Else
-                        If ScreenIndex = 7 And currentControl.ID = 6 Then
-                            If control.ID = 4 Then
-                                EligibleControls.Add(control)
-                            End If
-                        ElseIf control.ID = currentControl.ID + 1 Then
+                    ElseIf ScreenIndex = 7 Then
+                        If currentControl.ID = 5 And control.ID = 6 Then
+                            EligibleControls.Add(control)
+                        ElseIf currentControl.ID = 6 And control.ID = 4 Then
                             EligibleControls.Add(control)
                         End If
+                    ElseIf control.ID = currentControl.ID + 1 Then
+                        EligibleControls.Add(control)
                     End If
                 Case "left"
                     If ScreenIndex = 0 And currentControl.ID > 6 Then
@@ -874,8 +888,10 @@
                             EligibleControls.Add(control)
                         End If
                     Else
-                        If ScreenIndex = 7 And currentControl.ID = 4 Then
-                            If control.ID = 6 Then
+                        If ScreenIndex = 7 Then
+                            If currentControl.ID <= 4 And control.ID = 6 Then
+                                EligibleControls.Add(control)
+                            ElseIf currentControl.ID = 6 And control.ID = 5 Then
                                 EligibleControls.Add(control)
                             End If
                         ElseIf control.ID = currentControl.ID - 1 Then
