@@ -6,7 +6,28 @@ Public Class Pokemon
     ''' <summary>
     ''' Defines which Pokémon in the default GameMode are considered "legendary".
     ''' </summary>
-    Public Shared ReadOnly Legendaries() As Integer = {144, 145, 146, 150, 151, 243, 244, 245, 249, 250, 251, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 716, 717, 718, 719, 720, 721}
+    Public Shared ReadOnly Legendaries() As Integer = {144, 145, 146, 150, 151, 243, 244, 245, 249, 250, 251, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 480, 481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 638, 639, 640, 641, 642, 643, 644, 645, 646, 647, 648, 649, 716, 717, 718, 719, 720, 721, 772, 773, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 796, 797, 798, 799, 800, 801, 802, 803, 804, 805, 806, 807, 808, 809, 888, 889, 890, 891, 892, 893, 894, 895, 896, 897, 898}
+
+    Public Shared ReadOnly Property MasterShinyRate(Optional ByVal adjusted As Boolean = True) As Integer
+        Get
+            Dim shinyRate As Integer = 4096
+
+            If adjusted Then
+                For Each mysteryEvent As MysteryEventScreen.MysteryEvent In MysteryEventScreen.ActivatedMysteryEvents
+                    If mysteryEvent.EventType = MysteryEventScreen.EventTypes.ShinyMultiplier Then
+                        shinyRate = CInt(shinyRate / CSng(mysteryEvent.Value.Replace(".", GameController.DecSeparator)))
+                    End If
+                Next
+
+                'ShinyCharm
+                If Core.Player.Inventory.GetItemAmount(242) > 0 Then
+                    shinyRate = CInt(shinyRate * 0.75F)
+                End If
+            End If
+
+            Return shinyRate
+        End Get
+    End Property
 
 #Region "Events"
 
@@ -1834,20 +1855,20 @@ Public Class Pokemon
                 End If
             End If
 
-            Dim shinyRate As Integer = 4096
+            Dim shinyRate As Integer = MasterShinyRate
 
-            For Each mysteryEvent As MysteryEventScreen.MysteryEvent In MysteryEventScreen.ActivatedMysteryEvents
-                If mysteryEvent.EventType = MysteryEventScreen.EventTypes.ShinyMultiplier Then
-                    shinyRate = CInt(shinyRate / CSng(mysteryEvent.Value.Replace(".", GameController.DecSeparator)))
-                End If
-            Next
+            'For Each mysteryEvent As MysteryEventScreen.MysteryEvent In MysteryEventScreen.ActivatedMysteryEvents
+            '    If mysteryEvent.EventType = MysteryEventScreen.EventTypes.ShinyMultiplier Then
+            '        shinyRate = CInt(shinyRate / CSng(mysteryEvent.Value.Replace(".", GameController.DecSeparator)))
+            '    End If
+            'Next
 
-            'ShinyCharm
-            If Core.Player.Inventory.GetItemAmount(242) > 0 Then
-                shinyRate = CInt(shinyRate * 0.75F)
-            End If
+            ''ShinyCharm
+            'If Core.Player.Inventory.GetItemAmount(242) > 0 Then
+            '    shinyRate = CInt(shinyRate * 0.75F)
+            'End If
 
-            If Core.Random.Next(0, shinyRate) = 0 And Pokemon.Legendaries.Contains(Me.Number) = False Then
+            If Core.Random.Next(0, shinyRate) = 0 Then
                 Me.IsShiny = True
             End If
 
