@@ -23,7 +23,8 @@
                         Core.Player.Pokemons.RemoveAt(index)
                     End If
                 Case "add"
-                    ' PokemonID,Level,Method,Ball,Location,IsEgg,TrainerName,HeldItem
+                    ' @Pokemon.Add([PartyIndex], PokemonData)
+                    ' @Pokemon.Add(PokemonID, Level, [Method], [BallID], [Location], [isEgg], [trainerName], [heldItem], [isShiny])
 
                     If argument.StartsWith("{") = True Or argument.Remove(0, 1).StartsWith(",{") = True Then
                         Dim insertIndex As Integer = Core.Player.Pokemons.Count
@@ -86,6 +87,9 @@
                         End If
 
                         Dim isShiny As Boolean = False
+                        If Core.Random.Next(0, P3D.Pokemon.MasterShinyRate) = 0 Then
+                            isShiny = True
+                        End If
                         If commas > 7 Then
                             isShiny = CBool(argument.GetSplit(8))
                         End If
@@ -784,6 +788,9 @@
                         End If
 
                         Dim isShiny As Boolean = False
+                        If Core.Random.Next(0, P3D.Pokemon.MasterShinyRate) = 0 Then
+                            isShiny = True
+                        End If
                         If commas > 7 Then
                             isShiny = CBool(argument.GetSplit(8))
                         End If
