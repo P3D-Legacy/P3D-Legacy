@@ -204,7 +204,7 @@
         If GameInstance.IsMouseVisible = True Then
 
             For i = 0 To 3
-                If ScaleScreenRec(New Rectangle(CInt(ScreenSize.Width / 2) - 258, 240 + i * 50, 480, 48)).Contains(MouseHandler.MousePosition) = True Then
+                If ScaleScreenRec(New Rectangle(CInt(ScreenSize.Width / 2) - 258, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 480, 48)).Contains(MouseHandler.MousePosition) = True Then
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                         languageMenuIndex(0) = i + languageMenuIndex(2)
                     End If
