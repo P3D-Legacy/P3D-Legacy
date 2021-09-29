@@ -1043,7 +1043,7 @@ Public Class NewMainMenuScreen
                         Case 1
                             _sprite = TextureManager.GetTexture("Textures\UI\OptionsMenu")
                         Case 2
-                            _sprite = TextureManager.GetTexture("Textures\UI\OptionsMenu")
+                            _sprite = TextureManager.GetTexture("Textures\UI\Options\Controls")
                         Case 3
                             _sprite = TextureManager.GetTexture("Textures\UI\Options\ContentPacks")
                     End Select
