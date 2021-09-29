@@ -112,8 +112,8 @@ LanguageScreen:
 language_menu_apply,Apply
 language_menu_back,Back
 PacksScreen:
-pack_menu_up,Up
-pack_menu_down,Down
+pack_menu_up,Move Up
+pack_menu_down,Move Down
 pack_menu_toggle_on,Enabled
 pack_menu_toggle_off,Disabled
 pack_menu_information,Information

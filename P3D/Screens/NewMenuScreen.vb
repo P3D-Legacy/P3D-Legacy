@@ -257,8 +257,10 @@
             End If
         End If
 
-        If Controls.Dismiss() = True Then
-            Core.SetScreen(PreScreen)
+        If CurrentScreen.Identification = Identifications.MenuScreen Then
+            If Controls.Dismiss() = True Then
+                Core.SetScreen(PreScreen)
+            End If
         End If
     End Sub
 

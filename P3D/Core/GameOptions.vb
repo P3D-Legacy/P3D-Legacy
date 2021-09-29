@@ -15,6 +15,7 @@
     Public MaxOffsetLevel As Integer = 0
     Public UpdateDisabled As Boolean = False
     Public Extras As New List(Of String)
+    Public ChangedPack As Boolean = False
 
     Public Sub LoadOptions()
         KeyBindings.CreateKeySave(False)
