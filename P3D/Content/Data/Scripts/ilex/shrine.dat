@@ -22,7 +22,7 @@ version=2
 		@options.show(Yes,No)
 			:when:Yes
 				@camera.reset
-				:if:<system.random(1,2048)>=1
+				:if:<system.random(1,<math.floor(<pokemon.mastershinyrate>/2)>)>=1
 					@register.register(shinycelebi)
 				:else
 					@register.unregister(shinycelebi)
