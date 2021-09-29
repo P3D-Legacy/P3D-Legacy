@@ -657,8 +657,8 @@
         Me.PreScreen.Update()
         'New stuff
         If _opening Then
-            InitializeControls()
             LastControl = 0
+            InitializeControls()
             _opening = False
         End If
 
@@ -717,16 +717,14 @@
             End If
 
             If _pageClosing = True Then
-                If PreScreen.Identification = Identifications.MainMenuScreen Then
-                    If _pageFade >= 0F Then
-                        _pageFade -= 0.07F
-                        If _pageFade <= 0F Then
-                            _pageFade = 0F
-                            _pageClosing = False
-                            _pageOpening = True
-                            ScreenIndex = _nextIndex
-                            InitializeControls()
-                        End If
+                If _pageFade >= 0F Then
+                    _pageFade -= 0.07F
+                    If _pageFade <= 0F Then
+                        _pageFade = 0F
+                        _pageClosing = False
+                        _pageOpening = True
+                        ScreenIndex = _nextIndex
+                        InitializeControls()
                     End If
                 End If
             End If
@@ -1030,11 +1028,7 @@
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, "Back", AddressOf SwitchToContentPacks, 2))
         End Select
 
-        If ScreenIndex <> 7 Then
-            _cursorDestPosition = ControlList(LastControl)._position
-        Else
-            _cursorDestPosition = ControlList(4)._position
-        End If
+        _cursorDestPosition = ControlList(LastControl)._position
     End Sub
 
     Private Sub Apply()
@@ -1183,8 +1177,10 @@
         End If
     End Sub
     Private Sub SwitchToPackInformation()
-        Me._nextIndex = 8
-        Me._pageClosing = True
+        If PackNames.Count > 0 Then
+            Me._nextIndex = 8
+            Me._pageClosing = True
+        End If
         ButtonPackInformation()
     End Sub
 
