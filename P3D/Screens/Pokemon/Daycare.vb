@@ -140,7 +140,9 @@
             Dim EVStat1 As String = ""
             Dim EVStat2 As String = ""
 
-            Dim EVItems() As String = {"power weight", "power bracer", "power belt", "power lens", "power band", "power anklet"}
+            Dim DKnot As Boolean = False
+
+            Dim EVItems() As String = {"power weight", "power bracer", "power belt", "power lens", "power band", "power anklet", "destiny knot"}
             If Not parent1.Item Is Nothing Then
                 If EVItems.Contains(parent1.Item.Name.ToLower()) = True Then
                     Select Case parent1.Item.Name.ToLower()
@@ -156,6 +158,8 @@
                             EVStat1 = "Special Defense"
                         Case "power anklet"
                             EVStat1 = "Speed"
+                        Case "destiny knot"
+                            DKnot = True
                     End Select
                 End If
             End If
@@ -174,6 +178,8 @@
                             EVStat2 = "Special Defense"
                         Case "power anklet"
                             EVStat2 = "Speed"
+                        Case "destiny knot"
+                            DKnot = True
                     End Select
                 End If
             End If
@@ -190,7 +196,7 @@
                 End If
             End If
 
-            While IV1.Count + IV2.Count < 3
+            While IV1.Count + IV2.Count < (3 + CInt(DKnot) * 2)
                 Dim newStat As String = ""
                 While newStat = "" Or IV1.Contains(newStat) = True Or IV2.Contains(newStat) = True
                     Select Case Core.Random.Next(0, 6)
