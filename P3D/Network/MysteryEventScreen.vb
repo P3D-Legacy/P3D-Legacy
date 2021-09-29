@@ -36,6 +36,11 @@
             Me.Name = Name
             Me.Description = Description
             Me.Value = Value
+
+            If Me.EventType = EventTypes.ShinyMultiplier AndAlso Me.Value = "0" Then
+                Me.Value = "0.1"
+            End If
+
         End Sub
 
         Public Overrides Function ToString() As String
