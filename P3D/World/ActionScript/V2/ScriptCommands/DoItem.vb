@@ -14,19 +14,23 @@
                 Case "give"
                     Dim amount As Integer = 1
                     Dim ItemID As String = argument
+                    Dim item As Item
                     If argument.Contains(",") = True Then
                         amount = int(argument.GetSplit(1))
                         ItemID = argument.GetSplit(0)
                     End If
 
                     If ScriptConversion.IsArithmeticExpression(ItemID) = False Then
-                        Dim item As Item = Item.GetItemByName(ItemID)
+                        item = Item.GetItemByName(ItemID)
 
-                        If Not item Is Nothing Then
-                            Core.Player.Inventory.AddItem(item.ID, amount)
-                        End If
                     Else
-                        Core.Player.Inventory.AddItem(int(ItemID), amount)
+                        item = Item.GetItemByID(int(ItemID))
+                    End If
+                    If Not item Is Nothing Then
+                        If item.MaxStack < Core.Player.Inventory.GetItemAmount(item.ID) + amount Then
+                            amount = int(item.MaxStack - Core.Player.Inventory.GetItemAmount(item.ID)).Clamp(0, 999)
+                        End If
+                        Core.Player.Inventory.AddItem(item.ID, amount)
                     End If
                 Case "remove"
                     Dim amount As Integer = 1
@@ -72,26 +76,26 @@
                     End If
                 Case "messagegive"
                     Dim ItemID As String = argument.GetSplit(0)
-                    Dim Item As Item = Nothing
+                    Dim item As Item
                     If ScriptConversion.IsArithmeticExpression(ItemID) = False Then
-                        Item = Item.GetItemByName(ItemID)
+                        item = Item.GetItemByName(ItemID)
                     Else
-                        Item = Item.GetItemByID(int(ItemID))
+                        item = Item.GetItemByID(int(ItemID))
                     End If
 
                     Dim Amount As Integer = int(argument.GetSplit(1))
 
-                    If Not Item Is Nothing Then
-                        Dim receiveString As String = "Received the~" & Item.Name & ".*"
+                    If Not item Is Nothing Then
+                        Dim receiveString As String = "Received the~" & item.Name & ".*"
                         If Amount > 1 Then
-                            receiveString = "Received " & Amount & "~" & Item.PluralName & ".*"
+                            receiveString = "Received " & Amount & "~" & item.PluralName & ".*"
                         End If
 
                         SoundManager.PlaySound("Receive_Item", True)
 
                         Screen.TextBox.reDelay = 0.0F
                         Screen.TextBox.TextColor = TextBox.PlayerColor
-                        Screen.TextBox.Show(receiveString & Core.Player.Inventory.GetMessageReceive(Item, Amount), {})
+                        Screen.TextBox.Show(receiveString & Core.Player.Inventory.GetMessageReceive(item, Amount), {})
 
                         CanContinue = False
                     End If
