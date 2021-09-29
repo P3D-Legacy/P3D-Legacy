@@ -151,6 +151,7 @@ Public Class PressStartScreen
 
             If IsCurrentScreen() Then
                 If KeyBoardHandler.KeyPressed(KeyBindings.EnterKey1) Or KeyBoardHandler.KeyPressed(KeyBindings.EnterKey2) Or ControllerHandler.ButtonPressed(Buttons.A) Or MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) Then
+                    _fadeInMain = 0.0F
                     SetScreen(New NewMainMenuScreen(Me))
                 End If
             End If
@@ -483,13 +484,13 @@ Public Class NewMainMenuScreen
                     End If
 
                     Select Case _menuIndex
-                            Case 0
-                                _selectedProfile = _selectedProfile.Clamp(0, _MainProfiles.Count - 1)
-                            Case 1
-                                _selectedProfile = _selectedProfile.Clamp(0, _GameJoltProfiles.Count - 1)
-                            Case 2, 3
-                                _selectedProfile = _selectedProfile.Clamp(0, _OptionsProfiles.Count - 1)
-                        End Select
+                        Case 0
+                            _selectedProfile = _selectedProfile.Clamp(0, _MainProfiles.Count - 1)
+                        Case 1
+                            _selectedProfile = _selectedProfile.Clamp(0, _GameJoltProfiles.Count - 1)
+                        Case 2, 3
+                            _selectedProfile = _selectedProfile.Clamp(0, _OptionsProfiles.Count - 1)
+                    End Select
 
                     If _fadeInMain = 1.0F Then
                         If Controls.Accept(False, True, True) Then
@@ -1248,19 +1249,19 @@ Public Class NewMainMenuScreen
                         End If
                     End If
                     Dim text As String = "Log in"
-                        If _isLoading Then
-                            text = "Loading..."
-                        End If
+                    If _isLoading Then
+                        text = "Loading..."
+                    End If
 
-                        SpriteBatch.Draw(_sprite, New Rectangle(CInt(offset.X + 46), CInt(offset.Y + 36 + Math.Sin(_logoBounce) * 8.0F), 68, 72), New Color(255, 255, 255, alpha))
+                    SpriteBatch.Draw(_sprite, New Rectangle(CInt(offset.X + 46), CInt(offset.Y + 36 + Math.Sin(_logoBounce) * 8.0F), 68, 72), New Color(255, 255, 255, alpha))
 
-                        If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
-                            FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X * _fontSize) / 2), CInt(offset.Y + 120)), New Color(255, 255, 255, alpha), 0F, Vector2.Zero, New Vector2(_fontSize), SpriteEffects.None, 0F)
-                        Else
-                            SpriteBatch.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X * _fontSize) / 2), CInt(offset.Y + 120)), New Color(255, 255, 255, alpha), 0F, Vector2.Zero, New Vector2(_fontSize), SpriteEffects.None, 0F)
-                        End If
+                    If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                        FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X * _fontSize) / 2), CInt(offset.Y + 120)), New Color(255, 255, 255, alpha), 0F, Vector2.Zero, New Vector2(_fontSize), SpriteEffects.None, 0F)
+                    Else
+                        SpriteBatch.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X * _fontSize) / 2), CInt(offset.Y + 120)), New Color(255, 255, 255, alpha), 0F, Vector2.Zero, New Vector2(_fontSize), SpriteEffects.None, 0F)
                     End If
                 End If
+            End If
         End Sub
 
         Public Sub LoadGameJolt()
@@ -1346,12 +1347,12 @@ Public Class NewMainMenuScreen
                                 messageBox.Show("The required GameMode does not exist." & Environment.NewLine & "Reaquire the GameMode to play on this profile.")
                             Else
                                 _menuIndex = 2
-                            _selectedProfileTemp = _selectedProfile
-                            _selectedProfile = 0
-                            'SetScreen(New NewOptionScreen(CurrentScreen))
+                                _selectedProfileTemp = _selectedProfile
+                                _selectedProfile = 0
+                                'SetScreen(New NewOptionScreen(CurrentScreen))
+                            End If
                         End If
                     End If
-                End If
                 Case 2, 3
                     SetScreen(New NewOptionScreen(CurrentScreen, _OptionsMenuIndex + 1))
             End Select
