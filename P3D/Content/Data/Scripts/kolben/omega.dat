@@ -22,9 +22,8 @@ version=2
 									@text.show(Oh, your party is full.~Go open some space to claim~your Pokémon!)
 									:end
 								:else
-									@pokemon.add(172,50,A gift from Omega,45,at Kolben Tower,0,Omega)
+									@pokemon.add(172,50,A gift from Omega,45,at Kolben Tower,0,Omega,0,1)
 									@text.show(Ah yes, your prize.*This Pichu is special:~I found it near the Ilex~Forest shrine.*I wonder what happens if~you take it back there.*Anyway, here it is!)
-									@pokemon.setshiny(<pokemon.count>-1,1)
 									@pokemon.setgender(<pokemon.count>-1,0)
 									@pokemon.clearattacks(<pokemon.count>-1)
 									@pokemon.addattack(<pokemon.count>-1,344)
@@ -57,9 +56,8 @@ version=2
 			@text.show(Oh, your party is full.~Go open some space to claim~your Pokémon!)
 			:end
 		:else
-			@pokemon.add(172,50,A gift from Omega,45,at Kolben Tower,0,Omega)
+			@pokemon.add(172,50,A gift from Omega,45,at Kolben Tower,0,Omega,0,1)
 			@text.show(Ah yes, your prize.*This Pichu is special:~I found it near the Ilex~Forest shrine.*I wonder what happens if~you take it back there.*Anyway, here it is!)
-			@pokemon.setshiny(<pokemon.count>-1,1)
 			@pokemon.setgender(<pokemon.count>-1,0)
 			@pokemon.clearattacks(<pokemon.count>-1)
 			@pokemon.addattack(<pokemon.count>-1,344)
