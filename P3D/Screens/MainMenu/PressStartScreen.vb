@@ -191,9 +191,9 @@ Public Class PressStartScreen
 
         _backgroundRenderer.Begin()
         Dim blurred = _blurHandler.Perform(target)
-        _backgroundRenderer.Draw(blurred, New Rectangle(0, 0, windowSize.Width, windowSize.Height), Color.White)
+        _backgroundRenderer.Draw(blurred, New Rectangle(0, 0, ScreenSize.Width, ScreenSize.Height), Color.White)
 
-        '_backgroundRenderer.Draw(target, New Rectangle(0, 0, windowSize.Width, windowSize.Height), Color.White)
+        '_backgroundRenderer.Draw(target, New Rectangle(0, 0, ScreenSize.Width, ScreenSize.Height), Color.White)
         _backgroundRenderer.End()
 
         If IsCurrentScreen() Then
@@ -218,11 +218,11 @@ Public Class PressStartScreen
 
                 Dim textSize As Vector2 = FontManager.InGameFont.MeasureString(text)
 
-                GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F,
-                                                                                       windowSize.Height - textSize.Y - 50), _textColor)
+                GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(ScreenSize.Width / 2.0F - textSize.X / 2.0F,
+                                                                                       ScreenSize.Height - textSize.Y - 50), _textColor)
 
                 If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.InGameFont.MeasureString("Press" & "  ").X + 2), CInt(windowSize.Height - textSize.Y - 58), 40, 40), Color.White)
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(ScreenSize.Width / 2 - textSize.X / 2 + FontManager.InGameFont.MeasureString("Press" & "  ").X + 2), CInt(ScreenSize.Height - textSize.Y - 58), 40, 40), Color.White)
                 End If
             End If
         End If
@@ -230,7 +230,7 @@ Public Class PressStartScreen
         _logoRenderer.End()
         _shineRenderer.End()
 
-        Canvas.DrawRectangle(windowSize, New Color(0, 0, 0, CInt(255 * _fadeInMain)))
+        Canvas.DrawRectangle(ScreenSize, New Color(0, 0, 0, CInt(255 * _fadeInMain)))
     End Sub
 
     Public Overrides Sub ChangeTo()
@@ -693,7 +693,7 @@ Public Class NewMainMenuScreen
         If IsCurrentScreen() Then
             If _loading Then
                 Dim textSize As Vector2 = FontManager.InGameFont.MeasureString("Please wait..")
-                GetFontRenderer().DrawString(FontManager.InGameFont, "Please wait" & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
+                GetFontRenderer().DrawString(FontManager.InGameFont, "Please wait" & LoadingDots.Dots, New Vector2(ScreenSize.Width / 2.0F - textSize.X / 2.0F, ScreenSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
             Else
                 Select Case _menuIndex
                     Case 1, 3
@@ -758,11 +758,11 @@ Public Class NewMainMenuScreen
         If _fadeInMain = 1.0F And _menuIndex = 0 Then
             ' Draw arrow.
             If _MainProfiles(_selectedProfile).IsGameJolt = False Then
-                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(0, 16, 32, 16), New Color(0, 0, 0, CInt(_fadeInMain * 255)))
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(0, 16, 32, 16), New Color(255, 255, 255, CInt(_fadeInMain * 255)))
             Else
                 SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(32, 16, 32, 16), Color.White)
             End If
-            Dim displayRect = New Rectangle(CInt((_screenOrigin.X + _sliderPosition - 300).Clamp(20, windowSize.Width - 620)), CInt(_screenOrigin.Y + 170 + 16), 600, CInt(240 * _expandDisplay))
+            Dim displayRect = New Rectangle(CInt((_screenOrigin.X + _sliderPosition - 300).Clamp(20, ScreenSize.Width - 620)), CInt(_screenOrigin.Y + 170 + 16), 600, CInt(240 * _expandDisplay))
 
             ' Draw display.
             If _expandDisplay > 0F Then
@@ -831,7 +831,7 @@ Public Class NewMainMenuScreen
 
         ' Draw arrow.
         If _menuIndex <> 0 Then
-            SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(32, 16, 32, 16), New Color(0, 0, 0, CInt(_fadeInOptions * 255)))
+            SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(0, 16, 32, 16), Color.White)
         End If
 
     End Sub
@@ -1039,15 +1039,14 @@ Public Class NewMainMenuScreen
                     _OptionsMenuIndex = OptionsMenuIndex
                     Select Case _OptionsMenuIndex
                         Case 0
-                            _sprite = TextureManager.GetTexture("Textures\UI\OptionsMenu")
+                            _sprite = TextureManager.GetTexture("Textures\UI\Options\Language")
                         Case 1
                             _sprite = TextureManager.GetTexture("Textures\UI\OptionsMenu")
                         Case 2
                             _sprite = TextureManager.GetTexture("Textures\UI\OptionsMenu")
                         Case 3
-                            _sprite = TextureManager.GetTexture("Textures\UI\OptionsMenu")
+                            _sprite = TextureManager.GetTexture("Textures\UI\Options\ContentPacks")
                     End Select
-                    _sprite = TextureManager.GetTexture("Textures\UI\OptionsMenu")
                 Else
                     If path = "" Then
                         _isGameJolt = True
@@ -1161,23 +1160,31 @@ Public Class NewMainMenuScreen
                 Canvas.DrawRectangle(New Rectangle(CInt(offset.X), CInt(offset.Y), 160, 3), Screens.UI.ColorProvider.AccentColor(False, alpha))
             End If
             If _isNewGameButton Then
-                Dim text As String = "New" & Environment.NewLine & "Game"
+                Dim textA As String = "New"
+                Dim textB As String = "Game"
 
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
-                    FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2),
-                                                                                        CInt(offset.Y + 80 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
+                    FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 72 - FontManager.InGameFont.MeasureString(textA).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                    FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 72 - FontManager.InGameFont.MeasureString(textA).Y / 2)), New Color(255, 255, 255, alpha))
+
+                    FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 72 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                    FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 72 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
                 Else
-                    SpriteBatch.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2),
-                                                                                        CInt(offset.Y + 80 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
+                    SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 72 - FontManager.InGameFont.MeasureString(textA).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                    SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 72 - FontManager.InGameFont.MeasureString(textA).Y / 2)), New Color(255, 255, 255, alpha))
+
+                    SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 72 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                    SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 72 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
+
                 End If
             ElseIf _IsOptionsMenuButton Then
                 Dim text As String = "Options"
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
-                    FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2),
-                                                                                       CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
+                    FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2 + 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                    FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
                 Else
-                    SpriteBatch.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2),
-                                                                                       CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
+                    SpriteBatch.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2 + 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                    SpriteBatch.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
                 End If
                 If _menuIndex = 0 Then
                     If isSelected Then
@@ -1189,25 +1196,44 @@ Public Class NewMainMenuScreen
                 SpriteBatch.Draw(_sprite, New Rectangle(CInt(offset.X + 40), CInt(offset.Y + 36 + Math.Sin(_logoBounce) * 8.0F), 80, 80), New Color(255, 255, 255, alpha))
 
             ElseIf _OptionsMenuIndex <> -1 Then
-                Dim text As String = ""
+                Dim textA As String = ""
+                Dim textB As String = ""
                 Select Case _OptionsMenuIndex
                     Case 0
-                        text = "Language"
+                        textA = "Language"
                     Case 1
-                        text = "Audio"
+                        textA = "Audio"
                     Case 2
-                        text = "Controls"
+                        textA = "Controls"
                     Case 3
-                        text = "Content" & Environment.NewLine & "Packs"
+                        textA = "Content"
+                        textB = "Packs"
                 End Select
 
-                If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
-                    FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2),
-                                                                                       CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
+                If _OptionsMenuIndex <> 3 Then
+                    If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
+                    Else
+                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
+                    End If
                 Else
-                    SpriteBatch.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2),
-                                                                                       CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
+                    If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
+
+                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
+                    Else
+                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
+
+                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
+                    End If
                 End If
+
                 If _menuIndex = 2 Or _menuIndex = 3 Then
                     If isSelected Then
                         _logoBounce += 0.2F
@@ -1236,8 +1262,10 @@ Public Class NewMainMenuScreen
                     SpriteBatch.Draw(_sprite, New Rectangle(CInt(offset.X + 17), CInt(offset.Y - 10), 128, 128), New Rectangle(frameSize.Width * _spriteOrder(_spriteIndex), frameSize.Height * 2, frameSize.Width, frameSize.Height), New Color(255, 255, 255, alpha))
 
                     If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                        FontRenderer.DrawString(FontManager.InGameFont, _name, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(_name).X * _fontSize) / 2 + 2), CInt(offset.Y + 120 + 2)), New Color(0, 0, 0, alpha), 0F, Vector2.Zero, New Vector2(_fontSize), SpriteEffects.None, 0F)
                         FontRenderer.DrawString(FontManager.InGameFont, _name, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(_name).X * _fontSize) / 2), CInt(offset.Y + 120)), New Color(255, 255, 255, alpha), 0F, Vector2.Zero, New Vector2(_fontSize), SpriteEffects.None, 0F)
                     Else
+                        SpriteBatch.DrawString(FontManager.InGameFont, _name, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(_name).X * _fontSize) / 2 + 2), CInt(offset.Y + 120 + 2)), New Color(0, 0, 0, alpha), 0F, Vector2.Zero, New Vector2(_fontSize), SpriteEffects.None, 0F)
                         SpriteBatch.DrawString(FontManager.InGameFont, _name, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(_name).X * _fontSize) / 2), CInt(offset.Y + 120)), New Color(255, 255, 255, alpha), 0F, Vector2.Zero, New Vector2(_fontSize), SpriteEffects.None, 0F)
                     End If
                 Else
@@ -1313,14 +1341,8 @@ Public Class NewMainMenuScreen
                         SetScreen(New GameJolt.LogInScreen(CurrentScreen))
                     ElseIf _isNewGameButton Then
                         World.IsMainMenu = False
-                        If GameModeManager.GameModeCount = 1 Then
-                            ' There's only the default GameMode available, so just load that one.
-                            GameModeManager.SetGameModePointer("Kolben")
-                            SetScreen(New Screens.MainMenu.NewNewGameScreen(CurrentScreen))
-                        Else
-                            ' There is more than one GameMode, prompt a selection screen:
-                            SetScreen(New GameModeSelectionScreen(CurrentScreen))
-                        End If
+                        ' Prompt GameMode selection screen:
+                        SetScreen(New GameModeSelectionScreen(CurrentScreen))
                     Else
                         If _gameModeExists Then
                             GameModeManager.SetGameModePointer(_gameMode)
@@ -1395,9 +1417,9 @@ Public Class GameModeSelectionScreen
 
         GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(30, 30), Color.White)
 
-        Dim center = windowSize.Width - 250
+        Dim center = CInt(ScreenSize.Width / 2 + 320)
         For i = 0 To _gameModes.Length - 1
-            Dim y = CType(i * (HEIGHT + GAP) + _offset + windowSize.Height / 2 - HEIGHT / 2, Integer)
+            Dim y = CType(i * (HEIGHT + GAP) + _offset + ScreenSize.Height / 2 - HEIGHT / 2, Integer)
             Dim halfWidth = CType(WIDTH / 2, Integer)
             Dim color = Screens.UI.ColorProvider.LightColor
             Dim alphaColor = New Color(color.R, color.G, color.B, 0)
