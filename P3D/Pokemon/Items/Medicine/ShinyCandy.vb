@@ -7,6 +7,8 @@ Namespace Items.Medicine
 
         Public Overrides ReadOnly Property Description As String = "This mysterious candy sparkles when unwrapped. It attracts all sorts of Pokémon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 4800
+        Public Overrides ReadOnly Property MaxStack As Integer = 1
+        Public Overrides ReadOnly Property CanBeHold As Boolean = False
 
         Public Sub New()
             _textureRectangle = New Rectangle(96, 240, 24, 24)
