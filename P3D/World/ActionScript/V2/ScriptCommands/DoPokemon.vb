@@ -599,16 +599,20 @@
                         Core.Player.Pokemons(Index).CatchLocation = place
                     End If
                 Case "newroaming"
-                    ' PokémonID,Level,regionID,startLevelFile,MusicLoop
+                    ' PokémonID,Level,regionID,startLevelFile,MusicLoop,[Shiny]
                     Dim data() As String = argument.Split(CChar(","))
                     Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(data(0)))
                     p.Generate(CInt(data(1)), True)
+
+                    If data.Length > 5 AndAlso data(5) <> "" AndAlso data(5) <> "-1" Then
+                        p.IsShiny = CBool(data(5))
+                    End If
 
                     If Core.Player.RoamingPokemonData <> "" Then
                         Core.Player.RoamingPokemonData &= Environment.NewLine
                     End If
 
-                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & p.GetSaveData()
+                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & data(5) & "|" & p.GetSaveData()
                 Case "evolve"
                     Dim args() As String = argument.Split(CChar(","))
                     Dim triggerStr As String = "level"

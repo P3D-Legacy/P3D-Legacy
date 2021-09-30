@@ -233,7 +233,7 @@
                 If Not String.IsNullOrWhiteSpace(Core.Player.RoamingPokemonData) Then
                     If Core.Player.RoamingPokemonData.Length > 0 AndAlso Core.Player.RoamingPokemonData.Contains("|") Then
                         For Each Pokes As String In Core.Player.RoamingPokemonData.SplitAtNewline
-                            ' PokémonID,Level,regionID,startLevelFile,MusicLoop,PokemonData
+                            ' PokémonID,Level,regionID,startLevelFile,MusicLoop,Shiny,PokemonData
                             Dim TempData() As String = Pokes.Split("|")
                             Dim MapFiles() As String = Tags("mapfiles").Split(",")
                             Dim PokeCurrentLocation As String = TempData(3)

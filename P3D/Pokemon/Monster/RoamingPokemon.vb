@@ -28,7 +28,7 @@ Public Class RoamingPokemon
 
         Dim newData As String = ""
         For Each line As String In Core.Player.RoamingPokemonData.SplitAtNewline()
-            If line <> "" And line.CountSeperators("|") >= 5 Then
+            If line <> "" And line.CountSeperators("|") >= 6 Then
                 Dim data() As String = line.Split(CChar("|"))
 
                 If newData <> "" Then
@@ -54,8 +54,8 @@ Public Class RoamingPokemon
                         nextIndex = 0
                     End If
 
-                    'PokémonID,Level,regionID,startLevelFile,MusicLoop,PokemonData
-                    newData &= data(0) & "|" & data(1) & "|" & CInt(data(2)).ToString() & "|" & levelList(nextIndex) & "|" & data(4) & "|" & data(5)
+                    'PokémonID,Level,regionID,startLevelFile,MusicLoop,Shiny,PokemonData
+                    newData &= data(0) & "|" & data(1) & "|" & CInt(data(2)).ToString() & "|" & levelList(nextIndex) & "|" & data(4) & "|" & data(5) & "|" & data(6)
                 Else
                     newData &= line
                 End If
@@ -98,7 +98,7 @@ Public Class RoamingPokemon
             If line.StartsWith(compareData) = False Then
                 newData &= line
             Else
-                newData &= p.PokemonReference.Number & "|" & p.PokemonReference.Level & "|" & p.WorldID.ToString() & "|" & p.LevelFile & "|" & p.MusicLoop & "|" & p.PokemonReference.GetSaveData()
+                newData &= p.PokemonReference.Number & "|" & p.PokemonReference.Level & "|" & p.WorldID.ToString() & "|" & p.LevelFile & "|" & p.MusicLoop & "|" & p.PokemonReference.IsShiny & "|" & p.PokemonReference.GetSaveData()
             End If
         Next
 

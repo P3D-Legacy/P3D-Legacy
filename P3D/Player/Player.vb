@@ -1055,9 +1055,17 @@
                         Dim newP As Pokemon = Pokemon.GetPokemonByID(CInt(data(0)))
                         newP.Generate(CInt(data(1)), True)
 
-                        RoamingPokemonData &= newP.Number.ToString() & "|" & newP.Level.ToString() & "|" & data(2) & "|" & data(3) & "||" & newP.GetSaveData()
+                        RoamingPokemonData &= newP.Number.ToString() & "|" & newP.Level.ToString() & "|" & data(2) & "|" & data(3) & "||" & newP.IsShiny.ToNumberString() & "|" & newP.GetSaveData()
                     Else
-                        RoamingPokemonData &= line
+                        If line.CountSeperators("|") < 6 Then
+                            'Update to include shiny
+                            Dim data() As String = line.Split(CChar("|"))
+                            Dim newP As Pokemon = Pokemon.GetPokemonByData(data(5))
+
+                            RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & newP.IsShiny.ToNumberString() & "|" & data(5)
+                        Else
+                            RoamingPokemonData &= line
+                        End If
                     End If
                 Next
             End If
