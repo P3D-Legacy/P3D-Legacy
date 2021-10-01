@@ -15,10 +15,14 @@ version=2
 	@Register.register(clubregisters,int,0)
     @player.move(0)
     @player.turnto(1)
-	:if:<player.gender>=0
+	:if:<player.gender>=1
 	    @text.show(I'm sorry this club is for mem-*Wait.~Are you perhaps~Miss <player.name>?*I am so sorry~for my rudeness.*Any trainer who is good~enough to be champion is~welcome at this club.*This club is intended~to be a place for powerful~trainers to hangout,~relax, and engage in~friendly battles.*Currently all of the~Gym Leaders of Kanto~and Johto are members,~but they rarely come by.*I am sure if a trainer~as strong as you told~them about this club and~asked them to join you~here they would do so.*They might even come~here willing to battle!)
     :else
-	    @text.show(I'm sorry this club is for mem-*Wait.~Are you perhaps~Mister <player.name>?*I am so sorry~for my rudeness.*Any trainer who is good~enough to be champion is~welcome at this club.*This club is intended~to be a place for powerful~trainers to hangout,~relax, and engage in~friendly battles.*Currently all of the~Gym Leaders of Kanto~and Johto are members,~but they rarely come by.*I am sure if a trainer~as strong as you told~them about this club and~asked them to join you~here they would do so.*They might even come~here willing to battle!)
+		:if:<player.gender>=0
+			@text.show(I'm sorry this club is for mem-*Wait.~Are you perhaps~Mister <player.name>?*I am so sorry~for my rudeness.*Any trainer who is good~enough to be champion is~welcome at this club.*This club is intended~to be a place for powerful~trainers to hangout,~relax, and engage in~friendly battles.*Currently all of the~Gym Leaders of Kanto~and Johto are members,~but they rarely come by.*I am sure if a trainer~as strong as you told~them about this club and~asked them to join you~here they would do so.*They might even come~here willing to battle!)
+		:else
+			@text.show(I'm sorry this club is for mem-*Wait.~Are you perhaps~<player.name>?*I am so sorry~for my rudeness.*Any trainer who is good~enough to be champion is~welcome at this club.*This club is intended~to be a place for powerful~trainers to hangout,~relax, and engage in~friendly battles.*Currently all of the~Gym Leaders of Kanto~and Johto are members,~but they rarely come by.*I am sure if a trainer~as strong as you told~them about this club and~asked them to join you~here they would do so.*They might even come~here willing to battle!)
+		:endif
 	:endif
 	@register.register(clubintro)
 :endif

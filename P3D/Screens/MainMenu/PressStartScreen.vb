@@ -1507,6 +1507,7 @@ Public Class GameModeSelectionScreen
         End If
         If Controls.Accept(True, True, True) Then
             GameModeManager.SetGameModePointer(_gameModes(_index).DirectoryName)
+            Localization.ReloadGameModeTokens()
             SoundManager.PlaySound("select")
             If GameModeManager.ActiveGameMode.IntroType = "0" Then
                 SetScreen(New TransitionScreen(Me.PreScreen, New NewGameScreen(), Color.Black, False))

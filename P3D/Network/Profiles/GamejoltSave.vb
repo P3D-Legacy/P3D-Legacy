@@ -869,6 +869,7 @@ Namespace GameJolt
                 "MapFile|yourroom.dat" & Environment.NewLine &
                 "Rotation|1.570796" & Environment.NewLine &
                 "RivalName|???" & Environment.NewLine &
+                "RivalSkin|Silver" & Environment.NewLine &
                 "Money|3000" & Environment.NewLine &
                 "Badges|0" & Environment.NewLine &
                 "Gender|Male" & Environment.NewLine &

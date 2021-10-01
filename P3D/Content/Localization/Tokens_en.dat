@@ -164,19 +164,19 @@ inventory_menu_items,Items
 inventory_menu_description,Description
 ---
 NewGameScreen:
-new_game_oak_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call
-new_game_oak_2,Pokémon.*People and Pokémon live~together by supporting~each other.~Some people play with~Pokémon,~some battle with them.*But we don't know~everything about~Pokémon yet.~There are still many~mysteries to solve.*That's why I study~Pokémon every day.*Now, what did you~say your name was?
-new_game_oak_3,~are you ready?*Your very own~Pokémon story is about~to unfold.*You'll face fun~times and tough~challenges.~A world of dreams and~adventures with Pokémon~awaits!*Let's go!*I'll be seeing~you later!
-new_game_oak_weird_name_1,Right! So your name is~
-new_game_oak_weird_name_2,!*Hm that is a~weird name.
-new_game_oak_known_name_1,Right! So your name is~
-new_game_oak_known_name_2,!*Hm I am sure I~heard this name before.
-new_game_oak_same_name_1,Hey we got the~same names.*My name is also~
-new_game_oak_same_name_2,!
-new_game_oak_name_1,Right! So your name is~
-new_game_oak_name_2,!
-new_game_your_name,Your name
-new_game_choose_skin,Choose skin
+new_game_intro_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call
+new_game_intro_2,Pokémon.*People and Pokémon live~together by supporting~each other.~Some people play with~Pokémon,~some battle with them.*But we don't know~everything about~Pokémon yet.~There are still many~mysteries to solve.*That's why I study~Pokémon every day.*Now, what did you~say your name was?
+new_game_intro_3,~are you ready?*Your very own~Pokémon story is about~to unfold.*You'll face fun~times and tough~challenges.~A world of dreams and~adventures with Pokémon~awaits!*Let's go!*I'll be seeing~you later!
+new_game_intro_weird_name_1,Right! So your name is~
+new_game_intro_weird_name_2,!*Hm that is a~weird name.
+new_game_intro_known_name_1,Right! So your name is~
+new_game_intro_known_name_2,!*Hm I am sure I~heard this name before.
+new_game_intro_same_name_1,Hey we got the~same names.*My name is also~
+new_game_intro_same_name_2,!
+new_game_intro_name_1,Right! So your name is~
+new_game_intro_name_2,!
+new_game_your_name,What's your name?
+new_game_select_skin,Select your appearance
 new_game_name_too_short,This name is too short
 ---
 MapScreen:

@@ -25,9 +25,15 @@
                     Core.Player.HasPokegear = True
                     IsReady = True
                 Case "renamerival"
-                    Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, TextureManager.GetTexture("GUI\RenameRival"), False, False, "rival", "Silver", AddressOf Script.NameRival))
+                    Dim RivalTexture As String = Core.Player.RivalSkin
+                    Dim RivalName As String
+                    RivalName = "???"
+                    Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, TextureManager.GetTexture(RivalTexture, New Rectangle(0, 64, 32, 32)), False, False, RivalName, "???", AddressOf Script.NameRival))
                     IsReady = True
                     CanContinue = False
+                Case "setrivalskin"
+                    Core.Player.RivalSkin = argument
+                    IsReady = True
                 Case "wearskin"
                     With Screen.Level.OwnPlayer
                         Dim TextureID As String = argument
@@ -257,6 +263,16 @@
                     IsReady = True
                 Case "setrivalname"
                     Core.Player.RivalName = argument
+                    IsReady = True
+                Case "setgender"
+                    Select Case argument
+                        Case "0", "Male", "male"
+                            Core.Player.Gender = "Male"
+                        Case "1", "Female", "female"
+                            Core.Player.Gender = "Female"
+                        Case Else
+                            Core.Player.Gender = "Other"
+                    End Select
                     IsReady = True
                 Case "setopacity"
                     Dim newOpacity As Single = sng(argument.Replace("~", Screen.Level.OwnPlayer.Opacity.ToString().Replace(".", GameController.DecSeparator)))

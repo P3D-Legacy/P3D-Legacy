@@ -2,9 +2,10 @@
 
     Inherits Screen
 
-    Dim startSkins() As String = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}
-    Dim skinNames() As String = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}
-    Dim backColors() As Color = {New Color(248, 176, 32), New Color(248, 216, 88), New Color(56, 88, 200), New Color(216, 96, 112), New Color(56, 88, 152), New Color(239, 90, 156)}
+    Dim skinFiles() As String = {GameModeManager.ActiveGameMode.SkinFiles.ToString}
+    Dim skinNames() As String = {GameModeManager.ActiveGameMode.SkinNames.ToString}
+    Dim skinGenders() As String = {GameModeManager.ActiveGameMode.SkinGenders.ToString}
+    Dim skinColors As List(Of Color) = GameModeManager.ActiveGameMode.SkinColors
 
     Public Index As Integer = 0
     Dim pokeIndex As Integer = 0
@@ -78,7 +79,9 @@
         TextBox.Showing = False
         Me.Index = 0
         TextBox.reDelay = 0
-        skinTexture = TextureManager.GetTexture(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))
+        Dim skinTexture2D = TextureManager.GetTexture("Textures\NPC\" & skinFiles(SkinIndex))
+        Dim skinRectangle As New Rectangle(0, CInt(skinTexture2D.Height / 4 * 2), CInt(skinTexture2D.Width / 3), CInt(skinTexture2D.Height / 4))
+        skinTexture = TextureManager.GetTexture(skinTexture2D, skinRectangle)
 
         MusicManager.Play("nomusic")
     End Sub
@@ -87,8 +90,9 @@
         Dim GameMode As GameMode = GameModeManager.ActiveGameMode
 
         Me.skinNames = GameMode.SkinNames.ToArray()
-        Me.startSkins = GameMode.SkinFiles.ToArray()
-        Me.backColors = GameMode.SkinColors.ToArray()
+        Me.skinFiles = GameMode.SkinFiles.ToArray()
+        Me.skinGenders = GameMode.SkinGenders.ToArray()
+        Me.skinColors = GameMode.SkinColors
 
         Me.pokemonRange = GameMode.PokemonRange
         Me.introMusic = GameMode.IntroMusic
@@ -104,10 +108,11 @@
                 Dim Splits() As String = GameMode.StartDialogue.Split(CChar("|"))
                 Me.Dialogues.AddRange(Splits)
             End If
-        End If
-        If Me.Dialogues.Count < 3 Then
-            Me.Dialogues.Clear()
-            Me.Dialogues.AddRange({Localization.GetString("new_game_oak_1"), Localization.GetString("new_game_oak_2"), Localization.GetString("new_game_oak_3")})
+        Else
+            If Me.Dialogues.Count < 3 Then
+                Me.Dialogues.Clear()
+                Me.Dialogues.AddRange({Localization.GetString("new_game_intro_1"), Localization.GetString("new_game_intro_2"), Localization.GetString("new_game_intro_3")})
+            End If
         End If
     End Sub
 
@@ -154,7 +159,7 @@
         Dim AimColor As Color = normalColor
 
         If Me.Index = 4 Then
-            AimColor = backColors(SkinIndex)
+            AimColor = skinColors(SkinIndex)
         End If
 
         Dim diffR As Byte = 5
@@ -207,40 +212,42 @@
     End Sub
 
 
-    Public Overrides Sub Draw()
-        Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), currentBackColor)
+	Public Overrides Sub Draw()
+		Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), currentBackColor)
 
-        TextBox.Draw()
+		TextBox.Draw()
 
-        Core.SpriteBatch.Draw(mainTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 62, CInt(Core.windowSize.Height / 2) - 218, 130, 256), New Rectangle(0, 0, 62, 128), New Color(255, 255, 255, ProfAlpha))
-        Core.SpriteBatch.Draw(skinTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 128, CInt(Core.windowSize.Height / 2) - 218, 256, 256), New Color(255, 255, 255, OtherAlpha))
+		Core.SpriteBatch.Draw(mainTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 62, CInt(Core.windowSize.Height / 2) - 218, 130, 256), New Rectangle(0, 0, 62, 128), New Color(255, 255, 255, ProfAlpha))
+		Core.SpriteBatch.Draw(skinTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 128, CInt(Core.windowSize.Height / 2) - 218, 256, 256), New Color(255, 255, 255, OtherAlpha))
 
-        Select Case pokeIndex
-            Case 1
-                Core.SpriteBatch.Draw(mainTexture, New Rectangle(CInt(ballPosition.X), CInt(ballPosition.Y), 22, 22), New Rectangle(62 + CInt(ballIndex.X * 22), 48 + CInt(ballIndex.Y * 22), 22, 22), Color.White)
-            Case 2
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokePosition.X) - 100, CInt(pokePosition.Y) - 160, 256, 256), Color.White)
-            Case 3
-                If Index < 6 Then
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 300, CInt(Core.windowSize.Height / 2) - 130, 256, 256), New Color(255, 255, 255, ProfAlpha))
-                End If
-        End Select
+		Select Case pokeIndex
+			Case 1
+				Core.SpriteBatch.Draw(mainTexture, New Rectangle(CInt(ballPosition.X), CInt(ballPosition.Y), 22, 22), New Rectangle(62 + CInt(ballIndex.X * 22), 48 + CInt(ballIndex.Y * 22), 22, 22), Color.White)
+			Case 2
+				Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokePosition.X) - 100, CInt(pokePosition.Y) - 218, 256, 256), Color.White)
+			Case 3
+				If Index < 6 Then
+					Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 300, CInt(Core.windowSize.Height / 2) - 218, 256, 256), New Color(255, 255, 255, ProfAlpha))
+				End If
+		End Select
 
-        Select Case Index
-            Case 5
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("new_game_your_name") & ":", New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
+		Select Case Index
+			Case 5
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_your_name") & ": ", New Vector2(TextboxPosition.X + 2, TextboxPosition.Y - 32 + 2), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_your_name") & ": ", New Vector2(TextboxPosition.X, TextboxPosition.Y - 32), Color.White)
                 DrawTextBox()
 
                 If enterCorrectName = True Then
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("new_game_name_too_short"), New Vector2(TextboxPosition.X, TextboxPosition.Y + 30), Color.DarkRed)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_name_too_short"), New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), Color.DarkRed)
                 End If
             Case 4
                 Canvas.DrawRectangle(New Rectangle(CInt(TextboxPosition.X - 5), CInt(TextboxPosition.Y - 24), 138, 42), New Color(0, 0, 0, 80))
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("new_game_choose_skin") & ":" & Environment.NewLine & skinNames(SkinIndex), New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_choose_skin") & ":" & Environment.NewLine & skinNames(SkinIndex) & Environment.NewLine & skinGenders(SkinIndex), New Vector2(TextboxPosition.X + 2, TextboxPosition.Y - 24 + 2), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_choose_skin") & ":" & Environment.NewLine & skinNames(SkinIndex) & Environment.NewLine & skinGenders(SkinIndex), New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
 
-                Canvas.DrawScrollBar(New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), startSkins.Count, 1, SkinIndex, New Size(128, 4), True, TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(113, 12, 1, 1)))
-        End Select
+                Canvas.DrawScrollBar(New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), skinFiles.Count, 1, SkinIndex, New Size(128, 4), True, TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(113, 12, 1, 1)))
+		End Select
     End Sub
 
     Private Sub DrawTextBox()
@@ -280,7 +287,7 @@
                 End If
                 AnimateBall()
             Case 2
-                If pokePosition.Y < CInt(Core.windowSize.Height / 2) + 38 Then
+                If pokePosition.Y < CInt(Core.windowSize.Height / 2) Then
                     pokePosition.Y += 5
                 Else
                     Dim p As Pokemon = Pokemon.GetPokemonByID(pokeID)
@@ -346,10 +353,11 @@
             SkinIndex -= 1
         End If
 
-        SkinIndex = CInt(MathHelper.Clamp(SkinIndex, 0, startSkins.Count - 1))
-
+        SkinIndex = CInt(MathHelper.Clamp(SkinIndex, 0, skinFiles.Count - 1))
+        Dim skinTexture2D = TextureManager.GetTexture("Textures\NPC\" & skinFiles(SkinIndex))
+        Dim skinRectangle As New Rectangle(0, CInt(skinTexture2D.Height / 4 * 2), CInt(skinTexture2D.Width / 3), CInt(skinTexture2D.Height / 4))
         If sIndex <> SkinIndex Then
-            skinTexture = TextureManager.GetTexture(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))
+            skinTexture = TextureManager.GetTexture(skinTexture2D, skinRectangle)
         End If
 
         If Controls.Accept() = True Then
@@ -454,6 +462,7 @@
             "MapFile|" & Me.startMap & Environment.NewLine &
             "Rotation|" & Me.startYaw.ToString() & Environment.NewLine &
             "RivalName|???" & Environment.NewLine &
+            "RivalSkin|Silver" & Environment.NewLine &
             "Money|3000" & Environment.NewLine &
             "Badges|0" & Environment.NewLine &
             "Gender|Male" & Environment.NewLine &
@@ -464,7 +473,7 @@
             "hasPokegear|0" & Environment.NewLine &
             "freeCamera|1" & Environment.NewLine &
             "thirdPerson|0" & Environment.NewLine &
-            "skin|" & startSkins(SkinIndex) & Environment.NewLine &
+            "skin|" & skinFiles(SkinIndex) & Environment.NewLine &
             "location|" & Me.startLocation & Environment.NewLine &
             "battleAnimations|2" & Environment.NewLine &
             "BoxAmount|5" & Environment.NewLine &
@@ -537,13 +546,13 @@
 
         Select Case True
             Case WeirdNames.Contains(name.ToLower())
-                Return Localization.GetString("new_game_oak_weird_name_1") & name & Localization.GetString("new_game_oak_weird_name_2")
+                Return Localization.GetString("new_game_intro_weird_name_1") & name & Localization.GetString("new_game_intro_weird_name_2")
             Case KnownNames.Contains(name.ToLower())
-                Return Localization.GetString("new_game_oak_known_name_1") & name & Localization.GetString("new_game_oak_known_name_2")
+                Return Localization.GetString("new_game_intro_known_name_1") & name & Localization.GetString("new_game_intro_known_name_2")
             Case OwnNames.Contains(name.ToLower())
-                Return Localization.GetString("new_game_oak_same_name_1") & name & Localization.GetString("new_game_oak_same_name_2")
+                Return Localization.GetString("new_game_intro_same_name_1") & name & Localization.GetString("new_game_intro_same_name_2")
         End Select
 
-        Return Localization.GetString("new_game_oak_name_1") & name & Localization.GetString("new_game_oak_name_2")
+        Return Localization.GetString("new_game_intro_name_1") & name & Localization.GetString("new_game_intro_name_2")
     End Function
 End Class

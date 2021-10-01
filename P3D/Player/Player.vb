@@ -23,13 +23,21 @@
             _rivalName = value
         End Set
     End Property
-
-    Public Property Male() As Boolean
+    Public Property RivalSkin() As String
         Get
-            Return _male
+            Return _rivalSkin
         End Get
-        Set(value As Boolean)
-            _male = value
+        Set(value As String)
+            _rivalSkin = value
+        End Set
+    End Property
+
+    Public Property Gender() As String
+        Get
+            Return _gender
+        End Get
+        Set(value As String)
+            _gender = value
         End Set
     End Property
 
@@ -368,8 +376,9 @@
 
     'Secure fields:
     Private _name As String = "<playername>"
-    Private _rivalName As String = ""
-    Private _male As Boolean = True
+    Private _rivalName As String = "???"
+    Private _rivalSkin As String = "Silver"
+    Private _gender As String = "Male"
     Private _money As Integer = 0
     Private _OT As String = "00000"
     Private _points As Integer = 0
@@ -758,6 +767,8 @@
                         startMap = Value
                     Case "rivalname"
                         RivalName = Value
+                    Case "rivalskin"
+                        RivalSkin = Value
                     Case "money"
                         Money = CInt(Value)
                     Case "badges"
@@ -778,11 +789,13 @@
                         End If
                     Case "rotation"
                         startRotation = CSng(Value.Replace(".", GameController.DecSeparator))
-                    Case "Gender"
-                        If Value = "Male" Then
-                            Male = True
+                    Case "gender"
+                        If Value = "0" Then
+                            Gender = "Male"
+                        ElseIf Value = "1" Then
+                            Gender = "Female"
                         Else
-                            Male = False
+                            Gender = "Other"
                         End If
                     Case "playtime"
                         Dim dd() As String = Value.Split(CChar(","))
@@ -875,12 +888,12 @@
         If IsGameJoltSave = True And startSurfing = False Then
             Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
             Select Case GameJoltSave.Gender
-                Case "0"
-                    Male = True
-                Case "1"
-                    Male = False
+                Case "Male"
+                    Gender = "Male"
+                Case "Female"
+                    Gender = "Female"
                 Case Else
-                    Male = True
+                    Gender = "Other"
             End Select
         End If
 
@@ -1231,10 +1244,12 @@
 
     Public Function GetPlayerData(ByVal IsAutosave As Boolean) As String
         Dim GenderString As String = ""
-        If Male = True Then
+        If Gender = "Male" Then
             GenderString = "Male"
-        Else
+        ElseIf Gender = "Female" Then
             GenderString = "Female"
+        Else
+            GenderString = "Other"
         End If
 
         Dim badgeString As String = ""
@@ -1295,6 +1310,7 @@
             "MapFile|" & Screen.Level.LevelFile & Environment.NewLine &
             "Rotation|" & c.Yaw.ToString.Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "RivalName|" & RivalName & Environment.NewLine &
+            "RivalSkin|" & RivalSkin & Environment.NewLine &
             "Money|" & Money & Environment.NewLine &
             "Badges|" & badgeString & Environment.NewLine &
             "Gender|" & GenderString & Environment.NewLine &
@@ -2027,7 +2043,7 @@
             'Restore default values:
             Name = "<playername>"
             RivalName = ""
-            Male = True
+            RivalSkin = ""
             Money = 0
             PlayTime = TimeSpan.Zero
             GameStart = Date.Now

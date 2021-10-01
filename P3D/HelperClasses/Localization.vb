@@ -34,9 +34,7 @@
 
         If GameModeManager.GameModeCount > 0 Then
             Dim GameModeLocalizationPath As String = GameModeManager.ActiveGameMode.LocalizationsPath
-            If GameModeLocalizationPath <> GameMode.DefaultLocalizationsPath Then
-                LoadTokenFile(GameModeLocalizationPath, True)
-            End If
+            LoadTokenFile(GameModeLocalizationPath, True)
         End If
 
         Logger.Debug("---Reloaded GameMode Tokens---")
@@ -44,13 +42,18 @@
 
     Private Shared Sub LoadTokenFile(ByVal path As String, ByVal IsGameModeFile As Boolean)
         Dim fullpath As String = GameController.GamePath & path
+        Dim tokenFullpath As String = fullpath & "Tokens_" & LanguageSuffix & ".dat"
+
+        Logger.Debug("Token filepath: " & tokenFullpath)
 
         If System.IO.Directory.GetFiles(fullpath).Count > 0 Then
-            If System.IO.File.Exists(fullpath & "Tokens_" & LanguageSuffix & ".dat") = False Then
+            If System.IO.File.Exists(tokenFullpath) = False Then
+                Logger.Debug("Did NOT find token file for suffix: " & LanguageSuffix)
                 LanguageSuffix = "en"
             End If
 
-            If System.IO.File.Exists(fullpath & "Tokens_" & LanguageSuffix & ".dat") = True Then
+            If System.IO.File.Exists(tokenFullpath) = True Then
+                Logger.Debug("Found token file for suffix: " & LanguageSuffix)
                 Dim TokensFile() As String = System.IO.File.ReadAllLines(fullpath & "Tokens_" & LanguageSuffix & ".dat")
                 Dim splitIdx As Integer = 0
                 For Each TokenLine As String In TokensFile
@@ -64,6 +67,9 @@
                         End If
 
                         If LocalizationTokens.ContainsKey(TokenName) = False Then
+                            LocalizationTokens.Add(TokenName, New Token(TokenContent, LanguageSuffix, IsGameModeFile))
+                        Else
+                            LocalizationTokens.Remove(TokenName)
                             LocalizationTokens.Add(TokenName, New Token(TokenContent, LanguageSuffix, IsGameModeFile))
                         End If
                     End If
@@ -86,6 +92,9 @@
 
                             If LocalizationTokens.ContainsKey(TokenName) = False Then
                                 LocalizationTokens.Add(TokenName, New Token(TokenContent, "en", IsGameModeFile))
+                            Else
+                                LocalizationTokens.Remove(TokenName)
+                                LocalizationTokens.Add(TokenName, New Token(TokenContent, "en", IsGameModeFile))
                             End If
                         End If
                     Next
@@ -101,10 +110,77 @@
                 Return s
             Else
                 Dim result As String = resultToken.TokenContent
-                If Not Core.Player Is Nothing Then
+                If Core.Player IsNot Nothing Then
                     result = result.Replace("<playername>", Core.Player.Name)
+                    result = result.Replace("<player.name>", Core.Player.Name)
                     result = result.Replace("<rivalname>", Core.Player.RivalName)
+                    result = result.Replace("<player.name>", Core.Player.RivalName)
                 End If
+
+                Dim tokenSearchBuffer As String() = result.Split("<button.")
+                Dim tokenEndIdx As Integer = 0
+                Dim validToken As String = ""
+                For Each possibleToken As String In tokenSearchBuffer
+                    tokenEndIdx = possibleToken.IndexOf(">")
+                    If Not tokenEndIdx = -1 Then
+                        Dim key As Keys
+                        validToken = possibleToken.Substring(0, tokenEndIdx)
+                        Select Case validToken.ToLower()
+                            Case "moveforward"
+                                key = KeyBindings.ForwardMoveKey
+                            Case "moveleft"
+                                key = KeyBindings.LeftMoveKey
+                            Case "movebackward"
+                                key = KeyBindings.BackwardMoveKey
+                            Case "moveright"
+                                key = KeyBindings.RightMoveKey
+                            Case "openmenu"
+                                key = KeyBindings.OpenInventoryKey
+                            Case "chat"
+                                key = KeyBindings.ChatKey
+                            Case "special", "phone"
+                                key = KeyBindings.SpecialKey
+                            Case "muteaudio"
+                                key = KeyBindings.MuteAudioKey
+                            Case "cameraleft"
+                                key = KeyBindings.LeftKey
+                            Case "cameraright"
+                                key = KeyBindings.RightKey
+                            Case "cameraup"
+                                key = KeyBindings.UpKey
+                            Case "cameradown"
+                                key = KeyBindings.DownKey
+                            Case "cameralock"
+                                key = KeyBindings.CameraLockKey
+                            Case "guicontrol"
+                                key = KeyBindings.GUIControlKey
+                            Case "screenshot"
+                                key = KeyBindings.ScreenshotKey
+                            Case "debugcontrol"
+                                key = KeyBindings.DebugKey
+                            Case "perspectiveswitch"
+                                key = KeyBindings.PerspectiveSwitchKey
+                            Case "fullscreen"
+                                key = KeyBindings.FullScreenKey
+                            Case "enter1"
+                                key = KeyBindings.EnterKey1
+                            Case "enter2"
+                                key = KeyBindings.EnterKey2
+                            Case "back1"
+                                key = KeyBindings.BackKey1
+                            Case "back2"
+                                key = KeyBindings.BackKey2
+                            Case "escape", "esc"
+                                key = KeyBindings.EscapeKey
+                            Case "onlinestatus"
+                                key = KeyBindings.OnlineStatusKey
+                            Case "lighting"
+                                key = KeyBindings.LightKey
+                        End Select
+                        result = result.Replace("<button." & validToken & ">", KeyBindings.GetKeyName(key))
+                    End If
+                Next
+
                 Return result
             End If
         Else

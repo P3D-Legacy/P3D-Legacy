@@ -475,6 +475,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "togglepokemonfollow", "Toggles the following Pokémon's visibility."))
             r(New ScriptCommand("player", "save", "Saves the game."))
             r(New ScriptCommand("player", "setrivalname", {New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the rival's name."))
+            r(New ScriptCommand("player", "setrivalskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the rival's skin."))
             r(New ScriptCommand("player", "setopacity", {New ScriptArgument("opacity", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the player entity's opacity."))
 
             ' Constructs:
