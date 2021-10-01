@@ -72,6 +72,7 @@
             End If
             s &= "@text.show(" & reaction.GetMessage(p) & ")" & Environment.NewLine
             s &= "@camera.activatethirdperson" & Environment.NewLine
+            s &= "@camera.reset" & Environment.NewLine
             s &= "@camera.setyaw(" & preYaw & ")" & Environment.NewLine
         End If
         s &= ":end"
