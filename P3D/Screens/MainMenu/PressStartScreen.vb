@@ -1041,7 +1041,7 @@ Public Class NewMainMenuScreen
                         Case 0
                             _sprite = TextureManager.GetTexture("Textures\UI\Options\Language")
                         Case 1
-                            _sprite = TextureManager.GetTexture("Textures\UI\OptionsMenu")
+                            _sprite = TextureManager.GetTexture("Textures\UI\Options\Audio")
                         Case 2
                             _sprite = TextureManager.GetTexture("Textures\UI\Options\Controls")
                         Case 3
@@ -1392,6 +1392,9 @@ Public Class GameModeSelectionScreen
     Private _index As Integer = 0
     Private _offset As Single = 0F
 
+    Private tempGameModesDisplay As String = ""
+    Private GameModeSplash As Texture2D = Nothing
+
     Private Const WIDTH = 400
     Private Const HEIGHT = 64
     Private Const GAP = 32
@@ -1413,30 +1416,75 @@ Public Class GameModeSelectionScreen
     Public Overrides Sub Draw()
         PreScreen.Draw()
 
+        If GameModeSplash IsNot Nothing Then
+            SpriteBatch.DrawInterface(GameModeSplash, ScreenSize, Color.White)
+        End If
+
         Dim text = "Select a GameMode" + Environment.NewLine + "to start the new game with."
 
         GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(30, 30), Color.White)
+        Dim _menuTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\MainMenu")
 
+        'Draw buttons
         Dim center = CInt(ScreenSize.Width / 2 + 320)
         For i = 0 To _gameModes.Length - 1
-            Dim y = CType(i * (HEIGHT + GAP) + _offset + ScreenSize.Height / 2 - HEIGHT / 2, Integer)
-            Dim halfWidth = CType(WIDTH / 2, Integer)
-            Dim color = Screens.UI.ColorProvider.LightColor
-            Dim alphaColor = New Color(color.R, color.G, color.B, 0)
+            Dim ButtonY = CInt(i * (HEIGHT + GAP) + _offset + ScreenSize.Height / 2 - HEIGHT / 2)
+            Dim halfWidth = CInt(WIDTH / 2)
+            Dim ButtonColor = New Rectangle(0, 0, 16, 16)
+            Dim ButtonAccent = Screens.UI.ColorProvider.AccentColor(False, CInt(255))
             If i = _index Then
-                color = Screens.UI.ColorProvider.AccentColor
-                alphaColor = New Color(color.R, color.G, color.B, 0)
+                ButtonColor = New Rectangle(40, 48, 16, 16)
+                ButtonAccent = New Color(84, 198, 216)
             End If
-            Canvas.DrawGradient(New Rectangle(center - halfWidth, y, 50, HEIGHT), alphaColor, color, True, -1)
-            Canvas.DrawRectangle(New Rectangle(center - halfWidth + 50, y, WIDTH - 100, HEIGHT), color)
-            Canvas.DrawGradient(New Rectangle(center + halfWidth - 50, y, 50, HEIGHT), color, alphaColor, True, -1)
 
+            For x = 0 To CInt(WIDTH / 16)
+                For y = 0 To CInt(HEIGHT / 16)
+                    SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(x * 16 + (center - halfWidth)), CInt(y * 16 + ButtonY - 8), 16, 16), ButtonColor, Color.White)
+                    Canvas.DrawRectangle(New Rectangle(CInt(center - halfWidth), CInt(ButtonY - 8), WIDTH + 16, 3), ButtonAccent)
+                Next
+            Next
 
             Dim displayText = _gameModes(i).Name
             Dim textSize = FontManager.InGameFont.MeasureString(displayText)
 
-            GetFontRenderer().DrawString(FontManager.InGameFont, displayText, New Vector2(center - halfWidth + 50, CType(y + HEIGHT / 2 - ((textSize.Y) / 2), Integer)), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+            GetFontRenderer().DrawString(FontManager.InGameFont, displayText, New Vector2(center - halfWidth + 50 + 2, CType(ButtonY + HEIGHT / 2 - (textSize.Y / 2) + 2, Integer)), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+            GetFontRenderer().DrawString(FontManager.InGameFont, displayText, New Vector2(center - halfWidth + 50, CType(ButtonY + HEIGHT / 2 - (textSize.Y / 2), Integer)), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
         Next
+
+        'Draw GameMode description box
+        If tempGameModesDisplay = "" Then
+            Dim GameMode As GameMode = GameModeManager.GetGameMode(_gameModes(_index).DirectoryName)
+
+            Dim dispName As String = GameMode.Name
+            Dim dispDescription As String = GameMode.Description
+            Dim dispVersion As String = GameMode.Version
+            Dim dispAuthor As String = GameMode.Author
+            Dim dispContentPath As String = GameMode.ContentPath
+
+            tempGameModesDisplay = Localization.GetString("gamemode_menu_name") & ": " & dispName & Environment.NewLine &
+                Localization.GetString("gamemode_menu_version") & ": " & dispVersion & Environment.NewLine &
+                Localization.GetString("gamemode_menu_author") & ": " & dispAuthor & Environment.NewLine &
+                Localization.GetString("gamemode_menu_contentpath") & ": " & dispContentPath & Environment.NewLine &
+                Localization.GetString("gamemode_menu_description") & ": " & dispDescription
+        End If
+
+        Dim displayRect = New Rectangle(CInt(ScreenSize.Width / 2 - FontManager.InGameFont.MeasureString(tempGameModesDisplay).X - 32), CInt(ScreenSize.Height / 2 - FontManager.InGameFont.MeasureString(tempGameModesDisplay).Y / 2 - 32), CInt(FontManager.InGameFont.MeasureString(tempGameModesDisplay).X + 64), CInt(FontManager.InGameFont.MeasureString(tempGameModesDisplay).Y + 64))
+        Dim ButtonWidth = CInt(displayRect.Width / 16)
+        Dim ButtonHeight = CInt(displayRect.Height / 16)
+
+        For x = 0 To ButtonWidth
+            For y = 0 To ButtonHeight
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(x * 16 + displayRect.X), CInt(y * 16) + displayRect.Y - 8, 16, 16), New Rectangle(40, 48, 16, 16), Color.White)
+            Next
+        Next
+        Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y - 8, displayRect.Width + 16, 3), New Color(84, 198, 216))
+
+        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, tempGameModesDisplay, New Vector2(displayRect.X + 32 + 2, displayRect.Y + 32 + 2), Color.Black)
+        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, tempGameModesDisplay, New Vector2(displayRect.X + 32, displayRect.Y + 32), Color.White)
+
+        'Draw Arrow
+        SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(displayRect.X + displayRect.Width + 16), CInt(displayRect.Y + (FontManager.InGameFont.MeasureString(tempGameModesDisplay).Y + 64) / 2 - 16), 16, 32), New Rectangle(64, 0, 16, 32), Color.White)
+
     End Sub
 
     Public Overrides Sub Update()
@@ -1445,9 +1493,13 @@ Public Class GameModeSelectionScreen
 
         If _index > 0 AndAlso Controls.Up(True, True, True, True, True, True) Then
             _index -= 1
+            tempGameModesDisplay = ""
+            GameModeSplash = Nothing
         End If
         If _index < _gameModes.Length - 1 AndAlso Controls.Down(True, True, True, True, True, True) Then
             _index += 1
+            tempGameModesDisplay = ""
+            GameModeSplash = Nothing
         End If
         If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey1) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey2) Or MouseHandler.ButtonPressed(MouseHandler.MouseButtons.RightButton) Or ControllerHandler.ButtonPressed(Buttons.B) Then
             SoundManager.PlaySound("select")
@@ -1470,6 +1522,19 @@ Public Class GameModeSelectionScreen
             If Math.Abs(_offset - targetOffset) <= 0.01F Then
                 _offset = targetOffset
             End If
+        End If
+
+        If GameModeSplash Is Nothing Then
+            Try
+                Dim fileName As String = GameController.GamePath & "\GameModes\" & _gameModes(_index).DirectoryName & "\GameMode.png"
+                If IO.File.Exists(fileName) = True Then
+                    Using stream As IO.Stream = IO.File.Open(fileName, IO.FileMode.OpenOrCreate)
+                        GameModeSplash = Texture2D.FromStream(GraphicsDevice, stream)
+                    End Using
+                End If
+            Catch ex As Exception
+                Logger.Log(Logger.LogTypes.ErrorMessage, "MainMenuScreen.vb/UpdateNewGameMenu: An error occurred trying to load the splash image at """ & GameController.GamePath & "\GameModes\" & _gameModes(_index).DirectoryName & "\GameMode.png"". This could have been caused by an invalid file header. (Exception: " & ex.Message & ")")
+            End Try
         End If
     End Sub
 
