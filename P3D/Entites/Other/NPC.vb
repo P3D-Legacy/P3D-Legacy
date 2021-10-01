@@ -23,8 +23,6 @@
     Dim Texture As Texture2D
     Public ActivationValue As Integer = 0
 
-    Public HasPokemonTexture As Boolean = False
-
     Public IsTrainer As Boolean = False
     Public TrainerSight As Integer = 1
     Public TrainerBeaten As Boolean = False
@@ -90,15 +88,12 @@
         Me.TextureID = UseTextureID
 
         Dim texturePath As String = "Textures\NPC\"
-        HasPokemonTexture = False
         If Me.TextureID.StartsWith("[POKEMON|N]") = True Or Me.TextureID.StartsWith("[Pokémon|N]") = True Then
             Me.TextureID = Me.TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Normal\"
-            HasPokemonTexture = True
         ElseIf Me.TextureID.StartsWith("[POKEMON|S]") = True Or Me.TextureID.StartsWith("[Pokémon|S]") = True Then
             Me.TextureID = Me.TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Shiny\"
-            HasPokemonTexture = True
         End If
 
         If Me.TextureID = "<player.skin>" Then
@@ -113,7 +108,6 @@
 
         If UseTextureID.StartsWith("Pokemon\Overworld\") = True Then
             texturePath = ""
-            HasPokemonTexture = True
             If StringHelper.IsNumeric(TextureID) = True Then
                 PokemonAddition = PokemonForms.GetDefaultOverworldSpriteAddition(CInt(TextureID))
             End If
@@ -124,11 +118,15 @@
         Else
             Me.Texture = P3D.TextureManager.GetTexture(texturePath & Me.TextureID & PokemonAddition)
         End If
+
         If Me.Texture.Width = Me.Texture.Height / 2 Then
             Me.FrameSize = New Vector2(CInt(Me.Texture.Width / 2), CInt(Me.Texture.Height / 4))
+        ElseIf Me.Texture.Width = Me.Texture.Height Then
+            Me.FrameSize = New Vector2(CInt(Me.Texture.Width / 4), CInt(Me.Texture.Height / 4))
         Else
             Me.FrameSize = New Vector2(CInt(Me.Texture.Width / 3), CInt(Me.Texture.Height / 4))
         End If
+
         If Me.Movement = Movements.Pokeball Then
             Me.FrameSize = New Vector2(Me.Texture.Width, Me.Texture.Height)
         End If
@@ -217,6 +215,17 @@
                     Return 0
                 Case 4
                     Return 1
+            End Select
+        ElseIf Me.Texture.Width = Me.Texture.Height Then
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 2
+                Case 4
+                    Return 3
             End Select
         Else
             Select Case AnimationX
@@ -759,8 +768,14 @@
             If AnimationDelay <= 0.0F Then
                 AnimationDelay = AnimationDelayLength
                 AnimationX += 1
-                If AnimationX > 4 Then
-                    AnimationX = 1
+                If Me.Texture.Width = Me.Texture.Height / 2 Then
+                    If AnimationX > 2 Then
+                        AnimationX = 1
+                    End If
+                Else
+                    If AnimationX > 4 Then
+                        AnimationX = 1
+                    End If
                 End If
             End If
 
@@ -781,8 +796,14 @@
                 If AnimationDelay <= 0.0F Then
                     AnimationDelay = AnimationDelayLength
                     AnimationX += 1
-                    If AnimationX > 4 Then
-                        AnimationX = 1
+                    If Me.Texture.Width = Me.Texture.Height / 2 Then
+                        If AnimationX > 2 Then
+                            AnimationX = 1
+                        End If
+                    Else
+                        If AnimationX > 4 Then
+                            AnimationX = 1
+                        End If
                     End If
                 End If
             End If

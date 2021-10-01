@@ -38,7 +38,7 @@ Public Class TextureManager
                         End Try
                     End Using
                 Else
-                    Logger.Log(Logger.LogTypes.ErrorMessage, "Texures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
+                    Logger.Log(Logger.LogTypes.ErrorMessage, "Textures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
                     Return DefaultTexture
                 End If
             Else
@@ -104,7 +104,7 @@ Public Class TextureManager
                             End Try
                         End Using
                     Else
-                        Logger.Log(Logger.LogTypes.ErrorMessage, "Texures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
+                        Logger.Log(Logger.LogTypes.ErrorMessage, "Textures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
                         Return DefaultTexture
                     End If
                 Else

@@ -385,7 +385,6 @@
             End If
         End If
     End Sub
-					CanMuteAudio = True
 
     Private Sub ConfirmInput(ByVal input As String)
         Me.CurrentText = CorrectChars(input)
