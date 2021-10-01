@@ -381,34 +381,34 @@ endsub:
 
         Select Case Season
             Case Seasons.Winter
-                If r < 20 Then
-                    Return Weathers.Rain
-                ElseIf r >= 20 And r < 50 Then
+                If r < 30 Then
                     Return Weathers.Clear
+                ElseIf r >= 30 And r < 40 Then
+                    Return Weathers.Rain
                 Else
                     Return Weathers.Snow
                 End If
             Case Seasons.Spring
-                If r < 5 Then
-                    Return Weathers.Snow
-                ElseIf r >= 5 And r < 40 Then
+                If r < 45 Then
+                    Return Weathers.Clear
+                ElseIf r >= 45 And r < 95 Then
                     Return Weathers.Rain
                 Else
-                    Return Weathers.Clear
+                    Return Weathers.Snow
                 End If
             Case Seasons.Summer
-                If r < 10 Then
-                    Return Weathers.Rain
-                Else
+                If r < 90 Then
                     Return Weathers.Clear
+                Else
+                    Return Weathers.Rain
                 End If
             Case Seasons.Fall
-                If r < 5 Then
-                    Return Weathers.Snow
-                ElseIf r >= 5 And r < 80 Then
+                If r < 50 Then
+                    Return Weathers.Clear
+                ElseIf r >= 50 And r < 85 Then
                     Return Weathers.Rain
                 Else
-                    Return Weathers.Clear
+                    Return Weathers.Snow
                 End If
         End Select
 
