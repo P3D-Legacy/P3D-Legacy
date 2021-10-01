@@ -38,7 +38,7 @@ Namespace GameJolt
             Me.MouseVisible = True
             Me.CanBePaused = False
             Me.CanChat = False
-            Me.CanMuteMusic = False
+            Me.CanMuteAudio = False
 
             Me.UserName = New JoltTextBox(FontManager.MainFont, Color.Black, Color.White)
             UserName.Size = New Size(400, 30)

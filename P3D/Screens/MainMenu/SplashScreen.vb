@@ -26,7 +26,7 @@ Friend Class SplashScreen
         _game = GameReference
 
         CanBePaused = False
-        CanMuteMusic = True
+        CanMuteAudio = True
         CanChat = False
         CanTakeScreenshot = True
         CanDrawDebug = False

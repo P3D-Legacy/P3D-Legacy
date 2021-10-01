@@ -154,7 +154,7 @@ Public Class TradeScreen
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
 
         Me.MouseVisible = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
         Me.CanBePaused = True
 
         Me.CanBuyItems = canBuy

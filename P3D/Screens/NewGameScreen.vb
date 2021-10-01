@@ -366,10 +366,10 @@
     End Sub
 
     Private Sub UpdateTextbox()
-        CanMuteMusic = False
+        CanMuteAudio = False
 
         If ControllerHandler.ButtonPressed(Buttons.X) = True Then
-            Core.SetScreen(New InputScreen(Core.CurrentScreen, "Player", InputScreen.InputModes.Name, Me.CurrentText, 14, {TextureManager.GetTexture(TextureManager.GetTexture("Textures\NPC\" & startSkins(SkinIndex)), New Rectangle(0, 64, 32, 32))}.ToList(), AddressOf Me.ConfirmInput))
+            Core.SetScreen(New InputScreen(Core.CurrentScreen, "Player", InputScreen.InputModes.Name, Me.CurrentText, 14, {TextureManager.GetTexture(TextureManager.GetTexture("Textures\NPC\" & skinFiles(SkinIndex)), New Rectangle(0, 64, 32, 32))}.ToList(), AddressOf Me.ConfirmInput))
         Else
             KeyBindings.GetNameInput(Me.CurrentText, 14)
 
@@ -379,13 +379,13 @@
                 If CurrentText.Length > 2 And String.IsNullOrWhiteSpace(CurrentText) = False Then
                     Me.Name = CurrentText
                     Index += 1
-                    CanMuteMusic = True
                 Else
                     enterCorrectName = True
                 End If
             End If
         End If
     End Sub
+					CanMuteAudio = True
 
     Private Sub ConfirmInput(ByVal input As String)
         Me.CurrentText = CorrectChars(input)

@@ -37,7 +37,7 @@ Public Class NameObjectScreen
         Me.PreScreen = CurrentScreen
         Me.MouseVisible = True
         Me.CanChat = False
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
         Me.CanBePaused = False
 
         Me._pokemon = Pokemon
@@ -70,7 +70,7 @@ Public Class NameObjectScreen
         Me.MouseVisible = True
         Me.CanBePaused = True
         Me.CanChat = False
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
 
         Screen.PokemonImageView.Show(Texture)
     End Sub

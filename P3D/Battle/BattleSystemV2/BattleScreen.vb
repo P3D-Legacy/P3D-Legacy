@@ -144,7 +144,7 @@
             Me.MouseVisible = True
             Me.CanChat = True
             Me.CanDrawDebug = True
-            Me.CanMuteMusic = True
+            Me.CanMuteAudio = True
             Me.CanTakeScreenshot = True
 
             Screen.TextBox.Showing = False

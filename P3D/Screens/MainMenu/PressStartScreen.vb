@@ -1346,6 +1346,7 @@ Public Class NewMainMenuScreen
                     Else
                         If _gameModeExists Then
                             GameModeManager.SetGameModePointer(_gameMode)
+                            Localization.ReloadGameModeTokens()
                             World.IsMainMenu = False
                             If _isGameJolt Then
                                 Core.Player.IsGameJoltSave = True
@@ -1405,7 +1406,7 @@ Public Class GameModeSelectionScreen
         CanChat = False
         CanDrawDebug = True
         CanGoFullscreen = True
-        CanMuteMusic = True
+        CanMuteAudio = True
         CanTakeScreenshot = True
 
         PreScreen = currentScreen

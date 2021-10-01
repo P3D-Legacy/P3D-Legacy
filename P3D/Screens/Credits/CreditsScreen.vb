@@ -26,7 +26,7 @@ Public Class CreditsScreen
         Me.MouseVisible = False
         Me.CanChat = False
         Me.CanDrawDebug = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
         Me.CanTakeScreenshot = True
 
         Screen.TextBox.Showing = False

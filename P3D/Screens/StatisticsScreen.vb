@@ -20,7 +20,7 @@
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
 
         Me.CanBePaused = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
 
         If Core.Player.IsGamejoltSave = True Then
             StatisticsStartIndex = 2

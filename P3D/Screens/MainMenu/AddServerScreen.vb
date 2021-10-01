@@ -23,7 +23,7 @@
 
         Me.CanBePaused = False
         Me.CanChat = False
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
         Me.MouseVisible = True
 
         Me.NewServer = NewServer

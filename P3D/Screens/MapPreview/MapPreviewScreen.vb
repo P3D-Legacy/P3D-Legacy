@@ -23,7 +23,7 @@
         Me.CanBePaused = False
         Me.CanDrawDebug = True
         Me.CanGoFullscreen = True
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
         Me.CanTakeScreenshot = True
 
         Effect = New BasicEffect(Core.GraphicsDevice)

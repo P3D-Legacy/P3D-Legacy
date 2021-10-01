@@ -28,7 +28,7 @@
             CanChat = False
             CanDrawDebug = True
             CanGoFullscreen = True
-            CanMuteMusic = True
+            CanMuteAudio = True
             CanTakeScreenshot = True
             MouseVisible = True
         End Sub

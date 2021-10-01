@@ -40,7 +40,7 @@ Public Class ChatScreen
         Me.PreScreen = currentScreen
         Me.Identification = Identifications.ChatScreen
         Me.CanBePaused = True
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
         Me.CanChat = False
         Me.MouseVisible = True
     End Sub
