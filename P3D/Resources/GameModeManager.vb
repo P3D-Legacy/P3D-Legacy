@@ -150,7 +150,7 @@ Public Class GameModeManager
 start:
         Dim rules As List(Of GameMode.GameRule) = GetGameRules()
         For Each rule As GameMode.GameRule In rules
-            If rule.RuleName.ToLower() = RuleName.ToLower() Then
+            If rule.RuleName.ToLower(Globalization.CultureInfo.InvariantCulture) = RuleName.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 Return rule.RuleValue
             End If
         Next
@@ -308,7 +308,7 @@ Public Class GameMode
     Public ReadOnly Property IsValid() As Boolean
         Get
             If _loaded = True Then
-                If Me.Name.ToLower() = "pokemon 3d" And Me.DirectoryName.ToLower() <> "kolben" Then
+                If Me.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "pokemon 3d" And Me.DirectoryName.ToLower(Globalization.CultureInfo.InvariantCulture) <> "kolben" Then
                     Logger.Log(Logger.LogTypes.Message, "Unofficial GameMode with the name ""Pokemon 3D"" exists (in folder: """ & Me.DirectoryName & """)!")
                     Return False
                 End If
@@ -424,7 +424,7 @@ Public Class GameMode
                     Dim Pointer As String = line.Remove(line.IndexOf("|"))
                     Dim Value As String = line.Remove(0, line.IndexOf("|") + 1)
 
-                    Select Case Pointer.ToLower()
+                    Select Case Pointer.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "name"
                             Me._name = Value
                         Case "description"

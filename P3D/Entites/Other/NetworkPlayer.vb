@@ -208,7 +208,7 @@
         If Me.Rotation.Y <> Screen.Camera.Yaw Then
             Me.Rotation.Y = Screen.Camera.Yaw
         End If
-        If Me.TextureID IsNot Nothing AndAlso Me.TextureID.ToLower() = "nilllzz" And Me.GameJoltID = "17441" Then
+        If Me.TextureID IsNot Nothing AndAlso Me.TextureID.ToLower(Globalization.CultureInfo.InvariantCulture) = "nilllzz" And Me.GameJoltID = "17441" Then
             Me.Rotation.Z = MathHelper.Pi
             RotatedSprite = True
         Else
@@ -315,7 +315,7 @@
             Me.BusyType = p.BusyType.ToString()
             Me.Visible = False
 
-            If Screen.Level.LevelFile.ToLower() = p.LevelFile.ToLower() Then
+            If Screen.Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture) = p.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 Me.Visible = True
             Else
                 If LevelLoader.LoadedOffsetMapNames.Contains(p.LevelFile) = True Then

@@ -149,7 +149,7 @@
         propertiesEnt.Offset = Offset
         propertiesEnt.CameraDistanceDelta = CameraDistanceDelta
 
-        Select Case EntityID.ToLower()
+        Select Case EntityID.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "animatedblock"
                 newEnt = New AnimatedBlock()
                 SetProperties(newEnt, propertiesEnt)

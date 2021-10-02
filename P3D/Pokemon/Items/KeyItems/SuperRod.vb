@@ -38,7 +38,7 @@ Namespace Items.KeyItems
                     PokemonShiny = "S"
                 End If
 
-                If Core.Random.Next(0, 3) <> 0 Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "suction cups" Or Core.Player.Pokemons(0).Ability.Name.ToLower() = "sticky hold" Then
+                If Core.Random.Next(0, 3) <> 0 Or Core.Player.Pokemons(0).Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "suction cups" Or Core.Player.Pokemons(0).Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sticky hold" Then
                     Dim LookingOffset As New Vector3(0)
 
                     Select Case Screen.Camera.GetPlayerFacingDirection()

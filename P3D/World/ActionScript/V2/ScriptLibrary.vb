@@ -864,7 +864,7 @@ Namespace ScriptVersion2
 
             Public ReadOnly Property MatchesClass(ByVal mainClass As String, ByVal subClass As String) As Boolean
                 Get
-                    If Me._mainClass.ToLower() = mainClass.ToLower() And Me._subClass.ToLower() = subClass.ToLower() Then
+                    If Me._mainClass.ToLower(Globalization.CultureInfo.InvariantCulture) = mainClass.ToLower(Globalization.CultureInfo.InvariantCulture) And Me._subClass.ToLower(Globalization.CultureInfo.InvariantCulture) = subClass.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                         Return True
                     End If
                     Return False
@@ -913,7 +913,7 @@ Namespace ScriptVersion2
                     Dim c As String = "<" & Me._mainClass & "." & Me._subClass & "(" & args & ")>" & des
 
                     If Me._returnType <> "" Then
-                        c = "(" & _returnType.ToLower() & ") " & c
+                        c = "(" & _returnType.ToLower(Globalization.CultureInfo.InvariantCulture) & ") " & c
                     End If
 
                     Return c
@@ -1003,13 +1003,13 @@ Namespace ScriptVersion2
 
             Public Overrides Function ToString() As String
                 If Me._isOptional = True Then
-                    Dim s As String = Me._type.ToString().ToLower() & " " & Me._name
+                    Dim s As String = Me._type.ToString().ToLower(Globalization.CultureInfo.InvariantCulture) & " " & Me._name
                     If Me._defaultValue <> "" Then
                         s &= "=""" & Me._defaultValue & """"
                     End If
                     Return "[" & s & "]"
                 Else
-                    Return Me._type.ToString().ToLower() & " " & Me._name
+                    Return Me._type.ToString().ToLower(Globalization.CultureInfo.InvariantCulture) & " " & Me._name
                 End If
             End Function
 
@@ -1022,45 +1022,45 @@ Namespace ScriptVersion2
         ''' </summary>
         ''' <param name="inputCommand">class.subclass</param>
         Public Shared Function GetHelpContent(ByVal inputCommand As String, ByVal pageSize As Integer) As String
-            If inputCommand.ToLower().StartsWith("constructs") Then
+            If inputCommand.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("constructs") Then
                 Dim list As New List(Of String)
                 For Each ScriptCommand In Scripts
                     If ScriptCommand.IsConstruct = True Then
-                        If list.Contains(ScriptCommand.MainClass.ToLower()) = False Then
-                            list.Add(ScriptCommand.MainClass.ToLower())
+                        If list.Contains(ScriptCommand.MainClass.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
+                            list.Add(ScriptCommand.MainClass.ToLower(Globalization.CultureInfo.InvariantCulture))
                         End If
                     End If
                 Next
                 Dim str As String = ""
                 Dim cList As New List(Of String)
                 For Each l As String In list
-                    If cList.Contains(l.ToLower()) = False Then
+                    If cList.Contains(l.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                         If str <> "" Then
                             str &= "; "
                         End If
                         str &= l
-                        cList.Add(l.ToLower())
+                        cList.Add(l.ToLower(Globalization.CultureInfo.InvariantCulture))
                     End If
                 Next
                 Return "Constructs: " & str
-            ElseIf inputCommand.ToLower().StartsWith("commands") Then
+            ElseIf inputCommand.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("commands") Then
                 Dim list As New List(Of String)
                 For Each ScriptCommand In Scripts
                     If ScriptCommand.IsConstruct = False Then
-                        If list.Contains(ScriptCommand.MainClass.ToLower()) = False Then
-                            list.Add(ScriptCommand.MainClass.ToLower())
+                        If list.Contains(ScriptCommand.MainClass.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
+                            list.Add(ScriptCommand.MainClass.ToLower(Globalization.CultureInfo.InvariantCulture))
                         End If
                     End If
                 Next
                 Dim str As String = ""
                 Dim cList As New List(Of String)
                 For Each l As String In list
-                    If cList.Contains(l.ToLower()) = False Then
+                    If cList.Contains(l.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                         If str <> "" Then
                             str &= "; "
                         End If
                         str &= l
-                        cList.Add(l.ToLower())
+                        cList.Add(l.ToLower(Globalization.CultureInfo.InvariantCulture))
                     End If
                 Next
                 Return "Commands: " & str
@@ -1121,7 +1121,7 @@ Namespace ScriptVersion2
 
                 Dim validScriptCommands As New List(Of ScriptCommand)
                 For Each ScriptCommand In Scripts
-                    If ScriptCommand.MainClass.ToLower() = mainClass.ToLower() Then
+                    If ScriptCommand.MainClass.ToLower(Globalization.CultureInfo.InvariantCulture) = mainClass.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                         validScriptCommands.Add(ScriptCommand)
                     End If
                 Next

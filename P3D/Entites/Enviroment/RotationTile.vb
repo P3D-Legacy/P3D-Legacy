@@ -68,7 +68,7 @@
                 Dim p As Vector3 = New Vector3(x, 0, y) + Me.Position
                 For Each e As Entity In Screen.Level.Entities
                     If e.Equals(Me) = False Then
-                        If e.EntityID.ToLower() = "rotationtile" Then
+                        If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "rotationtile" Then
                             If CInt(e.Position.X) = CInt(p.X) And CInt(e.Position.Y) = CInt(p.Y) And CInt(e.Position.Z) = CInt(p.Z) Then
                                 GoTo theend
                             End If

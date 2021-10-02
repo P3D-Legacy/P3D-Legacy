@@ -135,7 +135,7 @@
                             Else
                                 waterType = Me.AdditionalValue
                             End If
-                            Select Case waterType.ToLower()
+                            Select Case waterType.ToLower(Globalization.CultureInfo.InvariantCulture)
                                 Case "0", ""
                                     message = "Do you want to Surf?%Yes|No%"
                                 Case "1", "sea", "water"

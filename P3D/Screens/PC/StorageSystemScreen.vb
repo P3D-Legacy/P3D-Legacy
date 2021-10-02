@@ -1467,11 +1467,11 @@ Public Class StorageSystemScreen
             For Each f As Filter In Filters
                 Select Case f.FilterType
                     Case FilterTypes.Ability
-                        If p.Ability.Name.ToLower() <> f.FilterValue.ToLower() Then
+                        If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> f.FilterValue.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                             Return False
                         End If
                     Case FilterTypes.Gender
-                        If p.Gender.ToString().ToLower() <> f.FilterValue.ToLower() Then
+                        If p.Gender.ToString().ToLower(Globalization.CultureInfo.InvariantCulture) <> f.FilterValue.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                             Return False
                         End If
                     Case FilterTypes.HeldItem
@@ -1483,7 +1483,7 @@ Public Class StorageSystemScreen
                     Case FilterTypes.Move
                         Dim hasAttack As Boolean = False
                         For Each a As BattleSystem.Attack In p.Attacks
-                            If a.Name.ToLower() = f.FilterValue.ToLower() Then
+                            If a.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = f.FilterValue.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                                 hasAttack = True
                                 Exit For
                             End If
@@ -1492,7 +1492,7 @@ Public Class StorageSystemScreen
                             Return False
                         End If
                     Case FilterTypes.Nature
-                        If p.Nature.ToString().ToLower() <> f.FilterValue.ToLower() Then
+                        If p.Nature.ToString().ToLower(Globalization.CultureInfo.InvariantCulture) <> f.FilterValue.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                             Return False
                         End If
                     Case FilterTypes.Pokémon
@@ -2003,7 +2003,7 @@ Public Class StorageSystemFilterScreen
 
     Private Function GetFilterText(ByVal filterTypeString As String) As String
         For Each f As StorageSystemScreen.Filter In Me.Filters
-            If f.FilterType.ToString().ToLower() = filterTypeString.ToLower() Then
+            If f.FilterType.ToString().ToLower(Globalization.CultureInfo.InvariantCulture) = filterTypeString.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 Return f.FilterValue
             End If
         Next
@@ -2122,7 +2122,7 @@ Public Class StorageSystemFilterScreen
     Private Sub SelectFilter()
         Dim filterType As String = Me.mainMenuItems(Me.Scroll + Me.Cursor)
 
-        Select Case filterType.ToLower()
+        Select Case filterType.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "pokémon"
                 Me.OpenPokemonMenu()
             Case "type1"

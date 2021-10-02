@@ -264,7 +264,7 @@
             Dim newText As String = ""
 
             For Each c As Char In Me.CurrentText
-                If chars.Contains(c.ToString().ToLower()) Then
+                If chars.Contains(c.ToString().ToLower(Globalization.CultureInfo.InvariantCulture)) Then
                     newText &= c.ToString()
                 End If
             Next
@@ -354,7 +354,7 @@
                 If CapsLock = True Then
                     text = text.ToUpper()
                 Else
-                    text = text.ToLower()
+                    text = text.ToLower(Globalization.CultureInfo.InvariantCulture)
                 End If
             End If
 
@@ -402,7 +402,7 @@
                                 If CapsLock = True Then
                                     st = ReturnText.ToUpper()
                                 Else
-                                    st = ReturnText.ToLower()
+                                    st = ReturnText.ToLower(Globalization.CultureInfo.InvariantCulture)
                                 End If
                             End If
                             s.CurrentText &= st

@@ -18,7 +18,7 @@
         Me.Identification = Identifications.AddServerScreen
 
         For Each s As JoinServerScreen.Server In servers
-            Me.ServerNames.Add(s.IdentifierName.ToLower())
+            Me.ServerNames.Add(s.IdentifierName.ToLower(Globalization.CultureInfo.InvariantCulture))
         Next
 
         Me.CanBePaused = True
@@ -232,7 +232,7 @@
         If Me.Address = "" Then
             Return "The address cannot be empty."
         End If
-        If Me.ServerNames.Contains(Me.IdentifyName.ToLower()) = True Then
+        If Me.ServerNames.Contains(Me.IdentifyName.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
             Return "This server name already exists on the list."
         End If
 

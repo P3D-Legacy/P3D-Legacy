@@ -35,7 +35,7 @@
                 Dim name As String = line.GetSplit(0, "|")
                 Dim value As String = line.GetSplit(1, "|")
 
-                Select Case name.ToLower()
+                Select Case name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "volume"
                         MusicManager.MasterVolume = CSng(CDbl(value) / 100)
                         SoundManager.Volume = CSng(CDbl(value) / 100)

@@ -237,7 +237,7 @@
                 .Draw(TextureManager.GetTexture("GUI\Overworld\TextBox"), New Rectangle(CInt(Core.windowSize.Width / 2) - 240, CInt(PositionY), 480, 144), New Rectangle(0, 0, 160, 48), Color.White)
 
                 Dim m As Single = 1.0F
-                Select Case Me.TextFont.FontName.ToLower()
+                Select Case Me.TextFont.FontName.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "textfont", "braille"
                         m = 2.0F
                 End Select

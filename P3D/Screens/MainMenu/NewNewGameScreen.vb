@@ -114,7 +114,7 @@
             Dim folderPath As String = Core.Player.Name
             Dim folderPrefix As Integer = 0
 
-            If folderPath.ToLower() = "autosave" Then
+            If folderPath.ToLower(Globalization.CultureInfo.InvariantCulture) = "autosave" Then
                 folderPath = "autosave0"
             End If
 

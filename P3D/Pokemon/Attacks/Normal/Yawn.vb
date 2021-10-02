@@ -63,7 +63,7 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            If ((op.Ability.Name.ToLower() = "insomnia" Or op.Ability.Name.ToLower() = "vital spirit" Or op.Ability.Name.ToLower() = "sweet veil") = True And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True) = True Or op.Status = Pokemon.StatusProblems.Sleep Then
+            If ((op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "insomnia" Or op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "vital spirit" Or op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sweet veil") = True And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True) = True Or op.Status = Pokemon.StatusProblems.Sleep Then
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
             Else
                 If own = True Then

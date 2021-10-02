@@ -779,7 +779,7 @@
         End Sub
 
         Private Function ConvertEmoji(ByVal s As String) As MessageBulb.NotifcationTypes
-            Select Case s.ToLower()
+            Select Case s.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "..."
                     Return MessageBulb.NotifcationTypes.Waiting
                 Case "!"
@@ -1093,7 +1093,7 @@
 
     Private Shared Function WaterAround() As Boolean
         For Each e As Entity In Screen.Level.Entities
-            If e.EntityID.ToLower() = "water" Then
+            If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "water" Then
                 If Vector3.Distance(e.Position, Screen.Camera.Position) <= 5.0F Then
                     Return True
                 End If
@@ -1105,7 +1105,7 @@
 
     Private Shared Function NPCAround() As Boolean
         For Each e As Entity In Screen.Level.Entities
-            If e.EntityID.ToLower() = "npc" Then
+            If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "npc" Then
                 If Vector3.Distance(e.Position, Screen.Camera.Position) <= 4.0F Then
                     Return True
                 End If
@@ -1117,7 +1117,7 @@
 
     Private Shared Function TrainerAround() As Boolean
         For Each e As Entity In Screen.Level.Entities
-            If e.EntityID.ToLower() = "npc" Then
+            If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "npc" Then
                 If CType(e, NPC).IsTrainer = True Then
                     If Vector3.Distance(e.Position, Screen.Camera.Position) <= 3.0F Then
                         Return True
@@ -1131,7 +1131,7 @@
 
     Private Shared Function GrassAround() As Boolean
         For Each e As Entity In Screen.Level.Entities
-            If e.EntityID.ToLower() = "grass" Then
+            If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "grass" Then
                 If Vector3.Distance(e.Position, Screen.Camera.Position) <= 5.0F Then
                     Return True
                 End If
@@ -1143,7 +1143,7 @@
 
     Private Shared Function ItemAround() As Boolean
         For Each e As Entity In Screen.Level.Entities
-            If e.EntityID.ToLower() = "itemobject" Then
+            If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "itemobject" Then
                 If Vector3.Distance(e.Position, Screen.Camera.Position) <= 5.0F Then
                     Return True
                 End If
@@ -1155,7 +1155,7 @@
 
     Private Shared Function IceAround() As Boolean
         For Each e As Entity In Screen.Level.Entities
-            If e.EntityID.ToLower() = "floor" Then
+            If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "floor" Then
                 If CType(e, Floor).IsIce = True Then
                     If Vector3.Distance(e.Position, Screen.Camera.Position) <= 2.0F Then
                         Return True
@@ -1169,7 +1169,7 @@
 
     Private Shared Function LoamySoilAround() As Boolean
         For Each e As Entity In Screen.Level.Entities
-            If e.EntityID.ToLower() = "loamysoil" Then
+            If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "loamysoil" Then
                 If Vector3.Distance(e.Position, Screen.Camera.Position) <= 5.0F Then
                     Return True
                 End If

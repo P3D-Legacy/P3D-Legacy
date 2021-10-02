@@ -680,7 +680,7 @@ Public Class PartyScreen
                 End If
 
                 For Each a As BattleSystem.Attack In p.Attacks
-                    If a.Name.ToLower() = moveName.ToLower() Then
+                    If a.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = moveName.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                         Return True
                     End If
                 Next

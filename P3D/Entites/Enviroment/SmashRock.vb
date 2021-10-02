@@ -9,7 +9,7 @@
             For Each p As Pokemon In Core.Player.Pokemons
                 If p.IsEgg() = False Then
                     For Each a As BattleSystem.Attack In p.Attacks
-                        If a.Name.ToLower() = ("Rock Smash").ToLower() Then
+                        If a.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = ("Rock Smash").ToLower(Globalization.CultureInfo.InvariantCulture) Then
                             pName = p.GetDisplayName()
                             Exit For
                         End If
@@ -39,7 +39,7 @@
             For Each p As Pokemon In Core.Player.Pokemons
                 If p.IsEgg() = False Then
                     For Each a As BattleSystem.Attack In p.Attacks
-                        If a.Name.ToLower() = ("Rock Smash").ToLower() Then
+                        If a.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = ("Rock Smash").ToLower(Globalization.CultureInfo.InvariantCulture) Then
                             pName = p.GetDisplayName()
                             Exit For
                         End If
@@ -99,7 +99,7 @@
         Dim MatchingContainers As New List(Of ItemContainer)
         Dim Chances As New List(Of Integer)
         For Each c As ItemContainer In ItemContainerlist
-            If c.MapFile.ToLower() = Screen.Level.LevelFile.ToLower() Then
+            If c.MapFile.ToLower(Globalization.CultureInfo.InvariantCulture) = Screen.Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 MatchingContainers.Add(c)
                 Chances.Add(c.Chance)
             End If

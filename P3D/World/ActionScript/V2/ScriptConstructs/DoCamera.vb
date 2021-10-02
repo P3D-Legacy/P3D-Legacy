@@ -18,7 +18,7 @@
             Else
                 position = c.ThirdPersonOffset
             End If
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "isfixed"
                     Return ReturnBoolean(c.Fixed)
                 Case "x"

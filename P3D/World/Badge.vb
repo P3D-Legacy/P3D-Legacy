@@ -42,14 +42,14 @@ Public Class Badge
                     Dim argName As String = data(i).Remove(data(i).IndexOf("="))
                     Dim argData As String = data(i).Remove(0, data(i).IndexOf("=") + 1)
 
-                    Select Case argName.ToLower()
+                    Select Case argName.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "level"
                             Me.LevelCap = CInt(argData)
                         Case "hm"
                             Dim hms() As String = argData.Split(CChar(","))
 
                             For Each hm As String In hms
-                                Select Case hm.ToLower()
+                                Select Case hm.ToLower(Globalization.CultureInfo.InvariantCulture)
                                     Case "surf"
                                         Me.HMs.Add(HMMoves.Surf)
                                     Case "cut"
@@ -182,7 +182,7 @@ Public Class Badge
     Public Shared Function GetBadgesCount(ByVal region As String) As Integer
         Dim c As Integer = 0
         For Each b As BadgeDeclaration In Badges
-            If b.Region.ToLower() = region.ToLower() Then
+            If b.Region.ToLower(Globalization.CultureInfo.InvariantCulture) = region.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 c += 1
             End If
         Next
@@ -210,7 +210,7 @@ Public Class Badge
     Public Shared Function GetBadgeID(ByVal region As String, ByVal index As Integer) As Integer
         Dim cBadges As New List(Of BadgeDeclaration)
         For Each b As BadgeDeclaration In Badges
-            If b.Region.ToLower() = region.ToLower() Then
+            If b.Region.ToLower(Globalization.CultureInfo.InvariantCulture) = region.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 cBadges.Add(b)
             End If
         Next

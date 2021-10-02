@@ -56,7 +56,7 @@
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            Dim turns As Integer = BattleCalculation.FieldEffectTurns(BattleScreen, own, Me.Name.ToLower())
+            Dim turns As Integer = BattleCalculation.FieldEffectTurns(BattleScreen, own, Me.Name.ToLower(Globalization.CultureInfo.InvariantCulture))
             If BattleScreen.FieldEffects.GrassyTerrain <= 0 Then
 
                 BattleScreen.FieldEffects.ElectricTerrain = 0

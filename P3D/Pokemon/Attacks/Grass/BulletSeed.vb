@@ -61,7 +61,7 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            If p.Ability.Name.ToLower() = "skill link" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "skill link" Then
                 Return 5
             End If
 

@@ -95,7 +95,7 @@ Public Class Element
     ''' </summary>
     ''' <param name="Type">The Type as string.</param>
     Public Sub New(ByVal Type As String)
-        Select Case Type.ToLower()
+        Select Case Type.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "normal"
                 Me._type = Types.Normal
             Case "fighting"

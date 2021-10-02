@@ -1880,7 +1880,7 @@
                     p = BattleScreen.OppPokemon
                 End If
 
-                If p.Ability.Name.ToLower() = "serene grace" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "serene grace" Then
                     chance *= 2
                 End If
 
@@ -2011,18 +2011,18 @@
                 p = BattleScreen.OppPokemon
             End If
 
-            If p.Ability.Name.ToLower() = "normalize" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "normalize" Then
                 Return New Element(Element.Types.Normal)
             End If
 
             If Me.Type.Type = Element.Types.Normal Then
-                If p.Ability.Name.ToLower() = "pixilate" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "pixilate" Then
                     Return New Element(Element.Types.Fairy)
-                ElseIf p.Ability.Name.ToLower() = "refrigerate" Then
+                ElseIf p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "refrigerate" Then
                     Return New Element(Element.Types.Ice)
-                ElseIf p.Ability.Name.ToLower() = "aerilate" Then
+                ElseIf p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "aerilate" Then
                     Return New Element(Element.Types.Flying)
-                ElseIf p.Ability.Name.ToLower() = "galvanize" Then
+                ElseIf p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "galvanize" Then
                     Return New Element(Element.Types.Electric)
                 End If
             End If

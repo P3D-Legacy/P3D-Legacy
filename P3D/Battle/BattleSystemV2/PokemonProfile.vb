@@ -585,7 +585,7 @@
         ''' </summary>
         ''' <param name="s">The Target type of this Pokémon Target.</param>
         Public Sub New(ByVal s As String)
-            Select Case s.ToLower()
+            Select Case s.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "ownleft"
                     Me._target = Targets.OwnLeft
                 Case "ownright"

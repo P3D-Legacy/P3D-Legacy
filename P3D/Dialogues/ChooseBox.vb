@@ -156,7 +156,7 @@
                 'Text
                 For i = 0 To Options.Count - 1
                     Dim useSize As Single = Size
-                    Select Case Me.TextFont.FontName.ToLower()
+                    Select Case Me.TextFont.FontName.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "textfont", "braille"
                             useSize = 2 * Size
                     End Select

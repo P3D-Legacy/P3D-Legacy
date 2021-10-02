@@ -365,7 +365,7 @@
 
         If c.ThirdPerson = True Then
             Dim action As String = Value.GetSplit(0)
-            Select Case action.ToLower()
+            Select Case action.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "set"
                     Dim x As Single = CSng(Value.GetSplit(1).Replace(".", GameController.DecSeparator))
                     Dim y As Single = CSng(Value.GetSplit(2).Replace(".", GameController.DecSeparator))
@@ -433,7 +433,7 @@
             check = Value.Remove(Value.IndexOf("("))
         End If
 
-        Select Case check.ToLower()
+        Select Case check.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "random"
                 check = CStr(Core.Random.Next(1, CInt(condition) + 1))
         End Select
@@ -497,7 +497,7 @@
             inverse = True
         End If
 
-        Select Case check.ToLower()
+        Select Case check.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "register"
                 T = ActionScript.IsRegistered(condition)
             Case "daytime"
@@ -538,7 +538,7 @@
                 Dim PositionValues() As String = condition.Split(CChar(","))
                 Dim checkPosition As New Vector3(CInt(Screen.Camera.Position.X), CInt(Screen.Camera.Position.Y), CInt(Screen.Camera.Position.Z))
 
-                If PositionValues(0).ToLower() <> "player" Then
+                If PositionValues(0).ToLower(Globalization.CultureInfo.InvariantCulture) <> "player" Then
                     Dim targetID As Integer = CInt(PositionValues(0))
                     checkPosition = Screen.Level.GetNPC(targetID).Position
                 End If
@@ -606,11 +606,11 @@
 
     Private Sub DoAction()
         Select Case True
-            Case Me.Value.ToLower() = "storagesystem"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "storagesystem"
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New StorageSystemScreen(Core.CurrentScreen), Color.Black, False))
-            Case Me.Value.ToLower() = "apricornkurt"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "apricornkurt"
                 Core.SetScreen(New ApricornScreen(Core.CurrentScreen, "Kurt"))
-            Case Me.Value.ToLower().StartsWith("trade(")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("trade(")
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
 
@@ -625,7 +625,7 @@
                 End If
 
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New TradeScreen(Core.CurrentScreen, storeData, canBuy, canSell, currencyIndicator), Color.Black, False))
-            Case Me.Value.ToLower().StartsWith("getpokemon(")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("getpokemon(")
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
 
@@ -689,12 +689,12 @@
                 End If
 
                 Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, pokedexType)
-            Case Me.Value.ToLower().StartsWith("townmap,")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("townmap,")
                 Dim startRegion As String = Me.Value.GetSplit(1)
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New MapScreen(Core.CurrentScreen, startRegion, {"view"}), Color.Black, False))
-            Case Me.Value.ToLower() = "opendonation"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "opendonation"
                 Core.SetScreen(New DonationScreen(Core.CurrentScreen))
-            Case Me.Value.ToLower() = "receivepokedex"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "receivepokedex"
                 Core.Player.HasPokedex = True
                 For Each p As Pokemon In Core.Player.Pokemons
                     Dim i As Integer = 2
@@ -703,9 +703,9 @@
                     End If
                     Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, p.Number, i)
                 Next
-            Case Me.Value.ToLower() = "receivepokegear"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "receivepokegear"
                 Core.Player.HasPokegear = True
-            Case Me.Value.ToLower().StartsWith("renamepokemon(") = True
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("renamepokemon(") = True
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
 
@@ -722,7 +722,7 @@
                 If StringHelper.IsNumeric(index) Then
                     PokemonIndex = CInt(index)
                 Else
-                    If index.ToLower() = "last" Then
+                    If index.ToLower(Globalization.CultureInfo.InvariantCulture) = "last" Then
                         PokemonIndex = Core.Player.Pokemons.Count - 1
                     End If
                 End If
@@ -738,20 +738,20 @@
                 Else
                     Screen.TextBox.Show("I cannot rename this~Pokémon because the~OT is different!*Did you receive it in~a trade or something?", {}, True, False)
                 End If
-            Case Me.Value.ToLower() = "renamerival"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "renamerival"
                 Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, TextureManager.GetTexture("NPC\4", New Rectangle(0, 64, 32, 32)), False, False, "rival", "Silver", AddressOf Script.NameRival))
-            Case Me.Value.ToLower().StartsWith("playcry(")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("playcry(")
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
 
                 Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(Value))
                 p.PlayCry()
-            Case Me.Value.ToLower().StartsWith("showOpokemon(")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("showOpokemon(")
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
 
                 Screen.Level.OverworldPokemon.Visible = CBool(Value)
-            Case Me.Value.ToLower() = "togglethirdperson"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "togglethirdperson"
                 If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
 
@@ -762,7 +762,7 @@
                     Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
                     Screen.Level.UpdateEntities()
                 End If
-            Case Me.Value.ToLower() = "activatethirdperson"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "activatethirdperson"
                 If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
 
@@ -773,7 +773,7 @@
                     Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
                     Screen.Level.UpdateEntities()
                 End If
-            Case Me.Value.ToLower() = "deactivatethirdperson"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "deactivatethirdperson"
                 If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)
 
@@ -784,21 +784,21 @@
                     Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
                     Screen.Level.UpdateEntities()
                 End If
-            Case Me.Value.ToLower().StartsWith("setfont(")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("setfont(")
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
 
-                Select Case Me.Value.ToLower()
+                Select Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "standard"
                         Screen.TextBox.TextFont = FontManager.GetFontContainer("textfont")
                     Case "unown"
                         Screen.TextBox.TextFont = FontManager.GetFontContainer("unown")
                 End Select
-            Case Me.Value.ToLower().StartsWith("setrenderdistance(")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("setrenderdistance(")
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
 
-                Select Case Me.Value.ToLower()
+                Select Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "0", "tiny"
                         Core.GameOptions.RenderDistance = 0
                     Case "1", "small"
@@ -812,7 +812,7 @@
                 End Select
 
                 Screen.Level.World = New World(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
-            Case Me.Value.ToLower().StartsWith("wearskin(")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("wearskin(")
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
 
@@ -826,9 +826,9 @@
 
                     .UpdateEntity()
                 End With
-            Case Me.Value.ToLower() = "toggledarkness"
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "toggledarkness"
                 Screen.Level.IsDark = Not Screen.Level.IsDark
-            Case Me.Value.ToLower().StartsWith("globalhub"), Me.Value.ToLower().StartsWith("friendhub")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("globalhub"), Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("friendhub")
                 If GameJolt.API.LoggedIn = True And Core.Player.IsGameJoltSave = True Or GameController.IS_DEBUG_ACTIVE = True Then
                     If GameJolt.LogInScreen.UserBanned(Core.GameJoltSave.GameJoltID) = False Then
                         Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New GameJolt.GTSMainScreen(Core.CurrentScreen), Color.Black, False))
@@ -838,9 +838,9 @@
                 Else
                     Screen.TextBox.Show("You are not using~your GameJolt profile.*Please connect to GameJolt~and switch to the GameJolt~profile to enable the GTS.*You can do this by going~back to the main menu~and choosing ""Play online"".", {}, False, False, Color.Red)
                 End If
-            Case Me.Value.ToLower().StartsWith("gamejoltlogin")
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("gamejoltlogin")
                 Core.SetScreen(New GameJolt.LogInScreen(Core.CurrentScreen))
-            Case Me.Value.ToLower().StartsWith("readpokemon(") = True
+            Case Me.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("readpokemon(") = True
                 Me.Value = Me.Value.Remove(0, Me.Value.IndexOf("(") + 1)
                 Me.Value = Me.Value.Remove(Me.Value.Length - 1, 1)
 
@@ -974,7 +974,7 @@
 
     Private Sub DoBattle()
         Dim ActionValue As String = Value.GetSplit(0)
-        Select Case ActionValue.ToLower()
+        Select Case ActionValue.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "trainer"
                 Dim ID As String = Value.GetSplit(1)
                 Dim t As New Trainer(ID)
@@ -1055,7 +1055,7 @@
             command = command.Remove(command.IndexOf("("))
         End If
 
-        Select Case command.ToLower()
+        Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "cry"
                 Dim PokemonID As Integer = CInt(argument)
 
@@ -1149,7 +1149,7 @@
 
                 If Core.Player.Pokemons.Count - 1 >= Index Then
                     With Core.Player.Pokemons(Index)
-                        Select Case stat.ToLower()
+                        Select Case stat.ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "maxhp", "hp"
                                 .MaxHP = statValue
                             Case "chp"
@@ -1260,7 +1260,7 @@
             command = command.Remove(command.IndexOf("("))
         End If
 
-        Select Case command.ToLower()
+        Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "remove"
                 Dim targetNPC As Entity = Screen.Level.GetNPC(CInt(argument))
                 Screen.Level.Entities.Remove(targetNPC)
@@ -1319,7 +1319,7 @@
             command = command.Remove(command.IndexOf("("))
         End If
 
-        Select Case command.ToLower()
+        Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "wearskin"
                 With Screen.Level.OwnPlayer
                     Dim TextureID As String = argument
@@ -1431,7 +1431,7 @@
         Dim ent As Entity = Screen.Level.GetEntity(entID)
 
         If Not ent Is Nothing Then
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "warp"
                     Dim PositionList As List(Of String) = argument.Split(CChar(",")).ToList()
                     Dim newPosition As Vector3 = New Vector3(CSng(PositionList(1).Replace(".", GameController.DecSeparator)), CSng(PositionList(2).Replace(".", GameController.DecSeparator)), CSng(PositionList(3).Replace(".", GameController.DecSeparator)))
@@ -1474,7 +1474,7 @@
             command = command.Remove(command.IndexOf("("))
         End If
 
-        Select Case argument.ToLower()
+        Select Case argument.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "changeweathertype"
                 Screen.Level.WeatherType = CInt(argument)
                 Screen.Level.World = New World(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
@@ -1512,7 +1512,7 @@
             command = command.Remove(command.IndexOf("("))
         End If
 
-        Select Case command.ToLower()
+        Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "update"
                 Screen.Level.Update()
                 Screen.Level.UpdateEntities()

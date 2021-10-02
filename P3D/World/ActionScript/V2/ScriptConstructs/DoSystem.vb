@@ -10,7 +10,7 @@
             Dim command As String = GetSubClassArgumentPair(subClass).Command
             Dim argument As String = GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "random"
                     Dim minRange As Integer = 1
                     Dim maxRange As Integer = 2
@@ -32,9 +32,9 @@
                 Case "year"
                     Return My.Computer.Clock.LocalTime.Year
                 Case "booltoint"
-                    If argument.ToLower() = "false" Then
+                    If argument.ToLower(Globalization.CultureInfo.InvariantCulture) = "false" Then
                         Return "0"
-                    ElseIf argument.ToLower() = "true" Then
+                    ElseIf argument.ToLower(Globalization.CultureInfo.InvariantCulture) = "true" Then
                         Return "1"
                     End If
                     Return "0"
@@ -52,11 +52,11 @@
                         sortList.Add(args(i))
                     Next
 
-                    If sortMode.ToLower() = "ascending" Then
+                    If sortMode.ToLower(Globalization.CultureInfo.InvariantCulture) = "ascending" Then
                         Dim sortedList As List(Of String) = (From i In sortList Order By i.ToString() Ascending).ToList()
 
                         Return sortedList(returnIndex)
-                    ElseIf sortMode.ToLower() = "descending" Then
+                    ElseIf sortMode.ToLower(Globalization.CultureInfo.InvariantCulture) = "descending" Then
                         Dim sortedList As List(Of String) = (From i In sortList Order By i.ToString() Descending).ToList()
 
                         Return sortedList(returnIndex)

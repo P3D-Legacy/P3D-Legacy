@@ -10,7 +10,7 @@
             Dim command As String = GetSubClassArgumentPair(subClass).Command
             Dim argument As String = GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "selectedskin"
                     Return Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin
             End Select

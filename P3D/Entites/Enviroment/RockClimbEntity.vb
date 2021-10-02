@@ -44,7 +44,7 @@
         For Each teamPokemon As Pokemon In Core.Player.Pokemons
             If teamPokemon.IsEgg() = False Then
                 For Each a As BattleSystem.Attack In teamPokemon.Attacks
-                    If a.Name.ToLower() = "rock climb" Then
+                    If a.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "rock climb" Then
                         Return teamPokemon
                     End If
                 Next
@@ -84,7 +84,7 @@
             While foundSteps = True
                 Dim e As Entity = GetEntity(Screen.Level.Entities, checkPosition, True, {GetType(RockClimbEntity), GetType(ScriptBlock), GetType(WarpBlock)})
                 If Not e Is Nothing Then
-                    If e.EntityID.ToLower() = "rockclimbentity" Then
+                    If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "rockclimbentity" Then
                         Steps += 1
                         checkPosition.X += Screen.Camera.GetMoveDirection().X
                         checkPosition.Z += Screen.Camera.GetMoveDirection().Z

@@ -117,7 +117,7 @@
         p.EVSpDefense = standardEV
         p.EVSpeed = standardEV
 
-        Select Case stat1.ToLower()
+        Select Case stat1.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "hp"
                 p.IVHP = maxIV
                 p.EVHP = maxEV
@@ -137,7 +137,7 @@
                 p.IVSpeed = maxIV
                 p.EVSpeed = maxEV
         End Select
-        Select Case stat2.ToLower()
+        Select Case stat2.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "hp"
                 p.IVHP = maxIV
                 p.EVHP = maxEV
@@ -159,35 +159,35 @@
         End Select
 
         If pokemon_class > 0 Then
-            Select Case stat1.ToLower()
+            Select Case stat1.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "hp"
                     p.Nature = Pokemon.ConvertIDToNature(Core.Random.Next(0, 26))
                 Case "atk"
-                    If stat2.ToLower() <> "def" Then
+                    If stat2.ToLower(Globalization.CultureInfo.InvariantCulture) <> "def" Then
                         p.Nature = Pokemon.Natures.Lonely
                     Else
                         p.Nature = Pokemon.Natures.Relaxed
                     End If
                 Case "def"
-                    If stat2.ToLower() <> "spatk" Then
+                    If stat2.ToLower(Globalization.CultureInfo.InvariantCulture) <> "spatk" Then
                         p.Nature = Pokemon.Natures.Impish
                     Else
                         p.Nature = Pokemon.Natures.Lax
                     End If
                 Case "spatk"
-                    If stat2.ToLower() <> "spdef" Then
+                    If stat2.ToLower(Globalization.CultureInfo.InvariantCulture) <> "spdef" Then
                         p.Nature = Pokemon.Natures.Rash
                     Else
                         p.Nature = Pokemon.Natures.Modest
                     End If
                 Case "spdef"
-                    If stat2.ToLower() <> "speed" Then
+                    If stat2.ToLower(Globalization.CultureInfo.InvariantCulture) <> "speed" Then
                         p.Nature = Pokemon.Natures.Sassy
                     Else
                         p.Nature = Pokemon.Natures.Gentle
                     End If
                 Case "speed"
-                    If stat2.ToLower() <> "atk" Then
+                    If stat2.ToLower(Globalization.CultureInfo.InvariantCulture) <> "atk" Then
                         p.Nature = Pokemon.Natures.Timid
                     Else
                         p.Nature = Pokemon.Natures.Jolly

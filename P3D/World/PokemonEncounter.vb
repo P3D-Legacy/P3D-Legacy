@@ -47,26 +47,26 @@ Public Class PokemonEncounter
                         Dim p As Pokemon = Core.Player.Pokemons(0)
 
                         ' Arena Trap/Illuminate/No Guard/Swarm Ability:
-                        If p.Ability.Name.ToLower() = "arena trap" Or p.Ability.Name.ToLower() = "illuminate" Or p.Ability.Name.ToLower() = "no guard" Or p.Ability.Name.ToLower() = "swarm" Then
+                        If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "arena trap" Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "illuminate" Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "no guard" Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "swarm" Then
                             startRandomValue = 6
                             minRandomValue = 3
                         End If
 
                         ' Intimidate/Keen Eye/Quick Feet/Stench/White Smoke Ability:
-                        If p.Ability.Name.ToLower() = "intimidate" Or p.Ability.Name.ToLower() = "keen eye" Or p.Ability.Name.ToLower() = "quick feet" Or p.Ability.Name.ToLower() = "stench" Or p.Ability.Name.ToLower() = "white smoke" Then
+                        If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "intimidate" Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "keen eye" Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "quick feet" Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "stench" Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "white smoke" Then
                             startRandomValue = 24
                             minRandomValue = 10
                         End If
 
                         'Sand Veil Ability:
-                        If .WeatherType = 7 And p.Ability.Name.ToLower() = "sand veil" Then
+                        If .WeatherType = 7 And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sand veil" Then
                             If Core.Random.Next(0, 100) < 50 Then
                                 Exit Sub
                             End If
                         End If
 
                         'Snow Cloak Ability:
-                        If p.Ability.Name.ToLower() = "snow cloak" Then
+                        If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "snow cloak" Then
                             If .WeatherType = 2 Or .WeatherType = 9 Then
                                 If Core.Random.Next(0, 100) < 50 Then
                                     Exit Sub

@@ -59,7 +59,7 @@
             End If
 
             If Not lastMove Is Nothing Then
-                If lastMove.Name.ToLower() = "fusion flare" Or lastMove.Name.ToLower() = "blue flare" Then
+                If lastMove.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "fusion flare" Or lastMove.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "blue flare" Then
                     Return Me.Power * 2
                 End If
             End If

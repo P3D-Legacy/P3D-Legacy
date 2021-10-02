@@ -184,7 +184,7 @@ Public Class PokedexHabitatScreen
                 Dim newHabitat As New PokedexScreen.Habitat(file)
                 Dim exists As Boolean = False
                 For Each h As PokedexScreen.Habitat In Me.HabitatList
-                    If h.Name.ToLower() = newHabitat.Name.ToLower() Then
+                    If h.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = newHabitat.Name.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                         exists = True
                         h.Merge(newHabitat)
                         Exit For
@@ -830,7 +830,7 @@ Public Class PokedexScreen
 #Region "Menus"
 
     Private Sub SelectMenu1(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
+        Select Case s.SelectedItem.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "order"
                 Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
             Case "filter"
@@ -844,7 +844,7 @@ Public Class PokedexScreen
     End Sub
 
     Private Sub SelectMenuFilter(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
+        Select Case s.SelectedItem.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "name"
                 Me.menu = New SelectMenu({"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Back"}.ToList(), 0, AddressOf SelectMenuNameFilter, -1)
             Case "type1"
@@ -908,10 +908,10 @@ Public Class PokedexScreen
     End Sub
 
     Private Sub SelectMenuOrder(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
+        Select Case s.SelectedItem.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "type"
                 Me.menu = New SelectMenu({"Numeric", "A-Z", "Weight", "Height", "Back"}.ToList(), 0, AddressOf SelectMenuOrderType, 4)
-            Case "reverse: " & Me.ReverseOrder.ToString().ToLower()
+            Case "reverse: " & Me.ReverseOrder.ToString().ToLower(Globalization.CultureInfo.InvariantCulture)
                 Me.ReverseOrder = Not Me.ReverseOrder
                 Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
                 Me.SetList()
@@ -921,7 +921,7 @@ Public Class PokedexScreen
     End Sub
 
     Private Sub SelectMenuOrderType(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
+        Select Case s.SelectedItem.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "numeric"
                 Me.Order = OrderType.Numeric
                 Me.SetList()
@@ -1083,11 +1083,11 @@ Public Class PokedexScreen
             Me.File = file
 
             For Each line As String In data
-                If line.ToLower().StartsWith("name=") = True Then
+                If line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("name=") = True Then
                     Me.Name = line.Remove(0, 5)
-                ElseIf line.ToLower().StartsWith("type=") = True Then
+                ElseIf line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("type=") = True Then
                     Dim arg As String = line.Remove(0, 5)
-                    Select Case arg.ToLower()
+                    Select Case arg.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "grassland"
                             Me.HabitatType = HabitatTypes.Grassland
                         Case "forest"
@@ -1342,7 +1342,7 @@ Public Class PokedexViewScreen
                 Dim newHabitat As New PokedexScreen.Habitat(file)
                 Dim exists As Boolean = False
                 For Each h As PokedexScreen.Habitat In Me.HabitatList
-                    If h.Name.ToLower() = newHabitat.Name.ToLower() Then
+                    If h.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = newHabitat.Name.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                         exists = True
                         h.Merge(newHabitat)
                         Exit For

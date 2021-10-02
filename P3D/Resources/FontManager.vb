@@ -12,9 +12,9 @@ Public Class FontManager
             If s.EndsWith(".xnb") = True Then
                 Dim name As String = s.Substring(0, s.Length - 4)
                 name = name.Substring(GameController.GamePath.Length + "\Content\Fonts\BMP\".Length)
-                If FontList.ContainsKey(name.ToLower()) = False Then
+                If FontList.ContainsKey(name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                     Dim font As SpriteFont = ContentPackManager.GetContentManager("Fonts\BMP\" & name, ".xnb").Load(Of SpriteFont)("Fonts\BMP\" & name)
-                    FontList.Add(name.ToLower(), New FontContainer(name, font))
+                    FontList.Add(name.ToLower(Globalization.CultureInfo.InvariantCulture), New FontContainer(name, font))
                 End If
             End If
         Next
@@ -25,9 +25,9 @@ Public Class FontManager
                     If s.EndsWith(".xnb") = True Then
                         Dim name As String = s.Substring(0, s.Length - 4)
                         name = name.Substring(GameController.GamePath.Length + "\Content\Fonts\BMP\".Length + "\ContentPacks\".Length + c.Length)
-                        If FontList.ContainsKey(name.ToLower()) = False Then
+                        If FontList.ContainsKey(name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                             Dim font As SpriteFont = ContentPackManager.GetContentManager("Fonts\BMP\" & name, ".xnb").Load(Of SpriteFont)("Fonts\BMP\" & name)
-                            FontList.Add(name.ToLower(), New FontContainer(name, font))
+                            FontList.Add(name.ToLower(Globalization.CultureInfo.InvariantCulture), New FontContainer(name, font))
                         End If
                     End If
                 Next
@@ -41,9 +41,9 @@ Public Class FontManager
                         If s.EndsWith(".xnb") = True Then
                             Dim name As String = s.Substring(0, s.Length - 4)
                             name = name.Substring(GameController.GamePath.Length + "\Fonts\BMP\".Length + GameModeManager.ActiveGameMode.ContentPath.Length)
-                            If FontList.ContainsKey(name.ToLower()) = False Then
+                            If FontList.ContainsKey(name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                                 Dim font As SpriteFont = ContentPackManager.GetContentManager("Fonts\BMP\" & name, ".xnb").Load(Of SpriteFont)("Fonts\BMP\" & name)
-                                FontList.Add(name.ToLower(), New FontContainer(name, font))
+                                FontList.Add(name.ToLower(Globalization.CultureInfo.InvariantCulture), New FontContainer(name, font))
                             End If
                         End If
                     Next
@@ -57,8 +57,8 @@ Public Class FontManager
     ''' </summary>
     ''' <param name="fontName">The name of the font.</param>
     Public Shared Function GetFont(ByVal fontName As String) As SpriteFont
-        If FontList.ContainsKey(fontname.ToLower()) = True Then
-            Return FontList(fontname.ToLower()).SpriteFont
+        If FontList.ContainsKey(fontname.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
+            Return FontList(fontname.ToLower(Globalization.CultureInfo.InvariantCulture)).SpriteFont
         End If
         Return Nothing
     End Function
@@ -68,8 +68,8 @@ Public Class FontManager
     ''' </summary>
     ''' <param name="fontName">The name of the font.</param>
     Public Shared Function GetFontContainer(ByVal fontName As String) As FontContainer
-        If FontList.ContainsKey(fontName.ToLower()) = True Then
-            Return FontList(fontName.ToLower())
+        If FontList.ContainsKey(fontName.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
+            Return FontList(fontName.ToLower(Globalization.CultureInfo.InvariantCulture))
         End If
         Return Nothing
     End Function

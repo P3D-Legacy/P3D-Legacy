@@ -566,7 +566,7 @@
             OT = GameJoltSave.GameJoltID
         End If
 
-        Entity.MakeShake = Name.ToLower() = "drunknilllzz"
+        Entity.MakeShake = Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "drunknilllzz"
 
         ''' Indev 0.54 Removal List
         ''' 1. All Mega Stones. [ID: 507 - 553]
@@ -735,12 +735,12 @@
             If Line <> "" And Line.Contains("|") = True Then
                 Dim ID As String = Line.Remove(Line.IndexOf("|"))
                 Dim Value As String = Line.Remove(0, Line.IndexOf("|") + 1)
-                Select Case ID.ToLower()
+                Select Case ID.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "name"
                         Name = Value
 
                         If IsGameJoltSave = True Then
-                            If Name.ToLower() <> GameJolt.API.username.ToLower() Then
+                            If Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> GameJolt.API.username.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                                 Name = GameJolt.API.username
                             End If
                         End If
@@ -899,7 +899,7 @@
             If Line.Contains("|") = True Then
                 Dim ID As String = Line.Remove(Line.IndexOf("|"))
                 Dim Value As String = Line.Remove(0, Line.IndexOf("|") + 1)
-                Select Case ID.ToLower()
+                Select Case ID.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "fov"
                         startFOV = CSng(Value.Replace(".", GameController.DecSeparator)).Clamp(1, 179)
                     Case "textspeed"
@@ -1621,7 +1621,7 @@
 
                 If p.IsEgg() = False Then
                     For Each a As BattleSystem.Attack In p.Attacks
-                        If a.Name.ToLower() = "surf" Then
+                        If a.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "surf" Then
                             Return i
                         End If
                     Next
@@ -1757,7 +1757,7 @@
             Dim addEggSteps As Integer = stepAmount
             For Each p As Pokemon In Pokemons
                 If p.Ability IsNot Nothing Then
-                    If p.Ability.Name.ToLower() = "magma armor" OrElse p.Ability.Name.ToLower() = "flame body" Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "magma armor" OrElse p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "flame body" Then
                         addEggSteps *= Random.Next(1, 4)
                         Exit For
                     End If

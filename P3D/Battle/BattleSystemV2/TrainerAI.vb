@@ -366,7 +366,7 @@
 
             'Fake Out if first turn -> try to inflict flinch (100%)
             If HasMove(m, 252) = True Then
-                If op.Ability.Name.ToLower() <> "inner focus" Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "inner focus" Then
                     Dim turns As Integer = BattleScreen.FieldEffects.OppPokemonTurns
                     If turns = 0 Then
                         Return ProduceOppStep(m, IDtoMoveIndex(m, 252))
@@ -436,7 +436,7 @@
                     'try to paralyse (75%)
                     If op.Status <> Pokemon.StatusProblems.Paralyzed Then
                         If op.Type1.Type <> Element.Types.Electric And op.Type2.Type <> Element.Types.Electric Then
-                            If op.Ability.Name.ToLower() <> "limber" Then
+                            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "limber" Then
                                 If RPercent(75) = True Then
                                     Dim chosenMove As Integer = MoveAI(m, Attack.AIField.Paralysis)
                                     If chosenMove > -1 Then
@@ -452,7 +452,7 @@
                     'try to burn (75%)
                     If op.Status <> Pokemon.StatusProblems.Burn Then
                         If op.Type1.Type <> Element.Types.Fire And op.Type2.Type <> Element.Types.Fire Then
-                            If op.Ability.Name.ToLower() <> "water veil" Then
+                            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "water veil" Then
                                 If RPercent(75) = True Then
                                     Dim chosenMove As Integer = MoveAI(m, Attack.AIField.Burn)
                                     If chosenMove > -1 Then
@@ -467,8 +467,8 @@
 
                     'try to sleep (75%)
                     If op.Status <> Pokemon.StatusProblems.Sleep Then
-                        If op.Ability.Name.ToLower() <> "vital spirit" Then
-                            If op.Ability.Name.ToLower() <> "insomnia" Then
+                        If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "vital spirit" Then
+                            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "insomnia" Then
                                 If RPercent(75) = True Then
                                     Dim chosenMove As Integer = MoveAI(m, Attack.AIField.Sleep)
                                     If chosenMove > -1 Then
@@ -484,7 +484,7 @@
                     'try to poison (50%)
                     If op.Status <> Pokemon.StatusProblems.BadPoison And op.Status <> Pokemon.StatusProblems.Poison Then
                         If op.Type1.Type <> Element.Types.Steel And op.Type1.Type <> Element.Types.Poison And op.Type2.Type <> Element.Types.Steel And op.Type2.Type <> Element.Types.Poison Then
-                            If op.Ability.Name.ToLower() <> "immunity" Then
+                            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "immunity" Then
                                 If RPercent(50) = True Then
                                     Dim chosenMove As Integer = MoveAI(m, Attack.AIField.Poison)
                                     If chosenMove > -1 Then
@@ -503,7 +503,7 @@
             'try to confuse (75%)
             'check if opp isnt confused already:
             If op.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = False Then
-                If op.Ability.Name.ToLower() <> "own tempo" Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "own tempo" Then
                     If RPercent(75) = True Then
                         Dim chosenMove As Integer = MoveAI(m, Attack.AIField.Confusion)
                         If chosenMove > -1 Then
@@ -687,7 +687,7 @@
                     End If
 
                     'Dry skin: +fire
-                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Fire And op.Ability.Name.ToLower() = "dry skin" Then
+                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Fire And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "dry skin" Then
                         value += 25
                     End If
 
@@ -721,22 +721,22 @@
                     End If
 
                     'Don't use moves that get absorbed by abilities:
-                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Water And op.Ability.Name.ToLower() = "water absorb" Then
+                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Water And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "water absorb" Then
                         value = 0
                     End If
-                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Electric And op.Ability.Name.ToLower() = "volt absorb" Then
+                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Electric And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "volt absorb" Then
                         value = 0
                     End If
-                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Electric And op.Ability.Name.ToLower() = "motor drive" Then
+                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Electric And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "motor drive" Then
                         value = 0
                     End If
-                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Grass And op.Ability.Name.ToLower() = "sap sipper" Then
+                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Grass And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sap sipper" Then
                         value = 0
                     End If
-                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Fire And op.Ability.Name.ToLower() = "flash fire" Then
+                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Fire And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "flash fire" Then
                         value = 0
                     End If
-                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Water And op.Ability.Name.ToLower() = "dry skin" Then
+                    If cMove.GetAttackType(False, BattleScreen).Type = Element.Types.Water And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "dry skin" Then
                         value = 0
                     End If
 

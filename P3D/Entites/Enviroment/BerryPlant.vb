@@ -214,7 +214,7 @@
 
         For Each Berry As String In Data
             If Berry <> "" Then
-                If Berry.ToLower().StartsWith("{" & Screen.Level.LevelFile.ToLower() & "|" & (Me.Position.X & "," & Me.Position.Y & "," & Me.Position.Z).ToLower() & "|") = False Then
+                If Berry.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("{" & Screen.Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture) & "|" & (Me.Position.X & "," & Me.Position.Y & "," & Me.Position.Z).ToLower(Globalization.CultureInfo.InvariantCulture) & "|") = False Then
                     If OutData <> "" Then
                         OutData &= Environment.NewLine
                     End If

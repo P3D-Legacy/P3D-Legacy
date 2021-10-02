@@ -65,7 +65,7 @@ Namespace BattleSystem.Moves.Psychic
 
             Dim bannedAbilities() As String = {"wonder guard", "multitype", "illusion", "stance change"}
 
-            If bannedAbilities.Contains(p.Ability.Name.ToLower()) = False And bannedAbilities.Contains(op.Ability.Name.ToLower()) = False Then
+            If bannedAbilities.Contains(p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False And bannedAbilities.Contains(op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                 Dim pAbility As Integer = p.Ability.ID
                 Dim opAbility As Integer = op.Ability.ID
 

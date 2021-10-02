@@ -54,7 +54,7 @@
 
         ApplyNPCData()
 
-        Select Case Movement.ToLower()
+        Select Case Movement.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "pokeball"
                 Me.Movement = Movements.Pokeball
             Case "still"
@@ -146,8 +146,8 @@
                 Dim action As String = line.GetSplit(2, "|")
                 Dim addition As String = line.GetSplit(3, "|")
 
-                If Me.NPCID = ID And Me.MapOrigin.ToLower() = file.ToLower() Then
-                    Select Case action.ToLower()
+                If Me.NPCID = ID And Me.MapOrigin.ToLower(Globalization.CultureInfo.InvariantCulture) = file.ToLower(Globalization.CultureInfo.InvariantCulture) Then
+                    Select Case action.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "position"
                             Dim PositionData() As String = addition.Split(CChar(","))
                             Me.Position = New Vector3(CSng(PositionData(0).Replace(".", GameController.DecSeparator)) + Offset.X, CSng(PositionData(1).Replace(".", GameController.DecSeparator)) + Offset.Y, CSng(PositionData(2).Replace(".", GameController.DecSeparator)) + Offset.Z)
@@ -347,7 +347,7 @@
                                                 Dim t As New Trainer(trainerID)
                                                 InSightMusic = t.GetInSightMusic()
                                             End If
-                                        ElseIf line.ToLower().StartsWith("@battle.starttrainer(") = True Then
+                                        ElseIf line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("@battle.starttrainer(") = True Then
                                             Dim trainerID As String = line.Remove(line.Length - 1, 1).Remove(0, "@battle.starttrainer(".Length)
                                             If Trainer.IsBeaten(trainerID) = True Then
                                                 Exit Sub

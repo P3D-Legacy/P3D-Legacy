@@ -18,7 +18,7 @@ Public Class ScriptStorage
     ''' <param name="type">The type of the storage content.</param>
     ''' <param name="name">The name of the storage content.</param>
     Public Shared Function GetObject(ByVal type As String, ByVal name As String) As Object
-        Select Case type.ToLower()
+        Select Case type.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "pokemon"
                 If Pokemons.ContainsKey(name) = True Then
                     Return Pokemons(name)
@@ -59,7 +59,7 @@ Public Class ScriptStorage
     ''' <param name="name">The name of the storage content.</param>
     ''' <param name="newContent">The new storage content.</param>
     Public Shared Sub SetObject(ByVal type As String, ByVal name As String, ByVal newContent As Object)
-        Select Case type.ToLower()
+        Select Case type.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "pokemon"
                 If Pokemons.ContainsKey(name) = True Then
                     Pokemons(name) = CType(newContent, Pokemon)
@@ -126,7 +126,7 @@ Public Class ScriptStorage
         If type = "" Then
             Return Pokemons.Count + Strings.Count + Integers.Count + Booleans.Count + Items.Count
         Else
-            Select Case type.ToLower()
+            Select Case type.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "pokemon"
                     Return Pokemons.Count
                 Case "string", "str"

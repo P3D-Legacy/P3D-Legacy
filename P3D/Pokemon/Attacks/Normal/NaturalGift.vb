@@ -115,7 +115,7 @@ Namespace BattleSystem.Moves.Normal
                 End If
             End If
 
-            If op.Ability.Name.ToLower() = "unnerve" And BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
+            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "unnerve" And BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 Return True
             End If

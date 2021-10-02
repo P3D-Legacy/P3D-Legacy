@@ -11,7 +11,7 @@
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                Select Case command.ToLower()
+                Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "add"
                         Dim t As New OverworldScreen.Title()
 

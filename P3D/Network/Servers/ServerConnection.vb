@@ -207,18 +207,18 @@ Namespace Servers
         End Sub
 
         Public Sub SendChatMessage(ByVal message As String)
-            If message.ToLower().StartsWith("/login ") = True Then
+            If message.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("/login ") = True Then
                 Dim password As String = message.Remove(0, 7)
-                Dim hashedPassword As String = BitConverter.ToString(New SHA512Managed().ComputeHash(Encoding.UTF8.GetBytes(password))).Replace("-", "").ToLower()
+                Dim hashedPassword As String = BitConverter.ToString(New SHA512Managed().ComputeHash(Encoding.UTF8.GetBytes(password))).Replace("-", "").ToLower(Globalization.CultureInfo.InvariantCulture)
                 message = "/login " + hashedPassword
                 SendPackage(New Package(Package.PackageTypes.ChatMessage, Core.ServersManager.ID, Package.ProtocolTypes.TCP, message))
-            ElseIf message.ToLower().StartsWith("/pm ") = True Then
+            ElseIf message.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("/pm ") = True Then
                 message = message.Remove(0, 4)
                 Dim playerName As String = message
                 While Core.ServersManager.PlayerCollection.HasPlayer(playerName) = False And playerName.Contains(" ") = True
                     playerName = playerName.Remove(playerName.LastIndexOf(" "))
                 End While
-                If playerName <> "" And Core.ServersManager.PlayerCollection.HasPlayer(playerName) = True And playerName.ToLower() <> Core.Player.Name.ToLower() Then
+                If playerName <> "" And Core.ServersManager.PlayerCollection.HasPlayer(playerName) = True And playerName.ToLower(Globalization.CultureInfo.InvariantCulture) <> Core.Player.Name.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                     message = message.Remove(0, playerName.Length + 1)
 
                     SendPackage(New Package(Package.PackageTypes.PrivateMessage, Core.ServersManager.ID, Package.ProtocolTypes.TCP, {playerName, message}.ToList()))

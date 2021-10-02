@@ -10,7 +10,7 @@
             Dim command As String = GetSubClassArgumentPair(subClass).Command
             Dim argument As String = GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "registered"
                     Return ReturnBoolean(ActionScript.IsRegistered(argument))
                 Case "count"
@@ -39,7 +39,7 @@
                     Dim lType As String = CStr(registerContent(1))
                     Dim lValue As String = CStr(registerContent(0))
 
-                    Select Case lType.ToLower()
+                    Select Case lType.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "bool"
                             Return ReturnBoolean(CBool(lValue))
                         Case "sng"

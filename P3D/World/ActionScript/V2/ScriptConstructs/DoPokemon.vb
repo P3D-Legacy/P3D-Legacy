@@ -10,7 +10,7 @@
             Dim command As String = GetSubClassArgumentPair(subClass).Command
             Dim argument As String = GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "id", "number"
                     Dim index As Integer = int(argument.GetSplit(0))
                     Return Core.Player.Pokemons(index).Number
@@ -345,7 +345,7 @@
 
                     Dim arg As String = argument.Split(CChar(","))(1)
 
-                    Select Case arg.ToLower()
+                    Select Case arg.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "has"
                             If maxDigits > 0 Then
                                 Return ReturnBoolean(True)

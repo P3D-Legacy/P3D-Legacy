@@ -47,7 +47,7 @@
 
     Public Shared Function GetTextureResolution(ByVal TextureName As String) As Integer
         For i = 0 To TextureResolutions.Count - 1
-            If TextureResolutions.Keys(i).ToLower() = TextureName.ToLower() Then
+            If TextureResolutions.Keys(i).ToLower(Globalization.CultureInfo.InvariantCulture) = TextureName.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 Return TextureResolutions.Values(i)
             End If
         Next

@@ -15,7 +15,7 @@ Public Class FontContainer
         Me._fontName = FontName
         Me._spriteFont = Font
 
-        Select Case FontName.ToLower()
+        Select Case FontName.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "braille"
                 Me._spriteFont.DefaultCharacter = CChar(" ")
             Case Else

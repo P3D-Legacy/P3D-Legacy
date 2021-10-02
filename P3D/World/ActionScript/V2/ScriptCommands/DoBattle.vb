@@ -10,7 +10,7 @@
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "starttrainer"
                     Dim t As New Trainer(argument)
                     If t.IsBeaten() = False Then
@@ -161,7 +161,7 @@
                     Dim varname As String = argument.GetSplit(0)
                     Dim varvalue As String = argument.GetSplit(1)
 
-                    Select Case varname.ToLower()
+                    Select Case varname.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "canrun"
                             BattleSystem.BattleScreen.CanRun = CBool(varvalue)
                         Case "cancatch"

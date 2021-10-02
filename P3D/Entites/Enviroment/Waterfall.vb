@@ -160,7 +160,7 @@
         For Each p As Pokemon In Core.Player.Pokemons
             If p.IsEgg() = False Then
                 For Each a As BattleSystem.Attack In p.Attacks
-                    If a.Name.ToLower() = "waterfall" Then
+                    If a.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "waterfall" Then
                         Return p
                     End If
                 Next

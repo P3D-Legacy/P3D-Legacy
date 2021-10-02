@@ -10,7 +10,7 @@
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "register"
                     If argument.Contains(",") = True Then
                         Dim args() As String = argument.Split(CChar(","))
@@ -34,7 +34,7 @@
 
                     Dim format As String = "days"
                     Dim isValidFormat As Boolean = True
-                    Select Case args(2).ToLower()
+                    Select Case args(2).ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "day", "days"
                             format = "days"
                         Case "hour", "hours"

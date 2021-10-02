@@ -10,7 +10,7 @@
             Dim command As String = GetSubClassArgumentPair(subClass).Command
             Dim argument As String = GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "get"
                     Dim type As String = argument.Remove(argument.IndexOf(","))
                     Dim name As String = argument.Remove(0, argument.IndexOf(",") + 1)

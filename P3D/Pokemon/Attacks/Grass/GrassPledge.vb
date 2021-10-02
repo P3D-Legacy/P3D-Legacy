@@ -59,7 +59,7 @@
             End If
 
             If Not lastMove Is Nothing Then
-                Select Case lastMove.Name.ToLower()
+                Select Case lastMove.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "fire pledge", "water pledge"
                         BattleScreen.BattleQuery.Add(New TextQueryObject("The two moves are joined! It's a combined move!"))
                 End Select
@@ -73,7 +73,7 @@
             End If
 
             If Not lastMove Is Nothing Then
-                Select Case lastMove.Name.ToLower()
+                Select Case lastMove.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "fire pledge"
                         Return Me.Power * 2
                     Case "water pledge"
@@ -91,7 +91,7 @@
             End If
 
             If Not lastMove Is Nothing Then
-                Select Case lastMove.Name.ToLower()
+                Select Case lastMove.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "fire pledge"
                         If own = True Then
                             BattleScreen.FieldEffects.OwnFirePledge = 4

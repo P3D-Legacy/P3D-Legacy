@@ -45,7 +45,7 @@
                     structureType = structureType.Remove(structureType.IndexOf(":"))
                 End If
 
-                Select Case structureType.ToLower()
+                Select Case structureType.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "if"
                         Me.ScriptType = ScriptTypes.if
                     Case "when"

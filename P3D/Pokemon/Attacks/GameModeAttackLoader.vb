@@ -52,7 +52,7 @@
                         key = l.Remove(l.IndexOf("|"))
                         value = l.Remove(0, l.IndexOf("|") + 1)
 
-                        Select Case key.ToLower()
+                        Select Case key.ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "id"
                                 move.ID = CInt(value)
                                 move.OriginalID = CInt(value)
@@ -70,7 +70,7 @@
                             Case "type"
                                 move.Type = New Element(value)
                             Case "category"
-                                Select Case value.ToLower()
+                                Select Case value.ToLower(Globalization.CultureInfo.InvariantCulture)
                                     Case "physical"
                                         move.Category = Attack.Categories.Physical
                                     Case "special"
@@ -79,7 +79,7 @@
                                         move.Category = Attack.Categories.Status
                                 End Select
                             Case "contestcategory"
-                                Select Case value.ToLower()
+                                Select Case value.ToLower(Globalization.CultureInfo.InvariantCulture)
                                     Case "tough"
                                         move.ContestCategory = Attack.ContestCategories.Tough
                                     Case "smart"

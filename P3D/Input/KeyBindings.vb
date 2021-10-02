@@ -45,7 +45,7 @@ Public Class KeyBindings
                     key = key.Remove(0, 1)
                     key = key.Remove(key.Length - 1, 1)
 
-                    Select Case key.ToLower()
+                    Select Case key.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "forwardmove"
                             ForwardMoveKey = binding
                         Case "leftmove"
@@ -109,7 +109,7 @@ Public Class KeyBindings
     ''' <remarks>The default is Keys.None.</remarks>
     Public Shared Function GetKey(ByVal keyStr As String) As Keys
         For Each k As Keys In [Enum].GetValues(GetType(Keys))
-            If k.ToString().ToLower() = keyStr.ToLower() Then
+            If k.ToString().ToLower(Globalization.CultureInfo.InvariantCulture) = keyStr.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 Return k
             End If
         Next

@@ -305,7 +305,7 @@
         Dim BallRate As Single = Ball.CatchMultiplier
         Dim PokemonStartFriendship As Integer = cp.Friendship
 
-        Select Case Ball.Name.ToLower()
+        Select Case Ball.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "repeat ball"
                 If Pokedex.GetEntryType(Core.Player.PokedexData, cp.Number) > 1 Then
                     BallRate = 2.5F

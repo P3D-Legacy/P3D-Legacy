@@ -19,9 +19,9 @@
             Dim loadSound As Boolean = False
             Dim removeSound As Boolean = False
 
-            If _sounds.ContainsKey(Name.ToLower()) = False Then
+            If _sounds.ContainsKey(Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                 loadSound = True
-            ElseIf forceReplace = True And _sounds(Name.ToLower()).IsStandardSound = True Then
+            ElseIf forceReplace = True And _sounds(Name.ToLower(Globalization.CultureInfo.InvariantCulture)).IsStandardSound = True Then
                 removeSound = True
                 loadSound = True
             End If
@@ -44,9 +44,9 @@
 
                 If Not sound Is Nothing Then
                     If removeSound = True Then
-                        _sounds.Remove(Name.ToLower())
+                        _sounds.Remove(Name.ToLower(Globalization.CultureInfo.InvariantCulture))
                     End If
-                    _sounds.Add(Name.ToLower(), New SoundContainer(sound, cContent.RootDirectory))
+                    _sounds.Add(Name.ToLower(Globalization.CultureInfo.InvariantCulture), New SoundContainer(sound, cContent.RootDirectory))
                 End If
             End If
         Catch ex As Exception
@@ -138,11 +138,11 @@
 
     Private Shared Function GetSoundEffect(ByVal Name As String) As SoundContainer
 
-        If _sounds.ContainsKey(Name.ToLower()) = True Then
-            Return _sounds(Name.ToLower())
+        If _sounds.ContainsKey(Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
+            Return _sounds(Name.ToLower(Globalization.CultureInfo.InvariantCulture))
         Else
             If TryAddGameModeSound(Name) = True Then
-                Return _sounds(Name.ToLower())
+                Return _sounds(Name.ToLower(Globalization.CultureInfo.InvariantCulture))
             Else
                 Logger.Log(Logger.LogTypes.Warning, "SoundManager.vb: Cannot find sound file """ & Name & """. Return nothing.")
                 Return Nothing

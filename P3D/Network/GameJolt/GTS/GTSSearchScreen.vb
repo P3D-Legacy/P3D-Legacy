@@ -379,7 +379,7 @@
 
                 For i = 0 To l.Count - 1
                     Dim Item As API.JoltValue = l(i)
-                    If Item.Name.ToLower() = "key" Then
+                    If Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "key" Then
                         If BufferList.ContainsKey(Item.Value) = True Then
                             GotData("success:""true""" & Environment.NewLine & "data:""" & BufferList(Item.Value) & """")
                         Else

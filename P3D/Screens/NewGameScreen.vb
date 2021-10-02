@@ -399,7 +399,7 @@
         Dim folderPath As String = Name
         Dim folderPrefix As Integer = 0
 
-        If folderPath.ToLower() = "autosave" Then
+        If folderPath.ToLower(Globalization.CultureInfo.InvariantCulture) = "autosave" Then
             folderPath = "autosave0"
         End If
 
@@ -536,11 +536,11 @@
         Dim OwnNames() As String = {"oak", "samuel", "prof. oak", "prof oak"}
 
         Select Case True
-            Case WeirdNames.Contains(name.ToLower())
+            Case WeirdNames.Contains(name.ToLower(Globalization.CultureInfo.InvariantCulture))
                 Return Localization.GetString("new_game_oak_weird_name_1") & name & Localization.GetString("new_game_oak_weird_name_2")
-            Case KnownNames.Contains(name.ToLower())
+            Case KnownNames.Contains(name.ToLower(Globalization.CultureInfo.InvariantCulture))
                 Return Localization.GetString("new_game_oak_known_name_1") & name & Localization.GetString("new_game_oak_known_name_2")
-            Case OwnNames.Contains(name.ToLower())
+            Case OwnNames.Contains(name.ToLower(Globalization.CultureInfo.InvariantCulture))
                 Return Localization.GetString("new_game_oak_same_name_1") & name & Localization.GetString("new_game_oak_same_name_2")
         End Select
 

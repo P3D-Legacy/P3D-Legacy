@@ -10,7 +10,7 @@
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "storagesystem"
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New StorageSystemScreen(Core.CurrentScreen), Color.Black, False))
 
@@ -188,7 +188,7 @@
                         If ScriptConversion.IsArithmeticExpression(data(1)) = True Then
                             inputMode = CType(int(data(1)), InputScreen.InputModes)
                         Else
-                            Select Case data(1).ToLower()
+                            Select Case data(1).ToLower(Globalization.CultureInfo.InvariantCulture)
                                 Case "text"
                                     inputMode = InputScreen.InputModes.Text
                                 Case "name"

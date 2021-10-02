@@ -11,7 +11,7 @@
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                Select Case command.ToLower()
+                Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "start"
                         CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(argument, 0, True, False)
                     Case "text"

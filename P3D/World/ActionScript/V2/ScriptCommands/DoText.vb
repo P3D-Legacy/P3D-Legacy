@@ -10,7 +10,7 @@
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "show"
                     Screen.TextBox.reDelay = 0.0F
                     Screen.TextBox.Show(argument, {}, False, False)
@@ -31,7 +31,7 @@
                     Dim args As String() = argument.Split(CChar(","))
 
                     If args.Length = 1 Then
-                        Select Case args(0).ToLower()
+                        Select Case args(0).ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "playercolor", "player"
                                 Screen.TextBox.TextColor = TextBox.PlayerColor
                             Case "defaultcolor", "default"

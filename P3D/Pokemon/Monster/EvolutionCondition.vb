@@ -35,7 +35,7 @@ Public Class EvolutionCondition
         Dim c As New Condition
         c.Argument = arg
 
-        Select Case type.ToLower()
+        Select Case type.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "level"
                 c.ConditionType = ConditionTypes.Level
             Case "item"
@@ -71,7 +71,7 @@ Public Class EvolutionCondition
     End Sub
 
     Public Sub SetTrigger(ByVal trigger As String)
-        Select Case trigger.ToLower()
+        Select Case trigger.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "none", ""
                 Me.Trigger = EvolutionTrigger.None
             Case "level", "levelup"
@@ -210,7 +210,7 @@ Public Class EvolutionCondition
                                 canEvolve = False
                             End If
                         Case ConditionTypes.Place
-                            If Screen.Level.MapName.ToLower() <> c.Argument.ToLower() Then
+                            If Screen.Level.MapName.ToLower(Globalization.CultureInfo.InvariantCulture) <> c.Argument.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                                 canEvolve = False
                             End If
                         Case ConditionTypes.Trade

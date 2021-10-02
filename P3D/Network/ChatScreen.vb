@@ -217,7 +217,7 @@ Public Class ChatScreen
                     While Core.ServersManager.PlayerCollection.HasPlayer(playerName) = False And playerName.Contains(" ") = True
                         playerName = playerName.Remove(playerName.LastIndexOf(" "))
                     End While
-                    If playerName <> "" And (Core.ServersManager.PlayerCollection.HasPlayer(playerName) = True Or PMChats.ContainsKey(playerName) = True) And playerName.ToLower() <> Core.Player.Name.ToLower() Then
+                    If playerName <> "" And (Core.ServersManager.PlayerCollection.HasPlayer(playerName) = True Or PMChats.ContainsKey(playerName) = True) And playerName.ToLower(Globalization.CultureInfo.InvariantCulture) <> Core.Player.Name.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                         EnterPMChat(playerName)
                     Else
                         Core.GameMessage.ShowMessage("Player " & playerName & " not found!", 20, FontManager.MainFont, Color.White)
@@ -292,7 +292,7 @@ Public Class ChatScreen
         For Each tabCommand As String In completionCommands
             Dim commandLength As Integer = tabCommand.Length + 2
 
-            If Me.currentText.ToLower().StartsWith("/" & tabCommand & " ") = True And Me.currentText.Length > commandLength Then
+            If Me.currentText.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("/" & tabCommand & " ") = True And Me.currentText.Length > commandLength Then
                 Dim playerName As String = currentText.Remove(0, commandLength)
 
                 Dim currentTextLength As Integer = Me.currentText.Length
@@ -753,7 +753,7 @@ Public Class ChatScreen
         Canvas.DrawRectangle(New Rectangle(xPosition, Core.windowSize.Height - 114, drawWidth, drawHeight), New Color(0, 0, 0, 150))
 
         Dim texture = TextureManager.GetTexture("GUI\Chat\Icons")
-        Select Case textureType.ToLower()
+        Select Case textureType.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "global"
                 Core.SpriteBatch.Draw(texture, New Rectangle(xPosition + 2, Core.windowSize.Height - 114 + 2, 20, 20), New Rectangle(0, 0, 10, 10), Color.White)
             Case "command"

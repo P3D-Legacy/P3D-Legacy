@@ -299,7 +299,7 @@
         Private Sub PerformTradeStep3(ByVal result As String)
             Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
-            If list(0).Value.ToLower() = "true" Then
+            If list(0).Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "true" Then
                 Logger.Debug("Step 3 success")
                 Dim APICall As New APICall(AddressOf PerformTradeStep4)
                 APICall.SetStorageData("GTS_WONDERTRADE_V" & WONDERTRADE_VERSION, Core.GameJoltSave.GameJoltID & "|" & Core.Player.Pokemons(SelectedPokemonIndex).GetSaveData(), False)
@@ -312,7 +312,7 @@
         Private Sub PerformTradeStep4(ByVal result As String)
             Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
-            If list(0).Value.ToLower() = "true" Then
+            If list(0).Value.ToLower(Globalization.CultureInfo.InvariantCulture) = "true" Then
                 Logger.Debug("Step 4 success")
                 WaitForSave = True
                 Core.Player.Pokemons.RemoveAt(SelectedPokemonIndex)

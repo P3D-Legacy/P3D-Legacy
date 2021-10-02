@@ -72,21 +72,21 @@
                 If p.Item.IsMegaStone = True Then
                     b = True
                 End If
-                If p.Ability.Name.ToLower() = "multitype" AndAlso p.Item.Name.ToLower().EndsWith(" plate") Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "multitype" AndAlso p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture).EndsWith(" plate") Then
                     b = True
                 End If
-                If p.Ability.Name.ToLower() = "rks system" AndAlso p.Item.Name.ToLower().EndsWith(" memory") Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "rks system" AndAlso p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture).EndsWith(" memory") Then
                     b = True
                 End If
                 'Giratina
-                If p.Item.Name.ToLower() = "griseous orb" And p.Number = 487 Then
+                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "griseous orb" And p.Number = 487 Then
                     b = True
                 End If
                 'Genesect
-                If p.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
+                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture).EndsWith(" drive") = True AndAlso p.Number = 649 Then
                     b = True
                 End If
-                If p.Item.Name.ToLower().EndsWith(" mail") = True Then
+                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture).EndsWith(" mail") = True Then
                     b = True
                 End If
             Else

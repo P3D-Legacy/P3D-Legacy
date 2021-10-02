@@ -50,7 +50,7 @@ Namespace Servers
         Public Function HasPlayer(ByVal Name As String) As Boolean
             For i = 0 To Me.Count - 1
                 If i <= Me.Count - 1 Then
-                    If Me(i).Name.ToLower() = Name.ToLower() Then
+                    If Me(i).Name.ToLower(Globalization.CultureInfo.InvariantCulture) = Name.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                         Return True
                     End If
                 End If
@@ -112,7 +112,7 @@ Namespace Servers
         Public Function GetMatchingPlayerName(ByVal expression As String) As String
             For i = 0 To Me.Count - 1
                 If i <= Me.Count - 1 Then
-                    If Me(i).Name.ToLower().StartsWith(expression.ToLower()) = True Then
+                    If Me(i).Name.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith(expression.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                         Return Me(i).Name
                     End If
                 End If

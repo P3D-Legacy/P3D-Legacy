@@ -12,7 +12,7 @@
     Public Shared Function GetMultiplier(ByVal Nature As Pokemon.Natures, ByVal StatName As String) As Single
         Dim stat As StatNames = StatNames.Attack
 
-        Select Case StatName.ToLower()
+        Select Case StatName.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "hp"
                 stat = StatNames.HP
             Case "attack", "atk"

@@ -1293,7 +1293,7 @@ Public Class Pokemon
             Dim VarName As String = Line.GetSplit(0, "|")
             Dim Value As String = Line.GetSplit(1, "|")
 
-            Select Case VarName.ToLower()
+            Select Case VarName.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "name"
                     Me.Name = Value
                 Case "number"
@@ -1544,7 +1544,7 @@ Public Class Pokemon
             Dim tagName As String = Tags.Keys(i)
             Dim tagValue As String = Tags.Values(i)
 
-            Select Case tagName.ToLower()
+            Select Case tagName.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "originalnumber"
                     Me.OriginalNumber = CInt(tagValue)
                 Case "experience"
@@ -1817,7 +1817,7 @@ Public Class Pokemon
 
             'Synchronize ability:
             If Core.Player.Pokemons.Count > 0 Then
-                If Core.Player.Pokemons(0).Ability.Name.ToLower() = "synchronize" Then
+                If Core.Player.Pokemons(0).Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "synchronize" Then
                     'If Core.Random.Next(0, 100) < 50 Then # GEN 8 FORCES A NATURE 100% OF TIME
                     Me.Nature = Core.Player.Pokemons(0).Nature
                     'End If
@@ -1863,7 +1863,7 @@ Public Class Pokemon
 
                 'Cute Charm ability:
                 If Core.Player.Pokemons.Count > 0 Then
-                    If Core.Player.Pokemons(0).Gender <> Genders.Genderless And Core.Player.Pokemons(0).Ability.Name.ToLower() = "cute charm" Then
+                    If Core.Player.Pokemons(0).Gender <> Genders.Genderless And Core.Player.Pokemons(0).Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "cute charm" Then
                         If Core.Random.Next(0, 100) < 67 Then
                             If Core.Player.Pokemons(0).Gender = Genders.Female Then
                                 Me.Gender = Genders.Male
@@ -1911,7 +1911,7 @@ Public Class Pokemon
 
                     'Compound eyes ability:
                     If Core.Player.Pokemons.Count > 0 Then
-                        If Core.Player.Pokemons(0).Ability.Name.ToLower() = "compound eyes" Then
+                        If Core.Player.Pokemons(0).Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "compound eyes" Then
                             usedWildItems = Abilities.Compoundeyes.ConvertItemChances(usedWildItems)
                         End If
                     End If
@@ -1986,7 +1986,7 @@ Public Class Pokemon
     ''' </summary>
     ''' <param name="ID">The ID string.</param>
     Public Shared Function ConvertIDToEggGroup(ByVal ID As String) As EggGroups
-        Select Case ID.ToLower()
+        Select Case ID.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "monster"
                 Return EggGroups.Monster
             Case "water1"
@@ -2375,7 +2375,7 @@ Public Class Pokemon
                 add += 1
             End If
             If Not Me.Item Is Nothing Then
-                If Me.Item.Name.ToLower() = "soothe bell" Then
+                If Me.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "soothe bell" Then
                     add *= 2
                 End If
             End If

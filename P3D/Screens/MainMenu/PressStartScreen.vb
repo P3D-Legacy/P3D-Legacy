@@ -848,7 +848,7 @@ Public Class NewMainMenuScreen
                     Dim id As String = line.Split("|"c)(0)
                     Dim content As String = line.Split("|"c)(1)
 
-                    Select Case id.ToLower()
+                    Select Case id.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "name"
                             _name = content
 

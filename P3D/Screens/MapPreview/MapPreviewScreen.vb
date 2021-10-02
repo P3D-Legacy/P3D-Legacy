@@ -54,7 +54,7 @@
 
     Private Sub UpdateHiddenItems()
         For Each e As Entity In Screen.Level.Entities
-            If e.EntityID.ToLower() = "itemobject" Then
+            If e.EntityID.ToLower(Globalization.CultureInfo.InvariantCulture) = "itemobject" Then
                 If e.Opacity <= 0.0F Then
                     Dim i As ItemObject = CType(e, ItemObject)
 

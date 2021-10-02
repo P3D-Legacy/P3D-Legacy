@@ -146,7 +146,7 @@
                     line = line.Remove(0, line.IndexOf("{") + 2)
 
                     Select Case True
-                        Case line.ToLower().StartsWith("structure""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("structure""")
                             TagType = TagTypes.Structure
                     End Select
 
@@ -177,23 +177,23 @@
                     line = line.Remove(0, line.IndexOf("{") + 2)
 
                     Select Case True
-                        Case line.ToLower().StartsWith("entity""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("entity""")
                             TagType = TagTypes.Entity
-                        Case line.ToLower().StartsWith("floor""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("floor""")
                             TagType = TagTypes.Floor
-                        Case line.ToLower().StartsWith("entityfield""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("entityfield""")
                             TagType = TagTypes.EntityField
-                        Case line.ToLower().StartsWith("level""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("level""")
                             TagType = TagTypes.Level
-                        Case line.ToLower().StartsWith("actions""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("actions""")
                             TagType = TagTypes.LevelActions
-                        Case line.ToLower().StartsWith("npc""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("npc""")
                             TagType = TagTypes.NPC
-                        Case line.ToLower().StartsWith("shader""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("shader""")
                             TagType = TagTypes.Shader
-                        Case line.ToLower().StartsWith("offsetmap""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("offsetmap""")
                             TagType = TagTypes.OffsetMap
-                        Case line.ToLower().StartsWith("backdrop""")
+                        Case line.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("backdrop""")
                             TagType = TagTypes.Backdrop
                     End Select
 
@@ -303,7 +303,7 @@
                 Dim subTagValue As String = subTag.Remove(0, subTag.IndexOf("[") + 1)
                 subTagValue = subTagValue.Remove(subTagValue.Length - 1, 1)
 
-                Select Case subTagType.ToLower()
+                Select Case subTagType.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "int"
                         Dictionary.Add(TagName, CInt(subTagValue))
                     Case "str"
@@ -368,7 +368,7 @@
         End If
 
         For i = 0 To Tags.Count - 1
-            If Tags.Keys(i).ToLower() = TagName.ToLower() Then
+            If Tags.Keys(i).ToLower(Globalization.CultureInfo.InvariantCulture) = TagName.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 Return Tags.Values(i)
             End If
         Next
@@ -382,7 +382,7 @@
         End If
 
         For i = 0 To Tags.Count - 1
-            If Tags.Keys(i).ToLower() = TagName.ToLower() Then
+            If Tags.Keys(i).ToLower(Globalization.CultureInfo.InvariantCulture) = TagName.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                 Return True
             End If
         Next
@@ -549,12 +549,12 @@
     Private Function ReplaceStructureRotation(ByVal line As String, ByVal MapRotation As Integer) As String
         Dim replaceString As String = ""
 
-        If line.ToLower().Contains("{""rotation""{int[") = True Then
+        If line.ToLower(Globalization.CultureInfo.InvariantCulture).Contains("{""rotation""{int[") = True Then
             replaceString = "{""rotation""{int["
         End If
 
         If replaceString <> "" Then
-            Dim rotationString As String = line.Remove(0, line.ToLower().IndexOf(replaceString))
+            Dim rotationString As String = line.Remove(0, line.ToLower(Globalization.CultureInfo.InvariantCulture).IndexOf(replaceString))
             rotationString = rotationString.Remove(rotationString.IndexOf("]}}") + 3)
 
             Dim rotationData As String = rotationString.Remove(0, rotationString.IndexOf("[") + 1)
@@ -574,14 +574,14 @@
     Private Function ReplaceStructurePosition(ByVal line As String, ByVal MapOffset As Vector3) As String
         Dim replaceString As String = ""
 
-        If line.ToLower().Contains("{""position""{sngarr[") = True Then
+        If line.ToLower(Globalization.CultureInfo.InvariantCulture).Contains("{""position""{sngarr[") = True Then
             replaceString = "{""position""{sngarr["
-        ElseIf line.ToLower().Contains("{""position""{intarr[") = True Then
+        ElseIf line.ToLower(Globalization.CultureInfo.InvariantCulture).Contains("{""position""{intarr[") = True Then
             replaceString = "{""position""{intarr["
         End If
 
         If replaceString <> "" Then
-            Dim positionString As String = line.Remove(0, line.ToLower().IndexOf(replaceString))
+            Dim positionString As String = line.Remove(0, line.ToLower(Globalization.CultureInfo.InvariantCulture).IndexOf(replaceString))
             positionString = positionString.Remove(positionString.IndexOf("]}}") + 3)
 
             Dim positionData As String = positionString.Remove(0, positionString.IndexOf("[") + 1)
@@ -590,7 +590,7 @@
             Dim posArr() As String = positionData.Split(CChar(","))
             Dim newPosition As New Vector3(ScriptConversion.ToSingle(posArr(0).Replace(".", GameController.DecSeparator)) + MapOffset.X, ScriptConversion.ToSingle(posArr(1).Replace(".", GameController.DecSeparator)) + MapOffset.Y, CSng(posArr(2).Replace(".", GameController.DecSeparator)) + MapOffset.Z)
 
-            If line.ToLower().Contains("{""position""{sngarr[") = True Then
+            If line.ToLower(Globalization.CultureInfo.InvariantCulture).Contains("{""position""{sngarr[") = True Then
                 line = line.Replace(positionString, "{""position""{sngarr[" & newPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & newPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & newPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & "]}}")
             Else
                 line = line.Replace(positionString, "{""position""{intarr[" & CInt(newPosition.X).ToString().Replace(GameController.DecSeparator, ".") & "," & CInt(newPosition.Y).ToString().Replace(GameController.DecSeparator, ".") & "," & CInt(newPosition.Z).ToString().Replace(GameController.DecSeparator, ".") & "]}}")
@@ -878,12 +878,12 @@
 
                     If SeasonToggle <> "" Then
                         If SeasonToggle.Contains(",") = False Then
-                            If SeasonToggle.ToLower() <> World.CurrentSeason.ToString().ToLower() Then
+                            If SeasonToggle.ToLower(Globalization.CultureInfo.InvariantCulture) <> World.CurrentSeason.ToString().ToLower(Globalization.CultureInfo.InvariantCulture) Then
                                 DoAdd = False
                             End If
                         Else
-                            Dim seasons() As String = SeasonToggle.ToLower().Split(CChar(","))
-                            If seasons.Contains(World.CurrentSeason.ToString().ToLower()) = False Then
+                            Dim seasons() As String = SeasonToggle.ToLower(Globalization.CultureInfo.InvariantCulture).Split(CChar(","))
+                            If seasons.Contains(World.CurrentSeason.ToString().ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                                 DoAdd = False
                             End If
                         End If
@@ -1133,7 +1133,7 @@
         If TagExists(Tags, "Trigger") = True Then
             trigger = CStr(GetTag(Tags, "Trigger"))
         End If
-        Select Case trigger.ToLower()
+        Select Case trigger.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "offset"
                 If Core.GameOptions.LoadOffsetMaps = 0 Then
                     isTriggered = False
@@ -1165,7 +1165,7 @@
                     BData.Add("0")
                 End If
 
-                If BData(0).ToLower() = Screen.Level.LevelFile.ToLower() Then
+                If BData(0).ToLower(Globalization.CultureInfo.InvariantCulture) = Screen.Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                     Dim newEnt As Entity = Entity.GetNewEntity("BerryPlant", New Vector3(CSng(PData(0)), CSng(PData(1)), CSng(PData(2))), {Nothing}, {0, 0}, True, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1.0F), -1, MapOrigin, "", Offset)
                     CType(newEnt, BerryPlant).Initialize(CInt(BData(2)), CInt(BData(3)), CStr(BData(4)), BData(5), CBool(BData(6)))
 

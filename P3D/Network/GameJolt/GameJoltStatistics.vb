@@ -18,7 +18,7 @@
             If CanTrack(statName) = True Then
                 Dim APICall As New APICall()
 
-                If statName.ToLower() = "steps taken" Then
+                If statName.ToLower(Globalization.CultureInfo.InvariantCulture) = "steps taken" Then
                     addition = TempSteps
                     TempSteps = 0
                 End If
@@ -29,8 +29,8 @@
         End Sub
 
         Private Shared Function CanTrack(ByVal statName As String) As Boolean
-            If IndicedStats.Contains(statName.ToLower()) = False Then
-                If statName.ToLower() = "steps taken" Then
+            If IndicedStats.Contains(statName.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
+                If statName.ToLower(Globalization.CultureInfo.InvariantCulture) = "steps taken" Then
                     TempSteps += 1
                     If CInt((Date.Now - lastStepTime).TotalSeconds) >= 20 Then
                         lastStepTime = Date.Now
@@ -49,7 +49,7 @@
         End Sub
 
         Private Shared Function GetKey(ByVal statName As String) As String
-            Return "0GJSTAT_" & statName.ToLower()
+            Return "0GJSTAT_" & statName.ToLower(Globalization.CultureInfo.InvariantCulture)
         End Function
 
     End Class

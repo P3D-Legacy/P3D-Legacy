@@ -37,7 +37,7 @@
                     For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & subFolder, "*.*", IO.SearchOption.AllDirectories)
                         If file.Contains("\Content\Localization\") = False Then
                             Dim ext As String = System.IO.Path.GetExtension(file)
-                            If includeExt.Contains(ext.ToLower()) = True Then
+                            If includeExt.Contains(ext.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                                 files.Add(file.Remove(0, GameController.GamePath.Length + 1))
                             End If
                         End If
@@ -49,7 +49,7 @@
                     Dim i As Long = New System.IO.FileInfo(GameController.GamePath & "\" & f).Length
                     Dim hash As String = GetMD5FromFile(GameController.GamePath & "\" & f)
 
-                    FileDictionary.Add((GameController.GamePath & "\" & f).ToLower(), New ValidationStorage(i, hash))
+                    FileDictionary.Add((GameController.GamePath & "\" & f).ToLower(Globalization.CultureInfo.InvariantCulture), New ValidationStorage(i, hash))
                     MeasuredSize += i
 
                     If s <> "" Then
@@ -84,7 +84,7 @@
 
                     If System.IO.File.Exists(GameController.GamePath & "\" & fileName) Then
                         Dim i As Long = New System.IO.FileInfo(GameController.GamePath & "\" & fileName).Length
-                        FileDictionary.Add((GameController.GamePath & "\" & fileName).ToLower(), New ValidationStorage(i, fileHash))
+                        FileDictionary.Add((GameController.GamePath & "\" & fileName).ToLower(Globalization.CultureInfo.InvariantCulture), New ValidationStorage(i, fileHash))
                         MeasuredSize += i
                     End If
                 Next
@@ -122,12 +122,12 @@
                 Dim i As Long = New System.IO.FileInfo(filePath).Length
 
                 If System.IO.File.Exists(filePath) = True Then
-                    If FileDictionary.ContainsKey(filePath.ToLower()) = True Then
-                        If i <> FileDictionary(filePath.ToLower()).FileSize Then
+                    If FileDictionary.ContainsKey(filePath.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
+                        If i <> FileDictionary(filePath.ToLower(Globalization.CultureInfo.InvariantCulture)).FileSize Then
                             Return "File Validation rendered the file invalid. Array length invalid."
                         Else
                             Dim hash As String = GetMD5FromFile(filePath)
-                            If hash <> FileDictionary(filePath.ToLower()).Hash Then
+                            If hash <> FileDictionary(filePath.ToLower(Globalization.CultureInfo.InvariantCulture)).Hash Then
                                 Return "File Validation rendered the file invalid. File has been edited."
                             End If
                         End If

@@ -14,7 +14,7 @@
             Dim ent As Entity = Screen.Level.GetEntity(entID)
 
             If Not ent Is Nothing Then
-                Select Case command.ToLower()
+                Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "visible"
                         Return ReturnBoolean(ent.Visible)
                     Case "opacity"

@@ -68,7 +68,7 @@ Public Class Terrain
     ''' </summary>
     ''' <param name="input">The Terrain name.</param>
     Public Shared Function FromString(ByVal input As String) As Terrain.TerrainTypes
-        Select Case input.ToLower()
+        Select Case input.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "plain"
                 Return TerrainTypes.Plain
             Case "sand"

@@ -20,7 +20,7 @@
                 position = c.ThirdPersonOffset
             End If
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "set"
                     Dim x As Single = sng(argument.GetSplit(0).Replace("~", CStr(position.X)).Replace(".", GameController.DecSeparator))
                     Dim y As Single = sng(argument.GetSplit(1).Replace("~", CStr(position.Y)).Replace(".", GameController.DecSeparator))
@@ -111,7 +111,7 @@
                     CanContinue = False
                 Case "setfocus"
                     Dim focusType = OverworldCamera.CameraFocusTypes.Player
-                    Select Case argument.GetSplit(0).ToLower()
+                    Select Case argument.GetSplit(0).ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "player"
                             focusType = OverworldCamera.CameraFocusTypes.Player
                         Case "npc"
@@ -121,7 +121,7 @@
                     End Select
                     c.SetupFocus(focusType, int(argument.GetSplit(1)))
                 Case "setfocustype"
-                    Select Case argument.ToLower()
+                    Select Case argument.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "player"
                             c.CameraFocusType = OverworldCamera.CameraFocusTypes.Player
                         Case "npc"

@@ -64,7 +64,7 @@
             Dim bannedAbilitiesOpp() As String = {"simple", "truant", "multitype", "stance change", "schooling", "comatose", "shields down", "disguise", "rks system", "battle bond"}
             Dim bannedAbilitiesOwn() As String = {"trace", "forecast", "flower gift", "zen mode", "illusion", "imposter", "power of alchemy", "receiver", "disguise", "power construct"}
 
-            If bannedAbilitiesOpp.Contains(op.Ability.Name.ToLower()) = False AndAlso bannedAbilitiesOwn.Contains(p.Ability.Name.ToLower()) = False Then
+            If bannedAbilitiesOpp.Contains(op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False AndAlso bannedAbilitiesOwn.Contains(p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                 op.Ability = Ability.GetAbilityByID(p.Ability.ID)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " acquired " & op.Ability.Name() & "!"))
             Else

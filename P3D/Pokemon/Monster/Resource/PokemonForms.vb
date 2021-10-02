@@ -34,7 +34,7 @@ Public Class PokemonForms
     Public Shared Function GetAnimationName(ByVal P As Pokemon) As String
         For Each listP In _pokemonList
             If listP.IsNumber(P.Number) = True Then
-                Dim _name As String = listP.GetAnimationName(P).ToLower()
+                Dim _name As String = listP.GetAnimationName(P).ToLower(Globalization.CultureInfo.InvariantCulture)
                 If _name.StartsWith("mega ") Then
                     _name = _name.Remove(0, 5)
                     If _name.EndsWith(" x_mega_x") OrElse _name.EndsWith(" y_mega_y") Then
@@ -317,7 +317,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -367,7 +367,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega_x"
                     Return "_mega_x"
                 Case "mega_y"
@@ -421,7 +421,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -469,7 +469,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -517,7 +517,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -583,7 +583,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -631,7 +631,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -679,7 +679,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -727,7 +727,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -775,7 +775,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -823,7 +823,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -871,7 +871,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -921,7 +921,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega_x"
                     Return "_mega_x"
                 Case "mega_y"
@@ -969,7 +969,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "spiky-eared" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "spiky-eared" Then
                 Return P.OriginalName & "_spiky-eared"
             Else
                 Return MyBase.GetAnimationName(P)
@@ -977,7 +977,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "spiky-eared" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "spiky-eared" Then
                 Return "_spiky-eared"
             Else
                 Return MyBase.GetOverworldAddition(P)
@@ -985,7 +985,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
-            If P.AdditionalData.ToLower() = "spiky-eared" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "spiky-eared" Then
                 Return New Vector2(0, 2)
             Else
                 Return MyBase.GetMenuImagePosition(P)
@@ -1016,7 +1016,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1111,7 +1111,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1158,7 +1158,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1205,7 +1205,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1253,7 +1253,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1301,7 +1301,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1349,7 +1349,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1397,7 +1397,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1445,7 +1445,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1493,7 +1493,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1541,7 +1541,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1589,7 +1589,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1637,7 +1637,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1685,7 +1685,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1733,7 +1733,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1781,7 +1781,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1829,7 +1829,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1877,7 +1877,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1925,7 +1925,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -1973,7 +1973,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2021,7 +2021,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2069,7 +2069,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2117,7 +2117,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2165,7 +2165,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2212,7 +2212,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2259,7 +2259,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "primal"
                     Return "_primal"
                 Case Else
@@ -2307,7 +2307,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "primal"
                     Return "_primal"
                 Case Else
@@ -2355,7 +2355,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2398,16 +2398,16 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
-            Select Case P.AdditionalData.ToLower()
+            Select Case P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "attack", "defense", "speed"
-                    Return P.OriginalName & "_" & P.AdditionalData.ToLower()
+                    Return P.OriginalName & "_" & P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case Else
                     Return P.OriginalName
             End Select
         End Function
 
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
-            Select Case P.AdditionalData.ToLower()
+            Select Case P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "attack"
                     Return New Vector2(5, 3)
                 Case "defense"
@@ -2420,18 +2420,18 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
-            Select Case P.AdditionalData.ToLower()
+            Select Case P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "attack", "defense", "speed"
-                    Return "_" & P.AdditionalData.ToLower()
+                    Return "_" & P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case Else
                     Return ""
             End Select
         End Function
 
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "attack", "defense", "speed"
-                    Return "_" & AdditionalData.ToLower()
+                    Return "_" & AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case Else
                     Return ""
             End Select
@@ -2580,7 +2580,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2628,7 +2628,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2676,7 +2676,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2724,7 +2724,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2772,7 +2772,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -2816,16 +2816,16 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
-            Select Case P.AdditionalData.ToLower()
+            Select Case P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "fan", "frost", "heat", "mow", "wash"
-                    Return P.OriginalName & "_" & P.AdditionalData.ToLower()
+                    Return P.OriginalName & "_" & P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case Else
                     Return P.OriginalName
             End Select
         End Function
 
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
-            Select Case P.AdditionalData.ToLower()
+            Select Case P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "fan"
                     Return New Vector2(12, 4)
                 Case "frost"
@@ -2842,18 +2842,18 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
-            Select Case P.AdditionalData.ToLower()
+            Select Case P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "fan", "frost", "heat", "mow", "wash"
-                    Return "_" & P.AdditionalData.ToLower()
+                    Return "_" & P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case Else
                     Return ""
             End Select
         End Function
 
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "fan", "frost", "heat", "mow", "wash"
-                    Return "_" & AdditionalData.ToLower()
+                    Return "_" & AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case Else
                     Return ""
             End Select
@@ -2870,7 +2870,7 @@ Public Class PokemonForms
         End Sub
 
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "primal" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "primal" Then
                 Return P.OriginalName & "_primal"
             Else
                 Return MyBase.GetAnimationName(P)
@@ -2878,7 +2878,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
-            If P.AdditionalData.ToLower() = "primal" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "primal" Then
                 Return New Vector2(14, 26)
             Else
                 Return MyBase.GetMenuImagePosition(P)
@@ -2886,14 +2886,14 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "primal" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "primal" Then
                 Return "_primal"
             Else
                 Return MyBase.GetOverworldAddition(P)
             End If
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "primal"
                     Return "_primal"
                 Case Else
@@ -3009,7 +3009,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -3053,7 +3053,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetDataFileAddition(AdditionalData As String) As String
-            If AdditionalData.ToLower() = "blue" Then
+            If AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "blue" Then
                 Return "_blue"
             Else
                 Return ""
@@ -3061,7 +3061,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetAnimationName(P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "blue" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "blue" Then
                 Return P.OriginalName & "_blue"
             Else
                 Return MyBase.GetAnimationName(P)
@@ -3069,7 +3069,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetMenuImagePosition(P As Pokemon) As Vector2
-            If P.AdditionalData.ToLower() = "blue" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "blue" Then
                 Return New Vector2(0, 5)
             Else
                 Return MyBase.GetMenuImagePosition(P)
@@ -3077,7 +3077,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetOverworldAddition(P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "blue" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "blue" Then
                 Return "_blue"
             Else
                 Return MyBase.GetOverworldAddition(P)
@@ -3316,7 +3316,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetAnimationName(P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "therian" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "therian" Then
                 Return P.OriginalName & "_therian"
             Else
                 Return MyBase.GetAnimationName(P)
@@ -3324,7 +3324,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetMenuImagePosition(P As Pokemon) As Vector2
-            If P.AdditionalData.ToLower() = "therian" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "therian" Then
                 Return New Vector2(9, 5)
             Else
                 Return MyBase.GetMenuImagePosition(P)
@@ -3332,7 +3332,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetOverworldAddition(P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "therian" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "therian" Then
                 Return "_therian"
             Else
                 Return MyBase.GetOverworldAddition(P)
@@ -3359,7 +3359,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetAnimationName(P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "therian" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "therian" Then
                 Return P.OriginalName & "_therian"
             Else
                 Return MyBase.GetAnimationName(P)
@@ -3367,7 +3367,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetMenuImagePosition(P As Pokemon) As Vector2
-            If P.AdditionalData.ToLower() = "therian" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "therian" Then
                 Return New Vector2(10, 5)
             Else
                 Return MyBase.GetMenuImagePosition(P)
@@ -3375,7 +3375,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetOverworldAddition(P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "therian" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "therian" Then
                 Return "_therian"
             Else
                 Return MyBase.GetOverworldAddition(P)
@@ -3402,7 +3402,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetAnimationName(P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "therian" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "therian" Then
                 Return P.OriginalName & "_therian"
             Else
                 Return MyBase.GetAnimationName(P)
@@ -3410,7 +3410,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetMenuImagePosition(P As Pokemon) As Vector2
-            If P.AdditionalData.ToLower() = "therian" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "therian" Then
                 Return New Vector2(11, 5)
             Else
                 Return MyBase.GetMenuImagePosition(P)
@@ -3418,7 +3418,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetOverworldAddition(P As Pokemon) As String
-            If P.AdditionalData.ToLower() = "therian" Then
+            If P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture) = "therian" Then
                 Return "_therian"
             Else
                 Return MyBase.GetOverworldAddition(P)
@@ -3445,7 +3445,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
-            Select Case P.AdditionalData.ToLower()
+            Select Case P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "black"
                     Return P.OriginalName & "_black"
                 Case "white"
@@ -3456,7 +3456,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetOverworldAddition(P As Pokemon) As String
-            Select Case P.AdditionalData.ToLower()
+            Select Case P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "black"
                     Return "_black"
                 Case "white"
@@ -3467,7 +3467,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetMenuImagePosition(ByVal P As Pokemon) As Vector2
-            Select Case P.AdditionalData.ToLower()
+            Select Case P.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "black"
                     Return New Vector2(13, 5)
                 Case "white"
@@ -3874,7 +3874,7 @@ Public Class PokemonForms
         End Function
 
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "blade"
                     Return "_blade"
                 Case Else
@@ -3906,7 +3906,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "mega"
                     Return "_mega"
                 Case Else
@@ -3954,7 +3954,7 @@ Public Class PokemonForms
             End Select
         End Function
         Public Overrides Function GetDataFileAddition(ByVal AdditionalData As String) As String
-            Select Case AdditionalData.ToLower()
+            Select Case AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "unbound"
                     Return "_unbound"
                 Case Else

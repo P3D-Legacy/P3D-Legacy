@@ -22,7 +22,7 @@
         Public Sub New(ByVal ID As String, ByVal EventTypeSTR As String, ByVal Name As String, ByVal Description As String, ByVal Value As String)
             Me.ID = ID
 
-            Select Case EventTypeSTR.ToLower()
+            Select Case EventTypeSTR.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "exp"
                     Me.EventType = EventTypes.EXPMultiplier
                 Case "money"

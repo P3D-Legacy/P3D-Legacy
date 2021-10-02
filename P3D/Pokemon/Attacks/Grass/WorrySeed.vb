@@ -59,7 +59,7 @@
                 op = BattleScreen.OwnPokemon
             End If
             Dim bannedAbilities() As String = {"insomnia", "truant", "multitype", "stance change", "schooling", "comatose", "shields down", "disguise", "rks system", "battle bond"}
-            If bannedAbilities.Contains(op.Ability.Name.ToLower()) = False Then
+            If bannedAbilities.Contains(op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                 op.Ability = Ability.GetAbilityByID(15)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " acquired Insomnia!"))
             Else

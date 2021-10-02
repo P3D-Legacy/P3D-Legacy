@@ -60,7 +60,7 @@ Namespace BattleSystem.Moves.Psychic
             If own = False Then
                 p = BattleScreen.OppPokemon
             End If
-            Dim turns As Integer = BattleCalculation.FieldEffectTurns(BattleScreen, own, Me.Name.ToLower())
+            Dim turns As Integer = BattleCalculation.FieldEffectTurns(BattleScreen, own, Me.Name.ToLower(Globalization.CultureInfo.InvariantCulture))
             If own = True Then
                 If BattleScreen.FieldEffects.OwnReflect = 0 Then
                     BattleScreen.FieldEffects.OwnReflect = turns

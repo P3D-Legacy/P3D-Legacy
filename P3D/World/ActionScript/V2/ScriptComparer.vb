@@ -126,7 +126,7 @@ Namespace ScriptVersion2
                                 comparisonResult = True
                             End If
                         Else
-                            If CStr(resultValue).ToLower() = CStr(compareValue).ToLower() Then
+                            If CStr(resultValue).ToLower(Globalization.CultureInfo.InvariantCulture) = CStr(compareValue).ToLower(Globalization.CultureInfo.InvariantCulture) Then
                                 comparisonResult = True
                             End If
                         End If
@@ -210,8 +210,8 @@ Namespace ScriptVersion2
 
                         If foundNOT = True Then
                             Dim bools() As String = {"false", "true"}
-                            If bools.Contains(resultValue.ToString().ToLower()) = True Then
-                                Select Case resultValue.ToString().ToLower()
+                            If bools.Contains(resultValue.ToString().ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
+                                Select Case resultValue.ToString().ToLower(Globalization.CultureInfo.InvariantCulture)
                                     Case "false"
                                         resultValue = "true"
                                     Case "true"
@@ -263,7 +263,7 @@ Namespace ScriptVersion2
         ''' <param name="mainClass">The main class of the contruct.</param>
         ''' <param name="subClass">The sub class of the construct.</param>
         Private Shared Function GetConstructReturnValue(ByVal mainClass As String, ByVal subClass As String) As Object
-            Select Case mainClass.ToLower()
+            Select Case mainClass.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "pokemon"
                     Return DoPokemon(subClass)
                 Case "overworldpokemon"

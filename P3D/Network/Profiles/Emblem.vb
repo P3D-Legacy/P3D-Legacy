@@ -222,7 +222,7 @@
 
         Public Shared Function GetPlayerTitle(ByVal level As Integer, ByVal id As String, ByVal gender As String) As String
             For Each staffMember As StaffProfile In StaffProfile.Staff
-                If staffMember.GameJoltID.ToLower() = id.ToLower() And staffMember.RankName <> "" Then
+                If staffMember.GameJoltID.ToLower(Globalization.CultureInfo.InvariantCulture) = id.ToLower(Globalization.CultureInfo.InvariantCulture) And staffMember.RankName <> "" Then
                     Return staffMember.RankName
                 End If
             Next
@@ -239,7 +239,7 @@
 
         Public Shared Function GetPlayerSpriteFile(ByVal level As Integer, ByVal id As String, ByVal gender As String) As String
             For Each staffMember As StaffProfile In StaffProfile.Staff
-                If staffMember.GameJoltID.ToLower() = id.ToLower() And staffMember.Sprite <> "" Then
+                If staffMember.GameJoltID.ToLower(Globalization.CultureInfo.InvariantCulture) = id.ToLower(Globalization.CultureInfo.InvariantCulture) And staffMember.Sprite <> "" Then
                     Return staffMember.Sprite
                 End If
             Next
@@ -260,7 +260,7 @@
 
         Public Shared Function GetPlayerSprite(ByVal level As Integer, ByVal id As String, ByVal gender As String) As Texture2D
             For Each staffMember As StaffProfile In StaffProfile.Staff
-                If staffMember.GameJoltID.ToLower() = id.ToLower() And staffMember.Sprite <> "" Then
+                If staffMember.GameJoltID.ToLower(Globalization.CultureInfo.InvariantCulture) = id.ToLower(Globalization.CultureInfo.InvariantCulture) And staffMember.Sprite <> "" Then
                     Return TextureManager.GetTexture("Textures\NPC\" & staffMember.Sprite)
                 End If
             Next
@@ -285,7 +285,7 @@
         End Function
 
         Public Shared Function GetEmblemFontColor(ByVal emblemName As String) As Color
-            Select Case emblemName.ToLower()
+            Select Case emblemName.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "alph", "genetics", "legendary", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "earth", "shooting star", "victorious", "mega", "time", "deep sea", "heart gold", "soul silver"
                     Return Color.White
                 Case "eevee", "pokedex", "snow", "trainer", "kanto", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "johto", "eruption", "ancestor", "tao", "floral"
@@ -447,7 +447,7 @@
             Dim founduserid As Boolean = False
 
             For Each Item As GameJolt.API.JoltValue In list
-                If Item.Name.ToLower() = "id" Then
+                If Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "id" Then
                     Me.GameJoltID = Item.Value
                     ValidProfile = True
 
@@ -466,7 +466,7 @@
 
                     founduserid = True
                 End If
-                If Item.Name.ToLower() = "username" Then
+                If Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "username" Then
                     Me.Username = Item.Value
                 End If
             Next
@@ -677,7 +677,7 @@
 #Region "Trophy"
 
         Public Shared Function EmblemToTrophyID(ByVal emblem As String) As Integer
-            Select Case emblem.ToLower()
+            Select Case emblem.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "alph"
                     Return 1958
                 Case "material"
@@ -933,7 +933,7 @@
 
         Public Shared Sub AchieveEmblem(ByVal emblem As String)
             'If Core.Player.IsGameJoltSave = True Then
-            '    If Core.GameJoltSave.AchievedEmblems.Contains(emblem.ToLower()) = False Then
+            '    If Core.GameJoltSave.AchievedEmblems.Contains(emblem.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
             '        Dim trophy_id As Integer = EmblemToTrophyID(emblem)
 
             '        Dim APICall As New APICall(AddressOf AddedAchievement)
@@ -956,11 +956,11 @@
             End If
             'End Temporary
 
-            If Core.Player.EarnedAchievements.Contains(emblem.ToLower()) = False Then
+            If Core.Player.EarnedAchievements.Contains(emblem.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                 If ConnectScreen.Connected = True Then
                     Core.ServersManager.ServerConnection.SendGameStateMessage("achieved the emblem """ & emblem.ToUpper() & """!")
                 End If
-                Core.Player.EarnedAchievements.Add(emblem.ToLower())
+                Core.Player.EarnedAchievements.Add(emblem.ToLower(Globalization.CultureInfo.InvariantCulture))
             End If
         End Sub
 
@@ -1200,7 +1200,7 @@
             Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
             For Each line As API.JoltValue In list
-                Select Case line.Name.ToLower()
+                Select Case line.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "title"
                         achieved_emblem_title = line.Value
                     Case "description"
@@ -1261,7 +1261,7 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("Textures\Emblem\border"), New Rectangle(emblemPositionX, 0, 79, 98), Color.White)
 
                 Dim fontColor As Color = Color.White
-                Select Case achieved_emblem_difficulty.ToLower()
+                Select Case achieved_emblem_difficulty.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "bronze"
                         fontColor = New Color(220, 171, 117)
                     Case "silver"

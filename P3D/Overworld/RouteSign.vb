@@ -13,7 +13,7 @@ Public Class RouteSign
     ''' </summary>
     Public Sub Setup(ByVal newText As String)
         'Only if the text is different from last time the RouteSign showed up, display the RouteSign.
-        If newText.ToLower() <> Me._text.ToLower() Then
+        If newText.ToLower(Globalization.CultureInfo.InvariantCulture) <> Me._text.ToLower(Globalization.CultureInfo.InvariantCulture) Then
             _show = True
             _delay = 13.0F
             _text = newText

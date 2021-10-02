@@ -103,7 +103,7 @@
             Me._width = Width
             Me._height = Height
 
-            Select Case BackdropType.ToLower()
+            Select Case BackdropType.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "water"
                     Me._backdropType = BackdropTypes.Water
                     _backdropTexture = TextureManager.GetTexture("Backdrops\Water", New Rectangle(0, 0, 64, 64))

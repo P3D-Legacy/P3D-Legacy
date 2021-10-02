@@ -10,7 +10,7 @@
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "show"
                     If Not Screen.TextBox Is Nothing And Not Screen.TextBox.Text Is Nothing Then
                         If Screen.TextBox.Text.Length > 0 Then

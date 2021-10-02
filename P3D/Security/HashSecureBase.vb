@@ -28,7 +28,7 @@ Namespace Security
         ''' <param name="newValue">The value that will be stored in the value when the test is over.</param>
         Protected Sub Assert(ByVal valueName As String, ByVal currentValue As Object, ByVal newValue As Object)
             Dim hash As Integer = currentValue.GetHashCode()
-            Dim listName As String = valueName.ToLower()
+            Dim listName As String = valueName.ToLower(Globalization.CultureInfo.InvariantCulture)
 
             If _properties.ContainsKey(listName) = True Then
                 If _properties(listName) = hash Then

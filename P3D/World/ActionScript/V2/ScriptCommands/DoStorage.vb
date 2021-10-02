@@ -10,7 +10,7 @@
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "set"
                     Dim type As String = argument.GetSplit(0)
                     Dim name As String = argument.GetSplit(1)
@@ -28,7 +28,7 @@
                     If StringHelper.IsNumeric(value.Replace(".", GameController.DecSeparator)) And
                        StringHelper.IsNumeric(currentValue.Replace(".", GameController.DecSeparator)) Then
 
-                        Select Case operation.ToLower()
+                        Select Case operation.ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "+", "plus", "add", "addition"
                                 If ScriptConversion.IsArithmeticExpression(currentValue) = True And ScriptConversion.IsArithmeticExpression(value) = True Then
                                     value = dbl(currentValue.Replace(".", GameController.DecSeparator) & "+" & value.Replace(".", GameController.DecSeparator)).ToString()

@@ -157,15 +157,15 @@
     Public Shared Function ItemExists(ByVal ItemObject As ItemObject) As Boolean
         If Core.Player.ItemData <> "" Then
             If Core.Player.ItemData.Contains(",") = True Then
-                Dim IDs() As String = Core.Player.ItemData.ToLower().Split(CChar(","))
+                Dim IDs() As String = Core.Player.ItemData.ToLower(Globalization.CultureInfo.InvariantCulture).Split(CChar(","))
 
-                If IDs.Contains((Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower()) = True Then
+                If IDs.Contains((Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                     Return True
                 Else
                     Return False
                 End If
             Else
-                If Core.Player.ItemData.ToLower() = (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower() Then
+                If Core.Player.ItemData.ToLower(Globalization.CultureInfo.InvariantCulture) = (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower(Globalization.CultureInfo.InvariantCulture) Then
                     Return True
                 Else
                     Return False
@@ -180,11 +180,11 @@
         Screen.Level.Entities.Remove(ItemObject)
 
         If Core.Player.ItemData = "" Then
-            Core.Player.ItemData = (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower()
+            Core.Player.ItemData = (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower(Globalization.CultureInfo.InvariantCulture)
         Else
             Dim IDs() As String = Core.Player.ItemData.Split(CChar(","))
-            If IDs.Contains((Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower()) = False Then
-                Core.Player.ItemData &= "," & (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower()
+            If IDs.Contains((Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
+                Core.Player.ItemData &= "," & (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower(Globalization.CultureInfo.InvariantCulture)
             End If
         End If
     End Sub

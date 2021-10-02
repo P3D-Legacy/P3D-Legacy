@@ -107,11 +107,11 @@
                         Dim TagContent As String = Tag.Remove(0, Tag.IndexOf("[") + 1)
                         TagContent = TagContent.Remove(TagContent.IndexOf("]"))
 
-                        Tags.Add(TagName.ToLower(), TagContent)
+                        Tags.Add(TagName.ToLower(Globalization.CultureInfo.InvariantCulture), TagContent)
                     End If
                 Next
 
-                Select Case Tags("placetype").ToLower()
+                Select Case Tags("placetype").ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "city"
                         Dim Name As String = Tags("name")
                         Dim MapFiles() As String = Tags("mapfiles").Split(CChar(","))
@@ -120,7 +120,7 @@
 
                         Dim CitySize As City.CitySize = City.CitySize.Small
 
-                        Select Case Size.ToLower()
+                        Select Case Size.ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "small", "0"
                                 CitySize = City.CitySize.Small
                             Case "vertical", "1"
@@ -147,7 +147,7 @@
 
                         Dim RouteDirection As Route.RouteDirections = Route.RouteDirections.Horizontal
 
-                        Select Case Tags("direction").ToLower()
+                        Select Case Tags("direction").ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "horizontal", "0"
                                 RouteDirection = Route.RouteDirections.Horizontal
                             Case "vertical", "1"
@@ -184,7 +184,7 @@
 
                         Dim RouteType As Route.RouteTypes = Route.RouteTypes.Land
 
-                        Select Case Tags("routetype").ToLower()
+                        Select Case Tags("routetype").ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "land", "0"
                                 RouteType = Route.RouteTypes.Land
                             Case "water", "1"
@@ -206,7 +206,7 @@
 
                         Dim PlaceSize As Place.PlaceSizes = Place.PlaceSizes.Small
 
-                        Select Case Size.ToLower()
+                        Select Case Size.ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "small", "0"
                                 PlaceSize = Place.PlaceSizes.Small
                             Case "vertical", "1"
@@ -420,12 +420,12 @@
         If drawObjects(1) = True Then
             For Each Route As Route In routes
                 Dim isSelected As Boolean = False
-                If Route.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                If Route.ContainFiles.Contains(Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                     isSelected = True
                 End If
 
                 Dim c As Color = Color.White
-                If flag(0).ToString().ToLower() = "fly" And Route.CanFlyTo(flag) = False Then
+                If flag(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture) = "fly" And Route.CanFlyTo(flag) = False Then
                     c = Color.Gray
                 End If
 
@@ -436,12 +436,12 @@
         If drawObjects(0) = True Then
             For Each City As City In Me.cities
                 Dim isSelected As Boolean = False
-                If City.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                If City.ContainFiles.Contains(Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                     isSelected = True
                 End If
 
                 Dim c As Color = Color.White
-                If flag(0).ToString().ToLower() = "fly" And City.CanFlyTo(flag) = False Then
+                If flag(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture) = "fly" And City.CanFlyTo(flag) = False Then
                     c = Color.Gray
                 End If
 
@@ -452,12 +452,12 @@
         If drawObjects(2) = True Then
             For Each Place As Place In places
                 Dim isSelected As Boolean = False
-                If Place.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                If Place.ContainFiles.Contains(Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                     isSelected = True
                 End If
 
                 Dim c As Color = Color.White
-                If flag(0).ToString().ToLower() = "fly" And Place.CanFlyTo(flag) = False Then
+                If flag(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture) = "fly" And Place.CanFlyTo(flag) = False Then
                     c = Color.Gray
                 End If
 
@@ -616,19 +616,19 @@
         Dim mapOffset As New Vector2(mapOffsetX, mapOffsetY)
 
         For Each City As City In Me.cities
-            If City.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+            If City.ContainFiles.Contains(Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                 v = City.getPosition()
                 r = City.getRectangle(mapOffset)
             End If
         Next
         For Each Place As Place In Me.places
-            If Place.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+            If Place.ContainFiles.Contains(Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                 v = Place.getPosition()
                 r = Place.getRectangle(mapOffset)
             End If
         Next
         For Each Route As Route In Me.routes
-            If Route.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+            If Route.ContainFiles.Contains(Level.LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                 v = Route.getPosition()
                 r = Route.getRectangle(mapOffset)
             End If
@@ -661,7 +661,7 @@
             Me.Name = Name
 
             For Each file As String In ContainFiles
-                Me.ContainFiles.Add(file.ToLower())
+                Me.ContainFiles.Add(file.ToLower(Globalization.CultureInfo.InvariantCulture))
             Next
 
             Me.PositionX = PositionX
@@ -732,7 +732,7 @@
         End Function
 
         Public Sub Click(ByVal flag() As Object)
-            Select Case flag(0).ToString().ToLower()
+            Select Case flag(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "fly"
                     If CanFlyTo(flag) Then
                         MapScreen.UseFly(FlyToFile, FlyToPosition, flag)
@@ -741,7 +741,7 @@
         End Sub
 
         Public Function CanFlyTo(ByVal flag() As Object) As Boolean
-            If flag(0).ToString().ToLower() = "fly" Then
+            If flag(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture) = "fly" Then
                 If FlyToPosition <> Nothing And FlyToFile <> "" Then
                     If Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         Return True
@@ -804,7 +804,7 @@
             Me.RouteType = RouteType
 
             For Each file As String In ContainFiles
-                Me.ContainFiles.Add(file.ToLower())
+                Me.ContainFiles.Add(file.ToLower(Globalization.CultureInfo.InvariantCulture))
             Next
 
             Me.FlyToFile = FlyToFile
@@ -906,7 +906,7 @@
         End Function
 
         Public Sub Click(ByVal flag() As Object)
-            Select Case flag(0).ToString().ToLower()
+            Select Case flag(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "fly"
                     If CanFlyTo(flag) = True Then
                         MapScreen.UseFly(FlyToFile, FlyToPosition, flag)
@@ -915,7 +915,7 @@
         End Sub
 
         Public Function CanFlyTo(ByVal flag() As Object) As Boolean
-            If flag(0).ToString().ToLower() = "fly" Then
+            If flag(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture) = "fly" Then
                 If FlyToPosition <> Nothing And FlyToFile <> "" Then
                     If Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         Return True
@@ -956,7 +956,7 @@
             Me.PlaceSize = PlaceSize
 
             For Each file As String In ContainFiles
-                Me.ContainFiles.Add(file.ToLower())
+                Me.ContainFiles.Add(file.ToLower(Globalization.CultureInfo.InvariantCulture))
             Next
 
             Me.FlyToFile = FlyToFile
@@ -1035,7 +1035,7 @@
         End Function
 
         Public Sub Click(ByVal flag() As Object)
-            Select Case flag(0).ToString().ToLower()
+            Select Case flag(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "fly"
                     If CanFlyTo(flag) = True Then
                         MapScreen.UseFly(FlyToFile, FlyToPosition, flag)
@@ -1044,7 +1044,7 @@
         End Sub
 
         Public Function CanFlyTo(ByVal flag() As Object) As Boolean
-            If flag(0).ToString().ToLower() = "fly" Then
+            If flag(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture) = "fly" Then
                 If FlyToPosition <> Nothing And FlyToFile <> "" Then
                     If Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         Return True

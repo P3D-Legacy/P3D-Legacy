@@ -10,7 +10,7 @@
             Dim command As String = GetSubClassArgumentPair(subClass).Command
             Dim argument As String = GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "pathsplit"
                     Dim index As Integer = int(argument.Remove(argument.IndexOf(",")))
                     Dim folderpath As String = argument.Remove(0, argument.IndexOf(",") + 1)

@@ -73,11 +73,11 @@
                 heal = 1
             End If
 
-            If op.Ability.Name.ToLower() = "liquid ooze" And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
+            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "liquid ooze" And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                 BattleScreen.Battle.ReduceHP(heal, own, own, BattleScreen, "Liquid Ooze damaged " & p.GetDisplayName() & "!", "liquidooze")
             Else
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "big root" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "big root" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         heal = CInt(Math.Ceiling(damage * (80 / 100)))
                     End If
                 End If

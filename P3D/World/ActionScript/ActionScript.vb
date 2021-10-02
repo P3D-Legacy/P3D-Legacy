@@ -160,8 +160,8 @@ nextScript:
         Dim i As Integer = 0
         Dim l As ScriptLevel = ScriptLevels(ScriptLevelIndex)
         For Each newScript As String In ScriptData
-            If i = 0 And newScript.ToLower().StartsWith("version=") Then
-                l.ScriptVersion = CInt(newScript.ToLower().Remove(0, ("version=").Length))
+            If i = 0 And newScript.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("version=") Then
+                l.ScriptVersion = CInt(newScript.ToLower(Globalization.CultureInfo.InvariantCulture).Remove(0, ("version=").Length))
                 l.CurrentLine += 1
             Else
                 While newScript.StartsWith(" ") = True Or newScript.StartsWith(StringHelper.Tab) = True
@@ -199,7 +199,7 @@ nextScript:
                         l.Switched(l.WhenIndex) = True
                     End If
                 Case Script.ScriptTypes.Command
-                    If s.ScriptV2.Value.ToLower().StartsWith("options.show(") = True And first = False Then
+                    If s.ScriptV2.Value.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("options.show(") = True And first = False Then
                         l.WhenIndex += 1
                         l.WaitingEndWhen(l.WhenIndex) = True
                         l.Switched(l.WhenIndex) = True
@@ -509,7 +509,7 @@ nextScript:
                 Dim lType As String = line.Remove(0, 1)
                 lType = lType.Remove(lType.IndexOf("|"))
 
-                If lName <> name Or lType.ToLower() <> type.ToLower() Then
+                If lName <> name Or lType.ToLower(Globalization.CultureInfo.InvariantCulture) <> type.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                     If newData <> "" Then
                         newData &= ","
                     End If
@@ -539,7 +539,7 @@ nextScript:
                 Dim lType As String = line.Remove(0, 1)
                 lType = lType.Remove(lType.IndexOf("|"))
 
-                If lName.ToLower() = name.ToLower() Then
+                If lName.ToLower(Globalization.CultureInfo.InvariantCulture) = name.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                     newData &= "[" & lType & "|" & newValue & "]" & name
                 Else
                     newData &= line
@@ -562,7 +562,7 @@ nextScript:
             If line.StartsWith("[") = True And line.Contains("]") = True And line.EndsWith("]") = False Then
                 Dim lName As String = line.Remove(0, line.IndexOf("]") + 1)
 
-                If lName.ToLower() = Name.ToLower() Then
+                If lName.ToLower(Globalization.CultureInfo.InvariantCulture) = Name.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                     Dim lType As String = line.Remove(0, 1)
                     lType = lType.Remove(lType.IndexOf("|"))
                     Dim lValue As String = line.Remove(0, line.IndexOf("|") + 1)

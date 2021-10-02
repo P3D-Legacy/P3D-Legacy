@@ -426,7 +426,7 @@
         Private Function GetAttack(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal move As Attack) As RoundConst
             'TODO: Reset rage counters
 
-            Select Case move.Name.ToLower()
+            Select Case move.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "metronome"
                     If move.CurrentPP > 0 Then
                         move.CurrentPP -= 1
@@ -1052,7 +1052,7 @@
                 End If
             End With
 
-            If p.Item IsNot Nothing AndAlso p.Item.Name.ToLower() = "power herb" AndAlso BattleScreen.CanUseItems Then
+            If p.Item IsNot Nothing AndAlso p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "power herb" AndAlso BattleScreen.CanUseItems Then
                 Return False
             End If
             Select Case moveUsed.Name.ToLower
@@ -1148,7 +1148,7 @@
             TriggerItemEffect(BattleScreen, False)
 
             'Transform Aegislash with Stance Change ability.
-            If p.Ability.Name.ToLower() = "stance change" AndAlso p.Number = 681 Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "stance change" AndAlso p.Number = 681 Then
                 If p.AdditionalData = "" Then
                     If moveUsed.IsDamagingMove Then
                         p.AdditionalData = "blade"
@@ -1241,7 +1241,7 @@
                 End If
             End If
 
-            If p.Ability.Name.ToLower() = "truant" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "truant" Then
                 Dim truantTurn As Integer = BattleScreen.FieldEffects.OwnTruantRound
                 If Not own Then
                     truantTurn = BattleScreen.FieldEffects.OppTruantRound
@@ -1259,7 +1259,7 @@
 
             If own = True Then
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "choice band" Or p.Item.Name.ToLower() = "choice specs" Or p.Item.Name.ToLower() = "choice scarf" Then
+                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "choice band" Or p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "choice specs" Or p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "choice scarf" Then
                         If Not BattleScreen.FieldEffects.OwnChoiceMove Is Nothing Then
                             If Not moveUsed Is BattleScreen.FieldEffects.OwnChoiceMove Then
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.Name & "!"))
@@ -1272,7 +1272,7 @@
                 End If
             Else
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "choice band" Or p.Item.Name.ToLower() = "choice specs" Or p.Item.Name.ToLower() = "choice scarf" Then
+                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "choice band" Or p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "choice specs" Or p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "choice scarf" Then
                         If Not BattleScreen.FieldEffects.OppChoiceMove Is Nothing Then
                             If Not moveUsed Is BattleScreen.FieldEffects.OppChoiceMove Then
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.Name & "!"))
@@ -1315,7 +1315,7 @@
             End If
 
             If p.HP > 0 And p.Status <> Pokemon.StatusProblems.Fainted Then
-                If op.Ability.Name.ToLower() = "cacophony" AndAlso moveUsed.IsSoundMove = True Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "cacophony" AndAlso moveUsed.IsSoundMove = True Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " prevented the sound-based move with Cacophony!"))
                         moveUsed.MoveFailsSoundproof(own, BattleScreen)
@@ -1323,7 +1323,7 @@
                     End If
                 End If
 
-                If op.Ability.Name.ToLower() = "soundproof" AndAlso moveUsed.IsSoundMove = True Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "soundproof" AndAlso moveUsed.IsSoundMove = True Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " prevented the sound-based move with Soundproof!"))
                         moveUsed.MoveFailsSoundproof(own, BattleScreen)
@@ -1331,7 +1331,7 @@
                     End If
                 End If
 
-                If op.Ability.Name.ToLower() = "sturdy" AndAlso moveUsed.IsOneHitKOMove = True Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sturdy" AndAlso moveUsed.IsOneHitKOMove = True Then
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Sturdy prevented any damage from the 1-Hit-KO move."))
                     Exit Sub
                 End If
@@ -1368,7 +1368,7 @@
                 p.RemoveVolatileStatus(Pokemon.VolatileStatus.Flinch)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " flinched and couldn't move!"))
                 moveUsed.InflictedFlinch(own, BattleScreen)
-                If p.Ability.Name.ToLower() = "steadfast" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "steadfast" Then
                     RaiseStat(own, Not own, BattleScreen, "Speed", 1, "", "steadfast")
                 End If
                 Exit Sub
@@ -1469,7 +1469,7 @@
 
             If moveUsed.DeductPP(own, BattleScreen) = True Then
                 moveUsed.CurrentPP -= 1
-                If op.Ability.Name.ToLower() = "pressure" And moveUsed.CurrentPP > 0 Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "pressure" And moveUsed.CurrentPP > 0 Then
                     moveUsed.CurrentPP -= 1
                 End If
             End If
@@ -1653,7 +1653,7 @@
                         End If
                     End If
                 End If
-                If op.Ability.Name.ToLower() = "volt absorb" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Electric And moveWorks = True And moveUsed.Category <> Attack.Categories.Status Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "volt absorb" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Electric And moveWorks = True And moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
                         If oppHealblock > 0 Then
@@ -1667,7 +1667,7 @@
                         End If
                     End If
                 End If
-                If op.Ability.Name.ToLower() = "motor drive" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Electric And moveWorks = True Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "motor drive" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Electric And moveWorks = True Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
                         ChangeCameraAngel(2, own, BattleScreen)
@@ -1678,7 +1678,7 @@
                         End If
                     End If
                 End If
-                If op.Ability.Name.ToLower() = "water absorb" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Water And moveWorks = True And moveUsed.Category <> Attack.Categories.Status Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "water absorb" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Water And moveWorks = True And moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
                         If oppHealblock > 0 Then
@@ -1692,7 +1692,7 @@
                         End If
                     End If
                 End If
-                If op.Ability.Name.ToLower() = "dry skin" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Water And moveWorks = True And moveUsed.Category <> Attack.Categories.Status Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "dry skin" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Water And moveWorks = True And moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
                         If oppHealblock > 0 Then
@@ -1706,7 +1706,7 @@
                         End If
                     End If
                 End If
-                If op.Ability.Name.ToLower() = "sap sipper" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Grass AndAlso moveWorks = True AndAlso moveUsed.Category <> Attack.Categories.Status Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sap sipper" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Grass AndAlso moveWorks = True AndAlso moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
                         ChangeCameraAngel(2, own, BattleScreen)
@@ -1717,7 +1717,7 @@
                         End If
                     End If
                 End If
-                If op.Ability.Name.ToLower() = "flash fire" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Fire AndAlso moveWorks = True Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "flash fire" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Fire AndAlso moveWorks = True Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
                         ChangeCameraAngel(2, own, BattleScreen)
@@ -1729,7 +1729,7 @@
                         End If
                     End If
                 End If
-                If op.Ability.Name.ToLower() = "storm drain" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Water AndAlso moveWorks = True AndAlso moveUsed.Category <> Attack.Categories.Status Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "storm drain" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Water AndAlso moveWorks = True AndAlso moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
                         ChangeCameraAngel(2, own, BattleScreen)
@@ -1740,7 +1740,7 @@
                         End If
                     End If
                 End If
-                If op.Ability.Name.ToLower() = "lightningrod" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Electric AndAlso moveWorks = True AndAlso moveUsed.Category <> Attack.Categories.Status Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "lightningrod" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Electric AndAlso moveWorks = True AndAlso moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
                         ChangeCameraAngel(2, own, BattleScreen)
@@ -1766,7 +1766,7 @@
                     End If
                 End If
 
-                If op.Ability.Name.ToLower() = "bulletproof" And moveUsed.IsBulletMove = True Then
+                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "bulletproof" And moveUsed.IsBulletMove = True Then
                     moveWorks = False
                     BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & " prevents damage with its Bulletproof ability!"))
                 End If
@@ -1786,7 +1786,7 @@
                         End If
                         If protect > 0 And moveUsed.ProtectAffected = True Then
                             Dim protectWorks As Boolean = True
-                            If p.Ability.Name.ToLower() = "no guard" Then
+                            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "no guard" Then
                                 If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
                                     protectWorks = False
                                 End If
@@ -1804,7 +1804,7 @@
                         End If
                         If detect > 0 And moveUsed.ProtectAffected = True Then
                             Dim detectWorks As Boolean = True
-                            If p.Ability.Name.ToLower() = "no guard" Then
+                            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "no guard" Then
                                 If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
                                     detectWorks = False
                                 End If
@@ -1822,7 +1822,7 @@
                         End If
                         If kingsshield > 0 And moveUsed.ProtectAffected = True And moveUsed.Category <> Attack.Categories.Status Then
                             Dim kingsshieldWorks As Boolean = True
-                            If p.Ability.Name.ToLower() = "no guard" Then
+                            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "no guard" Then
                                 If Core.Random.Next(0, 100) < (100 - moveUsed.GetAccuracy(own, BattleScreen)) Then
                                     kingsshieldWorks = False
                                 End If
@@ -1841,7 +1841,7 @@
                     End If
 
                     'Protean Ability:
-                    If p.Ability.Name.ToLower() = "protean" Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "protean" Then
                         If p.Type1.Type <> moveUsed.Type.Type Or p.Type2.Type <> Element.Types.Blank Then
                             p.Type1.Type = moveUsed.Type.Type
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & " due to Protean."))
@@ -1853,7 +1853,7 @@
 
                     If moveUsed.IsDamagingMove = True Then
                         ChangeCameraAngel(2, own, BattleScreen)
-                        If op.Ability.Name.ToLower() = "wonder guard" And effectiveness <= 1.0F And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True And moveUsed.IsWonderGuardAffected = True Then
+                        If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "wonder guard" And effectiveness <= 1.0F And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True And moveUsed.IsWonderGuardAffected = True Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "s Wonder Guard blocked the attack!"))
                             Exit Sub
                         End If
@@ -1912,7 +1912,7 @@
                                         DirectKOED = False
                                     End If
 
-                                    If DirectKOED = True And op.Ability.Name.ToLower() = "sturdy" And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
+                                    If DirectKOED = True And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sturdy" And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                                         DirectKOED = False
                                         sturdyWorked = True
                                         Damage = op.MaxHP - 1
@@ -2055,7 +2055,7 @@
                                 End If
                                 BattleScreen.BattleQuery.Add(New TextQueryObject("It's a critical hit!"))
 
-                                If op.Ability.Name.ToLower() = "anger point" And op.StatAttack < 6 And op.HP > 0 Then
+                                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "anger point" And op.StatAttack < 6 And op.HP > 0 Then
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "s Anger Point maxed it's attack!"))
                                     op.StatAttack = 6
                                 End If
@@ -2065,12 +2065,12 @@
                                 Dim canUseEffect As Boolean = True
                                 Dim multiUseEffect As Boolean = True
 
-                                If op.Ability.Name.ToLower() = "shield dust" AndAlso moveUsed.HasSecondaryEffect = True Then
+                                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "shield dust" AndAlso moveUsed.HasSecondaryEffect = True Then
                                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                                         canUseEffect = False
                                     End If
                                 End If
-                                If p.Ability.Name.ToLower() = "sheer force" AndAlso moveUsed.HasSecondaryEffect = True Then
+                                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sheer force" AndAlso moveUsed.HasSecondaryEffect = True Then
                                     canUseEffect = False
                                 End If
 
@@ -2100,7 +2100,7 @@
                                 End If
                                 If op.HP > 0 AndAlso op.Status <> Pokemon.StatusProblems.Fainted Then
                                     If Not p.Item Is Nothing Then
-                                        If p.Item.Name.ToLower() = "king's rock" Or p.Item.Name.ToLower() = "razor fang" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                        If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "king's rock" Or p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "razor fang" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                             If Core.Random.Next(0, 100) < 10 Then
                                                 InflictFlinch(Not own, own, BattleScreen, "", "item:king's rock")
                                             End If
@@ -2129,7 +2129,7 @@
 
                             'ABILITY SHIT GOES HERE:
                             If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) Then
-                                Select Case op.Ability.Name.ToLower()
+                                Select Case op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                                     Case "color change"
                                         If op.HP > 0 Then
                                             If op.Type1.Type <> moveUsed.GetAttackType(own, BattleScreen).Type OrElse op.Type2.Type <> Element.Types.Blank Then
@@ -2206,7 +2206,7 @@
                                         End If
                                     Case "mummy"
                                         If moveUsed.MakesContact = True Then
-                                            If p.Ability.Name.ToLower() <> "multitype" And p.Ability.Name.ToLower() <> "mummy" Then
+                                            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "multitype" And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "mummy" Then
                                                 p.Ability = Ability.GetAbilityByID(152)
                                                 ChangeCameraAngel(1, own, BattleScreen)
                                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s ability changed to Mummy!"))
@@ -2240,13 +2240,13 @@
                                                 If p.Item.IsMegaStone = True Then
                                                     canSteal = False
                                                 End If
-                                                If p.Ability.Name.ToLower() = "multitype" AndAlso p.Item.Name.ToLower().EndsWith(" plate") Then
+                                                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "multitype" AndAlso p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture).EndsWith(" plate") Then
                                                     canSteal = False
                                                 End If
-                                                If p.Item.Name.ToLower() = "griseous orb" And p.Number = 487 Then
+                                                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "griseous orb" And p.Number = 487 Then
                                                     canSteal = False
                                                 End If
-                                                If p.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
+                                                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture).EndsWith(" drive") = True AndAlso p.Number = 649 Then
                                                     canSteal = False
                                                 End If
                                                 If canSteal Then
@@ -2255,7 +2255,7 @@
                                                     p.OriginalItem = Item.GetItemByID(p.Item.ID)
                                                     p.OriginalItem.AdditionalData = p.Item.AdditionalData
 
-                                                    If BattleScreen.Battle.RemoveHeldItem(own, Not own, BattleScreen, op.GetDisplayName() & " stole an item from " & p.GetDisplayName() & " due to " & op.Ability.Name & "!", op.Ability.Name.ToLower()) Then
+                                                    If BattleScreen.Battle.RemoveHeldItem(own, Not own, BattleScreen, op.GetDisplayName() & " stole an item from " & p.GetDisplayName() & " due to " & op.Ability.Name & "!", op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) Then
                                                         If own = True Then
                                                             BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
                                                         End If
@@ -2269,7 +2269,7 @@
 
 
                             If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) Then
-                                Select Case p.Ability.Name.ToLower()
+                                Select Case p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                                     Case "poison touch"
                                         If moveUsed.MakesContact = True AndAlso op.Status = Pokemon.StatusProblems.None Then
                                             If Core.Random.Next(0, 100) < 30 Then
@@ -2286,13 +2286,13 @@
                                             If op.Item.IsMegaStone = True Then
                                                 canSteal = False
                                             End If
-                                            If op.Ability.Name.ToLower() = "multitype" AndAlso op.Item.Name.ToLower().EndsWith(" plate") Then
+                                            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "multitype" AndAlso op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture).EndsWith(" plate") Then
                                                 canSteal = False
                                             End If
-                                            If op.Item.Name.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
+                                            If op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "griseous orb" AndAlso op.Number = 487 Then
                                                 canSteal = False
                                             End If
-                                            If op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+                                            If op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture).EndsWith(" drive") = True AndAlso op.Number = 649 Then
                                                 canSteal = False
                                             End If
                                             If canSteal Then
@@ -2301,7 +2301,7 @@
                                                 op.OriginalItem = Item.GetItemByID(op.Item.ID)
                                                 op.OriginalItem.AdditionalData = op.Item.AdditionalData
 
-                                                If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " stole an item from " & op.GetDisplayName() & " due to " & p.Ability.Name & "!", p.Ability.Name.ToLower()) Then
+                                                If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " stole an item from " & op.GetDisplayName() & " due to " & p.Ability.Name & "!", p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) Then
                                                     If own = False Then
                                                         BattleScreen.FieldEffects.StolenItemIDs.Add(ItemID)
                                                     End If
@@ -2315,7 +2315,7 @@
                             If substitute = 0 And op.HP > 0 Then
                                 If Not op.Item Is Nothing Then
                                     If BattleScreen.FieldEffects.CanUseItem(Not own) AndAlso BattleScreen.FieldEffects.CanUseOwnItem(Not own, BattleScreen) = True Then
-                                        Select Case op.Item.Name.ToLower()
+                                        Select Case op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                                             Case "enigma"
                                                 If RemoveHeldItem(Not own, Not own, BattleScreen, op.GetDisplayName() & " used the Enigma Berry to recover.", "berry:enigma") = True Then
                                                     GainHP(CInt(Math.Ceiling(op.MaxHP / 4)), Not own, Not own, BattleScreen, "", "berry:enigma")
@@ -2419,8 +2419,8 @@
                         'ABILITY SHIT GOES HERE
 
                         If Not p.Item Is Nothing Then
-                            If p.Item.Name.ToLower() = "sticky barb" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                                If p.Ability.Name.ToLower() <> "magic guard" Then
+                            If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sticky barb" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" Then
                                     ReduceHP(CInt(Math.Floor(p.MaxHP / 8)), True, True, BattleScreen, p.GetDisplayName() & " was harmed by Sticky Barb.", "stickybarb")
                                 End If
 
@@ -2435,13 +2435,13 @@
 
                         If p.HP > 0 Then
                             If Not p.Item Is Nothing AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                                Select Case p.Item.Name.ToLower()
+                                Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                                     Case "shell bell"
                                         If p.HP < p.MaxHP Then
                                             GainHP(CInt(AllDamage / 8), own, own, BattleScreen, p.GetDisplayName() & " gains some HP due to the Shell Bell.", "shellbell")
                                         End If
                                     Case "life orb"
-                                        If p.Ability.Name.ToLower() <> "magic guard" AndAlso p.Ability.Name.ToLower() <> "sheer force" Then
+                                        If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" AndAlso p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "sheer force" Then
                                             ReduceHP(CInt(p.MaxHP / 10), own, own, BattleScreen, p.GetDisplayName() & " loses HP due to Life Orb.", "lifeorb")
                                         End If
                                 End Select
@@ -2459,7 +2459,7 @@
                         Else
                             Dim magicReflect As String = ""
                             If moveUsed.MagicCoatAffected = True Then
-                                If op.Ability.Name.ToLower() = "magic bounce" And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
+                                If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "magic bounce" And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                                     magicReflect = "Magic Bounce"
                                 Else
                                     If own = True And BattleScreen.FieldEffects.OppMagicCoat > 0 Or own = False And BattleScreen.FieldEffects.OwnMagicCoat > 0 Then
@@ -2550,7 +2550,7 @@
             End If
             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
 
-            Dim str = p.AdditionalData.ToLower()
+            Dim str = p.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
             Select Case str
                 Case "mega", "mega_x", "mega_y", "primal", "blade"
                     p.AdditionalData = PokemonForms.GetInitialAdditionalData(p)
@@ -2610,7 +2610,7 @@
                 Return False
             End If
 
-            If p.Ability.Name.ToLower() = "inner focus" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "inner focus" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " won't flinch because of its Inner Focus!"))
                 Return False
@@ -2671,7 +2671,7 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
+            If substitute > 0 AndAlso op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the burn."))
                 Return False
@@ -2679,12 +2679,12 @@
                 If p.Type1.Type = Element.Types.Fire Or p.Type2.Type = Element.Types.Fire Then
                     Return False
                 Else
-                    If p.Ability.Name.ToLower() = "water veil" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "water veil" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Water Veil prevented the burn."))
                         Return False
                     Else
-                        If p.Ability.Name.ToLower.ToLower() = "leaf guard" And BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                        If p.Ability.Name.ToLower.ToLower(Globalization.CultureInfo.InvariantCulture) = "leaf guard" And BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the burn."))
                             Return False
@@ -2693,7 +2693,7 @@
                             If own = False Then
                                 safeGuard = BattleScreen.FieldEffects.OppSafeguard
                             End If
-                            If safeGuard > 0 And op.Ability.Name.ToLower() <> "infiltrator" Then
+                            If safeGuard > 0 And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" Then
                                 Me.ChangeCameraAngel(1, own, BattleScreen)
                                 BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the burn."))
                                 Return False
@@ -2711,12 +2711,12 @@
                                         BattleScreen.BattleQuery.Add(New TextQueryObject(message))
                                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " got burned!"))
                                 End Select
-                                If p.Ability.Name.ToLower() = "synchronize" AndAlso from <> own Then
+                                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "synchronize" AndAlso from <> own Then
                                     Me.InflictBurn(Not own, Not own, BattleScreen, "Synchronize passed over the burn.", "synchronize")
                                 End If
 
                                 If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "rawst" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "rawst" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:rawst") = True Then
                                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Rawst Berry cured the burn of " & p.GetDisplayName() & "!", "berry:rawst")
@@ -2725,7 +2725,7 @@
                                 End If
 
                                 If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the burn of " & p.GetDisplayName() & "!", "berry:lum")
@@ -2772,7 +2772,7 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
+            If substitute > 0 And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the freeze effect."))
                 Return False
@@ -2787,7 +2787,7 @@
                             Return False
                         End If
                     End If
-                    If p.Ability.Name.ToLower() = "magma armor" Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "magma armor" Then
                         If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                             If cause <> "move:triattack" And cause <> "move:secretpower" Then
                                 Me.ChangeCameraAngel(1, own, BattleScreen)
@@ -2796,7 +2796,7 @@
                             End If
                         End If
                     End If
-                    If p.Ability.Name.ToLower.ToLower() = "leaf guard" And BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                    If p.Ability.Name.ToLower.ToLower(Globalization.CultureInfo.InvariantCulture) = "leaf guard" And BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the freeze."))
                         Return False
@@ -2805,7 +2805,7 @@
                         If own = False Then
                             safeGuard = BattleScreen.FieldEffects.OppSafeguard
                         End If
-                        If safeGuard > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" Then
+                        If safeGuard > 0 AndAlso op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" Then
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the freezing."))
                             Return False
@@ -2823,12 +2823,12 @@
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(message))
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " was frozen solid!"))
                             End Select
-                            If p.Ability.Name.ToLower() = "synchronize" AndAlso from <> own Then
+                            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "synchronize" AndAlso from <> own Then
                                 Me.InflictFreeze(Not own, Not own, BattleScreen, "Synchronize passed over the freeze.", "synchronize")
                             End If
 
                             If Not p.Item Is Nothing Then
-                                If p.Item.Name.ToLower() = "aspear" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "aspear" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:aspear") = True Then
                                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Aspear Berry thraw out " & p.GetDisplayName() & "!", "berry:aspear")
@@ -2837,7 +2837,7 @@
                             End If
 
                             If Not p.Item Is Nothing Then
-                                If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Lum Berry thraw out " & p.GetDisplayName() & "!", "berry:lum")
@@ -2889,17 +2889,17 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" AndAlso from <> own Then
+            If substitute > 0 AndAlso op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" AndAlso from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the paralysis."))
                 Return False
             Else
-                If p.Ability.Name.ToLower() = "limber" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "limber" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                     Me.ChangeCameraAngel(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Limber prevented the paralysis."))
                     Return False
                 Else
-                    If p.Ability.Name.ToLower.ToLower() = "leaf guard" AndAlso BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny AndAlso from <> own AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                    If p.Ability.Name.ToLower.ToLower(Globalization.CultureInfo.InvariantCulture) = "leaf guard" AndAlso BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny AndAlso from <> own AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the paralysis."))
                         Return False
@@ -2908,7 +2908,7 @@
                         If own = False Then
                             safeGuard = BattleScreen.FieldEffects.OppSafeguard
                         End If
-                        If safeGuard > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" Then
+                        If safeGuard > 0 AndAlso op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" Then
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the paralysis."))
                             Return False
@@ -2926,12 +2926,12 @@
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(message))
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is paralyzed!" & Environment.NewLine & "It can't move!"))
                             End Select
-                            If p.Ability.Name.ToLower() = "synchronize" AndAlso from <> own Then
+                            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "synchronize" AndAlso from <> own Then
                                 Me.InflictParalysis(Not own, Not own, BattleScreen, "Synchronize passed over the paralysis.", "synchronize")
                             End If
 
                             If Not p.Item Is Nothing Then
-                                If p.Item.Name.ToLower() = "cheri" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "cheri" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:cheri") = True Then
                                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Cheri Berry cured the paralysis of " & p.GetDisplayName() & "!", "berry:cheri")
@@ -2940,7 +2940,7 @@
                             End If
 
                             If Not p.Item Is Nothing Then
-                                If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the paralyzis of " & p.GetDisplayName() & "!", "berry:lum")
@@ -2982,7 +2982,7 @@
                 SleepTurns = Core.Random.Next(1, 4)
             End If
 
-            If p.Ability.Name.ToLower() = "early bird" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "early bird" Then
                 SleepTurns = CInt(Math.Floor(SleepTurns / 2))
             End If
 
@@ -3002,22 +3002,22 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" AndAlso from <> own Then
+            If substitute > 0 AndAlso op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" AndAlso from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the sleep effect."))
                 Return False
             Else
-                If p.Ability.Name.ToLower() = "vital spirit" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "vital spirit" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                     Me.ChangeCameraAngel(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Vital Spirit prevented the sleep."))
                     Return False
                 Else
-                    If p.Ability.Name.ToLower() = "insomnia" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "insomnia" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Insomnia prevented the sleep."))
                         Return False
                     Else
-                        If p.Ability.Name.ToLower() = "sweet veil" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                        If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sweet veil" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Sweet Veil prevented the sleep."))
                             Return False
@@ -3035,12 +3035,12 @@
                                 If own = False Then
                                     safeGuard = BattleScreen.FieldEffects.OppSafeguard
                                 End If
-                                If safeGuard > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" Then
+                                If safeGuard > 0 AndAlso op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" Then
                                     Me.ChangeCameraAngel(1, own, BattleScreen)
                                     BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the sleep."))
                                     Return False
                                 Else
-                                    If p.Ability.Name.ToLower.ToLower() = "leaf guard" AndAlso BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                                    If p.Ability.Name.ToLower.ToLower(Globalization.CultureInfo.InvariantCulture) = "leaf guard" AndAlso BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                                         Me.ChangeCameraAngel(1, own, BattleScreen)
                                         BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the sleep."))
                                         Return False
@@ -3071,7 +3071,7 @@
                                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " fell asleep!"))
                                         End Select
                                         If Not p.Item Is Nothing Then
-                                            If p.Item.Name.ToLower() = "chesto" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                            If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "chesto" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:chesto") = True Then
                                                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                                     CureStatusProblem(own, own, BattleScreen, "The Chesto Berry woke up " & p.GetDisplayName() & "!", "berry:chesto")
@@ -3080,7 +3080,7 @@
                                         End If
 
                                         If Not p.Item Is Nothing Then
-                                            If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                            If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                                     CureStatusProblem(own, own, BattleScreen, "The Lum Berry woke up " & p.GetDisplayName() & "!", "berry:lum")
@@ -3128,7 +3128,7 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" AndAlso from <> own Then
+            If substitute > 0 And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" AndAlso from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the poison."))
                 Return False
@@ -3136,7 +3136,7 @@
                 If p.Type1.Type = Element.Types.Steel OrElse p.Type1.Type = Element.Types.Poison OrElse p.Type2.Type = Element.Types.Steel OrElse p.Type2.Type = Element.Types.Poison Then
                     Return False
                 Else
-                    If p.Ability.Name.ToLower() = "immunity" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "immunity" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Immunity prevented the poison."))
                         Return False
@@ -3145,12 +3145,12 @@
                         If own = False Then
                             safeGuard = BattleScreen.FieldEffects.OppSafeguard
                         End If
-                        If safeGuard > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" Then
+                        If safeGuard > 0 AndAlso op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" Then
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the poison."))
                             Return False
                         Else
-                            If p.Ability.Name.ToLower.ToLower() = "leaf guard" AndAlso BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny AndAlso from <> own AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                            If p.Ability.Name.ToLower.ToLower(Globalization.CultureInfo.InvariantCulture) = "leaf guard" AndAlso BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny AndAlso from <> own AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                                 Me.ChangeCameraAngel(1, own, BattleScreen)
                                 BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the poison."))
                                 Return False
@@ -3181,7 +3181,7 @@
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is poisoned!"))
                                     End Select
                                 End If
-                                If p.Ability.Name.ToLower() = "synchronize" AndAlso from <> own Then
+                                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "synchronize" AndAlso from <> own Then
                                     Dim addBad As String = ""
                                     If bad = True Then
                                         addBad = " bad"
@@ -3191,7 +3191,7 @@
                                 End If
 
                                 If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "pecha" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "pecha" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:pecha") = True Then
                                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Pecha Berry cured the poison of " & p.GetDisplayName() & "!", "berry:pecha")
@@ -3200,7 +3200,7 @@
                                 End If
 
                                 If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the poison of " & p.GetDisplayName() & "!", "berry:lum")
@@ -3244,11 +3244,11 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" AndAlso from <> own Then
+            If substitute > 0 AndAlso op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" AndAlso from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the confusion."))
                 Return False
-            ElseIf p.Ability.Name.ToLower() = "own tempo" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+            ElseIf p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "own tempo" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("Own Tempo prevented the confusion."))
                 Return False
@@ -3271,7 +3271,7 @@
                 End If
 
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "persim" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "persim" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:persim") = True Then
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
@@ -3283,7 +3283,7 @@
                             End If
                             p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                         End If
-                    ElseIf p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    ElseIf p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
@@ -3320,7 +3320,7 @@
                     If own = False Then
                         mist = BattleScreen.FieldEffects.OppMist
                     End If
-                    If mist > 0 And op.Ability.Name.ToLower() <> "infiltrator" Then
+                    If mist > 0 And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" Then
                         BattleScreen.BattleQuery.Add(New TextQueryObject("The mist prevented the status change!"))
                         Return False
                     End If
@@ -3331,25 +3331,25 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
+            If substitute > 0 And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the stat change."))
                 Return False
             End If
 
-            If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 If cause <> "contrary" Then
                     Return LowerStat(own, own, BattleScreen, Stat, val, message & "Contrary reverted the stat change!", "contrary")
                 End If
             End If
 
-            If p.Ability.Name.ToLower() = "simple" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "simple" Then
                 If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                     val *= 2
                 End If
             End If
 
-            Dim statString As String = Stat.ToLower()
+            Dim statString As String = Stat.ToLower(Globalization.CultureInfo.InvariantCulture)
             Select Case statString
                 Case "spdefense"
                     statString = "special attack"
@@ -3358,7 +3358,7 @@
             End Select
 
             Dim statC As Integer = 0
-            Select Case Stat.ToLower()
+            Select Case Stat.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "attack"
                     statC = p.StatAttack
                 Case "defense"
@@ -3539,7 +3539,7 @@
                     If own = False Then
                         mist = BattleScreen.FieldEffects.OppMist
                     End If
-                    If mist > 0 And op.Ability.Name.ToLower() <> "infiltrator" Then
+                    If mist > 0 And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" Then
                         BattleScreen.BattleQuery.Add(New TextQueryObject("The Mist prevented the status change!"))
                         Return False
                     End If
@@ -3550,25 +3550,25 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
+            If substitute > 0 And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the stat change."))
                 Return False
             End If
 
-            If p.Ability.Name.ToLower() = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "contrary" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 If cause <> "contrary" Then
                     Return RaiseStat(own, own, BattleScreen, Stat, val, message & "Contrary reverted the stat change!", "contrary")
                 End If
             End If
 
-            If p.Ability.Name.ToLower() = "simple" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "simple" Then
                 If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                     val *= 2
                 End If
             End If
 
-            If p.Ability.Name.ToLower() = "clear body" Or p.Ability.Name.ToLower() = "white smoke" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "clear body" Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "white smoke" Then
                 If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                     If own <> from Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
@@ -3580,11 +3580,11 @@
 
 
 
-            Dim statString As String = Stat.ToLower()
+            Dim statString As String = Stat.ToLower(Globalization.CultureInfo.InvariantCulture)
 
             Select Case statString
                 Case "attack"
-                    If p.Ability.Name.ToLower() = "hyper cutter" And from <> own Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "hyper cutter" And from <> own Then
                         If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Hyper Cutter prevented attack drop!"))
@@ -3593,14 +3593,14 @@
                     End If
 
                 Case "defense"
-                    If p.Ability.Name.ToLower() = "big pecks" And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "big pecks" And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Big Pecks prevented defense drop!"))
                         Return False
                     End If
 
                 Case "accuracy"
-                    If p.Ability.Name.ToLower() = "keen eye" And from <> own Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "keen eye" And from <> own Then
                         If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                             Me.ChangeCameraAngel(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Keen Eye prevented accuracy drop!"))
@@ -3617,7 +3617,7 @@
             End Select
 
             Dim statC As Integer = 0
-            Select Case Stat.ToLower()
+            Select Case Stat.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "attack"
                     statC = p.StatAttack
                 Case "defense"
@@ -3777,11 +3777,11 @@
                     End Select
 
                     If val > 0 Then
-                        If p.Ability.Name.ToLower() = "defiant" And from <> own Then
+                        If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "defiant" And from <> own Then
                             RaiseStat(own, own, BattleScreen, "Attack", 2, p.GetDisplayName() & "'s Defiant raised its attack!", "defiant")
                         End If
 
-                        If p.Ability.Name.ToLower() = "competitive" And from <> own Then
+                        If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "competitive" And from <> own Then
                             RaiseStat(own, own, BattleScreen, "Special Attack", 2, p.GetDisplayName() & "'s Competitive raised its Special Attack!", "competitive")
                         End If
                     End If
@@ -3810,7 +3810,7 @@
                 Return False
             End If
 
-            If p.Ability.Name.ToLower() = "oblivious" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "oblivious" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("Oblivious prevented the infatuation."))
                 Return False
@@ -3819,7 +3819,7 @@
             If own = False Then
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
-            If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
+            If substitute > 0 And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" And from <> own Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the infatuation."))
                 Return False
@@ -3838,7 +3838,7 @@
                 p.AddVolatileStatus(Pokemon.VolatileStatus.Infatuation)
 
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "destiny knot" And from <> own And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "destiny knot" And from <> own And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         Me.InflictInfatuate(Not own, Not own, BattleScreen, "Destiny Knot reflects the infatuation.", "destinyknot")
                     End If
                 End If
@@ -3859,11 +3859,11 @@
                 Exit Sub
             End If
 
-            If p.Ability.Name.ToLower() = "rock head" And cause.StartsWith("move:") = True Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "rock head" And cause.StartsWith("move:") = True Then
                 Me.ChangeCameraAngel(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("Rock Head prevented the recoil damage of " & p.GetDisplayName() & "!"))
             Else
-                If p.Ability.Name.ToLower() = "magic guard" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "magic guard" Then
                     Me.ChangeCameraAngel(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Magic Guard prevented the recoil damage of " & p.GetDisplayName() & "!"))
                 Else
@@ -3966,7 +3966,7 @@
                     Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(Not own, lastMove, BattleScreen)
                     If effectiveness > 1.0F Then
                         If Not p.Item Is Nothing Then
-                            If p.Item.Name.ToLower() = "enigma" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                            If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "enigma" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:enigma") = True Then
                                     UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
                                 End If
@@ -3977,7 +3977,7 @@
 
                 If p.HP > 0 And p.HP < CInt(Math.Ceiling(p.MaxHP / 3)) Then
                     If Not p.Item Is Nothing Then
-                        If p.Item.Name.ToLower() = "oran" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                        If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "oran" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                             If RemoveHeldItem(own, own, BattleScreen, "", "berry:oran") = True Then
                                 UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
                             End If
@@ -3987,7 +3987,7 @@
                 If p.HP > 0 And p.HP < CInt(Math.Ceiling(p.MaxHP / 2)) Then
                     If Not p.Item Is Nothing Then
                         If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                            Select Case p.Item.Name.ToLower()
+                            Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                                 Case "sitrus"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:sitrus") = True Then
                                         UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
@@ -3999,7 +3999,7 @@
                 If p.HP > 0 And p.HP < CInt(Math.Ceiling(p.MaxHP / 4)) Then
                     If Not p.Item Is Nothing Then
                         If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                            Select Case p.Item.Name.ToLower()
+                            Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                                 Case "figy"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:figy") = True Then
                                         UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
@@ -4074,7 +4074,7 @@
             Dim berry As Items.Berry = CType(BerryItem, Items.Berry)
 
             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
-            Select Case BerryItem.Name.ToLower()
+            Select Case BerryItem.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "oran"
                     GainHP(10, own, from, BattleScreen, "The Oran Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:oran")
                 Case "sitrus"
@@ -4159,7 +4159,7 @@
                     GainHP(CInt(p.MaxHP / 4), own, own, BattleScreen, "The Enigma Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:enigma")
             End Select
 
-            If p.Ability.Name.ToLower() = "cheek pouch" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "cheek pouch" Then
                 GainHP(CInt(p.MaxHP / 8), own, own, BattleScreen, "Cheek Pouch healed some HP.", "cheekpouch")
             End If
         End Sub
@@ -4180,7 +4180,7 @@
                 Return False
             End If
 
-            If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) And p.Ability.Name.ToLower() = "sticky hold" And cause.StartsWith("berry:") = False Then
+            If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sticky hold" And cause.StartsWith("berry:") = False Then
                 If TestFor = False Then
                     Me.ChangeCameraAngel(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Sticky Hold prevented the item loss."))
@@ -4202,7 +4202,7 @@
 
                 p.Item = Nothing
 
-                If p.Ability.Name.ToLower() = "unburden" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "unburden" Then
                     RaiseStat(own, own, BattleScreen, "Speed", 2, "Unburden raised the speed!", "unburden")
                 End If
 
@@ -4245,7 +4245,7 @@
                         op = BattleScreen.OwnPokemon
                     End If
 
-                    If op.Ability.Name.ToLower() = "air lock" Or op.Ability.Name.ToLower() = "cloud nine" Then
+                    If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "air lock" Or op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "cloud nine" Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         Select Case message
                             Case "" 'Print default message only
@@ -4262,7 +4262,7 @@
                         Exit Sub
                     End If
 
-                    If p.Ability.Name.ToLower() = "air lock" Or p.Ability.Name.ToLower() = "cloud nine" Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "air lock" Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "cloud nine" Then
                         Me.ChangeCameraAngel(1, own, BattleScreen)
                         Select Case message
                             Case "" 'Print default message only
@@ -4283,7 +4283,7 @@
 
                     'If Not p.Item Is Nothing Then
                     '    If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                    '        Select Case p.Item.Name.ToLower()
+                    '        Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     '            Case "damp rock"
                     '                If newWeather = BattleWeather.WeatherTypes.Rain Then
                     '                    weatherRounds += 3
@@ -4346,22 +4346,22 @@
                 End If
                 Dim turns As Integer = BattleCalculation.FieldEffectTurns(BattleScreen, own)
                 If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen, 1) = True Then
-                    Select Case p.Ability.Name.ToLower()
+                    Select Case p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "drizzle"
                             ChangeWeather(own, own, BattleWeather.WeatherTypes.Rain, turns, BattleScreen, "Drizzle makes it rain!", "drizzle")
                         Case "cloud nine"
                             ChangeWeather(own, own, BattleWeather.WeatherTypes.Clear, 0, BattleScreen, "", "cloudnine")
                         Case "intimidate"
-                            If op.Ability.Name.ToLower() = "oblivious" Or op.Ability.Name.ToLower() = "inner focus" Or op.Ability.Name.ToLower() = "own tempo" Or op.Ability.Name.ToLower() = "scrappy" Then
+                            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "oblivious" Or op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "inner focus" Or op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "own tempo" Or op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "scrappy" Then
                                 .BattleQuery.Add(New TextQueryObject("Intimidate's effect was prevented!"))
                             Else
                                 LowerStat(Not own, own, BattleScreen, "Attack", 1, p.GetDisplayName() & "'s Intimidate cuts " & op.GetDisplayName() & "'s attack!", "intimidate")
                             End If
-                            If op.Ability.Name.ToLower() = "rattled" Then
+                            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "rattled" Then
                                 RaiseStat(Not own, Not own, BattleScreen, "Speed", 1, op.GetDisplayName() & "'s Rattled affected it's clairaudience.", "rattled")
                             End If
                         Case "trace"
-                            If op.Ability.Name.ToLower() <> "multitype" And op.Ability.Name.ToLower() <> "illusion" Then
+                            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "multitype" And op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "illusion" Then
                                 p.Ability = op.Ability
                                 .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " copied the ability " & op.Ability.Name & " from " & op.GetDisplayName() & "!"))
                             End If
@@ -4452,7 +4452,7 @@
                                 Dim changeType As Boolean = False
                                 Dim newType As Element = Nothing
 
-                                Select Case p.Item.Name.ToLower()
+                                Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                                     Case "draco plate"
                                         changeType = True
                                         newType = New Element(Element.Types.Dragon)
@@ -4577,7 +4577,7 @@
                 End If
                 If Not p.Item Is Nothing Then
                     If .FieldEffects.CanUseItem(own) = True And .FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                        Select Case p.Item.Name.ToLower()
+                        Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "electric seed"
                                 If .FieldEffects.ElectricTerrain > 0 And p.StatDefense < 6 Then
                                     If RemoveHeldItem(own, own, BattleScreen, "-1", "") = True Then
@@ -4626,7 +4626,7 @@
             With BattleScreen
                 Dim p As Pokemon = .OwnPokemon
 
-                If p.Ability.Name.ToLower() = "forecast" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "forecast" Then
                     Select Case .FieldEffects.Weather
                         Case BattleWeather.WeatherTypes.Rain
                             p.OriginalType1 = p.Type1
@@ -4657,7 +4657,7 @@
 
                 p = .OppPokemon
 
-                If p.Ability.Name.ToLower() = "forecast" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "forecast" Then
                     Select Case .FieldEffects.Weather
                         Case BattleWeather.WeatherTypes.Rain
                             p.OriginalType1 = p.Type1
@@ -4962,7 +4962,7 @@
                 End If
                 If .OwnPokemon.HP > 0 Then
                     If Not .OwnPokemon.Item Is Nothing Then
-                        If .OwnPokemon.Item.Name.ToLower() = "mental herb" Then
+                        If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "mental herb" Then
                             Dim usedMentalHerb As Boolean = False
                             If .OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
                                 .OwnPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
@@ -4989,7 +4989,7 @@
                                 .OwnPokemon.Item = Nothing
                             End If
                         End If
-                        If .OwnPokemon.Item.Name.ToLower() = "white herb" Then
+                        If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "white herb" Then
                             Dim hasNegativeStats As Boolean = False
                             With .OwnPokemon
                                 If .StatAttack < 0 Then
@@ -5111,7 +5111,7 @@
                 If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
                     If .OwnPokemon.Type1.Type <> Element.Types.Ground And .OwnPokemon.Type2.Type <> Element.Types.Ground And .OwnPokemon.Type1.Type <> Element.Types.Steel And .OwnPokemon.Type2.Type <> Element.Types.Steel And .OwnPokemon.Type1.Type <> Element.Types.Rock And .OwnPokemon.Type2.Type <> Element.Types.Rock Then
                         Dim sandAbilities() As String = {"sand veil", "sand rush", "sand force", "overcoat", "magic guard", "cloud nine"}
-                        If sandAbilities.Contains(.OwnPokemon.Ability.Name.ToLower()) = False Then
+                        If sandAbilities.Contains(.OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                             If .OwnPokemon.HP > 0 Then
                                 Dim sandHP As Integer = CInt(.OwnPokemon.MaxHP / 16)
                                 ReduceHP(sandHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " took damage from the sandstorm!", "sandstorm")
@@ -5124,7 +5124,7 @@
                 If .FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
                     If .OwnPokemon.Type1.Type <> Element.Types.Ice And .OwnPokemon.Type2.Type <> Element.Types.Ice Then
                         Dim hailAbilities() As String = {"ice body", "snow cloak", "overcoat", "magic guard", "cloud nine"}
-                        If hailAbilities.Contains(.OwnPokemon.Ability.Name.ToLower()) = False Then
+                        If hailAbilities.Contains(.OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                             If .OwnPokemon.HP > 0 Then
                                 Dim hailHP As Integer = CInt(.OwnPokemon.MaxHP / 16)
                                 ReduceHP(hailHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " took damage from the hailstorm!", "hail")
@@ -5143,7 +5143,7 @@
                 If .OwnPokemon.HP > 0 Then
                     Dim HPChange As Integer = 0 'Use DrySkin/Rain Dish/Hydration/Ice Body
                     Dim HPMessage As String = ""
-                    Select Case .OwnPokemon.Ability.Name.ToLower()
+                    Select Case .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "dry skin"
                             If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
                                 HPChange = -CInt(.OwnPokemon.MaxHP / 8)
@@ -5176,10 +5176,10 @@
                     End Select
                     If HPChange > 0 Then
                         If .OwnPokemon.HP < .OwnPokemon.MaxHP Then
-                            GainHP(HPChange, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " restored some HP due to " & HPMessage & ".", HPMessage.Replace(" ", "").ToLower())
+                            GainHP(HPChange, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " restored some HP due to " & HPMessage & ".", HPMessage.Replace(" ", "").ToLower(Globalization.CultureInfo.InvariantCulture))
                         End If
                     ElseIf HPChange < 0 Then
-                        ReduceHP(HPChange, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " lost some HP due to " & HPMessage & ".", HPMessage.Replace(" ", "").ToLower())
+                        ReduceHP(HPChange, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " lost some HP due to " & HPMessage & ".", HPMessage.Replace(" ", "").ToLower(Globalization.CultureInfo.InvariantCulture))
                     End If
                 End If
 
@@ -5187,7 +5187,7 @@
                     If .FieldEffects.OppHealBlock = 0 Then
                         Dim healHP As Integer = CInt(BattleScreen.OwnPokemon.MaxHP / 16)
                         If Not BattleScreen.OwnPokemon.Item Is Nothing Then
-                            If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "big root" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 healHP = CInt(healHP * 1.3F)
                             End If
                         End If
@@ -5199,7 +5199,7 @@
                     If .FieldEffects.OppHealBlock = 0 Then
                         Dim healHP As Integer = CInt(BattleScreen.OwnPokemon.MaxHP / 16)
                         If Not .OwnPokemon.Item Is Nothing Then
-                            If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "big root" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 healHP = CInt(healHP * 1.3F)
                             End If
                         End If
@@ -5207,7 +5207,7 @@
                     End If
                 End If
 
-                If .OwnPokemon.Ability.Name.ToLower() = "shed skin" And .OwnPokemon.HP > 0 Then 'Shed skin effect
+                If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "shed skin" And .OwnPokemon.HP > 0 Then 'Shed skin effect
                     If .OwnPokemon.Status = Pokemon.StatusProblems.BadPoison Or .OwnPokemon.Status = Pokemon.StatusProblems.Poison Or .OwnPokemon.Status = Pokemon.StatusProblems.Paralyzed Or .OwnPokemon.Status = Pokemon.StatusProblems.Freeze Or .OwnPokemon.Status = Pokemon.StatusProblems.Burn Or .OwnPokemon.Status = Pokemon.StatusProblems.Sleep Then
                         If Core.Random.Next(0, 100) < 33 Then
                             .BattleQuery.Add(.FocusOwnPokemon())
@@ -5216,11 +5216,11 @@
                     End If
                 End If
 
-                If .OwnPokemon.Ability.Name.ToLower() = "speed boost" And .OwnPokemon.HP > 0 Then 'Speed boost/Own first
+                If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "speed boost" And .OwnPokemon.HP > 0 Then 'Speed boost/Own first
                     RaiseStat(True, True, BattleScreen, "Speed", 1, .OwnPokemon.GetDisplayName() & "'s Speed Boost raised its speed.", "speedboost")
                 End If
 
-                If .OwnPokemon.Ability.Name.ToLower() = "truant" Then 'Set truant round
+                If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "truant" Then 'Set truant round
                     If .FieldEffects.OwnTruantRound = 1 Then
                         .FieldEffects.OwnTruantRound = 0
                     Else
@@ -5229,7 +5229,7 @@
                 End If
 
                 If Not .OwnPokemon.Item Is Nothing Then 'Black Sludge
-                    If .OwnPokemon.Item.Name.ToLower() = "black sludge" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                    If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "black sludge" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                         If .OwnPokemon.Type1.Type = Element.Types.Poison Or .OwnPokemon.Type2.Type = Element.Types.Poison Then
                             If .OwnPokemon.HP < .OwnPokemon.MaxHP And .OwnPokemon.HP > 0 Then
                                 GainHP(CInt(.OwnPokemon.MaxHP / 16), True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " gained HP from Black Sludge!", "blacksludge")
@@ -5245,7 +5245,7 @@
                 If .OwnPokemon.HP < .OwnPokemon.MaxHP And .OwnPokemon.HP > 0 Then
                     If .FieldEffects.OppHealBlock = 0 Then
                         If Not .OwnPokemon.Item Is Nothing Then 'Leftovers
-                            If .OwnPokemon.Item.Name.ToLower() = "leftovers" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "leftovers" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 GainHP(CInt(.OwnPokemon.MaxHP / 16), True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " restored some HP from Leftovers!", "leftovers")
                             End If
                         End If
@@ -5262,7 +5262,7 @@
 
                         Dim addHP As Integer = loseHP
                         If Not .OwnPokemon.Item Is Nothing Then
-                            If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "big root" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
                             End If
                         End If
@@ -5275,7 +5275,7 @@
                     End If
                 End If
                 If .OwnPokemon.HP > 0 Then
-                    If .OwnPokemon.Ability.Name.ToLower() = "poison heal" Then
+                    If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "poison heal" Then
                         If .FieldEffects.OppHealBlock = 0 Then
                             If .OwnPokemon.Status = Pokemon.StatusProblems.Poison Then
                                 GainHP(CInt(.OwnPokemon.MaxHP / 8), True, True, BattleScreen, "Poison Heal healed " & .OwnPokemon.GetDisplayName() & ".", "poison")
@@ -5287,7 +5287,7 @@
                             End If
                         End If
                     Else
-                        If .OwnPokemon.Ability.Name.ToLower() <> "magic guard" Then
+                        If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" Then
                             If .OwnPokemon.Status = Pokemon.StatusProblems.Poison Then 'Own Poison
                                 BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_poison", False))
                                 ReduceHP(CInt(.OwnPokemon.MaxHP / 8), True, True, BattleScreen, "The poison hurt " & .OwnPokemon.GetDisplayName() & ".", "poison")
@@ -5305,9 +5305,9 @@
 
                 If .OwnPokemon.HP > 0 Then 'Burn
                     If .OwnPokemon.Status = Pokemon.StatusProblems.Burn Then
-                        If .OwnPokemon.Ability.Name.ToLower() <> "water veil" And .OwnPokemon.Ability.Name.ToLower() <> "magic guard" Then
+                        If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "water veil" And .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" Then
                             Dim reduceAmount As Integer = CInt(.OwnPokemon.MaxHP / 16)
-                            If .OwnPokemon.Ability.Name.ToLower() = "heatproof" Then
+                            If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "heatproof" Then
                                 reduceAmount = CInt(.OwnPokemon.MaxHP / 32)
                             End If
 
@@ -5362,7 +5362,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5376,7 +5376,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5390,7 +5390,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5404,7 +5404,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5418,7 +5418,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5432,7 +5432,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5446,7 +5446,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5460,7 +5460,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5470,7 +5470,7 @@
                 End If
 
                 'Own bad dreams
-                If .OppPokemon.Ability.Name.ToLower() = "bad dreams" And .OwnPokemon.HP > 0 And .OwnPokemon.Status = Pokemon.StatusProblems.Sleep Then
+                If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "bad dreams" And .OwnPokemon.HP > 0 And .OwnPokemon.Status = Pokemon.StatusProblems.Sleep Then
                     ReduceHP(CInt(.OwnPokemon.MaxHP / 8), True, False, BattleScreen, "The bad dreams haunted " & .OwnPokemon.GetDisplayName() & "!", "baddreams")
                 End If
 
@@ -5553,7 +5553,7 @@
                     .FieldEffects.OwnFutureSightTurns -= 1
                     If .FieldEffects.OwnFutureSightTurns = 0 Then
                         If .OppPokemon.HP > 0 Then
-                            ReduceHP(.FieldEffects.OwnFutureSightDamage, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took the " & futureSight & " attack!", futureSight.Replace(" ", "").ToLower())
+                            ReduceHP(.FieldEffects.OwnFutureSightDamage, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took the " & futureSight & " attack!", futureSight.Replace(" ", "").ToLower(Globalization.CultureInfo.InvariantCulture))
                         Else
                             .BattleQuery.Add(New TextQueryObject("The " & futureSight & " failed!"))
                         End If
@@ -5576,7 +5576,7 @@
 
                 If .OwnPokemon.HP > 0 And .OwnPokemon.Status = Pokemon.StatusProblems.None Then
                     If Not .OwnPokemon.Item Is Nothing Then
-                        If .OwnPokemon.Item.Name.ToLower() = "flame orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "flame orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             InflictBurn(True, True, BattleScreen, "Flame Orb inflicts a burn!", "flameorb")
                         End If
                     End If
@@ -5584,14 +5584,14 @@
 
                 If .OwnPokemon.HP > 0 And .OwnPokemon.Status = Pokemon.StatusProblems.None Then
                     If Not .OwnPokemon.Item Is Nothing Then
-                        If .OwnPokemon.Item.Name.ToLower() = "toxic orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "toxic orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             InflictPoison(True, True, BattleScreen, True, "Toxic Orb inflicts a poisoning!", "toxicorb")
                         End If
                     End If
                 End If
 
                 If .OwnPokemon.HP > 0 Then
-                    If .OwnPokemon.Ability.Name.ToLower() = "moody" Then
+                    If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "moody" Then
                         Dim cannotRaise As New List(Of Integer)
                         Dim cannotLower As New List(Of Integer)
 
@@ -5716,7 +5716,7 @@
                 End If
                 If .OppPokemon.HP > 0 Then
                     If Not .OppPokemon.Item Is Nothing Then
-                        If .OppPokemon.Item.Name.ToLower() = "mental herb" Then
+                        If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "mental herb" Then
                             Dim usedMentalHerb As Boolean = False
                             If .OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
                                 .OppPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
@@ -5743,7 +5743,7 @@
                                 .OppPokemon.Item = Nothing
                             End If
                         End If
-                        If .OppPokemon.Item.Name.ToLower() = "white herb" Then
+                        If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "white herb" Then
                             Dim hasNegativeStats As Boolean = False
                             With .OppPokemon
                                 If .StatAttack < 0 Then
@@ -5860,7 +5860,7 @@
                 If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
                     If .OppPokemon.Type1.Type <> Element.Types.Ground And .OppPokemon.Type2.Type <> Element.Types.Ground And .OppPokemon.Type1.Type <> Element.Types.Steel And .OppPokemon.Type2.Type <> Element.Types.Steel And .OppPokemon.Type1.Type <> Element.Types.Rock And .OppPokemon.Type2.Type <> Element.Types.Rock Then
                         Dim sandAbilities() As String = {"sand veil", "sand rush", "sand force", "overcoat", "magic guard", "cloud nine"}
-                        If sandAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
+                        If sandAbilities.Contains(.OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                             If .OppPokemon.HP > 0 Then
                                 Dim sandHP As Integer = CInt(.OppPokemon.MaxHP / 16)
                                 ReduceHP(sandHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took damage from the sandstorm!", "sandstorm")
@@ -5873,7 +5873,7 @@
                 If .FieldEffects.Weather = BattleWeather.WeatherTypes.Hailstorm Then
                     If .OppPokemon.Type1.Type <> Element.Types.Ice And .OppPokemon.Type2.Type <> Element.Types.Ice Then
                         Dim hailAbilities() As String = {"ice body", "snow cloak", "overcoat", "magic guard", "cloud nine"}
-                        If hailAbilities.Contains(.OppPokemon.Ability.Name.ToLower()) = False Then
+                        If hailAbilities.Contains(.OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                             If .OppPokemon.HP > 0 Then
                                 Dim hailHP As Integer = CInt(.OppPokemon.MaxHP / 16)
                                 ReduceHP(hailHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " took damage from the hailstorm!", "sandstorm")
@@ -5892,7 +5892,7 @@
                 If .OppPokemon.HP > 0 Then
                     Dim HPChange As Integer = 0 'Use DrySkin/Rain Dish/Hydration/Ice Body
                     Dim HPMessage As String = ""
-                    Select Case .OppPokemon.Ability.Name.ToLower()
+                    Select Case .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "dry skin"
                             If .FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
                                 HPChange = -CInt(.OppPokemon.MaxHP / 8)
@@ -5925,10 +5925,10 @@
                     End Select
                     If HPChange > 0 Then
                         If .OppPokemon.HP < .OppPokemon.MaxHP Then
-                            GainHP(HPChange, False, False, BattleScreen, .OppPokemon.GetDisplayName() & " restored some HP due to " & HPMessage & ".", HPMessage.Replace(" ", "").ToLower())
+                            GainHP(HPChange, False, False, BattleScreen, .OppPokemon.GetDisplayName() & " restored some HP due to " & HPMessage & ".", HPMessage.Replace(" ", "").ToLower(Globalization.CultureInfo.InvariantCulture))
                         End If
                     ElseIf HPChange < 0 Then
-                        ReduceHP(HPChange, False, False, BattleScreen, .OppPokemon.GetDisplayName() & " lost some HP due to " & HPMessage & ".", HPMessage.Replace(" ", "").ToLower())
+                        ReduceHP(HPChange, False, False, BattleScreen, .OppPokemon.GetDisplayName() & " lost some HP due to " & HPMessage & ".", HPMessage.Replace(" ", "").ToLower(Globalization.CultureInfo.InvariantCulture))
                     End If
                 End If
 
@@ -5936,7 +5936,7 @@
                     If .FieldEffects.OwnHealBlock = 0 Then
                         Dim healHP As Integer = CInt(BattleScreen.OppPokemon.MaxHP / 16)
                         If Not BattleScreen.OppPokemon.Item Is Nothing Then
-                            If .OppPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "big root" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 healHP = CInt(healHP * 1.3F)
                             End If
                         End If
@@ -5948,7 +5948,7 @@
                     If .FieldEffects.OwnHealBlock = 0 Then
                         Dim healHP As Integer = CInt(BattleScreen.OppPokemon.MaxHP / 16)
                         If Not .OppPokemon.Item Is Nothing Then
-                            If .OppPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "big root" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 healHP = CInt(healHP * 1.3F)
                             End If
                         End If
@@ -5956,7 +5956,7 @@
                     End If
                 End If
 
-                If .OppPokemon.Ability.Name.ToLower() = "shed skin" And .OppPokemon.HP > 0 Then 'Shed skin effect
+                If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "shed skin" And .OppPokemon.HP > 0 Then 'Shed skin effect
                     If .OppPokemon.Status = Pokemon.StatusProblems.BadPoison Or .OppPokemon.Status = Pokemon.StatusProblems.Poison Or .OppPokemon.Status = Pokemon.StatusProblems.Paralyzed Or .OppPokemon.Status = Pokemon.StatusProblems.Freeze Or .OppPokemon.Status = Pokemon.StatusProblems.Burn Or .OppPokemon.Status = Pokemon.StatusProblems.Sleep Then
                         If Core.Random.Next(0, 100) < 33 Then
                             .BattleQuery.Add(.FocusOppPokemon())
@@ -5965,11 +5965,11 @@
                     End If
                 End If
 
-                If .OppPokemon.Ability.Name.ToLower() = "speed boost" And .OppPokemon.HP > 0 Then 'Speed boost/opp first
+                If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "speed boost" And .OppPokemon.HP > 0 Then 'Speed boost/opp first
                     RaiseStat(False, False, BattleScreen, "Speed", 1, .OppPokemon.GetDisplayName() & "'s Speed Boost raised its speed.", "speedboost")
                 End If
 
-                If .OppPokemon.Ability.Name.ToLower() = "truant" Then 'Set truant round
+                If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "truant" Then 'Set truant round
                     If .FieldEffects.OppTruantRound = 1 Then
                         .FieldEffects.OppTruantRound = 0
                     Else
@@ -5978,7 +5978,7 @@
                 End If
 
                 If Not .OppPokemon.Item Is Nothing Then 'Black Sludge
-                    If .OppPokemon.Item.Name.ToLower() = "black sludge" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                    If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "black sludge" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                         If .OppPokemon.Type1.Type = Element.Types.Poison Or .OppPokemon.Type2.Type = Element.Types.Poison Then
                             If .OppPokemon.HP < .OppPokemon.MaxHP And .OppPokemon.HP > 0 Then
                                 GainHP(CInt(.OppPokemon.MaxHP / 16), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " gained HP from Black Sludge!", "blacksludge")
@@ -5994,7 +5994,7 @@
                 If .OppPokemon.HP < .OppPokemon.MaxHP And .OppPokemon.HP > 0 Then
                     If .FieldEffects.OwnHealBlock = 0 Then
                         If Not .OppPokemon.Item Is Nothing Then 'Leftovers
-                            If .OppPokemon.Item.Name.ToLower() = "leftovers" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "leftovers" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 GainHP(CInt(.OppPokemon.MaxHP / 16), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " restored some HP from Leftovers!", "leftovers")
                             End If
                         End If
@@ -6011,7 +6011,7 @@
 
                         Dim addHP As Integer = loseHP
                         If Not .OppPokemon.Item Is Nothing Then
-                            If .OppPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "big root" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
                             End If
                         End If
@@ -6024,7 +6024,7 @@
                     End If
                 End If
                 If .OppPokemon.HP > 0 Then
-                    If .OppPokemon.Ability.Name.ToLower() = "poison heal" Then
+                    If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "poison heal" Then
                         If .FieldEffects.OwnHealBlock = 0 Then
                             If .OppPokemon.Status = Pokemon.StatusProblems.Poison Then
                                 GainHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "Poison Heal healed " & .OppPokemon.GetDisplayName() & ".", "poison")
@@ -6036,7 +6036,7 @@
                             End If
                         End If
                     Else
-                        If .OppPokemon.Ability.Name.ToLower() <> "magic guard" Then
+                        If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" Then
                             If .OppPokemon.Status = Pokemon.StatusProblems.Poison Then 'Opp Poison
                                 BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_poison", False))
                                 ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "The poison hurt " & .OppPokemon.GetDisplayName() & ".", "poison")
@@ -6054,9 +6054,9 @@
 
                 If .OppPokemon.HP > 0 Then 'Burn
                     If .OppPokemon.Status = Pokemon.StatusProblems.Burn Then
-                        If .OppPokemon.Ability.Name.ToLower() <> "water veil" And .OppPokemon.Ability.Name.ToLower() <> "magic guard" Then
+                        If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "water veil" And .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" Then
                             Dim reduceAmount As Integer = CInt(.OppPokemon.MaxHP / 8)
-                            If .OppPokemon.Ability.Name.ToLower() = "heatproof" Then
+                            If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "heatproof" Then
                                 reduceAmount = CInt(.OppPokemon.MaxHP / 16)
                             End If
 
@@ -6112,7 +6112,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6126,7 +6126,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6140,7 +6140,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6154,7 +6154,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6168,7 +6168,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6182,7 +6182,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6196,7 +6196,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6210,7 +6210,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6220,7 +6220,7 @@
                 End If
 
                 'Opp bad dreams
-                If .OwnPokemon.Ability.Name.ToLower() = "bad dreams" And .OppPokemon.HP > 0 And .OppPokemon.Status = Pokemon.StatusProblems.Sleep Then
+                If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "bad dreams" And .OppPokemon.HP > 0 And .OppPokemon.Status = Pokemon.StatusProblems.Sleep Then
                     ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, True, BattleScreen, "The bad dreams haunted " & .OppPokemon.GetDisplayName() & "!", "baddreams")
                 End If
 
@@ -6303,7 +6303,7 @@
                     .FieldEffects.OppFutureSightTurns -= 1
                     If .FieldEffects.OppFutureSightTurns = 0 Then
                         If .OwnPokemon.HP > 0 Then
-                            ReduceHP(.FieldEffects.OppFutureSightDamage, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " took the " & futureSight & " attack!", futureSight.Replace(" ", "").ToLower())
+                            ReduceHP(.FieldEffects.OppFutureSightDamage, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " took the " & futureSight & " attack!", futureSight.Replace(" ", "").ToLower(Globalization.CultureInfo.InvariantCulture))
                         Else
                             .BattleQuery.Add(New TextQueryObject("The " & futureSight & " failed!"))
                         End If
@@ -6325,7 +6325,7 @@
 
                 If .OppPokemon.HP > 0 And .OppPokemon.Status <> Pokemon.StatusProblems.Burn Then
                     If Not .OppPokemon.Item Is Nothing Then
-                        If .OppPokemon.Item.Name.ToLower() = "flame orb" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "flame orb" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             InflictBurn(False, False, BattleScreen, "Flame Orb inflicts a burn!", "flameorb")
                         End If
                     End If
@@ -6333,14 +6333,14 @@
 
                 If .OppPokemon.HP > 0 And .OppPokemon.Status <> Pokemon.StatusProblems.Poison And .OppPokemon.Status <> Pokemon.StatusProblems.BadPoison Then
                     If Not .OppPokemon.Item Is Nothing Then
-                        If .OppPokemon.Item.Name.ToLower() = "toxic orb" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "toxic orb" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             InflictPoison(False, False, BattleScreen, True, "Toxic Orb inflicts a poisoning!", "toxicorb")
                         End If
                     End If
                 End If
 
                 If .OppPokemon.HP > 0 Then
-                    If .OppPokemon.Ability.Name.ToLower() = "moody" Then
+                    If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "moody" Then
                         Dim cannotRaise As New List(Of Integer)
                         Dim cannotLower As New List(Of Integer)
 
@@ -6446,14 +6446,14 @@
                 ChangeCameraAngel(1, True, BattleScreen)
 
                 'Natural cure cures status problems
-                If .OwnPokemon.Ability.Name.ToLower() = "natural cure" Then
+                If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "natural cure" Then
                     If .OwnPokemon.Status <> Pokemon.StatusProblems.Fainted And .OwnPokemon.Status <> Pokemon.StatusProblems.None Then
                         .OwnPokemon.Status = Pokemon.StatusProblems.None
                         .AddToQuery(InsertIndex, New TextQueryObject(.OwnPokemon.GetDisplayName() & "'s status problem got healed by Natural Cure"))
                     End If
                 End If
                 'Regenerator ability heals 1/3 of it's max HP
-                If .OwnPokemon.Ability.Name.ToLower() = "regenerator" Then
+                If .OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "regenerator" Then
                     If Not (.OwnPokemon.Status = Pokemon.StatusProblems.Fainted Or .OwnPokemon.HP = 0) Then
                         Dim restoreHP = CInt(.OwnPokemon.MaxHP / 3)
                         If restoreHP > 0 And .OwnPokemon.HP < .OwnPokemon.MaxHP And .OwnPokemon.HP > 0 Then
@@ -6670,7 +6670,7 @@
                 End If
 
                 If Not .OwnPokemon.Item Is Nothing Then
-                    If .OwnPokemon.Item.Name.ToLower() = "amulet coin" Or .OwnPokemon.Item.Name.ToLower() = "luck incense" Then
+                    If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "amulet coin" Or .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "luck incense" Then
                         If .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             BattleScreen.FieldEffects.AmuletCoin += 1
                         End If
@@ -6687,7 +6687,7 @@
 
                 'Spikes
                 If spikeAffected = True Then
-                    If .FieldEffects.OppSpikes > 0 And (p.Ability.Name.ToLower() <> "magic guard" Or BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen, 1) = False) Then
+                    If .FieldEffects.OppSpikes > 0 And (p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" Or BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen, 1) = False) Then
                         Dim spikeDamage As Double = 1D
                         Select Case .FieldEffects.OppSpikes
                             Case 1
@@ -6731,7 +6731,7 @@
 
                 'Stealth Rock
                 If rockAffected = True Then
-                    If .FieldEffects.OppStealthRock > 0 And (p.Ability.Name.ToLower() <> "magic guard" Or BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen, 1) = False) Then
+                    If .FieldEffects.OppStealthRock > 0 And (p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" Or BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen, 1) = False) Then
                         Dim rocksDamage As Double = 1D
 
                         Dim effectiveness As Single = BattleCalculation.ReverseTypeEffectiveness(Element.GetElementMultiplier(New Element(Element.Types.Rock), p.Type1)) * BattleCalculation.ReverseTypeEffectiveness(Element.GetElementMultiplier(New Element(Element.Types.Rock), p.Type2))
@@ -6773,14 +6773,14 @@
         Public Sub SwitchOutOpp(ByVal BattleScreen As BattleScreen, ByVal index As Integer, Optional ByVal message As String = "")
             With BattleScreen
                 'Natural cure cures status problems
-                If .OppPokemon.Ability.Name.ToLower() = "natural cure" Then
+                If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "natural cure" Then
                     If .OppPokemon.Status <> Pokemon.StatusProblems.Fainted And .OppPokemon.Status <> Pokemon.StatusProblems.None Then
                         .OppPokemon.Status = Pokemon.StatusProblems.None
                         .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & "'s status problem got healed by Natural Cure"))
                     End If
                 End If
                 'Regenerator ability heals 1/3 of it's max HP
-                If .OppPokemon.Ability.Name.ToLower() = "regenerator" Then
+                If .OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "regenerator" Then
                     If Not (.OppPokemon.Status = Pokemon.StatusProblems.Fainted Or .OppPokemon.HP = 0) Then
                         Dim restoreHP = CInt(.OppPokemon.MaxHP / 3)
                         If restoreHP > 0 And .OppPokemon.HP < .OppPokemon.MaxHP And .OppPokemon.HP > 0 Then
@@ -7003,7 +7003,7 @@
                 spikeAffected = BattleScreen.FieldEffects.IsGrounded(False, BattleScreen)
 
                 If spikeAffected = True Then
-                    If .FieldEffects.OwnSpikes > 0 And p.Ability.Name.ToLower() <> "magic guard" Then
+                    If .FieldEffects.OwnSpikes > 0 And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" Then
                         Dim spikeDamage As Double = 1D
                         Select Case .FieldEffects.OwnSpikes
                             Case 1
@@ -7043,7 +7043,7 @@
                 End If
 
                 If rockAffected = True Then
-                    If .FieldEffects.OwnStealthRock > 0 And p.Ability.Name.ToLower() <> "magic guard" Then
+                    If .FieldEffects.OwnStealthRock > 0 And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "magic guard" Then
                         Dim rocksDamage As Double = 1D
 
                         Dim effectiveness As Single = BattleCalculation.ReverseTypeEffectiveness(Element.GetElementMultiplier(New Element(Element.Types.Rock), p.Type1)) * BattleCalculation.ReverseTypeEffectiveness(Element.GetElementMultiplier(New Element(Element.Types.Rock), p.Type2))
@@ -7180,7 +7180,7 @@
                 Next
 
                 For i = 0 To Core.Player.Pokemons.Count - 1
-                    If expPokemon.Contains(i) = False And Not Core.Player.Pokemons(i).Item Is Nothing AndAlso Core.Player.Pokemons(i).Item.Name.ToLower() = "exp share" AndAlso Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted AndAlso Core.Player.Pokemons(i).IsEgg() = False Then
+                    If expPokemon.Contains(i) = False And Not Core.Player.Pokemons(i).Item Is Nothing AndAlso Core.Player.Pokemons(i).Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "exp share" AndAlso Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted AndAlso Core.Player.Pokemons(i).IsEgg() = False Then
                         expPokemon.Add(i)
                     End If
                 Next

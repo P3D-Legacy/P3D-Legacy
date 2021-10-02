@@ -574,7 +574,7 @@
             Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
             For Each Item As API.JoltValue In list
-                If Item.Name.ToLower() = "user" Then
+                If Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "user" Then
                     RankingList.Add(New Emblem(Item.Value, PublicKeys, False))
                 End If
             Next
@@ -584,7 +584,7 @@
             Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
             For Each Item As API.JoltValue In list
-                If Item.Name.ToLower() = "rank" Then
+                If Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "rank" Then
                     OwnRank = CInt(Item.Value)
                 End If
             Next
@@ -768,7 +768,7 @@
             Dim list As List(Of API.JoltValue) = API.HandleData(result)
 
             For Each Item As API.JoltValue In list
-                Select Case Item.Name.ToLower()
+                Select Case Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "username"
                         FriendList.Add(New Emblem(Item.Value, PublicKeys, False))
 
@@ -1333,7 +1333,7 @@
 
             Dim countPossibleContacts As Integer = 0
             For Each c As Contact In tempContacs
-                If c.Location.ToLower() <> Level.MapName.ToLower() Or checkLocation = False Then
+                If c.Location.ToLower(Globalization.CultureInfo.InvariantCulture) <> Level.MapName.ToLower(Globalization.CultureInfo.InvariantCulture) Or checkLocation = False Then
                     countPossibleContacts += 1
                 End If
             Next
@@ -1343,7 +1343,7 @@
                 While chosenID = "-1"
                     Dim nC As Contact = tempContacs(Core.Random.Next(0, tempContacs.Count))
 
-                    If nC.Location.ToLower() <> Level.MapName.ToLower() Or checkLocation = False Then
+                    If nC.Location.ToLower(Globalization.CultureInfo.InvariantCulture) <> Level.MapName.ToLower(Globalization.CultureInfo.InvariantCulture) Or checkLocation = False Then
                         chosenID = nC.ID
                     End If
                 End While
@@ -1384,7 +1384,7 @@
 
             Dim countPossibleContacts As Integer = 0
             For Each c As Contact In tempContacs
-                If c.CanRandomCall = True And c.Location.ToLower() <> Level.MapName.ToLower() Then
+                If c.CanRandomCall = True And c.Location.ToLower(Globalization.CultureInfo.InvariantCulture) <> Level.MapName.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                     countPossibleContacts += 1
                 End If
             Next
@@ -1394,7 +1394,7 @@
                 While chosenID = "-1"
                     Dim nC As Contact = tempContacs(Core.Random.Next(0, tempContacs.Count))
 
-                    If nC.CanRandomCall = True And nC.Location.ToLower() <> Level.MapName.ToLower() Then
+                    If nC.CanRandomCall = True And nC.Location.ToLower(Globalization.CultureInfo.InvariantCulture) <> Level.MapName.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                         chosenID = nC.ID
                     End If
                 End While
@@ -1602,8 +1602,8 @@
                     Return False
                 End If
 
-                Dim regions() As String = Screen.Level.CurrentRegion.ToLower().Split(CChar(","))
-                If regions.Contains(Me.Region.ToLower()) = False Then
+                Dim regions() As String = Screen.Level.CurrentRegion.ToLower(Globalization.CultureInfo.InvariantCulture).Split(CChar(","))
+                If regions.Contains(Me.Region.ToLower(Globalization.CultureInfo.InvariantCulture)) = False Then
                     Return False
                 End If
 
@@ -1662,7 +1662,7 @@
             Public Function GenerateText() As List(Of String)
                 Dim output As String = "...~...~...~...~...~..."
 
-                Select Case Me.Content.ToLower()
+                Select Case Me.Content.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "[pokedexentry]"
                         Dim triedIDs As New List(Of Integer)
                         Dim chosenID As Integer = -1

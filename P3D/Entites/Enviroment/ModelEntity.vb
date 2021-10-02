@@ -28,7 +28,7 @@
         If Not _model Is Nothing Then
             For Each mesh As ModelMesh In Me._model.Meshes
                 For Each part As ModelMeshPart In mesh.MeshParts
-                    If part.Effect.GetType().Name.ToLower() = Screen.Effect.GetType().Name.ToLower() Then
+                    If part.Effect.GetType().Name.ToLower(Globalization.CultureInfo.InvariantCulture) = Screen.Effect.GetType().Name.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                         With CType(part.Effect, BasicEffect)
                             Lighting.UpdateLighting(CType(part.Effect, BasicEffect), True)
 

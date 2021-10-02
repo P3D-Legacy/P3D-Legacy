@@ -10,7 +10,7 @@
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "setweather"
                     Screen.Level.WeatherType = int(argument)
                 Case "setregionweather"
@@ -30,7 +30,7 @@
                 Case "setisdark"
                     Screen.Level.IsDark = CBool(argument)
                 Case "setrenderdistance"
-                    Select Case argument.ToLower()
+                    Select Case argument.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "0", "tiny"
                             Core.GameOptions.RenderDistance = 0
                         Case "1", "small"

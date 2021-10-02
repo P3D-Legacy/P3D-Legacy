@@ -80,7 +80,7 @@ Public Class CreditsScreen
 
     ' Credit camera starting positions:
     Private Sub InitializeCameraLevels(ByVal ending As String)
-        Select Case ending.ToLower()
+        Select Case ending.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "johto"
                 CameraLevels.Add(New CameraLevel("route29.dat", New Vector3(50, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))
                 CameraLevels.Add(New CameraLevel("routes\route42.dat", New Vector3(50, 2, 10), New Vector3(0, 2, 10), 0.04F, MathHelper.Pi * 1.5F, -0.3F))

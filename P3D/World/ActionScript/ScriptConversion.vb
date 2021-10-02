@@ -256,9 +256,9 @@ Public Class ScriptConversion
         If StringHelper.IsNumeric(expression) Then
             Return System.Convert.ToDouble(expression)
         Else
-            If expression.ToLower() = "false" Then
+            If expression.ToLower(Globalization.CultureInfo.InvariantCulture) = "false" Then
                 Return 0
-            ElseIf expression.ToLower() = "true" Then
+            ElseIf expression.ToLower(Globalization.CultureInfo.InvariantCulture) = "true" Then
                 Return 1
             Else
                 hasError = True
@@ -288,7 +288,7 @@ Public Class ScriptConversion
     ''' </summary>
     ''' <param name="expression">The expression to convert.</param>
     Public Shared Function ToBoolean(ByVal expression As Object) As Boolean
-        Select Case expression.ToString().ToLower()
+        Select Case expression.ToString().ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "true", "1"
                 Return True
             Case Else
@@ -303,7 +303,7 @@ Public Class ScriptConversion
     Public Shared Function IsBoolean(ByVal expression As Object) As Boolean
         Dim s As String = expression.ToString()
         Dim validBools() As String = {"0", "1", "true", "false"}
-        Return validBools.Contains(s.ToLower())
+        Return validBools.Contains(s.ToLower(Globalization.CultureInfo.InvariantCulture))
     End Function
 
 End Class

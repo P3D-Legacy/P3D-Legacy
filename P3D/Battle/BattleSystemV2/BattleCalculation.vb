@@ -10,9 +10,9 @@
             Else
                 p = BattleScreen.OppPokemon
             End If
-            Dim ability As String = p.Ability.Name.ToLower()
+            Dim ability As String = p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
             If p.Item IsNot Nothing AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                Select Case p.Item.Name.ToLower()
+                Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "damp rock"
                         If ability = "drizzle" Or moveName = "rain dance" Then
                             turns = 8
@@ -69,24 +69,24 @@
             Dim ownPriority As Integer = ownAttack.Priority
             Dim oppPriority As Integer = oppAttack.Priority
 
-            If ownPokemon.Ability.Name.ToLower() = "prankster" Then
+            If ownPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "prankster" Then
                 If ownAttack.Category = Attack.Categories.Status Then
                     ownPriority += 1
                 End If
             End If
 
-            If oppPokemon.Ability.Name.ToLower() = "prankster" Then
+            If oppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "prankster" Then
                 If oppAttack.Category = Attack.Categories.Status Then
                     oppPriority += 1
                 End If
             End If
 
             'Added condition to check for full HP
-            If ownPokemon.Ability.Name.ToLower() = "gale wings" And ownAttack.Type.Type = Element.Types.Flying And ownPokemon.HP = ownPokemon.MaxHP Then
+            If ownPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "gale wings" And ownAttack.Type.Type = Element.Types.Flying And ownPokemon.HP = ownPokemon.MaxHP Then
                 ownPriority += 1
             End If
 
-            If oppPokemon.Ability.Name.ToLower() = "gale wings" And oppAttack.Type.Type = Element.Types.Flying And oppPokemon.HP = oppPokemon.MaxHP Then
+            If oppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "gale wings" And oppAttack.Type.Type = Element.Types.Flying And oppPokemon.HP = oppPokemon.MaxHP Then
                 oppPriority += 1
             End If
 
@@ -186,10 +186,10 @@
                         End If
                 End Select
 
-                If ownPokemon.Ability.Name.ToLower() = "stall" And oppPokemon.Ability.Name.ToLower() <> "stall" Then
+                If ownPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "stall" And oppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "stall" Then
                     Return False
                 End If
-                If oppPokemon.Ability.Name.ToLower() = "stall" And ownPokemon.Ability.Name.ToLower() <> "stall" Then
+                If oppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "stall" And ownPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "stall" Then
                     Return True
                 End If
 
@@ -232,7 +232,7 @@
                 End If
             End If
 
-            If p.Status = P3D.Pokemon.StatusProblems.Paralyzed And p.Ability.Name.ToLower() <> "quick feet" Then
+            If p.Status = P3D.Pokemon.StatusProblems.Paralyzed And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "quick feet" Then
                 speed = CInt(speed / 2) 'Divide the speed by 2 (gen 7 standards) if the Pokemon is paralyzed.
             End If
 
@@ -242,7 +242,7 @@
                 End If
 
                 Dim SlowDownItems As List(Of String) = {"iron ball", "macho brace", "power bracer", "power belt", "power lens", "power band", "power anklet", "power weight"}.ToList()
-                If SlowDownItems.Contains(p.Item.Name.ToLower()) = True And BattleScreen.FieldEffects.CanUseItem(own) = True Then
+                If SlowDownItems.Contains(p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = True And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                     speed = CInt(speed / 2)
                 End If
 
@@ -265,7 +265,7 @@
                 End If
             End If
 
-            Select Case p.Ability.Name.ToLower()
+            Select Case p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "swift swim"
                     If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Rain Then
                         speed *= 2
@@ -297,13 +297,13 @@
                 speed = CInt(speed / 2)
             End If
 
-            If p.Ability.Name.ToLower() = "quick feet" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "quick feet" Then
                 If p.Status = Pokemon.StatusProblems.Paralyzed Or p.Status = Pokemon.StatusProblems.Burn Or p.Status = Pokemon.StatusProblems.Poison Or p.Status = Pokemon.StatusProblems.Sleep Or p.Status = Pokemon.StatusProblems.Freeze Then
                     speed = CInt(speed * 1.5F)
                 End If
             End If
 
-            If p.Ability.Name.ToLower() = "slow start" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "slow start" Then
                 If own = True Then
                     If BattleScreen.FieldEffects.OwnPokemonTurns < 5 Then
                         speed = CInt(speed / 2)
@@ -336,7 +336,7 @@
                 End If
             End If
 
-            If p.Status = P3D.Pokemon.StatusProblems.Burn And p.Ability.Name.ToLower() <> "guts" Then
+            If p.Status = P3D.Pokemon.StatusProblems.Burn And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "guts" Then
                 attack = CInt(attack / 2)
             End If
 
@@ -360,7 +360,7 @@
                 End If
             End If
 
-            Select Case p.Ability.Name.ToLower()
+            Select Case p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "huge power"
                     attack *= 2
                 Case "pure power"
@@ -377,13 +377,13 @@
                     End If
             End Select
 
-            If p.Ability.Name.ToLower() = "guts" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "guts" Then
                 If p.Status = Pokemon.StatusProblems.Paralyzed Or p.Status = Pokemon.StatusProblems.Burn Or p.Status = Pokemon.StatusProblems.Poison Or p.Status = Pokemon.StatusProblems.Sleep Or p.Status = Pokemon.StatusProblems.Freeze Then
                     attack = CInt(attack * 1.5F)
                 End If
             End If
 
-            If p.Ability.Name.ToLower() = "slow start" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "slow start" Then
                 If own = True Then
                     If BattleScreen.FieldEffects.OwnPokemonTurns < 5 Then
                         attack = CInt(attack / 2)
@@ -426,7 +426,7 @@
 
                     Dim outcome As Integer = 0
 
-                    If UsedAttack.Name.ToLower() = "snore" Or UsedAttack.Name.ToLower() = "sleep talk" Then
+                    If UsedAttack.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "snore" Or UsedAttack.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sleep talk" Then
                         Return 1
                     Else
                         r = Core.Random.Next(0, 256)
@@ -439,7 +439,7 @@
 
                             Dim uproar As Integer = BattleScreen.FieldEffects.OwnUproar
 
-                            If p.Ability.Name.ToLower() <> "insomnia" And p.Ability.Name.ToLower() <> "vital spirit" And uproar = 0 Then
+                            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "insomnia" And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "vital spirit" And uproar = 0 Then
                                 If r < C Then
                                     Return 3
                                 End If
@@ -471,7 +471,7 @@
                 Return True
             End If
 
-            If p.Ability.Name.ToLower() = "no guard" Or op.Ability.Name.ToLower() = "no guard" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "no guard" Or op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "no guard" Then
                 Return True
             End If
 
@@ -482,7 +482,7 @@
             Dim result As Single = 1.0F
 
             Dim INIT As Integer = UsedAttack.GetAccuracy(own, BattleScreen)
-            If op.Ability.Name.ToLower() = "wonder skin" And UsedAttack.Category = Attack.Categories.Status And UsedAttack.GetAccuracy(own, BattleScreen) > 0 And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
+            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "wonder skin" And UsedAttack.Category = Attack.Categories.Status And UsedAttack.GetAccuracy(own, BattleScreen) > 0 And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                 INIT = 50
             End If
 
@@ -505,13 +505,13 @@
             result = INIT * ACCM
 
             If Not op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not own) = True Then
-                If op.Item.Name.ToLower() = "bright powder" Or op.Item.Name.ToLower() = "lax incense" Then
+                If op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "bright powder" Or op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "lax incense" Then
                     result *= 0.9F
                 End If
             End If
 
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                Select Case p.Item.Name.ToLower()
+                Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "wide lens"
                         result *= 1.1F
                     Case "zoom lens"
@@ -528,7 +528,7 @@
                 End Select
             End If
 
-            Select Case p.Ability.Name.ToLower()
+            Select Case p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "compoundeyes"
                     result *= 1.3F
                 Case "victory star"
@@ -539,7 +539,7 @@
                     End If
             End Select
 
-            Select Case op.Ability.Name.ToLower()
+            Select Case op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "sand veil"
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sandstorm Then
@@ -592,7 +592,7 @@
                 Return False
             End If
 
-            If op.Ability.Name.ToLower() = "battle armor" Or op.Ability.Name.ToLower() = "shell armor" Then
+            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "battle armor" Or op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "shell armor" Then
                 If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                     Return False
                 End If
@@ -606,7 +606,7 @@
                 Return False
             End If
 
-            If p.Ability.Name.ToLower() = "super luck" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "super luck" Then
                 C += 1
             End If
 
@@ -633,7 +633,7 @@
             End If
 
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                Select Case p.Item.Name.ToLower()
+                Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "lucky punch"
                         If p.Number = 113 Then
                             C += 2
@@ -692,25 +692,25 @@
                 Return True
             End If
 
-            If p.Ability.Name.ToLower() = "run away" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "run away" Then
                 Return True
             End If
 
             If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "smoke ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "smoke ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                     Return True
                 End If
             End If
 
-            If op.Ability.Name.ToLower() = "shadow tag" And p.Ability.Name.ToLower() <> "shadow tag" And op.HP > 0 Then
+            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "shadow tag" And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "shadow tag" And op.HP > 0 Then
                 Return False
             End If
 
-            If op.Ability.Name.ToLower() = "arena trap" And op.HP > 0 And BattleScreen.FieldEffects.IsGrounded(own, BattleScreen) = True Then
+            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "arena trap" And op.HP > 0 And BattleScreen.FieldEffects.IsGrounded(own, BattleScreen) = True Then
                 Return False
             End If
 
-            If op.Ability.Name.ToLower() = "magnet pull" And op.HP > 0 Then
+            If op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "magnet pull" And op.HP > 0 Then
                 If p.Type1.Type = Element.Types.Steel Or p.Type2.Type = Element.Types.Steel Then
                     Return False
                 End If
@@ -876,7 +876,7 @@
             End If
 
             If Not op.Item Is Nothing Then
-                If op.Item.Name.ToLower() = "ring target" And BattleScreen.FieldEffects.CanUseItem(Not own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not own, BattleScreen) = True Then
+                If op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "ring target" And BattleScreen.FieldEffects.CanUseItem(Not own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not own, BattleScreen) = True Then
                     If Type1 = 0 Then
                         effectiveness = Type2
                     End If
@@ -915,7 +915,7 @@
                 If Foresight > 0 Or OdorSleuth > 0 Then
                     CanHitGhost = True
                 End If
-                If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) AndAlso p.Ability.Name.ToLower() = "scrappy" Then
+                If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) AndAlso p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "scrappy" Then
                     CanHitGhost = True
                 End If
 
@@ -990,7 +990,7 @@
 
             Dim e As Double = 1D
             If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "lucky egg" Then
+                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "lucky egg" Then
                     e = 1.5D
                 End If
             End If
@@ -1003,7 +1003,7 @@
             Dim expShares As Integer = 0
             For Each po As Pokemon In Core.Player.Pokemons
                 If Not po.Item Is Nothing Then
-                    If po.Item.Name.ToLower() = "exp share" Then
+                    If po.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "exp share" Then
                         expShares += 1
                     End If
                 End If
@@ -1011,7 +1011,7 @@
 
             If expShares > 0 Then
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "exp share" Then
+                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "exp share" Then
                         s = 2D
                     Else
                         s = (PokemonList.Count * 2D) * expShares
@@ -1092,7 +1092,7 @@
 
                 With BattleScreen
                     If Not .OwnPokemon.Item Is Nothing Then
-                        If .OwnPokemon.Item.Name.ToLower() = "shed shell" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If .OwnPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "shed shell" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             Return True
                         End If
                     End If
@@ -1104,7 +1104,7 @@
                     End If
                 End If
 
-                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "shadow tag" And BattleScreen.OwnPokemon.Ability.Name.ToLower() <> "shadow tag" And BattleScreen.OppPokemon.HP > 0 Then
+                If BattleScreen.OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "shadow tag" And BattleScreen.OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "shadow tag" And BattleScreen.OppPokemon.HP > 0 Then
                     Return False
                 End If
 
@@ -1112,11 +1112,11 @@
                     Return False
                 End If
 
-                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "arena trap" And BattleScreen.OppPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(True, BattleScreen) = True Then
+                If BattleScreen.OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "arena trap" And BattleScreen.OppPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(True, BattleScreen) = True Then
                     Return False
                 End If
 
-                If BattleScreen.OppPokemon.Ability.Name.ToLower() = "magnet pull" And BattleScreen.OwnPokemon.IsType(Element.Types.Steel) = True And BattleScreen.OppPokemon.HP > 0 Then
+                If BattleScreen.OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "magnet pull" And BattleScreen.OwnPokemon.IsType(Element.Types.Steel) = True And BattleScreen.OppPokemon.HP > 0 Then
                     Return False
                 End If
 
@@ -1140,13 +1140,13 @@
 
                 With BattleScreen
                     If Not .OppPokemon.Item Is Nothing Then
-                        If .OppPokemon.Item.Name.ToLower() = "shed shell" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If .OppPokemon.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "shed shell" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             Return True
                         End If
                     End If
                 End With
 
-                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "shadow tag" And BattleScreen.OppPokemon.Ability.Name.ToLower() <> "shadow tag" And BattleScreen.OwnPokemon.HP > 0 Then
+                If BattleScreen.OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "shadow tag" And BattleScreen.OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "shadow tag" And BattleScreen.OwnPokemon.HP > 0 Then
                     Return False
                 End If
 
@@ -1154,11 +1154,11 @@
                     Return False
                 End If
 
-                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "arena trap" And BattleScreen.OwnPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(False, BattleScreen) = True Then
+                If BattleScreen.OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "arena trap" And BattleScreen.OwnPokemon.HP > 0 And BattleScreen.FieldEffects.IsGrounded(False, BattleScreen) = True Then
                     Return False
                 End If
 
-                If BattleScreen.OwnPokemon.Ability.Name.ToLower() = "magnet pull" And BattleScreen.OppPokemon.IsType(Element.Types.Steel) = True And BattleScreen.OwnPokemon.HP > 0 Then
+                If BattleScreen.OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "magnet pull" And BattleScreen.OppPokemon.IsType(Element.Types.Steel) = True And BattleScreen.OwnPokemon.HP > 0 Then
                     Return False
                 End If
 
@@ -1208,7 +1208,7 @@
 
             'IT (Item attack power modifier)
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                Select Case p.Item.Name.ToLower()
+                Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "muscle band"
                         If Attack.Category = Attack.Categories.Physical Then
                             IT = 1.1F
@@ -1453,7 +1453,7 @@
                 lastMove = BattleScreen.FieldEffects.OppLastMove
             End If
             If Not lastMove Is Nothing Then
-                If lastMove.Name.ToLower() = "charge" And Attack.Type.Type = Element.Types.Electric Then
+                If lastMove.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "charge" And Attack.Type.Type = Element.Types.Electric Then
                     CHG = 2.0F
                 End If
             End If
@@ -1466,7 +1466,7 @@
                 WS = 0.5F
             End If
             'UA (User Ability)
-            Select Case p.Ability.Name.ToLower()
+            Select Case p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "rivalry"
                     If p.Gender <> Pokemon.Genders.Genderless And Op.Gender <> Pokemon.Genders.Genderless Then
                         If p.Gender = Op.Gender Then
@@ -1572,7 +1572,7 @@
             End Select
 
             'FA (Foe ability)
-            Select Case Op.Ability.Name.ToLower()
+            Select Case Op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "thick fat"
                     If BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
                         If Attack.Type.Type = Element.Types.Fire Or Attack.Type.Type = Element.Types.Ice Then
@@ -1627,12 +1627,12 @@
                 End If
 
                 If BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
-                    If Op.Ability.Name.ToLower() = "unaware" Then
+                    If Op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "unaware" Then
                         ASM = 1.0F
                     End If
                 End If
 
-                Select Case p.Ability.Name.ToLower()
+                Select Case p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "pure power"
                         AM = 2.0F
                     Case "huge power"
@@ -1672,7 +1672,7 @@
                 End Select
 
                 If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                    Select Case p.Item.Name.ToLower()
+                    Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "choice band"
                             IM = 1.5F
                         Case "light ball"
@@ -1691,11 +1691,11 @@
                 AStat = Attack.GetUseAttackStat(p)
                 ASM = GetMultiplierFromStat(p.StatSpAttack)
 
-                If Op.Ability.Name.ToLower() = "unaware" Then
+                If Op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "unaware" Then
                     ASM = 1.0F
                 End If
 
-                Select Case p.Ability.Name.ToLower()
+                Select Case p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "plus"
                         AM = 1.0F
                     Case "minus"
@@ -1717,7 +1717,7 @@
                 End Select
 
                 If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                    Select Case p.Item.Name.ToLower()
+                    Select Case p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "choice specs"
                             IM = 1.5F
                         Case "light ball"
@@ -1791,16 +1791,16 @@
                 DStat = Attack.GetUseDefenseStat(Op)
                 DSM = GetMultiplierFromStat(Op.StatDefense)
 
-                If p.Ability.Name.ToLower() = "unaware" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "unaware" Then
                     DSM = 1.0F
                 End If
 
-                If Attack.Name.ToLower() = "self-destruct" Or Attack.Name.ToLower() = "explosion" Then
+                If Attack.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "self-destruct" Or Attack.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "explosion" Then
                     SX = 1.0F
                 End If
 
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
-                    Select Case Op.Item.Name.ToLower()
+                    Select Case Op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "metal powder"
                             If Op.Number = 132 Then
                                 DMod = 1.5F
@@ -1812,7 +1812,7 @@
                     End Select
                 End If
 
-                If Op.Ability.Name.ToLower() = "marvel scale" Then
+                If Op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "marvel scale" Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
                         If Op.Status = Pokemon.StatusProblems.Paralyzed Or Op.Status = Pokemon.StatusProblems.Poison Or Op.Status = Pokemon.StatusProblems.Burn Or Op.Status = Pokemon.StatusProblems.Sleep Or Op.Status = Pokemon.StatusProblems.Freeze Then
                             DMod = 1.5F
@@ -1820,11 +1820,11 @@
                     End If
                 End If
 
-                If Op.Ability.Name.ToLower() = "fur coat" And BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
+                If Op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "fur coat" And BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
                     DMod = 2.0F
                 End If
 
-                If BattleScreen.FieldEffects.GrassyTerrain > 0 And Op.Ability.Name.ToLower() = "grass pelt" And BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
+                If BattleScreen.FieldEffects.GrassyTerrain > 0 And Op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "grass pelt" And BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
                     DMod = 1.5F
                 End If
 
@@ -1832,18 +1832,18 @@
                 DStat = Attack.GetUseDefenseStat(Op)
                 DSM = GetMultiplierFromStat(Op.StatSpDefense)
 
-                If p.Ability.Name.ToLower() = "unaware" Or Attack.UseOppDefense = False Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "unaware" Or Attack.UseOppDefense = False Then
                     DSM = 1.0F
                 End If
 
-                If Op.Ability.Name.ToLower() = "flower gift" Then
+                If Op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "flower gift" Then
                     If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
                         DMod = 1.5F
                     End If
                 End If
 
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
-                    Select Case Op.Item.Name.ToLower()
+                    Select Case Op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "metal powder"
                             If Op.Number = 132 Then
                                 DMod = 1.5F
@@ -1893,7 +1893,7 @@
             Dim FF As Single = 1.0F
 
             If Attack.Category = Attack.Categories.Physical Then
-                If p.Ability.Name.ToLower() <> "guts" And p.Status = Pokemon.StatusProblems.Burn Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "guts" And p.Status = Pokemon.StatusProblems.Burn Then
                     BRN = 0.5F
                 End If
             End If
@@ -1904,7 +1904,7 @@
             End If
             If CritSwap = False Then
                 If Attack.Category = Attack.Categories.Physical Then
-                    If p.Ability.Name.ToLower() <> "infiltrator" Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" Then
                         If Own = True Then
                             If BattleScreen.FieldEffects.OppReflect > 0 Then
                                 RL = 0.5F
@@ -1916,7 +1916,7 @@
                         End If
                     End If
                 ElseIf Attack.Category = Attack.Categories.Special Then
-                    If p.Ability.Name.ToLower() <> "infiltrator" Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "infiltrator" Then
                         If Own = True Then
                             If BattleScreen.FieldEffects.OppLightScreen > 0 Then
                                 RL = 0.5F
@@ -1961,7 +1961,7 @@
                     End If
             End Select
 
-            'If p.Ability.Name.ToLower() = "flash fire" Then
+            'If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "flash fire" Then
             '    If BattleScreen.FieldEffects.CanUseAbility(Own, BattleScreen) = True Then
             '        If Own = True Then
             '            If Not BattleScreen.FieldEffects.OppLastMove Is Nothing Then
@@ -1996,7 +1996,7 @@
             'CH
             Dim CH As Single = 1.0F
             If Critical = True Then
-                If p.Ability.Name.ToLower() = "sniper" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "sniper" Then
                     CH = 2.25
                 Else
                     CH = 1.5
@@ -2008,11 +2008,11 @@
             Dim Mod2 As Single = 1.0F
 
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                If p.Item.Name.ToLower() = "life orb" Then
+                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "life orb" Then
                     Mod2 = 1.3F
                 End If
             End If
-            If Attack.Name.ToLower() = "me first" Then
+            If Attack.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "me first" Then
                 Mod2 = 1.5F
             End If
 
@@ -2026,7 +2026,7 @@
             Dim STAB As Single = 1.0F
             If Attack.CanGainSTAB = True Then
                 If Attack.Type.Type = p.Type1.Type Or Attack.Type.Type = p.Type2.Type Then
-                    If p.Ability.Name.ToLower() = "adaptability" Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "adaptability" Then
                         STAB = 2.0F
                     Else
                         STAB = 1.5F
@@ -2045,21 +2045,21 @@
             Dim effectiveness As Single = CalculateEffectiveness(Attack, BattleScreen, p, Op, Own)
 
             If effectiveness > 1.0F Then
-                If Op.Ability.Name.ToLower() = "solid rock" Or Op.Ability.Name.ToLower() = "filter" Then
+                If Op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "solid rock" Or Op.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "filter" Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not Own, BattleScreen) = True Then
                         SRF = 0.75F
                     End If
                 End If
 
                 If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                    If p.Item.Name.ToLower() = "expert belt" Then
+                    If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "expert belt" Then
                         EB = 1.2F
                     End If
                 End If
 
                 If Not Op.Item Is Nothing Then
                     If BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
-                        Select Case Op.Item.Name.ToLower()
+                        Select Case Op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "occa"
                                 If Attack.Type.Type = Element.Types.Fire Then
                                     If BattleScreen.Battle.RemoveHeldItem(Not Own, Not Own, BattleScreen, "The Occa Berry weakened the effect of " & Attack.Name & " on " & Op.GetDisplayName() & "!", "berry:occa") = True Then
@@ -2169,7 +2169,7 @@
 
             If Not Op.Item Is Nothing Then
                 If BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
-                    If Op.Item.Name.ToLower() = "chilan" Then
+                    If Op.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "chilan" Then
                         If Attack.Type.Type = Element.Types.Normal Then
                             If BattleScreen.Battle.RemoveHeldItem(Not Own, Not Own, BattleScreen, "The Chilan Berry weakened the effect of " & Attack.Name & " on " & Op.GetDisplayName() & "!", "berry:chilan") = True Then
                                 TRB = 0.5F
@@ -2180,7 +2180,7 @@
             End If
 
             If effectiveness < 1.0F Then
-                If p.Ability.Name.ToLower() = "tinted lens" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "tinted lens" Then
                     TL = 2.0F
                 End If
             End If
@@ -2189,7 +2189,7 @@
 
             damage = CInt(Math.Floor((((((((Level * 2 / 5) + 2) * BasePower * Atk / 50) / Def) * Mod1) + 2) * CH * Mod2 * R / 100) * STAB * effectiveness * Mod3))
 
-            If p.Ability.Name.ToLower() = "multiscale" And p.HP = p.MaxHP And BattleScreen.FieldEffects.CanUseAbility(Own, BattleScreen) = True Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "multiscale" And p.HP = p.MaxHP And BattleScreen.FieldEffects.CanUseAbility(Own, BattleScreen) = True Then
                 damage = CInt(damage / 2)
             End If
 

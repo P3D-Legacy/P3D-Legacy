@@ -58,7 +58,7 @@
                 p = BattleScreen.OppPokemon
             End If
 
-            If p.Ability.Name.ToLower() = "normalize" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "normalize" Then
                 Return New Element(Element.Types.Normal)
             Else
                 Dim a As Integer = GetLastBit(p.IVHP)

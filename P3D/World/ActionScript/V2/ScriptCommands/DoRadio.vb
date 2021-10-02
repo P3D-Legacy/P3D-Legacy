@@ -12,7 +12,7 @@
 
             argument = argument.Replace(".", GameController.DecSeparator)
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "allowchannel"
                     Screen.Level.AllowedRadioChannels.Add(CDec(dbl(argument)))
                 Case "blockchannel"

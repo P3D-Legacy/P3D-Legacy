@@ -308,7 +308,7 @@
             If own = False Then
                 p = BattleScreen.OppPokemon
             End If
-            If p.Ability.Name.ToLower() = "klutz" Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "klutz" Then
                 Return False
             End If
             Return True
@@ -329,7 +329,7 @@
 
                 Dim supressAbilities() As String = {"mold breaker", "turboblaze", "teravolt"}
 
-                If supressAbilities.Contains(p.Ability.Name.ToLower()) = True Then
+                If supressAbilities.Contains(p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
                     Return False
                 End If
             End If
@@ -352,7 +352,7 @@
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim grounded As Boolean = True
             If own = True Then
-                If p.Type1.Type = Element.Types.Flying Or p.Type2.Type = Element.Types.Flying Or p.Ability.Name.ToLower() = "levitate" And BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen) = True Then
+                If p.Type1.Type = Element.Types.Flying Or p.Type2.Type = Element.Types.Flying Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "levitate" And BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen) = True Then
                     grounded = False
                 End If
                 If BattleScreen.FieldEffects.Gravity > 0 Or BattleScreen.FieldEffects.OwnSmacked > 0 Or BattleScreen.FieldEffects.OwnIngrain > 0 Then
@@ -362,10 +362,10 @@
                         grounded = False
                     End If
                     If Not p.Item Is Nothing Then
-                        If p.Item.Name.ToLower() = "air balloon" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "air balloon" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             grounded = False
                         End If
-                        If p.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "iron ball" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             grounded = True
                         End If
                     End If
@@ -375,7 +375,7 @@
                 End If
             Else
                 p = BattleScreen.OppPokemon
-                If p.Type1.Type = Element.Types.Flying Or p.Type2.Type = Element.Types.Flying Or p.Ability.Name.ToLower() = "levitate" And BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen) = True Then
+                If p.Type1.Type = Element.Types.Flying Or p.Type2.Type = Element.Types.Flying Or p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "levitate" And BattleScreen.FieldEffects.CanUseAbility(True, BattleScreen) = True Then
                     grounded = False
                 End If
                 If BattleScreen.FieldEffects.Gravity > 0 Or BattleScreen.FieldEffects.OppSmacked > 0 Or BattleScreen.FieldEffects.OppIngrain > 0 Then
@@ -385,10 +385,10 @@
                         grounded = False
                     End If
                     If Not p.Item Is Nothing Then
-                        If p.Item.Name.ToLower() = "air balloon" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "air balloon" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             grounded = False
                         End If
-                        If p.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "iron ball" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             grounded = True
                         End If
                     End If
@@ -415,11 +415,11 @@
 
             Dim weigth As Single = p.PokedexEntry.Weight
 
-            If p.Ability.Name.ToLower() = "light metal" And CanUseAbility(own, BattleScreen) = True Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "light metal" And CanUseAbility(own, BattleScreen) = True Then
                 weigth /= 2
             End If
 
-            If p.Ability.Name.ToLower() = "heavy metal" And CanUseAbility(own, BattleScreen) = True Then
+            If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "heavy metal" And CanUseAbility(own, BattleScreen) = True Then
                 weigth *= 2
             End If
 

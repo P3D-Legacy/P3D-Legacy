@@ -120,7 +120,7 @@ Public Class Spawner
                         Dim line As String = possibleEncounters(i)
                         Dim data() As String = line.Split(CChar("|"))
 
-                        If data(3).ToLower() = LevelFile.ToLower() Then
+                        If data(3).ToLower(Globalization.CultureInfo.InvariantCulture) = LevelFile.ToLower(Globalization.CultureInfo.InvariantCulture) Then
                             Return New RoamingPokemon(line)
                         End If
                     Next
@@ -155,7 +155,7 @@ Public Class Spawner
 
                 'Hustle/Pressure/Vital Spirit:
                 If Core.Player.Pokemons.Count > 0 Then
-                    Dim abilityName As String = Core.Player.Pokemons(0).Ability.Name.ToLower()
+                    Dim abilityName As String = Core.Player.Pokemons(0).Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                     If abilityName = "hustle" Or abilityName = "pressure" Or abilityName = "vital spirit" Then
                         If Core.Random.Next(0, 100) < 50 Then
                             level = maxLevel

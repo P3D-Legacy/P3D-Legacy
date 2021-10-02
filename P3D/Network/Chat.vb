@@ -103,7 +103,7 @@
         End Function
 
         Private Function IsMe() As Boolean
-            If Sender.ToLower() = Core.Player.Name.ToLower() Or PMChatInclude <> "" Then
+            If Sender.ToLower(Globalization.CultureInfo.InvariantCulture) = Core.Player.Name.ToLower(Globalization.CultureInfo.InvariantCulture) Or PMChatInclude <> "" Then
                 Return True
             End If
             Return False
@@ -189,7 +189,7 @@
 
     Private Shared Function RunCommand(ByVal text As String, ByVal testForScript As Boolean) As String
         If GameController.IS_DEBUG_ACTIVE = True Or (Core.Player.IsGameJoltSave = False And Core.Player.SandBoxMode = True) Then
-            Select Case text(0).ToString().ToLower()
+            Select Case text(0).ToString().ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "@"
                     Try
                         Dim s As Screen = Core.CurrentScreen

@@ -76,7 +76,7 @@ Namespace ScriptVersion2
                 End If
             End If
 
-            Select Case mainClass.ToLower()
+            Select Case mainClass.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "register"
                     DoRegister(subClass)
                 Case "script"
@@ -151,7 +151,7 @@ Namespace ScriptVersion2
         Private Shared Function InsertSpin(ByVal inputString As String) As Boolean
             If ActionScript.TempSpin = True Then
                 If ActionScript.TempInputDirection > -1 Then
-                    If inputString.ToLower().StartsWith("player.turnto(") = False Then
+                    If inputString.ToLower(Globalization.CultureInfo.InvariantCulture).StartsWith("player.turnto(") = False Then
                         If Screen.Camera.GetPlayerFacingDirection() <> ActionScript.TempInputDirection Then
                             If CType(Screen.Camera, OverworldCamera).ThirdPerson = False Then
                                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.Scripts.Insert(0, New Script("@player.turnto(" & ActionScript.TempInputDirection & ")", ActionScript.ScriptLevelIndex))

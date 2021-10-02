@@ -122,7 +122,7 @@ Public Class Trainer
                 Dim pointer As String = line.Remove(line.IndexOf("|"))
                 Dim value As String = line.Remove(0, line.IndexOf("|") + 1)
 
-                Select Case pointer.ToLower()
+                Select Case pointer.ToLower(Globalization.CultureInfo.InvariantCulture)
                     Case "name"
                         Me.Name = ScriptCommander.Parse(value).ToString()
                         If Me.Name.Contains(",") = True Then
@@ -313,7 +313,7 @@ Public Class Trainer
     End Sub
 
     Private Sub SetIniImage(ByVal vsType As String, ByVal barType As String)
-        Select Case vsType.ToLower()
+        Select Case vsType.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "blue", "0"
                 Me.VSImagePosition = New Vector2(0, 0)
             Case "orange", "1"
@@ -355,7 +355,7 @@ Public Class Trainer
                     End If
                 End If
         End Select
-        Select Case barType.ToLower()
+        Select Case barType.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "blue", "0"
                 Me.BarImagePosition = New Vector2(0, 0)
             Case "orange", "1"
@@ -407,7 +407,7 @@ Public Class Trainer
 
         Dim middle As String = "trainer"
 
-        Select Case Me.Music.ToLower()
+        Select Case Me.Music.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "rival"
                 middle = "rival"
             Case "leader"
@@ -426,7 +426,7 @@ Public Class Trainer
 
         Dim pre As String = "trainer"
 
-        Select Case Me.Music.ToLower()
+        Select Case Me.Music.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "leader"
                 pre = "leader"
         End Select
@@ -439,7 +439,7 @@ Public Class Trainer
             Return BattleMusic
         End If
 
-        Return Me.Region.ToLower() & "_" & Me.Music.ToLower()
+        Return Me.Region.ToLower(Globalization.CultureInfo.InvariantCulture) & "_" & Me.Music.ToLower(Globalization.CultureInfo.InvariantCulture)
     End Function
 
     Public Function GetInSightMusic() As String

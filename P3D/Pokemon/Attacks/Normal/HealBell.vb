@@ -64,7 +64,7 @@
             End If
 
             If p.Status <> Pokemon.StatusProblems.None And p.Status <> Pokemon.StatusProblems.Fainted Then
-                If p.Ability.Name.ToLower() <> "soundproof" And p.Ability.Name.ToLower() <> "cacophony" Then
+                If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "soundproof" And p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "cacophony" Then
                     If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                         healed.Add(p)
                     End If
@@ -75,7 +75,7 @@
                 For Each tp As Pokemon In Core.Player.Pokemons
                     If Not tp Is p Then
                         If tp.Status <> Pokemon.StatusProblems.None And tp.Status <> Pokemon.StatusProblems.Fainted Then
-                            If tp.Ability.Name.ToLower() <> "soundproof" And tp.Ability.Name.ToLower() <> "cacophony" Then
+                            If tp.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "soundproof" And tp.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "cacophony" Then
                                 If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                                     healed.Add(tp)
                                 End If
@@ -88,7 +88,7 @@
                     For Each tp As Pokemon In BattleScreen.Trainer.Pokemons
                         If Not tp Is p Then
                             If tp.Status <> Pokemon.StatusProblems.None And tp.Status <> Pokemon.StatusProblems.Fainted Then
-                                If tp.Ability.Name.ToLower() <> "soundproof" And tp.Ability.Name.ToLower() <> "cacophony" Then
+                                If tp.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "soundproof" And tp.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "cacophony" Then
                                     If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                                         healed.Add(tp)
                                     End If

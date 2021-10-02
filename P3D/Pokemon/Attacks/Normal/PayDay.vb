@@ -63,7 +63,7 @@ Namespace BattleSystem.Moves.Normal
             Dim coinAmount As Integer = p.Level * 5
 
             If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "amulet coin" Or p.Item.Name.ToLower() = "luck incense" Then
+                If p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "amulet coin" Or p.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "luck incense" Then
                     coinAmount *= 2
                 End If
             End If

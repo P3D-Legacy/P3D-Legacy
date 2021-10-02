@@ -163,7 +163,7 @@
                 Loading = False
 
                 For Each Item As API.JoltValue In l
-                    If Item.Name.ToLower() = "key" Then
+                    If Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "key" Then
                         Dim APICall As New APICall(AddressOf GotData)
                         APICall.GetStorageData(Item.Value, False)
                     End If
@@ -381,14 +381,14 @@
             Message = arr(8).Replace("\""", """").Replace("[ANDAND]", "&")
 
             Dim sec As String = arr(9)
-            If sec.ToLower() = "global" Then
+            If sec.ToLower(Globalization.CultureInfo.InvariantCulture) = "global" Then
                 SecurityArea = SecurityCode.Global
-            ElseIf sec.ToLower() = "private" Then
+            ElseIf sec.ToLower(Globalization.CultureInfo.InvariantCulture) = "private" Then
                 SecurityArea = SecurityCode.Private
             End If
 
             Dim ac As String = arr(10)
-            If ac.ToLower() = "got" Then
+            If ac.ToLower(Globalization.CultureInfo.InvariantCulture) = "got" Then
                 ActionSwitch = ActionSwitches.Got
             ElseIf ac = "set" Then
                 ActionSwitch = ActionSwitches.Set

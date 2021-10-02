@@ -142,8 +142,8 @@
 
             Dim EVItems() As String = {"power weight", "power bracer", "power belt", "power lens", "power band", "power anklet"}
             If Not parent1.Item Is Nothing Then
-                If EVItems.Contains(parent1.Item.Name.ToLower()) = True Then
-                    Select Case parent1.Item.Name.ToLower()
+                If EVItems.Contains(parent1.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
+                    Select Case parent1.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "power weight"
                             EVStat1 = "HP"
                         Case "power bracer"
@@ -160,8 +160,8 @@
                 End If
             End If
             If Not parent2.Item Is Nothing Then
-                If EVItems.Contains(parent2.Item.Name.ToLower()) = True Then
-                    Select Case parent2.Item.Name.ToLower()
+                If EVItems.Contains(parent2.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)) = True Then
+                    Select Case parent2.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "power weight"
                             EVStat2 = "HP"
                         Case "power bracer"
@@ -255,12 +255,12 @@
             Dim EStone2 As Boolean = False
 
             If Not parent1.Item Is Nothing Then
-                If parent1.Item.Name.ToLower() = "everstone" Then
+                If parent1.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "everstone" Then
                     EStone1 = True
                 End If
             End If
             If Not parent2.Item Is Nothing Then
-                If parent2.Item.Name.ToLower() = "everstone" Then
+                If parent2.Item.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "everstone" Then
                     EStone2 = True
                 End If
             End If

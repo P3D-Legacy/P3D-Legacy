@@ -35,7 +35,7 @@ Public Class SaveGameHelpers
 
         Dim resultList As List(Of GameJolt.API.JoltValue) = GameJolt.API.HandleData(result)
         For Each lEntry In resultList
-            If lEntry.Value.ToLower() <> "true" Then
+            If lEntry.Value.ToLower(Globalization.CultureInfo.InvariantCulture) <> "true" Then
                 _failedSaveParts += 1
             End If
         Next
@@ -53,7 +53,7 @@ Public Class SaveGameHelpers
 
         Dim resultList As List(Of GameJolt.API.JoltValue) = GameJolt.API.HandleData(result)
         For Each lEntry In resultList
-            If lEntry.Value.ToLower() <> "true" Then
+            If lEntry.Value.ToLower(Globalization.CultureInfo.InvariantCulture) <> "true" Then
                 _failedSaveParts += 1
             End If
         Next

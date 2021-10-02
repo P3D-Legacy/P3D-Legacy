@@ -182,7 +182,7 @@ Public Class TradeScreen
     ''' </summary>
     ''' <param name="currencyIndicator">The currency indicator.</param>
     Private Sub SetCurrency(ByVal currencyIndicator As String)
-        Select Case currencyIndicator.ToLower()
+        Select Case currencyIndicator.ToLower(Globalization.CultureInfo.InvariantCulture)
             Case "p", "pokedollar", "pokédollar", "poke", "poké", "poke dollar", "poké dollar", "money"
                 Me.Currency = Currencies.Pokédollar
             Case "bp", "battlepoints", "battle points"

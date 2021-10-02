@@ -10,7 +10,7 @@
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "showmessagebulb"
                     If ScriptV2.started = False Then
                         ScriptV2.started = True
@@ -63,7 +63,7 @@
                     Dim ents = (From ent As Entity In Screen.Level.Entities Select ent Where ent.ID = entID)
 
                     For Each ent As Entity In ents
-                        Select Case command.ToLower()
+                        Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                             Case "warp"
                                 Dim PositionList As List(Of String) = argument.Split(CChar(",")).ToList()
                                 Dim newPosition As Vector3 = New Vector3(sng(PositionList(1).Replace("~", CStr(ent.Position.X)).Replace(".", GameController.DecSeparator)),

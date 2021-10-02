@@ -10,7 +10,7 @@
             Dim command As String = GetSubClassArgumentPair(subClass).Command
             Dim argument As String = GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "pokemonid"
                     Dim dayCareID As Integer = int(argument.GetSplit(0))
                     Dim PokemonIndex As Integer = int(argument.GetSplit(1))

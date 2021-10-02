@@ -59,7 +59,7 @@
             End If
 
             If Not lastMove Is Nothing Then
-                If lastMove.Name.ToLower() = "fusion bolt" Or lastMove.Name.ToLower() = "bolt strike" Then
+                If lastMove.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "fusion bolt" Or lastMove.Name.ToLower(Globalization.CultureInfo.InvariantCulture) = "bolt strike" Then
                     Return Me.Power * 2
                 End If
             End If

@@ -986,7 +986,7 @@ nextIndex:
             Dim str As String = ""
             'Call the EndBattle function of the abilities and Reverts battle only Pokemon formes.
             For Each p As Pokemon In Core.Player.Pokemons
-                str = p.AdditionalData.ToLower()
+                str = p.AdditionalData.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Select Case str
                     Case "mega", "mega_x", "mega_y", "primal", "blade"
                         p.AdditionalData = PokemonForms.GetInitialAdditionalData(p)

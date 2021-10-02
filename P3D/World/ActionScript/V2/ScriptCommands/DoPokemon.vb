@@ -10,7 +10,7 @@
             Dim command As String = ScriptComparer.GetSubClassArgumentPair(subClass).Command
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
-            Select Case command.ToLower()
+            Select Case command.ToLower(Globalization.CultureInfo.InvariantCulture)
                 Case "cry"
                     Dim PokemonID As Integer = int(argument)
 
@@ -145,7 +145,7 @@
 
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         With Core.Player.Pokemons(Index)
-                            Select Case stat.ToLower()
+                            Select Case stat.ToLower(Globalization.CultureInfo.InvariantCulture)
                                 Case "maxhp", "hp"
                                     .MaxHP = statValue
                                 Case "chp"
@@ -266,7 +266,7 @@
                     End If
 
                     Dim PokemonIndex As Integer = 0
-                    Select Case index.ToLower()
+                    Select Case index.ToLower(Globalization.CultureInfo.InvariantCulture)
                         Case "last"
                             PokemonIndex = Core.Player.Pokemons.Count - 1
                         Case Else
@@ -434,7 +434,7 @@
 
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         With Core.Player.Pokemons(Index)
-                            Select Case ev.ToLower()
+                            Select Case ev.ToLower(Globalization.CultureInfo.InvariantCulture)
                                 Case "hp"
                                     .EVHP = evValue
                                 Case "atk", "attack"
@@ -469,7 +469,7 @@
 
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         With Core.Player.Pokemons(Index)
-                            Select Case dv.ToLower()
+                            Select Case dv.ToLower(Globalization.CultureInfo.InvariantCulture)
                                 Case "hp"
                                     .IVHP = dvValue
                                 Case "atk", "attack"

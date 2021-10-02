@@ -63,13 +63,13 @@
 
             If torment = 0 Then
                 If own = True Then
-                    If BattleScreen.OppPokemon.Ability.Name.ToLower() <> "aroma veil" Then
+                    If BattleScreen.OppPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "aroma veil" Then
                         BattleScreen.FieldEffects.OppTorment = 1
                     Else
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Aroma Veil protected " & BattleScreen.OppPokemon.GetDisplayName() & " from " & Me.Name & "!"))
                     End If
                 Else
-                    If BattleScreen.OwnPokemon.Ability.Name.ToLower() <> "aroma veil" Then
+                    If BattleScreen.OwnPokemon.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "aroma veil" Then
                         BattleScreen.FieldEffects.OwnTorment = 1
                     Else
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Aroma Veil protected " & BattleScreen.OwnPokemon.GetDisplayName() & " from " & Me.Name & "!"))

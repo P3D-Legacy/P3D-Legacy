@@ -72,7 +72,7 @@ Namespace BattleSystem.Moves.Fighting
                 If substitude <= 0 Then
 
                     'suction cups ability:
-                    If p.Ability.Name.ToLower() <> "suction cups" Then
+                    If p.Ability.Name.ToLower(Globalization.CultureInfo.InvariantCulture) <> "suction cups" Then
                         Dim ingrain As Integer = BattleScreen.FieldEffects.OwnIngrain
                         If own = True Then
                             ingrain = BattleScreen.FieldEffects.OppIngrain
