@@ -188,7 +188,7 @@
                     If StringHelper.IsNumeric(argument) Then
                         If Core.Player.Badges.Contains(int(argument)) = False Then
                             Core.Player.Badges.Add(int(argument))
-                            SoundManager.PlaySound("badge_acquired", True)
+                            SoundManager.PlaySound("Receive_Badge", True)
                             Screen.TextBox.TextColor = TextBox.PlayerColor
                             Screen.TextBox.Show(Core.Player.Name & " received the~" & Badge.GetBadgeName(int(argument)) & " Badge.", {}, False, False)
 

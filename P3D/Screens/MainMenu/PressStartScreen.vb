@@ -548,6 +548,19 @@ Public Class NewMainMenuScreen
                                 _sliderTarget = GetSliderTarget(_selectedProfile)
                         End Select
                     End If
+                    If KeyBoardHandler.KeyPressed(KeyBindings.ForwardMoveKey) Or KeyBoardHandler.KeyPressed(KeyBindings.UpKey) Then
+                        Select Case _menuIndex
+                            Case 1, 2
+                                _menuIndex = 0
+                                _selectedProfile = _selectedProfileTemp
+                                _sliderTarget = GetSliderTarget(_selectedProfile)
+                            Case 3
+                                _menuIndex = 1
+                                _selectedProfile = _selectedProfileTemp
+                                _sliderTarget = GetSliderTarget(_selectedProfile)
+                        End Select
+                    End If
+
                     If _fadeInMain = 1.0F Then
                         If _closingDisplay Then
                             If _expandDisplay > 0.0F Then

@@ -231,7 +231,6 @@
 
                     CanContinue = False
                 Case "skinselection"
-                    Dim skins = argument.Split(","c)
                     If Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin <> "" Then
                         IsReady = True
                     Else

@@ -234,7 +234,7 @@
                 SelectedSkin = ""
 
                 For Each skin As String In GameModeManager.ActiveGameMode.SkinFiles
-                    _sprites.Add(TextureManager.GetTexture("Textures\OverworldSprites\PlayerSkins\" & skin))
+                    _sprites.Add(TextureManager.GetTexture("Textures\NPC\" & skin))
                 Next
 
                 _skins = GameModeManager.ActiveGameMode.SkinFiles

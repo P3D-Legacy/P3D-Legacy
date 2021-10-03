@@ -106,7 +106,6 @@ Public Class MusicManager
     ' if the song that gets played after fading completed is an intro to another song
     Public Shared _fadeIntoIntro As Boolean = False
     Private Shared _isFadingOut As Boolean = False
-    Private Shared _isFadingIn As Boolean = False
     ' NAudio properties
     Public Shared outputDevice As WaveOutEvent
     Public Shared audioFile As VorbisWaveReader
@@ -176,7 +175,6 @@ Public Class MusicManager
         _nextSong = ""
         _fadeSpeed = DEFAULT_FADE_SPEED
         _isFadingOut = False
-        _isFadingIn = False
         _isLooping = True
     End Sub
 
@@ -201,7 +199,7 @@ Public Class MusicManager
     Public Shared Sub Update()
         If _isPausedForSound Then
             If Date.Now >= _pausedUntil Then
-                If MusicManager.Paused = True Then
+                If Paused = True Then
                     _isPausedForSound = False
                     Paused = False
                 End If
@@ -216,7 +214,6 @@ Public Class MusicManager
 
                     Volume = 0F
                     _isFadingOut = False
-                    _isFadingIn = True
 
                     Dim song = GetSong(_nextSong)
 
@@ -232,13 +229,16 @@ Public Class MusicManager
                         Else
                             _isLooping = True
                         End If
-
+                        If Muted = True Then
+                            Volume = 0.0F
+                        Else
+                            Volume = 1.0F
+                        End If
                     Else
 
                         ' no song found, do not fade into anything
                         _fadeIntoIntro = False
                         ClearCurrentlyPlaying()
-                        _isFadingIn = False
                         If Muted = True Then
                             Volume = 0.0F
                         Else
@@ -252,32 +252,19 @@ Public Class MusicManager
 
                 End If
 
-            ElseIf _isFadingIn Then
-                If Muted = True Then
-                    Volume = 0.0F
-                    _isFadingIn = False
-                Else
-                    Volume += _fadeSpeed
-                    If Volume >= 1.0F Then
-                        Volume = 1.0F
-                        _isFadingIn = False
-                    End If
-                End If
+                ' intro
+                '  If _isIntroStarted Then
+                '      If Paused = False Then
+                'If Date.Now >= _introEndTime Then
+                'Dim song = GetSong(_introContinueSong)
+                '_isLooping = True
+                '_isIntroStarted = False
+                'Play(song)
+                'End If
+                'End If
+                'End If
             End If
-
-            ' intro
-            '  If _isIntroStarted Then
-            '      If Paused = False Then
-            'If Date.Now >= _introEndTime Then
-            'Dim song = GetSong(_introContinueSong)
-            '_isLooping = True
-            '_isIntroStarted = False
-            'Play(song)
-            'End If
-            'End If
-            'End If
         End If
-
         If Core.GameInstance.IsActive AndAlso _lastVolume <> (Volume * MasterVolume) Then
             UpdateVolume()
         End If

@@ -51,9 +51,10 @@
         Me.PreScreen.Draw()
 
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.ScreenSize.Width, Core.ScreenSize.Height), New Color(0, 0, 0, 150))
-        Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_title")).X / 2)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_title"), New Vector2(pX - 7, CInt(Core.ScreenSize.Height / 7.5) + 3), Color.Black)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_title"), New Vector2(pX - 10, CInt(Core.ScreenSize.Height / 7.5)), Color.White)
+        Dim titletext As String = Localization.GetString("pause_menu_title")
+        Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(titletext).X / 2)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, titletext, New Vector2(pX - 7, CInt(160 - FontManager.InGameFont.MeasureString(titletext).Y / 2 + 3)), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, titletext, New Vector2(pX - 10, CInt(160 - FontManager.InGameFont.MeasureString(titletext).Y / 2)), Color.White)
 
         If Me.menuIndex = 0 Then
             DrawMenu()
@@ -62,10 +63,10 @@
         End If
 
         If Me.canCreateAutosave = False Then
-            Dim text As String = Localization.GetString("pause_menu_autosave_fail")
+            Dim autosaveFailText As String = Localization.GetString("pause_menu_autosave_fail")
 
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, text, New Vector2(9, Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(text).Y), Color.Black)
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, text, New Vector2(5, Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(text).Y - 4), Color.White)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(9, Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y), Color.Black)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(5, Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y - 4), Color.White)
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
@@ -182,8 +183,8 @@
 
     Private Sub DrawQuit()
         Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).X / 2)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 7, CInt(Core.ScreenSize.Height / 6.8) + 3 + 110), Color.Black)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 10, CInt(Core.ScreenSize.Height / 6.8) + 110), Color.White)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 7, CInt(Core.ScreenSize.Height / 7.5) + 3 + 110), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 10, CInt(Core.ScreenSize.Height / 7.5) + 110), Color.White)
 
         For i = 0 To 1
             Dim Text As String = ""

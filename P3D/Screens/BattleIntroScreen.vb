@@ -15,7 +15,7 @@
 
     Dim Trainer As Trainer
 
-    Dim minDelay As Single = 16.0F
+    Dim minDelay As Single = 4.0F
     Dim startTime As Date
     Dim duration As TimeSpan
 
@@ -453,22 +453,22 @@
 
     Private Sub UpdateBlockIn()
         If Animations.Count = 0 Then
-            Animations.Add(New Rectangle(CInt(Core.windowSize.Width / 2) - 10, CInt(Core.windowSize.Height / 2) - 10, 20, 20))
+            Animations.Add(New Rectangle(CInt(Core.windowSize.Width / 2 - (Core.windowSize.Width / 100 / 2)), CInt(Core.windowSize.Height / 2 - (Core.windowSize.Height / 100 / 2)), CInt(Core.windowSize.Width / 100), CInt(Core.windowSize.Height / 100)))
         Else
-            If Animations(0).Width >= Core.windowSize.Width Then
+            Dim Speed As Integer = CInt(Me.duration.TotalMilliseconds / Core.windowSize.Height * 6)
+            If Animations(0).Height >= Core.windowSize.Height + 128 Then
                 ready = True
-            Else
-                Dim a As Rectangle = Animations(0)
-
-                a.X -= 7
-                a.Y -= 7
-
-                a.Width += 14
-                a.Height += 14
-
-                Animations.RemoveAt(0)
-                Animations.Add(a)
             End If
+            Dim a As Rectangle = Animations(0)
+
+            a.X -= CInt(Speed)
+            a.Y -= CInt(Speed / 16 * 9)
+
+            a.Width += Speed * 2
+            a.Height += CInt(Speed * 2 / 16 * 9)
+
+            Animations.RemoveAt(0)
+            Animations.Add(a)
         End If
     End Sub
 
@@ -476,10 +476,10 @@
         If Animations.Count = 0 Then
             Animations.Add(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height))
         Else
-            If value >= Core.windowSize.Height / 2 Then
+            If value >= Core.windowSize.Height / 2 - 4 Then
                 ready = True
             Else
-                value += CInt(Math.Ceiling(Core.windowSize.Height / 300))
+                value += CInt(Math.Ceiling(Me.duration.TotalMilliseconds / Core.windowSize.Height * 3))
             End If
         End If
     End Sub
@@ -515,7 +515,7 @@
     End Sub
 
     Private Function SongOver() As Boolean
-        Return startTime + duration < Date.Now.AddSeconds(0.1)
+        Return startTime + duration < Date.Now
     End Function
 
     'Protected Overrides Sub Finalize()

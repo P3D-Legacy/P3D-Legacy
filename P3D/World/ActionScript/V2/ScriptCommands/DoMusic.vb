@@ -12,6 +12,12 @@
 
             Select Case command.ToLower()
                 Case "play"
+                    MusicManager.Play(argument, True, 0.0F)
+
+                    If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                        Screen.Level.MusicLoop = argument
+                    End If
+                Case "playfade"
                     MusicManager.Play(argument, True)
 
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
