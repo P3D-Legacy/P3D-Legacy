@@ -188,7 +188,7 @@ Public Class OverworldPokemon
             End If
         Else
             Me.AnimationDelayLength = 1.1F
-            If Core.CurrentScreen.Identification = Screen.Identifications.BattleScreen Then
+            If Me.Texture.Width = Me.Texture.Height / 2 Then
                 Me.Moving = True
             Else
                 Me.Moving = False
