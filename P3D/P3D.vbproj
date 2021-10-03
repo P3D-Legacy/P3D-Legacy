@@ -14086,457 +14086,466 @@
     <Content Include="Content\SkyDomeResource\Sky_Night.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\alph.ogg">
+    <Content Include="Content\Songs\RuinsOfAlph.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\ancient_ruins.ogg">
+    <Content Include="Content\Songs\Ancient_Ruins.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\azalea.ogg">
+    <Content Include="Content\Songs\Azalea.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\barktown.ogg">
+    <Content Include="Content\Songs\NewBark.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\battlefactory.ogg">
+    <Content Include="Content\Songs\BattleFactory.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\battletower.ogg">
+    <Content Include="Content\Songs\BattleTower.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\brain_battle.ogg">
+    <Content Include="Content\Songs\Brain_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\brain_battle_intro.ogg">
+    <Content Include="Content\Songs\Brain_Battle_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\bugcontest.ogg">
+    <Content Include="Content\Songs\BugContest.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\burnedtower.ogg">
+    <Content Include="Content\Songs\BurnedTower.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\celadon.ogg">
+    <Content Include="Content\Songs\Celadon.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\center.ogg">
+    <Content Include="Content\Songs\Center.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\cerulean.ogg">
+    <Content Include="Content\Songs\Cerulean.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\cerulean_cave.ogg">
+    <Content Include="Content\Songs\Cerulean_Cave.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\champion_defeat.ogg">
+    <Content Include="Content\Songs\Champion_Defeat.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\cherrygrove.ogg">
+    <Content Include="Content\Songs\Cherrygrove.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\cinnabar.ogg">
+    <Content Include="Content\Songs\Cinnabar.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\credits.ogg">
+    <Content Include="Content\Songs\Credits.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\dark_cave.ogg">
+    <Content Include="Content\Songs\Dark_Cave.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\diglettscave.ogg">
+    <Content Include="Content\Songs\DiglettsCave.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\dragonsden.ogg">
+    <Content Include="Content\Songs\DragonsDen.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\ecruteak.ogg">
+    <Content Include="Content\Songs\Ecruteak.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\elite_defeat.ogg">
+    <Content Include="Content\Songs\Elite_Defeat.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\elmslab.ogg">
+    <Content Include="Content\Songs\ElmsLab.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\entei_battle.ogg">
+    <Content Include="Content\Songs\Entei_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\entei_battle_intro.ogg">
+    <Content Include="Content\Songs\Entei_Battle_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\eusine_encounter.ogg">
+    <Content Include="Content\Songs\Eusine_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\evolution.ogg">
+    <Content Include="Content\Songs\Evolution.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\frontier.ogg">
+    <Content Include="Content\Songs\BattleFrontier.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\gamecorner.ogg">
+    <Content Include="Content\Songs\GameCorner.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\gameintro.ogg">
+    <Content Include="Content\Songs\GameIntro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Songs\Goldenrod.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\gts.ogg">
+    <Content Include="Content\Songs\GTS.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\gym.ogg">
+    <Content Include="Content\Songs\Gym.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\HallofFame.ogg">
+    <Content Include="Content\Songs\HallOfFame.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\ho-oh_battle.ogg">
+    <Content Include="Content\Songs\Ho-oh_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\ho-oh_battle_intro.ogg">
+    <Content Include="Content\Songs\Ho-oh_Battle_intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Songs\IlexForest.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\indigo.ogg">
+    <Content Include="Content\Songs\IndigoPlateau.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\azalea.ogg">
+    <Content Include="Content\Songs\Intro\Azalea.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\barktown.ogg">
+    <Content Include="Content\Songs\Intro\NewBark.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\battlefactory.ogg">
+    <Content Include="Content\Songs\Intro\BattleFactory.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\bugcontest.ogg">
+    <Content Include="Content\Songs\Intro\BugContest.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\burnedtower.ogg">
+    <Content Include="Content\Songs\Intro\BurnedTower.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\celadon.ogg">
+    <Content Include="Content\Songs\Intro\Celadon.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\cerulean.ogg">
+    <Content Include="Content\Songs\Intro\Cerulean.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\cerulean_cave.ogg">
+    <Content Include="Content\Songs\Intro\Cerulean_Cave.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\champion_defeat.ogg">
+    <Content Include="Content\Songs\Intro\Champion_Defeat.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\cherrygrove.ogg">
+    <Content Include="Content\Songs\Intro\Cherrygrove.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\diglettscave.ogg">
+    <Content Include="Content\Songs\Intro\DiglettsCave.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\elite_defeat.ogg">
+    <Content Include="Content\Songs\Intro\Elite_Defeat.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\elmslab.ogg">
+    <Content Include="Content\Songs\Intro\ElmsLab.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\entei_battle.ogg">
+    <Content Include="Content\Songs\Intro\Entei_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\evolution.ogg">
+    <Content Include="Content\Songs\Intro\Evolution.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\frontier.ogg">
+    <Content Include="Content\Songs\Intro\BattleFrontier.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\gamecorner.ogg">
+    <Content Include="Content\Songs\Intro\GameCorner.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\Goldenrod.ogg">
+    <Content Include="Content\Songs\Intro\Goldenrod.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\gts.ogg">
+    <Content Include="Content\Songs\Intro\GTS.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\ho-oh_battle.ogg">
+    <Content Include="Content\Songs\Intro\Ho-oh_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\IlexForest.ogg">
+    <Content Include="Content\Songs\Intro\IlexForest.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\johto_elite.ogg">
+    <Content Include="Content\Songs\Intro\Johto_Elite.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\johto_leader.ogg">
+    <Content Include="Content\Songs\Intro\Johto_Leader.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\johto_rival_encounter.ogg">
+    <Content Include="Content\Songs\Intro\Johto_Rival_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\johto_rocket.ogg">
+    <Content Include="Content\Songs\Intro\Johto_Rocket.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\johto_trainer.ogg">
+    <Content Include="Content\Songs\Intro\Johto_Trainer.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\johto_wild.ogg">
+    <Content Include="Content\Songs\Intro\Johto_Wild.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\kanto_leader.ogg">
+    <Content Include="Content\Songs\Intro\Kanto_Leader.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\kanto_trainer.ogg">
+    <Content Include="Content\Songs\Intro\Kanto_Trainer.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\lavender.ogg">
+    <Content Include="Content\Songs\Intro\Lavender.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\leader_defeat.ogg">
+    <Content Include="Content\Songs\Intro\Leader_Defeat.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\lobby.ogg">
+    <Content Include="Content\Songs\Intro\Lobby.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\lugia_battle.ogg">
+    <Content Include="Content\Songs\Intro\Lugia_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\mart.ogg">
+    <Content Include="Content\Songs\Intro\Mart.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\mary_encounter.ogg">
+    <Content Include="Content\Songs\Intro\Mary_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\oakslab.ogg">
+    <Content Include="Content\Songs\Intro\Mom.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\oak_encounter.ogg">
+    <Content Include="Content\Songs\Intro\OaksLab.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\pokeflute.ogg">
+    <Content Include="Content\Songs\Intro\Oak_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\pokemon_lullaby.ogg">
+    <Content Include="Content\Songs\Intro\PokeFlute.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\pokemon_march.ogg">
+    <Content Include="Content\Songs\Intro\Pokemon_Lullaby.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\pvp.ogg">
+    <Content Include="Content\Songs\Intro\Pokemon_March.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\raikou_battle.ogg">
+    <Content Include="Content\Songs\Intro\PVP.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\ride.ogg">
+    <Content Include="Content\Songs\Intro\Raikou_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic1.ogg">
+    <Content Include="Content\Songs\Intro\Ride.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic10.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic1.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic11.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic10.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic2.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic11.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic3.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic2.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic4.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic3.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic5.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic4.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic6.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic5.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic7.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic6.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\RouteMusic8.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic7.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\safari.ogg">
+    <Content Include="Content\Songs\Intro\RouteMusic8.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\show_me_around.ogg">
+    <Content Include="Content\Songs\Intro\SafariZone.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\space_legend_battle.ogg">
+    <Content Include="Content\Songs\Intro\Show_Me_Around.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\sprout_tower.ogg">
+    <Content Include="Content\Songs\Intro\Space_Legend_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\ssaqua.ogg">
+    <Content Include="Content\Songs\Intro\Sprout_Tower.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\startower.ogg">
+    <Content Include="Content\Songs\Intro\SSAqua.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\suicune_battle.ogg">
+    <Content Include="Content\Songs\Intro\StarTower.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\tao_legend_battle.ogg">
+    <Content Include="Content\Songs\Intro\Suicune_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\trainerschool.ogg">
+    <Content Include="Content\Songs\Intro\Tao_Legend_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\trainer_encounter.ogg">
+    <Content Include="Content\Songs\Intro\TrainerSchool.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\vermilion.ogg">
+    <Content Include="Content\Songs\Intro\Trainer_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\intro\violet.ogg">
+    <Content Include="Content\Songs\Intro\Vermilion.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_champion.ogg">
+    <Content Include="Content\Songs\Intro\Violet.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\Johto_champion_intro.ogg">
+    <Content Include="Content\Songs\Johto_Champion.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_elite.ogg">
+    <Content Include="Content\Songs\Johto_Champion_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_elite_intro.ogg">
+    <Content Include="Content\Songs\Johto_Elite.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_leader.ogg">
+    <Content Include="Content\Songs\Johto_Elite_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_leader_intro.ogg">
+    <Content Include="Content\Songs\Johto_Leader.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_rival.ogg">
+    <Content Include="Content\Songs\Johto_Leader_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_rivalintro.ogg">
+    <Content Include="Content\Songs\Johto_Rival.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_rival_encounter.ogg">
+    <Content Include="Content\Songs\Johto_Rival_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_rocket.ogg">
+    <Content Include="Content\Songs\Johto_Rival_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_rocket_encounter.ogg">
+    <Content Include="Content\Songs\Johto_Rocket.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_rocket_intro.ogg">
+    <Content Include="Content\Songs\Johto_Rocket_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_trainer.ogg">
+    <Content Include="Content\Songs\Johto_Rocket_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_trainer_intro.ogg">
+    <Content Include="Content\Songs\Johto_Trainer.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_wild.ogg">
+    <Content Include="Content\Songs\Johto_Trainer_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_wild_intro.ogg">
+    <Content Include="Content\Songs\Johto_Wild.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\kanto_leader.ogg">
+    <Content Include="Content\Songs\Johto_Wild_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\kanto_leader_intro.ogg">
+    <Content Include="Content\Songs\Kanto_Leader.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\kanto_trainer.ogg">
+    <Content Include="Content\Songs\Kanto_Leader_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\kanto_trainer_intro.ogg">
+    <Content Include="Content\Songs\Kanto_Trainer.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\kanto_wild.ogg">
+    <Content Include="Content\Songs\Kanto_Trainer_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\kanto_wild_intro.ogg">
+    <Content Include="Content\Songs\Kanto_Wild.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\kimono.ogg">
+    <Content Include="Content\Songs\Kanto_Wild_intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\kvictoryroad.ogg">
+    <Content Include="Content\Songs\Kimono.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\lavender.ogg">
+    <Content Include="Content\Songs\VictoryRoad.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\leader_defeat.ogg">
+    <Content Include="Content\Songs\Lavender.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\lighthouse.ogg">
+    <Content Include="Content\Songs\Leader_Defeat.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\lobby.ogg">
+    <Content Include="Content\Songs\Lighthouse.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\Looker_encounter.ogg">
+    <Content Include="Content\Songs\Lobby.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\lugia_battle.ogg">
+    <Content Include="Content\Songs\Looker_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\lugia_battle_intro.ogg">
+    <Content Include="Content\Songs\Lugia_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\mart.ogg">
+    <Content Include="Content\Songs\Lugia_Battle_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\mary_encounter.ogg">
+    <Content Include="Content\Songs\Mart.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\mtmoonsq.ogg">
+    <Content Include="Content\Songs\Mary_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\nationalpark.ogg">
+    <Content Include="Content\Songs\Mom.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\oakslab.ogg">
+    <Content Include="Content\Songs\MtMoonSquare.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\oak_encounter.ogg">
+    <Content Include="Content\Songs\NationalPark.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\pallet.ogg">
+    <Content Include="Content\Songs\OaksLab.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\pokeflute.ogg">
+    <Content Include="Content\Songs\Oak_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\pokemon_lullaby.ogg">
+    <Content Include="Content\Songs\Pallet.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\pokemon_march.ogg">
+    <Content Include="Content\Songs\PokeFlute.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\pvp.ogg">
+    <Content Include="Content\Songs\Pokemon_Lullaby.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\raikou_battle.ogg">
+    <Content Include="Content\Songs\Pokemon_March.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\raikou_battle_intro.ogg">
+    <Content Include="Content\Songs\PVP.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\rHideout.ogg">
+    <Content Include="Content\Songs\PVP_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\ride.ogg">
+    <Content Include="Content\Songs\Raikou_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\rocket_broadcast.ogg">
+    <Content Include="Content\Songs\Raikou_Battle_Intro.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Songs\Rocket_Hideout.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Songs\Ride.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Songs\Rocket_Broadcast.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Songs\RouteMusic0.ogg">
@@ -14575,82 +14584,82 @@
     <Content Include="Content\Songs\RouteMusic9.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\safari.ogg">
+    <Content Include="Content\Songs\SafariZone.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\safarigate.ogg">
+    <Content Include="Content\Songs\SafariZone_Gate.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\show_me_around.ogg">
+    <Content Include="Content\Songs\Show_Me_Around.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Songs\Silence.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\sovietmarch.ogg">
+    <Content Include="Content\Songs\SovietMarch.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\space_legend_battle.ogg">
+    <Content Include="Content\Songs\Space_Legend_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\space_legend_battle_intro.ogg">
+    <Content Include="Content\Songs\Space_Legend_Battle_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\sprout_tower.ogg">
+    <Content Include="Content\Songs\Sprout_Tower.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\ssaqua.ogg">
+    <Content Include="Content\Songs\SSAqua.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\startower.ogg">
+    <Content Include="Content\Songs\StarTower.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\suicune_battle.ogg">
+    <Content Include="Content\Songs\Suicune_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\suicune_battle_intro.ogg">
+    <Content Include="Content\Songs\Suicune_Battle_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\surf.ogg">
+    <Content Include="Content\Songs\Surf.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\tao_legend_battle.ogg">
+    <Content Include="Content\Songs\Tao_Legend_Battle.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\tao_legend_battle_intro.ogg">
+    <Content Include="Content\Songs\Tao_Legend_Battle_Intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\tintower.ogg">
+    <Content Include="Content\Songs\TinTower.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\title.ogg">
+    <Content Include="Content\Songs\Title.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\trainerschool.ogg">
+    <Content Include="Content\Songs\TrainerSchool.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\trainer_defeat.ogg">
+    <Content Include="Content\Songs\Trainer_Defeat.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\trainer_encounter.ogg">
+    <Content Include="Content\Songs\Trainer_Encounter.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\unown_broadcast.ogg">
+    <Content Include="Content\Songs\Unown_Broadcast.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\vermilion.ogg">
+    <Content Include="Content\Songs\Vermilion.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\violet.ogg">
+    <Content Include="Content\Songs\Violet.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\viridian_forest.ogg">
+    <Content Include="Content\Songs\Viridian_Forest.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\wild_defeat.ogg">
+    <Content Include="Content\Songs\Wild_Defeat.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\wind.ogg">
+    <Content Include="Content\Songs\Wind.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Battle\Attacks\Ember_Hit.wav">
@@ -15298,6 +15307,9 @@
     <Content Include="Content\Sounds\ElevatorEnd.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Emote_Exclamation.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sounds\enter.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -15332,6 +15344,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Receive_Egg.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Receive_HM.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Receive_Item.wav">
