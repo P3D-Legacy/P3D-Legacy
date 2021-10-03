@@ -1,4 +1,4 @@
-{"Level"{LEV[{"Name"{str[Viapois Chamber]}}{"MusicLoop"{str[RuinsOfAlph]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}{"WildPokemon"{bool[0]}}]}}
+{"Level"{LEV[{"Name"{str[Viapois Chamber]}}{"MusicLoop"{str[alph]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}{"WildPokemon"{bool[0]}}]}}
 {"Actions"{LEV[{"RadioChannels"{str[13.5]}}{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[3]}}{"MapScript"{str[quest\tanoby\chambermap]}}{"Weather"{int[1]}}{"Lighting"{int[1]}}]}}
 
 floors:

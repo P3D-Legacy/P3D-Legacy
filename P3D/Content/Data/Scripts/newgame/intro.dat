@@ -127,7 +127,7 @@
 @text.show(There are still~many mysteries to solve.*That's why I study~Pokémon every day.)
 @text.show(But let's get~back to you.)
 
-@screen.skinselection()
+@screen.skinselection(Ethan,Lyra,Hilbert,Hilda,Nate,Rosa)
 
 @player.wearskin(<screen.selectedskin>)
 @npc.wearskin(1,<screen.selectedskin>)

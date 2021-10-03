@@ -628,7 +628,7 @@
             b.PVPGameJoltID = tempPlayer.GameJoltId
         End If
 
-        Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, t, "PVP_Intro", t.IntroType))
+        Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, t, t.GetIniMusicName(), t.IntroType))
         PlayerStatistics.Track("PVP battles", 1)
     End Sub
 
