@@ -55,7 +55,7 @@
             Me.AIField2 = AIField.Nothing
         End Sub
 
-        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Pound", 0.5, 2.5)
             MoveAnimation.AnimationSpawnFadingEntity(0, -0.25, 0, "Textures\Battle\Normal\Pound", 0.5, 0.5, 0.5, 0.02, False, 1.0, 0, 3)

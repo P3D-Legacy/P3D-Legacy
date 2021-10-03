@@ -61,7 +61,7 @@
 
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
-            MoveAnimation.AnimationPlaySound("Battle\Attacks\Tackle", 0, 2)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Normal\Tackle", 0, 2)
             MoveAnimation.AnimationSpawnFadingEntity(0, -0.25, 0, "Textures\Battle\Normal\Tackle", 0.5, 0.5, 0.5, 0.02, False, 1.0, 0, 2)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
