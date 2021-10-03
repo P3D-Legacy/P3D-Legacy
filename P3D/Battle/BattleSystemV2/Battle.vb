@@ -3978,8 +3978,10 @@
 
         Public Sub ReduceHP(ByVal HPAmount As Integer, ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String, ByVal sound As String)
             Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim pNPC As Entity = BattleScreen.OwnPokemonNPC
             If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
             End If
 
             If p.HP > 0 And p.Status <> Pokemon.StatusProblems.Fainted Then
@@ -3995,6 +3997,13 @@
                     End If
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(sound, False, 0.0F))
                 End If
+
+                Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(CType(pNPC, NPC), own)
+                HitAnimation.AnimationFadePokemonEntity(1, False, 0, 0, 0)
+                HitAnimation.AnimationFadePokemonEntity(1, True, 1, 1, 0)
+                HitAnimation.AnimationFadePokemonEntity(1, False, 0, 2, 0)
+                HitAnimation.AnimationFadePokemonEntity(1, True, 1, 3, 0)
+                BattleScreen.BattleQuery.Add(HitAnimation)
 
                 If own = True Then
                     BattleScreen.BattleQuery.Add(New MathHPQueryObject(p.HP, p.MaxHP, HPAmount, New Vector2(200, 256)))

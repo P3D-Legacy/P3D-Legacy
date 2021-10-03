@@ -66,7 +66,7 @@
         Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
             MoveAnimation.AnimationSpawnMovingEntity(0.0, 0, 0.0, "Textures\Battle\Fire\FireBall", 0.5, 0.5, 0.5, 2.0, 0.0, 0.0, 0.05, False, True, 0.0, 0.0,, -0.5, 0)
-            MoveAnimation.AnimationPlaySound("Battle\Attacks\Ember_Start", 0, 0)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Fire\Ember_Start", 0, 0)
             For i = 0 To 12
                 MoveAnimation.AnimationSpawnFadingEntity(CSng(i * 0.2), 0.0, 0.0, "Textures\Battle\Fire\Smoke", 0.2, 0.2, 0.2, 0.02, False, 0.0, CSng(i * 0.2), 0.0)
                 i += 1
@@ -82,7 +82,7 @@
                 MoveAnimation.AnimationSpawnFadingEntity(CSng(3.0 - i * 0.2), 0.0, 0.0, "Textures\Battle\Fire\Smoke", 0.2, 0.2, 0.2, 0.02, False, 0.0, CSng(i * 0.2), 0.0)
                 i += 1
             Next
-            MoveAnimation.AnimationPlaySound("Battle\Attacks\Ember_Hit", 2, 0)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Fire\Ember_Hit", 2, 0)
             MoveAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
             MoveAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Fire\Ember,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
             MoveAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)

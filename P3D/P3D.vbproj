@@ -14665,31 +14665,34 @@
     <Content Include="Content\Songs\wind.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Ember_Hit.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Electric\Thunderbolt.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Ember_Start.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Fire\Ember_Hit.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Fly_Hit.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Fire\Ember_Start.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Fly_Start.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Flying\Fly_Hit.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\PoisonSting_Hit.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Flying\Fly_Start.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\PoisonSting_Start.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Grass\Absorb.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Pound.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Normal\Pound.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Tackle.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Normal\Tackle.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Thunderbolt.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Poison\PoisonSting_Hit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Poison\PoisonSting_Start.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Battle\Damage\Effective.wav">
@@ -15377,6 +15380,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Battle\Fire\Smoke.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Grass\Absorb.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Battle\Normal\Growl.png">
