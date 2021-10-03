@@ -25,9 +25,8 @@
                     Core.Player.HasPokegear = True
                     IsReady = True
                 Case "renamerival"
-                    Dim RivalTexture As String = Core.Player.RivalSkin
-                    Dim RivalName As String
-                    RivalName = "???"
+                    Dim RivalTexture As String = GameModeManager.ActiveGameMode.ContentPath & "Textures\" & Core.Player.RivalSkin
+                    Dim RivalName As String = Core.Player.RivalName
                     Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, TextureManager.GetTexture(RivalTexture, New Rectangle(0, 64, 32, 32)), False, False, RivalName, "???", AddressOf Script.NameRival))
                     IsReady = True
                     CanContinue = False
