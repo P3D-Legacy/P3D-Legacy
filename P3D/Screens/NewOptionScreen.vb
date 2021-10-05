@@ -21,7 +21,6 @@
     Dim PreferMultiSampling As Boolean = True
     Private _subMenu As Integer = 0
     Private _screenSize As Size = New Size(CInt(ScreenSize.Width), CInt(ScreenSize.Height))
-    Private LastControl As Integer = 0
 
     Private Property SelectPackNoiseDelay As Integer = 10
 
@@ -308,10 +307,10 @@
                 End If
 
                 If i + packsMenuIndex(2) = packsMenuIndex(0) Then
-                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 318, 220 + 2 + i * 50), textColor)
-                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 320, 220 + i * 50), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 318, CInt(Core.windowSize.Height / 2 - 120 + i * 50 + 2)), textColor)
+                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
                 Else
-                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 320, 220 + i * 50), textColor)
+                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), textColor)
                 End If
             Next
         End If
@@ -324,7 +323,6 @@
 
         For Each control As Control In ControlList
             If control._position = _cursorDestPosition Then
-                LastControl = control.ID
                 currentControl = control
                 Exit For
             End If
@@ -484,48 +482,18 @@
     Private PInfoContent As String = ""
 
     Private Sub DrawPackInformationMenu()
-        Dim isEnabled As Boolean = False
-        Dim packName As String = PInfoName
-        If EnabledPackNames.Contains(packName) = True Then
-            isEnabled = True
-        End If
-
         If Not PInfoSplash Is Nothing Then
             SpriteBatch.DrawInterface(PInfoSplash, ScreenSize, Color.White)
         End If
 
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
-        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 240 + 4, 196, 480, 64), New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2) + 2, 212 + 2), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2), 212), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 240 + 4, CInt(Core.windowSize.Height / 2 - 144), 480, 64), New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2) + 2, CInt(Core.windowSize.Height / 2 - 128 + 2)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2), CInt(Core.windowSize.Height / 2 - 128)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
 
-        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 272 + 4, 272, 544, 196), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("pack_menu_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("pack_menu_content") & ": " & PInfoContent & Environment.NewLine & Localization.GetString("pack_menu_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine), New Vector2(CInt(ScreenSize.Width / 2) - 272 + 16, 280), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
-
-        For i = 0 To 1
-            If i = packInfoIndex Then
-                CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
-            Else
-                CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
-            End If
-
-            Dim Text As String = Localization.GetString("pack_menu_back")
-
-            Select Case i
-                Case 0
-                    If isEnabled = True Then
-                        Text = Localization.GetString("pack_menu_toggle_off")
-                    Else
-                        Text = Localization.GetString("pack_menu_toggle_on")
-                    End If
-                Case 1
-                    Text = Localization.GetString("pack_menu_back")
-            End Select
-
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(ScreenSize.Width / 2) - 180 + (200 * i), 688, 128, 64), True)
-            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(ScreenSize.Width / 2) - 160 + (200 * i), 720), Color.Black)
-        Next
+        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 272 + 4, CInt(Core.windowSize.Height / 2 - 72), 544, 196), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("pack_menu_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("pack_menu_content") & ": " & PInfoContent & Environment.NewLine & Localization.GetString("pack_menu_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine), New Vector2(CInt(ScreenSize.Width / 2) - 272 + 16, CInt(Core.windowSize.Height / 2 - 64)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
     End Sub
 
     Private Sub UpdatePackInformationMenu()
@@ -671,14 +639,13 @@
         Me.PreScreen.Update()
         'New stuff
         If _opening Then
-            LastControl = 0
             InitializeControls()
             _opening = False
         End If
 
         'Refresh button positions
-        If ScreenSize.Width <> _screenSize.Width Or ScreenSize.Height <> _screenSize.Height Then
-            _screenSize = New Size(CInt(ScreenSize.Width), CInt(ScreenSize.Height))
+        If windowSize.Width <> _screenSize.Width Or windowSize.Height <> _screenSize.Height Then
+            _screenSize = New Size(CInt(windowSize.Width), CInt(windowSize.Height))
             InitializeControls()
         End If
 
@@ -777,7 +744,7 @@
                 If Controls.Left(True, True, False, True, True, True) = True Then
                     SetCursorPosition("left")
                 End If
-                If ScreenIndex <> 6 And ScreenIndex <> 8 Then
+                If ScreenIndex <> 6 Then
                     If Controls.Left(False, False, True, False, False, False) = True Then
                         SetCursorPosition("previous")
                     End If
@@ -790,7 +757,11 @@
                     If _pageClosing = False And _pageOpening = False Then
                         SoundManager.PlaySound("select")
                         If ScreenIndex = 0 Or _subMenu <> 0 Then
-                            _closing = True
+                            If ScreenIndex = 8 Then
+                                SwitchToContentPacks()
+                            Else
+                                _closing = True
+                            End If
                         Else
                             SwitchToMain()
                         End If
@@ -825,7 +796,6 @@
 
         For Each control As Control In ControlList
             If control._position = _cursorDestPosition Then
-                LastControl = control.ID
                 currentControl = control
                 Exit For
             End If
@@ -1044,7 +1014,11 @@
                 Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, "Back", AddressOf SwitchToContentPacks, 2))
         End Select
 
-        _cursorDestPosition = ControlList(LastControl)._position
+        If ScreenIndex <> 7 Then
+            _cursorDestPosition = ControlList(0)._position
+        Else
+            _cursorDestPosition = ControlList(4)._position
+        End If
     End Sub
 
     Private Sub Apply()
@@ -1189,8 +1163,8 @@
             Me._pageClosing = True
         Else
             ScreenIndex = _nextIndex
-            InitializeControls()
         End If
+        InitializeControls()
     End Sub
     Private Sub SwitchToPackInformation()
         If PackNames.Count > 0 Then

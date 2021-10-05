@@ -152,7 +152,7 @@ Public Class JoinServerScreen
             End Select
 
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 560 + i * 192, Core.ScreenSize.Height - 136, 128, 64), True)
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - 542 + i * 192, Core.ScreenSize.Height - 106), Color.Black)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - 542 + i * 192, Core.ScreenSize.Height - 104), Color.Black)
         Next
 
         Dim vS As String = "Protocol version: " & Servers.ServersManager.PROTOCOLVERSION
@@ -557,16 +557,16 @@ Public Class JoinServerScreen
                 Canvas.DrawRectangle(New Rectangle(CInt(startPos.X), CInt(startPos.Y), width, 80), New Color(0, 0, 0, 200), True)
                 Canvas.DrawBorder(2, New Rectangle(CInt(startPos.X), CInt(startPos.Y), width, 80), Color.LightGray, True)
             End If
-            Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Me.GetName(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 3), Color.White, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Me.GetName(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 3), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
             If ReceivedError = True Then
-                Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, GetServerStatus(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(190, 0, 0, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, GetServerStatus(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(190, 0, 0, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                 Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(150, 224, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
 
                 If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                     Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                     Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "(no connection)", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "(no connection)", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                 End If
             Else
                 If Pinged = True Then
@@ -584,30 +584,30 @@ Public Class JoinServerScreen
                         color = New Color(190, 0, 0, 255)
                     End If
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, message, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), color, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, message, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), color, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline, New Vector2(CInt(startPos.X) + width - 36 - FontManager.MiniFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X, CInt(startPos.Y) + 7), Color.LightGray)
-                    Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * (4 - GetPingLevel()), 238, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline, New Vector2(CInt(startPos.X) + width - 36 - FontManager.InGameFont.MeasureString(Me.CurrentPlayersOnline & "/" & Me.MaxPlayersOnline).X, CInt(startPos.Y) + 9), Color.LightGray)
+                    Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * (4 - GetPingLevel()), 238, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 30, CInt(startPos.Y) + 3, 28, 28), Color.White)
 
                     ' Ping result tool tip.
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Ping: " & PingResult & " ms", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Ping: " & PingResult & " ms", New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                     End If
                 Else
                     Core.SpriteBatch.DrawInterface(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(80 + 14 * CInt(Math.Floor(JoinServerScreen.BarAnimationState / 10)), 224, 14, 14), ""), New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28), Color.White)
                     If New Rectangle(CInt(startPos.X) + width - 32, CInt(startPos.Y) + 3, 28, 28).Contains(MouseHandler.MousePosition) = True Then
                         Canvas.DrawRectangle(New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Black)
                         Canvas.DrawBorder(3, New Rectangle(MouseHandler.MousePosition.X + 10, MouseHandler.MousePosition.Y + 10, 160, 32), Color.Gray)
-                        Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Polling" & LoadingDots.Dots, New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
+                        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Polling" & LoadingDots.Dots, New Vector2(MouseHandler.MousePosition.X + 14, MouseHandler.MousePosition.Y + 16), Color.White)
                     End If
 
-                    Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, "Polling" & LoadingDots.Dots, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Polling" & LoadingDots.Dots, New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 30), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                 End If
             End If
 
-            Core.SpriteBatch.DrawInterfaceString(FontManager.MiniFont, GetAddressString(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 53), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, GetAddressString(), New Vector2(CInt(startPos.X) + 4, CInt(startPos.Y) + 53), New Color(180, 180, 180, 255), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         End Sub
 
         Public Sub DrawPlayerListToolTip(ByVal startPos As Vector2)

@@ -111,7 +111,7 @@
             End If
 
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180 + i * 192, 544, 128, 64))
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - 162 + i * 192, 574), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2) - 162 + i * 192, 578), Color.Black)
         Next
 
         If IsValid() <> "" Then
