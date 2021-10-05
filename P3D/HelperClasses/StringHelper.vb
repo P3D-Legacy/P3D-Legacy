@@ -28,7 +28,7 @@
 
     Public Shared Function IsNumeric(obj As Object) As Boolean
         If TypeOf obj Is String Then
-            Return IsNumeric(CStr(obj))
+            Return IsNumeric(CStr(obj).InsertDecSeparator())
         End If
 
         Return Microsoft.VisualBasic.IsNumeric(obj)
