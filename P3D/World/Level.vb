@@ -7,6 +7,7 @@ Public Class Level
 #Region "Fields"
 
     Private _routeSign As RouteSign = Nothing
+    Private _notificationPopup As NotificationPopup = Nothing
     Private _world As World = Nothing
     Private _pokemonEncounter As PokemonEncounter = Nothing
 
@@ -96,6 +97,14 @@ Public Class Level
     Public ReadOnly Property RouteSign() As RouteSign
         Get
             Return Me._routeSign
+        End Get
+    End Property
+    Public Property NotificationPopup() As NotificationPopup
+        Set(value As NotificationPopup)
+            Me._notificationPopup = value
+        End Set
+        Get
+            Return Me._notificationPopup
         End Get
     End Property
 

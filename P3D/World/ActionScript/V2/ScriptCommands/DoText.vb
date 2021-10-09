@@ -11,6 +11,32 @@
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
             Select Case command.ToLower()
+                Case "notification"
+                    Dim _NotificationPopup As New NotificationPopup
+                    Dim args As String() = argument.Split(CChar(","))
+                    Select Case args.Length
+                        Case 1
+                            _NotificationPopup.Setup(args(0))
+                        Case 2
+                            _NotificationPopup.Setup(args(0), CInt(args(1)))
+                        Case 3
+                            _NotificationPopup.Setup(args(0), CInt(args(1)), CInt(args(2)))
+                        Case 4
+                            _NotificationPopup.Setup(args(0), CInt(args(1)), CInt(args(2)), CInt(args(3)))
+                        Case 5
+                            _NotificationPopup.Setup(args(0), CInt(args(1)), CInt(args(2)), CInt(args(3)), args(4))
+                        Case 6, 7
+                            _NotificationPopup.Setup(args(0), CInt(args(1)), CInt(args(2)), CInt(args(3)), args(4), args(5))
+                    End Select
+                    If args.Length = 7 AndAlso CBool(args(6)) = True Then
+                        CType(CurrentScreen, OverworldScreen).NotificationPopupList.Insert(0, _NotificationPopup)
+                        If Screen.Level.NotificationPopup IsNot Nothing Then
+                            CType(CurrentScreen, OverworldScreen).NotificationPopupList.Insert(1, Screen.Level.NotificationPopup)
+                            Screen.Level.NotificationPopup = Nothing
+                        Else
+                            CType(CurrentScreen, OverworldScreen).NotificationPopupList.Add(_NotificationPopup)
+                        End If
+                    End If
                 Case "show"
                     Screen.TextBox.reDelay = 0.0F
                     Screen.TextBox.Show(argument, {}, False, False)

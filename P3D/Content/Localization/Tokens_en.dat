@@ -90,6 +90,15 @@ Special_Attack,Special Attack
 Special_Defense,Special Defense
 Speed,Speed
 ---
+GameInteractions:
+game_interaction_interact,Interact
+game_interaction_gamemenu,Game Menu
+game_interaction_pokegear,Pokégear
+game_interaction_pausemenu,Pause Menu
+game_interaction_notification,Notification
+game_notification_respond,Press <button.special> to respond to the notification.
+game_notification_dismiss,Press <button.special> to dismiss the notification.
+---
 MainMenuScreen:
 main_menu_continue,Continue
 main_menu_load_game,Load Game

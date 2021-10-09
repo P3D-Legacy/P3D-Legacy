@@ -12,6 +12,7 @@ Public Class OverworldScreen
     Private Shared _fadeColor As Color = Color.Black 'Fade screen color.
     Private Shared _fadeValue As Integer = 0 'Fade progress value for the screen fade.
     Private Shared _drawRodID As Integer = -1 'The rod ID to display on the screen during the fishing animation.
+    Public NotificationPopupList As List(Of NotificationPopup) = Nothing
 
     Private _actionScript As ActionScript 'Private ActionScript instance.
     Private _particlesTexture As Texture2D 'A texture field to contain the particles texture, currently only used for the crosshair.
@@ -188,6 +189,16 @@ Public Class OverworldScreen
             PokemonImageView.Update()
         End If
 
+        If Level.NotificationPopup IsNot Nothing Then
+            Level.NotificationPopup.Update()
+            If Level.NotificationPopup._show = False Then
+                Level.NotificationPopup = Nothing
+            End If
+        ElseIf NotificationPopupList.Count > 0 Then
+            Level.NotificationPopup = NotificationPopupList(0)
+            NotificationPopupList.RemoveAt(0)
+        End If
+
         'Middle click/Thumbstick press: Show first Pokémon in party.
         If ActionScript.IsReady = True Then
             If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.MiddleButton) = True Or ControllerHandler.ButtonPressed(Buttons.LeftStick) = True Then
@@ -217,7 +228,6 @@ Public Class OverworldScreen
             If KeyBoardHandler.KeyPressed(KeyBindings.OpenInventoryKey) = True Or ControllerHandler.ButtonPressed(Buttons.X) = True Then
                 If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
                     Level.RouteSign.Hide()
-
                     SoundManager.PlaySound("menu_open")
                     Core.SetScreen(New NewMenuScreen(Me))
                 End If
@@ -225,13 +235,20 @@ Public Class OverworldScreen
 
             'Open the PokégearScreen:
             If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
-                If Core.Player.HasPokegear = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-                    If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
-                        Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
+                If Level.NotificationPopup Is Nothing Then
+                    If Core.Player.HasPokegear = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                        If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
+                            Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
+                        End If
+                    End If
+                Else
+                    If Level.NotificationPopup._scriptFile <> "" Then
+                        Level.NotificationPopup.Accept()
+                    Else
+                        Level.NotificationPopup.Dismiss()
                     End If
                 End If
             End If
-
             ActionScript.Update() 'Update the action script.
         Else 'Dialogues are showing:
             'Update some parts of the camera:
@@ -342,17 +359,28 @@ Public Class OverworldScreen
 
         Level.RouteSign.Draw()
 
+        If Level.NotificationPopup IsNot Nothing Then
+            Level.NotificationPopup.Draw()
+        End If
+
         'If the XBOX render control delay is 0, render the controls.
         If ShowControlsDelay = 0.0F Then
             Dim d As New Dictionary(Of Buttons, String)
-            d.Add(Buttons.A, "Interact")
-            d.Add(Buttons.X, "Menu")
 
-            If Core.Player.HasPokegear = True Then
-                d.Add(Buttons.Y, "Pokégear")
+            If Level.NotificationPopup IsNot Nothing Then
+                If Level.NotificationPopup._scriptFile <> "" Then
+                    d.Add(Buttons.A, Localization.GetString("game_interaction_notification", "Notification"))
+                Else
+                End If
+            Else
+                d.Add(Buttons.A, Localization.GetString("game_interaction_interact", "Interact"))
             End If
 
-            d.Add(Buttons.Start, "Game Menu")
+            d.Add(Buttons.X, Localization.GetString("game_interaction_gamemenu", "Game Menu"))
+            If Core.Player.HasPokegear = True Then
+                d.Add(Buttons.Y, Localization.GetString("game_interaction_pokegear", "Pokégear"))
+            End If
+            d.Add(Buttons.Start, Localization.GetString("game_interaction_pausemenu", "Game Menu"))
 
             DrawGamePadControls(d)
         End If
