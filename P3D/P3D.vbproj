@@ -15583,7 +15583,7 @@
     <Content Include="Content\Textures\Notifications\Backgrounds.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Notifications\Boxes.png">
+    <Content Include="Content\Textures\Notifications\Icons.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\NPC\0_bow.png">

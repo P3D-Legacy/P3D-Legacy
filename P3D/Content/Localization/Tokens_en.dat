@@ -96,8 +96,8 @@ game_interaction_gamemenu,Game Menu
 game_interaction_pokegear,Pokégear
 game_interaction_pausemenu,Pause Menu
 game_interaction_notification,Notification
-game_notification_respond,Press <button.special> to respond to the notification.
-game_notification_dismiss,Press <button.special> to dismiss the notification.
+game_notification_accept,Press <button.special> to accept.
+game_notification_dismiss,Press <button.special> to dismiss.
 ---
 MainMenuScreen:
 main_menu_continue,Continue

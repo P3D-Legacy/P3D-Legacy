@@ -12,7 +12,8 @@ Public Class OverworldScreen
     Private Shared _fadeColor As Color = Color.Black 'Fade screen color.
     Private Shared _fadeValue As Integer = 0 'Fade progress value for the screen fade.
     Private Shared _drawRodID As Integer = -1 'The rod ID to display on the screen during the fishing animation.
-    Public NotificationPopupList As List(Of NotificationPopup) = Nothing
+    Public NotificationPopupList As List(Of NotificationPopup) = New List(Of NotificationPopup)
+
 
     Private _actionScript As ActionScript 'Private ActionScript instance.
     Private _particlesTexture As Texture2D 'A texture field to contain the particles texture, currently only used for the crosshair.
@@ -27,7 +28,6 @@ Public Class OverworldScreen
 #End Region
 
 #Region "Properties"
-
     ''' <summary>
     ''' Array of Title objects to be rendered on the screen.
     ''' </summary>
@@ -189,14 +189,11 @@ Public Class OverworldScreen
             PokemonImageView.Update()
         End If
 
-        If Level.NotificationPopup IsNot Nothing Then
-            Level.NotificationPopup.Update()
-            If Level.NotificationPopup._show = False Then
-                Level.NotificationPopup = Nothing
+        If NotificationPopupList.Count > 0 Then
+            NotificationPopupList(0).Update()
+            If NotificationPopupList(0).IsReady = True Then
+                NotificationPopupList.Remove(NotificationPopupList(0))
             End If
-        ElseIf NotificationPopupList.Count > 0 Then
-            Level.NotificationPopup = NotificationPopupList(0)
-            NotificationPopupList.RemoveAt(0)
         End If
 
         'Middle click/Thumbstick press: Show first Pokémon in party.
@@ -235,17 +232,13 @@ Public Class OverworldScreen
 
             'Open the PokégearScreen:
             If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
-                If Level.NotificationPopup Is Nothing Then
+                If NotificationPopupList.Count > 0 Then
+                    NotificationPopupList(0).Dismiss()
+                Else
                     If Core.Player.HasPokegear = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                         If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
                             Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
                         End If
-                    End If
-                Else
-                    If Level.NotificationPopup._scriptFile <> "" Then
-                        Level.NotificationPopup.Accept()
-                    Else
-                        Level.NotificationPopup.Dismiss()
                     End If
                 End If
             End If
@@ -359,19 +352,16 @@ Public Class OverworldScreen
 
         Level.RouteSign.Draw()
 
-        If Level.NotificationPopup IsNot Nothing Then
-            Level.NotificationPopup.Draw()
+        If NotificationPopupList.Count > 0 Then
+            NotificationPopupList(0).Draw()
         End If
 
         'If the XBOX render control delay is 0, render the controls.
         If ShowControlsDelay = 0.0F Then
             Dim d As New Dictionary(Of Buttons, String)
 
-            If Level.NotificationPopup IsNot Nothing Then
-                If Level.NotificationPopup._scriptFile <> "" Then
-                    d.Add(Buttons.A, Localization.GetString("game_interaction_notification", "Notification"))
-                Else
-                End If
+            If NotificationPopupList.Count > 0 Then
+                d.Add(Buttons.A, Localization.GetString("game_interaction_notification", "Notification"))
             Else
                 d.Add(Buttons.A, Localization.GetString("game_interaction_interact", "Interact"))
             End If
