@@ -110,7 +110,6 @@ Public Class PressStartScreen
     End Sub
 
     Public Overrides Sub Update()
-
         For i = 0 To _entities.Count - 1
             If i < _entities.Count Then
                 _entities(i).Update()
@@ -191,7 +190,7 @@ Public Class PressStartScreen
 
         _backgroundRenderer.Begin()
         Dim blurred = _blurHandler.Perform(target)
-        _backgroundRenderer.Draw(blurred, New Rectangle(0, 0, ScreenSize.Width, ScreenSize.Height), Color.White)
+        _backgroundRenderer.Draw(blurred, New Rectangle(0, 0, windowSize.Width, windowSize.Height), Color.White)
 
         '_backgroundRenderer.Draw(target, New Rectangle(0, 0, ScreenSize.Width, ScreenSize.Height), Color.White)
         _backgroundRenderer.End()
@@ -203,8 +202,10 @@ Public Class PressStartScreen
         End If
         _shineRenderer.Begin(SpriteSortMode.Texture, BlendState.Additive)
 
-        _logoRenderer.Draw(_logoTexture, New Rectangle(CInt(ScreenSize.Width / 2) - 350, CInt(160 * _fadeInMain), 700, 300), New Color(255, 255, 255, CInt(255 * _logoFade)))
-        _shineRenderer.Draw(_shineTexture, New Rectangle(CInt(ScreenSize.Width / 2 - 250 + Math.Sin(tempF) * 240.0F), CInt(-100 + Math.Sin(tempG) * 10.0F + CInt(160 * _fadeInMain)), 512, 512), New Color(255, 255, 255, CInt(255 * _logoFade)))
+        _logoRenderer.Draw(_logoTexture, New Rectangle(CInt(windowSize.Width / 2 - 350 * SpriteBatch.InterfaceScale), CInt(160 * _fadeInMain + 64),
+                                                       CInt(700 * SpriteBatch.InterfaceScale), CInt(300 * SpriteBatch.InterfaceScale)), New Color(255, 255, 255, CInt(255 * _logoFade)))
+        _shineRenderer.Draw(_shineTexture, New Rectangle(CInt(windowSize.Width / 2 - 250 * SpriteBatch.InterfaceScale + Math.Sin(tempF) * 240.0F), CInt(-100 + Math.Sin(tempG) * 10.0F + CInt(160 * _fadeInMain + 64)),
+                                                         CInt(512 * SpriteBatch.InterfaceScale), CInt(512 * SpriteBatch.InterfaceScale)), New Color(255, 255, 255, CInt(255 * _logoFade)))
 
         If _fadeInMain = 0F Then
             If IsCurrentScreen() And Core.GameOptions.ShowGUI Then  ' Want to implement fading of text, but core doesn't seem to support this.
@@ -218,11 +219,11 @@ Public Class PressStartScreen
 
                 Dim textSize As Vector2 = FontManager.InGameFont.MeasureString(text)
 
-                GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(ScreenSize.Width / 2.0F - textSize.X / 2.0F,
-                                                                                       ScreenSize.Height - textSize.Y - 50), _textColor)
+                GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(CInt(windowSize.Width / 2.0F - textSize.X / 2.0F),
+                                                                                       CInt(windowSize.Height - textSize.Y - 50)), _textColor)
 
                 If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(ScreenSize.Width / 2 - textSize.X / 2 + FontManager.InGameFont.MeasureString("Press" & "  ").X + 2), CInt(ScreenSize.Height - textSize.Y - 58), 40, 40), Color.White)
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.InGameFont.MeasureString("Press" & "  ").X + 2), CInt(ScreenSize.Height - textSize.Y - 58), 40, 40), Color.White)
                 End If
             End If
         End If
@@ -230,7 +231,7 @@ Public Class PressStartScreen
         _logoRenderer.End()
         _shineRenderer.End()
 
-        Canvas.DrawRectangle(ScreenSize, New Color(0, 0, 0, CInt(255 * _fadeInMain)))
+        Canvas.DrawRectangle(windowSize, New Color(0, 0, 0, CInt(255 * _fadeInMain)))
     End Sub
 
     Public Overrides Sub ChangeTo()
@@ -628,7 +629,7 @@ Public Class NewMainMenuScreen
     End Sub
 
     Private Sub UpdateScreenOffset()
-        _screenOrigin = New Vector2(CSng(ScreenSize.Width / 2 - 80 - 180), CSng(ScreenSize.Height / 2 - 80))
+        _screenOrigin = New Vector2(CSng((windowSize.Width / 2 - 80 - 180) * SpriteBatch.InterfaceScale), CSng((windowSize.Height / 2 - 80)))
         If _screenOffset.X > _screenOffsetTarget.X Then
             _screenOffset.X = MathHelper.Lerp(_screenOffsetTarget.X, _screenOffset.X, 0.93F)
             If _screenOffset.X - 0.01F <= _screenOffsetTarget.X Then
