@@ -299,6 +299,8 @@ Public Class Trainer
                         End Select
                     End If
 
+                    p.IsShiny = False
+
                     Pokemons.Add(p)
                 End If
             End If
