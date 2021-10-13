@@ -49,11 +49,23 @@ Public Class LoopStream
                             Dim IntroContinueSong As SongContainer = MusicManager.GetSong(MusicManager._introContinueSong)
                             If IntroContinueSong IsNot Nothing Then
                                 Logger.Debug($"Play song [{IntroContinueSong.Name}]")
-                                _sourceStream = New VorbisWaveReader(IntroContinueSong.Song)
+                                If IntroContinueSong.AudioType = ".ogg" Then
+                                    _sourceStream = New VorbisWaveReader(IntroContinueSong.Song)
+                                ElseIf IntroContinueSong.AudioType = ".mp3" Then
+                                    _sourceStream = New Mp3FileReader(IntroContinueSong.Song)
+                                ElseIf IntroContinueSong.AudioType = ".wma" Then
+                                    _sourceStream = New MediaFoundationReader(IntroContinueSong.Song)
+                                End If
                                 _enableLooping = True
                                 _sourceStream.Position = 0
                             Else
-                                _sourceStream = New VorbisWaveReader(MusicManager.GetSong("silence").Song)
+                                If MusicManager.GetSong("silence").AudioType = ".ogg" Then
+                                    _sourceStream = New VorbisWaveReader(MusicManager.GetSong("silence").Song)
+                                ElseIf MusicManager.GetSong("silence").AudioType = ".mp3" Then
+                                    _sourceStream = New Mp3FileReader(MusicManager.GetSong("silence").Song)
+                                ElseIf MusicManager.GetSong("silence").AudioType = ".wma" Then
+                                    _sourceStream = New MediaFoundationReader(MusicManager.GetSong("silence").Song)
+                                End If
                                 _enableLooping = True
                                 _sourceStream.Position = 0
                             End If
@@ -108,7 +120,9 @@ Public Class MusicManager
     Private Shared _isFadingOut As Boolean = False
     ' NAudio properties
     Public Shared outputDevice As WaveOutEvent
-    Public Shared audioFile As VorbisWaveReader
+    Public Shared audioFileOGG As VorbisWaveReader
+    Public Shared audioFileMP3 As Mp3FileReader
+    Public Shared audioFileWMA As MediaFoundationReader
     Public Shared _stream As WaveChannel32
 
     Public Shared Property MasterVolume As Single = 1.0F
@@ -318,8 +332,16 @@ Public Class MusicManager
                 outputDevice.Dispose()
             End If
             outputDevice = New WaveOutEvent()
-            audioFile = New VorbisWaveReader(song.Song)
-            _stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFile, _isLooping))
+            If song.AudioType = ".ogg" Then
+                audioFileOGG = New VorbisWaveReader(song.Song)
+                _stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFileOGG, _isLooping))
+            ElseIf song.AudioType = ".mp3" Then
+                audioFileMP3 = New Mp3FileReader(song.Song)
+                _stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFileMP3, _isLooping))
+            ElseIf song.AudioType = ".wma" Then
+                audioFileWMA = New MediaFoundationReader(song.Song)
+                _stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFileWMA, _isLooping))
+            End If
             outputDevice.Init(_stream)
             If Paused = False Then
                 outputDevice.Play()
@@ -449,25 +471,34 @@ Public Class MusicManager
 
     Public Shared Function GetSong(songName As String) As SongContainer
         Dim key = GetSongName(songName)
+        Dim songFilePath = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & key
+        Dim defaultSongFilePath = GameController.GamePath & "\Content\" & "Songs\" & key
+        Dim audiotype = ""
 
         If _songs.ContainsKey(key) = True Then
             Return _songs(key)
         Else
-            Dim defaultSongFilePath = GameController.GamePath & "\Content\" & "Songs\" & key & ".ogg"
-            Dim songFilePath = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & key & ".ogg"
-            If File.Exists(songFilePath) Then
-                If AddSong(key, False) = True Then
-                    Return _songs(key)
-                End If
-            ElseIf File.Exists(defaultSongFilePath) Then
-                If AddSong(key, False) = True Then
-                    Return _songs(key)
-                End If
-            Else
-                Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: Cannot find music file """ & songName & """. Return nothing.")
+            If System.IO.File.Exists(songFilePath & ".ogg") = True Or System.IO.File.Exists(defaultSongFilePath & ".ogg") = True Then
+                audiotype = ".ogg"
+            ElseIf System.IO.File.Exists(songFilePath & ".mp3") = True Or System.IO.File.Exists(defaultSongFilePath & ".mp3") = True Then
+                audiotype = ".mp3"
+            ElseIf System.IO.File.Exists(songFilePath & ".wma") = True Or System.IO.File.Exists(defaultSongFilePath & ".wma") = True Then
+                audiotype = ".wma"
             End If
-            Return Nothing
         End If
+
+        If File.Exists(songFilePath & audiotype) Then
+            If AddSong(key, False) = True Then
+                Return _songs(key)
+            End If
+        ElseIf File.Exists(defaultSongFilePath & audiotype) Then
+            If AddSong(key, False) = True Then
+                Return _songs(key)
+            End If
+        Else
+            Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: Cannot find music file """ & songName & """. Return nothing.")
+        End If
+        Return Nothing
 
     End Function
 
@@ -483,7 +514,7 @@ Public Class MusicManager
 
     Private Shared Function AddSong(ByVal Name As String, ByVal forceReplace As Boolean) As Boolean
         Try
-            Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & Name, ".ogg")
+            Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & Name, ".ogg,.mp3,.wma")
 
             Dim loadSong As Boolean = False
             Dim removeSong As Boolean = False
@@ -497,20 +528,26 @@ Public Class MusicManager
 
             If loadSong = True Then
                 Dim songFilePath As String = Nothing
+                Dim audioType As String = Nothing
 
                 If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".ogg") = True Then
-                    songFilePath = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".ogg"
+                    audioType = ".ogg"
+                ElseIf System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".mp3") = True Then
+                    audioType = ".mp3"
+                ElseIf System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & ".wma") = True Then
+                    audioType = ".wma"
                 Else
                     Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: Song at """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & """ was not found!")
                     Return False
                 End If
 
-                If Not songFilePath Is Nothing Then
+                If Not audioType Is Nothing Then
+                    songFilePath = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & audioType
                     If removeSong = True Then
                         _songs.Remove(GetSongName(Name))
                     End If
                     Dim Duration = GetSongDuration(songFilePath)
-                    _songs.Add(GetSongName(Name), New SongContainer(songFilePath, Name, Duration, cContent.RootDirectory))
+                    _songs.Add(GetSongName(Name), New SongContainer(songFilePath, Name, Duration, cContent.RootDirectory, audioType))
                 End If
             End If
         Catch ex As Exception
@@ -522,7 +559,7 @@ Public Class MusicManager
 
     Public Shared Sub LoadMusic(ByVal forceReplace As Boolean)
         For Each musicFile As String In System.IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\", "*.*", IO.SearchOption.AllDirectories)
-            If musicFile.EndsWith(".ogg") = True Then
+            If musicFile.EndsWith(".ogg") = True Or musicFile.EndsWith(".mp3") = True Or musicFile.EndsWith(".wma") = True Then
                 Dim isIntro As Boolean = False
                 If musicFile.Contains("\Songs\intro\") = True Then
                     isIntro = True
@@ -542,7 +579,7 @@ Public Class MusicManager
                 Dim path As String = GameController.GamePath & "\ContentPacks\" & c & "\Songs\"
                 If System.IO.Directory.Exists(path) = True Then
                     For Each musicFile As String In System.IO.Directory.GetFiles(path, "*.*", IO.SearchOption.AllDirectories)
-                        If musicFile.EndsWith(".ogg") = True Then
+                        If musicFile.EndsWith(".ogg") = True Or musicFile.EndsWith(".mp3") = True Or musicFile.EndsWith(".wma") = True Then
                             Dim isIntro As Boolean = False
                             If musicFile.Contains("\Songs\intro\") = True Then
                                 isIntro = True
@@ -562,10 +599,30 @@ Public Class MusicManager
     End Sub
 
     Private Shared Function GetSongDuration(songFilePath As String) As TimeSpan
+        Dim DurationOGG As VorbisWaveReader = Nothing
+        Dim DurationMP3 As Mp3FileReader = Nothing
+        Dim DurationWMA As MediaFoundationReader = Nothing
+        Dim SongDuration As TimeSpan = Nothing
+        If songFilePath.Contains(".ogg") Then
+            DurationOGG = New VorbisWaveReader(songFilePath)
+            SongDuration = DurationOgg.TotalTime
+        ElseIf songFilePath.Contains(".mp3") Then
+            DurationMP3 = New Mp3FileReader(songFilePath)
+            SongDuration = DurationMP3.TotalTime
+        ElseIf songFilePath.Contains(".wma") Then
+            DurationWMA = New MediaFoundationReader(songFilePath)
+            SongDuration = DurationWMA.TotalTime
+        End If
 
-        Dim DurationFile As VorbisWaveReader = New VorbisWaveReader(songFilePath)
-        Dim SongDuration = DurationFile.TotalTime
-        DurationFile.Dispose()
+        If DurationOGG IsNot Nothing Then
+            DurationOGG.Dispose()
+        End If
+        If DurationMP3 IsNot Nothing Then
+            DurationMP3.Dispose()
+        End If
+        If DurationWMA IsNot Nothing Then
+            DurationWMA.Dispose()
+        End If
         Return SongDuration
 
     End Function
