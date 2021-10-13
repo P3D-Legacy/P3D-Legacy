@@ -93,6 +93,12 @@ Mountain:
 Sides:
 {"EntityField"{ENT[{"Size"{intArr[10,5,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[90,4,10]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16]]}}{"TextureIndex"{intArr[0,0,-1,-1,-1,-1,-1,-1,-1,-1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
+Warps:
+Route 23:
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,240,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[routes\route23.dat,0,-5,51,0]}}{"Visible"{bool[0]}}{"Rotation"{int[0]}}{"Position"{sngArr[99,4.76,11]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,240,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[routes\route23.dat,0,-5,52,0]}}{"Visible"{bool[0]}}{"Rotation"{int[0]}}{"Position"{sngArr[99,4.76,12]}}]}}
+
+
 {"OffsetMap"{MAP[{"Offset"{intArr[-40,8,20]}}{"Map"{str[diamonddive\exterior\1.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{intArr[100,10,-40]}}{"Map"{str[routes\route23.dat]}}]}}
 
