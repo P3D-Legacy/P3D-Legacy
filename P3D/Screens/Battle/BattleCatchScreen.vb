@@ -146,7 +146,7 @@
                                     SoundManager.PlaySound("Battle\Pokeball\shake")
                                     AnimationIndex += 1
                                 Else
-                                    SoundManager.PlaySound("Battle\Pokeball\open")
+                                    SoundManager.PlaySound("Battle\Pokeball\break")
                                     AnimationIndex = 21
                                     InBall = False
                                 End If
@@ -229,13 +229,13 @@
 
         p.SetCatchInfos(Me.Ball, "caught at")
 
-		MusicManager.Stop()
-		SoundManager.PlaySound("Battle\Pokeball\catch", False)
-		SoundManager.PlaySound("success", True)
-		MusicManager.Play("wild_defeat", False, 0.2F)
-		TextBox.Show(s, {}, False, False)
+        MusicManager.Stop()
+        SoundManager.PlaySound("Battle\Pokeball\catch", False)
+        SoundManager.PlaySound("success_catch", True)
+        MusicManager.Play("wild_defeat", False, 0.2F)
+        TextBox.Show(s, {}, False, False)
 
-	End Sub
+    End Sub
 
     Private Sub StorePokemon()
         Dim s As String = ""
