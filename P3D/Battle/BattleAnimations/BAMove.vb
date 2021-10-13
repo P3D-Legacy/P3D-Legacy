@@ -18,7 +18,6 @@
         EaseIn
         EaseOut
 		EaseInAndOut
-		NoEase
 		Linear
 	End Enum
     Public Sub New(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Destination As Vector3, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 2)
@@ -43,7 +42,7 @@
                 InterpolationSpeed = MoveSpeed
             Case Curves.EaseInAndOut
 				InterpolationSpeed = 0.0F
-			Case Curves.NoEase
+			Case Curves.Linear
 				InterpolationSpeed = MoveSpeed
 		End Select
 

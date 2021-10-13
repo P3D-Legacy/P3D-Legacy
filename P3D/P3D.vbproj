@@ -15352,7 +15352,7 @@
     <Content Include="Content\Sounds\Receive_PhoneNumber.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Success_Caught.wav">
+    <Content Include="Content\Sounds\Success_Catch.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Use_Item.wav">

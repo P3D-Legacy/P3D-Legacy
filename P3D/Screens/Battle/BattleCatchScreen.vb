@@ -156,6 +156,7 @@
                                 AnimationIndex = 7
                                 AnimationStarted = False
                                 SetupAnimation()
+                                SoundManager.PlaySound("Battle\Pokeball\catch", False)
                             Case 7
                                 AnimationIndex = 8
                                 AnimationStarted = False
@@ -229,10 +230,9 @@
 
         p.SetCatchInfos(Me.Ball, "caught at")
 
-        MusicManager.Stop()
-        SoundManager.PlaySound("Battle\Pokeball\catch", False)
+        MusicManager.Pause()
+        MusicManager.Play("wild_defeat", False, 0.0F)
         SoundManager.PlaySound("success_catch", True)
-        MusicManager.Play("wild_defeat", False, 0.2F)
         TextBox.Show(s, {}, False, False)
 
     End Sub
@@ -272,16 +272,16 @@
 
         Select Case Me.AnimationIndex
             Case 0
-                Animations.Add(New BAMove(New Vector3(Camera.Position.X - 1.0F, Camera.Position.Y, Camera.Position.Z - 0.5F) + BattleScreen.BattleMapOffset, Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), 0.04F, True, True, 1.0F, 0.0F))
+                Animations.Add(New BAMove(New Vector3(Camera.Position.X - 1.0F, Camera.Position.Y, Camera.Position.Z - 0.5F) + BattleScreen.BattleMapOffset, Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), 0.04F, True, True, 1.0F, 0.0F,,, 3))
             Case 1
                 BattleScreen.OppPokemonNPC.Visible = False
-                Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), 0.01F, 0.0F, 6.0F))
+                Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), 0.01F, False, False, 0.0F, 6.0F,,, 3))
 
                 Dim Size As New BASize(BattleScreen.OppPokemonNPC.Position, BattleScreen.OppPokemonNPC.Textures(0), BattleScreen.OppPokemonNPC.Scale, False, New Vector3(0.05F), 0.02F, 0.0F, 0.0F, "1")
 
                 Animations.Add(Size)
             Case 2
-                Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), 0.02F, 0.0F, 6.0F))
+                Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), 0.02F, False, False, 0.0F, 6.0F,,, 3))
             Case 3, 5
                 Animations.Add(New BARotation(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(0, 0, 0.05F), New Vector3(0, 0, 1.0F), 0.0F, 4.0F, False, False, True, True))
             Case 4, 6
@@ -290,9 +290,9 @@
                 For i = 0 To 2
                     Dim v As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z)
 
-                    Animations.Add(New BAMove(v, TextureManager.GetTexture("Textures\Battle\Other\Star"), New Vector3(0.1F), New Vector3(v.X, v.Y + 0.4F, v.Z - ((1 - i) * 0.4F)), 0.01F, 0.0F, 0.0F))
+                    Animations.Add(New BAMove(v, TextureManager.GetTexture("Textures\Battle\Other\Star"), New Vector3(0.1F), New Vector3(v.X, v.Y + 0.4F, v.Z - ((1 - i) * 0.4F)), 0.01F, False, False, 0.0F, 0.0F,,, 3))
                 Next
-                Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), 0.02F, 0.0F, 6.0F))
+                Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), 0.02F, False, False, 0.0F, 6.0F,,, 3))
             Case 8
                 Animations.Add(New BAOpacity(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), 0.01F, False, 0.0F, 0.0F, 0.0F))
             Case 21 ' Break Animation

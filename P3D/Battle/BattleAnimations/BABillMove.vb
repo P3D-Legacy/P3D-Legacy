@@ -17,7 +17,6 @@
 		EaseIn
 		EaseOut
 		EaseInAndOut
-		NoEase
 		Linear
 	End Enum
 
@@ -43,7 +42,7 @@
 				InterpolationSpeed = MoveSpeed
 			Case Curves.EaseInAndOut
 				InterpolationSpeed = 0.0F
-			Case Curves.NoEase
+			Case Curves.Linear
 				InterpolationSpeed = MoveSpeed
 		End Select
 
