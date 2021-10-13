@@ -431,6 +431,8 @@
 
     Public PlayerTemp As New PlayerTemp()
 
+    Public RunToggled As Boolean = False
+
     Public Structure Temp
         Public Shared PokemonScreenIndex As Integer = 0
         Public Shared PokemonStatusPageIndex As Integer = 0
@@ -2015,13 +2017,7 @@
     End Function
 
     Public Function IsRunning() As Boolean
-        If KeyBoardHandler.KeyDown(Keys.LeftShift) = True Or ControllerHandler.ButtonDown(Buttons.B) = True Then
-            If Screen.Level.Riding = False And Screen.Level.Surfing = False And Inventory.HasRunningShoes = True Then
-                Return True
-            End If
-        End If
-
-        Return False
+        Return RunToggled
     End Function
 
     Public Sub Unload()

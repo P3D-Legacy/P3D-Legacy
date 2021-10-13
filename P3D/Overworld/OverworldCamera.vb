@@ -14,6 +14,7 @@ Public Class OverworldCamera
     Private _cPosition As Vector3 = Vector3.Zero 'Actual camera position.
     Private _isFixed As Boolean = False
     Private _aimDirection As Integer = -1 'The direction the camera is aiming to face.
+    Public _debugWalk As Boolean
 
     Private _bobbingTemp As Single = 0F
     Private _tempDirectionPressed As Integer = -1
@@ -168,6 +169,16 @@ Public Class OverworldCamera
 #Region "Update"
 
     Public Overrides Sub Update()
+
+        If KeyBoardHandler.KeyPressed(KeyBindings.DebugWalkKey) = True Then
+            _debugWalk = Not _debugWalk
+        End If
+        If KeyBoardHandler.KeyPressed(KeyBindings.RunKey) = True Or ControllerHandler.ButtonPressed(Buttons.B) = True Then
+            If Screen.Level.Riding = False And Screen.Level.Surfing = False And Core.Player.Inventory.HasRunningShoes = True Then
+                Core.Player.RunToggled = Not Core.Player.RunToggled
+            End If
+        End If
+
         Ray = CreateRay()
 
         PlayerMovement()
@@ -838,9 +849,8 @@ Public Class OverworldCamera
             End If
         End If
 
-        'DebugFeature:
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            If KeyBoardHandler.KeyDown(Keys.LeftControl) = True Then
+            If _debugWalk = True Then
                 cannotWalk = False
             End If
         End If
