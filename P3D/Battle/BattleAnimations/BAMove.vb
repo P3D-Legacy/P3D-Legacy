@@ -10,7 +10,7 @@
     Public InterpolationSpeed As Single
     Public SpinSpeedX As Single = 0.1F
     Public SpinSpeedZ As Single = 0.1F
-	Public MovementCurve As Integer = 2
+	Public MovementCurve As Integer = 3
 
 	Private EasedIn As Boolean = False
 	Private EasedOut As Boolean = False

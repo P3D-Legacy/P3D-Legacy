@@ -1,4 +1,4 @@
-﻿Public Class BABillOpacity
+﻿Public Class BAEntityOpacity
 
     Inherits BattleAnimation3D
 

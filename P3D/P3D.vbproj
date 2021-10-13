@@ -15394,7 +15394,7 @@
     <Content Include="Content\Textures\Battle\Normal\Tackle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Battle\Other\Star.png">
+    <Content Include="Content\Textures\Battle\BallCatchStar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Battle\Poison\Bubble.png">
@@ -27545,9 +27545,11 @@
     <Content Include="credits.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="Battle\BattleAnimations\BABillMove.vb" />
-    <Compile Include="Battle\BattleAnimations\BABillOpacity.vb" />
-    <Compile Include="Battle\BattleAnimations\BABillSize.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityRotate.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityMove.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityOpacity.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityTextureChange.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityScale.vb" />
     <Compile Include="Battle\BattleAnimations\BASound.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\AnimationQueryObject.vb" />
     <Compile Include="Dialogues\ImageView.vb" />
@@ -29229,7 +29231,6 @@
     <Compile Include="Battle\BattleAnimations\BAMove.vb" />
     <Compile Include="Battle\BattleAnimations\BAOpacity.vb" />
     <Compile Include="Battle\BattleAnimations\BARotation.vb" />
-    <Compile Include="Battle\BattleAnimations\BASize.vb" />
     <Compile Include="Battle\BattleAnimations\BattleAnimation3D.vb" />
     <Compile Include="Battle\BattleStats.vb" />
     <Compile Include="Battle\BattleSystemV2\Battle.vb" />

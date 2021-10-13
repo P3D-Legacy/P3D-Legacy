@@ -1,4 +1,4 @@
-﻿Public Class BABillSize
+﻿Public Class BAEntityScale
 
     Inherits BattleAnimation3D
 
