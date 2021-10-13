@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Diamond Dive]}}{"MusicLoop"{str[darkcave]}}{"WildPokemon"{bool[1]}}{"CurrentRegion"{str[Johto]}}{"OverworldPokemon"{bool[0]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[4]}}{"Weather"{int[4]}}{"Lighting"{int[3]}}{"SurfingBattleMap"{str[diamonddive\underwater.dat,-7,0,14]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[4]}}{"Weather"{int[4]}}{"Lighting"{int[3]}}{"SurfingBattleMap"{str[diamonddive\underwater.dat,-9,0,-8]}}]}}
 
 Up Waterfalls:
 {"EntityField"{ENT[{"EntityID"{str[Waterfall]}}{"Rotation"{int[0]}}{"Size"{intArr[3,4,1]}}{"Position"{sngArr[-4,-1,7]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,192,16,16][0,192,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}]}}
