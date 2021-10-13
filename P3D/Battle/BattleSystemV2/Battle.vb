@@ -2705,14 +2705,20 @@
                                 p.Status = Pokemon.StatusProblems.Burn
                                 ChangeCameraAngle(1, own, BattleScreen)
                                 'Burn animation
-                                Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(CType(pNPC, NPC), own)
+                                Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
                                 BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
-                                BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
-                                BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                                BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-                                BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,96,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 4, 1)
-                                BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,128,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 5, 1)
+                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(pNPC.Position.X - 0.25), CSng(pNPC.Position.Y - 0.25), CSng(pNPC.Position.Z - 0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 1)
+                                BurnAnimation.AnimationFadeEntity(FlameEntity, 1, False, 0.0F, 6, 1, 1)
                                 BattleScreen.BattleQuery.Add(BurnAnimation)
+
+                                If FlameEntity.Opacity = 0.0F Then
+                                    BurnAnimation.RemoveEntity(FlameEntity)
+                                End If
+
                                 Select Case message
                                     Case "" 'Print default message only
                                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " got burned!"))
@@ -2723,30 +2729,30 @@
                                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " got burned!"))
                                 End Select
                                 If p.Ability.Name.ToLower() = "synchronize" AndAlso from <> own Then
-                                    Me.InflictBurn(Not own, Not own, BattleScreen, "Synchronize passed over the burn.", "synchronize")
-                                End If
+                                        Me.InflictBurn(Not own, Not own, BattleScreen, "Synchronize passed over the burn.", "synchronize")
+                                    End If
 
-                                If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "rawst" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                                        If RemoveHeldItem(own, own, BattleScreen, "", "berry:rawst") = True Then
-                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
-                                            CureStatusProblem(own, own, BattleScreen, "The Rawst Berry cured the burn of " & p.GetDisplayName() & "!", "berry:rawst")
+                                    If Not p.Item Is Nothing Then
+                                        If p.Item.Name.ToLower() = "rawst" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                            If RemoveHeldItem(own, own, BattleScreen, "", "berry:rawst") = True Then
+                                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
+                                                CureStatusProblem(own, own, BattleScreen, "The Rawst Berry cured the burn of " & p.GetDisplayName() & "!", "berry:rawst")
+                                            End If
                                         End If
                                     End If
-                                End If
 
-                                If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                                        If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
-                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
-                                            CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the burn of " & p.GetDisplayName() & "!", "berry:lum")
+                                    If Not p.Item Is Nothing Then
+                                        If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                            If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
+                                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
+                                                CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the burn of " & p.GetDisplayName() & "!", "berry:lum")
+                                            End If
                                         End If
                                     End If
-                                End If
 
-                                Return True
+                                    Return True
+                                End If
                             End If
-                        End If
                     End If
                 End If
             End If
@@ -3411,7 +3417,7 @@
             End If
 
             '***STAT INCREASE ANIMATION***
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+            Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
             Dim maxAmount As Integer = 20 * val
             Dim currentAmount As Integer = 0
             While currentAmount <= maxAmount
@@ -3427,11 +3433,11 @@
                 Destination.X = xPos
                 Destination.Z = zPos
                 Dim startDelay As Double = 5.0 * Random.NextDouble()
-                MoveAnimation.AnimationSpawnMovingEntity(Position.X, Position.Y, Position.Z, Texture, Scale.X, Scale.Y, Scale.Z, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                StatAnimation.AnimationSpawnMovingEntity(Position.X, Position.Y, Position.Z, Texture, Scale.X, Scale.Y, Scale.Z, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
                 Threading.Interlocked.Increment(currentAmount)
             End While
             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Stat_Raise", False))
-            BattleScreen.BattleQuery.Add(MoveAnimation)
+            BattleScreen.BattleQuery.Add(StatAnimation)
 
             Dim printMessage As String = p.GetDisplayName() & "'s " & statString
             Select Case val
@@ -3998,11 +4004,11 @@
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(sound, False, 0.0F))
                 End If
 
-                Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(CType(pNPC, NPC), own)
-                HitAnimation.AnimationFadePokemonEntity(1, False, 0, 0, 0)
-                HitAnimation.AnimationFadePokemonEntity(1, True, 1, 1, 0)
-                HitAnimation.AnimationFadePokemonEntity(1, False, 0, 2, 0)
-                HitAnimation.AnimationFadePokemonEntity(1, True, 1, 3, 0)
+                Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
+                HitAnimation.AnimationFadeEntity(Nothing, 1, False, 0, 0, 0)
+                HitAnimation.AnimationFadeEntity(Nothing, 1, True, 1, 1, 0)
+                HitAnimation.AnimationFadeEntity(Nothing, 1, False, 0, 2, 0)
+                HitAnimation.AnimationFadeEntity(Nothing, 1, True, 1, 3, 0)
                 BattleScreen.BattleQuery.Add(HitAnimation)
 
                 If own = True Then
@@ -5415,12 +5421,19 @@
                             'Burn animation
                             Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False)
                             BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,96,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 4, 1)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,128,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 5, 1)
+
+                            Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(BattleScreen.OwnPokemonNPC.Position.X + 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Y - 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Z + 0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 1)
+                            BurnAnimation.AnimationFadeEntity(FlameEntity, 1, False, 0.0F, 6, 1, 1)
                             BattleScreen.BattleQuery.Add(BurnAnimation)
+
+                            If FlameEntity.Opacity = 0.0F Then
+                                BurnAnimation.RemoveEntity(FlameEntity)
+                            End If
+
                             'Actual damage
                             ReduceHP(reduceAmount, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
                         End If
@@ -6206,12 +6219,19 @@
                             'Burn animation
                             Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
                             BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,96,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 4, 1)
-                            BurnAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Fire\Ember,0,128,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 5, 1)
+
+                            Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(BattleScreen.OppPokemonNPC.Position.X - 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Y - 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Z - 0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 1)
+                            BurnAnimation.AnimationFadeEntity(FlameEntity, 1, False, 0.0F, 6, 1, 1)
                             BattleScreen.BattleQuery.Add(BurnAnimation)
+
+                            If FlameEntity.Opacity = 0.0F Then
+                                BurnAnimation.RemoveEntity(FlameEntity)
+                            End If
+
                             'Actual damage
                             ReduceHP(reduceAmount, False, False, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
                         End If
@@ -6796,8 +6816,8 @@
                 Loop While SmokeReturned <= 38
 
                 ' Pokemon disappears
-                BallReturn.AnimationFadePokemonEntity(1, False, 0, 1, 0)
-                BallReturn.AnimationMovePokemonEntity(0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
+                BallReturn.AnimationFadeEntity(Nothing, 1, False, 0, 1, 0)
+                BallReturn.AnimationMoveEntity(Nothing, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
 
                 ' Ball returns
                 BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
@@ -6859,11 +6879,11 @@
                 Loop While SmokeSpawned <= 38
 
                 ' Pokemon appears
-                BallThrow.AnimationFadePokemonEntity(1, True, 1, 4, 0)
+                BallThrow.AnimationFadeEntity(Nothing, 1, True, 1, 4, 0)
                 BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True)
 
                 '  Pokémon falls down
-                BallThrow.AnimationMovePokemonEntity(0, 0, 0, 0.05F, False, False, 4, 0,,, 4)
+                BallThrow.AnimationMoveEntity(Nothing, 0, 0, 0, 0.05F, False, False, 4, 0,,, 3)
 
                 BattleScreen.AddToQuery(InsertIndex, BallThrow)
             End If
@@ -7112,7 +7132,7 @@
                 ChangeCameraAngle(1, False, BattleScreen)
                 Dim Faint As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
                 Faint.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
-                Faint.AnimationMovePokemonEntity(0, -1, 0, 0.1, False, False, 2, 0,,, 4)
+                Faint.AnimationMoveEntity(Nothing, 0, -1, 0, 0.1, False, False, 2, 0,,, 3)
                 BattleScreen.BattleQuery.Add(Faint)
 
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 2, -1, -1, -1, -1))
@@ -7157,8 +7177,8 @@
                     Loop While SmokeReturned <= 38
 
                     ' Pokemon disappears
-                    BallReturn.AnimationFadePokemonEntity(1, False, 0, 1, 0)
-                    BallReturn.AnimationMovePokemonEntity(0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
+                    BallReturn.AnimationFadeEntity(Nothing, 1, False, 0, 1, 0)
+                    BallReturn.AnimationMoveEntity(Nothing, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
 
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
@@ -7218,8 +7238,8 @@
                 Loop While SmokeReturned <= 38
 
                 ' Pokemon disappears
-                BallReturn.AnimationFadePokemonEntity(1, False, 0, 1, 0)
-                BallReturn.AnimationMovePokemonEntity(0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
+                BallReturn.AnimationFadeEntity(Nothing, 1, False, 0, 1, 0)
+                BallReturn.AnimationMoveEntity(Nothing, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
 
                 ' Ball returns
                 BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
@@ -7273,11 +7293,11 @@
                 Loop While SmokeSpawned <= 38
 
                 ' Pokemon appears
-                BallThrow.AnimationFadePokemonEntity(1, True, 1, 4, 0)
+                BallThrow.AnimationFadeEntity(Nothing, 1, True, 1, 4, 0)
                 BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
 
                 '  Pokémon falls down
-                BallThrow.AnimationMovePokemonEntity(0, 0, 0, 0.05F, False, False, 4, 0,,, 4)
+                BallThrow.AnimationMoveEntity(Nothing, 0, 0, 0, 0.05F, False, False, 4, 0,,, 4)
 
                 BattleScreen.BattleQuery.Add(BallThrow)
             End If
