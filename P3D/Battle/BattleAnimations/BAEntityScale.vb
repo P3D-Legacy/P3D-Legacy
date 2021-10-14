@@ -6,7 +6,7 @@
     Public EndSize As Vector3
     Public SizeSpeed As Single = 0.01F
     Public TargetEntity As Entity
-    Public Anchors As String
+    Public Anchors As String '1 = Bottom, 2 = Top, 3 = Left, 4 = Right. Combinations are possible.
 
     Public Change As New Vector3(1)
 

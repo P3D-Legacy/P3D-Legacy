@@ -5,7 +5,7 @@
 
 		Public AnimationStarted As Boolean = False
 		Public AnimationEnded As Boolean = False
-		Public BAFlipped As Boolean
+		Public BattleFlipped As Boolean = Nothing
 		Public AnimationSequence As List(Of BattleAnimation3D)
 		Public SpawnedEntities As List(Of Entity)
 		Public CurrentEntity As Entity
@@ -17,10 +17,12 @@
 			End Get
 		End Property
 
-		Public Sub New(ByVal entity As Entity, ByVal BAFlipped As Boolean, Optional ByVal model As ModelEntity = Nothing)
+		Public Sub New(ByVal entity As Entity, ByVal BattleFlipped As Boolean, Optional ByVal model As ModelEntity = Nothing)
 			MyBase.New(QueryTypes.MoveAnimation)
 			Me.AnimationSequence = New List(Of BattleAnimation3D)
-			Me.BAFlipped = BAFlipped
+			If BattleFlipped <> Nothing Then
+				Me.BattleFlipped = BattleFlipped
+			End If
 			Me.CurrentEntity = entity
 			Me.CurrentModel = model
 			AnimationSequenceBegin()
@@ -48,6 +50,9 @@
 							i -= 1
 							AnimationSequence.Remove(a)
 						Else
+							If a.SpawnedEntity IsNot Nothing And a.Ready = True Then
+								SpawnedEntities.Add(a.SpawnedEntity)
+							End If
 							a.Update()
 						End If
 					End If
@@ -70,32 +75,32 @@
 		End Sub
 
 		Public Sub AnimationSequenceEnd()
-			If CurrentEntity Is Nothing Then
-				Logger.Log(Logger.LogTypes.Warning, "ATTEMPT TO USE AnimationSequenceEnd OUTSIDE OF ATTACK ANIMATION DELEGATE")
-			ElseIf Not AnimationStarted Then
-				Logger.Log(Logger.LogTypes.Warning, "ATTEMPT TO USE AnimationSequenceEnd BEFORE CALLING AnimationSequenceBegin")
-			Else
-				AnimationEnded = True
-			End If
+			AnimationEnded = True
 		End Sub
 
-		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single) As Entity
-			Dim SpawnedEntity As Entity = New Entity(Position.X, Position.Y, Position.Z, "BattleAnimation", {Texture}, {0, 0}, False, 0, Scale, BaseModel.BillModel, 0, "", New Vector3(1.0F))
-
-			SpawnedEntity.Opacity = Opacity
-			If SpawnedEntity.Opacity > 0 Then
-				SpawnedEntity.Visible = True
-			Else
-				SpawnedEntity.Visible = False
+		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal startDelay As Single = 0.0F, Optional ByVal endDelay As Single = 0.0F) As Entity
+			If Not BattleFlipped = Nothing Then
+				If BattleFlipped = True Then
+					Position.X = CurrentEntity.Position.X - Position.X * 2.0F
+					Position.Z = CurrentEntity.Position.Z - Position.Z * 2.0F
+				Else
+					Position.X = CurrentEntity.Position.X + Position.X * 2.0F
+					Position.Z = CurrentEntity.Position.Z + Position.Z * 2.0F
+				End If
 			End If
 
-			SpawnedEntities.Add(SpawnedEntity)
+			Dim SpawnedEntity As Entity = New Entity(Position.X, Position.Y, Position.Z, "BattleAnimation", {Texture}, {0, 0}, False, 0, Scale, BaseModel.BillModel, 0, "", New Vector3(1.0F))
+			SpawnedEntity.Opacity = Opacity
+
+			Dim SpawnDelayEntity As BattleAnimation3D = New BattleAnimation3D(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay, SpawnedEntity)
+
+			AnimationSequence.Add(SpawnDelayEntity)
 			Return SpawnedEntity
 		End Function
 		Public Sub RemoveEntity(Entity As Entity)
 			SpawnedEntities.Remove(Entity)
 		End Sub
-		Public Sub AnimationChangeTexture(ByVal Entity As Entity, ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single)
+		Public Sub ChangeEntityTexture(ByVal Entity As Entity, RemoveEntityAfter As Boolean, ByVal Texture As Texture2D, ByVal startDelay As Single, ByVal endDelay As Single)
 			Dim TextureChangeEntity As Entity
 
 			If Entity Is Nothing Then
@@ -106,19 +111,29 @@
 
 			Dim baEntityTextureChange As BAEntityTextureChange = New BAEntityTextureChange(TextureChangeEntity, Texture, startDelay, endDelay)
 			AnimationSequence.Add(baEntityTextureChange)
+
+			If RemoveEntityAfter = True Then
+				If baEntityTextureChange.CanRemove = True Then
+					RemoveEntity(Entity)
+				End If
+			End If
 		End Sub
 
-		Public Sub AnimationMoveEntity(ByVal Entity As Entity, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 3)
+		Public Sub MoveEntity(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 3)
 			Dim MoveEntity As Entity
 			Dim Destination As Vector3
 
-			If Entity Is Nothing Then
-				MoveEntity = CurrentEntity
-				If BAFlipped Then
+			If Not BattleFlipped = Nothing Then
+				If BattleFlipped = True Then
 					DestinationX -= DestinationX * 2.0F
 					DestinationZ -= DestinationZ * 2.0F
-					Destination = New Vector3(CurrentEntity.Position.X + DestinationX, CurrentEntity.Position.Y + DestinationY, CurrentEntity.Position.Z + DestinationZ)
 				End If
+				If Entity Is Nothing Then
+					MoveEntity = CurrentEntity
+				Else
+					MoveEntity = Entity
+				End If
+				Destination = CurrentEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			Else
 				MoveEntity = Entity
 				Destination = New Vector3(DestinationX, DestinationY, DestinationZ)
@@ -131,9 +146,15 @@
 				Dim baModelMove As BAEntityMove = New BAEntityMove(CType(CurrentModel, Entity), Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve)
 				AnimationSequence.Add(baModelMove)
 			End If
+
+			If RemoveEntityAfter = True Then
+				If baEntityMove.CanRemove = True Then
+					RemoveEntity(Entity)
+				End If
+			End If
 		End Sub
 
-		Public Sub AnimationFadeEntity(ByVal Entity As Entity, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = -1.0F)
+		Public Sub FadeEntity(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = -1.0F)
 			Dim FadeEntity As Entity
 			If Entity Is Nothing Then
 				FadeEntity = CurrentEntity
@@ -148,8 +169,14 @@
 				Dim baModelOpacity As BAEntityOpacity = New BAEntityOpacity(CType(CurrentModel, Entity), TransitionSpeed, FadeIn, EndState, startDelay, endDelay, startState)
 				AnimationSequence.Add(baModelOpacity)
 			End If
+
+			If RemoveEntityAfter = True Then
+				If baEntityOpacity.CanRemove = True Then
+					RemoveEntity(Entity)
+				End If
+			End If
 		End Sub
-		Public Sub AnimationRotateEntity(Entity As Entity, ByVal RotationSpeedX As Single, ByVal RotationSpeedY As Single, ByVal RotationSpeedZ As Single, ByVal EndRotationX As Single, ByVal EndRotationY As Single, ByVal EndRotationZ As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
+		Public Sub RotateEntity(Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedX As Single, ByVal RotationSpeedY As Single, ByVal RotationSpeedZ As Single, ByVal EndRotationX As Single, ByVal EndRotationY As Single, ByVal EndRotationZ As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
 			Dim RotateEntity As Entity
 			If Entity Is Nothing Then
 				RotateEntity = CurrentEntity
@@ -161,8 +188,13 @@
 			Dim EndRotation As Vector3 = New Vector3(EndRotationX, EndRotationY, EndRotationZ)
 			Dim baEntityRotate As BAEntityRotate = New BAEntityRotate(RotateEntity, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
 			AnimationSequence.Add(baEntityRotate)
+			If RemoveEntityAfter = True Then
+				If baEntityRotate.CanRemove = True Then
+					RemoveEntity(Entity)
+				End If
+			End If
 		End Sub
-		Public Sub AnimationScaleEntity(ByVal Entity As Entity, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal Anchors As String = "1")
+		Public Sub ScaleEntity(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal Anchors As String = "1")
 			Dim ScaleEntity As Entity
 			If Entity Is Nothing Then
 				ScaleEntity = CurrentEntity
@@ -175,6 +207,11 @@
 			Dim EndSize As Vector3 = New Vector3(EndSizeX, EndSizeY, EndSizeZ)
 			Dim baBillSize As BAEntityScale = New BAEntityScale(ScaleEntity, Scale, Grow, EndSize, SizeSpeed, startDelay, endDelay, Anchors)
 			AnimationSequence.Add(baBillSize)
+			If RemoveEntityAfter = True Then
+				If baBillSize.CanRemove = True Then
+					RemoveEntity(Entity)
+				End If
+			End If
 		End Sub
 
 		Public Sub AnimationSpawnFadingEntity(ByVal PositionX As Single, ByVal PositionY As Single, ByVal PositionZ As Single, ByVal Texture As String, ByVal ScaleX As Single, ByVal ScaleY As Single, ByVal ScaleZ As Single, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = 1.0F)
@@ -193,7 +230,7 @@
 					texture2D = TextureManager.GetTexture(stringArray(0), r, "")
 				End If
 
-				If BAFlipped Then
+				If BattleFlipped Then
 					PositionX -= PositionX * 2.0F
 					PositionZ -= PositionZ * 2.0F
 				End If
@@ -222,7 +259,7 @@
 					texture2D = TextureManager.GetTexture(stringArray(0), r, "")
 				End If
 
-				If BAFlipped Then
+				If BattleFlipped Then
 					PositionX -= PositionX * 2.0F
 					PositionZ -= PositionZ * 2.0F
 					DestinationX -= DestinationX * 2.0F
@@ -239,7 +276,7 @@
 				AnimationSequence.Add(baMove)
 			End If
 		End Sub
-		Public Sub AnimationPlaySound(ByVal sound As String, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False)
+		Public Sub PlaySound(ByVal sound As String, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False)
 			If CurrentEntity Is Nothing Then
 				Logger.Log(Logger.LogTypes.Warning, "ATTEMPT TO USE AnimationPlaySound OUTSIDE OF ATTACK ANIMATION DELEGATE")
 			ElseIf Not AnimationStarted Then
