@@ -779,24 +779,15 @@ Public Class NewMainMenuScreen
             Dim displayRect = New Rectangle(CInt((_screenOrigin.X + _sliderPosition - 300).Clamp(20, windowSize.Width - 620)), CInt(_screenOrigin.Y + 170 + 16), 600, CInt(240 * _expandDisplay))
 
             ' Draw display.
-            If _expandDisplay > 0F Then
-                Canvas.DrawRectangle(displayRect, Screens.UI.ColorProvider.MainColor(False))
-                Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y + displayRect.Height - 3, displayRect.Width, 3), Screens.UI.ColorProvider.AccentColor(False, CInt(255 * _expandDisplay)))
-            End If
-
-            ' Dark theme.
-            If _sliderPosition <= GetSliderTarget(1) Then
-                Dim maxDistance As Integer = 180
-                Dim distance As Integer = CInt(Math.Abs(_sliderTarget - _sliderPosition))
-                Dim dist As Double = distance / maxDistance
-
-                If _MainProfiles(_selectedProfile).IsGameJolt Then
-                    dist = 1 - dist
-                End If
-
+            If _MainProfiles(_selectedProfile).IsGameJolt Then
                 If _expandDisplay > 0F Then
-                    Canvas.DrawRectangle(displayRect, Screens.UI.ColorProvider.MainColor(True, CInt(255 * dist)))
-                    Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y + displayRect.Height - 3, displayRect.Width, 3), Screens.UI.ColorProvider.AccentColor(True, CInt(255 * dist * _expandDisplay)))
+                    Canvas.DrawRectangle(displayRect, Screens.UI.ColorProvider.MainColor(True))
+                    Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y + displayRect.Height - 3, displayRect.Width, 3), Screens.UI.ColorProvider.AccentColor(True, CInt(255 * _expandDisplay)))
+                End If
+            Else
+                If _expandDisplay > 0F Then
+                    Canvas.DrawRectangle(displayRect, Screens.UI.ColorProvider.MainColor(False))
+                    Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y + displayRect.Height - 3, displayRect.Width, 3), Screens.UI.ColorProvider.AccentColor(False, CInt(255 * _expandDisplay)))
                 End If
             End If
 
