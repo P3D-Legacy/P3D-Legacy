@@ -54,10 +54,20 @@
 
             Me.AnimationDelay -= 0.1F
             If AnimationDelay <= 0.0F Then
-                AnimationDelay = AnimationDelayLength
                 AnimationX += 1
-                If AnimationX > 2 Then
-                    AnimationX = 1
+                AnimationDelay = AnimationDelayLength
+                If Me.Texture.Width = Me.Texture.Height / 2 Then
+                    If AnimationX > 2 Then
+                        AnimationX = 1
+                    End If
+                ElseIf Me.Texture.Width = Me.Texture.Height Then
+                    If AnimationX > 4 Then
+                        AnimationX = 1
+                    End If
+                Else
+                    If AnimationX > 3 Then
+                        AnimationX = 1
+                    End If
                 End If
             End If
         End If
@@ -110,39 +120,72 @@
             Me.Texture = TextureManager.GetTexture(path)
         End If
 
-        Dim r As New Rectangle(0, 0, 0, 0)
         Dim cameraRotation As Integer = Screen.Camera.GetFacingDirection()
         Dim spriteIndex As Integer = Me.faceRotation - cameraRotation
 
-        spriteIndex = Me.faceRotation - cameraRotation
         If spriteIndex < 0 Then
             spriteIndex += 4
         End If
 
-        Dim dimension As Integer = CInt(Me.Texture.Width / 3)
+        Dim width As Integer
 
-        Dim x As Integer = 0
-        x = AnimationX * dimension
-
-        Dim height As Integer = dimension
-
-        Dim y As Integer = dimension * spriteIndex
-        y -= 2
-        If y < 0 Then
-            y = 0
-            height = dimension - 2
+        If Me.Texture.Width = Me.Texture.Height / 2 Then
+            width = CInt(Me.Texture.Width / 2)
+        ElseIf Me.Texture.Width = Me.Texture.Height Then
+            width = CInt(Me.Texture.Width / 4)
+        Else
+            width = CInt(Me.Texture.Width / 3)
         End If
-        y += 2
-        height -= 2
 
-        r = New Rectangle(x, y, dimension, height)
+        Dim x As Integer = GetAnimationX() * width
+
+        Dim height As Integer = CInt(Me.Texture.Height / 4)
+
+        Dim y As Integer = height * spriteIndex
+
+        Dim r = New Rectangle(x, y, width, height)
 
         If r <> lastRectangle Then
             lastRectangle = r
 
-            Textures(0) = TextureManager.GetTexture(Me.Texture, r, 1)
+            Dim t As Texture2D = TextureManager.GetTexture(Me.Texture, r, 1)
+            Textures(0) = t
         End If
     End Sub
+
+    Private Function GetAnimationX() As Integer
+        If Me.Texture.Width = Me.Texture.Height / 2 Then
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+            End Select
+        ElseIf Me.Texture.Width = Me.Texture.Height Then
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 2
+                Case 4
+                    Return 3
+            End Select
+        Else
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 0
+                Case 4
+                    Return 2
+            End Select
+        End If
+        Return 0
+    End Function
 
     Public Sub ApplyShaders()
         Me.Shaders.Clear()
