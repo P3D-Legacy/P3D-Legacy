@@ -20,7 +20,7 @@
     Dim GamePadEnabled As Boolean = True
     Dim PreferMultiSampling As Boolean = True
     Private _subMenu As Integer = 0
-    Private _screenSize As Size = New Size(CInt(ScreenSize.Width), CInt(ScreenSize.Height))
+    Private _screenSize As Size = New Size(CInt(windowSize.Width), CInt(windowSize.Height))
 
     Private Property SelectPackNoiseDelay As Integer = 10
 
@@ -163,10 +163,10 @@
                 c = New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade))
             End If
 
-            Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2 - 258), CInt(Core.windowSize.Height / 2 - 128 + i * 50), 480, 48), c, True)
+            Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2 - 258), CInt(Core.windowSize.Height / 2 - 128 + i * 50), 480, 48), c, False)
         Next
 
-        Canvas.DrawScrollBar(New Vector2(CInt(ScreenSize.Width / 2 + 250), CInt(Core.windowSize.Height / 2 - 128)), Languages.Count, 4, languageMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), True)
+        Canvas.DrawScrollBar(New Vector2(CInt(windowSize.Width / 2 + 250), CInt(Core.windowSize.Height / 2 - 128)), Languages.Count, 4, languageMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), False)
 
         Dim x As Integer = Languages.Count - 1
         x = CInt(MathHelper.Clamp(x, 0, 3))
@@ -175,10 +175,10 @@
             Dim Name As String = LanguageNames(i + languageMenuIndex(2))
 
             If i + languageMenuIndex(2) = languageMenuIndex(0) Then
-                SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2 - 246), CInt(Core.windowSize.Height / 2 - 128 + 8 + 2 + i * 50)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
-                SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2 - 248), CInt(Core.windowSize.Height / 2 - 128 + 8 + i * 50)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+                SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2 - 246), CInt(Core.windowSize.Height / 2 - 128 + 8 + 2 + i * 50)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+                SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2 - 248), CInt(Core.windowSize.Height / 2 - 128 + 8 + i * 50)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
             Else
-                SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2 - 248), CInt(Core.windowSize.Height / 2 - 128 + 8 + i * 50)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+                SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2 - 248), CInt(Core.windowSize.Height / 2 - 128 + 8 + i * 50)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
             End If
         Next
 
@@ -203,7 +203,7 @@
         If GameInstance.IsMouseVisible = True Then
 
             For i = 0 To 3
-                If ScaleScreenRec(New Rectangle(CInt(ScreenSize.Width / 2) - 258, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 480, 48)).Contains(MouseHandler.MousePosition) = True Then
+                If New Rectangle(CInt(windowSize.Width / 2) - 258, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 480, 48).Contains(MouseHandler.MousePosition) = True Then
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                         languageMenuIndex(0) = i + languageMenuIndex(2)
                     End If
@@ -289,10 +289,10 @@
                 End If
             End If
 
-            Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 328, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 500, 48), c, True)
+            Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 328, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 500, 48), c, True)
         Next
 
-        Canvas.DrawScrollBar(New Vector2(CInt(ScreenSize.Width / 2) + 188, CInt(Core.windowSize.Height / 2 - 128)), PackNames.Count, 4, packsMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), True)
+        Canvas.DrawScrollBar(New Vector2(CInt(windowSize.Width / 2) + 188, CInt(Core.windowSize.Height / 2 - 128)), PackNames.Count, 4, packsMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), True)
 
         Dim x As Integer = PackNames.Count - 1
         x = CInt(MathHelper.Clamp(x, 0, 3))
@@ -307,10 +307,10 @@
                 End If
 
                 If i + packsMenuIndex(2) = packsMenuIndex(0) Then
-                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 318, CInt(Core.windowSize.Height / 2 - 120 + i * 50 + 2)), textColor)
-                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+                    SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 318, CInt(Core.windowSize.Height / 2 - 120 + i * 50 + 2)), textColor)
+                    SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
                 Else
-                    SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Name, New Vector2(CInt(ScreenSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), textColor)
+                    SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), textColor)
                 End If
             Next
         End If
@@ -354,7 +354,7 @@
         End If
         If GameInstance.IsMouseVisible = True Then
             For i = 0 To 3
-                If ScaleScreenRec(New Rectangle(CInt(ScreenSize.Width / 2) - 328, 204 + i * 50, 500, 48)).Contains(MouseHandler.MousePosition) = True Then
+                If New Rectangle(CInt(windowSize.Width / 2) - 328, 204 + i * 50, 500, 48).Contains(MouseHandler.MousePosition) = True Then
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                         packsMenuIndex(0) = i + packsMenuIndex(2)
                     End If
@@ -483,17 +483,17 @@
 
     Private Sub DrawPackInformationMenu()
         If Not PInfoSplash Is Nothing Then
-            SpriteBatch.DrawInterface(PInfoSplash, ScreenSize, Color.White)
+            SpriteBatch.DrawInterface(PInfoSplash, windowSize, Color.White)
         End If
 
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
-        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 240 + 4, CInt(Core.windowSize.Height / 2 - 144), 480, 64), New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2) + 2, CInt(Core.windowSize.Height / 2 - 128 + 2)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2), CInt(Core.windowSize.Height / 2 - 128)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+        Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 240 + 4, CInt(Core.windowSize.Height / 2 - 144), 480, 64), New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2) + 2, CInt(Core.windowSize.Height / 2 - 128 + 2)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2), CInt(Core.windowSize.Height / 2 - 128)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
 
-        Canvas.DrawRectangle(New Rectangle(CInt(ScreenSize.Width / 2) - 272 + 4, CInt(Core.windowSize.Height / 2 - 72), 544, 196), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pack_menu_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("pack_menu_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("pack_menu_content") & ": " & PInfoContent & Environment.NewLine & Localization.GetString("pack_menu_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine), New Vector2(CInt(ScreenSize.Width / 2) - 272 + 16, CInt(Core.windowSize.Height / 2 - 64)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+        Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 272 + 4, CInt(Core.windowSize.Height / 2 - 72), 544, 196), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("pack_menu_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("pack_menu_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("pack_menu_content") & ": " & PInfoContent & Environment.NewLine & Localization.GetString("pack_menu_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine), New Vector2(CInt(windowSize.Width / 2) - 272 + 16, CInt(Core.windowSize.Height / 2 - 64)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
     End Sub
 
     Private Sub UpdatePackInformationMenu()

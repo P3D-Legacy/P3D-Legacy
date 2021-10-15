@@ -223,7 +223,7 @@ Public Class PressStartScreen
                                                                                        CInt(windowSize.Height - textSize.Y - 50)), _textColor)
 
                 If ControllerHandler.IsConnected() Then
-                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.InGameFont.MeasureString("Press" & "  ").X + 2), CInt(ScreenSize.Height - textSize.Y - 58), 40, 40), Color.White)
+                    SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.InGameFont.MeasureString("Press" & "  ").X + 2), CInt(windowSize.Height - textSize.Y - 58), 40, 40), Color.White)
                 End If
             End If
         End If
@@ -252,8 +252,7 @@ Public Class NewMainMenuScreen
 
     Private _screenOffset As Vector2 = New Vector2(0, 0) 'Position of the top row relative to the _screenOrigin
     Private _screenOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the top needs to move to
-    Private _screenOrigin As Vector2 = New Vector2(CSng(ScreenSize.Width / 2 - 80 - 180), CSng(ScreenSize.Height / 2 - 80)) 'Center of the game window. It's adjusted when resizing the window.
-
+    Private _screenOrigin As Vector2 = New Vector2(CSng(windowSize.Width / 2 - 80 - 180), CInt(windowSize.Height / 4)) 'Center of the game window. It's adjusted when resizing the window.
     Private _mainOffset As Vector2 = _screenOffset
 
     Private _optionsOffset As Vector2 = New Vector2(0, 0) 'Position of the options row relative to the _screenOrigin
@@ -516,7 +515,7 @@ Public Class NewMainMenuScreen
                             _GameJoltButtonIndex = 0
                         End If
                         ' Try to load the GameJolt profile once the player has logged in.
-                        _MainProfiles(0).LoadGameJolt()
+                        _MainProfiles(1).LoadGameJolt()
                     End If
                     If _menuIndex = 0 Then
                         If _MainProfiles(_selectedProfile).Loaded = False Then
@@ -629,7 +628,8 @@ Public Class NewMainMenuScreen
     End Sub
 
     Private Sub UpdateScreenOffset()
-        _screenOrigin = New Vector2(CSng((windowSize.Width / 2 - 80 - 180) * SpriteBatch.InterfaceScale), CSng((windowSize.Height / 2 - 80)))
+
+        _screenOrigin = New Vector2(CInt((windowSize.Width / 2 - 80 - 180)), CInt(windowSize.Height / 4))
         If _screenOffset.X > _screenOffsetTarget.X Then
             _screenOffset.X = MathHelper.Lerp(_screenOffsetTarget.X, _screenOffset.X, 0.93F)
             If _screenOffset.X - 0.01F <= _screenOffsetTarget.X Then
@@ -707,7 +707,7 @@ Public Class NewMainMenuScreen
         If IsCurrentScreen() Then
             If _loading Then
                 Dim textSize As Vector2 = FontManager.InGameFont.MeasureString("Please wait..")
-                GetFontRenderer().DrawString(FontManager.InGameFont, "Please wait" & LoadingDots.Dots, New Vector2(ScreenSize.Width / 2.0F - textSize.X / 2.0F, ScreenSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
+                GetFontRenderer().DrawString(FontManager.InGameFont, "Please wait" & LoadingDots.Dots, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height / 2.0F - textSize.Y / 2.0F + 100), Color.White)
             Else
                 Select Case _menuIndex
                     Case 1, 3
@@ -765,7 +765,7 @@ Public Class NewMainMenuScreen
 
             _MainProfiles(x).Draw(New Vector2(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffset.Y)), CInt(_fadeInMain * 255), (xmain), _menuTexture)
             If _MainProfiles(x).IsGameJolt AndAlso _MainProfiles(x).Loaded AndAlso (xmain) Then
-                DrawGameJoltButtons(New Vector2(CInt(xOffset), CInt(_screenOffset.Y)))
+                DrawGameJoltButtons(New Vector2(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffset.Y)))
             End If
         Next
 
@@ -776,7 +776,7 @@ Public Class NewMainMenuScreen
             Else
                 SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(32, 16, 32, 16), Color.White)
             End If
-            Dim displayRect = New Rectangle(CInt((_screenOrigin.X + _sliderPosition - 300).Clamp(20, ScreenSize.Width - 620)), CInt(_screenOrigin.Y + 170 + 16), 600, CInt(240 * _expandDisplay))
+            Dim displayRect = New Rectangle(CInt((_screenOrigin.X + _sliderPosition - 300).Clamp(20, windowSize.Width - 620)), CInt(_screenOrigin.Y + 170 + 16), 600, CInt(240 * _expandDisplay))
 
             ' Draw display.
             If _expandDisplay > 0F Then
@@ -785,12 +785,12 @@ Public Class NewMainMenuScreen
             End If
 
             ' Dark theme.
-            If (_selectedProfile = 1 Or _selectedProfile = 2) And _sliderPosition <= GetSliderTarget(1) Then
+            If _sliderPosition <= GetSliderTarget(1) Then
                 Dim maxDistance As Integer = 180
                 Dim distance As Integer = CInt(Math.Abs(_sliderTarget - _sliderPosition))
                 Dim dist As Double = distance / maxDistance
 
-                If _selectedProfile = 1 Then
+                If _MainProfiles(_selectedProfile).IsGameJolt Then
                     dist = 1 - dist
                 End If
 
@@ -1410,7 +1410,7 @@ Public Class GameModeSelectionScreen
     Private tempGameModesDisplay As String = ""
     Private GameModeSplash As Texture2D = Nothing
 
-    Private Const WIDTH = 400
+    Private Const WIDTH = 320
     Private Const HEIGHT = 64
     Private Const GAP = 32
 
@@ -1432,7 +1432,7 @@ Public Class GameModeSelectionScreen
         PreScreen.Draw()
 
         If GameModeSplash IsNot Nothing Then
-            SpriteBatch.DrawInterface(GameModeSplash, ScreenSize, Color.White)
+            SpriteBatch.Draw(GameModeSplash, windowSize, Color.White)
         End If
 
         Dim text = "Select a GameMode" + Environment.NewLine + "to start the new game with."
@@ -1441,9 +1441,9 @@ Public Class GameModeSelectionScreen
         Dim _menuTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\MainMenu")
 
         'Draw buttons
-        Dim center = CInt(ScreenSize.Width / 2 + 320)
+        Dim center = CInt(windowSize.Width / 2 + 320)
         For i = 0 To _gameModes.Length - 1
-            Dim ButtonY = CInt(i * (HEIGHT + GAP) + _offset + ScreenSize.Height / 2 - HEIGHT / 2)
+            Dim ButtonY = CInt(i * (HEIGHT + GAP) + _offset + windowSize.Height / 2 - HEIGHT / 2)
             Dim halfWidth = CInt(WIDTH / 2)
             Dim ButtonColor = New Rectangle(0, 0, 16, 16)
             Dim ButtonAccent = Screens.UI.ColorProvider.AccentColor(False, CInt(255))
@@ -1452,6 +1452,8 @@ Public Class GameModeSelectionScreen
                 ButtonAccent = New Color(84, 198, 216)
             End If
 
+            Dim displayText = _gameModes(i).Name.CropStringToWidth(FontManager.InGameFont, WIDTH - 32)
+
             For x = 0 To CInt(WIDTH / 16)
                 For y = 0 To CInt(HEIGHT / 16)
                     SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(x * 16 + (center - halfWidth)), CInt(y * 16 + ButtonY - 8), 16, 16), ButtonColor, Color.White)
@@ -1459,7 +1461,6 @@ Public Class GameModeSelectionScreen
                 Next
             Next
 
-            Dim displayText = _gameModes(i).Name
             Dim textSize = FontManager.InGameFont.MeasureString(displayText)
 
             GetFontRenderer().DrawString(FontManager.InGameFont, displayText, New Vector2(center - halfWidth + 50 + 2, CType(ButtonY + HEIGHT / 2 - (textSize.Y / 2) + 2, Integer)), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
@@ -1483,19 +1484,20 @@ Public Class GameModeSelectionScreen
                 Localization.GetString("gamemode_menu_description") & ": " & dispDescription
         End If
 
-        Dim displayRect = New Rectangle(CInt(ScreenSize.Width / 2 - FontManager.InGameFont.MeasureString(tempGameModesDisplay).X - 32), CInt(ScreenSize.Height / 2 - FontManager.InGameFont.MeasureString(tempGameModesDisplay).Y / 2 - 32), CInt(FontManager.InGameFont.MeasureString(tempGameModesDisplay).X + 64), CInt(FontManager.InGameFont.MeasureString(tempGameModesDisplay).Y + 64))
-        Dim ButtonWidth = CInt(displayRect.Width / 16)
-        Dim ButtonHeight = CInt(displayRect.Height / 16)
+        tempGameModesDisplay = tempGameModesDisplay.CropStringToWidth(FontManager.InGameFont, 400)
+        Dim displayRect = New Rectangle(CInt(windowSize.Width / 2 - 400 - 32), CInt(windowSize.Height / 2 - FontManager.InGameFont.MeasureString(tempGameModesDisplay).Y / 2 - 32), 480 + 32, CInt(FontManager.InGameFont.MeasureString(tempGameModesDisplay).Y + 64))
+        Dim displayWidth = CInt(displayRect.Width / 16)
+        Dim displayHeight = CInt(displayRect.Height / 16)
 
-        For x = 0 To ButtonWidth
-            For y = 0 To ButtonHeight
+        For x = 0 To displayWidth
+            For y = 0 To displayHeight
                 SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(x * 16 + displayRect.X), CInt(y * 16) + displayRect.Y - 8, 16, 16), New Rectangle(40, 48, 16, 16), Color.White)
             Next
         Next
-        Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y - 8, displayRect.Width + 16, 3), New Color(84, 198, 216))
+        Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y - 8, displayWidth * 16 + 16, 3), New Color(84, 198, 216))
 
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, tempGameModesDisplay, New Vector2(displayRect.X + 32 + 2, displayRect.Y + 32 + 2), Color.Black)
-        SpriteBatch.DrawInterfaceString(FontManager.InGameFont, tempGameModesDisplay, New Vector2(displayRect.X + 32, displayRect.Y + 32), Color.White)
+        SpriteBatch.DrawString(FontManager.InGameFont, tempGameModesDisplay, New Vector2(displayRect.X + 32 + 2, displayRect.Y + 32 + 2), Color.Black)
+        SpriteBatch.DrawString(FontManager.InGameFont, tempGameModesDisplay, New Vector2(displayRect.X + 32, displayRect.Y + 32), Color.White)
 
         'Draw Arrow
         SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(displayRect.X + displayRect.Width + 16), CInt(displayRect.Y + (FontManager.InGameFont.MeasureString(tempGameModesDisplay).Y + 64) / 2 - 16), 16, 32), New Rectangle(64, 0, 16, 32), Color.White)
