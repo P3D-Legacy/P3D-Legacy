@@ -189,20 +189,6 @@
 
             PlayerStatistics.Track("Wild battles", 1)
 
-            If CustomBattleMusic = "" OrElse MusicManager.SongExists(CustomBattleMusic) = False Then
-                If RoamingBattle = True AndAlso RoamingPokemonStorage.MusicLoop <> "" AndAlso MusicManager.SongExists(RoamingPokemonStorage.MusicLoop) = True Then
-                    MusicManager.Play(RoamingPokemonStorage.MusicLoop, True, 0.0F)
-                Else
-                    If MusicManager.SongExists(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
-                        MusicManager.Play(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild", True, 0.0F)
-                    Else
-                        MusicManager.Play("johto_wild", True, 0.0F)
-                    End If
-                End If
-            Else
-                MusicManager.Play(CustomBattleMusic, True, 0.0F)
-            End If
-
             Me.defaultMapType = defaultMapType
 
             Me.OppPokemon = WildPokemon
@@ -329,12 +315,6 @@
 
             If IsPVPBattle = False And IsRemoteBattle = False Then
                 PlayerStatistics.Track("Trainer battles", 1)
-            End If
-
-            If IsPVPBattle = True Then
-                MusicManager.Play("pvp", True, 0.0F)
-            Else
-                MusicManager.Play(Trainer.GetBattleMusicName(), True, 0.0F)
             End If
 
             Me.defaultMapType = defaultMapType
@@ -479,12 +459,6 @@
 
             PlayerStatistics.Track("Safari battles", 1)
 
-            If MusicManager.SongExists(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
-                MusicManager.Play(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild", True, 0.0F)
-            Else
-                MusicManager.Play("johto_wild", True, 0.0F)
-            End If
-
             Me.defaultMapType = defaultMapType
 
             Me.OppPokemon = WildPokemon
@@ -595,12 +569,6 @@
             InitializeScreen()
 
             PlayerStatistics.Track("Bug-Catching contest battles", 1)
-
-            If MusicManager.SongExists(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
-                MusicManager.Play(SavedOverworld.Level.CurrentRegion.Split(CChar(","))(0) & "_wild", True, 0.0F)
-            Else
-                MusicManager.Play("johto_wild", True, 0.0F)
-            End If
 
             Me.defaultMapType = defaultMapType
 

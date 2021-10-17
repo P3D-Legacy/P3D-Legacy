@@ -45,33 +45,63 @@ Public Class LoopStream
                     _sourceStream.Position = 0
                 Else
                     If Not _sourceStream.Position = 0 Then
-                        If MusicManager._isIntroStarted = True Then
-                            Dim IntroContinueSong As SongContainer = MusicManager.GetSong(MusicManager._introContinueSong)
-                            If IntroContinueSong IsNot Nothing Then
-                                Logger.Debug($"Play song [{IntroContinueSong.Name}]")
-                                If IntroContinueSong.AudioType = ".ogg" Then
-                                    _sourceStream = New VorbisWaveReader(IntroContinueSong.Song)
-                                ElseIf IntroContinueSong.AudioType = ".mp3" Then
-                                    _sourceStream = New Mp3FileReader(IntroContinueSong.Song)
-                                ElseIf IntroContinueSong.AudioType = ".wma" Then
-                                    _sourceStream = New MediaFoundationReader(IntroContinueSong.Song)
+                        If MusicManager._afterBattleIntroSong IsNot Nothing Then
+                            Dim IntroSongName As String = "intro\" & MusicManager._afterBattleIntroSong.Name
+                            Dim IntroSong As SongContainer = MusicManager.GetSong(IntroSongName)
+                            If IntroSong IsNot Nothing Then
+                                If IntroSong.AudioType = ".ogg" Then
+                                    _sourceStream = New VorbisWaveReader(IntroSong.Song)
+                                ElseIf IntroSong.AudioType = ".mp3" Then
+                                    _sourceStream = New Mp3FileReader(IntroSong.Song)
+                                ElseIf IntroSong.AudioType = ".wma" Then
+                                    _sourceStream = New MediaFoundationReader(IntroSong.Song)
                                 End If
-                                _enableLooping = True
+                                _enableLooping = False
                                 _sourceStream.Position = 0
+                                MusicManager._introContinueSong = MusicManager._afterBattleIntroSong.Name
+                                MusicManager._isIntroStarted = True
                             Else
-                                If MusicManager.GetSong("silence").AudioType = ".ogg" Then
-                                    _sourceStream = New VorbisWaveReader(MusicManager.GetSong("silence").Song)
-                                ElseIf MusicManager.GetSong("silence").AudioType = ".mp3" Then
-                                    _sourceStream = New Mp3FileReader(MusicManager.GetSong("silence").Song)
-                                ElseIf MusicManager.GetSong("silence").AudioType = ".wma" Then
-                                    _sourceStream = New MediaFoundationReader(MusicManager.GetSong("silence").Song)
+                                If MusicManager._afterBattleIntroSong.AudioType = ".ogg" Then
+                                    _sourceStream = New VorbisWaveReader(MusicManager._afterBattleIntroSong.Song)
+                                ElseIf IntroSong.AudioType = ".mp3" Then
+                                    _sourceStream = New Mp3FileReader(MusicManager._afterBattleIntroSong.Song)
+                                ElseIf IntroSong.AudioType = ".wma" Then
+                                    _sourceStream = New MediaFoundationReader(MusicManager._afterBattleIntroSong.Song)
                                 End If
                                 _enableLooping = True
                                 _sourceStream.Position = 0
+                                MusicManager._isIntroStarted = False
                             End If
-                            MusicManager._fadeIntoIntro = False
+                            MusicManager._afterBattleIntroSong = Nothing
                         Else
-                            Exit While
+                            If MusicManager._isIntroStarted = True Then
+                                Dim IntroContinueSong As SongContainer = MusicManager.GetSong(MusicManager._introContinueSong)
+                                If IntroContinueSong IsNot Nothing Then
+                                    Logger.Debug($"Play song [{IntroContinueSong.Name}]")
+                                    If IntroContinueSong.AudioType = ".ogg" Then
+                                        _sourceStream = New VorbisWaveReader(IntroContinueSong.Song)
+                                    ElseIf IntroContinueSong.AudioType = ".mp3" Then
+                                        _sourceStream = New Mp3FileReader(IntroContinueSong.Song)
+                                    ElseIf IntroContinueSong.AudioType = ".wma" Then
+                                        _sourceStream = New MediaFoundationReader(IntroContinueSong.Song)
+                                    End If
+                                    _enableLooping = True
+                                    _sourceStream.Position = 0
+                                Else
+                                    If MusicManager.GetSong("silence").AudioType = ".ogg" Then
+                                        _sourceStream = New VorbisWaveReader(MusicManager.GetSong("silence").Song)
+                                    ElseIf MusicManager.GetSong("silence").AudioType = ".mp3" Then
+                                        _sourceStream = New Mp3FileReader(MusicManager.GetSong("silence").Song)
+                                    ElseIf MusicManager.GetSong("silence").AudioType = ".wma" Then
+                                        _sourceStream = New MediaFoundationReader(MusicManager.GetSong("silence").Song)
+                                    End If
+                                    _enableLooping = True
+                                    _sourceStream.Position = 0
+                                End If
+                                MusicManager._fadeIntoIntro = False
+                            Else
+                                Exit While
+                            End If
                         End If
                     End If
                 End If
@@ -99,6 +129,7 @@ Public Class MusicManager
     ' if the song in _currentSong is an actual existing song
     Private Shared _currentSongExists As Boolean = False
     Private Shared _currentSong As SongContainer = Nothing
+    Public Shared _afterBattleIntroSong As SongContainer = Nothing
 
     ' time until music playback is paused for sound effect
     Private Shared _pausedUntil As Date
@@ -202,6 +233,7 @@ Public Class MusicManager
         _currentSongExists = False
         _currentSong = Nothing
         _currentSongName = NO_MUSIC
+        _afterBattleIntroSong = Nothing
         _isIntroStarted = False
     End Sub
 
@@ -304,7 +336,6 @@ Public Class MusicManager
     Public Shared Sub [Stop]()
         If Not outputDevice Is Nothing Then
             outputDevice.Stop()
-            outputDevice.Dispose()
         End If
         _isIntroStarted = False
     End Sub
@@ -325,7 +356,7 @@ Public Class MusicManager
 
     End Sub
 
-    Private Shared Sub Play(song As SongContainer, Optional ByVal introSong As SongContainer = Nothing)
+    Private Shared Sub Play(song As SongContainer)
         If Not song Is Nothing Then
             Logger.Debug($"Play song [{song.Name}]")
             If Not outputDevice Is Nothing Then
@@ -376,17 +407,28 @@ Public Class MusicManager
         Return Play(song, playIntro, DEFAULT_FADE_SPEED, loopSong)
     End Function
 
-    Public Shared Function Play(song As String, playIntro As Boolean, fadeSpeed As Single, Optional loopSong As Boolean = True) As SongContainer
+    Public Shared Function Play(song As String, playIntro As Boolean, fadeSpeed As Single, Optional loopSong As Boolean = True, Optional AfterBattleIntroSong As String = "") As SongContainer
 
         Dim playedSong As SongContainer = Nothing
 
         ' get the current song, only play if it's different
         Dim currentSong = GetCurrentSong().ToLowerInvariant()
         Dim songName = GetSongName(song)
+        Dim AfterBattleIntroSongName As String = GetSongName(AfterBattleIntroSong)
 
         If currentSong = NO_MUSIC OrElse currentSong <> songName Then
+            If AfterBattleIntroSongName <> "" Then
+                _isLooping = False
 
-            If playIntro = True Then
+                Dim battleIntroSong = GetSong(songName)
+
+                If battleIntroSong IsNot Nothing Then
+                    Play(battleIntroSong)
+                    _afterBattleIntroSong = GetSong(AfterBattleIntroSongName)
+                End If
+                playedSong = battleIntroSong
+
+            ElseIf playIntro = True Then
                 _isLooping = False
                 Dim introSong = GetSong("intro\" + songName)
                 If Not introSong Is Nothing Then
@@ -421,7 +463,7 @@ Public Class MusicManager
             End If
 
             ' intro was not requested or does not exist
-            If Not _isIntroStarted AndAlso Not _fadeIntoIntro Then
+            If Not _isIntroStarted AndAlso Not _fadeIntoIntro AndAlso AfterBattleIntroSongName = "" Then
                 If loopSong = True Then
                     _isLooping = True
                 Else
