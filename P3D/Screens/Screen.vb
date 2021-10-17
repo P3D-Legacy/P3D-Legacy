@@ -146,6 +146,10 @@ Public MustInherit Class Screen
     ''' A global PokemonImageView instance, that carries over screen instances.
     ''' </summary>
     Public Shared Property PokemonImageView() As PokemonImageView = New PokemonImageView()
+    ''' <summary>
+    ''' A global ImageView instance, that carries over screen instances.
+    ''' </summary>
+    Public Shared Property ImageView() As ImageView = New ImageView()
 
 #End Region
 

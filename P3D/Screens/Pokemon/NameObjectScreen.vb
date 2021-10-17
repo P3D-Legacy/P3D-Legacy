@@ -152,6 +152,7 @@ Public Class NameObjectScreen
         End If
 
         PokemonImageView.Draw()
+        ImageView.Draw()
     End Sub
 
     Private Function TextboxPosition() As Vector2

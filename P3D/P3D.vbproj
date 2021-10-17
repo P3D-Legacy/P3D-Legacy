@@ -13966,6 +13966,9 @@
     <Content Include="Content\Pokemon\Overworld\Shiny\89_alola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Sprites\Aerodactyl_Fossil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pokemon\Sprites\Arctovish.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -14009,6 +14012,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Pokemon\Sprites\Grimer_alola.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Kabutops_Fossil.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Pokemon\Sprites\Marowak_alola.png">
@@ -27529,6 +27535,7 @@
     <Compile Include="Battle\BattleAnimations\BABillSize.vb" />
     <Compile Include="Battle\BattleAnimations\BASound.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\AnimationQueryObject.vb" />
+    <Compile Include="Dialogues\ImageView.vb" />
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
     <Compile Include="Pokemon\Abilities\PsychicSurge.vb" />
     <Compile Include="Pokemon\Abilities\MistySurge.vb" />
@@ -28579,6 +28586,12 @@
     <Content Include="Content\Data\Scripts\seafoam\articunomap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Data\Scripts\pewter\Fossil_Aerodactyl.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Data\Scripts\pewter\Fossil_Kabutops.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\tohjofalls\jjm.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

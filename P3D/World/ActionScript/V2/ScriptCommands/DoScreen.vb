@@ -111,6 +111,19 @@
                     IsReady = True
 
                     CanContinue = False
+                Case "showimage"
+                    Dim Texture As Texture2D = TextureManager.GetTexture(argument.GetSplit(0))
+                    Dim Sound As String = ""
+                    If argument.Split.Count > 1 Then
+                        Sound = argument.GetSplit(1)
+                        If argument.Split.Count > 2 Then
+                            Texture = TextureManager.GetTexture(argument.GetSplit(0), New Rectangle(int(argument.GetSplit(2)), int(argument.GetSplit(3)), int(argument.GetSplit(4)), int(argument.GetSplit(5))), "")
+                        End If
+                    End If
+                    Screen.ImageView.Show(Texture, Sound)
+                    IsReady = True
+
+                    CanContinue = False
                 Case "credits"
                     Dim ending As String = "Johto"
                     If argument <> "" Then
