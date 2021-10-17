@@ -208,6 +208,7 @@ Public Class NewInventoryScreen
         DrawMessage()
 
         PokemonImageView.Draw()
+        ImageView.Draw()
         TextBox.Draw()
         ChooseBox.Draw()
 
@@ -654,7 +655,7 @@ Public Class NewInventoryScreen
             UpdateShakeAnimation()
 
             ' Input update:
-            If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False Then
+            If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False And ImageView.Showing = False Then
                 Dim isTabsSelected = _tabInControl
 
                 UpdateTabs()
@@ -675,6 +676,9 @@ Public Class NewInventoryScreen
             End If
             If PokemonImageView.Showing = True Then
                 PokemonImageView.Update()
+            End If
+            If ImageView.Showing = True Then
+                ImageView.Update()
             End If
 
             UpdateInfoAnimation()

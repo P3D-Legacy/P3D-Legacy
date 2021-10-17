@@ -39,6 +39,7 @@ Public Class PressStartScreen
 
         TextBox.Showing = False
         PokemonImageView.Showing = False
+        ImageView.Showing = False
         ChooseBox.Showing = False
 
         GameModeManager.SetGameModePointer("Kolben")

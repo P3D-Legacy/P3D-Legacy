@@ -31,6 +31,7 @@ Public Class CreditsScreen
 
         Screen.TextBox.Showing = False
         Screen.PokemonImageView.Showing = False
+        Screen.ImageView.Showing = False
         Screen.ChooseBox.Showing = False
 
         Effect = New BasicEffect(Core.GraphicsDevice)

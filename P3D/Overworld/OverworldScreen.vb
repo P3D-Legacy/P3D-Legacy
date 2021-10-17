@@ -187,6 +187,9 @@ Public Class OverworldScreen
         If PokemonImageView.Showing = True Then
             PokemonImageView.Update()
         End If
+        If ImageView.Showing = True Then
+            ImageView.Update()
+        End If
 
         'Middle click/Thumbstick press: Show first Pokémon in party.
         If ActionScript.IsReady = True Then
@@ -198,7 +201,7 @@ Public Class OverworldScreen
         End If
 
         'If no dialogue is showing, do level update tasks:
-        If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False Then
+        If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False And ImageView.Showing = False Then
             'If no script is running and no MapScript is in the queue, update camera and the level.
             If ActionScript.IsReady = True And LevelLoader.MapScript = "" Then
                 If Me.HandleServerRequests() = True Then
@@ -333,6 +336,7 @@ Public Class OverworldScreen
 
         DrawGUI()
         PokemonImageView.Draw()
+        ImageView.Draw()
         TextBox.Draw()
 
         'Only draw the ChooseBox when it's the current screen, cause the same ChooseBox might get used on other screens.

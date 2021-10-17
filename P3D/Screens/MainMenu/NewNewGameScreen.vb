@@ -55,9 +55,12 @@
             If PokemonImageView.Showing = True Then
                 PokemonImageView.Update()
             End If
+            If ImageView.Showing = True Then
+                ImageView.Update()
+            End If
 
             'If no dialogue is showing, do level update tasks:
-            If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False Then
+            If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False And ImageView.Showing = False Then
                 If Me.ActionScript.IsReady Then
                     Camera.Update()
                     Level.Update()
@@ -98,6 +101,7 @@
             Level.Draw()
 
             PokemonImageView.Draw()
+            ImageView.Draw()
             TextBox.Draw()
 
             'Only draw the ChooseBox when it's the current screen, cause the same ChooseBox might get used on other screens.
