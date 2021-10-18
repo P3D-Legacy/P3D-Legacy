@@ -191,10 +191,10 @@
         Else
             SpriteBatch.BeginBatch()
             FontRenderer.Begin()
-
             GraphicsDevice.DepthStencilState = DepthStencilState.Default
 
             GraphicsDevice.SamplerStates(0) = sampler
+            GraphicsDevice.SamplerStates(0) = SamplerState.PointClamp
             CurrentScreen.Draw()
 
             If Not Core.Player Is Nothing Then

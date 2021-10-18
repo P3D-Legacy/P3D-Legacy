@@ -615,7 +615,7 @@ Public Class NewMainMenuScreen
         Select Case _menuIndex
             Case 0
                 If _selectedProfile = 1 And Security.FileValidation.IsValid(False) = False Then
-                    _messageBox.Show("File validation failed!" & Environment.NewLine & "Redownload the game's files to solve this problem.")
+                    _messageBox.Show("File validation failed!~Redownload the game's files to solve this problem.")
                 Else
                     _MainProfiles(_selectedProfile).SelectProfile()
                 End If
@@ -1373,7 +1373,7 @@ Public Class NewMainMenuScreen
                                 LoadGameJolt()
                             ElseIf IsOptionsMenuButton = False Then
                                 Dim messageBox As New UI.MessageBox(CurrentScreen)
-                                messageBox.Show("The required GameMode does not exist." & Environment.NewLine & "Reaquire the GameMode to play on this profile.")
+                                messageBox.Show("The required GameMode does not exist.~Reaquire the GameMode to play on this profile.".Replace("~", Environment.NewLine))
                             Else
                                 _menuIndex = 2
                                 _selectedProfileTemp = _selectedProfile

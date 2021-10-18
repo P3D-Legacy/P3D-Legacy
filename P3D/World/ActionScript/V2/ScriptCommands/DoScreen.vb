@@ -11,6 +11,21 @@
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
             Select Case command.ToLower()
+                Case "showmessagebox"
+                    Dim messageBox As New UI.MessageBox(CurrentScreen)
+                    Dim colorsplit() As String = argument.Split("|")
+                    Select Case argument.Split("|").Count
+                        Case 1
+                            messageBox.Show(argument.Replace("~", Environment.NewLine).Replace("*", Environment.NewLine & Environment.NewLine))
+                        Case 2
+                            messageBox.Show(colorsplit(0).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine & Environment.NewLine), New Color(CInt(colorsplit(1).GetSplit(0)), CInt(colorsplit(1).GetSplit(1)), CInt(colorsplit(1).GetSplit(2))))
+                        Case 3
+                            messageBox.Show(colorsplit(0).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine & Environment.NewLine), New Color(CInt(colorsplit(1).GetSplit(0)), CInt(colorsplit(1).GetSplit(1)), CInt(colorsplit(1).GetSplit(2))), New Color(CInt(colorsplit(2).GetSplit(0)), CInt(colorsplit(2).GetSplit(1)), CInt(colorsplit(2).GetSplit(2))))
+                        Case 4
+                            messageBox.Show(colorsplit(0).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine & Environment.NewLine), New Color(CInt(colorsplit(1).GetSplit(0)), CInt(colorsplit(1).GetSplit(1)), CInt(colorsplit(1).GetSplit(2))), New Color(CInt(colorsplit(2).GetSplit(0)), CInt(colorsplit(2).GetSplit(1)), CInt(colorsplit(2).GetSplit(2))), New Color(CInt(colorsplit(3).GetSplit(0)), CInt(colorsplit(3).GetSplit(1)), CInt(colorsplit(3).GetSplit(2))))
+                    End Select
+                    IsReady = True
+                    CanContinue = False
                 Case "storagesystem"
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New StorageSystemScreen(Core.CurrentScreen), Color.Black, False))
 
