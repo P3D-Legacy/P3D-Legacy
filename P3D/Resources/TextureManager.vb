@@ -84,13 +84,13 @@ Public Class TextureManager
         Dim cContent As ContentManager = ContentPackManager.GetContentManager(tSource.TexturePath, ".xnb,.png")
         Dim resolution As Integer = ContentPackManager.GetTextureResolution(TexturePath & Name)
 
-        Dim tKey As String = cContent.RootDirectory & "\" & TexturePath & Name & "," & r.X & "," & r.Y & "," & r.Width & "," & r.Height & "," & resolution
+        Dim tKey As String = cContent.RootDirectory & "\" & tSource.TexturePath & "," & tSource.TextureRectangle.X & "," & tSource.TextureRectangle.Y & "," & tSource.TextureRectangle.Width & "," & tSource.TextureRectangle.Height & "," & resolution
         If TextureList.ContainsKey(tKey) = False Then
             Dim t As Texture2D = Nothing
             Dim doApplyEffect As Boolean = True
 
-            If TextureList.ContainsKey(cContent.RootDirectory & "\" & TexturePath & Name) = True Then
-                t = TextureList(cContent.RootDirectory & "\" & TexturePath & Name)
+            If TextureList.ContainsKey(cContent.RootDirectory & "\" & tSource.TexturePath) = True Then
+                t = TextureList(cContent.RootDirectory & "\" & tSource.TexturePath)
                 doApplyEffect = False
             Else
                 If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\" & tSource.TexturePath & ".xnb") = False Then
@@ -111,7 +111,7 @@ Public Class TextureManager
                     t = cContent.Load(Of Texture2D)(tSource.TexturePath)
                 End If
 
-                TextureList.Add(cContent.RootDirectory & "\" & TexturePath & Name, ApplyEffect(t.Copy()))
+                TextureList.Add(cContent.RootDirectory & "\" & tSource.TexturePath, ApplyEffect(t.Copy()))
             End If
 
             If doApplyEffect = True Then
