@@ -15334,6 +15334,9 @@
     <Content Include="Content\Sounds\Heal_Party.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Notifications\Phone.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sounds\PC\LogOn.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -15587,6 +15590,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Emblem\victorious.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Notifications\Backgrounds.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Notifications\Icons.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\NPC\0_bow.png">
@@ -27536,6 +27545,8 @@
     <Compile Include="Battle\BattleAnimations\BASound.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\AnimationQueryObject.vb" />
     <Compile Include="Dialogues\ImageView.vb" />
+    <Compile Include="Overworld\NotificationPopup.vb" />
+    <Compile Include="Overworld\RouteSign.vb" />
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
     <Compile Include="Pokemon\Abilities\PsychicSurge.vb" />
     <Compile Include="Pokemon\Abilities\MistySurge.vb" />
@@ -29353,7 +29364,6 @@
     <Compile Include="Overworld\OverworldCamera.vb" />
     <Compile Include="Overworld\OverworldScreen.vb" />
     <Compile Include="Overworld\OverworldStorage.vb" />
-    <Compile Include="Overworld\RouteSign.vb" />
     <Compile Include="Overworld\SecretBase\SecretBase.vb" />
     <Compile Include="Overworld\SecretBase\SecretBaseCamera.vb" />
     <Compile Include="Overworld\SecretBase\SecretBaseScreen.vb" />
