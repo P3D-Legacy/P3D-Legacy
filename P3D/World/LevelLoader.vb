@@ -526,6 +526,8 @@
                             End If
                         Case line.Trim(" "c, StringHelper.Tab).StartsWith("{""Shader""{SHA[")
                             addLine = True
+                        Case line.Trim(" "c, StringHelper.Tab).StartsWith("{""Structure""{STR[")
+                            addLine = True
                     End Select
 
                     If addLine = True Then

@@ -573,6 +573,7 @@
             SoundManager.PlaySound("save")
             Core.GameOptions.ChangedPack = True
             Core.OffsetMaps.Clear()
+            MusicManager.Play("title")
         End If
     End Sub
 
