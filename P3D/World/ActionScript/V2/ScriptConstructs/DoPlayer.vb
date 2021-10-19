@@ -88,6 +88,7 @@
                 Case "haspokegear"
                     Return ReturnBoolean(Core.Player.HasPokegear)
                 Case "isgamejolt"
+                    '<player.isgamejolt([bool_checkban=0])
                     If argument = "1" Then
                         ReturnBoolean(Core.Player.IsGameJoltSave = True AndAlso GameJolt.LogInScreen.UserBanned(GameJoltSave.GameJoltID) = False)
                     End If

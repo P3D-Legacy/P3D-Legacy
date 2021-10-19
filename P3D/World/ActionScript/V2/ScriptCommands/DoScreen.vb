@@ -12,6 +12,7 @@
 
             Select Case command.ToLower()
                 Case "showmessagebox"
+                    '@screen.showmessagebox(str_message|[intArr_RGB_background]|[intArr_RGB_font]|[intArr_RGB_border])
                     Dim messageBox As New UI.MessageBox(CurrentScreen)
                     Dim colorsplit() As String = argument.Split("|")
                     Select Case argument.Split("|").Count
@@ -127,6 +128,7 @@
 
                     CanContinue = False
                 Case "showimage"
+                    '@screen.showimage(str_texture,[str_sfxname],[int_x],[int_y],[int_w],[int_h]))
                     Dim Texture As Texture2D = TextureManager.GetTexture(argument.GetSplit(0))
                     Dim Sound As String = ""
                     If argument.Split.Count > 1 Then

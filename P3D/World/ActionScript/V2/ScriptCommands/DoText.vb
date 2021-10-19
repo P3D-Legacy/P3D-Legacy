@@ -12,6 +12,7 @@
 
             Select Case command.ToLower()
                 Case "notification"
+                    '@text.notification(message,[int_delay=500],[int_backgroundID=0],[int_IconID=0],[str_sfx],[str_script],[bool_force=0])
                     Dim _NotificationPopup As New NotificationPopup
                     Dim args As String() = argument.Split(CChar(","))
                     Select Case args.Length

@@ -450,6 +450,7 @@
                         Return Core.Player.Pokemons(index).EggSteps
                     End If
                 Case "mastershinyrate"
+                    '<pokemon.mastershinyrate([bool_globalmodifiers=1])>
                     Dim adjusted As Boolean = True
                     If argument <> "" Then
                         adjusted = CBool(argument)
