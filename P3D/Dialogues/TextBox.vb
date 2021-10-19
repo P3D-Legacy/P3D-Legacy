@@ -99,20 +99,6 @@
     End Sub
 
     Private Sub FormatText()
-        Dim tokenSearchBuffer As String() = Me.Text.Split(CChar("<token."))
-        Dim tokenEndIdx As Integer = 0
-        Dim validToken As String = ""
-        Dim token As Token = Nothing
-        For Each possibleToken As String In tokenSearchBuffer
-            tokenEndIdx = possibleToken.IndexOf(">")
-            If Not tokenEndIdx = -1 Then
-                validToken = possibleToken.Substring(0, tokenEndIdx)
-                If Localization.LocalizationTokens.ContainsKey(validToken) = True Then
-                    Me.Text = Me.Text.Replace("<token." & validToken & ">", Localization.GetString(validToken, validToken))
-                End If
-            End If
-        Next
-
         Me.Text = Me.Text.Replace("<playername>", Core.Player.Name)
         Me.Text = Me.Text.Replace("<player.name>", Core.Player.Name)
 
