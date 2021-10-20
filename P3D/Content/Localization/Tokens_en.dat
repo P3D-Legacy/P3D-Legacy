@@ -96,8 +96,8 @@ game_interaction_gamemenu,Game Menu
 game_interaction_pokegear,Pokégear
 game_interaction_pausemenu,Pause Menu
 game_interaction_notification,Notification
-game_notification_accept,Press <system.button(special)> to accept.
-game_notification_dismiss,Press <system.button(special)> to dismiss.
+game_notification_accept,Press <button.special> to accept.
+game_notification_dismiss,Press <button.special> to dismiss.
 ---
 MainMenuScreen:
 main_menu_continue,Continue
@@ -936,80 +936,9 @@ pokemon_name_Ho-Oh,Ho-Oh
 pokemon_name_Celebi,Celebi
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
-====================
-Generic:
-----------
-TrashCan_Empty,This trash can is empty.
-==========
-Johto:
-----------
-
+---
 New Bark Town:
-
-Objects:
-
-[yourroom.dat]
-NewBark_YourHouse2f_Bookshelf,A whole collection of Pokémon~picture books!
-NewBark_YourHouse2f_Note_Donators,It's a note on the wall about~the donators of this game.
-NewBark_YourHouse2f_Note_Controls,It's a note on the wall about~the controls.*Do you want to read it?
-NewBark_YourHouse2f_GameControls,The controls in Pokemon:~Move: [<system.button(moveforward)>]~Look Around: [<system.button(moveleft)>][<system.button(movebackward)>][<system.button(moveright)>]~Interact/Accept: [<system.button(enter1)>] or [<system.button(enter2)>]~Cancel/Exit: [<system.button(back1)>] or [<system.button(back2)>]~Open Start Menu: [<system.button(openmenu)>]~Mute Audio: [<system.button(muteaudio)>]~First Person or Third Person: [<system.button(perspectiveswitch)>]~Hide GUI: [<system.button(hidegui)>]~Take Screenshot: [<system.button(screenshot)>]~Fixed or Free Camera: [<system.button(cameralock)>]
-NewBark_YourHouse2f_TownMap,It's a Town Map.~Let's take a look.
-NewBark_YourHouse2f_TV,It's a TV.~A Nintendo Switch is connected~to it via Wifi.
-
-[barktown0.dat]
-NewBark_YourHouse1f_Stove,Mom's specialty!*Cinnabar Volcano Burger!
-NewBark_YourHouse1f_Sink,The sink is spot-less.~Mom likes it clean.
-NewBark_YourHouse1f_Fridge,Let's see what's in the fridge...*Fresh Water and tasty Lemonade!
-
-[elmlab.dat]
-NewBark_ElmsLab_HealMachine_Explanation,This is a machine for~healing injured Pokémon.
-NewBark_ElmsLab_HealMachine_Question,Do you want to heal your Pokémon?
-NewBark_ElmsLab_HealMachine_Restored,Your Pokémon are fully restored.
-
-Signs:
-
-[barktown.dat]
-NewBark_Main_Sign_ElmsLab,Elm Pokémon Lab
-NewBark_Main_Sign_YourHouse,<player.name>'s House
-NewBark_Main_Sign_Town,New Bark Town*"The town where the winds of a~new beginning blow."
-NewBark_Main_Sign_ElmsHouse,Elm's House
-NewBark_Main_Sign_LargeHouse,FOR SALE!
-
-NPCs:
-
-[barktown.dat]
-NewBark_Main_FatGuy_ElmDiscovery,Yo, <player.name>!*I hear Prof. Elm discovered~some new Pokémon.
-
-NewBark_Main_YoungWoman_PokeGear,Wow, your Pokégear is impressive!*Did your mom get it for you?
-NewBark_Main_YoungWoman_AdorablePokemon,Oh! Your Pokémon is adorable!~I wish I had one!
-NewBark_Main_YoungWoman_TellMomLeaving,Hi, <player.name>!~Leaving again?*You should tell your mom~if you're leaving.
-NewBark_Main_YoungWoman_CallMom,Call your mom on~your Pokégear to*let her know how~you're doing.
-
-NewBark_Main_YoungWoman_NoPokemon1,Wait, <player.name>!
-NewBark_Main_YoungWoman_NoPokemon2,What do you think you're doing?
-NewBark_Main_YoungWoman_NoPokemon3,It's dangerous to go out~without a Pokémon!*Wild Pokémon jump out of the grass~on the way to the next town.
-
-NewBark_Main_Rival_FamousLab,......*So this is the famous Elm Pokémon Lab.
-NewBark_Main_Rival_Staring,......*What are you staring at?
-
-[barktown0.dat]
-NewBark_YourHouse1f_Mom_ProfElm,Oh, <player.name>! Our neighbor,~Prof. Elm, was looking for you.*He said he wanted you to do~something for him.*Oh! I almost forgot! Your Pokémon~Gear is back from the repair shop.*Here you go!
-NewBark_YourHouse1f_ReceivePokegear,<player.name> received a Pokégear.
-NewBark_YourHouse1f_Mom_Pokegear,Pokémon Gear, or just Pokégear.*It's essential if you want to~be a good trainer.*By the way, do you know how~to use the Phone?
-NewBark_YourHouse1f_Mom_HowToUse_Yes,I'm sure you know that you can~open it by pressing <system.button(special)>.*Phone numbers are stored in memory.*Just choose a name you want to call.*Gee, isn't that convenient?
-NewBark_YourHouse1f_Mom_HowToUse_No,Don't you just turn the Pokégear on by~pressing <system.button(special)> and switch over to Phone?*Phone numbers are stored in memory.*Just choose a name you want to call.*Gee, isn't that convenient?
-NewBark_YourHouse1f_Mom_GiveNumber,Also, here is my number!
-NewBark_YourHouse1f_Mom_RegisterNumber,<player.name>~registered Mom's number.
-
-[elmlab.dat]
-NewBark_ElmsLab_Elm_WhereAreYouGoing,Elm: Wait! Where are you going?
-NewBark_ElmsLab_Elm_Favor,Elm: <player.name>! There you are!~I needed to ask you a favor.*I have an acquaintance~called Mr. Pokémon.*He keeps finding weird things and~raving about his discoveries.*Anyway, I just got an e-mail from him~saying that this time it's real.*It is intriguing, but we're busy~with our Pokémon research.*Could you look into it for us?*I'll give you a Pokémon for a partner.
-NewBark_ElmsLab_Elm_PickAPokemon,They're all rare Pokémon that~we just found.*Go on. Pick one!
-NewBark_ElmsLab_Assistant_TakeThisForErrand,<player.name>, I want you to have this~for your errand.
-NewBark_ElmsLab_Assistant_AlwaysBusy,There are only two of us,~so we're always busy.
-NewBark_ElmsLab_Assistant_UseTheseOnQuest,<player.name>!*Use these on your Pokédex quest!
-NewBark_ElmsLab_Assistant_ThrowPokeBalls,To add to your Pokédex,~you have to catch Pokémon.*Throw Pokéballs at wild Pokémon to get them.
-NewBark_ElmsLab_Police_StolenPokemon,I heard a Pokémon was stolen here...*I was just getting some~information from Prof. Elm.*Apparently, it was a young male~with long, red hair...*What?*You battled a trainer like that?*Did you happen to get his name?
-NewBark_ElmsLab_Police_RivalName,OK! So <rival.name> was his name.*Thanks for helping my investigation!
-
-==========
+---
+barktown.dat:
+---
+barktown_player_house,<playername>'s House
