@@ -371,11 +371,11 @@
                 Dim renderTarget As RenderTarget2D = New RenderTarget2D(Core.GraphicsDevice, CInt(size.X), CInt(size.Y * 3))
                 Core.GraphicsDevice.SetRenderTarget(renderTarget)
 
-                Core.GraphicsDevice.Clear(Color.Transparent)
+                Core.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Transparent)
 
                 Core.SpriteBatch.Begin()
                 Canvas.DrawRectangle(New Rectangle(0, 0, CInt(size.X), CInt(size.Y)), New Color(0, 0, 0, 150))
-                Core.SpriteBatch.DrawString(font, text, Vector2.Zero, Color.White)
+                Core.SpriteBatch.DrawString(font, text, Vector2.Zero, Microsoft.Xna.Framework.Color.White)
                 Core.SpriteBatch.End()
 
                 Core.GraphicsDevice.SetRenderTarget(Nothing)

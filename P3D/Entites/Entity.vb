@@ -523,7 +523,7 @@
 
                 If Me.EntityID <> "Floor" And Me.EntityID <> "Water" Then
                     If drawViewBox = True Then
-                        BoundingBoxRenderer.Render(ViewBox, Core.GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Color.LightCoral)
+                        BoundingBoxRenderer.Render(ViewBox, GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.LightCoral)
                     End If
                 End If
             Else
