@@ -10,6 +10,7 @@
 		Public SpawnedEntities As List(Of Entity)
 		Public CurrentEntity As Entity
 		Public CurrentModel As ModelEntity
+		Public DrawBeforeEntities As Boolean
 
 		Public Overrides ReadOnly Property IsReady As Boolean
 			Get
@@ -17,9 +18,10 @@
 			End Get
 		End Property
 
-		Public Sub New(ByVal entity As Entity, ByVal BattleFlipped As Boolean, Optional ByVal model As ModelEntity = Nothing)
+		Public Sub New(ByVal entity As Entity, ByVal BattleFlipped As Boolean, Optional ByVal model As ModelEntity = Nothing, Optional DrawBeforeEntities As Boolean = False)
 			MyBase.New(QueryTypes.MoveAnimation)
 			Me.AnimationSequence = New List(Of BattleAnimation3D)
+			Me.DrawBeforeEntities = DrawBeforeEntities
 			If BattleFlipped <> Nothing Then
 				Me.BattleFlipped = BattleFlipped
 			End If
@@ -28,14 +30,22 @@
 			AnimationSequenceBegin()
 		End Sub
 		Public Overrides Sub Draw(ByVal BV2Screen As BattleScreen)
+			Dim Backgrounds As New List(Of Entity)
+
 			Dim RenderObjects As New List(Of Entity)
 			For Each a As BattleAnimation3D In Me.AnimationSequence
-				RenderObjects.Add(a)
+				If a.AnimationType = BattleAnimation3D.AnimationTypes.Background Then
+					Backgrounds.Add(a)
+				Else
+					RenderObjects.Add(a)
+				End If
 			Next
 			If RenderObjects.Count > 0 Then
 				RenderObjects = (From r In RenderObjects Order By r.CameraDistance Descending).ToList()
 			End If
-
+			For Each [Object] As Entity In Backgrounds
+				[Object].Render()
+			Next
 			For Each [Object] As Entity In RenderObjects
 				[Object].Render()
 			Next
@@ -218,6 +228,9 @@
 			AnimationSequence.Add(baSound)
 		End Sub
 
+		Public Sub AnimationBackground(Texture As Texture2D, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal FadeOut As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = 0.0F)
+			Dim baBackground As BABackground = New BABackground(Texture, TransitionSpeed, FadeIn, FadeOut, EndState, startDelay, endDelay, startState)
+			AnimationSequence.Add(baBackground)
 		End Sub
 
 	End Class

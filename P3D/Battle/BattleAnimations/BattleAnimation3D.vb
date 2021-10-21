@@ -17,6 +17,7 @@
         Wait
         ViewPokeBill
         Sound
+        Background
     End Enum
 
     Public AnimationType As AnimationTypes = AnimationTypes.Nothing

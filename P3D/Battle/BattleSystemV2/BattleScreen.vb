@@ -768,7 +768,33 @@
 
         Public Overrides Sub Draw()
             SkyDome.Draw(45.0F)
+
+            Dim ForegroundEntities As New List(Of Entity)
+            For Each e As Entity In Level.Entities
+                If e Is OwnPokemonNPC Then
+                    ForegroundEntities.Add(e)
+                End If
+                If e Is OppPokemonNPC Then
+                    ForegroundEntities.Add(e)
+                End If
+                If e Is OwnTrainerNPC Then
+                    ForegroundEntities.Add(e)
+                End If
+                If e Is OppTrainerNPC Then
+                    ForegroundEntities.Add(e)
+                End If
+                If e Is OwnPokemonModel Then
+                    ForegroundEntities.Add(e)
+                End If
+                If e Is OppPokemonModel Then
+                    ForegroundEntities.Add(e)
+                End If
+            Next
+            If ForegroundEntities.Count > 0 Then
+                ForegroundEntities = (From f In ForegroundEntities Order By f.CameraDistance Descending).ToList()
+            End If
             Level.Draw()
+
             World.DrawWeather(Screen.Level.World.CurrentMapWeather)
 
             If HasToWaitPVP() = True Then
@@ -781,13 +807,25 @@
                 End If
             End If
 
+            Dim ForegroundAnimationList As New List(Of AnimationQueryObject)
             If BattleQuery.Count > 0 Then
                 Dim cIndex As Integer = 0
                 Dim cQuery As New List(Of QueryObject)
 nextIndex:
                 If BattleQuery.Count > cIndex Then
                     Dim cQueryObject As QueryObject = BattleQuery(cIndex)
-                    cQuery.Add(cQueryObject)
+                    If cQueryObject.QueryType = QueryObject.QueryTypes.MoveAnimation Then
+                        If CType(cQueryObject, AnimationQueryObject).DrawBeforeEntities = False Then
+                            cQuery.Add(cQueryObject)
+                        Else
+                            ForegroundAnimationList.Add(CType(cQueryObject, AnimationQueryObject))
+                            cIndex += 1
+                            GoTo nextIndex
+                        End If
+                    Else
+                        cQuery.Add(cQueryObject)
+                    End If
+
 
                     If cQueryObject.PassThis = True Then
                         cIndex += 1
@@ -802,6 +840,31 @@ nextIndex:
                 Next
             End If
 
+            If ForegroundAnimationList.Count > 0 Then
+                For i = 0 To ForegroundEntities.Count - 1
+                    ForegroundEntities(i).Render()
+                    DebugDisplay.MaxVertices += ForegroundEntities(i).VertexCount
+                Next
+
+                Dim cIndex As Integer = 0
+                Dim cQuery As New List(Of QueryObject)
+nextIndexForeground:
+                If ForegroundAnimationList.Count > cIndex Then
+                    Dim cQueryObject As QueryObject = ForegroundAnimationList(cIndex)
+                    cQuery.Add(cQueryObject)
+
+                    If cQueryObject.PassThis = True Then
+                        cIndex += 1
+                        GoTo nextIndexForeground
+                    End If
+                End If
+
+                cQuery.Reverse()
+
+                For Each cQueryObject As QueryObject In cQuery
+                    cQueryObject.Draw(Me)
+                Next
+            End If
             'Core.SpriteBatch.DrawString(FontManager.MiniFont, "Battle system not final!", New Vector2(0, Core.windowSize.Height - 20), Color.White)
 
             TextBox.Draw()
