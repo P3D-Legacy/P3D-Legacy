@@ -57,8 +57,9 @@
 
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
-            MoveAnimation.PlaySound("Battle\Attacks\Pound", 0.5, 2.5)
-            MoveAnimation.AnimationSpawnFadingEntity(0, -0.25, 0, "Textures\Battle\Normal\Pound", 0.5, 0.5, 0.5, 0.02, False, 1.0, 0, 3)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Pound", 0.5, 2.5)
+            Dim PoundEntity = MoveAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 3)
+            MoveAnimation.AnimationFade(PoundEntity, True, 1.0F, False, 0.0F, 3, 0)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
 

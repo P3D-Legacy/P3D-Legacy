@@ -96,7 +96,7 @@
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
             Dim maxAmount As Integer = 8
             Dim currentAmount As Integer = 0
-            MoveAnimation.PlaySound("Battle\Attacks\Grass\Absorb", 0, 0)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Grass\Absorb", 0, 0)
             While currentAmount <= maxAmount
                 Dim yPos As Single = CSng(Random.NextDouble() * 0.5)
                 Dim zPos As Single = CSng(Random.Next(-5, 5) * 0.15)

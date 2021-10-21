@@ -2706,12 +2706,12 @@
                                 ChangeCameraAngle(1, own, BattleScreen)
                                 'Burn animation
                                 Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
-                                BurnAnimation.PlaySound("Battle\Effects\Burned", 0, 0)
+                                BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
                                 Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(pNPC.Position.X - 0.25), CSng(pNPC.Position.Y - 0.25), CSng(pNPC.Position.Z - 0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
-                                BurnAnimation.ChangeEntityTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
-                                BurnAnimation.ChangeEntityTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
-                                BurnAnimation.ChangeEntityTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
-                                BurnAnimation.ChangeEntityTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 2)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 2)
                                 BattleScreen.BattleQuery.Add(BurnAnimation)
 
                                 Select Case message
@@ -3427,7 +3427,7 @@
                 Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F)
                 Dim startDelay As Double = 5.0 * Random.NextDouble()
 
-                StatAnimation.MoveEntity(Nothing, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                StatAnimation.AnimationMove(Nothing, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
                 Threading.Interlocked.Increment(currentAmount)
             End While
             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Stat_Raise", False))
@@ -3708,10 +3708,10 @@
                 Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F)
                 Dim startDelay As Double = 5.0 * Random.NextDouble()
 
-                StatAnimation.MoveEntity(Nothing, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                StatAnimation.AnimationMove(Nothing, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
                 Threading.Interlocked.Increment(currentAmount)
             End While
-            StatAnimation.PlaySound("Battle\Effects\Stat_Lower", 0.0F, 10.0F)
+            StatAnimation.AnimationPlaySound("Battle\Effects\Stat_Lower", 0.0F, 10.0F)
             BattleScreen.BattleQuery.Add(StatAnimation)
 
             Dim printMessage As String = p.GetDisplayName() & "'s " & statString
@@ -3998,10 +3998,10 @@
                 End If
 
                 Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
-                HitAnimation.FadeEntity(Nothing, False, 1, False, 0, 0, 0)
-                HitAnimation.FadeEntity(Nothing, False, 1, True, 1, 1, 0)
-                HitAnimation.FadeEntity(Nothing, False, 1, False, 0, 2, 0)
-                HitAnimation.FadeEntity(Nothing, False, 1, True, 1, 3, 0)
+                HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 0, 0)
+                HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 1, 0)
+                HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 2, 0)
+                HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
                 BattleScreen.BattleQuery.Add(HitAnimation)
 
                 If own = True Then
@@ -5357,20 +5357,22 @@
                             If .OwnPokemon.Status = Pokemon.StatusProblems.Poison Then 'Own Poison
                                 'Poison animation
                                 Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
-                                PoisonAnimation.PlaySound("Battle\Effects\Poisoned", 0, 0)
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 0, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
+                                PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 0, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 1, 1)
+                                Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 1, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 2, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 2, 1)
+                                Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 2, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 4, 2)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 3, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 3, 1)
+
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 4, 1)
+
                                 BattleScreen.BattleQuery.Add(PoisonAnimation)
                                 'Actual damage
                                 ReduceHP(CInt(.OwnPokemon.MaxHP / 8), True, True, BattleScreen, "The poison hurt " & .OwnPokemon.GetDisplayName() & ".", "poison")
@@ -5381,20 +5383,22 @@
                                 Dim multiplier As Double = (.FieldEffects.OwnPoisonCounter / 16)
                                 'Poison animation
                                 Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
-                                PoisonAnimation.PlaySound("Battle\Effects\Poisoned", 0, 0)
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 0, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
+                                PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 0, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 1, 1)
+                                Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 1, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 2, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 2, 1)
+                                Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 2, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 4, 2)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 3, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 3, 1)
+
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 4, 1)
+
                                 BattleScreen.BattleQuery.Add(PoisonAnimation)
                                 'Actual damage
                                 ReduceHP(CInt(.OwnPokemon.MaxHP * multiplier), True, True, BattleScreen, "The toxic hurt " & .OwnPokemon.GetDisplayName() & ".", "badpoison")
@@ -5413,13 +5417,13 @@
 
                             'Burn animation
                             Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False)
-                            BurnAnimation.PlaySound("Battle\Effects\Burned", 0, 0)
+                            BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
                             Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(BattleScreen.OwnPokemonNPC.Position.X + 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Y - 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Z + 0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
-                            BurnAnimation.ChangeEntityTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
-                            BurnAnimation.ChangeEntityTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
-                            BurnAnimation.ChangeEntityTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
-                            BurnAnimation.ChangeEntityTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 2)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 2)
                             BattleScreen.BattleQuery.Add(BurnAnimation)
 
                             'Actual damage
@@ -6151,21 +6155,24 @@
                             If .OppPokemon.Status = Pokemon.StatusProblems.Poison Then 'Opp Poison
                                 'Poison animation
                                 Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
-                                PoisonAnimation.PlaySound("Battle\Effects\Poisoned", 0, 0)
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 0, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
+                                PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 0, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 1, 1)
+                                Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 1, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 2, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 2, 1)
+                                Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 2, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 4, 2)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 3, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 3, 1)
+
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 4, 1)
+
                                 BattleScreen.BattleQuery.Add(PoisonAnimation)
+
                                 'Actual damage
                                 ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "The poison hurt " & .OppPokemon.GetDisplayName() & ".", "poison")
                             End If
@@ -6175,20 +6182,22 @@
                                 Dim multiplier As Double = (.FieldEffects.OppPoisonCounter / 16)
                                 'Poison animation
                                 Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
-                                PoisonAnimation.PlaySound("Battle\Effects\Poisoned", 0, 0)
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 0, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 1, 1)
+                                PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 0, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(-0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,0,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 2, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 1, 1)
+                                Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 1, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, 0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,32,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 3, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 2, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 2, 1)
+                                Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 2, 1)
 
-                                PoisonAnimation.AnimationSpawnFadingEntity(0.25, -0.25, -0.25, "Textures\Battle\Poison\Bubble,0,64,32,32", 0.5, 0.5, 0.5, 0.02, False, 1.0, 4, 2)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 3, 1)
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 3, 1)
+
+                                PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 4, 1)
+
                                 BattleScreen.BattleQuery.Add(PoisonAnimation)
                                 'Actual damage
                                 ReduceHP(CInt(.OppPokemon.MaxHP * multiplier), False, False, BattleScreen, "The toxic hurt " & .OppPokemon.GetDisplayName() & ".", "badpoison")
@@ -6206,13 +6215,13 @@
                             End If
                             'Burn animation
                             Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
-                            BurnAnimation.PlaySound("Battle\Effects\Burned", 0, 0)
+                            BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
                             Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(BattleScreen.OppPokemonNPC.Position.X - 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Y - 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Z - 0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
-                            BurnAnimation.ChangeEntityTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
-                            BurnAnimation.ChangeEntityTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
-                            BurnAnimation.ChangeEntityTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
-                            BurnAnimation.ChangeEntityTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 2)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
+                            BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 2)
                             BattleScreen.BattleQuery.Add(BurnAnimation)
 
                             'Actual damage
@@ -6783,7 +6792,7 @@
                 Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False, BattleScreen.OwnPokemonModel)
 
                 ' Ball Closes
-                BallReturn.PlaySound("Battle\Pokeball\Open", 0, 0)
+                BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
                 Dim SmokeReturned As Integer = 0
                 Do
                     Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
@@ -6796,19 +6805,19 @@
 
                     Dim SmokeEntity As Entity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1.0F)
 
-                    BallReturn.MoveEntity(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
+                    BallReturn.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
 
                     Threading.Interlocked.Increment(SmokeReturned)
                 Loop While SmokeReturned <= 38
 
                 ' Pokemon disappears
-                BallReturn.FadeEntity(Nothing, False, 1, False, 0, 1, 0)
-                BallReturn.MoveEntity(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
+                BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
+                BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
 
                 ' Ball returns
-                BallReturn.PlaySound("Battle\Pokeball\Throw", 1, 0)
+                BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
                 Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(BattleScreen.OwnPokemonNPC.Position, TextureManager.GetTexture(BattleScreen.OwnPokemon.CatchBall.TextureSource), New Vector3(0.3F), 1.0F)
-                BallReturn.MoveEntity(BallReturnEntity, True, BattleScreen.OwnPokemonNPC.Position.X - 2, BattleScreen.OwnPokemonNPC.Position.Y, BattleScreen.OwnPokemonNPC.Position.Z, 0.1, False, True, 1, 0,, 0.3)
+                BallReturn.AnimationMove(BallReturnEntity, True, BattleScreen.OwnPokemonNPC.Position.X - 2, BattleScreen.OwnPokemonNPC.Position.Y, BattleScreen.OwnPokemonNPC.Position.Z, 0.1, False, True, 1, 0,, 0.3)
 
                 BattleScreen.AddToQuery(InsertIndex, BallReturn)
 
@@ -6847,13 +6856,13 @@
                 ' Ball is thrown
                 Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False, BattleScreen.OwnPokemonModel)
 
-                BallThrow.PlaySound("Battle\Pokeball\Throw", 0, 0)
+                BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
 
                 Dim BallThrowEntity As Entity = BallReturn.SpawnEntity(BattleScreen.OwnPokemonNPC.Position + New Vector3(-2, -0.15, 0), TextureManager.GetTexture(BattleScreen.OwnPokemon.CatchBall.TextureSource), New Vector3(0.3F), 1.0F)
-                BallThrow.MoveEntity(BallThrowEntity, True, BattleScreen.OwnPokemonNPC.Position.X, CSng(BattleScreen.OwnPokemonNPC.Position.Y + 0.35), BattleScreen.OwnPokemonNPC.Position.Z, 0.1, False, True, 0F, 0F,, 0.3)
+                BallThrow.AnimationMove(BallThrowEntity, True, BattleScreen.OwnPokemonNPC.Position.X, CSng(BattleScreen.OwnPokemonNPC.Position.Y + 0.35), BattleScreen.OwnPokemonNPC.Position.Z, 0.1, False, True, 0F, 0F,, 0.3)
 
                 ' Ball Opens
-                BallThrow.PlaySound("Battle\Pokeball\Open", 3, 0)
+                BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
 
                 Dim SmokeSpawned As Integer = 0
                 Do
@@ -6867,17 +6876,17 @@
 
                     Dim SmokeEntity As Entity = BallThrow.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1.0F)
 
-                    BallThrow.MoveEntity(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
+                    BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
 
                     Threading.Interlocked.Increment(SmokeSpawned)
                 Loop While SmokeSpawned <= 38
 
                 ' Pokemon appears
-                BallThrow.FadeEntity(Nothing, False, 1, True, 1, 4, 0)
-                BallThrow.PlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True)
+                BallThrow.AnimationFade(Nothing, False, 1, True, 1, 4, 0)
+                BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True)
 
                 '  Pokémon falls down
-                BallThrow.MoveEntity(Nothing, False, 0, 0, 0, 0.05F, False, False, 4, 0,,, 3)
+                BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 4, 0,,, 3)
 
                 BattleScreen.AddToQuery(InsertIndex, BallThrow)
             End If
@@ -7125,8 +7134,8 @@
             If BattleScreen.IsTrainerBattle = False Then
                 ChangeCameraAngle(1, False, BattleScreen)
                 Dim Faint As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
-                Faint.PlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
-                Faint.MoveEntity(Nothing, False, 0, -1, 0, 0.1, False, False, 2, 0,,, 3)
+                Faint.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
+                Faint.AnimationMove(Nothing, False, 0, -1, 0, 0.1, False, False, 2, 0,,, 3)
                 BattleScreen.BattleQuery.Add(Faint)
 
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 2, -1, -1, -1, -1))
@@ -7155,28 +7164,29 @@
                     Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
 
                     ' Ball Closes
-                    BallReturn.PlaySound("Battle\Pokeball\Open", 0, 0)
+                    BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
                     Dim SmokeReturned As Integer = 0
                     Do
                         Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
                         Dim SmokeDestination = New Vector3(0, 0, 0)
 
-                        Dim SmokeTexture As String = "Textures\Battle\Smoke"
+                        Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
                         Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
                         Dim SmokeSpeed = CSng(Random.Next(1, 3) / 10.0F)
-
-                        BallReturn.AnimationSpawnMovingEntity(SmokePosition.X, SmokePosition.Y, SmokePosition.Z, SmokeTexture, SmokeScale.X, SmokeScale.Y, SmokeScale.Z, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
+                        Dim SmokeEntity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1)
+                        BallReturn.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
                         Threading.Interlocked.Increment(SmokeReturned)
                     Loop While SmokeReturned <= 38
 
                     ' Pokemon disappears
-                    BallReturn.AnimationFadeEntity(Nothing, 1, False, 0, 1, 0)
-                    BallReturn.MoveEntity(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
+                    BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
+                    BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
 
                     ' Ball returns
-                    BallReturn.PlaySound("Battle\Pokeball\Throw", 1, 0)
-                    BallReturn.AnimationSpawnMovingEntity(0, 0, 0, BattleScreen.OppPokemon.CatchBall.TextureSource, 0.3F, 0.3F, 0.3F, -2, 0, 0, 0.1, False, True, 1, 0,, 0.3)
+                    BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
+                    Dim BallReturnEntity = BallReturn.SpawnEntity(New Vector3(0, 0, 0), TextureManager.GetTexture(BattleScreen.OppPokemon.CatchBall.TextureSource), New Vector3(0.3F), 1.0F)
+                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 0F, 0F,, 0.3)
 
                     BattleScreen.BattleQuery.Add(BallReturn)
 
@@ -7216,28 +7226,29 @@
                 Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
 
                 ' Ball Closes
-                BallReturn.PlaySound("Battle\Pokeball\Open", 0, 0)
+                BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
                 Dim SmokeReturned As Integer = 0
                 Do
                     Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
                     Dim SmokeDestination = New Vector3(0, 0, 0)
 
-                    Dim SmokeTexture As String = "Textures\Battle\Smoke"
+                    Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
                     Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
                     Dim SmokeSpeed = CSng(Random.Next(1, 3) / 10.0F)
-
-                    BallReturn.AnimationSpawnMovingEntity(SmokePosition.X, SmokePosition.Y, SmokePosition.Z, SmokeTexture, SmokeScale.X, SmokeScale.Y, SmokeScale.Z, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
+                    Dim SmokeEntity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1)
+                    BallReturn.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
                     Threading.Interlocked.Increment(SmokeReturned)
                 Loop While SmokeReturned <= 38
 
                 ' Pokemon disappears
-                BallReturn.AnimationFadeEntity(Nothing, 1, False, 0, 1, 0)
-                BallReturn.MoveEntity(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
+                BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
+                BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
 
                 ' Ball returns
-                BallReturn.PlaySound("Battle\Pokeball\Throw", 1, 0)
-                BallReturn.AnimationSpawnMovingEntity(0, 0, 0, BattleScreen.OppPokemon.CatchBall.TextureSource, 0.3F, 0.3F, 0.3F, -2, 0, 0, 0.1, False, True, 1, 0,, 0.3)
+                BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
+                Dim BallReturnEntity = BallReturn.SpawnEntity(New Vector3(0, 0, 0), TextureManager.GetTexture(BattleScreen.OppPokemon.CatchBall.TextureSource), New Vector3(0.3F), 1.0F)
+                BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 0F, 0F,, 0.3)
 
                 BattleScreen.BattleQuery.Add(BallReturn)
 
@@ -7267,31 +7278,33 @@
                 ' Ball is thrown
                 Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
 
-                BallThrow.PlaySound("Battle\Pokeball\Throw", 0, 0)
-                BallThrow.AnimationSpawnMovingEntity(-2, -0.15, 0, BattleScreen.OwnPokemon.CatchBall.TextureSource, 0.3F, 0.3F, 0.3F, 0, 0.35, 0, 0.1, False, True, 0F, 0F,, 0.3)
+                BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
+                Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(-2, -0.15, 0), TextureManager.GetTexture(BattleScreen.OwnPokemon.CatchBall.TextureSource), New Vector3(0.3F), 1.0F)
+                BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0F,, 0.3)
 
-                ' Ball Opens
-                BallThrow.PlaySound("Battle\Pokeball\Open", 3, 0)
+                ' Ball opens
+                BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
                 Dim SmokeSpawned As Integer = 0
                 Do
                     Dim SmokePosition = New Vector3(0, 0.35, 0)
                     Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
 
-                    Dim SmokeTexture As String = "Textures\Battle\Smoke"
+                    Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
                     Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
                     Dim SmokeSpeed = CSng(Random.Next(1, 3) / 10.0F)
+                    Dim SmokeEntity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1)
 
-                    BallThrow.AnimationSpawnMovingEntity(SmokePosition.X, SmokePosition.Y, SmokePosition.Z, SmokeTexture, SmokeScale.X, SmokeScale.Y, SmokeScale.Z, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
+                    BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
                     Threading.Interlocked.Increment(SmokeSpawned)
                 Loop While SmokeSpawned <= 38
 
                 ' Pokemon appears
-                BallThrow.AnimationFadeEntity(Nothing, 1, True, 1, 4, 0)
-                BallThrow.PlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
+                BallThrow.AnimationFade(Nothing, False, 1, True, 1, 4, 0)
+                BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
 
                 '  Pokémon falls down
-                BallThrow.MoveEntity(Nothing, False, 0, 0, 0, 0.05F, False, False, 4, 0,,, 4)
+                BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 4, 0,,, 4)
 
                 BattleScreen.BattleQuery.Add(BallThrow)
             End If
