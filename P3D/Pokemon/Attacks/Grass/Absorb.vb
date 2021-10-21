@@ -96,11 +96,13 @@
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
             Dim maxAmount As Integer = 8
             Dim currentAmount As Integer = 0
-            MoveAnimation.PlaySound("Battle\Attacks\Grass\Absorb", 0, 0)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Grass\Absorb", 0, 0)
             While currentAmount <= maxAmount
                 Dim yPos As Single = CSng(Random.NextDouble() * 0.5)
                 Dim zPos As Single = CSng(Random.Next(-5, 5) * 0.15)
-                MoveAnimation.AnimationSpawnMovingEntity(0.0, 0, 0.0, "Textures\Battle\Grass\Absorb", 0.35, 0.35, 0.35, 1.5, yPos, zPos, 0.03, False, True, CSng(currentAmount), 0.0, 0.1, 0.5)
+                Dim AbsorbEntity = MoveAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Grass\Absorb"), New Vector3(0.35F), 1)
+                MoveAnimation.AnimationMove(AbsorbEntity, True, 1.5, yPos, zPos, 0.03, False, True, CSng(currentAmount), 0.0, 0.1, 0.5)
+
                 Threading.Interlocked.Increment(currentAmount)
             End While
 

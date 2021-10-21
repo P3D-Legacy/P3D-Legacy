@@ -27551,7 +27551,7 @@
     <Compile Include="Battle\BattleAnimations\BAEntityOpacity.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntityTextureChange.vb" />
     <Compile Include="Battle\BattleAnimations\BAEntityScale.vb" />
-    <Compile Include="Battle\BattleAnimations\BASound.vb" />
+    <Compile Include="Battle\BattleAnimations\BAPlaySound.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\AnimationQueryObject.vb" />
     <Compile Include="Dialogues\ImageView.vb" />
     <Compile Include="Overworld\NotificationPopup.vb" />
@@ -29229,9 +29229,6 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Battle\BattleAnimations\BAMove.vb" />
-    <Compile Include="Battle\BattleAnimations\BAOpacity.vb" />
-    <Compile Include="Battle\BattleAnimations\BARotation.vb" />
     <Compile Include="Battle\BattleAnimations\BattleAnimation3D.vb" />
     <Compile Include="Battle\BattleStats.vb" />
     <Compile Include="Battle\BattleSystemV2\Battle.vb" />

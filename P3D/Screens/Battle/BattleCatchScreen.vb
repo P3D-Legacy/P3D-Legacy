@@ -258,7 +258,7 @@
         Select Case Me.AnimationIndex
             Case 0
                 PokemonScale = BattleScreen.OppPokemonNPC.Scale
-                Animations.MoveEntity(BallEntity, False, BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z, 0.1, False, True, 0F, 0F,, 0.3)
+                Animations.AnimationMove(BallEntity, False, BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z, 0.1, False, True, 0F, 0F,, 0.3)
             Case 1
                 Dim SmokeParticles As Integer = 0
                 Do
@@ -272,31 +272,31 @@
 
                     Dim SmokeEntity As Entity = Animations.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1.0F)
 
-                    Animations.MoveEntity(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
+                    Animations.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
 
                     Threading.Interlocked.Increment(SmokeParticles)
                 Loop While SmokeParticles <= 38
 
-                Animations.MoveEntity(BallEntity, False, BattleScreen.OppPokemonNPC.Position.X, BattleScreen.OwnPokemonNPC.Position.Y, BattleScreen.OppPokemonNPC.Position.Z, 0.01F, False, False, 0.0F, 6.0F,,, 3)
+                Animations.AnimationMove(BallEntity, False, BattleScreen.OppPokemonNPC.Position.X, BattleScreen.OwnPokemonNPC.Position.Y, BattleScreen.OppPokemonNPC.Position.Z, 0.01F, False, False, 0.0F, 6.0F,,, 3)
 
-                Animations.ScaleEntity(Nothing, False, False, 0.05F, 0.05F, 0.05F, 0.02F, 0.0F, 0.0F, "1")
-                Animations.FadeEntity(Nothing, False, 1, False, 0.0F, 0.0F, 0.0F)
+                Animations.AnimationScale(Nothing, False, False, 0.05F, 0.05F, 0.05F, 0.02F, 0.0F, 0.0F, "1")
+                Animations.AnimationFade(Nothing, False, 1, False, 0.0F, 0.0F, 0.0F)
             Case 2
-                Animations.MoveEntity(BallEntity, False, BattleScreen.OppPokemonNPC.Position.X, BattleScreen.OwnPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z, 0.02F, False, False, 0.0F, 6.0F,,, 3)
+                Animations.AnimationMove(BallEntity, False, BattleScreen.OppPokemonNPC.Position.X, BattleScreen.OwnPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z, 0.02F, False, False, 0.0F, 6.0F,,, 3)
             Case 3, 5
-                Animations.RotateEntity(BallEntity, False, 0, 0, 0.05F, 0, 0, 1.0F, 0.0F, 4.0F, False, False, True, True)
+                Animations.AnimationRotate(BallEntity, False, 0, 0, 0.05F, 0, 0, 1.0F, 0.0F, 4.0F, False, False, True, True)
             Case 4, 6
-                Animations.RotateEntity(BallEntity, False, 0, 0, -0.05F, 0, 0, -1.0F, 0.0F, 4.0F, False, False, True, True)
+                Animations.AnimationRotate(BallEntity, False, 0, 0, -0.05F, 0, 0, -1.0F, 0.0F, 4.0F, False, False, True, True)
             Case 7 ' Catch Animation
                 For i = 0 To 2
                     Dim StarPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z)
                     Dim StarDestination As Vector3 = New Vector3(StarPosition.X, StarPosition.Y + 0.4F, StarPosition.Z - ((1 - i) * 0.4F))
                     Dim StarEntity As Entity = Animations.SpawnEntity(StarPosition, TextureManager.GetTexture("Textures\Battle\BallCatchStar"), New Vector3(0.1F), 1.0F)
-                    Animations.MoveEntity(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 0.0F, 0.0F,,, 3)
+                    Animations.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 0.0F, 0.0F,,, 3)
                 Next
-                Animations.MoveEntity(BallEntity, False, BattleScreen.OppPokemonNPC.Position.X, BattleScreen.OwnPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z, 0.02F, False, False, 0.0F, 6.0F,,, 3)
+                Animations.AnimationMove(BallEntity, False, BattleScreen.OppPokemonNPC.Position.X, BattleScreen.OwnPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z, 0.02F, False, False, 0.0F, 6.0F,,, 3)
             Case 8
-                Animations.FadeEntity(BallEntity, True, 0.01F, False, 0.0F, 0.0F, 0.0F)
+                Animations.AnimationFade(BallEntity, True, 0.01F, False, 0.0F, 0.0F, 0.0F)
             Case 21 ' Break Animation
                 ' Ball Opens
                 Dim SmokeParticles As Integer = 0
@@ -311,14 +311,14 @@
 
                     Dim SmokeEntity As Entity = Animations.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1.0F)
 
-                    Animations.MoveEntity(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
+                    Animations.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
 
                     Threading.Interlocked.Increment(SmokeParticles)
                 Loop While SmokeParticles <= 38
 
                 ' Pokemon appears
-                Animations.FadeEntity(Nothing, False, 1, False, 1, 0.0F, 0.0F)
-                Animations.ScaleEntity(Nothing, False, True, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.02F, 0.0F, 0.0F, "1")
+                Animations.AnimationFade(Nothing, False, 1, False, 1, 0.0F, 0.0F)
+                Animations.AnimationScale(Nothing, False, True, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.02F, 0.0F, 0.0F, "1")
 
         End Select
     End Sub
