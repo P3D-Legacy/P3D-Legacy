@@ -1,7 +1,5 @@
 language_name,English
----
----
----
+=====
 Global:
 global_join,Join
 global_play,Play
@@ -16,6 +14,7 @@ global_game,Game
 global_login,Log in
 global_male,Male
 global_female,Female
+global_genderless,Genderless
 global_yes,Yes
 global_no,No
 global_accept,Accept
@@ -101,26 +100,40 @@ game_interaction_notification,Notification
 game_notification_accept,Press <system.button(special)> to accept.
 game_notification_dismiss,Press <system.button(special)> to dismiss.
 ---
-MainMenuScreen:
-main_menu_continue,Continue
-main_menu_load_game,Load Game
-main_menu_new_game,New Game
-main_menu_quit_game,Quit Game
-LoadScreen:
-load_menu_name,Name
-load_menu_badges,Badges
-load_menu_location,Location
-load_menu_time,Time
-load_menu_back,Back
-load_menu_load,Load
-load_menu_delete,Delete
-load_menu_gamemode,GameMode
+PressStartScreen:
+start_screen_press,Press
+start_screen_tostart,to start.
+---
+Main Menu:
+main_menu_newgame_line1,New
+main_menu_newgame_line2,Game
+main_menu_options,Options
+main_menu_savefile_name,Player Name
+main_menu_savefile_gamemode,GameMode
+main_menu_savefile_badges,Badges
+main_menu_savefile_playtime,Play time
+main_menu_savefile_location,Location
+main_menu_error_gamemode_profile,The required GameMode does not exist!
+main_menu_error_gamemode_message,The required GameMode does not exist.~Reaquire the GameMode to play on this profile.
+main_menu_error_gamejolt_1,Download failed. Press Accept to try again.
+main_menu_error_gamejolt_2,If the problem persists, please try again later
+main_menu_error_gamejolt_3,or contact us in our Discord server:
+main_menu_error_gamejolt_4,http://www.discord.me/p3d
+main_menu_error_filevalidation,File validation failed!~Redownload the game's files to solve this problem.
+main_menu_options_language,Language
+main_menu_options_audio,Audio
+main_menu_options_controls,Controls
+main_menu_options_contentpacks_line1,Content
+main_menu_options_contentpacks_line2,Packs
+
 DeleteScreen:
 delete_menu_delete_confirm,Do you really want to delete the save
 delete_menu_delete,Delete
 delete_menu_cancel,Cancel
 
 GameModeMenu:
+gamemode_menu_select1,Select a GameMode
+gamemode_menu_select2,to start the new game with.
 gamemode_menu_name,Name
 gamemode_menu_description,Description
 gamemode_menu_version,Version
@@ -128,6 +141,88 @@ gamemode_menu_author,Author
 gamemode_menu_contentpath,ContentPath
 gamemode_menu_create,Create
 gamemode_menu_back,Back
+---
+
+Options Screen:
+option_screen_title,Options
+option_screen_warning,Options aren't saved yet, scroll down and choose "Save options."
+option_screen_backadvice,PRESS E TO GO BACK
+option_screen_description,Description
+
+option_screen_game,Game
+option_screen_game_textspeed,Text Speed
+option_screen_game_textspeed_description,The speed the textbox shows up and~displays the text
+option_screen_game_difficulty,Difficulty
+option_screen_game_difficulty_description,Difficulty mode~Sets the level of difficulty.
+option_screen_game_difficulty_easy,Easy
+option_screen_game_difficulty_hard,Hard
+option_screen_game_difficulty_superhard,Super Hard
+option_screen_game_viewbobbing,View Bobbing
+option_screen_game_viewbobbing_description,Turns camera shaking on or off.
+
+option_screen_graphics,Graphics
+option_screen_graphics_fov,Field of View
+option_screen_graphics_fov_description,The field of view. The higher the value is,~the more you can see.~Warning: Too large value can cause lags in larger maps.
+option_screen_graphics_renderdistance,Render Distance
+option_screen_graphics_renderdistance_description,The render distance determines,~how far you can see.~By turning this down, you can improve your FPS.
+option_screen_graphics_renderdistance_tiny,Tiny
+option_screen_graphics_renderdistance_short,Short
+option_screen_graphics_renderdistance_normal,Normal
+option_screen_graphics_renderdistance_far,Far
+option_screen_graphics_renderdistance_extreme,Extreme
+option_screen_graphics_offset_mapquality,Offset Map Quality
+option_screen_graphics_offset_mapquality_description,Sets the quality of the offset maps.~The details and update frequency of offset maps increase with this value.~Set this value to 0 to prevent the game from loading offset maps.
+option_screen_graphics_offset_mapquality_off,Off
+option_screen_graphics_graphics,Graphics
+option_screen_graphics_graphics_description,Affects if some objects are rendered~or not. By turning this down, you can improve your FPS.~This settings is for all save states.
+option_screen_graphics_graphics_fancy,Fancy
+option_screen_graphics_graphics_fast,Fast
+option_screen_graphics_multisampling,Multi Sampling
+
+option_screen_battle,Battle
+option_screen_battle_3dmodels,3D Models
+option_screen_battle_animations,Animations
+option_screen_battle_animations_description,Determines if the game shows battle animations.
+option_screen_battle_battlestyle,Battle Style
+option_screen_battle_battlestyle_shift,Shift
+option_screen_battle_battlestyle_set,Set
+option_screen_battle_style_description,Battle Style~Set: You are not asked to switch out your Pokémon~Shift: You can switch out your Pokémon after defeating an opponent.
+
+option_screen_controls,Controls
+option_screen_controls_xboxgamepad,Xbox Gamepad
+option_screen_controls_resetkeybindings,Reset Key Bindings
+option_screen_controls_cameraspeed,Camera Speed
+option_screen_controls_cameraspeed_description,The camera speed sets the speed on which the~mouse can rotate the view.
+option_screen_controls_cameraspeed_slow,...Slow...
+option_screen_controls_cameraspeed_medium,Standard
+option_screen_controls_cameraspeed_fast,Super fast!
+option_screen_controls_cameraspeed_fastest,SPEED OF LIGHT!
+
+option_screen_audio,Audio
+option_screen_audio_volume_music,Music Volume
+option_screen_audio_volume_music_description,The volume of the background music.
+option_screen_audio_volume_sfx,SoundFX Volume
+option_screen_audio_volume_music_description,The volume of the sound effects and jingles.
+option_screen_audio_muted,Muted
+
+option_screen_contentpacks_up,Move Up
+option_screen_contentpacks_down,Move Down
+option_screen_contentpacks_information,Information
+option_screen_contentpacks_songs,Songs
+option_screen_contentpacks_sounds,Sounds
+option_screen_contentpacks_textures,Textures
+option_screen_contentpacks_name,Name
+option_screen_contentpacks_version,Version
+option_screen_contentpacks_by,By
+option_screen_contentpacks_content,Content
+option_screen_contentpacks_description,Description
+
+option_screen_resetoptions,Reset options.
+option_screen_resetoptions_description,Resets all options.
+option_screen_save_options,Save options.
+option_screen_save_options_description,Save the options and close the menu.
+option_screen_close,Close.
+option_screen_close_menu_description,Close the menu and do not save~the changes.
 ---
 Pausescreen:
 pause_menu_title,Game menu
@@ -246,87 +341,6 @@ save_screen_time,Time
 save_screen_yes,Yes
 save_screen_no,No
 save_screen_success,Saved the game.
----
-Options Screen:
-option_screen_title,Options
-option_screen_warning,Options aren't saved yet, scroll down and choose "Save options."
-option_screen_backadvice,PRESS E TO GO BACK
-option_screen_description,Description
-
-option_screen_game,Game
-option_screen_game_textspeed,Text Speed
-option_screen_game_textspeed_description,The speed the textbox shows up and~displays the text
-option_screen_game_difficulty,Difficulty
-option_screen_game_difficulty_description,Difficulty mode~Sets the level of difficulty.
-option_screen_game_difficulty_easy,Easy
-option_screen_game_difficulty_hard,Hard
-option_screen_game_difficulty_superhard,Super Hard
-option_screen_game_viewbobbing,View Bobbing
-option_screen_game_viewbobbing_description,Turns camera shaking on or off.
-
-option_screen_graphics,Graphics
-option_screen_graphics_fov,Field of View
-option_screen_graphics_fov_description,The field of view. The higher the value is,~the more you can see.~Warning: Too large value can cause lags in larger maps.
-option_screen_graphics_renderdistance,Render Distance
-option_screen_graphics_renderdistance_description,The render distance determines,~how far you can see.~By turning this down, you can improve your FPS.
-option_screen_graphics_renderdistance_tiny,Tiny
-option_screen_graphics_renderdistance_short,Short
-option_screen_graphics_renderdistance_normal,Normal
-option_screen_graphics_renderdistance_far,Far
-option_screen_graphics_renderdistance_extreme,Extreme
-option_screen_graphics_offset_mapquality,Offset Map Quality
-option_screen_graphics_offset_mapquality_description,Sets the quality of the offset maps.~The details and update frequency of offset maps increase with this value.~Set this value to 0 to prevent the game from loading offset maps.
-option_screen_graphics_offset_mapquality_off,Off
-option_screen_graphics_graphics,Graphics
-option_screen_graphics_graphics_description,Affects if some objects are rendered~or not. By turning this down, you can improve your FPS.~This settings is for all save states.
-option_screen_graphics_graphics_fancy,Fancy
-option_screen_graphics_graphics_fast,Fast
-option_screen_graphics_multisampling,Multi Sampling
-
-option_screen_battle,Battle
-option_screen_battle_3dmodels,3D Models
-option_screen_battle_animations,Animations
-option_screen_battle_animations_description,Determines if the game shows battle animations.
-option_screen_battle_battlestyle,Battle Style
-option_screen_battle_battlestyle_shift,Shift
-option_screen_battle_battlestyle_set,Set
-option_screen_battle_style_description,Battle Style~Set: You are not asked to switch out your Pokémon~Shift: You can switch out your Pokémon after defeating an opponent.
-
-option_screen_controls,Controls
-option_screen_controls_xboxgamepad,Xbox Gamepad
-option_screen_controls_resetkeybindings,Reset Key Bindings
-option_screen_controls_cameraspeed,Camera Speed
-option_screen_controls_cameraspeed_description,The camera speed sets the speed on which the~mouse can rotate the view.
-option_screen_controls_cameraspeed_slow,...Slow...
-option_screen_controls_cameraspeed_medium,Standard
-option_screen_controls_cameraspeed_fast,Super fast!
-option_screen_controls_cameraspeed_fastest,SPEED OF LIGHT!
-
-option_screen_audio,Audio
-option_screen_audio_volume_music,Music Volume
-option_screen_audio_volume_music_description,The volume of the background music.
-option_screen_audio_volume_sfx,SoundFX Volume
-option_screen_audio_volume_music_description,The volume of the sound effects and jingles.
-option_screen_audio_muted,Muted
-
-option_screen_contentpacks_up,Move Up
-option_screen_contentpacks_down,Move Down
-option_screen_contentpacks_information,Information
-option_screen_contentpacks_songs,Songs
-option_screen_contentpacks_sounds,Sounds
-option_screen_contentpacks_textures,Textures
-option_screen_contentpacks_name,Name
-option_screen_contentpacks_version,Version
-option_screen_contentpacks_by,By
-option_screen_contentpacks_content,Content
-option_screen_contentpacks_description,Description
-
-option_screen_resetoptions,Reset options.
-option_screen_resetoptions_description,Resets all options.
-option_screen_save_options,Save options.
-option_screen_save_options_description,Save the options and close the menu.
-option_screen_close,Close.
-option_screen_close_menu_description,Close the menu and do not save~the changes.
 ---
 Item Detail Screen:
 item_detail_screen_use,Use

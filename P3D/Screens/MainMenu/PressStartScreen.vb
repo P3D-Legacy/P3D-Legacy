@@ -212,9 +212,9 @@ Public Class PressStartScreen
             If IsCurrentScreen() And Core.GameOptions.ShowGUI Then  ' Want to implement fading of text, but core doesn't seem to support this.
                 Dim text As String = String.Empty
                 If ControllerHandler.IsConnected() Then
-                    text = "Press" & "           " & "to start."
+                    text = Localization.GetString("start_screen_press", "Press") & "           " & Localization.GetString("start_screen_tostart", "to start.")
                 Else
-                    text = "Press" & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & "to start."
+                    text = Localization.GetString("start_screen_press", "Press") & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.GetString("start_screen_tostart", "to start.")
                     'text = "Press " & KeyBindings.EnterKey1.ToString() & ", " & KeyBindings.EnterKey2.ToString() & ", or primary mouse button to start."
                 End If
 
@@ -397,6 +397,8 @@ Public Class NewMainMenuScreen
                                     ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
                                         ButtonChangeFemale()
                                     ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                                        ButtonChangeGenderless()
+                                    ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
                                         ButtonResetSave()
                                     End If
                                 End If
@@ -549,6 +551,9 @@ Public Class NewMainMenuScreen
                                     ButtonChangeFemale()
                                 Case 3
                                     SoundManager.PlaySound("select")
+                                    ButtonChangeGenderless()
+                                Case 4
+                                    SoundManager.PlaySound("select")
                                     ButtonResetSave()
                             End Select
                         End If
@@ -651,6 +656,15 @@ Public Class NewMainMenuScreen
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
         _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
     End Sub
+    Private Sub ButtonChangeGenderless()
+        If GameJoltSave.Gender = "2" Then
+            Exit Sub
+        End If
+        GameJoltSave.Gender = "2"
+
+        Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
+        _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
+    End Sub
 
     Private Sub ButtonResetSave()
         GameJoltSave.ResetSave()
@@ -662,7 +676,7 @@ Public Class NewMainMenuScreen
         Select Case _menuIndex
             Case 0
                 If _selectedProfile = 1 And Security.FileValidation.IsValid(False) = False Then
-                    _messageBox.Show("File validation failed!~Redownload the game's files to solve this problem.")
+                    _messageBox.Show(Localization.GetString("main_menu_error_filevalidation", "File validation failed!~Redownload the game's files to solve this problem."))
                 Else
                     _MainProfiles(_selectedProfile).SelectProfile()
                 End If
@@ -796,9 +810,15 @@ Public Class NewMainMenuScreen
         If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _GameJoltButtonIndex = 3 Then
             y = 16
 
-            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Reset save", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
+            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Change to genderless", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
         End If
-        SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48, 32, 32), New Rectangle(176, 32 + y, 16, 16), Color.White)
+        SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48, 32, 32), New Rectangle(208, 32 + y, 16, 16), Color.White)
+        If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _GameJoltButtonIndex = 3 Then
+            y = 16
+
+            SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Reset save", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48 + 48), fontColor)
+        End If
+        SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48 + 48, 32, 32), New Rectangle(176, 32 + y, 16, 16), Color.White)
 
     End Sub
     Private Sub DrawMainProfiles()
@@ -847,25 +867,25 @@ Public Class NewMainMenuScreen
                     For i = 0 To tmpProfile.PokemonTextures.Count - 1
                         SpriteBatch.Draw(tmpProfile.PokemonTextures(i), New Rectangle(displayRect.X + 30 + i * 70, displayRect.Y + 70, 64, 64), Color.White)
                     Next
-                    GetFontRenderer().DrawString(FontManager.InGameFont, "Player Name: " & tmpProfile.Name & Environment.NewLine &
-                                                                            "GameMode: " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-                    GetFontRenderer().DrawString(FontManager.InGameFont, "Badges: " & tmpProfile.Badges.ToString() & Environment.NewLine &
-                                                                            "Play time: " & tmpProfile.TimePlayed & Environment.NewLine &
-                                                                            "Location: " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
+                                                                            Localization.GetString("main_menu_savefile_gamemode", "GameMode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_badges", "Badges") & ": " & tmpProfile.Badges.ToString() & Environment.NewLine &
+                                                                            Localization.GetString("main_menu_savefile_playtime", "Play time") & ": " & tmpProfile.TimePlayed & Environment.NewLine &
+                                                                            Localization.GetString("main_menu_savefile_location", "Location") & ": " & tmpProfile.Location, New Vector2(displayRect.X + 30, displayRect.Y + 150), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
                 Else
-                    GetFontRenderer().DrawString(FontManager.InGameFont, "Player Name: " & tmpProfile.Name & Environment.NewLine &
-                                                                            "GameMode: " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                    GetFontRenderer().DrawString(FontManager.InGameFont, Localization.GetString("main_menu_savefile_name", "Player Name") & ": " & tmpProfile.Name & Environment.NewLine &
+                                                                            Localization.GetString("main_menu_savefile_gamemode", "GameMode") & ": " & tmpProfile.GameMode, New Vector2(displayRect.X + 30, displayRect.Y + 20), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
                     SpriteBatch.Draw(_menuTexture, New Rectangle(displayRect.X + 30, displayRect.Y + 70, 32, 32), New Rectangle(0, 32, 32, 32), Color.White)
-                    Dim errorText As String = ""
+                    Dim errorText As String
 
                     If tmpProfile.IsGameJolt() Then
-                        errorText = "Download failed. Press Accept to try again." & Environment.NewLine & Environment.NewLine &
-                                        "If the problem persists, please try again later" & Environment.NewLine &
-                                        "or contact us in our Discord server:" & Environment.NewLine & Environment.NewLine &
-                                        "http://www.discord.me/p3d"
+                        errorText = Localization.GetString("main_menu_error_gamejolt_1", "Download failed. Press Accept to try again.") & Environment.NewLine & Environment.NewLine &
+                                       Localization.GetString("main_menu_error_gamejolt_2", "If the problem persists, please try again later") & Environment.NewLine &
+                                        Localization.GetString("main_menu_error_gamejolt_3", "or contact us in our Discord server:") & Environment.NewLine & Environment.NewLine &
+                                        Localization.GetString("main_menu_error_gamejolt_4", "http://www.discord.me/p3d")
                     Else
-                        errorText = "The required GameMode does not exist!"
+                        errorText = Localization.GetString("main_menu_error_gamemode_profile", "The required GameMode does not exist!")
                     End If
                     GetFontRenderer().DrawString(FontManager.InGameFont, errorText, New Vector2(displayRect.X + 70, displayRect.Y + 78), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
@@ -883,9 +903,12 @@ Public Class NewMainMenuScreen
         Next
 
         ' Draw arrow.
-        If _menuIndex <> 0 Then
-            SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(0, 16, 32, 16), Color.White)
-        End If
+        Select Case _menuIndex
+            Case 2
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(0, 16, 32, 16), Color.White)
+            Case 3
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(_screenOrigin.X + _sliderPosition - 16), CInt(_screenOrigin.Y + 170), 32, 16), New Rectangle(32, 16, 32, 16), Color.White)
+        End Select
 
     End Sub
 
@@ -1206,6 +1229,13 @@ Public Class NewMainMenuScreen
                     Dim width As Integer = CInt((GameJoltSave.DownloadProgress / (GameJolt.GamejoltSave.SAVEFILECOUNT + GameJolt.GamejoltSave.EXTRADATADOWNLOADCOUNT)) * 160)
                     Canvas.DrawRectangle(New Rectangle(CInt(offset.X), CInt(offset.Y + 3), width, 157), New Color(100, 100, 100, 128))
                 End If
+            ElseIf _menuIndex = 3 Then
+                For x = 0 To 9
+                    For y = 0 To 9
+                        SpriteBatch.Draw(t, New Rectangle(CInt(x * 16 + offset.X), CInt(y * 16 + offset.Y), 16, 16), New Rectangle(32, 0, 16, 16), New Color(255, 255, 255, alpha))
+                    Next
+                Next
+                Canvas.DrawRectangle(New Rectangle(CInt(offset.X), CInt(offset.Y), 160, 3), Screens.UI.ColorProvider.AccentColor(True, alpha))
             Else
                 For x = 0 To 9
                     For y = 0 To 9
@@ -1215,8 +1245,8 @@ Public Class NewMainMenuScreen
                 Canvas.DrawRectangle(New Rectangle(CInt(offset.X), CInt(offset.Y), 160, 3), Screens.UI.ColorProvider.AccentColor(False, alpha))
             End If
             If _isNewGameButton Then
-                Dim textA As String = "New"
-                Dim textB As String = "Game"
+                Dim textA As String = Localization.GetString("main_menu_newgame_line1", "New")
+                Dim textB As String = Localization.GetString("main_menu_newgame_line2", "Game")
 
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
                     FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 72 - FontManager.InGameFont.MeasureString(textA).Y / 2 + 2)), New Color(0, 0, 0, alpha))
@@ -1233,7 +1263,7 @@ Public Class NewMainMenuScreen
 
                 End If
             ElseIf _IsOptionsMenuButton Then
-                Dim text As String = "Options"
+                Dim text As String = Localization.GetString("main_menu_options", "Options")
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
                     FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2 + 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
                     FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
@@ -1255,14 +1285,14 @@ Public Class NewMainMenuScreen
                 Dim textB As String = ""
                 Select Case _OptionsMenuIndex
                     Case 0
-                        textA = "Language"
+                        textA = Localization.GetString("main_menu_options_language", "Language")
                     Case 1
-                        textA = "Audio"
+                        textA = Localization.GetString("main_menu_options_audio", "Audio")
                     Case 2
-                        textA = "Controls"
+                        textA = Localization.GetString("main_menu_options_controls", "Controls")
                     Case 3
-                        textA = "Content"
-                        textB = "Packs"
+                        textA = Localization.GetString("main_menu_options_contentpacks_line1", "Content")
+                        textB = Localization.GetString("main_menu_options_contentpacks_line2", "Packs")
                 End Select
 
                 If _OptionsMenuIndex <> 3 Then
@@ -1331,9 +1361,9 @@ Public Class NewMainMenuScreen
                             _logoBounce = 0F
                         End If
                     End If
-                    Dim text As String = "Log in"
+                    Dim text As String = Localization.GetString("global_login", "Log in")
                     If _isLoading Then
-                        text = "Loading..."
+                        text = Localization.GetString("global_loading", "Loading") & "..."
                     End If
 
                     SpriteBatch.Draw(_sprite, New Rectangle(CInt(offset.X + 46), CInt(offset.Y + 36 + Math.Sin(_logoBounce) * 8.0F), 68, 72), New Color(255, 255, 255, alpha))
@@ -1422,7 +1452,7 @@ Public Class NewMainMenuScreen
                                 LoadGameJolt()
                             ElseIf IsOptionsMenuButton = False Then
                                 Dim messageBox As New UI.MessageBox(CurrentScreen)
-                                messageBox.Show("The required GameMode does not exist.~Reaquire the GameMode to play on this profile.".Replace("~", Environment.NewLine))
+                                messageBox.Show(Localization.GetString("main_menu_error_gamemode_message", "The required GameMode does not exist.~Reaquire the GameMode to play on this profile.").Replace("~", Environment.NewLine))
                             Else
                                 _menuIndex = 2
                                 _selectedProfileTemp = _selectedProfile
@@ -1476,7 +1506,7 @@ Public Class GameModeSelectionScreen
             SpriteBatch.Draw(GameModeSplash, windowSize, Color.White)
         End If
 
-        Dim text = "Select a GameMode" + Environment.NewLine + "to start the new game with."
+        Dim text = Localization.GetString("gamemode_menu_select1", "Select a GameMode") + Environment.NewLine + Localization.GetString("gamemode_menu_select2", "to start the new game with.")
 
         GetFontRenderer().DrawString(FontManager.InGameFont, text, New Vector2(30, 30), Color.White)
         Dim _menuTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\MainMenu")
