@@ -414,7 +414,49 @@ Public Class NewMainMenuScreen
                                         End If
                                     Next
                                 End If
-                            Case 2, 3
+                            Case 2
+                                For x = 0 To _MainProfiles.Count - 1
+                                    Dim xOffset As Single = _screenOrigin.X + _mainOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
+                                    If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffsetTarget.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
+                                        _menuIndex = 0
+                                        Dim diff As Integer = CInt(_screenOffset.X + x * 180) - CInt(_optionsOffset.X + _selectedProfile * 180)
+                                        _screenOffsetTarget.X -= diff
+                                        _selectedProfile = x
+                                        _sliderTarget = GetSliderTarget(x)
+                                        SoundManager.PlaySound("select")
+                                    End If
+                                Next
+                                For x = 0 To _OptionsProfiles.Count - 1
+                                    Dim xOffset As Single = _screenOrigin.X + _optionsOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
+
+                                    If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _optionsOffset.Y), 160, 160).Contains(MouseHandler.MousePosition) Then
+                                        If _selectedProfile = x Then
+                                            If CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                                                ClickedProfile()
+                                                SoundManager.PlaySound("select")
+                                            End If
+                                        Else
+                                            If CurrentScreen.Identification = Identifications.MainMenuScreen Then
+                                                Dim diff As Integer = x - _selectedProfile
+                                                _optionsOffsetTarget.X -= diff * 180
+                                                _selectedProfile = x
+                                            End If
+                                            Exit For
+                                        End If
+                                    End If
+                                Next
+                            Case 3
+                                For x = 0 To _GameJoltProfiles.Count - 1
+                                    Dim xOffset As Single = _screenOrigin.X + _gameJoltOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
+                                    If New Rectangle(CInt(xOffset), CInt(_screenOrigin.Y + _screenOffsetTarget.Y + -180 + 32), 160, 160).Contains(MouseHandler.MousePosition) Then
+                                        Dim diff As Integer = x - _selectedProfile
+                                        _gameJoltOffsetTarget.X -= diff * 180
+                                        _menuIndex = 1
+                                        _selectedProfile = x
+                                        _sliderTarget = GetSliderTarget(x)
+                                        SoundManager.PlaySound("select")
+                                    End If
+                                Next
                                 For x = 0 To _OptionsProfiles.Count - 1
                                     Dim xOffset As Single = _screenOrigin.X + _optionsOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
 
@@ -539,14 +581,17 @@ Public Class NewMainMenuScreen
                                 If CurrentScreen.Identification = Identifications.MainMenuScreen Then
                                     SetScreen(New PressStartScreen())
                                 End If
+                                SoundManager.PlaySound("select")
                             Case 1, 2
                                 _menuIndex = 0
                                 _selectedProfile = _selectedProfileTemp
                                 _sliderTarget = GetSliderTarget(_selectedProfile)
+                                SoundManager.PlaySound("select")
                             Case 3
                                 _menuIndex = 1
                                 _selectedProfile = _selectedProfileTemp
                                 _sliderTarget = GetSliderTarget(_selectedProfile)
+                                SoundManager.PlaySound("select")
                         End Select
                     End If
                     If KeyBoardHandler.KeyPressed(KeyBindings.ForwardMoveKey) Or KeyBoardHandler.KeyPressed(KeyBindings.UpKey) Then
@@ -555,10 +600,12 @@ Public Class NewMainMenuScreen
                                 _menuIndex = 0
                                 _selectedProfile = _selectedProfileTemp
                                 _sliderTarget = GetSliderTarget(_selectedProfile)
+                                SoundManager.PlaySound("select")
                             Case 3
                                 _menuIndex = 1
                                 _selectedProfile = _selectedProfileTemp
                                 _sliderTarget = GetSliderTarget(_selectedProfile)
+                                SoundManager.PlaySound("select")
                         End Select
                     End If
 
@@ -604,12 +651,12 @@ Public Class NewMainMenuScreen
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
         _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
     End Sub
+
     Private Sub ButtonResetSave()
         GameJoltSave.ResetSave()
         _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
         _MainProfiles(_selectedProfile).SetToDefault()
     End Sub
-
 
     Private Sub ClickedProfile()
         Select Case _menuIndex
@@ -846,6 +893,8 @@ Public Class NewMainMenuScreen
         Select Case _menuIndex
             Case 2, 3
                 Return CInt(_optionsOffset.X + index * 180 + 80)
+            Case 1
+                Return CInt(_gameJoltOffset.X + index * 180 + 80)
             Case Else
                 Return CInt(_screenOffset.X + index * 180 + 80)
         End Select

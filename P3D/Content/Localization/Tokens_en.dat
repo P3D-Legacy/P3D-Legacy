@@ -10,7 +10,6 @@ global_new,New
 global_add,Add
 global_edit,Edit
 global_remove,Remove
-global_back,Back
 global_please_wait,Please wait
 global_loading,Loading
 global_game,Game
@@ -24,11 +23,15 @@ global_cancel,Cancel
 global_gamemode,GameMode
 global_clear,Clear
 global_save,Save
+global_apply,Apply
 global_close,Close
+global_back,Back
 global_on,On
 global_off,Off
 global_enabled,Enabled
 global_disabled,Disabled
+global_enable,Enable
+global_disable,Disable
 global_player_name,Player name
 global_badges,Badges
 global_play_time,Play Time
@@ -76,7 +79,6 @@ global_pokemon_move_cut,Cut
 global_pokemon_move_teleport,Teleport
 global_pokemon_move_dig,Dig
 global_used,Used
-global_apply,Apply
 global_eggs_cannot_hold,Eggs cannot hold items.
 ---
 General:
@@ -117,27 +119,7 @@ DeleteScreen:
 delete_menu_delete_confirm,Do you really want to delete the save
 delete_menu_delete,Delete
 delete_menu_cancel,Cancel
-LanguageScreen:
-language_menu_apply,Apply
-language_menu_back,Back
-PacksScreen:
-pack_menu_up,Move Up
-pack_menu_down,Move Down
-pack_menu_toggle_on,Enabled
-pack_menu_toggle_off,Disabled
-pack_menu_information,Information
-pack_menu_enabled,Enabled
-pack_menu_apply,Apply
-pack_menu_back,Back
-pack_menu_songs,Songs
-pack_menu_sounds,Sounds
-pack_menu_textures,Textures
-pack_menu_name,Name
-pack_menu_version,Version
-pack_menu_by,By
-pack_menu_content,Content
-pack_menu_description,Description
----
+
 GameModeMenu:
 gamemode_menu_name,Name
 gamemode_menu_description,Description
@@ -270,46 +252,80 @@ option_screen_title,Options
 option_screen_warning,Options aren't saved yet, scroll down and choose "Save options."
 option_screen_backadvice,PRESS E TO GO BACK
 option_screen_description,Description
-option_screen_textspeed,Textspeed
-option_screen_textspeed_description,The speed the textbox shows up and~displays the text
-option_screen_fov,FOV
-option_screen_fov_description,The field of view. The higher the value is,~the more you can see.~Warning: Too large value can cause lags in larger maps.
-option_screen_mousespeed,MouseSpeed
-option_screen_mousespeed_description,The Mousespeed sets the speed on which the~mouse can rotate the view.
-option_screen_volume,Volume
-option_screen_volume_description,The volume of the background music.~This settings is for all save states.
-option_screen_render_distance,RenderDistance
-option_screen_render_distance_tiny,Tiny
-option_screen_render_distance_short,Short
-option_screen_render_distance_normal,Normal
-option_screen_render_distance_far,Far
-option_screen_render_distance_extreme,Extreme
-option_screen_render_distance_description,The renderdistance determines,~how far you can see.~By turning this down, you can improve your FPS.
+
+option_screen_game,Game
+option_screen_game_textspeed,Text Speed
+option_screen_game_textspeed_description,The speed the textbox shows up and~displays the text
+option_screen_game_difficulty,Difficulty
+option_screen_game_difficulty_description,Difficulty mode~Sets the level of difficulty.
+option_screen_game_difficulty_easy,Easy
+option_screen_game_difficulty_hard,Hard
+option_screen_game_difficulty_superhard,Super Hard
+option_screen_game_viewbobbing,View Bobbing
+option_screen_game_viewbobbing_description,Turns camera shaking on or off.
+
 option_screen_graphics,Graphics
-option_screen_graphics_fancy,Fancy
-option_screen_graphics_fast,Fast
-option_screen_graphics_description,Affects if some objects are rendered~or not. By turning this down, you can improve your FPS.~This settings is for all save states.
-option_screen_offset_map_quality,Offset map quality
-option_screen_offset_map_off,Off
-option_screen_offset_map_quality_description,Sets the quality of the offset maps.~The details and update frequency of offset maps increase with this value.~Set this value to 0 to prevent the game from loading offset maps.
-option_screen_animations_in_battle,Animations in battle
-option_screen_animations_in_battle_no,No
-option_screen_animations_in_battle_attacks_off,Attacks off
-option_screen_animations_in_battle_yes,Yes
-option_screen_animations_in_battle_description,Determines if the game shows battle animations.
-option_screen_difficulty,Difficulty
-option_screen_difficulty_description,Difficulty mode~Sets the level of difficulty.
-option_screen_battle_style,BattleStyle
-option_screen_battle_style_shift,Shift
-option_screen_battle_style_set,Set
+option_screen_graphics_fov,Field of View
+option_screen_graphics_fov_description,The field of view. The higher the value is,~the more you can see.~Warning: Too large value can cause lags in larger maps.
+option_screen_graphics_renderdistance,Render Distance
+option_screen_graphics_renderdistance_description,The render distance determines,~how far you can see.~By turning this down, you can improve your FPS.
+option_screen_graphics_renderdistance_tiny,Tiny
+option_screen_graphics_renderdistance_short,Short
+option_screen_graphics_renderdistance_normal,Normal
+option_screen_graphics_renderdistance_far,Far
+option_screen_graphics_renderdistance_extreme,Extreme
+option_screen_graphics_offset_mapquality,Offset Map Quality
+option_screen_graphics_offset_mapquality_description,Sets the quality of the offset maps.~The details and update frequency of offset maps increase with this value.~Set this value to 0 to prevent the game from loading offset maps.
+option_screen_graphics_offset_mapquality_off,Off
+option_screen_graphics_graphics,Graphics
+option_screen_graphics_graphics_description,Affects if some objects are rendered~or not. By turning this down, you can improve your FPS.~This settings is for all save states.
+option_screen_graphics_graphics_fancy,Fancy
+option_screen_graphics_graphics_fast,Fast
+option_screen_graphics_multisampling,Multi Sampling
+
+option_screen_battle,Battle
+option_screen_battle_3dmodels,3D Models
+option_screen_battle_animations,Animations
+option_screen_battle_animations_description,Determines if the game shows battle animations.
+option_screen_battle_battlestyle,Battle Style
+option_screen_battle_battlestyle_shift,Shift
+option_screen_battle_battlestyle_set,Set
 option_screen_battle_style_description,Battle Style~Set: You are not asked to switch out your Pokémon~Shift: You can switch out your Pokémon after defeating an opponent.
-option_screen_view_bobbing,View bobbing
-option_screen_view_bobbing_description,Turns camera shaking on or off.
-option_screen_reset_options,Reset options.
-option_screen_reset_options_description,Resets all options.
+
+option_screen_controls,Controls
+option_screen_controls_xboxgamepad,Xbox Gamepad
+option_screen_controls_resetkeybindings,Reset Key Bindings
+option_screen_controls_cameraspeed,Camera Speed
+option_screen_controls_cameraspeed_description,The camera speed sets the speed on which the~mouse can rotate the view.
+option_screen_controls_cameraspeed_slow,...Slow...
+option_screen_controls_cameraspeed_medium,Standard
+option_screen_controls_cameraspeed_fast,Super fast!
+option_screen_controls_cameraspeed_fastest,SPEED OF LIGHT!
+
+option_screen_audio,Audio
+option_screen_audio_volume_music,Music Volume
+option_screen_audio_volume_music_description,The volume of the background music.
+option_screen_audio_volume_sfx,SoundFX Volume
+option_screen_audio_volume_music_description,The volume of the sound effects and jingles.
+option_screen_audio_muted,Muted
+
+option_screen_contentpacks_up,Move Up
+option_screen_contentpacks_down,Move Down
+option_screen_contentpacks_information,Information
+option_screen_contentpacks_songs,Songs
+option_screen_contentpacks_sounds,Sounds
+option_screen_contentpacks_textures,Textures
+option_screen_contentpacks_name,Name
+option_screen_contentpacks_version,Version
+option_screen_contentpacks_by,By
+option_screen_contentpacks_content,Content
+option_screen_contentpacks_description,Description
+
+option_screen_resetoptions,Reset options.
+option_screen_resetoptions_description,Resets all options.
 option_screen_save_options,Save options.
 option_screen_save_options_description,Save the options and close the menu.
-option_screen_close_menu,Close menu.
+option_screen_close,Close.
 option_screen_close_menu_description,Close the menu and do not save~the changes.
 ---
 Item Detail Screen:

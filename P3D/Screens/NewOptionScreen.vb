@@ -26,7 +26,8 @@
 
     Private Languages As New List(Of String)
     Private LanguageNames As New List(Of String)
-    Private currentLanguage As String = "en"
+    Private currentLanguage As String = Localization.LanguageSuffix
+    Private TempLanguage As String = Localization.LanguageSuffix
     Public Shared languageMenuIndex(3) As Integer
 
     Private PackNames As New List(Of String)
@@ -218,10 +219,6 @@
             Localization.Load(Languages(languageMenuIndex(0)))
         End If
 
-        If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey1) Or KeyBoardHandler.KeyPressed(KeyBindings.BackKey2) Or MouseHandler.ButtonPressed(MouseHandler.MouseButtons.RightButton) Or ControllerHandler.ButtonPressed(Buttons.B) Then
-            Localization.Load(currentLanguage)
-        End If
-
     End Sub
 
     Private Sub GetLanguages()
@@ -302,15 +299,19 @@
             For i = 0 To x
                 Dim Name As String = PackNames(i + packsMenuIndex(2))
                 If EnabledPackNames.Contains(Name) = True Then
-                    Name &= " (" & Localization.GetString("pack_menu_enabled") & ")"
-                    textColor = New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade))
-                End If
-
-                If i + packsMenuIndex(2) = packsMenuIndex(0) Then
-                    SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 318, CInt(Core.windowSize.Height / 2 - 120 + i * 50 + 2)), textColor)
-                    SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+                    If i + packsMenuIndex(2) = packsMenuIndex(0) Then
+                        SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320 + 2, CInt(Core.windowSize.Height / 2 - 120 + i * 50 + 2)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+                        SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), New Color(181, 255, 82, CInt(255 * _interfaceFade * _pageFade)))
+                    Else
+                        SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), New Color(98, 205, 8, CInt(255 * _interfaceFade * _pageFade)))
+                    End If
                 Else
-                    SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), textColor)
+                    If i + packsMenuIndex(2) = packsMenuIndex(0) Then
+                        SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320 + 2, CInt(Core.windowSize.Height / 2 - 120 + i * 50 + 2)), textColor)
+                        SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+                    Else
+                        SpriteBatch.DrawString(FontManager.InGameFont, Name, New Vector2(CInt(windowSize.Width / 2) - 320, CInt(Core.windowSize.Height / 2 - 120 + i * 50)), textColor)
+                    End If
                 End If
             Next
         End If
@@ -354,7 +355,7 @@
         End If
         If GameInstance.IsMouseVisible = True Then
             For i = 0 To 3
-                If New Rectangle(CInt(windowSize.Width / 2) - 328, 204 + i * 50, 500, 48).Contains(MouseHandler.MousePosition) = True Then
+                If New Rectangle(CInt(windowSize.Width / 2) - 328, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 500, 48).Contains(MouseHandler.MousePosition) = True Then
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                         packsMenuIndex(0) = i + packsMenuIndex(2)
                     End If
@@ -407,7 +408,7 @@
             Next
 
             If hasMP3 = True Or hasOGG = True Or hasWMA = True Then
-                PInfoContent = Localization.GetString("pack_menu_songs")
+                PInfoContent = Localization.GetString("option_screen_contentpacks_songs")
             End If
         End If
         If IO.Directory.Exists(contentPackPath & "Sounds") = True Then
@@ -431,7 +432,7 @@
                     PInfoContent &= ", "
                 End If
 
-                PInfoContent &= Localization.GetString("pack_menu_sounds")
+                PInfoContent &= Localization.GetString("option_screen_contentpacks_sounds")
             End If
         End If
 
@@ -454,7 +455,7 @@
                         PInfoContent &= ", "
                     End If
 
-                    PInfoContent &= Localization.GetString("pack_menu_textures")
+                    PInfoContent &= Localization.GetString("option_screen_contentpacks_textures")
                     Exit For
                 End If
             End If
@@ -489,11 +490,11 @@
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
         Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 240 + 4, CInt(Core.windowSize.Height / 2 - 144), 480, 64), New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2) + 2, CInt(Core.windowSize.Height / 2 - 128 + 2)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("pack_menu_name") & ": " & PInfoName, New Vector2(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pack_menu_name") & ": " & PInfoName).X / 2), CInt(Core.windowSize.Height / 2 - 128)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName, New Vector2(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName).X / 2) + 2, CInt(Core.windowSize.Height / 2 - 128 + 2)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName, New Vector2(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName).X / 2), CInt(Core.windowSize.Height / 2 - 128)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
 
         Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 272 + 4, CInt(Core.windowSize.Height / 2 - 72), 544, 196), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("pack_menu_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("pack_menu_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("pack_menu_content") & ": " & PInfoContent & Environment.NewLine & Localization.GetString("pack_menu_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine), New Vector2(CInt(windowSize.Width / 2) - 272 + 16, CInt(Core.windowSize.Height / 2 - 64)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("option_screen_contentpacks_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("option_screen_contentpacks_content") & ": " & PInfoContent & Environment.NewLine & Localization.GetString("option_screen_contentpacks_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine).Replace("~", Environment.NewLine), New Vector2(CInt(windowSize.Width / 2) - 272 + 16, CInt(Core.windowSize.Height / 2 - 64)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
     End Sub
 
     Private Sub UpdatePackInformationMenu()
@@ -593,7 +594,7 @@
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
 
-        SpriteBatch.DrawString(FontManager.ChatFont, "Options", New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
+        SpriteBatch.DrawString(FontManager.ChatFont, Localization.GetString("option_screen_title", "Options"), New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
 
         For y = 0 To CInt(_enrollY) Step 16
             For x = 0 To 800 Step 16
@@ -609,22 +610,8 @@
         End If
     End Sub
     Private Sub DrawCursor()
-        Dim currentControl As Control = Nothing
-        Dim XOffset As Integer = 0
-
-        For Each control As Control In ControlList
-            If control._position = _cursorDestPosition Then
-                currentControl = control
-                Exit For
-            End If
-        Next
-        If ControlList.Count > 0 Then
-            If currentControl.ControlType = "ScrollBar" Then
-                XOffset = 400 - 68
-            End If
-        End If
         Dim t As Texture2D = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
-        Core.SpriteBatch.Draw(t, New Rectangle(CInt(_cursorPosition.X) + XOffset + 60, CInt(_cursorPosition.Y) - 28, 48, 48), New Rectangle(0, 0, 16, 16), New Color(255, 255, 255, CInt(255 * Me._interfaceFade)), 0.0F, Vector2.Zero, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.Draw(t, New Rectangle(CInt(_cursorPosition.X) + 60, CInt(_cursorPosition.Y) - 28, 48, 48), New Rectangle(0, 0, 16, 16), New Color(255, 255, 255, CInt(255 * Me._interfaceFade)), 0.0F, Vector2.Zero, SpriteEffects.None, 0.0F)
     End Sub
     Private Sub DrawCurrentPage()
         For Each C As Control In ControlList
@@ -785,9 +772,22 @@
         End If
     End Sub
     Private Sub SetCursorPosition(ByVal direction As String)
+        Dim ScrollControl As Control = Nothing
         Dim pos = GetButtonPosition(direction)
-        'Dim cPosition As Vector2 = New Vector2(pos.X + 180, pos.Y - 42)
         Dim cPosition As Vector2 = New Vector2(pos.X, pos.Y)
+        'Dim cPosition As Vector2 = New Vector2(pos.X + 180, pos.Y - 42)
+        For Each control As Control In ControlList
+            If control._position = New Vector2(pos.X, pos.Y) Then
+                If control.ControlType = "ScrollBar" Then
+                    ScrollControl = control
+                    Exit For
+                End If
+            End If
+        Next
+        If ScrollControl IsNot Nothing Then
+            cPosition.X += 332
+        End If
+
         _cursorDestPosition = cPosition
     End Sub
 
@@ -796,9 +796,16 @@
         Dim currentControl As Control = Nothing
 
         For Each control As Control In ControlList
-            If control._position = _cursorDestPosition Then
-                currentControl = control
-                Exit For
+            If control.ControlType = "ScrollBar" Then
+                If control._position.Y = _cursorDestPosition.Y Then
+                    currentControl = control
+                    Exit For
+                End If
+            Else
+                If control._position = _cursorDestPosition Then
+                    currentControl = control
+                    Exit For
+                End If
             End If
         Next
 
@@ -921,104 +928,116 @@
 
         Select Case ScreenIndex
             Case 0 ' Main Options menu.
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 80), 1, 64, "Game", AddressOf SwitchToGame, 1))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 80), 1, 64, "Graphics", AddressOf SwitchToGraphics, 2))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 80), 1, 64, "Battle", AddressOf SwitchToBattle, 3))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 200, Delta_Y + 168), 1, 64, "Controls", AddressOf SwitchToControls, 4))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 420, Delta_Y + 168), 1, 64, "Audio", AddressOf SwitchToAudio, 5))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90, Delta_Y + 80), 1, 64, Localization.GetString("option_screen_game", "Game"), AddressOf SwitchToGame, 1))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310, Delta_Y + 80), 1, 64, Localization.GetString("option_screen_graphics", "Graphics"), AddressOf SwitchToGraphics, 2))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530, Delta_Y + 80), 1, 64, Localization.GetString("option_screen_battle", "Battle"), AddressOf SwitchToBattle, 3))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 200, Delta_Y + 168), 1, 64, Localization.GetString("option_screen_controls", "Controls"), AddressOf SwitchToControls, 4))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 420, Delta_Y + 168), 1, 64, Localization.GetString("option_screen_audio", "Audio"), AddressOf SwitchToAudio, 5))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, "Apply", AddressOf Apply, 6))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 286 + 24, Delta_Y + 336), 2, 48, "Reset Options", AddressOf Reset, 7))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, "Close", AddressOf Close, 8))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf Apply, 6))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 286 + 24, Delta_Y + 336), 2, 48, Localization.GetString("option_screen_resetoptions", "Reset Options"), AddressOf Reset, 7))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_close", "Close"), AddressOf Close, 8))
 
             Case 1 ' "Game" from the Options menu.
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, "Text Speed", Me.TextSpeed, 1, 3, AddressOf ChangeTextspeed, 1))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_game_textspeed", "Text Speed"), Me.TextSpeed, 1, 3, AddressOf ChangeTextspeed, 1))
                 If CBool(GameModeManager.GetGameRuleValue("LockDifficulty", "0")) = False Then
                     Dim d As New Dictionary(Of Integer, String)
-                    d.Add(0, "Easy")
-                    d.Add(1, "Hard")
-                    d.Add(2, "Super Hard")
+                    d.Add(0, Localization.GetString("option_screen_game_difficulty_easy", "Easy"))
+                    d.Add(1, Localization.GetString("option_screen_game_difficulty_hard", "Hard"))
+                    d.Add(2, Localization.GetString("option_screen_game_difficulty_superhard", "Super Hard"))
 
-                    Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, "Difficulty", Me.Difficulty, 0, 2, AddressOf ChangeDifficulty, d, 2))
+                    Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, Localization.GetString("option_screen_game_difficulty", "Difficulty"), Me.Difficulty, 0, 2, AddressOf ChangeDifficulty, d, 2))
                 End If
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 180), 3, 64, "View Bobbing", Me.ViewBobbing, AddressOf ToggleBobbing, {"Off", "On"}.ToList(), 3))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 180), 3, 64, Localization.GetString("option_screen_game_viewbobbing", "View Bobbing"), Me.ViewBobbing, AddressOf ToggleBobbing, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 3))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
 
             Case 2 ' "Graphics" from the Options menu.
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 40), 400, "Field of View", CInt(Me.FOV), 45, 120, AddressOf ChangeFOV, 1))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 40), 400, Localization.GetString("option_screen_graphics_fov", "Field of View"), CInt(Me.FOV), 45, 120, AddressOf ChangeFOV, 1))
 
                 Dim d As New Dictionary(Of Integer, String)
-                d.Add(0, "Tiny")
-                d.Add(1, "Small")
-                d.Add(2, "Normal")
-                d.Add(3, "Far")
-                d.Add(4, "Extreme")
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 100), 400, "Render Distance", Me.RenderDistance, 0, 4, AddressOf ChangeRenderDistance, d, 2))
+                d.Add(0, Localization.GetString("option_screen_graphics_renderdistance_tiny", "Tiny"))
+                d.Add(1, Localization.GetString("option_screen_graphics_renderdistance_small", "Small"))
+                d.Add(2, Localization.GetString("option_screen_graphics_renderdistance_normal", "Normal"))
+                d.Add(3, Localization.GetString("option_screen_graphics_renderdistance_far","Far"))
+                d.Add(4, Localization.GetString("option_screen_graphics_renderdistance_extreme", "Extreme"))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 100), 400, Localization.GetString("option_screen_graphics_renderdistance", "Render Distance"), Me.RenderDistance, 0, 4, AddressOf ChangeRenderDistance, d, 2))
 
                 Dim d1 As New Dictionary(Of Integer, String)
                 d1.Add(0, "Off")
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 160), 400, "Offset Map Quality", Me.LoadOffsetMaps, 0, 100, AddressOf ChangeOffsetMaps, d1, 3))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 160), 400, Localization.GetString("option_screen_graphics_offset_mapquality", "Offset Map Quality"), Me.LoadOffsetMaps, 0, 100, AddressOf ChangeOffsetMaps, d1, 3))
 
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 220), 3, 64, "Graphics", CBool(Me.GraphicStyle), AddressOf ToggleGraphicsStyle, {"Fast", "Fancy"}.ToList(), 4))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 300), 3, 64, "Multi Sampling", Me.PreferMultiSampling, AddressOf ToggleMultiSampling, {"Off", "On"}.ToList(), 5))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 220), 3, 64, Localization.GetString("option_screen_graphics_graphics", "Graphics"), CBool(Me.GraphicStyle), AddressOf ToggleGraphicsStyle, {Localization.GetString("option_screen_graphics_graphics_fast", "Fast"), Localization.GetString("option_screen_graphics_graphics_fancy", "Fancy")}.ToList(), 4))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 300), 3, 64, Localization.GetString("option_screen_graphics_multisampling", "Multi Sampling"), Me.PreferMultiSampling, AddressOf ToggleMultiSampling, {"Off", "On"}.ToList(), 5))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 6))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 6))
 
             Case 3 ' "Battle" from the Options menu.
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 100), 2, 64, "3D Models", CBool(ShowModels), AddressOf ToggleShowModels, {"Off", "On"}.ToList(), 1))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 400 + 20, Delta_Y + 100), 2, 64, "Animations", CBool(Me.ShowBattleAnimations), AddressOf ToggleAnimations, {"Off", "On"}.ToList(), 2))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 200), 2, 64, "Battle Style", CBool(Me.BattleStyle), AddressOf ToggleBattleStyle, {"Shift", "Set"}.ToList(), 3))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 100), 2, 64, Localization.GetString("option_screen_battle_3dmodels", "3D Models"), CBool(ShowModels), AddressOf ToggleShowModels, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 1))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 400 + 20, Delta_Y + 100), 2, 64, Localization.GetString("option_screen_battle_animations", "Animations"), CBool(Me.ShowBattleAnimations), AddressOf ToggleAnimations, {Localization.GetString("global_off", "Off"), Localization.GetString("global_on", "On")}.ToList(), 2))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100 + 20, Delta_Y + 200), 2, 64, Localization.GetString("option_screen_battle_battlestyle", "Battle Style"), CBool(Me.BattleStyle), AddressOf ToggleBattleStyle, {Localization.GetString("option_screen_battle_battlestyle_shift", "Shift"), Localization.GetString("option_screen_battle_battlestyle_set", "Set")}.ToList(), 3))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
 
             Case 4 ' "Controls" from the Options menu.
                 If PreScreen.Identification = Identifications.MainMenuScreen Then
-                    Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 100), 5, 64, "Xbox Gamepad", Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 1))
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, "Reset Key Bindings", AddressOf ResetKeyBindings, 2))
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf ApplyControls, 3))
+                    Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 100), 5, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 1))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 2))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf ControlsApply, 3))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 4))
                 Else
                     Dim d As New Dictionary(Of Integer, String)
-                    d.Add(1, "...Slow...")
-                    d.Add(12, "Standard")
-                    d.Add(38, "Super fast!")
-                    d.Add(50, "SPEED OF LIGHT!")
-                    Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, "Camera Speed", Me.CameraSpeed, 1, 50, AddressOf ChangeCameraSpeed, d, 1))
-                    Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, "Xbox Gamepad", Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 2))
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, "Reset Key Bindings", AddressOf ResetKeyBindings, 3))
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
+                    d.Add(1, Localization.GetString("option_screen_controls_cameraspeed_slow", "...Slow..."))
+                    d.Add(12, Localization.GetString("option_screen_controls_cameraspeed_medium", "Standard"))
+                    d.Add(38, Localization.GetString("option_screen_controls_cameraspeed_fast", "Super fast!"))
+                    d.Add(50, Localization.GetString("option_screen_controls_cameraspeed_fastest", "SPEED OF LIGHT!"))
+                    Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_controls_cameraspeed", "Camera Speed"), Me.CameraSpeed, 1, 50, AddressOf ChangeCameraSpeed, d, 1))
+                    Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 2))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 3))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
                 End If
 
             Case 5 ' "Audio" from the Options menu.
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, "Music Volume", Me.Music, 0, 100, AddressOf ChangeMusicVolume, 1))
-                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, "Sound Volume", Me.Sound, 0, 100, AddressOf ChangeSoundVolume, 2))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 1, 64, "Muted", CBool(Me.Muted), AddressOf ToggleMute, {"No", "Yes"}.ToList(), 3))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_audio_volume_music", "Music Volume"), Me.Music, 0, 100, AddressOf ChangeMusicVolume, 1))
+                Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, Localization.GetString("option_screen_audio_volume_sfx", "SoundFX Volume"), Me.Sound, 0, 100, AddressOf ChangeSoundVolume, 2))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 1, 64, Localization.GetString("option_screen_audio_muted", "Muted"), CBool(Me.Muted), AddressOf ToggleMute, {"No", "Yes"}.ToList(), 3))
                 If PreScreen.Identification = Identifications.MainMenuScreen Then
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf AudioApply, 4))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf AudioApply, 4))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 5))
                 Else
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf SwitchToMain, 4))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
                 End If
 
             Case 6 ' "Language" from the Options menu.
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 286 + 24, Delta_Y + 336), 1, 48, "Back", AddressOf LanguageApply, 1))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf LanguageApply, 1))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 2))
 
             Case 7 ' "ContentPacks" from the Options menu.
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 64), 2, 48, Localization.GetString("pack_menu_up"), AddressOf ButtonUp, 1))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 120), 2, 48, Localization.GetString("pack_menu_down"), AddressOf ButtonDown, 2))
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 604, Delta_Y + 176), 2, 48, Localization.GetString("pack_menu_enabled"), isSelectedEnabled, AddressOf PackEnabledToggle, {Localization.GetString("global_no"), Localization.GetString("global_yes")}.ToList(), 3))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 232), 2, 48, Localization.GetString("pack_menu_information"), AddressOf SwitchToPackInformation, 4))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 64), 2, 48, Localization.GetString("option_screen_contentpacks_up"), AddressOf ButtonUp, 1))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 120), 2, 48, Localization.GetString("option_screen_contentpacks_down"), AddressOf ButtonDown, 2))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 604, Delta_Y + 176), 2, 48, "", isSelectedEnabled, AddressOf PackEnabledToggle, {Localization.GetString("global_enable"), Localization.GetString("global_disable")}.ToList(), 3))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 604, Delta_Y + 232), 2, 48, Localization.GetString("option_screen_contentpacks_information"), AddressOf SwitchToPackInformation, 4))
 
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, "Apply", AddressOf PacksApply, 5))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310 + 24, Delta_Y + 327), 1, 48, "Back", AddressOf Close, 6))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf PacksApply, 5))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 310 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 6))
 
             Case 8 ' "Information" from the ContentPacks menu.
-                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 2, 48, Localization.GetString("pack_menu_enabled"), isSelectedEnabled, AddressOf PackEnabledToggle, {Localization.GetString("global_no"), Localization.GetString("global_yes")}.ToList(), 1))
-                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, "Back", AddressOf SwitchToContentPacks, 2))
+                Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 336), 2, 48, Localization.GetString("global_enabled"), isSelectedEnabled, AddressOf PackEnabledToggle, {Localization.GetString("global_no"), Localization.GetString("global_yes")}.ToList(), 1))
+                Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 336), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToContentPacks, 2))
         End Select
 
         If ScreenIndex <> 7 Then
-            _cursorDestPosition = ControlList(0)._position
+            If ControlList(0).ControlType = "ScrollBar" Then
+                _cursorDestPosition = New Vector2(ControlList(0)._position.X + 332, ControlList(0)._position.Y)
+            Else
+                _cursorDestPosition = ControlList(0)._position
+            End If
+
         Else
-            _cursorDestPosition = ControlList(4)._position
+            If ControlList(0).ControlType = "ScrollBar" Then
+                _cursorDestPosition = New Vector2(ControlList(4)._position.X + 332, ControlList(4)._position.Y)
+            Else
+                _cursorDestPosition = ControlList(4)._position
+            End If
         End If
     End Sub
 
@@ -1028,10 +1047,15 @@
     End Sub
 
     Private Sub Close()
+        If currentLanguage <> TempLanguage Then
+            Localization.Load(TempLanguage)
+        End If
         _closing = True
     End Sub
-    Private Sub ApplyControls()
+    Private Sub ControlsApply()
         Core.GameOptions.GamePadEnabled = Me.GamePadEnabled
+        Core.GameOptions.SaveOptions()
+        SoundManager.PlaySound("save")
         _closing = True
     End Sub
 
@@ -1144,6 +1168,7 @@
         GetLanguages()
         If Languages.Contains(currentLanguage) = True Then
             languageMenuIndex(0) = Languages.IndexOf(currentLanguage)
+            TempLanguage = currentLanguage
         End If
         languageMenuIndex(1) = 0
         languageMenuIndex(2) = 0
@@ -1301,6 +1326,7 @@
         MusicManager.Muted = CBool(Me.Muted)
         SoundManager.Muted = CBool(Me.Muted)
         Core.GameOptions.SaveOptions()
+        SoundManager.PlaySound("save")
         _closing = True
     End Sub
 
@@ -1310,6 +1336,9 @@
         If currentLanguage <> Languages(languageMenuIndex(0)) Then
             currentLanguage = Languages(languageMenuIndex(0))
         End If
+        Localization.Load(currentLanguage)
+        Core.GameOptions.SaveOptions()
+        SoundManager.PlaySound("save")
         _closing = True
     End Sub
 #End Region
@@ -1417,17 +1446,20 @@
             Dim c As Color = New Color(255, 255, 255, CInt(255 * s._interfaceFade * s._pageFade))
 
             Dim size As Integer = Me.Size
-
+            Dim ToggleDivider As String = ": "
+            If Me.Text = "" Then
+                ToggleDivider = ""
+            End If
             Dim B As New Vector2
             Dim t As String = Me.Text
             Dim textColor As New Color
             If Toggled Then
-                t &= ": " & Settings(1)
+                t &= ToggleDivider & Settings(1)
                 B.X = 16
                 B.Y = 32
                 textColor = (New Color(255, 255, 255, CInt(255 * s._interfaceFade * s._pageFade)))
             Else
-                t &= ": " & Settings(0)
+                t &= ToggleDivider & Settings(0)
                 B.X = 16
                 B.Y = 16
                 textColor = (New Color(0, 0, 0, CInt(255 * s._interfaceFade * s._pageFade)))
@@ -1481,6 +1513,7 @@
         Inherits Control
         Private _buttonWidth As Integer = 1
         Private _text As String = ""
+        Private TextureY As Integer
 
         Public Property Position As Vector2
             Get
@@ -1526,6 +1559,7 @@
             Me._text = Text
             Me.ID = ID
             Me.OnClickTrigger = ClickSub
+            TextureY = 16
         End Sub
 
 
@@ -1535,9 +1569,9 @@
             Dim pos As Vector2 = Me.Position
             Dim c As Color = New Color(255, 255, 255, CInt(255 * s._interfaceFade * s._pageFade))
 
-            Core.SpriteBatch.Draw(s._texture, New Rectangle(CInt(pos.X), CInt(pos.Y), Size, Size), New Rectangle(16, 16, 16, 16), c)
-            Core.SpriteBatch.Draw(s._texture, New Rectangle(CInt(pos.X) + Size, CInt(pos.Y), Size * ButtonWidth, Size), New Rectangle(32, 16, 16, 16), c)
-            Core.SpriteBatch.Draw(s._texture, New Rectangle(CInt(pos.X) + Size * (ButtonWidth + 1), CInt(pos.Y), Size, Size), New Rectangle(16, 16, 16, 16), c, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
+            Core.SpriteBatch.Draw(s._menuTexture, New Rectangle(CInt(pos.X), CInt(pos.Y), Size, Size), New Rectangle(16, TextureY, 16, 16), c)
+            Core.SpriteBatch.Draw(s._menuTexture, New Rectangle(CInt(pos.X) + Size, CInt(pos.Y), Size * ButtonWidth, Size), New Rectangle(32, TextureY, 16, 16), c)
+            Core.SpriteBatch.Draw(s._menuTexture, New Rectangle(CInt(pos.X) + Size * (ButtonWidth + 1), CInt(pos.Y), Size, Size), New Rectangle(16, TextureY, 16, 16), c, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
             Dim fontWidth As Integer = CInt(FontManager.MainFont.MeasureString(Text).X * 1.0)
             Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(CInt((pos.X + (Size * (2 + ButtonWidth) - fontWidth) * 0.5F)), CInt(pos.Y) + CInt(16 * Size / 64)), New Color(0, 0, 0, CInt(255 * s._interfaceFade * s._pageFade)), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
@@ -1545,20 +1579,38 @@
 
         Public Overrides Sub Update(ByRef s As NewOptionScreen)
             Dim r As New Rectangle(CInt(_position.X), CInt(_position.Y), (2 + ButtonWidth) * Size, Size)
+            Dim Click As Boolean = False
             If s._pageClosing = False And s._pageOpening = False Then
                 If r.Contains(MouseHandler.MousePosition) = True Then
                     If P3D.Controls.Accept(True, False, False) = True Then
                         SoundManager.PlaySound("select")
+                        Click = True
                         OnClickTrigger(Me)
                     End If
                 End If
+                If Click = True Then
+                    TextureY = 32
+                End If
+                If MouseHandler.ButtonUp(MouseHandler.MouseButtons.LeftButton) Then
+                    TextureY = 16
+                    Click = False
+                End If
 
-                If Controls.Accept(False, True, True) Then
+                If Controls.Accept(False, True, True) = True Then
                     If Position = s._cursorDestPosition Then
                         SoundManager.PlaySound("select")
                         OnClickTrigger(Me)
                     End If
                 End If
+                If KeyBoardHandler.KeyDown(KeyBindings.EnterKey1) = True Or KeyBoardHandler.KeyDown(KeyBindings.EnterKey2) = True Or ControllerHandler.ButtonDown(Buttons.A) = True Then
+                    If Position = s._cursorDestPosition Then
+                        TextureY = 32
+                    Else
+                        TextureY = 16
+                    End If
+                End If
+            Else
+                Click = False
             End If
         End Sub
     End Class
