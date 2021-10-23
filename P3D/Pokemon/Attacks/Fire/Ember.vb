@@ -96,21 +96,21 @@
             Dim FireEntity2 As Entity = MoveAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
             Dim FireEntity3 As Entity = MoveAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-            MoveAnimation.AnimationChangeTexture(FireEntity1, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
-            MoveAnimation.AnimationChangeTexture(FireEntity2, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
-            MoveAnimation.AnimationChangeTexture(FireEntity3, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity1, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity2, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity3, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32), ""), 2, 1)
 
-            MoveAnimation.AnimationChangeTexture(FireEntity1, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
-            MoveAnimation.AnimationChangeTexture(FireEntity2, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
-            MoveAnimation.AnimationChangeTexture(FireEntity3, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity1, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity2, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity3, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32), ""), 3, 1)
 
-            MoveAnimation.AnimationChangeTexture(FireEntity1, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
-            MoveAnimation.AnimationChangeTexture(FireEntity2, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
-            MoveAnimation.AnimationChangeTexture(FireEntity3, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity1, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32), ""), 4, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity2, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32), ""), 4, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity3, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32), ""), 4, 1)
 
-            MoveAnimation.AnimationChangeTexture(FireEntity1, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 1)
-            MoveAnimation.AnimationChangeTexture(FireEntity2, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 1)
-            MoveAnimation.AnimationChangeTexture(FireEntity3, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity1, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32), ""), 5, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity2, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32), ""), 5, 1)
+            MoveAnimation.AnimationChangeTexture(FireEntity3, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32), ""), 5, 1)
 
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub

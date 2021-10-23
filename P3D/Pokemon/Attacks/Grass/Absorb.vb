@@ -101,7 +101,7 @@
                 Dim yPos As Single = CSng(Random.NextDouble() * 0.5)
                 Dim zPos As Single = CSng(Random.Next(-5, 5) * 0.15)
                 Dim AbsorbEntity = MoveAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Grass\Absorb"), New Vector3(0.35F), 1)
-                MoveAnimation.AnimationMove(AbsorbEntity, True, 1.5, yPos, zPos, 0.03, False, True, CSng(currentAmount), 0.0, 0.1, 0.5)
+                MoveAnimation.AnimationMove(AbsorbEntity, True, -1.5, yPos, zPos, 0.03, False, True, CSng(currentAmount), 0.0, 0.1, 0.5)
 
                 Threading.Interlocked.Increment(currentAmount)
             End While

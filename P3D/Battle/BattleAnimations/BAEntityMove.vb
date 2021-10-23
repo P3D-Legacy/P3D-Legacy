@@ -59,8 +59,7 @@
 
 	Private Sub Spin()
 		If Me.SpinX = True Then
-			Dim targetEntity = Me.TargetEntity
-			targetEntity.Rotation.X += SpinSpeedX
+			TargetEntity.Rotation.X += SpinSpeedX
 		End If
 		If Me.SpinZ = True Then
 			TargetEntity.Rotation.Z += SpinSpeedZ

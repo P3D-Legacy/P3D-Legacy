@@ -2169,6 +2169,7 @@
                 Dim CurrentEntity As NPC = BattleScreen.OwnPokemonNPC
                 Dim CurrentModel As ModelEntity = BattleScreen.OwnPokemonModel
                 If own = False Then
+                    CurrentPokemon = BattleScreen.OppPokemon
                     CurrentEntity = BattleScreen.OppPokemonNPC
                     CurrentModel = BattleScreen.OppPokemonModel
                 End If
@@ -2186,6 +2187,7 @@
                 Dim CurrentEntity As NPC = BattleScreen.OppPokemonNPC
                 Dim CurrentModel As ModelEntity = BattleScreen.OppPokemonModel
                 If own = False Then
+                    CurrentPokemon = BattleScreen.OwnPokemon
                     CurrentEntity = BattleScreen.OwnPokemonNPC
                     CurrentModel = BattleScreen.OwnPokemonModel
                 End If

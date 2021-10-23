@@ -21,6 +21,7 @@
 		Public Sub New(ByVal entity As Entity, ByVal BattleFlipped As Boolean, Optional ByVal model As ModelEntity = Nothing, Optional DrawBeforeEntities As Boolean = False)
 			MyBase.New(QueryTypes.MoveAnimation)
 			Me.AnimationSequence = New List(Of BattleAnimation3D)
+			Me.SpawnedEntities = New List(Of Entity)
 			Me.DrawBeforeEntities = DrawBeforeEntities
 			If BattleFlipped <> Nothing Then
 				Me.BattleFlipped = BattleFlipped
@@ -39,6 +40,9 @@
 				Else
 					RenderObjects.Add(a)
 				End If
+			Next
+			For Each entity As BattleAnimation3D In Me.SpawnedEntities
+				RenderObjects.Add(entity)
 			Next
 			If RenderObjects.Count > 0 Then
 				RenderObjects = (From r In RenderObjects Order By r.CameraDistance Descending).ToList()
@@ -60,9 +64,6 @@
 							i -= 1
 							AnimationSequence.Remove(a)
 						Else
-							If a.SpawnedEntity IsNot Nothing And a.Ready = True Then
-								SpawnedEntities.Add(a.SpawnedEntity)
-							End If
 							a.Update()
 						End If
 					End If
@@ -75,6 +76,7 @@
 					Animation.UpdateEntity()
 				Next
 				For Each Entity As Entity In SpawnedEntities
+					Entity.Update()
 					Entity.UpdateEntity()
 				Next
 			End If
@@ -89,21 +91,23 @@
 		End Sub
 
 		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal startDelay As Single = 0.0F, Optional ByVal endDelay As Single = 0.0F) As Entity
-			If Not BattleFlipped = Nothing Then
-				If BattleFlipped = True Then
-					Position.X = CurrentEntity.Position.X - Position.X * 2.0F
-					Position.Z = CurrentEntity.Position.Z - Position.Z * 2.0F
-				Else
-					Position.X = CurrentEntity.Position.X + Position.X * 2.0F
-					Position.Z = CurrentEntity.Position.Z + Position.Z * 2.0F
-				End If
-			End If
-
-			Dim SpawnedEntity As Entity = New Entity(Position.X, Position.Y, Position.Z, "BattleAnimation", {Texture}, {0, 0}, False, 0, Scale, BaseModel.BillModel, 0, "", New Vector3(1.0F))
+			Dim SpawnedEntity = New BattleAnimation3D(Position, Texture, Scale, 0, 0, False)
 			SpawnedEntity.Opacity = Opacity
 
-			Dim SpawnDelayEntity As BattleAnimation3D = New BattleAnimation3D(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay, SpawnedEntity)
+			If Not BattleFlipped = Nothing Then
+				If BattleFlipped = True Then
+					SpawnedEntity.Position.X = CurrentEntity.Position.X - Position.X
+					SpawnedEntity.Position.Y = CurrentEntity.Position.Y + Position.Y
+					SpawnedEntity.Position.Z = CurrentEntity.Position.Z - Position.Z
+				Else
+					SpawnedEntity.Position.X = CurrentEntity.Position.X + Position.X
+					SpawnedEntity.Position.Y = CurrentEntity.Position.Y + Position.Y
+					SpawnedEntity.Position.Z = CurrentEntity.Position.Z + Position.Z
+				End If
+			End If
+			SpawnedEntities.Add(SpawnedEntity)
 
+			Dim SpawnDelayEntity As BattleAnimation3D = New BattleAnimation3D(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay, True)
 			AnimationSequence.Add(SpawnDelayEntity)
 			Return SpawnedEntity
 		End Function
@@ -124,7 +128,7 @@
 
 			If RemoveEntityAfter = True Then
 				If baEntityTextureChange.CanRemove = True Then
-					RemoveEntity(Entity)
+					RemoveEntity(TextureChangeEntity)
 				End If
 			End If
 		End Sub

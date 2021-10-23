@@ -815,7 +815,7 @@ nextIndex:
                 If BattleQuery.Count > cIndex Then
                     Dim cQueryObject As QueryObject = BattleQuery(cIndex)
                     If cQueryObject.QueryType = QueryObject.QueryTypes.MoveAnimation Then
-                        If CType(cQueryObject, AnimationQueryObject).DrawBeforeEntities = False Then
+                        If CType(cQueryObject, AnimationQueryObject).DrawBeforeEntities = True Then
                             cQuery.Add(cQueryObject)
                         Else
                             ForegroundAnimationList.Add(CType(cQueryObject, AnimationQueryObject))

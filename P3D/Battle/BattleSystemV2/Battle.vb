@@ -1496,7 +1496,7 @@
             End If
 
             'Own Pokémon move animation! This displays any effects that should display on the user of the move.
-            moveUsed.UserPokemonMoveAnimation(BattleScreen, own)
+            moveUsed.UserPokemonMoveAnimation(BattleScreen, Not own)
 
             If moveUsed.Target <> Attack.Targets.Self And moveUsed.FocusOppPokemon = True Then
                 If own = True Then
@@ -2707,7 +2707,7 @@
                                 'Burn animation
                                 Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
                                 BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
-                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(pNPC.Position.X - 0.25), CSng(pNPC.Position.Y - 0.25), CSng(pNPC.Position.Z - 0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(-0.25), CSng(-0.25), CSng(-0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
@@ -3420,8 +3420,8 @@
                 Dim xPos = CSng((Random.NextDouble() - 0.5) * 1.2)
                 Dim zPos = CSng((Random.NextDouble() - 0.5) * 1.2)
 
-                Dim Position As New Vector3(xPos + pNPC.Position.X, CSng(pNPC.Position.Y - 0.4), pNPC.Position.Z + zPos)
-                Dim Destination As New Vector3(xPos + pNPC.Position.X, CSng(pNPC.Position.Y + 0.8), zPos + pNPC.Position.Z)
+                Dim Position As New Vector3(xPos, -0.4, zPos)
+                Dim Destination As New Vector3(xPos, 0.8, zPos)
                 Dim Scale As New Vector3(0.2F)
 
                 Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F)
@@ -3701,8 +3701,8 @@
                 Dim xPos = CSng((Random.NextDouble() - 0.5) * 1.2)
                 Dim zPos = CSng((Random.NextDouble() - 0.5) * 1.2)
 
-                Dim Position As New Vector3(xPos + pNPC.Position.X, CSng(pNPC.Position.Y + 0.8), pNPC.Position.Z + zPos)
-                Dim Destination As New Vector3(xPos + pNPC.Position.X, CSng(pNPC.Position.Y - 0.4), zPos + pNPC.Position.Z)
+                Dim Position As New Vector3(xPos, 0.8, zPos)
+                Dim Destination As New Vector3(xPos, -0.4, zPos)
                 Dim Scale As New Vector3(0.2F)
 
                 Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F)
@@ -5419,7 +5419,7 @@
                             Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False)
                             BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
-                            Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(BattleScreen.OwnPokemonNPC.Position.X + 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Y - 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Z + 0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                            Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0.25F, 0.25F, 0.25), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
                             BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
                             BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
                             BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
@@ -6214,10 +6214,10 @@
                                 reduceAmount = CInt(.OppPokemon.MaxHP / 16)
                             End If
                             'Burn animation
-                            Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
+                            Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
                             BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
-                            Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(BattleScreen.OppPokemonNPC.Position.X - 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Y - 0.25), CSng(BattleScreen.OwnPokemonNPC.Position.Z - 0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                            Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
                             BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
                             BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
                             BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
@@ -6816,8 +6816,8 @@
 
                 ' Ball returns
                 BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
-                Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(BattleScreen.OwnPokemonNPC.Position, TextureManager.GetTexture(BattleScreen.OwnPokemon.CatchBall.TextureSource), New Vector3(0.3F), 1.0F)
-                BallReturn.AnimationMove(BallReturnEntity, True, BattleScreen.OwnPokemonNPC.Position.X - 2, BattleScreen.OwnPokemonNPC.Position.Y, BattleScreen.OwnPokemonNPC.Position.Z, 0.1, False, True, 1, 0,, 0.3)
+                Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(New Vector3(0.0F), TextureManager.GetTexture(BattleScreen.OwnPokemon.CatchBall.TextureSource), New Vector3(0.3F), 1.0F)
+                BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 1, 0,, 0.3)
 
                 BattleScreen.AddToQuery(InsertIndex, BallReturn)
 
@@ -6858,8 +6858,8 @@
 
                 BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
 
-                Dim BallThrowEntity As Entity = BallReturn.SpawnEntity(BattleScreen.OwnPokemonNPC.Position + New Vector3(-2, -0.15, 0), TextureManager.GetTexture(BattleScreen.OwnPokemon.CatchBall.TextureSource), New Vector3(0.3F), 1.0F)
-                BallThrow.AnimationMove(BallThrowEntity, True, BattleScreen.OwnPokemonNPC.Position.X, CSng(BattleScreen.OwnPokemonNPC.Position.Y + 0.35), BattleScreen.OwnPokemonNPC.Position.Z, 0.1, False, True, 0F, 0F,, 0.3)
+                Dim BallThrowEntity As Entity = BallReturn.SpawnEntity(New Vector3(-2, -0.15, 0), TextureManager.GetTexture(BattleScreen.OwnPokemon.CatchBall.TextureSource), New Vector3(0.3F), 1.0F)
+                BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0F,, 0.3)
 
                 ' Ball Opens
                 BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
