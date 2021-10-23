@@ -114,7 +114,7 @@ Public Class LoopStream
 End Class
 Public Class MusicManager
 
-    Private Const DEFAULT_FADE_SPEED As Single = 0.02F
+    Private Const DEFAULT_FADE_SPEED As Single = 0.03F
     Private Const NO_MUSIC As String = "silence"
 
     Private Shared _songs As Dictionary(Of String, SongContainer) = New Dictionary(Of String, SongContainer)()
@@ -513,23 +513,30 @@ Public Class MusicManager
 
     Public Shared Function GetSong(songName As String) As SongContainer
         Dim key = GetSongName(songName)
-        Dim songFilePath = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & key
+        Dim cContent As ContentManager = ContentPackManager.GetContentManager("Songs\" & key, ".ogg,.mp3,.wma")
+        Dim contentSongFilePath = GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & key
+
+        Dim gamemodeSongFilePath = GameController.GamePath & GameModeManager.ActiveGameMode.ContentPath & "Songs\" & key
         Dim defaultSongFilePath = GameController.GamePath & "\Content\" & "Songs\" & key
         Dim audiotype = ""
 
         If _songs.ContainsKey(key) = True Then
             Return _songs(key)
         Else
-            If System.IO.File.Exists(songFilePath & ".ogg") = True Or System.IO.File.Exists(defaultSongFilePath & ".ogg") = True Then
+            If System.IO.File.Exists(gamemodeSongFilePath & ".ogg") = True Or System.IO.File.Exists(defaultSongFilePath & ".ogg") = True Or System.IO.File.Exists(contentSongFilePath & ".ogg") = True Then
                 audiotype = ".ogg"
-            ElseIf System.IO.File.Exists(songFilePath & ".mp3") = True Or System.IO.File.Exists(defaultSongFilePath & ".mp3") = True Then
+            ElseIf System.IO.File.Exists(gamemodeSongFilePath & ".mp3") = True Or System.IO.File.Exists(defaultSongFilePath & ".mp3") = True Or System.IO.File.Exists(contentSongFilePath & ".mp3") = True Then
                 audiotype = ".mp3"
-            ElseIf System.IO.File.Exists(songFilePath & ".wma") = True Or System.IO.File.Exists(defaultSongFilePath & ".wma") = True Then
+            ElseIf System.IO.File.Exists(gamemodeSongFilePath & ".wma") = True Or System.IO.File.Exists(defaultSongFilePath & ".wma") = True Or System.IO.File.Exists(contentSongFilePath & ".wma") = True Then
                 audiotype = ".wma"
             End If
         End If
 
-        If File.Exists(songFilePath & audiotype) Then
+        If File.Exists(contentSongFilePath & audiotype) Then
+            If AddSong(key, False) = True Then
+                Return _songs(key)
+            End If
+        ElseIf File.Exists(gamemodeSongFilePath & audiotype) Then
             If AddSong(key, False) = True Then
                 Return _songs(key)
             End If
