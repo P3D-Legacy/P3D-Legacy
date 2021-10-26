@@ -523,15 +523,14 @@ Public Class MusicManager
         If _songs.ContainsKey(key) = True Then
             Return _songs(key)
         Else
-            If System.IO.File.Exists(gamemodeSongFilePath & ".ogg") = True Or System.IO.File.Exists(defaultSongFilePath & ".ogg") = True Or System.IO.File.Exists(contentSongFilePath & ".ogg") = True Then
+            If System.IO.File.Exists(contentSongFilePath & ".ogg") = True OrElse System.IO.File.Exists(gamemodeSongFilePath & ".ogg") = True Or System.IO.File.Exists(defaultSongFilePath & ".ogg") = True Then
                 audiotype = ".ogg"
-            ElseIf System.IO.File.Exists(gamemodeSongFilePath & ".mp3") = True Or System.IO.File.Exists(defaultSongFilePath & ".mp3") = True Or System.IO.File.Exists(contentSongFilePath & ".mp3") = True Then
+            ElseIf System.IO.File.Exists(contentSongFilePath & ".mp3") = True OrElse System.IO.File.Exists(gamemodeSongFilePath & ".mp3") = True Or System.IO.File.Exists(defaultSongFilePath & ".mp3") = True Then
                 audiotype = ".mp3"
-            ElseIf System.IO.File.Exists(gamemodeSongFilePath & ".wma") = True Or System.IO.File.Exists(defaultSongFilePath & ".wma") = True Or System.IO.File.Exists(contentSongFilePath & ".wma") = True Then
+            ElseIf System.IO.File.Exists(contentSongFilePath & ".wma") = True OrElse System.IO.File.Exists(gamemodeSongFilePath & ".wma") = True Or System.IO.File.Exists(defaultSongFilePath & ".wma") = True Then
                 audiotype = ".wma"
             End If
         End If
-
         If File.Exists(contentSongFilePath & audiotype) Then
             If AddSong(key, False) = True Then
                 Return _songs(key)
