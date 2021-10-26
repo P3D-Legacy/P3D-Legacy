@@ -20,6 +20,7 @@ Public Class NotificationPopup
     Public _delayDate As Date = Nothing
 
     Public _waitForInput As Boolean = False
+    Public _interacted As Boolean = False
     Public _scriptFile As String = ""
 
     Public IsReady As Boolean = False
@@ -88,6 +89,7 @@ Public Class NotificationPopup
     Public Sub Dismiss()
         Me._waitForInput = False
         Me._delayDate = Date.Now
+        _interacted = True
     End Sub
 
     ''' <summary>
@@ -119,16 +121,25 @@ Public Class NotificationPopup
                     End If
                 End If
             Else
-                If Me._scriptFile <> "" Then
-                    CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(Me._scriptFile, 0, False)
-                    Me.IsReady = True
-                End If
                 Dim BackY As Integer = CInt(0 - _size.Height * (FrameSizeBack / 3) * _scale - (FrameSizeBack / 3 * _scale) - 5)
-                If Me._positionY > BackY Then
-                    Me._positionY -= CInt(0.7 * (FrameSizeBack / 3 * _scale) / _size.Height)
-                    If Me._positionY <= BackY Then
-                        Me._positionY = BackY
-                        Me.IsReady = True
+                If Me._interacted = True Then
+                    If Me._positionY > BackY Then
+                        Me._positionY -= CInt(0.7 * (FrameSizeBack / 3 * _scale) / _size.Height)
+                        If Me._positionY <= BackY Then
+                            Me._positionY = BackY
+                            If Me._scriptFile <> "" Then
+                                CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(Me._scriptFile, 0, False)
+                                Me.IsReady = True
+                            End If
+                        End If
+                    End If
+                Else
+                    If Me._positionY > BackY Then
+                        Me._positionY -= CInt(0.7 * (FrameSizeBack / 3 * _scale) / _size.Height)
+                        If Me._positionY <= BackY Then
+                            Me._positionY = BackY
+                            Me.IsReady = True
+                        End If
                     End If
                 End If
             End If
