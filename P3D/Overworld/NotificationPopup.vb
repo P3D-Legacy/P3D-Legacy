@@ -124,7 +124,7 @@ Public Class NotificationPopup
                 Dim BackY As Integer = CInt(0 - _size.Height * (FrameSizeBack / 3) * _scale - (FrameSizeBack / 3 * _scale) - 5)
                 If Me._interacted = True Then
                     If Me._positionY > BackY Then
-                        Me._positionY -= CInt(0.7 * (FrameSizeBack / 3 * _scale) / _size.Height)
+                        Me._positionY -= CInt(1.5 * (FrameSizeBack / 3 * _scale) / _size.Height)
                         If Me._positionY <= BackY Then
                             Me._positionY = BackY
                             If Me._scriptFile <> "" Then
