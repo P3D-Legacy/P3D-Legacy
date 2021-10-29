@@ -62,8 +62,8 @@
             End If
         End Sub
 
-        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
 
             MoveAnimation.AnimationPlaySound(CStr(CurrentPokemon.Number), 0, 0,, True)
             Dim SoundwaveEntity = MoveAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)

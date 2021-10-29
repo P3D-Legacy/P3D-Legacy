@@ -91,20 +91,15 @@
 		End Sub
 
 		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal startDelay As Single = 0.0F, Optional ByVal endDelay As Single = 0.0F) As Entity
-			Dim SpawnedEntity = New BattleAnimation3D(Position, Texture, Scale, 0, 0, False)
+			Dim NewPosition As Vector3
+			If Not Position = Nothing Then
+				NewPosition = CurrentEntity.Position + Position
+			Else
+				NewPosition = CurrentEntity.Position
+			End If
+			Dim SpawnedEntity = New BattleAnimation3D(NewPosition, Texture, Scale, 0, 0, False)
 			SpawnedEntity.Opacity = Opacity
 
-			If Not BattleFlipped = Nothing Then
-				If BattleFlipped = True Then
-					SpawnedEntity.Position.X = CurrentEntity.Position.X - Position.X
-					SpawnedEntity.Position.Y = CurrentEntity.Position.Y + Position.Y
-					SpawnedEntity.Position.Z = CurrentEntity.Position.Z - Position.Z
-				Else
-					SpawnedEntity.Position.X = CurrentEntity.Position.X + Position.X
-					SpawnedEntity.Position.Y = CurrentEntity.Position.Y + Position.Y
-					SpawnedEntity.Position.Z = CurrentEntity.Position.Z + Position.Z
-				End If
-			End If
 			SpawnedEntities.Add(SpawnedEntity)
 
 			Dim SpawnDelayEntity As BattleAnimation3D = New BattleAnimation3D(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay, True)
@@ -135,28 +130,34 @@
 
 		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 3)
 			Dim MoveEntity As Entity
+			Dim ModelEntity As Entity = Nothing
 			Dim Destination As Vector3
+
+			If Entity Is Nothing Then
+				MoveEntity = CurrentEntity
+				If Me.CurrentModel IsNot Nothing Then
+					ModelEntity = Me.CurrentModel
+				End If
+			Else
+					MoveEntity = Entity
+			End If
 
 			If Not BattleFlipped = Nothing Then
 				If BattleFlipped = True Then
 					DestinationX -= DestinationX * 2.0F
 					DestinationZ -= DestinationZ * 2.0F
 				End If
-				If Entity Is Nothing Then
-					MoveEntity = CurrentEntity
-				Else
-					MoveEntity = Entity
-				End If
-				Destination = CurrentEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
+			End If
+			If CurrentEntity Is Nothing Then
+				Destination = MoveEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			Else
-				MoveEntity = Entity
-				Destination = New Vector3(DestinationX, DestinationY, DestinationZ)
+				Destination = CurrentEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			End If
 
 			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve)
 			AnimationSequence.Add(baEntityMove)
 
-			If Me.CurrentModel IsNot Nothing Then
+			If ModelEntity IsNot Nothing Then
 				Dim baModelMove As BAEntityMove = New BAEntityMove(CType(CurrentModel, Entity), Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve)
 				AnimationSequence.Add(baModelMove)
 			End If
@@ -232,7 +233,7 @@
 			AnimationSequence.Add(baSound)
 		End Sub
 
-		Public Sub AnimationBackground(Texture As Texture2D, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal FadeOut As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = 0.0F)
+		Public Sub AnimationBackground(Texture As Texture2D, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal FadeOut As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = 0.0F)
 			Dim baBackground As BABackground = New BABackground(Texture, TransitionSpeed, FadeIn, FadeOut, EndState, startDelay, endDelay, startState)
 			AnimationSequence.Add(baBackground)
 		End Sub

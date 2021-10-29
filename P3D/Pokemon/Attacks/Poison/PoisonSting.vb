@@ -65,9 +65,9 @@
             End If
         End Sub
 
-        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
-            Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Poison\Stinger"), New Vector3(0.5F), 1.0F)
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
+            Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(Nothing, TextureManager.GetTexture("Textures\Battle\Poison\Stinger"), New Vector3(0.5F), 1.0F)
 
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Poison\PoisonSting_Start", 0, 0)
             MoveAnimation.AnimationMove(StingerEntity, True, 2.0, 0.0, 0.0, 0.05, False, False, 0.0, 0.0,,, 0)
@@ -75,12 +75,12 @@
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
 
-        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
 
-            Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(2.0, 0, 0.0), TextureManager.GetTexture("Textures\Battle\Poison\Stinger"), New Vector3(0.5F), 1)
+            Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(-2.0, 0, 0.0), TextureManager.GetTexture("Textures\Battle\Poison\Stinger"), New Vector3(0.5F), 1)
 
-            MoveAnimation.AnimationMove(StingerEntity, True, 0.0, 0.0, 0.0, 0.05, False, False, 0.0, 0.0,,, 0)
+            MoveAnimation.AnimationMove(StingerEntity, True, 2.0, 0.0, 0.0, 0.05, False, False, 0.0, 0.0,,, 0)
 
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Poison\PoisonSting_Hit", 1, 0)
 

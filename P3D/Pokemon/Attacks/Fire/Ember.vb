@@ -63,14 +63,14 @@
             End If
         End Sub
 
-        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
-            Dim FireballEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\FireBall"), New Vector3(0.5F), 1.0F)
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
+            Dim FireballEntity = MoveAnimation.SpawnEntity(Nothing, TextureManager.GetTexture("Textures\Battle\Fire\FireBall"), New Vector3(0.5F), 1.0F)
 
             MoveAnimation.AnimationMove(FireballEntity, True, 2.0, 0.0, 0.0, 0.05, False, True, 0.0, 0.0,, -0.5, 0)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Fire\Ember_Start", 0, 0)
             For i = 0 To 12
-                Dim SmokeEntity = MoveAnimation.SpawnEntity(New Vector3(CSng(i * 0.2), 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\Smoke"), New Vector3(0.2), 1)
+                Dim SmokeEntity = MoveAnimation.SpawnEntity(New Vector3(CSng(i * 0.2), 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\Smoke"), New Vector3(0.2), 1, CSng(i * 0.2))
                 MoveAnimation.AnimationFade(SmokeEntity, True, 0.02, False, 0.0, CSng(i * 0.2), 0.0)
 
                 i += 1
@@ -78,14 +78,14 @@
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
 
-        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, own)
-            Dim FireballEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(2.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\FireBall"), New Vector3(0.5F), 1.0F)
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
+            Dim FireballEntity = MoveAnimation.SpawnEntity(New Vector3(-2.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\FireBall"), New Vector3(0.5F), 1.0F)
 
-            MoveAnimation.AnimationMove(FireballEntity, True, 0.0, 0.0, 0.0, 0.05, False, True, 0.0, 0.0,, -0.5, 0)
+            MoveAnimation.AnimationMove(FireballEntity, True, 2.0, 0.0, 0.0, 0.05, False, True, 0.0, 0.0,, -0.5, 0)
 
             For i = 0 To 12
-                Dim SmokeEntity = MoveAnimation.SpawnEntity(New Vector3(CSng(3.0 - i * 0.2), 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\Smoke"), New Vector3(0.2), 1)
+                Dim SmokeEntity = MoveAnimation.SpawnEntity(New Vector3(CSng(-2.0 + i * 0.2), 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\Smoke"), New Vector3(0.2), 1, CSng(i * 0.2))
                 MoveAnimation.AnimationFade(SmokeEntity, True, 0.02, False, 0.0, CSng(i * 0.2), 0.0)
 
                 i += 1
