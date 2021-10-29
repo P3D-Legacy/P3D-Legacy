@@ -82,10 +82,10 @@
             Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
             Dim FireballEntity = MoveAnimation.SpawnEntity(New Vector3(-2.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\FireBall"), New Vector3(0.5F), 1.0F)
 
-            MoveAnimation.AnimationMove(FireballEntity, True, 2.0, 0.0, 0.0, 0.05, False, True, 0.0, 0.0,, -0.5, 0)
+            MoveAnimation.AnimationMove(FireballEntity, True, 0.0, 0.0, 0.0, 0.05, False, True, 0.0, 0.0,, -0.5, 0)
 
             For i = 0 To 12
-                Dim SmokeEntity = MoveAnimation.SpawnEntity(New Vector3(CSng(-2.0 + i * 0.2), 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\Smoke"), New Vector3(0.2), 1, CSng(i * 0.2))
+                Dim SmokeEntity = MoveAnimation.SpawnEntity(New Vector3(CSng(-3.0 + i * 0.2), 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\Smoke"), New Vector3(0.2), 1, CSng(i * 0.2))
                 MoveAnimation.AnimationFade(SmokeEntity, True, 0.02, False, 0.0, CSng(i * 0.2), 0.0)
 
                 i += 1

@@ -5,6 +5,7 @@
 	Public TargetEntity As Entity
 	Public Destination As Vector3
 	Public MoveSpeed As Single
+	Public MoveYSpeed As Single
 	Public InterpolationSpeed As Single
 	Public SpinX As Boolean = False
 	Public SpinZ As Boolean = False
@@ -13,6 +14,7 @@
 	Public MovementCurve As Integer = 3
 	Private EasedIn As Boolean = False
 	Private EasedOut As Boolean = False
+	Public RemoveEntityAfter As Boolean
 	Public Enum Curves As Integer
 		EaseIn
 		EaseOut
@@ -20,11 +22,17 @@
 		Linear
 	End Enum
 
-	Public Sub New(ByRef Entity As Entity, ByVal Destination As Vector3, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 3)
+	Public Sub New(ByRef Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Destination As Vector3, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 3, Optional MoveYSpeed As Single = 0.0F)
 		MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
 
+		Me.RemoveEntityAfter = RemoveEntityAfter
 		Me.Destination = Destination
 		Me.MoveSpeed = Speed
+		If MoveYSpeed = 0F Then
+			Me.MoveYSpeed = MoveSpeed
+		Else
+			Me.MoveYSpeed = MoveYSpeed
+		End If
 		Me.MovementCurve = CType(MovementCurve, Curves)
 
 		Me.SpinX = SpinX
@@ -121,13 +129,13 @@
 				End If
 			End If
 			If TargetEntity.Position.Y < Me.Destination.Y Then
-				TargetEntity.Position.Y += Me.MoveSpeed
+				TargetEntity.Position.Y += Me.MoveYSpeed
 
 				If TargetEntity.Position.Y >= Me.Destination.Y Then
 					TargetEntity.Position.Y = Me.Destination.Y
 				End If
 			ElseIf TargetEntity.Position.Y > Me.Destination.Y Then
-				TargetEntity.Position.Y -= Me.MoveSpeed
+				TargetEntity.Position.Y -= Me.MoveYSpeed
 
 				If TargetEntity.Position.Y <= Me.Destination.Y Then
 					TargetEntity.Position.Y = Me.Destination.Y
@@ -183,6 +191,11 @@
 		End If
 		If TargetEntity.Position = Destination Then
 			Me.Ready = True
+		End If
+	End Sub
+	Public Overrides Sub DoRemoveEntity()
+		If Me.RemoveEntityAfter = True Then
+			TargetEntity.CanBeRemoved = True
 		End If
 	End Sub
 

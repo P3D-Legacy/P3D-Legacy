@@ -9,10 +9,11 @@
     Public Anchors As String '1 = Bottom, 2 = Top, 3 = Left, 4 = Right. Combinations are possible.
 
     Public Change As New Vector3(1)
+    Public RemoveEntityAfter As Boolean
 
-    Public Sub New(ByVal Entity As Entity, ByVal Scale As Vector3, ByVal Grow As Boolean, ByVal EndSize As Vector3, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Anchors As String)
+    Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Scale As Vector3, ByVal Grow As Boolean, ByVal EndSize As Vector3, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal Anchors As String)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, Scale, startDelay, endDelay)
-
+        Me.RemoveEntityAfter = RemoveEntityAfter
         Me.Anchors = Anchors
         Me.Grow = Grow
         Me.EndSize = EndSize
@@ -103,6 +104,11 @@
 
     Public Sub SetChange(ByVal changeX As Single, ByVal changeY As Single, ByVal changeZ As Single)
         Me.Change = New Vector3(changeX, changeY, changeZ)
+    End Sub
+    Public Overrides Sub DoRemoveEntity()
+        If Me.RemoveEntityAfter = True Then
+            TargetEntity.CanBeRemoved = True
+        End If
     End Sub
 
 End Class

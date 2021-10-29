@@ -50,6 +50,7 @@
                     End If
                 Else
                     CanRemove = True
+                    DoRemoveEntity()
                 End If
             Else
                 If startDelay > 0.0F Then
@@ -61,6 +62,8 @@
                 Else
                     If SpawnedEntity = True Then
                         Ready = True
+                    Else
+                        Me.Visible = True
                     End If
                     DoActionActive()
                 End If
@@ -85,6 +88,9 @@
     End Sub
 
     Public Overridable Sub DoActionActive()
+        'Insert code in Inherits class here.
+    End Sub
+    Public Overridable Sub DoRemoveEntity()
         'Insert code in Inherits class here.
     End Sub
 

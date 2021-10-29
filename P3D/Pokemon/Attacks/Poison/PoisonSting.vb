@@ -80,7 +80,7 @@
 
             Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(-2.0, 0, 0.0), TextureManager.GetTexture("Textures\Battle\Poison\Stinger"), New Vector3(0.5F), 1)
 
-            MoveAnimation.AnimationMove(StingerEntity, True, 2.0, 0.0, 0.0, 0.05, False, False, 0.0, 0.0,,, 0)
+            MoveAnimation.AnimationMove(StingerEntity, True, 0.0, 0.0, 0.0, 0.05, False, False, 0.0, 0.0,,, 0)
 
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Poison\PoisonSting_Hit", 1, 0)
 

@@ -9,18 +9,19 @@
     Dim ReturnVector As Vector3
     Dim hasReturned As Boolean = False
     Dim DoRotation As Vector3 = New Vector3(1.0F)
+    Public RemoveEntityAfter As Boolean = False
 
-    Public Sub New(ByVal Entity As Entity, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single)
+    Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single)
         MyBase.New(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay)
-
+        Me.RemoveEntityAfter = RemoveEntityAfter
         Me.RotationSpeedVector = RotationSpeedVector
         Me.EndRotation = EndRotation
         Me.ReturnVector = Me.Rotation
         Me.TargetEntity = Entity
     End Sub
 
-    Public Sub New(ByVal Entity As Entity, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean)
-        Me.New(Entity, RotationSpeedVector, EndRotation, startDelay, endDelay)
+    Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean)
+        Me.New(Entity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay)
 
         If DoXRotation = False Then
             DoRotation.X = 0.0F
@@ -33,8 +34,8 @@
         End If
     End Sub
 
-    Public Sub New(ByVal Entity As Entity, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
-        Me.New(Entity, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation)
+    Public Sub New(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedVector As Vector3, ByVal EndRotation As Vector3, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
+        Me.New(Entity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation)
 
         Me.DoReturn = DoReturn
     End Sub
@@ -128,4 +129,9 @@
         Return True
     End Function
 
+    Public Overrides Sub DoRemoveEntity()
+        If Me.RemoveEntityAfter = True Then
+            TargetEntity.CanBeRemoved = True
+        End If
+    End Sub
 End Class

@@ -79,6 +79,16 @@
 					Entity.Update()
 					Entity.UpdateEntity()
 				Next
+				For i = 0 To Me.SpawnedEntities.Count - 1
+					If i <= SpawnedEntities.Count - 1 Then
+						Dim entity As Entity = SpawnedEntities(i)
+
+						If entity.CanBeRemoved = True Then
+							i -= 1
+							RemoveEntity(entity)
+						End If
+					End If
+				Next
 			End If
 		End Sub
 
@@ -97,13 +107,12 @@
 			Else
 				NewPosition = CurrentEntity.Position
 			End If
-			Dim SpawnedEntity = New BattleAnimation3D(NewPosition, Texture, Scale, 0, 0, False)
+			Dim SpawnedEntity = New BattleAnimation3D(NewPosition, Texture, Scale, startDelay, endDelay, False)
 			SpawnedEntity.Opacity = Opacity
+			SpawnedEntity.Visible = False
 
 			SpawnedEntities.Add(SpawnedEntity)
 
-			Dim SpawnDelayEntity As BattleAnimation3D = New BattleAnimation3D(New Vector3(0.0F), TextureManager.DefaultTexture, New Vector3(1.0F), startDelay, endDelay, True)
-			AnimationSequence.Add(SpawnDelayEntity)
 			Return SpawnedEntity
 		End Function
 		Public Sub RemoveEntity(Entity As Entity)
@@ -118,17 +127,12 @@
 				TextureChangeEntity = Entity
 			End If
 
-			Dim baEntityTextureChange As BAEntityTextureChange = New BAEntityTextureChange(TextureChangeEntity, Texture, startDelay, endDelay)
+			Dim baEntityTextureChange As BAEntityTextureChange = New BAEntityTextureChange(TextureChangeEntity, RemoveEntityAfter, Texture, startDelay, endDelay)
 			AnimationSequence.Add(baEntityTextureChange)
 
-			If RemoveEntityAfter = True Then
-				If baEntityTextureChange.CanRemove = True Then
-					RemoveEntity(TextureChangeEntity)
-				End If
-			End If
 		End Sub
 
-		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 3)
+		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 3, Optional MoveYSpeed As Single = 0.0F)
 			Dim MoveEntity As Entity
 			Dim ModelEntity As Entity = Nothing
 			Dim Destination As Vector3
@@ -139,7 +143,7 @@
 					ModelEntity = Me.CurrentModel
 				End If
 			Else
-					MoveEntity = Entity
+				MoveEntity = Entity
 			End If
 
 			If Not BattleFlipped = Nothing Then
@@ -154,77 +158,79 @@
 				Destination = CurrentEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			End If
 
-			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve)
+			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, RemoveEntityAfter, Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
 			AnimationSequence.Add(baEntityMove)
 
 			If ModelEntity IsNot Nothing Then
-				Dim baModelMove As BAEntityMove = New BAEntityMove(CType(CurrentModel, Entity), Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve)
+				Dim baModelMove As BAEntityMove = New BAEntityMove(CType(CurrentModel, Entity), False, Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
 				AnimationSequence.Add(baModelMove)
 			End If
 
-			If RemoveEntityAfter = True Then
-				If baEntityMove.CanRemove = True Then
-					RemoveEntity(MoveEntity)
-				End If
-			End If
 		End Sub
 
 		Public Sub AnimationFade(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = -1.0F)
 			Dim FadeEntity As Entity
+			Dim FadeModel As Entity = Nothing
 			If Entity Is Nothing Then
 				FadeEntity = CurrentEntity
+				If Me.CurrentModel IsNot Nothing Then
+					FadeModel = Me.CurrentModel
+				End If
 			Else
 				FadeEntity = Entity
 			End If
 			If startState = -1.0F Then startState = FadeEntity.Opacity
-			Dim baEntityOpacity As BAEntityOpacity = New BAEntityOpacity(FadeEntity, TransitionSpeed, FadeIn, EndState, startDelay, endDelay, startState)
+			Dim baEntityOpacity As BAEntityOpacity = New BAEntityOpacity(FadeEntity, RemoveEntityAfter, TransitionSpeed, FadeIn, EndState, startDelay, endDelay, startState)
 			AnimationSequence.Add(baEntityOpacity)
 
-			If Me.CurrentModel IsNot Nothing Then
-				Dim baModelOpacity As BAEntityOpacity = New BAEntityOpacity(CType(CurrentModel, Entity), TransitionSpeed, FadeIn, EndState, startDelay, endDelay, startState)
+			If FadeModel IsNot Nothing Then
+				Dim baModelOpacity As BAEntityOpacity = New BAEntityOpacity(CType(FadeModel, Entity), False, TransitionSpeed, FadeIn, EndState, startDelay, endDelay, startState)
 				AnimationSequence.Add(baModelOpacity)
 			End If
 
-			If RemoveEntityAfter = True Then
-				If baEntityOpacity.CanRemove = True Then
-					RemoveEntity(FadeEntity)
-				End If
-			End If
 		End Sub
 		Public Sub AnimationRotate(Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedX As Single, ByVal RotationSpeedY As Single, ByVal RotationSpeedZ As Single, ByVal EndRotationX As Single, ByVal EndRotationY As Single, ByVal EndRotationZ As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
 			Dim RotateEntity As Entity
+			Dim RotateModel As Entity = Nothing
 			If Entity Is Nothing Then
 				RotateEntity = CurrentEntity
+				If Me.CurrentModel IsNot Nothing Then
+					RotateModel = Me.CurrentModel
+				End If
 			Else
 				RotateEntity = Entity
 			End If
 
 			Dim RotationSpeedVector As Vector3 = New Vector3(RotationSpeedX, RotationSpeedY, RotationSpeedZ)
 			Dim EndRotation As Vector3 = New Vector3(EndRotationX, EndRotationY, EndRotationZ)
-			Dim baEntityRotate As BAEntityRotate = New BAEntityRotate(RotateEntity, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
+			Dim baEntityRotate As BAEntityRotate = New BAEntityRotate(RotateEntity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
 			AnimationSequence.Add(baEntityRotate)
-			If RemoveEntityAfter = True Then
-				If baEntityRotate.CanRemove = True Then
-					RemoveEntity(RotateEntity)
-				End If
+
+			If RotateModel IsNot Nothing Then
+				Dim baModelOpacity As BAEntityRotate = New BAEntityRotate(CType(RotateModel, Entity), False, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
+				AnimationSequence.Add(baModelOpacity)
 			End If
+
 		End Sub
 		Public Sub AnimationScale(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal Anchors As String = "1")
 			Dim ScaleEntity As Entity
+			Dim ScaleModel As Entity = Nothing
 			If Entity Is Nothing Then
 				ScaleEntity = CurrentEntity
+				If Me.CurrentModel IsNot Nothing Then
+					ScaleModel = Me.CurrentModel
+				End If
 			Else
 				ScaleEntity = Entity
 			End If
 
 			Dim Scale As Vector3 = ScaleEntity.Scale
 			Dim EndSize As Vector3 = New Vector3(EndSizeX, EndSizeY, EndSizeZ)
-			Dim baBillSize As BAEntityScale = New BAEntityScale(ScaleEntity, Scale, Grow, EndSize, SizeSpeed, startDelay, endDelay, Anchors)
-			AnimationSequence.Add(baBillSize)
-			If RemoveEntityAfter = True Then
-				If baBillSize.CanRemove = True Then
-					RemoveEntity(ScaleEntity)
-				End If
+			Dim baEntityScale As BAEntityScale = New BAEntityScale(ScaleEntity, RemoveEntityAfter, Scale, Grow, EndSize, SizeSpeed, startDelay, endDelay, Anchors)
+			AnimationSequence.Add(baEntityScale)
+
+			If ScaleModel IsNot Nothing Then
+				Dim baModelScale As BAEntityScale = New BAEntityScale(CType(ScaleModel, Entity), False, Scale, Grow, EndSize, SizeSpeed, startDelay, endDelay, Anchors)
 			End If
 		End Sub
 
