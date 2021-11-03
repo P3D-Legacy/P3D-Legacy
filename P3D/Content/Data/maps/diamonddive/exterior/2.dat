@@ -6,12 +6,15 @@ Floor:
 
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,10]}}{"Position"{intArr[0,0,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[96,16,16,16]}}]}}
 
-{"Floor"{ENT[{"Size"{intArr[2,9]}}{"Position"{intArr[1,0,1]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}
+"Floor"{ENT[{"Size"{intArr[2,9]}}{"Position"{intArr[79,5,25]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}]}}
 
 {"Floor"{ENT[{"Size"{intArr[1,2]}}{"Position"{intArr[-4,5,0]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[160,16,16,16]}}]}}
 
 Water:
-{"EntityField"{ENT[{"Size"{intArr[10,2]}}{"EntityID"{str[Water]}}{"Position"{sngArr[90,4.75,11]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[20,2]}}{"EntityID"{str[Water]}}{"Position"{sngArr[80,4.75,11]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[4,12]}}{"EntityID"{str[Water]}}{"Position"{sngArr[86,4.75,13]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[24,4]}}{"EntityID"{str[Water]}}{"Position"{sngArr[62,4.75,21]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[2,9]}}{"EntityID"{str[Water]}}{"Position"{sngArr[79,4.75,25]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[0,16,16,16][144,16,16,16]]}}{"TextureIndex"{intArr[0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
 Mountain:
 	Mountain9:
