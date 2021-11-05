@@ -7227,7 +7227,7 @@
                         ' Pokemon disappears
                         BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
 
-                        BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
+                        BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
 
                         ' Ball returns
                         BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
@@ -7292,7 +7292,7 @@
 
                     ' Pokemon disappears
                     BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
-                    BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 4)
+                    BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
 
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
@@ -7326,12 +7326,12 @@
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
+                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
                 If Core.Player.ShowBattleAnimations <> 0 Then
                     ' Ball is thrown
-                    Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
 
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
-                    Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(-2, -0.15, 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(-2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
                     BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, 0.3,, 0.025F)
 
                     ' Ball opens
@@ -7350,11 +7350,11 @@
                         BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
                         Threading.Interlocked.Increment(SmokeSpawned)
                     Loop While SmokeSpawned <= 38
-
-                    ' Pokemon appears
-                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                End If
+                ' Pokemon appears
+                BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
-
+                If Core.Player.ShowBattleAnimations <> 0 Then
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 5, 0,,, 4)
 
