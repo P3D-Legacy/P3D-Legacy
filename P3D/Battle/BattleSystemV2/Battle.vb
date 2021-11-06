@@ -1122,14 +1122,20 @@
             'p: the attacking pokemon
             'op: the target pokemon
             Dim p As Pokemon
+            Dim pNPC As NPC
             Dim op As Pokemon
+            Dim opNPC As NPC
             If own Then
                 p = BattleScreen.OwnPokemon
                 op = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OwnPokemonNPC
+                opNPC = BattleScreen.OppPokemonNPC
                 BattleScreen.FieldEffects.OwnLastMove = moveUsed
             Else
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
+                pNPC = BattleScreen.OppPokemonNPC
+                opNPC = BattleScreen.OwnPokemonNPC
                 BattleScreen.FieldEffects.OppLastMove = moveUsed
             End If
             If WildHasEscaped Then
@@ -1405,7 +1411,36 @@
 
             If p.Status = Pokemon.StatusProblems.Paralyzed Then
                 If Core.Random.Next(0, 4) = 0 Then
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Paralyzed", False))
+                    If Core.Player.ShowBattleAnimations <> 0 Then
+                        Dim ParalyzedAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+
+                        ParalyzedAnimation.AnimationPlaySound("Battle\Effects\Paralyzed", 0, 0)
+                        Dim maxAmount As Integer = 4
+                        Dim currentAmount As Integer = 0
+                        While currentAmount <= maxAmount
+                            Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(0, 0, 16, 16), "")
+                            Dim xPos = CSng(Random.Next(-4, 4) / 8)
+                            Dim zPos = CSng(Random.Next(-4, 4) / 8)
+
+                            Dim Position As New Vector3(xPos, -0.25, zPos)
+                            Dim Destination As New Vector3(xPos - xPos * 2, 0, zPos - zPos * 2)
+                            Dim Scale As New Vector3(0.25F)
+                            Dim startDelay As Double = 5.0 * Random.NextDouble()
+                            Dim ShockEntity = ParalyzedAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+                            ParalyzedAnimation.AnimationMove(ShockEntity, True, Destination.X, Destination.Y, Destination.Z, 0.025F, False, True, CSng(startDelay), 0.0F)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 1), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(32, 0, 16, 16), ""), CSng(startDelay + 2), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(48, 0, 16, 16), ""), CSng(startDelay + 3), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(64, 0, 16, 16), ""), CSng(startDelay + 4), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(72, 0, 16, 16), ""), CSng(startDelay + 5), 1)
+
+                            Threading.Interlocked.Increment(currentAmount)
+                        End While
+
+                        BattleScreen.BattleQuery.Add(ParalyzedAnimation)
+                    Else
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Paralyzed", False))
+                    End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fully paralyzed!" & Environment.NewLine & "It cannot move!"))
                     Exit Sub
                 End If
@@ -2873,7 +2908,9 @@
         Public Function InflictParalysis(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If own = False Then
+                pNPC = BattleScreen.OppPokemonNPC
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
@@ -2934,7 +2971,36 @@
                             'Works!
                             p.Status = Pokemon.StatusProblems.Paralyzed
                             ChangeCameraAngle(1, own, BattleScreen)
-                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Paralyzed", False))
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim ParalyzedAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+
+                                ParalyzedAnimation.AnimationPlaySound("Battle\Effects\Paralyzed", 0, 0)
+                                Dim maxAmount As Integer = 4
+                                Dim currentAmount As Integer = 0
+                                While currentAmount <= maxAmount
+                                    Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(0, 0, 16, 16), "")
+                                    Dim xPos = CSng(Random.Next(-4, 4) / 8)
+                                    Dim zPos = CSng(Random.Next(-4, 4) / 8)
+
+                                    Dim Position As New Vector3(xPos, -0.25, zPos)
+                                    Dim Destination As New Vector3(xPos - xPos * 2, 0, zPos - zPos * 2)
+                                    Dim Scale As New Vector3(0.25F)
+                                    Dim startDelay As Double = 5.0 * Random.NextDouble()
+                                    Dim ShockEntity = ParalyzedAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+                                    ParalyzedAnimation.AnimationMove(ShockEntity, False, Destination.X, Destination.Y, Destination.Z, 0.025F, False, True, CSng(startDelay), 0.0F)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 1), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(32, 0, 16, 16), ""), CSng(startDelay + 2), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(48, 0, 16, 16), ""), CSng(startDelay + 3), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(64, 0, 16, 16), ""), CSng(startDelay + 4), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, True, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(72, 0, 16, 16), ""), CSng(startDelay + 5), 0)
+
+                                    Threading.Interlocked.Increment(currentAmount)
+                                End While
+
+                                BattleScreen.BattleQuery.Add(ParalyzedAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Paralyzed", False))
+                            End If
                             Select Case message
                                 Case "" 'Print default message only
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is paralyzed!" & Environment.NewLine & "It can't move!"))
@@ -7352,7 +7418,7 @@
                 End If
                 ' Pokemon appears
                 BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
-                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
+                BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
                 If Core.Player.ShowBattleAnimations <> 0 Then
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 5, 0,,, 4)
