@@ -355,9 +355,13 @@
         End If
         If GameInstance.IsMouseVisible = True Then
             For i = 0 To 3
-                If New Rectangle(CInt(windowSize.Width / 2) - 328, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 500, 48).Contains(MouseHandler.MousePosition) = True Then
+                If New Rectangle(CInt(windowSize.Width / 2 - 328), CInt(windowSize.Height / 2 - 128 + i * 50), 500, 48).Contains(MouseHandler.MousePosition) = True Then
                     If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.LeftButton) = True Then
                         packsMenuIndex(0) = i + packsMenuIndex(2)
+                        If SelectPackNoiseDelay = 0 Then
+                            SoundManager.PlaySound("select", 0.0F, 0.0F, 0.5F, False)
+                            SelectPackNoiseDelay = 10
+                        End If
                     End If
                 End If
             Next
@@ -571,7 +575,7 @@
             For Each s As String In Core.GameOptions.ContentPackNames
                 ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
             Next
-            SoundManager.PlaySound("save")
+            SoundManager.PlaySound("save", False)
             Core.GameOptions.ChangedPack = True
             Core.OffsetMaps.Clear()
             MusicManager.Play("title")
