@@ -2543,12 +2543,18 @@
             p.HP = 0
             p.Status = Pokemon.StatusProblems.Fainted
             Me.ChangeCameraAngle(1, own, BattleScreen)
-            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(p.Number.ToString(), True))
 
             If message = "" Then
                 message = p.GetDisplayName() & " fainted!"
             End If
             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
+
+            If BattleScreen.IsTrainerBattle = False AndAlso Core.Player.ShowBattleAnimations <> 0 Then
+                Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
+                FaintAnimation.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
+                FaintAnimation.AnimationMove(Nothing, False, 0, -1, 0, 0.05, False, False, 2, 0,,, 3)
+                BattleScreen.BattleQuery.Add(FaintAnimation)
+            End If
 
             Dim str = p.AdditionalData.ToLower()
             Select Case str
@@ -3424,9 +3430,9 @@
                     Dim Position As New Vector3(xPos, -0.4, zPos)
                     Dim Destination As New Vector3(xPos, 0.8, zPos)
                     Dim Scale As New Vector3(0.2F)
-
-                    Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F)
                     Dim startDelay As Double = 5.0 * Random.NextDouble()
+                    Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+
 
                     StatAnimation.AnimationMove(Nothing, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
                     Threading.Interlocked.Increment(currentAmount)
@@ -3707,9 +3713,9 @@
                     Dim Position As New Vector3(xPos, 0.8, zPos)
                     Dim Destination As New Vector3(xPos, -0.4, zPos)
                     Dim Scale As New Vector3(0.2F)
-
-                    Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F)
                     Dim startDelay As Double = 5.0 * Random.NextDouble()
+                    Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+
 
                     StatAnimation.AnimationMove(Nothing, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
                     Threading.Interlocked.Increment(currentAmount)
@@ -3969,7 +3975,7 @@
 
                 '***HP INCREASE ANIMATION***
                 If Core.Player.ShowBattleAnimations <> 0 Then
-                    Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+                    Dim HealAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
                     Dim maxAmount As Integer = 20
                     Dim currentAmount As Integer = 0
                     While currentAmount <= maxAmount
@@ -3980,14 +3986,14 @@
                         Dim Position As New Vector3(xPos, -0.4, zPos)
                         Dim Destination As New Vector3(xPos, 0.8, zPos)
                         Dim Scale As New Vector3(0.2F)
-
-                        Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F)
                         Dim startDelay As Double = 5.0 * Random.NextDouble()
+                        Dim HealEntity As Entity = HealAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
 
-                        StatAnimation.AnimationMove(Nothing, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+
+                        HealAnimation.AnimationMove(HealEntity, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
                         Threading.Interlocked.Increment(currentAmount)
                     End While
-                    BattleScreen.BattleQuery.Add(StatAnimation)
+                    BattleScreen.BattleQuery.Add(HealAnimation)
                 End If
                 BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Heal", False))
 
@@ -6847,18 +6853,18 @@
                         Threading.Interlocked.Increment(SmokeReturned)
                     Loop While SmokeReturned <= 38
                 End If
-                ' Pokemon disappears
 
-                BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
                 If Core.Player.ShowBattleAnimations <> 0 Then
+                    ' Pokemon disappears
+                    BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
                     BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
 
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
                     Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(Nothing, BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
                     BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 1, 0,, 0.3)
+                    BattleScreen.AddToQuery(InsertIndex, BallReturn)
                 End If
-                BattleScreen.AddToQuery(InsertIndex, BallReturn)
 
                 Dim index As Integer = NewPokemonIndex
                 If index <= -1 Then
@@ -7173,13 +7179,6 @@
             BattleScreen.OppPokemon.Ability.SwitchOut(BattleScreen.OppPokemon)
 
             If BattleScreen.IsTrainerBattle = False Then
-                ChangeCameraAngle(1, False, BattleScreen)
-                If Core.Player.ShowBattleAnimations <> 0 Then
-                    Dim Faint As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
-                    Faint.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
-                    Faint.AnimationMove(Nothing, False, 0, -1, 0, 0.1, False, False, 2, 0,,, 3)
-                    BattleScreen.BattleQuery.Add(Faint)
-                End If
 
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 2, -1, -1, -1, -1))
 

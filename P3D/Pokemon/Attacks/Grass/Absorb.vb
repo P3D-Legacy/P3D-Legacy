@@ -94,14 +94,14 @@
 
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
-            Dim maxAmount As Integer = 8
+            Dim maxAmount As Integer = 12
             Dim currentAmount As Integer = 0
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Grass\Absorb", 0, 0)
             While currentAmount <= maxAmount
-                Dim yPos As Single = CSng(Random.NextDouble() * 0.5)
-                Dim zPos As Single = CSng(Random.Next(-5, 5) * 0.15)
-                Dim AbsorbEntity = MoveAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Grass\Absorb"), New Vector3(0.35F), 1)
-                MoveAnimation.AnimationMove(AbsorbEntity, True, -1.5, yPos, zPos, 0.03, False, True, CSng(currentAmount), 0.0, 0.1, 0.5)
+                Dim yPos As Single = CSng(Random.Next(-1, 3) * 0.15)
+                Dim zPos As Single = CSng(Random.Next(-3, 3) * 0.15)
+                Dim AbsorbEntity = MoveAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Grass\Absorb"), New Vector3(0.35F), 1, CSng(currentAmount * 0.8))
+                MoveAnimation.AnimationMove(AbsorbEntity, True, -1.5, yPos, zPos, 0.03, False, True, CSng(currentAmount * 0.8), 0.0, 0.1, 0.5,, 0.005F)
 
                 Threading.Interlocked.Increment(currentAmount)
             End While
