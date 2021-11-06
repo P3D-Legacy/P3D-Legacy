@@ -384,7 +384,7 @@
                 Core.SpriteBatch.Draw(Me.IconUnselected, New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 48), Color.White)
                 If isSelected = True Then
                     Core.SpriteBatch.Draw(Me.IconSelected, New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 48), New Color(255, 255, 255, (SelExtended + AllExtended)))
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Text, New Vector2(Core.ScreenSize.Width - (AllExtended + extraExtended) + 86, 144 + Index * 96), New Color(0, 0, 0, (SelExtended + AllExtended)))
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Text, New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 86), CInt(144 + Index * 96)), New Color(0, 0, 0, (SelExtended + AllExtended)))
                 Else
                     If IconFading > 0 Then
                         Core.SpriteBatch.Draw(Me.IconSelected, New Rectangle(Core.ScreenSize.Width - (AllExtended) + 28, 132 + Index * 96, 48, 48), New Color(255, 255, 255, IconFading))
@@ -471,10 +471,10 @@
                     Dim ppColor As Color = GetPPColor()
                     ppColor.A = CByte((extraExtended + AllExtended - deductAlpha).Clamp(0, 255))
 
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, Me.Move.CurrentPP & "/" & Me.Move.MaxPP, New Vector2(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 150 + Index * 96), ppColor)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.Name, New Vector2(Core.ScreenSize.Width - (AllExtended + extraExtended) + 86, 144 + Index * 96), New Color(0, 0, 0, (SelExtended + AllExtended) - deductAlpha))
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.CurrentPP & "/" & Me.Move.MaxPP, New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), ppColor)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.Name, New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 86), CInt(132 + Index * 96)), New Color(0, 0, 0, (SelExtended + AllExtended) - deductAlpha))
                 Else
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, Me.Move.Name, New Vector2(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 150 + Index * 96), New Color(0, 0, 0, 255 - (extraExtended + AllExtended) - deductAlpha))
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.Name, New Vector2(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 152 + Index * 96), New Color(0, 0, 0, 255 - (extraExtended + AllExtended) - deductAlpha))
                 End If
             End Sub
 

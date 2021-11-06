@@ -3434,7 +3434,7 @@
                     Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
 
 
-                    StatAnimation.AnimationMove(Nothing, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                    StatAnimation.AnimationMove(StatEntity, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
                     Threading.Interlocked.Increment(currentAmount)
                 End While
                 BattleScreen.BattleQuery.Add(StatAnimation)
@@ -3717,7 +3717,7 @@
                     Dim StatEntity As Entity = StatAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
 
 
-                    StatAnimation.AnimationMove(Nothing, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                    StatAnimation.AnimationMove(StatEntity, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
                     Threading.Interlocked.Increment(currentAmount)
                 End While
                 BattleScreen.BattleQuery.Add(StatAnimation)
