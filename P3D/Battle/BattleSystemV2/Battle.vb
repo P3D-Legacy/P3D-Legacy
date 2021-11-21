@@ -2585,10 +2585,12 @@
             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
 
             If BattleScreen.IsTrainerBattle = False AndAlso Core.Player.ShowBattleAnimations <> 0 Then
-                Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
-                FaintAnimation.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
-                FaintAnimation.AnimationMove(Nothing, False, 0, -1, 0, 0.05, False, False, 2, 0,,, 3)
-                BattleScreen.BattleQuery.Add(FaintAnimation)
+                If own = False Then
+                    Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True, BattleScreen.OppPokemonModel)
+                    FaintAnimation.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
+                    FaintAnimation.AnimationMove(Nothing, False, 0, -1, 0, 0.05, False, False, 2, 0,,, 3)
+                    BattleScreen.BattleQuery.Add(FaintAnimation)
+                End If
             End If
 
             Dim str = p.AdditionalData.ToLower()
