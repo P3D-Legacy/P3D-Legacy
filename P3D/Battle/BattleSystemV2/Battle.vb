@@ -2748,11 +2748,11 @@
                                 'Burn animation
                                 Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
                                 BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
-                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(-0.25), CSng(-0.25), CSng(-0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 2)
+                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(CSng(-0.25), CSng(-0.25), CSng(-0.25)), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32), ""), 4, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32), ""), 5, 2)
                                 BattleScreen.BattleQuery.Add(BurnAnimation)
 
                                 Select Case message
@@ -5461,19 +5461,19 @@
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 0, 1)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 4, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
                                 End If
@@ -5489,19 +5489,19 @@
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 0, 1)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 4, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
                                 End If
@@ -5526,10 +5526,10 @@
                                 BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
                                 Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0.25F, 0.25F, 0.25), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 2)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32), ""), 4, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32), ""), 5, 2)
                                 BattleScreen.BattleQuery.Add(BurnAnimation)
                             End If
                             'Actual damage
@@ -6264,19 +6264,19 @@
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 0, 1)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 4, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
                                 End If
@@ -6292,19 +6292,19 @@
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 0, 1)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32)), New Vector3(0.5F), 1, 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32)), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32)), 4, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
                                     'Actual damage
@@ -6327,11 +6327,11 @@
                                 Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
                                 BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
-                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32)), New Vector3(0.5, 0.5, 0.5), 1.0F)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32)), 2, 1)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32)), 3, 1)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32)), 4, 1)
-                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32)), 5, 2)
+                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32), ""), 4, 1)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32), ""), 5, 2)
                                 BattleScreen.BattleQuery.Add(BurnAnimation)
                             End If
                             'Actual damage
