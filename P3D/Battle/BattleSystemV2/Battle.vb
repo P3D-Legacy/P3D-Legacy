@@ -1418,7 +1418,7 @@
                         Dim maxAmount As Integer = 4
                         Dim currentAmount As Integer = 0
                         While currentAmount <= maxAmount
-                            Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(0, 0, 16, 16), "")
+                            Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(0, 0, 16, 16), "")
                             Dim xPos = CSng(Random.Next(-4, 4) / 8)
                             Dim zPos = CSng(Random.Next(-4, 4) / 8)
 
@@ -1428,11 +1428,11 @@
                             Dim startDelay As Double = 5.0 * Random.NextDouble()
                             Dim ShockEntity = ParalyzedAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
                             ParalyzedAnimation.AnimationMove(ShockEntity, True, Destination.X, Destination.Y, Destination.Z, 0.025F, False, True, CSng(startDelay), 0.0F)
-                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 1), 1)
-                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(32, 0, 16, 16), ""), CSng(startDelay + 2), 1)
-                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(48, 0, 16, 16), ""), CSng(startDelay + 3), 1)
-                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(64, 0, 16, 16), ""), CSng(startDelay + 4), 1)
-                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(72, 0, 16, 16), ""), CSng(startDelay + 5), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 1), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(32, 0, 16, 16), ""), CSng(startDelay + 2), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(48, 0, 16, 16), ""), CSng(startDelay + 3), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(64, 0, 16, 16), ""), CSng(startDelay + 4), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(72, 0, 16, 16), ""), CSng(startDelay + 5), 1)
 
                             Threading.Interlocked.Increment(currentAmount)
                         End While
@@ -2980,7 +2980,7 @@
                                 Dim maxAmount As Integer = 4
                                 Dim currentAmount As Integer = 0
                                 While currentAmount <= maxAmount
-                                    Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(0, 0, 16, 16), "")
+                                    Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(0, 0, 16, 16), "")
                                     Dim xPos = CSng(Random.Next(-4, 4) / 8)
                                     Dim zPos = CSng(Random.Next(-4, 4) / 8)
 
@@ -2990,11 +2990,11 @@
                                     Dim startDelay As Double = 5.0 * Random.NextDouble()
                                     Dim ShockEntity = ParalyzedAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
                                     ParalyzedAnimation.AnimationMove(ShockEntity, False, Destination.X, Destination.Y, Destination.Z, 0.025F, False, True, CSng(startDelay), 0.0F)
-                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 1), 0)
-                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(32, 0, 16, 16), ""), CSng(startDelay + 2), 0)
-                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(48, 0, 16, 16), ""), CSng(startDelay + 3), 0)
-                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(64, 0, 16, 16), ""), CSng(startDelay + 4), 0)
-                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, True, TextureManager.GetTexture("Textures\Battle\Electric\Sparks", New Rectangle(72, 0, 16, 16), ""), CSng(startDelay + 5), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 1), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(32, 0, 16, 16), ""), CSng(startDelay + 2), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(48, 0, 16, 16), ""), CSng(startDelay + 3), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(64, 0, 16, 16), ""), CSng(startDelay + 4), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(72, 0, 16, 16), ""), CSng(startDelay + 5), 0)
 
                                     Threading.Interlocked.Increment(currentAmount)
                                 End While
@@ -3304,10 +3304,14 @@
 
         Public Function InflictConfusion(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim opNPC As NPC = BattleScreen.OppPokemonNPC
             If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
                 op = BattleScreen.OwnPokemon
+                opNPC = BattleScreen.OwnPokemonNPC
             End If
 
             If p.HP <= 0 OrElse p.Status = Pokemon.StatusProblems.Fainted Then
@@ -3340,6 +3344,48 @@
                 Return False
             Else
                 'Works!
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    Dim ConfusionAnimation As New AnimationQueryObject(pNPC, Not own)
+
+                    ConfusionAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
+                    Dim DuckEntity1 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 1)
+                    Dim DuckEntity2 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 1)
+                    Dim DuckEntity3 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 1)
+
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 1)
+
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 1)
+
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 1)
+
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 64, 16, 16), ""), 2, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 64, 16, 16), ""), 2, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 64, 16, 16), ""), 2, 1)
+
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 1)
+
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 1)
+
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 1)
+
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 64, 16, 16), ""), 4, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 64, 16, 16), ""), 4, 1)
+                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 64, 16, 16), ""), 4, 1)
+
+                    BattleScreen.BattleQuery.Add(ConfusionAnimation)
+                End If
                 p.AddVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Select Case message
                     Case "" 'Print default message only
@@ -5463,19 +5509,19 @@
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
                                 End If
@@ -5491,19 +5537,19 @@
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
                                 End If
@@ -6266,19 +6312,19 @@
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
                                 End If
@@ -6294,19 +6340,19 @@
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 1, 1)
-                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 2, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 2, 1)
-                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 3, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
                                     'Actual damage
