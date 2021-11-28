@@ -1239,6 +1239,23 @@
                         End If
                     Else
                         If sleepTurns > 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
+
+                                SleepAnimation.AnimationPlaySound("Battle\Effects\Asleep", 0, 0)
+                                Dim SleepEntity1 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 1)
+                                SleepAnimation.AnimationChangeTexture(SleepEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 1, 1)
+                                SleepAnimation.AnimationMove(SleepEntity1, True, 0, 0.5, 0.25, 0.01, False, False, 0, 0)
+
+                                Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
+
+                                SleepAnimation.AnimationChangeTexture(SleepEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 2.5, 1)
+                                SleepAnimation.AnimationMove(SleepEntity2, True, 0, 0.5, 0.25, 0.01, False, False, 2, 0)
+
+                                BattleScreen.BattleQuery.Add(SleepAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Asleep", False))
+                            End If
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fast asleep."))
                             Exit Sub
                         Else
@@ -1357,6 +1374,46 @@
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is no longer confused!"))
                     p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Else
+                    If Core.Player.ShowBattleAnimations <> 0 Then
+                        Dim ConfusionAnimation As New AnimationQueryObject(pNPC, Not own)
+
+                        ConfusionAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
+                        Dim DuckEntity1 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 0.5)
+                        Dim DuckEntity2 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 0.5)
+                        Dim DuckEntity3 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 0.5)
+
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 0.5)
+
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0.5)
+
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 0.5)
+
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 2.0F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 2.0F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 2.0F, 0.5)
+
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 0.5)
+
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 0.5)
+
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
+                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
+
+                        BattleScreen.BattleQuery.Add(ConfusionAnimation)
+                    Else
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Confused", False))
+                    End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is confused!"))
                     'Previously 'If Core.Random.Next(0, 2) = 0 Then' (Updated to gen 7's 33% instead of 50%)
                     If Core.Random.Next(0, 3) = 0 Then
@@ -3043,10 +3100,14 @@
 
         Public Function InflictSleep(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal turnsPreset As Integer, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim opNPC As NPC = BattleScreen.OppPokemonNPC
             If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
                 op = BattleScreen.OwnPokemon
+                opNPC = BattleScreen.OwnPokemonNPC
             End If
 
             If p.HP <= 0 OrElse p.Status = Pokemon.StatusProblems.Fainted Then
@@ -3132,6 +3193,23 @@
                                         Return False
                                     Else
                                         'Works!
+                                        If Core.Player.ShowBattleAnimations <> 0 Then
+                                            Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
+
+                                            SleepAnimation.AnimationPlaySound("Battle\Effects\Asleep", 0, 0)
+                                            Dim SleepEntity1 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 1)
+                                            SleepAnimation.AnimationChangeTexture(SleepEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 1, 1)
+                                            SleepAnimation.AnimationMove(SleepEntity1, True, 0, 0.5, 0.25, 0.01, False, False, 0, 0)
+
+                                            Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
+
+                                            SleepAnimation.AnimationChangeTexture(SleepEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 2.5, 1)
+                                            SleepAnimation.AnimationMove(SleepEntity2, True, 0, 0.5, 0.25, 0.01, False, False, 2, 0)
+
+                                            BattleScreen.BattleQuery.Add(SleepAnimation)
+                                        Else
+                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Asleep", False))
+                                        End If
                                         If own = True Then
                                             BattleScreen.FieldEffects.OwnBideCounter = 0
                                             BattleScreen.FieldEffects.OwnBideDamage = 0
@@ -3381,6 +3459,8 @@
                     ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
 
                     BattleScreen.BattleQuery.Add(ConfusionAnimation)
+                Else
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Confused", False))
                 End If
                 p.AddVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Select Case message
@@ -5520,6 +5600,8 @@
                                     PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
                                 End If
                                 'Actual damage
                                 ReduceHP(CInt(.OwnPokemon.MaxHP / 8), True, True, BattleScreen, "The poison hurt " & .OwnPokemon.GetDisplayName() & ".", "poison")
@@ -5548,6 +5630,8 @@
                                     PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
                                 End If
                                 'Actual damage
                                 ReduceHP(CInt(.OwnPokemon.MaxHP * multiplier), True, True, BattleScreen, "The toxic hurt " & .OwnPokemon.GetDisplayName() & ".", "badpoison")
@@ -5575,6 +5659,8 @@
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32), ""), 4, 1)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32), ""), 5, 2)
                                 BattleScreen.BattleQuery.Add(BurnAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Burned", False))
                             End If
                             'Actual damage
                             ReduceHP(reduceAmount, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
@@ -6323,6 +6409,8 @@
                                     PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
                                 End If
                                 'Actual damage
                                 ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "The poison hurt " & .OppPokemon.GetDisplayName() & ".", "poison")
@@ -6351,9 +6439,12 @@
                                     PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
 
                                     BattleScreen.BattleQuery.Add(PoisonAnimation)
-                                    'Actual damage
-                                    ReduceHP(CInt(.OppPokemon.MaxHP * multiplier), False, False, BattleScreen, "The toxic hurt " & .OppPokemon.GetDisplayName() & ".", "badpoison")
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
                                 End If
+                                'Actual damage
+                                ReduceHP(CInt(.OppPokemon.MaxHP * multiplier), False, False, BattleScreen, "The toxic hurt " & .OppPokemon.GetDisplayName() & ".", "badpoison")
+
                             End If
                         End If
                     End If
@@ -6377,6 +6468,8 @@
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 96, 32, 32), ""), 4, 1)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 128, 32, 32), ""), 5, 2)
                                 BattleScreen.BattleQuery.Add(BurnAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Burned", False))
                             End If
                             'Actual damage
                             ReduceHP(reduceAmount, False, False, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
