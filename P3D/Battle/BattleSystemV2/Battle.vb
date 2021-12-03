@@ -1204,7 +1204,38 @@
                 If Core.Random.Next(0, 100) < 20 Then
                     CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " thawed out.", "own defrost")
                 Else
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Frozen", False))
+                    'Frozen animation
+                    If Core.Player.ShowBattleAnimations <> 0 Then
+                        Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+
+                        FrozenAnimation.AnimationPlaySound("Battle\Effects\Frozen", 0, 0)
+                        Dim maxAmount As Integer = 8
+                        Dim currentAmount As Integer = 0
+                        While currentAmount <= maxAmount
+                            Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatusEffect\Frozen", New Rectangle(0, 0, 32, 32), "")
+                            Dim xPos As Single
+                            Dim zPos As Single
+                            If own = False Then
+                                xPos = CSng(Random.Next(-2, 4) / 8)
+                                zPos = CSng(Random.Next(-2, 4) / 8)
+                            Else
+                                xPos = CSng(Random.Next(-4, 2) / 8)
+                                zPos = CSng(Random.Next(-4, 2) / 8)
+                            End If
+
+                            Dim Position As New Vector3(xPos, -0.25, zPos)
+                            Dim Scale As New Vector3(0.25F)
+                            Dim startDelay As Double = 5.0 * Random.NextDouble()
+                            Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
+
+                            FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, False, 0.0F, CSng(startDelay), 0.0)
+                            Threading.Interlocked.Increment(currentAmount)
+                        End While
+
+                        BattleScreen.BattleQuery.Add(FrozenAnimation)
+                    Else
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Frozen", False))
+                    End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is frozen solid!"))
                     Exit Sub
                 End If
@@ -1375,42 +1406,42 @@
                     p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Else
                     If Core.Player.ShowBattleAnimations <> 0 Then
-                        Dim ConfusionAnimation As New AnimationQueryObject(pNPC, Not own)
+                        Dim ConfusedAnimation As New AnimationQueryObject(pNPC, Not own)
 
-                        ConfusionAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
-                        Dim DuckEntity1 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 0.5)
-                        Dim DuckEntity2 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 0.5)
-                        Dim DuckEntity3 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 0.5)
+                        ConfusedAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
+                        Dim DuckEntity1 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                        Dim DuckEntity2 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                        Dim DuckEntity3 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
 
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 0.5)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
 
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0.5)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
 
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 0.5)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
 
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 2.0F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 2.0F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 2.0F, 0.5)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
 
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 0.5)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
 
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 0.5)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
 
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
-                        ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
 
-                        BattleScreen.BattleQuery.Add(ConfusionAnimation)
+                        BattleScreen.BattleQuery.Add(ConfusedAnimation)
                     Else
                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Confused", False))
                     End If
@@ -2929,20 +2960,27 @@
                             ChangeCameraAngle(1, own, BattleScreen)
                             'Frozen animation
                             If Core.Player.ShowBattleAnimations <> 0 Then
-                                Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+                                Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
 
                                 FrozenAnimation.AnimationPlaySound("Battle\Effects\Frozen", 0, 0)
                                 Dim maxAmount As Integer = 8
                                 Dim currentAmount As Integer = 0
                                 While currentAmount <= maxAmount
                                     Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatusEffect\Frozen", New Rectangle(0, 0, 32, 32), "")
-                                    Dim xPos = CSng(Random.Next(-4, 4) / 8)
-                                    Dim zPos = CSng(Random.Next(-4, 4) / 8)
+                                    Dim xPos As Single
+                                    Dim zPos As Single
+                                    If own = False Then
+                                        xPos = CSng(Random.Next(-2, 4) / 8)
+                                        zPos = CSng(Random.Next(-2, 4) / 8)
+                                    Else
+                                        xPos = CSng(Random.Next(-4, 2) / 8)
+                                        zPos = CSng(Random.Next(-4, 2) / 8)
+                                    End If
 
                                     Dim Position As New Vector3(xPos, -0.25, zPos)
                                     Dim Scale As New Vector3(0.25F)
                                     Dim startDelay As Double = 5.0 * Random.NextDouble()
-                                    Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+                                    Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
 
                                     FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, False, 0.0F, CSng(startDelay), 0.0)
                                     Threading.Interlocked.Increment(currentAmount)
@@ -3449,42 +3487,42 @@
             Else
                 'Works!
                 If Core.Player.ShowBattleAnimations <> 0 Then
-                    Dim ConfusionAnimation As New AnimationQueryObject(pNPC, Not own)
+                    Dim ConfusedAnimation As New AnimationQueryObject(pNPC, Not own)
 
-                    ConfusionAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
-                    Dim DuckEntity1 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 0.5)
-                    Dim DuckEntity2 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 0.5)
-                    Dim DuckEntity3 As Entity = ConfusionAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 0.5)
+                    ConfusedAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
+                    Dim DuckEntity1 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                    Dim DuckEntity2 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                    Dim DuckEntity3 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
 
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.5, 0.5)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
 
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0.5)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
 
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 1.5F, 0.5)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
 
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 2.0F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 2.0F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 2.0F, 0.5)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
 
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 2.5F, 0.5)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
 
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 3, 0.5)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
 
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
-                    ConfusionAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 3.5F, 0.5)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
 
-                    BattleScreen.BattleQuery.Add(ConfusionAnimation)
+                    BattleScreen.BattleQuery.Add(ConfusedAnimation)
                 Else
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Confused", False))
                 End If
@@ -3644,7 +3682,7 @@
                     Dim zPos = CSng((Random.NextDouble() - 0.5) * 1.2)
 
                     Dim Position As New Vector3(xPos, -0.4, zPos)
-                    Dim Destination As New Vector3(xPos, 1.2, zPos)
+                    Dim Destination As New Vector3(0, 1.2, 0)
                     Dim Scale As New Vector3(0.2F)
                     Dim startDelay As Double = 5.0 * Random.NextDouble()
                     Dim StatEntity As Entity = StatAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
