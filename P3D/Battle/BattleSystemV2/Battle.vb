@@ -2856,7 +2856,9 @@
         Public Function InflictFreeze(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If own = False Then
+                pNPC = BattleScreen.OppPokemonNPC
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
@@ -2925,7 +2927,31 @@
                             'Works!
                             p.Status = Pokemon.StatusProblems.Freeze
                             ChangeCameraAngle(1, own, BattleScreen)
-                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Frozen", False))
+                            'Frozen animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+
+                                FrozenAnimation.AnimationPlaySound("Battle\Effects\Frozen", 0, 0)
+                                Dim maxAmount As Integer = 8
+                                Dim currentAmount As Integer = 0
+                                While currentAmount <= maxAmount
+                                    Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatusEffect\Frozen", New Rectangle(0, 0, 32, 32), "")
+                                    Dim xPos = CSng(Random.Next(-4, 4) / 8)
+                                    Dim zPos = CSng(Random.Next(-4, 4) / 8)
+
+                                    Dim Position As New Vector3(xPos, -0.25, zPos)
+                                    Dim Scale As New Vector3(0.25F)
+                                    Dim startDelay As Double = 5.0 * Random.NextDouble()
+                                    Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+
+                                    FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, False, 0.0F, CSng(startDelay), 0.0)
+                                    Threading.Interlocked.Increment(currentAmount)
+                                End While
+
+                                BattleScreen.BattleQuery.Add(FrozenAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Frozen", False))
+                            End If
                             Select Case message
                                 Case "" 'Print default message only
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " was frozen solid!"))
