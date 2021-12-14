@@ -811,27 +811,28 @@
                     Return 17001
                 Case "shooting star"
                     Return 17559
+                Case "victorious"
+                    Return 153566
+                Case "deep sea"
+                    Return 153567
+                Case "eruption"
+                    Return 153568
+                Case "ancestor"
+                    Return 153569
+                Case "time"
+                    Return 153570
+                Case "mega"
+                    Return 153571
+                Case "beast"
+                    Return 153572
+                Case "heart gold"
+                    Return 153573
+                Case "soul silver"
+                    Return 153574
+                Case "tao"
+                    Return 153575
 
                     'Requires GameJolt side support
-
-                    'Case "victorious"
-                    '    Return ???
-                    'Case "deep sea"
-                    '    Return ???
-                    'Case "eruption"
-                    '    Return ???
-                    'Case "ancestor"
-                    '    Return ???
-                    'Case "time"
-                    '    Return ???
-                    'Case "mega"
-                    '    Return ???
-                    'Case "heart gold"
-                    '    Return ???
-                    'Case "soul silver"
-                    '    Return ???
-                    'Case "tao"
-                    '    Return ???
                     'Case "floral"
                     '    Return ???
 
@@ -918,27 +919,29 @@
                     Return "earth"
                 Case 17559
                     Return "shooting star"
+                Case 153566
+                    Return "victorious"
+                Case 153567
+                    Return "deep sea"
+                Case 153568
+                    Return "eruption"
+                Case 153569
+                    Return "ancestor"
+                Case 153570
+                    Return "time"
+                Case 153571
+                    Return "mega"
+                Case 153572
+                    Return "beast"
+                Case 153573
+                    Return "heart gold"
+                Case 153574
+                    Return "soul silver"
+                Case 153575
+                    Return "tao"
 
                     'Requires GameJolt side support
 
-                    'Case ???
-                    '    Return "victorious"
-                    'Case ???
-                    '    Return "deep sea"
-                    'Case ???
-                    '    Return "eruption"
-                    'Case ???
-                    '    Return "ancestor"
-                    'Case ???
-                    '    Return "time"
-                    'Case ???
-                    '    Return "mega"
-                    'Case "heart gold"
-                    '    Return ???
-                    'Case "soul silver"
-                    '    Return ???
-                    'Case "tao"
-                    '    Return ???
                     'Case "floral"
                     '    Return ???
 
