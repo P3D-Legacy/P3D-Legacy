@@ -2674,7 +2674,7 @@
 
             If BattleScreen.IsTrainerBattle = False AndAlso Core.Player.ShowBattleAnimations <> 0 Then
                 If own = False Then
-                    Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True, BattleScreen.OppPokemonModel)
+                    Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
                     FaintAnimation.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
                     FaintAnimation.AnimationMove(Nothing, False, 0, -1, 0, 0.05, False, False, 2, 0,,, 3)
                     BattleScreen.BattleQuery.Add(FaintAnimation)
@@ -7121,17 +7121,17 @@
                     Loop While SmokeReturned <= 38
                 End If
 
+                ' Pokemon disappears
+                BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
                 If Core.Player.ShowBattleAnimations <> 0 Then
-                    ' Pokemon disappears
-                    BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
                     BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
 
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
                     Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(Nothing, BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
                     BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 1, 0,, 0.3)
-                    BattleScreen.AddToQuery(InsertIndex, BallReturn)
                 End If
+                BattleScreen.AddToQuery(InsertIndex, BallReturn)
 
                 Dim index As Integer = NewPokemonIndex
                 If index <= -1 Then
