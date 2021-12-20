@@ -486,8 +486,10 @@
         Sub DoMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
 
             Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If Not own Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
             End If
             'Transform a Pokemon into it's Mega Evolution
             Dim _base As String = p.GetDisplayName()
@@ -504,7 +506,43 @@
                 p.CalculateStats()
                 p.LoadAltAbility()
                 Me.ChangeCameraAngle(1, own, BattleScreen)
-                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
+                '***Mega Evolution Animation***
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    Dim MegaAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+                    MegaAnimation.AnimationPlaySound("Battle\Effects\MegaEvolution", 0, 0)
+
+                    Dim maxAmount As Integer = 16
+                    Dim currentAmount As Integer = 0
+                    While currentAmount <= maxAmount
+                        Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\MegaEvolution\Mega_Phase1")
+                        Dim xPos = CSng((Random.NextDouble() - 0.5) * 1.2)
+                        Dim zPos = CSng((Random.NextDouble() - 0.5) * 1.2)
+
+                        Dim Position As New Vector3(xPos, 0.8, zPos)
+
+                        Dim Scale As New Vector3(0.5F)
+                        Dim startDelay As Double = 5.0 * Random.NextDouble()
+                        Dim Phase1Entity As Entity = MegaAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
+
+                        Dim Destination As New Vector3(CSng(pNPC.Position.X - Phase1Entity.Position.X), -0.8, CSng(pNPC.Position.Z - Phase1Entity.Position.Z))
+                        MegaAnimation.AnimationMove(Phase1Entity, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                        Threading.Interlocked.Increment(currentAmount)
+                    End While
+
+                    Dim Phase2Entity As Entity = MegaAnimation.SpawnEntity(pNPC.Position, TextureManager.GetTexture("Textures\Battle\MegaEvolution\Mega_Phase2"), New Vector3(0.0F), 1.0F, 2.0F, 0.0F)
+                    MegaAnimation.AnimationRotate(Phase2Entity, False, 0, 0, 0.25F, 0, 0, 10.0F, 2, 0F, False, False, True, False)
+                    MegaAnimation.AnimationScale(Phase2Entity, False, True, 1.0F, 1.0F, 1.0F, 0.05F, 2.0F, 0.0F)
+                    BattleScreen.BattleQuery.Add(MegaAnimation)
+                    If pNPC Is BattleScreen.OwnPokemonNPC Then
+                        BattleScreen.OwnPokemonNPC.SetupSprite(PokemonForms.GetOverworldSpriteName(p), "", False)
+                    Else
+                        BattleScreen.OppPokemonNPC.SetupSprite(PokemonForms.GetOverworldSpriteName(p), "", False)
+                    End If
+                Else
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\MegaEvolution", False))
+                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
+                End If
+
                 BattleScreen.BattleQuery.Add(New TextQueryObject(_base & " has Mega Evolved!"))
                 TriggerAbilityEffect(BattleScreen, own)
             End If
