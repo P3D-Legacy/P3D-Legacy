@@ -1,7 +1,6 @@
 ﻿Public Class NewOptionScreen
 
     Inherits Screen
-
     Dim TextSpeed As Integer = 2
     Dim CameraSpeed As Integer = 12
     Dim FOV As Single = 45.0F
@@ -90,7 +89,7 @@
             Camera = New OverworldCamera()
         End If
         SetFunctionality()
-        If Submenu > 0 Then
+        If Submenu > 0 AndAlso PreScreen.Identification = Identifications.MainMenuScreen Then
             _subMenu = Submenu
             Select Case _subMenu
                 Case 1
@@ -102,12 +101,15 @@
                 Case 4
                     SwitchToContentPacks()
             End Select
+        Else
+            _subMenu = 0
+            ScreenIndex = 0
         End If
     End Sub
 
     Private Sub SetFunctionality()
-        Camera = CType(Screen.Camera, OverworldCamera)
         If PreScreen.Identification <> Identifications.MainMenuScreen Then
+            Camera = CType(Screen.Camera, OverworldCamera)
             Me.FOV = Camera.FOV
             Me.TextSpeed = TextBox.TextSpeed
             Me.CameraSpeed = CInt(Camera.RotationSpeed * 10000)
