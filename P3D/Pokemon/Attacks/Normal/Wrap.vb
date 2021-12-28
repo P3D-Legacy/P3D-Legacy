@@ -87,6 +87,19 @@
             End If
         End Sub
 
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Normal\Wrap", 5.0F, 0)
+            Dim WrapEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 0, 64, 32), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 1)
+            MoveAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 32, 64, 32), ""), 1, 1)
+            MoveAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 64, 64, 32), ""), 2, 1)
+            MoveAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 96, 64, 32), ""), 3, 2)
+            MoveAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 5, 0)
+            MoveAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 7, 0)
+            MoveAnimation.AnimationScale(WrapEntity, True, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 1)
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
+
     End Class
 
 End Namespace

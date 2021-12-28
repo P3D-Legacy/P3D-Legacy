@@ -5813,6 +5813,20 @@
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
+                            'Wrap Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                ChangeCameraAngle(1, True, BattleScreen)
+                                Dim WrapAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False)
+                                WrapAnimation.AnimationPlaySound("Battle\Attacks\Normal\Wrap", 5.0F, 0)
+                                Dim WrapEntity = WrapAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 0, 64, 32), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 1)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 32, 64, 32), ""), 1, 1)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 64, 64, 32), ""), 2, 1)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 96, 64, 32), ""), 3, 2)
+                                WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 5, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 7, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, True, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 1)
+                                BattleScreen.BattleQuery.Add(WrapAnimation)
+                            End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
                         End If
                     End If
@@ -5826,6 +5840,17 @@
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
+                            End If
+                            'Whirlpool Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                ChangeCameraAngle(1, True, BattleScreen)
+                                Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False)
+                                WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
+                                Dim WhirlpoolEntity As Entity = WhirlpoolAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, 0, 0, 0.2F, 0, 0, 10.0F, 0.0F, 0.0F, False, False, True, True)
+                                WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, False, True, 1.0F, 1.0F, 1.0F, 0.025F, 0.0F, 0.0F)
+                                WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, True, False, 0.0F, 0.0F, 0.0F, 0.025F, 5.0F, 0.0F)
+                                BattleScreen.BattleQuery.Add(WhirlpoolAnimation)
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Whirlpool!", "whirlpool")
                         End If
@@ -6623,6 +6648,20 @@
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
+                            'Wrap Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                ChangeCameraAngle(1, False, BattleScreen)
+                                Dim WrapAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True)
+                                WrapAnimation.AnimationPlaySound("Battle\Attacks\Normal\Wrap", 5.0F, 0)
+                                Dim WrapEntity = WrapAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 0, 64, 32), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 1)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 32, 64, 32), ""), 1, 1)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 64, 64, 32), ""), 2, 1)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 96, 64, 32), ""), 3, 2)
+                                WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 5, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 7, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, True, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 1)
+                                BattleScreen.BattleQuery.Add(WrapAnimation)
+                            End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
                         End If
                     End If
@@ -6636,6 +6675,17 @@
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
+                            End If
+                            'Whirlpool Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                ChangeCameraAngle(1, False, BattleScreen)
+                                Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True)
+                                WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
+                                Dim WhirlpoolEntity As Entity = WhirlpoolAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, 0, 0, 0.2F, 0, 0, 10.0F, 0.0F, 0.0F, False, False, True, True)
+                                WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, False, True, 1.0F, 1.0F, 1.0F, 0.025F, 0.0F, 0.0F)
+                                WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, True, False, 0.0F, 0.0F, 0.0F, 0.025F, 5.0F, 0.0F)
+                                BattleScreen.BattleQuery.Add(WhirlpoolAnimation)
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Whirlpool!", "whirlpool")
                         End If
