@@ -529,20 +529,14 @@
                         Threading.Interlocked.Increment(currentAmount)
                     End While
 
-                    Dim Phase2Entity As Entity = MegaAnimation.SpawnEntity(pNPC.Position, TextureManager.GetTexture("Textures\Battle\MegaEvolution\Mega_Phase2"), New Vector3(0.0F), 1.0F, 2.0F, 0.0F)
-                    MegaAnimation.AnimationRotate(Phase2Entity, False, 0, 0, 0.25F, 0, 0, 10.0F, 2, 0F, False, False, True, False)
-                    MegaAnimation.AnimationScale(Phase2Entity, False, True, 1.0F, 1.0F, 1.0F, 0.05F, 2.0F, 0.0F)
+                    Dim Phase2Entity As Entity = MegaAnimation.SpawnEntity(pNPC.Position, TextureManager.GetTexture("Textures\Battle\MegaEvolution\Mega_Phase2"), New Vector3(0.0F), 1.0F, 4.0F, 0.0F)
+                    MegaAnimation.AnimationRotate(Phase2Entity, False, 0, 0, 0.1F, 0, 0, 10.0F, 4, 0F, False, False, True, False)
+                    MegaAnimation.AnimationScale(Phase2Entity, False, True, 1.25F, 1.25F, 1.25F, 0.02F, 4.0F, 0.0F)
                     BattleScreen.BattleQuery.Add(MegaAnimation)
-                    If pNPC Is BattleScreen.OwnPokemonNPC Then
-                        BattleScreen.OwnPokemonNPC.SetupSprite(PokemonForms.GetOverworldSpriteName(p), "", False)
-                    Else
-                        BattleScreen.OppPokemonNPC.SetupSprite(PokemonForms.GetOverworldSpriteName(p), "", False)
-                    End If
                 Else
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\MegaEvolution", False))
-                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
                 End If
-
+                BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
                 BattleScreen.BattleQuery.Add(New TextQueryObject(_base & " has Mega Evolved!"))
                 TriggerAbilityEffect(BattleScreen, own)
             End If

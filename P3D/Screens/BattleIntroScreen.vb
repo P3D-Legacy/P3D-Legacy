@@ -455,7 +455,7 @@
         If Animations.Count = 0 Then
             Animations.Add(New Rectangle(CInt(Core.windowSize.Width / 2 - (Core.windowSize.Width / 100 / 2)), CInt(Core.windowSize.Height / 2 - (Core.windowSize.Height / 100 / 2)), CInt(Core.windowSize.Width / 100), CInt(Core.windowSize.Height / 100)))
         Else
-            Dim Speed As Integer = CInt(Me.duration.TotalMilliseconds / Core.windowSize.Height * 3)
+            Dim Speed As Integer = CInt(Me.duration.TotalMilliseconds / Core.windowSize.Height * 4)
             If Animations(0).Height >= Core.windowSize.Height + 128 Then
                 ready = True
             End If
@@ -479,7 +479,7 @@
             If value >= Core.windowSize.Height / 2 + 4 Then
                 ready = True
             Else
-                value += CInt(Math.Ceiling(Me.duration.TotalMilliseconds / Core.windowSize.Height))
+                value += CInt(Math.Ceiling(Me.duration.TotalMilliseconds / Core.windowSize.Height * 3))
             End If
         End If
     End Sub
