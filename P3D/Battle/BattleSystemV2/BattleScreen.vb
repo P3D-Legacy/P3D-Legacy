@@ -875,7 +875,7 @@
             If ForegroundEntities.Count > 0 Then
                 ForegroundEntities = (From f In ForegroundEntities Order By f.CameraDistance Descending).ToList()
             End If
-            Level.Draw()
+           Level.Draw()
 
             World.DrawWeather(Screen.Level.World.CurrentMapWeather)
 
@@ -890,6 +890,7 @@
             End If
 
             Dim ForegroundAnimationList As New List(Of AnimationQueryObject)
+            Dim BackgroundAnimationList As New List(Of AnimationQueryObject)
             If BattleQuery.Count > 0 Then
                 Dim cIndex As Integer = 0
                 Dim cQuery As New List(Of QueryObject)
@@ -898,7 +899,9 @@ nextIndex:
                     Dim cQueryObject As QueryObject = BattleQuery(cIndex)
                     If cQueryObject.QueryType = QueryObject.QueryTypes.MoveAnimation Then
                         If CType(cQueryObject, AnimationQueryObject).DrawBeforeEntities = True Then
-                            cQuery.Add(cQueryObject)
+                            BackgroundAnimationList.Add(CType(cQueryObject, AnimationQueryObject))
+                            cIndex += 1
+                            GoTo nextIndex
                         Else
                             ForegroundAnimationList.Add(CType(cQueryObject, AnimationQueryObject))
                             cIndex += 1
@@ -916,18 +919,38 @@ nextIndex:
                 End If
 
                 cQuery.Reverse()
+                If cQuery.Count > 0 Then
+                    For Each cQueryObject As QueryObject In cQuery
+                        cQueryObject.Draw(Me)
+                    Next
+                End If
+            End If
+            If BackgroundAnimationList.Count > 0 Then
+                Dim cIndex As Integer = 0
+                Dim cQuery As New List(Of QueryObject)
+nextIndexBackground:
+                If BackgroundAnimationList.Count > cIndex Then
+                    Dim cQueryObject As QueryObject = BackgroundAnimationList(cIndex)
+                    cQuery.Add(cQueryObject)
+
+                    If cQueryObject.PassThis = True Then
+                        cIndex += 1
+                        GoTo nextIndexBackground
+                    End If
+                End If
+
+                cQuery.Reverse()
 
                 For Each cQueryObject As QueryObject In cQuery
                     cQueryObject.Draw(Me)
                 Next
-            End If
 
-            If ForegroundAnimationList.Count > 0 Then
                 For i = 0 To ForegroundEntities.Count - 1
                     ForegroundEntities(i).Render()
                     DebugDisplay.MaxVertices += ForegroundEntities(i).VertexCount
                 Next
-
+            End If
+            If ForegroundAnimationList.Count > 0 Then
                 Dim cIndex As Integer = 0
                 Dim cQuery As New List(Of QueryObject)
 nextIndexForeground:
