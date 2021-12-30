@@ -48,7 +48,7 @@ Public Class Lighting
                 Case 0 ' Night
                     refEffect.AmbientLightColor = New Vector3(0.8F)
 
-                    refEffect.DirectionalLight0.DiffuseColor = New Vector3(-0.4F, -0.4F, -0.6F)
+                    refEffect.DirectionalLight0.DiffuseColor = New Vector3(-0.2F)
                     refEffect.DirectionalLight0.Direction = Vector3.Normalize(New Vector3(-1.0F, 0.0F, 1.0F))
                     refEffect.DirectionalLight0.SpecularColor = New Vector3(0.0F)
                     refEffect.DirectionalLight0.Enabled = True
