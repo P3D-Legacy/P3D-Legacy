@@ -148,13 +148,13 @@
             End If
             Select Case Screen.Level.DayTime
                 Case 1
-                    Return New Color(128, 128, 128)
+                    Return New Color(48, 200, 248)
                 Case 2
-                    Return New Color(128, 128, 128)
+                    Return New Color(40, 88, 136)
                 Case 3
-                    Return New Color(128, 128, 128)
+                    Return New Color(168, 224, 248)
                 Case 4
-                    Return New Color(128, 128, 128)
+                    Return New Color(192, 152, 184)
             End Select
         End If
     End Function
