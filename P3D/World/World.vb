@@ -587,11 +587,11 @@ endsub:
                 Dim _fogColor As Color
                 Select Case Screen.Level.DayTime
                     Case 1
-                        _fogColor = New Color(192, 192, 192)
+                        _fogColor = New Color(168, 168, 168)
                     Case 2
                         _fogColor = New Color(64, 64, 64)
                     Case 3
-                        _fogColor = New Color(192, 192, 192)
+                        _fogColor = New Color(168, 168, 168)
                     Case 4
                         _fogColor = New Color(64, 64, 64)
                 End Select
