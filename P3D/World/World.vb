@@ -584,8 +584,19 @@ endsub:
     Private Sub ChangeEnvironment()
         Select Case Me.EnvironmentType
             Case EnvironmentTypes.Outside
+                Dim _fogColor As Color
+                Select Case Screen.Level.DayTime
+                    Case 1
+                        _fogColor = New Color(192, 192, 192)
+                    Case 2
+                        _fogColor = New Color(64, 64, 64)
+                    Case 3
+                        _fogColor = New Color(192, 192, 192)
+                    Case 4
+                        _fogColor = New Color(64, 64, 64)
+                End Select
                 Core.BackgroundColor = GetWeatherBackgroundColor(SkyDome.GetDaytimeColor(False))
-                Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
+                Screen.Effect.FogColor = _fogColor.ToVector3()
                 Screen.SkyDome.TextureDown = TextureManager.GetTexture("SkyDomeResource\Stars")
             Case EnvironmentTypes.Inside
                 Core.BackgroundColor = New Color(57, 57, 57)
