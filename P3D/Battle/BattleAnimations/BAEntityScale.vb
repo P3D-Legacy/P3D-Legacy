@@ -79,22 +79,22 @@
         'Bottom
         If Anchors.Contains("1") = True Then
             Dim diffY As Single = saveScale.Y - TargetEntity.Scale.Y
-            Me.Position.Y -= diffY / 2
+            TargetEntity.Position.Y -= diffY / 2
         End If
         'Top
         If Anchors.Contains("2") = True Then
             Dim diffY As Single = saveScale.Y - TargetEntity.Scale.Y
-            Me.Position.Y += diffY / 2
+            TargetEntity.Position.Y += diffY / 2
         End If
         'Left
         If Anchors.Contains("3") = True Then
             Dim diffX As Single = saveScale.X - TargetEntity.Scale.X
-            Me.Position.X -= diffX / 2
+            TargetEntity.Position.X -= diffX / 2
         End If
         'Right
         If Anchors.Contains("4") = True Then
             Dim diffX As Single = saveScale.X - TargetEntity.Scale.X
-            Me.Position.X += diffX / 2
+            TargetEntity.Position.X += diffX / 2
         End If
 
         If Me.EndSize = TargetEntity.Scale Then
