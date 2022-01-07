@@ -1523,6 +1523,19 @@
             If op.HP > 0 And op.Status <> Pokemon.StatusProblems.Fainted Then
                 If p.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
                     If Core.Random.Next(0, 2) = 0 Then
+                        'Infatuated animation
+                        If Core.Player.ShowBattleAnimations <> 0 Then
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
+                            Dim HeartAnimation = New AnimationQueryObject(pNPC, Not own)
+                            For i = 0 To 6
+                                Dim HeartEntity = HeartAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Normal\Attract"), New Vector3(0.25F), 1.0F, CSng(i * 0.2))
+                                Dim zPos As Single = CSng(Random.Next(-2, 2) * 0.2)
+                                HeartAnimation.AnimationMove(HeartEntity, False, 0.0, 0.25, zPos, 0.01, False, False, CSng(i * 0.2), 0.0)
+                                HeartAnimation.AnimationFade(HeartEntity, True, 0.02, False, 0.0, CSng(1 + i * 0.2), 0.0)
+                                i += 1
+                            Next
+                            BattleScreen.BattleQuery.Add(HeartAnimation)
+                        End If
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is in love with " & op.GetDisplayName() & "!"))
                         Exit Sub
                     End If
@@ -5822,9 +5835,15 @@
                                 WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 32, 64, 32), ""), 1, 1)
                                 WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 64, 64, 32), ""), 2, 1)
                                 WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 96, 64, 32), ""), 3, 2)
+                                WrapAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 5, 0)
                                 WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 5, 0)
+                                WrapAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 7, 0)
                                 WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 7, 0)
-                                WrapAnimation.AnimationScale(WrapEntity, True, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 1)
+                                WrapAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 9, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
+                                WrapAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
+                                WrapAnimation.AnimationFade(WrapEntity, True, 0.03, False, 0.0, 11, 0)
                                 BattleScreen.BattleQuery.Add(WrapAnimation)
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
@@ -5880,6 +5899,26 @@
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
+                            End If
+                            'Bind Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                ChangeCameraAngle(1, True, BattleScreen)
+                                Dim BindAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False)
+                                BindAnimation.AnimationPlaySound("Battle\Attacks\Normal\Bind", 5.0F, 0)
+                                Dim WrapEntity = BindAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 0, 64, 32), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 1)
+                                BindAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 32, 64, 32), ""), 1, 1)
+                                BindAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 64, 64, 32), ""), 2, 1)
+                                BindAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 96, 64, 32), ""), 3, 2)
+                                BindAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 5, 0)
+                                BindAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 5, 0)
+                                BindAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 7, 0)
+                                BindAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 7, 0)
+                                BindAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 9, 0)
+                                BindAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
+                                BindAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
+                                BindAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
+                                BindAnimation.AnimationFade(WrapEntity, True, 0.03, False, 0.0, 11, 0)
+                                BattleScreen.BattleQuery.Add(BindAnimation)
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Bind!", "bind")
                         End If

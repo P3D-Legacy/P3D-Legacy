@@ -76,6 +76,34 @@
             End If
         End Sub
 
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
+            For i = 0 To 6
+                Dim HeartEntity = MoveAnimation.SpawnEntity(Nothing, TextureManager.GetTexture("Textures\Battle\Normal\Attract"), New Vector3(0.25F), 1.0F, CSng(i * 0.2))
+
+                MoveAnimation.AnimationMove(HeartEntity, True, 2.0, 0.0, 0.0, 0.075, False, False, CSng(i * 0.2), 0.0)
+                i += 1
+            Next
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Normal\Attract", 0, 0)
+
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
+
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
+
+            For i = 0 To 6
+                Dim HeartEntity = MoveAnimation.SpawnEntity(New Vector3(-2.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Normal\Attract"), New Vector3(0.25F), 1.0F, CSng(i * 0.2))
+
+                MoveAnimation.AnimationMove(HeartEntity, False, 0.0, 0.0, 0.0, 0.06, False, False, CSng(i * 0.2), 0.0)
+                Dim zPos As Single = CSng(Random.Next(-2, 2) * 0.2)
+                MoveAnimation.AnimationMove(HeartEntity, False, 0.0, 0.25, zPos, 0.01, False, False, CSng(1 + i * 0.2), 0.0)
+                MoveAnimation.AnimationFade(HeartEntity, True, 0.02, False, 0.0, CSng(2 + i * 0.2), 0.0)
+                i += 1
+            Next
+
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
     End Class
 
 End Namespace
