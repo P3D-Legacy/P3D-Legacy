@@ -591,7 +591,7 @@ Public Class ChatScreen
 
                         For Each l As String In lineArr
                             Canvas.DrawRectangle(New Rectangle(100, (Core.windowSize.Height - 82) - offset - 64, Core.windowSize.Width - 200, 32), backC)
-                            Core.SpriteBatch.DrawString(FontManager.ChatFont, l, New Vector2(100, (Core.windowSize.Height - 50 - 32) - offset - 64), c, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                            Core.SpriteBatch.DrawString(FontManager.ChatFont, l, New Vector2(100 + 8, (Core.windowSize.Height - 50 - 32) - offset - 64), c, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                             offset += 32
                             items += 1
                         Next
@@ -675,21 +675,26 @@ Public Class ChatScreen
     Private Sub DrawChatTabs()
         Dim p = MouseHandler.MousePosition
 
+        Dim globalText As String = "Global"
+        Dim globalTextWidth As Integer = CInt(FontManager.MainFont.MeasureString(globalText).X)
+        Dim commandsText As String = "Commands"
+        Dim commandsTextWidth As Integer = CInt(FontManager.MainFont.MeasureString(commandsText).X)
+
         'First, draw global:
-        DrawChatTab(100, "global", HasNewGlobalMessages, "Global", ChatState = ChatStates.Global)
-        If p.X >= 100 And p.X < 220 Then
+        DrawChatTab(100, "global", HasNewGlobalMessages, globalText, ChatState = ChatStates.Global)
+        If p.X >= 100 And p.X < 100 + 48 + globalTextWidth Then
             canClickOnTab = True
             canClickOnTabType = ChatStates.Global
             canClickOnTabText = "Global"
         End If
 
         'Then, if active, draw the Commands tab:
-        Dim x As Integer = 120
+        Dim x As Integer = CInt(48 + globalTextWidth)
 
         If HasCommandChat = True Then
-            DrawChatTab(x + 100, "command", False, "Commands", ChatState = ChatStates.Command)
-            x += 120
-            If p.X >= 220 And p.X < 340 Then
+            DrawChatTab(x + 100, "command", False, commandsText, ChatState = ChatStates.Command)
+            x += CInt(48 + commandsTextWidth)
+            If p.X >= CInt(100 + 48 + globalTextWidth) And p.X < CInt(100 + 48 + globalTextWidth + 48 + commandsTextWidth) Then
                 canClickOnTab = True
                 canClickOnTabType = ChatStates.Command
                 canClickOnTabText = "Commands"
@@ -752,7 +757,7 @@ Public Class ChatScreen
     ''' </summary>
     Private Shared Function DrawChatTab(ByVal xPosition As Integer, ByVal textureType As String, ByVal HasNewMessages As Boolean, ByVal Text As String, ByVal IsActive As Boolean) As Integer
         Dim drawHeight As Integer = 32
-        Dim drawWidth As Integer = 120
+        Dim drawWidth As Integer = CInt(48 + FontManager.MainFont.MeasureString(Text).X)
 
         If IsActive = False Then
             drawHeight = 24
@@ -780,7 +785,7 @@ Public Class ChatScreen
             Core.SpriteBatch.Draw(texture, New Rectangle(xPosition, Core.windowSize.Height - 50 - drawHeight - 12, 24, 24), New Rectangle(48, 0, 24, 24), Color.White)
         End If
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(xPosition + 32, CInt(Core.windowSize.Height - 50 + 4)), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(xPosition + 24 + 12, CInt(Core.windowSize.Height - 50 + drawHeight / 2 - FontManager.MainFont.MeasureString(Text).Y / 2)), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
         Return drawWidth
     End Function
@@ -881,7 +886,7 @@ Public Class ChatScreen
 
                     For Each l As String In lineArr
                         Canvas.DrawRectangle(New Rectangle(100, (Core.windowSize.Height - 82) - offset - 64, Core.windowSize.Width - 200, 32), New Color(0, 0, 0, opacity))
-                        Core.SpriteBatch.DrawString(FontManager.ChatFont, l, New Vector2(100, (Core.windowSize.Height - 50 - 32) - offset - 64), New Color(c.R, c.G, c.B, CInt(opacity * 1.7)), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                        Core.SpriteBatch.DrawString(FontManager.ChatFont, l, New Vector2(100 + 8, (Core.windowSize.Height - 50 - 32) - offset - 64), New Color(c.R, c.G, c.B, CInt(opacity * 1.7)), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                         offset += 32
                     Next
                 End If
