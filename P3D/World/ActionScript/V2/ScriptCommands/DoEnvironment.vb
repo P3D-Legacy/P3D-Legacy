@@ -15,6 +15,12 @@
                     Screen.Level.WeatherType = int(argument)
                 Case "setregionweather"
                     World.RegionWeather = CType(int(argument), World.Weathers)
+                Case "setseason"
+                    If int(argument) = -1 Then
+                        World.setSeason = Nothing
+                    Else
+                        World.setSeason = CType(int(argument), World.Seasons)
+                    End If
                 Case "setcanfly"
                     Screen.Level.CanFly = CBool(argument)
                 Case "setcandig"

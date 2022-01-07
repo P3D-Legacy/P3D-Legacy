@@ -4,6 +4,7 @@ Public Class World
 
     Private Shared _regionWeather As Weathers = Weathers.Clear
     Private Shared _regionWeatherSet As Boolean = False
+    Public Shared setSeason As Seasons = Nothing
 
     Public Shared IsMainMenu As Boolean = False
     Public Shared IsAurora As Boolean = False
@@ -56,19 +57,23 @@ Public Class World
                 Return Seasons.Summer
             End If
 
-            If NeedServerObject() = True Then
-                Return ServerSeason
+            If setSeason <> Nothing Then
+                Return setSeason
+            Else
+                If NeedServerObject() = True Then
+                    Return ServerSeason
+                End If
+                Select Case WeekOfYear Mod 4
+                    Case 1
+                        Return Seasons.Winter
+                    Case 2
+                        Return Seasons.Spring
+                    Case 3
+                        Return Seasons.Summer
+                    Case 0
+                        Return Seasons.Fall
+                End Select
             End If
-            Select Case WeekOfYear Mod 4
-                Case 1
-                    Return Seasons.Winter
-                Case 2
-                    Return Seasons.Spring
-                Case 3
-                    Return Seasons.Summer
-                Case 0
-                    Return Seasons.Fall
-            End Select
             Return Seasons.Summer
         End Get
     End Property
