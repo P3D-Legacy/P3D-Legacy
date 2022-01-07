@@ -562,19 +562,19 @@ endsub:
             Case World.Weathers.Clear, Weathers.Sunny
                 v = New Vector3(1)
             Case World.Weathers.Rain, Weathers.Thunderstorm
-                v = New Vector3(0.4, 0.4, 0.7)
+                v = New Vector3(0.7)
             Case World.Weathers.Snow
                 v = New Vector3(0.8)
             Case World.Weathers.Underwater
                 v = New Vector3(0.1, 0.3, 0.9)
             Case World.Weathers.Fog
-                v = New Vector3(0.7, 0.7, 0.8)
+                v = New Vector3(0.7)
             Case World.Weathers.Sandstorm
                 v = New Vector3(0.8, 0.5, 0.2)
-            Case Weathers.Ash
-                v = New Vector3(0.5, 0.5, 0.5)
-            Case Weathers.Blizzard
-                v = New Vector3(0.6, 0.6, 0.6)
+            Case World.Weathers.Ash
+                v = New Vector3(0.5)
+            Case World.Weathers.Blizzard
+                v = New Vector3(0.6)
         End Select
 
         Dim colorV As Vector3 = defaultColor.ToVector3 * Screen.SkyDome.GetWeatherColorMultiplier(v)
@@ -585,15 +585,22 @@ endsub:
         Select Case Me.EnvironmentType
             Case EnvironmentTypes.Outside
                 Dim _fogColor As Color
+                Dim v As Single = 1.0F
+                Dim nightFog As Integer = 64
+                Dim dayFog As Integer = 168
+                Select Case CurrentMapWeather
+                    Case World.Weathers.Clear, Weathers.Sunny
+                        v = 1.0F
+                    Case World.Weathers.Rain, Weathers.Thunderstorm, World.Weathers.Fog
+                        v = 0.7F
+                    Case World.Weathers.Snow
+                        v = 0.8F
+                End Select
                 Select Case Screen.Level.DayTime
-                    Case 1
-                        _fogColor = New Color(168, 168, 168)
-                    Case 2
-                        _fogColor = New Color(64, 64, 64)
-                    Case 3
-                        _fogColor = New Color(168, 168, 168)
-                    Case 4
-                        _fogColor = New Color(64, 64, 64)
+                    Case 1, 3
+                        _fogColor = New Color(CInt(v * dayFog), CInt(v * dayFog), CInt(v * dayFog))
+                    Case 2, 4
+                        _fogColor = New Color(CInt(v * nightFog), CInt(v * nightFog), CInt(v * nightFog))
                 End Select
                 Core.BackgroundColor = GetWeatherBackgroundColor(SkyDome.GetDaytimeColor(False))
                 Screen.Effect.FogColor = _fogColor.ToVector3()
