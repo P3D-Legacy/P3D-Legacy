@@ -366,7 +366,7 @@ Public Class World
                 End Select
         End Select
 
-        If Core.GameOptions.RenderDistance >= 5 Then
+        If Core.GameOptions.RenderDistance >= 4 Then
             Screen.Effect.FogStart = 999
             Screen.Effect.FogEnd = 1000
 
