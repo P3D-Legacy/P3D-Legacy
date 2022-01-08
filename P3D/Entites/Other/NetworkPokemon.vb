@@ -6,13 +6,14 @@
     Public LevelFile As String = ""
     Public PokemonTexture As String = ""
     Public faceRotation As Integer = 0
+    Dim Moving As Boolean = False
 
     Dim Texture As Texture2D
     Dim lastRectangle As New Rectangle(0, 0, 0, 0)
     Dim loadedTexture As String = ""
 
     Dim AnimationX As Integer = 1
-    Dim AnimationDelayLength As Single = 2.2F
+    Dim AnimationDelayLength As Single = 1.1F
     Dim AnimationDelay As Single = AnimationDelayLength
 
     Public Sub New(ByVal pos As Vector3, ByVal PokemonTexture As String, ByVal visible As Boolean)
@@ -51,22 +52,26 @@
 
         If Me.PokemonTexture <> "" Then
             Me.ChangeTexture()
-
-            Me.AnimationDelay -= 0.1F
-            If AnimationDelay <= 0.0F Then
-                AnimationX += 1
-                AnimationDelay = AnimationDelayLength
-                If Me.Texture.Width = Me.Texture.Height / 2 Then
-                    If AnimationX > 2 Then
-                        AnimationX = 1
-                    End If
-                ElseIf Me.Texture.Width = Me.Texture.Height Then
+            If Moving = True Then
+                Me.AnimationDelay -= 0.1F
+                If AnimationDelay <= 0.0F Then
+                    AnimationX += 1
+                    AnimationDelay = AnimationDelayLength
                     If AnimationX > 4 Then
                         AnimationX = 1
                     End If
+                End If
+            Else
+                If Me.Texture.Width = Me.Texture.Height Then
+                    AnimationX = 1
                 Else
-                    If AnimationX > 3 Then
-                        AnimationX = 1
+                    Me.AnimationDelay -= 0.1F
+                    If AnimationDelay <= 0.0F Then
+                        AnimationX += 1
+                        AnimationDelay = 2.2F
+                        If AnimationX > 4 Then
+                            AnimationX = 1
+                        End If
                     End If
                 End If
             End If
@@ -160,6 +165,10 @@
                     Return 0
                 Case 2
                     Return 1
+                Case 3
+                    Return 0
+                Case 4
+                    Return 1
             End Select
         ElseIf Me.Texture.Width = Me.Texture.Height Then
             Select Case AnimationX
@@ -197,7 +206,7 @@
     Public Sub ApplyPlayerData(ByVal p As Servers.Player)
         Try
             Me.PlayerID = p.ServersID
-
+            Me.Moving = p.Moving
             Me.PokemonTexture = p.PokemonSkin
             Me.Position = p.PokemonPosition
             Me.LevelFile = p.LevelFile
