@@ -5938,6 +5938,23 @@
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
+                            'Clamp Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                ChangeCameraAngle(1, True, BattleScreen)
+                                Dim ClampAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, True)
+                                Dim offsetLeft As Single = 0.35
+                                Dim offsetRight As Single = -0.35
+                                ClampAnimation.AnimationPlaySound("Battle\Attacks\Water\Clamp", 0, 0)
+                                Dim ClampEntityLeft = ClampAnimation.SpawnEntity(New Vector3(offsetLeft, -0.1, offsetLeft), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Left", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+                                Dim ClampEntityRight = ClampAnimation.SpawnEntity(New Vector3(offsetRight, -0.1, offsetRight), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Right", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+                                ClampAnimation.AnimationMove(ClampEntityLeft, False, -0.1, -0.1, -0.1, 0.02, False, False, 0, 0)
+                                ClampAnimation.AnimationMove(ClampEntityRight, False, 0.1, -0.1, 0.1, 0.02, False, False, 0, 0)
+                                ClampAnimation.AnimationMove(ClampEntityLeft, True, -0.35, -0.1, -0.35, 0.02, False, False, 2, 0)
+                                ClampAnimation.AnimationMove(ClampEntityRight, True, 0.35, -0.1, 0.35, 0.02, False, False, 2, 0)
+                                Dim SpawnEntity = ClampAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Tackle"), New Vector3(0.5F), 1.0F, 2.5, 2)
+                                ClampAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 4.5F, 0)
+                                BattleScreen.BattleQuery.Add(ClampAnimation)
+                            End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Clamp!", "clamp")
                         End If
                     End If
@@ -6803,6 +6820,23 @@
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
+                            End If
+                            'Clamp Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                ChangeCameraAngle(1, False, BattleScreen)
+                                Dim ClampAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, False)
+                                Dim offsetLeft As Single = -0.35
+                                Dim offsetRight As Single = 0.35
+                                ClampAnimation.AnimationPlaySound("Battle\Attacks\Water\Clamp", 0, 0)
+                                Dim ClampEntityLeft = ClampAnimation.SpawnEntity(New Vector3(offsetLeft, -0.1, offsetLeft), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Left", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+                                Dim ClampEntityRight = ClampAnimation.SpawnEntity(New Vector3(offsetRight, -0.1, offsetRight), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Right", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+                                ClampAnimation.AnimationMove(ClampEntityLeft, False, -0.1, -0.1, -0.1, 0.02, False, False, 0, 0)
+                                ClampAnimation.AnimationMove(ClampEntityRight, False, 0.1, -0.1, 0.1, 0.02, False, False, 0, 0)
+                                ClampAnimation.AnimationMove(ClampEntityLeft, True, -0.35, -0.1, -0.35, 0.02, False, False, 2, 0)
+                                ClampAnimation.AnimationMove(ClampEntityRight, True, 0.35, -0.1, 0.35, 0.02, False, False, 2, 0)
+                                Dim SpawnEntity = ClampAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Tackle"), New Vector3(0.5F), 1.0F, 2.5, 2)
+                                ClampAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 4.5F, 0)
+                                BattleScreen.BattleQuery.Add(ClampAnimation)
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Clamp!", "clamp")
                         End If
