@@ -376,7 +376,7 @@
             Screen.Level.Entities.Add(OwnPokemonModel)
 
             Dim InitiallyVisibleOpp As Integer = 1
-            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 Then
                 InitiallyVisibleOpp = 0
             End If
 
@@ -414,12 +414,12 @@
             Dim q1 As TextQueryObject = New TextQueryObject(Trainer.Name & " wants to battle!")
 
             ' Ball is thrown
-            Dim BallThrowOpp As AnimationQueryObject = New AnimationQueryObject(OppPokemonNPC, True, OppPokemonModel)
+            Dim BallThrowOpp As AnimationQueryObject = New AnimationQueryObject(OppPokemonNPC, False, OppPokemonModel)
 
             If Core.Player.ShowBattleAnimations <> 0 Then
                 BallThrowOpp.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                 BallThrowOpp.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
-                Dim BallThrowEntity As Entity = BallThrowOpp.SpawnEntity(New Vector3(-2, -0.15, 0), Me.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                Dim BallThrowEntity As Entity = BallThrowOpp.SpawnEntity(New Vector3(2, -0.15, 0), Me.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
                 BallThrowOpp.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, 0.3,, 0.025F)
 
                 ' Ball Opens

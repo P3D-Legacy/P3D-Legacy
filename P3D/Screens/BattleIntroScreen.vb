@@ -172,6 +172,7 @@
     Private Sub DrawTrainerIntro()
         Dim barPosition As Vector2 = New Vector2(Trainer.BarImagePosition.X * 128, Trainer.BarImagePosition.Y * 128)
         Dim VSPosition As Vector2 = New Vector2(Trainer.VSImagePosition.X * 128, Trainer.VSImagePosition.Y * 128 + 64)
+        Dim TrainerFrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Height / 4))
 
         If Trainer.VSImageOrigin <> "VSIntro" Then
             VSPosition.Y -= 64
@@ -179,17 +180,18 @@
 
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
         Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\" & Trainer.VSImageOrigin, New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), Trainer.VSImageSize.Width, Trainer.VSImageSize.Height), "")
-        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, 64, 32, 32))
+        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, TrainerFrameSize.Height * 2, TrainerFrameSize.Width, TrainerFrameSize.Height))
         Dim t4 As Texture2D = Nothing
         If Trainer.DoubleTrainer = True Then
-            t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, 64, 32, 32))
+            Dim Trainer2FrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Height / 4))
+            t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, Trainer2FrameSize.Height * 2, Trainer2FrameSize.Width, Trainer2FrameSize.Height))
         End If
 
         If Trainer.GameJoltID <> "" Then
             If GameJolt.Emblem.HasDownloadedSprite(Trainer.GameJoltID) = True Then
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
                 If Not t Is Nothing Then
-                    Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
+                    Dim spriteSize As New Vector2(CInt(t.Width / 3), CInt(t.Height / 4))
                     t3 = TextureManager.GetTexture(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
             End If
@@ -238,20 +240,22 @@
     Private Sub DrawFaceshotIntro()
         Dim barPosition As Vector2 = New Vector2(Trainer.BarImagePosition.X * 128, Trainer.BarImagePosition.Y * 128)
         Dim VSPosition As Vector2 = New Vector2(Trainer.VSImagePosition.X * 128, Trainer.VSImagePosition.Y * 128 + 64)
+        Dim TrainerFrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Height / 4))
 
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
         Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), 61, 54), "")
-        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, 64, 32, 32))
+        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, TrainerFrameSize.Height * 2, TrainerFrameSize.Width, TrainerFrameSize.Height))
         Dim t4 As Texture2D = Nothing
         If Trainer.DoubleTrainer = True Then
-            t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, 64, 32, 32))
+            Dim Trainer2FrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Height / 4))
+            t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, Trainer2FrameSize.Height * 2, Trainer2FrameSize.Width, Trainer2FrameSize.Height))
         End If
 
         If Trainer.GameJoltID <> "" Then
             If GameJolt.Emblem.HasDownloadedSprite(Trainer.GameJoltID) = True Then
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
                 If Not t Is Nothing Then
-                    Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
+                    Dim spriteSize As New Vector2(CInt(t.Width / 3), CInt(t.Height / 4))
                     t3 = TextureManager.GetTexture(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
             End If

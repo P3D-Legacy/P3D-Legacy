@@ -7363,7 +7363,7 @@
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
 
                     Dim BallThrowEntity As Entity = BallThrow.SpawnEntity(New Vector3(-2, -0.15, 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                    BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, 0.3,, 0.025F)
+                    BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, -0.3,, 0.025F)
 
                     ' Ball Opens
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
@@ -7783,12 +7783,12 @@
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
-                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
+                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False, BattleScreen.OppPokemonModel)
                 If Core.Player.ShowBattleAnimations <> 0 Then
                     ' Ball is thrown
 
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
-                    Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(-2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
                     BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, 0.3,, 0.025F)
 
                     ' Ball opens
