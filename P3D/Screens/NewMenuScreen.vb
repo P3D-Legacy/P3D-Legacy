@@ -141,7 +141,7 @@
 
     Private Sub SetCursorPosition(ByVal _buttonIndex As Integer)
         Dim pos = GetButtonPosition(_buttonIndex)
-        Dim cPosition As Vector2 = New Vector2(pos.X + 180, pos.Y - 42)
+        Dim cPosition As Vector2 = New Vector2(CInt(pos.X + 180), CInt(pos.Y - 42))
         _cursorDestPosition = cPosition
     End Sub
 
@@ -196,14 +196,14 @@
             Dim preMenuIndex As Integer = _menuIndex
 
             If _cursorDestPosition.X <> _cursorPosition.X Or _cursorDestPosition.Y <> _cursorPosition.Y Then
-                _cursorPosition.X = MathHelper.Lerp(_cursorDestPosition.X, _cursorPosition.X, 0.75F)
-                _cursorPosition.Y = MathHelper.Lerp(_cursorDestPosition.Y, _cursorPosition.Y, 0.75F)
+                _cursorPosition.X = CInt(MathHelper.Lerp(_cursorDestPosition.X, _cursorPosition.X, 0.75F))
+                _cursorPosition.Y = CInt(MathHelper.Lerp(_cursorDestPosition.Y, _cursorPosition.Y, 0.75F))
 
                 If Math.Abs(_cursorDestPosition.X - _cursorPosition.X) < 0.1F Then
-                    _cursorPosition.X = _cursorDestPosition.X
+                    _cursorPosition.X = CInt(_cursorDestPosition.X)
                 End If
                 If Math.Abs(_cursorDestPosition.Y - _cursorPosition.Y) < 0.1F Then
-                    _cursorPosition.Y = _cursorDestPosition.Y
+                    _cursorPosition.Y = CInt(_cursorDestPosition.Y)
                 End If
             End If
             If Math.Abs(_cursorDestPosition.Y - _cursorPosition.Y) < 5.0F Then
@@ -212,12 +212,12 @@
                         Dim pos = GetButtonPosition(i)
                         If New Rectangle(CInt(pos.X), CInt(pos.Y), 64 * 6, 64).Contains(MouseHandler.MousePosition) Then
                             If _menuIndex = i Then
-                                _cursorPosition.X = _cursorDestPosition.X
+                                _cursorPosition.X = CInt(_cursorDestPosition.X)
                                 SoundManager.PlaySound("select")
                                 PressButton()
                             Else
                                 _menuIndex = i
-                                _cursorDestPosition = New Vector2(MouseHandler.MousePosition.X, MouseHandler.MousePosition.Y - 42)
+                                SetCursorPosition(_menuIndex)
                                 preMenuIndex = _menuIndex 'Prevent the update of the mouse position below.
                                 Exit For
                             End If
@@ -225,7 +225,7 @@
                     Next
                 End If
                 If Controls.Accept(False, True, True) = True Then
-                    _cursorPosition.X = _cursorDestPosition.X
+                    _cursorPosition.X = CInt(_cursorDestPosition.X)
                     SoundManager.PlaySound("select")
                     PressButton()
                 End If
