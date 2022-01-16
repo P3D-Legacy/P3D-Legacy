@@ -183,10 +183,10 @@ Public Class PartyScreen
 
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 150), CInt(Core.windowSize.Height - 200), 300, 100), New Color(0, 0, 0, CInt(150 * textFade * _interfaceFade)))
 
-            Dim text As String = _messageText.CropStringToWidth(FontManager.ChatFont, 250) '''???
-            Dim size As Vector2 = FontManager.ChatFont.MeasureString(text)
+            Dim text As String = _messageText.CropStringToWidth(FontManager.MainFont, 250) '''???
+            Dim size As Vector2 = FontManager.MainFont.MeasureString(text)
 
-            SpriteBatch.DrawString(FontManager.ChatFont, text, New Vector2(CSng(Core.windowSize.Width / 2 - size.X / 2), CSng(Core.windowSize.Height - 150 - size.Y / 2)), New Color(255, 255, 255, CInt(255 * textFade * _interfaceFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CSng(Core.windowSize.Width / 2 - size.X / 2), CSng(Core.windowSize.Height - 150 - size.Y / 2)), New Color(255, 255, 255, CInt(255 * textFade * _interfaceFade)))
         End If
     End Sub
 
@@ -214,7 +214,10 @@ Public Class PartyScreen
             _preScreenTexture = target
         End If
 
-        SpriteBatch.Draw(_blur.Perform(_preScreenTexture), windowSize, Color.White)
+        If _interfaceFade < 1.0F Then
+            SpriteBatch.Draw(_preScreenTexture, windowSize, Color.White)
+        End If
+        SpriteBatch.Draw(_blur.Perform(_preScreenTexture), windowSize, New Color(255, 255, 255, CInt(255 * _interfaceFade * 2).Clamp(0, 255)))
     End Sub
 
 
@@ -232,7 +235,7 @@ Public Class PartyScreen
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
 
-        SpriteBatch.DrawString(FontManager.ChatFont, POKEMON_TITLE, New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
+        SpriteBatch.DrawString(FontManager.MainFont, POKEMON_TITLE, New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
 
         For y = 0 To CInt(_enrollY) Step 16
             For x = 0 To 800 Step 16
@@ -292,7 +295,7 @@ Public Class PartyScreen
                              _pokemonAnimations(index)._shakeV * shakeMulti, New Vector2(16, 16), SpriteEffects.None, 0F)
 
             'name:
-            GetFontRenderer().DrawString(FontManager.MiniFont, p.GetDisplayName(), New Vector2(position.X + 156, position.Y + 27), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(position.X + 156, position.Y + 27), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
         Else
             Dim shakeMulti As Single = CSng((p.HP / p.MaxHP).Clamp(0.2F, 1.0F))
 
@@ -308,18 +311,18 @@ Public Class PartyScreen
             End If
 
             'name:
-            GetFontRenderer().DrawString(FontManager.MiniFont, p.GetDisplayName(), New Vector2(position.X + 78, position.Y + 5), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(position.X + 78, position.Y + 5), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
             'Gender symbol:
             Select Case p.Gender
                 Case Pokemon.Genders.Male
-                    SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X + FontManager.MiniFont.MeasureString(p.GetDisplayName()).X + 86), CInt(position.Y + 9), 7, 13), New Rectangle(25, 0, 7, 13), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+                    SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X + FontManager.MainFont.MeasureString(p.GetDisplayName()).X + 86), CInt(position.Y + 9), 7, 13), New Rectangle(25, 0, 7, 13), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
                 Case Pokemon.Genders.Female
-                    SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X + FontManager.MiniFont.MeasureString(p.GetDisplayName()).X + 85), CInt(position.Y + 9), 9, 13), New Rectangle(32, 0, 9, 13), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+                    SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X + FontManager.MainFont.MeasureString(p.GetDisplayName()).X + 85), CInt(position.Y + 9), 9, 13), New Rectangle(32, 0, 9, 13), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
             End Select
 
             'Level:
-            GetFontRenderer().DrawString(FontManager.MiniFont, "Lv. " & p.Level.ToString(), New Vector2(position.X + 4, position.Y + 56), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, "Lv. " & p.Level.ToString(), New Vector2(position.X + 4, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
             'HP Bar:
             SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 102, CInt(position.Y) + 32, 111, 15), New Rectangle(16, 32, 74, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
@@ -354,7 +357,7 @@ Public Class PartyScreen
             End With
 
             'HP display:
-            GetFontRenderer().DrawString(FontManager.MiniFont, p.HP & " / " & p.MaxHP, New Vector2(position.X + 100, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, p.HP & " / " & p.MaxHP, New Vector2(position.X + 100, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
             'status condition
             Dim StatusTexture As Texture2D = BattleStats.GetStatImage(p.Status)
@@ -379,7 +382,7 @@ Public Class PartyScreen
                         End If
                 End Select
             End If
-            GetFontRenderer().DrawString(FontManager.MiniFont, AttackLabel, New Vector2(position.X + 210, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, AttackLabel, New Vector2(position.X + 210, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
         End If
 

@@ -411,7 +411,8 @@
             Dim q As CameraQueryObject = New CameraQueryObject(New Vector3(13, 0, 15), New Vector3(21, 0, 15), 0.05F, 0.05F, -0.8F, 1.4F, 0.0F, 0.0F, 0.016F, 0.016F)
             q.PassThis = True
 
-            Dim q1 As TextQueryObject = New TextQueryObject(Trainer.Name & " wants to battle!")
+            Dim q1 As TextQueryObject = New TextQueryObject(Trainer.Name & " " & "wants to battle!")
+            Dim q11 As TextQueryObject = New TextQueryObject(Trainer.Name & ": """ & "Go," & " " & OppPokemon.GetDisplayName() & "!""")
 
             ' Ball is thrown
             Dim BallThrowOpp As AnimationQueryObject = New AnimationQueryObject(OppPokemonNPC, False, OppPokemonModel)
@@ -438,9 +439,10 @@
 
                     Threading.Interlocked.Increment(SmokeSpawnedOpp)
                 Loop While SmokeSpawnedOpp <= 38
+
+                ' Pokemon appears
+                BallThrowOpp.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
             End If
-            ' Pokemon appears
-            BallThrowOpp.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
             BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 4, 0,, True)
 
             '  Pokémon falls down
@@ -453,15 +455,11 @@
 
             Dim q3 As CameraQueryObject = New CameraQueryObject(New Vector3(14, 0, 11), New Vector3(14, 0, 15), 0.01F, 0.01F, MathHelper.PiOver2, MathHelper.PiOver2, 0.0F, 0.0F)
             q3.PassThis = True
+            Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F)
+            Dim q4 As TextQueryObject = New TextQueryObject("Go," & " " & Me.OwnPokemon.GetDisplayName() & "!")
 
-            Dim q4 As TextQueryObject = New TextQueryObject("Go, " & Me.OwnPokemon.GetDisplayName() & "!")
 
-            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations = 0 Then
-                Dim q31 As New PlaySoundQueryObject(OwnPokemon.Number.ToString(), True, 3.0F)
-                Me.BattleQuery.AddRange({cq, q, q1, BallThrowOpp, q2, q3, q31, q4})
-            Else
-                Me.BattleQuery.AddRange({cq, q, q1, BallThrowOpp, q2, q3, q4})
-            End If
+            Me.BattleQuery.AddRange({cq, q, q1, q11, BallThrowOpp, q2, q3, q31, q4})
 
             If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 Then
                 ' Ball is thrown

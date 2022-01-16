@@ -67,10 +67,15 @@
 
         Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
-            Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(Nothing, TextureManager.GetTexture("Textures\Battle\Poison\Stinger"), New Vector3(0.5F), 1.0F)
+
+            Dim TextureYOffset As Integer = 0
+            If BattleFlip = True Then
+                TextureYOffset = 16
+            End If
+            Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(Nothing, TextureManager.GetTexture("Textures\Battle\Poison\Stinger", New Rectangle(0, TextureYOffset, 16, 16), ""), New Vector3(0.2F), 1.0F)
 
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Poison\PoisonSting_Start", 0, 0)
-            MoveAnimation.AnimationMove(StingerEntity, True, 2.0, 0.0, 0.0, 0.05, False, False, 0.0, 0.0,,, 0)
+            MoveAnimation.AnimationMove(StingerEntity, True, 2.0, 0.0, 0.0, 0.08, False, False, 0.0, 0.0)
 
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
@@ -78,27 +83,31 @@
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
 
-            Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(-2.0, 0, 0.0), TextureManager.GetTexture("Textures\Battle\Poison\Stinger"), New Vector3(0.5F), 1)
+            Dim TextureYOffset As Integer = 0
+            If BattleFlip = True Then
+                TextureYOffset = 16
+            End If
+            Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(-2.0, 0, 0.0), TextureManager.GetTexture("Textures\Battle\Poison\Stinger", New Rectangle(0, TextureYOffset, 16, 16), ""), New Vector3(0.2F), 1)
 
-            MoveAnimation.AnimationMove(StingerEntity, True, 0.0, 0.0, 0.0, 0.05, False, False, 0.0, 0.0,,, 0)
+            MoveAnimation.AnimationMove(StingerEntity, True, 0.0, 0.0, 0.0, 0.08, False, False, 0.0, 0.0)
 
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Poison\PoisonSting_Hit", 1, 0)
 
-            Dim BubbleEntity1 As Entity = MoveAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+            Dim BubbleEntity1 As Entity = MoveAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
-            MoveAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+            MoveAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 
-            Dim BubbleEntity2 As Entity = MoveAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+            Dim BubbleEntity2 As Entity = MoveAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 3, 1)
 
-            MoveAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 3, 1)
-            MoveAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+            MoveAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+            MoveAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 4, 1)
 
-            Dim BubbleEntity3 As Entity = MoveAnimation.SpawnEntity(New Vector3(0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 3, 1)
+            Dim BubbleEntity3 As Entity = MoveAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 4, 1)
 
-            MoveAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 4, 1)
-            MoveAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 4, 1)
+            MoveAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 5, 1)
+            MoveAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 32, 32, 32), ""), 5, 1)
 
-            MoveAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 5, 1)
+            MoveAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 64, 32, 32), ""), 6, 1)
 
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub

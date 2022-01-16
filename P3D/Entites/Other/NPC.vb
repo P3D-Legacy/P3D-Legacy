@@ -418,14 +418,16 @@
                                     If CType(Screen.Camera, OverworldCamera).ThirdPerson = True And IsOnScreen() = False Then
                                         s &= "@camera.setfocus(npc," & Me.NPCID & ")" & Environment.NewLine
                                         Dim cPosition = .ThirdPersonOffset.X.ToString() & "," & .ThirdPersonOffset.Y.ToString() & "," & .ThirdPersonOffset.Z.ToString()
-                                        s &= "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
+                                        s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
+                                             "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
                                              "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
+                                             "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
                                              "@camera.resetfocus" & Environment.NewLine &
                                              "@camera.setposition(" & cPosition & ")" & Environment.NewLine &
-                                             "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
                                              ":end"
                                     Else
-                                        s &= "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
+                                        s &= "@sound.play(Emote_Exclamation)" & Environment.NewLine &
+                                        "@entity.showmessagebulb(1|" & Me.Position.X + offset.X & "|" & Me.Position.Y + 0.7F & "|" & Me.Position.Z + offset.Y & ")" & Environment.NewLine &
                                         "@npc.move(" & Me.NPCID & "," & distance - 1 & ")" & Environment.NewLine &
                                         "@script.start(" & Me.AdditionalValue & ")" & Environment.NewLine &
                                         ":end"

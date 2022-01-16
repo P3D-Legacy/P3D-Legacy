@@ -67,12 +67,12 @@
 
             MoveAnimation.AnimationPlaySound(CStr(CurrentPokemon.Number), 0, 0,, True)
             Dim SoundwaveEntity As Entity
-            If BattleFlip = False Then
-                SoundwaveEntity = MoveAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0), TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
-            Else
-                SoundwaveEntity = MoveAnimation.SpawnEntity(New Vector3(-0.25, -0.25, 0), TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
-            End If
-            MoveAnimation.AnimationChangeTexture(SoundwaveEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+            ' If BattleFlip = False Then
+            SoundwaveEntity = MoveAnimation.SpawnEntity(New Vector3(0.25, -0.25, 0), TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                'Else
+                ' SoundwaveEntity = MoveAnimation.SpawnEntity(New Vector3(-0.25, -0.25, 0), TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+                'End If
+                MoveAnimation.AnimationChangeTexture(SoundwaveEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 32, 32, 32), ""), 1, 1)
             MoveAnimation.AnimationChangeTexture(SoundwaveEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 0, 32, 32), ""), 2, 1)
             MoveAnimation.AnimationChangeTexture(SoundwaveEntity, True, TextureManager.GetTexture("Textures\Battle\Normal\Growl", New Rectangle(0, 32, 32, 32), ""), 3, 1)
 

@@ -103,10 +103,20 @@
 		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal startDelay As Single = 0.0F, Optional ByVal endDelay As Single = 0.0F) As Entity
 			Dim NewPosition As Vector3
 			If Not Position = Nothing Then
-				If CurrentEntity IsNot Nothing Then
-					NewPosition = CurrentEntity.Position + Position
+				If BattleFlipped = True Then
+					If CurrentEntity IsNot Nothing Then
+						NewPosition.X = CurrentEntity.Position.X - Position.X
+						NewPosition.Y = CurrentEntity.Position.Y + Position.Y
+						NewPosition.Z = CurrentEntity.Position.Z + Position.Z
+					Else
+						NewPosition = Position
+					End If
 				Else
-					NewPosition = Position
+					If CurrentEntity IsNot Nothing Then
+						NewPosition = CurrentEntity.Position + Position
+					Else
+						NewPosition = Position
+					End If
 				End If
 			Else
 				If CurrentEntity IsNot Nothing Then

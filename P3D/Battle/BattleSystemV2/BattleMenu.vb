@@ -604,9 +604,20 @@
                 _mainMenuItemList.Clear()
                 BattleScreen.ClearMainMenuTime = False
             End If
-
             If _mainMenuItemList.Count = 0 Then
                 CreateMainMenuItems(BattleScreen)
+            End If
+            If BattleScreen.OwnFaint = True Then
+                If BattleScreen.BattleQuery(0).QueryType <> QueryObject.QueryTypes.ScreenFade Then
+                    TempBattleScreen = BattleScreen
+
+                    Player.Temp.PokemonScreenIndex = BattleScreen.OwnPokemonIndex
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ShowPokemonMenu, "Choose Pokémon", False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False}
+                    AddHandler selScreen.SelectedObject, AddressOf ShowPokemonMenuHandler
+
+                    Core.SetScreen(selScreen)
+
+                End If
             End If
             If _retractMenu = False Then
                 For Each m As MainMenuItem In _mainMenuItemList
