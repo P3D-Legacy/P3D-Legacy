@@ -100,6 +100,7 @@
     Public Shared DiagonalWallModel As DiagonalWallModel = New DiagonalWallModel()
     Public Shared HalfDiagonalWallModel As HalfDiagonalWallModel = New HalfDiagonalWallModel()
     Public Shared OutsideStepModel As OutsideStepModel = New OutsideStepModel()
+    Public Shared WallModel As WallModel = New WallModel()
 
     Public Shared Function getModelbyID(ByVal ID As Integer) As BaseModel
         Select Case ID
@@ -143,6 +144,8 @@
                 Return HalfDiagonalWallModel
             Case 19
                 Return OutsideStepModel
+            Case 20
+                Return WallModel
             Case Else
                 Return BlockModel
         End Select

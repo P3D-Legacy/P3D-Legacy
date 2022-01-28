@@ -30775,6 +30775,7 @@
     <Compile Include="Resources\FontManager.vb" />
     <Compile Include="Resources\GameModeManager.vb" />
     <Compile Include="Resources\ModelManager.vb" />
+    <Compile Include="Resources\Models\2D\WallModel.vb" />
     <Compile Include="Resources\Models\2D\BillModel.vb" />
     <Compile Include="Resources\Models\2D\CrossModel.vb" />
     <Compile Include="Resources\Models\2D\DoubleFloorModel.vb" />
