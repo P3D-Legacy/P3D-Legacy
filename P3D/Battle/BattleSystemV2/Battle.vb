@@ -1237,7 +1237,7 @@
                     CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " thawed out.", "own defrost")
                 Else
                     'Frozen animation
-                    ChangeCameraAngle(1, Not own, BattleScreen)
+                    ChangeCameraAngle(1, own, BattleScreen)
                     If Core.Player.ShowBattleAnimations <> 0 Then
                         Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
 
@@ -1303,7 +1303,7 @@
                         End If
                     Else
                         If sleepTurns > 0 Then
-                            ChangeCameraAngle(1, Not own, BattleScreen)
+                            ChangeCameraAngle(1, own, BattleScreen)
                             'Sleep Animation
                             If Core.Player.ShowBattleAnimations <> 0 Then
                                 Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
@@ -1440,7 +1440,7 @@
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is no longer confused!"))
                     p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Else
-                    Me.ChangeCameraAngle(1, Not own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     'Confused Animation
                     If Core.Player.ShowBattleAnimations <> 0 Then
                         Dim ConfusedAnimation As New AnimationQueryObject(pNPC, Not own)
@@ -1549,7 +1549,7 @@
 
             If p.Status = Pokemon.StatusProblems.Paralyzed Then
                 If Core.Random.Next(0, 4) = 0 Then
-                    Me.ChangeCameraAngle(1, Not own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     If Core.Player.ShowBattleAnimations <> 0 Then
                         Dim ParalyzedAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
 
@@ -3308,7 +3308,7 @@
                                         Return False
                                     Else
                                         'Works!
-                                        ChangeCameraAngle(1, Not own, BattleScreen)
+                                        ChangeCameraAngle(1, own, BattleScreen)
                                         'Sleep Animation
                                         If Core.Player.ShowBattleAnimations <> 0 Then
                                             Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
@@ -3440,20 +3440,7 @@
                             Else
                                 'Works!
                                 ChangeCameraAngle(1, own, BattleScreen)
-                                'Poison animation
-                                If Core.Player.ShowBattleAnimations <> 0 Then
-                                    Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
 
-                                    PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
-                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
-
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
-                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
-
-                                    BattleScreen.BattleQuery.Add(PoisonAnimation)
-                                Else
-                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
-                                End If
                                 If bad = True Then
                                     p.Status = Pokemon.StatusProblems.BadPoison
                                     Select Case message
@@ -3465,7 +3452,42 @@
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is badly poisoned!"))
                                     End Select
+                                    If Core.Player.ShowBattleAnimations <> 0 Then
+                                        Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
+                                        PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                        Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                        Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                        Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+
+                                        BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                    Else
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                    End If
                                 Else
+                                    'Poison animation
+                                    If Core.Player.ShowBattleAnimations <> 0 Then
+                                        Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
+
+                                        PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                        Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+
+                                        BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                    Else
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                    End If
                                     p.Status = Pokemon.StatusProblems.Poison
                                     Select Case message
                                         Case "" 'Print default message only
@@ -3554,7 +3576,7 @@
                 Return False
             Else
                 'Works!
-                Me.ChangeCameraAngle(1, Not own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 'Confused Animation
                 If Core.Player.ShowBattleAnimations <> 0 Then
                     Dim ConfusedAnimation As New AnimationQueryObject(pNPC, Not own)
