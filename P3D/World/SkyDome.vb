@@ -63,9 +63,9 @@
             If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside Then
                 If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then ' Don't render the sky if the weather is set to Fog.
                     RenderHalf(FOV, Yaw, 0.0F, True, GetSkyTexture(), 16, 1.0F) ' Draw the sky
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureDown, 14, GetStarsAlpha()) ' Draw the stars.
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 12, GetSunAlpha()) ' Draw the Sun.
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureMoon, 12, GetMoonAlpha()) ' Draw the Moon.
+                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureDown, 13, GetStarsAlpha()) ' Draw the stars.
+                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 11, GetSunAlpha()) ' Draw the Sun.
+                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureMoon, 11, GetMoonAlpha()) ' Draw the Moon.
                     RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, GetCloudsTexture(), 8, GetCloudAlpha) ' Draw the clouds.
                 End If
             Else

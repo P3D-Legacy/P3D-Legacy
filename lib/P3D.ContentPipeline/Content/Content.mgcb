@@ -278,8 +278,8 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/truck2/Truck.obj
 
-#begin SkyDomeResource/SkyDome.x
-/importer:XImporter
+#begin SkyDomeResource/SkyDome.obj
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
@@ -295,5 +295,5 @@
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Color
-/build:SkyDomeResource/SkyDome.x
+/build:SkyDomeResource/SkyDome.obj
 

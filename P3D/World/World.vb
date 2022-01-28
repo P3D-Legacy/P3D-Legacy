@@ -611,7 +611,7 @@ endsub:
                 Core.BackgroundColor = GetWeatherBackgroundColor(New Color(40, 88, 128))
                 Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
                 Screen.SkyDome.TextureUp = TextureManager.GetTexture("SkyDomeResource\Underwater")
-                Screen.SkyDome.TextureDown = TextureManager.GetTexture("SkyDomeResource\UnderwaterGround")
+                Screen.SkyDome.TextureDown = Nothing
             Case EnvironmentTypes.Forest
                 Core.BackgroundColor = GetWeatherBackgroundColor(New Color(48, 80, 48))
                 Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()

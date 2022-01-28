@@ -75,7 +75,7 @@
     <None Include="Content\Models\Snorlax\Textures\kabigon_1_4.tga" />
     <None Include="Content\Models\truck2\Truck.mtl" />
     <None Include="Content\Models\truck2\Truck.obj" />
-    <None Include="Content\SkyDomeResource\SkyDome.x" />
+    <None Include="Content\SkyDomeResource\SkyDome.obj" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
