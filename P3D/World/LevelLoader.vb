@@ -829,6 +829,15 @@
 
         Dim Rotation As Vector3 = Entity.GetRotationFromInteger(CInt(GetTag(Tags, "Rotation")))
 
+        If TagExists(Tags, "RotationXYZ") = True Then
+            Dim rotationList As List(Of Single) = CType(GetTag(Tags, "RotationXYZ"), List(Of Single))
+            Rotation = New Vector3(rotationList(0), rotationList(1), rotationList(2))
+        End If
+
+        If ModelID = 21 Then
+            Rotation.Z += MathHelper.Pi
+        End If
+
         Dim Visible As Boolean = True
         If TagExists(Tags, "Visible") = True Then
             Visible = CBool(GetTag(Tags, "Visible"))
@@ -840,11 +849,7 @@
             Shader = New Vector3(ShaderList(0), ShaderList(1), ShaderList(2))
         End If
 
-        Dim RotationXYZ As Vector3 = Nothing
-        If TagExists(Tags, "RotationXYZ") = True Then
-            Dim rotationList As List(Of Single) = CType(GetTag(Tags, "RotationXYZ"), List(Of Single))
-            Rotation = New Vector3(rotationList(0), rotationList(1), rotationList(2))
-        End If
+
 
         Dim SeasonTexture As String = ""
         If TagExists(Tags, "SeasonTexture") = True Then
