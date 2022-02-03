@@ -27,6 +27,8 @@
                         Return ent.Position.Z
                     Case "positionx"
                         Return ent.Position.X
+                    Case "rotation"
+                        Return ent.Rotation.X.ToString() & "," & ent.Rotation.Y.ToString() & "," & ent.Rotation.Z.ToString()
                     Case "scale"
                         Return ent.Scale.X.ToString() & "," & ent.Scale.Y.ToString() & "," & ent.Scale.Z.ToString()
                     Case "additionalvalue"

@@ -211,7 +211,9 @@ Namespace ScriptVersion2
             r(New ScriptCommand("level", "filename", "str", "Returns only the name of the current map file, without path and extension.", ",", True))
             r(New ScriptCommand("level", "riding", "bool", "Returns if the player is Riding a Pokémon right now.", ",", True))
             r(New ScriptCommand("level", "surfing", "bool", "Returns if the player is Suring on a Pokémon right now.", ",", True))
-            r(New ScriptCommand("level", "daytime", "int", "Returns the daytime of the current map.", ",", True))
+            r(New ScriptCommand("level", "musicloop", "str", "Returns only the name of the current played song, without path and extension.", ",", True))
+            r(New ScriptCommand("level", "daytime", "int", "Returns the DayTime of the current map.", ",", True))
+            r(New ScriptCommand("level", "environmenttype", "int", "Returns the EnvironmentType of the current map.", ",", True))
         End Sub
 
         Private Shared Sub DoEntity()
@@ -258,6 +260,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("entity", "positiony", "sng", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Y position of the selected entity.", ",", True))
             r(New ScriptCommand("entity", "positionz", "sng", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the Z position of the selected entity.", ",", True))
             r(New ScriptCommand("entity", "scale", "sngArr", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the scale of the selected entity in the pattern ""x,y,z"".", ",", True))
+            r(New ScriptCommand("entity", "rotation", "sngArr", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the rotation of the selected entity in the pattern ""x,y,z"".", ",", True))
             r(New ScriptCommand("entity", "additionalvalue", "str", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the additional value of the selected entity.", ",", True))
             r(New ScriptCommand("entity", "collision", "bool", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the collision property of the selected entity.", ",", True))
         End Sub

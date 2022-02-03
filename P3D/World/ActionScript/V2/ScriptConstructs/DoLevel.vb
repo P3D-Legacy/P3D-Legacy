@@ -25,6 +25,8 @@
                     Return musicloop
                 Case "daytime"
                     Return Screen.Level.DayTime
+                Case "environmenttype"
+                    Return int(Screen.Level.EnvironmentType)
             End Select
 
             Return DEFAULTNULL
