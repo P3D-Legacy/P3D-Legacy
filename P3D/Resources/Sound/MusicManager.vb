@@ -63,9 +63,9 @@ Public Class LoopStream
                             Else
                                 If MusicManager._afterBattleIntroSong.AudioType = ".ogg" Then
                                     _sourceStream = New VorbisWaveReader(MusicManager._afterBattleIntroSong.Song)
-                                ElseIf IntroSong.AudioType = ".mp3" Then
+                                ElseIf MusicManager._afterBattleIntroSong.AudioType = ".mp3" Then
                                     _sourceStream = New Mp3FileReader(MusicManager._afterBattleIntroSong.Song)
-                                ElseIf IntroSong.AudioType = ".wma" Then
+                                ElseIf MusicManager._afterBattleIntroSong.AudioType = ".wma" Then
                                     _sourceStream = New MediaFoundationReader(MusicManager._afterBattleIntroSong.Song)
                                 End If
                                 _enableLooping = True
@@ -334,9 +334,7 @@ Public Class MusicManager
     End Sub
 
     Public Shared Sub [Stop]()
-        If Not outputDevice Is Nothing Then
-            outputDevice.Stop()
-        End If
+        MusicManager.Play(NO_MUSIC, False, 0.0F)
         _isIntroStarted = False
     End Sub
 
