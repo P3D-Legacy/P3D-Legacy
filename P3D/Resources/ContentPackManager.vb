@@ -2,7 +2,7 @@
 
     Private Shared TextureReplacements As New Dictionary(Of TextureSource, TextureSource)
     Private Shared FilesExist As New Dictionary(Of String, Boolean)
-    Private Shared TextureResolutions As New Dictionary(Of String, Integer)
+    Private Shared TextureResolutions As New Dictionary(Of String, Single)
 
     Public Shared Sub Load(ByVal ContentPackFile As String)
         If System.IO.Directory.Exists(GameController.GamePath & "\ContentPacks") = True Then
@@ -12,7 +12,7 @@
                     Select Case Line.CountSplits("|")
                         Case 2 'ResolutionChange
                             Dim TextureName As String = Line.GetSplit(0, "|")
-                            Dim Resolution As Integer = CInt(Line.GetSplit(1, "|"))
+                            Dim Resolution As Single = CInt(Line.GetSplit(1, "|"))
 
                             If TextureResolutions.ContainsKey(TextureName) = False Then
                                 TextureResolutions.Add(TextureName, Resolution)
@@ -45,7 +45,7 @@
         Return TextureSource
     End Function
 
-    Public Shared Function GetTextureResolution(ByVal TextureName As String) As Integer
+    Public Shared Function GetTextureResolution(ByVal TextureName As String) As Single
         For i = 0 To TextureResolutions.Count - 1
             If TextureResolutions.Keys(i).ToLower() = TextureName.ToLower() Then
                 Return TextureResolutions.Values(i)
