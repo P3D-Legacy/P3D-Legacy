@@ -384,7 +384,6 @@
 
         Dim packName As String = PackNames(packsMenuIndex(0))
         PInfoSplash = Nothing
-        PInfoContent = ""
 
         Try
             If IO.File.Exists(GameController.GamePath & "\ContentPacks\" & packName & "\splash.png") = True Then
@@ -397,75 +396,6 @@
         End Try
 
         Dim contentPackPath As String = GameController.GamePath & "\ContentPacks\" & packName & "\"
-        If IO.Directory.Exists(contentPackPath & "Songs") = True Then
-            Dim hasWMA As Boolean = False
-            Dim hasOGG As Boolean = False
-            Dim hasMP3 As Boolean = False
-            For Each file As String In IO.Directory.GetFiles(contentPackPath & "Songs")
-                If IO.Path.GetExtension(file).ToLower() = ".ogg" Then
-                    hasOGG = True
-                End If
-                If IO.Path.GetExtension(file).ToLower() = ".wma" Then
-                    hasWMA = True
-                End If
-                If IO.Path.GetExtension(file).ToLower() = ".mp3" Then
-                    hasMP3 = True
-                End If
-            Next
-
-            If hasMP3 = True Or hasOGG = True Or hasWMA = True Then
-                PInfoContent = Localization.GetString("option_screen_contentpacks_songs")
-            End If
-        End If
-        If IO.Directory.Exists(contentPackPath & "Sounds") = True Then
-            Dim hasWMA As Boolean = False
-            Dim hasXNB As Boolean = False
-            Dim hasWAV As Boolean = False
-            For Each file As String In IO.Directory.GetFiles(contentPackPath & "Sounds")
-                If IO.Path.GetExtension(file).ToLower() = ".xnb" Then
-                    hasXNB = True
-                End If
-                If IO.Path.GetExtension(file).ToLower() = ".wma" Then
-                    hasWMA = True
-                End If
-                If IO.Path.GetExtension(file).ToLower() = ".wav" Then
-                    hasWAV = True
-                End If
-            Next
-
-            If hasWAV = True Or hasWMA = True And hasXNB = True Then
-                If PInfoContent <> "" Then
-                    PInfoContent &= ", "
-                End If
-
-                PInfoContent &= Localization.GetString("option_screen_contentpacks_sounds")
-            End If
-        End If
-
-        Dim textureDirectories() As String = {"Textures", "GUI", "Items", "Pokemon", "SkyDomeResource"}
-        For Each folder As String In textureDirectories
-            If IO.Directory.Exists(contentPackPath & folder) = True Then
-                Dim hasXNB As Boolean = False
-                Dim hasPNG As Boolean = False
-                For Each file As String In IO.Directory.GetFiles(contentPackPath & folder, "*.*", IO.SearchOption.AllDirectories)
-                    If IO.Path.GetExtension(file).ToLower() = ".xnb" Then
-                        hasXNB = True
-                    End If
-                    If IO.Path.GetExtension(file).ToLower() = ".png" Then
-                        hasPNG = True
-                    End If
-                Next
-
-                If hasXNB = True Or hasPNG = True Then
-                    If PInfoContent <> "" Then
-                        PInfoContent &= ", "
-                    End If
-
-                    PInfoContent &= Localization.GetString("option_screen_contentpacks_textures")
-                    Exit For
-                End If
-            End If
-        Next
 
         Dim s() As String = ContentPackManager.GetContentPackInfo(packName)
 
@@ -500,7 +430,7 @@
         SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName, New Vector2(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName).X / 2), CInt(Core.windowSize.Height / 2 - 128)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
 
         Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 272 + 4, CInt(Core.windowSize.Height / 2 - 72), 544, 196), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("option_screen_contentpacks_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("option_screen_contentpacks_content") & ": " & PInfoContent & Environment.NewLine & Localization.GetString("option_screen_contentpacks_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine).Replace("~", Environment.NewLine), New Vector2(CInt(windowSize.Width / 2) - 272 + 16, CInt(Core.windowSize.Height / 2 - 64)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("option_screen_contentpacks_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("option_screen_contentpacks_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine).Replace("~", Environment.NewLine), New Vector2(CInt(windowSize.Width / 2) - 272 + 16, CInt(Core.windowSize.Height / 2 - 64)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
     End Sub
 
     Private Sub UpdatePackInformationMenu()
