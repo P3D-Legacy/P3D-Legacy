@@ -154,6 +154,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Import Include="NAudio" />
+    <Import Include="NAudio.Utils" />
     <Import Include="NAudio.Vorbis" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Diagnostics" />
