@@ -406,7 +406,7 @@
             PInfoAuthor = s(1)
         End If
         If s.Length > 2 Then
-            PInfoDescription = s(2).CropStringToWidth(FontManager.InGameFont, 544)
+            PInfoDescription = s(2).CropStringToWidth(FontManager.InGameFont, 540)
         End If
         PInfoName = packName
     End Sub
@@ -425,12 +425,12 @@
 
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
-        Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 240 + 4, CInt(Core.windowSize.Height / 2 - 144), 480, 64), New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)))
+        Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName).X / 2) - 32, CInt(Core.windowSize.Height / 2 - 144), CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName).X) + 64, 64), New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)))
         SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName, New Vector2(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName).X / 2) + 2, CInt(Core.windowSize.Height / 2 - 128 + 2)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
         SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName, New Vector2(CInt(windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_name") & ": " & PInfoName).X / 2), CInt(Core.windowSize.Height / 2 - 128)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
 
-        Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 272 + 4, CInt(Core.windowSize.Height / 2 - 72), 544, 196), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
-        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("option_screen_contentpacks_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("option_screen_contentpacks_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine).Replace("~", Environment.NewLine), New Vector2(CInt(windowSize.Width / 2) - 272 + 16, CInt(Core.windowSize.Height / 2 - 64)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
+        Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 278, CInt(Core.windowSize.Height / 2 - 72), 556, 196), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)))
+        SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("option_screen_contentpacks_version") & ": " & PInfoVersion & Environment.NewLine & Localization.GetString("option_screen_contentpacks_by") & ": " & PInfoAuthor & Environment.NewLine & Localization.GetString("option_screen_contentpacks_description") & ": " & Environment.NewLine & PInfoDescription.Replace("<br>", Environment.NewLine).Replace("~", Environment.NewLine), New Vector2(CInt(windowSize.Width / 2) - 278 + 16, CInt(Core.windowSize.Height / 2 - 64)), New Color(0, 0, 0, CInt(255 * _interfaceFade * _pageFade)))
     End Sub
 
     Private Sub UpdatePackInformationMenu()
