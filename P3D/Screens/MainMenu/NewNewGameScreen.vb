@@ -317,7 +317,7 @@
                 Next
 
                 SpriteBatch.DrawString(FontManager.MainFont, _names(_index), New Vector2(CInt(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(_names(_index)).X), CInt(windowSize.Height / 2.0F + 200)), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
-                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_" & _genders(_index), _genders(_index)), New Vector2(CInt(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.GetString("global_" & _genders(_index), _genders(_index))).X / 2.0F), CInt(windowSize.Height / 2.0F + 300)), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_" & _genders(_index).ToLower(), _genders(_index)), New Vector2(CInt(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.GetString("global_" & _genders(_index).ToLower(), _genders(_index))).X / 2.0F), CInt(windowSize.Height / 2.0F + 300)), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
             End Sub
 
         End Class

@@ -34,7 +34,9 @@
 
         If GameModeManager.GameModeCount > 0 Then
             Dim GameModeLocalizationPath As String = GameModeManager.ActiveGameMode.LocalizationsPath
-            LoadTokenFile(GameModeLocalizationPath, True)
+            If GameModeLocalizationPath <> GameMode.DefaultLocalizationsPath Then
+                LoadTokenFile(GameModeLocalizationPath, True)
+            End If
         End If
 
         Logger.Debug("---Reloaded GameMode Tokens---")

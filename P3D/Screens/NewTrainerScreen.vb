@@ -178,7 +178,7 @@
                 badgeName = t
                 shake = _badgeAnimation._shakeV
             End If
-            _spriteBatch.Draw(Badge.GetBadgeTexture(badgeID), New Rectangle(16 + (i + 1) * 64, 412, 50, 50), Nothing, c, shake, New Vector2(25, 25), SpriteEffects.None, 0F)
+            _spriteBatch.Draw(Badge.GetBadgeTexture(badgeID), New Rectangle(16 + (i + 1) * 64, 412, 50, 50), Nothing, c, shake, New Vector2(CInt(Badge.GetBadgeTexture(badgeID).Width / 2), CInt(Badge.GetBadgeTexture(badgeID).Height / 2)), SpriteEffects.None, 0F)
         Next
 
         _textBatch.DrawString(FontManager.MiniFont, badgeName, New Vector2(555 - FontManager.MiniFont.MeasureString(badgeName).X.ToInteger(), 360), Color.Black)

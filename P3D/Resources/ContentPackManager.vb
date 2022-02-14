@@ -12,7 +12,7 @@
                     Select Case Line.CountSplits("|")
                         Case 2 'ResolutionChange
                             Dim TextureName As String = Line.GetSplit(0, "|")
-                            Dim Resolution As Single = CInt(Line.GetSplit(1, "|"))
+                            Dim Resolution As Single = CSng(Line.GetSplit(1, "|").Replace(".", GameController.DecSeparator))
 
                             If TextureResolutions.ContainsKey(TextureName) = False Then
                                 TextureResolutions.Add(TextureName, Resolution)

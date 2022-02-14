@@ -1518,7 +1518,7 @@ Public Class GameModeSelectionScreen
             Dim halfWidth = CInt(WIDTH / 2)
             Dim ButtonColor = New Rectangle(0, 0, 16, 16)
             Dim ButtonAccent = Screens.UI.ColorProvider.AccentColor(False, CInt(255))
-            If i = _index Then
+            If i <> _index Then
                 ButtonColor = New Rectangle(40, 48, 16, 16)
                 ButtonAccent = New Color(84, 198, 216)
             End If
@@ -1534,8 +1534,8 @@ Public Class GameModeSelectionScreen
 
             Dim textSize = FontManager.InGameFont.MeasureString(displayText)
 
-            GetFontRenderer().DrawString(FontManager.InGameFont, displayText, New Vector2(center - halfWidth + 50 + 2, CType(ButtonY + HEIGHT / 2 - (textSize.Y / 2) + 2, Integer)), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-            GetFontRenderer().DrawString(FontManager.InGameFont, displayText, New Vector2(center - halfWidth + 50, CType(ButtonY + HEIGHT / 2 - (textSize.Y / 2), Integer)), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+            GetFontRenderer().DrawString(FontManager.InGameFont, displayText, New Vector2(center - halfWidth + 32 + 2, CType(ButtonY + HEIGHT / 2 - (textSize.Y / 2) + 2, Integer)), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+            GetFontRenderer().DrawString(FontManager.InGameFont, displayText, New Vector2(center - halfWidth + 32, CType(ButtonY + HEIGHT / 2 - (textSize.Y / 2), Integer)), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
         Next
 
         'Draw GameMode description box
@@ -1562,7 +1562,7 @@ Public Class GameModeSelectionScreen
 
         For x = 0 To displayWidth
             For y = 0 To displayHeight
-                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(x * 16 + displayRect.X), CInt(y * 16) + displayRect.Y - 8, 16, 16), New Rectangle(40, 48, 16, 16), Color.White)
+                SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(x * 16 + displayRect.X), CInt(y * 16) + displayRect.Y - 8, 16, 16), New Rectangle(0, 0, 16, 16), Color.White)
             Next
         Next
         Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y - 8, displayWidth * 16 + 16, 3), New Color(84, 198, 216))

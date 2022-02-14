@@ -50,8 +50,6 @@
 
         BattleSystem.GameModeAttackLoader.Load()
 
-        Localization.ReloadGameModeTokens()
-
         If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
             'MusicManager.LoadMusic(True)
             'SoundManager.LoadSounds(True)
@@ -241,10 +239,8 @@
                     Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_name_too_short"), New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), Color.DarkRed)
                 End If
             Case 4
-                Canvas.DrawRectangle(New Rectangle(CInt(TextboxPosition.X - 5), CInt(TextboxPosition.Y - 24), 138, 42), New Color(0, 0, 0, 80))
-
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_choose_skin") & ":" & Environment.NewLine & skinNames(SkinIndex) & Environment.NewLine & skinGenders(SkinIndex), New Vector2(TextboxPosition.X + 2, TextboxPosition.Y - 24 + 2), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_choose_skin") & ":" & Environment.NewLine & skinNames(SkinIndex) & Environment.NewLine & skinGenders(SkinIndex), New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_select_skin") & ":" & Environment.NewLine & skinNames(SkinIndex) & Environment.NewLine & Localization.GetString("global_" & skinGenders(SkinIndex).ToLower(), skinGenders(SkinIndex)), New Vector2(TextboxPosition.X + 2, TextboxPosition.Y - 24 + 2), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_select_skin") & ":" & Environment.NewLine & skinNames(SkinIndex) & Environment.NewLine & Localization.GetString("global_" & skinGenders(SkinIndex).ToLower(), skinGenders(SkinIndex)), New Vector2(TextboxPosition.X, TextboxPosition.Y - 24), Color.White)
 
                 Canvas.DrawScrollBar(New Vector2(TextboxPosition.X, TextboxPosition.Y + 48), skinFiles.Count, 1, SkinIndex, New Size(128, 4), True, TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(112, 12, 1, 1)), TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(113, 12, 1, 1)))
 		End Select
