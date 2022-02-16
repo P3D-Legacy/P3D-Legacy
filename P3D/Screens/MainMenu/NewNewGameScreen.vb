@@ -67,7 +67,11 @@
                 End If
                 If ActionScript.Scripts.Count = 0 Then
                     If CurrentScreen.Identification = Screen.Identifications.NewGameScreen Then
-                        Core.SetScreen(New TransitionScreen(CurrentScreen, New OverworldScreen(), Color.Black, False, AddressOf RemoveFade))
+                        If OverworldScreen.FadeValue > 0 Then
+                            Core.SetScreen(New TransitionScreen(CurrentScreen, New OverworldScreen(), Color.Black, False, AddressOf RemoveFade))
+                        Else
+                            Core.SetScreen(New OverworldScreen())
+                        End If
                     Else
                         'Dim fadeSpeed As Integer = 12
                         'If OverworldScreen.FadeValue > 0 Then
@@ -115,7 +119,7 @@
         End Sub
 
         Public Shared Sub EndNewGame(ByVal map As String, ByVal x As Single, ByVal y As Single, ByVal z As Single, ByVal rot As Integer)
-            Dim folderPath As String = Core.Player.Name
+            Dim folderPath As String = Core.Player.Name.Replace("\", "_").Replace("/", "_").Replace(":", "_").Replace("*", "_").Replace("?", "_").Replace("""", "_").Replace("<", "_").Replace(">", "_").Replace("|", "_").Replace(",", "_").Replace(".", "_")
             Dim folderPrefix As Integer = 0
 
             If folderPath.ToLower() = "autosave" Then
