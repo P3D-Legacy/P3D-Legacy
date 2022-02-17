@@ -41,6 +41,15 @@
                         .UpdateEntity()
                     End With
                     IsReady = True
+                Case "setskin"
+                    Core.Player.Skin = argument
+                    With Screen.Level.OwnPlayer
+                        Dim TextureID As String = argument
+                        .SetTexture(TextureID, False)
+
+                        .UpdateEntity()
+                    End With
+                    IsReady = True
                 Case "move"
                     If Started = False Then
                         Screen.Camera.Move(sng(argument))

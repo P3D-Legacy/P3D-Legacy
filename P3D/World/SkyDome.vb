@@ -246,7 +246,7 @@
     End Function
 
     Private Function GetCloudsTexture() As Texture2D
-        Dim time As World.DayTime = World.GetTime
+        Dim time As World.DayTimes = World.GetTime
 
         Select Case Screen.Level.World.CurrentMapWeather
             Case World.Weathers.Rain, World.Weathers.Blizzard, World.Weathers.Thunderstorm, World.Weathers.Snow
@@ -262,11 +262,11 @@
                     Case 4
                         Return TextureManager.GetTexture("SkyDomeResource\Clouds_Evening")
                 End Select
-                If time = World.DayTime.Morning Then
+                If time = World.DayTimes.Morning Then
                     Return TextureManager.GetTexture("SkyDomeResource\Clouds_Morning")
-                ElseIf time = World.DayTime.Day Then
+                ElseIf time = World.DayTimes.Day Then
                     Return TextureManager.GetTexture("SkyDomeResource\Clouds_Day")
-                ElseIf time = World.DayTime.Evening Then
+                ElseIf time = World.DayTimes.Evening Then
                     Return TextureManager.GetTexture("SkyDomeResource\Clouds_Evening")
                 Else
                     Return TextureManager.GetTexture("SkyDomeResource\Clouds_Night")
@@ -288,14 +288,14 @@
             Case 4
                 Return TextureManager.GetTexture("SkyDomeResource\Sky_Evening")
         End Select
-        Dim time As World.DayTime = World.GetTime
+        Dim time As World.DayTimes = World.GetTime
         Select Case Screen.Level.World.CurrentMapWeather
             Case World.Weathers.Clear
-                If time = World.DayTime.Morning Then
+                If time = World.DayTimes.Morning Then
                     Return TextureManager.GetTexture("SkyDomeResource\Sky_Morning")
-                ElseIf time = World.DayTime.Day Then
+                ElseIf time = World.DayTimes.Day Then
                     Return TextureManager.GetTexture("SkyDomeResource\Sky_Day")
-                ElseIf time = World.DayTime.Evening Then
+                ElseIf time = World.DayTimes.Evening Then
                     Return TextureManager.GetTexture("SkyDomeResource\Sky_Evening")
                 Else
                     Return TextureManager.GetTexture("SkyDomeResource\Sky_Night")

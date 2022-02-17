@@ -39,7 +39,7 @@ Public Class Level
     Private _canFly As Boolean = False
     Private _rideType As Integer = 0
     Private _weatherType As Integer = 0
-    Public _DayTime As World.DayTime = World.GetTime
+    Public _DayTime As World.DayTimes = World.GetTime
     Private _environmentType As Integer = 0
     Private _wildPokemonGrass As Boolean = True
     Private _wildPokemonFloor As Boolean = False
@@ -351,13 +351,13 @@ Public Class Level
     Public Property DayTime As Integer
         Get
             Select Case Me._DayTime
-                Case World.DayTime.Day
+                Case World.DayTimes.Day
                     Return 1
-                Case World.DayTime.Night
+                Case World.DayTimes.Night
                     Return 2
-                Case World.DayTime.Morning
+                Case World.DayTimes.Morning
                     Return 3
-                Case World.DayTime.Evening
+                Case World.DayTimes.Evening
                     Return 4
                 Case Else
                     Return World.GetTime
@@ -366,13 +366,13 @@ Public Class Level
         Set(value As Integer)
             Select Case value
                 Case 1
-                    Me._DayTime = World.DayTime.Day
+                    Me._DayTime = World.DayTimes.Day
                 Case 2
-                    Me._DayTime = World.DayTime.Night
+                    Me._DayTime = World.DayTimes.Night
                 Case 3
-                    Me._DayTime = World.DayTime.Morning
+                    Me._DayTime = World.DayTimes.Morning
                 Case 4
-                    Me._DayTime = World.DayTime.Evening
+                    Me._DayTime = World.DayTimes.Evening
                 Case Else
                     Me._DayTime = World.GetTime
             End Select
@@ -733,7 +733,7 @@ Public Class Level
     ''' Loads a level from a levelfile.
     ''' </summary>
     ''' <param name="Levelpath">The path to load the level from. Start with "|" to prevent loading a levelfile.</param>
-    Public Sub Load(ByVal Levelpath As String)
+    Public Sub Load(ByVal Levelpath As String, Optional Reload As Boolean = False)
 
         ' copy all changed files
         If GameController.IS_DEBUG_ACTIVE Then
@@ -750,7 +750,7 @@ Public Class Level
         If Levelpath.StartsWith("|") = False Then
             Me.StopOffsetMapUpdate()
             Dim levelLoader As New LevelLoader()
-            levelLoader.LoadLevel(params.ToArray())
+            levelLoader.LoadLevel(params.ToArray(), Reload)
         Else
             Logger.Debug("Don't attempt to load a levelfile.")
         End If
@@ -829,7 +829,7 @@ Public Class Level
             If KeyBoardHandler.KeyPressed(Keys.R) = True And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Core.OffsetMaps.Clear()
                 Logger.Debug(String.Format("Reload map file: {0}", Me._levelFile))
-                Me.Load(LevelFile)
+                Me.Load(LevelFile, True)
             End If
         End If
 

@@ -209,13 +209,13 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 34 + FontManager.MiniFont.MeasureString(t2).X), CInt(startPos.Y + 8), 16, 16), New Rectangle(112, 112, 16, 16), Color.White)
             End If
             Select Case World.GetTime
-                Case World.DayTime.Night
+                Case World.DayTimes.Night
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MiniFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(64, 112, 8, 8), Color.White)
-                Case World.DayTime.Morning
+                Case World.DayTimes.Morning
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MiniFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(72, 112, 8, 8), Color.White)
-                Case World.DayTime.Day
+                Case World.DayTimes.Day
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MiniFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(64, 120, 8, 8), Color.White)
-                Case World.DayTime.Evening
+                Case World.DayTimes.Evening
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MiniFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(72, 120, 8, 8), Color.White)
             End Select
         End Sub
@@ -1541,7 +1541,7 @@
             Public OverwriteMax As Decimal
             Public Name As String = ""
             Public Region As String = ""
-            Public DayTimes As New List(Of World.DayTime)
+            Public DayTimes As New List(Of World.DayTimes)
             Public Expansions As New List(Of String)
             Public Music As String = ""
             Public Content As String = ""
@@ -1576,7 +1576,7 @@
                 Dim lDayTimes() As String = data(4).Split(CChar(","))
                 For Each daytime As String In lDayTimes
                     If StringHelper.IsNumeric(daytime) = True Then
-                        DayTimes.Add(CType(CInt(daytime), World.DayTime))
+                        DayTimes.Add(CType(CInt(daytime), World.DayTimes))
                     End If
                 Next
 

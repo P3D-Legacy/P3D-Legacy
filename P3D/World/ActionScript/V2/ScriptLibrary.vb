@@ -204,7 +204,6 @@ Namespace ScriptVersion2
             r(New ScriptCommand("level", "waitforsave", "Makes the level idle until the current saving of an GameJolt save is done."))
             r(New ScriptCommand("level", "reload", "Reloads the current map."))
             r(New ScriptCommand("level", "setsafari", {New ScriptArgument("safari", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets if the current map is a Safari Zone (influences battle style)."))
-            r(New ScriptCommand("level", "setdaytime", {New ScriptArgument("daytime", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the daytime of the current map."))
             ' Constructs:
             r(New ScriptCommand("level", "mapfile", "str", "Returns the mapfile of the currently loaded map.", ",", True))
             r(New ScriptCommand("level", "levelfile", "str", "Returns the mapfile of the currently loaded map.", ",", True))
@@ -406,7 +405,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("environment", "setisdark", {New ScriptArgument("isDark", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""IsDark"" parameter of the current map."))
             r(New ScriptCommand("environment", "setrenderdistance", {New ScriptArgument("distance", ScriptArgument.ArgumentTypes.Str, {"0-4", "tiny", "small", "normal", "far", "extreme"})}.ToList(), "Sets the render distance."))
             r(New ScriptCommand("environment", "toggledarkness", "Toggles the ""IsDark"" parameter of the current map."))
-
+            r(New ScriptCommand("environment", "setdaytime", {New ScriptArgument("daytime", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the daytime to use for the Outside EnvironmentType (0). Can be 1-4, any other number resets to the default daytime."))
             ' Constructs:
             r(New ScriptCommand("environment", "daytime", "str", "Returns the current DayTime of the game.", ",", True))
             r(New ScriptCommand("environment", "daytimeID", "int", "Returns the current DayTimeID of the game.", ",", True))
@@ -440,7 +439,8 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "receivepokedex", "Makes the Pokédex accessible for the player."))
             r(New ScriptCommand("player", "receivepokegear", "Makes the Pokégear accessible for the player."))
             r(New ScriptCommand("player", "renamerival", "Opens the rival rename screen."))
-            r(New ScriptCommand("player", "wearskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin."))
+            r(New ScriptCommand("player", "wearskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin temporarily."))
+            r(New ScriptCommand("player", "setskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin permanently."))
             r(New ScriptCommand("player", "setonlineskin", {New ScriptArgument("gamejoltID", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the player skin to a skin downloaded for the GameJoltID."))
             r(New ScriptCommand("player", "move", {New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Starts the player movement."))
             r(New ScriptCommand("player", "moveasync", {New ScriptArgument("steps", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Starts the async player movement."))

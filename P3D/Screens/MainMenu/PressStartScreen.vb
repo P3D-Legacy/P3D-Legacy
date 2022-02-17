@@ -72,25 +72,25 @@ Public Class PressStartScreen
         Dim dayTime = World.GetTime
 
         Select Case dayTime
-            Case World.DayTime.Morning
+            Case World.DayTimes.Morning
                 _fromColor = New Color(246, 170, 109)
                 _toColor = New Color(248, 248, 248)
                 _textColor = Color.Black
-            Case World.DayTime.Day
+            Case World.DayTimes.Day
                 _fromColor = New Color(120, 160, 248)
                 _toColor = New Color(248, 248, 248)
                 _textColor = Color.Black
-            Case World.DayTime.Evening
+            Case World.DayTimes.Evening
                 _fromColor = New Color(32, 64, 168)
                 _toColor = New Color(40, 80, 88)
                 _textColor = Color.White
-            Case World.DayTime.Night
+            Case World.DayTimes.Night
                 _fromColor = New Color(32, 64, 168)
                 _toColor = New Color(0, 0, 0)
                 _textColor = Color.White
         End Select
 
-        If dayTime = World.DayTime.Day OrElse dayTime = World.DayTime.Morning Then
+        If dayTime = World.DayTimes.Day OrElse dayTime = World.DayTimes.Morning Then
             Dim clouds = New Scene.Clouds()
             clouds.LoadContent()
             _entities.Add(clouds)
@@ -787,7 +787,7 @@ Public Class NewMainMenuScreen
 
         Dim fontColor As Color = Color.White
         Dim dayTime = World.GetTime
-        If dayTime = World.DayTime.Day OrElse dayTime = World.DayTime.Morning Then
+        If dayTime = World.DayTimes.Day OrElse dayTime = World.DayTimes.Morning Then
             fontColor = Color.Black
         End If
 

@@ -50,6 +50,16 @@
                     End Select
                 Case "toggledarkness"
                     Screen.Level.IsDark = Not Screen.Level.IsDark
+                Case "setdaytime"
+                    Dim daytime As Integer = int(argument)
+                    If daytime > 0 AndAlso daytime <= 4 Then
+                        World.setDaytime = CType(daytime, World.DayTimes)
+                        Screen.Level.DayTime = daytime
+                    Else
+                        World.setDaytime = Nothing
+                        Screen.Level.DayTime = World.GetTime
+                    End If
+                    IsReady = True
             End Select
 
             Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)

@@ -4,6 +4,7 @@
 
     Public Shared LoadedOffsetMapOffsets As New List(Of Vector3)
     Public Shared LoadedOffsetMapNames As New List(Of String)
+    Private _reload As Boolean = False
 
     Private Enum TagTypes
         Entity
@@ -46,10 +47,10 @@
     ''' Loads the level.
     ''' </summary>
     ''' <param name="Params">Params contruction: String LevelFile, bool IsOffsetMap, Vector3 Offset, int Offsetmaplevel, Str() InstanceLoadedOffsetMaps</param>
-    Public Sub LoadLevel(ByVal Params As Object())
+    Public Sub LoadLevel(ByVal Params As Object(), Optional Reload As Boolean = False)
         Busy += 1
         TempParams = Params
-
+        _reload = Reload
         If MULTITHREAD = True Then
             Dim t As New Threading.Thread(AddressOf InternalLoad)
             t.IsBackground = True
@@ -992,23 +993,24 @@
         Else
             Screen.Level.RideType = 0
         End If
+        If _reload = False Then
+            If TagExists(Tags, "EnvironmentType") = True Then
+                Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnvironmentType"))
+            Else
+                Screen.Level.EnvironmentType = 0
+            End If
 
-        If TagExists(Tags, "EnvironmentType") = True Then
-            Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnvironmentType"))
-        Else
-            Screen.Level.EnvironmentType = 0
-        End If
+            If TagExists(Tags, "Weather") = True Then
+                Screen.Level.WeatherType = CInt(GetTag(Tags, "Weather"))
+            Else
+                Screen.Level.WeatherType = 0
+            End If
 
-        If TagExists(Tags, "Weather") = True Then
-            Screen.Level.WeatherType = CInt(GetTag(Tags, "Weather"))
-        Else
-            Screen.Level.WeatherType = 0
-        End If
-
-        If TagExists(Tags, "DayTime") = True Then
-            Screen.Level.DayTime = CInt(GetTag(Tags, "DayTime"))
-        Else
-            Screen.Level.DayTime = 0
+            If TagExists(Tags, "DayTime") = True Then
+                Screen.Level.DayTime = CInt(GetTag(Tags, "DayTime"))
+            Else
+                Screen.Level.DayTime = 0
+            End If
         End If
 
         If TagExists(Tags, "Lighting") = True Then
@@ -1023,7 +1025,7 @@
             Screen.Level.IsDark = False
         End If
 
-        If Screen.Level.DayTime = World.DayTime.Night Then
+        If Screen.Level.DayTime = World.DayTimes.Night Then
             If World.IsAurora = False Then
                 Dim chance = Random.Next(0, 250)
                 If chance = 0 Then

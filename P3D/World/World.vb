@@ -5,6 +5,7 @@ Public Class World
     Private Shared _regionWeather As Weathers = Weathers.Clear
     Private Shared _regionWeatherSet As Boolean = False
     Public Shared setSeason As Seasons = Nothing
+    Public Shared setDaytime As DayTimes = Nothing
 
     Public Shared IsMainMenu As Boolean = False
     Public Shared IsAurora As Boolean = False
@@ -38,7 +39,7 @@ Public Class World
         Forest = 5
     End Enum
 
-    Public Enum DayTime As Integer
+    Public Enum DayTimes As Integer
         Night = 0
         Morning = 1
         Day = 2
@@ -78,64 +79,68 @@ Public Class World
         End Get
     End Property
 
-    Public Shared ReadOnly Property GetTime() As DayTime
+    Public Shared ReadOnly Property GetTime() As DayTimes
         Get
             If IsMainMenu Then
-                Return DayTime.Day
+                Return DayTimes.Day
             End If
 
-            Dim time As DayTime = DayTime.Day
+            If setDaytime <> Nothing Then
+                Return setDaytime
+            Else
+                Dim time As DayTimes = DayTimes.Day
 
-            Dim Hour As Integer = My.Computer.Clock.LocalTime.Hour
-            If NeedServerObject() = True Then
-                Dim data() As String = ServerTimeData.Split(CChar(","))
-                Hour = CInt(data(0))
+                Dim Hour As Integer = My.Computer.Clock.LocalTime.Hour
+                If NeedServerObject() = True Then
+                    Dim data() As String = ServerTimeData.Split(CChar(","))
+                    Hour = CInt(data(0))
+                End If
+
+                Select Case CurrentSeason
+                    Case Seasons.Winter
+                        If Hour > 18 Or Hour < 7 Then
+                            time = DayTimes.Night
+                        ElseIf Hour > 6 And Hour < 11 Then
+                            time = DayTimes.Morning
+                        ElseIf Hour > 10 And Hour < 17 Then
+                            time = DayTimes.Day
+                        ElseIf Hour > 16 And Hour < 19 Then
+                            time = DayTimes.Evening
+                        End If
+                    Case Seasons.Spring
+                        If Hour > 19 Or Hour < 5 Then
+                            time = DayTimes.Night
+                        ElseIf Hour > 4 And Hour < 10 Then
+                            time = DayTimes.Morning
+                        ElseIf Hour > 9 And Hour < 17 Then
+                            time = DayTimes.Day
+                        ElseIf Hour > 16 And Hour < 20 Then
+                            time = DayTimes.Evening
+                        End If
+                    Case Seasons.Summer
+                        If Hour > 20 Or Hour < 4 Then
+                            time = DayTimes.Night
+                        ElseIf Hour > 3 And Hour < 9 Then
+                            time = DayTimes.Morning
+                        ElseIf Hour > 8 And Hour < 19 Then
+                            time = DayTimes.Day
+                        ElseIf Hour > 18 And Hour < 21 Then
+                            time = DayTimes.Evening
+                        End If
+                    Case Seasons.Fall
+                        If Hour > 19 Or Hour < 6 Then
+                            time = DayTimes.Night
+                        ElseIf Hour > 5 And Hour < 10 Then
+                            time = DayTimes.Morning
+                        ElseIf Hour > 9 And Hour < 18 Then
+                            time = DayTimes.Day
+                        ElseIf Hour > 17 And Hour < 20 Then
+                            time = DayTimes.Evening
+                        End If
+                End Select
+
+                Return time
             End If
-
-            Select Case CurrentSeason
-                Case Seasons.Winter
-                    If Hour > 18 Or Hour < 7 Then
-                        time = DayTime.Night
-                    ElseIf Hour > 6 And Hour < 11 Then
-                        time = DayTime.Morning
-                    ElseIf Hour > 10 And Hour < 17 Then
-                        time = DayTime.Day
-                    ElseIf Hour > 16 And Hour < 19 Then
-                        time = DayTime.Evening
-                    End If
-                Case Seasons.Spring
-                    If Hour > 19 Or Hour < 5 Then
-                        time = DayTime.Night
-                    ElseIf Hour > 4 And Hour < 10 Then
-                        time = DayTime.Morning
-                    ElseIf Hour > 9 And Hour < 17 Then
-                        time = DayTime.Day
-                    ElseIf Hour > 16 And Hour < 20 Then
-                        time = DayTime.Evening
-                    End If
-                Case Seasons.Summer
-                    If Hour > 20 Or Hour < 4 Then
-                        time = DayTime.Night
-                    ElseIf Hour > 3 And Hour < 9 Then
-                        time = DayTime.Morning
-                    ElseIf Hour > 8 And Hour < 19 Then
-                        time = DayTime.Day
-                    ElseIf Hour > 18 And Hour < 21 Then
-                        time = DayTime.Evening
-                    End If
-                Case Seasons.Fall
-                    If Hour > 19 Or Hour < 6 Then
-                        time = DayTime.Night
-                    ElseIf Hour > 5 And Hour < 10 Then
-                        time = DayTime.Morning
-                    ElseIf Hour > 9 And Hour < 18 Then
-                        time = DayTime.Day
-                    ElseIf Hour > 17 And Hour < 20 Then
-                        time = DayTime.Evening
-                    End If
-            End Select
-
-            Return time
         End Get
     End Property
 
@@ -223,7 +228,7 @@ Public Class World
                 End Select
             Case EnvironmentTypes.Outside
                 Select Case World.GetTime
-                    Case DayTime.Night
+                    Case DayTimes.Night
                         Select Case Core.GameOptions.RenderDistance
                             Case 0
                                 Screen.Effect.FogStart = -2
@@ -251,7 +256,7 @@ Public Class World
 
                                 Screen.Camera.FarPlane = 100
                         End Select
-                    Case DayTime.Morning
+                    Case DayTimes.Morning
                         Select Case Core.GameOptions.RenderDistance
                             Case 0
                                 Screen.Effect.FogStart = 16
@@ -279,7 +284,7 @@ Public Class World
 
                                 Screen.Camera.FarPlane = 100
                         End Select
-                    Case DayTime.Day
+                    Case DayTimes.Day
                         Select Case Core.GameOptions.RenderDistance
                             Case 0
                                 Screen.Effect.FogStart = 16
@@ -307,7 +312,7 @@ Public Class World
 
                                 Screen.Camera.FarPlane = 100
                         End Select
-                    Case DayTime.Evening
+                    Case DayTimes.Evening
                         Select Case Core.GameOptions.RenderDistance
                             Case 0
                                 Screen.Effect.FogStart = 0

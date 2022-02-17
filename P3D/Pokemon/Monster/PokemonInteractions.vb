@@ -427,7 +427,7 @@
                         r = New ReactionContainer("<name> is looking~up at the sky.", MessageBulb.NotifcationTypes.Waiting)
                     End If
                 Case 27
-                    If IsOutside() = True And World.GetTime() = World.DayTime.Night And World.GetCurrentRegionWeather() = World.Weathers.Clear Then
+                    If IsOutside() = True And World.GetTime() = World.DayTimes.Night And World.GetCurrentRegionWeather() = World.Weathers.Clear Then
                         r = New ReactionContainer("Your Pokémon is happily~gazing at the beautiful,~starry sky!", MessageBulb.NotifcationTypes.Waiting)
                     End If
                 Case 28
@@ -437,7 +437,7 @@
                         r = New ReactionContainer("<name> is looking~up at the ceiling.", MessageBulb.NotifcationTypes.Note)
                     End If
                 Case 30
-                    If IsOutside() = True And World.GetTime() = World.DayTime.Night Then
+                    If IsOutside() = True And World.GetTime() = World.DayTimes.Night Then
                         r = New ReactionContainer("Your Pokémon is staring~spellbound at the night sky!", MessageBulb.NotifcationTypes.Friendly)
                     End If
                 Case 31
