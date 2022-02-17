@@ -221,13 +221,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/Environment/Test_floor/Test_floor.obj
 
-#begin Models/Snorlax/Normal.obj
-/importer:OpenAssetImporter
+#begin Models/Snorlax/Normal.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -237,16 +237,16 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/Snorlax/Normal.obj
+/processorParam:TextureFormat=Color
+/build:Models/Snorlax/Normal.fbx
 
-#begin Models/Snorlax/Shiny.obj
-/importer:OpenAssetImporter
+#begin Models/Snorlax/Shiny.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -256,8 +256,8 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/Snorlax/Shiny.obj
+/processorParam:TextureFormat=Color
+/build:Models/Snorlax/Shiny.fbx
 
 #begin Models/truck2/Truck.obj
 /importer:OpenAssetImporter
