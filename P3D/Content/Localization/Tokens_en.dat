@@ -679,8 +679,8 @@ game_message_screenshot,Screenshot saved as
 game_message_screenshot_failed,Cannot create screenshot
 game_message_fullscreen_on,Fullscreen on
 game_message_fullscreen_off,Fullscreen off
-game_message_third_person_on,Third person mode on.
-game_message_third_person_off,Third person mode off.
+game_message_third_person_on,Third person mode on
+game_message_third_person_off,Third person mode off
 game_message_free_camera_on,Free camera mode on
 game_message_free_camera_off,Free camera mode off
 game_message_audio_on,Audio on
@@ -701,17 +701,6 @@ game_message_host_session_started,You (host) started a Co-Op session.
 game_message_host_outdated_newer_version,The client has an outdated or newer version of the game!
 game_message_host_client_accept,A client joined the game!
 game_message_host_client_disconnect,The client disconnected! The Co-Op session has been closed.
----
-General:
-HP,HP
-PP,PP
-Lv.,Lv.
-Level,Level
-Attack,Attack
-Defense,Defense
-Special_Attack,Special Attack
-Special_Defense,Special Defense
-Speed,Speed
 ---
 Pokemon:
 pokemon_name_Bulbasaur,Bulbasaur
