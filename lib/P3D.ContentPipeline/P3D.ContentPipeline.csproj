@@ -65,8 +65,7 @@
     <None Include="Content\Models\Environment\Test_floor\Texture\floor.tga" />
     <None Include="Content\Models\Snorlax\Normal.fbx" />
     <None Include="Content\Models\Snorlax\Shiny.fbx" />
-    <None Include="Content\Models\truck2\Truck.mtl" />
-    <None Include="Content\Models\truck2\Truck.obj" />
+    <None Include="Content\Models\truck2\Truck.fbx" />
     <None Include="Content\SkyDomeResource\SkyDome.obj" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -88,7 +87,7 @@
     <Content Include="Content\Models\building\textures\P3DBuilding.png" />
     <Content Include="Content\Models\Snorlax\Snorlax_Normal.png" />
     <Content Include="Content\Models\Snorlax\Snorlax_Shiny.png" />
-    <Content Include="Content\Models\truck2\140l155.jpg" />
+    <Content Include="Content\Models\truck2\Truck.png" />
     <Content Include="Content\ttf2bmp.exe" />
   </ItemGroup>
   <ItemGroup>

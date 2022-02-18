@@ -259,13 +259,13 @@
 /processorParam:TextureFormat=Color
 /build:Models/Snorlax/Shiny.fbx
 
-#begin Models/truck2/Truck.obj
-/importer:OpenAssetImporter
+#begin Models/truck2/Truck.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -275,8 +275,8 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/truck2/Truck.obj
+/processorParam:TextureFormat=Color
+/build:Models/truck2/Truck.fbx
 
 #begin SkyDomeResource/SkyDome.obj
 /importer:FbxImporter
