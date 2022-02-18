@@ -49,6 +49,7 @@ Pokémon 3D
 		Grant Garrett
 		"Anvil555"
 		"TheOmegaGhost"
+		"AgentPaperCraft"
 		"princess-phoenix"
 		"SageDeoxys"
 		"Swdfm"
