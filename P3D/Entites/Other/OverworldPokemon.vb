@@ -40,7 +40,6 @@ Public Class OverworldPokemon
             Me.Texture = PokemonReference.GetOverworldTexture()
         End If
 
-
         Dim cameraRotation As Integer = Screen.Camera.GetFacingDirection()
         Dim spriteIndex As Integer = Me.faceRotation - cameraRotation
 
@@ -96,18 +95,8 @@ Public Class OverworldPokemon
                 If AnimationDelay <= 0.0F Then
                     AnimationX += 1
                     AnimationDelay = AnimationDelayLength
-                    If Me.Texture.Width = Me.Texture.Height / 2 Then
-                        If AnimationX > 2 Then
-                            AnimationX = 1
-                        End If
-                    ElseIf Me.Texture.Width = Me.Texture.Height Then
-                        If AnimationX > 4 Then
-                            AnimationX = 1
-                        End If
-                    Else
-                        If AnimationX > 3 Then
-                            AnimationX = 1
-                        End If
+                    If AnimationX > 4 Then
+                        AnimationX = 1
                     End If
                 End If
             Else
@@ -183,15 +172,19 @@ Public Class OverworldPokemon
         If Screen.Camera.IsMoving() = True And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             If CInt(Me.Position.X) <> CInt(Screen.Camera.Position.X) Or CInt(Me.Position.Z) <> CInt(Screen.Camera.Position.Z) Then
                 Me.Position += GetMove()
-                Me.AnimationDelayLength = 1.1F
+                If Core.Player.IsRunning = True Then
+                    Me.AnimationDelayLength = 1.1F / 1.4F
+                Else
+                    Me.AnimationDelayLength = 1.1F
+                End If
                 Me.Moving = True
             End If
         Else
-            Me.AnimationDelayLength = 1.1F
-            If Me.Texture.Width = Me.Texture.Height / 2 Then
-                Me.Moving = True
-            Else
+            Me.AnimationDelayLength = 2.2F
+            If Me.Texture.Width = Me.Texture.Height Then
                 Me.Moving = False
+            Else
+                Me.Moving = True
             End If
         End If
     End Sub
@@ -309,6 +302,10 @@ Public Class OverworldPokemon
                 Case 1
                     Return 0
                 Case 2
+                    Return 1
+                Case 3
+                    Return 0
+                Case 4
                     Return 1
             End Select
         ElseIf Me.Texture.Width = Me.Texture.Height Then

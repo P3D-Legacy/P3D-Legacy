@@ -41,47 +41,60 @@
         Dim pokeTexture = Pokemon.GetMenuTexture()
         Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(p.X + 20), CInt(p.Y + 20), pokeTexture.Width * 2, 64), Color.White)
         Core.SpriteBatch.DrawString(FontManager.InGameFont, Pokemon.GetDisplayName(), New Vector2(p.X + 90, p.Y + 32), Color.Black)
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, " reached level " & Pokemon.Level & "!", New Vector2(p.X + 90 + FontManager.InGameFont.MeasureString(Pokemon.GetDisplayName()).X, p.Y + 41), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.InGameFont, " reached level " & Pokemon.Level & "!", New Vector2(p.X + 90 + FontManager.InGameFont.MeasureString(Pokemon.GetDisplayName()).X, p.Y + 41), Color.Black)
+
+        Dim OldOffset As Integer = 160
 
         If Delay >= 3.0F Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Max HP:      " & OldStats(0).ToString(), New Vector2(p.X + 32, p.Y + 84), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Attack:       " & OldStats(1).ToString(), New Vector2(p.X + 32, p.Y + 124), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Defense:     " & OldStats(2).ToString(), New Vector2(p.X + 32, p.Y + 164), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Sp Attack:   " & OldStats(3).ToString(), New Vector2(p.X + 32, p.Y + 204), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Sp Defense: " & OldStats(4).ToString(), New Vector2(p.X + 32, p.Y + 244), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Speed:        " & OldStats(5).ToString(), New Vector2(p.X + 32, p.Y + 284), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("MaxHP") & ":", New Vector2(p.X + 32, p.Y + 84), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(0).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 84), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Attack") & ":", New Vector2(p.X + 32, p.Y + 124), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(1).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 124), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Defense") & ":", New Vector2(p.X + 32, p.Y + 164), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(2).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 164), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Sp_Attack") & ":", New Vector2(p.X + 32, p.Y + 204), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(3).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 204), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Sp_Defense") & ":", New Vector2(p.X + 32, p.Y + 244), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(4).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 244), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Speed") & ":", New Vector2(p.X + 32, p.Y + 284), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(5).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 284), Color.Black)
         End If
+
+        Dim NewOffset As Integer = 208
         If Delay >= 5.0F Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "+ " & newMaxHP, New Vector2(p.X + 200, p.Y + 84), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "+ " & newMaxHP, New Vector2(p.X + 32 + NewOffset, p.Y + 84), Color.Black)
         End If
         If Delay >= 5.5F Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "+ " & newAttack, New Vector2(p.X + 200, p.Y + 124), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "+ " & newAttack, New Vector2(p.X + 32 + NewOffset, p.Y + 124), Color.Black)
         End If
         If Delay >= 6.0F Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "+ " & newDefense, New Vector2(p.X + 200, p.Y + 164), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "+ " & newDefense, New Vector2(p.X + 32 + NewOffset, p.Y + 164), Color.Black)
         End If
         If Delay >= 6.5F Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "+ " & newSpAttack, New Vector2(p.X + 200, p.Y + 204), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "+ " & newSpAttack, New Vector2(p.X + 32 + NewOffset, p.Y + 204), Color.Black)
         End If
         If Delay >= 7.0F Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "+ " & newSpDefense, New Vector2(p.X + 200, p.Y + 244), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "+ " & newSpDefense, New Vector2(p.X + 32 + NewOffset, p.Y + 244), Color.Black)
         End If
         If Delay >= 7.5F Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "+ " & newSpeed, New Vector2(p.X + 200, p.Y + 284), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "+ " & newSpeed, New Vector2(p.X + 32 + NewOffset, p.Y + 284), Color.Black)
         End If
+
+        Dim ResultOffset As Integer = 272
+
         If Delay >= 9.0F Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "= " & Pokemon.MaxHP, New Vector2(p.X + 252, p.Y + 84), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "= " & Pokemon.Attack, New Vector2(p.X + 252, p.Y + 124), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "= " & Pokemon.Defense, New Vector2(p.X + 252, p.Y + 164), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "= " & Pokemon.SpAttack, New Vector2(p.X + 252, p.Y + 204), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "= " & Pokemon.SpDefense, New Vector2(p.X + 252, p.Y + 244), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "= " & Pokemon.Speed, New Vector2(p.X + 252, p.Y + 284), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "= " & Pokemon.MaxHP, New Vector2(p.X + 32 + ResultOffset, p.Y + 84), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "= " & Pokemon.Attack, New Vector2(p.X + 32 + ResultOffset, p.Y + 124), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "= " & Pokemon.Defense, New Vector2(p.X + 32 + ResultOffset, p.Y + 164), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "= " & Pokemon.SpAttack, New Vector2(p.X + 32 + ResultOffset, p.Y + 204), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "= " & Pokemon.SpDefense, New Vector2(p.X + 32 + ResultOffset, p.Y + 244), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "= " & Pokemon.Speed, New Vector2(p.X + 32 + ResultOffset, p.Y + 284), Color.Black)
         End If
         If Delay >= 11.0F Then
             Dim newStat As Integer = 0
             newStat = newAttack + newDefense + newSpAttack + newMaxHP + newSpDefense + newSpeed
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Pokemon.GetDisplayName() & " got a boost of " & newStat.ToString() & "!", New Vector2(p.X + 32, p.Y + 320), Color.DarkRed)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Pokemon.GetDisplayName() & " got a boost of " & newStat.ToString() & "!", New Vector2(p.X + 32, p.Y + 320), Color.DarkRed)
         End If
     End Sub
 

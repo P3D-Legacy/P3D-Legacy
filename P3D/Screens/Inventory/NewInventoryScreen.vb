@@ -821,16 +821,23 @@ Public Class NewInventoryScreen
         If Controls.Accept() AndAlso _items.Length > 0 Then
             Dim cItem As Item = Item.GetItemByID(_items(ItemIndex + PageIndex * 10).ItemID)
             SoundManager.PlaySound("select")
-            If cItem.CanBeUsedInBattle = True Then
+            If Me.PreScreen.Identification = Screen.Identifications.BattleScreen Then
+                If cItem.CanBeUsedInBattle = True Then
+                    _infoItemOptionSelection = 0
+                    _isInfoShowing = True
+                    SetInfoSettings()
+                    SetItemOptions()
+                Else
+                    TextBox.Show("This item can't~be used in Battle.")
+                End If
+            Else
                 _infoItemOptionSelection = 0
                 _isInfoShowing = True
                 SetInfoSettings()
                 SetItemOptions()
-            Else
-                TextBox.Show("This item can't~be used in Battle.")
             End If
-        End If
 
+        End If
         If Controls.Dismiss() Then
             SoundManager.PlaySound("select")
             _tabInControl = True

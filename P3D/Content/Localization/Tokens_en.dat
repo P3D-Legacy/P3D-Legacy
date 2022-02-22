@@ -85,10 +85,13 @@ HP,HP
 PP,PP
 Lv.,Lv.
 Level,Level
+MaxHP,Max HP
 Attack,Attack
 Defense,Defense
 Special_Attack,Special Attack
+Sp_Attack,Sp. Attack
 Special_Defense,Special Defense
+Sp_Defense,Sp. Defense
 Speed,Speed
 ---
 GameInteractions:

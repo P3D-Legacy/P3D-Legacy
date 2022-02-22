@@ -87,6 +87,26 @@ Namespace BattleSystem.Moves.Water
             End If
         End Sub
 
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
+            Dim offsetLeft As Single = -0.35
+            Dim offsetRight As Single = 0.35
+            If BattleFlip = True Then
+                offsetLeft = 0.35
+                offsetRight = -0.35
+            End If
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Water\Clamp", 0, 0)
+            Dim ClampEntityLeft = MoveAnimation.SpawnEntity(New Vector3(offsetLeft, -0.1, offsetLeft), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Left", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+            Dim ClampEntityRight = MoveAnimation.SpawnEntity(New Vector3(offsetRight, -0.1, offsetRight), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Right", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+            MoveAnimation.AnimationMove(ClampEntityLeft, False, -0.1, -0.1, -0.1, 0.02, False, False, 0, 0)
+            MoveAnimation.AnimationMove(ClampEntityRight, False, 0.1, -0.1, 0.1, 0.02, False, False, 0, 0)
+            MoveAnimation.AnimationMove(ClampEntityLeft, True, -0.35, -0.1, -0.35, 0.02, False, False, 2, 0)
+            MoveAnimation.AnimationMove(ClampEntityRight, True, 0.35, -0.1, 0.35, 0.02, False, False, 2, 0)
+            Dim SpawnEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Tackle"), New Vector3(0.5F), 1.0F, 2.5, 2)
+            MoveAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 4.5F, 0)
+
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
     End Class
 
 End Namespace

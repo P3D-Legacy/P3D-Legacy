@@ -22,6 +22,7 @@
     Public Visible As Boolean = True
     Public Shader As New Vector3(1.0F)
     Public Shaders As New List(Of Vector3)
+    Public Color As Vector3 = New Vector3(1.0F)
 
     Public CameraDistanceDelta As Single = 0.0F
 

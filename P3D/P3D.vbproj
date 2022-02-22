@@ -14666,31 +14666,49 @@
     <Content Include="Content\Songs\wind.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Ember_Hit.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Electric\Thunderbolt.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Ember_Start.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Fire\Ember_Hit.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Fly_Hit.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Fire\Ember_Start.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Fly_Start.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Flying\Fly_Hit.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\PoisonSting_Hit.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Flying\Fly_Start.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\PoisonSting_Start.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Grass\Absorb.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Pound.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Normal\Attract.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Tackle.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Normal\Bind.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Sounds\Battle\Attacks\Thunderbolt.wav">
+    <Content Include="Content\Sounds\Battle\Attacks\Normal\Pound.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Normal\Tackle.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Normal\Wrap.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Poison\PoisonSting_Hit.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Poison\PoisonSting_Start.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Water\Clamp.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Attacks\Water\Whirlpool.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Battle\Damage\Effective.wav">
@@ -14702,13 +14720,49 @@
     <Content Include="Content\Sounds\Battle\Damage\SuperEffective.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Battle\Effects\Asleep.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sounds\Battle\Effects\Burned.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Battle\Effects\Confused.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sounds\Battle\Effects\MegaEvolution.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Emote_Exclamation.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\MegaEvolution\Mega_Phase1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\MegaEvolution\Mega_Phase2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Normal\Attract.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Normal\Bind.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Normal\Wrap.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\StatusEffect\Burned.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\StatusEffect\Frozen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sounds\Battle\Effects\Frozen.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Effects\Heal.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Battle\Effects\Infatuated.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Battle\Effects\Paralyzed.wav">
@@ -15371,6 +15425,9 @@
     <Content Include="Content\Sounds\Use_Repel.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Battle\Electric\Sparks.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Battle\Fire\Ember.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -15378,6 +15435,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Battle\Fire\Smoke.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Grass\Absorb.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Battle\Normal\Growl.png">
@@ -15389,13 +15449,37 @@
     <Content Include="Content\Textures\Battle\Normal\Tackle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Battle\Other\Star.png">
+    <Content Include="Content\Textures\Battle\BallCatchStar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Battle\Poison\Bubble.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Battle\Poison\Stinger.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Smoke.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\StatusEffect\Asleep.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\StatusEffect\Confused.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\StatusEffect\Paralyzed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\StatusEffect\Poisoned.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Water\Clamp_Left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Water\Clamp_Right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\Battle\Water\Whirlpool.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\chess.png">
@@ -26264,33 +26348,6 @@
     <Content Include="Content\Textures\battletower.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Battle\Cloud.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Fighting\forcepalmhand.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Fighting\forcepalmhandfaded.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Fighting\forcepalmhandfading.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Fighting\forcepalmimpact.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Fighting\forcepalmparticle.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Fire\Hand.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Other\RedCircle.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Other\YellowCloud.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Textures\Battle\StatChange\Heal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -26298,15 +26355,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Battle\StatChange\statUp.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Status.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Water\bubble.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Textures\Battle\Water\Water.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\Berries.png">
@@ -27540,10 +27588,14 @@
     <Content Include="credits.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="Battle\BattleAnimations\BABillMove.vb" />
-    <Compile Include="Battle\BattleAnimations\BABillOpacity.vb" />
-    <Compile Include="Battle\BattleAnimations\BABillSize.vb" />
-    <Compile Include="Battle\BattleAnimations\BASound.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityColor.vb" />
+    <Compile Include="Battle\BattleAnimations\BABackground.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityRotate.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityMove.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityOpacity.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityTextureChange.vb" />
+    <Compile Include="Battle\BattleAnimations\BAEntityScale.vb" />
+    <Compile Include="Battle\BattleAnimations\BAPlaySound.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\AnimationQueryObject.vb" />
     <Compile Include="Dialogues\ImageView.vb" />
     <Compile Include="Overworld\NotificationPopup.vb" />
@@ -29227,10 +29279,6 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Battle\BattleAnimations\BAMove.vb" />
-    <Compile Include="Battle\BattleAnimations\BAOpacity.vb" />
-    <Compile Include="Battle\BattleAnimations\BARotation.vb" />
-    <Compile Include="Battle\BattleAnimations\BASize.vb" />
     <Compile Include="Battle\BattleAnimations\BattleAnimation3D.vb" />
     <Compile Include="Battle\BattleStats.vb" />
     <Compile Include="Battle\BattleSystemV2\Battle.vb" />
@@ -29250,7 +29298,6 @@
     <Compile Include="Battle\BattleSystemV2\QueryObjects\EndBattleQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\LearnMovesQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\MathHPQueryObject.vb" />
-    <Compile Include="Battle\BattleSystemV2\QueryObjects\MoveAnimationQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\PlayMusicQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\PlaySoundQueryObject.vb" />
     <Compile Include="Battle\BattleSystemV2\QueryObjects\QueryObject.vb" />
@@ -30910,7 +30957,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\Textures\Battle\Fighting\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Condition=" '$(Configuration)' != 'DebugNoContent' Or '$(Configuration)' != 'ReleaseNoContent' " Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <PropertyGroup>

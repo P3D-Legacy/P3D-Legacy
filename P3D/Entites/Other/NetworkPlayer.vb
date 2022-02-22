@@ -165,6 +165,10 @@
                     Return 0
                 Case 2
                     Return 1
+                Case 3
+                    Return 0
+                Case 4
+                    Return 1
             End Select
         ElseIf Me.Texture.Width = Me.Texture.Height Then
             Select Case AnimationX
@@ -198,14 +202,8 @@
             If Me.AnimationDelay <= 0.0F Then
                 Me.AnimationDelay = AnimationDelayLength
                 AnimationX += 1
-                If Me.Texture.Width = Me.Texture.Height / 2 Then
-                    If AnimationX > 2 Then
-                        AnimationX = 1
-                    End If
-                Else
-                    If AnimationX > 4 Then
-                        AnimationX = 1
-                    End If
+                If AnimationX > 4 Then
+                    AnimationX = 1
                 End If
             End If
         End If

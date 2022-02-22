@@ -67,11 +67,11 @@
 
         Public Overrides Sub Draw(BV2Screen As BattleScreen)
             Dim rec As New Rectangle(100, Core.windowSize.Height - 250, Core.windowSize.Width - 200, 200)
-
-            Canvas.DrawRectangle(rec, New Color(0, 0, 0, 150))
-
             Dim text As String = Me._text.Substring(0, _textIndex)
-            text = text.CropStringToWidth(FontManager.TextFont, 2.0F, Core.windowSize.Width - 300)
+            If text.Length > 0 Then
+                Canvas.DrawRectangle(rec, New Color(0, 0, 0, 150))
+            End If
+            Text = text.CropStringToWidth(FontManager.TextFont, 2.0F, Core.windowSize.Width - 300)
 
             Core.SpriteBatch.DrawString(FontManager.TextFont, text, New Vector2(rec.X + 20, rec.Y + 20), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
