@@ -12,23 +12,71 @@
         ''' <param name="own">Own toggle.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Shared Sub ExecuteAttackFunction(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            Dim functions() As String = Move.GameModeFunction.Split(CChar(","))
+            Dim functions() As String = Move.GameModeFunction.Split(CChar("|"))
+            For i = 0 To functions.Count - 1
+                Dim f As String = functions(i)
+                Dim fMain As String = f
+                Dim fSub As String = ""
+                If f.Contains(",") = True Then
+                    fMain = f.GetSplit(0, ",")
+                    Select Case fMain.ToLower()
+                        Case "message"
+                            fSub = Localization.GetString(f.GetSplit(1, ","), f.GetSplit(1, ","))
+                        Case "reducehp", "drainhp", "damage"
+                            Dim HPAmount As Integer = CInt(fSub.GetSplit(0, ","))
+                            Dim Message As String = ""
+                            Dim Target As Boolean = True
+                            If fSub.Split(CChar(",")).Count > 1 Then
+                                Target = CBool(fSub.GetSplit(1, ","))
+                                If fSub.Split(CChar(",")).Count > 2 Then
+                                    Message = fSub.GetSplit(2, ",")
+                                End If
+                            End If
+                            BattleScreen.Battle.ReduceHP(HPAmount, Not Target, Target, BattleScreen, Message, Move.Name.ToLower)
+                        Case "gainhp", "increasehp", "heal"
+                            Dim HPAmount As Integer = CInt(fSub.GetSplit(0, ","))
+                            Dim Message As String = ""
+                            Dim Target As Boolean = True
+                            If fSub.Split(CChar(",")).Count > 1 Then
+                                Target = CBool(fSub.GetSplit(1, ","))
+                                If fSub.Split(CChar(",")).Count > 2 Then
+                                    Message = fSub.GetSplit(2, ",")
+                                End If
+                            End If
+                            BattleScreen.Battle.GainHP(HPAmount, Target, Target, BattleScreen, Message, Move.Name.ToLower)
+                        Case Else
+                            fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
+                    End Select
+                Else
+                    Select Case f.ToLower()
+                        Case "freeze"
+                            fSub = "15"
+                        Case "poison"
+                            fSub = "40"
+                        Case "toxic", "badpoison"
+                            fSub = "25"
+                        Case Else
+                            fSub = "30"
+                    End Select
+                End If
 
-            For Each f As String In functions
-                Select Case f.ToLower()
+                Select Case fMain.ToLower()
+                    Case "message"
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(fSub))
                     Case "paralyze"
-                        Paralyze(Move, own, BattleScreen)
+                        Paralyze(Move, own, BattleScreen, CInt(fSub))
                     Case "poison"
-                        Poison(Move, own, BattleScreen)
+                        Poison(Move, own, BattleScreen, CInt(fSub))
                     Case "toxic", "badpoison"
-                        BadPoison(Move, own, BattleScreen)
+                        BadPoison(Move, own, BattleScreen, CInt(fSub))
                     Case "burn"
-                        Burn(Move, own, BattleScreen)
+                        Burn(Move, own, BattleScreen, CInt(fSub))
                     Case "freeze"
-                        Burn(Move, own, BattleScreen)
+                        Freeze(Move, own, BattleScreen, CInt(fSub))
                     Case "sleep"
-                        Sleep(Move, own, BattleScreen)
+                        Sleep(Move, own, BattleScreen, CInt(fSub))
                 End Select
+                i += 1
             Next
         End Sub
 
@@ -36,52 +84,52 @@
             If move.Category = Attack.Categories.Special Then
                 Return True
             Else
-                Return Core.Random.Next(0, 100) < chance
+                Return Core.Random.Next(0, 100) <= chance
             End If
         End Function
 
-        Private Shared Sub Paralyze(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            If GetEffectChanceResult(Move, 30) = True Then
+        Private Shared Sub Paralyze(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
+            If GetEffectChanceResult(Move, Chance) = True Then
                 If BattleScreen.Battle.InflictParalysis(Not own, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
         End Sub
 
-        Private Shared Sub Burn(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            If GetEffectChanceResult(Move, 30) = True Then
+        Private Shared Sub Burn(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
+            If GetEffectChanceResult(Move, Chance) = True Then
                 If BattleScreen.Battle.InflictBurn(Not own, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
         End Sub
 
-        Private Shared Sub Sleep(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            If GetEffectChanceResult(Move, 30) = True Then
+        Private Shared Sub Sleep(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
+            If GetEffectChanceResult(Move, Chance) = True Then
                 If BattleScreen.Battle.InflictSleep(Not own, own, BattleScreen, -1, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
         End Sub
 
-        Private Shared Sub Freeze(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            If GetEffectChanceResult(Move, 15) = True Then
+        Private Shared Sub Freeze(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
+            If GetEffectChanceResult(Move, Chance) = True Then
                 If BattleScreen.Battle.InflictFreeze(Not own, own, BattleScreen, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
         End Sub
 
-        Private Shared Sub Poison(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            If GetEffectChanceResult(Move, 40) = True Then
+        Private Shared Sub Poison(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
+            If GetEffectChanceResult(Move, Chance) = True Then
                 If BattleScreen.Battle.InflictPoison(Not own, own, BattleScreen, False, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If
             End If
         End Sub
 
-        Private Shared Sub BadPoison(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            If GetEffectChanceResult(Move, 25) = True Then
+        Private Shared Sub BadPoison(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Chance As Integer)
+            If GetEffectChanceResult(Move, Chance) = True Then
                 If BattleScreen.Battle.InflictPoison(Not own, own, BattleScreen, True, "", "move:" & Move.Name.ToLower()) = False Then
                     If Move.Category = Attack.Categories.Status Then BattleScreen.BattleQuery.Add(New TextQueryObject(Move.Name & " failed!"))
                 End If

@@ -63,8 +63,12 @@
                                 move.CurrentPP = CInt(value)
                                 move.MaxPP = CInt(value)
                                 move.OriginalPP = CInt(value)
-                            Case "function"
-                                move.GameModeFunction = value
+                            Case "function", "movehits"
+                                If move.GameModeFunction = "" Then
+                                    move.GameModeFunction = value
+                                Else
+                                    move.GameModeFunction &= "|" & value
+                                End If
                             Case "power", "basepower"
                                 move.Power = CInt(value)
                             Case "accuracy", "acc"
@@ -105,7 +109,6 @@
                                 move.Priority = CInt(value)
                             Case "timestoattack", "tta"
                                 move.TimesToAttack = CInt(value)
-
                             Case "makescontact", "contact"
                                 move.MakesContact = CBool(value)
                             Case "protectaffected"
