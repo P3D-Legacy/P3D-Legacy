@@ -17,7 +17,7 @@
             PreScreen = currentScreen
             CanBePaused = False
             UpdateFadeOut = True
-
+            BattleSystem.GameModeAttackLoader.Load()
 
             'Set up 3D environment variables (Effect, Camera, SkyDome and Level):
             Effect = New BasicEffect(GraphicsDevice)
