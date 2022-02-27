@@ -27,7 +27,7 @@
                     If argument.Contains(",") Then
                         Select Case argument.GetSplit(1).ToLower()
                             Case "p", "plural"
-                                Return Item.GetItemByID(ItemID).PluralName
+                                Return Item.GetItemByID(int(ItemID)).PluralName
                             Case "s", "singular"
                                 Return Item.GetItemByID(int(ItemID)).Name
                         End Select
