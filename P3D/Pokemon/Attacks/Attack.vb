@@ -1951,7 +1951,7 @@
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Overridable Sub MoveHits(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If Me.IsGameModeMove = True Then
-                AttackSpecialFunctions.ExecuteAttackFunction(Me, own, BattleScreen)
+                AttackSpecialFunctions.ExecuteMoveHitsFunction(Me, own, BattleScreen)
             Else
                 'DO NOTHING HERE (will do secondary effect if moves overrides it)
             End If

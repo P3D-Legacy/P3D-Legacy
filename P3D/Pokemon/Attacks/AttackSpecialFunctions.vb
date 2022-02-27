@@ -11,7 +11,7 @@
         ''' <param name="Move">The move containing the attack function.</param>
         ''' <param name="own">Own toggle.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
-        Public Shared Sub ExecuteAttackFunction(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
+        Public Shared Sub ExecuteMoveHitsFunction(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             Dim functions() As String = Move.GameModeFunction.Split(CChar("|"))
             For i = 0 To functions.Count - 1
                 Dim f As String = functions(i)
@@ -22,6 +22,7 @@
                     Select Case fMain.ToLower()
                         Case "message"
                             fSub = Localization.GetString(f.GetSplit(1, ","), f.GetSplit(1, ","))
+                            BattleScreen.BattleQuery.Add(New TextQueryObject(fSub))
                         Case "reducehp", "drainhp", "damage"
                             Dim HPAmount As Integer = CInt(fSub.GetSplit(0, ","))
                             Dim Message As String = ""
@@ -44,11 +45,19 @@
                                 End If
                             End If
                             BattleScreen.Battle.GainHP(HPAmount, Target, Target, BattleScreen, Message, Move.Name.ToLower)
+                        Case "endbattle"
+                            Dim Blackout As Boolean = False
+                            If fSub.Split(CChar(",")).Count > 1 Then
+                                Blackout = CBool(fSub.GetSplit(1, ","))
+                            End If
+                            BattleScreen.EndBattle(Blackout)
                         Case Else
                             fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
                     End Select
                 Else
                     Select Case f.ToLower()
+                        Case "endbattle"
+                            BattleScreen.EndBattle(False)
                         Case "freeze"
                             fSub = "15"
                         Case "poison"
@@ -61,8 +70,6 @@
                 End If
 
                 Select Case fMain.ToLower()
-                    Case "message"
-                        BattleScreen.BattleQuery.Add(New TextQueryObject(fSub))
                     Case "paralyze"
                         Paralyze(Move, own, BattleScreen, CInt(fSub))
                     Case "poison"
