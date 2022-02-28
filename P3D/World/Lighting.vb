@@ -96,9 +96,6 @@ Public Class Lighting
         If Screen.Level.LightingType = 1 Then ' If the level lighting type is 1, disable lighting (set index to 99).
             LightType = 99
         End If
-        If Screen.Level.LightingType > 1 And Screen.Level.LightingType < 6 Then ' If the level's lighting type is 2, 3, 4 or 5, set to the respective LightType (set time of day).
-            LightType = Screen.Level.LightingType - 2
-        End If
         If Screen.Level.EnvironmentType = World.EnvironmentTypes.Outside Then
             Select Case Screen.Level.DayTime
                 Case 1
@@ -110,6 +107,9 @@ Public Class Lighting
                 Case 4
                     LightType = 3
             End Select
+        End If
+        If Screen.Level.LightingType > 1 And Screen.Level.LightingType < 6 Then ' If the level's lighting type is 2, 3, 4 or 5, set to the respective LightType (set time of day).
+            LightType = Screen.Level.LightingType - 2
         End If
 
         Return LightType
