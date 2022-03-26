@@ -72,7 +72,6 @@ Public Class LoopStream
                                 _sourceStream.Position = 0
                                 MusicManager._isIntroStarted = False
                             End If
-                            MusicManager._afterBattleIntroSong = Nothing
                         Else
                             If MusicManager._isIntroStarted = True Then
                                 Dim IntroContinueSong As SongContainer = MusicManager.GetSong(MusicManager._introContinueSong)
