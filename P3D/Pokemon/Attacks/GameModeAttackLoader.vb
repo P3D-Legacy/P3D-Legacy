@@ -20,7 +20,7 @@
 
             If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
                 If System.IO.Directory.Exists(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "\" & PATH) = True Then
-                    For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "\" & PATH, "*.dat")
+                    For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & PATH, "*.dat")
                         LoadMove(file)
                     Next
                 End If

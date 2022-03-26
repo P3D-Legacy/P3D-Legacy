@@ -19,7 +19,11 @@
                 Dim fSub As String = ""
                 If f.Contains(",") = True Then
                     fMain = f.GetSplit(0, ",")
+                    fSub = f.GetSplit(1, ",")
                     Select Case fMain.ToLower()
+                        Case "cameraangle"
+                            Dim Direction As Integer = CInt(fSub)
+                            BattleScreen.Battle.ChangeCameraAngle(Direction, own, BattleScreen)
                         Case "message"
                             fSub = Localization.GetString(f.GetSplit(1, ","), f.GetSplit(1, ","))
                             BattleScreen.BattleQuery.Add(New TextQueryObject(fSub))
@@ -27,6 +31,7 @@
                             Dim HPAmount As Integer = CInt(fSub.GetSplit(0, ","))
                             Dim Message As String = ""
                             Dim Target As Boolean = True
+
                             If fSub.Split(CChar(",")).Count > 1 Then
                                 Target = CBool(fSub.GetSplit(1, ","))
                                 If fSub.Split(CChar(",")).Count > 2 Then
@@ -38,6 +43,7 @@
                             Dim HPAmount As Integer = CInt(fSub.GetSplit(0, ","))
                             Dim Message As String = ""
                             Dim Target As Boolean = True
+
                             If fSub.Split(CChar(",")).Count > 1 Then
                                 Target = CBool(fSub.GetSplit(1, ","))
                                 If fSub.Split(CChar(",")).Count > 2 Then
@@ -47,10 +53,22 @@
                             BattleScreen.Battle.GainHP(HPAmount, Target, Target, BattleScreen, Message, Move.Name.ToLower)
                         Case "endbattle"
                             Dim Blackout As Boolean = False
+
                             If fSub.Split(CChar(",")).Count > 1 Then
                                 Blackout = CBool(fSub.GetSplit(1, ","))
                             End If
                             BattleScreen.EndBattle(Blackout)
+                        Case "faint"
+                            Dim Target As Boolean = Not own
+                            Dim Message As String = ""
+
+                            If fSub.Split(CChar(",")).Count > 1 Then
+                                Target = Not CBool(fSub.GetSplit(1, ","))
+                            End If
+                            If fSub.Split(CChar(",")).Count > 2 Then
+                                Message = fSub.GetSplit(2, ",")
+                            End If
+                            BattleScreen.Battle.FaintPokemon(Target, BattleScreen, Message)
                         Case Else
                             fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
                     End Select
