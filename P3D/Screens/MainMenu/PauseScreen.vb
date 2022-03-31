@@ -48,7 +48,9 @@
     End Sub
 
     Public Overrides Sub Draw()
-        Me.PreScreen.Draw()
+        If Me.PreScreen IsNot Nothing Then
+            Me.PreScreen.Draw()
+        End If
 
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), New Color(0, 0, 0, 150))
         Dim titletext As String = Localization.GetString("pause_menu_title")
