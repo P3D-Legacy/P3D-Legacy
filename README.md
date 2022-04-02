@@ -13,6 +13,8 @@ The game is not in active development by the original developer [nilllzz](https:
 
 You are free to fork and redistribute the code under the [GNU GPLv3 license](http://choosealicense.com/licenses/gpl-3.0/).
 
+**Looking for documentation for the game?** Check out the [Wiki](https://wiki.pokemon3d.net/) we have for the game!
+
 # Downloading the game
 
 You will find the latest release **[here](https://github.com/P3D-Legacy/P3D-Legacy/releases)**.
