@@ -418,9 +418,7 @@ Public Class OverworldCamera
 #Region "CameraMethods"
 
     Private Sub SetSpeed()
-        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
-            Speed = 0.04F
-        Else
+        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
             If Screen.Level.Riding = True Then
                 Speed = 0.08F
             Else
