@@ -465,6 +465,8 @@ Namespace ScriptVersion2
                                                New ScriptArgument("facing", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Warps the player to a new location on a new map and changes the facing afterwards. To get relative coordinates, enter a ""~""."))
             r(New ScriptCommand("player", "stopmovement", "Stops the player movement."))
             r(New ScriptCommand("player", "addmoney", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's money."))
+            r(New ScriptCommand("player", "setspeed", {New ScriptArgument("speed", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Sets the speed of the player. The default is ""1""."))
+            r(New ScriptCommand("player", "resetspeed", "Resets the walking speed of the player to the default speed, which is ""1""."))
             r(New ScriptCommand("player", "setmovement", {New ScriptArgument("x", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("y", ScriptArgument.ArgumentTypes.Int),
                                                       New ScriptArgument("z", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the direction the player will move next regardless of facing."))
