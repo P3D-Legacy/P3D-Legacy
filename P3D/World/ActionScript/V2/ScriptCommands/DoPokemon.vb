@@ -257,8 +257,6 @@
                     CType(Core.CurrentScreen, PartyScreen).ExitedSub = AddressOf Script.ExitedNPCTrade
 
                     CanContinue = False
-                Case "hide"
-                    Screen.Level.OverworldPokemon.Visible = False
                 Case "rename"
                     Dim index As String = argument
                     Dim renameOTcheck As Boolean = False

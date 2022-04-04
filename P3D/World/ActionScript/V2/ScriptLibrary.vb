@@ -29,6 +29,8 @@ Namespace ScriptVersion2
 
             DoPokemon()
 
+            DoOverworldPokemon()
+
             DoNPC()
 
             DoPlayer()
@@ -474,9 +476,6 @@ Namespace ScriptVersion2
             r(New ScriptCommand("player", "addbp", {New ScriptArgument("amount", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Adds the given amount to the player's Battle Points."))
             r(New ScriptCommand("player", "showrod", {New ScriptArgument("rodID", ScriptArgument.ArgumentTypes.Int, {"0-2"})}.ToList(), "Displays a Fishing Rod on the screen."))
             r(New ScriptCommand("player", "hiderod", "Hides the Fishing Rod."))
-            r(New ScriptCommand("player", "showpokemonfollow", "Shows the following Pokémon."))
-            r(New ScriptCommand("player", "hidepokemonfollow", "Hides the following Pokémon."))
-            r(New ScriptCommand("player", "togglepokemonfollow", "Toggles the following Pokémon's visibility."))
             r(New ScriptCommand("player", "save", "Saves the game."))
             r(New ScriptCommand("player", "setrivalname", {New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the rival's name."))
             r(New ScriptCommand("player", "setrivalskin", {New ScriptArgument("skin", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the rival's skin."))
@@ -637,7 +636,12 @@ Namespace ScriptVersion2
             r(New ScriptCommand("daycare", "canbreed", "int", {New ScriptArgument("daycareID", ScriptArgument.ArgumentTypes.Int),
                                                                New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Returns the chance the Pokémon in the Day Care can breed (in %).", ",", True))
         End Sub
-
+        Private Shared Sub DoOverworldPokemon()
+            ' Commands:
+            r(New ScriptCommand("player", "show", "Shows the following Pokémon."))
+            r(New ScriptCommand("player", "hide", "Hides the following Pokémon."))
+            r(New ScriptCommand("player", "toggle", "Toggles the following Pokémon's visibility."))
+        End Sub
         Private Shared Sub DoPokemon()
             ' Commands:
             r(New ScriptCommand("pokemon", "cry", {New ScriptArgument("pokemonID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Plays the cry of the given Pokémon."))
@@ -689,7 +693,6 @@ Namespace ScriptVersion2
                                                     New ScriptArgument("message1", ScriptArgument.ArgumentTypes.Str),
                                                     New ScriptArgument("message2", ScriptArgument.ArgumentTypes.Str),
                                                     New ScriptArgument("register", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Trades a Pokémon with an NPC.", "|", False))
-            r(New ScriptCommand("pokemon", "hide", "Hides the following Pokémon."))
             r(New ScriptCommand("pokemon", "rename", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str, {"0-5", "last"}),
                                                   New ScriptArgument("OTcheck", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Opens the Name Rater rename feature."))
             r(New ScriptCommand("pokemon", "read", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Str, {"[empty],0-5"})}.ToList(), "Displays the reader's dialogue."))

@@ -256,20 +256,6 @@
                     OverworldScreen.DrawRodID = -1
 
                     IsReady = True
-                Case "showpokemonfollow"
-                    Screen.Level.OverworldPokemon.Visible = True
-
-                    IsReady = True
-
-                Case "hidepokemonfollow"
-                    Screen.Level.OverworldPokemon.Visible = False
-
-                    IsReady = True
-
-                Case "togglepokemonfollow"
-                    Screen.Level.OverworldPokemon.Visible = Not Screen.Level.OverworldPokemon.Visible
-
-                    IsReady = True
                 Case "save"
                     Core.Player.SaveGame(False)
 

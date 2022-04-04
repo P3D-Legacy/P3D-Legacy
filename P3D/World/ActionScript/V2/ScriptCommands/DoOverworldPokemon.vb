@@ -13,11 +13,15 @@
             Select Case command.ToLower()
                 Case "hide"
                     Screen.Level.OverworldPokemon.Visible = False
+                    IsReady = True
                 Case "show"
                     Screen.Level.OverworldPokemon.Visible = True
+                    IsReady = True
+                Case "toggle"
+                    Screen.Level.OverworldPokemon.Visible = Not Screen.Level.OverworldPokemon.Visible
+                    IsReady = True
             End Select
 
-            IsReady = True
         End Sub
 
     End Class
