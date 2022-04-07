@@ -848,7 +848,7 @@ Public Class OverworldCamera
         End If
 
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            If _debugWalk = True Then
+            If _debugWalk = True AndAlso CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
                 cannotWalk = False
             End If
         End If
