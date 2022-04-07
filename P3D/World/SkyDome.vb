@@ -48,29 +48,22 @@
     Dim Minute As Integer = 0
     Dim Second As Integer = 0
 
-    Private Function GetUniversePitch() As Single
-        If FASTTIMECYCLE = True Then
-            Dim progress As Integer = Hour * 3600 + Minute * 60 + Second
-            Return CSng((MathHelper.TwoPi / 100) * (progress / 86400 * 100))
-        Else
-            Dim progress As Integer = World.SecondsOfDay
-            Return CSng((MathHelper.TwoPi / 100) * (progress / 86400 * 100))
-        End If
-    End Function
-
     Public Sub Draw(ByVal FOV As Single)
         If Core.GameOptions.GraphicStyle = 1 Then
             If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside Then
                 If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then ' Don't render the sky if the weather is set to Fog.
-                    RenderHalf(FOV, Yaw, 0.0F, True, GetSkyTexture(), 16, 1.0F) ' Draw the sky
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureDown, 14, GetStarsAlpha()) ' Draw the stars.
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 12, GetSunAlpha()) ' Draw the Sun.
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureMoon, 12, GetMoonAlpha()) ' Draw the Moon.
-                    RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, GetCloudsTexture(), 10, GetCloudAlpha) ' Draw the clouds.
+                    RenderHalf(FOV, Yaw, 0.0F, True, GetSkyTexture(), 20, 1.0F) ' Draw the sky
+                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureDown, 18, GetStarsAlpha()) ' Draw the stars.
+                    If GetSunAlpha() > 0 Then
+                        RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 16, 1.0F) ' Draw the Sun.
+                    Else
+                        RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureMoon, 16, 1.0F) ' Draw the Moon.
+                    End If
+                    RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, GetCloudsTexture(), 12, GetCloudAlpha) ' Draw the clouds.
                 End If
             Else
                 If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Or Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Forest Then
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureUp, 16, 1.0F) ' Draw the sky
+                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureUp, 20, 1.0F) ' Draw the sky
                 Else
                     RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 16, 1.0F) ' Draw the sky
                     RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 12, GetSunAlpha()) ' Draw the Sun.
@@ -94,7 +87,7 @@
 
         For Each ModelMesh As ModelMesh In SkydomeModel.Meshes
             For Each BasicEffect As BasicEffect In ModelMesh.Effects
-                BasicEffect.World = Matrix.CreateScale(scale) * Matrix.CreateTranslation(New Vector3(Screen.Camera.Position.X, -2, Screen.Camera.Position.Z)) * Matrix.CreateFromYawPitchRoll(useYaw, usePitch, Roll)
+                BasicEffect.World = Matrix.CreateScale(scale) * Matrix.CreateTranslation(New Vector3(Screen.Camera.Position.X, Screen.Camera.Position.Y - 2, Screen.Camera.Position.Z)) * Matrix.CreateFromYawPitchRoll(useYaw, usePitch, Roll)
 
                 BasicEffect.View = Screen.Camera.View
                 BasicEffect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(FOV), Core.GraphicsDevice.Viewport.AspectRatio, 0.01, 10000)
@@ -183,25 +176,6 @@
     Private Function GetCloudAlpha() As Single
         If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.IsAurora = False Then
             Return 1.0F
-        Else
-            Return 0.0F
-        End If
-    End Function
-
-    Private Function GetMoonAlpha() As Single
-        If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.IsAurora = False Then
-            Select Case Screen.Level.DayTime
-                Case 1
-                    Return 0.0F
-                Case 2
-                    Return 1.0F
-                Case 3
-                    Return 0.0F
-                Case 4
-                    Return 1.0F
-                Case Else
-                    Return 0.0F
-            End Select
         Else
             Return 0.0F
         End If
