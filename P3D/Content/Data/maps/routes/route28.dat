@@ -310,7 +310,6 @@ Mountain4:
 
 {"EntityField"{ENT[{"Size"{intArr[55,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[5,4,-4]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
 {"EntityField"{ENT[{"Size"{intArr[5,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[-1,4,0]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
-{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[28,4,38]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[2]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
 
 Corners:
 {"Entity"{ENT[{"EntityID"{str[WallBlock]}}{"Position"{sngArr[4,4,0]}}{"Rotation"{int[3]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[5]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}]}}
