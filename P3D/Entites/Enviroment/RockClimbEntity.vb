@@ -113,6 +113,7 @@
             Screen.Level.OwnPlayer.ChangeTexture()
 
             Dim s As String = "version=2" & Environment.NewLine &
+                "@player.stopmovement" & Environment.NewLine &
                 "@pokemon.cry(" & RockClimbPokemon.Number & ")" & Environment.NewLine &
                 "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
                 "@sound.play(destroy)" & Environment.NewLine &
@@ -186,6 +187,7 @@
             Screen.Level.OwnPlayer.ChangeTexture()
 
             Dim s As String = "version=2" & Environment.NewLine &
+            "@player.stopmovement" & Environment.NewLine &
             "@pokemon.cry(" & RockClimbPokemon.Number & ")" & Environment.NewLine &
             "@player.move(1)" & Environment.NewLine &
             "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
