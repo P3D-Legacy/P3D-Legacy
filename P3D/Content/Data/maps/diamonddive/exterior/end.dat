@@ -83,7 +83,7 @@ Slants Turned:
 	Corners:
 		{"Entity"{ENT[{"RotationXYZ"{sngArr[3.1415,1.5708,0]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[22,6,56]}}{"Rotation"{int[1]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[160,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[5]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}]}}
 
-Moltres:
+Diancie:
 {"NPC"{NPC[{"Position"{sngArr[15,-4,27]}}{"AnimateIdle"{bool[1]}}{"TextureID"{str[[POKEMON|N]719]}}{"ID"{int[0]}}{"Name"{str[Jo]}}{"Action"{int[1]}}{"AdditionalValue"{str[diamonddive\diancie]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 Trees:
