@@ -471,6 +471,29 @@
             Next
         End If
 
+        Dim PlayerSkinTexture As Texture2D
+
+        If Core.Player.IsGameJoltSave And GameJolt.API.LoggedIn Then
+            PlayerSkinTexture = GameJolt.Emblem.GetOnlineSprite(Core.GameJoltSave.GameJoltID)
+        Else
+            PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.Skin)
+        End If
+        Dim PlayerSkinWidth As Integer = CInt(PlayerSkinTexture.Width / 3)
+        Dim PlayerSkinHeight As Integer = CInt(PlayerSkinTexture.Height / 4)
+
+        If PlayerSkinTexture.Width = PlayerSkinTexture.Height / 2 Then
+            PlayerSkinWidth = CInt(PlayerSkinTexture.Width / 2)
+        ElseIf PlayerSkinTexture.Width = PlayerSkinTexture.Height Then
+            PlayerSkinWidth = CInt(PlayerSkinTexture.Width / 4)
+        End If
+
+        Dim PlayerTextureRectangle As Rectangle = New Rectangle(0, CInt(PlayerSkinHeight * 2), PlayerSkinWidth, PlayerSkinHeight)
+
+        Dim v As Vector2 = GetPlayerPosition()
+        If v.X <> 0 Or v.Y <> 0 Then
+            Core.SpriteBatch.Draw(PlayerSkinTexture, New Rectangle(CInt(GetPlayerPosition.X + mapOffsetX - PlayerSkinWidth), CInt(GetPlayerPosition.Y + mapOffsetY - PlayerSkinHeight), CInt(PlayerSkinWidth * 2), CInt(PlayerSkinHeight * 2)), PlayerTextureRectangle, Color.White)
+        End If
+
         If Me.hoverText <> "" And Me.pokehoverText <> "" Then
             Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 30, Me.CursorPosition.Y - 31), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
