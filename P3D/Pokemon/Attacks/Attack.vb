@@ -1748,8 +1748,8 @@
                     'returnMove = New Moves.Normal.StuffCheeks()
                     'Case 748
                     'returnMove = New Moves.Fighting.NoRetreat()
-                    'Case 749
-                    'returnMove = New Moves.Rock.TarShot()
+                Case 749
+                    returnMove = New Moves.Rock.TarShot()
                     'Case 750
                     'returnMove = New Moves.Psychic.MagicPowder()
                     'Case 751
@@ -1844,7 +1844,7 @@
                     'returnMove = New Moves.Fighting.MeteorAssault()
                     'Case 795
                     'returnMove = New Moves.Dragon.Eternabeam()
-                    Case 796
+                Case 796
                     returnMove = New Moves.Steel.SteelBeam()
                     'Case 797
                     'Blank

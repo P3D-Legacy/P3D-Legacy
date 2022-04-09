@@ -523,8 +523,8 @@
                 'Gulp Missile
                 'Case 242
                 'Stalwart
-                'Case 243
-                'Steam Engine
+            Case 243
+                Return New Abilities.SteamEngine()
                 'Case 244
                 'Punk Rock
                 'Case 245

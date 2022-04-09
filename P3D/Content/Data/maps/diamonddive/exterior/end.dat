@@ -1,5 +1,5 @@
 ﻿{"Level"{LEV[{"Name"{str[Diamond Dive]}}{"MusicLoop"{str[ilex_forest]}}{"CurrentRegion"{str[Johto]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"MapScript"{str[diamonddive\dianciemap]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}]}}
 
 Floor:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[5,7]}}{"Position"{intArr[13,-4,21]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[96,16,16,16]}}]}}

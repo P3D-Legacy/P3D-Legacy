@@ -1894,7 +1894,7 @@
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
                         ChangeCameraAngle(2, own, BattleScreen)
-                        If op.StatAttack = 6 Then
+                        If op.StatSpAttack = 6 Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Storm Drain made " & moveUsed.Name & " useless!"))
                         Else
                             RaiseStat(Not own, Not own, BattleScreen, "Special Attack", 1, op.GetDisplayName() & "'s Storm Drain absorbed the attack!", "stormdrain")
@@ -2376,6 +2376,10 @@
                                     Case "justified"
                                         If moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Dark Then
                                             RaiseStat(Not own, Not own, BattleScreen, "Attack", 1, op.GetDisplayName() & " became justified!", "justified")
+                                        End If
+                                    Case "steam engine"
+                                        If moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Fire Or moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Water Then
+                                            RaiseStat(Not own, Not own, BattleScreen, "Speed", 2, "", "steam engine")
                                         End If
                                     Case "rattled"
                                         If moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Dark Or moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Bug Or moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Ghost Then
