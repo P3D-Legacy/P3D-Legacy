@@ -1218,7 +1218,10 @@ nextIndex:
                     End If
                     p.ResetTemp()
                 Next
+
                 If hasLevelUp = False Then
+                    MusicManager._afterBattleIntroSong = Nothing
+                    MusicManager._introContinueSong = SavedOverworld.Level.MusicLoop
                     Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, New Color(255, 255, 254), False, AddressOf ChangeSavedScreen))
                 Else
                     Dim EvolvePokeList As New List(Of Integer)
@@ -1235,6 +1238,8 @@ nextIndex:
                     Next
 
                     If EvolvePokeList.Count = 0 Then
+                        MusicManager._afterBattleIntroSong = Nothing
+                        MusicManager._introContinueSong = SavedOverworld.Level.MusicLoop
                         Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, New Color(255, 255, 254), False, AddressOf ChangeSavedScreen))
                     Else
                         Core.SetScreen(New TransitionScreen(Me, New EvolutionScreen(Core.CurrentScreen, EvolvePokeList, "", EvolutionCondition.EvolutionTrigger.LevelUp, True), Color.Black, False))
