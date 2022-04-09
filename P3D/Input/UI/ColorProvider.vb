@@ -14,8 +14,16 @@
             End Get
         End Property
 
-        Private Shared ReadOnly _gradientColor As Color = New Color(99, 204, 255)
-        Private Shared ReadOnly _gameJolt_gradientColor As Color = New Color(45, 45, 45)
+        Public Shared Function GetInterfaceColor(ByVal ColorType As Integer, ByVal isGameJolt As Boolean) As Color
+            Dim y As Integer = 0
+            If isGameJolt = True Then
+                y = 1
+            End If
+            Dim Data(0) As Color
+            Dim InterfaceColorTexture = TextureManager.GetTexture("GUI\Menus\InterfaceColors")
+            InterfaceColorTexture.GetData(0, New Rectangle(ColorType, y, 1, 1), Data, 0, 1)
+            Return Data(0)
+        End Function
 
         Public Shared ReadOnly Property GradientColor() As Color
             Get
@@ -25,21 +33,14 @@
 
         Public Shared ReadOnly Property GradientColor(ByVal isGameJolt As Boolean) As Color
             Get
-                If isGameJolt Then
-                    Return _gameJolt_gradientColor
-                Else
-                    Return _gradientColor
-                End If
+                Return GetInterfaceColor(0, isGameJolt)
             End Get
         End Property
 
         Public Shared ReadOnly Property GradientColor(ByVal isGameJolt As Boolean, ByVal alpha As Integer) As Color
             Get
-                If isGameJolt Then
-                    Return New Color(_gameJolt_gradientColor.R, _gameJolt_gradientColor.G, _gameJolt_gradientColor.B, alpha)
-                Else
-                    Return New Color(_gradientColor.R, _gradientColor.G, _gradientColor.B, alpha)
-                End If
+                Dim _color As Color = GetInterfaceColor(0, isGameJolt)
+                Return New Color(_color.R, _color.G, _color.B, alpha)
             End Get
         End Property
 
@@ -54,21 +55,14 @@
 
         Public Shared ReadOnly Property MainColor(ByVal isGameJolt As Boolean) As Color
             Get
-                If isGameJolt Then
-                    Return _gameJolt_mainColor
-                Else
-                    Return _mainColor
-                End If
+                Return GetInterfaceColor(1, isGameJolt)
             End Get
         End Property
 
         Public Shared ReadOnly Property MainColor(ByVal isGameJolt As Boolean, ByVal alpha As Integer) As Color
             Get
-                If isGameJolt Then
-                    Return New Color(_gameJolt_mainColor.R, _gameJolt_mainColor.G, _gameJolt_mainColor.B, alpha)
-                Else
-                    Return New Color(_mainColor.R, _mainColor.G, _mainColor.B, alpha)
-                End If
+                Dim _color As Color = GetInterfaceColor(1, isGameJolt)
+                Return New Color(_color.R, _color.G, _color.B, alpha)
             End Get
         End Property
 
@@ -83,21 +77,14 @@
 
         Public Shared ReadOnly Property LightColor(ByVal isGameJolt As Boolean) As Color
             Get
-                If isGameJolt Then
-                    Return _gameJolt_lightColor
-                Else
-                    Return _lightColor
-                End If
+                Return GetInterfaceColor(2, isGameJolt)
             End Get
         End Property
 
         Public Shared ReadOnly Property LightColor(ByVal isGameJolt As Boolean, ByVal alpha As Integer) As Color
             Get
-                If isGameJolt Then
-                    Return New Color(_gameJolt_lightColor.R, _gameJolt_lightColor.G, _gameJolt_lightColor.B, alpha)
-                Else
-                    Return New Color(_lightColor.R, _lightColor.G, _lightColor.B, alpha)
-                End If
+                Dim _color As Color = GetInterfaceColor(2, isGameJolt)
+                Return New Color(_color.R, _color.G, _color.B, alpha)
             End Get
         End Property
 
@@ -112,21 +99,14 @@
 
         Public Shared ReadOnly Property AccentColor(ByVal isGameJolt As Boolean) As Color
             Get
-                If isGameJolt Then
-                    Return _gameJolt_accentColor
-                Else
-                    Return _accentColor
-                End If
+                Return GetInterfaceColor(3, isGameJolt)
             End Get
         End Property
 
         Public Shared ReadOnly Property AccentColor(ByVal isGameJolt As Boolean, ByVal alpha As Integer) As Color
             Get
-                If isGameJolt Then
-                    Return New Color(_gameJolt_accentColor.R, _gameJolt_accentColor.G, _gameJolt_accentColor.B, alpha)
-                Else
-                    Return New Color(_accentColor.R, _accentColor.G, _accentColor.B, alpha)
-                End If
+                Dim _color As Color = GetInterfaceColor(3, isGameJolt)
+                Return New Color(_color.R, _color.G, _color.B, alpha)
             End Get
         End Property
 
