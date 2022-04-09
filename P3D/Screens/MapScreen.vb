@@ -480,18 +480,21 @@
         End If
         Dim PlayerSkinWidth As Integer = CInt(PlayerSkinTexture.Width / 3)
         Dim PlayerSkinHeight As Integer = CInt(PlayerSkinTexture.Height / 4)
-
+        Dim PlayerSkinScale As Single = 1.0F
         If PlayerSkinTexture.Width = PlayerSkinTexture.Height / 2 Then
             PlayerSkinWidth = CInt(PlayerSkinTexture.Width / 2)
         ElseIf PlayerSkinTexture.Width = PlayerSkinTexture.Height Then
             PlayerSkinWidth = CInt(PlayerSkinTexture.Width / 4)
+        End If
+        If PlayerSkinWidth > 32 Then
+            PlayerSkinScale = 0.5F
         End If
 
         Dim PlayerTextureRectangle As Rectangle = New Rectangle(0, CInt(PlayerSkinHeight * 2), PlayerSkinWidth, PlayerSkinHeight)
 
         Dim v As Vector2 = GetPlayerPosition()
         If v.X <> 0 Or v.Y <> 0 Then
-            Core.SpriteBatch.Draw(PlayerSkinTexture, New Rectangle(CInt(GetPlayerPosition.X + mapOffsetX - PlayerSkinWidth), CInt(GetPlayerPosition.Y + mapOffsetY - PlayerSkinHeight), CInt(PlayerSkinWidth * 2), CInt(PlayerSkinHeight * 2)), PlayerTextureRectangle, Color.White)
+            Core.SpriteBatch.Draw(PlayerSkinTexture, New Rectangle(CInt(GetPlayerPosition.X + mapOffsetX - PlayerSkinWidth), CInt(GetPlayerPosition.Y + mapOffsetY - PlayerSkinHeight), CInt(PlayerSkinWidth * 2 * PlayerSkinScale), CInt(PlayerSkinHeight * 2 * PlayerSkinScale)), PlayerTextureRectangle, Color.White)
         End If
 
         If Me.hoverText <> "" And Me.pokehoverText <> "" Then
