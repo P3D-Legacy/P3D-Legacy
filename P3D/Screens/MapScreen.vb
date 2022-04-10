@@ -485,7 +485,13 @@
         If Core.Player.IsGameJoltSave And GameJolt.API.LoggedIn Then
             PlayerSkinTexture = GameJolt.Emblem.GetOnlineSprite(Core.GameJoltSave.GameJoltID)
         Else
-            PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.Skin)
+            If Screen.Level.Surfing = True Then
+                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempSurfSkin)
+            ElseIf Screen.Level.Riding = True Then
+                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempRideSkin)
+            Else
+                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.Skin)
+            End If
         End If
         Dim PlayerSkinWidth As Integer = CInt(PlayerSkinTexture.Width / 3)
         Dim PlayerSkinHeight As Integer = CInt(PlayerSkinTexture.Height / 4)
