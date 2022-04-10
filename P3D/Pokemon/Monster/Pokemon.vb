@@ -1581,6 +1581,8 @@ Public Class Pokemon
                     End Select
                 Case "eggsteps"
                     Me.EggSteps = CInt(tagValue)
+                Case "canbreed"
+                    Me.CanBreed = CBool(tagValue)
                 Case "item"
                     If StringHelper.IsNumeric(tagValue) Then
                         Me.Item = Item.GetItemByID(CInt(tagValue))
@@ -1794,6 +1796,7 @@ Public Class Pokemon
         "{""OriginalNumber""[" & Me.OriginalNumber & "]}" &
         "{""Experience""[" & Me.Experience & "]}" &
         "{""Gender""[" & SaveGender & "]}" &
+        "{""CanBreed""[" & Me.CanBreed.ToNumberString() & "]}" &
         "{""EggSteps""[" & Me.EggSteps & "]}" &
         "{""Item""[" & SaveItemID & "]}" &
         "{""ItemData""[" & ItemData & "]}" &
