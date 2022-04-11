@@ -108,13 +108,17 @@ Public Class JoinServerScreen
         Next
 
         Dim CanvasTexture As Texture2D
-        CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
-
+        Dim FontColor As Color
+        Dim FontShadow As Color = New Color(0, 0, 0, 0)
         For i = 0 To 5
             If i = Me.buttonIndex Then
                 CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
+                FontColor = Color.White
+                FontShadow.A = 255
             Else
                 CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
+                FontColor = Color.Black
+                FontShadow.A = 0
             End If
 
             Dim Text As String = ""
@@ -153,7 +157,8 @@ Public Class JoinServerScreen
             End Select
 
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 560 + i * 192, Core.ScreenSize.Height - 136, 128, 64), True)
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - 542 + i * 192, Core.ScreenSize.Height - 104), Color.Black)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - 542 + i * 192 + 2, Core.ScreenSize.Height - 104 + 2), FontShadow)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2) - 542 + i * 192, Core.ScreenSize.Height - 104), FontColor)
         Next
 
         Dim vS As String = "Protocol version: " & Servers.ServersManager.PROTOCOLVERSION
