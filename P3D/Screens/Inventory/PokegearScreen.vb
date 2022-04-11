@@ -28,7 +28,7 @@
 
         Dim FunctionList As New List(Of String)
 
-        Dim width As Integer = 600
+        Dim width As Integer = 672
         Dim heigth As Integer = 400
 
         Dim Cursors() As Integer
@@ -199,24 +199,24 @@
             Dim t As String = TimeHelpers.GetDisplayTime(Date.Now, True)
             Dim t2 As String = "Pokégear"
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(startPos.X + width - FontManager.MiniFont.MeasureString(t).X - 5, startPos.Y + 4), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, t2, New Vector2(startPos.X + 5, startPos.Y + 4), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(startPos.X + width - FontManager.MainFont.MeasureString(t).X - 5, startPos.Y + 4), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, t2, New Vector2(startPos.X + 5, startPos.Y + 4), Color.White)
 
             If API.LoggedIn = True Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 10 + FontManager.MiniFont.MeasureString(t2).X), CInt(startPos.Y + 8), 16, 16), New Rectangle(80, 112, 16, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 10 + FontManager.MainFont.MeasureString(t2).X), CInt(startPos.Y + 8), 16, 16), New Rectangle(80, 112, 16, 16), Color.White)
             End If
             If ConnectScreen.Connected = True Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 34 + FontManager.MiniFont.MeasureString(t2).X), CInt(startPos.Y + 8), 16, 16), New Rectangle(112, 112, 16, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 34 + FontManager.MainFont.MeasureString(t2).X), CInt(startPos.Y + 8), 16, 16), New Rectangle(112, 112, 16, 16), Color.White)
             End If
             Select Case World.GetTime
                 Case World.DayTimes.Night
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MiniFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(64, 112, 8, 8), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MainFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(64, 112, 8, 8), Color.White)
                 Case World.DayTimes.Morning
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MiniFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(72, 112, 8, 8), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MainFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(72, 112, 8, 8), Color.White)
                 Case World.DayTimes.Day
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MiniFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(64, 120, 8, 8), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MainFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(64, 120, 8, 8), Color.White)
                 Case World.DayTimes.Evening
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MiniFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(72, 120, 8, 8), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + width - FontManager.MainFont.MeasureString(t).X - 34), CInt(startPos.Y + 6), 16, 16), New Rectangle(72, 120, 8, 8), Color.White)
             End Select
         End Sub
 
@@ -266,12 +266,12 @@
                         displayText = "Statistics"
                 End Select
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 96) + 124), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 0, 32, 32), Color.White)
-                Core.SpriteBatch.Draw(t, New Rectangle(CInt(startPos.X + (x * 96) + 124), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 0, 32, 32), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, displayText, New Vector2(CInt(startPos.X + (x * 96) + 124) + 32 - FontManager.MiniFont.MeasureString(displayText).X / 2.0F, CInt(startPos.Y + 150 + (y * 100))), Color.Black)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 128) + 80), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 0, 32, 32), Color.White)
+                Core.SpriteBatch.Draw(t, New Rectangle(CInt(startPos.X + (x * 128) + 80), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 0, 32, 32), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, displayText, New Vector2(CInt(startPos.X + (x * 128) + 80) + 32 - FontManager.MainFont.MeasureString(displayText).X / 2.0F, CInt(startPos.Y + 152 + (y * 100))), Color.Black)
 
                 If Cursors(0) = i Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 96) + 124), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 32, 32, 32), Color.White)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 128) + 80), CInt(startPos.Y + 80 + (y * 100)), 64, 64), New Rectangle(0, 32, 32, 32), Color.White)
                 End If
 
                 x += 1
@@ -303,7 +303,7 @@
                 Dim startPos As Vector2 = GetStartPosition()
                 For x = 0 To 3
                     For y = 0 To 2
-                        Dim r As New Rectangle(CInt(startPos.X + (x * 96) + 124), CInt(startPos.Y + 80 + (y * 100)), 64, 64)
+                        Dim r As New Rectangle(CInt(startPos.X + (x * 128) + 80), CInt(startPos.Y + 80 + (y * 100)), 64, 64)
                         If r.Contains(MouseHandler.MousePosition) = True Then
                             pressedIndex = x + y * 4
                         End If
@@ -399,6 +399,21 @@
             If Controls.Left(True, True, False, True, True, True) = True Then
                 PSSmenuIndex -= 1
             End If
+            Dim startPos As Vector2 = GetStartPosition()
+            Dim recRank As New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 184, 32)
+            Dim recFriends As New Rectangle(CInt(startPos.X + 40 + 200), CInt(startPos.Y + 46), 184, 32)
+            Dim recLocal As New Rectangle(CInt(startPos.X + 40 + 200 + 200), CInt(startPos.Y + 46), 184, 32)
+            If Controls.Accept(True, False, False) Then
+                If recRank.Contains(MouseHandler.MousePosition) Then
+                    PSSmenuIndex = 0
+                End If
+                If recFriends.Contains(MouseHandler.MousePosition) Then
+                    PSSmenuIndex = 1
+                End If
+                If recLocal.Contains(MouseHandler.MousePosition) Then
+                    PSSmenuIndex = 2
+                End If
+            End If
 
             If PSSmenuIndex > 2 Then
                 PSSmenuIndex = 0
@@ -423,25 +438,35 @@
         Private Sub DrawRanklist()
             Dim startPos As Vector2 = GetStartPosition()
 
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 40), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 128), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 48 + 200), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Passby", New Vector2(CInt(startPos.X + 48 + 200 + 200), CInt(startPos.Y + 48)), Color.Black)
 
             If Core.Player.IsGameJoltSave = True Then
                 ' Draw own information:
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 40), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16 + 304), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 46), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16 + 304), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
                 Dim ownE As New Emblem(Core.Player.Name, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem)
 
-                Core.SpriteBatch.Draw(ownE.SpriteTexture, New Rectangle(CInt(startPos.X + 225), CInt(startPos.Y + 40), 32, 32), New Rectangle(0, 64, 32, 32), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, ownE.Username, New Vector2(CInt(startPos.X + 265), CInt(startPos.Y + 45)), Color.Black)
+                Core.SpriteBatch.Draw(ownE.SpriteTexture, New Rectangle(CInt(startPos.X + 225), CInt(startPos.Y + 46), 32, 32), New Rectangle(0, 64, 32, 32), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, ownE.Username, New Vector2(CInt(startPos.X + 265), CInt(startPos.Y + 48)), Color.Black)
 
                 If OwnRank > -1 Then
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Rank " & OwnRank.ToString(), New Vector2(CInt(startPos.X + 380), CInt(startPos.Y + 45)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Rank " & OwnRank.ToString(), New Vector2(CInt(startPos.X + 380), CInt(startPos.Y + 48)), Color.Black)
                 End If
 
                 If UserBanned = False Then
@@ -459,33 +484,44 @@
                                         eff = SpriteEffects.FlipVertically
                                     End If
 
-                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 80 + i * 35), 478, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 478), CInt(startPos.Y + 80 + i * 35), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 80 + i * 36), 480, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 480), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
                                     If e.DoneLoading = True Then
                                         Dim frameSize As New Size(CInt(e.SpriteTexture.Width / 3), CInt(e.SpriteTexture.Height / 4))
+                                        Dim frameScale As Single = 1.0F
+                                        If e.SpriteTexture.Width = e.SpriteTexture.Height / 2 Then
+                                            frameSize.Width = CInt(e.SpriteTexture.Width / 2)
+                                        ElseIf e.SpriteTexture.Width = e.SpriteTexture.Height Then
+                                            frameSize.Width = CInt(e.SpriteTexture.Width / 4)
+                                        Else
+                                            frameSize.Width = CInt(e.SpriteTexture.Width / 3)
+                                        End If
+                                        If frameSize.Width > 32 Then
+                                            frameScale = 0.5F
+                                        End If
 
-                                        Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 50), CInt(startPos.Y + 80 + i * 35), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
-                                        Core.SpriteBatch.DrawString(FontManager.MiniFont, e.Username, New Vector2(CInt(startPos.X + 90), CInt(startPos.Y + 85 + i * 35)), Color.Black)
-                                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Rank " & (index + 1).ToString() & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 380), CInt(startPos.Y + 85 + i * 35)), Color.Black)
+                                        Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, e.Username, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80 + i * 36)), Color.Black)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Rank " & (index + 1).ToString() & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 380), CInt(startPos.Y + 80 + i * 36)), Color.Black)
                                     Else
                                         If e.startedLoading = False Then
                                             e.StartLoading(e.Username)
                                         End If
 
-                                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85 + i * 35)), Color.Black)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + i * 36)), Color.Black)
                                     End If
                                 End If
                             End If
                         Next
-                        Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 85), 100, 9, RankListScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
+                        Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 88), 100, 9, RankListScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
                     Else
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
                     End If
                 End If
             Else
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "You are not logged in with a GameJolt profile.", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "You are not logged in with a GameJolt profile.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
             End If
         End Sub
 
@@ -523,7 +559,7 @@
                     If Controls.Accept(True, False, False) = True Then
                         Dim startPos As Vector2 = GetStartPosition()
                         For i = 0 To 8
-                            Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
+                            Dim r As New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If RankListSelect = i + RankListScroll Then
                                     SoundManager.PlaySound("select")
@@ -618,26 +654,35 @@
 
         Private Sub DrawFriendList()
             Dim startPos As Vector2 = GetStartPosition()
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 40), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 128), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 48 + 200), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Passby", New Vector2(CInt(startPos.X + 48 + 200 + 200), CInt(startPos.Y + 48)), Color.Black)
 
             If Core.Player.IsGameJoltSave = True Then
                 ' Draw own information:
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 40), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16 + 304), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16), CInt(startPos.Y + 46), 304, 32), New Rectangle(102, 112, 4, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 220 + 16 + 304), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
                 Dim ownE As New Emblem(Core.Player.Name, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem)
 
-                Core.SpriteBatch.Draw(ownE.SpriteTexture, New Rectangle(CInt(startPos.X + 225), CInt(startPos.Y + 40), 32, 32), New Rectangle(0, 64, 32, 32), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, ownE.Username, New Vector2(CInt(startPos.X + 265), CInt(startPos.Y + 45)), Color.Black)
+                Core.SpriteBatch.Draw(ownE.SpriteTexture, New Rectangle(CInt(startPos.X + 225), CInt(startPos.Y + 46), 32, 32), New Rectangle(0, 64, 32, 32), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, ownE.Username, New Vector2(CInt(startPos.X + 265), CInt(startPos.Y + 48)), Color.Black)
 
                 If OwnRank > -1 Then
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Rank " & OwnRank.ToString(), New Vector2(CInt(startPos.X + 380), CInt(startPos.Y + 45)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Rank " & OwnRank.ToString(), New Vector2(CInt(startPos.X + 380), CInt(startPos.Y + 48)), Color.Black)
                 End If
 
                 If UserBanned = False Then
@@ -655,33 +700,33 @@
                                         eff = SpriteEffects.FlipVertically
                                     End If
 
-                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 80 + i * 35), 478, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 478), CInt(startPos.Y + 80 + i * 35), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 80 + i * 36), 480, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 480), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
                                     If e.DoneLoading = True Then
                                         Dim frameSize As New Size(CInt(e.SpriteTexture.Width / 3), CInt(e.SpriteTexture.Height / 4))
 
-                                        Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 50), CInt(startPos.Y + 80 + i * 35), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
-                                        Core.SpriteBatch.DrawString(FontManager.MiniFont, e.Username, New Vector2(CInt(startPos.X + 90), CInt(startPos.Y + 85 + i * 35)), Color.Black)
-                                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Level " & Emblem.GetPlayerLevel(e.Points) & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 380), CInt(startPos.Y + 85 + i * 35)), Color.Black)
+                                        Core.SpriteBatch.Draw(e.SpriteTexture, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + i * 36), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, e.Username, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80 + i * 36)), Color.Black)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Level " & Emblem.GetPlayerLevel(e.Points) & " (" & e.Points.ToString() & ")", New Vector2(CInt(startPos.X + 380), CInt(startPos.Y + 80 + i * 36)), Color.Black)
                                     Else
                                         If e.startedLoading = False Then
                                             e.StartLoading(e.Username)
                                         End If
 
-                                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85 + i * 35)), Color.Black)
+                                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 80 + i * 36)), Color.Black)
                                     End If
                                 End If
                             End If
                         Next
-                        Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 85), FriendList.Count, 9, FriendListScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
+                        Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 88), FriendList.Count, 9, FriendListScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
                     Else
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Loading" & LoadingDots.Dots, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
                     End If
                 End If
             Else
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "You are not logged in with a GameJolt profile.", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "You are not logged in with a GameJolt profile.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
             End If
         End Sub
 
@@ -719,7 +764,7 @@
                     If Controls.Accept(True, False, False) = True Then
                         Dim startPos As Vector2 = GetStartPosition()
                         For i = 0 To 8
-                            Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
+                            Dim r As New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If FriendListSelect = i + FriendListScroll Then
                                     SoundManager.PlaySound("select")
@@ -860,11 +905,22 @@
         Private Sub DrawLocalList()
             Dim startPos As Vector2 = GetStartPosition()
 
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 40), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 128), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "PSS Passby", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16), CInt(startPos.Y + 46), 152, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 200 + 200 + 16 + 152), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipVertically, 0.0F)
+
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Ranklist", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Friendlist", New Vector2(CInt(startPos.X + 48 + 200), CInt(startPos.Y + 48)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "PSS Passby", New Vector2(CInt(startPos.X + 48 + 200 + 200), CInt(startPos.Y + 48)), Color.Black)
+
 
             If InitializedLocals = True Then
                 If LocalList.Count > 0 Then
@@ -879,22 +935,22 @@
                                 eff = SpriteEffects.FlipVertically
                             End If
 
-                            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 80 + i * 35), 478, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 478), CInt(startPos.Y + 80 + i * 35), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 80 + i * 36), 480, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 480), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
                             Dim frameSize As New Size(CInt(lP.Sprite.Width / 3), CInt(lP.Sprite.Height / 4))
 
-                            Core.SpriteBatch.Draw(lP.Sprite, New Rectangle(CInt(startPos.X + 50), CInt(startPos.Y + 80 + i * 35), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
-                            Core.SpriteBatch.DrawString(FontManager.MiniFont, lP.Name, New Vector2(CInt(startPos.X + 90), CInt(startPos.Y + 85 + i * 35)), Color.Black)
+                            Core.SpriteBatch.Draw(lP.Sprite, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + i * 36), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                            Core.SpriteBatch.DrawString(FontManager.MainFont, lP.Name, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 80 + i * 36)), Color.Black)
                         End If
                     Next
-                    Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 85), LocalList.Count, 9, LocalScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
+                    Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 88), LocalList.Count, 9, LocalScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
                 Else
                     If ConnectScreen.Connected = True Then
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "No other players connected to server" & Environment.NewLine & """" & JoinServerScreen.SelectedServer.GetName() & """.", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, "No other players connected to server" & Environment.NewLine & """" & JoinServerScreen.SelectedServer.GetName() & """.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
                     Else
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "You are playing locally.", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, "You are playing locally.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
                     End If
                 End If
             End If
@@ -935,7 +991,7 @@
                     If Controls.Accept(True, False, False) = True Then
                         Dim startPos As Vector2 = GetStartPosition()
                         For i = 0 To 8
-                            Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
+                            Dim r As New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If LocalSelect = i + LocalScroll Then
                                     SoundManager.PlaySound("select")
@@ -998,20 +1054,20 @@
         Private Sub DrawUserView()
             Dim startPos As Vector2 = GetStartPosition()
 
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 40), 478, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 478), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 200), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 480, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 480), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 200), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
             Dim frameSize As New Size(CInt(UserSprite.Width / 3), CInt(UserSprite.Height / 4))
-            Core.SpriteBatch.Draw(UserSprite, New Rectangle(CInt(startPos.X + 50), CInt(startPos.Y + 40), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, UserName, New Vector2(CInt(startPos.X + 90), CInt(startPos.Y + 45)), Color.Black)
+            Core.SpriteBatch.Draw(UserSprite, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 46), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, UserName, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 48)), Color.Black)
 
             If UserOrigin.Contains("GJ") = True Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 284), CInt(startPos.Y + 48), 16, 16), New Rectangle(80, 112, 16, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 284), CInt(startPos.Y + 46), 16, 16), New Rectangle(80, 112, 16, 16), Color.White)
             End If
             If UserOrigin.Contains("Server") = True Then
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 308), CInt(startPos.Y + 48), 16, 16), New Rectangle(112, 112, 16, 16), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 308), CInt(startPos.Y + 46), 16, 16), New Rectangle(112, 112, 16, 16), Color.White)
             End If
 
             Dim sameServer As Boolean = False
@@ -1075,11 +1131,11 @@
                 If Cursors(1) = x Then
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 96) + 76), CInt(startPos.Y + 100), 64, 64), New Rectangle(0, 32, 32, 32), Color.White)
                 End If
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(CInt(startPos.X + (x * 96) + 76) + 32 - FontManager.MiniFont.MeasureString(t).X / 2.0F, CInt(startPos.Y + 170)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + (x * 96) + 76) + 32 - FontManager.MainFont.MeasureString(t).X / 2.0F, CInt(startPos.Y + 170)), Color.Black)
             Next
 
             If Not UserEmblem Is Nothing Then
-                UserEmblem.Draw(New Vector2(startPos.X + 45, startPos.Y + 240), 4)
+                UserEmblem.Draw(New Vector2(startPos.X + 40, startPos.Y + 240), 4)
             End If
         End Sub
 
@@ -1157,11 +1213,11 @@
         Private Sub DrawPhone()
             Dim startPos As Vector2 = GetStartPosition()
 
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 40), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 128), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 176, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 176), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Phone", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Phone", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
 
             If PhoneContacts.Count > 0 Then
                 For i = 0 To 8
@@ -1175,19 +1231,30 @@
                             eff = SpriteEffects.FlipVertically
                         End If
 
-                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 80 + i * 35), 478, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 478), CInt(startPos.Y + 80 + i * 35), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 80 + i * 36), 496, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 496), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
                         Dim _spriteTexture As Texture2D = TextureManager.GetTexture("Textures\NPC\" & C.Texture)
-                        Dim frameSize As New Size(CInt(_spriteTexture.Width / 3), CInt(_spriteTexture.Height / 4))
 
-                        Core.SpriteBatch.Draw(TextureManager.GetTexture("Textures\NPC\" & C.Texture), New Rectangle(CInt(startPos.X + 50), CInt(startPos.Y + 80 + i * 35), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, C.Name, New Vector2(CInt(startPos.X + 90), CInt(startPos.Y + 85 + i * 35)), Color.Black)
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Location: " & C.Location, New Vector2(CInt(startPos.X + 280), CInt(startPos.Y + 85 + i * 35)), Color.Black)
+                        Dim frameSize As New Size(CInt(_spriteTexture.Width / 3), CInt(_spriteTexture.Height / 4))
+                        Dim frameScale As Single = 1.0F
+                        If _spriteTexture.Width = _spriteTexture.Height / 2 Then
+                            frameSize.Width = CInt(_spriteTexture.Width / 2)
+                        ElseIf _spriteTexture.Width = _spriteTexture.Height Then
+                            frameSize.Width = CInt(_spriteTexture.Width / 4)
+                        Else
+                            frameSize.Width = CInt(_spriteTexture.Width / 3)
+                        End If
+                        If frameSize.Width > 32 Then
+                            frameScale = 0.5F
+                        End If
+                        Core.SpriteBatch.Draw(_spriteTexture, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 16 - (frameSize.Height * frameScale / 2) + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, C.Name, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 84 + i * 36)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Location: " & C.Location, New Vector2(CInt(startPos.X + 262), CInt(startPos.Y + 84 + i * 36)), Color.Black)
                     End If
                 Next
-                Canvas.DrawScrollBar(New Vector2(startPos.X + 570, startPos.Y + 85), PhoneContacts.Count, 9, PhoneScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
+                Canvas.DrawScrollBar(New Vector2(startPos.X + 600, startPos.Y + 88), PhoneContacts.Count, 9, PhoneScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
             End If
         End Sub
 
@@ -1226,7 +1293,7 @@
                     If Controls.Accept(True, False, False) = True Then
                         Dim startPos As Vector2 = GetStartPosition()
                         For i = 0 To 8
-                            Dim r As New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 80 + i * 35), 510, 32)
+                            Dim r As New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 510, 32)
                             If r.Contains(MouseHandler.MousePosition) Then
                                 If PhoneSelect = i + PhoneScroll Then
                                     SoundManager.PlaySound("select")
@@ -1423,11 +1490,11 @@
         Private Sub DrawFrontier()
             Dim startPos As Vector2 = GetStartPosition()
 
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 40), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 128), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 176, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 176), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Frontier Emblems", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Frontier Emblems", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
 
             If FrontierList.Count > 0 Then
                 For x = 0 To FrontierList.Count - 1
@@ -1437,16 +1504,16 @@
                     Core.SpriteBatch.Draw(FrontierList(x).Texture, New Rectangle(CInt(startPos.X + (x * 96) + 83), CInt(startPos.Y + 107), 50, 50), c)
                     If Cursors(2) = x Then
                         Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + (x * 96) + 76), CInt(startPos.Y + 100), 64, 64), New Rectangle(0, 32, 32, 32), Color.White)
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(CInt(startPos.X + (x * 96) + 76) + 32 - FontManager.MiniFont.MeasureString(t).X / 2.0F, CInt(startPos.Y + 170)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + (x * 96) + 76) + 32 - FontManager.MainFont.MeasureString(t).X / 2.0F, CInt(startPos.Y + 170)), Color.Black)
 
-                        Canvas.DrawGradient(New Rectangle(CInt(startPos.X + 50), CInt(startPos.Y + 220), width - 100, heigth - 260), Color.White, Color.Gray, False, -1)
+                        Canvas.DrawGradient(New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 220), width - 100, heigth - 260), Color.White, Color.Gray, False, -1)
 
-                        Core.SpriteBatch.DrawString(FontManager.MiniFont, FrontierList(x).Description, New Vector2(CInt(startPos.X + 55), CInt(startPos.Y + 225)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, FrontierList(x).Description, New Vector2(CInt(startPos.X + 55), CInt(startPos.Y + 225)), Color.Black)
                     End If
                 Next
             Else
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "You don't own any Frontier Emblems yet.", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 85)), Color.Black)
-                Canvas.DrawGradient(New Rectangle(CInt(startPos.X + 50), CInt(startPos.Y + 220), width - 100, heigth - 260), Color.White, Color.Gray, False, -1)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "You don't own any Frontier Emblems yet.", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 88)), Color.Black)
+                Canvas.DrawGradient(New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 220), width - 100, heigth - 260), Color.White, Color.Gray, False, -1)
             End If
         End Sub
 
@@ -1500,15 +1567,15 @@
         Private Sub DrawMinimap()
             Dim startPos As Vector2 = GetStartPosition()
 
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 365), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 365 + 16), CInt(startPos.Y + 40), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 365 + 16 + 128), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 365), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 365 + 16), CInt(startPos.Y + 46), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 365 + 16 + 128), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Minimap", New Vector2(CInt(startPos.X + 372), CInt(startPos.Y + 45)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Minimap", New Vector2(CInt(startPos.X + 372), CInt(startPos.Y + 48)), Color.Black)
 
             If InitializedMinimap = True Then
                 Canvas.DrawBorder(1, New Rectangle(CInt(startPos.X + 49 - 32), CInt(startPos.Y + 79 - 32), 21 * 16 + 2, 21 * 16 + 2), Color.Black)
-                MiniMap.Draw(New Vector2(-(startPos.X + 50), -(startPos.Y + 80)))
+                MiniMap.Draw(New Vector2(-(startPos.X + 48), -(startPos.Y + 80)))
             End If
         End Sub
 
@@ -1760,7 +1827,7 @@
             Dim startPos As Vector2 = GetStartPosition()
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Tuning: " & Me.RadioCursor.ToString(), New Vector2(startPos.X + 100, startPos.Y + 50), Color.Black)
 
-            Canvas.DrawRectangle(New Rectangle(CInt(startPos.X + 90), CInt(startPos.Y + 110), 420, 5), Color.Black)
+            Canvas.DrawRectangle(New Rectangle(CInt(startPos.X + 88), CInt(startPos.Y + 110), 420, 5), Color.Black)
 
             For i = 0 To 21
                 Dim tP As Integer = CInt(i * 20)
@@ -1774,7 +1841,7 @@
             If Not CurrentStation Is Nothing Then
                 text1 = "You are listening to:" & Environment.NewLine & CurrentStation.Name
             End If
-            Core.SpriteBatch.DrawString(FontManager.MainFont, text1, New Vector2(startPos.X + 150 - CInt(FontManager.MainFont.MeasureString(text1).X / 2), startPos.Y + 160), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, text1, New Vector2(startPos.X + 150 - CInt(FontManager.MainFont.MeasureString(text1).X / 2), startPos.Y + 152), Color.Black)
 
             Dim text2 As String = ""
             If Screen.Level.IsRadioOn = True Then
@@ -1785,7 +1852,7 @@
                 End If
             End If
             If text2 <> "" Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, text2, New Vector2(startPos.X + 450 - CInt(FontManager.MainFont.MeasureString(text2).X / 2), startPos.Y + 160), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, text2, New Vector2(startPos.X + 400 - CInt(FontManager.MainFont.MeasureString(text2).X / 2), startPos.Y + 152), Color.Black)
             End If
 
             Dim CanvasTexture As Texture2D
@@ -1947,17 +2014,28 @@
         Private Sub DrawTradeRequest()
             Dim startPos As Vector2 = GetStartPosition()
 
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 40), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 128), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 176, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 176), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Trade", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Trade", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
 
             If Not TradeRequestTexture Is Nothing Then
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "The player """ & TradeRequestName & """ wants to trade with you.", New Vector2(CInt(startPos.X + 84), CInt(startPos.Y + 80)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "The player """ & TradeRequestName & """ wants to trade with you.", New Vector2(CInt(startPos.X + 84), CInt(startPos.Y + 80)), Color.Black)
 
                 Dim frameSize As New Size(CInt(TradeRequestTexture.Width / 3), CInt(TradeRequestTexture.Height / 4))
-                Core.SpriteBatch.Draw(TradeRequestTexture, New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 74), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                Dim frameScale As Single = 1.0F
+                If TradeRequestTexture.Width = TradeRequestTexture.Height / 2 Then
+                    frameSize.Width = CInt(TradeRequestTexture.Width / 2)
+                ElseIf TradeRequestTexture.Width = TradeRequestTexture.Height Then
+                    frameSize.Width = CInt(TradeRequestTexture.Width / 4)
+                Else
+                    frameSize.Width = CInt(TradeRequestTexture.Width / 3)
+                End If
+                If frameSize.Width > 32 Then
+                    frameScale = 0.5F
+                End If
+                Core.SpriteBatch.Draw(TradeRequestTexture, New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 74), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
                 For i = 0 To 1
                     Dim eff As SpriteEffects = SpriteEffects.None
@@ -1965,16 +2043,16 @@
                         eff = SpriteEffects.FlipVertically
                     End If
 
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 150 + i * 64), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 150 + i * 64), 128, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 128), CInt(startPos.Y + 150 + i * 64), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 152 + i * 64), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 152 + i * 64), 128, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 176), CInt(startPos.Y + 152 + i * 64), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
                     Dim t As String = "Yes"
                     If i = 1 Then
                         t = "No"
                     End If
 
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 155 + i * 64)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 155 + i * 64)), Color.Black)
 
                 Next
             End If
@@ -2020,7 +2098,7 @@
 
                     If Controls.Accept(True, False, False) = True Then
                         For i = 0 To 1
-                            If New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 150 + i * 64), 160, 32).Contains(MouseHandler.MousePosition) = True Then
+                            If New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 152 + i * 64), 160, 32).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Me.TradeRequestCursor Then
                                     Select Case i
                                         Case 0
@@ -2084,17 +2162,29 @@
         Private Sub DrawBattleRequest()
             Dim startPos As Vector2 = GetStartPosition()
 
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 40), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 40), 128, 32), New Rectangle(102, 112, 4, 16), Color.White)
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 128), CInt(startPos.Y + 40), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 46), 16, 32), New Rectangle(96, 112, 8, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 46), 176, 32), New Rectangle(102, 112, 4, 16), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 176), CInt(startPos.Y + 46), 16, 32), New Rectangle(104, 112, 8, 16), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Battle", New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 45)), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Battle", New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 48)), Color.Black)
 
             If Not BattleRequestTexture Is Nothing Then
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "The player """ & BattleRequestName & """ wants to battle with you.", New Vector2(CInt(startPos.X + 84), CInt(startPos.Y + 80)), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "The player """ & BattleRequestName & """ wants to battle with you.", New Vector2(CInt(startPos.X + 84), CInt(startPos.Y + 80)), Color.Black)
 
                 Dim frameSize As New Size(CInt(BattleRequestTexture.Width / 3), CInt(BattleRequestTexture.Height / 4))
-                Core.SpriteBatch.Draw(BattleRequestTexture, New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 74), 32, 32), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
+                Dim frameScale As Single = 1.0F
+                If BattleRequestTexture.Width = BattleRequestTexture.Height / 2 Then
+                    frameSize.Width = CInt(BattleRequestTexture.Width / 2)
+                ElseIf BattleRequestTexture.Width = BattleRequestTexture.Height Then
+                    frameSize.Width = CInt(BattleRequestTexture.Width / 4)
+                Else
+                    frameSize.Width = CInt(BattleRequestTexture.Width / 3)
+                End If
+                If frameSize.Width > 32 Then
+                    frameScale = 0.5F
+                End If
+
+                Core.SpriteBatch.Draw(BattleRequestTexture, New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 74), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
                 For i = 0 To 1
                     Dim eff As SpriteEffects = SpriteEffects.None
@@ -2102,16 +2192,16 @@
                         eff = SpriteEffects.FlipVertically
                     End If
 
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 150 + i * 64), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16), CInt(startPos.Y + 150 + i * 64), 128, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 45 + 16 + 128), CInt(startPos.Y + 150 + i * 64), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 152 + i * 64), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 152 + i * 64), 128, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 176), CInt(startPos.Y + 152 + i * 64), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
                     Dim t As String = "Yes"
                     If i = 1 Then
                         t = "No"
                     End If
 
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(CInt(startPos.X + 50), CInt(startPos.Y + 155 + i * 64)), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(startPos.X + 48), CInt(startPos.Y + 155 + i * 64)), Color.Black)
                 Next
             End If
         End Sub
@@ -2156,7 +2246,7 @@
 
                     If Controls.Accept(True, False, False) = True Then
                         For i = 0 To 1
-                            If New Rectangle(CInt(startPos.X + 45), CInt(startPos.Y + 150 + i * 64), 160, 32).Contains(MouseHandler.MousePosition) = True Then
+                            If New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 152 + i * 64), 160, 32).Contains(MouseHandler.MousePosition) = True Then
                                 If i = Me.BattleRequestCursor Then
                                     Select Case i
                                         Case 0
@@ -2209,7 +2299,7 @@
 #End Region
 
         Private Function GetStartPosition() As Vector2
-            Return New Vector2(CInt(Core.windowSize.Width / 2 - width / 2), Core.windowSize.Height - heigth)
+            Return New Vector2(CInt(Core.windowSize.Width / 2 - width / 2), CInt(Core.windowSize.Height - heigth))
         End Function
 
     End Class
