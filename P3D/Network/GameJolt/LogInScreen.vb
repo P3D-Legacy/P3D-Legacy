@@ -48,15 +48,15 @@ Namespace GameJolt
             Token.IsPassword = True
 
             Me.LogInButton = New JoltButton("Log in", FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
-            LogInButton.Size = New Size(100, 30)
+            LogInButton.Size = New Size(90, 30)
             LogInButton.SetDelegate(AddressOf LogIn)
 
             Me.CloseButton = New JoltButton("Close", FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
-            CloseButton.Size = New Size(100, 30)
+            CloseButton.Size = New Size(90, 30)
             CloseButton.SetDelegate(AddressOf Me.Close)
 
             Me.CreateAccountButton = New JoltButton("Create Account", FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
-            CreateAccountButton.Size = New Size(180, 30)
+            CreateAccountButton.Size = New Size(200, 30)
             CreateAccountButton.SetDelegate(AddressOf Me.CreateAccount)
 
             Me.OkButton = New JoltButton("OK", FontManager.MainFont, New Color(68, 68, 68), New Color(204, 255, 0))
