@@ -5341,10 +5341,10 @@
                             End If
                         End If
 
-                        ChangeCameraAngle(0, True, BattleScreen)
 
                         Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                         Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+
 
                         cq2.PassThis = True
 
@@ -7415,13 +7415,16 @@
                     Loop While SmokeSpawned <= 38
                 End If
 
-                ' Pokemon appears
-                BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
-                BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True)
-
                 If Core.Player.ShowBattleAnimations <> 0 Then
+                    ' Pokemon appears
+                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True)
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 5, 0,,, 3)
+                Else
+                    ' Pokemon appears
+                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 0, 0)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 0, 0,, True)
                 End If
 
                 BattleScreen.AddToQuery(InsertIndex, BallThrow)
@@ -7804,7 +7807,11 @@
                 End If
 
                 Dim oppModel As String = BattleScreen.GetModelName(False)
-
+                'Switch BattleStyle
+                If Core.Player.BattleStyle <> 1 Then
+                    BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
+                    ChangeCameraAngle(1, False, BattleScreen)
+                End If
                 If oppModel = "" Then
                     BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon), -1, -1, 0, 1))
                 Else
@@ -7839,14 +7846,19 @@
                         Threading.Interlocked.Increment(SmokeSpawned)
                     Loop While SmokeSpawned <= 38
                 End If
-                ' Pokemon appears
-                BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
-                BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
+
                 If Core.Player.ShowBattleAnimations <> 0 Then
+                    ' Pokemon appears
+                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
                     '  Pokémon falls down
                     BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 5, 0)
-                    BattleScreen.BattleQuery.Add(BallThrow)
+                Else
+                    ' Pokemon appears
+                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 0, 0)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 0,, True)
                 End If
+                BattleScreen.BattleQuery.Add(BallThrow)
             End If
 
             With BattleScreen

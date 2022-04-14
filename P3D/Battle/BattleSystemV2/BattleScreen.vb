@@ -442,8 +442,11 @@
 
                 ' Pokemon appears
                 BallThrowOpp.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 4, 0,, True)
+            Else
+                BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 0, 0,, True)
             End If
-            BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 4, 0,, True)
+
 
             '  Pokémon falls down
             If Core.Player.ShowBattleAnimations <> 0 Then
@@ -873,7 +876,7 @@
             If ForegroundEntities.Count > 0 Then
                 ForegroundEntities = (From f In ForegroundEntities Order By f.CameraDistance Descending).ToList()
             End If
-           Level.Draw()
+            Level.Draw()
 
             World.DrawWeather(Screen.Level.World.CurrentMapWeather)
 
