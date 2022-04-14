@@ -15784,6 +15784,9 @@
     <Content Include="Content\Textures\TVs\blank.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\TVs\code_editor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\TVs\derp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -27418,9 +27421,6 @@
     <Content Include="Content\Textures\TVs\Pong.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TVs\PSwebCode.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Textures\TVs\Red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -27439,10 +27439,10 @@
     <Content Include="Content\Textures\TVs\Silver.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TVs\webcode.png">
+    <Content Include="Content\Textures\TVs\website.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TVs\website.png">
+    <Content Include="Content\Textures\TVs\website2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TVs\webwork.png">
