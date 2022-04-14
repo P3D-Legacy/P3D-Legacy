@@ -220,9 +220,9 @@ option_screen_contentpacks_by,By
 option_screen_contentpacks_content,Content
 option_screen_contentpacks_description,Description
 
-option_screen_resetoptions,Reset options.
+option_screen_resetoptions,Reset options
 option_screen_resetoptions_description,Resets all options.
-option_screen_save_options,Save options.
+option_screen_save_options,Save options
 option_screen_save_options_description,Save the options and close the menu.
 option_screen_close,Close.
 option_screen_close_menu_description,Close the menu and do not save~the changes.
@@ -406,8 +406,8 @@ Battle:
 main:
 battle_main_trainer_sent_out_1, sent out~
 battle_main_trainer_sent_out_2,.
-battle_main_trainer_sent_out_3, is about~to send out~
-battle_main_trainer_sent_out_4,!~Do you want to switch~your Pokémon?
+battle_main_trainer_sent_out_3,is about to send out
+battle_main_trainer_sent_out_4,! Do you want to switch your Pokémon?
 battle_main_trainer_sent_out_5,Yes
 battle_main_trainer_sent_out_6,No
 battle_main_choose_pokemon,Choose Pokémon
