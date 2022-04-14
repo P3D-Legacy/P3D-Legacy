@@ -97,6 +97,8 @@
 #Region "MainMenu"
 
     Private Sub DrawMenu()
+        Dim FontColor As Color
+        Dim FontShadow As Color = New Color(0, 0, 0, 0)
         For i = 0 To 1
             Dim Text As String = ""
             Select Case i
@@ -107,12 +109,19 @@
             End Select
 
             If i = mainIndex Then
+                FontColor = Color.White
+                FontShadow.A = 255
+
                 Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
             Else
+                FontColor = Color.Black
+                FontShadow.A = 0
+
                 Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
             End If
 
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.InGameFont.MeasureString(Text).X / 2 - 10), 256 + i * 128), Color.Black)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.InGameFont.MeasureString(Text).X / 2 - 10 + 2), 256 + i * 128 + 2), FontShadow)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.InGameFont.MeasureString(Text).X / 2 - 10), 256 + i * 128), FontColor)
         Next
     End Sub
 
@@ -187,6 +196,8 @@
         Dim pX As Integer = CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).X / 2)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 7, CInt(Core.windowSize.Height / 7.5) + 3 + 110), Color.Black)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 10, CInt(Core.windowSize.Height / 7.5) + 110), Color.White)
+        Dim FontColor As Color
+        Dim FontShadow As Color = New Color(0, 0, 0, 0)
 
         For i = 0 To 1
             Dim Text As String = ""
@@ -201,12 +212,19 @@
             End Select
 
             If i = quitIndex Then
+                FontColor = Color.White
+                FontShadow.A = 255
+
                 Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180 + x, 320, 320, 64), True)
             Else
+                FontColor = Color.Black
+                FontShadow.A = 0
+
                 Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180 + x, 320, 320, 64), True)
             End If
 
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + x), 356), Color.Black)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + x + 2), 356 + 2), FontShadow)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + x), 356), FontColor)
         Next
     End Sub
 

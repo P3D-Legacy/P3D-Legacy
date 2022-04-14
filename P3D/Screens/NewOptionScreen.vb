@@ -755,10 +755,25 @@
 
             Select Case direction
                 Case "up"
-                    If ScreenIndex = 0 And currentControl.ID > 7 Then
-                        If control.ID = 7 Then
-                            EligibleControls.Add(control)
-                        End If
+                    If ScreenIndex = 0 Then
+                        Select Case currentControl.ID
+                            Case 4
+                                If control.ID = 1 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 5
+                                If control.ID = 3 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 6, 7
+                                If control.ID = 4 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 8
+                                If control.ID = 5 Then
+                                    EligibleControls.Add(control)
+                                End If
+                        End Select
                     Else
                         If ScreenIndex = 7 Then
                             If currentControl.ID <= 4 Then
@@ -766,28 +781,49 @@
                                     EligibleControls.Add(control)
                                 End If
                             End If
-                        Else
-                            If Math.Abs(R2.X - R1.X) <= -(R2.Y - R1.Y) Then 'because Y axis points down 
+                        ElseIf ScreenIndex = 5 Then
+                            If currentControl.ID > 3 Then
+                                If control.ID = 3 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            ElseIf control.ID = currentControl.ID - 1 Then
                                 EligibleControls.Add(control)
                             End If
+                        ElseIf Math.Abs(R2.X - R1.X) <= -(R2.Y - R1.Y) Then 'because Y axis points down 
+                            EligibleControls.Add(control)
                         End If
                     End If
                 Case "down"
-                    If ScreenIndex = 0 And currentControl.ID > 3 And currentControl.ID < 7 Then
-                        If control.ID = 7 Then
-                            EligibleControls.Add(control)
+                    If ScreenIndex = 0 Then
+                        Select Case currentControl.ID
+                            Case 1, 2
+                                If control.ID = 4 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 3
+                                If control.ID = 5 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 4
+                                If control.ID = 6 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 5
+                                If control.ID = 8 Then
+                                    EligibleControls.Add(control)
+                                End If
+                        End Select
+                    ElseIf ScreenIndex = 5 Then
+                        If currentControl.ID < 4 Then
+                            If control.ID = currentControl.ID + 1 Then
+                                EligibleControls.Add(control)
+                            End If
                         End If
-                    Else
-                        If Math.Abs(R2.X - R1.X) <= -(R1.Y - R2.Y) Then 'because Y axis points down 
-                            EligibleControls.Add(control)
-                        End If
+                    ElseIf Math.Abs(R2.X - R1.X) <= -(R1.Y - R2.Y) Then 'because Y axis points down 
+                        EligibleControls.Add(control)
                     End If
                 Case "right"
-                    If ScreenIndex = 0 And currentControl.ID > 6 Then
-                        If Math.Abs(R2.Y - R1.Y) <= (R2.X - R1.X) And R2.Y >= R1.Y Then
-                            EligibleControls.Add(control)
-                        End If
-                    ElseIf ScreenIndex = 7 Then
+                    If ScreenIndex = 7 Then
                         If currentControl.ID = 5 And control.ID = 6 Then
                             EligibleControls.Add(control)
                         ElseIf currentControl.ID = 6 And control.ID = 4 Then
@@ -797,20 +833,14 @@
                         EligibleControls.Add(control)
                     End If
                 Case "left"
-                    If ScreenIndex = 0 And currentControl.ID > 6 Then
-                        If Math.Abs(R2.Y - R1.Y) <= (R1.X - R2.X) Then
+                    If ScreenIndex = 7 Then
+                        If currentControl.ID <= 4 And control.ID = 6 Then
+                            EligibleControls.Add(control)
+                        ElseIf currentControl.ID = 6 And control.ID = 5 Then
                             EligibleControls.Add(control)
                         End If
-                    Else
-                        If ScreenIndex = 7 Then
-                            If currentControl.ID <= 4 And control.ID = 6 Then
-                                EligibleControls.Add(control)
-                            ElseIf currentControl.ID = 6 And control.ID = 5 Then
-                                EligibleControls.Add(control)
-                            End If
-                        ElseIf control.ID = currentControl.ID - 1 Then
-                            EligibleControls.Add(control)
-                        End If
+                    ElseIf control.ID = currentControl.ID - 1 Then
+                        EligibleControls.Add(control)
                     End If
                 Case "next"
                     If ScreenIndex = 7 And currentControl.ID < 4 Then
@@ -1729,7 +1759,7 @@
                     End If
                 Else
                     If Controls.Accept(False, True, True) Then
-                        If s._cursorDestPosition = Me.Position Then
+                        If s._cursorDestPosition.Y = Me.Position.Y Then
                             Selected = True
                             s._selectedScrollBar = True
                         End If
