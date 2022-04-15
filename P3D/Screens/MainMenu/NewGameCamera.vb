@@ -15,10 +15,7 @@
         Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0), Core.GraphicsDevice.Viewport.AspectRatio, 0.01, 16)
         FOV = 45
 
-
-
         CreateProjectionMatrix()
-        Update()
         Me._canToggleThirdPerson = False
     End Sub
 
