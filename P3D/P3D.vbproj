@@ -28813,6 +28813,9 @@
     <None Include="Content\Data\Scripts\trainer\gymrematch\oak.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Content\Data\Scripts\trainer\kolben\daniel.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\Scripts\trainer\kolben\Segis.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
