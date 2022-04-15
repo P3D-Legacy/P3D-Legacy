@@ -3,7 +3,7 @@ Name|DanielRTRD
 TrainerClass|Developer
 Money|4000
 IntroMessage|
-OutroMessage|I'll go back to clicking~the keyboard. But I guess I should~get out of this~room and train more some day.
+OutroMessage|I should~get out of this~room and train more...
 DefeatMessage|
 TextureID|daniel
 Region|Sevii Islands
