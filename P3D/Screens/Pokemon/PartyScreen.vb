@@ -279,6 +279,10 @@ Public Class PartyScreen
         Canvas.DrawRectangle(New Rectangle(CInt(position.X) + 32, CInt(position.Y), 228, 76), backColor)
         Canvas.DrawGradient(New Rectangle(CInt(position.X) + 260, CInt(position.Y), 32, 76), backColor, New Color(0, 0, 0, 0), True, -1)
 
+        Dim pokeTexture = p.GetMenuTexture()
+        Dim pokeXOffset = CInt((32 - pokeTexture.Width) / 2)
+        Dim pokeYOffset = CInt((32 - pokeTexture.Height) / 2)
+
         If p.IsEgg() Then
             Dim percent As Integer = CInt((p.EggSteps / p.BaseEggSteps) * 100)
             Dim shakeMulti As Single = 1.0F
@@ -291,8 +295,8 @@ Public Class PartyScreen
             End If
 
             'menu image:
-            SpriteBatch.Draw(p.GetMenuTexture(), New Rectangle(CInt(position.X) + 80 + 32, CInt(position.Y) + 6 + 32, 64, 64), Nothing, New Color(255, 255, 255, CInt(255 * _interfaceFade)),
-                             _pokemonAnimations(index)._shakeV * shakeMulti, New Vector2(16, 16), SpriteEffects.None, 0F)
+            SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(position.X + 24 - pokeXOffset), CInt(position.Y + 32 + 6 - pokeYOffset), 64, 64), Nothing, New Color(255, 255, 255, CInt(255 * _interfaceFade)),
+                             _pokemonAnimations(index)._shakeV * shakeMulti, New Vector2(CInt(pokeTexture.Width / 2), CInt(pokeTexture.Width / 4 * 3)), SpriteEffects.None, 0F)
 
             'name:
             GetFontRenderer().DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(position.X + 156, position.Y + 27), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
@@ -300,9 +304,8 @@ Public Class PartyScreen
             Dim shakeMulti As Single = CSng((p.HP / p.MaxHP).Clamp(0.2F, 1.0F))
 
             'menu image:
-            Dim pokeTexture = p.GetMenuTexture()
-            SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(position.X) + 2 + 32 - CInt(pokeTexture.Width - 32), CInt(position.Y) - 4 + 32, pokeTexture.Width * 2, 64), Nothing, New Color(255, 255, 255, CInt(255 * _interfaceFade)),
-                             _pokemonAnimations(index)._shakeV * shakeMulti, New Vector2(16, 16), SpriteEffects.None, 0F)
+            SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(position.X + 24 - pokeXOffset), CInt(position.Y + 32 + 6 - pokeYOffset), 64, 64), Nothing, New Color(255, 255, 255, CInt(255 * _interfaceFade)),
+                             _pokemonAnimations(index)._shakeV * shakeMulti, New Vector2(CInt(pokeTexture.Width / 2), CInt(pokeTexture.Width / 4 * 3)), SpriteEffects.None, 0F)
 
 
             'Item:

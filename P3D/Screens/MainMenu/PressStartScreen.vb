@@ -1149,7 +1149,7 @@ Public Class NewMainMenuScreen
                 _gameModeExists = True
 
                 GameModeManager.SetGameModePointer(_gameMode)
-
+                PokemonForms.Initialize()
                 Dim pokemonData As String() = pokedata.SplitAtNewline()
                 For Each line As String In pokemonData
                     If line.StartsWith("{") Then
