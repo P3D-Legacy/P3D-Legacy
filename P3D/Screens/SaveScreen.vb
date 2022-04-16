@@ -116,16 +116,16 @@
                 End If
 
                 For i = 0 To Core.Player.Pokemons.Count - 1
-                    Dim Pos As New Vector2(Delta_X + 390 + (i Mod 3) * 80, Delta_Y + 50 + CInt(Math.Floor(i / 3)) * 64)
+                    Dim Pos As New Vector2(Delta_X + 390 + (i Mod 3) * 80, Delta_Y + 50 + CInt(Math.Floor(i / 3)) * 80)
                     Dim pokeTexture = Core.Player.Pokemons(i).GetMenuTexture()
-                    .Draw(pokeTexture, New Rectangle(CInt(Pos.X) - CInt(pokeTexture.Width - 32), CInt(Pos.Y), pokeTexture.Width * 2, 64), Color.White)
+                    .Draw(pokeTexture, New Rectangle(CInt(Pos.X), CInt(Pos.Y), 64, 64), Color.White)
 
                     If Not Core.Player.Pokemons(i).Item Is Nothing And Core.Player.Pokemons(i).IsEgg() = False Then
                         .Draw(Core.Player.Pokemons(i).Item.Texture, New Rectangle(CInt(Pos.X) + 36, CInt(Pos.Y) + 36, 32, 32), Color.White)
                     End If
                 Next
 
-                .DrawString(FontManager.MiniFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_money") & ": " & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
+                .DrawString(FontManager.MainFont, Localization.GetString("save_screen_name") & ": " & Core.Player.Name & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_badges") & ": " & Core.Player.Badges.Count.ToString() & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_money") & ": " & Core.Player.Money & Environment.NewLine & Environment.NewLine & Localization.GetString("save_screen_time") & ": " & TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(Delta_X + 400, Delta_Y + 215), Color.DarkBlue)
             End If
         End With
         Screen.ChooseBox.Draw(New Vector2(Delta_X + 115, Delta_Y + 155), False, 1.5F)

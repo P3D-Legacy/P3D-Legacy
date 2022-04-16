@@ -147,7 +147,7 @@
             With Core.SpriteBatch
                 'Bounding box
                 If DrawBox Then
-                    Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Overworld\ChooseBox", New Rectangle(0, 0, 72, 48), ""), 3, New Rectangle(CInt(Position.X), CInt(Position.Y), 360, CInt(48 * Options.Count)), True)
+                    Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Overworld\ChooseBox", New Rectangle(0, 0, 72, 48), ""), 3, New Rectangle(CInt(Position.X), CInt(Position.Y), CInt(360 * Size), CInt((48 * Size) * Options.Count)), True)
                 End If
                 'Text
                 For i = 0 To Options.Count - 1
