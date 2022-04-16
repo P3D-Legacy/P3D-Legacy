@@ -22,7 +22,7 @@
     End Sub
 
     Public Sub Update()
-        Yaw += 0.0002F
+        Yaw += 0.0001F
         While Yaw > MathHelper.TwoPi
             Yaw -= MathHelper.TwoPi
         End While
@@ -59,7 +59,7 @@
                     Else
                         RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureMoon, 16, 1.0F) ' Draw the Moon.
                     End If
-                    RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, GetCloudsTexture(), 12, GetCloudAlpha) ' Draw the clouds.
+                    RenderHalf(FOV, MathHelper.TwoPi - Yaw * 2, 0.0F, True, GetCloudsTexture(), 12, GetCloudAlpha) ' Draw the clouds.
                 End If
             Else
                 If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Or Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Forest Then
