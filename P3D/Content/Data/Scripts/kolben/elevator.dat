@@ -3,9 +3,10 @@ version=2
 @player.move(1)
 @player.turnto(2)
 @text.show(Which floor would~you like to go to?)
-@Options.show(1 - Pkmn Center,2 - Lounge,3 - Staff Offices,4 - Ass. Offices,5 - Dev. Offices,B6 - Basement)
-	:when:1 - Pkmn Center
+@Options.show(1 - Pokémon Center,2 - Lounge,3 - Staff Offices,4 - Assistant Offices,5 - Developer Offices,B6 - Basement)
+	:when:1 - Pokémon Center
 		@text.show(...)
+		@sound.play(ElevatorEnd)
 		@player.move(1)
 		@player.warp(kolben\center.dat,12,0.1,-1,0)
 		@level.update
@@ -13,6 +14,7 @@ version=2
 		:end
 	:when:2 - Lounge
 		@text.show(...)
+		@sound.play(ElevatorEnd)
 		@player.move(1)
 		@player.warp(kolben\lounge.dat,9,0.1,-1,0)
 		@level.update
@@ -20,20 +22,23 @@ version=2
 		:end
 	:when:3 - Staff Offices
 		@text.show(...)
+		@sound.play(ElevatorEnd)
 		@player.move(1)
 		@player.warp(kolben\servers.dat,9,0.1,-1,0)
 		@level.update
 		@player.move(1)
 		:end
-	:when:4 - Ass. Offices
+	:when:4 - Assistant Offices
 		@text.show(...)
+		@sound.play(ElevatorEnd)
 		@player.move(1)
 		@player.warp(kolben\assoffices.dat,9,0.1,-1,0)
 		@level.update
 		@player.move(1)
 		:end
-	:when:5 - Dev. Offices
+	:when:5 - Developer Offices
 		@text.show(...)
+		@sound.play(ElevatorEnd)
 		@player.move(1)
 		@player.warp(kolben\devoffices.dat,9,0.1,-1,0)
 		@level.update
@@ -41,6 +46,7 @@ version=2
 		:end
 	:when:B6 - Basement
 		@text.show(...)
+		@sound.play(ElevatorEnd)
 		@player.move(1)
 		@player.warp(kolben\basement.dat,9,0.1,-1,0)
 		@level.update
