@@ -504,6 +504,7 @@
             Core.GameOptions.SaveOptions()
             MusicManager.PlayNoMusic()
             ContentPackManager.Clear()
+            Water.WaterSpeed = 8
             For Each s As String In Core.GameOptions.ContentPackNames
                 ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
             Next
