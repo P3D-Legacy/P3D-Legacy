@@ -49,29 +49,27 @@
     Dim Second As Integer = 0
 
     Public Sub Draw(ByVal FOV As Single)
-        If Core.GameOptions.GraphicStyle = 1 Then
-            If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside Then
-                If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then ' Don't render the sky if the weather is set to Fog.
-                    RenderHalf(FOV, Yaw, 0.0F, True, GetSkyTexture(), 20, 1.0F) ' Draw the sky
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureDown, 18, GetStarsAlpha()) ' Draw the stars.
-                    If GetSunAlpha() > 0 Then
-                        RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 16, 1.0F) ' Draw the Sun.
-                    Else
-                        RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureMoon, 16, 1.0F) ' Draw the Moon.
-                    End If
-                    RenderHalf(FOV, MathHelper.TwoPi - Yaw * 2, 0.0F, True, GetCloudsTexture(), 12, GetCloudAlpha) ' Draw the clouds.
-                End If
-            Else
-                If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Or Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Forest Then
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureUp, 20, 1.0F) ' Draw the sky
+        If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside Then
+            If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then ' Don't render the sky if the weather is set to Fog.
+                RenderHalf(FOV, Yaw, 0.0F, True, GetSkyTexture(), 20, 1.0F) ' Draw the sky
+                RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureDown, 18, GetStarsAlpha()) ' Draw the stars.
+                If GetSunAlpha() > 0 Then
+                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 16, 1.0F) ' Draw the Sun.
                 Else
-                    RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 16, 1.0F) ' Draw the sky
-                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 12, GetSunAlpha()) ' Draw the Sun.
-                    RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, TextureManager.GetTexture("SkyDomeResource\Clouds_Day"), 8, GetCloudAlpha()) ' Draw the clouds.
+                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureMoon, 16, 1.0F) ' Draw the Moon.
                 End If
-                If Not TextureDown Is Nothing Then
-                    RenderHalf(FOV, Yaw, 0.0F, False, TextureDown, 16, 1.0F)
-                End If
+                RenderHalf(FOV, MathHelper.TwoPi - Yaw * 2, 0.0F, True, GetCloudsTexture(), 12, GetCloudAlpha) ' Draw the clouds.
+            End If
+        Else
+            If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Or Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Forest Then
+                RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureUp, 20, 1.0F) ' Draw the sky
+            Else
+                RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 16, 1.0F) ' Draw the sky
+                RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 12, GetSunAlpha()) ' Draw the Sun.
+                RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, TextureManager.GetTexture("SkyDomeResource\Clouds_Day"), 8, GetCloudAlpha()) ' Draw the clouds.
+            End If
+            If Not TextureDown Is Nothing Then
+                RenderHalf(FOV, Yaw, 0.0F, False, TextureDown, 16, 1.0F)
             End If
         End If
     End Sub
