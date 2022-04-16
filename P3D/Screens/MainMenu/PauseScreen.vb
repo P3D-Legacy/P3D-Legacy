@@ -79,7 +79,7 @@
     End Sub
 
     Public Overrides Sub Update()
-        If PreScreen.Identification = Identifications.OverworldScreen And JoinServerScreen.Online = True Then
+        If PreScreen.Identification = Identifications.OverworldScreen Then
             Screen.Level.Update()
         End If
 
