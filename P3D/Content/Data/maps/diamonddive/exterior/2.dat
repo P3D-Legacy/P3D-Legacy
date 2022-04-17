@@ -274,4 +274,5 @@ ext 1:
 
 {"OffsetMap"{MAP[{"Offset"{intArr[-40,-8,0]}}{"Map"{str[diamonddive\exterior\1.dat]}}]}}
 {"OffsetMap"{MAP[{"Offset"{intArr[100,10,-50]}}{"Map"{str[routes\route23.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{intArr[64,2,24]}}{"Map"{str[diamonddive\exterior\end.dat]}}]}}
 
