@@ -7223,6 +7223,7 @@
                     .OwnStockpileCount = 0
                     .OwnDestinyBond = False
                     .OwnGastroAcid = False
+                    .OwnTarShot = False
 
                     .OwnForesight = 0
                     .OwnOdorSleuth = 0
@@ -7620,6 +7621,7 @@
                     .OppStockpileCount = 0
                     .OppDestinyBond = False
                     .OppGastroAcid = False
+                    .OppTarShot = False
 
                     .OppFlyCounter = 0
                     .OppDigCounter = 0

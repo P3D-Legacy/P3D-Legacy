@@ -57,9 +57,20 @@
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             If Core.Random.Next(0, 100) < GetEffectChance(0, own, BattleScreen) Then
                 BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Speed", 1, "", "move:tarshot")
+
+                With BattleScreen.FieldEffects
+                    If own = True Then
+                        If .OppTarShot = False Then
+                            .OppTarShot = True
+                        End If
+                    Else
+                        If .OwnTarShot = False Then
+                            .OwnTarShot = True
+                        End If
+                    End If
+                End With
             End If
         End Sub
-
 
     End Class
 
