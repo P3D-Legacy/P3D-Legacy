@@ -60,17 +60,22 @@ Public Class LoopStream
                                 _sourceStream.Position = 0
                                 MusicManager._introContinueSong = MusicManager._afterBattleIntroSong.Name
                                 MusicManager._isIntroStarted = True
+                                MusicManager._afterBattleIntroSong = Nothing
+                                Logger.Debug($"Play song [{IntroSong.Name}]")
                             Else
-                                If MusicManager._afterBattleIntroSong.AudioType = ".ogg" Then
-                                    _sourceStream = New VorbisWaveReader(MusicManager._afterBattleIntroSong.Song)
-                                ElseIf MusicManager._afterBattleIntroSong.AudioType = ".mp3" Then
-                                    _sourceStream = New Mp3FileReader(MusicManager._afterBattleIntroSong.Song)
-                                ElseIf MusicManager._afterBattleIntroSong.AudioType = ".wma" Then
-                                    _sourceStream = New MediaFoundationReader(MusicManager._afterBattleIntroSong.Song)
+                                Dim ContinueSong As SongContainer = MusicManager.GetSong(MusicManager._afterBattleIntroSong.Name)
+                                If ContinueSong.AudioType = ".ogg" Then
+                                    _sourceStream = New VorbisWaveReader(ContinueSong.Song)
+                                ElseIf ContinueSong.AudioType = ".mp3" Then
+                                    _sourceStream = New Mp3FileReader(ContinueSong.Song)
+                                ElseIf ContinueSong.AudioType = ".wma" Then
+                                    _sourceStream = New MediaFoundationReader(ContinueSong.Song)
                                 End If
                                 _enableLooping = True
                                 _sourceStream.Position = 0
                                 MusicManager._isIntroStarted = False
+                                MusicManager._afterBattleIntroSong = Nothing
+                                Logger.Debug($"Play song [{ContinueSong.Name}]")
                             End If
                         Else
                             If MusicManager._isIntroStarted = True Then
@@ -113,7 +118,7 @@ Public Class LoopStream
 End Class
 Public Class MusicManager
 
-    Private Const DEFAULT_FADE_SPEED As Single = 0.03F
+    Private Const DEFAULT_FADE_SPEED As Single = 0.5F
     Private Const NO_MUSIC As String = "silence"
 
     Private Shared _songs As Dictionary(Of String, SongContainer) = New Dictionary(Of String, SongContainer)()
@@ -397,7 +402,7 @@ Public Class MusicManager
     End Sub
 
     Public Shared Function Play(song As String) As SongContainer
-        Return Play(song, False, DEFAULT_FADE_SPEED)
+        Return Play(song, True, DEFAULT_FADE_SPEED)
     End Function
 
     Public Shared Function Play(song As String, playIntro As Boolean, Optional loopSong As Boolean = True) As SongContainer
