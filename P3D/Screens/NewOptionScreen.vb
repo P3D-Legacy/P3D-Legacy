@@ -17,6 +17,7 @@
     Dim ShowModels As Integer = 1
     Dim Muted As Integer = 0
     Dim GamePadEnabled As Boolean = True
+    Dim RunMode As Boolean = True
     Dim PreferMultiSampling As Boolean = True
     Private _subMenu As Integer = 0
     Private _screenSize As Size = New Size(CInt(windowSize.Width), CInt(windowSize.Height))
@@ -114,6 +115,7 @@
             Me.TextSpeed = TextBox.TextSpeed
             Me.CameraSpeed = CInt(Camera.RotationSpeed * 10000)
             Me.Difficulty = Core.Player.DifficultyMode
+            Me.RunMode = Core.Player.RunMode
         End If
         Me.Music = CInt(MusicManager.MasterVolume * 100)
         Me.Sound = CInt(SoundManager.Volume * 100)
@@ -959,8 +961,9 @@
                     d.Add(50, Localization.GetString("option_screen_controls_cameraspeed_fastest", "SPEED OF LIGHT!"))
                     Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_controls_cameraspeed", "Camera Speed"), Me.CameraSpeed, 1, 50, AddressOf ChangeCameraSpeed, d, 1))
                     Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 2))
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 3))
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
+                    Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 5, 64, Localization.GetString("option_screen_controls_running", "Running"), Me.RunMode, AddressOf ToggleRunningToggle, {"Hold", "Toggle"}.ToList(), 3))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 280), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 4))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 5))
                 End If
 
             Case 5 ' "Audio" from the Options menu.
@@ -1060,6 +1063,7 @@
             TextBox.TextSpeed = Me.TextSpeed
             Camera.RotationSpeed = CSng(Me.CameraSpeed / 10000)
             Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
+            Core.Player.RunMode = Me.RunMode
             Me.PreScreen.Update()
         End If
         Core.Player.ShowBattleAnimations = Me.ShowBattleAnimations
@@ -1245,6 +1249,9 @@
 
     Private Sub ToggleXBOX360Controller(ByVal c As ToggleButton)
         Me.GamePadEnabled = Not Me.GamePadEnabled
+    End Sub
+    Private Sub ToggleRunningToggle(ByVal c As ToggleButton)
+        Me.RunMode = Not Me.RunMode
     End Sub
 
     Private Sub ChangeCameraSpeed(ByVal c As ScrollBar)

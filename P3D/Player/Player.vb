@@ -431,6 +431,7 @@
 
     Public PlayerTemp As New PlayerTemp()
 
+    Public RunMode As Boolean = True
     Public RunToggled As Boolean = False
 
     Public Structure Temp
@@ -822,6 +823,8 @@
                         Skin = Value
                     Case "battleanimations"
                         ShowBattleAnimations = CInt(Value)
+                    Case "runmode"
+                        RunMode = CBool(Value)
                     Case "boxamount"
                         BoxAmount = CInt(Value)
                     Case "lastrestplace"
@@ -1319,13 +1322,14 @@
             "PlayTime|" & PlayTimeString & Environment.NewLine &
             "OT|" & OT & Environment.NewLine &
             "Points|" & Points.ToString() & Environment.NewLine &
-            "hasPokedex|" & hasPokedexString & Environment.NewLine &
-            "hasPokegear|" & HasPokegear.ToNumberString() & Environment.NewLine &
-            "freeCamera|" & freeCameraString & Environment.NewLine &
-            "thirdPerson|" & c.ThirdPerson.ToNumberString() & Environment.NewLine &
-            "skin|" & skin & Environment.NewLine &
-            "location|" & Screen.Level.MapName & Environment.NewLine &
-            "battleAnimations|" & ShowBattleAnimations.ToString() & Environment.NewLine &
+            "HasPokedex|" & hasPokedexString & Environment.NewLine &
+            "HasPokegear|" & HasPokegear.ToNumberString() & Environment.NewLine &
+            "FreeCamera|" & freeCameraString & Environment.NewLine &
+            "ThirdPerson|" & c.ThirdPerson.ToNumberString() & Environment.NewLine &
+            "Skin|" & skin & Environment.NewLine &
+            "Location|" & Screen.Level.MapName & Environment.NewLine &
+            "BattleAnimations|" & ShowBattleAnimations.ToString() & Environment.NewLine &
+            "RunMode|" & RunMode.ToNumberString() & Environment.NewLine &
             "BoxAmount|" & BoxAmount.ToString() & Environment.NewLine &
             "LastRestPlace|" & LastRestPlace & Environment.NewLine &
             "LastRestPlacePosition|" & LastRestPlacePosition & Environment.NewLine &
@@ -1335,7 +1339,7 @@
             "LastSavePlacePosition|" & LastSavePlacePosition & Environment.NewLine &
             "Difficulty|" & DifficultyMode.ToString() & Environment.NewLine &
             "BattleStyle|" & BattleStyle.ToString() & Environment.NewLine &
-            "saveCreated|" & SaveCreated & Environment.NewLine &
+            "SaveCreated|" & SaveCreated & Environment.NewLine &
             "LastPokemonPosition|" & lastPokemonPosition & Environment.NewLine &
             "DaycareSteps|" & DaycareSteps.ToString() & Environment.NewLine &
             "GameMode|" & GameMode & Environment.NewLine &
@@ -2017,7 +2021,14 @@
     End Function
 
     Public Function IsRunning() As Boolean
-        Return RunToggled
+        If RunMode = True Then
+            Return RunToggled
+        ElseIf KeyBoardHandler.KeyDown(Keys.LeftShift) = True Or ControllerHandler.ButtonDown(Buttons.B) = True Then
+            If Screen.Level.Riding = False And Screen.Level.Surfing = False And Inventory.HasRunningShoes = True Then
+                Return True
+            End If
+        End If
+        Return False
     End Function
 
     Public Sub Unload()
