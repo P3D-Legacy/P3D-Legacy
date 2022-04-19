@@ -421,13 +421,13 @@ Public Class OverworldCamera
         If CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
             If Screen.Level.Riding = True Then
                 Speed = 0.08F
-            Else
-                If Core.Player.IsRunning() = True Then
-                    Speed = 0.06F
+            ElseIf Screen.Level.Surfing = True Then
+                Speed = 0.04F
+            ElseIf Core.Player.IsRunning() = True Then
+                Speed = 0.06F
                 Else
                     Speed = 0.04F
                 End If
-            End If
         End If
         Screen.Level.OverworldPokemon.MoveSpeed = Speed
     End Sub
