@@ -30,4 +30,4 @@ Fences:
 
 NPCs:
 {"NPC"{NPC[{"Position"{sngArr[5,0,2]}}{"TextureID"{str[32]}}{"ID"{int[0]}}{"Name"{str[GymGuy]}}{"Action"{int[1]}}{"AdditionalValue"{str[quest\dockguy]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"ID"{int[0]}}{"Scale"{sngArr[1,1,1]}}{"EntityID"{str[ModelEntity]}}{"Position"{sngArr[5.6,-0.75,5.7]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[models\boat2\boat]}}{"Rotation"{int[3]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"ID"{int[0]}}{"Scale"{sngArr[1,1,1]}}{"EntityID"{str[ModelEntity]}}{"Position"{sngArr[5.4,-0.75,5.7]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[models\boat2\boat]}}{"Rotation"{int[3]}}]}}
