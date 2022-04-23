@@ -631,7 +631,7 @@ Public Class OverworldCamera
             isActionscriptReady = OS.ActionScript.IsReady
         End If
 
-        If isActionscriptReady = True And Screen.Level.CanMove() = True Then
+        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False And Screen.Level.CanMove() = True Then
             If _thirdPerson = False And _cameraFocusType = CameraFocusTypes.Player Then
                 FirstPersonMovement()
             Else
