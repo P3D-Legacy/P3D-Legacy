@@ -1284,6 +1284,11 @@ Public Class Pokemon
             PokemonID = CInt(Tags("Pokemon"))
         End If
 
+        Dim Level As Integer = 5
+        If Tags.ContainsKey("Level") = True Then
+            Level = CInt(Tags("Level"))
+        End If
+
         Dim p As Pokemon = GetPokemonByID(PokemonID, NewAdditionalData)
         p.LoadData(InputData)
 
@@ -1534,6 +1539,14 @@ Public Class Pokemon
     ''' <param name="InputData">The input data.</param>
     Public Sub LoadData(ByVal InputData As String)
         Dim loadedHP As Boolean = False
+        Dim loadedEXP As Boolean = False
+        Dim loadedAttacks As Boolean = False
+        Dim loadedIVs As Boolean = False
+        Dim loadedAbility As Boolean = False
+        Dim loadedGender As Boolean = False
+        Dim loadedNature As Boolean = False
+        Dim loadedFriendship As Boolean = False
+        Dim loadedShiny As Boolean = False
 
         Dim Tags As New Dictionary(Of String, String)
         Dim Data() As String = InputData.Replace("§", ",").Replace("«", "[").Replace("»", "]").Split(CChar("}"))
@@ -1561,6 +1574,10 @@ Public Class Pokemon
             End If
         Next
 
+        Me.CatchTrainerName = Core.Player.Name
+        Me.OT = Core.Player.OT
+        Me.CatchBall = Item.GetItemByID(5)
+
         For i = 0 To Tags.Count - 1
             Dim tagName As String = Tags.Keys(i)
             Dim tagValue As String = Tags.Values(i)
@@ -1570,6 +1587,7 @@ Public Class Pokemon
                     Me.OriginalNumber = CInt(tagValue)
                 Case "experience"
                     Me.Experience = CInt(tagValue)
+                    loadedEXP = True
                 Case "gender"
                     Select Case CInt(tagValue)
                         Case 0
@@ -1579,6 +1597,7 @@ Public Class Pokemon
                         Case 2
                             Me.Gender = Genders.Genderless
                     End Select
+                    loadedGender = True
                 Case "eggsteps"
                     Me.EggSteps = CInt(tagValue)
                 Case "item"
@@ -1600,6 +1619,7 @@ Public Class Pokemon
                     'is this relevant for the client in PvP?
                     SetOriginalAbility()
                     Me.NormalAbility = Ability
+                    loadedAbility = True
                 Case "status"
                     Select Case tagValue
                         Case "BRN"
@@ -1621,6 +1641,7 @@ Public Class Pokemon
                     End Select
                 Case "nature"
                     Me.Nature = ConvertIDToNature(CInt(tagValue))
+                    loadedNature = True
                 Case "catchlocation"
                     Me.CatchLocation = tagValue
                 Case "catchtrainer"
@@ -1631,12 +1652,15 @@ Public Class Pokemon
                     Me.CatchMethod = tagValue
                 Case "friendship"
                     Me.Friendship = CInt(tagValue)
+                    loadedFriendship = True
                 Case "isshiny"
                     Me.IsShiny = CBool(tagValue)
+                    loadedShiny = True
                 Case "attack1", "attack2", "attack3", "attack4"
                     If Not P3D.BattleSystem.Attack.ConvertStringToAttack(tagValue) Is Nothing Then
                         Attacks.Add(P3D.BattleSystem.Attack.ConvertStringToAttack(tagValue))
                     End If
+                    loadedAttacks = True
                 Case "stats"
                     Dim Stats() As String = tagValue.Split(CChar(","))
                     HP = CInt(Stats(0)).Clamp(0, 999)
@@ -1660,6 +1684,7 @@ Public Class Pokemon
                     IVSpAttack = CInt(IVs(3))
                     IVSpDefense = CInt(IVs(4))
                     IVSpeed = CInt(IVs(5))
+                    loadedIVs = True
                 Case "additionaldata"
                     Me.AdditionalData = tagValue
                 Case "idvalue"
@@ -1672,6 +1697,48 @@ Public Class Pokemon
         End If
 
         CalculateStats()
+
+        Dim pDumb As Pokemon = GetPokemonByID(Me.Number, Me.AdditionalData)
+        pDumb.Generate(Me.Level, True)
+
+        If loadedEXP = False Then
+            Me.Experience = pDumb.Experience
+        End If
+
+        If loadedAttacks = False Then
+            Me.Attacks = pDumb.Attacks
+        End If
+
+        If loadedIVs = False Then
+            IVHP = pDumb.IVHP
+            IVAttack = pDumb.IVAttack
+            IVDefense = pDumb.IVDefense
+            IVSpAttack = pDumb.IVSpAttack
+            IVSpDefense = pDumb.IVSpDefense
+            IVSpeed = pDumb.IVSpeed
+        End If
+
+        If loadedAbility = False Then
+            Me.Ability = pDumb.Ability
+            SetOriginalAbility()
+            Me.NormalAbility = Ability
+        End If
+
+        If loadedGender = False Then
+            Me.Gender = pDumb.Gender
+        End If
+
+        If loadedNature = False Then
+            Me.Nature = pDumb.Nature
+        End If
+
+        If loadedFriendship = False Then
+            Me.Friendship = pDumb.Friendship
+        End If
+
+        If loadedShiny = False Then
+            Me.IsShiny = pDumb.IsShiny
+        End If
 
         If loadedHP = False Then
             Me.HP = Me.MaxHP
