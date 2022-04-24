@@ -24,13 +24,20 @@ Namespace Items.Medicine
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
             Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-            p.IsShiny = Not p.IsShiny
+            If Not p.IsShiny Then
+                p.IsShiny = True
 
-            SoundManager.PlaySound("Use_Item", False)
-            Screen.TextBox.Show("The Pokémon sparkled." & RemoveItem())
-            PlayerStatistics.Track("[17]Medicine Items used", 1)
+                SoundManager.PlaySound("Use_Item", False)
+                Screen.TextBox.Show("The Pokémon sparkled." & RemoveItem())
+                PlayerStatistics.Track("[17]Medicine Items used", 1)
 
-            Return True
+                Return True
+            Else
+                Screen.TextBox.Show("Cannot use shiny candy~on this Pokémon.", {}, False, False)
+
+                Return False
+            End If
+
         End Function
 
     End Class
