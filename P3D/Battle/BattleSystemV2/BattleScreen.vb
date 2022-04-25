@@ -1321,14 +1321,14 @@ nextIndex:
                 poke = OppPokemon
             End If
 
-            Dim n As String = poke.AnimationName
+            Dim n As String = PokemonForms.GetAnimationName(poke)
 
             Dim s As String = "Normal"
             If poke.IsShiny = True Then
                 s = "Shiny"
             End If
 
-            Dim p As String = "Models\" & n & "\" & s
+            Dim p As String = "Models\Pokemon\" & n & "\" & s
 
             If ModelManager.ModelExist(p) = True Then
                 Return p
