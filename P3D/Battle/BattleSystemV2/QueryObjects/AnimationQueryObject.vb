@@ -23,9 +23,7 @@
 			Me.AnimationSequence = New List(Of BattleAnimation3D)
 			Me.SpawnedEntities = New List(Of Entity)
 			Me.DrawBeforeEntities = DrawBeforeEntities
-			If BattleFlipped <> Nothing Then
-				Me.BattleFlipped = BattleFlipped
-			End If
+			Me.BattleFlipped = BattleFlipped
 			If entity IsNot Nothing Then
 				Me.CurrentEntity = entity
 			End If
@@ -41,8 +39,6 @@
 			For Each a As BattleAnimation3D In Me.AnimationSequence
 				If a.AnimationType = BattleAnimation3D.AnimationTypes.Background Then
 					Backgrounds.Add(a)
-				Else
-					RenderObjects.Add(a)
 				End If
 			Next
 			For Each entity As BattleAnimation3D In Me.SpawnedEntities
@@ -107,24 +103,22 @@
 		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal startDelay As Single = 0.0F, Optional ByVal endDelay As Single = 0.0F) As Entity
 			Dim NewPosition As Vector3
 			If Not Position = Nothing Then
-				If BattleFlipped <> Nothing Then
-					If BattleFlipped = True Then
-						If CurrentEntity IsNot Nothing Then
-							NewPosition.X = CurrentEntity.Position.X - Position.X
-							NewPosition.Y = CurrentEntity.Position.Y + Position.Y
-							NewPosition.Z = CurrentEntity.Position.Z + Position.Z
-						Else
-							NewPosition = Position
-						End If
+				If BattleFlipped = True Then
+					If CurrentEntity IsNot Nothing Then
+						NewPosition.X = CurrentEntity.Position.X - Position.X
+						NewPosition.Y = CurrentEntity.Position.Y + Position.Y
+						NewPosition.Z = CurrentEntity.Position.Z - Position.Z
 					Else
-						If CurrentEntity IsNot Nothing Then
-							NewPosition = CurrentEntity.Position + Position
-						Else
-							NewPosition = Position
-						End If
+						NewPosition = Position
 					End If
 				Else
-					NewPosition = Position
+					If CurrentEntity IsNot Nothing Then
+						NewPosition.X = CurrentEntity.Position.X + Position.X
+						NewPosition.Y = CurrentEntity.Position.Y + Position.Y
+						NewPosition.Z = CurrentEntity.Position.Z + Position.Z
+					Else
+						NewPosition = Position
+					End If
 				End If
 			Else
 				If CurrentEntity IsNot Nothing Then
@@ -179,7 +173,7 @@
 				End If
 			End If
 			If CurrentEntity Is Nothing Then
-				Destination = New Vector3(DestinationX, DestinationY, DestinationZ)
+				Destination = MoveEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			Else
 				Destination = CurrentEntity.Position + New Vector3(DestinationX, DestinationY, DestinationZ)
 			End If

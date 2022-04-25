@@ -508,7 +508,7 @@
                 Me.ChangeCameraAngle(1, own, BattleScreen)
                 '***Mega Evolution Animation***
                 If Core.Player.ShowBattleAnimations <> 0 Then
-                    Dim MegaAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+                    Dim MegaAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
                     MegaAnimation.AnimationPlaySound("Battle\Effects\MegaEvolution", 0, 0)
 
                     Dim maxAmount As Integer = 16
@@ -522,16 +522,16 @@
 
                         Dim Scale As New Vector3(0.5F)
                         Dim startDelay As Double = 5.0 * Random.NextDouble()
-                        Dim Phase1Entity As Entity = MegaAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
+                        Dim Phase1Entity As Entity = MegaAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
 
-                        Dim Destination As New Vector3(CSng(pNPC.Position.X - Phase1Entity.Position.X), -0.8, CSng(pNPC.Position.Z - Phase1Entity.Position.Z))
+                        Dim Destination As New Vector3(0, 0, 0)
                         MegaAnimation.AnimationMove(Phase1Entity, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
                         Threading.Interlocked.Increment(currentAmount)
                     End While
 
-                    Dim Phase2Entity As Entity = MegaAnimation.SpawnEntity(pNPC.Position, TextureManager.GetTexture("Textures\Battle\MegaEvolution\Mega_Phase2"), New Vector3(0.0F), 1.0F, 4.0F, 0.0F)
-                    MegaAnimation.AnimationRotate(Phase2Entity, False, 0, 0, 0.1F, 0, 0, 10.0F, 4, 0F, False, False, True, False)
+                    Dim Phase2Entity As Entity = MegaAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\MegaEvolution\Mega_Phase2"), New Vector3(0.0F), 1.0F, 4.0F, 0.0F)
                     MegaAnimation.AnimationScale(Phase2Entity, False, True, 1.25F, 1.25F, 1.25F, 0.02F, 4.0F, 0.0F)
+                    MegaAnimation.AnimationRotate(Phase2Entity, True, 0, 0, 0.1F, 0, 0, 10.0F, 4, 0F, False, False, True, False)
                     BattleScreen.BattleQuery.Add(MegaAnimation)
                 Else
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\MegaEvolution", False))
@@ -1300,7 +1300,7 @@
                                 SleepAnimation.AnimationChangeTexture(SleepEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 1, 1)
                                 SleepAnimation.AnimationMove(SleepEntity1, True, 0, 0.5, 0.25, 0.01, False, False, 0, 0)
 
-                                Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
+                                Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
 
                                 SleepAnimation.AnimationChangeTexture(SleepEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 2.5, 1)
                                 SleepAnimation.AnimationMove(SleepEntity2, True, 0, 0.5, 0.25, 0.01, False, False, 2, 0)
@@ -3309,7 +3309,7 @@
                                             SleepAnimation.AnimationChangeTexture(SleepEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 1, 1)
                                             SleepAnimation.AnimationMove(SleepEntity1, True, 0, 0.5, 0.25, 0.01, False, False, 0, 0)
 
-                                            Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
+                                            Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
 
                                             SleepAnimation.AnimationChangeTexture(SleepEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 2.5, 1)
                                             SleepAnimation.AnimationMove(SleepEntity2, True, 0, 0.5, 0.25, 0.01, False, False, 2, 0)
@@ -3907,10 +3907,8 @@
             Dim op As Pokemon = BattleScreen.OppPokemon
             Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If own = False Then
-                pNPC = BattleScreen.OppPokemonNPC
-            End If
-            If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
                 op = BattleScreen.OwnPokemon
             End If
 

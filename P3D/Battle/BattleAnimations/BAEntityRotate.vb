@@ -90,10 +90,6 @@
                     End If
                 End If
             End If
-
-            If VectorReached() = True Then
-                RotationReady()
-            End If
         Else
             RotationReady()
         End If
