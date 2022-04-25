@@ -208,8 +208,8 @@ nextIndex:
 
                             If InBall = True Then
                                 For i = 0 To 2
-                                    Dim StarPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, BattleScreen.OppPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z - 0.05F)
-                                    Dim StarDestination As Vector3 = New Vector3(0 + 0.05F, 0.4F, 0 - ((1 - i) * 0.4F) + 0.05F)
+                                    Dim StarPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X + 0.05F, BattleScreen.OppPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z + 0.05F)
+                                    Dim StarDestination As Vector3 = New Vector3(0.05F, 0.4F, 0 - ((1 - i) * 0.4F) + 0.05F)
                                     Dim StarEntity As Entity = CatchAnimation.SpawnEntity(StarPosition, TextureManager.GetTexture("Textures\Battle\BallCatchStar"), New Vector3(0.35F), 1.0F, 12 + Shakes.Count * 10)
                                     CatchAnimation.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 12 + Shakes.Count * 10, 0.0F,,, 3, 0.02F)
                                     CatchAnimation.AnimationPlaySound("Battle\Pokeball\Catch", 12 + Shakes.Count * 10, 4)
