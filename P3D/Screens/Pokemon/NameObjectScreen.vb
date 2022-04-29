@@ -39,7 +39,7 @@ Public Class NameObjectScreen
         Me.CanChat = False
         Me.CanMuteAudio = False
         Me.CanBePaused = False
-
+        Me._canChooseNo = True
         Me._pokemon = Pokemon
         Me._defaultName = Pokemon.GetDisplayName()
         Me._renamePokemon = True

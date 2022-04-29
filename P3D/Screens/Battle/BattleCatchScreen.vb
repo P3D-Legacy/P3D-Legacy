@@ -156,7 +156,7 @@ nextIndex:
                             CatchAnimation.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
                             Dim SmokeParticlesClose As Integer = 0
                             Do
-                                Dim SmokePosition = New Vector3(BattleScreen.OppPokemonNPC.Position.X + CSng(Random.Next(-10, 10) / 10), BattleScreen.OppPokemonNPC.Position.Y + CSng(Random.Next(-10, 10) / 10), BattleScreen.OppPokemonNPC.Position.Z + CSng(Random.Next(-10, 10) / 10))
+                                Dim SmokePosition = New Vector3(BattleScreen.OppPokemonNPC.Position.X + CSng(Random.Next(-10, 10) / 10), BattleScreen.OppPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z + CSng(Random.Next(-10, 10) / 10))
 
 
                                 Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
@@ -164,7 +164,7 @@ nextIndex:
                                 Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
                                 Dim SmokeSpeed = CSng(Random.Next(1, 3) / 25.0F)
                                 Dim SmokeEntity = CatchAnimation.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1, 3, 0)
-                                Dim SmokeDestination = New Vector3(BallEntity.Position.X - SmokePosition.X + 3, BallEntity.Position.Y - SmokePosition.Y, BallEntity.Position.Z - SmokePosition.Z)
+                                Dim SmokeDestination = New Vector3(BallEntity.Position.X - SmokePosition.X + 3, BallEntity.Position.Y - SmokePosition.Y, BallEntity.Position.Z - SmokePosition.Z - 0.05F)
                                 CatchAnimation.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3, 0)
 
                                 Threading.Interlocked.Increment(SmokeParticlesClose)
@@ -208,11 +208,12 @@ nextIndex:
 
                             If InBall = True Then
                                 For i = 0 To 2
-                                    Dim StarPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X + 0.05F, BattleScreen.OppPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z + 0.05F)
-                                    Dim StarDestination As Vector3 = New Vector3(0.05F, 0.4F, 0 - ((1 - i) * 0.4F) + 0.05F)
+                                    Dim StarPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X + 0.05F, BattleScreen.OppPokemonNPC.Position.Y, BattleScreen.OppPokemonNPC.Position.Z)
+                                    Dim StarDestination As Vector3 = New Vector3(0.05F, 0.65F, 0 - ((1 - i) * 0.4F))
                                     Dim StarEntity As Entity = CatchAnimation.SpawnEntity(StarPosition, TextureManager.GetTexture("Textures\Battle\BallCatchStar"), New Vector3(0.35F), 1.0F, 12 + Shakes.Count * 10)
-                                    CatchAnimation.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 12 + Shakes.Count * 10, 0.0F,,, 3, 0.02F)
+                                    CatchAnimation.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 12 + Shakes.Count * 10, 0.0F,,, 3, 0.015F)
                                     CatchAnimation.AnimationPlaySound("Battle\Pokeball\Catch", 12 + Shakes.Count * 10, 4)
+                                    CatchAnimation.AnimationFade(BallEntity, True, 0.01F, False, 0.0F, 12 + Shakes.Count * 10 + 3, 2)
                                 Next
                             Else
                                 CatchAnimation.AnimationFade(BallEntity, True, 1.0F, False, 0.0F, 12 + Shakes.Count * 10, 0)
@@ -255,25 +256,33 @@ nextIndex:
                             'Caught Pokémon
                             CatchPokemon()
                             BattleSystem.Battle.Caught = True
-                            If showPokedexEntry = True Then
-                                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PokedexViewScreen(Core.CurrentScreen, p, True), Color.White, False))
-                            End If
-                            Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, p))
-                            If p.CatchBall.ID = 186 Then
-                                p.FullRestore() ' Heal Ball
-                            End If
-
-                            PlayerStatistics.Track("Caught Pokemon", 1)
-                            StorePokemon()
-
-                            Core.SetScreen(Me.PreScreen)
-                            BattleSystem.Battle.Won = True
-                            CType(Core.CurrentScreen, BattleSystem.BattleScreen).EndBattle(False)
+                            AnimationIndex = 2
                         Else
                             'Pokémon broke free
                             Core.SetScreen(Me.PreScreen)
                             CType(Core.CurrentScreen, BattleSystem.BattleScreen).Battle.InitializeRound(CType(Core.CurrentScreen, BattleSystem.BattleScreen), New BattleSystem.Battle.RoundConst() With {.StepType = BattleSystem.Battle.RoundConst.StepTypes.Text, .Argument = "It broke free!"})
                         End If
+                    Case 2
+                        If showPokedexEntry = True Then
+                            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PokedexViewScreen(Core.CurrentScreen, p, True), Color.White, False))
+                        End If
+                        AnimationIndex = 3
+                    Case 3
+                        Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, p))
+                        AnimationIndex = 4
+                    Case 4
+                        If p.CatchBall.ID = 186 Then
+                            p.FullRestore() ' Heal Ball
+                        End If
+
+                        PlayerStatistics.Track("Caught Pokemon", 1)
+                        StorePokemon()
+                        AnimationIndex = 5
+                    Case 5
+                        Core.SetScreen(Me.PreScreen)
+                        BattleSystem.Battle.Won = True
+                        CType(Core.CurrentScreen, BattleSystem.BattleScreen).EndBattle(False)
+
                 End Select
             End If
         End If
