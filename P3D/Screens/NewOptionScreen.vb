@@ -402,10 +402,10 @@
         Dim s() As String = ContentPackManager.GetContentPackInfo(packName)
 
         If s.Length > 0 Then
-            PInfoVersion = s(0)
+            PInfoVersion = s(0).CropStringToWidth(FontManager.InGameFont, 540 - 16 - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_version")).X))
         End If
         If s.Length > 1 Then
-            PInfoAuthor = s(1)
+            PInfoAuthor = s(1).CropStringToWidth(FontManager.InGameFont, 540 - 16 - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_by")).X))
         End If
         If s.Length > 2 Then
             PInfoDescription = s(2).CropStringToWidth(FontManager.InGameFont, 540)
@@ -418,7 +418,6 @@
     Private PInfoVersion As String = ""
     Private PInfoAuthor As String = ""
     Private PInfoDescription As String = ""
-    Private PInfoContent As String = ""
 
     Private Sub DrawPackInformationMenu()
         If Not PInfoSplash Is Nothing Then
