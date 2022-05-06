@@ -39,6 +39,7 @@
         Public Overrides ReadOnly Property ItemType As ItemTypes = ItemTypes.Plants
         Public Overrides ReadOnly Property SortValue As Integer
         Public Overrides ReadOnly Property Description As String
+        Public Overrides ReadOnly Property PluralName As String = Name & " Berries"
 
         Public Sub New(ByVal PhaseTime As Integer, ByVal Description As String, ByVal Size As String, ByVal Firmness As String, ByVal minBerries As Integer, ByVal maxBerries As Integer)
             SortValue = ID - 1999

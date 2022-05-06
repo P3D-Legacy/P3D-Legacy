@@ -7,6 +7,7 @@ Namespace Items.XItems
 
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 950
         Public Overrides ReadOnly Property Description As String = "An item that boosts the accuracy of a Pokémon during a battle. It wears off once the Pokémon is withdrawn."
+        Public Overrides ReadOnly Property PluralName As String = "X Accuracies"
 
         Public Sub New()
             _textureRectangle = New Rectangle(216, 24, 24, 24)

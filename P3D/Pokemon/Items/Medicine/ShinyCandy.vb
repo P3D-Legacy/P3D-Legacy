@@ -9,6 +9,7 @@ Namespace Items.Medicine
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 4800
         Public Overrides ReadOnly Property MaxStack As Integer = 1
         Public Overrides ReadOnly Property CanBeHold As Boolean = False
+        Public Overrides ReadOnly Property PluralName As String = "Shiny Candies"
 
         Public Sub New()
             _textureRectangle = New Rectangle(96, 240, 24, 24)

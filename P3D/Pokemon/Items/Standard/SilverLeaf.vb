@@ -9,6 +9,7 @@ Namespace Items.Standard
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1000
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property PluralName As String = "Silver Leaves"
 
         Public Sub New()
             _textureRectangle = New Rectangle(288, 48, 24, 24)

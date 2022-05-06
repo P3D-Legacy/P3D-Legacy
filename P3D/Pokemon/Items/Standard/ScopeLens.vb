@@ -10,6 +10,7 @@ Namespace Items.Standard
         Public Overrides ReadOnly Property BattlePointsPrice As Integer = 64
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
+        Public Overrides ReadOnly Property PluralName As String = "Scope Lenses"
 
         Public Sub New()
             _textureRectangle = New Rectangle(384, 120, 24, 24)

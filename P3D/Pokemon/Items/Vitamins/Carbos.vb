@@ -6,6 +6,7 @@ Namespace Items.Vitamins
         Inherits VitaminItem
 
         Public Overrides ReadOnly Property Description As String = "A nutritious drink for Pokémon. When consumed, it raises the base Speed stat of a single Pokémon."
+        Public Overrides ReadOnly Property PluralName As String = "Carboses"
 
         Public Sub New()
             _textureRectangle = New Rectangle(120, 24, 24, 24)
