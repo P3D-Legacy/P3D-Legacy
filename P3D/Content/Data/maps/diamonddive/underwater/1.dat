@@ -1,4 +1,4 @@
-{"Level"{LEV[{"Name"{str[Diamond Dive]}}{"MusicLoop"{str[darkcave]}}{"WildPokemon"{bool[1]}}{"CurrentRegion"{str[Johto]}}{"OverworldPokemon"{bool[0]}}]}}
+{"Level"{LEV[{"Name"{str[Diamond Dive]}}{"MusicLoop"{str[ilex_forest]}}{"WildPokemon"{bool[1]}}{"CurrentRegion"{str[Johto]}}{"OverworldPokemon"{bool[0]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[4]}}{"Weather"{int[4]}}{"Lighting"{int[3]}}{"SurfingBattleMap"{str[diamonddive\underwater.dat,-9,0,-8]}}]}}
 
 Waterfalls:
