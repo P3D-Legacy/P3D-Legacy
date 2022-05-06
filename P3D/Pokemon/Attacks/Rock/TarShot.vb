@@ -55,21 +55,21 @@
             Me.AIField2 = AIField.CanLowerSpeed
         End Sub
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
-            If Core.Random.Next(0, 100) < GetEffectChance(0, own, BattleScreen) Then
-                BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Speed", 1, "", "move:tarshot")
+            BattleScreen.Battle.LowerStat(Not own, own, BattleScreen, "Speed", 1, "", "move:tarshot")
 
-                With BattleScreen.FieldEffects
-                    If own = True Then
-                        If .OppTarShot = False Then
-                            .OppTarShot = True
-                        End If
-                    Else
-                        If .OwnTarShot = False Then
-                            .OwnTarShot = True
-                        End If
+            With BattleScreen.FieldEffects
+                If own = True Then
+                    If .OppTarShot = False Then
+                        .OppTarShot = True
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetName & " " & "became weaker to fire!"))
                     End If
-                End With
-            End If
+                Else
+                    If .OwnTarShot = False Then
+                        .OwnTarShot = True
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetName & " " & "became weaker to fire!"))
+                    End If
+                End If
+            End With
         End Sub
 
     End Class
