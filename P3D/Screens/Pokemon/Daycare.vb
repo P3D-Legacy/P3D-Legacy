@@ -341,7 +341,7 @@
         Return Nothing
     End Function
 
-    Public Shared Function CanBreed(ByVal Pokemon As List(Of Pokemon)) As Integer
+    Public Shared Function CanBreed(ByVal Pokemon As List(Of Pokemon), Optional ByVal multiplier As Boolean = True) As Integer
         Dim chance As Integer = 0
 
         If Pokemon.Count = 2 Then
@@ -415,7 +415,7 @@
             End If
         End If
 
-        If chance > 0 Then
+        If chance > 0 And multiplier = True Then
             If Core.Player.Inventory.GetItemAmount(241) > 0 Then
                 chance = CInt(chance * 1.3F)
             End If
@@ -424,7 +424,7 @@
         Return chance
     End Function
 
-    Public Shared Function CanBreed(ByVal daycareID As Integer) As Integer
+    Public Shared Function CanBreed(ByVal daycareID As Integer, Optional ByVal multiplier As Boolean = True) As Integer
         Dim l As New List(Of Pokemon)
 
         For Each line As String In Core.Player.DaycareData.SplitAtNewline()
@@ -435,15 +435,15 @@
             End If
         Next
 
-        Return CanBreed(l)
+        Return CanBreed(l, multiplier)
     End Function
 
-    Public Shared Function CanBreed(ByVal Pokemon As Dictionary(Of Integer, Pokemon)) As Integer
+    Public Shared Function CanBreed(ByVal Pokemon As Dictionary(Of Integer, Pokemon), Optional ByVal multiplier As Boolean = True) As Integer
         Dim l As New List(Of Pokemon)
         For i = 0 To Pokemon.Count - 1
             l.Add(Pokemon.Values(i))
         Next
-        Return CanBreed(l)
+        Return CanBreed(l, multiplier)
     End Function
 
     Private Shared Function GetEggPokemonID(ByVal Pokemon As Dictionary(Of Integer, Pokemon)) As Integer
