@@ -27781,6 +27781,7 @@
     <Compile Include="Pokemon\Items\Standard\ChoiceScarf.vb" />
     <Compile Include="Pokemon\Items\Standard\ChoiceSpecs.vb" />
     <Compile Include="Pokemon\Items\Fossils\HelixFossil.vb" />
+    <Compile Include="Pokemon\Items\Standard\PeatBlock.vb" />
     <Compile Include="Pokemon\Items\Standard\PsychicSeed.vb" />
     <Compile Include="Pokemon\Items\Standard\MistySeed.vb" />
     <Compile Include="Pokemon\Items\Standard\GrassySeed.vb" />
@@ -27795,6 +27796,7 @@
     <Compile Include="Pokemon\Items\Standard\BurnDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
     <Compile Include="Pokemon\Items\Stones\IceStone.vb" />
+    <Compile Include="Pokemon\Items\Stones\BlackAurugite.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
     <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
