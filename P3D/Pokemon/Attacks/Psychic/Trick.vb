@@ -106,6 +106,11 @@ Namespace BattleSystem.Moves.Psychic
             If CanSwitchItems Then
                 Dim i1 As Item = Nothing
                 Dim i2 As Item = Nothing
+				If own = True Then
+                    p.OriginalItem = p.Item
+                Else
+                    op.OriginalItem = op.Item
+                End If
                 If p.Item IsNot Nothing Then
                     i1 = p.Item
                 End If
