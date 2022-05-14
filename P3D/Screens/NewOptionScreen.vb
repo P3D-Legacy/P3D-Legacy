@@ -290,10 +290,10 @@
                 End If
             End If
 
-            Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 328, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 500, 48), c, True)
+            Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 328, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 500, 48), c, False)
         Next
 
-        Canvas.DrawScrollBar(New Vector2(CInt(windowSize.Width / 2) + 188, CInt(Core.windowSize.Height / 2 - 128)), PackNames.Count, 4, packsMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), True)
+        Canvas.DrawScrollBar(New Vector2(CInt(windowSize.Width / 2) + 188, CInt(Core.windowSize.Height / 2 - 128)), PackNames.Count, 4, packsMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), False)
 
         Dim x As Integer = PackNames.Count - 1
         x = CInt(MathHelper.Clamp(x, 0, 3))
@@ -421,7 +421,7 @@
 
     Private Sub DrawPackInformationMenu()
         If Not PInfoSplash Is Nothing Then
-            SpriteBatch.DrawInterface(PInfoSplash, windowSize, Color.White)
+            SpriteBatch.Draw(PInfoSplash, windowSize, Color.White)
         End If
 
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")

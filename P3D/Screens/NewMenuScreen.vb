@@ -154,18 +154,18 @@
         Dim Y As Single = 0F
 
         If (index Mod 2) = 0 Then
-            X = Core.ScreenSize.Width / 2.0F - 384 - 75
+            X = Core.windowSize.Width / 2.0F - 384 - 75
         Else
-            X = Core.ScreenSize.Width / 2.0F + 75
+            X = Core.windowSize.Width / 2.0F + 75
         End If
 
         Select Case Math.Floor(index / 2)
             Case 0
-                Y = (Core.ScreenSize.Height / 2.0F) - 64 - 80 - 32
+                Y = (Core.windowSize.Height / 2.0F) - 64 - 80 - 32
             Case 1
-                Y = (Core.ScreenSize.Height / 2.0F) - 32
+                Y = (Core.windowSize.Height / 2.0F) - 32
             Case 2
-                Y = (Core.ScreenSize.Height / 2.0F) + 32 + 80
+                Y = (Core.windowSize.Height / 2.0F) + 32 + 80
         End Select
 
         Return New Vector2(X, Y)
