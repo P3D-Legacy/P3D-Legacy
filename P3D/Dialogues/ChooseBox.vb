@@ -147,7 +147,16 @@
             With Core.SpriteBatch
                 'Bounding box
                 If DrawBox Then
-                    Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Overworld\ChooseBox", New Rectangle(0, 0, 72, 48), ""), 3, New Rectangle(CInt(Position.X), CInt(Position.Y), CInt(360 * Size), CInt((48 * Size) * Options.Count)), True)
+                    Dim MaxWidth = 0
+                    For i = 0 To Options.Count - 1
+                        While Me.TextFont.SpriteFont.MeasureString(Options(i).Replace("[POKE]", "Poké")).X - 16 > MaxWidth
+                            MaxWidth += 16
+                        End While
+                        If MaxWidth < 32 Then
+                            MaxWidth = 32
+                        End If
+                    Next
+                    Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Overworld\ChooseBox", New Rectangle(0, 0, 48, 48), ""), 3, New Rectangle(CInt(Position.X), CInt(Position.Y), CInt((MaxWidth * 3) * Size), CInt((48 * Size) * Options.Count)), True)
                 End If
                 'Text
                 For i = 0 To Options.Count - 1
