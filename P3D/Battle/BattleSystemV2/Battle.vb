@@ -7808,7 +7808,7 @@
 
                 Dim oppModel As String = BattleScreen.GetModelName(False)
                 'Switch BattleStyle
-                If Core.Player.BattleStyle <> 1 Then
+                If Core.Player.BattleStyle <> 1 And OppStep.StepType <> RoundConst.StepTypes.Switch Then
                     BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
                     ChangeCameraAngle(1, False, BattleScreen)
                 End If
