@@ -473,9 +473,9 @@
         If Not Screen.Level.World Is Nothing Then
             Select Case Screen.Level.World.EnvironmentType
                 Case P3D.World.EnvironmentTypes.Outside
-                    Me.Shader = SkyDome.GetDaytimeColor(True).ToVector3()
+                    Me.Shader = New Vector3(1.0F)
                 Case P3D.World.EnvironmentTypes.Dark
-                    Me.Shader = New Vector3(0.5F, 0.5F, 0.6F)
+                    Me.Shader = New Vector3(0.5F, 0.5F, 0.5F)
                 Case Else
                     Me.Shader = New Vector3(1.0F)
             End Select
