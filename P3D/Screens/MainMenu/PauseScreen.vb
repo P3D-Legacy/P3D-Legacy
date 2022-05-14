@@ -54,7 +54,7 @@
 
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), New Color(0, 0, 0, 150))
         Dim titletext As String = Localization.GetString("pause_menu_title")
-        Dim pX As Integer = CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(titletext).X / 2)
+        Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(titletext).X / 2)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, titletext, New Vector2(CInt(pX - 7), CInt(160 - FontManager.InGameFont.MeasureString(titletext).Y / 2 + 3)), Color.Black)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, titletext, New Vector2(CInt(pX - 10), CInt(160 - FontManager.InGameFont.MeasureString(titletext).Y / 2)), Color.White)
 
@@ -67,8 +67,8 @@
         If Me.canCreateAutosave = False Then
             Dim autosaveFailText As String = Localization.GetString("pause_menu_autosave_fail")
 
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(9, CInt(Core.windowSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y)), Color.Black)
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(5, CInt(Core.windowSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y - 4)), Color.White)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(9, CInt(Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y)), Color.Black)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(5, CInt(Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y - 4)), Color.White)
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
@@ -112,16 +112,16 @@
                 FontColor = Color.White
                 FontShadow.A = 255
 
-                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
+                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
             Else
                 FontColor = Color.Black
                 FontShadow.A = 0
 
-                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
+                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, 220 + i * 128, 320, 64), True)
             End If
 
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.InGameFont.MeasureString(Text).X / 2 - 10 + 2), 256 + i * 128 + 2), FontShadow)
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.InGameFont.MeasureString(Text).X / 2 - 10), 256 + i * 128), FontColor)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2 - FontManager.InGameFont.MeasureString(Text).X / 2 - 10 + 2), CInt(256 + i * 128 + 2)), FontShadow)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2 - FontManager.InGameFont.MeasureString(Text).X / 2 - 10), CInt(256 + i * 128)), FontColor)
         Next
     End Sub
 
@@ -135,7 +135,7 @@
 
         If Core.GameInstance.IsMouseVisible = True Then
             For i = 0 To 1
-                If Core.ScaleScreenRec(New Rectangle(CInt(Core.windowSize.Width / 2) - 180, 220 + i * 128, 320 + 32, 64 + 32)).Contains(MouseHandler.MousePosition) = True Then
+                If Core.ScaleScreenRec(New Rectangle(CInt(Core.ScreenSize.Width / 2) - 180, CInt(220 + i * 128), 320 + 32, 64 + 32)).Contains(MouseHandler.MousePosition) = True Then
                     Me.mainIndex = i
 
                     If Controls.Accept(True, False) = True Then
@@ -193,9 +193,9 @@
 #Region "QuitMenu"
 
     Private Sub DrawQuit()
-        Dim pX As Integer = CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).X / 2)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 7, CInt(Core.windowSize.Height / 7.5) + 3 + 110), Color.Black)
-        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(pX - 10, CInt(Core.windowSize.Height / 7.5) + 110), Color.White)
+        Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).X / 2)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(CInt(pX - 7), CInt(Core.ScreenSize.Height / 7.5) + 110 + 2), Color.Black)
+        Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(CInt(pX - 10), CInt(Core.ScreenSize.Height / 7.5) + 110), Color.White)
         Dim FontColor As Color
         Dim FontShadow As Color = New Color(0, 0, 0, 0)
 
@@ -215,16 +215,16 @@
                 FontColor = Color.White
                 FontShadow.A = 255
 
-                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180 + x, 320, 320, 64), True)
+                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 48, 48, 48)), 2, New Rectangle(CInt(Core.ScreenSize.Width / 2 - 180 + x), 320, 320, 64), True)
             Else
                 FontColor = Color.Black
                 FontShadow.A = 0
 
-                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(Core.windowSize.Width / 2) - 180 + x, 320, 320, 64), True)
+                Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(CInt(Core.ScreenSize.Width / 2 - 180 + x), 320, 320, 64), True)
             End If
 
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + x + 2), 356 + 2), FontShadow)
-            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.windowSize.Width / 2 - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + x), 356), FontColor)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2 - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + x + 2), 356 + 2), FontShadow)
+            Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Text, New Vector2(CInt(Core.ScreenSize.Width / 2 - (FontManager.InGameFont.MeasureString(Text).X / 2) - 10 + x), 356), FontColor)
         Next
     End Sub
 
@@ -243,7 +243,7 @@
                     x = 200
                 End If
 
-                If Core.ScaleScreenRec(New Rectangle(CInt(Core.windowSize.Width / 2) - 180 + x, 320, 320 + 32, 64 + 32)).Contains(MouseHandler.MousePosition) = True Then
+                If Core.ScaleScreenRec(New Rectangle(CInt(Core.ScreenSize.Width / 2 - 180 + x), 320, 320 + 32, 64 + 32)).Contains(MouseHandler.MousePosition) = True Then
                     Me.quitIndex = i
 
                     If Controls.Accept(True, False) = True Then
