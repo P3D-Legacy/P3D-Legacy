@@ -18,6 +18,7 @@
     Dim places As New List(Of Place)
     Dim RoamingPoke As New List(Of Roaming)
 
+    Dim PlayerSkinTexture As Texture2D
     Dim objectsTexture As Texture2D
     Dim mapTexture As Texture2D
     Dim texture As Texture2D
@@ -40,7 +41,17 @@
         Me.regionPointer = startIndex
 
         Me.drawObjects = Player.Temp.MapSwitch
-
+        If Core.Player.IsGameJoltSave And GameJolt.API.LoggedIn Then
+            PlayerSkinTexture = GameJolt.Emblem.GetOnlineSprite(Core.GameJoltSave.GameJoltID)
+        Else
+            If Screen.Level.Surfing = True Then
+                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempSurfSkin)
+            ElseIf Screen.Level.Riding = True Then
+                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempRideSkin)
+            Else
+                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.Skin)
+            End If
+        End If
         Me.MouseVisible = False
 
         Me.objectsTexture = TextureManager.GetTexture("GUI\Map\map_objects")
@@ -480,19 +491,6 @@
             Next
         End If
 
-        Dim PlayerSkinTexture As Texture2D
-
-        If Core.Player.IsGameJoltSave And GameJolt.API.LoggedIn Then
-            PlayerSkinTexture = GameJolt.Emblem.GetOnlineSprite(Core.GameJoltSave.GameJoltID)
-        Else
-            If Screen.Level.Surfing = True Then
-                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempSurfSkin)
-            ElseIf Screen.Level.Riding = True Then
-                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempRideSkin)
-            Else
-                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.Skin)
-            End If
-        End If
         Dim PlayerSkinWidth As Integer = CInt(PlayerSkinTexture.Width / 3)
         Dim PlayerSkinHeight As Integer = CInt(PlayerSkinTexture.Height / 4)
         Dim PlayerSkinScale As Single = 1.0F
