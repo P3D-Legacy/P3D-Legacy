@@ -68,7 +68,7 @@ Public Class PressStartScreen
         _shader = New GameDevCommon.Rendering.BasicShader()
         CType(_shader.Effect, BasicEffect).LightingEnabled = False
         _camera = New Scene.MainMenuCamera()
-
+        World.setDaytime = Nothing
         Dim dayTime = World.GetTime
 
         Select Case dayTime

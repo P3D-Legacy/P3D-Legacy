@@ -45,8 +45,6 @@ Public Class PlayerInventory
         Select Case Item.ItemType
             Case Items.ItemTypes.Standard
                 Return "€"
-            Case Items.ItemTypes.BattleItems
-                Return "↔"
             Case Items.ItemTypes.KeyItems
                 Return "№"
             Case Items.ItemTypes.Machines
@@ -59,6 +57,8 @@ Public Class PlayerInventory
                 Return "→"
             Case Items.ItemTypes.Pokéballs
                 Return "↓"
+            Case Items.ItemTypes.BattleItems
+                Return "↔"
         End Select
 
         Return ""
