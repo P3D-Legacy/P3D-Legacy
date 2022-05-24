@@ -1,0 +1,9 @@
+version=2
+
+:if:<register.registered(jappamet)>=false
+	@text.show(Jappa: Hiya! I'm Jasper,~but you can call me Jappa.*Did you know?~I'm a real magician!*Hehe, a code magician~to be exact!)
+	@register.register(jappamet)
+:else
+	@text.show(Jappa: I hope you're enjoying~Pokémon 3D so far!*Feel free to explore~the rest of the tower!)
+:endif
+:end
