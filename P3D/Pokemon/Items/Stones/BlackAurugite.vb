@@ -8,7 +8,7 @@ Namespace Items.Standard
         Public Overrides ReadOnly Property Description As String = "A glassy black stone that produces a sharp cutting edge when split. It’s loved by a certain Pokémon."
 
         Public Sub New()
-            _textureRectangle = New Rectangle(336, 192, 24, 24)
+            _textureRectangle = New Rectangle(384, 408, 24, 24)
         End Sub
 
     End Class
