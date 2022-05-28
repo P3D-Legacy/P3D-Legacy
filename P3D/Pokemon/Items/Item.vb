@@ -17,7 +17,7 @@ Public MustInherit Class Item
 
     Public Function GetDescription() As String
         If Localization.TokenExists("item_desc_" & GetAttribute().Id) = True Then
-            Return Localization.GetString("item_desc_" & GetAttribute().Id)
+            Return Localization.Translate("item_desc_" & GetAttribute().Id)
         Else
             Return Me.Description
         End If
@@ -39,7 +39,7 @@ Public MustInherit Class Item
     Public Overridable ReadOnly Property Name As String
         Get
             If Localization.TokenExists("item_name_" & GetAttribute().Id) = True Then
-                Return Localization.GetString("item_name_" & GetAttribute().Id)
+                Return Localization.Translate("item_name_" & GetAttribute().Id)
             Else
                 Return GetAttribute().Name
             End If

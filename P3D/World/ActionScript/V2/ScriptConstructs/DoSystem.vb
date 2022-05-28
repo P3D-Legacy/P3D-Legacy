@@ -12,7 +12,7 @@
 
             Select Case command.ToLower()
                 Case "token"
-                    Dim tokenName As String = Localization.GetString(argument)
+                    Dim tokenName As String = Localization.Translate(argument)
                     Return tokenName
                 Case "button"
                     Dim key As Keys = Nothing

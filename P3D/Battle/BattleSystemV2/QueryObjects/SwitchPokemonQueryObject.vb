@@ -78,7 +78,7 @@
         Private Sub UpdateChoose()
             If Controls.Accept(True, True, True) = True Then
                 If _chooseIndex = 0 Then
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, Localization.Translate("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
                     SoundManager.PlaySound("select")
                     Core.SetScreen(selScreen)
@@ -105,12 +105,12 @@
 
             If _chooseIndex = 0 Then
                 Canvas.DrawRectangle(New Rectangle(Core.windowSize.Width - 213, Core.windowSize.Height - 438, 80, 50), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("global_yes"), New Vector2(Core.windowSize.Width - 200, Core.windowSize.Height - 430), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("global_no"), New Vector2(Core.windowSize.Width - 200, Core.windowSize.Height - 370), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("global_yes"), New Vector2(Core.windowSize.Width - 200, Core.windowSize.Height - 430), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("global_no"), New Vector2(Core.windowSize.Width - 200, Core.windowSize.Height - 370), Color.White)
             Else
                 Canvas.DrawRectangle(New Rectangle(Core.windowSize.Width - 213, Core.windowSize.Height - 378, 80, 50), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("global_yes"), New Vector2(Core.windowSize.Width - 200, Core.windowSize.Height - 430), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("global_no"), New Vector2(Core.windowSize.Width - 200, Core.windowSize.Height - 370), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("global_yes"), New Vector2(Core.windowSize.Width - 200, Core.windowSize.Height - 430), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("global_no"), New Vector2(Core.windowSize.Width - 200, Core.windowSize.Height - 370), Color.Black)
             End If
 
         End Sub
@@ -164,7 +164,7 @@
             MyBase.New(QueryTypes.SwitchPokemon)
 
             Me.TempScreen = BattleScreen
-            TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_main_trainer_sent_out_3") & " " & NewPokemon.GetDisplayName() & Localization.GetString("battle_main_trainer_sent_out_4"))
+            TransformText(BattleScreen.Trainer.Name & " " & Localization.Translate("battle_main_trainer_sent_out_3") & " " & NewPokemon.GetDisplayName() & Localization.Translate("battle_main_trainer_sent_out_4"))
         End Sub
 
         Dim delay As Single = 3.0F

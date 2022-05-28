@@ -110,7 +110,7 @@
             Else
                 If Me.Dialogues.Count < 3 Then
                     Me.Dialogues.Clear()
-                    Me.Dialogues.AddRange({Localization.GetString("new_game_intro_1"), Localization.GetString("new_game_intro_2"), Localization.GetString("new_game_intro_3")})
+                    Me.Dialogues.AddRange({Localization.Translate("new_game_intro_1"), Localization.Translate("new_game_intro_2"), Localization.Translate("new_game_intro_3")})
                 End If
             End If
         End Sub
@@ -462,14 +462,14 @@
 
             Select Case True
                 Case WeirdNames.Contains(name.ToLower())
-                    Return Localization.GetString("new_game_intro_weird_name_1") & name & Localization.GetString("new_game_intro_weird_name_2")
+                    Return Localization.Translate("new_game_intro_weird_name_1") & name & Localization.Translate("new_game_intro_weird_name_2")
                 Case KnownNames.Contains(name.ToLower())
-                    Return Localization.GetString("new_game_intro_known_name_1") & name & Localization.GetString("new_game_intro_known_name_2")
+                    Return Localization.Translate("new_game_intro_known_name_1") & name & Localization.Translate("new_game_intro_known_name_2")
                 Case OwnNames.Contains(name.ToLower())
-                    Return Localization.GetString("new_game_intro_same_name_1") & name & Localization.GetString("new_game_intro_same_name_2")
+                    Return Localization.Translate("new_game_intro_same_name_1") & name & Localization.Translate("new_game_intro_same_name_2")
             End Select
 
-            Return Localization.GetString("new_game_intro_name_1") & name & Localization.GetString("new_game_intro_name_2")
+            Return Localization.Translate("new_game_intro_name_1") & name & Localization.Translate("new_game_intro_name_2")
         End Function
 
     End Class

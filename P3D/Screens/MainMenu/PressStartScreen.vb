@@ -212,16 +212,16 @@ Public Class PressStartScreen
 
             Dim text As String = String.Empty
             If ControllerHandler.IsConnected() Then
-                text = Localization.Translate("press_first", Me.GetType) & "      " & Localization.Translate("press_last", Me.GetType)
+                text = Localization.Translate("press_first", Nothing, Me.GetType) & "      " & Localization.Translate("press_last", Nothing, Me.GetType)
             Else
-                text = Localization.Translate("press_first", Me.GetType) & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.Translate("press_last", Me.GetType)
+                text = Localization.Translate("press_first", Nothing, Me.GetType) & " " & KeyBindings.EnterKey1.ToString().ToUpper & " " & Localization.Translate("press_last", Nothing, Me.GetType)
             End If
 
             Dim textSize As Vector2 = FontManager.GameJoltFont.MeasureString(text)
             GetFontRenderer().DrawString(FontManager.GameJoltFont, text, New Vector2(windowSize.Width / 2.0F - textSize.X / 2.0F, windowSize.Height - textSize.Y - 50), _textColor)
 
             If ControllerHandler.IsConnected() Then
-                SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.Translate("press_first", Me.GetType) & " ").X), CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
+                SpriteBatch.Draw(TextureManager.GetTexture("GUI\GamePad\xboxControllerButtonA"), New Rectangle(CInt(windowSize.Width / 2 - textSize.X / 2 + FontManager.GameJoltFont.MeasureString(Localization.Translate("press_first", Nothing, Me.GetType) & " ").X), CInt(windowSize.Height - textSize.Y - 50), 40, 40), Color.White)
             End If
         End If
 
@@ -672,7 +672,7 @@ Public Class NewMainMenuScreen
         Select Case _menuIndex
             Case 0
                 If _selectedProfile = 1 And Security.FileValidation.IsValid(False) = False Then
-                    _messageBox.Show(Localization.GetString("main_menu_error_filevalidation", "File validation failed!~Redownload the game's files to solve this problem."))
+                    _messageBox.Show(Localization.Translate("main_menu_error_filevalidation", "File validation failed!~Redownload the game's files to solve this problem."))
                 Else
                     _MainProfiles(_selectedProfile).SelectProfile()
                 End If
@@ -877,12 +877,12 @@ Public Class NewMainMenuScreen
                     Dim errorText As String
 
                     If tmpProfile.IsGameJolt() Then
-                        errorText = Localization.GetString("main_menu_error_gamejolt_1", "Download failed. Press Accept to try again.") & Environment.NewLine & Environment.NewLine &
-                                       Localization.GetString("main_menu_error_gamejolt_2", "If the problem persists, please try again later") & Environment.NewLine &
-                                        Localization.GetString("main_menu_error_gamejolt_3", "or contact us in our Discord server:") & Environment.NewLine & Environment.NewLine &
-                                        Localization.GetString("main_menu_error_gamejolt_4", "http://www.discord.me/p3d")
+                        errorText = Localization.Translate("main_menu_error_gamejolt_1", "Download failed. Press Accept to try again.") & Environment.NewLine & Environment.NewLine &
+                                       Localization.Translate("main_menu_error_gamejolt_2", "If the problem persists, please try again later") & Environment.NewLine &
+                                        Localization.Translate("main_menu_error_gamejolt_3", "or contact us in our Discord server:") & Environment.NewLine & Environment.NewLine &
+                                        Localization.Translate("main_menu_error_gamejolt_4", "http://www.discord.me/p3d")
                     Else
-                        errorText = Localization.GetString("main_menu_error_gamemode_profile", "The required GameMode does not exist!")
+                        errorText = Localization.Translate("main_menu_error_gamemode_profile", "The required GameMode does not exist!")
                     End If
                     GetFontRenderer().DrawString(FontManager.InGameFont, errorText, New Vector2(displayRect.X + 70, displayRect.Y + 78), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
@@ -1260,7 +1260,7 @@ Public Class NewMainMenuScreen
 
                 End If
             ElseIf _IsOptionsMenuButton Then
-                Dim text As String = Localization.GetString("main_menu_options", "Options")
+                Dim text As String = Localization.Translate("main_menu_options", "Options")
                 If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
                     FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2 + 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
                     FontRenderer.DrawString(FontManager.InGameFont, text, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(text).X) / 2), CInt(offset.Y + 132 - (FontManager.InGameFont.MeasureString(text).Y) / 2)), New Color(255, 255, 255, alpha))
@@ -1282,14 +1282,14 @@ Public Class NewMainMenuScreen
                 Dim textB As String = ""
                 Select Case _OptionsMenuIndex
                     Case 0
-                        textA = Localization.GetString("main_menu_options_language", "Language")
+                        textA = Localization.Translate("main_menu_options_language", "Language")
                     Case 1
-                        textA = Localization.GetString("main_menu_options_audio", "Audio")
+                        textA = Localization.Translate("main_menu_options_audio", "Audio")
                     Case 2
-                        textA = Localization.GetString("main_menu_options_controls", "Controls")
+                        textA = Localization.Translate("main_menu_options_controls", "Controls")
                     Case 3
-                        textA = Localization.GetString("main_menu_options_contentpacks_line1", "Content")
-                        textB = Localization.GetString("main_menu_options_contentpacks_line2", "Packs")
+                        textA = Localization.Translate("main_menu_options_contentpacks_line1", "Content")
+                        textB = Localization.Translate("main_menu_options_contentpacks_line2", "Packs")
                 End Select
 
                 If _OptionsMenuIndex <> 3 Then
@@ -1450,7 +1450,7 @@ Public Class NewMainMenuScreen
                                 LoadGameJolt()
                             ElseIf IsOptionsMenuButton = False Then
                                 Dim messageBox As New UI.MessageBox(CurrentScreen)
-                                messageBox.Show(Localization.GetString("main_menu_error_gamemode_message", "The required GameMode does not exist.~Reaquire the GameMode to play on this profile.").Replace("~", Environment.NewLine))
+                                messageBox.Show(Localization.Translate("main_menu_error_gamemode_message", "The required GameMode does not exist.~Reaquire the GameMode to play on this profile.").Replace("~", Environment.NewLine))
                             Else
                                 _menuIndex = 2
                                 _selectedProfileTemp = _selectedProfile
@@ -1500,8 +1500,8 @@ Public Class GameModeSelectionScreen
     Public Overrides Sub Draw()
         PreScreen.Draw()
 
-        Dim text As String = Localization.Translate("select_gamemode_1", Me.GetType) & Environment.NewLine & Localization.Translate("select_gamemode_2", Me.GetType)
-        
+        Dim text As String = Localization.Translate("select_gamemode_1", Nothing, Me.GetType) & Environment.NewLine & Localization.Translate("select_gamemode_2", Nothing, Me.GetType)
+
         If GameModeSplash IsNot Nothing Then
             SpriteBatch.Draw(GameModeSplash, windowSize, Color.White)
         End If
@@ -1546,11 +1546,11 @@ Public Class GameModeSelectionScreen
             Dim dispAuthor As String = GameMode.Author
             Dim dispContentPath As String = GameMode.ContentPath
 
-            tempGameModesDisplay = Localization.GetString("gamemode_menu_name") & ": " & dispName & Environment.NewLine &
-                Localization.GetString("gamemode_menu_version") & ": " & dispVersion & Environment.NewLine &
-                Localization.GetString("gamemode_menu_author") & ": " & dispAuthor & Environment.NewLine &
-                Localization.GetString("gamemode_menu_contentpath") & ": " & dispContentPath & Environment.NewLine &
-                Localization.GetString("gamemode_menu_description") & ": " & dispDescription
+            tempGameModesDisplay = Localization.Translate("gamemode_menu_name") & ": " & dispName & Environment.NewLine &
+                Localization.Translate("gamemode_menu_version") & ": " & dispVersion & Environment.NewLine &
+                Localization.Translate("gamemode_menu_author") & ": " & dispAuthor & Environment.NewLine &
+                Localization.Translate("gamemode_menu_contentpath") & ": " & dispContentPath & Environment.NewLine &
+                Localization.Translate("gamemode_menu_description") & ": " & dispDescription
         End If
 
         tempGameModesDisplay = tempGameModesDisplay.CropStringToWidth(FontManager.InGameFont, 400)

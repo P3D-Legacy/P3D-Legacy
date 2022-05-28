@@ -46,17 +46,17 @@
         Dim OldOffset As Integer = 160
 
         If Delay >= 3.0F Then
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("MaxHP") & ":", New Vector2(p.X + 32, p.Y + 84), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("MaxHP") & ":", New Vector2(p.X + 32, p.Y + 84), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(0).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 84), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Attack") & ":", New Vector2(p.X + 32, p.Y + 124), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("Attack") & ":", New Vector2(p.X + 32, p.Y + 124), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(1).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 124), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Defense") & ":", New Vector2(p.X + 32, p.Y + 164), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("Defense") & ":", New Vector2(p.X + 32, p.Y + 164), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(2).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 164), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Sp_Attack") & ":", New Vector2(p.X + 32, p.Y + 204), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("Sp_Attack") & ":", New Vector2(p.X + 32, p.Y + 204), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(3).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 204), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Sp_Defense") & ":", New Vector2(p.X + 32, p.Y + 244), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("Sp_Defense") & ":", New Vector2(p.X + 32, p.Y + 244), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(4).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 244), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.GetString("Speed") & ":", New Vector2(p.X + 32, p.Y + 284), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, Localization.Translate("Speed") & ":", New Vector2(p.X + 32, p.Y + 284), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.InGameFont, OldStats(5).ToString(), New Vector2(p.X + 32 + OldOffset, p.Y + 284), Color.Black)
         End If
 

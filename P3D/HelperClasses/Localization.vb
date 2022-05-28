@@ -99,7 +99,7 @@ Public Class Localization
             End If
         End If
     End Sub
-    Public Shared Function Translate(ByVal tokenInput As String, Optional ByVal type As Type = Nothing, Optional ByVal DefaultValue As String = "") As String
+    Public Shared Function Translate(ByVal tokenInput As String, Optional ByVal DefaultValue As String = "", Optional ByVal type As Type = Nothing) As String
         Dim resultToken As Token = Nothing
         Dim CurrentScreen As String = GetCurrentScreen()
         tokenInput = tokenInput.ToLower().Replace(" ", "_").Replace("'", "").Replace("p3d.", "").Replace("._", "_") ' Lets format the string before finding it
