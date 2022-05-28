@@ -82,7 +82,7 @@ Public Class StorageSystemScreen
 
         Me.CanBePaused = True
         Me.CanChat = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
 
         Me.texture = TextureManager.GetTexture("GUI\Box\storage")
         Me.menuTexture = TextureManager.GetTexture("GUI\Menus\General")
@@ -1948,7 +1948,7 @@ Public Class StorageSystemFilterScreen
         Next
 
         Me.MouseVisible = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
         Me.CanBePaused = True
 
         Me.mainMenuItems = {"Pokémon", "Type1", "Type2", "Move", "Ability", "Nature", "Gender", "HeldItem"}.ToList()

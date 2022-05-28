@@ -103,7 +103,7 @@
 @npc.move(0,4)
 @npc.turn(0,2)
 
-@text.show(Hello, sorry to~keep you waiting!*Welcome to the~world of Pokémon!*My name is Oak.~People call me~Pokémon Professor.*This world is inhabited~by creatures that~we call...)
+@text.show(Hello, sorry to~keep you waiting!*Welcome to the~world of Pokémon!*My name is Oak.~People call me~the Pokémon Professor.*This world is inhabited~by creatures that~we call...)
 @screen.fadeout(20)
 @camera.set(20,3,4,3.36,-0.59)
 @camera.update
@@ -127,7 +127,7 @@
 @text.show(There are still~many mysteries to solve.*That's why I study~Pokémon every day.)
 @text.show(But let's get~back to you.)
 
-@screen.skinselection(Ethan,Lyra,Hilbert,Hilda,Nate,Rosa)
+@screen.skinselection()
 
 @player.wearskin(<screen.selectedskin>)
 @npc.wearskin(1,<screen.selectedskin>)
@@ -161,7 +161,7 @@
 @npc.move(3,2)
 @sound.play(enter)
 
-@text.show(This is your home~in New Bark Town,~you live there~with your mother~right next to Professor Elm.)
+@text.show(This is your home~in New Bark Town.~You live there~with your mother~right next to Professor Elm.)
 
 @screen.fadeout(20)
 @camera.set(9,1.5,11.5,0,0-0.4)

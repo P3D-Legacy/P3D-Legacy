@@ -146,6 +146,10 @@ Public MustInherit Class Screen
     ''' A global PokemonImageView instance, that carries over screen instances.
     ''' </summary>
     Public Shared Property PokemonImageView() As PokemonImageView = New PokemonImageView()
+    ''' <summary>
+    ''' A global ImageView instance, that carries over screen instances.
+    ''' </summary>
+    Public Shared Property ImageView() As ImageView = New ImageView()
 
 #End Region
 
@@ -174,7 +178,7 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' Wether the game can be muted by pressing M (default).
     ''' </summary>
-    Public Property CanMuteMusic() As Boolean = True
+    Public Property CanMuteAudio() As Boolean = True
 
     ''' <summary>
     ''' Wether the ChatScreen can be opened by pressing T (default).
@@ -218,7 +222,7 @@ Public MustInherit Class Screen
     Protected Sub CopyFrom(ByVal scr As Screen)
         _MouseVisible = scr._MouseVisible
         _CanBePaused = scr._CanBePaused
-        _CanMuteMusic = scr._CanMuteMusic
+        _CanMuteAudio = scr._CanMuteAudio
         _CanChat = scr._CanChat
         _CanTakeScreenshot = scr._CanTakeScreenshot
         _CanDrawDebug = scr._CanDrawDebug

@@ -44,21 +44,21 @@ Public Class PlayerInventory
     Public Function GetItemPocketChar(ByVal Item As Item) As String
         Select Case Item.ItemType
             Case Items.ItemTypes.Standard
-                Return StringHelper.GetChar(128)
-            Case Items.ItemTypes.BattleItems
-                Return StringHelper.GetChar(135)
+                Return "€"
             Case Items.ItemTypes.KeyItems
-                Return StringHelper.GetChar(129)
+                Return "№"
             Case Items.ItemTypes.Machines
-                Return StringHelper.GetChar(130)
+                Return "™"
             Case Items.ItemTypes.Mail
-                Return StringHelper.GetChar(131)
+                Return "←"
             Case Items.ItemTypes.Medicine
-                Return StringHelper.GetChar(132)
+                Return "↑"
             Case Items.ItemTypes.Plants
-                Return StringHelper.GetChar(133)
+                Return "→"
             Case Items.ItemTypes.Pokéballs
-                Return StringHelper.GetChar(134)
+                Return "↓"
+            Case Items.ItemTypes.BattleItems
+                Return "↔"
         End Select
 
         Return ""

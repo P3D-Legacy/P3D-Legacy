@@ -4,6 +4,7 @@
 
     Public Shared LoadedOffsetMapOffsets As New List(Of Vector3)
     Public Shared LoadedOffsetMapNames As New List(Of String)
+    Private _reload As Boolean = False
 
     Private Enum TagTypes
         Entity
@@ -46,10 +47,10 @@
     ''' Loads the level.
     ''' </summary>
     ''' <param name="Params">Params contruction: String LevelFile, bool IsOffsetMap, Vector3 Offset, int Offsetmaplevel, Str() InstanceLoadedOffsetMaps</param>
-    Public Sub LoadLevel(ByVal Params As Object())
+    Public Sub LoadLevel(ByVal Params As Object(), Optional Reload As Boolean = False)
         Busy += 1
         TempParams = Params
-
+        _reload = Reload
         If MULTITHREAD = True Then
             Dim t As New Threading.Thread(AddressOf InternalLoad)
             t.IsBackground = True
@@ -78,6 +79,7 @@
             Core.Player.LastSavePlace = Screen.Level.LevelFile
             Core.Player.LastSavePlacePosition = Player.Temp.LastPosition.X & "," & Player.Temp.LastPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Player.Temp.LastPosition.Z
 
+            Core.OffsetMaps.Clear()
             Screen.Level.Entities.Clear()
             Screen.Level.Floors.Clear()
             Screen.Level.Shaders.Clear()
@@ -526,6 +528,8 @@
                             End If
                         Case line.Trim(" "c, StringHelper.Tab).StartsWith("{""Shader""{SHA[")
                             addLine = True
+                        Case line.Trim(" "c, StringHelper.Tab).StartsWith("{""Structure""{STR[")
+                            addLine = True
                     End Select
 
                     If addLine = True Then
@@ -827,6 +831,15 @@
 
         Dim Rotation As Vector3 = Entity.GetRotationFromInteger(CInt(GetTag(Tags, "Rotation")))
 
+        If TagExists(Tags, "RotationXYZ") = True Then
+            Dim rotationList As List(Of Single) = CType(GetTag(Tags, "RotationXYZ"), List(Of Single))
+            Rotation = New Vector3(rotationList(0), rotationList(1), rotationList(2))
+        End If
+
+        If ModelID = 21 Then
+            Rotation.Z += MathHelper.Pi
+        End If
+
         Dim Visible As Boolean = True
         If TagExists(Tags, "Visible") = True Then
             Visible = CBool(GetTag(Tags, "Visible"))
@@ -838,11 +851,7 @@
             Shader = New Vector3(ShaderList(0), ShaderList(1), ShaderList(2))
         End If
 
-        Dim RotationXYZ As Vector3 = Nothing
-        If TagExists(Tags, "RotationXYZ") = True Then
-            Dim rotationList As List(Of Single) = CType(GetTag(Tags, "RotationXYZ"), List(Of Single))
-            Rotation = New Vector3(rotationList(0), rotationList(1), rotationList(2))
-        End If
+
 
         Dim SeasonTexture As String = ""
         If TagExists(Tags, "SeasonTexture") = True Then
@@ -985,29 +994,28 @@
         Else
             Screen.Level.RideType = 0
         End If
+        If _reload = False Then
+            If TagExists(Tags, "EnvironmentType") = True Then
+                Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnvironmentType"))
+            Else
+                Screen.Level.EnvironmentType = 0
+            End If
 
-        If TagExists(Tags, "EnviromentType") = True Then
-            Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnviromentType"))
-        Else
-            Screen.Level.EnvironmentType = 0
+            If TagExists(Tags, "Weather") = True Then
+                Screen.Level.WeatherType = CInt(GetTag(Tags, "Weather"))
+            Else
+                Screen.Level.WeatherType = 0
+            End If
+
+            If TagExists(Tags, "DayTime") = True Then
+                Screen.Level.DayTime = CInt(GetTag(Tags, "DayTime"))
+            Else
+                Screen.Level.DayTime = 0
+            End If
         End If
 
-        If TagExists(Tags, "Weather") = True Then
-            Screen.Level.WeatherType = CInt(GetTag(Tags, "Weather"))
-        Else
-            Screen.Level.WeatherType = 0
-        End If
-
-        ' It's not my fault, I swear. The keyboard was slippy, I was partly sick, and there was fog on the road and I couldn't see.
-        Dim lightningExists As Boolean = TagExists(Tags, "Lightning")
-        Dim lightingExists As Boolean = TagExists(Tags, "Lighting")
-
-        If lightningExists = True And lightingExists = True Then
+        If TagExists(Tags, "Lighting") = True Then
             Screen.Level.LightingType = CInt(GetTag(Tags, "Lighting"))
-        ElseIf lightingExists = True Then
-            Screen.Level.LightingType = CInt(GetTag(Tags, "Lighting"))
-        ElseIf lightningExists = True Then
-            Screen.Level.LightingType = CInt(GetTag(Tags, "Lightning"))
         Else
             Screen.Level.LightingType = 1
         End If
@@ -1017,6 +1025,24 @@
         Else
             Screen.Level.IsDark = False
         End If
+
+        If Screen.Level.DayTime = World.DayTimes.Night Then
+            If World.IsAurora = False Then
+                Dim chance = Random.Next(0, 250)
+                If chance = 0 Then
+                    World.IsAurora = True
+                End If
+            End If
+        Else
+            World.IsAurora = False
+        End If
+
+        If TagExists(Tags, "IsAurora") = True Then
+            World.IsAurora = CBool(GetTag(Tags, "IsAurora"))
+        Else
+            World.IsAurora = False
+        End If
+
 
         If TagExists(Tags, "Terrain") = True Then
             Screen.Level.Terrain.TerrainType = Terrain.FromString(CStr(GetTag(Tags, "Terrain")))

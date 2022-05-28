@@ -1,0 +1,965 @@
+language_name,Nederlands
+=====
+Global:
+global_join,Verbind
+global_play,Speel
+global_refresh,Ververs
+global_new,Nieuw
+global_add,Voeg toe
+global_edit,Pas aan
+global_remove,Verwijder
+global_please_wait,Even geduld
+global_loading,Laden
+global_game,Spel
+global_login,Log in
+global_male,Man
+global_female,Vrouw
+global_genderless,Overig
+global_yes,Ja
+global_no,Nee
+global_accept,Bevestig
+global_cancel,Annuleer
+global_gamemode,Spelmodus
+global_clear,Wis
+global_save,Sla op
+global_apply,Pas toe
+global_close,Sluit
+global_back,Terug
+global_on,Aan
+global_off,Uit
+global_enabled,Actief
+global_disabled,Niet actief
+global_enable,Activeer
+global_disable,Deactiveer
+global_player_name,Spelernaam
+global_badges,Badges
+global_play_time,Speeltijd
+global_location,Locatie
+global_money,Geld
+global_points,Punten
+global_name,Naam
+global_order,Volgorde
+global_filter,Filter
+global_reset,Herstel
+global_pokemon_type_normal,Normaal
+global_pokemon_type_fire,Vuur
+global_pokemon_type_flying,Vlieg
+global_pokemon_type_fighting,Vecht
+global_pokemon_type_water,Water
+global_pokemon_type_grass,Gras
+global_pokemon_type_poison,Gif
+global_pokemon_type_ground,Grond
+global_pokemon_type_electric,Electrisch
+global_pokemon_type_psychic,Psychisch
+global_pokemon_type_rock,Rots
+global_pokemon_type_ice,Ijs
+global_pokemon_type_bug,Insect
+global_pokemon_type_dragon,Draak
+global_pokemon_type_ghost,Geest
+global_pokemon_type_dark,Duister
+global_pokemon_type_steel,Staal
+global_pokemon_type_fairy,Fee
+global_pokemon_type_blank,Blanco
+global_true,Goed
+global_false,Fout
+global_select,Kies
+global_summary,Overzicht
+global_item,Voorwerp
+global_use,Gebruik
+global_give,Geef
+global_take,Neem
+global_toss,Gooi weg
+global_switch,Verwissel
+global_pokemon_move_fly,Vliegen
+global_pokemon_move_rocksmash,Steenknal
+global_pokemon_move_ride,Rijden
+global_pokemon_move_flash,Flits
+global_pokemon_move_cut,Snijd
+global_pokemon_move_teleport,Teleporteer
+global_pokemon_move_dig,Graaf
+global_used,Gebruikt
+global_eggs_cannot_hold,Eieren kunnen niets vasthouden.
+---
+General:
+HP,IP
+PP,KP
+Lv.,Nv.
+Level,Niveau
+Attack,Aanval
+Defense,Verdediging
+Special_Attack,Speciale Aanval
+Special_Defense,Speciale Verdediging
+Speed,Snelheid
+---
+GameInteractions:
+game_interaction_interact,Actie
+game_interaction_gamemenu,Spelmenu
+game_interaction_pokegear,Pokégear
+game_interaction_pausemenu,Pauzemenu
+game_interaction_notification,Notificatie
+game_notification_accept,<system.button(special)> om te reageren.
+game_notification_dismiss,<system.button(special)> om weg te halen.
+---
+PressStartScreen:
+start_screen_press,Druk op
+start_screen_tostart,om te beginnen.
+---
+Main Menu:
+main_menu_newgame_line1,Nieuw
+main_menu_newgame_line2,Spel
+main_menu_options,Opties
+main_menu_savefile_name,Spelernaam
+main_menu_savefile_gamemode,Spelmodus
+main_menu_savefile_badges,Badges
+main_menu_savefile_playtime,Speeltijd
+main_menu_savefile_location,Locatie
+main_menu_error_gamemode_profile,De vereiste Spelmodus bestaat niet!
+main_menu_error_gamemode_message,De vereiste Spelmodus bestaat niet.~Voeg de Spelmodus opnieuw toe om dit profiel te gebruiken.
+main_menu_error_gamejolt_1,Download mislukt. Druk op "Bevestig" om opnieuw te proberen.
+main_menu_error_gamejolt_2,Als het probleem zich nog steeds voordoet, probeer het dan later nog eens
+main_menu_error_gamejolt_3,of neem contact op met ons via onze Discord server:
+main_menu_error_gamejolt_4,http://www.discord.me/p3d
+main_menu_error_filevalidation,Bestandvalidatie mislukt!~Download de spelbestanden opnieuw om dit probleem op te lossen.
+main_menu_options_language,Taal
+main_menu_options_audio,Geluid
+main_menu_options_controls,Besturing
+main_menu_options_contentpacks_line1,Inhouds-
+main_menu_options_contentpacks_line2,pakketten
+
+DeleteScreen:
+delete_menu_delete_confirm,Wil je dit opslagbestand echt verwijderen?
+delete_menu_delete,Verwijder
+delete_menu_cancel,Annuleer
+
+GameModeMenu:
+gamemode_menu_select1,Selecteer een Spelmodus
+gamemode_menu_select2,om een nieuw spel mee te beginnen.
+gamemode_menu_name,Naam
+gamemode_menu_description,Beschrijving
+gamemode_menu_version,Versie
+gamemode_menu_author,Auteur
+gamemode_menu_contentpath,Inhoudspad
+gamemode_menu_create,Creëer
+gamemode_menu_back,Terug
+---
+
+Options Screen:
+option_screen_title,Opties
+option_screen_warning,Opties zijn nog niet opgeslagen, vergeet niet op "Pas toe" te drukken voor je terug gaat.
+option_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
+option_screen_description,Description
+
+option_screen_game,Spel
+option_screen_game_textspeed,Tekstsnelheid
+option_screen_game_textspeed_description,The speed the textbox shows up and~displays the text
+option_screen_game_difficulty,Moeilijkheidsgraad
+option_screen_game_difficulty_description,Difficulty mode~Sets the level of difficulty.
+option_screen_game_difficulty_easy,Makkelijk
+option_screen_game_difficulty_hard,Moeilijk
+option_screen_game_difficulty_superhard,Supermoeilijk
+option_screen_game_viewbobbing,Loopbeweging
+option_screen_game_viewbobbing_description,Turns camera shaking on or off.
+
+option_screen_graphics,Beeld
+option_screen_graphics_fov,Gezichtsveld
+option_screen_graphics_fov_description,The field of view. The higher the value is,~the more you can see.~Warning: Too large value can cause lags in larger maps.
+option_screen_graphics_renderdistance,Renderafstand
+option_screen_graphics_renderdistance_description,The render distance determines,~how far you can see.~By turning this down, you can improve your FPS.
+option_screen_graphics_renderdistance_tiny,Heel dichtbij
+option_screen_graphics_renderdistance short,Dichtbij
+option_screen_graphics_renderdistance_normal,Normaal
+option_screen_graphics_renderdistance_far, Ver
+option_screen_graphics_renderdistance_extreme,Extreem ver
+option_screen_graphics_offset_mapquality,Offset-kaart kwaliteit
+option_screen_graphics_offset_mapquality_description,Sets the quality of the offset maps.~The details and update frequency of offset maps increase with this value.~Set this value to 0 to prevent the game from loading offset maps.
+option_screen_graphics_offset_mapquality_off,Uit
+option_screen_graphics_graphics,Beeldkwaliteit
+option_screen_graphics_graphics_description,Affects if some objects are rendered~or not. By turning this down, you can improve your FPS.~This settings is for all save states.
+option_screen_graphics_graphics_fancy,Hoog
+option_screen_graphics_graphics_fast,Laag
+option_screen_graphics_multisampling,Multi Sampling
+
+option_screen_battle,Gevecht
+option_screen_battle_3dmodels,3D Modellen
+option_screen_battle_animations,Animaties
+option_screen_battle_animations_description,Determines if the game shows battle animations.
+option_screen_battle_battlestyle,Gevechtstijl
+option_screen_battle_battlestyle_shift,Wisselen
+option_screen_battle_battlestyle_set,Doorgaan
+option_screen_battle_style_description,Battle Style~Set: You are not asked to switch out your Pokémon~Shift: You can switch out your Pokémon after defeating an opponent.
+
+option_screen_controls,Besturing
+option_screen_controls_xboxgamepad,Xbox Gamepad
+option_screen_controls_resetkeybindings,Toetsen Herstellen
+option_screen_controls_cameraspeed,Camerasnelheid
+option_screen_controls_cameraspeed_description,The camera speed sets the speed on which the~mouse can rotate the view.
+option_screen_controls_cameraspeed_slow,...Traag...
+option_screen_controls_cameraspeed_medium,Standaard
+option_screen_controls_cameraspeed_fast,Supersnel!
+option_screen_controls_cameraspeed_fastest,LICHTSNELHEID!
+
+option_screen_audio,Geluid
+option_screen_audio_volume_music,Muziekvolume
+option_screen_audio_volume_music_description,The volume of the background music.
+option_screen_audio_volume_sfx,Geluidenvolume
+option_screen_audio_volume_music_description,The volume of the sound effects and jingles.
+option_screen_audio_muted,Gedempt
+
+option_screen_contentpacks_up,Verplaats omhoog
+option_screen_contentpacks_down,Verplaats omlaag
+option_screen_contentpacks_information,Informatie
+option_screen_contentpacks_songs,Muziek
+option_screen_contentpacks_sounds,Geluiden
+option_screen_contentpacks_textures,Texturen
+option_screen_contentpacks_name,Naam
+option_screen_contentpacks_version,Versie
+option_screen_contentpacks_by,Van
+option_screen_contentpacks_content,Inhoud
+option_screen_contentpacks_description,Beschrijving
+
+option_screen_resetoptions,Herstel Opties
+option_screen_resetoptions_description,Resets all options.
+option_screen_save_options,Sla Opties Op
+option_screen_save_options_description,Save the options and close the menu.
+option_screen_close,Sluit
+option_screen_close_menu_description,Close the menu and do not save~the changes.
+---
+Pausescreen:
+pause_menu_title,Spelmenu
+pause_menu_back_to_game,Terug naar spel
+pause_menu_disconnect,Verbreek verbinding
+pause_menu_quit_to_menu,Terug naar menu
+pause_menu_autosave_fail,Kan niet automatisch opslaan.
+pause_menu_yes,Ja
+pause_menu_no,Nee
+pause_menu_confirmation,Wil je het spel echt verlaten? Niet-opgeslagen gegevens zullen verloren gaan.
+---
+IngameMenu:
+game_menu_pokedex,Pokédex
+game_menu_party,Pokémon
+game_menu_bag,Tas
+game_menu_trainer_card,<playername>
+game_menu_save,Opslaan
+game_menu_options,Opties
+game_menu_exit,Menu Verlaten
+---
+InventoryScreen:
+inventory_menu_bag,Tas
+inventory_menu_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
+inventory_menu_items,Voorwerpen
+inventory_menu_description,Beschrijving
+---
+NewGameScreen:
+new_game_intro_1,Hello!~Sorry to keep~you waiting!*Welcome to the world~of Pokémon!*My name is Oak.~People call me~Pokémon Prof.*This world is inhabited~by creatures that~we call
+new_game_intro_2,Pokémon.*People and Pokémon live~together by supporting~each other.~Some people play with~Pokémon,~some battle with them.*But we don't know~everything about~Pokémon yet.~There are still many~mysteries to solve.*That's why I study~Pokémon every day.*Now, what did you~say your name was?
+new_game_intro_3,~are you ready?*Your very own~Pokémon story is about~to unfold.*You'll face fun~times and tough~challenges.~A world of dreams and~adventures with Pokémon~awaits!*Let's go!*I'll be seeing~you later!
+new_game_intro_weird_name_1,Right! So your name is~
+new_game_intro_weird_name_2,!*Hm that is a~weird name.
+new_game_intro_known_name_1,Right! So your name is~
+new_game_intro_known_name_2,!*Hm I am sure I~heard this name before.
+new_game_intro_same_name_1,Hey we got the~same names.*My name is also~
+new_game_intro_same_name_2,!
+new_game_intro_name_1,Right! So your name is~
+new_game_intro_name_2,!
+new_game_your_name,What's your name?
+new_game_select_skin,Select your appearance
+new_game_name_too_short,This name is too short
+---
+MapScreen:
+map_screen_cities,Steden
+map_screen_routes,Routes
+map_screen_places,Plaatsen
+map_screen_roaming,Dwalende Pokémon
+---
+PokedexScreen:
+pokedex_screen_seen,Gezien
+pokedex_screen_obtained,Gevangen
+pokedex_screen_rare,Zeldzaam
+pokedex_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
+---
+PokemonScreen:
+pokemon_screen_choose_a_pokemon,Kies een Pokémon
+pokemon_screen_backadvice, Druk op <system.button(openmenu)> om terug te gaan.
+pokemon_screen_item_give,Geef
+pokemon_screen_item_take,Neem
+pokemon_screen_item_back,Terug
+pokemon_screen_doesnt_hold_item,~houdt geen voorwerp vast.
+pokemon_screen_take_item_1,Nam 
+pokemon_screen_take_item_2,van~
+pokemon_screen_take_item_3,~en stopte die in het~
+pokemon_screen_take_item_4, vakje!
+pokemon_screen_give_item_1,Gaf
+pokemon_screen_give_item_2, aan~
+pokemon_screen_give_item_3,
+pokemon_screen_give_item_4,~en stopte
+pokemon_screen_give_item_5,~terug in de tas.
+pokemon_screen_summary,Overzicht
+pokemon_screen_switch,Verwissel
+pokemon_screen_item,Voorwerp
+pokemon_screen_back,Terug
+pokemon_screen_EMPTY,LEEG
+---
+Pokemon Status Screen:
+All pages:
+poke_status_screen_nature,Aard
+poke_status_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
+poke_status_screen_closeadvice,DRUK OP <system.button(openmenu)> OM TE SLUITEN
+poke_status_screen_number,# 
+Page 1:
+poke_status_screen_all_exp,Ervaring
+poke_status_screen_nxt_lv,Nog nodig
+poke_status_screen_stats_page,Eigenschappen
+Page 2:
+poke_status_screen_OT,OT
+poke_status_screen_Item,Voorwerp
+poke_status_screen_no_item,Geen Voorwerp
+poke_status_screen_ability,Vaardigheid
+poke_status_screen_details_page,Details
+Page 3:
+poke_status_screen_power,Kracht
+poke_status_screen_accuracy,Nauwkeurigheid
+poke_status_screen_moves_page,Aanvallen
+---
+Trainer Card Screen:
+trainer_screen_trainer_card,Trainerkaart
+trainer_screen_name,Naam
+trainer_screen_points,Punten
+trainer_screen_money,Geld
+trainer_screen_pokedex,Pokédex
+trainer_screen_time,Tijd
+trainer_screen_collected_badges,Verzamelde badges
+trainer_screen_badge, Badge
+trainer_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
+trainer_screen_empty_badge,???
+---
+Save Screen:
+save_screen_title,Wil je het spel opslaan?
+save_screen_name,Naam
+save_screen_badges,Badges
+save_screen_money,Geld
+save_screen_time,Tijd
+save_screen_yes,Ja
+save_screen_no,Nee
+save_screen_success,Het spel is opgeslagen.
+---
+Item Detail Screen:
+item_detail_screen_use,Gebruik
+item_detail_screen_give,Geef
+item_detail_screen_trash,Gooi weg
+item_detail_screen_back,Terug
+item_detail_screen_give_item,Geef
+---
+Apricornscherm:
+apricorn_screen_apricorns,Apricorns
+apricorn_screen_producing,Ik ben bezig met het maken van de PokéBalls.~Kom later terug.
+apricorn_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
+apricorn_screen_choose_apricorns,Selecteer de Apricorns waarvan ik PokéBalls moet maken.
+apricorn_screen_ok,Oké
+apricorn_screen_clear,Wis
+apricorn_screen_take,Neem
+apricorn_screen_ready,Ik heb de PokéBalls voor je gemaakt. Hier is het resultaat van mijn werk:
+apricorn_screen_obtain,Ontvangen
+---
+Dayopvangscherm:
+daycare_screen_daycare,Dagopvang
+daycare_screen_money, / Geld: 
+daycare_screen_deposit,Deponeer
+daycare_screen_grown,Gegroeid: 
+daycare_screen_lv, / Nv. 
+daycare_screen_costs, / Kosten:
+daycare_screen_pokedollar, PokéDollar
+daycare_screen_withdraw,Haal op
+daycare_screen_backadvice,DRUK OP <system.button(openmenu)> OM TERUG TE GAAN
+daycare_screen_pokemon_choose_header,Deponeer Pokémon
+Egg,Ei
+---
+Netwerkscherm:
+network_screen_isonline,You are in a co-op game already! Please close the connection~to open a new game or connect again!~~~Press E to go back!
+network_screen_header,Co-Op Gameplay
+network_screen_main_header,You can either join a game or host a~new one to play together with a friend.
+network_screen_main_join,Verbind
+network_screen_main_host,Host
+network_screen_main_close,Sluit
+network_screen_join_header,Maak verbinding met een spel:~Voer het IP adres van de spelhost in.
+network_screen_join_cancel,Annuleer
+network_screen_join_join,Verbind
+network_screen_host_header,Een spel hosten:~Je kunt hiermee het spel open zetten voor andere spelers binnen je netwerk.
+network_screen_host_cancel,Cancel
+network_screen_host_host,Host
+---
+Donateursscherm:
+donation_screen_donators,Donateurs
+donation_screen_backadvice,,DRUK OP <system.button(openmenu)> OM TE SLUITEN
+---
+Blackout Screen:
+black_out_screen_line1,Je hebt geen strijdbare Pokémon meer!
+black_out_screen_line2,Je zult naar het dichtstbijzijnde
+black_out_screen_line3,PokéCenter gebracht worden
+black_out_screen_line4, om verdere schade aan je
+black_out_screen_line5,Pokémon te voorkomen.
+---
+Gevechten:
+---
+Tijdens de Intro & Outro:
+--
+battle_main_trainer_sent_out_1,zette~
+battle_main_trainer_sent_out_2,in om te vechten.
+battle_main_trainer_sent_out_3,staat op het punt om
+battle_main_trainer_sent_out_4,in te zetten om te vechten! Wil je je Pokémon verwisselen met een andere?
+battle_main_trainer_sent_out_5,Ja
+battle_main_trainer_sent_out_6,Nee
+battle_main_choose_pokemon,Kies Pokémon
+battle_main_wild_appear_1,Een wilde
+battle_main_wild_appear_2,~kwam tevoorschijn!
+battle_main_trainer_intro_1,en~
+battle_main_trainer_intro_2,dagen je uit~voor een gevecht!
+battle_main_trainer_intro_3,daagt je uit~voor een gevecht!
+battle_main_intro_1,Ga! 
+battle_main_intro_2,!
+battle_main_trainer_defeat_1,~is verslagen!
+battle_main_trainer_defeat_2, en~
+battle_main_trainer_defeat_3,~zijn verslagen!
+battle_main_trainer_defeat_4, ontving
+battle_main_trainer_defeat_5,~PokéDollars voor het winnen!
+---
+Tijdens een gevechtronde:
+--
+battle_attack_poison_damage,ontving schade door de vergiftiging!
+battle_attack_curse_damage,~ontving schade door de vloek!
+battle_attack_fire_damage,~ontving schade door de brandwond!
+battle_attack_trainer_item_1, gebruikte een~
+battle_attack_trainer_item_2,!
+battle_attack_asleep,is diep~in slaap.
+battle_attack_woke_up, werd wakker!
+battle_attack_paralyzed,is verlamd en kan niet bewegen!
+battle_attack_frozen_free,is niet~langer bevroren!
+battle_attack_frozen, is helemaal~bevroren!
+battle_attack_flinched,aarzelde!
+battle_attack_no_longer_confused,is niet~langer verward!
+battle_attack_confused,is~verward!
+battle_attack_hit_self_confusion,deed in~ verwarring zichzelf schade!
+battle_attack_no_PP_left,heeft~geen KrachtPunten over!*
+battle_attack_used,gebruikte
+---
+Badges:
+badge_Boulder,Rots
+badge_Cascade,Waterval
+badge_Thunder,Donder
+badge_Rainbow,Regenboog
+badge_Soul,Ziel
+badge_Marsh,Moeras
+badge_Volcano,Vulkaan
+badge_Earth,Aarde
+badge_Zephyr,Luchtstroom
+badge_Hive,Korf
+badge_Plain,Vlakte
+badge_Fog,Mist
+badge_Storm,Storm
+badge_Mineral,Mineraal
+badge_Glacier,Gletsjer
+badge_Rising,Stijging
+---
+Regions:
+Johto,Johto
+Kanto,Kanto
+Sevii Islands,Sevii Eilanden
+---
+Places:
+Places_???,???
+
+Towns:
+Places_New Bark Town,Plantenstek-dorp
+Places_Cherrygrove City,Kersentuin-stad
+Places_Violet City,Viooltjes-stad
+Places_Azalea Town,Azalea-dorp
+Places_Goldenrod City,Guldenroede-stad
+Places_Ecruteak City,Teakboom-stad
+Places_Olivine City,Olijvenrank-stad
+Places_Cianwood City,Cyaanhout-stad
+Places_Mahogany Town,Mahonie-dorp
+Places_Blackthorn City,Sleedoorn-stad
+Places_Pallet Town,Palet-dorp
+Places_Viridian City,Viridiaan-stad
+Places_Saffron City,Saffraangeel-stad
+Places_Pewter City,Pewter-stad
+Places_Cerulean City,Hemelsblauw-stad
+Places_Celadon City,Zeegroen-stad
+Places_Vermilion City,Vermiljoen-stad
+Places_Fuchsia City,Fuchsia-stad
+Places_Cinnabar Island,Cinnaber-eiland
+Places_Lavender Town,Lavendel-dorp
+Places_One Island,Een-eiland
+Places_Two Island,Twee-eiland
+Places_Three Island,Drie-eiland
+Places_Four Island,Vier-eiland
+Places_Five Island,Vijf-eiland
+Places_Six Island,Zes-eiland
+Places_Seven Island,Zeven-eiland
+
+Special Houses:
+Places_Gate,Poort
+Places_Pokemon Center,Pokémon-Centrum
+Places_Pokemon Mart,Pokémon-Winkel
+Places_Elms lab,Elm's Lab
+Places_Oak's lab,Oak's Lab
+Places_Azalea Town Gym,Gym van Azalea-dorp
+Places_Violet City Gym,Gym van Viooltjes-stad
+Places_Goldenrod City Gym,Gym van Guldenroede-stad
+Places_Ecruteak City Gym,Gym van Teakboom-stad
+Places_Cianwood City Gym,Gym van Cyaanhout-stad
+Places_Olivine City Gym,Gym van Olijvenrank-stad
+Places_Mahogany City Gym,Gym van Mahonie-dorp
+Places_Blackthorn City Gym,Gym van Sleedoorn-stad
+Places_Your House,Jouw Huis
+Places_Your Room,Jouw Kamer
+Places_Daycare,Dagopvang
+Places_Pewter City Gym,Gym van Pewter-stad
+Places_Cerulean City Gym,Gym van Hemelsblauw-stad
+Places_Vermilion City Gym,Gym van Vermiljoen-stad
+Places_Celadon City Gym,Gym van Zeegroen-stad
+Places_Fuchsia City Gym,Gym van Fuchsia-stad
+Places_Saffron City Gym,Gym van Saffraangeel-stad
+Places_Cinnabar Gym,Gym van Cinnaber-eiland
+Places_Viridian City Gym,Gym van Viridiaan-stad
+Places_Dance Theater,Danstheater
+Places_Lighthouse,Vuurtoren
+Places_Team Rocket HQ,Team Rocket's Basis
+Places_Radio Tower,Radiotoren
+Places_Seaplane Port,Watervliegtuighaven
+
+Dungeons:
+Places_Ilex Forest,Ilexbos
+Places_Dark Cave,Donkere Grot
+Places_Ruins of Alph,Ruïnes van Alph
+Places_Slowpoke Well,Slowpoke Waterput
+Places_Sprout Tower,Kiemtoren
+Places_Union Cave,Uniegrot
+Places_Mt. Mortar,Mortierberg
+Places_Bell Tower,Tinnen Toren
+Places_Tin Tower,Tinnen Toren
+Places_Tin Tower Peak,Tinnen Toren-Piek
+Places_Burned Tower,Verbrande Toren
+Places_Glitter Lighthouse,Glitter-vuurtoren
+Places_Ice Path,IJspad
+Places_National Park,Nationaal Park
+Places_Whirl Islands,Draaikolkeilanden
+Places_Lake of Rage,Woedemeer
+Places_Underground,Ondergronds
+Places_Dragon's Den,Drakennest
+Places_Tohjo Falls, Watervallen van Tohjo
+Places_Victory Road,Victoriepad
+Places_Mt. Silver,Zilverberg
+Places_Diamond Dive,Diamantduik
+Places_Safari Zone,Safarigebied
+Places_Viridian Forest,Bos van Viridian
+Places_Cerulean Cave,Grot van Cerulean
+Places_Power Plant,Energiecentrale
+Places_Rock Tunnel,Rotstunnel
+Places_Seafoam Islands,Zeeschuimeilanden
+Places_Pal Park,Maatjespark
+Places_Diglett's Cave,Diglett's Grot
+Places_Mt. Moon,Maanberg
+Places_Mt. Ember,Sintelberg
+Places_Three Isle Path,Pad van Drie-eiland
+Places_Berry Forest,Bessenbos
+Places_Icefall Cave,IJsvalgrot
+Places_Lost Cave,Verloren Grot
+Places_Trainer Tower,Trainertoren
+Places_Altering Cave,Verandergrot
+Places_Pattern Bush,Patroonstruik
+Places_Dotted Hole,Stippelgat
+Places_Tanoby Chambers,Tanoby-kamers
+Places_Tanoby Key,Tanoby-sleutel
+Places_Monean Chamber,Monean-Kamer
+Places_Liptoo Chamber,Liptoo-Kamer
+Places_Weepth Chamber,Weepth-Kamer
+Places_Dilford Chamber,Dilford-Kamer
+Places_Scrufib Chamber,Scrufib-Kamer
+Places_Rixy Chamber,Rixy-Kamer
+Places_Viapois Chamber,Viapois-Kamer
+Places_Ancient Ruins,Oude Ruïnes
+Places_Millenial Star Tower,Duizendjarige Sterrentoren
+Places_Kolben Tower,Kolbentoren
+Places_Faraway Island,Ver-weg-eiland
+Places_Underwater Cave,Onderwatergrot
+Places_Embedded Tower,Ingebouwde Toren
+
+Routes:
+Places_Route 1,Route 1
+Places_Route 2,Route 2
+Places_Route 3,Route 3
+Places_Route 4,Route 4
+Places_Route 5,Route 5
+Places_Route 6,Route 6
+Places_Route 7,Route 7
+Places_Route 8,Route 8
+Places_Route 9,Route 9
+Places_Route 10,Route 10
+Places_Route 11,Route 11
+Places_Route 12,Route 12
+Places_Route 13,Route 13
+Places_Route 14,Route 14
+Places_Route 15,Route 15
+Places_Route 16,Route 16
+Places_Route 17,Route 17
+Places_Route 18,Route 18
+Places_Route 19,Route 19
+Places_Route 20,Route 20
+Places_Route 21,Route 21
+Places_Route 22,Route 22
+Places_Route 23,Route 23
+Places_Route 24,Route 24
+Places_Route 25,Route 25
+Places_Route 26,Route 26
+Places_Route 27,Route 27
+Places_Route 28,Route 28
+Places_Route 29,Route 29
+Places_Route 30,Route 30
+Places_Route 31,Route 31
+Places_Route 32,Route 32
+Places_Route 33,Route 33
+Places_Route 34,Route 34
+Places_Route 35,Route 35
+Places_Route 36,Route 36
+Places_Route 37,Route 37
+Places_Route 38,Route 38
+Places_Route 39,Route 39
+Places_Route 40,Route 40
+Places_Route 41,Route 41
+Places_Route 42,Route 42
+Places_Route 43,Route 43
+Places_Route 44,Route 44
+Places_Route 45,Route 45
+Places_Route 46,Route 46
+Places_Route 47,Route 47
+Places_Route 48,Route 48
+Places_Route 49,Route 49
+Places_Route 50,Route 50
+
+Places_Treasure Beach,Schatkiststrand
+Places_Kindle Road,Ontstekingsweg
+Places_Cape Brink,Kaapse Brink
+Places_Three Isle Port,Haven van Drie-eiland
+Places_Bond Bridge,Verbondbrug
+Places_Five Isle Meadow,Weiland van Vijf-eiland
+Places_Memorial Pillar,Gedenkzuil
+Places_Water Labyrinth,Waterdoolhof
+Places_Resort Gorgeous,Schoonheidsparadijs
+Places_Water Path,Waterpad
+Places_Green Path,Groenpad
+Places_Outcast Island,Verstotelingeneiland
+Places_Ruin Valley,Ruïnevallei
+Places_Canyon Entrance,Ravijningang
+Places_Sevault Canyon,Sevault Ravijn
+Places_Tanoby Ruins,Tanoby Ruïnes
+Places_Safari Zone Gate,Hek van Safari-zone
+Places_S.S. Aqua,S.S. Aqua
+Places_Elite 4,Elite 4
+Places_Indigo Plateau,Indigo Toernooi
+Places_Twirl Forest,Ronddraaibos
+Places_Berry Vista,Bessenuitzicht
+Places_Battle Frontier,Gevechtfrontier
+Places_Battle Tower,Gevechttoren
+Places_Battle Factory,Gevechtsfabriek
+Places_Rocket Warehouse,Team Rocket Warenhuis
+Places_Secret Laboratory,Geheim Laboratorium
+
+---
+Item categories:
+item_category_Standard,Standaard
+item_category_Medicine,Medicijnen
+item_category_Machines,Machines
+item_category_Pokéballs,PokéBallen
+item_category_Plants,Planten
+item_category_KeyItems,Belangrijk
+item_category_BattleItems,Gevechtsvoorwerpen
+item_category_Mail,Brievenpost
+---
+GameMessages:
+game_message_screenshot,Schermafbeelding opgeslagen als
+game_message_screenshot_failed,Kan schermafbeelding niet aanmaken
+game_message_fullscreen_on,Volledig scherm aan
+game_message_fullscreen_off,Volledig scherm uit
+game_message_third_person_on,Weergave in derde persoon
+game_message_third_person_off,Weergave in eerste persoon
+game_message_free_camera_on,Vrije-camera-modus aan
+game_message_free_camera_off,Vrije-camera-modus uit
+game_message_audio_on,Geluid aan
+game_message_audio_off,Geluid uit
+game_message_continue_autosave,Hervatte opslagbestand:
+---
+Online:
+game_message_close_connection,You closed the co-op game.
+game_message_disconncet,You disconnected from the host.
+game_message_cannot_connect_client_1,Cannot connect to host (
+game_message_cannot_connect_client_2,)!
+game_message_client_connect_1,You joined the game (
+game_message_client_connect_2,)!
+game_message_client_host_closed_1,The host (
+game_message_client_host_closed_2,) closed the connection.
+game_message_client_outdated_newer_version,You have an outdated or newer version of the game.
+game_message_host_session_started,You (host) started a Co-Op session.
+game_message_host_outdated_newer_version,The client has an outdated or newer version of the game!
+game_message_host_client_accept,A client joined the game!
+game_message_host_client_disconnect,The client disconnected! The Co-Op session has been closed.
+
+---
+Pokemon:
+pokemon_name_Bulbasaur,Bulbasaur
+pokemon_name_Ivysaur,Ivysaur
+pokemon_name_Venusaur,Venusaur
+pokemon_name_Charmander,Charmander
+pokemon_name_Charmeleon,Charmeleon
+pokemon_name_Charizard,Charizard
+pokemon_name_Squirtle,Squirtle
+pokemon_name_Wartortle,Wartortle
+pokemon_name_Blastoise,Blastoise
+pokemon_name_Caterpie,Caterpie
+pokemon_name_Metapod,Metapod
+pokemon_name_Butterfree,Butterfree
+pokemon_name_Weedle,Weedle
+pokemon_name_Kakuna,Kakuna
+pokemon_name_Beedrill,Beedrill
+pokemon_name_Pidgey,Pidgey
+pokemon_name_Pidgeotto,Pidgeotto
+pokemon_name_Pidgeot,Pidgeot
+pokemon_name_Rattata,Rattata
+pokemon_name_Raticate,Raticate
+pokemon_name_Spearow,Spearow
+pokemon_name_Fearow,Fearow
+pokemon_name_Ekans,Ekans
+pokemon_name_Arbok,Arbok
+pokemon_name_Pikachu,Pikachu
+pokemon_name_Raichu,Raichu
+pokemon_name_Sandshrew,Sandshrew
+pokemon_name_Sandshlash,Sandslash
+pokemon_name_Nidoran,Nidoran
+pokemon_name_Nidorina,Nidorina
+pokemon_name_Nidoqueen,Nidoqueen
+pokemon_name_Nidorino,Nidorino
+pokemon_name_Nidoking,Nidoking
+pokemon_name_Clefairy,Clefairy
+pokemon_name_Clefable,Clefable
+pokemon_name_Vulpix,Vulpix
+pokemon_name_Ninetails,Ninetails
+pokemon_name_Jigglypuff,Jigglypuff
+pokemon_name_Wigglytuff,Wigglytuff
+pokemon_name_Zubat,Zubat
+pokemon_name_Golbat,Golbat
+pokemon_name_Oddish,Oddish
+pokemon_name_Gloom,Gloom
+pokemon_name_Vileplume,Vileplume
+pokemon_name_Paras,Paras
+pokemon_name_Parasect,Parasect
+pokemon_name_Venonat,Venonat
+pokemon_name_Venomoth,Venomoth
+pokemon_name_Diglett,Diglett
+pokemon_name_Dugtrio,Dugtrio
+pokemon_name_Meowth,Meowth
+pokemon_name_Persian,Persian
+pokemon_name_Psyduck,Psyduck
+pokemon_name_Golduck,Golduck
+pokemon_name_Mankey,Mankey
+pokemon_name_Primeape,Primeape
+pokemon_name_Growlithe,Growlithe
+pokemon_name_Arcanine,Arcanine
+pokemon_name_Poliwag,Poliwag
+pokemon_name_Poliwhirl,Poliwhirl
+pokemon_name_Poliwrath,Poliwrath
+pokemon_name_Abra,Abra
+pokemon_name_Kadabra,Kadabra
+pokemon_name_Alakazam,Alakazam
+pokemon_name_Machop,Machop
+pokemon_name_Machoke,Machoke
+pokemon_name_Machamp,Machamp
+pokemon_name_Bellsprout,Bellsprout
+pokemon_name_Weepinbell,Weepinbell
+pokemon_name_Victreebel,Victreebel
+pokemon_name_Tentacool,Tentacool
+pokemon_name_Tentacruel,Tentacruel
+pokemon_name_Geodude,Geodude
+pokemon_name_Graveler,Graveler
+pokemon_name_Golem,Golem
+pokemon_name_Ponyta,Ponyta
+pokemon_name_Rapidash,Rapidash
+pokemon_name_Slowpoke,Slowpoke
+pokemon_name_Slowbro,Slowbro
+pokemon_name_Magnemite,Magnemite
+pokemon_name_Magneton,Magneton
+pokemon_name_Farfetch'd,Farfetch'd
+pokemon_name_Doduo,Doduo
+pokemon_name_Dodrio,Dodrio
+pokemon_name_Seel,Seel
+pokemon_name_Dewgong,Dewgong
+pokemon_name_Grimer,Grimer
+pokemon_name_Muk,Muk
+pokemon_name_Shellder,Shellder
+pokemon_name_Cloyster,Cloyster
+pokemon_name_Gastly,Gastly
+pokemon_name_Haunter,Haunter
+pokemon_name_Gengar,Gengar
+pokemon_name_Onix,Onix
+pokemon_name_Drowzee,Drowzee
+pokemon_name_Hypno,Hypno
+pokemon_name_Krabby,Krabby
+pokemon_name_Kingler,Kingler
+pokemon_name_Voltorb,Voltorb
+pokemon_name_Electrode,Electrode
+pokemon_name_Exeggcute,Exeggcute
+pokemon_name_Exeggutor,Exeggutor
+pokemon_name_Cubone,Cubone
+pokemon_name_Marowak,Marowak
+pokemon_name_Hitmonlee,Hitmonlee
+pokemon_name_Hitmonchan,Hitmonchan
+pokemon_name_Lickitung,Lickitung
+pokemon_name_Koffing,Koffing
+pokemon_name_Weezing,Weezing
+pokemon_name_Rhyhorn,Rhyhorn
+pokemon_name_Rhydon,Rhydon
+pokemon_name_Chansey,Chansey
+pokemon_name_Tangela,Tangela
+pokemon_name_Kangaskhan,Kangaskhan
+pokemon_name_Horsea,Horsea
+pokemon_name_Seedra,Seedra
+pokemon_name_Goldeen,Goldeen
+pokemon_name_Seaking,Seaking
+pokemon_name_Staryu,Staryu
+pokemon_name_Starmie,Starmie
+pokemon_name_Mr. Mime,Mr. Mime
+pokemon_name_Scyther,Scyther
+pokemon_name_Jynx,Jynx
+pokemon_name_Electabuzz,Electabuzz
+pokemon_name_Magmar,Magmar
+pokemon_name_Pinsir,Pinsir
+pokemon_name_Tauros,Tauros
+pokemon_name_Magikarp,Magikarp
+pokemon_name_Gyarados,Gyarados
+pokemon_name_Lapras,Lapras
+pokemon_name_Ditto,Ditto
+pokemon_name_Eevee,Eevee
+pokemon_name_Vaporeon,Vaporeon
+pokemon_name_Jolteon,Jolteon
+pokemon_name_Flareon,Flareon
+pokemon_name_Porygon,Porygon
+pokemon_name_Omanyte,Omanyte
+pokemon_name_Omastar,Omastar
+pokemon_name_Kabuto,Kabuto
+pokemon_name_Kabutops,Kabutops
+pokemon_name_Aerodactyl,Aerodactyl
+pokemon_name_Snorlax,Snorlax
+pokemon_name_Articuno,Articuno
+pokemon_name_Zapdos,Zapdos
+pokemon_name_Moltres,Moltres
+pokemon_name_Dratini,Dratini
+pokemon_name_Dragonair,Dragonair
+pokemon_name_Dragonite,Dragonite
+pokemon_name_Mewtwo,Mewtwo
+pokemon_name_Mew,Mew
+pokemon_name_Chikorita,Chikorita
+pokemon_name_Bayleef,Bayleef
+pokemon_name_Meganium,Meganium
+pokemon_name_Cyndaquil,Cyndaquil
+pokemon_name_Quilava,Quilava
+pokemon_name_Typhlosion,Typhlosion
+pokemon_name_Totodile,Totodile
+pokemon_name_Croconaw,Croconaw
+pokemon_name_Feraligatr,Feraligatr
+pokemon_name_Sentret,Sentret
+pokemon_name_Furret,Furret
+pokemon_name_Hoothoot,Hoothoot
+pokemon_name_Noctowl,Noctowl
+pokemon_name_Ledyba,Ledyba
+pokemon_name_Ledian,Ledian
+pokemon_name_Spinarak,Spinarak
+pokemon_name_Ariados,Ariados
+pokemon_name_Crobat,Crobat
+pokemon_name_Chinchou,Chinchou
+pokemon_name_Lanturn,Lanturn
+pokemon_name_Pichu,Pichu
+pokemon_name_Cleffa,Cleffa
+pokemon_name_Igglybuff,Igglybuff
+pokemon_name_Togepi,Togepi
+pokemon_name_Togetic,Togetic
+pokemon_name_Natu,Natu
+pokemon_name_Xatu,Xatu
+pokemon_name_Mareep,Mareep
+pokemon_name_Flaaffy,Flaaffy
+pokemon_name_Ampharos,Ampharos
+pokemon_name_Bellossom,Bellossom
+pokemon_name_Marill,Marill
+pokemon_name_Azumarill,Azumarill
+pokemon_name_Sudowoodo,Sudowoodo
+pokemon_name_Politoed,Politoed
+pokemon_name_Hoppip,Hoppip
+pokemon_name_Skiploom,Skiploom
+pokemon_name_Jumpluff,Jumpluff
+pokemon_name_Aipom,Aipom
+pokemon_name_Sunkern,Sunkern
+pokemon_name_Sunflora,Sunflora
+pokemon_name_Yanma,Yanma
+pokemon_name_Wooper,Wooper
+pokemon_name_Quagsire,Quagsire
+pokemon_name_Espeon,Espeon
+pokemon_name_Umbreon,Umbreon
+pokemon_name_Murkrow,Murkrow
+pokemon_name_Slowking,Slowking
+pokemon_name_Misdreavus,Misdreavus
+pokemon_name_Unown,Unown
+pokemon_name_Wobbuffet,Wobbuffet
+pokemon_name_Girafarig,Girafarig
+pokemon_name_Pineco,Pineco
+pokemon_name_Forretress,Forretress
+pokemon_name_Dunsparce,Dunsparce
+pokemon_name_Gligar,Gligar
+pokemon_name_Steelix,Steelix
+pokemon_name_Snubbull,Snubbull
+pokemon_name_Granbull,Granbull
+pokemon_name_Qwilfish,Qwilfish
+pokemon_name_Scizor,Scizor
+pokemon_name_Shuckle,Shuckle
+pokemon_name_Heracross,Heracross
+pokemon_name_Sneasel,Sneasel
+pokemon_name_Teddiursa,Teddiursa
+pokemon_name_Ursaring,Ursaring
+pokemon_name_Slugma,Slugma
+pokemon_name_Magcargo,Magcargo
+pokemon_name_Swinub,Swinub
+pokemon_name_Piloswine,Piloswine
+pokemon_name_Corsola,Corsola
+pokemon_name_Remoraid,Remoraid
+pokemon_name_Octillery,Octillery
+pokemon_name_Delibird,Delibird
+pokemon_name_Mantine,Mantine
+pokemon_name_Skarmory,Skarmory
+pokemon_name_Houndour,Houndour
+pokemon_name_Houndoom,Houndoom
+pokemon_name_Kingdra,Kingdra
+pokemon_name_Phanpy,Phanpy
+pokemon_name_Donphan,Donphan
+pokemon_name_Porygon2,Porygon2
+pokemon_name_Stantler,Stantler
+pokemon_name_Smeargle,Smeargle
+pokemon_name_Tyrogue,Tyrogue
+pokemon_name_Hitmontop,Hitmontop
+pokemon_name_Smoochum,Smoochum
+pokemon_name_Elekid,Elekid
+pokemon_name_Magby,Magby
+pokemon_name_Miltank,Miltank
+pokemon_name_Blissey,Blissey
+pokemon_name_Raikou,Raikou
+pokemon_name_Entei,Entei
+pokemon_name_Suicune,Suicune
+pokemon_name_Larvitar,Larvitar
+pokemon_name_Pupitar,Pupitar
+pokemon_name_Tyranitar,Tyranitar
+pokemon_name_Lugia,Lugia
+pokemon_name_Ho-Oh,Ho-Oh
+pokemon_name_Celebi,Celebi
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+Story translation:
+---
+New Bark Town:
+---
+barktown.dat:
+---
+barktown_player_house,<playername>'s Huis

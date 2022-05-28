@@ -10,6 +10,7 @@
 
 #-------------------------------- References --------------------------------#
 
+/reference:ttf2bmp.exe
 
 #---------------------------------- Content ---------------------------------#
 
@@ -34,8 +35,9 @@
 /build:Fonts/BMP/Braille.png
 
 #begin Fonts/BMP/chatFont.png
-/importer:TextureImporter
-/processor:FontTextureProcessor
+/importer:LocalizedFontTextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
 /processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
@@ -45,16 +47,18 @@
 /copy:Fonts/BMP/GameJolt.xnb
 
 #begin Fonts/BMP/InGame.png
-/importer:TextureImporter
-/processor:FontTextureProcessor
+/importer:LocalizedFontTextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
 /processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/InGame.png
 
 #begin Fonts/BMP/mainFont.png
-/importer:TextureImporter
-/processor:FontTextureProcessor
+/importer:LocalizedFontTextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
 /processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
@@ -68,8 +72,9 @@
 /build:Fonts/BMP/miniFont.spritefont
 
 #begin Fonts/BMP/TextFont.png
-/importer:TextureImporter
-/processor:FontTextureProcessor
+/importer:LocalizedFontTextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
 /processorParam:FirstCharacter= 
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
@@ -89,7 +94,7 @@
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -99,16 +104,16 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=Color
 /build:Models/boat/ferry.obj
 
-#begin Models/boat/Ship.obj
-/importer:OpenAssetImporter
+#begin Models/boat/SSAqua.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -118,8 +123,8 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/boat/Ship.obj
+/processorParam:TextureFormat=Color
+/build:Models/boat/SSAqua.fbx
 
 #begin Models/boat2/Boat.fbx
 /importer:FbxImporter
@@ -127,7 +132,7 @@
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -140,13 +145,13 @@
 /processorParam:TextureFormat=Color
 /build:Models/boat2/Boat.fbx
 
-#begin Models/building/P3DBuilding.obj
-/importer:OpenAssetImporter
+#begin Models/building/KolbenTower.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -156,8 +161,8 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/building/P3DBuilding.obj
+/processorParam:TextureFormat=Color
+/build:Models/building/KolbenTower.fbx
 
 #begin Models/Environment/arena_colleseum.obj
 /importer:OpenAssetImporter
@@ -216,13 +221,13 @@
 /processorParam:TextureFormat=Compressed
 /build:Models/Environment/Test_floor/Test_floor.obj
 
-#begin Models/Snorlax/Normal.obj
-/importer:OpenAssetImporter
+#begin Models/Snorlax/Normal.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -232,16 +237,16 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/Snorlax/Normal.obj
+/processorParam:TextureFormat=Color
+/build:Models/Snorlax/Normal.fbx
 
-#begin Models/Snorlax/Shiny.obj
-/importer:OpenAssetImporter
+#begin Models/Snorlax/Shiny.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -251,16 +256,16 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/Snorlax/Shiny.obj
+/processorParam:TextureFormat=Color
+/build:Models/Snorlax/Shiny.fbx
 
-#begin Models/truck2/Truck.obj
-/importer:OpenAssetImporter
+#begin Models/truck2/Truck.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -270,11 +275,11 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/truck2/Truck.obj
+/processorParam:TextureFormat=Color
+/build:Models/truck2/Truck.fbx
 
-#begin SkyDomeResource/SkyDome.x
-/importer:XImporter
+#begin SkyDomeResource/SkyDome.obj
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
@@ -290,5 +295,5 @@
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
 /processorParam:TextureFormat=Color
-/build:SkyDomeResource/SkyDome.x
+/build:SkyDomeResource/SkyDome.obj
 

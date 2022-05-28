@@ -14,7 +14,7 @@
 
         Me.MouseVisible = False
         Me.CanBePaused = True
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
         Me.CanChat = False
     End Sub
 

@@ -8,6 +8,7 @@ Namespace Items.Medicine
         Public Overrides ReadOnly Property IsHealingItem As Boolean = True
         Public Overrides ReadOnly Property Description As String = "Pewter City's famous crunchy snack. They can be used to heal all status conditions of a single Pokémon."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 250
+        Public Overrides ReadOnly Property PluralName As String = "Pewter Crunchies"
 
         Public Sub New()
             _textureRectangle = New Rectangle(96, 312, 24, 24)
@@ -45,7 +46,7 @@ Namespace Items.Medicine
                     Dim t As String = Pokemon.GetDisplayName() & "~gets healed up!"
                     t &= RemoveItem()
 
-                    SoundManager.PlaySound("single_heal", False)
+                    SoundManager.PlaySound("Use_Item", False)
                     Screen.TextBox.Show(t, {})
                     PlayerStatistics.Track("[17]Medicine Items used", 1)
 

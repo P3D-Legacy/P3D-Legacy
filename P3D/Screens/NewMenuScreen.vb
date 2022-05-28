@@ -109,7 +109,7 @@
                         Core.SpriteBatch.Draw(_texture, New Rectangle(CInt(pos.X) + 64, CInt(pos.Y), 64 * 4, 64), New Rectangle(32, 16, 16, 16), Color.White)
                         Core.SpriteBatch.Draw(_texture, New Rectangle(CInt(pos.X) + 64 * 5, CInt(pos.Y), 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CInt(pos.X) + 20, CInt(pos.Y) + 16), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CInt(pos.X) + 20, CInt(pos.Y) + 20), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                     Else
                         Dim pos = GetButtonPosition(i)
 
@@ -117,7 +117,7 @@
                         Core.SpriteBatch.Draw(_texture, New Rectangle(CInt(pos.X) + 64, CInt(pos.Y), 64 * 4, 64), New Rectangle(32, 16, 16, 16), New Color(255, 255, 255, _currentButtonFade))
                         Core.SpriteBatch.Draw(_texture, New Rectangle(CInt(pos.X) + 64 * 5, CInt(pos.Y), 64, 64), New Rectangle(16, 16, 16, 16), New Color(255, 255, 255, _currentButtonFade), 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CInt(pos.X) + 20, CInt(pos.Y) + 16), New Color(0, 0, 0, _currentButtonFade), 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, text, New Vector2(CInt(pos.X) + 20, CInt(pos.Y) + 20), New Color(0, 0, 0, _currentButtonFade), 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
                         Exit For
                     End If
@@ -141,7 +141,7 @@
 
     Private Sub SetCursorPosition(ByVal _buttonIndex As Integer)
         Dim pos = GetButtonPosition(_buttonIndex)
-        Dim cPosition As Vector2 = New Vector2(pos.X + 180, pos.Y - 42)
+        Dim cPosition As Vector2 = New Vector2(CInt(pos.X + 180), CInt(pos.Y - 42))
         _cursorDestPosition = cPosition
     End Sub
 
@@ -154,18 +154,18 @@
         Dim Y As Single = 0F
 
         If (index Mod 2) = 0 Then
-            X = Core.ScreenSize.Width / 2.0F - 384 - 75
+            X = Core.windowSize.Width / 2.0F - 384 - 75
         Else
-            X = Core.ScreenSize.Width / 2.0F + 75
+            X = Core.windowSize.Width / 2.0F + 75
         End If
 
         Select Case Math.Floor(index / 2)
             Case 0
-                Y = (Core.ScreenSize.Height / 2.0F) - 64 - 80 - 32
+                Y = (Core.windowSize.Height / 2.0F) - 64 - 80 - 32
             Case 1
-                Y = (Core.ScreenSize.Height / 2.0F) - 32
+                Y = (Core.windowSize.Height / 2.0F) - 32
             Case 2
-                Y = (Core.ScreenSize.Height / 2.0F) + 32 + 80
+                Y = (Core.windowSize.Height / 2.0F) + 32 + 80
         End Select
 
         Return New Vector2(X, Y)
@@ -196,14 +196,14 @@
             Dim preMenuIndex As Integer = _menuIndex
 
             If _cursorDestPosition.X <> _cursorPosition.X Or _cursorDestPosition.Y <> _cursorPosition.Y Then
-                _cursorPosition.X = MathHelper.Lerp(_cursorDestPosition.X, _cursorPosition.X, 0.75F)
-                _cursorPosition.Y = MathHelper.Lerp(_cursorDestPosition.Y, _cursorPosition.Y, 0.75F)
+                _cursorPosition.X = CInt(MathHelper.Lerp(_cursorDestPosition.X, _cursorPosition.X, 0.75F))
+                _cursorPosition.Y = CInt(MathHelper.Lerp(_cursorDestPosition.Y, _cursorPosition.Y, 0.75F))
 
                 If Math.Abs(_cursorDestPosition.X - _cursorPosition.X) < 0.1F Then
-                    _cursorPosition.X = _cursorDestPosition.X
+                    _cursorPosition.X = CInt(_cursorDestPosition.X)
                 End If
                 If Math.Abs(_cursorDestPosition.Y - _cursorPosition.Y) < 0.1F Then
-                    _cursorPosition.Y = _cursorDestPosition.Y
+                    _cursorPosition.Y = CInt(_cursorDestPosition.Y)
                 End If
             End If
             If Math.Abs(_cursorDestPosition.Y - _cursorPosition.Y) < 5.0F Then
@@ -212,12 +212,12 @@
                         Dim pos = GetButtonPosition(i)
                         If New Rectangle(CInt(pos.X), CInt(pos.Y), 64 * 6, 64).Contains(MouseHandler.MousePosition) Then
                             If _menuIndex = i Then
-                                _cursorPosition.X = _cursorDestPosition.X
+                                _cursorPosition.X = CInt(_cursorDestPosition.X)
                                 SoundManager.PlaySound("select")
                                 PressButton()
                             Else
                                 _menuIndex = i
-                                _cursorDestPosition = New Vector2(MouseHandler.MousePosition.X, MouseHandler.MousePosition.Y - 42)
+                                SetCursorPosition(_menuIndex)
                                 preMenuIndex = _menuIndex 'Prevent the update of the mouse position below.
                                 Exit For
                             End If
@@ -225,7 +225,7 @@
                     Next
                 End If
                 If Controls.Accept(False, True, True) = True Then
-                    _cursorPosition.X = _cursorDestPosition.X
+                    _cursorPosition.X = CInt(_cursorDestPosition.X)
                     SoundManager.PlaySound("select")
                     PressButton()
                 End If
@@ -257,8 +257,10 @@
             End If
         End If
 
-        If Controls.Dismiss() = True Then
-            Core.SetScreen(PreScreen)
+        If CurrentScreen.Identification = Identifications.MenuScreen Then
+            If Controls.Dismiss() = True Then
+                Core.SetScreen(PreScreen)
+            End If
         End If
     End Sub
 

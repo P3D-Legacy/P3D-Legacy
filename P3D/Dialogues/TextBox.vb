@@ -99,27 +99,18 @@
     End Sub
 
     Private Sub FormatText()
-        Dim tokenSearchBuffer As String() = Me.Text.Split(CChar("<"))
-        Dim tokenEndIdx As Integer = 0
-        Dim validToken As String = ""
-        Dim token As Token = Nothing
-        For Each possibleToken As String In tokenSearchBuffer
-            tokenEndIdx = possibleToken.IndexOf(">")
-            If Not tokenEndIdx = -1 Then
-                validToken = possibleToken.Substring(0, tokenEndIdx)
-                If Localization.LocalizationTokens.ContainsKey(validToken) = True Then
-                    If Localization.LocalizationTokens.TryGetValue(validToken, token) = True Then
-                        Me.Text = Me.Text.Replace("<" & validToken & ">", token.TokenContent)
-                    End If
-                End If
-            End If
-        Next
-
         Me.Text = Me.Text.Replace("<playername>", Core.Player.Name)
+        Me.Text = Me.Text.Replace("<player.name>", Core.Player.Name)
+
         Me.Text = Me.Text.Replace("<rivalname>", Core.Player.RivalName)
+        Me.Text = Me.Text.Replace("<rival.name>", Core.Player.RivalName)
 
         Me.Text = Me.Text.Replace("[POKE]", "Poké")
         Me.Text = Me.Text.Replace("[POKEMON]", "Pokémon")
+
+        Dim ClockTime = New DateTime(My.Computer.Clock.LocalTime.Year, My.Computer.Clock.LocalTime.Month, My.Computer.Clock.LocalTime.Day, My.Computer.Clock.LocalTime.Hour, My.Computer.Clock.LocalTime.Minute, My.Computer.Clock.LocalTime.Second)
+        Me.Text = Me.Text.Replace("<clocktime>", ClockTime.ToString("t", New System.Globalization.CultureInfo("en-US")))
+        Me.Text = Me.Text.Replace("<daytime>", World.GetTime.ToString)
     End Sub
 
     Public Sub Update()
@@ -201,16 +192,7 @@
                     End If
                 End If
             Else
-                Dim ySpeed As Single = 3.5F
-                Select Case TextSpeed
-                    Case 1
-                        ySpeed = 3.5F
-                    Case 2
-                        ySpeed = 4.5F
-                    Case 3
-                        ySpeed = 6.5F
-                End Select
-                Me.PositionY -= ySpeed
+                Me.PositionY -= 8.0F
             End If
         Else
             If reDelay > 0.0F Then

@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Ancient Ruins]}}{"MusicLoop"{str[ancient_ruins]}}{"CurrentRegion"{str[Kanto]}}{"WildPokemon"{bool[1]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[3]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[30,2]}}{"Position"{intArr[-10,1,-1]}}{"TexturePath"{str[dungeon]}}{"Texture"{rec[0,0,16,16]}}]}}

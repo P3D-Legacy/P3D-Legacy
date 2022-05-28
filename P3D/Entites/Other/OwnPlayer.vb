@@ -2,19 +2,15 @@
 
     Inherits Entity
 
-    Public Shared ReadOnly AllowedSkins() As String = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda", "GoldRetro"}
-
     Public Texture As Texture2D
     Public SkinName As String = "Hilbert"
-
-    Public HasPokemonTexture As Boolean = False
 
     Dim lastRectangle As New Rectangle(0, 0, 0, 0)
     Dim lastTexture As String = ""
 
     Dim AnimationX As Integer = 1
-    Const AnimationDelayLenght As Single = 1.1F
-    Dim AnimationDelay As Single = AnimationDelayLenght
+    Const AnimationDelayLength As Single = 1.1F
+    Dim AnimationDelay As Single = AnimationDelayLength
     Public DoAnimation As Boolean = True
 
     Public UsingGameJoltTexture As Boolean = False
@@ -32,20 +28,14 @@
 
     Public Sub SetTexture(ByVal TextureID As String, ByVal UseGameJoltID As Boolean)
         Me.SkinName = TextureID
-        HasPokemonTexture = False
 
         Dim texturePath As String = "Textures\NPC\"
-        Dim isPokemon As Boolean = False
         If TextureID.StartsWith("[POKEMON|N]") Or TextureID.StartsWith("[Pokémon|N]") Then
             TextureID = TextureID.Remove(0, 11)
-            isPokemon = True
             texturePath = "Pokemon\Overworld\Normal\"
-            HasPokemonTexture = True
         ElseIf TextureID.StartsWith("[POKEMON|S]") Or TextureID.StartsWith("[Pokémon|S]") Then
             TextureID = TextureID.Remove(0, 11)
-            isPokemon = True
             texturePath = "Pokemon\Overworld\Shiny\"
-            HasPokemonTexture = True
         End If
 
         Dim PokemonAddition As String = ""
@@ -100,14 +90,8 @@
             If AnimationDelay <= 0.0F Then
                 AnimationDelay = GetAnimationDelay()
                 AnimationX += 1
-                If HasPokemonTexture = True Then
-                    If AnimationX > 2 Then
-                        AnimationX = 1
-                    End If
-                Else
-                    If AnimationX > 4 Then
-                        AnimationX = 1
-                    End If
+                If AnimationX > 4 Then
+                    AnimationX = 1
                 End If
             End If
         Else
@@ -137,6 +121,14 @@
 
             Dim frameSize As New Size(CInt(Me.Texture.Width / 3), CInt(Me.Texture.Height / 4))
 
+            If Me.Texture.Width = Me.Texture.Height / 2 Then
+                frameSize.Width = CInt(Me.Texture.Width / 2)
+            ElseIf Me.Texture.Width = Me.Texture.Height Then
+                frameSize.Width = CInt(Me.Texture.Width / 4)
+            Else
+                frameSize.Width = CInt(Me.Texture.Width / 3)
+            End If
+
             Dim x As Integer = 0
             If Screen.Camera.IsMoving() = True Then
                 x = GetAnimationX() * frameSize.Width
@@ -160,8 +152,28 @@
     End Sub
 
     Private Function GetAnimationX() As Integer
-        If HasPokemonTexture = True Then
-            Return AnimationX
+        If Me.Texture.Width = Me.Texture.Height / 2 Then
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 0
+                Case 4
+                    Return 1
+            End Select
+        ElseIf Me.Texture.Width = Me.Texture.Height Then
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 2
+                Case 4
+                    Return 3
+            End Select
         Else
             Select Case AnimationX
                 Case 1
@@ -174,8 +186,7 @@
                     Return 2
             End Select
         End If
-
-        Return 1
+        Return 0
     End Function
 
     Public Overrides Sub Render()
@@ -207,9 +218,9 @@
 
     Private Function GetAnimationDelay() As Single
         If Core.Player.IsRunning() = True Then
-            Return OwnPlayer.AnimationDelayLenght / 1.4F
+            Return OwnPlayer.AnimationDelayLength / 1.4F
         End If
-        Return OwnPlayer.AnimationDelayLenght
+        Return OwnPlayer.AnimationDelayLength
     End Function
 
 End Class

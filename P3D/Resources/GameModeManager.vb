@@ -378,12 +378,13 @@ Public Class GameMode
     ''' <param name="StartLocationName">The start location name for the new GameMode.</param>
     ''' <param name="PokemonAppear">The Pokémon that appear on the new game screen for the new GameMode.</param>
     ''' <param name="IntroMusic">The intro music that plays on the new game screen for the new GameMode.</param>
-    ''' <param name="IntroType">The type of intro used when starting a new game for the GameMode (0 = New Intro (3D), 1 = Old Intro (2D)).</param>
+    ''' <param name="IntroType">The type of intro used when starting a new game for the GameMode (0 = Old Intro (2D), 1 = New Intro (3D)).</param>
     ''' <param name="SkinColors">The skin colors for the new GameMode. Must be the same amount as SkinFiles and SkinNames.</param>
     ''' <param name="SkinFiles">The skin files for the new GameMode. Must be the same amount as SkinColors and SkinNames.</param>
     ''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
+    ''' <param name="SkinGenders">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
     Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule),
-                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String))
+                   ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String), ByVal SkinGenders As List(Of String))
         Me._name = Name
         Me._description = Description
         Me._version = Version
@@ -408,6 +409,7 @@ Public Class GameMode
         Me._skinColors = SkinColors
         Me._skinFiles = SkinFiles
         Me._skinNames = SkinNames
+        Me._skinGenders = SkinGenders
 
         Me._loaded = True
     End Sub
@@ -524,6 +526,14 @@ Public Class GameMode
                             If l.Count > 0 Then
                                 Me._skinNames = l
                             End If
+                        Case "skingenders"
+                            Dim l As New List(Of String)
+                            For Each skin As String In Value.Split(CChar(","))
+                                l.Add(skin)
+                            Next
+                            If l.Count > 0 Then
+                                Me._skinGenders = l
+                            End If
                     End Select
                 End If
             Next
@@ -556,9 +566,12 @@ Public Class GameMode
         Dim SkinColors As List(Of Color) = {New Color(248, 176, 32), New Color(248, 216, 88), New Color(56, 88, 200), New Color(216, 96, 112), New Color(56, 88, 152), New Color(239, 90, 156)}.ToList()
         Dim SkinFiles As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
         Dim SkinNames As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
+        Dim SkinGenders As List(Of String) = {"Male", "Female", "Male", "Female", "Male", "Female"}.ToList()
 
         Dim gameMode As New GameMode("Pokemon 3D", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule),
-                                     "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", "0", SkinColors, SkinFiles, SkinNames)
+                                     "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", "1", SkinColors, SkinFiles, SkinNames, SkinGenders)
+
+        gameMode.StartScript = "startscript\main"
 
         Dim gameRules As New List(Of GameRule)
         gameRules.Add(New GameRule("MaxLevel", "100"))
@@ -607,7 +620,8 @@ Public Class GameMode
             "StartDialogue|" & Me._startDialogue & Environment.NewLine &
             "StartColor|" & Me._startColor.R & "," & Me._startColor.G & "," & Me._startColor.B & Environment.NewLine &
             "PokemonAppear|" & Me._pokemonAppear & Environment.NewLine &
-            "IntroMusic|" & Me._introMusic & Environment.NewLine
+            "IntroMusic|" & Me._introMusic & Environment.NewLine &
+            "IntroType|" & Me._introType & Environment.NewLine
 
         Dim SkinColorsString As String = "SkinColors|"
         Dim iSC As Integer = 0
@@ -649,7 +663,21 @@ Public Class GameMode
             iSN += 1
         Next
 
-        s &= SkinNamesString
+        s &= SkinNamesString & Environment.NewLine
+
+        Dim SkinGendersString As String = "SkinGenders|"
+        Dim iSG As Integer = 0
+        For Each SkinGender As String In Me._skinGenders
+            If iSG > 0 Then
+                SkinGendersString &= ","
+            End If
+
+            SkinGendersString &= SkinGender
+
+            iSG += 1
+        Next
+
+        s &= SkinGendersString
 
         Dim folder As String = System.IO.Path.GetDirectoryName(File)
         If System.IO.Directory.Exists(folder) = False Then
@@ -838,6 +866,7 @@ Public Class GameMode
     Private _skinColors As New List(Of Color)
     Private _skinFiles As New List(Of String)
     Private _skinNames As New List(Of String)
+    Private _skinGenders As New List(Of String)
     Private _pokemonRange() As Integer
 
     ''' <summary>
@@ -1003,6 +1032,18 @@ Public Class GameMode
         End Get
         Set(value As List(Of String))
             Me._skinNames = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' The skin genders for this GameMode. Must be the same amount as SkinFiles and SkinColors.
+    ''' </summary>
+    Public Property SkinGenders() As List(Of String)
+        Get
+            Return Me._skinGenders
+        End Get
+        Set(value As List(Of String))
+            Me._skinGenders = value
         End Set
     End Property
 

@@ -31,11 +31,15 @@ Public Class DebugDisplay
                 cameraInformation = Screen.Camera.Position.ToString() & thirdPersonString & Environment.NewLine & Screen.Camera.Yaw & "; " & Screen.Camera.Pitch & Environment.NewLine
 
             End If
+            Dim MapPath As String = ""
+            If Screen.Level IsNot Nothing Then
+                MapPath = Environment.NewLine & "MapPath: " & Screen.Level.LevelFile.ToString
+            End If
 
             Dim s As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " / FPS: " & Math.Round(Core.GameInstance.FPSMonitor.Value, 0) & isDebugString & Environment.NewLine &
                 cameraInformation &
                 "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & Environment.NewLine &
-                "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString() & Environment.NewLine &
+                "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString() & MapPath &  Environment.NewLine &
                 "Lang: " & Localization.CurrentLanguage & Environment.NewLine &
                 "Screen: " & Localization.GetCurrentScreen
 

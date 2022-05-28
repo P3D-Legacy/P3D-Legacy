@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Tanoby Key]}}{"MusicLoop"{str[diglettscave]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"MapScript"{str[quest\tanoby\keymap]}}{"EnviromentType"{int[2]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"MapScript"{str[quest\tanoby\keymap]}}{"EnvironmentType"{int[2]}}{"Weather"{int[1]}}]}}
 
 Small:
 Floor:

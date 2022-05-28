@@ -36,11 +36,11 @@
         DrawRectangle(New Rectangle(Rectangle.X, Rectangle.Y, borderLength, Rectangle.Height - borderLength), color, ScaleToScreen)
     End Sub
 
-    Public Shared Sub DrawImageBorder(ByVal Texture As Texture2D, ByVal SizeMulitiplier As Integer, ByVal Rectangle As Rectangle, ByVal Color As Color, ByVal ScaleToScreen As Boolean)
+    Public Shared Sub DrawImageBorder(ByVal Texture As Texture2D, ByVal SizeMultiplier As Integer, ByVal Rectangle As Rectangle, ByVal Color As Color, ByVal ScaleToScreen As Boolean)
         Dim borderSize As New Vector2(Rectangle.Width, Rectangle.Height)
 
-        For x = 0 To borderSize.X Step CInt(Math.Floor(Texture.Width / 3)) * SizeMulitiplier
-            For y = 0 To borderSize.Y Step CInt(Math.Floor(Texture.Height / 3)) * SizeMulitiplier
+        For x = 0 To borderSize.X Step CInt(Math.Floor(Texture.Width / 3)) * SizeMultiplier
+            For y = 0 To borderSize.Y Step CInt(Math.Floor(Texture.Height / 3)) * SizeMultiplier
 
                 Dim width As Integer = CInt(Math.Floor(Texture.Width / 3))
                 Dim height As Integer = CInt(Math.Floor(Texture.Height / 3))
@@ -65,20 +65,20 @@
                 End If
 
                 If ScaleToScreen = True Then
-                    Core.SpriteBatch.DrawInterface(Texture, New Rectangle(CInt(Math.Floor(x)) + Rectangle.X, CInt(Math.Floor(y)) + Rectangle.Y, SizeMulitiplier * width, SizeMulitiplier * height), Tile, Color.White)
+                    Core.SpriteBatch.DrawInterface(Texture, New Rectangle(CInt(Math.Floor(x)) + Rectangle.X, CInt(Math.Floor(y)) + Rectangle.Y, SizeMultiplier * width, SizeMultiplier * height), Tile, Color.White)
                 Else
-                    Core.SpriteBatch.Draw(Texture, New Rectangle(CInt(Math.Floor(x)) + Rectangle.X, CInt(Math.Floor(y)) + Rectangle.Y, SizeMulitiplier * width, SizeMulitiplier * height), Tile, Color.White)
+                    Core.SpriteBatch.Draw(Texture, New Rectangle(CInt(Math.Floor(x)) + Rectangle.X, CInt(Math.Floor(y)) + Rectangle.Y, SizeMultiplier * width, SizeMultiplier * height), Tile, Color.White)
                 End If
             Next
         Next
     End Sub
 
-    Public Shared Sub DrawImageBorder(ByVal Texture As Texture2D, ByVal SizeMulitiplier As Integer, ByVal Rectangle As Rectangle)
-        DrawImageBorder(Texture, SizeMulitiplier, Rectangle, Color.White, False)
+    Public Shared Sub DrawImageBorder(ByVal Texture As Texture2D, ByVal SizeMultiplier As Integer, ByVal Rectangle As Rectangle)
+        DrawImageBorder(Texture, SizeMultiplier, Rectangle, Color.White, False)
     End Sub
 
-    Public Shared Sub DrawImageBorder(ByVal Texture As Texture2D, ByVal SizeMulitiplier As Integer, ByVal Rectangle As Rectangle, ByVal ScaleToScreen As Boolean)
-        DrawImageBorder(Texture, SizeMulitiplier, Rectangle, Color.White, ScaleToScreen)
+    Public Shared Sub DrawImageBorder(ByVal Texture As Texture2D, ByVal SizeMultiplier As Integer, ByVal Rectangle As Rectangle, ByVal ScaleToScreen As Boolean)
+        DrawImageBorder(Texture, SizeMultiplier, Rectangle, Color.White, ScaleToScreen)
     End Sub
 
 #End Region

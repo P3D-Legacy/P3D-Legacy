@@ -869,6 +869,7 @@ Namespace GameJolt
                 "MapFile|yourroom.dat" & Environment.NewLine &
                 "Rotation|1.570796" & Environment.NewLine &
                 "RivalName|???" & Environment.NewLine &
+                "RivalSkin|Silver" & Environment.NewLine &
                 "Money|3000" & Environment.NewLine &
                 "Badges|0" & Environment.NewLine &
                 "Gender|Male" & Environment.NewLine &
@@ -881,7 +882,7 @@ Namespace GameJolt
                 "thirdPerson|0" & Environment.NewLine &
                 "skin|" & GameJolt.Emblem.GetPlayerSpriteFile(1, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Gender) & Environment.NewLine &
                 "location|Your Room" & Environment.NewLine &
-                "battleAnimations|2" & Environment.NewLine &
+                "battleAnimations|1" & Environment.NewLine &
                 "BoxAmount|5" & Environment.NewLine &
                 "LastRestPlace|yourroom.dat" & Environment.NewLine &
                 "LastRestPlacePosition|1,0.1,3" & Environment.NewLine &

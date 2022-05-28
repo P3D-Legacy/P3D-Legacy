@@ -19,9 +19,11 @@
             LoadedMoves.Clear()
 
             If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
-                For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "\" & PATH, "*.dat")
-                    LoadMove(file)
-                Next
+                If System.IO.Directory.Exists(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "\" & PATH) = True Then
+                    For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "\" & PATH, "*.dat")
+                        LoadMove(file)
+                    Next
+                End If
             End If
 
             If LoadedMoves.Count > 0 Then

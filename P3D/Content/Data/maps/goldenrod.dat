@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Goldenrod City]}}{"MusicLoop"{str[Goldenrod]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[0]}}{"Lightning"{int[0]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}]}}
 
 Brick:
 {"Floor"{ENT[{"Size"{intArr[4,36]}}{"Position"{intArr[18,0,0]}}{"TexturePath"{str[Goldenrod]}}{"Texture"{rec[0,0,16,16]}}]}}

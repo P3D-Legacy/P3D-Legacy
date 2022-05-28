@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Kolben Tower]}}{"MusicLoop"{str[battletower]}}{"CurrentRegion"{str[Sevii Islands]}}{"RegionalForm"{str[alola]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"MapScript"{str[kolben\BSOD]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[3]}}{"MapScript"{str[kolben\BSOD]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[5,19]}}{"Position"{intArr[7,0,0]}}{"TexturePath"{str[kolben]}}{"Texture"{rec[0,0,16,16]}}]}}
@@ -71,7 +71,7 @@ Crates:
 {"EntityField"{ENT[{"Size"{intArr[1,5]}}{"Scale"{sngArr[0.45,0.45,0.45]}}{"Steps"{sngArr[1,4]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0.7,7]}}{"TexturePath"{str[rocketbase]}}{"Textures"{recArr[[16,0,16,16][32,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
 Boats:
-{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"Scale"{sngArr[0.002,0.002,0.002]}}{"EntityID"{str[ModelEntity]}}{"Position"{sngArr[6,0.77,7.4]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[models\boat\ship]}}{"Rotation"{int[2]}}]}}
+{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"Scale"{sngArr[0.00002,0.00002,0.00002]}}{"EntityID"{str[ModelEntity]}}{"Position"{sngArr[6,0.77,7.55]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[models\boat\SSAqua]}}{"Rotation"{int[2]}}]}}
 {"Entity"{ENT[{"ID"{int[0]}}{"Scale"{sngArr[0.07,0.07,0.07]}}{"EntityID"{str[ModelEntity]}}{"Position"{sngArr[6,0.72,10.6]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[models\boat2\boat]}}{"Rotation"{int[0]}}]}}
 
 

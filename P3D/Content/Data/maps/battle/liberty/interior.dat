@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Lighthouse Basement]}}{"MusicLoop"{str[darkcave]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"Weather"{int[1]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[3]}}{"Weather"{int[1]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[12,8]}}{"Position"{intArr[9,0,10]}}{"TexturePath"{str[park]}}{"Texture"{rec[0,80,16,16]}}]}}

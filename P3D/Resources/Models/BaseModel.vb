@@ -15,7 +15,7 @@
         Screen.Effect.TextureEnabled = True
         Screen.Effect.Alpha = Entity.Opacity
 
-        Screen.Effect.DiffuseColor = effectDiffuseColor * Entity.Shader
+        Screen.Effect.DiffuseColor = effectDiffuseColor * Entity.Shader * Entity.Color
 
         If Screen.Level.IsDark = True Then
             Screen.Effect.DiffuseColor *= New Vector3(0.5, 0.5, 0.5)
@@ -70,7 +70,9 @@
         End If
 
         Screen.Effect.DiffuseColor = effectDiffuseColor
-        If DebugDisplay.MaxDistance < Entity.CameraDistance Then DebugDisplay.MaxDistance = CInt(Entity.CameraDistance)
+        If DebugDisplay.MaxDistance < Entity.CameraDistance Then
+            DebugDisplay.MaxDistance = CInt(Entity.CameraDistance)
+        End If
     End Sub
 
     Private Sub ApplyTexture(ByVal texture As Texture2D)
@@ -97,6 +99,9 @@
     Public Shared StairsModel As StairsModel = New StairsModel()
     Public Shared DiagonalWallModel As DiagonalWallModel = New DiagonalWallModel()
     Public Shared HalfDiagonalWallModel As HalfDiagonalWallModel = New HalfDiagonalWallModel()
+    Public Shared OutsideStepModel As OutsideStepModel = New OutsideStepModel()
+    Public Shared WallModel As WallModel = New WallModel()
+    Public Shared CeilingModel As CeilingModel = New CeilingModel()
 
     Public Shared Function getModelbyID(ByVal ID As Integer) As BaseModel
         Select Case ID
@@ -138,6 +143,12 @@
                 Return DiagonalWallModel
             Case 18
                 Return HalfDiagonalWallModel
+            Case 19
+                Return OutsideStepModel
+            Case 20
+                Return WallModel
+            Case 21
+                Return CeilingModel
             Case Else
                 Return BlockModel
         End Select

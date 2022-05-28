@@ -8,8 +8,9 @@
     <OutputType>Library</OutputType>
     <RootNamespace>P3D.ContentPipeline</RootNamespace>
     <AssemblyName>P3D.ContentPipeline</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,12 +51,9 @@
     <None Include="Content\Models\boat2\Boat.fbx" />
     <None Include="Content\Models\boat\ferry.mtl" />
     <None Include="Content\Models\boat\ferry.obj" />
-    <None Include="Content\Models\boat\Ship.mtl" />
-    <None Include="Content\Models\boat\Ship.obj" />
-    <None Include="Content\Models\boat\textures\boat.tga" />
+    <None Include="Content\Models\boat\SSAqua.fbx" />
     <None Include="Content\Models\boat\textures\ferry.tga" />
-    <None Include="Content\Models\building\P3DBuilding.mtl" />
-    <None Include="Content\Models\building\P3DBuilding.obj" />
+    <None Include="Content\Models\building\KolbenTower.fbx" />
     <None Include="Content\Models\Environment\arena_colleseum.mtl" />
     <None Include="Content\Models\Environment\arena_colleseum.obj" />
     <None Include="Content\Models\Environment\MtSilver\Mountain.mtl" />
@@ -63,19 +61,10 @@
     <None Include="Content\Models\Environment\Test_floor\Test_floor.mtl" />
     <None Include="Content\Models\Environment\Test_floor\Test_floor.obj" />
     <None Include="Content\Models\Environment\Test_floor\Texture\floor.tga" />
-    <None Include="Content\Models\Snorlax\Normal.mtl" />
-    <None Include="Content\Models\Snorlax\Normal.obj" />
-    <None Include="Content\Models\Snorlax\Shiny.mtl" />
-    <None Include="Content\Models\Snorlax\Shiny.obj" />
-    <None Include="Content\Models\Snorlax\Textures\kabigon_0_0.tga" />
-    <None Include="Content\Models\Snorlax\Textures\kabigon_0_3.tga" />
-    <None Include="Content\Models\Snorlax\Textures\kabigon_0_4.tga" />
-    <None Include="Content\Models\Snorlax\Textures\kabigon_1_0.tga" />
-    <None Include="Content\Models\Snorlax\Textures\kabigon_1_3.tga" />
-    <None Include="Content\Models\Snorlax\Textures\kabigon_1_4.tga" />
-    <None Include="Content\Models\truck2\Truck.mtl" />
-    <None Include="Content\Models\truck2\Truck.obj" />
-    <None Include="Content\SkyDomeResource\SkyDome.x" />
+    <None Include="Content\Models\Snorlax\Normal.fbx" />
+    <None Include="Content\Models\Snorlax\Shiny.fbx" />
+    <None Include="Content\Models\truck2\Truck.fbx" />
+    <None Include="Content\SkyDomeResource\SkyDome.obj" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -83,14 +72,22 @@
     <Content Include="Content\Effects\GaussianBlur.fx" />
     <Content Include="Content\Fonts\BMP\Braille.png" />
     <Content Include="Content\Fonts\BMP\chatFont.png" />
+    <Content Include="Content\Fonts\BMP\chatFont.txt" />
     <Content Include="Content\Fonts\BMP\GameJolt.png" />
     <Content Include="Content\Fonts\BMP\InGame.png" />
+    <Content Include="Content\Fonts\BMP\InGame.txt" />
     <Content Include="Content\Fonts\BMP\mainFont.png" />
+    <Content Include="Content\Fonts\BMP\mainFont.txt" />
     <Content Include="Content\Fonts\BMP\TextFont.png" />
+    <Content Include="Content\Fonts\BMP\TextFont.txt" />
     <Content Include="Content\Fonts\BMP\Unown.png" />
     <Content Include="Content\Models\boat2\Boat.png" />
-    <Content Include="Content\Models\building\textures\P3DBuilding.png" />
-    <Content Include="Content\Models\truck2\140l155.jpg" />
+    <Content Include="Content\Models\boat\SSAqua.png" />
+    <Content Include="Content\Models\building\KolbenTower.png" />
+    <Content Include="Content\Models\Snorlax\Snorlax_Normal.png" />
+    <Content Include="Content\Models\Snorlax\Snorlax_Shiny.png" />
+    <Content Include="Content\Models\truck2\Truck.png" />
+    <Content Include="Content\ttf2bmp.exe" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework, Version=3.7.1.189, Culture=neutral, processorArchitecture=MSIL">

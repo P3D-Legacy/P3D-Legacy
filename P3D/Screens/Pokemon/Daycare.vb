@@ -140,7 +140,9 @@
             Dim EVStat1 As String = ""
             Dim EVStat2 As String = ""
 
-            Dim EVItems() As String = {"power weight", "power bracer", "power belt", "power lens", "power band", "power anklet"}
+            Dim DKnot As Boolean = False
+
+            Dim EVItems() As String = {"power weight", "power bracer", "power belt", "power lens", "power band", "power anklet", "destiny knot"}
             If Not parent1.Item Is Nothing Then
                 If EVItems.Contains(parent1.Item.Name.ToLower()) = True Then
                     Select Case parent1.Item.Name.ToLower()
@@ -156,6 +158,8 @@
                             EVStat1 = "Special Defense"
                         Case "power anklet"
                             EVStat1 = "Speed"
+                        Case "destiny knot"
+                            DKnot = True
                     End Select
                 End If
             End If
@@ -174,6 +178,8 @@
                             EVStat2 = "Special Defense"
                         Case "power anklet"
                             EVStat2 = "Speed"
+                        Case "destiny knot"
+                            DKnot = True
                     End Select
                 End If
             End If
@@ -190,7 +196,7 @@
                 End If
             End If
 
-            While IV1.Count + IV2.Count < 3
+            While IV1.Count + IV2.Count < (3 + CInt(DKnot) * 2)
                 Dim newStat As String = ""
                 While newStat = "" Or IV1.Contains(newStat) = True Or IV2.Contains(newStat) = True
                     Select Case Core.Random.Next(0, 6)
@@ -315,12 +321,12 @@
             Dim Shiny1 As Boolean = parent1.IsShiny
             Dim Shiny2 As Boolean = parent2.IsShiny
 
-            Dim chances As List(Of Integer) = {1, 4096}.ToList()
+            Dim chances As List(Of Integer) = {1, Pokemon.MasterShinyRate}.ToList()
 
             If Shiny1 = True And Shiny2 = True Then
-                chances = {12, 4096}.ToList()
+                chances = {12, Pokemon.MasterShinyRate}.ToList() '12/base rate odds
             ElseIf Shiny1 = True Or Shiny2 = True Then
-                chances = {6, 4096}.ToList()
+                chances = {6, Pokemon.MasterShinyRate}.ToList() '6/base rate odds
             End If
 
             If Core.Random.Next(0, chances(1)) < chances(0) Then
@@ -335,7 +341,7 @@
         Return Nothing
     End Function
 
-    Public Shared Function CanBreed(ByVal Pokemon As List(Of Pokemon)) As Integer
+    Public Shared Function CanBreed(ByVal Pokemon As List(Of Pokemon), Optional ByVal multiplier As Boolean = True) As Integer
         Dim chance As Integer = 0
 
         If Pokemon.Count = 2 Then
@@ -409,7 +415,7 @@
             End If
         End If
 
-        If chance > 0 Then
+        If chance > 0 And multiplier = True Then
             If Core.Player.Inventory.GetItemAmount(241) > 0 Then
                 chance = CInt(chance * 1.3F)
             End If
@@ -418,7 +424,7 @@
         Return chance
     End Function
 
-    Public Shared Function CanBreed(ByVal daycareID As Integer) As Integer
+    Public Shared Function CanBreed(ByVal daycareID As Integer, Optional ByVal multiplier As Boolean = True) As Integer
         Dim l As New List(Of Pokemon)
 
         For Each line As String In Core.Player.DaycareData.SplitAtNewline()
@@ -429,15 +435,15 @@
             End If
         Next
 
-        Return CanBreed(l)
+        Return CanBreed(l, multiplier)
     End Function
 
-    Public Shared Function CanBreed(ByVal Pokemon As Dictionary(Of Integer, Pokemon)) As Integer
+    Public Shared Function CanBreed(ByVal Pokemon As Dictionary(Of Integer, Pokemon), Optional ByVal multiplier As Boolean = True) As Integer
         Dim l As New List(Of Pokemon)
         For i = 0 To Pokemon.Count - 1
             l.Add(Pokemon.Values(i))
         Next
-        Return CanBreed(l)
+        Return CanBreed(l, multiplier)
     End Function
 
     Private Shared Function GetEggPokemonID(ByVal Pokemon As Dictionary(Of Integer, Pokemon)) As Integer

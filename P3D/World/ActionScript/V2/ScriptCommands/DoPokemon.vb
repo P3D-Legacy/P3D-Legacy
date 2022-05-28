@@ -23,7 +23,8 @@
                         Core.Player.Pokemons.RemoveAt(index)
                     End If
                 Case "add"
-                    ' PokemonID,Level,Method,Ball,Location,IsEgg,TrainerName,HeldItem
+                    ' @Pokemon.Add([PartyIndex], PokemonData)
+                    ' @Pokemon.Add(PokemonID, Level, [Method], [BallID], [Location], [isEgg], [trainerName], [heldItem], [isShiny])
 
                     If argument.StartsWith("{") = True Or argument.Remove(0, 1).StartsWith(",{") = True Then
                         Dim insertIndex As Integer = Core.Player.Pokemons.Count
@@ -86,6 +87,9 @@
                         End If
 
                         Dim isShiny As Boolean = False
+                        If Core.Random.Next(0, P3D.Pokemon.MasterShinyRate) = 0 Then
+                            isShiny = True
+                        End If
                         If commas > 7 Then
                             isShiny = CBool(argument.GetSplit(8))
                         End If
@@ -253,8 +257,6 @@
                     CType(Core.CurrentScreen, PartyScreen).ExitedSub = AddressOf Script.ExitedNPCTrade
 
                     CanContinue = False
-                Case "hide"
-                    Screen.Level.OverworldPokemon.Visible = False
                 Case "rename"
                     Dim index As String = argument
                     Dim renameOTcheck As Boolean = False
@@ -595,16 +597,20 @@
                         Core.Player.Pokemons(Index).CatchLocation = place
                     End If
                 Case "newroaming"
-                    ' PokémonID,Level,regionID,startLevelFile,MusicLoop
+                    ' PokémonID,Level,regionID,startLevelFile,MusicLoop,[Shiny]
                     Dim data() As String = argument.Split(CChar(","))
                     Dim p As Pokemon = Pokemon.GetPokemonByID(CInt(data(0)))
                     p.Generate(CInt(data(1)), True)
+
+                    If data.Length > 5 AndAlso data(5) <> "" AndAlso data(5) <> "-1" Then
+                        p.IsShiny = CBool(data(5))
+                    End If
 
                     If Core.Player.RoamingPokemonData <> "" Then
                         Core.Player.RoamingPokemonData &= Environment.NewLine
                     End If
 
-                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & p.GetSaveData()
+                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & data(5) & "|" & p.GetSaveData()
                 Case "evolve"
                     Dim args() As String = argument.Split(CChar(","))
                     Dim triggerStr As String = "level"
@@ -784,6 +790,9 @@
                         End If
 
                         Dim isShiny As Boolean = False
+                        If Core.Random.Next(0, P3D.Pokemon.MasterShinyRate) = 0 Then
+                            isShiny = True
+                        End If
                         If commas > 7 Then
                             isShiny = CBool(argument.GetSplit(8))
                         End If

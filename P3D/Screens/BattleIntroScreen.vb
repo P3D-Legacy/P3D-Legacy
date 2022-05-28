@@ -15,7 +15,7 @@
 
     Dim Trainer As Trainer
 
-    Dim minDelay As Single = 16.0F
+    Dim minDelay As Single = 4.0F
     Dim startTime As Date
     Dim duration As TimeSpan
 
@@ -23,17 +23,19 @@
 
     Public Sub New(ByVal OldScreen As Screen, ByVal NewScreen As Screen, ByVal IntroType As Integer)
         Dim musicLoop As String = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_intro"
-
-        If BattleSystem.BattleScreen.RoamingBattle = True Then
-            If BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop <> "" Then
-                musicLoop = BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop & "_intro"
+        If Not BattleSystem.BattleScreen.CustomBattleMusic = "" OrElse MusicManager.SongExists(BattleSystem.BattleScreen.CustomBattleMusic) = True Then
+            musicLoop = BattleSystem.BattleScreen.CustomBattleMusic & "_intro"
+        Else
+            If BattleSystem.BattleScreen.RoamingBattle = True Then
+                If BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop <> "" Then
+                    musicLoop = BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop & "_intro"
+                End If
             End If
         End If
 
         If MusicManager.SongExists(musicLoop) = False Then
             musicLoop = "johto_wild_intro"
         End If
-        musicLoop = musicLoop
 
         Me.Constructor(OldScreen, NewScreen, Nothing, musicLoop, IntroType)
     End Sub
@@ -41,21 +43,18 @@
     Public Sub New(ByVal OldScreen As Screen, ByVal NewScreen As Screen, ByVal IntroType As Integer, ByVal MusicLoop As String)
         If MusicLoop = "" Then
             MusicLoop = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_intro"
-            If MusicManager.SongExists(MusicLoop) = False Then
+            If MusicManager.SongExists(MusicLoop) = True Then
                 If BattleSystem.BattleScreen.RoamingBattle = True Then
                     If BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop <> "" Then
                         MusicLoop = BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop & "_intro"
                     End If
                 End If
-                If MusicManager.SongExists(MusicLoop) = False Then
-                    MusicLoop = "johto_wild_intro"
-                End If
             End If
-            MusicLoop = MusicLoop
-        Else
-            MusicLoop = MusicLoop
-        End If
 
+            If MusicManager.SongExists(MusicLoop) = False Then
+                MusicLoop = "johto_wild_intro"
+            End If
+        End If
         Me.Constructor(OldScreen, NewScreen, Nothing, MusicLoop, IntroType)
     End Sub
 
@@ -172,6 +171,7 @@
     Private Sub DrawTrainerIntro()
         Dim barPosition As Vector2 = New Vector2(Trainer.BarImagePosition.X * 128, Trainer.BarImagePosition.Y * 128)
         Dim VSPosition As Vector2 = New Vector2(Trainer.VSImagePosition.X * 128, Trainer.VSImagePosition.Y * 128 + 64)
+        Dim TrainerFrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Height / 4))
 
         If Trainer.VSImageOrigin <> "VSIntro" Then
             VSPosition.Y -= 64
@@ -179,17 +179,18 @@
 
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
         Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\" & Trainer.VSImageOrigin, New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), Trainer.VSImageSize.Width, Trainer.VSImageSize.Height), "")
-        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, 64, 32, 32))
+        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, TrainerFrameSize.Height * 2, TrainerFrameSize.Width, TrainerFrameSize.Height))
         Dim t4 As Texture2D = Nothing
         If Trainer.DoubleTrainer = True Then
-            t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, 64, 32, 32))
+            Dim Trainer2FrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Height / 4))
+            t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, Trainer2FrameSize.Height * 2, Trainer2FrameSize.Width, Trainer2FrameSize.Height))
         End If
 
         If Trainer.GameJoltID <> "" Then
             If GameJolt.Emblem.HasDownloadedSprite(Trainer.GameJoltID) = True Then
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
-                If t IsNot Nothing Then
-                    Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
+                If Not t Is Nothing Then
+                    Dim spriteSize As New Vector2(CInt(t.Width / 3), CInt(t.Height / 4))
                     t3 = TextureManager.GetTexture(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
             End If
@@ -238,20 +239,22 @@
     Private Sub DrawFaceshotIntro()
         Dim barPosition As Vector2 = New Vector2(Trainer.BarImagePosition.X * 128, Trainer.BarImagePosition.Y * 128)
         Dim VSPosition As Vector2 = New Vector2(Trainer.VSImagePosition.X * 128, Trainer.VSImagePosition.Y * 128 + 64)
+        Dim TrainerFrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Height / 4))
 
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
         Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), 61, 54), "")
-        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, 64, 32, 32))
+        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, TrainerFrameSize.Height * 2, TrainerFrameSize.Width, TrainerFrameSize.Height))
         Dim t4 As Texture2D = Nothing
         If Trainer.DoubleTrainer = True Then
-            t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, 64, 32, 32))
+            Dim Trainer2FrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Height / 4))
+            t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, Trainer2FrameSize.Height * 2, Trainer2FrameSize.Width, Trainer2FrameSize.Height))
         End If
 
         If Trainer.GameJoltID <> "" Then
             If GameJolt.Emblem.HasDownloadedSprite(Trainer.GameJoltID) = True Then
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
-                If t IsNot Nothing Then
-                    Dim spriteSize As New Vector2(t.Width / 3.0F, t.Height / 4.0F)
+                If Not t Is Nothing Then
+                    Dim spriteSize As New Vector2(CInt(t.Width / 3), CInt(t.Height / 4))
                     t3 = TextureManager.GetTexture(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
             End If
@@ -453,22 +456,22 @@
 
     Private Sub UpdateBlockIn()
         If Animations.Count = 0 Then
-            Animations.Add(New Rectangle(CInt(Core.windowSize.Width / 2) - 10, CInt(Core.windowSize.Height / 2) - 10, 20, 20))
+            Animations.Add(New Rectangle(CInt(Core.windowSize.Width / 2 - (Core.windowSize.Width / 100 / 2)), CInt(Core.windowSize.Height / 2 - (Core.windowSize.Height / 100 / 2)), CInt(Core.windowSize.Width / 100), CInt(Core.windowSize.Height / 100)))
         Else
-            If Animations(0).Width >= Core.windowSize.Width Then
+            Dim Speed As Integer = CInt(Me.duration.TotalMilliseconds / Core.windowSize.Height * 4)
+            If Animations(0).Height >= Core.windowSize.Height + 128 Then
                 ready = True
-            Else
-                Dim a As Rectangle = Animations(0)
-
-                a.X -= 7
-                a.Y -= 7
-
-                a.Width += 14
-                a.Height += 14
-
-                Animations.RemoveAt(0)
-                Animations.Add(a)
             End If
+            Dim a As Rectangle = Animations(0)
+
+            a.X -= CInt(Speed)
+            a.Y -= CInt(Speed / 16 * 9)
+
+            a.Width += Speed * 2
+            a.Height += CInt(Speed * 2 / 16 * 9)
+
+            Animations.RemoveAt(0)
+            Animations.Add(a)
         End If
     End Sub
 
@@ -476,10 +479,10 @@
         If Animations.Count = 0 Then
             Animations.Add(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height))
         Else
-            If value >= Core.windowSize.Height / 2 Then
+            If value >= Core.windowSize.Height / 2 + 4 Then
                 ready = True
             Else
-                value += CInt(Math.Ceiling(Core.windowSize.Height / 300))
+                value += CInt(Math.Ceiling(Me.duration.TotalMilliseconds / Core.windowSize.Height * 3))
             End If
         End If
     End Sub
@@ -504,10 +507,37 @@
         Player.Temp.BeforeBattlePosition = Screen.Camera.Position
         Player.Temp.BeforeBattleLevelFile = Screen.Level.LevelFile
         Player.Temp.BeforeBattleFacing = Screen.Camera.GetPlayerFacingDirection()
-        MusicManager.Play(MusicLoop, False, 0F, False)
+        Dim b As BattleSystem.BattleScreen = CType(Me.NewScreen, BattleSystem.BattleScreen)
 
-        If MusicManager.CurrentSong IsNot Nothing Then
-            Me.duration = MusicManager.CurrentSong.Duration
+        If BattleSystem.BattleScreen.CustomBattleMusic = "" OrElse MusicManager.SongExists(BattleSystem.BattleScreen.CustomBattleMusic) = False Then
+            If b.IsPVPBattle = True Then
+                MusicManager.Play(MusicLoop, False, 0.0F, False, "pvp")
+            Else
+                If b.IsTrainerBattle = True Then
+                    MusicManager.Play(MusicLoop, False, 0.0F, False, Trainer.GetBattleMusicName())
+                ElseIf Screen.Level.IsSafariZone = True Or Screen.Level.IsBugCatchingContest = True Then
+                    If MusicManager.SongExists(Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
+                        MusicManager.Play(MusicLoop, False, 0.0F, False, Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild")
+                    Else
+                        MusicManager.Play(MusicLoop, False, 0.0F, False, "johto_wild")
+                    End If
+                Else
+                    If BattleSystem.BattleScreen.RoamingBattle = True AndAlso BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop <> "" AndAlso MusicManager.SongExists(BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop) = True Then
+                        MusicManager.Play(MusicLoop, True, 0.0F, False, BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop)
+                    Else
+                        If MusicManager.SongExists(Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild") = True Then
+                            MusicManager.Play(MusicLoop, False, 0.0F, False, Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild")
+                        Else
+                            MusicManager.Play(MusicLoop, False, 0.0F, False, "johto_wild")
+                        End If
+                    End If
+                End If
+            End If
+        Else
+            MusicManager.Play(MusicLoop, True, 0.0F, False, BattleSystem.BattleScreen.CustomBattleMusic)
+        End If
+        If Not MusicLoop Is Nothing Then
+            Me.duration = MusicManager.GetSong(MusicLoop).Duration
         Else
             Me.duration = New TimeSpan(0)
         End If
@@ -515,7 +545,7 @@
     End Sub
 
     Private Function SongOver() As Boolean
-        Return startTime + duration < Date.Now.AddSeconds(0.1)
+        Return startTime + duration < Date.Now
     End Function
 
     'Protected Overrides Sub Finalize()

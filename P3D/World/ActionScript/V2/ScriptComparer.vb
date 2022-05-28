@@ -221,7 +221,8 @@ Namespace ScriptVersion2
                         End If
                         foundNOT = False
 
-                        output &= resultValue.ToString()
+                        input = resultValue.ToString() & input
+
                     Else
                         output &= input(0)
                         input = input.Remove(0, 1)

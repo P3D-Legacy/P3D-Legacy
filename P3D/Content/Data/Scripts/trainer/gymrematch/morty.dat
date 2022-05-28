@@ -1,5 +1,5 @@
 version=2
-:if:<register.registered(clubextendinvite)>=true <and> <register.registered(mortytruerematch)>=true <and> <register.registered(EusineRematchTalk)>=false
+:if:<register.registered(clubextendinvite)>=true <and> <register.registered(mortytruerematch)>=true <and> <register.registered(EusineRematchTalk)>=false <and> <register.registered(suicunebattle)>=true
 	@text.show(You can only reach~a high level if~you're willing to~embrace new~challengers.*I'll invite Eusine~to the club.*I'm sure he'll be~able to enrich our~training.)
 	@register.register(EusineRematchTalk)
 	:end

@@ -38,7 +38,7 @@ Public Class TextureManager
                         End Try
                     End Using
                 Else
-                    Logger.Log(Logger.LogTypes.ErrorMessage, "Texures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
+                    Logger.Log(Logger.LogTypes.ErrorMessage, "Textures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
                     Return DefaultTexture
                 End If
             Else
@@ -82,15 +82,15 @@ Public Class TextureManager
         Dim tSource As TextureSource = ContentPackManager.GetTextureReplacement(TexturePath & Name, r)
 
         Dim cContent As ContentManager = ContentPackManager.GetContentManager(tSource.TexturePath, ".xnb,.png")
-        Dim resolution As Integer = ContentPackManager.GetTextureResolution(TexturePath & Name)
+        Dim resolution As Single = ContentPackManager.GetTextureResolution(TexturePath & Name)
 
-        Dim tKey As String = cContent.RootDirectory & "\" & TexturePath & Name & "," & r.X & "," & r.Y & "," & r.Width & "," & r.Height & "," & resolution
+        Dim tKey As String = cContent.RootDirectory & "\" & tSource.TexturePath & "," & tSource.TextureRectangle.X & "," & tSource.TextureRectangle.Y & "," & tSource.TextureRectangle.Width & "," & tSource.TextureRectangle.Height & "," & resolution
         If TextureList.ContainsKey(tKey) = False Then
             Dim t As Texture2D = Nothing
             Dim doApplyEffect As Boolean = True
 
-            If TextureList.ContainsKey(cContent.RootDirectory & "\" & TexturePath & Name) = True Then
-                t = TextureList(cContent.RootDirectory & "\" & TexturePath & Name)
+            If TextureList.ContainsKey(cContent.RootDirectory & "\" & tSource.TexturePath) = True Then
+                t = TextureList(cContent.RootDirectory & "\" & tSource.TexturePath)
                 doApplyEffect = False
             Else
                 If System.IO.File.Exists(GameController.GamePath & "\" & cContent.RootDirectory & "\" & tSource.TexturePath & ".xnb") = False Then
@@ -104,14 +104,14 @@ Public Class TextureManager
                             End Try
                         End Using
                     Else
-                        Logger.Log(Logger.LogTypes.ErrorMessage, "Texures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
+                        Logger.Log(Logger.LogTypes.ErrorMessage, "Textures.vb: Texture """ & GameController.GamePath & "\" & cContent.RootDirectory & "\" & Name & """ was not found!")
                         Return DefaultTexture
                     End If
                 Else
                     t = cContent.Load(Of Texture2D)(tSource.TexturePath)
                 End If
 
-                TextureList.Add(cContent.RootDirectory & "\" & TexturePath & Name, ApplyEffect(t.Copy()))
+                TextureList.Add(cContent.RootDirectory & "\" & tSource.TexturePath, ApplyEffect(t.Copy()))
             End If
 
             If doApplyEffect = True Then
@@ -135,7 +135,7 @@ Public Class TextureManager
         Return GetTexture(Name, r, "Textures\")
     End Function
 
-    Public Shared Function GetTexture(ByVal Texture As Texture2D, ByVal Rectangle As Rectangle, Optional ByVal Factor As Integer = 1) As Texture2D
+    Public Shared Function GetTexture(ByVal Texture As Texture2D, ByVal Rectangle As Rectangle, Optional ByVal Factor As Single = 1) As Texture2D
         Dim tex As Texture2D = Nothing
 
         If TextureRectList.TryGetValue(New KeyValuePair(Of Int32, Rectangle)(Texture.GetHashCode(), Rectangle), tex) Then
@@ -148,11 +148,11 @@ Public Class TextureManager
         Return tex
     End Function
 
-    Private Shared Function TextureRectangle(ByVal Texture As Texture2D, ByVal Rectangle As Rectangle, Optional ByVal Factor As Integer = 1) As Texture2D
+    Private Shared Function TextureRectangle(ByVal Texture As Texture2D, ByVal Rectangle As Rectangle, Optional ByVal Factor As Single = 1) As Texture2D
         If Rectangle = Rectangle.Empty Then
             Return Texture
         Else
-            Rectangle = New Rectangle(Rectangle.X * Factor, Rectangle.Y * Factor, Rectangle.Width * Factor, Rectangle.Height * Factor)
+            Rectangle = New Rectangle(CInt(Rectangle.X * Factor), CInt(Rectangle.Y * Factor), CInt(Rectangle.Width * Factor), CInt(Rectangle.Height * Factor))
 
             Dim tRectangle As New Rectangle(0, 0, Texture.Width, Texture.Height)
             If tRectangle.Contains(Rectangle) = False Then

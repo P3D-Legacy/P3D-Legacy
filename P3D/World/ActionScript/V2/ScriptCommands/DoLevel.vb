@@ -68,6 +68,7 @@
                     IsReady = True
                 Case "setsafari"
                     Screen.Level.IsSafariZone = CBool(argument)
+                    IsReady = True
             End Select
         End Sub
 

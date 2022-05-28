@@ -68,11 +68,7 @@
                 Case "name"
                     Return Core.Player.Name
                 Case "gender"
-                    If Core.Player.Male = True Then
-                        Return "1"
-                    Else
-                        Return "0"
-                    End If
+                    Return Core.Player.Gender
                 Case "bp"
                     Return Core.Player.BP.ToString()
                 Case "badges"
@@ -81,6 +77,8 @@
                     Return ReturnBoolean(CType(Screen.Camera, OverworldCamera).ThirdPerson)
                 Case "rival", "rivalname"
                     Return Core.Player.RivalName
+                Case "rivalskin"
+                    Return Core.Player.RivalSkin
                 Case "ot"
                     Return Core.Player.OT
                 Case "gamejoltid"
@@ -89,6 +87,12 @@
                     Return ReturnBoolean(Core.Player.HasPokedex)
                 Case "haspokegear"
                     Return ReturnBoolean(Core.Player.HasPokegear)
+                Case "isgamejolt"
+                    '<player.isgamejolt([bool_checkban=0])
+                    If argument = "1" Then
+                        ReturnBoolean(Core.Player.IsGameJoltSave = True AndAlso GameJolt.LogInScreen.UserBanned(GameJoltSave.GameJoltID) = False)
+                    End If
+                    Return ReturnBoolean(Core.Player.IsGameJoltSave)
             End Select
             Return DEFAULTNULL
         End Function

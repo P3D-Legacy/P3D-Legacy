@@ -14,6 +14,7 @@ Public Class OverworldCamera
     Private _cPosition As Vector3 = Vector3.Zero 'Actual camera position.
     Private _isFixed As Boolean = False
     Private _aimDirection As Integer = -1 'The direction the camera is aiming to face.
+    Public _debugWalk As Boolean
 
     Private _bobbingTemp As Single = 0F
     Private _tempDirectionPressed As Integer = -1
@@ -168,6 +169,16 @@ Public Class OverworldCamera
 #Region "Update"
 
     Public Overrides Sub Update()
+
+        If KeyBoardHandler.KeyPressed(KeyBindings.DebugWalkKey) = True Then
+            _debugWalk = Not _debugWalk
+        End If
+        If KeyBoardHandler.KeyPressed(KeyBindings.RunKey) = True Or ControllerHandler.ButtonPressed(Buttons.B) = True Then
+            If Screen.Level.Riding = False And Screen.Level.Surfing = False And Core.Player.Inventory.HasRunningShoes = True Then
+                Core.Player.RunToggled = Not Core.Player.RunToggled
+            End If
+        End If
+
         Ray = CreateRay()
 
         PlayerMovement()
@@ -407,18 +418,16 @@ Public Class OverworldCamera
 #Region "CameraMethods"
 
     Private Sub SetSpeed()
-        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
-            Speed = 0.04F
-        Else
+        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
             If Screen.Level.Riding = True Then
                 Speed = 0.08F
-            Else
-                If Core.Player.IsRunning() = True Then
-                    Speed = 0.06F
+            ElseIf Screen.Level.Surfing = True Then
+                Speed = 0.04F
+            ElseIf Core.Player.IsRunning() = True Then
+                Speed = 0.06F
                 Else
                     Speed = 0.04F
                 End If
-            End If
         End If
         Screen.Level.OverworldPokemon.MoveSpeed = Speed
     End Sub
@@ -498,7 +507,7 @@ Public Class OverworldCamera
 
             If clockwise = True Then
                 ClampYaw()
-                Yaw -= RotationSpeed * 35.0F
+                Yaw -= RotationSpeed * 40.0F
                 If Yaw <= yawAim Then
                     Turning = False
                     _aimDirection = -1
@@ -507,7 +516,7 @@ Public Class OverworldCamera
                 End If
             Else
                 ClampYaw()
-                Yaw += RotationSpeed * 35.0F
+                Yaw += RotationSpeed * 40.0F
                 If Yaw >= yawAim Then
                     Turning = False
                     _aimDirection = -1
@@ -539,12 +548,12 @@ Public Class OverworldCamera
         End If
 
         If Pitch > aim Then
-            Pitch -= RotationSpeed * 35.0F
+            Pitch -= RotationSpeed * 40.0F
             If Pitch < aim Then
                 Pitch = aim
             End If
         ElseIf Pitch < aim Then
-            Pitch += RotationSpeed * 35.0F
+            Pitch += RotationSpeed * 40.0F
             If Pitch > aim Then
                 Pitch = aim
             End If
@@ -622,7 +631,7 @@ Public Class OverworldCamera
             isActionscriptReady = OS.ActionScript.IsReady
         End If
 
-        If isActionscriptReady = True And Screen.Level.CanMove() = True Then
+        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False And Screen.Level.CanMove() = True Then
             If _thirdPerson = False And _cameraFocusType = CameraFocusTypes.Player Then
                 FirstPersonMovement()
             Else
@@ -644,7 +653,7 @@ Public Class OverworldCamera
         If YawLocked = False And Turning = False Then
             If (KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = True) And Turning = False Then
                 If _freeCameraMode = True Then
-                    Yaw += RotationSpeed * 35.0F
+                    Yaw += RotationSpeed * 40.0F
 
                     ClampYaw()
                 Else
@@ -662,7 +671,7 @@ Public Class OverworldCamera
             End If
             If (KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True) And Turning = False Then
                 If _freeCameraMode = True Then
-                    Yaw -= RotationSpeed * 35.0F
+                    Yaw -= RotationSpeed * 40.0F
 
                     ClampYaw()
                 Else
@@ -838,9 +847,8 @@ Public Class OverworldCamera
             End If
         End If
 
-        'DebugFeature:
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            If KeyBoardHandler.KeyDown(Keys.LeftControl) = True Then
+            If _debugWalk = True AndAlso CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
                 cannotWalk = False
             End If
         End If
@@ -1020,7 +1028,7 @@ Public Class OverworldCamera
     End Sub
 
     Private Sub ControlThirdPersonCamera()
-        If GameController.IS_DEBUG_ACTIVE = True Then
+        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
             If Controls.CtrlPressed() = True Then
                 If KeyBoardHandler.KeyDown(KeyBindings.UpKey) = True Then
                     ThirdPersonOffset.Y += Speed

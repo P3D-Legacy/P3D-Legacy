@@ -24,9 +24,8 @@
     Public moving As Boolean = False
     Dim lastRectangle As New Rectangle(0, 0, 0, 0)
     Dim AnimationX As Integer = 1
-    Const AnimationDelayLenght As Single = 1.1F
-    Dim AnimationDelay As Single = AnimationDelayLenght
-    Public HasPokemonTexture As Boolean = False
+    Const AnimationDelayLength As Single = 1.1F
+    Dim AnimationDelay As Single = AnimationDelayLength
 
     Dim NameTexture As Texture2D
 
@@ -86,13 +85,6 @@
         Else
             If TextureManager.TextureExist(texturePath) = True Then
                 Logger.Debug("Change network texture to [" & texturePath & "]")
-
-                If texturePath.StartsWith("Pokemon\") = True Then
-                    Me.HasPokemonTexture = True
-                Else
-                    Me.HasPokemonTexture = False
-                End If
-
                 Me.Texture = TextureManager.GetTexture(texturePath)
             Else
                 Logger.Debug("Texture fallback!")
@@ -111,14 +103,11 @@
 
     Public Shared Function GetTexturePath(ByVal TextureID As String) As String
         Dim texturePath As String = "Textures\NPC\"
-        Dim isPokemon As Boolean = False
         If TextureID.StartsWith("[POKEMON|N]") = True Or TextureID.StartsWith("[Pokémon|N]") = True Then
             TextureID = TextureID.Remove(0, 11)
-            isPokemon = True
             texturePath = "Pokemon\Overworld\Normal\"
         ElseIf TextureID.StartsWith("[POKEMON|S]") = True Or TextureID.StartsWith("[Pokémon|S]") = True Then
             TextureID = TextureID.Remove(0, 11)
-            isPokemon = True
             texturePath = "Pokemon\Overworld\Shiny\"
         End If
         Return texturePath & TextureID
@@ -144,14 +133,22 @@
                 End Select
             End If
 
-            Dim spriteSize As New Size(CInt(Me.Texture.Width / 3), CInt(Me.Texture.Height / 4))
+            Dim frameSize As New Size(CInt(Me.Texture.Width / 3), CInt(Me.Texture.Height / 4))
+
+            If Me.Texture.Width = Me.Texture.Height / 2 Then
+                frameSize.Width = CInt(Me.Texture.Width / 2)
+            ElseIf Me.Texture.Width = Me.Texture.Height Then
+                frameSize.Width = CInt(Me.Texture.Width / 4)
+            Else
+                frameSize.Width = CInt(Me.Texture.Width / 3)
+            End If
 
             Dim x As Integer = 0
             If Me.moving = True Then
-                x = GetAnimationX() * spriteSize.Width
+                x = GetAnimationX() * frameSize.Width
             End If
 
-            r = New Rectangle(x, spriteSize.Height * spriteIndex, spriteSize.Width, spriteSize.Height)
+            r = New Rectangle(x, frameSize.Height * spriteIndex, frameSize.Width, frameSize.Height)
 
             If r <> lastRectangle Then
                 lastRectangle = r
@@ -162,7 +159,7 @@
     End Sub
 
     Private Function GetAnimationX() As Integer
-        If Me.HasPokemonTexture = True Then
+        If Me.Texture.Width = Me.Texture.Height / 2 Then
             Select Case AnimationX
                 Case 1
                     Return 0
@@ -173,25 +170,37 @@
                 Case 4
                     Return 1
             End Select
+        ElseIf Me.Texture.Width = Me.Texture.Height Then
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 2
+                Case 4
+                    Return 3
+            End Select
+        Else
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 0
+                Case 4
+                    Return 2
+            End Select
         End If
-        Select Case AnimationX
-            Case 1
-                Return 0
-            Case 2
-                Return 1
-            Case 3
-                Return 0
-            Case 4
-                Return 2
-        End Select
-        Return 1
+        Return 0
     End Function
 
     Private Sub Move()
         If Me.moving = True Then
             Me.AnimationDelay -= 0.1F
             If Me.AnimationDelay <= 0.0F Then
-                Me.AnimationDelay = AnimationDelayLenght
+                Me.AnimationDelay = AnimationDelayLength
                 AnimationX += 1
                 If AnimationX > 4 Then
                     AnimationX = 1
@@ -360,11 +369,11 @@
                 Dim renderTarget As RenderTarget2D = New RenderTarget2D(Core.GraphicsDevice, CInt(size.X), CInt(size.Y * 3))
                 Core.GraphicsDevice.SetRenderTarget(renderTarget)
 
-                Core.GraphicsDevice.Clear(Color.Transparent)
+                Core.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Transparent)
 
                 Core.SpriteBatch.Begin()
                 Canvas.DrawRectangle(New Rectangle(0, 0, CInt(size.X), CInt(size.Y)), New Color(0, 0, 0, 150))
-                Core.SpriteBatch.DrawString(font, text, Vector2.Zero, Color.White)
+                Core.SpriteBatch.DrawString(font, text, Vector2.Zero, Microsoft.Xna.Framework.Color.White)
                 Core.SpriteBatch.End()
 
                 Core.GraphicsDevice.SetRenderTarget(Nothing)

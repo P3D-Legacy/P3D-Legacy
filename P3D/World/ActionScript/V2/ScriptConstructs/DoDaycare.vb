@@ -154,8 +154,12 @@
                     Next
                 Case "canbreed"
                     Dim dayCareID As Integer = int(argument.GetSplit(0))
+                    Dim wmultiplier As Boolean = True
+                    If argument.Contains(CChar(",")) Then
+                        wmultiplier = CBool(argument.GetSplit(1))
+                    End If
 
-                    Return Daycare.CanBreed(dayCareID)
+                    Return Daycare.CanBreed(dayCareID, wmultiplier)
             End Select
 
             Return DEFAULTNULL

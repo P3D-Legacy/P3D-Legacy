@@ -37,9 +37,9 @@ Public Class NameObjectScreen
         Me.PreScreen = CurrentScreen
         Me.MouseVisible = True
         Me.CanChat = False
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
         Me.CanBePaused = False
-
+        Me._canChooseNo = True
         Me._pokemon = Pokemon
         Me._defaultName = Pokemon.GetDisplayName()
         Me._renamePokemon = True
@@ -70,7 +70,7 @@ Public Class NameObjectScreen
         Me.MouseVisible = True
         Me.CanBePaused = True
         Me.CanChat = False
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
 
         Screen.PokemonImageView.Show(Texture)
     End Sub
@@ -152,6 +152,7 @@ Public Class NameObjectScreen
         End If
 
         PokemonImageView.Draw()
+        ImageView.Draw()
     End Sub
 
     Private Function TextboxPosition() As Vector2

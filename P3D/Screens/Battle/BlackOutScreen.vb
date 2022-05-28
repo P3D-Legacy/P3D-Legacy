@@ -49,7 +49,7 @@
                 End If
             Else
                 If Controls.Accept(True, True) = True Then
-                    SoundManager.PlaySound("pokemon_heal")
+                    SoundManager.PlaySound("Heal_Party")
 
                     If FromBattle = True Then
                         Core.Player.HealParty()

@@ -1,7 +1,7 @@
 Namespace Items.XItems
 
     <Item(53, "X Sp. Atk.")>
-    Public Class XSpecial
+    Public Class XSpAtk
 
         Inherits XItem
 
@@ -38,7 +38,7 @@ Namespace Items.XItems
                 Screen.TextBox.Show("Cannot boost~ " & p.GetDisplayName() & "'s Special Attack!", {}, False, False)
                 Return False
             Else
-                Logger.Log(Logger.LogTypes.Warning, "XSpecial.vb: Used outside of battle environment!")
+                Logger.Log(Logger.LogTypes.Warning, "XSpAtk.vb: Used outside of battle environment!")
                 Return False
             End If
         End Function

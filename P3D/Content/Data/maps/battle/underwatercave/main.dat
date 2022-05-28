@@ -1,4 +1,4 @@
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[3]}}{"Weather"{int[1]}}{"Lightning"{int[3]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[3]}}{"Weather"{int[1]}}{"Lighting"{int[3]}}]}}
 
 {"Backdrop"{BAC[{"Position"{sngArr[-20,6.5,-20]}}{"Size"{intArr[70,65]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[texture]}}{"TexturePath"{str[UnderwaterCave]}}{"Texture"{rec[16,0,16,16]}}]}}
 

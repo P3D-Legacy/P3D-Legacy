@@ -23,13 +23,21 @@
             _rivalName = value
         End Set
     End Property
-
-    Public Property Male() As Boolean
+    Public Property RivalSkin() As String
         Get
-            Return _male
+            Return _rivalSkin
         End Get
-        Set(value As Boolean)
-            _male = value
+        Set(value As String)
+            _rivalSkin = value
+        End Set
+    End Property
+
+    Public Property Gender() As String
+        Get
+            Return _gender
+        End Get
+        Set(value As String)
+            _gender = value
         End Set
     End Property
 
@@ -356,7 +364,7 @@
     Public Trophies As New List(Of Integer)
 
     'Non-secure fields:
-    Public ShowBattleAnimations As Integer = 2
+    Public ShowBattleAnimations As Integer = 1
     Public BoxAmount As Integer = 10
     Public DiagonalMovement As Boolean = False
     Public DifficultyMode As Integer = 0
@@ -368,8 +376,9 @@
 
     'Secure fields:
     Private _name As String = "<playername>"
-    Private _rivalName As String = ""
-    Private _male As Boolean = True
+    Private _rivalName As String = "???"
+    Private _rivalSkin As String = "Silver"
+    Private _gender As String = "Male"
     Private _money As Integer = 0
     Private _OT As String = "00000"
     Private _points As Integer = 0
@@ -421,6 +430,9 @@
     Public loadedSave As Boolean = False
 
     Public PlayerTemp As New PlayerTemp()
+
+    Public RunMode As Boolean = True
+    Public RunToggled As Boolean = False
 
     Public Structure Temp
         Public Shared PokemonScreenIndex As Integer = 0
@@ -758,6 +770,8 @@
                         startMap = Value
                     Case "rivalname"
                         RivalName = Value
+                    Case "rivalskin"
+                        RivalSkin = Value
                     Case "money"
                         Money = CInt(Value)
                     Case "badges"
@@ -778,11 +792,13 @@
                         End If
                     Case "rotation"
                         startRotation = CSng(Value.Replace(".", GameController.DecSeparator))
-                    Case "Gender"
-                        If Value = "Male" Then
-                            Male = True
+                    Case "gender"
+                        If Value = "0" Then
+                            Gender = "Male"
+                        ElseIf Value = "1" Then
+                            Gender = "Female"
                         Else
-                            Male = False
+                            Gender = "Other"
                         End If
                     Case "playtime"
                         Dim dd() As String = Value.Split(CChar(","))
@@ -807,6 +823,8 @@
                         Skin = Value
                     Case "battleanimations"
                         ShowBattleAnimations = CInt(Value)
+                    Case "runmode"
+                        RunMode = CBool(Value)
                     Case "boxamount"
                         BoxAmount = CInt(Value)
                     Case "lastrestplace"
@@ -875,12 +893,12 @@
         If IsGameJoltSave = True And startSurfing = False Then
             Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
             Select Case GameJoltSave.Gender
-                Case "0"
-                    Male = True
-                Case "1"
-                    Male = False
+                Case "Male"
+                    Gender = "Male"
+                Case "Female"
+                    Gender = "Female"
                 Case Else
-                    Male = True
+                    Gender = "Other"
             End Select
         End If
 
@@ -1055,9 +1073,17 @@
                         Dim newP As Pokemon = Pokemon.GetPokemonByID(CInt(data(0)))
                         newP.Generate(CInt(data(1)), True)
 
-                        RoamingPokemonData &= newP.Number.ToString() & "|" & newP.Level.ToString() & "|" & data(2) & "|" & data(3) & "||" & newP.GetSaveData()
+                        RoamingPokemonData &= newP.Number.ToString() & "|" & newP.Level.ToString() & "|" & data(2) & "|" & data(3) & "||" & newP.IsShiny.ToNumberString() & "|" & newP.GetSaveData()
                     Else
-                        RoamingPokemonData &= line
+                        If line.CountSeperators("|") < 6 Then
+                            'Update to include shiny
+                            Dim data() As String = line.Split(CChar("|"))
+                            Dim newP As Pokemon = Pokemon.GetPokemonByData(data(5))
+
+                            RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & newP.IsShiny.ToNumberString() & "|" & data(5)
+                        Else
+                            RoamingPokemonData &= line
+                        End If
                     End If
                 Next
             End If
@@ -1223,10 +1249,12 @@
 
     Public Function GetPlayerData(ByVal IsAutosave As Boolean) As String
         Dim GenderString As String = ""
-        If Male = True Then
+        If Gender = "Male" Then
             GenderString = "Male"
-        Else
+        ElseIf Gender = "Female" Then
             GenderString = "Female"
+        Else
+            GenderString = "Other"
         End If
 
         Dim badgeString As String = ""
@@ -1287,19 +1315,21 @@
             "MapFile|" & Screen.Level.LevelFile & Environment.NewLine &
             "Rotation|" & c.Yaw.ToString.Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "RivalName|" & RivalName & Environment.NewLine &
+            "RivalSkin|" & RivalSkin & Environment.NewLine &
             "Money|" & Money & Environment.NewLine &
             "Badges|" & badgeString & Environment.NewLine &
             "Gender|" & GenderString & Environment.NewLine &
             "PlayTime|" & PlayTimeString & Environment.NewLine &
             "OT|" & OT & Environment.NewLine &
             "Points|" & Points.ToString() & Environment.NewLine &
-            "hasPokedex|" & hasPokedexString & Environment.NewLine &
-            "hasPokegear|" & HasPokegear.ToNumberString() & Environment.NewLine &
-            "freeCamera|" & freeCameraString & Environment.NewLine &
-            "thirdPerson|" & c.ThirdPerson.ToNumberString() & Environment.NewLine &
-            "skin|" & skin & Environment.NewLine &
-            "location|" & Screen.Level.MapName & Environment.NewLine &
-            "battleAnimations|" & ShowBattleAnimations.ToString() & Environment.NewLine &
+            "HasPokedex|" & hasPokedexString & Environment.NewLine &
+            "HasPokegear|" & HasPokegear.ToNumberString() & Environment.NewLine &
+            "FreeCamera|" & freeCameraString & Environment.NewLine &
+            "ThirdPerson|" & c.ThirdPerson.ToNumberString() & Environment.NewLine &
+            "Skin|" & skin & Environment.NewLine &
+            "Location|" & Screen.Level.MapName & Environment.NewLine &
+            "BattleAnimations|" & ShowBattleAnimations.ToString() & Environment.NewLine &
+            "RunMode|" & RunMode.ToNumberString() & Environment.NewLine &
             "BoxAmount|" & BoxAmount.ToString() & Environment.NewLine &
             "LastRestPlace|" & LastRestPlace & Environment.NewLine &
             "LastRestPlacePosition|" & LastRestPlacePosition & Environment.NewLine &
@@ -1309,7 +1339,7 @@
             "LastSavePlacePosition|" & LastSavePlacePosition & Environment.NewLine &
             "Difficulty|" & DifficultyMode.ToString() & Environment.NewLine &
             "BattleStyle|" & BattleStyle.ToString() & Environment.NewLine &
-            "saveCreated|" & SaveCreated & Environment.NewLine &
+            "SaveCreated|" & SaveCreated & Environment.NewLine &
             "LastPokemonPosition|" & lastPokemonPosition & Environment.NewLine &
             "DaycareSteps|" & DaycareSteps.ToString() & Environment.NewLine &
             "GameMode|" & GameMode & Environment.NewLine &
@@ -1807,7 +1837,7 @@
                                     "@Text.Show(Your repel effect wore off.*Do you want to use~another <inventory.name(" & Temp.LastUsedRepel & ")>?)" & Environment.NewLine &
                                     "@Options.Show(Yes,No)" & Environment.NewLine &
                                     ":when:Yes" & Environment.NewLine &
-                                    "@sound.play(repel_use)" & Environment.NewLine &
+                                    "@sound.play(Use_Repel)" & Environment.NewLine &
                                     "@Text.Show(<player.name> used~a <inventory.name(" & Temp.LastUsedRepel & ")>.)" & Environment.NewLine &
                                     "@item.repel(" & Temp.LastUsedRepel & ")" & Environment.NewLine &
                                     "@item.remove(" & Temp.LastUsedRepel & ",1,0)" & Environment.NewLine &
@@ -1991,12 +2021,13 @@
     End Function
 
     Public Function IsRunning() As Boolean
-        If KeyBoardHandler.KeyDown(Keys.LeftShift) = True Or ControllerHandler.ButtonDown(Buttons.B) = True Then
+        If RunMode = True Then
+            Return RunToggled
+        ElseIf KeyBoardHandler.KeyDown(Keys.LeftShift) = True Or ControllerHandler.ButtonDown(Buttons.B) = True Then
             If Screen.Level.Riding = False And Screen.Level.Surfing = False And Inventory.HasRunningShoes = True Then
                 Return True
             End If
         End If
-
         Return False
     End Function
 
@@ -2019,7 +2050,7 @@
             'Restore default values:
             Name = "<playername>"
             RivalName = ""
-            Male = True
+            RivalSkin = ""
             Money = 0
             PlayTime = TimeSpan.Zero
             GameStart = Date.Now
@@ -2029,7 +2060,7 @@
             Coins = 0
             HasPokedex = False
             HasPokegear = False
-            ShowBattleAnimations = 2
+            ShowBattleAnimations = 1
             BoxAmount = 10
             LastRestPlace = "yourroom.dat"
             LastRestPlacePosition = "1,0.1,3"

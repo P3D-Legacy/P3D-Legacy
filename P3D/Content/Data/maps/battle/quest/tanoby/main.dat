@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Tanoby Ruins]}}{"MusicLoop"{str[RouteMusic4]}}{"CurrentRegion"{str[sevii islands]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[1]}}{"Lightning"{int[0]}}{"BattleMap"{str[quest\tanoby\main.dat,106.7,0,3]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[1]}}{"Lighting"{int[0]}}{"BattleMap"{str[quest\tanoby\main.dat,106.7,0,3]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[17,12]}}{"Position"{intArr[112,0,3]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[16,16,16,16]}}]}}

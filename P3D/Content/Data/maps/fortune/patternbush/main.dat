@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Pattern Bush]}}{"MusicLoop"{str[viridian_forest]}}{"CurrentRegion"{str[Sevii Islands]}}{"RegionalForm"{str[alola]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[0]}}{"Lightning"{int[2]}}{"BattleMap"{str[fortune\patternbush\main.dat,0,0,-0.6]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[2]}}{"BattleMap"{str[fortune\patternbush\main.dat,0,0,-0.6]}}]}}
 
 Floors:
 {"Floor"{ENT[{"Size"{intArr[60,30]}}{"Position"{intArr[2,0,2]}}{"TexturePath"{str[berryForest]}}{"Texture"{rec[0,0,16,16]}}]}}

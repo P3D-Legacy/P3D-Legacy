@@ -114,9 +114,9 @@
                 End If
 
                 For i = 0 To Core.Player.Pokemons.Count - 1
-                    Dim Pos As New Vector2(Delta_X + 390 + (i Mod 3) * 80, Delta_Y + 50 + CInt(Math.Floor(i / 3)) * 64)
+                    Dim Pos As New Vector2(Delta_X + 390 + (i Mod 3) * 80, Delta_Y + 50 + CInt(Math.Floor(i / 3)) * 80)
                     Dim pokeTexture = Core.Player.Pokemons(i).GetMenuTexture()
-                    .Draw(pokeTexture, New Rectangle(CInt(Pos.X) - CInt(pokeTexture.Width - 32), CInt(Pos.Y), pokeTexture.Width * 2, 64), Color.White)
+                    .Draw(pokeTexture, New Rectangle(CInt(Pos.X), CInt(Pos.Y), 64, 64), Color.White)
 
                     If Not Core.Player.Pokemons(i).Item Is Nothing And Core.Player.Pokemons(i).IsEgg() = False Then
                         .Draw(Core.Player.Pokemons(i).Item.Texture, New Rectangle(CInt(Pos.X) + 36, CInt(Pos.Y) + 36, 32, 32), Color.White)

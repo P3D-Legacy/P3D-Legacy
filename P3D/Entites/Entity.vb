@@ -22,6 +22,7 @@
     Public Visible As Boolean = True
     Public Shader As New Vector3(1.0F)
     Public Shaders As New List(Of Vector3)
+    Public Color As Vector3 = New Vector3(1.0F)
 
     Public CameraDistanceDelta As Single = 0.0F
 
@@ -472,9 +473,9 @@
         If Not Screen.Level.World Is Nothing Then
             Select Case Screen.Level.World.EnvironmentType
                 Case P3D.World.EnvironmentTypes.Outside
-                    Me.Shader = SkyDome.GetDaytimeColor(True).ToVector3()
+                    Me.Shader = New Vector3(1.0F)
                 Case P3D.World.EnvironmentTypes.Dark
-                    Me.Shader = New Vector3(0.5F, 0.5F, 0.6F)
+                    Me.Shader = New Vector3(0.5F, 0.5F, 0.5F)
                 Case Else
                     Me.Shader = New Vector3(1.0F)
             End Select
@@ -523,7 +524,7 @@
 
                 If Me.EntityID <> "Floor" And Me.EntityID <> "Water" Then
                     If drawViewBox = True Then
-                        BoundingBoxRenderer.Render(ViewBox, Core.GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Color.LightCoral)
+                        BoundingBoxRenderer.Render(ViewBox, GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.LightCoral)
                     End If
                 End If
             Else

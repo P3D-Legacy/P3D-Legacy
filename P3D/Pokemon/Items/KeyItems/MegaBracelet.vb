@@ -5,7 +5,7 @@ Namespace Items.KeyItems
 
         Inherits KeyItem
 
-        Public Overrides ReadOnly Property Description As String = "This bracelet contains an untold power that somehow enables Pokémon carrying a Mega Stone to Mega Evolve in battle. "
+        Public Overrides ReadOnly Property Description As String = "This bracelet contains an untold power that somehow enables Pokémon carrying a Mega Stone to Mega Evolve in battle."
 
         Public Sub New()
             _textureRectangle = New Rectangle(312, 288, 24, 24)

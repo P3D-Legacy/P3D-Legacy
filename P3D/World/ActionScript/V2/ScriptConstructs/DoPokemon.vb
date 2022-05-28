@@ -449,6 +449,13 @@
                     If Core.Player.Pokemons.Count - 1 >= index Then
                         Return Core.Player.Pokemons(index).EggSteps
                     End If
+                Case "mastershinyrate"
+                    '<pokemon.mastershinyrate([bool_globalmodifiers=1])>
+                    Dim adjusted As Boolean = True
+                    If argument <> "" Then
+                        adjusted = CBool(argument)
+                    End If
+                    Return Pokemon.MasterShinyRate(adjusted)
             End Select
             Return DEFAULTNULL
         End Function

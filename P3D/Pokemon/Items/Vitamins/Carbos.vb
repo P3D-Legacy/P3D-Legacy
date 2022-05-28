@@ -6,6 +6,7 @@ Namespace Items.Vitamins
         Inherits VitaminItem
 
         Public Overrides ReadOnly Property Description As String = "A nutritious drink for Pokémon. When consumed, it raises the base Speed stat of a single Pokémon."
+        Public Overrides ReadOnly Property PluralName As String = "Carboses"
 
         Public Sub New()
             _textureRectangle = New Rectangle(120, 24, 24, 24)
@@ -18,7 +19,7 @@ Namespace Items.Vitamins
                 p.EVSpeed += 10
                 p.ChangeFriendShip(Pokemon.FriendShipCauses.Vitamin)
 
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show("Raised " & p.GetDisplayName() & "'s~Speed.", {}, False, False)
                 PlayerStatistics.Track("[25]Vitamins used", 1)
 

@@ -26,7 +26,7 @@
 
         Me.MouseVisible = False
         Me.CanBePaused = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
         Me.CanChat = True
         Me.CanTakeScreenshot = True
         Me.CanDrawDebug = True

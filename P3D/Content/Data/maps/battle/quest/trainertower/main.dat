@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Trainer Tower]}}{"MusicLoop"{str[RouteMusic4]}}{"CurrentRegion"{str[sevii islands]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[1]}}{"Lightning"{int[0]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[1]}}{"Lighting"{int[0]}}]}}
 
 Floor:
 {"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[9,6]}}{"Position"{intArr[10,0,9]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}

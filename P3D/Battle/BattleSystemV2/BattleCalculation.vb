@@ -955,6 +955,20 @@
                 End If
             End If
 
+            With BattleScreen.FieldEffects
+                If move.GetAttackType(own, BattleScreen).Type = Element.Types.Fire Then
+                    If own = True Then
+                        If .OppTarShot = True Then
+                            effectiveness *= 2
+                        End If
+                    Else
+                        If .OwnTarShot = True Then
+                            effectiveness *= 2
+                        End If
+                    End If
+                End If
+            End With
+
             If move.UseEffectiveness = False And effectiveness <> 0.0F Then
                 Return 1.0F
             End If

@@ -55,16 +55,23 @@
             If PokemonImageView.Showing = True Then
                 PokemonImageView.Update()
             End If
+            If ImageView.Showing = True Then
+                ImageView.Update()
+            End If
 
             'If no dialogue is showing, do level update tasks:
-            If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False Then
+            If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False And ImageView.Showing = False Then
                 If Me.ActionScript.IsReady Then
                     Camera.Update()
                     Level.Update()
                 End If
                 If ActionScript.Scripts.Count = 0 Then
                     If CurrentScreen.Identification = Screen.Identifications.NewGameScreen Then
-                        Core.SetScreen(New TransitionScreen(CurrentScreen, New OverworldScreen(), Color.Black, False, AddressOf RemoveFade))
+                        If OverworldScreen.FadeValue > 0 Then
+                            Core.SetScreen(New TransitionScreen(CurrentScreen, New OverworldScreen(), Color.Black, False, AddressOf RemoveFade))
+                        Else
+                            Core.SetScreen(New OverworldScreen())
+                        End If
                     Else
                         'Dim fadeSpeed As Integer = 12
                         'If OverworldScreen.FadeValue > 0 Then
@@ -98,6 +105,7 @@
             Level.Draw()
 
             PokemonImageView.Draw()
+            ImageView.Draw()
             TextBox.Draw()
 
             'Only draw the ChooseBox when it's the current screen, cause the same ChooseBox might get used on other screens.
@@ -111,7 +119,7 @@
         End Sub
 
         Public Shared Sub EndNewGame(ByVal map As String, ByVal x As Single, ByVal y As Single, ByVal z As Single, ByVal rot As Integer)
-            Dim folderPath As String = Core.Player.Name
+            Dim folderPath As String = Core.Player.Name.Replace("\", "_").Replace("/", "_").Replace(":", "_").Replace("*", "_").Replace("?", "_").Replace("""", "_").Replace("<", "_").Replace(">", "_").Replace("|", "_").Replace(",", "_").Replace(".", "_")
             Dim folderPrefix As Integer = 0
 
             If folderPath.ToLower() = "autosave" Then
@@ -152,8 +160,6 @@
             Core.Player.BerryData = CreateBerryData()
             Core.Player.AddVisitedMap("yourroom.dat")
             Core.Player.SaveCreated = GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION
-            Core.Player.RivalName = "???"
-
 
             Dim ot As String = Core.Random.Next(0, 999999).ToString()
             While ot.Length < 6
@@ -202,7 +208,10 @@
 
             Inherits Screen
 
-            Private _skins As String()
+            Private _skins As New List(Of String)
+            Private _names As New List(Of String)
+            Private _colors As New List(Of Color)
+            Private _genders As New List(Of String)
             Private _sprites As New List(Of Texture2D)
 
             Private _offset As Single = 0F
@@ -221,7 +230,7 @@
                 End Set
             End Property
 
-            Public Sub New(ByVal currentScreen As Screen, ByVal skins As String())
+            Public Sub New(ByVal currentScreen As Screen)
                 Identification = Identifications.CharacterSelectionScreen
                 PreScreen = currentScreen
                 CanBePaused = True
@@ -230,12 +239,16 @@
                 CanGoFullscreen = True
                 CanTakeScreenshot = True
                 MouseVisible = True
+                SelectedSkin = ""
 
-                For Each skin As String In skins
+                For Each skin As String In GameModeManager.ActiveGameMode.SkinFiles
                     _sprites.Add(TextureManager.GetTexture("Textures\NPC\" & skin))
                 Next
 
-                _skins = skins
+                _skins = GameModeManager.ActiveGameMode.SkinFiles
+                _names = GameModeManager.ActiveGameMode.SkinNames
+                _genders = GameModeManager.ActiveGameMode.SkinGenders
+                _colors = GameModeManager.ActiveGameMode.SkinColors
             End Sub
 
             Public Overrides Sub Update()
@@ -291,11 +304,11 @@
 
             Public Overrides Sub Draw()
                 PreScreen.Draw()
+                Dim backcolor As New Color(_colors(_index), CInt(100 * _fadeIn))
 
-                Canvas.DrawRectangle(windowSize, Screens.UI.ColorProvider.MainColor(False, CInt(100 * _fadeIn)))
+                Canvas.DrawRectangle(windowSize, backcolor)
 
-                DrawGradients(255)
-
+                SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("select_apperance"), New Vector2(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.Translate("select_apperance")).X + 2, 100 + 2), New Color(0, 0, 0, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
                 SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("select_apperance"), New Vector2(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.Translate("select_apperance")).X, 100), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
 
                 For i = 0 To _sprites.Count - 1
@@ -307,7 +320,8 @@
                     SpriteBatch.Draw(sprite, New Rectangle(CInt(windowSize.Width / 2 - CInt(outSize / 2) + i * 280 - _index * 280 + _offset), CInt(windowSize.Height / 2 - 128), outSize, outSize), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), New Color(255, 255, 255, CInt(255 * _fadeIn)))
                 Next
 
-                SpriteBatch.DrawString(FontManager.MainFont, _skins(_index), New Vector2(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(_skins(_index)).X / 2.0F, windowSize.Height / 2.0F + 200), New Color(255, 255, 255, CInt(255 * _fadeIn)))
+                SpriteBatch.DrawString(FontManager.MainFont, _names(_index), New Vector2(CInt(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(_names(_index)).X), CInt(windowSize.Height / 2.0F + 200)), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
+                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("global_" & _genders(_index).ToLower(), _genders(_index)), New Vector2(CInt(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.GetString("global_" & _genders(_index).ToLower(), _genders(_index))).X / 2.0F), CInt(windowSize.Height / 2.0F + 300)), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
             End Sub
 
         End Class

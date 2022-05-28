@@ -37,7 +37,7 @@ Namespace Items.Berries
                 Dim t As String = "Restored PP of~" & Pokemon.Attacks(AttackIndex).Name & "."
                 t &= RemoveItem()
 
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {}, True, True)
             Else
                 Screen.TextBox.Show("The move already has~full PP.", {}, True, True)

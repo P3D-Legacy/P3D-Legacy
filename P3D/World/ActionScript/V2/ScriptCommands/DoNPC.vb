@@ -100,7 +100,7 @@
                     End If
                 Case "setmovey"
                     Dim targetNPC As NPC = Screen.Level.GetNPC(int(argument.GetSplit(0)))
-                    Dim steps As Integer = int(argument.GetSplit(1))
+                    Dim steps As Single = sng(argument.GetSplit(1))
 
                     targetNPC.MoveY = steps
 

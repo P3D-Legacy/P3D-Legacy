@@ -4,7 +4,7 @@
     Public ShowDebug As Integer = 0
     Public ShowGUI As Boolean = True
     Public GraphicStyle As Integer = 1
-    Public LoadOffsetMaps As Integer = 10
+    Public LoadOffsetMaps As Integer = 1
     Public ContentPackNames() As String = {}
     Public ViewBobbing As Boolean = True
     Public LightingEnabled As Boolean = True
@@ -16,6 +16,7 @@
     Public UpdateDisabled As Boolean = False
     Public Language As String = Localization.CurrentLanguage
     Public Extras As New List(Of String)
+    Public ChangedPack As Boolean = False
 
     Public Sub LoadOptions()
         KeyBindings.CreateKeySave(False)
@@ -83,7 +84,7 @@
                         End If
                     Case "viewbobbing"
                         Me.ViewBobbing = CBool(value)
-                    Case "lightningenabled"
+                    Case "lightingenabled", "lightningenabled"
                         Me.LightingEnabled = CBool(value)
                     Case "gamepadenabled"
                         Me.GamePadEnabled = CBool(value)
@@ -147,7 +148,7 @@
                 "Language|" & Me.Language & Environment.NewLine &
                 "ViewBobbing|" & Me.ViewBobbing.ToNumberString() & Environment.NewLine &
                 "GamePadEnabled|" & Me.GamePadEnabled.ToNumberString() & Environment.NewLine &
-                "LightningEnabled|" & Me.LightingEnabled.ToNumberString() & Environment.NewLine &
+                "LightingEnabled|" & Me.LightingEnabled.ToNumberString() & Environment.NewLine &
                 "StartedOfflineGame|" & Me.StartedOfflineGame.ToNumberString() & Environment.NewLine &
                 "PreferMultiSampling|" & Core.GraphicsManager.PreferMultiSampling.ToNumberString() & Environment.NewLine &
                 "ContentPacks|" & ContentPackString & Environment.NewLine &
@@ -174,11 +175,11 @@
             "ShowDebugConsole|0" & Environment.NewLine &
             "ShowGUI|1" & Environment.NewLine &
             "GraphicStyle|1" & Environment.NewLine &
-            "LoadOffsetMaps|10" & Environment.NewLine &
+            "LoadOffsetMaps|1" & Environment.NewLine &
             "Language|en" & Environment.NewLine &
             "ViewBobbing|1" & Environment.NewLine &
             "GamePadEnabled|1" & Environment.NewLine &
-            "LightningEnabled|1" & Environment.NewLine &
+            "LightingEnabled|1" & Environment.NewLine &
             "StartedOfflineGame|0" & Environment.NewLine &
             "PreferMultiSampling|1" & Environment.NewLine &
             "ContentPacks|" & Environment.NewLine &

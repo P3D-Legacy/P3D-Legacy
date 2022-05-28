@@ -154,7 +154,7 @@ Public Class TradeScreen
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
 
         Me.MouseVisible = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
         Me.CanBePaused = True
 
         Me.CanBuyItems = canBuy
@@ -660,7 +660,7 @@ Public Class TradeScreen
 
             Me.LoadBuyItemsList()
 
-            SoundManager.PlaySound("buy2")
+            SoundManager.PlaySound("buy")
 
             If Me.BuyItemsList.Count = 0 Then
                 Me.MenuState = MenuStates.BuyItemsCategory
@@ -1186,7 +1186,7 @@ Public Class TradeScreen
         Core.Player.Inventory.RemoveItem(tradeItem.ItemID, Me.SellItemsAmount)
         Me.LoadSellItemsList()
         Me.SellItemsClampCursor()
-        SoundManager.PlaySound("buy2")
+        SoundManager.PlaySound("buy")
 
         If Me.SellItemsList.Count = 0 Then
             Me.MenuState = MenuStates.SellItemsCategory

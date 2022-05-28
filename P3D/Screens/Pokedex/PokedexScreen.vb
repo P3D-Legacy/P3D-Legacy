@@ -13,7 +13,7 @@
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
 
         Me.MouseVisible = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
         Me.CanBePaused = True
 
         For Each p As Pokedex In Core.Player.Pokedexes
@@ -71,7 +71,7 @@
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64, 100 + i * 96, 64 * 5, 64), New Rectangle(32, 16, 16, 16), Color.White)
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64 * 6, 100 + i * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.habitat"), New Vector2(120, 116 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.habitat"), New Vector2(120, 120 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             Else
                 Dim p As Pokedex = Me.Profiles(i).Pokedex
 
@@ -79,8 +79,8 @@
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64, 100 + i * 96, 64 * 5, 64), New Rectangle(32, 16, 16, 16), Color.White)
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64 * 6, 100 + i * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, p.Name, New Vector2(120, 116 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Profiles(i).Obtained.ToString(), New Vector2(460, 116 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, p.Name, New Vector2(120, 120 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Profiles(i).Obtained.ToString(), New Vector2(460, 120 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
                 If Me.Profiles(i).Obtained >= Me.Profiles(i).Pokedex.Count Then
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(430, 122 + i * 96, 20, 20), Color.White)
@@ -96,8 +96,7 @@
     End Sub
 
     Private Sub DrawCursor()
-        Dim cPosition As Vector2 = New Vector2(380, 100 + Me.Cursor * 96 - 42)
-
+        Dim cPosition As Vector2 = New Vector2(512, 96 + Me.Cursor * 96 - 40)
         Dim t As Texture2D = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
         Core.SpriteBatch.Draw(t, New Rectangle(CInt(cPosition.X), CInt(cPosition.Y), 64, 64), Color.White)
     End Sub
@@ -175,7 +174,7 @@ Public Class PokedexHabitatScreen
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
 
         Me.MouseVisible = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
         Me.CanBePaused = True
 
         For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & GameModeManager.ActiveGameMode.PokeFilePath, "*.*", IO.SearchOption.AllDirectories)
@@ -219,14 +218,14 @@ Public Class PokedexHabitatScreen
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64 * 9, 100 + p * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
                 Core.SpriteBatch.Draw(HabitatList(i).Texture, New Rectangle(120, 108 + p * 96, 64, 48), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("places." & HabitatList(i).Name), New Vector2(200, 116 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("places." & HabitatList(i).Name), New Vector2(200, 120 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
                 Dim t As String = HabitatList(i).PokemonCaught.ToString() & "/" & HabitatList(i).PokemonList.Count
-                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(680 - CSng((FontManager.MainFont.MeasureString(t).X * 1.25F) / 2.0F), 116 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(680 - CSng((FontManager.MainFont.MeasureString(t).X * 1.0F) / 2.0F), 120 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
                 Dim progressTexture As Texture2D = Me.HabitatList(i).ProgressTexture
                 If Not progressTexture Is Nothing Then
-                    Core.SpriteBatch.Draw(progressTexture, New Rectangle(CInt(650 - CSng((FontManager.MainFont.MeasureString(t).X * 1.25F) / 2.0F)), 121 + p * 96, 20, 20), Color.White)
+                    Core.SpriteBatch.Draw(progressTexture, New Rectangle(CInt(650 - CSng((FontManager.MainFont.MeasureString(t).X * 1.0F) / 2.0F)), 120 + p * 96, 20, 20), Color.White)
                 End If
             End If
         Next
@@ -362,7 +361,7 @@ Public Class PokedexScreen
         Me.CHabitat = Habitat
 
         Me.MouseVisible = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
         Me.CanBePaused = True
 
         TempPokemonStorage.Clear()
@@ -576,7 +575,7 @@ Public Class PokedexScreen
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.search_no_result"), New Vector2(50 + CInt(564 / 2) - CInt(FontManager.MainFont.MeasureString(Localization.Translate("pokedex.search_no_result")).X / 2), 330), Color.White)
         End If
 
-        Canvas.DrawRectangle(New Rectangle(670, 30, 400, 90), New Color(42, 167, 198, 150))
+        Canvas.DrawRectangle(New Rectangle(670, 30, 480, 90), New Color(42, 167, 198, 150))
         Dim orderText As String = Localization.Translate("pokedex.order_numeric")
         Select Case Me.Order
             Case OrderType.Alphabetically
@@ -604,7 +603,7 @@ Public Class PokedexScreen
             Next
         End If
         Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("global.order") & ":" & Environment.NewLine & Localization.Translate("global.filter") & ":" & Environment.NewLine & Localization.Translate("pokedex.search_description"), New Vector2(685, 45), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(820, 45), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(790, 45), Color.Black)
 
         If menu.Visible = True Then
             menu.Draw()
@@ -655,7 +654,7 @@ Public Class PokedexScreen
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.height").ToUpper(), New Vector2(680, 390), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.weight").ToUpper(), New Vector2(680, 430), Color.Black)
 
-            Canvas.DrawRectangle(New Rectangle(670, 480, 400, 152), New Color(42, 167, 198, 150))
+            Canvas.DrawRectangle(New Rectangle(670, 480, 480, 152), New Color(42, 167, 198, 150))
 
             If Not CHabitat Is Nothing Then
                 Dim encounterTypes As New List(Of Integer)
@@ -683,16 +682,16 @@ Public Class PokedexScreen
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(900, 356, 48, 16), p.Type2.GetElementImage(), Color.White)
                 End If
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 380), New Vector2(680, 490), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 448), New Vector2(688, 490), Color.Black)
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(915, 242, 20, 20), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(928, 242, 20, 20), Color.White)
             Else
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "??? Pokémon", New Vector2(850, 310), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(850, 350), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "??? m", New Vector2(850, 390), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "??? kg", New Vector2(850, 430), Color.Black)
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(915, 242, 20, 20), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(928, 242, 20, 20), Color.White)
             End If
         End If
     End Sub
@@ -1296,7 +1295,7 @@ Public Class PokedexViewScreen
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
 
         Me.MouseVisible = True
-        Me.CanMuteMusic = True
+        Me.CanMuteAudio = True
         Me.CanBePaused = True
         Me._transitionOut = transitionOut
 
@@ -1415,7 +1414,7 @@ Public Class PokedexViewScreen
 
         Dim pokeTexture = Pokemon.GetMenuTexture()
         Core.SpriteBatch.Draw(pokeTexture, New Rectangle(28, 20, pokeTexture.Width * 2, 64), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName(), New Vector2(100, 36), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName(), New Vector2(100, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
         If EntryType = 1 Then
             Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(64 * 6 + 40, 42, 20, 20), Color.White)
@@ -1434,11 +1433,11 @@ Public Class PokedexViewScreen
 
         Select Case Me.Page
             Case 0
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "Details", New Vector2(480, 36), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Details", New Vector2(480, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             Case 1
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "Habitat", New Vector2(480, 36), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Habitat", New Vector2(480, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             Case 2
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "Evolution", New Vector2(480, 36), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Evolution", New Vector2(480, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         End Select
     End Sub
 
@@ -1507,7 +1506,7 @@ Public Class PokedexViewScreen
                     Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64 * 10, 160 + p * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
                     Core.SpriteBatch.Draw(HabitatList(i).Texture, New Rectangle(120, 168 + p * 96, 64, 48), Color.White)
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, HabitatList(i).Name, New Vector2(200, 176 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, HabitatList(i).Name, New Vector2(200, 176 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
                     Dim encounterTypes As New List(Of Integer)
                     For j = 0 To HabitatList(i).ObtainTypeList.Count - 1

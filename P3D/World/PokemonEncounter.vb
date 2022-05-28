@@ -40,22 +40,32 @@ Public Class PokemonEncounter
                 End If
 
                 If System.IO.File.Exists(GameModeManager.GetPokeFilePath(pokeFile)) = True Then ' Only try to register a wild battle if the .poke file exists:
-                    Dim startRandomValue As Integer = 12
-                    Dim minRandomValue As Integer = 5
-
+                    Dim encounterRate As Single = 1.0F
+                    Dim minTileValue As Integer
+                    Select Case Method
+                        Case Spawner.EncounterMethods.Land
+                            If Screen.Level.WildPokemonFloor = True And Screen.Level.Surfing = False Then
+                                minTileValue = 15
+                            Else
+                                minTileValue = 25
+                            End If
+                        Case Spawner.EncounterMethods.Surfing
+                            minTileValue = 15
+                    End Select
+                    If Core.Player.IsRunning = True Then
+                        encounterRate *= 1.5F
+                    End If
                     If Core.Player.Pokemons.Count > 0 Then
                         Dim p As Pokemon = Core.Player.Pokemons(0)
 
                         ' Arena Trap/Illuminate/No Guard/Swarm Ability:
                         If p.Ability.Name.ToLower() = "arena trap" Or p.Ability.Name.ToLower() = "illuminate" Or p.Ability.Name.ToLower() = "no guard" Or p.Ability.Name.ToLower() = "swarm" Then
-                            startRandomValue = 6
-                            minRandomValue = 3
+                            encounterRate *= 2.0F
                         End If
 
                         ' Intimidate/Keen Eye/Quick Feet/Stench/White Smoke Ability:
                         If p.Ability.Name.ToLower() = "intimidate" Or p.Ability.Name.ToLower() = "keen eye" Or p.Ability.Name.ToLower() = "quick feet" Or p.Ability.Name.ToLower() = "stench" Or p.Ability.Name.ToLower() = "white smoke" Then
-                            startRandomValue = 24
-                            minRandomValue = 10
+                            encounterRate *= 0.5F
                         End If
 
                         'Sand Veil Ability:
@@ -76,10 +86,10 @@ Public Class PokemonEncounter
                     End If
 
                     ' Determine if the wild Pokémon will be met or not:
-                    Dim randomValue As Integer = startRandomValue - .WalkedSteps
-                    randomValue = CInt(MathHelper.Clamp(randomValue, minRandomValue, startRandomValue))
+                    Dim minEncounterValue As Integer = CInt(encounterRate * minTileValue)
+                    Dim randomValue As Integer = Core.Random.Next(0, 255)
 
-                    If Core.Random.Next(0, randomValue * 2) = 0 Then
+                    If randomValue <= minEncounterValue Then
                         ' Don't encounter a Pokémon if the left control key is held down, for Debug or Sandbox Mode:
                         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
                             If KeyBoardHandler.KeyDown(Keys.LeftControl) = True Then

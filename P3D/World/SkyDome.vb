@@ -13,8 +13,8 @@
     Public Sub New()
         SkydomeModel = Core.Content.Load(Of Model)("SkyDomeResource\SkyDome")
 
-        TextureUp = TextureManager.GetTexture("SkyDomeResource\Clouds")
-        TextureDown = TextureManager.GetTexture("SkyDomeResource\Clouds")
+        TextureUp = TextureManager.GetTexture("SkyDomeResource\Sky_Day")
+        TextureDown = TextureManager.GetTexture("SkyDomeResource\Stars")
         TextureSun = TextureManager.GetTexture("SkyDomeResource\sun")
         TextureMoon = TextureManager.GetTexture("SkyDomeResource\moon")
 
@@ -22,7 +22,7 @@
     End Sub
 
     Public Sub Update()
-        Yaw += 0.0002F
+        Yaw += 0.0001F
         While Yaw > MathHelper.TwoPi
             Yaw -= MathHelper.TwoPi
         End While
@@ -48,33 +48,28 @@
     Dim Minute As Integer = 0
     Dim Second As Integer = 0
 
-    Private Function GetUniversePitch() As Single
-        If FASTTIMECYCLE = True Then
-            Dim progress As Integer = Hour * 3600 + Minute * 60 + Second
-            Return CSng((MathHelper.TwoPi / 100) * (progress / 86400 * 100))
-        Else
-            Dim progress As Integer = World.SecondsOfDay
-            Return CSng((MathHelper.TwoPi / 100) * (progress / 86400 * 100))
-        End If
-    End Function
-
     Public Sub Draw(ByVal FOV As Single)
-        If Core.GameOptions.GraphicStyle = 1 Then
-            If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside Then
-                If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then ' Don't render the sky if the weather is set to Fog.
-                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch() + Math.PI), True, TextureSun, 100, Me.GetSunAlpha()) ' Draw the Sun.
-                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch()), True, TextureMoon, 100, GetStarsAlpha()) ' Draw the Moon.
-                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch()), True, TextureDown, 50, GetStarsAlpha()) ' Draw the first half of the stars.
-                    RenderHalf(FOV, MathHelper.PiOver2, CSng(GetUniversePitch()), False, TextureDown, 50, GetStarsAlpha()) ' Draw the second half of the stars.
-                    RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, GetCloudsTexture(), 15, GetCloudAlpha()) ' Draw the back layer of the clouds.
-                    RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 10, GetCloudAlpha()) ' Draw the front layer of the clouds.
+        If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside Then
+            If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then ' Don't render the sky if the weather is set to Fog.
+                RenderHalf(FOV, Yaw, 0.0F, True, GetSkyTexture(), 20, 1.0F) ' Draw the sky
+                RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureDown, 18, GetStarsAlpha()) ' Draw the stars.
+                If GetSunAlpha() > 0 Then
+                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 16, 1.0F) ' Draw the Sun.
+                Else
+                    RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureMoon, 16, 1.0F) ' Draw the Moon.
                 End If
+                RenderHalf(FOV, MathHelper.TwoPi - Yaw * 2, 0.0F, True, GetCloudsTexture(), 12, GetCloudAlpha) ' Draw the clouds.
+            End If
+        Else
+            If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Or Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Forest Then
+                RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureUp, 20, 1.0F) ' Draw the sky
             Else
-                RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 8.0F, 1.0F)
-
-                If TextureDown IsNot Nothing Then
-                    RenderHalf(FOV, Yaw, 0.0F, False, TextureDown, 8.0F, 1.0F)
-                End If
+                RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 16, 1.0F) ' Draw the sky
+                RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureSun, 12, GetSunAlpha()) ' Draw the Sun.
+                RenderHalf(FOV, MathHelper.TwoPi - Yaw, 0.0F, True, TextureManager.GetTexture("SkyDomeResource\Clouds_Day"), 8, GetCloudAlpha()) ' Draw the clouds.
+            End If
+            If Not TextureDown Is Nothing Then
+                RenderHalf(FOV, Yaw, 0.0F, False, TextureDown, 16, 1.0F)
             End If
         End If
     End Sub
@@ -90,7 +85,7 @@
 
         For Each ModelMesh As ModelMesh In SkydomeModel.Meshes
             For Each BasicEffect As BasicEffect In ModelMesh.Effects
-                BasicEffect.World = Matrix.CreateScale(scale) * Matrix.CreateTranslation(New Vector3(Screen.Camera.Position.X, -5, Screen.Camera.Position.Z)) * Matrix.CreateFromYawPitchRoll(useYaw, usePitch, Roll)
+                BasicEffect.World = Matrix.CreateScale(scale) * Matrix.CreateTranslation(New Vector3(Screen.Camera.Position.X, Screen.Camera.Position.Y - 2, Screen.Camera.Position.Z)) * Matrix.CreateFromYawPitchRoll(useYaw, usePitch, Roll)
 
                 BasicEffect.View = Screen.Camera.View
                 BasicEffect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(FOV), Core.GraphicsDevice.Viewport.AspectRatio, 0.01, 10000)
@@ -99,24 +94,28 @@
                 BasicEffect.Texture = texture
                 BasicEffect.Alpha = alpha
 
-                Select Case Screen.Level.World.CurrentMapWeather
-                    Case World.Weathers.Clear, World.Weathers.Sunny
-                        BasicEffect.DiffuseColor = New Vector3(1)
-                    Case World.Weathers.Rain
-                        BasicEffect.DiffuseColor = New Vector3(0.4, 0.4, 0.7)
-                    Case World.Weathers.Snow
-                        BasicEffect.DiffuseColor = New Vector3(0.8)
-                    Case World.Weathers.Underwater
-                        BasicEffect.DiffuseColor = New Vector3(0.1, 0.3, 0.9)
-                    Case World.Weathers.Fog
-                        BasicEffect.DiffuseColor = New Vector3(0.7, 0.7, 0.8)
-                    Case World.Weathers.Sandstorm
-                        BasicEffect.DiffuseColor = New Vector3(0.8, 0.5, 0.2)
-                    Case World.Weathers.Ash
-                        BasicEffect.DiffuseColor = New Vector3(0.5, 0.5, 0.5)
-                    Case World.Weathers.Blizzard
-                        BasicEffect.DiffuseColor = New Vector3(0.6, 0.6, 0.6)
-                End Select
+                If BasicEffect.Texture Is TextureDown Then
+                    BasicEffect.DiffuseColor = New Vector3(1)
+                Else
+                    Select Case Screen.Level.World.CurrentMapWeather
+                        Case World.Weathers.Clear, World.Weathers.Sunny
+                            BasicEffect.DiffuseColor = New Vector3(1)
+                        Case World.Weathers.Rain
+                            BasicEffect.DiffuseColor = New Vector3(0.4, 0.4, 0.7)
+                        Case World.Weathers.Snow
+                            BasicEffect.DiffuseColor = New Vector3(0.8)
+                        Case World.Weathers.Underwater
+                            BasicEffect.DiffuseColor = New Vector3(0.1, 0.3, 0.9)
+                        Case World.Weathers.Fog
+                            BasicEffect.DiffuseColor = New Vector3(0.7, 0.7, 0.8)
+                        Case World.Weathers.Sandstorm
+                            BasicEffect.DiffuseColor = New Vector3(0.8, 0.5, 0.2)
+                        Case World.Weathers.Ash
+                            BasicEffect.DiffuseColor = New Vector3(0.5, 0.5, 0.5)
+                        Case World.Weathers.Blizzard
+                            BasicEffect.DiffuseColor = New Vector3(0.6, 0.6, 0.6)
+                    End Select
+                End If
 
                 If BasicEffect.DiffuseColor <> New Vector3(1) Then
                     BasicEffect.DiffuseColor = GetWeatherColorMultiplier(BasicEffect.DiffuseColor)
@@ -139,7 +138,19 @@
         If shader = True Then
             Return LastEntityColor
         Else
-            Return LastSkyColor
+            If World.IsAurora = True Then
+                Return New Color(64, 101, 164)
+            End If
+            Select Case Screen.Level.DayTime
+                Case 1
+                    Return New Color(48, 200, 248)
+                Case 2
+                    Return New Color(40, 88, 136)
+                Case 3
+                    Return New Color(168, 224, 248)
+                Case 4
+                    Return New Color(192, 152, 184)
+            End Select
         End If
     End Function
 
@@ -161,63 +172,106 @@
     End Sub
 
     Private Function GetCloudAlpha() As Single
-        Select Case Screen.Level.World.CurrentMapWeather
-            Case World.Weathers.Rain, World.Weathers.Blizzard, World.Weathers.Thunderstorm
-                Return 0.6F
-            Case World.Weathers.Snow, World.Weathers.Ash
-                Return 0.4F
-            Case World.Weathers.Clear
-                Return 0.1F
-        End Select
-        Return 0.0F
+        If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.IsAurora = False Then
+            Return 1.0F
+        Else
+            Return 0.0F
+        End If
     End Function
 
     Private Function GetStarsAlpha() As Single
-        Dim progress As Integer = GetTimeValue()
-
-        If progress < 360 Or progress > 1080 Then
-            Dim dP As Integer = progress
-            If dP < 360 Then
-                dP = 720 - dP * 2
-            ElseIf dP > 1080 Then
-                dP = 720 - (1440 - dP) * 2
-            End If
-
-            Dim alpha As Single = CDec(dP / 720) * 0.7F
-            Return alpha
+        If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.IsAurora = False Then
+            Select Case Screen.Level.DayTime
+                Case 1
+                    Return 0.0F
+                Case 2
+                    Return 1.0F
+                Case 3
+                    Return 0.0F
+                Case 4
+                    Return 0.0F
+                Case Else
+                    Return 0.0F
+            End Select
         Else
             Return 0.0F
         End If
     End Function
 
     Private Function GetSunAlpha() As Single
-        Dim progress As Integer = GetTimeValue()
-
-        If progress >= 1080 And progress < 1140 Then
-            ' Between 6:00:00 PM and 7:00:00 PM, the Sun will fade away with 60 stages:
-            Dim i As Single = progress - 1080
-            Dim percent As Single = i / 60 * 100
-
-            Return 1.0F - percent / 100.0F
-        ElseIf progress >= 300 And progress < 360 Then
-            ' Between 5:00:00 AM and 6:00:00 Am, the Sun will fade in with 60 stages:
-            Dim i As Single = progress - 300
-            Dim percent As Single = i / 60 * 100
-
-            Return percent / 100.0F
-        ElseIf progress >= 1140 Or progress < 300 Then
-            ' Between 7:00:00 PM and 5:00:00 AM, the Sun will be invisible:
-            Return 0.0F
+        If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.IsAurora = False Then
+            Select Case Screen.Level.DayTime
+                Case 1
+                    Return 1.0F
+                Case 2
+                    Return 0.0F
+                Case 3
+                    Return 1.0F
+                Case 4
+                    Return 0.0F
+                Case Else
+                    Return 0.0F
+            End Select
         Else
-            ' Between 6:00:00 AM and 6:00:00 PM, the Sun will be fully visible:
-            Return 1.0F
+            Return 0.0F
         End If
     End Function
 
     Private Function GetCloudsTexture() As Texture2D
+        Dim time As World.DayTimes = World.GetTime
+
         Select Case Screen.Level.World.CurrentMapWeather
             Case World.Weathers.Rain, World.Weathers.Blizzard, World.Weathers.Thunderstorm, World.Weathers.Snow
-                Return TextureManager.GetTexture("SkyDomeResource\CloudsWeather")
+                Return TextureManager.GetTexture("SkyDomeResource\Clouds_Weather")
+            Case World.Weathers.Clear
+                Select Case Screen.Level.DayTime
+                    Case 1
+                        Return TextureManager.GetTexture("SkyDomeResource\Clouds_Day")
+                    Case 2
+                        Return TextureManager.GetTexture("SkyDomeResource\Clouds_Night")
+                    Case 3
+                        Return TextureManager.GetTexture("SkyDomeResource\Clouds_Morning")
+                    Case 4
+                        Return TextureManager.GetTexture("SkyDomeResource\Clouds_Evening")
+                End Select
+                If time = World.DayTimes.Morning Then
+                    Return TextureManager.GetTexture("SkyDomeResource\Clouds_Morning")
+                ElseIf time = World.DayTimes.Day Then
+                    Return TextureManager.GetTexture("SkyDomeResource\Clouds_Day")
+                ElseIf time = World.DayTimes.Evening Then
+                    Return TextureManager.GetTexture("SkyDomeResource\Clouds_Evening")
+                Else
+                    Return TextureManager.GetTexture("SkyDomeResource\Clouds_Night")
+                End If
+        End Select
+        Return Nothing
+    End Function
+    Private Function GetSkyTexture() As Texture2D
+        If World.IsAurora Then
+            Return TextureManager.GetTexture("SkyDomeResource\AuroraBorealis")
+        End If
+        Select Case Screen.Level.DayTime
+            Case 1
+                Return TextureManager.GetTexture("SkyDomeResource\Sky_Day")
+            Case 2
+                Return TextureManager.GetTexture("SkyDomeResource\Sky_Night")
+            Case 3
+                Return TextureManager.GetTexture("SkyDomeResource\Sky_Morning")
+            Case 4
+                Return TextureManager.GetTexture("SkyDomeResource\Sky_Evening")
+        End Select
+        Dim time As World.DayTimes = World.GetTime
+        Select Case Screen.Level.World.CurrentMapWeather
+            Case World.Weathers.Clear
+                If time = World.DayTimes.Morning Then
+                    Return TextureManager.GetTexture("SkyDomeResource\Sky_Morning")
+                ElseIf time = World.DayTimes.Day Then
+                    Return TextureManager.GetTexture("SkyDomeResource\Sky_Day")
+                ElseIf time = World.DayTimes.Evening Then
+                    Return TextureManager.GetTexture("SkyDomeResource\Sky_Evening")
+                Else
+                    Return TextureManager.GetTexture("SkyDomeResource\Sky_Night")
+                End If
         End Select
         Return TextureUp
     End Function

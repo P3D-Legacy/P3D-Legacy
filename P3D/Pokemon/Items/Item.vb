@@ -9,6 +9,20 @@ Public MustInherit Class Item
     Protected _textureRectangle As Rectangle
     Private _texture As Texture2D
 
+    Public ReadOnly Property TextureSource As String
+        Get
+            Return _textureSource & "," & _textureRectangle.X & "," & _textureRectangle.Y & "," & _textureRectangle.Width & "," & _textureRectangle.Height
+        End Get
+    End Property
+
+    Public Function GetDescription() As String
+        If Localization.TokenExists("item_desc_" & GetAttribute().Id) = True Then
+            Return Localization.GetString("item_desc_" & GetAttribute().Id)
+        Else
+            Return Me.Description
+        End If
+    End Function
+
     Private _attribute As ItemAttribute
 
     Private Function GetAttribute() As ItemAttribute
@@ -24,7 +38,11 @@ Public MustInherit Class Item
     ''' </summary>
     Public Overridable ReadOnly Property Name As String
         Get
-            Return GetAttribute().Name
+            If Localization.TokenExists("item_name_" & GetAttribute().Id) = True Then
+                Return Localization.GetString("item_name_" & GetAttribute().Id)
+            Else
+                Return GetAttribute().Name
+            End If
         End Get
     End Property
 

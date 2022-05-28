@@ -6,7 +6,6 @@
         Public Shared Fled As Boolean = False
         Public Shared Caught As Boolean = False
 
-
         Public IsAfterFaint As Boolean = False
         Public WildHasEscaped As Boolean = False
 #Region "StartRound"
@@ -487,8 +486,10 @@
         Sub DoMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
 
             Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If Not own Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
             End If
             'Transform a Pokemon into it's Mega Evolution
             Dim _base As String = p.GetDisplayName()
@@ -504,7 +505,37 @@
                 p.ReloadDefinitions()
                 p.CalculateStats()
                 p.LoadAltAbility()
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
+                '***Mega Evolution Animation***
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    Dim MegaAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+                    MegaAnimation.AnimationPlaySound("Battle\Effects\MegaEvolution", 0, 0)
+
+                    Dim maxAmount As Integer = 16
+                    Dim currentAmount As Integer = 0
+                    While currentAmount <= maxAmount
+                        Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\MegaEvolution\Mega_Phase1")
+                        Dim xPos = CSng((Random.NextDouble() - 0.5) * 1.2)
+                        Dim zPos = CSng((Random.NextDouble() - 0.5) * 1.2)
+
+                        Dim Position As New Vector3(xPos, 0.8, zPos)
+
+                        Dim Scale As New Vector3(0.5F)
+                        Dim startDelay As Double = 5.0 * Random.NextDouble()
+                        Dim Phase1Entity As Entity = MegaAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+
+                        Dim Destination As New Vector3(0, 0, 0)
+                        MegaAnimation.AnimationMove(Phase1Entity, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                        Threading.Interlocked.Increment(currentAmount)
+                    End While
+
+                    Dim Phase2Entity As Entity = MegaAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\MegaEvolution\Mega_Phase2"), New Vector3(0.0F), 1.0F, 4.0F, 0.0F)
+                    MegaAnimation.AnimationScale(Phase2Entity, False, True, 1.25F, 1.25F, 1.25F, 0.02F, 4.0F, 0.0F)
+                    MegaAnimation.AnimationRotate(Phase2Entity, True, 0, 0, 0.1F, 0, 0, 10.0F, 4, 0F, False, False, True, False)
+                    BattleScreen.BattleQuery.Add(MegaAnimation)
+                Else
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\MegaEvolution", False))
+                End If
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
                 BattleScreen.BattleQuery.Add(New TextQueryObject(_base & " has Mega Evolved!"))
                 TriggerAbilityEffect(BattleScreen, own)
@@ -588,7 +619,7 @@
             If OwnStep.StepType = RoundConst.StepTypes.Move AndAlso OppStep.StepType = RoundConst.StepTypes.Text Then
                 MegaEvolCheck(BattleScreen)
 
-                ChangeCameraAngel(0, True, BattleScreen)
+                ChangeCameraAngle(0, True, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                 EndRound(BattleScreen, 2)
 
@@ -655,14 +686,14 @@
 
                 If BattleScreen.OppPokemon.HP > 0 Then
                     If BattleCalculation.CanSwitch(BattleScreen, False) = True Then
-                        ChangeCameraAngel(0, True, BattleScreen)
+                        ChangeCameraAngle(0, True, BattleScreen)
                         Won = True
                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\running", False))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                         BattleScreen.BattleQuery.Add(New RoamingPokemonFledQueryObject())
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                     Else
-                        ChangeCameraAngel(2, True, BattleScreen)
+                        ChangeCameraAngle(2, True, BattleScreen)
 
                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & " is trapped!"))
                         EndRound(BattleScreen, 2)
@@ -674,7 +705,7 @@
             If OwnStep.StepType = RoundConst.StepTypes.Text AndAlso OppStep.StepType = RoundConst.StepTypes.Move Then
                 MegaEvolCheck(BattleScreen)
 
-                ChangeCameraAngel(0, True, BattleScreen)
+                ChangeCameraAngle(0, True, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OwnStep.Argument)))
                 EndRound(BattleScreen, 1)
 
@@ -687,7 +718,7 @@
 
             'Text,Text
             If OwnStep.StepType = RoundConst.StepTypes.Text AndAlso OppStep.StepType = RoundConst.StepTypes.Text Then
-                ChangeCameraAngel(0, True, BattleScreen)
+                ChangeCameraAngle(0, True, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OwnStep.Argument)))
                 EndRound(BattleScreen, 1)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
@@ -696,41 +727,41 @@
 
             'Text,Item
             If OwnStep.StepType = RoundConst.StepTypes.Text AndAlso OppStep.StepType = RoundConst.StepTypes.Item Then
-                ChangeCameraAngel(0, True, BattleScreen)
+                ChangeCameraAngle(0, True, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OwnStep.Argument)))
                 EndRound(BattleScreen, 1)
 
-                ChangeCameraAngel(2, True, BattleScreen)
+                ChangeCameraAngle(2, True, BattleScreen)
                 OpponentUseItem(BattleScreen, CInt(CStr(OppStep.Argument).Split(CChar(","))(0)), CInt(CStr(OppStep.Argument).Split(CChar(","))(1)))
                 EndRound(BattleScreen, 2)
             End If
 
             'Text,Switch
             If OwnStep.StepType = RoundConst.StepTypes.Text And OppStep.StepType = RoundConst.StepTypes.Switch Then
-                ChangeCameraAngel(0, True, BattleScreen)
+                ChangeCameraAngle(0, True, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OwnStep.Argument)))
                 EndRound(BattleScreen, 1)
 
-                ChangeCameraAngel(2, True, BattleScreen)
+                ChangeCameraAngle(2, True, BattleScreen)
                 SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
                 EndRound(BattleScreen, 2)
             End If
 
             'Text,Flee
             If OwnStep.StepType = RoundConst.StepTypes.Text And OppStep.StepType = RoundConst.StepTypes.Flee Then
-                ChangeCameraAngel(0, True, BattleScreen)
+                ChangeCameraAngle(0, True, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OwnStep.Argument)))
 
                 If BattleScreen.OppPokemon.HP > 0 Then
                     If BattleCalculation.CanSwitch(BattleScreen, False) = True Then
-                        ChangeCameraAngel(0, True, BattleScreen)
+                        ChangeCameraAngle(0, True, BattleScreen)
                         Won = True
                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\running", False))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                         BattleScreen.BattleQuery.Add(New RoamingPokemonFledQueryObject())
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                     Else
-                        ChangeCameraAngel(2, True, BattleScreen)
+                        ChangeCameraAngle(2, True, BattleScreen)
 
                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & " is trapped!"))
                         EndRound(BattleScreen, 2)
@@ -764,7 +795,7 @@
                         EndRound(BattleScreen, 2)
                     End If
                 Else
-                    ChangeCameraAngel(0, True, BattleScreen)
+                    ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " is trapped!"))
 
                     BattleScreen.FieldEffects.OppUsedMoves.Add(CInt(OppStep.Argument))
@@ -781,14 +812,14 @@
                     SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1)
                     EndRound(BattleScreen, 1)
 
-                    ChangeCameraAngel(0, True, BattleScreen)
+                    ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                     EndRound(BattleScreen, 2)
                 Else
-                    ChangeCameraAngel(0, True, BattleScreen)
+                    ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " is trapped!"))
 
-                    ChangeCameraAngel(0, True, BattleScreen)
+                    ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                     EndRound(BattleScreen, 2)
                 End If
@@ -800,14 +831,14 @@
                     SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1)
                     EndRound(BattleScreen, 1)
 
-                    ChangeCameraAngel(2, True, BattleScreen)
+                    ChangeCameraAngle(2, True, BattleScreen)
                     OpponentUseItem(BattleScreen, CInt(CStr(OppStep.Argument).Split(CChar(","))(0)), CInt(CStr(OppStep.Argument).Split(CChar(","))(1)))
                     EndRound(BattleScreen, 2)
                 Else
-                    ChangeCameraAngel(0, True, BattleScreen)
+                    ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " is trapped!"))
 
-                    ChangeCameraAngel(2, True, BattleScreen)
+                    ChangeCameraAngle(2, True, BattleScreen)
                     OpponentUseItem(BattleScreen, CInt(CStr(OppStep.Argument).Split(CChar(","))(0)), CInt(CStr(OppStep.Argument).Split(CChar(","))(1)))
                     EndRound(BattleScreen, 2)
                 End If
@@ -819,14 +850,14 @@
                     SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1)
                     EndRound(BattleScreen, 1)
 
-                    ChangeCameraAngel(2, True, BattleScreen)
+                    ChangeCameraAngle(2, True, BattleScreen)
                     SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
                     EndRound(BattleScreen, 2)
                 Else
-                    ChangeCameraAngel(0, True, BattleScreen)
+                    ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " is trapped!"))
 
-                    ChangeCameraAngel(2, True, BattleScreen)
+                    ChangeCameraAngle(2, True, BattleScreen)
                     SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
                     EndRound(BattleScreen, 2)
                 End If
@@ -838,25 +869,25 @@
                     SwitchOutOwn(BattleScreen, CInt(OwnStep.Argument), -1)
                     EndRound(BattleScreen, 1)
 
-                    ChangeCameraAngel(0, True, BattleScreen)
+                    ChangeCameraAngle(0, True, BattleScreen)
                     Won = True
                     BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                     BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                 Else
-                    ChangeCameraAngel(0, True, BattleScreen)
+                    ChangeCameraAngle(0, True, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " is trapped!"))
                 End If
 
                 If BattleScreen.OppPokemon.HP > 0 Then
                     If BattleCalculation.CanSwitch(BattleScreen, False) = True Then
-                        ChangeCameraAngel(0, True, BattleScreen)
+                        ChangeCameraAngle(0, True, BattleScreen)
                         Won = True
                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\running", False))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                         BattleScreen.BattleQuery.Add(New RoamingPokemonFledQueryObject())
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                     Else
-                        ChangeCameraAngel(2, True, BattleScreen)
+                        ChangeCameraAngle(2, True, BattleScreen)
 
                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & " is trapped!"))
                         EndRound(BattleScreen, 2)
@@ -880,7 +911,7 @@
             'Item,Text
             If OwnStep.StepType = RoundConst.StepTypes.Item And OppStep.StepType = RoundConst.StepTypes.Text Then
                 EndRound(BattleScreen, 1)
-                ChangeCameraAngel(0, True, BattleScreen)
+                ChangeCameraAngle(0, True, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                 EndRound(BattleScreen, 2)
             End If
@@ -889,7 +920,7 @@
             If OwnStep.StepType = RoundConst.StepTypes.Item And OppStep.StepType = RoundConst.StepTypes.Switch Then
                 EndRound(BattleScreen, 1)
 
-                ChangeCameraAngel(2, True, BattleScreen)
+                ChangeCameraAngle(2, True, BattleScreen)
                 SwitchOutOpp(BattleScreen, CInt(OppStep.Argument))
                 EndRound(BattleScreen, 2)
             End If
@@ -898,7 +929,7 @@
             If OwnStep.StepType = RoundConst.StepTypes.Item And OppStep.StepType = RoundConst.StepTypes.Item Then
                 EndRound(BattleScreen, 1)
 
-                ChangeCameraAngel(2, True, BattleScreen)
+                ChangeCameraAngle(2, True, BattleScreen)
                 OpponentUseItem(BattleScreen, CInt(CStr(OppStep.Argument).Split(CChar(","))(0)), CInt(CStr(OppStep.Argument).Split(CChar(","))(1)))
                 EndRound(BattleScreen, 2)
             End If
@@ -909,14 +940,14 @@
 
                 If BattleScreen.OppPokemon.HP > 0 Then
                     If BattleCalculation.CanSwitch(BattleScreen, False) = True Then
-                        ChangeCameraAngel(0, True, BattleScreen)
+                        ChangeCameraAngle(0, True, BattleScreen)
                         Won = True
                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\running", False))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(CStr(OppStep.Argument)))
                         BattleScreen.BattleQuery.Add(New RoamingPokemonFledQueryObject())
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                     Else
-                        ChangeCameraAngel(2, True, BattleScreen)
+                        ChangeCameraAngle(2, True, BattleScreen)
 
                         BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & " is trapped!"))
                         EndRound(BattleScreen, 2)
@@ -943,49 +974,38 @@
                 p = BattleScreen.Trainer.Pokemons(target)
             End If
 
+            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
+
             'Potion,Super Point,Hyper Potion,Full Heal,Full Restore,Burn Heal,Antidote,Paralyze heal,Awakening,Ice Heal,Revive,Max Revive,Max Potion
             Select Case ItemID
                 Case 18 'Potion
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(20, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Potion on " & p.GetDisplayName() & "!", "item:potion")
                 Case 17 'Super Potion
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(50, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Super Potion on " & p.GetDisplayName() & "!", "item:superpotion")
                 Case 16 'Hyper Potion
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(100, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Hyper Potion on " & p.GetDisplayName() & "!", "item:hyperpotion")
                 Case 15 'Max Potion
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(p.MaxHP, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Max Potion on " & p.GetDisplayName() & "!", "item:maxpotion")
                 Case 14 'Full Restore
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.GainHP(p.MaxHP, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Full Restore on " & p.GetDisplayName() & "!", "item:fullrestore")
                     Me.CureStatusProblem(False, False, BattleScreen, "", "item:fullrestore")
                 Case 38 'Full Heal
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Full Heal on " & p.GetDisplayName() & "!", "item:fullheal")
                 Case 9 'Antidote
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used an Antidote on " & p.GetDisplayName() & "!", "item:antidote")
                 Case 10 'Burn Heal
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Burn Heal on " & p.GetDisplayName() & "!", "item:burnheal")
                 Case 11 'Ice Heal
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used an Ice Heal on " & p.GetDisplayName() & "!", "item:iceheal")
                 Case 12 'Awakening
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used an Awakening on " & p.GetDisplayName() & "!", "item:awakening")
                 Case 13 'Paralyze Heal
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Paralyze Heal on " & p.GetDisplayName() & "!", "item:paralyzeheal")
                 Case 39 'Revive
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & " used a Revive on " & p.GetDisplayName() & "!"))
                     p.Status = Pokemon.StatusProblems.None
                     p.HP = CInt(Math.Ceiling(p.MaxHP / 2))
                 Case 40 'Max Revive
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
                     BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & " used a Revive on " & p.GetDisplayName() & "!"))
                     p.Status = Pokemon.StatusProblems.None
                     p.HP = p.MaxHP
@@ -1121,14 +1141,20 @@
             'p: the attacking pokemon
             'op: the target pokemon
             Dim p As Pokemon
+            Dim pNPC As NPC
             Dim op As Pokemon
+            Dim opNPC As NPC
             If own Then
                 p = BattleScreen.OwnPokemon
                 op = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OwnPokemonNPC
+                opNPC = BattleScreen.OppPokemonNPC
                 BattleScreen.FieldEffects.OwnLastMove = moveUsed
             Else
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
+                pNPC = BattleScreen.OppPokemonNPC
+                opNPC = BattleScreen.OwnPokemonNPC
                 BattleScreen.FieldEffects.OppLastMove = moveUsed
             End If
             If WildHasEscaped Then
@@ -1154,7 +1180,7 @@
                         p.AdditionalData = "blade"
                         p.ReloadDefinitions()
                         p.CalculateStats()
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into Blade Forme!"))
                     End If
@@ -1163,7 +1189,7 @@
                         p.AdditionalData = ""
                         p.ReloadDefinitions()
                         p.CalculateStats()
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(own, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(p), 0, 1, -1, -1))
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " transformed into Shield Forme!"))
                     End If
@@ -1197,7 +1223,39 @@
                 If Core.Random.Next(0, 100) < 20 Then
                     CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " thawed out.", "own defrost")
                 Else
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_ice1", False))
+                    'Frozen animation
+                    ChangeCameraAngle(1, own, BattleScreen)
+                    If Core.Player.ShowBattleAnimations <> 0 Then
+                        Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+
+                        FrozenAnimation.AnimationPlaySound("Battle\Effects\Frozen", 0, 0)
+                        Dim maxAmount As Integer = 8
+                        Dim currentAmount As Integer = 0
+                        While currentAmount <= maxAmount
+                            Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatusEffect\Frozen", New Rectangle(0, 0, 32, 32), "")
+                            Dim xPos As Single
+                            Dim zPos As Single
+                            If own = False Then
+                                xPos = CSng(Random.Next(-2, 4) / 8)
+                                zPos = CSng(Random.Next(-2, 4) / 8)
+                            Else
+                                xPos = CSng(Random.Next(-4, 2) / 8)
+                                zPos = CSng(Random.Next(-4, 2) / 8)
+                            End If
+
+                            Dim Position As New Vector3(xPos, -0.25, zPos)
+                            Dim Scale As New Vector3(0.25F)
+                            Dim startDelay As Double = 5.0 * Random.NextDouble()
+                            Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
+
+                            FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, False, 0.0F, CSng(startDelay), 0.0)
+                            Threading.Interlocked.Increment(currentAmount)
+                        End While
+
+                        BattleScreen.BattleQuery.Add(FrozenAnimation)
+                    Else
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Frozen", False))
+                    End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is frozen solid!"))
                     Exit Sub
                 End If
@@ -1232,6 +1290,25 @@
                         End If
                     Else
                         If sleepTurns > 0 Then
+                            ChangeCameraAngle(1, own, BattleScreen)
+                            'Sleep Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
+
+                                SleepAnimation.AnimationPlaySound("Battle\Effects\Asleep", 0, 0)
+                                Dim SleepEntity1 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 1)
+                                SleepAnimation.AnimationChangeTexture(SleepEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 1, 1)
+                                SleepAnimation.AnimationMove(SleepEntity1, True, 0, 0.5, 0.25, 0.01, False, False, 0, 0)
+
+                                Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
+
+                                SleepAnimation.AnimationChangeTexture(SleepEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 2.5, 1)
+                                SleepAnimation.AnimationMove(SleepEntity2, True, 0, 0.5, 0.25, 0.01, False, False, 2, 0)
+
+                                BattleScreen.BattleQuery.Add(SleepAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Asleep", False))
+                            End If
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fast asleep."))
                             Exit Sub
                         Else
@@ -1350,6 +1427,48 @@
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is no longer confused!"))
                     p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Else
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
+                    'Confused Animation
+                    If Core.Player.ShowBattleAnimations <> 0 Then
+                        Dim ConfusedAnimation As New AnimationQueryObject(pNPC, Not own)
+
+                        ConfusedAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
+                        Dim DuckEntity1 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                        Dim DuckEntity2 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                        Dim DuckEntity3 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+                        ConfusedAnimation.AnimationChangeTexture(DuckEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+
+                        BattleScreen.BattleQuery.Add(ConfusedAnimation)
+                    Else
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Confused", False))
+                    End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is confused!"))
                     'Previously 'If Core.Random.Next(0, 2) = 0 Then' (Updated to gen 7's 33% instead of 50%)
                     If Core.Random.Next(0, 3) = 0 Then
@@ -1396,6 +1515,19 @@
             If op.HP > 0 And op.Status <> Pokemon.StatusProblems.Fainted Then
                 If p.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
                     If Core.Random.Next(0, 2) = 0 Then
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
+                        'Infatuated animation
+                        If Core.Player.ShowBattleAnimations <> 0 Then
+                            Dim HeartAnimation = New AnimationQueryObject(pNPC, Not own)
+                            For i = 0 To 6
+                                Dim HeartEntity = HeartAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Normal\Attract"), New Vector3(0.25F), 1.0F, CSng(i * 0.2))
+                                Dim zPos As Single = CSng(Random.Next(-2, 2) * 0.2)
+                                HeartAnimation.AnimationMove(HeartEntity, False, 0.0, 0.25, zPos, 0.01, False, False, CSng(i * 0.2), 0.0)
+                                HeartAnimation.AnimationFade(HeartEntity, True, 0.02, False, 0.0, CSng(1 + i * 0.2), 0.0)
+                                i += 1
+                            Next
+                            BattleScreen.BattleQuery.Add(HeartAnimation)
+                        End If
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is in love with " & op.GetDisplayName() & "!"))
                         Exit Sub
                     End If
@@ -1404,7 +1536,37 @@
 
             If p.Status = Pokemon.StatusProblems.Paralyzed Then
                 If Core.Random.Next(0, 4) = 0 Then
-                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_thundershock2", False))
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
+                    If Core.Player.ShowBattleAnimations <> 0 Then
+                        Dim ParalyzedAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+
+                        ParalyzedAnimation.AnimationPlaySound("Battle\Effects\Paralyzed", 0, 0)
+                        Dim maxAmount As Integer = 4
+                        Dim currentAmount As Integer = 0
+                        While currentAmount <= maxAmount
+                            Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(0, 0, 16, 16), "")
+                            Dim xPos = CSng(Random.Next(-4, 4) / 8)
+                            Dim zPos = CSng(Random.Next(-4, 4) / 8)
+
+                            Dim Position As New Vector3(xPos, -0.25, zPos)
+                            Dim Destination As New Vector3(xPos - xPos * 2, 0, zPos - zPos * 2)
+                            Dim Scale As New Vector3(0.25F)
+                            Dim startDelay As Double = 5.0 * Random.NextDouble()
+                            Dim ShockEntity = ParalyzedAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+                            ParalyzedAnimation.AnimationMove(ShockEntity, True, Destination.X, Destination.Y, Destination.Z, 0.025F, False, True, CSng(startDelay), 0.0F)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 1), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(32, 0, 16, 16), ""), CSng(startDelay + 2), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(48, 0, 16, 16), ""), CSng(startDelay + 3), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(64, 0, 16, 16), ""), CSng(startDelay + 4), 1)
+                            ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(72, 0, 16, 16), ""), CSng(startDelay + 5), 1)
+
+                            Threading.Interlocked.Increment(currentAmount)
+                        End While
+
+                        BattleScreen.BattleQuery.Add(ParalyzedAnimation)
+                    Else
+                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Paralyzed", False))
+                    End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fully paralyzed!" & Environment.NewLine & "It cannot move!"))
                     Exit Sub
                 End If
@@ -1464,7 +1626,7 @@
             Dim KOED As Boolean = False
             Dim DirectKOED As Boolean = False
 
-            ChangeCameraAngel(1, own, BattleScreen)
+            ChangeCameraAngle(1, own, BattleScreen)
             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " used " & moveUsed.Name & "!"))
 
             If moveUsed.DeductPP(own, BattleScreen) = True Then
@@ -1495,7 +1657,7 @@
             End If
 
             'Own Pokémon move animation! This displays any effects that should display on the user of the move.
-            moveUsed.UserPokemonMoveAnimation(BattleScreen)
+            moveUsed.UserPokemonMoveAnimation(BattleScreen, own)
 
             If moveUsed.Target <> Attack.Targets.Self And moveUsed.FocusOppPokemon = True Then
                 If own = True Then
@@ -1511,9 +1673,8 @@
                     Dim fa2 As New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.CloseLeft, Color.Black, False, 110)
                     BattleScreen.BattleQuery.AddRange({fa1, ca, fa2})
                 End If
-                'ChangeCameraAngel(2, own, BattleScreen)
+                'ChangeCameraAngle(2, own, BattleScreen)
             End If
-
             Dim DoesNotMiss As Boolean = BattleCalculation.AccuracyCheck(moveUsed, own, BattleScreen)
 
             Dim lockon As Integer = BattleScreen.FieldEffects.OwnLockOn
@@ -1670,7 +1831,7 @@
                 If op.Ability.Name.ToLower() = "motor drive" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Electric And moveWorks = True Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
-                        ChangeCameraAngel(2, own, BattleScreen)
+                        ChangeCameraAngle(2, own, BattleScreen)
                         If op.StatSpeed = 6 Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Motor Drive made " & moveUsed.Name & " useless!"))
                         Else
@@ -1709,7 +1870,7 @@
                 If op.Ability.Name.ToLower() = "sap sipper" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Grass AndAlso moveWorks = True AndAlso moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
-                        ChangeCameraAngel(2, own, BattleScreen)
+                        ChangeCameraAngle(2, own, BattleScreen)
                         If op.StatAttack = 6 Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Sap Sipper made " & moveUsed.Name & " useless!"))
                         Else
@@ -1720,7 +1881,7 @@
                 If op.Ability.Name.ToLower() = "flash fire" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Fire AndAlso moveWorks = True Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
-                        ChangeCameraAngel(2, own, BattleScreen)
+                        ChangeCameraAngle(2, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Flash Fire made " & moveUsed.Name & " useless!"))
                         If own = True Then
                             BattleScreen.FieldEffects.OppFlashFire = 1
@@ -1732,8 +1893,8 @@
                 If op.Ability.Name.ToLower() = "storm drain" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Water AndAlso moveWorks = True AndAlso moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
-                        ChangeCameraAngel(2, own, BattleScreen)
-                        If op.StatAttack = 6 Then
+                        ChangeCameraAngle(2, own, BattleScreen)
+                        If op.StatSpAttack = 6 Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Storm Drain made " & moveUsed.Name & " useless!"))
                         Else
                             RaiseStat(Not own, Not own, BattleScreen, "Special Attack", 1, op.GetDisplayName() & "'s Storm Drain absorbed the attack!", "stormdrain")
@@ -1743,7 +1904,7 @@
                 If op.Ability.Name.ToLower() = "lightningrod" AndAlso moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Electric AndAlso moveWorks = True AndAlso moveUsed.Category <> Attack.Categories.Status Then
                     If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True Then
                         moveWorks = False
-                        ChangeCameraAngel(2, own, BattleScreen)
+                        ChangeCameraAngle(2, own, BattleScreen)
                         If op.StatSpAttack = 6 Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Lightningrod made " & moveUsed.Name & " useless!"))
                         Else
@@ -1849,10 +2010,10 @@
                     End If
 
                     'Opp Pokémon move animation! This displays the move effects that target the other Pokémon and appear after the camera switched around.
-                    moveUsed.OpponentPokemonMoveAnimation(BattleScreen)
+                    moveUsed.OpponentPokemonMoveAnimation(BattleScreen, own)
 
                     If moveUsed.IsDamagingMove = True Then
-                        ChangeCameraAngel(2, own, BattleScreen)
+                        ChangeCameraAngle(2, own, BattleScreen)
                         If op.Ability.Name.ToLower() = "wonder guard" And effectiveness <= 1.0F And BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) = True And moveUsed.IsWonderGuardAffected = True Then
                             BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "s Wonder Guard blocked the attack!"))
                             Exit Sub
@@ -1976,12 +2137,12 @@
                                         BattleScreen.FieldEffects.OwnPokemonDamagedThisTurn = True
                                     End If
 
-                                    Dim sound As String = "Battle\Damage\normaldamage"
+                                    Dim sound As String = "Battle\Damage\Effective"
                                     If effectiveness > 1.0F Then
-                                        sound = "Battle\Damage\super_effective"
+                                        sound = "Battle\Damage\SuperEffective"
                                     End If
                                     If effectiveness < 1.0F And effectiveness <> 0.0F Then
-                                        sound = "Battle\Damage\not_effective"
+                                        sound = "Battle\Damage\NotVeryEffective"
                                     End If
 
                                     ReduceHP(Damage, Not own, own, BattleScreen, "", "battledamage", sound)
@@ -2133,7 +2294,7 @@
                                     Case "color change"
                                         If op.HP > 0 Then
                                             If op.Type1.Type <> moveUsed.GetAttackType(own, BattleScreen).Type OrElse op.Type2.Type <> Element.Types.Blank Then
-                                                ChangeCameraAngel(2, own, BattleScreen)
+                                                ChangeCameraAngle(2, own, BattleScreen)
                                                 op.OriginalType1 = op.Type1
                                                 op.OriginalType2 = op.Type2
 
@@ -2198,7 +2359,7 @@
                                         If moveUsed.Disabled = 0 Then
                                             If substitute = 0 Then
                                                 If Core.Random.Next(0, 100) < 30 Then
-                                                    ChangeCameraAngel(2, own, BattleScreen)
+                                                    ChangeCameraAngle(2, own, BattleScreen)
                                                     BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Cursed Body disabled " & moveUsed.Name & "!"))
                                                     moveUsed.Disabled = Core.Random.Next(1, 6)
                                                 End If
@@ -2208,13 +2369,17 @@
                                         If moveUsed.MakesContact = True Then
                                             If p.Ability.Name.ToLower() <> "multitype" And p.Ability.Name.ToLower() <> "mummy" Then
                                                 p.Ability = Ability.GetAbilityByID(152)
-                                                ChangeCameraAngel(1, own, BattleScreen)
+                                                ChangeCameraAngle(1, own, BattleScreen)
                                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s ability changed to Mummy!"))
                                             End If
                                         End If
                                     Case "justified"
                                         If moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Dark Then
                                             RaiseStat(Not own, Not own, BattleScreen, "Attack", 1, op.GetDisplayName() & " became justified!", "justified")
+                                        End If
+                                    Case "steam engine"
+                                        If moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Fire Or moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Water Then
+                                            RaiseStat(Not own, Not own, BattleScreen, "Speed", 2, "", "steam engine")
                                         End If
                                     Case "rattled"
                                         If moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Dark Or moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Bug Or moveUsed.GetAttackType(own, BattleScreen).Type = Element.Types.Ghost Then
@@ -2425,7 +2590,7 @@
                                 End If
 
                                 If Core.Random.Next(0, 2) = 0 AndAlso moveUsed.MakesContact = True AndAlso op.Item Is Nothing AndAlso op.HP > 0 Then
-                                    ChangeCameraAngel(2, own, BattleScreen)
+                                    ChangeCameraAngle(2, own, BattleScreen)
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s Sticky Barb was passed over to " & op.GetDisplayName() & "."))
                                     op.Item = Item.GetItemByID(p.Item.ID)
                                     p.Item = Nothing
@@ -2542,13 +2707,21 @@
 
             p.HP = 0
             p.Status = Pokemon.StatusProblems.Fainted
-            Me.ChangeCameraAngel(1, own, BattleScreen)
-            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(p.Number.ToString(), True))
+            Me.ChangeCameraAngle(1, own, BattleScreen)
 
             If message = "" Then
-                message = p.GetDisplayName() & " fainted!"
+                message = p.GetDisplayName() & " " & "fainted!"
             End If
             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
+
+            If BattleScreen.IsTrainerBattle = False AndAlso Core.Player.ShowBattleAnimations <> 0 Then
+                If own = False Then
+                    Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
+                    FaintAnimation.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
+                    FaintAnimation.AnimationMove(Nothing, False, 0, -1, 0, 0.05, False, False, 2, 2)
+                    BattleScreen.BattleQuery.Add(FaintAnimation)
+                End If
+            End If
 
             Dim str = p.AdditionalData.ToLower()
             Select Case str
@@ -2576,7 +2749,7 @@
             End If
 
             If message <> "" Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(message))
             End If
 
@@ -2611,7 +2784,7 @@
             End If
 
             If p.Ability.Name.ToLower() = "inner focus" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " won't flinch because of its Inner Focus!"))
                 Return False
             Else
@@ -2620,13 +2793,13 @@
                     substitute = BattleScreen.FieldEffects.OppSubstitute
                 End If
                 If substitute > 0 Then
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented flinching."))
                     Return False
                 Else
                     'Works!
                     p.AddVolatileStatus(Pokemon.VolatileStatus.Flinch)
-                    ChangeCameraAngel(1, own, BattleScreen)
+                    ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "-1" 'Print no message at all
                             'Do nothing
@@ -2643,9 +2816,12 @@
         Public Function InflictBurn(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim pNPC As Entity = BattleScreen.OwnPokemonNPC
+
             If own = False Then
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
+                pNPC = BattleScreen.OppPokemonNPC
             End If
 
             If p.HP <= 0 OrElse p.Status = Pokemon.StatusProblems.Fainted Then
@@ -2653,7 +2829,7 @@
             End If
 
             If p.Status = Pokemon.StatusProblems.Burn Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is already burned!"))
                 Return False
             End If
@@ -2672,7 +2848,7 @@
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
             If substitute > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the burn."))
                 Return False
             Else
@@ -2680,12 +2856,12 @@
                     Return False
                 Else
                     If p.Ability.Name.ToLower() = "water veil" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Water Veil prevented the burn."))
                         Return False
                     Else
                         If p.Ability.Name.ToLower.ToLower() = "leaf guard" And BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the burn."))
                             Return False
                         Else
@@ -2694,14 +2870,23 @@
                                 safeGuard = BattleScreen.FieldEffects.OppSafeguard
                             End If
                             If safeGuard > 0 And op.Ability.Name.ToLower() <> "infiltrator" Then
-                                Me.ChangeCameraAngel(1, own, BattleScreen)
+                                Me.ChangeCameraAngle(1, own, BattleScreen)
                                 BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the burn."))
                                 Return False
                             Else
                                 'Works!
                                 p.Status = Pokemon.StatusProblems.Burn
-                                ChangeCameraAngel(1, own, BattleScreen)
-                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_ember", False))
+                                ChangeCameraAngle(1, own, BattleScreen)
+                                'Burn animation
+                                Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
+                                BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
+                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, -0.25F, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 32, 32, 32), ""), 0.75, 0)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 64, 32, 32), ""), 1.5, 0)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 96, 32, 32), ""), 2.25, 0)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 128, 32, 32), ""), 3, 0)
+                                BattleScreen.BattleQuery.Add(BurnAnimation)
+
                                 Select Case message
                                     Case "" 'Print default message only
                                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " got burned!"))
@@ -2718,7 +2903,7 @@
                                 If p.Item IsNot Nothing Then
                                     If p.Item.Name.ToLower() = "rawst" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:rawst") = True Then
-                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Rawst Berry cured the burn of " & p.GetDisplayName() & "!", "berry:rawst")
                                         End If
                                     End If
@@ -2727,7 +2912,7 @@
                                 If p.Item IsNot Nothing Then
                                     If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
-                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the burn of " & p.GetDisplayName() & "!", "berry:lum")
                                         End If
                                     End If
@@ -2744,7 +2929,9 @@
         Public Function InflictFreeze(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If own = False Then
+                pNPC = BattleScreen.OppPokemonNPC
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
@@ -2754,7 +2941,7 @@
             End If
 
             If p.Status = Pokemon.StatusProblems.Freeze Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is already frozen!"))
                 Return False
             End If
@@ -2773,12 +2960,12 @@
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
             If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the freeze effect."))
                 Return False
             Else
                 If BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny Then
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("The sunny weather prevented " & p.GetDisplayName() & " from freezing."))
                     Return False
                 Else
@@ -2790,14 +2977,14 @@
                     If p.Ability.Name.ToLower() = "magma armor" Then
                         If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                             If cause <> "move:triattack" And cause <> "move:secretpower" Then
-                                Me.ChangeCameraAngel(1, own, BattleScreen)
+                                Me.ChangeCameraAngle(1, own, BattleScreen)
                                 BattleScreen.BattleQuery.Add(New TextQueryObject("Magma Armor prevented the freeze."))
                                 Return False
                             End If
                         End If
                     End If
                     If p.Ability.Name.ToLower.ToLower() = "leaf guard" And BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the freeze."))
                         Return False
                     Else
@@ -2806,14 +2993,45 @@
                             safeGuard = BattleScreen.FieldEffects.OppSafeguard
                         End If
                         If safeGuard > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the freezing."))
                             Return False
                         Else
                             'Works!
                             p.Status = Pokemon.StatusProblems.Freeze
-                            ChangeCameraAngel(1, own, BattleScreen)
-                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_ice1", False))
+                            ChangeCameraAngle(1, own, BattleScreen)
+                            'Frozen animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+
+                                FrozenAnimation.AnimationPlaySound("Battle\Effects\Frozen", 0, 0)
+                                Dim maxAmount As Integer = 8
+                                Dim currentAmount As Integer = 0
+                                While currentAmount <= maxAmount
+                                    Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatusEffect\Frozen", New Rectangle(0, 0, 32, 32), "")
+                                    Dim xPos As Single
+                                    Dim zPos As Single
+                                    If own = False Then
+                                        xPos = CSng(Random.Next(-2, 4) / 8)
+                                        zPos = CSng(Random.Next(-2, 4) / 8)
+                                    Else
+                                        xPos = CSng(Random.Next(-4, 2) / 8)
+                                        zPos = CSng(Random.Next(-4, 2) / 8)
+                                    End If
+
+                                    Dim Position As New Vector3(xPos, -0.25, zPos)
+                                    Dim Scale As New Vector3(0.25F)
+                                    Dim startDelay As Double = 5.0 * Random.NextDouble()
+                                    Dim SnowflakeEntity = FrozenAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
+
+                                    FrozenAnimation.AnimationFade(SnowflakeEntity, True, 0.02, False, 0.0F, CSng(startDelay), 0.0)
+                                    Threading.Interlocked.Increment(currentAmount)
+                                End While
+
+                                BattleScreen.BattleQuery.Add(FrozenAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Frozen", False))
+                            End If
                             Select Case message
                                 Case "" 'Print default message only
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " was frozen solid!"))
@@ -2830,7 +3048,7 @@
                             If p.Item IsNot Nothing Then
                                 If p.Item.Name.ToLower() = "aspear" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:aspear") = True Then
-                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Aspear Berry thraw out " & p.GetDisplayName() & "!", "berry:aspear")
                                     End If
                                 End If
@@ -2839,7 +3057,7 @@
                             If p.Item IsNot Nothing Then
                                 If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
-                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Lum Berry thraw out " & p.GetDisplayName() & "!", "berry:lum")
                                     End If
                                 End If
@@ -2855,7 +3073,9 @@
         Public Function InflictParalysis(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If own = False Then
+                pNPC = BattleScreen.OppPokemonNPC
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
             End If
@@ -2865,13 +3085,13 @@
             End If
 
             If p.Status = Pokemon.StatusProblems.Paralyzed Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is already paralyzed!"))
                 Return False
             End If
 
             If p.Type1.Type = Element.Types.Electric OrElse p.Type2.Type = Element.Types.Electric Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is not affected by paralysis!"))
                 Return False
             End If
@@ -2890,17 +3110,17 @@
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
             If substitute > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" AndAlso from <> own Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the paralysis."))
                 Return False
             Else
                 If p.Ability.Name.ToLower() = "limber" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Limber prevented the paralysis."))
                     Return False
                 Else
                     If p.Ability.Name.ToLower.ToLower() = "leaf guard" AndAlso BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny AndAlso from <> own AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the paralysis."))
                         Return False
                     Else
@@ -2909,14 +3129,43 @@
                             safeGuard = BattleScreen.FieldEffects.OppSafeguard
                         End If
                         If safeGuard > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the paralysis."))
                             Return False
                         Else
                             'Works!
                             p.Status = Pokemon.StatusProblems.Paralyzed
-                            ChangeCameraAngel(1, own, BattleScreen)
-                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_thundershock2", False))
+                            ChangeCameraAngle(1, own, BattleScreen)
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim ParalyzedAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+
+                                ParalyzedAnimation.AnimationPlaySound("Battle\Effects\Paralyzed", 0, 0)
+                                Dim maxAmount As Integer = 4
+                                Dim currentAmount As Integer = 0
+                                While currentAmount <= maxAmount
+                                    Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(0, 0, 16, 16), "")
+                                    Dim xPos = CSng(Random.Next(-4, 4) / 8)
+                                    Dim zPos = CSng(Random.Next(-4, 4) / 8)
+
+                                    Dim Position As New Vector3(xPos, -0.25, zPos)
+                                    Dim Destination As New Vector3(xPos - xPos * 2, 0, zPos - zPos * 2)
+                                    Dim Scale As New Vector3(0.25F)
+                                    Dim startDelay As Double = 5.0 * Random.NextDouble()
+                                    Dim ShockEntity = ParalyzedAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+                                    ParalyzedAnimation.AnimationMove(ShockEntity, False, Destination.X, Destination.Y, Destination.Z, 0.025F, False, True, CSng(startDelay), 0.0F)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(16, 0, 16, 16), ""), CSng(startDelay + 1), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(32, 0, 16, 16), ""), CSng(startDelay + 2), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(48, 0, 16, 16), ""), CSng(startDelay + 3), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(64, 0, 16, 16), ""), CSng(startDelay + 4), 0)
+                                    ParalyzedAnimation.AnimationChangeTexture(ShockEntity, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Paralyzed", New Rectangle(72, 0, 16, 16), ""), CSng(startDelay + 5), 0)
+
+                                    Threading.Interlocked.Increment(currentAmount)
+                                End While
+
+                                BattleScreen.BattleQuery.Add(ParalyzedAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Paralyzed", False))
+                            End If
                             Select Case message
                                 Case "" 'Print default message only
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is paralyzed!" & Environment.NewLine & "It can't move!"))
@@ -2933,7 +3182,7 @@
                             If p.Item IsNot Nothing Then
                                 If p.Item.Name.ToLower() = "cheri" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:cheri") = True Then
-                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Cheri Berry cured the paralysis of " & p.GetDisplayName() & "!", "berry:cheri")
                                     End If
                                 End If
@@ -2942,7 +3191,7 @@
                             If p.Item IsNot Nothing Then
                                 If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
-                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the paralyzis of " & p.GetDisplayName() & "!", "berry:lum")
                                     End If
                                 End If
@@ -2957,10 +3206,14 @@
 
         Public Function InflictSleep(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal turnsPreset As Integer, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim opNPC As NPC = BattleScreen.OppPokemonNPC
             If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
                 op = BattleScreen.OwnPokemon
+                opNPC = BattleScreen.OwnPokemonNPC
             End If
 
             If p.HP <= 0 OrElse p.Status = Pokemon.StatusProblems.Fainted Then
@@ -2987,7 +3240,7 @@
             End If
 
             If p.Status = Pokemon.StatusProblems.Sleep Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is already asleep!"))
                 Return False
             End If
@@ -3003,22 +3256,22 @@
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
             If substitute > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" AndAlso from <> own Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the sleep effect."))
                 Return False
             Else
                 If p.Ability.Name.ToLower() = "vital spirit" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Vital Spirit prevented the sleep."))
                     Return False
                 Else
                     If p.Ability.Name.ToLower() = "insomnia" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Insomnia prevented the sleep."))
                         Return False
                     Else
                         If p.Ability.Name.ToLower() = "sweet veil" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Sweet Veil prevented the sleep."))
                             Return False
                         Else
@@ -3027,7 +3280,7 @@
                                 uproar = BattleScreen.FieldEffects.OppUproar
                             End If
                             If uproar > 0 Then
-                                Me.ChangeCameraAngel(1, own, BattleScreen)
+                                Me.ChangeCameraAngle(1, own, BattleScreen)
                                 BattleScreen.BattleQuery.Add(New TextQueryObject("The Uproar prevented the sleep."))
                                 Return False
                             Else
@@ -3036,16 +3289,35 @@
                                     safeGuard = BattleScreen.FieldEffects.OppSafeguard
                                 End If
                                 If safeGuard > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" Then
-                                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                                    Me.ChangeCameraAngle(1, own, BattleScreen)
                                     BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the sleep."))
                                     Return False
                                 Else
                                     If p.Ability.Name.ToLower.ToLower() = "leaf guard" AndAlso BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                                        Me.ChangeCameraAngle(1, own, BattleScreen)
                                         BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the sleep."))
                                         Return False
                                     Else
                                         'Works!
+                                        ChangeCameraAngle(1, own, BattleScreen)
+                                        'Sleep Animation
+                                        If Core.Player.ShowBattleAnimations <> 0 Then
+                                            Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
+
+                                            SleepAnimation.AnimationPlaySound("Battle\Effects\Asleep", 0, 0)
+                                            Dim SleepEntity1 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 0, 1)
+                                            SleepAnimation.AnimationChangeTexture(SleepEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 1, 1)
+                                            SleepAnimation.AnimationMove(SleepEntity1, True, 0, 0.5, 0.25, 0.01, False, False, 0, 0)
+
+                                            Dim SleepEntity2 As Entity = SleepAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.5F), 1, 1.5, 1)
+
+                                            SleepAnimation.AnimationChangeTexture(SleepEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Asleep", New Rectangle(0, 16, 16, 16), ""), 2.5, 1)
+                                            SleepAnimation.AnimationMove(SleepEntity2, True, 0, 0.5, 0.25, 0.01, False, False, 2, 0)
+
+                                            BattleScreen.BattleQuery.Add(SleepAnimation)
+                                        Else
+                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Asleep", False))
+                                        End If
                                         If own = True Then
                                             BattleScreen.FieldEffects.OwnBideCounter = 0
                                             BattleScreen.FieldEffects.OwnBideDamage = 0
@@ -3054,7 +3326,7 @@
                                             BattleScreen.FieldEffects.OppBideDamage = 0
                                         End If
 
-                                        ChangeCameraAngel(1, own, BattleScreen)
+                                        ChangeCameraAngle(1, own, BattleScreen)
                                         If own = True Then
                                             BattleScreen.FieldEffects.OwnSleepTurns = SleepTurns
                                         Else
@@ -3073,7 +3345,7 @@
                                         If p.Item IsNot Nothing Then
                                             If p.Item.Name.ToLower() = "chesto" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:chesto") = True Then
-                                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                                     CureStatusProblem(own, own, BattleScreen, "The Chesto Berry woke up " & p.GetDisplayName() & "!", "berry:chesto")
                                                 End If
                                             End If
@@ -3082,7 +3354,7 @@
                                         If p.Item IsNot Nothing Then
                                             If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
-                                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                                     CureStatusProblem(own, own, BattleScreen, "The Lum Berry woke up " & p.GetDisplayName() & "!", "berry:lum")
                                                 End If
                                             End If
@@ -3100,9 +3372,11 @@
         Public Function InflictPoison(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal bad As Boolean, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If own = False Then
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
+                pNPC = BattleScreen.OppPokemonNPC
             End If
 
             If p.HP <= 0 OrElse p.Status = Pokemon.StatusProblems.Fainted Then
@@ -3110,7 +3384,7 @@
             End If
 
             If p.Status = Pokemon.StatusProblems.Poison OrElse p.Status = Pokemon.StatusProblems.BadPoison Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is already poisoned!"))
                 Return False
             End If
@@ -3129,7 +3403,7 @@
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
             If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" AndAlso from <> own Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute took the poison."))
                 Return False
             Else
@@ -3137,7 +3411,7 @@
                     Return False
                 Else
                     If p.Ability.Name.ToLower() = "immunity" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Immunity prevented the poison."))
                         Return False
                     Else
@@ -3146,18 +3420,18 @@
                             safeGuard = BattleScreen.FieldEffects.OppSafeguard
                         End If
                         If safeGuard > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Safeguard prevented the poison."))
                             Return False
                         Else
                             If p.Ability.Name.ToLower.ToLower() = "leaf guard" AndAlso BattleScreen.FieldEffects.Weather = BattleWeather.WeatherTypes.Sunny AndAlso from <> own AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                                Me.ChangeCameraAngel(1, own, BattleScreen)
+                                Me.ChangeCameraAngle(1, own, BattleScreen)
                                 BattleScreen.BattleQuery.Add(New TextQueryObject("Leaf Guard prevented the poison."))
                                 Return False
                             Else
                                 'Works!
-                                ChangeCameraAngel(1, own, BattleScreen)
-                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_poison", False))
+                                ChangeCameraAngle(1, own, BattleScreen)
+
                                 If bad = True Then
                                     p.Status = Pokemon.StatusProblems.BadPoison
                                     Select Case message
@@ -3169,7 +3443,42 @@
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is badly poisoned!"))
                                     End Select
+                                    If Core.Player.ShowBattleAnimations <> 0 Then
+                                        Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
+                                        PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                        Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                        Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                        Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+
+                                        BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                    Else
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                    End If
                                 Else
+                                    'Poison animation
+                                    If Core.Player.ShowBattleAnimations <> 0 Then
+                                        Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
+
+                                        PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                        Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                        PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+
+                                        BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                    Else
+                                        BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                    End If
                                     p.Status = Pokemon.StatusProblems.Poison
                                     Select Case message
                                         Case "" 'Print default message only
@@ -3178,7 +3487,7 @@
                                             'Do nothing
                                         Case Else 'Print message given in 'message'
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is poisoned!"))
+                                            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is poisoned"))
                                     End Select
                                 End If
                                 If p.Ability.Name.ToLower() = "synchronize" AndAlso from <> own Then
@@ -3193,7 +3502,7 @@
                                 If p.Item IsNot Nothing Then
                                     If p.Item.Name.ToLower() = "pecha" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:pecha") = True Then
-                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Pecha Berry cured the poison of " & p.GetDisplayName() & "!", "berry:pecha")
                                         End If
                                     End If
@@ -3202,7 +3511,7 @@
                                 If p.Item IsNot Nothing Then
                                     If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
-                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the poison of " & p.GetDisplayName() & "!", "berry:lum")
                                         End If
                                     End If
@@ -3218,10 +3527,14 @@
 
         Public Function InflictConfusion(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim opNPC As NPC = BattleScreen.OppPokemonNPC
             If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
                 op = BattleScreen.OwnPokemon
+                opNPC = BattleScreen.OwnPokemonNPC
             End If
 
             If p.HP <= 0 OrElse p.Status = Pokemon.StatusProblems.Fainted Then
@@ -3229,7 +3542,7 @@
             End If
 
             If p.HasVolatileStatus(Pokemon.VolatileStatus.Confusion) = True Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is already confused!"))
                 Return False
             End If
@@ -3245,15 +3558,57 @@
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
             If substitute > 0 AndAlso op.Ability.Name.ToLower() <> "infiltrator" AndAlso from <> own Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the confusion."))
                 Return False
             ElseIf p.Ability.Name.ToLower() = "own tempo" AndAlso BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("Own Tempo prevented the confusion."))
                 Return False
             Else
                 'Works!
+                Me.ChangeCameraAngle(1, own, BattleScreen)
+                'Confused Animation
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    Dim ConfusedAnimation As New AnimationQueryObject(pNPC, Not own)
+
+                    ConfusedAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
+                    Dim DuckEntity1 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                    Dim DuckEntity2 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                    Dim DuckEntity3 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
+
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 1.5F, 0)
+
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 2.25F, 0)
+
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), 3.0F, 0)
+
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 3.75F, 0)
+
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 32, 16, 16), ""), 4.5F, 0)
+
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+                    ConfusedAnimation.AnimationChangeTexture(DuckEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 48, 16, 16), ""), 5.25F, 1)
+
+                    BattleScreen.BattleQuery.Add(ConfusedAnimation)
+                Else
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Confused", False))
+                End If
                 p.AddVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Select Case message
                     Case "" 'Print default message only
@@ -3273,8 +3628,8 @@
                 If p.Item IsNot Nothing Then
                     If p.Item.Name.ToLower() = "persim" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:persim") = True Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
-                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
+                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                             BattleScreen.BattleQuery.Add(New TextQueryObject("The Persim Berry cured the confusion of " & p.GetDisplayName() & "!"))
                             If own = True Then
                                 BattleScreen.FieldEffects.OwnConfusionTurns = 0
@@ -3285,8 +3640,8 @@
                         End If
                     ElseIf p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
-                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
+                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                             BattleScreen.BattleQuery.Add(New TextQueryObject("The Lum Berry cured the confusion of " & p.GetDisplayName() & "!"))
                             If own = True Then
                                 BattleScreen.FieldEffects.OwnConfusionTurns = 0
@@ -3305,6 +3660,10 @@
         Public Function RaiseStat(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal Stat As String, ByVal val As Integer, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
+            If own = False Then
+                pNPC = BattleScreen.OppPokemonNPC
+            End If
             If own = False Then
                 p = BattleScreen.OppPokemon
                 op = BattleScreen.OwnPokemon
@@ -3332,7 +3691,7 @@
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
             If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the stat change."))
                 Return False
             End If
@@ -3377,7 +3736,7 @@
             If statC >= 6 Then
                 'Cannot rise stat higher
 
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 Select Case message
                     Case "" 'Print default message only
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s " & statString & " cannot rise further."))
@@ -3395,8 +3754,30 @@
                 End If
             End If
 
-            '***SHOW STAT INCREASE ANIMATION HERE***
+            '***STAT INCREASE ANIMATION***
+            If Core.Player.ShowBattleAnimations <> 0 Then
+                Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+                Dim maxAmount As Integer = 20 * val
+                Dim currentAmount As Integer = 0
+                While currentAmount <= maxAmount
+                    Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatChange\statUp")
+                    Dim xPos = CSng((Random.NextDouble() - 0.5) * 1.2)
+                    Dim zPos = CSng((Random.NextDouble() - 0.5) * 1.2)
 
+                    Dim Position As New Vector3(xPos, -0.4, zPos)
+                    Dim Destination As New Vector3(0, 1.2, 0)
+                    Dim Scale As New Vector3(0.2F)
+                    Dim startDelay As Double = 5.0 * Random.NextDouble()
+                    Dim StatEntity As Entity = StatAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
+
+                    StatAnimation.AnimationMove(StatEntity, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                    Threading.Interlocked.Increment(currentAmount)
+                End While
+                StatAnimation.AnimationPlaySound("Battle\Effects\Stat_Raise", 0, 0)
+                BattleScreen.BattleQuery.Add(StatAnimation)
+            Else
+                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Stat_Raise", False))
+            End If
             Dim printMessage As String = p.GetDisplayName() & "'s " & statString
             Select Case val
                 Case 2
@@ -3413,7 +3794,7 @@
                 Case "attack"
                     p.StatAttack += val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3428,7 +3809,7 @@
                 Case "defense"
                     p.StatDefense += val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3443,7 +3824,7 @@
                 Case "special attack"
                     p.StatSpAttack += val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3458,7 +3839,7 @@
                 Case "special defense"
                     p.StatSpDefense += val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3473,7 +3854,7 @@
                 Case "speed"
                     p.StatSpeed += val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3488,7 +3869,7 @@
                 Case "evasion"
                     p.Evasion += val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3503,7 +3884,7 @@
                 Case "accuracy"
                     p.Accuracy += val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3524,8 +3905,10 @@
         Public Function LowerStat(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal Stat As String, ByVal val As Integer, ByVal message As String, ByVal cause As String) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
                 op = BattleScreen.OwnPokemon
             End If
 
@@ -3551,7 +3934,7 @@
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
             If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the stat change."))
                 Return False
             End If
@@ -3571,14 +3954,12 @@
             If p.Ability.Name.ToLower() = "clear body" Or p.Ability.Name.ToLower() = "white smoke" Then
                 If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
                     If own <> from Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("The " & p.Ability.Name & " prevented the status change!"))
                         Return False
                     End If
                 End If
             End If
-
-
 
             Dim statString As String = Stat.ToLower()
 
@@ -3586,7 +3967,7 @@
                 Case "attack"
                     If p.Ability.Name.ToLower() = "hyper cutter" And from <> own Then
                         If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Hyper Cutter prevented attack drop!"))
                             Return False
                         End If
@@ -3594,7 +3975,7 @@
 
                 Case "defense"
                     If p.Ability.Name.ToLower() = "big pecks" And from <> own And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Big Pecks prevented defense drop!"))
                         Return False
                     End If
@@ -3602,7 +3983,7 @@
                 Case "accuracy"
                     If p.Ability.Name.ToLower() = "keen eye" And from <> own Then
                         If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                            Me.ChangeCameraAngel(1, own, BattleScreen)
+                            Me.ChangeCameraAngle(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New TextQueryObject("Keen Eye prevented accuracy drop!"))
                             Return False
                         End If
@@ -3636,7 +4017,7 @@
             If statC <= -6 Then
                 'Cannot fall further
 
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
 
                 Select Case message
                     Case "" 'Print default message only
@@ -3654,9 +4035,29 @@
                     val = 6 + statC
                 End If
             End If
+            '***STAT DECREASE ANIMATION***
+            If Core.Player.ShowBattleAnimations <> 0 Then
+                Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+                Dim maxAmount As Integer = 20 * val
+                Dim currentAmount As Integer = 0
+                While currentAmount <= maxAmount
+                    Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatChange\statDown")
+                    Dim xPos = CSng((Random.NextDouble() - 0.5) * 1.2)
+                    Dim zPos = CSng((Random.NextDouble() - 0.5) * 1.2)
 
-            '***SHOW STAT DECREASE ANIMATION HERE***
-
+                    Dim Position As New Vector3(xPos, 0.8, zPos)
+                    Dim Destination As New Vector3(0, -1.2, 0)
+                    Dim Scale As New Vector3(0.2F)
+                    Dim startDelay As Double = 5.0 * Random.NextDouble()
+                    Dim StatEntity As Entity = StatAnimation.SpawnEntity(pNPC.Position + Position, Texture, Scale, 1.0F, CSng(startDelay))
+                    StatAnimation.AnimationMove(StatEntity, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                    Threading.Interlocked.Increment(currentAmount)
+                End While
+                StatAnimation.AnimationPlaySound("Battle\Effects\Stat_Lower", 0, 0)
+                BattleScreen.BattleQuery.Add(StatAnimation)
+            Else
+                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Stat_Lower", False))
+            End If
             Dim printMessage As String = p.GetDisplayName() & "'s " & statString
             Select Case val
                 Case 2
@@ -3675,7 +4076,7 @@
                 Case "attack"
                     p.StatAttack -= val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3690,7 +4091,7 @@
                 Case "defense"
                     p.StatDefense -= val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3705,7 +4106,7 @@
                 Case "special attack"
                     p.StatSpAttack -= val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3720,7 +4121,7 @@
                 Case "special defense"
                     p.StatSpDefense -= val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3735,7 +4136,7 @@
                 Case "speed"
                     p.StatSpeed -= val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3750,7 +4151,7 @@
                 Case "evasion"
                     p.Evasion -= val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3765,7 +4166,7 @@
                 Case "accuracy"
                     p.Accuracy -= val
 
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -3811,7 +4212,7 @@
             End If
 
             If p.Ability.Name.ToLower() = "oblivious" And BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) = True Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("Oblivious prevented the infatuation."))
                 Return False
             End If
@@ -3820,11 +4221,11 @@
                 substitute = BattleScreen.FieldEffects.OppSubstitute
             End If
             If substitute > 0 And op.Ability.Name.ToLower() <> "infiltrator" And from <> own Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("The substitute prevented the infatuation."))
                 Return False
             Else
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 Select Case message
                     Case "" 'Print default message only
                         BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " fell in love."))
@@ -3860,14 +4261,14 @@
             End If
 
             If p.Ability.Name.ToLower() = "rock head" And cause.StartsWith("move:") = True Then
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject("Rock Head prevented the recoil damage of " & p.GetDisplayName() & "!"))
             Else
                 If p.Ability.Name.ToLower() = "magic guard" Then
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Magic Guard prevented the recoil damage of " & p.GetDisplayName() & "!"))
                 Else
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is damaged by recoil!"))
@@ -3884,19 +4285,46 @@
 
         Public Sub GainHP(ByVal HPAmount As Integer, ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String)
             Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
             End If
 
             If p.HP < p.MaxHP And p.HP > 0 And p.Status <> Pokemon.StatusProblems.Fainted Then
                 If own = True Then
-                    ChangeCameraAngel(1, True, BattleScreen)
+                    ChangeCameraAngle(1, True, BattleScreen)
                 Else
-                    ChangeCameraAngel(2, True, BattleScreen)
+                    ChangeCameraAngle(2, True, BattleScreen)
                 End If
 
                 If HPAmount > p.MaxHP - p.HP Then
                     HPAmount = p.MaxHP - p.HP
+                End If
+
+                '***HP INCREASE ANIMATION***
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    Dim HealAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
+                    Dim maxAmount As Integer = 20
+                    Dim currentAmount As Integer = 0
+                    While currentAmount <= maxAmount
+                        Dim Texture As Texture2D = TextureManager.GetTexture("Textures\Battle\StatChange\Heal")
+                        Dim xPos = CSng((Random.NextDouble() - 0.5) * 1.2)
+                        Dim zPos = CSng((Random.NextDouble() - 0.5) * 1.2)
+
+                        Dim Position As New Vector3(xPos, -0.4, zPos)
+                        Dim Destination As New Vector3(xPos, 0.8, zPos)
+                        Dim Scale As New Vector3(0.2F)
+                        Dim startDelay As Double = 5.0 * Random.NextDouble()
+                        Dim HealEntity As Entity = HealAnimation.SpawnEntity(Position, Texture, Scale, 1.0F, CSng(startDelay))
+
+                        HealAnimation.AnimationMove(HealEntity, True, Destination.X, Destination.Y, Destination.Z, 0.05F, False, True, CSng(startDelay), 0.0F)
+                        Threading.Interlocked.Increment(currentAmount)
+                    End While
+                    HealAnimation.AnimationPlaySound("Battle\Effects\Heal", 0, 0)
+                    BattleScreen.BattleQuery.Add(HealAnimation)
+                Else
+                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Heal", False))
                 End If
 
                 If own = True Then
@@ -3920,24 +4348,33 @@
 
         Public Sub ReduceHP(ByVal HPAmount As Integer, ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String, ByVal sound As String)
             Dim p As Pokemon = BattleScreen.OwnPokemon
+            Dim pNPC As Entity = BattleScreen.OwnPokemonNPC
             If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
             End If
 
             If p.HP > 0 And p.Status <> Pokemon.StatusProblems.Fainted Then
                 If own = True Then
-                    ChangeCameraAngel(1, True, BattleScreen)
+                    ChangeCameraAngle(1, True, BattleScreen)
                 Else
-                    ChangeCameraAngel(2, True, BattleScreen)
+                    ChangeCameraAngle(2, True, BattleScreen)
                 End If
 
                 If sound <> "NOSOUND" Then
                     If sound = "" Then
-                        sound = "Battle\Damage\normaldamage"
+                        sound = "Battle\Damage\Effective"
                     End If
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(sound, False, 0.0F))
                 End If
-
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
+                    HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 0, 0)
+                    HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 1, 0)
+                    HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 2, 0)
+                    HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                    BattleScreen.BattleQuery.Add(HitAnimation)
+                End If
                 If own = True Then
                     BattleScreen.BattleQuery.Add(New MathHPQueryObject(p.HP, p.MaxHP, HPAmount, New Vector2(200, 256)))
                 Else
@@ -4073,7 +4510,7 @@
 
             Dim berry As Items.Berry = CType(BerryItem, Items.Berry)
 
-            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("single_heal", False))
+            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
             Select Case BerryItem.Name.ToLower()
                 Case "oran"
                     GainHP(10, own, from, BattleScreen, "The Oran Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:oran")
@@ -4148,7 +4585,7 @@
                 Case "micle"
                     RaiseStat(own, own, BattleScreen, "Accuracy", 2, "The Micle Berry raised " & p.GetDisplayName() & "'s power!", "berry:micle")
                 Case "custap"
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     If own = True Then
                         BattleScreen.FieldEffects.OwnCustapBerry = 1
                     Else
@@ -4182,7 +4619,7 @@
 
             If BattleScreen.FieldEffects.CanUseAbility(own, BattleScreen) And p.Ability.Name.ToLower() = "sticky hold" And cause.StartsWith("berry:") = False Then
                 If TestFor = False Then
-                    Me.ChangeCameraAngel(1, own, BattleScreen)
+                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     BattleScreen.BattleQuery.Add(New TextQueryObject("Sticky Hold prevented the item loss."))
                 End If
                 Return False
@@ -4206,7 +4643,7 @@
                     RaiseStat(own, own, BattleScreen, "Speed", 2, "Unburden raised the speed!", "unburden")
                 End If
 
-                Me.ChangeCameraAngel(1, own, BattleScreen)
+                Me.ChangeCameraAngle(1, own, BattleScreen)
                 Select Case message
                     Case "" 'Print default message only
                         If cause.StartsWith("berry:") = True Then
@@ -4246,7 +4683,7 @@
                     End If
 
                     If op.Ability.Name.ToLower() = "air lock" Or op.Ability.Name.ToLower() = "cloud nine" Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         Select Case message
                             Case "" 'Print default message only
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s " & op.Ability.Name & " prevented the weather change!"))
@@ -4263,7 +4700,7 @@
                     End If
 
                     If p.Ability.Name.ToLower() = "air lock" Or p.Ability.Name.ToLower() = "cloud nine" Then
-                        Me.ChangeCameraAngel(1, own, BattleScreen)
+                        Me.ChangeCameraAngle(1, own, BattleScreen)
                         Select Case message
                             Case "" 'Print default message only
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s " & p.Ability.Name & " prevented the weather change!"))
@@ -4512,7 +4949,7 @@
                             .BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & "!"))
                         Case "imposter"
                             'Doing the ditto stuff!
-                            ChangeCameraAngel(1, own, BattleScreen)
+                            ChangeCameraAngle(1, own, BattleScreen)
                             If op.IsTransformed = False Then
                                 'Save old stats:
                                 p.OriginalNumber = p.Number
@@ -4691,13 +5128,13 @@
 #End Region
 
         ''' <summary>
-        ''' Switches camera to angel
+        ''' Switches camera to angle
         ''' </summary>
         ''' <param name="direction">0=main battle/1=own pokemon/2=opp pokemon</param>
         ''' <param name="own">If the code comes from the own player or not.</param>
         ''' <param name="BattleScreen">Battlescreen reference</param>
         ''' <param name="AddPVP">If the call should get added the PVP list or the own queue.</param>
-        Public Sub ChangeCameraAngel(ByVal direction As Integer, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal AddPVP As Boolean = False)
+        Public Sub ChangeCameraAngle(ByVal direction As Integer, ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal AddPVP As Boolean = False)
             Dim q As CameraQueryObject = Nothing
 
             Select Case direction
@@ -4729,11 +5166,11 @@
             If BattleScreen.IsRemoteBattle = True And AddPVP = False Then
                 Select Case direction
                     Case 0
-                        ChangeCameraAngel(0, own, BattleScreen, True)
+                        ChangeCameraAngle(0, own, BattleScreen, True)
                     Case 1
-                        ChangeCameraAngel(2, own, BattleScreen, True)
+                        ChangeCameraAngle(2, own, BattleScreen, True)
                     Case 2
-                        ChangeCameraAngel(1, own, BattleScreen, True)
+                        ChangeCameraAngle(1, own, BattleScreen, True)
                 End Select
             End If
         End Sub
@@ -4902,10 +5339,10 @@
                             End If
                         End If
 
-                        ChangeCameraAngel(0, True, BattleScreen)
 
                         Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                         Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+
 
                         cq2.PassThis = True
 
@@ -5041,7 +5478,7 @@
             End If
             TriggerItemEffect(BattleScreen, True)
             TriggerItemEffect(BattleScreen, False)
-            ChangeCameraAngel(0, True, BattleScreen)
+            ChangeCameraAngle(0, True, BattleScreen)
             If IsAfterFaint = True Then
                 Exit Sub
             End If
@@ -5289,14 +5726,54 @@
                     Else
                         If .OwnPokemon.Ability.Name.ToLower() <> "magic guard" Then
                             If .OwnPokemon.Status = Pokemon.StatusProblems.Poison Then 'Own Poison
-                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_poison", False))
+                                ChangeCameraAngle(1, True, BattleScreen)
+                                'Poison animation
+                                If Core.Player.ShowBattleAnimations <> 0 Then
+                                    Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
+
+                                    PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+
+                                    BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                End If
+                                'Actual damage
                                 ReduceHP(CInt(.OwnPokemon.MaxHP / 8), True, True, BattleScreen, "The poison hurt " & .OwnPokemon.GetDisplayName() & ".", "poison")
                             End If
 
                             If .OwnPokemon.Status = Pokemon.StatusProblems.BadPoison Then 'Own Toxic
                                 .FieldEffects.OwnPoisonCounter += 1
                                 Dim multiplier As Double = (.FieldEffects.OwnPoisonCounter / 16)
-                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_poison", False))
+
+                                ChangeCameraAngle(1, True, BattleScreen)
+                                'Poison animation
+                                If Core.Player.ShowBattleAnimations <> 0 Then
+                                    Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
+
+                                    PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+
+                                    BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                End If
+                                'Actual damage
                                 ReduceHP(CInt(.OwnPokemon.MaxHP * multiplier), True, True, BattleScreen, "The toxic hurt " & .OwnPokemon.GetDisplayName() & ".", "badpoison")
                             End If
                         End If
@@ -5310,8 +5787,22 @@
                             If .OwnPokemon.Ability.Name.ToLower() = "heatproof" Then
                                 reduceAmount = CInt(.OwnPokemon.MaxHP / 32)
                             End If
+                            ChangeCameraAngle(1, True, BattleScreen)
+                            'Burn animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
+                                BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
-                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_ember", False))
+                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, 0.25F, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 32, 32, 32), ""), 0.75, 0)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 64, 32, 32), ""), 1.5, 0)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 96, 32, 32), ""), 2.25, 0)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 128, 32, 32), ""), 3, 0)
+                                BattleScreen.BattleQuery.Add(BurnAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Burned", False))
+                            End If
+                            'Actual damage
                             ReduceHP(reduceAmount, True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
                         End If
                     End If
@@ -5366,6 +5857,29 @@
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
+                            ChangeCameraAngle(1, True, BattleScreen)
+                            'Wrap Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+
+                                Dim WrapAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False)
+                                WrapAnimation.AnimationPlaySound("Battle\Attacks\Normal\Wrap", 5.0F, 0)
+                                Dim WrapEntity = WrapAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 0, 80, 40), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 40, 80, 40), ""), 0.75, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 80, 80, 40), ""), 1.5, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 120, 80, 40), ""), 2.25, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 160, 80, 40), ""), 3, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 200, 80, 40), ""), 3.75, 0.75)
+                                WrapAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 5, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 5, 0)
+                                WrapAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 7, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 7, 0)
+                                WrapAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 9, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
+                                WrapAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
+                                WrapAnimation.AnimationFade(WrapEntity, True, 0.03, False, 0.0, 11, 0)
+                                BattleScreen.BattleQuery.Add(WrapAnimation)
+                            End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
                         End If
                     End If
@@ -5379,6 +5893,19 @@
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
+                            End If
+                            ChangeCameraAngle(1, True, BattleScreen)
+                            'Whirlpool Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+
+                                Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False,, True)
+                                WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
+                                Dim WhirlpoolEntity As Entity = WhirlpoolAnimation.SpawnEntity(New Vector3(0, -0.3, 0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, CSng(MathHelper.Pi * 1.5), 0, 0, CSng(MathHelper.Pi * 1.5), 0, 0, 0, 0, True, False, False, False)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, 0, 0, 0.2F, 0, 0, 10.0F, 0.0F, 0.0F, False, False, True, True)
+                                WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, False, True, 1.0F, 1.0F, 1.0F, 0.025F, 0.0F, 0.0F)
+                                WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, True, False, 0.0F, 0.0F, 0.0F, 0.025F, 5.0F, 0.0F)
+                                BattleScreen.BattleQuery.Add(WhirlpoolAnimation)
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Whirlpool!", "whirlpool")
                         End If
@@ -5408,6 +5935,28 @@
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
+                            ChangeCameraAngle(1, True, BattleScreen)
+                            'Bind Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim BindAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False)
+                                BindAnimation.AnimationPlaySound("Battle\Attacks\Normal\Bind", 5.0F, 0)
+                                Dim BindEntity = BindAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 0, 80, 40), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 40, 80, 40), ""), 0.75, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 80, 80, 40), ""), 1.5, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 120, 80, 40), ""), 2.25, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 160, 80, 40), ""), 3, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 200, 80, 40), ""), 3.75, 0.75)
+                                BindAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 5, 0)
+                                BindAnimation.AnimationScale(BindEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 5, 0)
+                                BindAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 7, 0)
+                                BindAnimation.AnimationScale(BindEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 7, 0)
+                                BindAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 9, 0)
+                                BindAnimation.AnimationScale(BindEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
+                                BindAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
+                                BindAnimation.AnimationScale(BindEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
+                                BindAnimation.AnimationFade(BindEntity, True, 0.03, False, 0.0, 11, 0)
+                                BattleScreen.BattleQuery.Add(BindAnimation)
+                            End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Bind!", "bind")
                         End If
                     End If
@@ -5421,6 +5970,23 @@
                                 If .OppPokemon.Item.Name.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
+                            End If
+                            ChangeCameraAngle(1, True, BattleScreen)
+                            'Clamp Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim ClampAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, True)
+                                Dim offsetLeft As Single = 0.35
+                                Dim offsetRight As Single = -0.35
+                                ClampAnimation.AnimationPlaySound("Battle\Attacks\Water\Clamp", 0, 0)
+                                Dim ClampEntityLeft = ClampAnimation.SpawnEntity(New Vector3(offsetLeft, -0.1, offsetLeft), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Left", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+                                Dim ClampEntityRight = ClampAnimation.SpawnEntity(New Vector3(offsetRight, -0.1, offsetRight), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Right", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+                                ClampAnimation.AnimationMove(ClampEntityLeft, False, -0.1, -0.1, -0.1, 0.02, False, False, 0, 0)
+                                ClampAnimation.AnimationMove(ClampEntityRight, False, 0.1, -0.1, 0.1, 0.02, False, False, 0, 0)
+                                ClampAnimation.AnimationMove(ClampEntityLeft, True, -0.35, -0.1, -0.35, 0.02, False, False, 2, 0)
+                                ClampAnimation.AnimationMove(ClampEntityRight, True, 0.35, -0.1, 0.35, 0.02, False, False, 2, 0)
+                                Dim SpawnEntity = ClampAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Tackle"), New Vector3(0.5F), 1.0F, 2.5, 2)
+                                ClampAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 4.5F, 0)
+                                BattleScreen.BattleQuery.Add(ClampAnimation)
                             End If
                             ReduceHP(multiHP, True, False, BattleScreen, .OwnPokemon.GetDisplayName() & " is hurt by Clamp!", "clamp")
                         End If
@@ -5788,7 +6354,7 @@
         End Sub
 
         Private Sub EndRoundOpp(ByVal BattleScreen As BattleScreen)
-            ChangeCameraAngel(0, True, BattleScreen)
+            ChangeCameraAngle(0, True, BattleScreen)
             If IsAfterFaint = True Then
                 Exit Sub
             End If
@@ -6038,15 +6604,55 @@
                     Else
                         If .OppPokemon.Ability.Name.ToLower() <> "magic guard" Then
                             If .OppPokemon.Status = Pokemon.StatusProblems.Poison Then 'Opp Poison
-                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_poison", False))
+                                ChangeCameraAngle(1, False, BattleScreen)
+                                'Poison animation
+                                If Core.Player.ShowBattleAnimations <> 0 Then
+                                    Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
+
+                                    PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+
+                                    BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                End If
+                                'Actual damage
                                 ReduceHP(CInt(.OppPokemon.MaxHP / 8), False, False, BattleScreen, "The poison hurt " & .OppPokemon.GetDisplayName() & ".", "poison")
                             End If
 
                             If .OppPokemon.Status = Pokemon.StatusProblems.BadPoison Then 'Opp Toxic
                                 .FieldEffects.OppPoisonCounter += 1
                                 Dim multiplier As Double = (.FieldEffects.OppPoisonCounter / 16)
-                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_poison", False))
+                                ChangeCameraAngle(1, False, BattleScreen)
+                                If Core.Player.ShowBattleAnimations <> 0 Then
+                                    'Poison animation
+                                    Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
+
+                                    PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
+                                    Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 1, 1)
+                                    Dim BubbleEntity2 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 1, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity1, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 2, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 2, 1)
+                                    Dim BubbleEntity3 As Entity = PoisonAnimation.SpawnEntity(New Vector3(0, -0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity2, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 3, 1)
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 32, 32, 32), ""), 3, 1)
+
+                                    PoisonAnimation.AnimationChangeTexture(BubbleEntity3, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 64, 32, 32), ""), 4, 1)
+
+                                    BattleScreen.BattleQuery.Add(PoisonAnimation)
+                                Else
+                                    BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Poisoned", False))
+                                End If
+                                'Actual damage
                                 ReduceHP(CInt(.OppPokemon.MaxHP * multiplier), False, False, BattleScreen, "The toxic hurt " & .OppPokemon.GetDisplayName() & ".", "badpoison")
+
                             End If
                         End If
                     End If
@@ -6059,8 +6665,22 @@
                             If .OppPokemon.Ability.Name.ToLower() = "heatproof" Then
                                 reduceAmount = CInt(.OppPokemon.MaxHP / 16)
                             End If
+                            ChangeCameraAngle(1, False, BattleScreen)
+                            'Burn animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
+                                BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
-                            BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\effect_ember", False))
+                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 32, 32, 32), ""), 0.75, 0)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 64, 32, 32), ""), 1.5, 0)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 96, 32, 32), ""), 2.25, 0)
+                                BurnAnimation.AnimationChangeTexture(FlameEntity, True, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 128, 32, 32), ""), 3, 0)
+                                BattleScreen.BattleQuery.Add(BurnAnimation)
+                            Else
+                                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\Effects\Burned", False))
+                            End If
+                            'Actual damage
                             ReduceHP(reduceAmount, False, False, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by the burn.", "burn")
                         End If
                     End If
@@ -6116,6 +6736,28 @@
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
+                            ChangeCameraAngle(1, False, BattleScreen)
+                            'Wrap Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim WrapAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True)
+                                WrapAnimation.AnimationPlaySound("Battle\Attacks\Normal\Wrap", 5.0F, 0)
+                                Dim WrapEntity = WrapAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 0, 80, 40), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 40, 80, 40), ""), 0.75, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 80, 80, 40), ""), 1.5, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 120, 80, 40), ""), 2.25, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 160, 80, 40), ""), 3, 0.75)
+                                WrapAnimation.AnimationChangeTexture(WrapEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 200, 80, 40), ""), 3.75, 0.75)
+                                WrapAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 5, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 5, 0)
+                                WrapAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 7, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 7, 0)
+                                WrapAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 9, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
+                                WrapAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
+                                WrapAnimation.AnimationScale(WrapEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
+                                WrapAnimation.AnimationFade(WrapEntity, True, 0.03, False, 0.0, 11, 0)
+                                BattleScreen.BattleQuery.Add(WrapAnimation)
+                            End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Wrap!", "wrap")
                         End If
                     End If
@@ -6129,6 +6771,18 @@
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
+                            End If
+                            ChangeCameraAngle(1, False, BattleScreen)
+                            'Whirlpool Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True,, True)
+                                WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
+                                Dim WhirlpoolEntity As Entity = WhirlpoolAnimation.SpawnEntity(New Vector3(0, -0.3, 0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, CSng(MathHelper.Pi * 1.5), 0, 0, CSng(MathHelper.Pi * 1.5), 0, 0, 0, 0, True, False, False, False)
+                                WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, 0, 0, 0.2F, 0, 0, 10.0F, 0.0F, 0.0F, False, False, True, True)
+                                WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, False, True, 1.0F, 1.0F, 1.0F, 0.025F, 0.0F, 0.0F)
+                                WhirlpoolAnimation.AnimationScale(WhirlpoolEntity, True, False, 0.0F, 0.0F, 0.0F, 0.025F, 5.0F, 0.0F)
+                                BattleScreen.BattleQuery.Add(WhirlpoolAnimation)
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Whirlpool!", "whirlpool")
                         End If
@@ -6158,6 +6812,28 @@
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
+                            ChangeCameraAngle(1, False, BattleScreen)
+                            'Bind Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim BindAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True)
+                                BindAnimation.AnimationPlaySound("Battle\Attacks\Normal\Bind", 5.0F, 0)
+                                Dim BindEntity = BindAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 0, 80, 40), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 40, 80, 40), ""), 0.75, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 80, 80, 40), ""), 1.5, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 120, 80, 40), ""), 2.25, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 160, 80, 40), ""), 3, 0.75)
+                                BindAnimation.AnimationChangeTexture(BindEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 200, 80, 40), ""), 3.75, 0.75)
+                                BindAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 5, 0)
+                                BindAnimation.AnimationScale(BindEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 5, 0)
+                                BindAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 7, 0)
+                                BindAnimation.AnimationScale(BindEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 7, 0)
+                                BindAnimation.AnimationScale(Nothing, False, False, 0.75F, 1.0F, 0.75F, 0.02F, 9, 0)
+                                BindAnimation.AnimationScale(BindEntity, False, False, 0.75F, 0.5F, 0.75F, 0.02F, 9, 0)
+                                BindAnimation.AnimationScale(Nothing, False, True, 1.0F, 1.0F, 1.0F, 0.04F, 11, 0)
+                                BindAnimation.AnimationScale(BindEntity, False, True, 1.0F, 0.5F, 1.0F, 0.04F, 11, 0)
+                                BindAnimation.AnimationFade(BindEntity, True, 0.03, False, 0.0, 11, 0)
+                                BattleScreen.BattleQuery.Add(BindAnimation)
+                            End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Bind!", "bind")
                         End If
                     End If
@@ -6171,6 +6847,23 @@
                                 If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
+                            End If
+                            ChangeCameraAngle(1, False, BattleScreen)
+                            'Clamp Animation
+                            If Core.Player.ShowBattleAnimations <> 0 Then
+                                Dim ClampAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, False)
+                                Dim offsetLeft As Single = -0.35
+                                Dim offsetRight As Single = 0.35
+                                ClampAnimation.AnimationPlaySound("Battle\Attacks\Water\Clamp", 0, 0)
+                                Dim ClampEntityLeft = ClampAnimation.SpawnEntity(New Vector3(offsetLeft, -0.1, offsetLeft), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Left", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+                                Dim ClampEntityRight = ClampAnimation.SpawnEntity(New Vector3(offsetRight, -0.1, offsetRight), TextureManager.GetTexture("Textures\Battle\Water\Clamp_Right", New Rectangle(0, 0, 24, 64), ""), New Vector3(0.28F, 0.75F, 0.28F), 0.75F)
+                                ClampAnimation.AnimationMove(ClampEntityLeft, False, -0.1, -0.1, -0.1, 0.02, False, False, 0, 0)
+                                ClampAnimation.AnimationMove(ClampEntityRight, False, 0.1, -0.1, 0.1, 0.02, False, False, 0, 0)
+                                ClampAnimation.AnimationMove(ClampEntityLeft, True, -0.35, -0.1, -0.35, 0.02, False, False, 2, 0)
+                                ClampAnimation.AnimationMove(ClampEntityRight, True, 0.35, -0.1, 0.35, 0.02, False, False, 2, 0)
+                                Dim SpawnEntity = ClampAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Tackle"), New Vector3(0.5F), 1.0F, 2.5, 2)
+                                ClampAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 4.5F, 0)
+                                BattleScreen.BattleQuery.Add(ClampAnimation)
                             End If
                             ReduceHP(multiHP, False, True, BattleScreen, .OppPokemon.GetDisplayName() & " is hurt by Clamp!", "clamp")
                         End If
@@ -6443,10 +7136,9 @@
         Dim HasSwitchedInOpp As Boolean = False
         Public Sub SwitchOutOwn(ByVal BattleScreen As BattleScreen, ByVal SwitchInIndex As Integer, ByVal InsertIndex As Integer, Optional ByVal message As String = "")
             With BattleScreen
-                ChangeCameraAngel(1, True, BattleScreen)
-
                 'Natural cure cures status problems
                 If .OwnPokemon.Ability.Name.ToLower() = "natural cure" Then
+                    ChangeCameraAngle(1, True, BattleScreen)
                     If .OwnPokemon.Status <> Pokemon.StatusProblems.Fainted And .OwnPokemon.Status <> Pokemon.StatusProblems.None Then
                         .OwnPokemon.Status = Pokemon.StatusProblems.None
                         .AddToQuery(InsertIndex, New TextQueryObject(.OwnPokemon.GetDisplayName() & "'s status problem got healed by Natural Cure"))
@@ -6454,6 +7146,7 @@
                 End If
                 'Regenerator ability heals 1/3 of it's max HP
                 If .OwnPokemon.Ability.Name.ToLower() = "regenerator" Then
+                    ChangeCameraAngle(1, True, BattleScreen)
                     If Not (.OwnPokemon.Status = Pokemon.StatusProblems.Fainted Or .OwnPokemon.HP = 0) Then
                         Dim restoreHP = CInt(.OwnPokemon.MaxHP / 3)
                         If restoreHP > 0 And .OwnPokemon.HP < .OwnPokemon.MaxHP And .OwnPokemon.HP > 0 Then
@@ -6463,6 +7156,7 @@
                 End If
                 'save baton pass stuff:
                 If .FieldEffects.OwnUsedBatonPass = True Then
+                    ChangeCameraAngle(1, True, BattleScreen)
                     .FieldEffects.OwnBatonPassStats = New List(Of Integer)
                     With .OwnPokemon
                         BattleScreen.FieldEffects.OwnBatonPassStats.AddRange({ .StatAttack, .StatDefense, .StatSpAttack, .StatSpDefense, .StatSpeed, .Evasion, .Accuracy})
@@ -6482,7 +7176,6 @@
                     .OwnTruantRound = 0
                     .OwnTaunt = 0
                     .OwnSmacked = 0
-                    .OwnFlashFire = 0
                     .OwnRageCounter = 0
                     .OwnUproar = 0
                     If .OwnUsedBatonPass = False Then .OwnFocusEnergy = 0
@@ -6528,6 +7221,7 @@
                     .OwnStockpileCount = 0
                     .OwnDestinyBond = False
                     .OwnGastroAcid = False
+                    .OwnTarShot = False
 
                     .OwnForesight = 0
                     .OwnOdorSleuth = 0
@@ -6577,8 +7271,6 @@
 
                 .OwnPokemon.Ability.SwitchOut(.OwnPokemon)
 
-                BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, 2, -1, -1, -1, -1))
-
                 If Core.Player.CountFightablePokemon > 0 Then
                     If BattleScreen.OwnFaint Then
                         'Next pokemon sent by the player is decided via menu.
@@ -6587,12 +7279,12 @@
                     End If
                 Else
                     If BattleScreen.IsTrainerBattle = True Then
-                        EndBattle(EndBattleReasons.LooseTrainer, BattleScreen, False)
+                        EndBattle(EndBattleReasons.LoseTrainer, BattleScreen, False)
                         If BattleScreen.IsRemoteBattle = True Then
-                            EndBattle(EndBattleReasons.LooseTrainer, BattleScreen, True)
+                            EndBattle(EndBattleReasons.LoseTrainer, BattleScreen, True)
                         End If
                     Else
-                        EndBattle(EndBattleReasons.LooseWild, BattleScreen, False)
+                        EndBattle(EndBattleReasons.LoseWild, BattleScreen, False)
                     End If
                 End If
             End With
@@ -6620,6 +7312,7 @@
         Public Sub SwitchInOwn(ByVal BattleScreen As BattleScreen, ByVal NewPokemonIndex As Integer, ByVal FirstTime As Boolean, ByVal InsertIndex As Integer, Optional ByVal message As String = "")
             HasSwitchedInOwn = True
             If FirstTime = False Then
+                ChangeCameraAngle(1, True, BattleScreen)
                 Dim insertMessage As String = message
 
                 If insertMessage = "" Then
@@ -6627,6 +7320,39 @@
                 End If
 
                 BattleScreen.AddToQuery(InsertIndex, New TextQueryObject(insertMessage))
+
+                Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False, BattleScreen.OwnPokemonModel)
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    ' Ball Closes
+                    BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
+                    Dim SmokeReturned As Integer = 0
+                    Do
+                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+                        Dim SmokeDestination As Vector3 = New Vector3(0, 0, 0)
+
+                        Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
+
+                        Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
+                        Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
+
+                        Dim SmokeEntity As Entity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1.0F)
+                        BallReturn.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
+
+                        Threading.Interlocked.Increment(SmokeReturned)
+                    Loop While SmokeReturned <= 38
+                End If
+
+                ' Pokemon disappears
+                BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
+
+                    ' Ball returns
+                    BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
+                    Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(Nothing, BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 1, 0,, 0.3)
+                End If
+                BattleScreen.AddToQuery(InsertIndex, BallReturn)
 
                 Dim index As Integer = NewPokemonIndex
                 If index <= -1 Then
@@ -6652,16 +7378,55 @@
                 End If
 
                 Dim ownModel As String = BattleScreen.GetModelName(True)
-
                 If ownModel = "" Then
                     BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon), 0, 1, -1, -1))
                 Else
                     BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ownModel, 1, 0, -1, -1))
                 End If
 
-                BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, 1, -1, -1, -1, -1))
-                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(BattleScreen.OwnPokemon.Number.ToString(), True))
                 BattleScreen.AddToQuery(InsertIndex, New TextQueryObject("Go, " & BattleScreen.OwnPokemon.GetDisplayName() & "!"))
+
+                ' Ball is thrown
+                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False, BattleScreen.OwnPokemonModel)
+
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
+
+                    Dim BallThrowEntity As Entity = BallThrow.SpawnEntity(New Vector3(-2, -0.15, 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, -0.3,, 0.025F)
+
+                    ' Ball Opens
+                    BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
+
+                    Dim SmokeSpawned As Integer = 0
+                    Do
+                        Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+
+                        Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
+
+                        Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
+                        Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
+
+                        Dim SmokeEntity As Entity = BallThrow.SpawnEntity(Nothing, SmokeTexture, SmokeScale, 1.0F, 3)
+                        BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
+
+                        Threading.Interlocked.Increment(SmokeSpawned)
+                    Loop While SmokeSpawned <= 38
+                End If
+
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    ' Pokemon appears
+                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True)
+                    '  Pokémon falls down
+                    BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 5, 0,,, 3)
+                Else
+                    ' Pokemon appears
+                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 0, 0)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 0, 0,, True)
+                End If
+
+                BattleScreen.AddToQuery(InsertIndex, BallThrow)
             End If
 
             With BattleScreen
@@ -6809,7 +7574,6 @@
                     .OppTruantRound = 0
                     .OppTaunt = 0
                     .OppSmacked = 0
-                    .OppFlashFire = 0
                     .OppRageCounter = 0
                     .OppUproar = 0
                     If .OppUsedBatonPass = False Then .OppFocusEnergy = 0
@@ -6855,6 +7619,7 @@
                     .OppStockpileCount = 0
                     .OppDestinyBond = False
                     .OppGastroAcid = False
+                    .OppTarShot = False
 
                     .OppFlyCounter = 0
                     .OppDigCounter = 0
@@ -6906,7 +7671,7 @@
             BattleScreen.OppPokemon.Ability.SwitchOut(BattleScreen.OppPokemon)
 
             If BattleScreen.IsTrainerBattle = False Then
-                ChangeCameraAngel(1, False, BattleScreen)
+
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 2, -1, -1, -1, -1))
 
                 EndBattle(EndBattleReasons.WinWild, BattleScreen, False)
@@ -6915,7 +7680,6 @@
                     If BattleScreen.OppPokemon.HP <= 0 Or BattleScreen.OppPokemon.Status = Pokemon.StatusProblems.Fainted Then
                         GainEXP(BattleScreen)
                     End If
-                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 2, -1, -1, -1, -1))
 
                     If BattleScreen.IsRemoteBattle And BattleScreen.OppFaint Then
                         'Next pokemon is selected by the opponent.
@@ -6925,14 +7689,45 @@
                 Else
                     GainEXP(BattleScreen)
 
-                    ChangeCameraAngel(1, False, BattleScreen)
-                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 2, -1, -1, -1, -1))
-
+                    ChangeCameraAngle(1, False, BattleScreen)
                     If message = "" Then
                         message = BattleScreen.Trainer.Name & ": ""Come back, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""
                     End If
 
                     BattleScreen.BattleQuery.Add(New TextQueryObject(message))
+
+                    If Core.Player.ShowBattleAnimations <> 0 Then
+                        Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
+                        ' Ball Closes
+                        BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
+                        Dim SmokeReturned As Integer = 0
+                        Do
+                            Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+                            Dim SmokeDestination = New Vector3(0, 0, 0)
+
+                            Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
+
+                            Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
+                            Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
+                            Dim SmokeEntity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1)
+                            BallReturn.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
+
+                            Threading.Interlocked.Increment(SmokeReturned)
+                        Loop While SmokeReturned <= 38
+
+                        ' Pokemon disappears
+                        BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
+
+                        BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
+
+                        ' Ball returns
+                        BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
+                        Dim BallReturnEntity = BallReturn.SpawnEntity(New Vector3(0, 0, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                        BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 0F, 0F,, 0.3)
+                        BattleScreen.BattleQuery.Add(BallReturn)
+                    Else
+                        BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 2, -1, -1, -1, -1))
+                    End If
 
                     EndBattle(EndBattleReasons.WinTrainer, BattleScreen, False)
                     If BattleScreen.IsRemoteBattle = True Then
@@ -6962,12 +7757,43 @@
         End Sub
 
         Public Sub SwitchInOpp(ByVal BattleScreen As BattleScreen, ByVal FirstTime As Boolean, ByVal index As Integer)
-
             If FirstTime = False Then
+                ChangeCameraAngle(1, False, BattleScreen)
                 HasSwitchedInOpp = True
-                ChangeCameraAngel(1, False, BattleScreen)
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Come back, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
+
+                    ' Ball Closes
+                    BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
+                    Dim SmokeReturned As Integer = 0
+                    Do
+                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+                        Dim SmokeDestination = New Vector3(0, 0, 0)
+
+                        Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
+
+                        Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
+                        Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
+                        Dim SmokeEntity = BallReturn.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1)
+                        BallReturn.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 0.0F, 0.0F)
+                        Threading.Interlocked.Increment(SmokeReturned)
+                    Loop While SmokeReturned <= 38
+
+                    ' Pokemon disappears
+                    BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
+                    BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
+
+                    ' Ball returns
+                    BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
+                    Dim BallReturnEntity = BallReturn.SpawnEntity(New Vector3(0, 0, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 0F, 0F,, 0.3)
+
+                    BattleScreen.BattleQuery.Add(BallReturn)
+                Else
+                    BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
+                End If
                 BattleScreen.SendInNewTrainerPokemon(index)
                 Me.ApplyOppBatonPass(BattleScreen)
 
@@ -6981,7 +7807,11 @@
                 End If
 
                 Dim oppModel As String = BattleScreen.GetModelName(False)
-
+                'Switch BattleStyle
+                If Core.Player.BattleStyle <> 1 And OppStep.StepType <> RoundConst.StepTypes.Switch Then
+                    BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
+                    ChangeCameraAngle(1, False, BattleScreen)
+                End If
                 If oppModel = "" Then
                     BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon), -1, -1, 0, 1))
                 Else
@@ -6989,8 +7819,46 @@
                 End If
 
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
-                BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(BattleScreen.OppPokemon.Number.ToString(), True))
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
+
+                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False, BattleScreen.OppPokemonModel)
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    ' Ball is thrown
+
+                    BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
+                    Dim BallThrowEntity = BallThrow.SpawnEntity(New Vector3(2, -0.15, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, 0.3,, 0.025F)
+
+                    ' Ball opens
+                    BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
+                    Dim SmokeSpawned As Integer = 0
+                    Do
+                        Dim SmokePosition = New Vector3(0, 0.35, 0)
+                        Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+
+                        Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
+
+                        Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
+                        Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
+                        Dim SmokeEntity = BallThrow.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1, 3)
+
+                        BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
+                        Threading.Interlocked.Increment(SmokeSpawned)
+                    Loop While SmokeSpawned <= 38
+                End If
+
+                If Core.Player.ShowBattleAnimations <> 0 Then
+                    ' Pokemon appears
+                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
+                    '  Pokémon falls down
+                    BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 5, 0)
+                Else
+                    ' Pokemon appears
+                    BallThrow.AnimationFade(Nothing, False, 1, True, 1, 0, 0)
+                    BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 0,, True)
+                End If
+                BattleScreen.BattleQuery.Add(BallThrow)
             End If
 
             With BattleScreen
@@ -7019,10 +7887,7 @@
                 'Sticky Web
                 If spikeAffected = True Then
                     If .FieldEffects.OwnStickyWeb > 0 Then
-
                         LowerStat(False, False, BattleScreen, "Speed", 1, "The opposing pokemon was caught in a Sticky Web!", "stickyweb")
-
-
                     End If
                 End If
                 If spikeAffected = True Then
@@ -7088,11 +7953,11 @@
 
         Enum EndBattleReasons
             WinWild
-            LooseWild
+            LoseWild
             WinTrainer
-            LooseTrainer
+            LoseTrainer
             WinPvP
-            LoosePvP
+            LosePvP
         End Enum
 
         Public Sub EndBattle(ByVal reason As EndBattleReasons, ByVal BattleScreen As BattleScreen, ByVal AddPVP As Boolean)
@@ -7111,7 +7976,7 @@
                         BattleScreen.TempPVPBattleQuery.Add(BattleScreen.BattleQuery.Count - 2, New TextQueryObject(""))
 
                         BattleScreen.TempPVPBattleQuery.Add(BattleScreen.BattleQuery.Count - 1, New EndBattleQueryObject(True))
-                    Case EndBattleReasons.LooseTrainer 'Won
+                    Case EndBattleReasons.LoseTrainer 'Won
                         Dim q As New CameraQueryObject(New Vector3(15, 0, 13), Screen.Camera.Position, 0.03F, 0.03F, -(MathHelper.Pi * 0.5F), Screen.Camera.Yaw, 0.0F, Screen.Camera.Pitch, 0.02F, 0.02F)
                         q.ApplyCurrentCamera = True
                         BattleScreen.TempPVPBattleQuery.Add(BattleScreen.BattleQuery.Count - 3, q)
@@ -7127,7 +7992,7 @@
                         Core.Player.AddPoints(1, "Won against wild Pokémon.")
 
                         BattleScreen.BattleQuery.Add(New PlayMusicQueryObject("wild_defeat"))
-                        ChangeCameraAngel(1, True, BattleScreen)
+                        ChangeCameraAngle(1, True, BattleScreen)
 
                         GainEXP(BattleScreen)
 
@@ -7157,7 +8022,7 @@
                         End If
 
                         BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
-                    Case EndBattleReasons.LooseTrainer, EndBattleReasons.LooseWild
+                    Case EndBattleReasons.LoseTrainer, EndBattleReasons.LoseWild
                         Won = False
                         Dim q As New CameraQueryObject(New Vector3(12, 0, 13), Screen.Camera.Position, 0.03F, 0.03F, (MathHelper.Pi * 0.5F), Screen.Camera.Yaw, 0.0F, Screen.Camera.Pitch, 0.02F, 0.02F)
                         q.ApplyCurrentCamera = True
@@ -7186,7 +8051,7 @@
                 Next
 
                 If expPokemon.Count > 0 Then
-                    Me.ChangeCameraAngel(1, True, BattleScreen)
+                    Me.ChangeCameraAngle(1, True, BattleScreen)
                 End If
 
                 For i = 0 To expPokemon.Count - 1

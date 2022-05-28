@@ -191,7 +191,7 @@
                     Core.Player.AddPoints(2, "Picked berries.")
                     PlayerStatistics.Track("[2006]Berries picked", Me.Berries)
 
-                    SoundManager.PlaySound("item_found", True)
+                    SoundManager.PlaySound("Receive_Item", True)
                     Screen.TextBox.TextColor = TextBox.PlayerColor
                     Screen.TextBox.Show(Text, {Me})
                     RemoveBerry()

@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Outcast Island]}}{"MusicLoop"{str[RouteMusic4]}}{"CurrentRegion"{str[sevii islands]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnviromentType"{int[0]}}{"Weather"{int[0]}}{"Lightning"{int[0]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}]}}
 
 Floor:
 {"Floor"{ENT[{"Size"{intArr[12,11]}}{"Position"{intArr[5,0,15]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[16,16,16,16]}}]}}

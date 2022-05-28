@@ -108,6 +108,10 @@
                     i = 0
                 Case 4
                     i = Clamp(2, 0, e.TextureIndex.Count - 1)
+                Case 5
+                    i = Clamp(4, 0, e.TextureIndex.Count - 1)
+                Case 6
+                    i = Clamp(4, 0, e.TextureIndex.Count - 1)
                 Case 7
                     i = Clamp(4, 0, e.TextureIndex.Count - 1)
                 Case 8

@@ -23,6 +23,10 @@
                 Case "musicloop"
                     Dim musicloop As String = System.IO.Path.GetFileNameWithoutExtension(Screen.Level.MusicLoop)
                     Return musicloop
+                Case "daytime"
+                    Return Screen.Level.DayTime
+                Case "environmenttype"
+                    Return int(Screen.Level.EnvironmentType)
             End Select
 
             Return DEFAULTNULL

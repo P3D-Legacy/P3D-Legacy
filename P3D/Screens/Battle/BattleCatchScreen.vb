@@ -3,13 +3,11 @@
     Inherits Screen
 
     Dim Ball As Item
-    Dim Animations As New List(Of BattleAnimation3D)
 
-    Dim AnimationStarted As Boolean = False
-    Dim catched As Boolean = False
-    Dim InBall As Boolean = False
+    Dim PokemonScale As Vector3
+
     Dim AnimationIndex As Integer = 0
-    Dim renamed As Boolean = False
+    Dim InBall As Boolean = False
 
     Dim textboxStart As Boolean = False
     Dim showPokedexEntry As Boolean = False
@@ -23,6 +21,8 @@
     Dim SpriteVisible As Boolean = False
 
     Dim BattleScreen As BattleSystem.BattleScreen
+    Dim AnimationHasStarted As Boolean = False
+    Dim AnimationList As New List(Of BattleSystem.AnimationQueryObject)
 
     Public Sub New(ByVal BattleScreen As BattleSystem.BattleScreen, ByVal Ball As Item)
         Me.Identification = Identifications.BattleCatchScreen
@@ -37,9 +37,6 @@
         Me.ModelVisible = BattleScreen.OppPokemonModel.Visible
         Me.SpriteVisible = BattleScreen.OppPokemonNPC.Visible
 
-        BattleScreen.OppPokemonModel.Visible = False
-        BattleScreen.OppPokemonNPC.Visible = True
-
         SetCamera()
     End Sub
 
@@ -49,11 +46,10 @@
         Level.Draw()
 
         Dim RenderObjects As New List(Of Entity)
-        For Each a As BattleAnimation3D In Me.Animations
-            RenderObjects.Add(a)
-        Next
 
-        If InBall = False Then
+        If BattleScreen.OppPokemonModel IsNot Nothing Then
+            RenderObjects.Add(BattleScreen.OppPokemonModel)
+        Else
             RenderObjects.Add(BattleScreen.OppPokemonNPC)
         End If
 
@@ -65,29 +61,53 @@
             [Object].Render()
         Next
 
+        If AnimationList.Count > 0 Then
+            Dim cIndex As Integer = 0
+            Dim cQuery As New List(Of BattleSystem.AnimationQueryObject)
+nextIndex:
+            If AnimationList.Count > cIndex Then
+                Dim cQueryObject As BattleSystem.AnimationQueryObject = AnimationList(cIndex)
+                cQuery.Add(cQueryObject)
+
+                If cQueryObject.PassThis = True Then
+                    cIndex += 1
+                    GoTo nextIndex
+                End If
+            End If
+
+            cQuery.Reverse()
+
+            For Each cQueryObject As BattleSystem.AnimationQueryObject In cQuery
+                cQueryObject.Draw(BattleScreen)
+            Next
+        End If
+
         World.DrawWeather(Screen.Level.World.CurrentMapWeather)
 
         TextBox.Draw()
     End Sub
 
     Private Sub UpdateAnimations()
-        Animations = (From a In Animations Order By a.CameraDistance Descending).ToList()
+        Dim cIndex As Integer = 0
+nextIndex:
+        If AnimationList.Count > cIndex Then
+            Dim cQueryObject As BattleSystem.QueryObject = AnimationList(cIndex)
 
-        For i = 0 To Animations.Count - 1
-            If i <= Animations.Count - 1 Then
-                Dim a As BattleAnimation3D = Animations(i)
-                If a.CanRemove = True Then
-                    i -= 1
-                    Animations.Remove(a)
-                Else
-                    a.Update()
+            cQueryObject.Update(BattleScreen)
+
+            If cQueryObject.IsReady = True Then
+                AnimationList.RemoveAt(cIndex)
+
+                If cQueryObject.PassThis = True Then
+                    GoTo nextIndex
+                End If
+            Else
+                If cQueryObject.PassThis = True Then
+                    cIndex += 1
+                    GoTo nextIndex
                 End If
             End If
-        Next
-
-        For Each Animation As BattleAnimation3D In Animations
-            Animation.UpdateEntity()
-        Next
+        End If
     End Sub
 
     Private Sub SetCamera()
@@ -109,106 +129,168 @@
         SkyDome.Update()
 
         Level.Update()
-        SetCamera()
 
         BattleScreen.OppPokemonNPC.UpdateEntity()
 
         CType(Camera, BattleSystem.BattleCamera).UpdateMatrices()
         CType(Camera, BattleSystem.BattleCamera).UpdateFrustum()
-
         If TextBox.Showing = False Then
-
-            If Me._playIntroSound = False Then
-                Me._playIntroSound = True
-                SoundManager.PlaySound("Battle\throw")
-            End If
-
-            UpdateAnimations()
-
             If Me.IsCurrentScreen() = True Then
-                If AnimationStarted = False Then
-                    SetupAnimation()
-                Else
-                    If Me.Animations.Count = 0 Then
-                        Select Case Me.AnimationIndex
-                            Case 0
-                                SoundManager.PlaySound("PokeballOpen")
-                                InBall = True
-                                AnimationIndex = 1
-                                AnimationStarted = False
-                                SetupAnimation()
-                            Case 1
-                                AnimationIndex = 2
-                                AnimationStarted = False
-                                SetupAnimation()
-                            Case 2, 3, 4, 5
+                UpdateAnimations()
+                Select Case AnimationIndex
+                    Case 0
+                        If AnimationHasStarted = False Then
+                            PokemonScale = BattleScreen.OppPokemonNPC.Scale
+                            'Ball is thrown
+                            Dim CatchAnimation = New BattleSystem.AnimationQueryObject(Nothing, False, Nothing)
+                            CatchAnimation.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
+
+                            Dim BallPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 3, 0.15F, BattleScreen.OppPokemonNPC.Position.Z)
+                            Dim BallEntity As Entity = CatchAnimation.SpawnEntity(BallPosition, Ball.Texture, New Vector3(0.3F), 1.0F, 0, 0)
+
+                            CatchAnimation.AnimationMove(BallEntity, False, 3, 0.1F, 0, 0.075, False, False, 0F, 0F,,,, 0.025)
+                            CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, -0.5, 0, 0, -6 * MathHelper.Pi, 0, 0, False, False, True, False)
+                            CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, 6 * MathHelper.Pi, 0, 0, 0, 4, 0, False, False, True, False)
+
+                            ' Ball closes
+                            CatchAnimation.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
+                            Dim SmokeParticlesClose As Integer = 0
+                            Do
+                                Dim SmokePosition = New Vector3(BattleScreen.OppPokemonNPC.Position.X + CSng(Random.Next(-10, 10) / 10), BattleScreen.OppPokemonNPC.Position.Y - 0.35F, BattleScreen.OppPokemonNPC.Position.Z + CSng(Random.Next(-10, 10) / 10))
+
+
+                                Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
+
+                                Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
+                                Dim SmokeSpeed = CSng(Random.Next(1, 3) / 25.0F)
+                                Dim SmokeEntity = CatchAnimation.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1, 3, 0)
+                                Dim SmokeDestination = New Vector3(BallEntity.Position.X - SmokePosition.X + 3, BallEntity.Position.Y - SmokePosition.Y, BallEntity.Position.Z - SmokePosition.Z - 0.05F)
+                                CatchAnimation.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3, 0)
+
+                                Threading.Interlocked.Increment(SmokeParticlesClose)
+                            Loop While SmokeParticlesClose <= 38
+                            ' Pokémon Shrinks
+                            CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, False, 0.0F, 0.0F, 0.0F, 0.035F, 3, 0)
+                            If BattleScreen.OppPokemonModel IsNot Nothing Then
+                                CatchAnimation.AnimationScale(BattleScreen.OppPokemonModel, False, False, 0.0F, 0.0F, 0.0F, 0.035F, 3, 0)
+                            End If
+
+                            ' Ball falls
+                            CatchAnimation.AnimationMove(BallEntity, False, 3, -0.35, 0, 0.1F, False, False, 8, 0)
+                            CatchAnimation.AnimationPlaySound("Battle\Pokeball\Land", 9, 0)
+
+                            Dim Shakes As List(Of Boolean) = New List(Of Boolean)
+                            For i = 0 To 3
                                 If StayInBall() = True Then
-                                    SoundManager.PlaySound("Battle\ballshake")
-                                    AnimationIndex += 1
+                                    Select Case i
+                                        Case 0
+                                            Shakes.Add(False)
+                                        Case 1
+                                            Shakes.Add(True)
+                                        Case 2
+                                            Shakes.Add(False)
+                                        Case 3
+                                            InBall = True
+                                    End Select
                                 Else
-                                    SoundManager.PlaySound("PokeballOpen")
-                                    AnimationIndex = 21
+                                    Exit For
                                     InBall = False
                                 End If
-                                AnimationStarted = False
-                                SetupAnimation()
-                            Case 6
-                                AnimationIndex = 7
-                                AnimationStarted = False
-                                SetupAnimation()
-                            Case 7
-                                AnimationIndex = 8
-                                AnimationStarted = False
-                                SetupAnimation()
-                                CatchPokemon()
-                                BattleSystem.Battle.Caught = True
-                            Case 8
-                                AnimationIndex = 9
-                                If showPokedexEntry = True Then
-                                    Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PokedexViewScreen(Core.CurrentScreen, p, True), Color.White, False))
+                            Next
+                            For i = 0 To Shakes.Count - 1
+                                CatchAnimation.AnimationPlaySound("Battle\Pokeball\Shake", 12 + i * 10, 0)
+                                If Shakes(i) = False Then
+                                    CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, 0.15F, 0, 0, MathHelper.PiOver4, 12 + i * 10, 0, False, False, True, True)
+                                Else
+                                    CatchAnimation.AnimationRotate(BallEntity, False, 0, 0, -0.15F, 0, 0, 0 - MathHelper.PiOver4, 12 + i * 10, 0, False, False, True, True)
                                 End If
-                            Case 9
-                                AnimationIndex = 10
-                                Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, p))
-                            Case 10 ' After Catch
-                                If p.CatchBall.ID = 186 Then
-                                    p.FullRestore() ' Heal Ball
-                                End If
+                            Next
 
-                                PlayerStatistics.Track("Caught Pokemon", 1)
-                                StorePokemon()
-                                AnimationIndex = 11
-                            Case 11
-                                Core.SetScreen(Me.PreScreen)
-                                BattleSystem.Battle.Won = True
-                                CType(Core.CurrentScreen, BattleSystem.BattleScreen).EndBattle(False)
-                            Case 20 ' Failed
-                                If Core.Player.Pokemons.Count < 6 Then
-                                    Dim p As Pokemon = BattleScreen.OppPokemon
-                                    p.SetCatchInfos(Me.Ball, "Illegally caught!")
+                            If InBall = True Then
+                                For i = 0 To 2
+                                    Dim StarPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X + 0.05F, BattleScreen.OppPokemonNPC.Position.Y, BattleScreen.OppPokemonNPC.Position.Z)
+                                    Dim StarDestination As Vector3 = New Vector3(0.05F, 0.65F, 0 - ((1 - i) * 0.4F))
+                                    Dim StarEntity As Entity = CatchAnimation.SpawnEntity(StarPosition, TextureManager.GetTexture("Textures\Battle\BallCatchStar"), New Vector3(0.35F), 1.0F, 12 + Shakes.Count * 10)
+                                    CatchAnimation.AnimationMove(StarEntity, True, StarDestination.X, StarDestination.Y, StarDestination.Z, 0.01F, False, False, 12 + Shakes.Count * 10, 0.0F,,, 3, 0.015F)
+                                    CatchAnimation.AnimationPlaySound("Battle\Pokeball\Catch", 12 + Shakes.Count * 10, 4)
+                                    CatchAnimation.AnimationFade(BallEntity, True, 0.01F, False, 0.0F, 12 + Shakes.Count * 10 + 3, 2)
+                                Next
+                            Else
+                                CatchAnimation.AnimationFade(BallEntity, True, 1.0F, False, 0.0F, 12 + Shakes.Count * 10, 0)
+                                CatchAnimation.AnimationPlaySound("Battle\Pokeball\Break", 12 + Shakes.Count * 10, 0)
+                                ' Ball Opens
+                                Dim SmokeParticlesOpen As Integer = 0
+                                Do
+                                    Dim SmokePosition = BattleScreen.OppPokemonNPC.Position
+                                    Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
 
-                                    Core.Player.Pokemons.Add(p)
+                                    Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
+
+                                    Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
+                                    Dim SmokeSpeed = CSng(Random.Next(1, 3) / 25.0F)
+
+                                    Dim SmokeEntity As Entity = CatchAnimation.SpawnEntity(SmokePosition, SmokeTexture, SmokeScale, 1.0F, 12 + Shakes.Count * 10, 0)
+
+                                    CatchAnimation.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 12 + Shakes.Count * 10, 0)
+
+                                    Threading.Interlocked.Increment(SmokeParticlesOpen)
+                                Loop While SmokeParticlesOpen <= 38
+
+                                ' Pokemon appears
+                                CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, True, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.035F, 12 + Shakes.Count * 10, 0)
+                                If BattleScreen.OppPokemonModel IsNot Nothing Then
+                                    CatchAnimation.AnimationScale(BattleScreen.OppPokemonModel, False, True, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.035F, 12 + Shakes.Count * 10, 0)
                                 End If
-                                ResetVisibility()
-                                Core.SetScreen(Me.PreScreen)
-                            Case 21 ' After Break
-                                ResetVisibility()
-                                Core.SetScreen(Me.PreScreen)
-                                CType(Core.CurrentScreen, BattleSystem.BattleScreen).Battle.InitializeRound(CType(Core.CurrentScreen, BattleSystem.BattleScreen), New BattleSystem.Battle.RoundConst() With {.StepType = BattleSystem.Battle.RoundConst.StepTypes.Text, .Argument = "It broke free!"})
-                        End Select
-                    End If
-                End If
+                            End If
+
+                            AnimationList.Add(CatchAnimation)
+                            AnimationHasStarted = True
+                        Else
+                            If AnimationList.Count = 0 Then
+                                AnimationIndex = 1
+                            End If
+                        End If
+                    Case 1
+                        ' After animation
+                        If InBall = True Then
+                            'Caught Pokémon
+                            CatchPokemon()
+                            BattleSystem.Battle.Caught = True
+                            AnimationIndex = 2
+                        Else
+                            'Pokémon broke free
+                            Core.SetScreen(Me.PreScreen)
+                            CType(Core.CurrentScreen, BattleSystem.BattleScreen).Battle.InitializeRound(CType(Core.CurrentScreen, BattleSystem.BattleScreen), New BattleSystem.Battle.RoundConst() With {.StepType = BattleSystem.Battle.RoundConst.StepTypes.Text, .Argument = "It broke free!"})
+                        End If
+                    Case 2
+                        If showPokedexEntry = True Then
+                            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New PokedexViewScreen(Core.CurrentScreen, p, True), Color.White, False))
+                        End If
+                        AnimationIndex = 3
+                    Case 3
+                        Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, p))
+                        AnimationIndex = 4
+                    Case 4
+                        If p.CatchBall.ID = 186 Then
+                            p.FullRestore() ' Heal Ball
+                        End If
+
+                        PlayerStatistics.Track("Caught Pokemon", 1)
+                        StorePokemon()
+                        AnimationIndex = 5
+                    Case 5
+                        Core.SetScreen(Me.PreScreen)
+                        BattleSystem.Battle.Won = True
+                        CType(Core.CurrentScreen, BattleSystem.BattleScreen).EndBattle(False)
+
+                End Select
             End If
         End If
     End Sub
 
-    Private Sub ResetVisibility()
-        BattleScreen.OppPokemonModel.Visible = ModelVisible
-        BattleScreen.OppPokemonNPC.Visible = SpriteVisible
-    End Sub
-
     Private Sub CatchPokemon()
         p.ResetTemp()
+
         Dim s As String = "Gotcha!~" & p.GetName() & " was caught!"
 
         If Core.Player.HasPokedex = True Then
@@ -228,9 +310,11 @@
 
         p.SetCatchInfos(Me.Ball, "caught at")
 
-        MusicManager.Play("wild_defeat", False, 0.2F)
-        SoundManager.PlaySound("success", True)
+        MusicManager.Pause()
+        MusicManager.Play("wild_defeat", False, 0.0F)
+        SoundManager.PlaySound("success_catch", True)
         TextBox.Show(s, {}, False, False)
+
     End Sub
 
     Private Sub StorePokemon()
@@ -263,39 +347,6 @@
         End If
     End Sub
 
-    Private Sub SetupAnimation()
-        Me.AnimationStarted = True
-
-        Select Case Me.AnimationIndex
-            Case 0
-                Animations.Add(New BAMove(New Vector3(Camera.Position.X - 1.0F, Camera.Position.Y, Camera.Position.Z - 0.5F) + BattleScreen.BattleMapOffset, Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), 0.04F, True, True, 1.0F, 0.0F))
-            Case 1
-                BattleScreen.OppPokemonNPC.Visible = False
-                Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), 0.01F, 0.0F, 6.0F))
-
-                Dim Size As New BASize(BattleScreen.OppPokemonNPC.Position, BattleScreen.OppPokemonNPC.Textures(0), BattleScreen.OppPokemonNPC.Scale, False, New Vector3(0.05F), 0.02F, 0.0F, 0.0F)
-                Size.Anchor = {}
-
-                Animations.Add(Size)
-            Case 2
-                Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, 0.0F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), 0.02F, 0.0F, 6.0F))
-            Case 3, 5
-                Animations.Add(New BARotation(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(0, 0, 0.05F), New Vector3(0, 0, 1.0F), 0.0F, 4.0F, False, False, True, True))
-            Case 4, 6
-                Animations.Add(New BARotation(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(0, 0, -0.05F), New Vector3(0, 0, -1.0F), 0.0F, 4.0F, False, False, True, True))
-            Case 7 ' Catch Animation
-                For i = 0 To 2
-                    Dim v As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z)
-
-                    Animations.Add(New BAMove(v, TextureManager.GetTexture("Textures\Battle\Other\Star"), New Vector3(0.1F), New Vector3(v.X, v.Y + 0.4F, v.Z - ((1 - i) * 0.4F)), 0.01F, 0.0F, 0.0F))
-                Next
-                Animations.Add(New BAMove(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), 0.02F, 0.0F, 6.0F))
-            Case 8
-                Animations.Add(New BAOpacity(New Vector3(BattleScreen.OppPokemonNPC.Position.X - 0.05F, -0.35F, BattleScreen.OppPokemonNPC.Position.Z), Ball.Texture, New Vector3(0.3F), 0.01F, False, 0.0F, 0.0F, 0.0F))
-            Case 21 ' Break Animation
-
-        End Select
-    End Sub
 
     Private Function StayInBall() As Boolean
         Dim cp As Pokemon = p
@@ -321,7 +372,7 @@
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 3.5F
                 End If
-            Case "lure ball"
+			Case "lure ball"
                 If BattleSystem.BattleScreen.DiveBattle = True Then
                     BallRate = 5.0F
                 End If

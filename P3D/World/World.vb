@@ -4,6 +4,8 @@ Public Class World
 
     Private Shared _regionWeather As Weathers = Weathers.Clear
     Private Shared _regionWeatherSet As Boolean = False
+    Public Shared setSeason As Seasons = Nothing
+    Public Shared setDaytime As DayTimes = Nothing
 
     Public Shared IsMainMenu As Boolean = False
     Public Shared IsAurora As Boolean = False
@@ -37,10 +39,10 @@ Public Class World
         Forest = 5
     End Enum
 
-    Public Enum DayTime As Integer
-        Night = 0
-        Morning = 1
-        Day = 2
+    Public Enum DayTimes As Integer
+        Day = 0
+        Night = 1
+        Morning = 2
         Evening = 3
     End Enum
 
@@ -56,81 +58,89 @@ Public Class World
                 Return Seasons.Summer
             End If
 
-            If NeedServerObject() = True Then
-                Return ServerSeason
+            If setSeason <> Nothing Then
+                Return setSeason
+            Else
+                If NeedServerObject() = True Then
+                    Return ServerSeason
+                End If
+                Select Case WeekOfYear Mod 4
+                    Case 1
+                        Return Seasons.Winter
+                    Case 2
+                        Return Seasons.Spring
+                    Case 3
+                        Return Seasons.Summer
+                    Case 0
+                        Return Seasons.Fall
+                End Select
             End If
-            Select Case WeekOfYear Mod 4
-                Case 1
-                    Return Seasons.Winter
-                Case 2
-                    Return Seasons.Spring
-                Case 3
-                    Return Seasons.Summer
-                Case 0
-                    Return Seasons.Fall
-            End Select
             Return Seasons.Summer
         End Get
     End Property
 
-    Public Shared ReadOnly Property GetTime() As DayTime
+    Public Shared ReadOnly Property GetTime() As DayTimes
         Get
             If IsMainMenu Then
-                Return DayTime.Day
+                Return DayTimes.Day
             End If
 
-            Dim time As DayTime = DayTime.Day
+            If setDaytime <> Nothing Then
+                Return setDaytime
+            Else
+                Dim time As DayTimes = DayTimes.Day
 
-            Dim Hour As Integer = My.Computer.Clock.LocalTime.Hour
-            If NeedServerObject() = True Then
-                Dim data() As String = ServerTimeData.Split(CChar(","))
-                Hour = CInt(data(0))
+                Dim Hour As Integer = My.Computer.Clock.LocalTime.Hour
+                If NeedServerObject() = True Then
+                    Dim data() As String = ServerTimeData.Split(CChar(","))
+                    Hour = CInt(data(0))
+                End If
+
+                Select Case CurrentSeason
+                    Case Seasons.Winter
+                        If Hour > 18 Or Hour < 7 Then
+                            time = DayTimes.Night
+                        ElseIf Hour > 6 And Hour < 11 Then
+                            time = DayTimes.Morning
+                        ElseIf Hour > 10 And Hour < 17 Then
+                            time = DayTimes.Day
+                        ElseIf Hour > 16 And Hour < 19 Then
+                            time = DayTimes.Evening
+                        End If
+                    Case Seasons.Spring
+                        If Hour > 19 Or Hour < 5 Then
+                            time = DayTimes.Night
+                        ElseIf Hour > 4 And Hour < 10 Then
+                            time = DayTimes.Morning
+                        ElseIf Hour > 9 And Hour < 17 Then
+                            time = DayTimes.Day
+                        ElseIf Hour > 16 And Hour < 20 Then
+                            time = DayTimes.Evening
+                        End If
+                    Case Seasons.Summer
+                        If Hour > 20 Or Hour < 4 Then
+                            time = DayTimes.Night
+                        ElseIf Hour > 3 And Hour < 9 Then
+                            time = DayTimes.Morning
+                        ElseIf Hour > 8 And Hour < 19 Then
+                            time = DayTimes.Day
+                        ElseIf Hour > 18 And Hour < 21 Then
+                            time = DayTimes.Evening
+                        End If
+                    Case Seasons.Fall
+                        If Hour > 19 Or Hour < 6 Then
+                            time = DayTimes.Night
+                        ElseIf Hour > 5 And Hour < 10 Then
+                            time = DayTimes.Morning
+                        ElseIf Hour > 9 And Hour < 18 Then
+                            time = DayTimes.Day
+                        ElseIf Hour > 17 And Hour < 20 Then
+                            time = DayTimes.Evening
+                        End If
+                End Select
+
+                Return time
             End If
-
-            Select Case CurrentSeason
-                Case Seasons.Winter
-                    If Hour > 18 Or Hour < 7 Then
-                        time = DayTime.Night
-                    ElseIf Hour > 6 And Hour < 11 Then
-                        time = DayTime.Morning
-                    ElseIf Hour > 10 And Hour < 17 Then
-                        time = DayTime.Day
-                    ElseIf Hour > 16 And Hour < 19 Then
-                        time = DayTime.Evening
-                    End If
-                Case Seasons.Spring
-                    If Hour > 19 Or Hour < 5 Then
-                        time = DayTime.Night
-                    ElseIf Hour > 4 And Hour < 10 Then
-                        time = DayTime.Morning
-                    ElseIf Hour > 9 And Hour < 17 Then
-                        time = DayTime.Day
-                    ElseIf Hour > 16 And Hour < 20 Then
-                        time = DayTime.Evening
-                    End If
-                Case Seasons.Summer
-                    If Hour > 20 Or Hour < 4 Then
-                        time = DayTime.Night
-                    ElseIf Hour > 3 And Hour < 9 Then
-                        time = DayTime.Morning
-                    ElseIf Hour > 8 And Hour < 19 Then
-                        time = DayTime.Day
-                    ElseIf Hour > 18 And Hour < 21 Then
-                        time = DayTime.Evening
-                    End If
-                Case Seasons.Fall
-                    If Hour > 19 Or Hour < 6 Then
-                        time = DayTime.Night
-                    ElseIf Hour > 5 And Hour < 10 Then
-                        time = DayTime.Morning
-                    ElseIf Hour > 9 And Hour < 18 Then
-                        time = DayTime.Day
-                    ElseIf Hour > 17 And Hour < 20 Then
-                        time = DayTime.Evening
-                    End If
-            End Select
-
-            Return time
         End Get
     End Property
 
@@ -218,7 +228,7 @@ Public Class World
                 End Select
             Case EnvironmentTypes.Outside
                 Select Case World.GetTime
-                    Case DayTime.Night
+                    Case DayTimes.Night
                         Select Case Core.GameOptions.RenderDistance
                             Case 0
                                 Screen.Effect.FogStart = -2
@@ -246,7 +256,7 @@ Public Class World
 
                                 Screen.Camera.FarPlane = 100
                         End Select
-                    Case DayTime.Morning
+                    Case DayTimes.Morning
                         Select Case Core.GameOptions.RenderDistance
                             Case 0
                                 Screen.Effect.FogStart = 16
@@ -274,7 +284,7 @@ Public Class World
 
                                 Screen.Camera.FarPlane = 100
                         End Select
-                    Case DayTime.Day
+                    Case DayTimes.Day
                         Select Case Core.GameOptions.RenderDistance
                             Case 0
                                 Screen.Effect.FogStart = 16
@@ -302,7 +312,7 @@ Public Class World
 
                                 Screen.Camera.FarPlane = 100
                         End Select
-                    Case DayTime.Evening
+                    Case DayTimes.Evening
                         Select Case Core.GameOptions.RenderDistance
                             Case 0
                                 Screen.Effect.FogStart = 0
@@ -361,7 +371,7 @@ Public Class World
                 End Select
         End Select
 
-        If Core.GameOptions.RenderDistance >= 5 Then
+        If Core.GameOptions.RenderDistance >= 4 Then
             Screen.Effect.FogStart = 999
             Screen.Effect.FogEnd = 1000
 
@@ -381,34 +391,34 @@ endsub:
 
         Select Case Season
             Case Seasons.Winter
-                If r < 20 Then
-                    Return Weathers.Rain
-                ElseIf r >= 20 And r < 50 Then
+                If r < 30 Then
                     Return Weathers.Clear
+                ElseIf r >= 30 And r < 40 Then
+                    Return Weathers.Rain
                 Else
                     Return Weathers.Snow
                 End If
             Case Seasons.Spring
-                If r < 5 Then
-                    Return Weathers.Snow
-                ElseIf r >= 5 And r < 40 Then
+                If r < 45 Then
+                    Return Weathers.Clear
+                ElseIf r >= 45 And r < 95 Then
                     Return Weathers.Rain
                 Else
-                    Return Weathers.Clear
+                    Return Weathers.Snow
                 End If
             Case Seasons.Summer
-                If r < 10 Then
-                    Return Weathers.Rain
-                Else
+                If r < 90 Then
                     Return Weathers.Clear
+                Else
+                    Return Weathers.Rain
                 End If
             Case Seasons.Fall
-                If r < 5 Then
-                    Return Weathers.Snow
-                ElseIf r >= 5 And r < 80 Then
+                If r < 50 Then
+                    Return Weathers.Clear
+                ElseIf r >= 50 And r < 85 Then
                     Return Weathers.Rain
                 Else
-                    Return Weathers.Clear
+                    Return Weathers.Snow
                 End If
         End Select
 
@@ -418,7 +428,7 @@ endsub:
     Public CurrentMapWeather As Weathers = Weathers.Clear
 
     Public EnvironmentType As EnvironmentTypes = EnvironmentTypes.Outside
-    Public UseLightning As Boolean = False
+    Public UseLighting As Boolean = False
 
     Public Sub New(ByVal EnvironmentType As Integer, ByVal WeatherType As Integer)
         Initialize(EnvironmentType, WeatherType)
@@ -498,31 +508,31 @@ endsub:
         Select Case EnvironmentType
             Case 0 ' Overworld
                 Me.EnvironmentType = EnvironmentTypes.Outside
-                Me.UseLightning = True
+                Me.UseLighting = True
             Case 1 ' Permanent Day
                 Me.EnvironmentType = EnvironmentTypes.Inside
-                Me.UseLightning = False
+                Me.UseLighting = False
             Case 2 ' Cave
                 Me.EnvironmentType = EnvironmentTypes.Cave
                 If WeatherType = 0 Then
                     Me.CurrentMapWeather = Weathers.Clear
                 End If
-                Me.UseLightning = False
+                Me.UseLighting = False
             Case 3 ' Permanent Night
                 Me.EnvironmentType = EnvironmentTypes.Dark
                 If WeatherType = 0 Then
                     Me.CurrentMapWeather = Weathers.Clear
                 End If
-                Me.UseLightning = False
+                Me.UseLighting = False
             Case 4 ' Underwater
                 Me.EnvironmentType = EnvironmentTypes.Underwater
                 If WeatherType = 0 Then
                     Me.CurrentMapWeather = Weathers.Underwater
                 End If
-                Me.UseLightning = True
+                Me.UseLighting = True
             Case 5 ' Forest
                 Me.EnvironmentType = EnvironmentTypes.Forest
-                Me.UseLightning = True
+                Me.UseLighting = True
         End Select
 
         SetWeatherLevelColor()
@@ -562,19 +572,19 @@ endsub:
             Case World.Weathers.Clear, Weathers.Sunny
                 v = New Vector3(1)
             Case World.Weathers.Rain, Weathers.Thunderstorm
-                v = New Vector3(0.4, 0.4, 0.7)
+                v = New Vector3(0.7)
             Case World.Weathers.Snow
                 v = New Vector3(0.8)
             Case World.Weathers.Underwater
                 v = New Vector3(0.1, 0.3, 0.9)
             Case World.Weathers.Fog
-                v = New Vector3(0.7, 0.7, 0.8)
+                v = New Vector3(0.7)
             Case World.Weathers.Sandstorm
                 v = New Vector3(0.8, 0.5, 0.2)
-            Case Weathers.Ash
-                v = New Vector3(0.5, 0.5, 0.5)
-            Case Weathers.Blizzard
-                v = New Vector3(0.6, 0.6, 0.6)
+            Case World.Weathers.Ash
+                v = New Vector3(0.5)
+            Case World.Weathers.Blizzard
+                v = New Vector3(0.6)
         End Select
 
         Dim colorV As Vector3 = defaultColor.ToVector3 * Screen.SkyDome.GetWeatherColorMultiplier(v)
@@ -584,37 +594,35 @@ endsub:
     Private Sub ChangeEnvironment()
         Select Case Me.EnvironmentType
             Case EnvironmentTypes.Outside
-                Core.BackgroundColor = GetWeatherBackgroundColor(SkyDome.GetDaytimeColor(False))
-                Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
-                If IsAurora = True Then
-                    Screen.SkyDome.TextureUp = TextureManager.GetTexture("SkyDomeResource\AuroraBoralis")
-                Else
-                    Screen.SkyDome.TextureUp = TextureManager.GetTexture("SkyDomeResource\Clouds1")
-                End If
+                Dim multiplier As Vector3 = New Vector3(1.0F)
+                Select Case CurrentMapWeather
+                    Case World.Weathers.Clear, Weathers.Sunny
+                        multiplier = New Vector3(1.0F)
+                    Case World.Weathers.Rain, Weathers.Thunderstorm, World.Weathers.Fog
+                        multiplier = New Vector3(0.7F)
+                    Case World.Weathers.Snow
+                        multiplier = New Vector3(0.8F)
+                End Select
+                Screen.Effect.FogColor = Lighting.GetEnvironmentColor(2) * multiplier
                 Screen.SkyDome.TextureDown = TextureManager.GetTexture("SkyDomeResource\Stars")
             Case EnvironmentTypes.Inside
-                Core.BackgroundColor = GetWeatherBackgroundColor(New Color(173, 216, 255))
-                Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
-                Screen.SkyDome.TextureUp = TextureManager.GetTexture("SkyDomeResource\Clouds")
+                Screen.Effect.FogColor = Lighting.GetEnvironmentColor(2)
+                Screen.SkyDome.TextureUp = TextureManager.GetTexture("SkyDomeResource\Inside")
                 Screen.SkyDome.TextureDown = Nothing
             Case EnvironmentTypes.Dark
-                Core.BackgroundColor = GetWeatherBackgroundColor(New Color(29, 29, 50))
-                Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
+                Screen.Effect.FogColor = Lighting.GetEnvironmentColor(2)
                 Screen.SkyDome.TextureUp = TextureManager.GetTexture("SkyDomeResource\Dark")
                 Screen.SkyDome.TextureDown = Nothing
             Case EnvironmentTypes.Cave
-                Core.BackgroundColor = GetWeatherBackgroundColor(New Color(34, 19, 12))
-                Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
+                Screen.Effect.FogColor = Lighting.GetEnvironmentColor(2)
                 Screen.SkyDome.TextureUp = TextureManager.GetTexture("SkyDomeResource\Cave")
                 Screen.SkyDome.TextureDown = Nothing
             Case EnvironmentTypes.Underwater
-                Core.BackgroundColor = GetWeatherBackgroundColor(New Color(19, 54, 117))
-                Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
+                Screen.Effect.FogColor = Lighting.GetEnvironmentColor(2)
                 Screen.SkyDome.TextureUp = TextureManager.GetTexture("SkyDomeResource\Underwater")
-                Screen.SkyDome.TextureDown = TextureManager.GetTexture("SkyDomeResource\UnderwaterGround")
+                Screen.SkyDome.TextureDown = Nothing
             Case EnvironmentTypes.Forest
-                Core.BackgroundColor = GetWeatherBackgroundColor(New Color(30, 66, 21))
-                Screen.Effect.FogColor = Core.BackgroundColor.ToVector3()
+                Screen.Effect.FogColor = Lighting.GetEnvironmentColor(2)
                 Screen.SkyDome.TextureUp = TextureManager.GetTexture("SkyDomeResource\Forest")
                 Screen.SkyDome.TextureDown = Nothing
         End Select
@@ -722,7 +730,7 @@ endsub:
             If Core.Random.Next(0, 250) = 0 Then
                 Dim pitch As Single = -(Core.Random.Next(8, 11) / 10.0F)
                 Debug.Print(pitch.ToString())
-                SoundManager.PlaySound("Battle\Effects\effect_thunderbolt", pitch, 0F, SoundManager.Volume, False)
+                SoundManager.PlaySound("Battle\Attacks\Electric\Thunderbolt", pitch, 0F, SoundManager.Volume, False)
             End If
         End If
 

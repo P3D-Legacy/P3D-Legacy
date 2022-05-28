@@ -6,14 +6,15 @@
     Public LevelFile As String = ""
     Public PokemonTexture As String = ""
     Public faceRotation As Integer = 0
+    Dim Moving As Boolean = False
 
     Dim Texture As Texture2D
     Dim lastRectangle As New Rectangle(0, 0, 0, 0)
     Dim loadedTexture As String = ""
 
     Dim AnimationX As Integer = 1
-    Dim AnimationDelayLenght As Single = 2.2F
-    Dim AnimationDelay As Single = AnimationDelayLenght
+    Dim AnimationDelayLength As Single = 1.1F
+    Dim AnimationDelay As Single = AnimationDelayLength
 
     Public Sub New(ByVal pos As Vector3, ByVal PokemonTexture As String, ByVal visible As Boolean)
         MyBase.New(pos.X, pos.Y, pos.Z, "NetworkPokemon", {TextureManager.DefaultTexture}, {0, 0}, False, 0, New Vector3(0.9F), BaseModel.BillModel, 0, "", New Vector3(1))
@@ -51,13 +52,27 @@
 
         If Me.PokemonTexture <> "" Then
             Me.ChangeTexture()
-
-            Me.AnimationDelay -= 0.1F
-            If AnimationDelay <= 0.0F Then
-                AnimationDelay = AnimationDelayLenght
-                AnimationX += 1
-                If AnimationX > 2 Then
+            If Moving = True Then
+                Me.AnimationDelay -= 0.1F
+                If AnimationDelay <= 0.0F Then
+                    AnimationX += 1
+                    AnimationDelay = AnimationDelayLength
+                    If AnimationX > 4 Then
+                        AnimationX = 1
+                    End If
+                End If
+            Else
+                If Me.Texture.Width = Me.Texture.Height Then
                     AnimationX = 1
+                Else
+                    Me.AnimationDelay -= 0.1F
+                    If AnimationDelay <= 0.0F Then
+                        AnimationX += 1
+                        AnimationDelay = 2.2F
+                        If AnimationX > 4 Then
+                            AnimationX = 1
+                        End If
+                    End If
                 End If
             End If
         End If
@@ -110,39 +125,76 @@
             Me.Texture = TextureManager.GetTexture(path)
         End If
 
-        Dim r As New Rectangle(0, 0, 0, 0)
         Dim cameraRotation As Integer = Screen.Camera.GetFacingDirection()
         Dim spriteIndex As Integer = Me.faceRotation - cameraRotation
 
-        spriteIndex = Me.faceRotation - cameraRotation
         If spriteIndex < 0 Then
             spriteIndex += 4
         End If
 
-        Dim dimension As Integer = CInt(Me.Texture.Width / 3)
+        Dim width As Integer
 
-        Dim x As Integer = 0
-        x = AnimationX * dimension
-
-        Dim height As Integer = dimension
-
-        Dim y As Integer = dimension * spriteIndex
-        y -= 2
-        If y < 0 Then
-            y = 0
-            height = dimension - 2
+        If Me.Texture.Width = Me.Texture.Height / 2 Then
+            width = CInt(Me.Texture.Width / 2)
+        ElseIf Me.Texture.Width = Me.Texture.Height Then
+            width = CInt(Me.Texture.Width / 4)
+        Else
+            width = CInt(Me.Texture.Width / 3)
         End If
-        y += 2
-        height -= 2
 
-        r = New Rectangle(x, y, dimension, height)
+        Dim x As Integer = GetAnimationX() * width
+
+        Dim height As Integer = CInt(Me.Texture.Height / 4)
+
+        Dim y As Integer = height * spriteIndex
+
+        Dim r = New Rectangle(x, y, width, height)
 
         If r <> lastRectangle Then
             lastRectangle = r
 
-            Textures(0) = TextureManager.GetTexture(Me.Texture, r, 1)
+            Dim t As Texture2D = TextureManager.GetTexture(Me.Texture, r, 1)
+            Textures(0) = t
         End If
     End Sub
+
+    Private Function GetAnimationX() As Integer
+        If Me.Texture.Width = Me.Texture.Height / 2 Then
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 0
+                Case 4
+                    Return 1
+            End Select
+        ElseIf Me.Texture.Width = Me.Texture.Height Then
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 2
+                Case 4
+                    Return 3
+            End Select
+        Else
+            Select Case AnimationX
+                Case 1
+                    Return 0
+                Case 2
+                    Return 1
+                Case 3
+                    Return 0
+                Case 4
+                    Return 2
+            End Select
+        End If
+        Return 0
+    End Function
 
     Public Sub ApplyShaders()
         Me.Shaders.Clear()
@@ -154,7 +206,7 @@
     Public Sub ApplyPlayerData(ByVal p As Servers.Player)
         Try
             Me.PlayerID = p.ServersID
-
+            Me.Moving = p.Moving
             Me.PokemonTexture = p.PokemonSkin
             Me.Position = p.PokemonPosition
             Me.LevelFile = p.LevelFile

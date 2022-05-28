@@ -24,17 +24,49 @@
                     Dim dexIndex As Integer = int(argument)
                     Return Core.Player.Pokedexes(dexIndex).Seen
                 Case "getheight"
-
-                Case "getweigth"
-
+                    Dim number As Integer = int(argument)
+                    If Pokemon.PokemonDataExists(number) Then
+                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Height
+                    End If
+                Case "getweight"
+                    Dim number As Integer = int(argument)
+                    If Pokemon.PokemonDataExists(number) Then
+                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Weight
+                    End If
                 Case "getentry"
-
+                    Dim number As Integer = int(argument)
+                    If Pokemon.PokemonDataExists(number) Then
+                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Text
+                    End If
+                Case "getcolor"
+                    Dim number As Integer = int(argument)
+                    If Pokemon.PokemonDataExists(number) Then
+                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Color.ToString()
+                    End If
                 Case "getspecies"
-
+                    Dim number As Integer = int(argument)
+                    If Pokemon.PokemonDataExists(number) Then
+                        Return Pokemon.GetPokemonByID(number).PokedexEntry.Species
+                    End If
                 Case "getname"
                     Dim number As Integer = int(argument)
-                    If Pokemon.PokemonDataExists(number)
-                        return Pokemon.GetPokemonByID(number).GetName()
+                    If Pokemon.PokemonDataExists(number) Then
+                        Return Pokemon.GetPokemonByID(number).GetName()
+                    End If
+                Case "getability"
+                    Dim number As Integer = int(argument.GetSplit(0))
+                    If Pokemon.PokemonDataExists(number) Then
+                        Select Case argument.GetSplit(1)
+                            Case "0"
+                                Return Pokemon.GetPokemonByID(number).NewAbilities(Core.Random.Next(0, Pokemon.GetPokemonByID(number).NewAbilities.Count)).ID
+                            Case "1"
+                                Return Pokemon.GetPokemonByID(number).NewAbilities(0).ID
+                            Case "2"
+                                Return Pokemon.GetPokemonByID(number).NewAbilities(Pokemon.GetPokemonByID(number).NewAbilities.Count - 1).ID
+                            Case "3"
+                                Return Pokemon.GetPokemonByID(number).HiddenAbility.ID
+
+                        End Select
                     End If
             End Select
 

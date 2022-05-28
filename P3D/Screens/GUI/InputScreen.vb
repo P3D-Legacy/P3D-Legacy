@@ -51,7 +51,7 @@
         Me.Identification = Identifications.InputScreen
         Me.CanBePaused = True
         Me.CanChat = False
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
         Me.MouseVisible = True
 
         If Me.MaxChars < 0 Then

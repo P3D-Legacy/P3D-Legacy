@@ -11,6 +11,22 @@
             Dim argument As String = ScriptComparer.GetSubClassArgumentPair(subClass).Argument
 
             Select Case command.ToLower()
+                Case "showmessagebox"
+                    '@screen.showmessagebox(str_message|[intArr_RGB_background]|[intArr_RGB_font]|[intArr_RGB_border])
+                    Dim messageBox As New UI.MessageBox(CurrentScreen)
+                    Dim colorsplit() As String = argument.Split("|")
+                    Select Case argument.Split("|").Count
+                        Case 1
+                            messageBox.Show(argument.Replace("~", Environment.NewLine).Replace("*", Environment.NewLine & Environment.NewLine))
+                        Case 2
+                            messageBox.Show(colorsplit(0).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine & Environment.NewLine), New Color(CInt(colorsplit(1).GetSplit(0)), CInt(colorsplit(1).GetSplit(1)), CInt(colorsplit(1).GetSplit(2))))
+                        Case 3
+                            messageBox.Show(colorsplit(0).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine & Environment.NewLine), New Color(CInt(colorsplit(1).GetSplit(0)), CInt(colorsplit(1).GetSplit(1)), CInt(colorsplit(1).GetSplit(2))), New Color(CInt(colorsplit(2).GetSplit(0)), CInt(colorsplit(2).GetSplit(1)), CInt(colorsplit(2).GetSplit(2))))
+                        Case 4
+                            messageBox.Show(colorsplit(0).Replace("~", Environment.NewLine).Replace("*", Environment.NewLine & Environment.NewLine), New Color(CInt(colorsplit(1).GetSplit(0)), CInt(colorsplit(1).GetSplit(1)), CInt(colorsplit(1).GetSplit(2))), New Color(CInt(colorsplit(2).GetSplit(0)), CInt(colorsplit(2).GetSplit(1)), CInt(colorsplit(2).GetSplit(2))), New Color(CInt(colorsplit(3).GetSplit(0)), CInt(colorsplit(3).GetSplit(1)), CInt(colorsplit(3).GetSplit(2))))
+                    End Select
+                    IsReady = True
+                    CanContinue = False
                 Case "storagesystem"
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New StorageSystemScreen(Core.CurrentScreen), Color.Black, False))
 
@@ -108,6 +124,20 @@
                     Dim Front As Boolean = CBool(argument.GetSplit(2))
 
                     Screen.PokemonImageView.Show(PokemonID, Shiny, Front)
+                    IsReady = True
+
+                    CanContinue = False
+                Case "showimage"
+                    '@screen.showimage(str_texture,[str_sfxname],[int_x],[int_y],[int_w],[int_h]))
+                    Dim Texture As Texture2D = TextureManager.GetTexture(argument.GetSplit(0))
+                    Dim Sound As String = ""
+                    If argument.Split.Count > 1 Then
+                        Sound = argument.GetSplit(1)
+                        If argument.Split.Count > 2 Then
+                            Texture = TextureManager.GetTexture(argument.GetSplit(0), New Rectangle(int(argument.GetSplit(2)), int(argument.GetSplit(3)), int(argument.GetSplit(4)), int(argument.GetSplit(5))), "")
+                        End If
+                    End If
+                    Screen.ImageView.Show(Texture, Sound)
                     IsReady = True
 
                     CanContinue = False
@@ -231,11 +261,10 @@
 
                     CanContinue = False
                 Case "skinselection"
-                    Dim skins = argument.Split(","c)
                     If Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin <> "" Then
                         IsReady = True
                     Else
-                        SetScreen(New Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen(CurrentScreen, skins))
+                        SetScreen(New Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen(CurrentScreen))
                     End If
                 Case Else
                     IsReady = True

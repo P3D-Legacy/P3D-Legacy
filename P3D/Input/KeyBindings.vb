@@ -4,6 +4,7 @@ Public Class KeyBindings
     Public Shared LeftMoveKey As Keys = Keys.A
     Public Shared BackwardMoveKey As Keys = Keys.S
     Public Shared RightMoveKey As Keys = Keys.D
+    Public Shared RunKey As Keys = Keys.LeftShift
 
     Public Shared OpenInventoryKey As Keys = Keys.E
     Public Shared ChatKey As Keys = Keys.T
@@ -24,6 +25,7 @@ Public Class KeyBindings
     Public Shared LightKey As Keys = Keys.F4
     Public Shared PerspectiveSwitchKey As Keys = Keys.F5
     Public Shared FullScreenKey As Keys = Keys.F11
+    Public Shared DebugWalkKey As Keys = Keys.LeftControl
 
     Public Shared EnterKey1 As Keys = Keys.Enter
     Public Shared EnterKey2 As Keys = Keys.Space
@@ -54,6 +56,8 @@ Public Class KeyBindings
                             BackwardMoveKey = binding
                         Case "rightmove"
                             RightMoveKey = binding
+                        Case "run"
+                            RunKey = binding
                         Case "inventory"
                             OpenInventoryKey = binding
                         Case "chat"
@@ -78,6 +82,8 @@ Public Class KeyBindings
                             ScreenshotKey = binding
                         Case "debugcontrol"
                             DebugKey = binding
+                        Case "debugwalk"
+                            DebugWalkKey = binding
                         Case "perspectiveswitch"
                             PerspectiveSwitchKey = binding
                         Case "fullscreen"
@@ -94,7 +100,7 @@ Public Class KeyBindings
                             EscapeKey = binding
                         Case "onlinestatus"
                             OnlineStatusKey = binding
-                        Case "lightning"
+                        Case "lighting", "lightning"
                             LightKey = binding
                     End Select
                 End If
@@ -235,6 +241,7 @@ Public Class KeyBindings
                 "[LeftMove]=" & GetKeyName(Keys.A) & Environment.NewLine &
                 "[BackwardMove]=" & GetKeyName(Keys.S) & Environment.NewLine &
                 "[RightMove]=" & GetKeyName(Keys.D) & Environment.NewLine &
+                "[Run]=" & GetKeyName(Keys.LeftShift) & Environment.NewLine &
                 "[Inventory]=" & GetKeyName(Keys.E) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(Keys.T) & Environment.NewLine &
                 "[Special]=" & GetKeyName(Keys.Q) & Environment.NewLine &
@@ -247,6 +254,7 @@ Public Class KeyBindings
                 "[GUIControl]=" & GetKeyName(Keys.F1) & Environment.NewLine &
                 "[ScreenShot]=" & GetKeyName(Keys.F2) & Environment.NewLine &
                 "[DebugControl]=" & GetKeyName(Keys.F3) & Environment.NewLine &
+                "[DebugWalkKey]=" & GetKeyName(Keys.LeftControl) & Environment.NewLine &
                 "[LightKey]=" & GetKeyName(Keys.F4) & Environment.NewLine &
                 "[PerspectiveSwitch]=" & GetKeyName(Keys.F5) & Environment.NewLine &
                 "[FullScreen]=" & GetKeyName(Keys.F11) & Environment.NewLine &
@@ -270,6 +278,7 @@ Public Class KeyBindings
                 "[LeftMove]=" & GetKeyName(LeftMoveKey) & Environment.NewLine &
                 "[BackwardMove]=" & GetKeyName(BackwardMoveKey) & Environment.NewLine &
                 "[RightMove]=" & GetKeyName(RightMoveKey) & Environment.NewLine &
+                "[Run]=" & GetKeyName(RunKey) & Environment.NewLine &
                 "[Inventory]=" & GetKeyName(OpenInventoryKey) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(ChatKey) & Environment.NewLine &
                 "[Special]=" & GetKeyName(SpecialKey) & Environment.NewLine &

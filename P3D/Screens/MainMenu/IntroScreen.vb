@@ -18,7 +18,7 @@
     Public Sub New()
         Me.Identification = Identifications.IntroScreen
         Me.CanBePaused = False
-        Me.CanMuteMusic = False
+        Me.CanMuteAudio = False
         Me.CanChat = False
         Me.CanTakeScreenshot = False
         Me.CanDrawDebug = False

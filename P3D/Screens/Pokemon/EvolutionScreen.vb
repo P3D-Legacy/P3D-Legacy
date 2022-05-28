@@ -21,7 +21,7 @@
     '    Me.PreScreen = currentScreen
     '    Me.CanBePaused = True
     '    Me.CanChat = True
-    '    Me.CanMuteMusic = True
+    '    Me.CanMuteAudio = True
     '    Me.MouseVisible = False
 
     '    Me.FromBattle = FromBattle

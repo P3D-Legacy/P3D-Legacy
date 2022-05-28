@@ -25,9 +25,14 @@
                     Core.Player.HasPokegear = True
                     IsReady = True
                 Case "renamerival"
-                    Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, TextureManager.GetTexture("GUI\RenameRival"), False, False, "rival", "Silver", AddressOf Script.NameRival))
+                    Dim RivalTexture As String = GameModeManager.ActiveGameMode.ContentPath & "Textures\" & Core.Player.RivalSkin
+                    Dim RivalName As String = Core.Player.RivalName
+                    Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, TextureManager.GetTexture(RivalTexture, New Rectangle(0, 64, 32, 32)), False, False, RivalName, "???", AddressOf Script.NameRival))
                     IsReady = True
                     CanContinue = False
+                Case "setrivalskin"
+                    Core.Player.RivalSkin = argument
+                    IsReady = True
                 Case "wearskin"
                     With Screen.Level.OwnPlayer
                         Dim TextureID As String = argument
@@ -35,6 +40,23 @@
 
                         .UpdateEntity()
                     End With
+                    IsReady = True
+                Case "setskin"
+                    Core.Player.Skin = argument
+                    With Screen.Level.OwnPlayer
+                        Dim TextureID As String = argument
+                        .SetTexture(TextureID, False)
+
+                        .UpdateEntity()
+                    End With
+                    IsReady = True
+                Case "setspeed"
+                    Dim speed As Single = sng(argument)
+
+                    Screen.Camera.Speed = speed * 0.04F
+                    IsReady = True
+                Case "resetspeed"
+                    Screen.Camera.Speed = 0.04F
                     IsReady = True
                 Case "move"
                     If Started = False Then
@@ -183,7 +205,7 @@
                     If StringHelper.IsNumeric(argument) Then
                         If Core.Player.Badges.Contains(int(argument)) = False Then
                             Core.Player.Badges.Add(int(argument))
-                            SoundManager.PlaySound("badge_acquired", True)
+                            SoundManager.PlaySound("Receive_Badge", True)
                             Screen.TextBox.TextColor = TextBox.PlayerColor
                             Screen.TextBox.Show(Core.Player.Name & " received the~" & Badge.GetBadgeName(int(argument)) & " Badge.", {}, False, False)
 
@@ -234,20 +256,6 @@
                     OverworldScreen.DrawRodID = -1
 
                     IsReady = True
-                Case "showpokemonfollow"
-                    Screen.Level.OverworldPokemon.Visible = True
-
-                    IsReady = True
-
-                Case "hidepokemonfollow"
-                    Screen.Level.OverworldPokemon.Visible = False
-
-                    IsReady = True
-
-                Case "togglepokemonfollow"
-                    Screen.Level.OverworldPokemon.Visible = Not Screen.Level.OverworldPokemon.Visible
-
-                    IsReady = True
                 Case "save"
                     Core.Player.SaveGame(False)
 
@@ -257,6 +265,16 @@
                     IsReady = True
                 Case "setrivalname"
                     Core.Player.RivalName = argument
+                    IsReady = True
+                Case "setgender"
+                    Select Case argument
+                        Case "0", "Male", "male"
+                            Core.Player.Gender = "Male"
+                        Case "1", "Female", "female"
+                            Core.Player.Gender = "Female"
+                        Case Else
+                            Core.Player.Gender = "Other"
+                    End Select
                     IsReady = True
                 Case "setopacity"
                     Dim newOpacity As Single = sng(argument.Replace("~", Screen.Level.OwnPlayer.Opacity.ToString().Replace(".", GameController.DecSeparator)))

@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Underwater Path]}}{"MusicLoop"{str[darkcave]}}{"WildPokemon"{bool[1]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}{"OverworldPokemon"{bool[0]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[4]}}{"Weather"{int[4]}}{"Lightning"{int[3]}}{"SurfingBattleMap"{str[underwatercave\underwater.dat,-7,0,14]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"RideType"{int[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[4]}}{"Weather"{int[4]}}{"Lighting"{int[3]}}{"SurfingBattleMap"{str[underwatercave\underwater.dat,-7,0,14]}}]}}
 
 
 \\Internal Part:
@@ -672,13 +672,13 @@ NPCs:
 		Corsola:
 			{"NPC"{NPC[{"Position"{sngArr[3,0.95,34]}}{"Scale"{sngArr[1.5,1.5,1.5]}}{"TextureID"{str[[POKEMON|N]222]}}{"ID"{int[0]}}{"Name"{str[Clamperl]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"AnimateIdle"{bool[1]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 		Frillish:
-			{"NPC"{NPC[{"Position"{sngArr[15,-0.25,24]}}{"TextureID"{str[[POKEMON|N]592]}}{"ID"{int[1]}}{"Name"{str[Frillish]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"MoveRectangles"{recArr[[15,24,2,4]]}}{"Movement"{str[Straight]}}]}}
+			{"NPC"{NPC[{"Position"{sngArr[15,-0.25,24]}}{"TextureID"{str[[POKEMON|N]592]}}{"ID"{int[1]}}{"Name"{str[Frillish]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"MoveRectangles"{recArr[[15,24,2,4]]}}{"Movement"{str[Walk]}}]}}
 			{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[2,4]}}{"Position"{intArr[15,-0.25,24]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 		Skrelp:
-			{"NPC"{NPC[{"Position"{sngArr[-3,0.75,33]}}{"TextureID"{str[[POKEMON|N]690]}}{"ID"{int[1]}}{"Name"{str[Skrelp]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"MoveRectangles"{recArr[[-3,33,4,1]]}}{"Movement"{str[Straight]}}]}}
+			{"NPC"{NPC[{"Position"{sngArr[-3,0.75,33]}}{"TextureID"{str[[POKEMON|N]690]}}{"ID"{int[1]}}{"Name"{str[Skrelp]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"MoveRectangles"{recArr[[-3,33,4,1]]}}{"Movement"{str[Walk]}}]}}
 			{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[4,1]}}{"Position"{intArr[-3,0.75,33]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 		Sharpedo:
-			{"NPC"{NPC[{"Position"{sngArr[1,1.75,33]}}{"Scale"{sngArr[1.8,1.8,1.8]}}{"TextureID"{str[[POKEMON|N]319]}}{"ID"{int[1]}}{"Name"{str[Sharpedo]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"MoveRectangles"{recArr[[1,33,14,3]]}}{"Movement"{str[Straight]}}]}}
+			{"NPC"{NPC[{"Position"{sngArr[1,2.25,33]}}{"Scale"{sngArr[1.8,1.8,1.8]}}{"TextureID"{str[[POKEMON|N]319]}}{"ID"{int[1]}}{"Name"{str[Sharpedo]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"MoveRectangles"{recArr[[1,33,14,3]]}}{"Movement"{str[Straight]}}]}}
 			{"Floor"{ENT[{"SeasonTexture"{str[Grass]}}{"Size"{intArr[14,3]}}{"Position"{intArr[1,1.75,33]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Texture"{rec[0,16,16,16]}}]}}
 		Lumineon:
 			{"NPC"{NPC[{"Position"{sngArr[14,0.75,28]}}{"TextureID"{str[[POKEMON|N]457]}}{"ID"{int[1]}}{"Name"{str[Lumineon]}}{"Action"{int[1]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}{"MoveRectangles"{recArr[[14,28,2,5]]}}{"Movement"{str[Straight]}}]}}

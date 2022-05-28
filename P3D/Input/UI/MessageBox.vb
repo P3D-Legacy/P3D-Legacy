@@ -12,9 +12,12 @@
         Private _closing As Boolean = False
 
         Private _text As String = ""
-
-        Private _width As Integer = 500
-        Private _height As Integer = 200
+        Private Scale As Single = CInt(2.0F)
+        Private _width As Integer = 320
+        Private _height As Integer = 320
+        Private _backColor As Color = Color.Black
+        Private _textColor As Color = Color.White
+        Private _shadowColor As Color = Color.Black
 
         ''' <summary>
         ''' Creates a new instance of the message box class.
@@ -28,7 +31,7 @@
             CanChat = False
             CanDrawDebug = True
             CanGoFullscreen = True
-            CanMuteMusic = True
+            CanMuteAudio = True
             CanTakeScreenshot = True
             MouseVisible = True
         End Sub
@@ -37,14 +40,23 @@
         ''' Displays the Message box.
         ''' </summary>
         ''' <param name="text">The text to display.</param>
-        Public Sub Show(ByVal text As String)
+        Public Sub Show(ByVal text As String, Optional backColor As Color = Nothing, Optional textColor As Color = Nothing, Optional shadowColor As Color = Nothing)
             _fadeIn = 0F
             _text = text
             _closing = False
+            If Not backColor = Nothing Then
+                _backColor = backColor
+            End If
+            If Not textColor = Nothing Then
+                _textColor = textColor
+            End If
+            If Not shadowColor = Nothing Then
+                _shadowColor = shadowColor
+            End If
 
-            Dim fontSize As Vector2 = FontManager.GameJoltFont.MeasureString(_text)
-            If fontSize.X > 480 Then
-                _width = CInt(fontSize.X + 20)
+            Dim fontSize As Vector2 = FontManager.MainFont.MeasureString(_text) * Scale
+            If fontSize.X > 196 Then
+                _width = CInt(fontSize.X + 24)
             End If
 
             SetScreen(Me)
@@ -53,24 +65,23 @@
         Public Overrides Sub Draw()
             PreScreen.Draw()
 
+            Dim fontSize As Vector2 = New Vector2(CInt(FontManager.MainFont.MeasureString(_text).X * Scale), CInt(FontManager.MainFont.MeasureString(_text).Y * Scale))
+
             Canvas.DrawRectangle(windowSize, New Color(0, 0, 0, CInt(140 * _fadeIn)))
+            Dim boxRect = New Rectangle(CInt(windowSize.Width / 2 - _width / 2 - (_width / 10)),
+                                               CInt(windowSize.Height / 2 - _height / 2 - (_height / 5) * (1 - _fadeIn)),
+                                               CInt(_width + (_width / 5)),
+                                               CInt(_height + fontSize.Y))
+            Canvas.DrawRectangle(boxRect, New Color(_backColor.R, _backColor.G, _backColor.B, CInt(255 * _fadeIn)), True)
 
-            Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2 - _width / 2 - (_width / 10) * (1 - _fadeIn)),
-                                               CInt(windowSize.Height / 2 - _height / 2 - (_height / 10) * (1 - _fadeIn)),
-                                               CInt(_width + (1 - _fadeIn) * (_width / 5)),
-                                               CInt(_height + (1 - _fadeIn) * (_height / 5))), New Color(0, 0, 0, CInt(255 * _fadeIn)))
-
-
-            Dim fontSizeMulti As Single = CSng(1 + (1 / 10) * (1 - _fadeIn)) * 0.75F
-            Dim fontSize As Vector2 = FontManager.GameJoltFont.MeasureString(_text)
-            GetFontRenderer().DrawString(FontManager.GameJoltFont, _text, New Vector2(windowSize.Width / 2.0F - (fontSize.X * fontSizeMulti) / 2.0F,
-                                                                                      windowSize.Height / 2.0F - (fontSize.Y * fontSizeMulti) / 2.0F), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, fontSizeMulti, SpriteEffects.None, 0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, _text, New Vector2(CInt(windowSize.Width / 2.0F - fontSize.X / 2.0F + 2 * Scale), CInt(boxRect.Y + (boxRect.Height / 2) - fontSize.Y / 2.0F + 2 * Scale)), New Color(_shadowColor.R, _shadowColor.G, _shadowColor.B, CInt(255 * _fadeIn)), 0F, Vector2.Zero, Scale, SpriteEffects.None, 0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, _text, New Vector2(CInt(windowSize.Width / 2.0F - fontSize.X / 2.0F), CInt(boxRect.Y + (boxRect.Height / 2) - fontSize.Y / 2.0F)), New Color(_textColor.R, _textColor.G, _textColor.B, CInt(255 * _fadeIn)), 0F, Vector2.Zero, Scale, SpriteEffects.None, 0F)
         End Sub
 
         Public Overrides Sub Update()
             If _closing Then
                 If _fadeIn > 0.0F Then
-                    _fadeIn = MathHelper.Lerp(0.0F, _fadeIn, 0.4F)
+                    _fadeIn = MathHelper.Lerp(0.0F, _fadeIn, 0.7F)
                     If _fadeIn - 0.01F <= 0.0F Then
                         _fadeIn = 0.0F
                         SetScreen(PreScreen)

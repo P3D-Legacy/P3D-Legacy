@@ -113,14 +113,15 @@
             Screen.Level.OwnPlayer.ChangeTexture()
 
             Dim s As String = "version=2" & Environment.NewLine &
+                "@player.stopmovement" & Environment.NewLine &
                 "@pokemon.cry(" & RockClimbPokemon.Number & ")" & Environment.NewLine &
                 "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
                 "@sound.play(destroy)" & Environment.NewLine &
                 "@player.move(" & Steps & ")" & Environment.NewLine &
                 "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
-                "@pokemon.hide" & Environment.NewLine &
+                "@overworldpokemon.hide" & Environment.NewLine &
                 "@player.move(1)" & Environment.NewLine &
-                "@pokemon.hide" & Environment.NewLine &
+                "@overworldpokemon.hide" & Environment.NewLine &
                 "@player.wearskin(" & tempSkin & ")" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then
@@ -186,12 +187,13 @@
             Screen.Level.OwnPlayer.ChangeTexture()
 
             Dim s As String = "version=2" & Environment.NewLine &
+            "@player.stopmovement" & Environment.NewLine &
             "@pokemon.cry(" & RockClimbPokemon.Number & ")" & Environment.NewLine &
             "@player.move(1)" & Environment.NewLine &
             "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
             "@sound.play(destroy)" & Environment.NewLine &
             "@player.move(" & Steps & ")" & Environment.NewLine &
-            "@pokemon.hide" & Environment.NewLine &
+            "@overworldpokemon.hide" & Environment.NewLine &
             "@player.wearskin(" & tempSkin & ")" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then

@@ -7,6 +7,7 @@ Namespace Items.Medicine
 
         Public Overrides ReadOnly Property Description As String = "It revives all fainted Pokémon. In doing so, it also fully restores their HP."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
+        Public Overrides ReadOnly Property PluralName As String = "Sacred Ashes"
 
         Public Sub New()
             _textureRectangle = New Rectangle(24, 144, 24, 24)
@@ -30,7 +31,7 @@ Namespace Items.Medicine
                     End If
                 Next
 
-                SoundManager.PlaySound("single_heal", False)
+                SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show("Your team has been~fully healed." & RemoveItem(), {})
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
             Else

@@ -44,7 +44,7 @@
             Backpacker = 4
             Pokefan = 5
             Maid = 6
-            Cheerleader = 7
+            Motivator = 7
             Clerk = 8
             PokemonBreeder = 9
             Guitarist = 10
@@ -56,6 +56,29 @@
             Nurse = 16
             Socialite = 17
             AceTrainer = 18
+            Veteran = 19
+        End Enum
+
+        Public Enum GenderlessEmblemSpriteType
+            Preschooler = 0
+            SchoolKid = 1
+            Youngster = 2
+            Waiter = 3
+            AceTrainer = 4
+            Pokefan = 5
+            Butler = 6
+            Motivator = 7
+            Clerk = 8
+            PokemonBreeder = 9
+            Drummer = 10
+            Cyclist = 11
+            RichKid = 12
+            Ranger = 13
+            Athlete = 14
+            Scientist = 15
+            Doctor = 16
+            OldPerson = 17
+            Worker = 18
             Veteran = 19
         End Enum
 
@@ -108,6 +131,28 @@
             NN67 = 16
             NN69 = 17
             NN71 = 18
+            NN39 = 19
+        End Enum
+        Public Enum GenderlessEmblemSprites
+            NN40 = 0
+            NN42 = 1
+            NN44 = 2
+            NN46 = 3
+            NN70 = 4
+            NN52 = 5
+            NN74 = 6
+            NN76 = 7
+            NN53 = 8
+            NN55 = 9
+            NN80 = 10
+            NN72 = 11
+            NN57 = 12
+            NN59 = 13
+            NN78 = 14
+            NN64 = 15
+            NN66 = 16
+            NN69 = 69
+            NN84 = 18
             NN39 = 19
         End Enum
 
@@ -231,10 +276,13 @@
 
             t = t.Clamp(0, 19)
 
-            If gender = "1" Then
+            If gender = "0" Then
+                Return CType(t, MaleEmblemSpriteType).ToString()
+            ElseIf gender = "1" Then
                 Return CType(t, FemaleEmblemSpriteType).ToString()
+            Else
+                Return CType(t, GenderlessEmblemSpriteType).ToString()
             End If
-            Return CType(t, MaleEmblemSpriteType).ToString()
         End Function
 
         Public Shared Function GetPlayerSpriteFile(ByVal level As Integer, ByVal id As String, ByVal gender As String) As String
@@ -247,10 +295,15 @@
             Dim t As Integer = CInt(Math.Ceiling(level / 5)) - 1
 
             t = t.Clamp(0, 19)
-            Dim tFile As String = CType(t, MaleEmblemSprites).ToString()
-            If gender = "1" Then
+            Dim tFile As String
+            If gender = "0" Then
+                tFile = CType(t, MaleEmblemSprites).ToString()
+            ElseIf gender = "1" Then
                 tFile = CType(t, FemaleEmblemSprites).ToString()
+            Else
+                tFile = CType(t, GenderlessEmblemSprites).ToString()
             End If
+
             If tFile.StartsWith("NN") = True Then
                 tFile = tFile.Remove(0, 2)
             End If
@@ -268,9 +321,13 @@
             Dim t As Integer = CInt(Math.Ceiling(level / 5)) - 1
 
             t = t.Clamp(0, 19)
-            Dim tFile As String = CType(t, MaleEmblemSprites).ToString()
-            If gender = "1" Then
+            Dim tFile As String
+            If gender = "0" Then
+                tFile = CType(t, MaleEmblemSprites).ToString()
+            ElseIf gender = "1" Then
                 tFile = CType(t, FemaleEmblemSprites).ToString()
+            Else
+                tFile = CType(t, GenderlessEmblemSprites).ToString()
             End If
             If tFile.StartsWith("NN") = True Then
                 tFile = tFile.Remove(0, 2)
@@ -754,27 +811,28 @@
                     Return 17001
                 Case "shooting star"
                     Return 17559
+                Case "victorious"
+                    Return 153566
+                Case "deep sea"
+                    Return 153567
+                Case "eruption"
+                    Return 153568
+                Case "ancestor"
+                    Return 153569
+                Case "time"
+                    Return 153570
+                Case "mega"
+                    Return 153571
+                Case "beast"
+                    Return 153572
+                Case "heart gold"
+                    Return 153573
+                Case "soul silver"
+                    Return 153574
+                Case "tao"
+                    Return 153575
 
                     'Requires GameJolt side support
-
-                    'Case "victorious"
-                    '    Return ???
-                    'Case "deep sea"
-                    '    Return ???
-                    'Case "eruption"
-                    '    Return ???
-                    'Case "ancestor"
-                    '    Return ???
-                    'Case "time"
-                    '    Return ???
-                    'Case "mega"
-                    '    Return ???
-                    'Case "heart gold"
-                    '    Return ???
-                    'Case "soul silver"
-                    '    Return ???
-                    'Case "tao"
-                    '    Return ???
                     'Case "floral"
                     '    Return ???
 
@@ -861,27 +919,29 @@
                     Return "earth"
                 Case 17559
                     Return "shooting star"
+                Case 153566
+                    Return "victorious"
+                Case 153567
+                    Return "deep sea"
+                Case 153568
+                    Return "eruption"
+                Case 153569
+                    Return "ancestor"
+                Case 153570
+                    Return "time"
+                Case 153571
+                    Return "mega"
+                Case 153572
+                    Return "beast"
+                Case 153573
+                    Return "heart gold"
+                Case 153574
+                    Return "soul silver"
+                Case 153575
+                    Return "tao"
 
                     'Requires GameJolt side support
 
-                    'Case ???
-                    '    Return "victorious"
-                    'Case ???
-                    '    Return "deep sea"
-                    'Case ???
-                    '    Return "eruption"
-                    'Case ???
-                    '    Return "ancestor"
-                    'Case ???
-                    '    Return "time"
-                    'Case ???
-                    '    Return "mega"
-                    'Case "heart gold"
-                    '    Return ???
-                    'Case "soul silver"
-                    '    Return ???
-                    'Case "tao"
-                    '    Return ???
                     'Case "floral"
                     '    Return ???
 

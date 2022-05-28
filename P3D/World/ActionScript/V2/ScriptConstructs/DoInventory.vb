@@ -22,7 +22,16 @@
                     Next
                     Return c
                 Case "name"
-                    Dim ItemID As String = argument
+                    Dim ItemID As String = argument.GetSplit(0)
+
+                    If argument.Contains(",") Then
+                        Select Case argument.GetSplit(1).ToLower()
+                            Case "p", "plural"
+                                Return Item.GetItemByID(int(ItemID)).PluralName
+                            Case "s", "singular"
+                                Return Item.GetItemByID(int(ItemID)).Name
+                        End Select
+                    End If
 
                     Return Item.GetItemByID(int(ItemID)).Name
                 Case "id"

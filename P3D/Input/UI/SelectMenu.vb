@@ -47,7 +47,7 @@
 
         Public Sub Update()
             If Visible = True Then
-                cursorPos.Y = MathHelper.Lerp(cursorDest.Y, cursorPos.Y, 0.6F)
+                cursorPos.Y = CInt(MathHelper.Lerp(cursorDest.Y, cursorPos.Y, 0.6F))
 
                 If Controls.Up(True, True, True, True, True, True) = True Then
                     Me.Index -= 1
@@ -61,12 +61,34 @@
                         Index = 0
                     End If
                 End If
-
-                For i = Scroll To Me.Scroll + 8
-                    If i <= Me.Items.Count - 1 Then
-                        If Controls.Accept(True, False, False) = True And i = Me.Index And New Rectangle(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True Or
+                If CurrentScreen.MouseVisible = True Then
+                    For i = Scroll To Me.Scroll + 8
+                        If i <= Me.Items.Count - 1 Then
+                            If Controls.Accept(True, False, False) = True And i = Me.Index And New Rectangle(Core.windowSize.Width - 270, 72 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True Or
                             Controls.Accept(False, True, True) = True And i = Me.Index Or Controls.Dismiss(True, True, True) = True And Me.BackIndex = Me.Index Then
-
+                                SoundManager.PlaySound("select")
+                                If Not ClickHandler Is Nothing Then
+                                    ClickHandler(Me)
+                                End If
+                                Me.Visible = False
+                            End If
+                            If Controls.Dismiss(True, True, True) = True Then
+                                Me.Index = Me.BackIndex
+                                SoundManager.PlaySound("select")
+                                If Not ClickHandler Is Nothing Then
+                                    ClickHandler(Me)
+                                End If
+                                Me.Visible = False
+                            End If
+                            If New Rectangle(Core.windowSize.Width - 270, 72 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True And Controls.Accept(True, False, False) = True Then
+                                Me.Index = i
+                            End If
+                        End If
+                    Next
+                Else
+                    For i = Scroll To Me.Scroll + 8
+                        If Controls.Accept(True, True, True) = True And i = Me.Index Then
+                            SoundManager.PlaySound("select")
                             If Not ClickHandler Is Nothing Then
                                 ClickHandler(Me)
                             End If
@@ -74,25 +96,22 @@
                         End If
                         If Controls.Dismiss(True, True, True) = True Then
                             Me.Index = Me.BackIndex
+                            SoundManager.PlaySound("select")
                             If Not ClickHandler Is Nothing Then
                                 ClickHandler(Me)
                             End If
                             Me.Visible = False
                         End If
-                        If New Rectangle(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True And Controls.Accept(True, False, False) = True Then
-                            Me.Index = i
-                        End If
-                    End If
-                Next
-
-                If Index - Scroll > 8 Then
-                    Scroll = Index - 8
+                    Next
                 End If
-                If Index - Scroll < 0 Then
-                    Scroll = Index
-                End If
-                SetCursorDest()
             End If
+            If Index - Scroll > 8 Then
+                Scroll = Index - 8
+            End If
+            If Index - Scroll < 0 Then
+                Scroll = Index
+            End If
+            SetCursorDest()
         End Sub
 
         Private cursorPos As Vector2
@@ -104,25 +123,25 @@
                     If i <= Me.Items.Count - 1 Then
                         Dim Text As String = Items(i)
 
-                        Dim startPos As New Vector2(Core.windowSize.Width - 270, 66 * ((i + 1) - Scroll))
+                        Dim startPos As New Vector2(Core.windowSize.Width - 270, 72 * ((i + 1) - Scroll))
 
                         Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X), CInt(startPos.Y), 64, 64), Color.White)
                         Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 64), CInt(startPos.Y), 64, 64), Color.White)
                         Core.SpriteBatch.Draw(t2, New Rectangle(CInt(startPos.X + 128), CInt(startPos.Y), 64, 64), Color.White)
                         Core.SpriteBatch.Draw(t1, New Rectangle(CInt(startPos.X + 192), CInt(startPos.Y), 64, 64), Nothing, Color.White, 0.0F, New Vector2(0), SpriteEffects.FlipHorizontally, 0.0F)
 
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(startPos.X + 128 - (FontManager.MainFont.MeasureString(Text).X * 1.4F) / 2, startPos.Y + 15), Color.Black, 0.0F, Vector2.Zero, 1.4F, SpriteEffects.None, 0.0F)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(CInt(startPos.X + 20), CInt(startPos.Y + 32 - FontManager.MainFont.MeasureString(Text).Y / 2)), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                     End If
                 Next
             End If
 
-            Dim cPosition As Vector2 = New Vector2(cursorPos.X + 128, cursorPos.Y - 40)
+            Dim cPosition As Vector2 = New Vector2(CInt(cursorPos.X + 128), CInt(cursorPos.Y - 40))
             Dim t As Texture2D = TextureManager.GetTexture("GUI\Menus\General", New Rectangle(0, 0, 16, 16), "")
             Core.SpriteBatch.Draw(t, New Rectangle(CInt(cPosition.X), CInt(cPosition.Y), 64, 64), Color.White)
         End Sub
 
         Private Sub SetCursorDest()
-            cursorDest = New Vector2(Core.windowSize.Width - 270, 66 * ((Index + 1) - Scroll))
+            cursorDest = New Vector2(CInt(Core.windowSize.Width - 270), CInt(72 * (Index + 1 - Scroll)))
         End Sub
 
         Public ReadOnly Property SelectedItem() As String

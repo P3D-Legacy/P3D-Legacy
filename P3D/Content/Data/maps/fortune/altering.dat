@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[Altering Cave]}}{"MusicLoop"{str[diglettscave]}}{"CurrentRegion"{str[sevii islands]}}{"RegionalForm"{str[alola]}}{"WildPokemon"{bool[1]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnviromentType"{int[2]}}{"Weather"{int[1]}}{"BattleMap"{str[fortune\altering.dat,5.5,0,0.5]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[1]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[2]}}{"Weather"{int[1]}}{"BattleMap"{str[fortune\altering.dat,5.5,0,0.5]}}]}}
 
 Small:
 Floor:
