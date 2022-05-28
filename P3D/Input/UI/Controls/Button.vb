@@ -55,9 +55,9 @@
                 'Draw border:
                 If BorderWidth > 0 Then
                     SpriteBatch.DrawRectangle(New Rectangle(Position.X, 'X
-                                                                 Position.Y, 'Y
-                                                                 Width + (BorderWidth * 2), 'Width
-                                                                 Height + (BorderWidth * 2) 'Height
+                                                            Position.Y, 'Y
+                                                            Width + (BorderWidth * 2), 'Width
+                                                            Height + (BorderWidth * 2) 'Height
                                                             ), BorderColor)
                 End If
 

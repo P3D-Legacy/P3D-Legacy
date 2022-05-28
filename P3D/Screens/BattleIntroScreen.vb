@@ -113,7 +113,7 @@
     Dim currentBlurZoom As Integer = 0
 
     Private Sub DrawBlurIntro()
-        If Not blurTexture Is Nothing Then
+        If blurTexture IsNot Nothing Then
             Dim startIndex As Integer = 0
             If blurLayers.Count > 10 Then
                 startIndex = blurLayers.Count - 10

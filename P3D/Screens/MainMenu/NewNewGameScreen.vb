@@ -308,8 +308,8 @@
 
                 Canvas.DrawRectangle(windowSize, backcolor)
 
-                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_select_skin"), New Vector2(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.GetString("new_game_select_skin")).X + 2, 100 + 2), New Color(0, 0, 0, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
-                SpriteBatch.DrawString(FontManager.MainFont, Localization.GetString("new_game_select_skin"), New Vector2(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.GetString("new_game_select_skin")).X, 100), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
+                SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("select_apperance"), New Vector2(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.Translate("select_apperance")).X + 2, 100 + 2), New Color(0, 0, 0, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
+                SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("select_apperance"), New Vector2(windowSize.Width / 2.0F - FontManager.MainFont.MeasureString(Localization.Translate("select_apperance")).X, 100), New Color(255, 255, 255, CInt(255 * _fadeIn)), 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
 
                 For i = 0 To _sprites.Count - 1
                     Dim sprite As Texture2D = _sprites(i)

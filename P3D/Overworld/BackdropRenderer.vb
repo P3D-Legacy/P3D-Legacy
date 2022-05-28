@@ -181,7 +181,7 @@
             Dim dayColor As Vector3 = Vector3.One
             Dim diffuseColor As Vector3 = Screen.Effect.DiffuseColor
 
-            If Not Screen.Level.World Is Nothing Then
+            If Screen.Level.World IsNot Nothing Then
                 Select Case Screen.Level.World.EnvironmentType
                     Case P3D.World.EnvironmentTypes.Outside
                         dayColor = SkyDome.GetDaytimeColor(True).ToVector3()

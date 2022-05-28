@@ -28,24 +28,24 @@
             Select Case BattleScreen.FieldEffects.Weather
                 Case BattleWeather.WeatherTypes.Sunny
                     y = 0
-                    t = "Sunny"
+                    t = Localization.Translate("weather.sunny")
                 Case BattleWeather.WeatherTypes.Rain
                     y = 34
-                    t = "Rain"
+                    t = Localization.Translate("weather.rain")
                 Case BattleWeather.WeatherTypes.Sandstorm
                     y = 68
-                    t = "Sandstorm"
+                    t = Localization.Translate("weather.sandstorm")
                 Case BattleWeather.WeatherTypes.Hailstorm
                     y = 102
-                    t = "Hailstorm"
+                    t = Localization.Translate("weather.hailstorm")
                 Case BattleWeather.WeatherTypes.Foggy
                     x = 88
                     y = 0
-                    t = "Foggy"
+                    t = Localization.Translate("weather.foggy")
                 Case BattleWeather.WeatherTypes.Snow
                     x = 88
                     y = 34
-                    t = "Snow"
+                    t = Localization.Translate("weather.snow")
             End Select
 
             If y > -1 Then
@@ -63,22 +63,22 @@
                 If .ElectricTerrain > 0 Then
                     x = 352
                     y = 0
-                    t = "Electric Terrain"
+                    t = Localization.Translate("terrain.electric")
                 End If
                 If .GrassyTerrain > 0 Then
                     x = 352
                     y = 34
-                    t = "Grassy Terrain"
+                    t = Localization.Translate("terrain.grassy")
                 End If
                 If .MistyTerrain > 0 Then
                     x = 352
                     y = 68
-                    t = "Misty Terrain"
+                    t = Localization.Translate("terrain.misty")
                 End If
                 If .PsychicTerrain > 0 Then
                     x = 352
                     y = 102
-                    t = "Psychic Terrain"
+                    t = Localization.Translate("terrain.psychic")
                 End If
             End With
 
@@ -640,24 +640,24 @@
                     _mainMenuItemList.Add(New MainMenuItem(0, "Throw Mud", 1, AddressOf MainMenuThrowMud))
                     _mainMenuItemList.Add(New MainMenuItem(0, "Throw Bait", 2, AddressOf MainMenuThrowBait))
 
-                    _mainMenuItemList.Add(New MainMenuItem(3, "Run", 3, AddressOf MainMenuRun))
+                    _mainMenuItemList.Add(New MainMenuItem(3, Localization.Translate("menu_run"), 3, AddressOf MainMenuRun))
 
                 Case BattleSystem.BattleScreen.BattleModes.BugContest
-                    _mainMenuItemList.Add(New MainMenuItem(0, "Battle", 0, AddressOf MainMenuOpenBattleMenu))
+                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.Translate("menu_battle"), 0, AddressOf MainMenuOpenBattleMenu))
 
                     Dim sportBallText As String = "Sport Ball x" & Core.Player.Inventory.GetItemAmount(177).ToString()
                     If Core.Player.Inventory.GetItemAmount(177) = 0 Then
                         sportBallText = "No Sport Balls."
                     End If
                     _mainMenuItemList.Add(New MainMenuItem(4, sportBallText, 1, AddressOf MainMenuUseSportBall))
-                    _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 2, AddressOf MainMenuOpenPokemon))
-                    _mainMenuItemList.Add(New MainMenuItem(3, "Run", 3, AddressOf MainMenuRun))
+                    _mainMenuItemList.Add(New MainMenuItem(1, Localization.Translate("menu_pokemon"), 2, AddressOf MainMenuOpenPokemon))
+                    _mainMenuItemList.Add(New MainMenuItem(3, Localization.Translate("menu_run"), 3, AddressOf MainMenuRun))
 
                 Case BattleSystem.BattleScreen.BattleModes.Standard
                     If BattleScreen.OwnFaint Then
                         _mainMenuIndex = 0
                         _mainMenuNextIndex = 0
-                        _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 0, AddressOf MainMenuOpenPokemon))
+                        _mainMenuItemList.Add(New MainMenuItem(1, Localization.Translate("menu_pokemon"), 0, AddressOf MainMenuOpenPokemon))
                         If BattleScreen.IsRemoteBattle AndAlso Not BattleScreen.IsHost Then
                             BattleScreen.OwnFaint = False
                         End If
@@ -674,12 +674,12 @@
                         End If
                         BattleScreen.OppFaint = False
                     Else
-                        _mainMenuItemList.Add(New MainMenuItem(0, "Battle", 0, AddressOf MainMenuOpenBattleMenu))
-                        _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
-                        _mainMenuItemList.Add(New MainMenuItem(2, "Bag", 2, AddressOf MainMenuOpenBag))
+                        _mainMenuItemList.Add(New MainMenuItem(0, Localization.Translate("menu_battle"), 0, AddressOf MainMenuOpenBattleMenu))
+                        _mainMenuItemList.Add(New MainMenuItem(1, Localization.Translate("menu_pokemon"), 1, AddressOf MainMenuOpenPokemon))
+                        _mainMenuItemList.Add(New MainMenuItem(2, Localization.Translate("menu_bag"), 2, AddressOf MainMenuOpenBag))
 
                         If BattleScreen.IsTrainerBattle = False Then
-                            _mainMenuItemList.Add(New MainMenuItem(3, "Run", 3, AddressOf MainMenuRun))
+                            _mainMenuItemList.Add(New MainMenuItem(3, Localization.Translate("menu_run"), 3, AddressOf MainMenuRun))
                             MainMenuAddMegaEvolution(BattleScreen, 4)
                         Else
                             MainMenuAddMegaEvolution(BattleScreen, 3)
@@ -687,9 +687,9 @@
                     End If
 
                 Case BattleSystem.BattleScreen.BattleModes.PVP
-                    _mainMenuItemList.Add(New MainMenuItem(0, "Battle", 0, AddressOf MainMenuOpenBattleMenu))
-                    _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 1, AddressOf MainMenuOpenPokemon))
-                    _mainMenuItemList.Add(New MainMenuItem(3, "Surrender", 2, AddressOf MainMenuOpenBag))
+                    _mainMenuItemList.Add(New MainMenuItem(0, Localization.Translate("menu_battle"), 0, AddressOf MainMenuOpenBattleMenu))
+                    _mainMenuItemList.Add(New MainMenuItem(1, Localization.Translate("menu_pokemon"), 1, AddressOf MainMenuOpenPokemon))
+                    _mainMenuItemList.Add(New MainMenuItem(3, Localization.Translate("menu_surrender"), 2, AddressOf MainMenuOpenBag))
             End Select
         End Sub
 
@@ -773,7 +773,7 @@
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusOwnPlayer())
                 BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\running", False))
-                BattleScreen.BattleQuery.Add(New TextQueryObject("Got away safely!"))
+                BattleScreen.BattleQuery.Add(New TextQueryObject(Localization.Translate("got_away_safely")))
                 BattleScreen.BattleQuery.Add(New EndBattleQueryObject(False))
                 Battle.Won = True
                 Battle.Fled = True
@@ -781,7 +781,7 @@
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                BattleScreen.Battle.InitializeRound(BattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = "Failed to run away."})
+                BattleScreen.Battle.InitializeRound(BattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Text, .Argument = Localization.Translate("run_away_failed")})
             End If
         End Sub
 

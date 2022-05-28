@@ -134,6 +134,7 @@
         Me.ViewBobbing = Core.GameOptions.ViewBobbing
         Me.GamePadEnabled = Core.GameOptions.GamePadEnabled
         Me.PreferMultiSampling = Core.GraphicsManager.PreferMultiSampling
+        Me.Language = Localization.GetAvailableLanguagesList.Where(Function(x) x.Value = Localization.GetLanguageName(Core.GameOptions.Language)).Select(Function(y) y.Key).FirstOrDefault()
     End Sub
 
 
@@ -532,7 +533,7 @@
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 140, halfHeight - 232, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
         SpriteBatch.Draw(_texture, New Rectangle(halfWidth - 124, halfHeight - 216, 16, 16), New Rectangle(80, 0, 16, 16), mainBackgroundColor)
 
-        SpriteBatch.DrawString(FontManager.ChatFont, Localization.GetString("option_screen_title", "Options"), New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
+        SpriteBatch.DrawString(FontManager.ChatFont, Localization.Translate("option.title"), New Vector2(halfWidth - 390, halfHeight - 228), mainBackgroundColor)
 
         For y = 0 To CInt(_enrollY) Step 16
             For x = 0 To 800 Step 16
@@ -1046,6 +1047,7 @@
         Me.Muted = 0
         Me.GamePadEnabled = True
         Me.PreferMultiSampling = True
+        Me.Language = 0
         MusicManager.Muted = CBool(Me.Muted)
         SoundManager.Muted = CBool(Me.Muted)
     End Sub
@@ -1078,6 +1080,12 @@
             Core.GameOptions.LoadOffsetMaps = 101 - Me.LoadOffsetMaps
         End If
         Core.GameOptions.ViewBobbing = Me.ViewBobbing
+        Dim NewLanguage As String = Localization.GetLanguageISO(Localization.GetAvailableLanguagesList.Item(Me.Language))
+        If Core.GameOptions.Language IsNot NewLanguage Then
+            Core.GameOptions.Language = NewLanguage
+            Logger.Debug("NewOptionScreen.vb Changed Language: " & NewLanguage)
+            Localization.Load(NewLanguage)
+        End If
         Core.GameOptions.SaveOptions()
 
         SoundManager.PlaySound("save")
@@ -1168,6 +1176,11 @@
             Me._pageClosing = True
         End If
         ButtonPackInformation()
+    End Sub
+
+    Private Sub SwitchToLanguage()
+        Me._nextIndex = 7
+        Me._pageClosing = True
     End Sub
 
 #End Region
@@ -1534,7 +1547,6 @@
             Me.OnClickTrigger = ClickSub
             TextureY = 16
         End Sub
-
 
         Public Overrides Sub Draw()
             Dim s As NewOptionScreen = CType(CurrentScreen, NewOptionScreen)

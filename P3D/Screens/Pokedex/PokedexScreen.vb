@@ -63,7 +63,7 @@
         Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), New Color(42, 167, 198), New Color(42, 167, 198, 0), False, -1)
         Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), New Color(42, 167, 198, 0), New Color(42, 167, 198), False, -1)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Select a Pokédex", New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.select"), New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
         For i = 0 To Me.Profiles.Count
             If i = Me.Profiles.Count Then
@@ -71,7 +71,7 @@
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64, 100 + i * 96, 64 * 5, 64), New Rectangle(32, 16, 16, 16), Color.White)
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64 * 6, 100 + i * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                Core.SpriteBatch.DrawString(FontManager.MainFont, "Habitat-Dex", New Vector2(120, 120 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.habitat"), New Vector2(120, 120 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             Else
                 Dim p As Pokedex = Me.Profiles(i).Pokedex
 
@@ -207,7 +207,7 @@ Public Class PokedexHabitatScreen
         Canvas.DrawGradient(New Rectangle(0, 0, CInt(Core.windowSize.Width), 200), New Color(42, 167, 198), New Color(42, 167, 198, 0), False, -1)
         Canvas.DrawGradient(New Rectangle(0, CInt(Core.windowSize.Height - 200), CInt(Core.windowSize.Width), 200), New Color(42, 167, 198, 0), New Color(42, 167, 198), False, -1)
 
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Select a Habitat", New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.habitat_select"), New Vector2(100, 24), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
 
         For i = Scroll To Scroll + 5
             If i <= Me.HabitatList.Count - 1 Then
@@ -218,7 +218,7 @@ Public Class PokedexHabitatScreen
                 Core.SpriteBatch.Draw(Me.texture, New Rectangle(100 + 64 * 9, 100 + p * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
                 Core.SpriteBatch.Draw(HabitatList(i).Texture, New Rectangle(120, 108 + p * 96, 64, 48), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MainFont, HabitatList(i).Name, New Vector2(200, 120 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("places." & HabitatList(i).Name), New Vector2(200, 120 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
                 Dim t As String = HabitatList(i).PokemonCaught.ToString() & "/" & HabitatList(i).PokemonList.Count
                 Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(680 - CSng((FontManager.MainFont.MeasureString(t).X * 1.0F) / 2.0F), 120 + p * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
@@ -505,13 +505,13 @@ Public Class PokedexScreen
 
         If CHabitat Is Nothing Then
             Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Pokedex.Name, New Vector2(60, 55), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Seen: " & Environment.NewLine & Environment.NewLine & "Obtained: ", New Vector2(420, 45), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.seen") & ": " & Environment.NewLine & Environment.NewLine & Localization.Translate("pokedex.obtained") & ": ", New Vector2(420, 45), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, Profile.Seen + Profile.Obtained & Environment.NewLine & Environment.NewLine & Profile.Obtained, New Vector2(540, 45), Color.Black)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.Name, New Vector2(60, 80), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("places." & CHabitat.Name), New Vector2(60, 80), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.Draw(CHabitat.Texture, New Rectangle(60, 32, 64, 48), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Available: " & Environment.NewLine & Environment.NewLine & "Obtained: ", New Vector2(420, 45), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.PokemonList.Count & Environment.NewLine & Environment.NewLine & CHabitat.PokemonCaught, New Vector2(540, 45), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.available") & ": " & Environment.NewLine & Environment.NewLine & Localization.Translate("pokedex.obtained") & ": ", New Vector2(420, 45), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, CHabitat.PokemonList.Count & Environment.NewLine & Environment.NewLine & CHabitat.PokemonCaught, New Vector2(560, 45), Color.Black)
 
             Dim progressTexture As Texture2D = Me.CHabitat.ProgressTexture
             If Not progressTexture Is Nothing Then
@@ -572,20 +572,20 @@ Public Class PokedexScreen
             Canvas.DrawRectangle(New Rectangle(130, 300, 404, 90), New Color(42, 167, 198, 150))
             Canvas.DrawGradient(New Rectangle(534, 300, 80, 90), New Color(42, 167, 198, 150), New Color(84, 198, 216), True, -1)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "No search results.", New Vector2(50 + CInt(564 / 2) - CInt(FontManager.MainFont.MeasureString("No search results.").X / 2), 330), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.search_no_result"), New Vector2(50 + CInt(564 / 2) - CInt(FontManager.MainFont.MeasureString(Localization.Translate("pokedex.search_no_result")).X / 2), 330), Color.White)
         End If
 
         Canvas.DrawRectangle(New Rectangle(670, 30, 480, 90), New Color(42, 167, 198, 150))
-        Dim orderText As String = "Numeric"
+        Dim orderText As String = Localization.Translate("pokedex.order_numeric")
         Select Case Me.Order
             Case OrderType.Alphabetically
-                orderText = "A-Z"
+                orderText = Localization.Translate("pokedex.order_a_z")
             Case OrderType.Height
-                orderText = "Height"
+                orderText = Localization.Translate("pokedex.height")
             Case OrderType.Weigth
-                orderText = "Weight"
+                orderText = Localization.Translate("pokedex.weight")
         End Select
-        Dim filterText As String = "None"
+        Dim filterText As String = Localization.Translate("pokedex.filter_none")
         If Filters.Count > 0 Then
             filterText = ""
             For Each f As Filter In Me.Filters
@@ -594,15 +594,15 @@ Public Class PokedexScreen
                 End If
                 Select Case f.FilterType
                     Case FilterType.Name
-                        filterText &= "Name"
+                        filterText &= Localization.Translate("global.name")
                     Case FilterType.Type1
-                        filterText &= "Type 1"
+                        filterText &= Localization.Translate("pokedex.filter_type_1")
                     Case FilterType.Type2
-                        filterText &= "Type 2"
+                        filterText &= Localization.Translate("pokedex.filter_type_2")
                 End Select
             Next
         End If
-        Core.SpriteBatch.DrawString(FontManager.MainFont, "Order:" & Environment.NewLine & "Filter:" & Environment.NewLine & "Press " & KeyBindings.SpecialKey.ToString & " on the keyboard to search.", New Vector2(685, 45), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("global.order") & ":" & Environment.NewLine & Localization.Translate("global.filter") & ":" & Environment.NewLine & Localization.Translate("pokedex.search_description"), New Vector2(685, 45), Color.White)
         Core.SpriteBatch.DrawString(FontManager.MainFont, orderText & Environment.NewLine & filterText, New Vector2(790, 45), Color.Black)
 
         If menu.Visible = True Then
@@ -644,15 +644,15 @@ Public Class PokedexScreen
         End While
 
         If entryType = 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(830, 200), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & Localization.Translate("pokedex.number_short") & " " & no, New Vector2(830, 200), Color.White)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName() & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(830, 200), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName() & Environment.NewLine & Environment.NewLine & Localization.Translate("pokedex.number_short") & " " & no, New Vector2(830, 200), Color.White)
             Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(670, 140, 128, 128), Color.White)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "SPECIES", New Vector2(680, 310), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "TYPE", New Vector2(680, 350), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "HEIGHT", New Vector2(680, 390), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "WEIGHT", New Vector2(680, 430), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.species").ToUpper(), New Vector2(680, 310), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.type").ToUpper(), New Vector2(680, 350), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.height").ToUpper(), New Vector2(680, 390), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Localization.Translate("pokedex.weight").ToUpper(), New Vector2(680, 430), Color.Black)
 
             Canvas.DrawRectangle(New Rectangle(670, 480, 480, 152), New Color(42, 167, 198, 150))
 
@@ -777,7 +777,7 @@ Public Class PokedexScreen
             End If
 
             If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
-                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+                Me.menu = New SelectMenu({Localization.Translate("global.order"), Localization.Translate("global.filter"), Localization.Translate("global.reset"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenu1, 3)
             End If
 
             If Controls.Dismiss(True, True, True) = True Then
@@ -829,12 +829,12 @@ Public Class PokedexScreen
 #Region "Menus"
 
     Private Sub SelectMenu1(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
-            Case "order"
-                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
-            Case "filter"
-                Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
-            Case "reset"
+        Select Case s.SelectedItem
+            Case Localization.Translate("global.order")
+                Me.menu = New SelectMenu({Localization.Translate("pokedex.type"), Localization.Translate("pokedex.reverse") & ": " & Localization.Translate("global." & Me.ReverseOrder.ToString().ToLower()), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuOrder, 2)
+            Case Localization.Translate("global.filter")
+                Me.menu = New SelectMenu({Localization.Translate("global.name"), Localization.Translate("pokedex.filter_type_1"), Localization.Translate("pokedex.filter_type_2"), Localization.Translate("global.clear"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuFilter, 4)
+            Case Localization.Translate("global.reset")
                 Me.Filters.Clear()
                 Me.ReverseOrder = False
                 Me.Order = OrderType.Numeric
@@ -843,23 +843,23 @@ Public Class PokedexScreen
     End Sub
 
     Private Sub SelectMenuFilter(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
-            Case "name"
-                Me.menu = New SelectMenu({"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Back"}.ToList(), 0, AddressOf SelectMenuNameFilter, -1)
-            Case "type1"
-                Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), 0, AddressOf SelectMenuType1Filter, -1)
-            Case "type2"
-                Me.menu = New SelectMenu({"Normal", "Fire", "Fighting", "Water", "Flying", "Grass", "Poison", "Electric", "Ground", "Psychic", "Rock", "Ice", "Bug", "Dragon", "Ghost", "Dark", "Steel", "Fairy", "Blank", "Back"}.ToList(), 0, AddressOf SelectMenuType2Filter, -1)
-            Case "clear"
+        Select Case s.SelectedItem
+            Case Localization.Translate("global.name")
+                Me.menu = New SelectMenu({"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuNameFilter, -1)
+            Case Localization.Translate("pokedex.filter_type_1")
+                Me.menu = New SelectMenu({Localization.Translate("pokemon.type.normal"), Localization.Translate("pokemon.type.fire"), Localization.Translate("pokemon.type.fighting"), Localization.Translate("pokemon.type.water"), Localization.Translate("pokemon.type.flying"), Localization.Translate("pokemon.type.grass"), Localization.Translate("pokemon.type.poison"), Localization.Translate("pokemon.type.electric"), Localization.Translate("pokemon.type.ground"), Localization.Translate("pokemon.type.psychic"), Localization.Translate("pokemon.type.rock"), Localization.Translate("pokemon.type.ice"), Localization.Translate("pokemon.type.bug"), Localization.Translate("pokemon.type.dragon"), Localization.Translate("pokemon.type.ghost"), Localization.Translate("pokemon.type.dark"), Localization.Translate("pokemon.type.steel"), Localization.Translate("pokemon.type.fairy"), Localization.Translate("pokemon.type.blank"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuType1Filter, -1)
+            Case Localization.Translate("pokedex.filter_type_2")
+                Me.menu = New SelectMenu({Localization.Translate("pokemon.type.normal"), Localization.Translate("pokemon.type.fire"), Localization.Translate("pokemon.type.fighting"), Localization.Translate("pokemon.type.water"), Localization.Translate("pokemon.type.flying"), Localization.Translate("pokemon.type.grass"), Localization.Translate("pokemon.type.poison"), Localization.Translate("pokemon.type.electric"), Localization.Translate("pokemon.type.ground"), Localization.Translate("pokemon.type.psychic"), Localization.Translate("pokemon.type.rock"), Localization.Translate("pokemon.type.ice"), Localization.Translate("pokemon.type.bug"), Localization.Translate("pokemon.type.dragon"), Localization.Translate("pokemon.type.ghost"), Localization.Translate("pokemon.type.dark"), Localization.Translate("pokemon.type.steel"), Localization.Translate("pokemon.type.fairy"), Localization.Translate("pokemon.type.blank"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuType2Filter, -1)
+            Case Localization.Translate("global.clear")
                 Me.Filters.Clear()
                 Me.SetList()
-            Case "back"
-                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+            Case Localization.Translate("global.back")
+                Me.menu = New SelectMenu({Localization.Translate("global.order"), Localization.Translate("global.filter"), Localization.Translate("global.reset"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenu1, 3)
         End Select
     End Sub
 
     Private Sub SelectMenuType1Filter(ByVal s As SelectMenu)
-        If s.SelectedItem <> "Back" Then
+        If s.SelectedItem <> Localization.Translate("global.back") Then
             For i = 0 To Filters.Count - 1
                 If Filters(i).FilterType = FilterType.Type1 Then
                     Filters.RemoveAt(i)
@@ -870,12 +870,12 @@ Public Class PokedexScreen
             Filters.Add(New Filter With {.FilterType = FilterType.Type1, .FilterValue = s.SelectedItem})
             SetList()
         Else
-            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
+            Me.menu = New SelectMenu({Localization.Translate("global.name"), Localization.Translate("pokedex.filter_type_1"), Localization.Translate("pokedex.filter_type_2"), Localization.Translate("global.clear"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuFilter, 4)
         End If
     End Sub
 
     Private Sub SelectMenuType2Filter(ByVal s As SelectMenu)
-        If s.SelectedItem <> "Back" Then
+        If s.SelectedItem <> Localization.Translate("global.back") Then
             For i = 0 To Filters.Count - 1
                 If Filters(i).FilterType = FilterType.Type2 Then
                     Filters.RemoveAt(i)
@@ -886,12 +886,12 @@ Public Class PokedexScreen
             Filters.Add(New Filter With {.FilterType = FilterType.Type2, .FilterValue = s.SelectedItem})
             SetList()
         Else
-            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
+            Me.menu = New SelectMenu({Localization.Translate("global.name"), Localization.Translate("pokedex.filter_type_1"), Localization.Translate("pokedex.filter_type_2"), Localization.Translate("global.clear"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuFilter, 4)
         End If
     End Sub
 
     Private Sub SelectMenuNameFilter(ByVal s As SelectMenu)
-        If s.SelectedItem <> "Back" Then
+        If s.SelectedItem <> Localization.Translate("global.back") Then
             For i = 0 To Filters.Count - 1
                 If Filters(i).FilterType = FilterType.Name Then
                     Filters.RemoveAt(i)
@@ -902,39 +902,39 @@ Public Class PokedexScreen
             Filters.Add(New Filter With {.FilterType = FilterType.Name, .FilterValue = s.SelectedItem})
             SetList()
         Else
-            Me.menu = New SelectMenu({"Name", "Type1", "Type2", "Clear", "Back"}.ToList(), 0, AddressOf SelectMenuFilter, 4)
+            Me.menu = New SelectMenu({Localization.Translate("global.name"), Localization.Translate("pokedex.filter_type_1"), Localization.Translate("pokedex.filter_type_2"), Localization.Translate("global.clear"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuFilter, 4)
         End If
     End Sub
 
     Private Sub SelectMenuOrder(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
-            Case "type"
-                Me.menu = New SelectMenu({"Numeric", "A-Z", "Weight", "Height", "Back"}.ToList(), 0, AddressOf SelectMenuOrderType, 4)
-            Case "reverse: " & Me.ReverseOrder.ToString().ToLower()
+        Select Case s.SelectedItem
+            Case Localization.Translate("pokedex.type")
+                Me.menu = New SelectMenu({Localization.Translate("pokedex.order_numeric"), Localization.Translate("pokedex.order_a_z"), Localization.Translate("pokedex.weight"), Localization.Translate("pokedex.height"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuOrderType, 4)
+            Case Localization.Translate("pokedex.reverse") & ": " & Localization.Translate("global." & Me.ReverseOrder.ToString().ToLower())
                 Me.ReverseOrder = Not Me.ReverseOrder
-                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
+                Me.menu = New SelectMenu({Localization.Translate("pokedex.type"), Localization.Translate("pokedex.reverse") & ": " & Localization.Translate("global." & Me.ReverseOrder.ToString().ToLower()), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuOrder, 2)
                 Me.SetList()
-            Case "back"
-                Me.menu = New SelectMenu({"Order", "Filter", "Reset", "Back"}.ToList(), 0, AddressOf SelectMenu1, 3)
+            Case Localization.Translate("global.back")
+                Me.menu = New SelectMenu({Localization.Translate("global.order"), Localization.Translate("global.filter"), Localization.Translate("global.reset"), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenu1, 3)
         End Select
     End Sub
 
     Private Sub SelectMenuOrderType(ByVal s As SelectMenu)
-        Select Case s.SelectedItem.ToLower()
-            Case "numeric"
+        Select Case s.SelectedItem
+            Case Localization.Translate("pokedex.order_numeric")
                 Me.Order = OrderType.Numeric
                 Me.SetList()
-            Case "a-z"
+            Case Localization.Translate("pokedex.order_a_z")
                 Me.Order = OrderType.Alphabetically
                 Me.SetList()
-            Case "weight"
+            Case Localization.Translate("pokedex.weight")
                 Me.Order = OrderType.Weigth
                 Me.SetList()
-            Case "height"
+            Case Localization.Translate("pokedex.height")
                 Me.Order = OrderType.Height
                 Me.SetList()
-            Case "back"
-                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), "Back"}.ToList(), 0, AddressOf SelectMenuOrder, 2)
+            Case Localization.Translate("global.back")
+                Me.menu = New SelectMenu({"Type", "Reverse: " & Me.ReverseOrder.ToString(), Localization.Translate("global.back")}.ToList(), 0, AddressOf SelectMenuOrder, 2)
         End Select
     End Sub
 

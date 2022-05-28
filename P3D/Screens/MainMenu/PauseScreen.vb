@@ -16,7 +16,7 @@
         Me.MouseVisible = True
         Me.CanChat = False
 
-        If Not currentScreen Is Nothing Then
+        If currentScreen IsNot Nothing Then
             Me.PreScreen = currentScreen
         End If
 
@@ -53,7 +53,7 @@
         End If
 
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), New Color(0, 0, 0, 150))
-        Dim titletext As String = Localization.GetString("pause_menu_title")
+        Dim titletext As String = Localization.Translate("title")
         Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(titletext).X / 2)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, titletext, New Vector2(CInt(pX - 7), CInt(160 - FontManager.InGameFont.MeasureString(titletext).Y / 2 + 3)), Color.Black)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, titletext, New Vector2(CInt(pX - 10), CInt(160 - FontManager.InGameFont.MeasureString(titletext).Y / 2)), Color.White)
@@ -65,15 +65,15 @@
         End If
 
         If Me.canCreateAutosave = False Then
-            Dim autosaveFailText As String = Localization.GetString("pause_menu_autosave_fail")
+            Dim autosaveFailText As String = Localization.Translate("autosave_fail")
 
             Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(9, CInt(Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y)), Color.Black)
             Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, autosaveFailText, New Vector2(5, CInt(Core.ScreenSize.Height - FontManager.InGameFont.MeasureString(autosaveFailText).Y - 4)), Color.White)
         End If
 
         Dim d As New Dictionary(Of Buttons, String)
-        d.Add(Buttons.A, "Accept")
-        d.Add(Buttons.B, "Go back")
+        d.Add(Buttons.A, Localization.Translate("global.accept"))
+        d.Add(Buttons.B, Localization.Translate("global.cancel"))
 
         DrawGamePadControls(d)
     End Sub
@@ -103,9 +103,9 @@
             Dim Text As String = ""
             Select Case i
                 Case 0
-                    Text = Localization.GetString("pause_menu_back_to_game")
+                    Text = Localization.Translate("back_to_game")
                 Case 1
-                    Text = Localization.GetString("pause_menu_quit_to_menu")
+                    Text = Localization.Translate("quit_to_menu")
             End Select
 
             If i = mainIndex Then
@@ -193,7 +193,7 @@
 #Region "QuitMenu"
 
     Private Sub DrawQuit()
-        Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("pause_menu_confirmation")).X / 2)
+        Dim pX As Integer = CInt(Core.ScreenSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString(Localization.Translate("confirmation")).X / 2)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(CInt(pX - 7), CInt(Core.ScreenSize.Height / 7.5) + 110 + 2), Color.Black)
         Core.SpriteBatch.DrawInterfaceString(FontManager.InGameFont, Localization.GetString("pause_menu_confirmation"), New Vector2(CInt(pX - 10), CInt(Core.ScreenSize.Height / 7.5) + 110), Color.White)
         Dim FontColor As Color
@@ -204,10 +204,10 @@
             Dim x As Integer = 0
             Select Case i
                 Case 0
-                    Text = Localization.GetString("pause_menu_no")
+                    Text = Localization.Translate("global.no")
                     x = -200
                 Case 1
-                    Text = Localization.GetString("pause_menu_yes")
+                    Text = Localization.Translate("global.yes")
                     x = 200
             End Select
 

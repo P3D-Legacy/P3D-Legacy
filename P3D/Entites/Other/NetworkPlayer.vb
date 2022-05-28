@@ -351,7 +351,7 @@
     End Sub
 
     Public Shared Sub ScreenRegionChanged()
-        If Not Core.CurrentScreen Is Nothing AndAlso Not Screen.Level Is Nothing Then
+        If Core.CurrentScreen IsNot Nothing AndAlso Screen.Level IsNot Nothing Then
             For Each netPlayer As NetworkPlayer In Screen.Level.NetworkPlayers
                 netPlayer.LastName = ""
             Next

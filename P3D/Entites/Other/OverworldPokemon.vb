@@ -215,7 +215,7 @@ Public Class OverworldPokemon
                 End If
             Else
                 Dim c As Screen = Core.CurrentScreen
-                While Not c.PreScreen Is Nothing
+                While c.PreScreen IsNot Nothing
                     c = c.PreScreen
                 End While
                 If screens.Contains(c.Identification) = True Then

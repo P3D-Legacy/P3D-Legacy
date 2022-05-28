@@ -66,7 +66,7 @@
     End Function
 
     Public Overrides Sub UpdateEntity()
-        If Not Core.CurrentScreen Is Nothing Then
+        If Core.CurrentScreen IsNot Nothing Then
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 If Screen.Camera.Name = "Overworld" Then
                     Dim c As OverworldCamera = CType(Screen.Camera, OverworldCamera)

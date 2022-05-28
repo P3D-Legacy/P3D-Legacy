@@ -18,7 +18,7 @@ Public Class DebugDisplay
             End If
 
             Dim cameraInformation = ""
-            If Not Screen.Camera Is Nothing Then
+            If Screen.Camera IsNot Nothing Then
 
                 Dim thirdPersonString As String = ""
                 If Screen.Camera.Name = "Overworld" Then
@@ -39,8 +39,9 @@ Public Class DebugDisplay
             Dim s As String = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " / FPS: " & Math.Round(Core.GameInstance.FPSMonitor.Value, 0) & isDebugString & Environment.NewLine &
                 cameraInformation &
                 "E: " & _drawnVertices.ToString() & "/" & _maxVertices.ToString() & Environment.NewLine &
-                "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString() &
-                MapPath
+                "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString() & MapPath &  Environment.NewLine &
+                "Lang: " & Localization.CurrentLanguage & Environment.NewLine &
+                "Screen: " & Localization.GetCurrentScreen
 
             If Core.GameOptions.ContentPackNames.Count() > 0 Then
                 Dim contentPackString As String = ""

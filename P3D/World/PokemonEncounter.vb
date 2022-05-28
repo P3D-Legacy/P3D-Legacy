@@ -125,13 +125,13 @@ Public Class PokemonEncounter
                 ' Generate new wild Pokémon:
                 Dim Pokemon As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Me._levelReference.PokemonEncounterData.Method, True, Me._levelReference.PokemonEncounterData.PokeFile)
 
-                If Not Pokemon Is Nothing And CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = False And CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
+                If Pokemon IsNot Nothing And CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = False And CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
                     Screen.Level.RouteSign.Hide() ' When a battle starts, hide the Route sign.
 
                     ' If the player has a Repel going and the first Pokémon in the party's level is greater than the wild Pokémon's level, don't start the battle:
                     If Core.Player.RepelSteps > 0 Then
                         Dim p As Pokemon = Core.Player.GetWalkPokemon()
-                        If Not p Is Nothing Then
+                        If p IsNot Nothing Then
                             If p.Level >= Pokemon.Level Then
                                 Exit Sub
                             End If
@@ -140,7 +140,7 @@ Public Class PokemonEncounter
 
                     ' Cleanse Tag prevents wild Pokémon encounters if held by the first Pokémon in the party:
                     If Core.Player.Pokemons(0).Level >= Pokemon.Level Then
-                        If Not Core.Player.Pokemons(0).Item Is Nothing Then
+                        If Core.Player.Pokemons(0).Item IsNot Nothing Then
                             If Core.Player.Pokemons(0).Item.ID = 94 Then
                                 If Core.Random.Next(0, 3) = 0 Then
                                     Exit Sub
@@ -151,7 +151,7 @@ Public Class PokemonEncounter
 
                     ' Pure Incense lowers the chance of encountering wild Pokémon if held by the first Pokémon in the party:
                     If Core.Player.Pokemons(0).Level >= Pokemon.Level Then
-                        If Not Core.Player.Pokemons(0).Item Is Nothing Then
+                        If Core.Player.Pokemons(0).Item IsNot Nothing Then
                             If Core.Player.Pokemons(0).Item.ID = 291 Then
                                 If Core.Random.Next(0, 3) = 0 Then
                                     Exit Sub

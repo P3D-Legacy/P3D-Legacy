@@ -14,6 +14,7 @@
     Public ForceMusic As Boolean = False
     Public MaxOffsetLevel As Integer = 0
     Public UpdateDisabled As Boolean = False
+    Public Language As String = Localization.CurrentLanguage
     Public Extras As New List(Of String)
     Public ChangedPack As Boolean = False
 
@@ -63,6 +64,7 @@
                         Me.LoadOffsetMaps = CInt(value)
                     Case "language"
                         LanguageFound = True
+                        Me.Language = value
                         Localization.Load(value)
                     Case "contentpack", "contentpacks"
                         ContentPackManager.CreateContentPackFolder()
@@ -143,7 +145,7 @@
                 "ShowGUI|" & Me.ShowGUI.ToNumberString() & Environment.NewLine &
                 "GraphicStyle|" & Me.GraphicStyle.ToString() & Environment.NewLine &
                 "LoadOffsetMaps|" & Me.LoadOffsetMaps.ToString() & Environment.NewLine &
-                "Language|" & Localization.LanguageSuffix & Environment.NewLine &
+                "Language|" & Me.Language & Environment.NewLine &
                 "ViewBobbing|" & Me.ViewBobbing.ToNumberString() & Environment.NewLine &
                 "GamePadEnabled|" & Me.GamePadEnabled.ToNumberString() & Environment.NewLine &
                 "LightingEnabled|" & Me.LightingEnabled.ToNumberString() & Environment.NewLine &
