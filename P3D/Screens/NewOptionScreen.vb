@@ -1315,6 +1315,7 @@
         _closing = True
     End Sub
 #End Region
+#End Region
 
 #Region "Controls"
 
