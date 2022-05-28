@@ -208,7 +208,7 @@ Public Class PressStartScreen
         _shineRenderer.Draw(_shineTexture, New Rectangle(CInt(windowSize.Width / 2 - 250 * SpriteBatch.InterfaceScale + Math.Sin(tempF) * 240.0F), CInt(-100 + Math.Sin(tempG) * 10.0F + CInt(160 * _fadeInMain + 64)),
                                                          CInt(512 * SpriteBatch.InterfaceScale), CInt(512 * SpriteBatch.InterfaceScale)), New Color(255, 255, 255, CInt(255 * _logoFade)))
 
-        If _fadeIn = 0F And IsCurrentScreen() Then  ' Want to implement fading of text, but core doesn't seem to support this.
+        If _fadeInMain = 0F And IsCurrentScreen() Then  ' Want to implement fading of text, but core doesn't seem to support this.
 
             Dim text As String = String.Empty
             If ControllerHandler.IsConnected() Then
