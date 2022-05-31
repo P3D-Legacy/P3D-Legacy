@@ -397,6 +397,7 @@ Namespace ScriptVersion2
             ' Commands:
             r(New ScriptCommand("environment", "setweather", {New ScriptArgument("weatherType", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the weather type of the current map."))
             r(New ScriptCommand("environment", "setregionweather", {New ScriptArgument("weatherID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the weather of the current region."))
+            r(New ScriptCommand("environment", "resetregionweather", "Resets the weather to be based on the current season."))
             r(New ScriptCommand("environment", "setseason", {New ScriptArgument("seasonID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Changes the season. Use -1 as the argument to change back to the default season."))
             r(New ScriptCommand("environment", "setcanfly", {New ScriptArgument("canfly", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""CanFly"" parameter of the current map."))
             r(New ScriptCommand("environment", "setcandig", {New ScriptArgument("candig", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the ""CanDig"" parameter of the current map."))

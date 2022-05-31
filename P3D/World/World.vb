@@ -382,7 +382,7 @@ endsub:
         Screen.Camera.CreateNewProjection(Screen.Camera.FOV)
     End Sub
 
-    Private Shared Function GetRegionWeather(ByVal Season As Seasons) As Weathers
+    Public Shared Function GetRegionWeather(ByVal Season As Seasons) As Weathers
         If IsMainMenu Then
             Return Weathers.Clear
         End If
