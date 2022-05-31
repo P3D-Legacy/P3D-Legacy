@@ -145,6 +145,7 @@
                             End If
                         Case 5
                             UpdateTextbox()
+                            Index += 1
                         Case 7
                             UpdateTransition(True)
                         Case 9
@@ -312,11 +313,11 @@
 
         Private Sub UpdateTextbox()
             Dim skinTexture2D As Texture2D = TextureManager.GetTexture("Textures\NPC\" & skinFiles(SkinIndex))
-            Core.SetScreen(New InputScreen(Core.CurrentScreen, Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin, InputScreen.InputModes.Name, Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin, 14, New List(Of Texture2D), AddressOf Me.ConfirmInput))
+            Core.SetScreen(New InputScreen(Core.CurrentScreen, skinNames(SkinIndex), InputScreen.InputModes.Name, skinNames(SkinIndex), 14, New List(Of Texture2D)({skinTexture2D}), AddressOf Me.ConfirmInput))
         End Sub
 
         Private Sub ConfirmInput(ByVal input As String)
-            Me.CurrentText = input
+            Name = input
         End Sub
 
         Private Sub CreateGame()
