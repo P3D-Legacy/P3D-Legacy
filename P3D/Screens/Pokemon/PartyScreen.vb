@@ -252,10 +252,6 @@ Public Class PartyScreen
     End Sub
 
     Private Sub DrawPokemonArea()
-        For i = 0 To PokemonList.Count - 1
-            DrawPokemon(i)
-        Next
-
         Canvas.DrawBorder(3, New Rectangle(CInt(_cursorPosition.X) - 3, CInt(_cursorPosition.Y) - 3, 300, 82), New Color(200, 80, 80, CInt(200 * _interfaceFade)))
 
         If _isSwitching Then
@@ -263,6 +259,9 @@ Public Class PartyScreen
 
             Canvas.DrawBorder(3, New Rectangle(CInt(switchPosition.X) - 6, CInt(switchPosition.Y) - 6, 306, 88), New Color(80, 80, 200, CInt(200 * _interfaceFade)))
         End If
+        For i = 0 To PokemonList.Count - 1
+            DrawPokemon(i)
+        Next
     End Sub
 
     Private Sub DrawPokemon(ByVal index As Integer)
