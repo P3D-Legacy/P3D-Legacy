@@ -38,7 +38,7 @@
 /importer:LocalizedFontTextureImporter
 /processor:LocalizedFontTextureProcessor
 /processorParam:DefaultCharacter=?
-/processorParam:FirstCharacter= 
+/processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/chatFont.png
@@ -50,7 +50,7 @@
 /importer:LocalizedFontTextureImporter
 /processor:LocalizedFontTextureProcessor
 /processorParam:DefaultCharacter=?
-/processorParam:FirstCharacter= 
+/processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/InGame.png
@@ -59,7 +59,7 @@
 /importer:LocalizedFontTextureImporter
 /processor:LocalizedFontTextureProcessor
 /processorParam:DefaultCharacter=?
-/processorParam:FirstCharacter= 
+/processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/mainFont.png
@@ -75,7 +75,7 @@
 /importer:LocalizedFontTextureImporter
 /processor:LocalizedFontTextureProcessor
 /processorParam:DefaultCharacter=?
-/processorParam:FirstCharacter= 
+/processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/TextFont.png
