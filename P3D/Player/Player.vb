@@ -521,10 +521,8 @@
 
         If GameModeManager.GameModeExists(GameMode) = False Then
             GameMode = "Kolben"
-            GameModeManager.SetGameModePointer("Kolben")
-        Else
-            GameModeManager.SetGameModePointer(GameMode)
         End If
+        GameModeManager.SetGameModePointer(GameMode)
 
         BattleSystem.GameModeAttackLoader.Load()
 

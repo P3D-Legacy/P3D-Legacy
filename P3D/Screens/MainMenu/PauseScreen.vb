@@ -295,6 +295,8 @@
         End If
         Chat.ClearChat()
         ScriptStorage.Clear()
+        GameModeManager.SetGameModePointer("Kolben")
+        Localization.LoadTokenFile(GameModeManager.ActiveGameMode.LocalizationsPath, False)
         Core.SetScreen(New PressStartScreen())
         Core.Player.loadedSave = False
     End Sub

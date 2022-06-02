@@ -42,7 +42,7 @@
         Logger.Debug("---Reloaded GameMode Tokens---")
     End Sub
 
-    Private Shared Sub LoadTokenFile(ByVal path As String, ByVal IsGameModeFile As Boolean)
+    Public Shared Sub LoadTokenFile(ByVal path As String, ByVal IsGameModeFile As Boolean)
         Dim fullpath As String = GameController.GamePath & path
         Dim tokenFullpath As String = fullpath & "Tokens_" & LanguageSuffix & ".dat"
 
