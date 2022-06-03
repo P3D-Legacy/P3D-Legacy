@@ -524,7 +524,7 @@ Public Class NewMainMenuScreen
                             If Controls.Up(True, True, False) Then
                                 _GameJoltButtonIndex -= 1
                             End If
-                            _GameJoltButtonIndex = Clamp(_GameJoltButtonIndex, 0, 3)
+                            _GameJoltButtonIndex = Clamp(_GameJoltButtonIndex, 0, 4)
                         End If
                     End If
 
