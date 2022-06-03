@@ -42,7 +42,8 @@
 
         Me.drawObjects = Player.Temp.MapSwitch
         If Core.Player.IsGameJoltSave And GameJolt.API.LoggedIn Then
-            PlayerSkinTexture = GameJolt.Emblem.GetOnlineSprite(Core.GameJoltSave.GameJoltID)
+            Dim ownE As New GameJolt.Emblem(Core.Player.Name, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem)
+            PlayerSkinTexture = ownE.SpriteTexture
         Else
             If Screen.Level.Surfing = True Then
                 PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempSurfSkin)
