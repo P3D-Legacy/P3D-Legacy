@@ -55,7 +55,7 @@
         End If
 
         Dim frameSize As Size = New Size(CInt(_charTexture.Width / 3), CInt(_charTexture.Height / 4))
-        _charTexture = TextureManager.GetTexture(_charTexture, New Rectangle(0, frameSize.Width * 2, frameSize.Width, frameSize.Height))
+        _charTexture = TextureManager.GetTexture(_charTexture, New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height))
 
         _spriteBatch = New SpriteBatch(GraphicsDevice)
         _textBatch = New SpriteBatch(GraphicsDevice)
@@ -202,8 +202,8 @@
         needPoints = totalNeedPoints - hasPointsThisLevel
 
         Dim nextSprite As Texture2D = GameJolt.Emblem.GetPlayerSprite(currentLevel + 1, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Gender)
-
-        _spriteBatch.Draw(nextSprite, New Rectangle(570, 310, 32, 32), New Rectangle(0, 64, 32, 32), Color.White)
+        Dim frameSize As Size = New Size(CInt(nextSprite.Width / 3), CInt(nextSprite.Height / 4))
+        _spriteBatch.Draw(nextSprite, New Rectangle(570, 310, frameSize.Width, frameSize.Height), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
         Dim value = Clamp(hasPointsThisLevel / totalNeedPoints * 310, 0, 310)
 
