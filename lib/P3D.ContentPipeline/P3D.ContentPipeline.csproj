@@ -84,6 +84,8 @@
     <Content Include="Content\Models\boat2\Boat.png" />
     <Content Include="Content\Models\boat\SSAqua.png" />
     <Content Include="Content\Models\building\KolbenTower.png" />
+    <Content Include="Content\Models\Environment\MtSilver\Gray.png" />
+    <Content Include="Content\Models\Environment\MtSilver\White.png" />
     <Content Include="Content\Models\Snorlax\Snorlax_Normal.png" />
     <Content Include="Content\Models\Snorlax\Snorlax_Shiny.png" />
     <Content Include="Content\Models\truck2\Truck.png" />
