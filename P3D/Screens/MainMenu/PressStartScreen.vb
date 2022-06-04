@@ -389,18 +389,20 @@ Public Class NewMainMenuScreen
                                     End If
                                 Next
                                 If _MainProfiles(_selectedProfile).IsGameJolt AndAlso _MainProfiles(_selectedProfile).Loaded Then
-                                    ' Click on gamejolt buttons
-                                    Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + (100 * (1 - _fadeInMain))
-                                    Dim r As New Vector2(xOffset + 400, _screenOrigin.Y + _screenOffset.Y + 200)
-                                    If New Rectangle(CInt(r.X), CInt(r.Y), 32, 32).Contains(MouseHandler.MousePosition) Then
-                                        ButtonChangeMale()
-                                    ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
-                                        ButtonChangeFemale()
-                                    ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
-                                        ButtonChangeGenderless()
-                                    ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
-                                        ButtonResetSave()
-                                    End If
+                                    For x = 0 To _MainProfiles.Count - 1
+                                        ' Click on gamejolt buttons
+                                        Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
+                                        Dim r As New Vector2(xOffset + 400, _screenOrigin.Y + _screenOffset.Y + 200)
+                                        If New Rectangle(CInt(r.X), CInt(r.Y), 32, 32).Contains(MouseHandler.MousePosition) Then
+                                            ButtonChangeMale()
+                                        ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                                            ButtonChangeFemale()
+                                        ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                                            ButtonChangeGenderless()
+                                        ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                                            ButtonResetSave()
+                                        End If
+                                    Next
                                 End If
                                 If Controls.Dismiss(True, False, False) Then
                                     ' Click on profiles.
