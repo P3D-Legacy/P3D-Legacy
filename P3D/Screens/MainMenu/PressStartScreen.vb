@@ -678,7 +678,7 @@ Public Class NewMainMenuScreen
         Select Case _menuIndex
             Case 0
                 If _selectedProfile = 1 And Security.FileValidation.IsValid(False) = False Then
-                    _messageBox.Show(Localization.GetString("main_menu_error_filevalidation", "File validation failed! Redownload the game's files to solve this problem."))
+                    _messageBox.Show(Localization.GetString("main_menu_error_filevalidation", "File validation failed!~Redownload the game's files to solve this problem.").Replace(CChar("~"), Environment.NewLine).Replace(CChar("*"), Environment.NewLine & Environment.NewLine))
                 Else
                     _MainProfiles(_selectedProfile).SelectProfile()
                 End If
