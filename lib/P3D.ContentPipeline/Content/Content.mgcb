@@ -184,7 +184,7 @@
 /build:Models/Environment/arena_colleseum.obj
 
 #begin Models/Environment/MtSilver/Mountain.obj
-/importer:OpenAssetImporter
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
@@ -199,7 +199,7 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=Color
 /build:Models/Environment/MtSilver/Mountain.obj
 
 #begin Models/Environment/Test_floor/Test_floor.obj
