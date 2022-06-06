@@ -5793,7 +5793,7 @@
                                 Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
                                 BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
-                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, 0.25F, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, -0.25F, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 32, 32, 32), ""), 0.75, 0)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 64, 32, 32), ""), 1.5, 0)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 96, 32, 32), ""), 2.25, 0)
@@ -6671,7 +6671,7 @@
                                 Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
                                 BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
-                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
+                                Dim FlameEntity As Entity = BurnAnimation.SpawnEntity(New Vector3(0, -0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5, 0.5, 0.5), 1.0F)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 32, 32, 32), ""), 0.75, 0)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 64, 32, 32), ""), 1.5, 0)
                                 BurnAnimation.AnimationChangeTexture(FlameEntity, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Burned", New Rectangle(0, 96, 32, 32), ""), 2.25, 0)
