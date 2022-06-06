@@ -892,7 +892,7 @@ Namespace GameJolt
                 "LastSavePlace|yourroom.dat" & Environment.NewLine &
                 "LastSavePlacePosition|1,0.1,3" & Environment.NewLine &
                 "Difficulty|" & GameModeManager.GetGameRuleValue("Difficulty", "0") & Environment.NewLine &
-                "BattleStyle|0" & Environment.NewLine &
+                "BattleStyle|1" & Environment.NewLine &
                 "saveCreated|" & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & Environment.NewLine &
                 "LastPokemonPosition|999,999,999" & Environment.NewLine &
                 "DaycareSteps|0" & Environment.NewLine &
