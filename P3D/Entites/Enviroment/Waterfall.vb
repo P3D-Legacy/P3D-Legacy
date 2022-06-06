@@ -208,6 +208,7 @@
             End While
 
             s = "version=2" & Environment.NewLine &
+                "@player.stopmovement" & Environment.NewLine &
                 "@overworldpokemon.hide" & Environment.NewLine &
                 "@player.move(2)" & Environment.NewLine &
                 "@player.setmovement(0,-1,0)" & Environment.NewLine &
@@ -260,6 +261,7 @@
             Screen.Camera.PlannedMovement = New Vector3(0, 1, 0)
 
             s = "version=2" & Environment.NewLine &
+                "@player.stopmovement" & Environment.NewLine &
                 "@pokemon.cry(" & pNumber & ")" & Environment.NewLine &
                 "@sound.play(select)" & Environment.NewLine &
                 "@text.show(" & pName & " used~Waterfall.)" & Environment.NewLine &
