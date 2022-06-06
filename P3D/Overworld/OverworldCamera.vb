@@ -170,8 +170,10 @@ Public Class OverworldCamera
 
     Public Overrides Sub Update()
 
-        If KeyBoardHandler.KeyPressed(KeyBindings.DebugWalkKey) = True Then
-            _debugWalk = Not _debugWalk
+        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.DebugWalkKey) = True Then
+                _debugWalk = Not _debugWalk
+            End If
         End If
         If KeyBoardHandler.KeyPressed(KeyBindings.RunKey) = True Or ControllerHandler.ButtonPressed(Buttons.B) = True Then
             If Screen.Level.Riding = False And Screen.Level.Surfing = False And Core.Player.Inventory.HasRunningShoes = True Then
