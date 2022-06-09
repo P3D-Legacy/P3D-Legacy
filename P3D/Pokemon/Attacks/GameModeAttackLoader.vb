@@ -67,7 +67,8 @@
                                 If move.GameModeFunction = "" Then
                                     move.GameModeFunction = value
                                 Else
-                                    move.GameModeFunction &= "|" & value
+                                    Dim OldFunctionList = move.GameModeFunction
+                                    move.GameModeFunction = OldFunctionList & "|" & value
                                 End If
                             Case "power", "basepower"
                                 move.Power = CInt(value)
