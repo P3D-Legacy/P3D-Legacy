@@ -3798,7 +3798,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -3813,7 +3812,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -3828,7 +3826,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -3843,7 +3840,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -3858,7 +3854,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -3873,7 +3868,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -3888,7 +3882,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -3903,10 +3896,8 @@
             Dim op As Pokemon = BattleScreen.OppPokemon
             Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
             If own = False Then
-                pNPC = BattleScreen.OppPokemonNPC
-            End If
-            If own = False Then
                 p = BattleScreen.OppPokemon
+                pNPC = BattleScreen.OppPokemonNPC
                 op = BattleScreen.OwnPokemon
             End If
 
@@ -4082,7 +4073,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -4097,7 +4087,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -4112,7 +4101,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -4127,7 +4115,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -4142,7 +4129,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -4157,7 +4143,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     Return True
@@ -4172,7 +4157,6 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
                     End Select
 
                     If val > 0 Then
@@ -5337,10 +5321,10 @@
                             End If
                         End If
 
-                        ChangeCameraAngle(0, True, BattleScreen)
 
                         Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                         Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+
 
                         cq2.PassThis = True
 

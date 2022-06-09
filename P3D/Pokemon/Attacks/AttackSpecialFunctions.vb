@@ -12,7 +12,7 @@
         ''' <param name="own">Own toggle.</param>
         ''' <param name="BattleScreen">Reference to the BattleScreen.</param>
         Public Shared Sub ExecuteMoveHitsFunction(ByVal Move As Attack, ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
-            Dim functions() As String = Move.GameModeFunction.Split(CChar("|"))
+            Dim functions() As String = Move.GameModeFunction.Split("|")
             For i = 0 To functions.Count - 1
                 Dim f As String = functions(i)
                 Dim fMain As String = f
@@ -23,59 +23,96 @@
                     Select Case fMain.ToLower()
                         Case "cameraangle"
                             Dim Direction As Integer = CInt(fSub)
-                            BattleScreen.Battle.ChangeCameraAngle(Direction, own, BattleScreen)
-                        Case "message"
-                            fSub = Localization.GetString(f.GetSplit(1, ","), f.GetSplit(1, ","))
+                            Select Case Direction
+                                Case 0
+                                    BattleScreen.Battle.ChangeCameraAngle(0, own, BattleScreen)
+                                Case 1
+                                    BattleScreen.Battle.ChangeCameraAngle(1, True, BattleScreen)
+                                Case 2
+                                    BattleScreen.Battle.ChangeCameraAngle(2, True, BattleScreen)
+                            End Select
+                        Case "message", "text"
+                            fSub = Localization.GetString(fSub, fSub)
                             BattleScreen.BattleQuery.Add(New TextQueryObject(fSub))
+                        Case "raisestat", "increasestat"
+                            Dim Stat As String = f.GetSplit(1, ",")
+                            Dim Target As Boolean = own
+                            Dim Message As String = ""
+                            Dim RaiseAmount As Integer = 1
+
+                            If f.Split(CChar(",")).Count > 2 Then
+                                Target = CBool(f.GetSplit(2, ","))
+                                If f.Split(CChar(",")).Count > 3 Then
+                                    Message = f.GetSplit(3, ",")
+                                    If f.Split(CChar(",")).Count > 4 Then
+                                        If CInt(f.GetSplit(4, ",")) > 0 Then
+                                            RaiseAmount = CInt(f.GetSplit(4, ","))
+                                        End If
+                                    End If
+                                End If
+                            End If
+                            BattleScreen.Battle.RaiseStat(Target, own, BattleScreen, Stat, RaiseAmount, Message, "move:" & Move.Name)
+                        Case "lowerstat", "decreasestat"
+                            Dim Stat As String = f.GetSplit(1, ",")
+                            Dim Message As String = ""
+                            Dim Target As Boolean = own
+                            Dim LowerAmount As Integer = 1
+                            If f.Split(CChar(",")).Count > 2 Then
+                                Target = CBool(f.GetSplit(2, ","))
+                                If f.Split(CChar(",")).Count > 3 Then
+                                    Message = f.GetSplit(3, ",")
+                                    If f.Split(CChar(",")).Count > 4 Then
+                                        If CInt(f.GetSplit(4, ",")) > 0 Then
+                                            LowerAmount = CInt(f.GetSplit(4, ","))
+                                        End If
+                                    End If
+                                End If
+                            End If
+                            BattleScreen.Battle.LowerStat(Target, own, BattleScreen, Stat, LowerAmount, Message, "move:" & Move.Name)
                         Case "reducehp", "drainhp", "damage"
-                            Dim HPAmount As Integer = CInt(fSub.GetSplit(0, ","))
+                            Dim Target As Boolean = CBool(f.GetSplit(1, ","))
+                            Dim HPAmount As Integer = 0
                             Dim Message As String = ""
-                            Dim Target As Boolean = True
 
-                            If fSub.Split(CChar(",")).Count > 1 Then
-                                Target = CBool(fSub.GetSplit(1, ","))
-                                If fSub.Split(CChar(",")).Count > 2 Then
-                                    Message = fSub.GetSplit(2, ",")
+                            If f.Split(CChar(",")).Count > 2 Then
+                                HPAmount = CInt(f.GetSplit(2, ","))
+                                If f.Split(CChar(",")).Count > 3 Then
+                                    Message = f.GetSplit(3, ",")
                                 End If
                             End If
-                            BattleScreen.Battle.ReduceHP(HPAmount, Not Target, Target, BattleScreen, Message, Move.Name.ToLower)
+                            BattleScreen.Battle.ReduceHP(HPAmount, Target, own, BattleScreen, Message, Move.Name.ToLower)
                         Case "gainhp", "increasehp", "heal"
-                            Dim HPAmount As Integer = CInt(fSub.GetSplit(0, ","))
+                            Dim Target As Boolean = CBool(f.GetSplit(1, ","))
+                            Dim HPAmount As Integer = 0
                             Dim Message As String = ""
-                            Dim Target As Boolean = True
 
-                            If fSub.Split(CChar(",")).Count > 1 Then
-                                Target = CBool(fSub.GetSplit(1, ","))
-                                If fSub.Split(CChar(",")).Count > 2 Then
-                                    Message = fSub.GetSplit(2, ",")
+                            If f.Split(CChar(",")).Count > 2 Then
+                                HPAmount = CInt(f.GetSplit(2, ","))
+                                If f.Split(CChar(",")).Count > 3 Then
+                                    Message = f.GetSplit(3, ",")
                                 End If
                             End If
-                            BattleScreen.Battle.GainHP(HPAmount, Target, Target, BattleScreen, Message, Move.Name.ToLower)
+                            BattleScreen.Battle.GainHP(HPAmount, Target, own, BattleScreen, Message, Move.Name.ToLower)
                         Case "endbattle"
                             Dim Blackout As Boolean = False
 
-                            If fSub.Split(CChar(",")).Count > 1 Then
-                                Blackout = CBool(fSub.GetSplit(1, ","))
+                            If f.Split(CChar(",")).Count > 2 Then
+                                Blackout = CBool(fSub)
                             End If
-                            BattleScreen.EndBattle(Blackout)
+                            BattleScreen.BattleQuery.Add(New EndBattleQueryObject(Blackout))
                         Case "faint"
-                            Dim Target As Boolean = Not own
+                            Dim Target As Boolean = CBool(f.GetSplit(1, ","))
                             Dim Message As String = ""
 
-                            If fSub.Split(CChar(",")).Count > 1 Then
-                                Target = Not CBool(fSub.GetSplit(1, ","))
+                            If f.Split(CChar(",")).Count > 2 Then
+                                Message = f.GetSplit(2, ",")
                             End If
-                            If fSub.Split(CChar(",")).Count > 2 Then
-                                Message = fSub.GetSplit(2, ",")
-                            End If
-                            BattleScreen.Battle.FaintPokemon(Target, BattleScreen, Message)
+                            BattleScreen.Battle.FaintPokemon(Not Target, BattleScreen, Message)
                         Case Else
                             fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
                     End Select
                 Else
                     Select Case f.ToLower()
-                        Case "endbattle"
-                            BattleScreen.EndBattle(False)
                         Case "freeze"
                             fSub = "15"
                         Case "poison"
@@ -101,7 +138,6 @@
                     Case "sleep"
                         Sleep(Move, own, BattleScreen, CInt(fSub))
                 End Select
-                i += 1
             Next
         End Sub
 
