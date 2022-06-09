@@ -791,9 +791,9 @@
                     Case "rotation"
                         startRotation = CSng(Value.Replace(".", GameController.DecSeparator))
                     Case "gender"
-                        If Value = "0" Then
+                        If Value = "Male" Or Value = "0" Then
                             Gender = "Male"
-                        ElseIf Value = "1" Then
+                        ElseIf Value = "Female" Or Value = "1" Then
                             Gender = "Female"
                         Else
                             Gender = "Other"

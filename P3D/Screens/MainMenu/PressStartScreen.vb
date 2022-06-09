@@ -641,28 +641,28 @@ Public Class NewMainMenuScreen
     End Sub
 
     Private Sub ButtonChangeMale()
-        If GameJoltSave.Gender = "0" Then
+        If GameJoltSave.Gender = "Male" Then
             Exit Sub
         End If
-        GameJoltSave.Gender = "0"
+        GameJoltSave.Gender = "Male"
 
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
         _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
     End Sub
     Private Sub ButtonChangeFemale()
-        If GameJoltSave.Gender = "1" Then
+        If GameJoltSave.Gender = "Female" Then
             Exit Sub
         End If
-        GameJoltSave.Gender = "1"
+        GameJoltSave.Gender = "Female"
 
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
         _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
     End Sub
     Private Sub ButtonChangeGenderless()
-        If GameJoltSave.Gender = "2" Then
+        If GameJoltSave.Gender = "Other" Then
             Exit Sub
         End If
-        GameJoltSave.Gender = "2"
+        GameJoltSave.Gender = "Other"
 
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
         _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
