@@ -516,14 +516,14 @@
 
             'Type:
             SpriteBatch.DrawString(FontManager.MainFont, "Type:", New Vector2(DeltaX + 710, DeltaY + 80), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(DeltaX + 824, DeltaY + 86, 48, 16), .Attacks(_moveIndex).Type.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types"), New Rectangle(DeltaX + 840, DeltaY + 86, 48, 16), .Attacks(_moveIndex).Type.GetElementImage(), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
 
             SpriteBatch.DrawString(FontManager.MainFont, "PP:", New Vector2(DeltaX + 710, DeltaY + 114), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).CurrentPP & " / " & .Attacks(_moveIndex).MaxPP, New Vector2(DeltaX + 824, DeltaY + 114), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).CurrentPP & " / " & .Attacks(_moveIndex).MaxPP, New Vector2(DeltaX + 840, DeltaY + 114), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
 
             'Stats:
             SpriteBatch.DrawString(FontManager.MainFont, "Category:", New Vector2(DeltaX + 710, DeltaY + 144), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            Core.SpriteBatch.Draw(.Attacks(_moveIndex).GetDamageCategoryImage(), New Rectangle(DeltaX + 824, DeltaY + 145, 48, 24), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
+            Core.SpriteBatch.Draw(.Attacks(_moveIndex).GetDamageCategoryImage(), New Rectangle(DeltaX + 840, DeltaY + 145, 48, 24), New Color(255, 255, 255, CInt(255 * _fadeIn * _pageFade * _moveFade)))
 
             SpriteBatch.DrawString(FontManager.MainFont, "Power:", New Vector2(DeltaX + 710, DeltaY + 176), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
 
@@ -531,8 +531,7 @@
             If .Attacks(_moveIndex).Power <= 0 Then
                 power = "-"
             End If
-
-            SpriteBatch.DrawString(FontManager.MainFont, power, New Vector2(DeltaX + 824, DeltaY + 176), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, power, New Vector2(DeltaX + 840, DeltaY + 176), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
 
             Dim accuracy As String = .Attacks(_moveIndex).Accuracy.ToString()
             If .Attacks(_moveIndex).Accuracy <= 0 Then
@@ -540,7 +539,7 @@
             End If
 
             SpriteBatch.DrawString(FontManager.MainFont, "Accuracy:", New Vector2(DeltaX + 710, DeltaY + 208), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade * _moveFade)))
-            SpriteBatch.DrawString(FontManager.MainFont, accuracy, New Vector2(DeltaX + 824, DeltaY + 208), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
+            SpriteBatch.DrawString(FontManager.MainFont, accuracy, New Vector2(DeltaX + 840, DeltaY + 208), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)))
 
             'Description:
             SpriteBatch.DrawString(FontManager.MainFont, .Attacks(_moveIndex).Description.CropStringToWidth(FontManager.MainFont, 300), New Vector2(DeltaX + 720, DeltaY + 240), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade * _moveFade)), 0.0F, New Vector2(0), 1.0F, SpriteEffects.None, 0.0F)

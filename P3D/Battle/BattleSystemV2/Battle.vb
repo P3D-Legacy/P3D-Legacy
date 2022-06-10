@@ -3657,7 +3657,7 @@
             End If
         End Function
 
-        Public Function RaiseStat(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal Stat As String, ByVal val As Integer, ByVal message As String, ByVal cause As String) As Boolean
+        Public Function RaiseStat(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal Stat As String, ByVal val As Integer, ByVal message As String, ByVal cause As String, Optional IsGameModeMove As Boolean = False) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
             Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
@@ -3802,7 +3802,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -3817,7 +3819,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -3832,7 +3836,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -3847,7 +3853,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -3862,7 +3870,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -3877,7 +3887,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -3892,7 +3904,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -3902,7 +3916,7 @@
             Return True
         End Function
 
-        Public Function LowerStat(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal Stat As String, ByVal val As Integer, ByVal message As String, ByVal cause As String) As Boolean
+        Public Function LowerStat(ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal Stat As String, ByVal val As Integer, ByVal message As String, ByVal cause As String, Optional IsGameModeMove As Boolean = False) As Boolean
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim op As Pokemon = BattleScreen.OppPokemon
             Dim pNPC As NPC = BattleScreen.OwnPokemonNPC
@@ -4084,7 +4098,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -4099,7 +4115,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -4114,7 +4132,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -4129,7 +4149,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -4144,7 +4166,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -4159,7 +4183,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     Return True
@@ -4174,7 +4200,9 @@
                             'Do nothing
                         Case Else 'Print message given in 'message'
                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
-                            BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            If IsGameModeMove = False Then
+                                BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
+                            End If
                     End Select
 
                     If val > 0 Then

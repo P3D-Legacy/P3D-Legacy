@@ -20,7 +20,7 @@
 
             If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
                 If System.IO.Directory.Exists(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "\" & PATH) = True Then
-                    For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & "\" & PATH, "*.dat")
+                    For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & GameModeManager.ActiveGameMode.ContentPath & PATH, "*.dat")
                         LoadMove(file)
                     Next
                 End If
@@ -63,8 +63,13 @@
                                 move.CurrentPP = CInt(value)
                                 move.MaxPP = CInt(value)
                                 move.OriginalPP = CInt(value)
-                            Case "function"
-                                move.GameModeFunction = value
+                            Case "function", "movehits"
+                                If move.GameModeFunction = "" Then
+                                    move.GameModeFunction = value
+                                Else
+                                    Dim OldFunctionList = move.GameModeFunction
+                                    move.GameModeFunction = OldFunctionList & "|" & value
+                                End If
                             Case "power", "basepower"
                                 move.Power = CInt(value)
                             Case "accuracy", "acc"
@@ -105,7 +110,6 @@
                                 move.Priority = CInt(value)
                             Case "timestoattack", "tta"
                                 move.TimesToAttack = CInt(value)
-
                             Case "makescontact", "contact"
                                 move.MakesContact = CBool(value)
                             Case "protectaffected"
