@@ -276,9 +276,9 @@
 
             t = t.Clamp(0, 19)
 
-            If gender = "0" Then
+            If gender = "Male" Then
                 Return CType(t, MaleEmblemSpriteType).ToString()
-            ElseIf gender = "1" Then
+            ElseIf gender = "Female" Then
                 Return CType(t, FemaleEmblemSpriteType).ToString()
             Else
                 Return CType(t, GenderlessEmblemSpriteType).ToString()
@@ -296,9 +296,9 @@
 
             t = t.Clamp(0, 19)
             Dim tFile As String
-            If gender = "0" Then
+            If gender = "Male" Then
                 tFile = CType(t, MaleEmblemSprites).ToString()
-            ElseIf gender = "1" Then
+            ElseIf gender = "Female" Then
                 tFile = CType(t, FemaleEmblemSprites).ToString()
             Else
                 tFile = CType(t, GenderlessEmblemSprites).ToString()
@@ -322,9 +322,9 @@
 
             t = t.Clamp(0, 19)
             Dim tFile As String
-            If gender = "0" Then
+            If gender = "Male" Then
                 tFile = CType(t, MaleEmblemSprites).ToString()
-            ElseIf gender = "1" Then
+            ElseIf gender = "Female" Then
                 tFile = CType(t, FemaleEmblemSprites).ToString()
             Else
                 tFile = CType(t, GenderlessEmblemSprites).ToString()

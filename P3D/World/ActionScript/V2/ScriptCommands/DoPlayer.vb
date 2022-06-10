@@ -50,6 +50,14 @@
                         .UpdateEntity()
                     End With
                     IsReady = True
+                Case "setspeed"
+                    Dim speed As Single = sng(argument)
+
+                    Screen.Camera.Speed = speed * 0.04F
+                    IsReady = True
+                Case "resetspeed"
+                    Screen.Camera.Speed = 0.04F
+                    IsReady = True
                 Case "move"
                     If Started = False Then
                         Screen.Camera.Move(sng(argument))
@@ -246,20 +254,6 @@
                     IsReady = True
                 Case "hiderod"
                     OverworldScreen.DrawRodID = -1
-
-                    IsReady = True
-                Case "showpokemonfollow"
-                    Screen.Level.OverworldPokemon.Visible = True
-
-                    IsReady = True
-
-                Case "hidepokemonfollow"
-                    Screen.Level.OverworldPokemon.Visible = False
-
-                    IsReady = True
-
-                Case "togglepokemonfollow"
-                    Screen.Level.OverworldPokemon.Visible = Not Screen.Level.OverworldPokemon.Visible
 
                     IsReady = True
                 Case "save"

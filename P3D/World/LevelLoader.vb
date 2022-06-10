@@ -79,6 +79,7 @@
             Core.Player.LastSavePlace = Screen.Level.LevelFile
             Core.Player.LastSavePlacePosition = Player.Temp.LastPosition.X & "," & Player.Temp.LastPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Player.Temp.LastPosition.Z
 
+            Core.OffsetMaps.Clear()
             Screen.Level.Entities.Clear()
             Screen.Level.Floors.Clear()
             Screen.Level.Shaders.Clear()

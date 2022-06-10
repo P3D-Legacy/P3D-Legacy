@@ -35,7 +35,7 @@
                             sound = SoundEffect.FromStream(stream)
                         End Using
                     Else
-                        Logger.Log(Logger.LogTypes.Warning, "SoundManager.vb: Sound at """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Songs\" & Name & """ was not found!")
+                        Logger.Log(Logger.LogTypes.Warning, "SoundManager.vb: Sound at """ & GameController.GamePath & "\" & cContent.RootDirectory & "\Sounds\" & Name & """ was not found!")
                         Return False
                     End If
                 Else

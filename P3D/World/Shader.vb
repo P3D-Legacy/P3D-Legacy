@@ -11,12 +11,6 @@
         Me.Size = Size
         Me.Shader = Shader
         Me.StopOnContact = StopOnContact
-
-        If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.GetTime() = 0 Then
-            Me.Shader.X += 0.2F
-            Me.Shader.Y += 0.2F
-            Me.Shader.Z += 0.5F
-        End If
     End Sub
 
     Public Sub ApplyShader(ByVal Entities() As Entity)

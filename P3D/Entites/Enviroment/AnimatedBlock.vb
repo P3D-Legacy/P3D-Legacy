@@ -109,7 +109,9 @@
             Next
 
             If canSurf = True Then
-                Screen.Camera.Move(1)
+                If CType(Screen.Camera, OverworldCamera)._debugWalk = False Then
+                    Screen.Camera.Move(1)
+                End If
 
                 Screen.Level.PokemonEncounter.TryEncounterWildPokemon(Me.Position, Spawner.EncounterMethods.Surfing, "")
             End If
@@ -183,7 +185,7 @@
         End If
         Dim i = Animations(n).CurrentRow
         Dim j = Animations(n).CurrentColumn
-        Me.Textures(n) = AnimatedBlock.BlockTexturesTemp(AnimationNames(n) & "_" & (j + columns(n) * i))
+        Me.Textures(n) = BlockTexturesTemp(AnimationNames(n) & "_" & (j + columns(n) * i))
 
         'End If
     End Sub

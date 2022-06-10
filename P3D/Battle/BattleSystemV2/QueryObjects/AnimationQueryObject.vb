@@ -23,11 +23,13 @@
 			Me.AnimationSequence = New List(Of BattleAnimation3D)
 			Me.SpawnedEntities = New List(Of Entity)
 			Me.DrawBeforeEntities = DrawBeforeEntities
-			If BattleFlipped <> Nothing Then
-				Me.BattleFlipped = BattleFlipped
+			Me.BattleFlipped = BattleFlipped
+			If entity IsNot Nothing Then
+				Me.CurrentEntity = entity
 			End If
-			Me.CurrentEntity = entity
-			Me.CurrentModel = model
+			If model IsNot Nothing Then
+				Me.CurrentModel = model
+			End If
 			AnimationSequenceBegin()
 		End Sub
 		Public Overrides Sub Draw(ByVal BV2Screen As BattleScreen)
@@ -37,8 +39,6 @@
 			For Each a As BattleAnimation3D In Me.AnimationSequence
 				If a.AnimationType = BattleAnimation3D.AnimationTypes.Background Then
 					Backgrounds.Add(a)
-				Else
-					RenderObjects.Add(a)
 				End If
 			Next
 			For Each entity As BattleAnimation3D In Me.SpawnedEntities
@@ -107,13 +107,15 @@
 					If CurrentEntity IsNot Nothing Then
 						NewPosition.X = CurrentEntity.Position.X - Position.X
 						NewPosition.Y = CurrentEntity.Position.Y + Position.Y
-						NewPosition.Z = CurrentEntity.Position.Z + Position.Z
+						NewPosition.Z = CurrentEntity.Position.Z - Position.Z
 					Else
 						NewPosition = Position
 					End If
 				Else
 					If CurrentEntity IsNot Nothing Then
-						NewPosition = CurrentEntity.Position + Position
+						NewPosition.X = CurrentEntity.Position.X + Position.X
+						NewPosition.Y = CurrentEntity.Position.Y + Position.Y
+						NewPosition.Z = CurrentEntity.Position.Z + Position.Z
 					Else
 						NewPosition = Position
 					End If

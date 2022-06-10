@@ -38,7 +38,7 @@
 /importer:LocalizedFontTextureImporter
 /processor:LocalizedFontTextureProcessor
 /processorParam:DefaultCharacter=?
-/processorParam:FirstCharacter= 
+/processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/chatFont.png
@@ -50,7 +50,7 @@
 /importer:LocalizedFontTextureImporter
 /processor:LocalizedFontTextureProcessor
 /processorParam:DefaultCharacter=?
-/processorParam:FirstCharacter= 
+/processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/InGame.png
@@ -59,7 +59,7 @@
 /importer:LocalizedFontTextureImporter
 /processor:LocalizedFontTextureProcessor
 /processorParam:DefaultCharacter=?
-/processorParam:FirstCharacter= 
+/processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/mainFont.png
@@ -75,7 +75,7 @@
 /importer:LocalizedFontTextureImporter
 /processor:LocalizedFontTextureProcessor
 /processorParam:DefaultCharacter=?
-/processorParam:FirstCharacter= 
+/processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/TextFont.png
@@ -94,7 +94,7 @@
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -104,16 +104,16 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=Color
 /build:Models/boat/ferry.obj
 
-#begin Models/boat/Ship.obj
-/importer:OpenAssetImporter
+#begin Models/boat/SSAqua.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -123,8 +123,8 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/boat/Ship.obj
+/processorParam:TextureFormat=Color
+/build:Models/boat/SSAqua.fbx
 
 #begin Models/boat2/Boat.fbx
 /importer:FbxImporter
@@ -145,13 +145,13 @@
 /processorParam:TextureFormat=Color
 /build:Models/boat2/Boat.fbx
 
-#begin Models/building/P3DBuilding.obj
-/importer:OpenAssetImporter
+#begin Models/building/KolbenTower.fbx
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
 /processorParam:DefaultEffect=BasicEffect
-/processorParam:GenerateMipmaps=True
+/processorParam:GenerateMipmaps=False
 /processorParam:GenerateTangentFrames=False
 /processorParam:PremultiplyTextureAlpha=True
 /processorParam:PremultiplyVertexColors=True
@@ -161,8 +161,8 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
-/build:Models/building/P3DBuilding.obj
+/processorParam:TextureFormat=Color
+/build:Models/building/KolbenTower.fbx
 
 #begin Models/Environment/arena_colleseum.obj
 /importer:OpenAssetImporter
@@ -184,7 +184,7 @@
 /build:Models/Environment/arena_colleseum.obj
 
 #begin Models/Environment/MtSilver/Mountain.obj
-/importer:OpenAssetImporter
+/importer:FbxImporter
 /processor:ModelProcessor
 /processorParam:ColorKeyColor=0,0,0,0
 /processorParam:ColorKeyEnabled=True
@@ -199,7 +199,7 @@
 /processorParam:RotationZ=0
 /processorParam:Scale=1
 /processorParam:SwapWindingOrder=False
-/processorParam:TextureFormat=Compressed
+/processorParam:TextureFormat=Color
 /build:Models/Environment/MtSilver/Mountain.obj
 
 #begin Models/Environment/Test_floor/Test_floor.obj

@@ -27,7 +27,10 @@
         IsDrawingGradients = True
 
         MouseVisible = True
-        _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+        If windowSize.Width > 0 AndAlso windowSize.Height > 0 Then
+            _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+            _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
+        End If
         _texture = TextureManager.GetTexture("GUI\Menus\General")
 
         ConstructMenu()
@@ -36,7 +39,6 @@
         SetCursorPosition(_menuIndex)
         _cursorPosition = _cursorDestPosition
 
-        _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
     End Sub
 
     Private Sub ConstructMenu()
@@ -64,27 +66,38 @@
     Private _blur As Resources.Blur.BlurHandler
 
     Private Sub DrawPrescreen()
-        If _preScreenTexture Is Nothing OrElse _preScreenTexture.IsContentLost Then
-            SpriteBatch.EndBatch()
+        If windowSize.Width > 0 And windowSize.Height > 0 Then
+            If _preScreenTarget Is Nothing Then
+                _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
+            End If
+            If _blur Is Nothing Then
+                _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
+            End If
+            If _preScreenTexture Is Nothing OrElse _preScreenTexture.IsContentLost Then
+                SpriteBatch.EndBatch()
 
-            Dim target As RenderTarget2D = _preScreenTarget
-            GraphicsDevice.SetRenderTarget(target)
-            GraphicsDevice.Clear(BackgroundColor)
+                Dim target As RenderTarget2D = _preScreenTarget
+                GraphicsDevice.SetRenderTarget(target)
+                GraphicsDevice.Clear(BackgroundColor)
 
-            SpriteBatch.BeginBatch()
+                SpriteBatch.BeginBatch()
 
-            PreScreen.Draw()
+                PreScreen.Draw()
 
-            SpriteBatch.EndBatch()
+                SpriteBatch.EndBatch()
 
-            GraphicsDevice.SetRenderTarget(Nothing)
+                GraphicsDevice.SetRenderTarget(Nothing)
 
-            SpriteBatch.BeginBatch()
+                SpriteBatch.BeginBatch()
 
-            _preScreenTexture = target
+                _preScreenTexture = target
+            End If
+            If _preScreenTexture IsNot Nothing Then
+                If _preScreenTexture.Width > 0 And _preScreenTexture.Height > 0 Then
+                    SpriteBatch.Draw(_blur.Perform(_preScreenTexture), windowSize, Color.White)
+                End If
+            End If
         End If
-
-        SpriteBatch.Draw(_blur.Perform(_preScreenTexture), windowSize, Color.White)
     End Sub
 
     Public Overrides Sub Draw()
@@ -154,18 +167,18 @@
         Dim Y As Single = 0F
 
         If (index Mod 2) = 0 Then
-            X = Core.ScreenSize.Width / 2.0F - 384 - 75
+            X = Core.windowSize.Width / 2.0F - 384 - 75
         Else
-            X = Core.ScreenSize.Width / 2.0F + 75
+            X = Core.windowSize.Width / 2.0F + 75
         End If
 
         Select Case Math.Floor(index / 2)
             Case 0
-                Y = (Core.ScreenSize.Height / 2.0F) - 64 - 80 - 32
+                Y = (Core.windowSize.Height / 2.0F) - 64 - 80 - 32
             Case 1
-                Y = (Core.ScreenSize.Height / 2.0F) - 32
+                Y = (Core.windowSize.Height / 2.0F) - 32
             Case 2
-                Y = (Core.ScreenSize.Height / 2.0F) + 32 + 80
+                Y = (Core.windowSize.Height / 2.0F) + 32 + 80
         End Select
 
         Return New Vector2(X, Y)

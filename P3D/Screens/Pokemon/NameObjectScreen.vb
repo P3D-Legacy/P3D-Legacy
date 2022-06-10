@@ -39,7 +39,7 @@ Public Class NameObjectScreen
         Me.CanChat = False
         Me.CanMuteAudio = False
         Me.CanBePaused = False
-
+        Me._canChooseNo = True
         Me._pokemon = Pokemon
         Me._defaultName = Pokemon.GetDisplayName()
         Me._renamePokemon = True
@@ -104,24 +104,16 @@ Public Class NameObjectScreen
 
         If _askedRename = False Then
             Dim genderString As String = ""
-            Dim genderUnicode As Integer = 0
             If _renamePokemon = True Then
                 If _pokemon.Gender = Pokemon.Genders.Male Then
-                    genderString = "     "
-                    genderUnicode = 156
+                    genderString = " ♂"
                 ElseIf _pokemon.Gender = Pokemon.Genders.Female Then
-                    genderString = "     "
-                    genderUnicode = 157
+                    genderString = " ♀"
                 End If
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - 182 + 25, 93), Color.Black)
-            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - 182 + 22, 90), Color.White)
-
-            If genderUnicode <> 0 Then
-                Core.SpriteBatch.DrawString(FontManager.TextFont, StringHelper.GetChar(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Rename " & Me._defaultName).X - 147, 93), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.TextFont, StringHelper.GetChar(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Rename " & Me._defaultName).X - 150, 90), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
-            End If
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Rename " & Me._defaultName & genderString & "?").X / 2) + 2, 96 + 2), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.InGameFont, "Rename " & Me._defaultName & genderString & "?", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Rename " & Me._defaultName & genderString & "?").X / 2), 96), Color.White)
 
             ChooseBox.Showing = False
         Else
@@ -130,23 +122,16 @@ Public Class NameObjectScreen
                 Dim genderUnicode As Integer = 0
                 If _renamePokemon = True Then
                     If _pokemon.Gender = Pokemon.Genders.Male Then
-                        genderString = "     "
-                        genderUnicode = 156
+                        genderString = " ♂"
                     ElseIf _pokemon.Gender = Pokemon.Genders.Female Then
-                        genderString = "     "
-                        genderUnicode = 157
+                        genderString = " ♀"
                     End If
                 End If
 
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - 182 + 25, 93), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - 182 + 22, 90), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName & genderString & ":").X / 2) + 2, 96 + 2), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, "Enter name for " & Me._defaultName & genderString & ":", New Vector2(CInt(Core.windowSize.Width / 2) - CInt(FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName & genderString & ":").X / 2), 96), Color.White)
 
-                If genderUnicode <> 0 Then
-                    Core.SpriteBatch.DrawString(FontManager.TextFont, StringHelper.GetChar(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName).X - 150, 93), Color.Black, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
-                    Core.SpriteBatch.DrawString(FontManager.TextFont, StringHelper.GetChar(genderUnicode), New Vector2(CInt(Core.windowSize.Width / 2) + FontManager.InGameFont.MeasureString("Enter name for " & Me._defaultName).X - 153, 90), Color.White, 0.0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0.0F)
-                End If
-
-                Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2) - 89, 136, 208, 32), New Color(101, 142, 255))
+                Canvas.DrawRectangle(New Rectangle(CInt(TextboxPosition().X) - 4, CInt(TextboxPosition().Y) - 4, 320 + 8, 32), New Color(101, 142, 255))
                 DrawTextBox()
             End If
         End If
@@ -156,17 +141,17 @@ Public Class NameObjectScreen
     End Sub
 
     Private Function TextboxPosition() As Vector2
-        Return New Vector2(CInt(Core.windowSize.Width / 2) - 85, 140)
+        Return New Vector2(CInt(Core.windowSize.Width / 2) - 160, 140)
     End Function
 
     Private Sub DrawTextBox()
-        Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2) - 85, 140, 200, 24), Color.White)
+        Canvas.DrawRectangle(New Rectangle(CInt(TextboxPosition().X), CInt(TextboxPosition().Y), 320, 24), Color.White)
 
         Dim t As String = Me._currentText
         If t.Length < 20 Then
             t &= "_"
         End If
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, t, TextboxPosition(), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.InGameFont, t, TextboxPosition(), Color.Black)
     End Sub
 
     Public Overrides Sub Update()

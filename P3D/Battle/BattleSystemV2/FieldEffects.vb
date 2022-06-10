@@ -107,6 +107,7 @@
         Public OwnDestinyBond As Boolean = False 'If own Pokémon used destiny bond, this is true. If the opponent knocks the own Pokémon out, it will faint as well.
         Public OwnHealingWish As Boolean = False 'True, if healing wish got used. Heals the next switched in Pokémon.
         Public OwnGastroAcid As Boolean = False 'If own Pokémon is affected by Gastro Acid
+        Public OwnTarShot As Boolean = False 'If own Pokémon is affected by Tar Shot
 
         Public OwnLastMove As Attack = Nothing 'Last move used
         Public OwnSpikes As Integer = 0 'Trap move counter
@@ -228,6 +229,7 @@
         Public OppDestinyBond As Boolean = False
         Public OppHealingWish As Boolean = False
         Public OppGastroAcid As Boolean = False
+        Public OppTarShot As Boolean = False 'If opponent Pokémon is affected by Tar Shot
 
         Public OppFlyCounter As Integer = 0
         Public OppDigCounter As Integer = 0

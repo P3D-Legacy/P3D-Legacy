@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Steel
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Smart Strike"
-            Me.Description = "	The user stabs the target with a sharp horn. This attack never misses."
+            Me.Description = "The user stabs the target with a sharp horn. This attack never misses."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

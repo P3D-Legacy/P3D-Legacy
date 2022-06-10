@@ -9,27 +9,31 @@
             If System.IO.File.Exists(ContentPackFile) = True Then
                 Dim Lines() As String = System.IO.File.ReadAllLines(ContentPackFile)
                 For Each Line As String In Lines
-                    Select Case Line.CountSplits("|")
-                        Case 2 'ResolutionChange
-                            Dim TextureName As String = Line.GetSplit(0, "|")
-                            Dim Resolution As Single = CSng(Line.GetSplit(1, "|").Replace(".", GameController.DecSeparator))
+                    If Line.GetSplit(0, "|").ToLower = "waterspeed" Then
+                        Water.WaterSpeed = CInt(Line.GetSplit(1, "|"))
+                    Else
+                        Select Case Line.CountSplits("|")
+                            Case 2 'ResolutionChange
+                                Dim TextureName As String = Line.GetSplit(0, "|")
+                                Dim Resolution As Single = CSng(Line.GetSplit(1, "|").Replace(".", GameController.DecSeparator))
 
-                            If TextureResolutions.ContainsKey(TextureName) = False Then
-                                TextureResolutions.Add(TextureName, Resolution)
-                            End If
-                        Case 4 'TextureReplacement
-                            Dim oldTextureName As String = Line.GetSplit(0, "|")
-                            Dim newTextureName As String = Line.GetSplit(2, "|")
-                            Dim oRS As String = Line.GetSplit(1, "|") 'oRS = oldRectangleSource
-                            Dim nRS As String = Line.GetSplit(3, "|") 'nRS = newRectangleSource
+                                If TextureResolutions.ContainsKey(TextureName) = False Then
+                                    TextureResolutions.Add(TextureName, Resolution)
+                                End If
+                            Case 4 'TextureReplacement
+                                Dim oldTextureName As String = Line.GetSplit(0, "|")
+                                Dim newTextureName As String = Line.GetSplit(2, "|")
+                                Dim oRS As String = Line.GetSplit(1, "|") 'oRS = oldRectangleSource
+                                Dim nRS As String = Line.GetSplit(3, "|") 'nRS = newRectangleSource
 
-                            Dim oldTextureSource As New TextureSource(oldTextureName, New Rectangle(CInt(oRS.GetSplit(0)), CInt(oRS.GetSplit(1)), CInt(oRS.GetSplit(2)), CInt(oRS.GetSplit(3))))
-                            Dim newTextureSource As New TextureSource(newTextureName, New Rectangle(CInt(nRS.GetSplit(0)), CInt(nRS.GetSplit(1)), CInt(nRS.GetSplit(2)), CInt(nRS.GetSplit(3))))
+                                Dim oldTextureSource As New TextureSource(oldTextureName, New Rectangle(CInt(oRS.GetSplit(0)), CInt(oRS.GetSplit(1)), CInt(oRS.GetSplit(2)), CInt(oRS.GetSplit(3))))
+                                Dim newTextureSource As New TextureSource(newTextureName, New Rectangle(CInt(nRS.GetSplit(0)), CInt(nRS.GetSplit(1)), CInt(nRS.GetSplit(2)), CInt(nRS.GetSplit(3))))
 
-                            If TextureReplacements.ContainsKey(oldTextureSource) = False Then
-                                TextureReplacements.Add(oldTextureSource, newTextureSource)
-                            End If
-                    End Select
+                                If TextureReplacements.ContainsKey(oldTextureSource) = False Then
+                                    TextureReplacements.Add(oldTextureSource, newTextureSource)
+                                End If
+                        End Select
+                    End If
                 Next
             End If
         End If

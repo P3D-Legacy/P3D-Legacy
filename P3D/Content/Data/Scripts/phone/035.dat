@@ -14,7 +14,7 @@ version=2
 			:when:1
 				@text.show(Glad you called!~Your <daycare.pokemonname(2,0)> is~doing just fine!)
 			:when:2
-				:select:<daycare.canbreed(2)>
+				:select:<daycare.canbreed(2,0)>
 				:when:70
 					@storage.set(string,breed_text,The two seem to get~along very well.)
 				:when:50

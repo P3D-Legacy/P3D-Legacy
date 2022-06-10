@@ -1050,7 +1050,7 @@ Public Class Level
             Next
 
             ' If the warp happened through a warp block, make the player walk one step forward after switching to the new map:
-            If Screen.Camera.IsMoving = True And WarpData.IsWarpBlock = True Then
+            If WarpData.IsWarpBlock = True Then
                 Screen.Camera.StopMovement()
                 Screen.Camera.Move(1.0F)
             End If

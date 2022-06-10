@@ -9,6 +9,7 @@ Namespace Items.Medicine
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 4800
         Public Overrides ReadOnly Property MaxStack As Integer = 1
         Public Overrides ReadOnly Property CanBeHold As Boolean = False
+        Public Overrides ReadOnly Property PluralName As String = "Shiny Candies"
 
         Public Sub New()
             _textureRectangle = New Rectangle(96, 240, 24, 24)
@@ -24,13 +25,20 @@ Namespace Items.Medicine
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
             Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-            p.IsShiny = Not p.IsShiny
+            If Not p.IsShiny Then
+                p.IsShiny = True
 
-            SoundManager.PlaySound("Use_Item", False)
-            Screen.TextBox.Show("The Pokémon sparkled." & RemoveItem())
-            PlayerStatistics.Track("[17]Medicine Items used", 1)
+                SoundManager.PlaySound("Use_Item", False)
+                Screen.TextBox.Show("The Pokémon sparkled." & RemoveItem())
+                PlayerStatistics.Track("[17]Medicine Items used", 1)
 
-            Return True
+                Return True
+            Else
+                Screen.TextBox.Show("Cannot use shiny candy~on this Pokémon.", {}, False, False)
+
+                Return False
+            End If
+
         End Function
 
     End Class

@@ -1,0 +1,20 @@
+﻿[TRAINER FORMAT]
+Name|DanielRTRD
+TrainerClass|Developer
+Money|4000
+IntroMessage|
+OutroMessage|I should~get out of this~room and train more...
+DefeatMessage|
+TextureID|daniel
+Region|Sevii Islands
+IniMusic|Johto_champion_intro
+DefeatMusic|champion_defeat
+BattleMusic|johto_champion
+Pokemon1|{"Pokemon"[133]}{"Experience"[246681]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Eevee]}{"Level"[21]}{"OT"[00000]}{"Ability"[91]}{"Status"[]}{"Nature"[7]}{"CatchLocation"[]}{"CatchTrainer"[DanielRTRD]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[1]}{"Attack1"[38,15,15]}{"Attack2"[387,5,5]}{"Attack3"[98,30,30]}{"EVs"[252,252,0,0,4,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon2|{"Pokemon"[154]}{"Experience"[246681]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Meganium]}{"Level"[69]}{"OT"[00000]}{"Ability"[90]}{"Status"[]}{"Nature"[2]}{"CatchLocation"[]}{"CatchTrainer"[DanielRTRD]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[76,10,10]}{"Attack2"[34,15,15]}{"Attack3"[80,10,10]}{"Attack4"[345,20,20]}{"EVs"[252,252,0,0,4,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Pokemon3|{"Pokemon"[245]}{"Experience"[246681]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"ItemData"[]}{"NickName"[Suicune]}{"Level"[40]}{"OT"[00000]}{"Ability"[46]}{"Status"[]}{"Nature"[17]}{"CatchLocation"[]}{"CatchTrainer"[DanielRTRD]}{"CatchBall"[5]}{"CatchMethod"[]}{"Friendship"[0]}{"isShiny"[0]}{"Attack1"[62,20,20]}{"Attack2"[44,25,25]}{"Attack3"[56,5,5]}{"EVs"[252,252,0,0,4,0]}{"IVs"[31,31,31,31,31,31]}{"AdditionalData"[]}
+Items|39,14
+Gender|0
+AI|40
+IntroSequence|Orange,Orange
+IntroType|11

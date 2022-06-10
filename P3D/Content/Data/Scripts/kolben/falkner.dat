@@ -1,0 +1,61 @@
+version=2
+
+:if:<register.registered(Birdfact)>=false
+	@text.show(Oh hello there,~welcome to Kolben tower!*We may have met already,~either in Violet city or on~the discord server.~The name is Falkner~and I am known around~these parts as quite the~flying type connoisseur.)
+	@text.show(Say, while you are here~would you like to hear about~one of my amazing bird facts?)
+	@options.show(Yes,No)
+		:when:Yes
+			@register.registertime(Birdfact,1,day)
+			:select:<system.random(1,18)>
+				:when:1
+					@text.show(Well then listen to this.*Did you know that a~Pidgeot is not only known for~its beautiful plumage but also~for the ability to fly~at a speed of mach 2.*That is over twice~the speed of sound!)
+				:when:2
+					@text.show(Someone has found several~steel-like feathers around~Route 45.*It looks like several Skarmory~have settled on this route~as a nesting ground.*If you have any spare time~it would be worth catching one.)
+				:when:3
+					@text.show(Apparently Murkrow flocks~have been associated with omens~of bad luck since ancient times.*Heh...~If they only knew.~These birds have a strong~affection towards anything~sparkly.*Once you manage to~befriend a murkrow~it will keep bringing all sorts~of treasures to its trainer!)
+				:when:4
+					@text.show(Great!~Did you know that although a~Dodrio does not have wings~it is still capable~of short flights.*Additionally it is considered~one of the faster running~pokémon in existence,~even able to keep up with~the likes of Arcanine.)
+				:when:5
+					@text.show(Rumor has it that in faraway~lands the trio of legendary birds~have appeared in other forms.*It must be magnifiscent to see!* I wonder if they might eventually~migrate to our region...)
+				:when:6
+					@text.show(Sooo,~have you ever walked through~the tall grass at night?*If you're lucky you might~spot a Hoothoot or Noctowl.*They are supposed to~have superior vision that allows~them to see in the dark.*Don't be scared if~you encounter one though.~They only hunt small rodents.)
+				:when:7
+					@text.show(Xatu Xatu Xatu...*Apparently these birds~are always standing still~because they can see the past,~present,~and future at the same time.*To be completely honest~I don't know whether that would~be exciting or terrifying.)
+				:when:8
+					@text.show(If a Delibird ever gives~you a present I would think~twice before opening it.*Especially from the kinds~in the Johto region these~packages have been known~to explode for unknown reason.*Though during christmas~a special Delibird has been~seen flying around the region~to hand out actual presents.)
+				:when:9
+					@text.show(If you ever want to~annoy Darkfire, just tell him~that his Charizard is not~a real dragon.*Mega stones don't count man.)
+				:when:10
+					@text.show(Did you know that the~beak of a pelipper is~able to almost double in size~whenever it gulps up water?*It does not only catch~prey with that beak but can also~use it to protect young Wingull~from nature.)
+				:when:11
+					@text.show(Did I ever tell you~my favorite bird?*Well to be honest there~are too many to choose from.~If I had to pick one~however it would be either~Pidgeot,~Altaria,~or Rowlet.)
+				:when:12
+					@text.show(It is quite strange that~the classification system~within our Pokédex~miscategorizes several~birds as non-flying types.*In my opinion there should~be the posibillity to~add a third typing.*Perhaps you should~take that up with~Professor Oak?)
+				:when:13
+					@text.show(Ah Talonflame,~the scorching wind.*Did you know this pokémon~got its nickname because~whenever it flies fast enough~literal embers will drop~from between the gaps~in its feathers?)
+				:when:14
+					@text.show(Apparently wild Togekiss~are such a rare sight because~it will only appear in regions~where peace is able to thrive~without conflict.*Only a select number of~trainers are able to train~this majestic creature.)
+				:when:15
+					@text.show(Vullaby and Mandibuzz are~an extremely rare sight in both~Johto and Kanto.*But just between you and me...*On very rare occassions~you are able to spot~them behind the Violet gym.)
+				:when:16
+					@text.show(The two large tailfeathers~on a Swellow are an indication~of its health.*When they are standing up~a Swellow is perfectly healthy.*You may want to avoid~a sick one though,~as they become extremely~agressive once exposed to~any status condition.)
+				:when:17
+					@text.show(In the old days there~used to be flying dinosaurs~roaming the skies.*Apparently here on the~Sevii islands there are still~places where you can find~the fossils of these~ancient Pokémon.)
+				:when:18
+					@text.show(Ever heard of Mega Evolution?*Apparently it exists in~these regions as well~and allows for some birds~to display their true potential.*I really need to get~my hands on one~of those stones...)
+			:endwhen:
+			
+			@text.show(Please have this beautiful~feather as a personal keepsake.)
+			@item.give(260,1)
+			@Item.messagegive(260,1)
+			:end
+
+		:when:No
+			@text.show(Ahw, what a bummer...)
+			:end
+	:endwhen
+
+:else
+	@text.show(Groan... someone managed~to get trapped in a wall again.*Darkfire is gonna kill me...)
+:endif
+:end

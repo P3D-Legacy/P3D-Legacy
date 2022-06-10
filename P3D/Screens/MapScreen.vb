@@ -18,6 +18,7 @@
     Dim places As New List(Of Place)
     Dim RoamingPoke As New List(Of Roaming)
 
+    Dim PlayerSkinTexture As Texture2D
     Dim objectsTexture As Texture2D
     Dim mapTexture As Texture2D
     Dim texture As Texture2D
@@ -40,7 +41,18 @@
         Me.regionPointer = startIndex
 
         Me.drawObjects = Player.Temp.MapSwitch
-
+        If Core.Player.IsGameJoltSave And GameJolt.API.LoggedIn Then
+            Dim ownE As New GameJolt.Emblem(Core.Player.Name, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Points, Core.GameJoltSave.Gender, Core.GameJoltSave.Emblem)
+            PlayerSkinTexture = ownE.SpriteTexture
+        Else
+            If Screen.Level.Surfing = True Then
+                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempSurfSkin)
+            ElseIf Screen.Level.Riding = True Then
+                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.TempRideSkin)
+            Else
+                PlayerSkinTexture = TextureManager.GetTexture("Textures\NPC\" & Core.Player.Skin)
+            End If
+        End If
         Me.MouseVisible = False
 
         Me.objectsTexture = TextureManager.GetTexture("GUI\Map\map_objects")
@@ -50,9 +62,9 @@
 
         Me.FillMap()
 
-        Dim v As Vector2 = GetPlayerPosition()
+        Dim v As Vector2 = GetCursorPosition()
         If v.X <> 0 Or v.Y <> 0 Then
-            Me.CursorPosition = Me.GetPlayerPosition() + New Vector2(mapOffsetX, mapOffsetY)
+            Me.CursorPosition = Me.GetCursorPosition() + New Vector2(mapOffsetX, mapOffsetY)
         Else
             Me.CursorPosition = New Vector2(MouseHandler.MousePosition.X, MouseHandler.MousePosition.Y)
         End If
@@ -132,13 +144,16 @@
                             Case "large", "4"
                                 CitySize = City.CitySize.Large
                         End Select
-
+                        Dim PlayerPositionList As List(Of String) = "-1,-1".Split(CChar(",")).ToList()
+                        If Tags.ContainsKey("playerposition") = True Then
+                            PlayerPositionList = Tags("playerposition").Split(CChar(",")).ToList()
+                        End If
                         If Tags.ContainsKey("flyto") = True Then
                             Dim FlyTo As New List(Of String)
                             FlyTo = Tags("flyto").Split(CChar(",")).ToList()
-                            cities.Add(New City(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), CitySize, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3)))))
+                            cities.Add(New City(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), CitySize, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3))), CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
                         Else
-                            cities.Add(New City(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), CitySize, "", Nothing))
+                            cities.Add(New City(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), CitySize, "", Nothing, CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
                         End If
                     Case "route"
                         Dim Name As String = Tags("name")
@@ -190,13 +205,16 @@
                             Case "water", "1"
                                 RouteType = Route.RouteTypes.Water
                         End Select
-
+                        Dim PlayerPositionList As List(Of String) = "-1,-1".Split(CChar(",")).ToList()
+                        If Tags.ContainsKey("playerposition") = True Then
+                            PlayerPositionList = Tags("playerposition").Split(CChar(",")).ToList()
+                        End If
                         If Tags.ContainsKey("flyto") = True Then
                             Dim FlyTo As New List(Of String)
                             FlyTo = Tags("flyto").Split(CChar(",")).ToList()
-                            routes.Add(New Route(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), RouteDirection, RouteType, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3)))))
+                            routes.Add(New Route(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), RouteDirection, RouteType, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3))), CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
                         Else
-                            routes.Add(New Route(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), RouteDirection, RouteType, "", Nothing))
+                            routes.Add(New Route(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), RouteDirection, RouteType, "", Nothing, CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
                         End If
                     Case "place"
                         Dim Name As String = Tags("name")
@@ -220,13 +238,16 @@
                             Case "large", "5"
                                 PlaceSize = Place.PlaceSizes.Large
                         End Select
-
+                        Dim PlayerPositionList As List(Of String) = "-1,-1".Split(CChar(",")).ToList()
+                        If Tags.ContainsKey("playerposition") = True Then
+                            PlayerPositionList = Tags("playerposition").Split(CChar(",")).ToList()
+                        End If
                         If Tags.ContainsKey("flyto") = True Then
                             Dim FlyTo As New List(Of String)
                             FlyTo = Tags("flyto").Split(CChar(",")).ToList()
-                            places.Add(New Place(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), PlaceSize, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3)))))
+                            places.Add(New Place(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), PlaceSize, FlyTo(0), New Vector3(CSng(FlyTo(1)), CSng(FlyTo(2)), CSng(FlyTo(3))), CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
                         Else
-                            places.Add(New Place(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), PlaceSize, "", Nothing))
+                            places.Add(New Place(Name, MapFiles, CInt(PositionList(0)), CInt(PositionList(1)), PlaceSize, "", Nothing, CInt(PlayerPositionList(0)), CInt(PlayerPositionList(1))))
                         End If
                 End Select
 
@@ -471,6 +492,25 @@
             Next
         End If
 
+        Dim PlayerSkinWidth As Integer = CInt(PlayerSkinTexture.Width / 3)
+        Dim PlayerSkinHeight As Integer = CInt(PlayerSkinTexture.Height / 4)
+        Dim PlayerSkinScale As Single = 1.0F
+        If PlayerSkinTexture.Width = PlayerSkinTexture.Height / 2 Then
+            PlayerSkinWidth = CInt(PlayerSkinTexture.Width / 2)
+        ElseIf PlayerSkinTexture.Width = PlayerSkinTexture.Height Then
+            PlayerSkinWidth = CInt(PlayerSkinTexture.Width / 4)
+        End If
+        If PlayerSkinWidth > 32 Then
+            PlayerSkinScale = 0.5F
+        End If
+
+        Dim PlayerTextureRectangle As Rectangle = New Rectangle(0, CInt(PlayerSkinHeight * 2), PlayerSkinWidth, PlayerSkinHeight)
+
+        Dim v As Vector2 = GetPlayerPosition()
+        If v.X <> 0 Or v.Y <> 0 Then
+            Core.SpriteBatch.Draw(PlayerSkinTexture, New Rectangle(CInt(GetPlayerPosition.X + mapOffsetX - PlayerSkinWidth), CInt(GetPlayerPosition.Y + mapOffsetY - PlayerSkinHeight), CInt(PlayerSkinWidth * 2 * PlayerSkinScale), CInt(PlayerSkinHeight * 2 * PlayerSkinScale)), PlayerTextureRectangle, Color.White)
+        End If
+
         If Me.hoverText <> "" And Me.pokehoverText <> "" Then
             Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 30, Me.CursorPosition.Y - 31), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MiniFont, Localization.GetString("pokemon_name_" & Me.pokehoverText) & " at " & Localization.GetString("Places_" & Me.hoverText), New Vector2(Me.CursorPosition.X + 29, Me.CursorPosition.Y - 32), Color.White)
@@ -610,7 +650,7 @@
         CType(CType(Core.CurrentScreen, TransitionScreen).NewScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
     End Sub
 
-    Private Function GetPlayerPosition() As Vector2
+    Private Function GetCursorPosition() As Vector2
         Dim v As Vector2 = New Vector2(0, 0)
         Dim r As New Rectangle(0, 0, 0, 0)
         Dim mapOffset As New Vector2(mapOffsetX, mapOffsetY)
@@ -636,6 +676,49 @@
 
         Return (v + New Vector2(CInt(r.Width / 2), CInt(r.Height / 2)))
     End Function
+    Private Function GetPlayerPosition() As Vector2
+        Dim v As Vector2 = New Vector2(0, 0)
+        Dim r As New Rectangle(0, 0, 0, 0)
+        Dim mapOffset As New Vector2(mapOffsetX, mapOffsetY)
+        Dim sizeX = 1 * MapScreen.RasterSize
+        Dim sizeY = 1 * MapScreen.RasterSize
+
+        For Each City As City In Me.cities
+            If City.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                If City.PlayerPositionX <> -1 AndAlso City.PlayerPositionY <> -1 Then
+                    v = City.getPlayerPosition()
+                    r = New Rectangle(CInt(City.getPlayerPosition().X + mapOffset.X), CInt(City.getPosition().Y + mapOffset.Y), sizeX, sizeY)
+                Else
+                    v = City.getPosition()
+                    r = City.getRectangle(mapOffset)
+                End If
+            End If
+        Next
+        For Each Place As Place In Me.places
+            If Place.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                If Place.PlayerPositionX <> -1 AndAlso Place.PlayerPositionY <> -1 Then
+                    v = Place.getPlayerPosition()
+                    r = New Rectangle(CInt(Place.getPlayerPosition().X + mapOffset.X), CInt(Place.getPosition().Y + mapOffset.Y), sizeX, sizeY)
+                Else
+                    v = Place.getPosition()
+                    r = Place.getRectangle(mapOffset)
+                End If
+            End If
+        Next
+        For Each Route As Route In Me.routes
+            If Route.ContainFiles.Contains(Level.LevelFile.ToLower()) = True Then
+                If Route.PlayerPositionX <> -1 AndAlso Route.PlayerPositionY <> -1 Then
+                    v = Route.getPlayerPosition()
+                    r = New Rectangle(CInt(Route.getPlayerPosition().X + mapOffset.X), CInt(Route.getPosition().Y + mapOffset.Y), sizeX, sizeY)
+                Else
+                    v = Route.getPosition()
+                    r = Route.getRectangle(mapOffset)
+                End If
+            End If
+        Next
+
+        Return (v + New Vector2(CInt(r.Width / 2), CInt(r.Height / 2)))
+    End Function
 
     Public Class City
 
@@ -649,6 +732,8 @@
 
         Public Name As String = "???"
         Public ContainFiles As New List(Of String)
+        Public PlayerPositionX As Integer = -1
+        Public PlayerPositionY As Integer = -1
         Public PositionX As Integer = 0
         Public PositionY As Integer = 0
         Public FlyToFile As String = ""
@@ -657,7 +742,7 @@
 
         Dim T As Texture2D = Nothing
 
-        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal Size As CitySize, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing)
+        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal Size As CitySize, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing, Optional PlayerPositionX As Integer = -1, Optional PlayerPositionY As Integer = -1)
             Me.Name = Name
 
             For Each file As String In ContainFiles
@@ -666,6 +751,16 @@
 
             Me.PositionX = PositionX
             Me.PositionY = PositionY
+            If PlayerPositionX <> -1 Then
+                Me.PlayerPositionX = PlayerPositionX
+            Else
+                Me.PlayerPositionX = PositionX
+            End If
+            If PlayerPositionY <> -1 Then
+                Me.PlayerPositionY = PlayerPositionY
+            Else
+                Me.PlayerPositionY = PositionY
+            End If
             Me.Size = Size
 
             Me.FlyToFile = FlyToFile
@@ -674,6 +769,10 @@
 
         Public Function getPosition() As Vector2
             Return New Vector2(Me.PositionX * MapScreen.RasterSize, Me.PositionY * MapScreen.RasterSize)
+        End Function
+
+        Public Function getPlayerPosition() As Vector2
+            Return New Vector2(Me.PlayerPositionX * MapScreen.RasterSize, Me.PlayerPositionY * MapScreen.RasterSize)
         End Function
 
         Public Function getRectangle(ByVal offset As Vector2) As Rectangle
@@ -787,6 +886,8 @@
         Public Name As String = ""
         Public PositionX As Integer = 0
         Public PositionY As Integer = 0
+        Public PlayerPositionX As Integer = -1
+        Public PlayerPositionY As Integer = -1
         Public ContainFiles As New List(Of String)
         Public FlyToFile As String = ""
         Public FlyToPosition As Vector3 = New Vector3(0)
@@ -796,7 +897,7 @@
 
         Dim T As Texture2D = Nothing
 
-        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal RouteDirection As RouteDirections, ByVal RouteType As RouteTypes, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing)
+        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal RouteDirection As RouteDirections, ByVal RouteType As RouteTypes, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing, Optional PlayerPositionX As Integer = -1, Optional PlayerPositionY As Integer = -1)
             Me.Name = Name
             Me.PositionX = PositionX
             Me.PositionY = PositionY
@@ -806,13 +907,25 @@
             For Each file As String In ContainFiles
                 Me.ContainFiles.Add(file.ToLower())
             Next
-
+            If PlayerPositionX <> -1 Then
+                Me.PlayerPositionX = PlayerPositionX
+            Else
+                Me.PlayerPositionX = PositionX
+            End If
+            If PlayerPositionY <> -1 Then
+                Me.PlayerPositionY = PlayerPositionY
+            Else
+                Me.PlayerPositionY = PositionY
+            End If
             Me.FlyToFile = FlyToFile
             Me.FlyToPosition = FlyToPosition
         End Sub
 
         Public Function getPosition() As Vector2
             Return New Vector2(Me.PositionX * MapScreen.RasterSize, Me.PositionY * MapScreen.RasterSize)
+        End Function
+        Public Function getPlayerPosition() As Vector2
+            Return New Vector2(Me.PlayerPositionX * MapScreen.RasterSize, Me.PlayerPositionY * MapScreen.RasterSize)
         End Function
 
         Public Function getRectangle(ByVal offset As Vector2) As Rectangle
@@ -942,6 +1055,8 @@
         Public ContainFiles As New List(Of String)
         Public PositionX As Integer
         Public PositionY As Integer
+        Public PlayerPositionX As Integer = -1
+        Public PlayerPositionY As Integer = -1
         Public PlaceSize As PlaceSizes
 
         Public FlyToFile As String = ""
@@ -949,7 +1064,7 @@
 
         Dim T As Texture2D = Nothing
 
-        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal PlaceSize As PlaceSizes, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing)
+        Public Sub New(ByVal Name As String, ByVal ContainFiles() As String, ByVal PositionX As Integer, ByVal PositionY As Integer, ByVal PlaceSize As PlaceSizes, Optional ByVal FlyToFile As String = "", Optional ByVal FlyToPosition As Vector3 = Nothing, Optional PlayerPositionX As Integer = -1, Optional PlayerPositionY As Integer = -1)
             Me.Name = Name
             Me.PositionX = PositionX
             Me.PositionY = PositionY
@@ -958,6 +1073,16 @@
             For Each file As String In ContainFiles
                 Me.ContainFiles.Add(file.ToLower())
             Next
+            If PlayerPositionX <> -1 Then
+                Me.PlayerPositionX = PlayerPositionX
+            Else
+                Me.PlayerPositionX = PositionX
+            End If
+            If PlayerPositionY <> -1 Then
+                Me.PlayerPositionY = PlayerPositionY
+            Else
+                Me.PlayerPositionY = PositionY
+            End If
 
             Me.FlyToFile = FlyToFile
             Me.FlyToPosition = FlyToPosition
@@ -966,7 +1091,9 @@
         Public Function getPosition() As Vector2
             Return New Vector2(Me.PositionX * MapScreen.RasterSize, Me.PositionY * MapScreen.RasterSize)
         End Function
-
+        Public Function getPlayerPosition() As Vector2
+            Return New Vector2(Me.PlayerPositionX * MapScreen.RasterSize, Me.PlayerPositionY * MapScreen.RasterSize)
+        End Function
         Public Function getRectangle(ByVal offset As Vector2) As Rectangle
             Dim sizeX As Single = 1.0F
             Dim sizeY As Single = 1.0F

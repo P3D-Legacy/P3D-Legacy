@@ -442,8 +442,11 @@
 
                 ' Pokemon appears
                 BallThrowOpp.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
+                BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 4, 0,, True)
+            Else
+                BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 0, 0,, True)
             End If
-            BallThrowOpp.AnimationPlaySound(CStr(Me.OppPokemon.Number), 4, 0,, True)
+
 
             '  Pokémon falls down
             If Core.Player.ShowBattleAnimations <> 0 Then
@@ -873,7 +876,7 @@
             If ForegroundEntities.Count > 0 Then
                 ForegroundEntities = (From f In ForegroundEntities Order By f.CameraDistance Descending).ToList()
             End If
-           Level.Draw()
+            Level.Draw()
 
             World.DrawWeather(Screen.Level.World.CurrentMapWeather)
 
@@ -1171,8 +1174,6 @@ nextIndex:
             End If
             TempPokeFile = ""
 
-            OwnPokemon.ResetTemp()
-
             If IsRemoteBattle = False Then
                 If ConnectScreen.Connected = True Then
                     If Battle.Won = False Then
@@ -1216,9 +1217,19 @@ nextIndex:
                     If p.hasLeveledUp = True Then
                         hasLevelUp = True
                     End If
+                    If IsRemoteBattle = True Or IsTrainerBattle = True Then
+                        If p.OriginalItem IsNot Nothing Then
+                            p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                            p.Item.AdditionalData = p.OriginalItem.AdditionalData
+                            Screen.TextBox.Show(Core.Player.Name & " received" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                        End If
+                    End If
                     p.ResetTemp()
                 Next
+
                 If hasLevelUp = False Then
+                    MusicManager._afterBattleIntroSong = Nothing
+                    MusicManager.Play(SavedOverworld.Level.MusicLoop)
                     Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, New Color(255, 255, 254), False, AddressOf ChangeSavedScreen))
                 Else
                     Dim EvolvePokeList As New List(Of Integer)
@@ -1235,6 +1246,8 @@ nextIndex:
                     Next
 
                     If EvolvePokeList.Count = 0 Then
+                        MusicManager._afterBattleIntroSong = Nothing
+                        MusicManager.Play(SavedOverworld.Level.MusicLoop)
                         Core.SetScreen(New TransitionScreen(Me, SavedOverworld.OverworldScreen, New Color(255, 255, 254), False, AddressOf ChangeSavedScreen))
                     Else
                         Core.SetScreen(New TransitionScreen(Me, New EvolutionScreen(Core.CurrentScreen, EvolvePokeList, "", EvolutionCondition.EvolutionTrigger.LevelUp, True), Color.Black, False))
@@ -1253,6 +1266,16 @@ nextIndex:
                     End If
                 Next
             Else
+                For Each p As Pokemon In Core.Player.Pokemons
+                    If IsRemoteBattle = True Or IsTrainerBattle = True Then
+                        If p.OriginalItem IsNot Nothing Then
+                            p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                            p.Item.AdditionalData = p.OriginalItem.AdditionalData
+                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                        End If
+                    End If
+                    p.ResetTemp()
+                Next
                 ResetVars()
                 Core.SetScreen(New TransitionScreen(Me, New BlackOutScreen(Me), Color.Black, False))
             End If
@@ -1313,14 +1336,14 @@ nextIndex:
                 poke = OppPokemon
             End If
 
-            Dim n As String = poke.AnimationName
+            Dim n As String = PokemonForms.GetAnimationName(poke)
 
             Dim s As String = "Normal"
             If poke.IsShiny = True Then
                 s = "Shiny"
             End If
 
-            Dim p As String = "Models\" & n & "\" & s
+            Dim p As String = "Models\Pokemon\" & n & "\" & s
 
             If ModelManager.ModelExist(p) = True Then
                 Return p

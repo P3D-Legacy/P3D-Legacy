@@ -1,0 +1,17 @@
+version=2
+
+:if:<register.registered(jappamet)>=false
+	@text.show(JappaWakka: Hiya!~How are you doing today?~My name is Jasper,~but you may call me Jappa~if you like to.*Did you know?~I'm a real magician.*Hehe, a code magician~to be exact!*Feel free to explore the~Kolben Tower and talk to~everyone you meet!*If you'd like to know more~about me, give me a tap~on the shoulder and I'll tell you.)
+	@register.register(jappamet)
+	@npc.turn(9,0)
+:else
+	@text.show(JappaWakka: Woah!~You startled me!~I was slacking off a bit.~I love looking at my old~animation projects from~time to time!*So, you've come to hear~my story, right?)
+	@options.show(Yes,No)
+	:when:Yes
+		@text.show(JappaWakka: Well, I've been~tinkering with Pokémon 3D~since... around 2019 I believe!*I taught myself how to~program using VB.Net by~looking at existing code~and reading documentation,~while trying to add all kinds~of features that I thought~the game needed!*I managed to put a semi-working~demo together in january~of 2021 that included~Littleroot Town, complete with~interiors and story events.*The demo ended right before~you went to Route 101~to save Professor Birch.*Later, I recorded~some video footage,~showcasing a couple of~Pokémon moves that I~made animations for. *I'm very proud to be part~of the development team!~We may not always agree on~everything, but they've~encouraged me to do things~that I never thought I~would be able to do!*The greatest gift they've~given me is this office~right here and the freedom~to change it to my liking.~I feel right at home!)
+	:when:No
+		@text.show(JappaWakka: Alright,~that's perfectly fine!~Enjoy exploring Kolben Tower!*If you'd like to know more~about me, give me a tap~on the shoulder and I'll tell you.)
+	:endwhen	
+	@npc.turn(9,0)
+:endif
+:end

@@ -8,8 +8,9 @@
     <OutputType>Library</OutputType>
     <RootNamespace>P3D.ContentPipeline</RootNamespace>
     <AssemblyName>P3D.ContentPipeline</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,12 +51,9 @@
     <None Include="Content\Models\boat2\Boat.fbx" />
     <None Include="Content\Models\boat\ferry.mtl" />
     <None Include="Content\Models\boat\ferry.obj" />
-    <None Include="Content\Models\boat\Ship.mtl" />
-    <None Include="Content\Models\boat\Ship.obj" />
-    <None Include="Content\Models\boat\textures\boat.tga" />
+    <None Include="Content\Models\boat\SSAqua.fbx" />
     <None Include="Content\Models\boat\textures\ferry.tga" />
-    <None Include="Content\Models\building\P3DBuilding.mtl" />
-    <None Include="Content\Models\building\P3DBuilding.obj" />
+    <None Include="Content\Models\building\KolbenTower.fbx" />
     <None Include="Content\Models\Environment\arena_colleseum.mtl" />
     <None Include="Content\Models\Environment\arena_colleseum.obj" />
     <None Include="Content\Models\Environment\MtSilver\Mountain.mtl" />
@@ -84,7 +82,10 @@
     <Content Include="Content\Fonts\BMP\TextFont.txt" />
     <Content Include="Content\Fonts\BMP\Unown.png" />
     <Content Include="Content\Models\boat2\Boat.png" />
-    <Content Include="Content\Models\building\textures\P3DBuilding.png" />
+    <Content Include="Content\Models\boat\SSAqua.png" />
+    <Content Include="Content\Models\building\KolbenTower.png" />
+    <Content Include="Content\Models\Environment\MtSilver\Gray.png" />
+    <Content Include="Content\Models\Environment\MtSilver\White.png" />
     <Content Include="Content\Models\Snorlax\Snorlax_Normal.png" />
     <Content Include="Content\Models\Snorlax\Snorlax_Shiny.png" />
     <Content Include="Content\Models\truck2\Truck.png" />

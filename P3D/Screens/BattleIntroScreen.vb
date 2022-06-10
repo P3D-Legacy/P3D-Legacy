@@ -43,18 +43,18 @@
     Public Sub New(ByVal OldScreen As Screen, ByVal NewScreen As Screen, ByVal IntroType As Integer, ByVal MusicLoop As String)
         If MusicLoop = "" Then
             MusicLoop = Screen.Level.CurrentRegion.Split(CChar(","))(0) & "_wild_intro"
-            If MusicManager.SongExists(MusicLoop) = False Then
+            If MusicManager.SongExists(MusicLoop) = True Then
                 If BattleSystem.BattleScreen.RoamingBattle = True Then
                     If BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop <> "" Then
                         MusicLoop = BattleSystem.BattleScreen.RoamingPokemonStorage.MusicLoop & "_intro"
                     End If
                 End If
-                If MusicManager.SongExists(MusicLoop) = False Then
-                    MusicLoop = "johto_wild_intro"
-                End If
+            End If
+
+            If MusicManager.SongExists(MusicLoop) = False Then
+                MusicLoop = "johto_wild_intro"
             End If
         End If
-
         Me.Constructor(OldScreen, NewScreen, Nothing, MusicLoop, IntroType)
     End Sub
 

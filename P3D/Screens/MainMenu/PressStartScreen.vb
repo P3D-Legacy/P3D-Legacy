@@ -68,7 +68,7 @@ Public Class PressStartScreen
         _shader = New GameDevCommon.Rendering.BasicShader()
         CType(_shader.Effect, BasicEffect).LightingEnabled = False
         _camera = New Scene.MainMenuCamera()
-
+        World.setDaytime = Nothing
         Dim dayTime = World.GetTime
 
         Select Case dayTime
@@ -389,18 +389,20 @@ Public Class NewMainMenuScreen
                                     End If
                                 Next
                                 If _MainProfiles(_selectedProfile).IsGameJolt AndAlso _MainProfiles(_selectedProfile).Loaded Then
-                                    ' Click on gamejolt buttons
-                                    Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + (100 * (1 - _fadeInMain))
-                                    Dim r As New Vector2(xOffset + 400, _screenOrigin.Y + _screenOffset.Y + 200)
-                                    If New Rectangle(CInt(r.X), CInt(r.Y), 32, 32).Contains(MouseHandler.MousePosition) Then
-                                        ButtonChangeMale()
-                                    ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
-                                        ButtonChangeFemale()
-                                    ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
-                                        ButtonChangeGenderless()
-                                    ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
-                                        ButtonResetSave()
-                                    End If
+                                    For x = 0 To _MainProfiles.Count - 1
+                                        ' Click on gamejolt buttons
+                                        Dim xOffset As Single = _screenOrigin.X + _screenOffset.X + x * 180 + ((x + 1) * 100 * (1 - _fadeInMain))
+                                        Dim r As New Vector2(xOffset + 400, _screenOrigin.Y + _screenOffset.Y + 200)
+                                        If New Rectangle(CInt(r.X), CInt(r.Y), 32, 32).Contains(MouseHandler.MousePosition) Then
+                                            ButtonChangeMale()
+                                        ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                                            ButtonChangeFemale()
+                                        ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                                            ButtonChangeGenderless()
+                                        ElseIf New Rectangle(CInt(r.X), CInt(r.Y) + 48 + 48 + 48, 32, 32).Contains(MouseHandler.MousePosition) Then
+                                            ButtonResetSave()
+                                        End If
+                                    Next
                                 End If
                                 If Controls.Dismiss(True, False, False) Then
                                     ' Click on profiles.
@@ -524,7 +526,7 @@ Public Class NewMainMenuScreen
                             If Controls.Up(True, True, False) Then
                                 _GameJoltButtonIndex -= 1
                             End If
-                            _GameJoltButtonIndex = Clamp(_GameJoltButtonIndex, 0, 3)
+                            _GameJoltButtonIndex = Clamp(_GameJoltButtonIndex, 0, 4)
                         End If
                     End If
 
@@ -639,28 +641,28 @@ Public Class NewMainMenuScreen
     End Sub
 
     Private Sub ButtonChangeMale()
-        If GameJoltSave.Gender = "0" Then
+        If GameJoltSave.Gender = "Male" Then
             Exit Sub
         End If
-        GameJoltSave.Gender = "0"
+        GameJoltSave.Gender = "Male"
 
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
         _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
     End Sub
     Private Sub ButtonChangeFemale()
-        If GameJoltSave.Gender = "1" Then
+        If GameJoltSave.Gender = "Female" Then
             Exit Sub
         End If
-        GameJoltSave.Gender = "1"
+        GameJoltSave.Gender = "Female"
 
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
         _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
     End Sub
     Private Sub ButtonChangeGenderless()
-        If GameJoltSave.Gender = "2" Then
+        If GameJoltSave.Gender = "Other" Then
             Exit Sub
         End If
-        GameJoltSave.Gender = "2"
+        GameJoltSave.Gender = "Other"
 
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
         _MainProfiles(_selectedProfile).Sprite = GameJolt.Emblem.GetPlayerSprite(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
@@ -676,7 +678,7 @@ Public Class NewMainMenuScreen
         Select Case _menuIndex
             Case 0
                 If _selectedProfile = 1 And Security.FileValidation.IsValid(False) = False Then
-                    _messageBox.Show(Localization.GetString("main_menu_error_filevalidation", "File validation failed!~Redownload the game's files to solve this problem."))
+                    _messageBox.Show(Localization.GetString("main_menu_error_filevalidation", "File validation failed!~Redownload the game's files to solve this problem.").Replace(CChar("~"), Environment.NewLine).Replace(CChar("*"), Environment.NewLine & Environment.NewLine))
                 Else
                     _MainProfiles(_selectedProfile).SelectProfile()
                 End If
@@ -813,7 +815,9 @@ Public Class NewMainMenuScreen
             SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Change to genderless", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48), fontColor)
         End If
         SpriteBatch.DrawInterface(_oldMenuTexture, New Rectangle(r.X, r.Y + 48 + 48, 32, 32), New Rectangle(208, 32 + y, 16, 16), Color.White)
-        If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _GameJoltButtonIndex = 3 Then
+
+        y = 0
+        If ScaleScreenRec(New Rectangle(r.X, r.Y + 48 + 48 + 48, 32, 32)).Contains(MouseHandler.MousePosition) = True And GameInstance.IsMouseVisible OrElse Not GameInstance.IsMouseVisible And _GameJoltButtonIndex = 4 Then
             y = 16
 
             SpriteBatch.DrawInterfaceString(FontManager.InGameFont, "Reset save", New Vector2(r.X + 64 + 4, r.Y + 4 + 48 + 48 + 48), fontColor)
@@ -1149,7 +1153,7 @@ Public Class NewMainMenuScreen
                 _gameModeExists = True
 
                 GameModeManager.SetGameModePointer(_gameMode)
-
+                PokemonForms.Initialize()
                 Dim pokemonData As String() = pokedata.SplitAtNewline()
                 For Each line As String In pokemonData
                     If line.StartsWith("{") Then

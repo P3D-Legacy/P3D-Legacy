@@ -883,6 +883,7 @@ Namespace GameJolt
                 "skin|" & GameJolt.Emblem.GetPlayerSpriteFile(1, Core.GameJoltSave.GameJoltID, Core.GameJoltSave.Gender) & Environment.NewLine &
                 "location|Your Room" & Environment.NewLine &
                 "battleAnimations|1" & Environment.NewLine &
+                "RunMode|1" & Environment.NewLine &
                 "BoxAmount|5" & Environment.NewLine &
                 "LastRestPlace|yourroom.dat" & Environment.NewLine &
                 "LastRestPlacePosition|1,0.1,3" & Environment.NewLine &
@@ -891,7 +892,7 @@ Namespace GameJolt
                 "LastSavePlace|yourroom.dat" & Environment.NewLine &
                 "LastSavePlacePosition|1,0.1,3" & Environment.NewLine &
                 "Difficulty|" & GameModeManager.GetGameRuleValue("Difficulty", "0") & Environment.NewLine &
-                "BattleStyle|0" & Environment.NewLine &
+                "BattleStyle|1" & Environment.NewLine &
                 "saveCreated|" & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & Environment.NewLine &
                 "LastPokemonPosition|999,999,999" & Environment.NewLine &
                 "DaycareSteps|0" & Environment.NewLine &

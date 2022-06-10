@@ -404,8 +404,8 @@ Tijdens de Intro & Outro:
 --
 battle_main_trainer_sent_out_1,zette~
 battle_main_trainer_sent_out_2,in om te vechten.
-battle_main_trainer_sent_out_3,gaat zometeen~
-battle_main_trainer_sent_out_4,inzetten om te vechten!~Wil je je Pokémon~verwisselen met een andere?
+battle_main_trainer_sent_out_3,staat op het punt om
+battle_main_trainer_sent_out_4,in te zetten om te vechten! Wil je je Pokémon verwisselen met een andere?
 battle_main_trainer_sent_out_5,Ja
 battle_main_trainer_sent_out_6,Nee
 battle_main_choose_pokemon,Kies Pokémon
@@ -502,7 +502,7 @@ Places_Pokemon Center,Pokémon-Centrum
 Places_Pokemon Mart,Pokémon-Winkel
 Places_Elms lab,Elm's Lab
 Places_Oak's lab,Oak's Lab
-Places_Azalea Town,Gym van Azalea-dorp
+Places_Azalea Town Gym,Gym van Azalea-dorp
 Places_Violet City Gym,Gym van Viooltjes-stad
 Places_Goldenrod City Gym,Gym van Guldenroede-stad
 Places_Ecruteak City Gym,Gym van Teakboom-stad
@@ -523,14 +523,14 @@ Places_Cinnabar Gym,Gym van Cinnaber-eiland
 Places_Viridian City Gym,Gym van Viridiaan-stad
 Places_Dance Theater,Danstheater
 Places_Lighthouse,Vuurtoren
-Places_Team Rocket HQ,Team Rocket's Hoofdkwartier
+Places_Team Rocket HQ,Team Rocket's Basis
 Places_Radio Tower,Radiotoren
 Places_Seaplane Port,Watervliegtuighaven
 
 Dungeons:
 Places_Ilex Forest,Ilexbos
 Places_Dark Cave,Donkere Grot
-Places_Ruins of Alph,Ruïnes van Alph
+Places_Ruins of Alph,Ruïnes van Alf
 Places_Slowpoke Well,Slowpoke Waterput
 Places_Sprout Tower,Kiemtoren
 Places_Union Cave,Uniegrot
@@ -546,13 +546,13 @@ Places_Whirl Islands,Draaikolkeilanden
 Places_Lake of Rage,Woedemeer
 Places_Underground,Ondergronds
 Places_Dragon's Den,Drakennest
-Places_Tohjo Falls, Watervallen van Tohjo
-Places_Victory Road,Victoriepad
+Places_Tohjo Falls,Watervallen van Tohjo
+Places_Victory Road,Overwinningsweg
 Places_Mt. Silver,Zilverberg
 Places_Diamond Dive,Diamantduik
 Places_Safari Zone,Safarigebied
-Places_Viridian Forest,Bos van Viridian
-Places_Cerulean Cave,Grot van Cerulean
+Places_Viridian Forest,Viridiaan-bos
+Places_Cerulean Cave,Hemelsblauw-grot
 Places_Power Plant,Energiecentrale
 Places_Rock Tunnel,Rotstunnel
 Places_Seafoam Islands,Zeeschuimeilanden
@@ -570,13 +570,13 @@ Places_Pattern Bush,Patroonstruik
 Places_Dotted Hole,Stippelgat
 Places_Tanoby Chambers,Tanoby-kamers
 Places_Tanoby Key,Tanoby-sleutel
-Places_Monean Chamber,Monean-Kamer
-Places_Liptoo Chamber,Liptoo-Kamer
-Places_Weepth Chamber,Weepth-Kamer
-Places_Dilford Chamber,Dilford-Kamer
-Places_Scrufib Chamber,Scrufib-Kamer
-Places_Rixy Chamber,Rixy-Kamer
-Places_Viapois Chamber,Viapois-Kamer
+Places_Monean Chamber,Monean-kamer
+Places_Liptoo Chamber,Liptoo-kamer
+Places_Weepth Chamber,Weepth-kamer
+Places_Dilford Chamber,Dilford-kamer
+Places_Scrufib Chamber,Scrufib-kamer
+Places_Rixy Chamber,Rixy-kamer
+Places_Viapois Chamber,Viapois-kamer
 Places_Ancient Ruins,Oude Ruïnes
 Places_Millenial Star Tower,Duizendjarige Sterrentoren
 Places_Kolben Tower,Kolbentoren

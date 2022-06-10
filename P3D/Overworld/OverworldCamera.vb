@@ -170,8 +170,10 @@ Public Class OverworldCamera
 
     Public Overrides Sub Update()
 
-        If KeyBoardHandler.KeyPressed(KeyBindings.DebugWalkKey) = True Then
-            _debugWalk = Not _debugWalk
+        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.DebugWalkKey) = True Then
+                _debugWalk = Not _debugWalk
+            End If
         End If
         If KeyBoardHandler.KeyPressed(KeyBindings.RunKey) = True Or ControllerHandler.ButtonPressed(Buttons.B) = True Then
             If Screen.Level.Riding = False And Screen.Level.Surfing = False And Core.Player.Inventory.HasRunningShoes = True Then
@@ -418,18 +420,16 @@ Public Class OverworldCamera
 #Region "CameraMethods"
 
     Private Sub SetSpeed()
-        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
-            Speed = 0.04F
-        Else
+        If CurrentScreen.Identification = Screen.Identifications.OverworldScreen AndAlso CType(CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
             If Screen.Level.Riding = True Then
                 Speed = 0.08F
-            Else
-                If Core.Player.IsRunning() = True Then
-                    Speed = 0.06F
+            ElseIf Screen.Level.Surfing = True Then
+                Speed = 0.04F
+            ElseIf Core.Player.IsRunning() = True Then
+                Speed = 0.06F
                 Else
                     Speed = 0.04F
                 End If
-            End If
         End If
         Screen.Level.OverworldPokemon.MoveSpeed = Speed
     End Sub
@@ -633,7 +633,7 @@ Public Class OverworldCamera
             isActionscriptReady = OS.ActionScript.IsReady
         End If
 
-        If isActionscriptReady = True And Screen.Level.CanMove() = True Then
+        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False And Screen.Level.CanMove() = True Then
             If _thirdPerson = False And _cameraFocusType = CameraFocusTypes.Player Then
                 FirstPersonMovement()
             Else
@@ -850,7 +850,7 @@ Public Class OverworldCamera
         End If
 
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            If _debugWalk = True Then
+            If _debugWalk = True AndAlso CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
                 cannotWalk = False
             End If
         End If

@@ -15,7 +15,7 @@
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <MonoGameContentBuilderExe>
     </MonoGameContentBuilderExe>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <ApplicationIcon>Pokemon3D.ico</ApplicationIcon>
@@ -11005,6 +11005,9 @@
     <Content Include="Content\GUI\MainMenu\lugiaParticle.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\GUI\Menus\InterfaceColors.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\GUI\PokemonMenu\Alcremie.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -13705,6 +13708,9 @@
     <Content Include="Content\Pokemon\Overworld\Normal\809.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\837.png" />
+    <Content Include="Content\Pokemon\Overworld\Normal\838.png" />
+    <Content Include="Content\Pokemon\Overworld\Normal\839.png" />
     <Content Include="Content\Pokemon\Overworld\Normal\880.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -13940,6 +13946,9 @@
     <Content Include="Content\Pokemon\Overworld\Shiny\809.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\837.png" />
+    <Content Include="Content\Pokemon\Overworld\Shiny\838.png" />
+    <Content Include="Content\Pokemon\Overworld\Shiny\839.png" />
     <Content Include="Content\Pokemon\Overworld\Shiny\880.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -13976,6 +13985,9 @@
     <Content Include="Content\Pokemon\Sprites\Arctozolt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Sprites\Carkol.png" />
+    <Content Include="Content\Pokemon\Sprites\Coalossal.png" />
+    <Content Include="Content\Pokemon\Sprites\Cutiefly.png" />
     <Content Include="Content\Pokemon\Sprites\Diglett_alola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -14048,6 +14060,8 @@
     <Content Include="Content\Pokemon\Sprites\Rattata_alola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pokemon\Sprites\Ribombee.png" />
+    <Content Include="Content\Pokemon\Sprites\Rolycoly.png" />
     <Content Include="Content\Pokemon\Sprites\Sandshrew_alola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -14079,6 +14093,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SkyDomeResource\Clouds_Weather.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SkyDomeResource\FogColors.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SkyDomeResource\Inside.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SkyDomeResource\LightingColors.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SkyDomeResource\Sky_Day.png">
@@ -14730,6 +14753,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Battle\Effects\MegaEvolution.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Cries\719.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Cries\720.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\Cries\720_unbound.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\Emote_Exclamation.wav">
@@ -15740,6 +15772,9 @@
     <Content Include="Content\Textures\NPC\Meowth.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\NPC\ModFalkner.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\NPC\N.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -15767,8 +15802,14 @@
     <Content Include="Content\Textures\TVs\BearAnimated.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\TVs\bird.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\TVs\blank.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TVs\code_editor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TVs\derp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -15786,6 +15827,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TVs\Flower.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TVs\JappaWakka_Map.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TVs\JappaWakka_Monitor_Animation.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TVs\JappaWakka_Monitor_BSOD.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TVs\JappaWakka_Shanibel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TVs\joker.png">
@@ -27404,9 +27457,6 @@
     <Content Include="Content\Textures\TVs\Pong.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TVs\PSwebCode.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Textures\TVs\Red.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -27425,10 +27475,10 @@
     <Content Include="Content\Textures\TVs\Silver.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TVs\webcode.png">
+    <Content Include="Content\Textures\TVs\website.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\TVs\website.png">
+    <Content Include="Content\Textures\TVs\website2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\TVs\webwork.png">
@@ -27600,6 +27650,7 @@
     <Compile Include="Dialogues\ImageView.vb" />
     <Compile Include="Overworld\NotificationPopup.vb" />
     <Compile Include="Overworld\RouteSign.vb" />
+    <Compile Include="Pokemon\Abilities\SteamEngine.vb" />
     <Compile Include="Pokemon\Abilities\Aerilate.vb" />
     <Compile Include="Pokemon\Abilities\PsychicSurge.vb" />
     <Compile Include="Pokemon\Abilities\MistySurge.vb" />
@@ -27675,6 +27726,7 @@
     <Compile Include="Pokemon\Attacks\Psychic\PsychicTerrain.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\Synchronoise.vb" />
     <Compile Include="Pokemon\Attacks\Psychic\Psystrike.vb" />
+    <Compile Include="Pokemon\Attacks\Rock\TarShot.vb" />
     <Compile Include="Pokemon\Attacks\Rock\DiamondStorm.vb" />
     <Compile Include="Pokemon\Attacks\Rock\Accelerock.vb" />
     <Compile Include="Pokemon\Attacks\Steel\SmartStrike.vb" />
@@ -27741,6 +27793,7 @@
     <Compile Include="Pokemon\Items\Standard\ChoiceScarf.vb" />
     <Compile Include="Pokemon\Items\Standard\ChoiceSpecs.vb" />
     <Compile Include="Pokemon\Items\Fossils\HelixFossil.vb" />
+    <Compile Include="Pokemon\Items\Standard\PeatBlock.vb" />
     <Compile Include="Pokemon\Items\Standard\PsychicSeed.vb" />
     <Compile Include="Pokemon\Items\Standard\MistySeed.vb" />
     <Compile Include="Pokemon\Items\Standard\GrassySeed.vb" />
@@ -27755,6 +27808,7 @@
     <Compile Include="Pokemon\Items\Standard\BurnDrive.vb" />
     <Compile Include="Pokemon\Items\Standard\ExpertBelt.vb" />
     <Compile Include="Pokemon\Items\Stones\IceStone.vb" />
+    <Compile Include="Pokemon\Items\Stones\BlackAurugite.vb" />
     <Compile Include="Resources\Blur\BlurHandler.vb" />
     <Content Include="Content\Data\Scripts\faraway\mewtwonite_y.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -27772,6 +27826,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Data\maps\battle\diamonddive\underwater.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\battle\diamonddive\exterior.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\battle\diamonddive\end.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Content\Data\maps\battle\goldenrod\club.dat">
@@ -27930,9 +27990,6 @@
     <Content Include="Content\Data\maps\diamonddive\interior\6.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Data\maps\diamonddive\interior\interior.dat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Data\maps\diamonddive\underwater\1.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -28047,12 +28104,69 @@
     <Content Include="Content\Data\maps\pewter\museum2.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Data\maps\poke\routes\route49.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\maps\poke\cinnabar\main.poke">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Content\Data\maps\poke\diamonddive\1f.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\exterior\1.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\interior\1.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\underwater\1.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\exterior\2.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\exterior\end.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\interior\2.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\interior\3.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\interior\4.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\interior\5.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\interior\6.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\interior\7.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\underwater\5.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\underwater\2.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\underwater\3.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\diamonddive\underwater\4.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\maps\poke\pallet\main.poke">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Content\Data\maps\poke\routes\route23.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\maps\poke\routes\route50.poke">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\maps\poke\routes\route28.poke">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -28243,6 +28357,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Content\Data\maps\structures\HealingMachine.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Content\Data\Scripts\diamonddive\diancie.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\diamonddive\dianciemap.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\diamonddive\warpin.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\diamonddive\warpout.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Content\Data\maps\structures\kolben\Monitor_Jappa.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Content\Data\Scripts\faraway\ancestoremblemcheck.dat">
@@ -28566,6 +28695,24 @@
     <Content Include="Content\Data\Scripts\league\badgecheck\7keeper.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Data\Scripts\kolben\falkner.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\kolben\jappa.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\kolben\jappa_clock.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\kolben\jappa_trash.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\kolben\jappa_map.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\kolben\jappa_shanibel.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\mtmortar\bf1map.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -28668,6 +28815,9 @@
     <Content Include="Content\Data\Scripts\startscript\rewardsdetailed.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Data\Scripts\startscript\pcreward.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\tohjofalls\jjm.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -28722,6 +28872,9 @@
     <None Include="Content\Data\Scripts\trainer\gymrematch\oak.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="Content\Data\Scripts\trainer\kolben\daniel.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\trainer\kolben\Segis.trainer">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -29232,6 +29385,54 @@
     <Content Include="Content\Data\Scripts\vermilion\seviidex.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Data\Scripts\trainer\route49\001.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route49\001.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route49\002.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route49\002.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route49\003.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route49\003.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\001.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\001.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\002.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\002.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\003.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\003.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\004.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\004.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\005.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Data\Scripts\trainer\route50\005.trainer">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Data\Scripts\violet\towertopmap.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -29268,6 +29469,11 @@
     <Content Include="Content\Pokemon\Data\887.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Content\Pokemon\Data\742.dat" />
+    <None Include="Content\Pokemon\Data\743.dat" />
+    <None Include="Content\Pokemon\Data\837.dat" />
+    <None Include="Content\Pokemon\Data\838.dat" />
+    <None Include="Content\Pokemon\Data\839.dat" />
     <None Include="LICENSE" />
     <None Include="meta">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

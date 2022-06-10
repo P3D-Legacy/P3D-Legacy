@@ -17,6 +17,7 @@
     Dim ShowModels As Integer = 1
     Dim Muted As Integer = 0
     Dim GamePadEnabled As Boolean = True
+    Dim RunMode As Boolean = True
     Dim PreferMultiSampling As Boolean = True
     Private _subMenu As Integer = 0
     Private _screenSize As Size = New Size(CInt(windowSize.Width), CInt(windowSize.Height))
@@ -114,6 +115,7 @@
             Me.TextSpeed = TextBox.TextSpeed
             Me.CameraSpeed = CInt(Camera.RotationSpeed * 10000)
             Me.Difficulty = Core.Player.DifficultyMode
+            Me.RunMode = Core.Player.RunMode
         End If
         Me.Music = CInt(MusicManager.MasterVolume * 100)
         Me.Sound = CInt(SoundManager.Volume * 100)
@@ -288,10 +290,10 @@
                 End If
             End If
 
-            Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 328, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 500, 48), c, True)
+            Canvas.DrawRectangle(New Rectangle(CInt(windowSize.Width / 2) - 328, CInt(Core.windowSize.Height / 2 - 128 + i * 50), 500, 48), c, False)
         Next
 
-        Canvas.DrawScrollBar(New Vector2(CInt(windowSize.Width / 2) + 188, CInt(Core.windowSize.Height / 2 - 128)), PackNames.Count, 4, packsMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), True)
+        Canvas.DrawScrollBar(New Vector2(CInt(windowSize.Width / 2) + 188, CInt(Core.windowSize.Height / 2 - 128)), PackNames.Count, 4, packsMenuIndex(2), New Size(4, 200), False, New Color(77, 147, 198, CInt(255 * _interfaceFade * _pageFade)), New Color(255, 255, 255, CInt(255 * _interfaceFade * _pageFade)), False)
 
         Dim x As Integer = PackNames.Count - 1
         x = CInt(MathHelper.Clamp(x, 0, 3))
@@ -400,10 +402,10 @@
         Dim s() As String = ContentPackManager.GetContentPackInfo(packName)
 
         If s.Length > 0 Then
-            PInfoVersion = s(0)
+            PInfoVersion = s(0).CropStringToWidth(FontManager.InGameFont, 540 - 16 - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_version")).X))
         End If
         If s.Length > 1 Then
-            PInfoAuthor = s(1)
+            PInfoAuthor = s(1).CropStringToWidth(FontManager.InGameFont, 540 - 16 - CInt(FontManager.InGameFont.MeasureString(Localization.GetString("option_screen_contentpacks_by")).X))
         End If
         If s.Length > 2 Then
             PInfoDescription = s(2).CropStringToWidth(FontManager.InGameFont, 540)
@@ -416,11 +418,10 @@
     Private PInfoVersion As String = ""
     Private PInfoAuthor As String = ""
     Private PInfoDescription As String = ""
-    Private PInfoContent As String = ""
 
     Private Sub DrawPackInformationMenu()
         If Not PInfoSplash Is Nothing Then
-            SpriteBatch.DrawInterface(PInfoSplash, windowSize, Color.White)
+            SpriteBatch.Draw(PInfoSplash, windowSize, Color.White)
         End If
 
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
@@ -504,6 +505,7 @@
             Core.GameOptions.SaveOptions()
             MusicManager.PlayNoMusic()
             ContentPackManager.Clear()
+            Water.WaterSpeed = 8
             For Each s As String In Core.GameOptions.ContentPackNames
                 ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
             Next
@@ -755,10 +757,25 @@
 
             Select Case direction
                 Case "up"
-                    If ScreenIndex = 0 And currentControl.ID > 7 Then
-                        If control.ID = 7 Then
-                            EligibleControls.Add(control)
-                        End If
+                    If ScreenIndex = 0 Then
+                        Select Case currentControl.ID
+                            Case 4
+                                If control.ID = 1 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 5
+                                If control.ID = 3 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 6, 7
+                                If control.ID = 4 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 8
+                                If control.ID = 5 Then
+                                    EligibleControls.Add(control)
+                                End If
+                        End Select
                     Else
                         If ScreenIndex = 7 Then
                             If currentControl.ID <= 4 Then
@@ -766,28 +783,49 @@
                                     EligibleControls.Add(control)
                                 End If
                             End If
-                        Else
-                            If Math.Abs(R2.X - R1.X) <= -(R2.Y - R1.Y) Then 'because Y axis points down 
+                        ElseIf ScreenIndex = 5 Then
+                            If currentControl.ID > 3 Then
+                                If control.ID = 3 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            ElseIf control.ID = currentControl.ID - 1 Then
                                 EligibleControls.Add(control)
                             End If
+                        ElseIf Math.Abs(R2.X - R1.X) <= -(R2.Y - R1.Y) Then 'because Y axis points down 
+                            EligibleControls.Add(control)
                         End If
                     End If
                 Case "down"
-                    If ScreenIndex = 0 And currentControl.ID > 3 And currentControl.ID < 7 Then
-                        If control.ID = 7 Then
-                            EligibleControls.Add(control)
+                    If ScreenIndex = 0 Then
+                        Select Case currentControl.ID
+                            Case 1, 2
+                                If control.ID = 4 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 3
+                                If control.ID = 5 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 4
+                                If control.ID = 6 Then
+                                    EligibleControls.Add(control)
+                                End If
+                            Case 5
+                                If control.ID = 8 Then
+                                    EligibleControls.Add(control)
+                                End If
+                        End Select
+                    ElseIf ScreenIndex = 5 Then
+                        If currentControl.ID < 4 Then
+                            If control.ID = currentControl.ID + 1 Then
+                                EligibleControls.Add(control)
+                            End If
                         End If
-                    Else
-                        If Math.Abs(R2.X - R1.X) <= -(R1.Y - R2.Y) Then 'because Y axis points down 
-                            EligibleControls.Add(control)
-                        End If
+                    ElseIf Math.Abs(R2.X - R1.X) <= -(R1.Y - R2.Y) Then 'because Y axis points down 
+                        EligibleControls.Add(control)
                     End If
                 Case "right"
-                    If ScreenIndex = 0 And currentControl.ID > 6 Then
-                        If Math.Abs(R2.Y - R1.Y) <= (R2.X - R1.X) And R2.Y >= R1.Y Then
-                            EligibleControls.Add(control)
-                        End If
-                    ElseIf ScreenIndex = 7 Then
+                    If ScreenIndex = 7 Then
                         If currentControl.ID = 5 And control.ID = 6 Then
                             EligibleControls.Add(control)
                         ElseIf currentControl.ID = 6 And control.ID = 4 Then
@@ -797,20 +835,14 @@
                         EligibleControls.Add(control)
                     End If
                 Case "left"
-                    If ScreenIndex = 0 And currentControl.ID > 6 Then
-                        If Math.Abs(R2.Y - R1.Y) <= (R1.X - R2.X) Then
+                    If ScreenIndex = 7 Then
+                        If currentControl.ID <= 4 And control.ID = 6 Then
+                            EligibleControls.Add(control)
+                        ElseIf currentControl.ID = 6 And control.ID = 5 Then
                             EligibleControls.Add(control)
                         End If
-                    Else
-                        If ScreenIndex = 7 Then
-                            If currentControl.ID <= 4 And control.ID = 6 Then
-                                EligibleControls.Add(control)
-                            ElseIf currentControl.ID = 6 And control.ID = 5 Then
-                                EligibleControls.Add(control)
-                            End If
-                        ElseIf control.ID = currentControl.ID - 1 Then
-                            EligibleControls.Add(control)
-                        End If
+                    ElseIf control.ID = currentControl.ID - 1 Then
+                        EligibleControls.Add(control)
                     End If
                 Case "next"
                     If ScreenIndex = 7 And currentControl.ID < 4 Then
@@ -928,8 +960,9 @@
                     d.Add(50, Localization.GetString("option_screen_controls_cameraspeed_fastest", "SPEED OF LIGHT!"))
                     Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 60), 400, Localization.GetString("option_screen_controls_cameraspeed", "Camera Speed"), Me.CameraSpeed, 1, 50, AddressOf ChangeCameraSpeed, d, 1))
                     Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 120), 5, 64, Localization.GetString("option_screen_controls_xboxgamepad", "Xbox Gamepad"), Me.GamePadEnabled, AddressOf ToggleXBOX360Controller, {"Disabled", "Enabled"}.ToList(), 2))
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 200), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 3))
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
+                    Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 5, 64, Localization.GetString("option_screen_controls_running", "Running"), Me.RunMode, AddressOf ToggleRunningToggle, {"Hold", "Toggle"}.ToList(), 3))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 100, Delta_Y + 280), 3, 64, Localization.GetString("option_screen_controls_resetkeybindings", "Reset Key Bindings"), AddressOf ResetKeyBindings, 4))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 5))
                 End If
 
             Case 5 ' "Audio" from the Options menu.
@@ -1029,6 +1062,7 @@
             TextBox.TextSpeed = Me.TextSpeed
             Camera.RotationSpeed = CSng(Me.CameraSpeed / 10000)
             Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
+            Core.Player.RunMode = Me.RunMode
             Me.PreScreen.Update()
         End If
         Core.Player.ShowBattleAnimations = Me.ShowBattleAnimations
@@ -1214,6 +1248,9 @@
 
     Private Sub ToggleXBOX360Controller(ByVal c As ToggleButton)
         Me.GamePadEnabled = Not Me.GamePadEnabled
+    End Sub
+    Private Sub ToggleRunningToggle(ByVal c As ToggleButton)
+        Me.RunMode = Not Me.RunMode
     End Sub
 
     Private Sub ChangeCameraSpeed(ByVal c As ScrollBar)
@@ -1729,7 +1766,7 @@
                     End If
                 Else
                     If Controls.Accept(False, True, True) Then
-                        If s._cursorDestPosition = Me.Position Then
+                        If s._cursorDestPosition.Y = Me.Position.Y Then
                             Selected = True
                             s._selectedScrollBar = True
                         End If

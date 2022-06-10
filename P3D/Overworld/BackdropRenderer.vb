@@ -23,7 +23,7 @@
         Dim tempRasterizer = GraphicsDevice.RasterizerState
 
         GraphicsDevice.RasterizerState = RasterizerState.CullNone
-        GraphicsDevice.SamplerStates(0) = New SamplerState() With {.AddressU = TextureAddressMode.Wrap, .AddressV = TextureAddressMode.Wrap}
+        GraphicsDevice.SamplerStates(0) = New SamplerState() With {.Filter = TextureFilter.Point, .AddressU = TextureAddressMode.Wrap, .AddressV = TextureAddressMode.Wrap}
 
         For Each b As Backdrop In Me._backdrops
             b.Draw({0, 1, 3, 2, 3, 0})
@@ -75,11 +75,12 @@
         Private _position As Vector3
         Private _rotation As Vector3
         Private _shader As Effect
-
         Private _width As Integer = 0
         Private _height As Integer = 0
 
-        Private _waterAnimationDelay As Single = 1.0F
+        Dim WaterAnimation As Animation
+
+        Private _waterAnimationDelay As Single = CSng(1 / Water.WaterSpeed)
         Private _waterAnimationIndex As Integer = 0
 
         Private _setTexture As Boolean = False
@@ -106,7 +107,8 @@
             Select Case BackdropType.ToLower()
                 Case "water"
                     Me._backdropType = BackdropTypes.Water
-                    _backdropTexture = TextureManager.GetTexture("Backdrops\Water", New Rectangle(0, 0, 64, 64))
+                    WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Backdrops\Water"), 1, 3, 64, 64, Water.WaterSpeed, 0, 0)
+                    _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", WaterAnimation.TextureRectangle, "")
                 Case "grass"
                     Me._backdropType = BackdropTypes.Grass
                 Case "texture"
@@ -121,16 +123,11 @@
 
             Select Case Me._backdropType
                 Case BackdropTypes.Water
-                    _waterAnimationDelay -= 0.1F
-                    If _waterAnimationDelay <= 0.0F Then
-                        _waterAnimationDelay = 1.0F
-
-                        _waterAnimationIndex += 1
-                        If _waterAnimationIndex = 3 Then
-                            _waterAnimationIndex = 0
+                    If Core.GameOptions.GraphicStyle = 1 Then
+                        If Not WaterAnimation Is Nothing Then
+                            WaterAnimation.Update(0.005)
+                            _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", WaterAnimation.TextureRectangle, "")
                         End If
-
-                        _backdropTexture = TextureManager.GetTexture("Backdrops\Water", New Rectangle(64 * _waterAnimationIndex, 0, 64, 64))
                     End If
                 Case BackdropTypes.Grass
                     If Me._setTexture = False Then

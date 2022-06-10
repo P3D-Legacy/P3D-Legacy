@@ -65,16 +65,10 @@
 
         Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
             Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
-            Dim FireballEntity = MoveAnimation.SpawnEntity(Nothing, TextureManager.GetTexture("Textures\Battle\Fire\FireBall"), New Vector3(0.5F), 1.0F)
+            Dim FireballEntity = MoveAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\Fire\FireBall"), New Vector3(0.5F), 1.0F)
 
             MoveAnimation.AnimationMove(FireballEntity, True, 2.0, 0.0, 0.0, 0.05, False, True, 0.0, 0.0,, -0.5)
-            MoveAnimation.AnimationPlaySound("Battle\Attacks\Fire\Ember_Start", 0, 0)
-            For i = 0 To 12
-                Dim SmokeEntity = MoveAnimation.SpawnEntity(New Vector3(CSng(i * 0.2), 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\Smoke"), New Vector3(0.2), 1, CSng(i * 0.2))
-                MoveAnimation.AnimationFade(SmokeEntity, True, 0.02, False, 0.0, CSng(i * 0.2), 0.0)
 
-                i += 1
-            Next
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
 
@@ -84,12 +78,6 @@
 
             MoveAnimation.AnimationMove(FireballEntity, True, -0.05, 0.0, 0.0, 0.05, False, True, 0.0, 1.0,, -0.5)
 
-            For i = 0 To 12
-                Dim SmokeEntity = MoveAnimation.SpawnEntity(New Vector3(CSng(-3.0 + i * 0.2), 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\Smoke"), New Vector3(0.2), 1, CSng(i * 0.2))
-                MoveAnimation.AnimationFade(SmokeEntity, True, 0.02, False, 0.0, CSng(i * 0.2), 0.0)
-
-                i += 1
-            Next
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Fire\Ember_Hit", 4, 0)
 
             Dim FireEntity1 As Entity = MoveAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\Fire\Ember", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 3, 0)
