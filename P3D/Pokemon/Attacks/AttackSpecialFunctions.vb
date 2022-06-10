@@ -51,7 +51,7 @@
                                     End If
                                 End If
                             End If
-                            BattleScreen.Battle.RaiseStat(Target, own, BattleScreen, Stat, RaiseAmount, Message, "move:" & Move.Name)
+                            BattleScreen.Battle.RaiseStat(Target, own, BattleScreen, Stat, RaiseAmount, Message, "move:" & Move.Name, True)
                         Case "lowerstat", "decreasestat"
                             Dim Stat As String = f.GetSplit(1, ",")
                             Dim Message As String = ""
@@ -68,7 +68,7 @@
                                     End If
                                 End If
                             End If
-                            BattleScreen.Battle.LowerStat(Target, own, BattleScreen, Stat, LowerAmount, Message, "move:" & Move.Name)
+                            BattleScreen.Battle.LowerStat(Target, own, BattleScreen, Stat, LowerAmount, Message, "move:" & Move.Name, True)
                         Case "reducehp", "drainhp", "damage"
                             Dim Target As Boolean = CBool(f.GetSplit(1, ","))
                             Dim HPAmount As Integer = 0
