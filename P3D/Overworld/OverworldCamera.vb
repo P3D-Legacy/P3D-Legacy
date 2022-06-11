@@ -25,7 +25,7 @@ Public Class OverworldCamera
 
     Private _scrollSpeed As Single = 0F
     Private _scrollDirection As Integer = 1
-    Private _moved As Single = 0F
+    Public _moved As Single = 0F
 
     Public LastStepPosition As Vector3 = New Vector3(0, -2, 0)
     Public YawLocked As Boolean = False

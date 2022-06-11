@@ -47,7 +47,11 @@
                 Case "skin"
                     Return Core.Player.Skin
                 Case "velocity"
-                    Return 0F
+                    Return CInt(CType(Screen.Camera, OverworldCamera)._moved)
+                Case "speed"
+                    Return Screen.Camera.Speed / 0.04F
+                Case "isrunning"
+                    Return ReturnBoolean(Core.Player.IsRunning)
                 Case "ismoving"
                     Return ReturnBoolean(Screen.Camera.IsMoving())
                 Case "facing"
