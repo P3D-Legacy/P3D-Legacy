@@ -351,11 +351,11 @@ Public Class Level
     Public Property DayTime As Integer
         Get
             Select Case Me._DayTime
-                Case World.DayTimes.Day
-                    Return 1
                 Case World.DayTimes.Night
-                    Return 2
+                    Return 1
                 Case World.DayTimes.Morning
+                    Return 2
+                Case World.DayTimes.Day
                     Return 3
                 Case World.DayTimes.Evening
                     Return 4
@@ -366,11 +366,11 @@ Public Class Level
         Set(value As Integer)
             Select Case value
                 Case 1
-                    Me._DayTime = World.DayTimes.Day
-                Case 2
                     Me._DayTime = World.DayTimes.Night
-                Case 3
+                Case 2
                     Me._DayTime = World.DayTimes.Morning
+                Case 3
+                    Me._DayTime = World.DayTimes.Day
                 Case 4
                     Me._DayTime = World.DayTimes.Evening
                 Case Else

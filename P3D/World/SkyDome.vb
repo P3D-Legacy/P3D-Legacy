@@ -143,11 +143,11 @@
             End If
             Select Case Screen.Level.DayTime
                 Case 1
-                    Return New Color(48, 200, 248)
-                Case 2
                     Return New Color(40, 88, 136)
-                Case 3
+                Case 2
                     Return New Color(168, 224, 248)
+                Case 3
+                    Return New Color(48, 200, 248)
                 Case 4
                     Return New Color(192, 152, 184)
             End Select
@@ -183,9 +183,9 @@
         If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.IsAurora = False Then
             Select Case Screen.Level.DayTime
                 Case 1
-                    Return 0.0F
-                Case 2
                     Return 1.0F
+                Case 2
+                    Return 0.0F
                 Case 3
                     Return 0.0F
                 Case 4
@@ -202,9 +202,9 @@
         If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.IsAurora = False Then
             Select Case Screen.Level.DayTime
                 Case 1
-                    Return 1.0F
-                Case 2
                     Return 0.0F
+                Case 2
+                    Return 1.0F
                 Case 3
                     Return 1.0F
                 Case 4
@@ -226,11 +226,11 @@
             Case World.Weathers.Clear
                 Select Case Screen.Level.DayTime
                     Case 1
-                        Return TextureManager.GetTexture("SkyDomeResource\Clouds_Day")
-                    Case 2
                         Return TextureManager.GetTexture("SkyDomeResource\Clouds_Night")
-                    Case 3
+                    Case 2
                         Return TextureManager.GetTexture("SkyDomeResource\Clouds_Morning")
+                    Case 3
+                        Return TextureManager.GetTexture("SkyDomeResource\Clouds_Day")
                     Case 4
                         Return TextureManager.GetTexture("SkyDomeResource\Clouds_Evening")
                 End Select
@@ -252,11 +252,11 @@
         End If
         Select Case Screen.Level.DayTime
             Case 1
-                Return TextureManager.GetTexture("SkyDomeResource\Sky_Day")
-            Case 2
                 Return TextureManager.GetTexture("SkyDomeResource\Sky_Night")
-            Case 3
+            Case 2
                 Return TextureManager.GetTexture("SkyDomeResource\Sky_Morning")
+            Case 3
+                Return TextureManager.GetTexture("SkyDomeResource\Sky_Day")
             Case 4
                 Return TextureManager.GetTexture("SkyDomeResource\Sky_Evening")
         End Select

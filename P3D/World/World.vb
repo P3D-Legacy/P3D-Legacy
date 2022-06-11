@@ -40,9 +40,9 @@ Public Class World
     End Enum
 
     Public Enum DayTimes As Integer
-        Day = 0
-        Night = 1
-        Morning = 2
+        Night = 0
+        Morning = 1
+        Day = 2
         Evening = 3
     End Enum
 
