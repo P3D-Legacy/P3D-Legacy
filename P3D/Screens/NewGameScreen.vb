@@ -79,7 +79,15 @@
             Me.Index = 0
             TextBox.reDelay = 0
             Dim skinTexture2D = TextureManager.GetTexture("Textures\NPC\" & skinFiles(SkinIndex))
-            Dim skinRectangle As New Rectangle(0, CInt(skinTexture2D.Height / 4 * 2), CInt(skinTexture2D.Width / 3), CInt(skinTexture2D.Height / 4))
+            Dim skinFrameSize As Size
+            If skinTexture2D.Width = skinTexture2D.Height / 2 Then
+                skinFrameSize = New Size(CInt(skinTexture2D.Width / 2), CInt(skinTexture2D.Height / 4))
+            ElseIf skinTexture2D.Width = skinTexture2D.Height Then
+                skinFrameSize = New Size(CInt(skinTexture2D.Width / 4), CInt(skinTexture2D.Height / 4))
+            Else
+                skinFrameSize = New Size(CInt(skinTexture2D.Width / 3), CInt(skinTexture2D.Height / 4))
+            End If
+            Dim skinRectangle As New Rectangle(0, CInt(skinFrameSize.Height * 2), CInt(skinFrameSize.Width), CInt(skinFrameSize.Height))
             skinTexture = TextureManager.GetTexture(skinTexture2D, skinRectangle)
 
             MusicManager.Play("nomusic")
@@ -312,8 +320,18 @@
         End Sub
 
         Private Sub UpdateTextbox()
-            Dim skinTexture2D As Texture2D = TextureManager.GetTexture("Textures\NPC\" & skinFiles(SkinIndex))
-            Core.SetScreen(New InputScreen(Core.CurrentScreen, skinNames(SkinIndex), InputScreen.InputModes.Name, skinNames(SkinIndex), 14, New List(Of Texture2D)({skinTexture2D}), AddressOf Me.ConfirmInput))
+            Dim skinTexture2D = TextureManager.GetTexture("Textures\NPC\" & skinFiles(SkinIndex))
+            Dim skinFrameSize As Size
+            If skinTexture2D.Width = skinTexture2D.Height / 2 Then
+                skinFrameSize = New Size(CInt(skinTexture2D.Width / 2), CInt(skinTexture2D.Height / 4))
+            ElseIf skinTexture2D.Width = skinTexture2D.Height Then
+                skinFrameSize = New Size(CInt(skinTexture2D.Width / 4), CInt(skinTexture2D.Height / 4))
+            Else
+                skinFrameSize = New Size(CInt(skinTexture2D.Width / 3), CInt(skinTexture2D.Height / 4))
+            End If
+            Dim skinRectangle As New Rectangle(0, CInt(skinFrameSize.Height * 2), CInt(skinFrameSize.Width), CInt(skinFrameSize.Height))
+            skinTexture = TextureManager.GetTexture(skinTexture2D, skinRectangle)
+            Core.SetScreen(New InputScreen(Core.CurrentScreen, skinNames(SkinIndex), InputScreen.InputModes.Name, skinNames(SkinIndex), 14, New List(Of Texture2D)({skinTexture}), AddressOf Me.ConfirmInput))
         End Sub
 
         Private Sub ConfirmInput(ByVal input As String)

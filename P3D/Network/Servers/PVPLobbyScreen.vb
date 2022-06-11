@@ -788,8 +788,16 @@
             Next
 
             If Not t Is Nothing And Not tempPlayer Is Nothing Then
+                Dim FrameSize As Vector2
+                If t.Width = t.Height / 2 Then
+                    FrameSize = New Vector2(CInt(t.Width / 2), CInt(t.Height / 4))
+                ElseIf t.Width = t.Height Then
+                    FrameSize = New Vector2(CInt(t.Width / 4), CInt(t.Height / 4))
+                Else
+                    FrameSize = New Vector2(CInt(t.Width / 3), CInt(t.Height / 4))
+                End If
                 Core.SpriteBatch.DrawString(FontManager.MainFont, tempPlayer.Name, New Vector2(Core.windowSize.Width - 260, 215), Color.Black, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.Draw(t, New Rectangle(CInt(Core.windowSize.Width - 340), 200, 64, 64), New Rectangle(0, 64, 32, 32), Color.White)
+                Core.SpriteBatch.Draw(t, New Rectangle(CInt(Core.windowSize.Width - 340), 200, 64, 64), New Rectangle(0, CInt(FrameSize.Y * 2), CInt(FrameSize.X), CInt(FrameSize.Y)), Color.White)
             End If
 
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 400), 264, 400, 32), New Color(6, 77, 139))

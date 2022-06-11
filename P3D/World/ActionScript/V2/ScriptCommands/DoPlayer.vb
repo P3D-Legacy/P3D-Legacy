@@ -25,9 +25,21 @@
                     Core.Player.HasPokegear = True
                     IsReady = True
                 Case "renamerival"
-                    Dim RivalTexture As String = GameModeManager.ActiveGameMode.ContentPath & "Textures\" & Core.Player.RivalSkin
+                    Dim RivalTexture2D As Texture2D = TextureManager.GetTexture(GameModeManager.ActiveGameMode.ContentPath & "Textures\NPC\" & Core.Player.RivalSkin)
+                    Dim RivalFrameSize As Size
+                    If RivalTexture2D.Width = RivalTexture2D.Height / 2 Then
+                        RivalFrameSize = New Size(CInt(RivalTexture2D.Width / 2), CInt(RivalTexture2D.Height / 4))
+                    ElseIf RivalTexture2D.Width = RivalTexture2D.Height Then
+                        RivalFrameSize = New Size(CInt(RivalTexture2D.Width / 4), CInt(RivalTexture2D.Height / 4))
+                    Else
+                        RivalFrameSize = New Size(CInt(RivalTexture2D.Width / 3), CInt(RivalTexture2D.Height / 4))
+                    End If
+                    Dim RivalRectangle As New Rectangle(0, CInt(RivalFrameSize.Height * 2), CInt(RivalFrameSize.Width), CInt(RivalFrameSize.Height))
+
+                    Dim RivalRenameSprite As Texture2D = TextureManager.GetTexture(RivalTexture2D, RivalRectangle)
+
                     Dim RivalName As String = Core.Player.RivalName
-                    Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, TextureManager.GetTexture(RivalTexture, New Rectangle(0, 64, 32, 32)), False, False, RivalName, "???", AddressOf Script.NameRival))
+                    Core.SetScreen(New NameObjectScreen(Core.CurrentScreen, RivalRenameSprite, False, False, RivalName, "???", AddressOf Script.NameRival))
                     IsReady = True
                     CanContinue = False
                 Case "setrivalskin"

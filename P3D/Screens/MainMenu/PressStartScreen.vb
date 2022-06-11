@@ -1334,7 +1334,15 @@ Public Class NewMainMenuScreen
 
             Else
                 If _loaded Then
-                    Dim frameSize As Size = New Size(CInt(_sprite.Width / 3), CInt(_sprite.Height / 4))
+                    Dim frameSize As Size
+                    If _sprite.Width = _sprite.Height / 2 Then
+                        frameSize = New Size(CInt(_sprite.Width / 2), CInt(_sprite.Height / 4))
+                    ElseIf _sprite.Width = _sprite.Height Then
+                        frameSize = New Size(CInt(_sprite.Width / 4), CInt(_sprite.Height / 4))
+                    Else
+                        frameSize = New Size(CInt(_sprite.Width / 3), CInt(_sprite.Height / 4))
+                    End If
+
                     If isSelected Then
                         _spriteDelay -= 0.1F
                         If _spriteDelay <= 0F Then

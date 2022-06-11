@@ -53,8 +53,14 @@
                 _charTexture = Screen.Level.OwnPlayer.Texture
             End If
         End If
-
-        Dim frameSize As Size = New Size(CInt(_charTexture.Width / 3), CInt(_charTexture.Height / 4))
+        Dim frameSize As Size
+        If _charTexture.Width = _charTexture.Height / 2 Then
+            frameSize = New Size(CInt(_charTexture.Width / 2), CInt(_charTexture.Height / 4))
+        ElseIf _charTexture.Width = _charTexture.Height Then
+            frameSize = New Size(CInt(_charTexture.Width / 4), CInt(_charTexture.Height / 4))
+        Else
+            frameSize = New Size(CInt(_charTexture.Width / 3), CInt(_charTexture.Height / 4))
+        End If
         _charTexture = TextureManager.GetTexture(_charTexture, New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height))
 
         _spriteBatch = New SpriteBatch(GraphicsDevice)

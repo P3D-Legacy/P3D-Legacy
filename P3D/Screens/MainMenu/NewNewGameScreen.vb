@@ -313,7 +313,14 @@
 
                 For i = 0 To _sprites.Count - 1
                     Dim sprite As Texture2D = _sprites(i)
-                    Dim frameSize As New Size(CInt(sprite.Width / 3), CInt(sprite.Height / 4))
+                    Dim frameSize As Size
+                    If sprite.Width = sprite.Height / 2 Then
+                        frameSize = New Size(CInt(sprite.Width / 2), CInt(sprite.Height / 4))
+                    ElseIf sprite.Width = sprite.Height Then
+                        frameSize = New Size(CInt(sprite.Width / 4), CInt(sprite.Height / 4))
+                    Else
+                        frameSize = New Size(CInt(sprite.Width / 3), CInt(sprite.Height / 4))
+                    End If
 
                     Dim outSize As Integer = 256 - Math.Abs(_index - i) * 30
 

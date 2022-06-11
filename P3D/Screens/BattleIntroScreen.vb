@@ -171,18 +171,34 @@
     Private Sub DrawTrainerIntro()
         Dim barPosition As Vector2 = New Vector2(Trainer.BarImagePosition.X * 128, Trainer.BarImagePosition.Y * 128)
         Dim VSPosition As Vector2 = New Vector2(Trainer.VSImagePosition.X * 128, Trainer.VSImagePosition.Y * 128 + 64)
-        Dim TrainerFrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Height / 4))
+        Dim TrainerTexture1 As Texture2D = TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName)
+        Dim TrainerTexture2 As Texture2D = Nothing
+        Dim Trainer1FrameSize As Size = Nothing
+        Dim Trainer2FrameSize As Size = Nothing
 
         If Trainer.VSImageOrigin <> "VSIntro" Then
             VSPosition.Y -= 64
         End If
-
+        If TrainerTexture1.Width = TrainerTexture1.Height / 2 Then
+            Trainer1FrameSize = New Size(CInt(TrainerTexture1.Width / 2), CInt(TrainerTexture1.Height / 4))
+        ElseIf TrainerTexture1.Width = TrainerTexture1.Height Then
+            Trainer1FrameSize = New Size(CInt(TrainerTexture1.Width / 4), CInt(TrainerTexture1.Height / 4))
+        Else
+            Trainer1FrameSize = New Size(CInt(TrainerTexture1.Width / 3), CInt(TrainerTexture1.Height / 4))
+        End If
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
         Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\" & Trainer.VSImageOrigin, New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), Trainer.VSImageSize.Width, Trainer.VSImageSize.Height), "")
-        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, TrainerFrameSize.Height * 2, TrainerFrameSize.Width, TrainerFrameSize.Height))
+        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, Trainer1FrameSize.Height * 2, Trainer1FrameSize.Width, Trainer1FrameSize.Height))
         Dim t4 As Texture2D = Nothing
         If Trainer.DoubleTrainer = True Then
-            Dim Trainer2FrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Height / 4))
+            TrainerTexture2 = TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2)
+            If TrainerTexture1.Width = TrainerTexture1.Height / 2 Then
+                Trainer2FrameSize = New Size(CInt(TrainerTexture2.Width / 2), CInt(TrainerTexture2.Height / 4))
+            ElseIf TrainerTexture1.Width = TrainerTexture1.Height Then
+                Trainer2FrameSize = New Size(CInt(TrainerTexture2.Width / 4), CInt(TrainerTexture2.Height / 4))
+            Else
+                Trainer2FrameSize = New Size(CInt(TrainerTexture2.Width / 3), CInt(TrainerTexture2.Height / 4))
+            End If
             t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, Trainer2FrameSize.Height * 2, Trainer2FrameSize.Width, Trainer2FrameSize.Height))
         End If
 
@@ -239,14 +255,32 @@
     Private Sub DrawFaceshotIntro()
         Dim barPosition As Vector2 = New Vector2(Trainer.BarImagePosition.X * 128, Trainer.BarImagePosition.Y * 128)
         Dim VSPosition As Vector2 = New Vector2(Trainer.VSImagePosition.X * 128, Trainer.VSImagePosition.Y * 128 + 64)
-        Dim TrainerFrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName).Height / 4))
+        Dim TrainerTexture1 As Texture2D = TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName)
+        Dim TrainerTexture2 As Texture2D = Nothing
+        Dim Trainer1FrameSize As Size = Nothing
+        Dim Trainer2FrameSize As Size = Nothing
+
+        If TrainerTexture1.Width = TrainerTexture1.Height / 2 Then
+            Trainer1FrameSize = New Size(CInt(TrainerTexture1.Width / 2), CInt(TrainerTexture1.Height / 4))
+        ElseIf TrainerTexture1.Width = TrainerTexture1.Height Then
+            Trainer1FrameSize = New Size(CInt(TrainerTexture1.Width / 4), CInt(TrainerTexture1.Height / 4))
+        Else
+            Trainer1FrameSize = New Size(CInt(TrainerTexture1.Width / 3), CInt(TrainerTexture1.Height / 4))
+        End If
 
         Dim t1 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(barPosition.X), CInt(barPosition.Y), 128, 64), "")
         Dim t2 As Texture2D = TextureManager.GetTexture("GUI\Intro\VSIntro", New Rectangle(CInt(VSPosition.X), CInt(VSPosition.Y), 61, 54), "")
-        Dim t3 As Texture2D = TextureManager.GetTexture("NPC\" & Trainer.SpriteName, New Rectangle(0, TrainerFrameSize.Height * 2, TrainerFrameSize.Width, TrainerFrameSize.Height))
+        Dim t3 As Texture2D = TextureManager.GetTexture(TrainerTexture1, New Rectangle(0, Trainer1FrameSize.Height * 2, Trainer1FrameSize.Width, Trainer1FrameSize.Height))
         Dim t4 As Texture2D = Nothing
         If Trainer.DoubleTrainer = True Then
-            Dim Trainer2FrameSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Width / 3), CInt(TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2).Height / 4))
+            TrainerTexture2 = TextureManager.GetTexture("Textures\NPC\" & Trainer.SpriteName2)
+            If TrainerTexture1.Width = TrainerTexture1.Height / 2 Then
+                Trainer2FrameSize = New Size(CInt(TrainerTexture2.Width / 2), CInt(TrainerTexture2.Height / 4))
+            ElseIf TrainerTexture1.Width = TrainerTexture1.Height Then
+                Trainer2FrameSize = New Size(CInt(TrainerTexture2.Width / 4), CInt(TrainerTexture2.Height / 4))
+            Else
+                Trainer2FrameSize = New Size(CInt(TrainerTexture2.Width / 3), CInt(TrainerTexture2.Height / 4))
+            End If
             t4 = TextureManager.GetTexture("NPC\" & Trainer.SpriteName2, New Rectangle(0, Trainer2FrameSize.Height * 2, Trainer2FrameSize.Width, Trainer2FrameSize.Height))
         End If
 
@@ -254,7 +288,14 @@
             If GameJolt.Emblem.HasDownloadedSprite(Trainer.GameJoltID) = True Then
                 Dim t As Texture2D = GameJolt.Emblem.GetOnlineSprite(Trainer.GameJoltID)
                 If Not t Is Nothing Then
-                    Dim spriteSize As New Vector2(CInt(t.Width / 3), CInt(t.Height / 4))
+                    Dim spriteSize As Vector2
+                    If t.Width = t.Height / 2 Then
+                        spriteSize = New Vector2(CInt(t.Width / 2), CInt(t.Height / 4))
+                    ElseIf t.Width = t.Height Then
+                        spriteSize = New Vector2(CInt(t.Width / 4), CInt(t.Height / 4))
+                    Else
+                        spriteSize = New Vector2(CInt(t.Width / 3), CInt(t.Height / 4))
+                    End If
                     t3 = TextureManager.GetTexture(t, New Rectangle(0, CInt(spriteSize.Y * 2), CInt(spriteSize.X), CInt(spriteSize.Y)))
                 End If
             End If
@@ -270,7 +311,7 @@
         Next
 
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, blackPosition), Color.Black)
-        Core.SpriteBatch.Draw(t3, New Rectangle(Core.windowSize.Width - trainerPosition, CInt(Core.windowSize.Height / 2) - 96, 256, 224), New Rectangle(0, 0, 32, 28), Color.White)
+        Core.SpriteBatch.Draw(t3, New Rectangle(CInt(Core.windowSize.Width - trainerPosition), CInt(Core.windowSize.Height / 2 - 96), 256, 224), New Rectangle(0, 0, t3.Width, CInt(t3.Height * 0.875)), Color.White)
         Core.SpriteBatch.Draw(t2, New Rectangle(trainerPosition - 61 * 4, CInt(Core.windowSize.Height / 2) - 96, 61 * 4, 54 * 4), Color.White)
         Canvas.DrawRectangle(New Rectangle(0, Core.windowSize.Height - blackPosition, Core.windowSize.Width, blackPosition), Color.Black)
 
