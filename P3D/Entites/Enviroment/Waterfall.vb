@@ -265,8 +265,10 @@
                 "@pokemon.cry(" & pNumber & ")" & Environment.NewLine &
                 "@sound.play(select)" & Environment.NewLine &
                 "@text.show(" & pName & " used~Waterfall.)" & Environment.NewLine &
+                "@player.setmovement(0,1,0)" & Environment.NewLine &
                 "@player.move(" & Steps & ")" & Environment.NewLine &
                 "@overworldpokemon.hide" & Environment.NewLine &
+                "@player.resetmovement" & Environment.NewLine &
                 "@player.move(2)" & Environment.NewLine &
                 "@overworldpokemon.hide" & Environment.NewLine &
                 ":end"
