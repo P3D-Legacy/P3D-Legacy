@@ -2,7 +2,7 @@
 
     Inherits Entity
 
-    Public Enum NotifcationTypes
+    Public Enum NotificationTypes
         Waiting = 0
         Exclamation = 1
         Shouting = 2
@@ -21,11 +21,11 @@
         Unsure = 15
     End Enum
 
-    Public NotificationType As NotifcationTypes = NotifcationTypes.Exclamation
+    Public NotificationType As NotificationTypes = NotificationTypes.Exclamation
     Dim setTexture As Boolean = False
     Dim delay As Single = 0.0F
 
-    Public Sub New(ByVal Position As Vector3, ByVal NotificationType As NotifcationTypes)
+    Public Sub New(ByVal Position As Vector3, ByVal NotificationType As NotificationTypes)
         MyBase.New(Position.X, Position.Y, Position.Z, "MessageBulb", {}, {0, 0}, False, 0, New Vector3(0.8F), BaseModel.BillModel, 0, "", New Vector3(1.0F))
 
         Me.NotificationType = NotificationType
@@ -52,37 +52,37 @@
 
             Dim r As New Rectangle(0, 0, 16, 16)
             Select Case Me.NotificationType
-                Case NotifcationTypes.Waiting
+                Case NotificationTypes.Waiting
                     r = New Rectangle(0, 0, 16, 16)
-                Case NotifcationTypes.Exclamation
+                Case NotificationTypes.Exclamation
                     r = New Rectangle(16, 0, 16, 16)
-                Case NotifcationTypes.Shouting
+                Case NotificationTypes.Shouting
                     r = New Rectangle(32, 0, 16, 16)
-                Case NotifcationTypes.Question
+                Case NotificationTypes.Question
                     r = New Rectangle(48, 0, 16, 16)
-                Case NotifcationTypes.Note
+                Case NotificationTypes.Note
                     r = New Rectangle(0, 16, 16, 16)
-                Case NotifcationTypes.Heart
+                Case NotificationTypes.Heart
                     r = New Rectangle(16, 16, 16, 16)
-                Case NotifcationTypes.Unhappy
+                Case NotificationTypes.Unhappy
                     r = New Rectangle(32, 16, 16, 16)
-                Case NotifcationTypes.Happy
+                Case NotificationTypes.Happy
                     r = New Rectangle(0, 32, 16, 16)
-                Case NotifcationTypes.Friendly
+                Case NotificationTypes.Friendly
                     r = New Rectangle(16, 32, 16, 16)
-                Case NotifcationTypes.Poisoned
+                Case NotificationTypes.Poisoned
                     r = New Rectangle(32, 32, 16, 16)
-                Case NotifcationTypes.Battle
+                Case NotificationTypes.Battle
                     r = New Rectangle(48, 16, 16, 16)
-                Case NotifcationTypes.Wink
+                Case NotificationTypes.Wink
                     r = New Rectangle(48, 32, 16, 16)
-                Case NotifcationTypes.AFK
+                Case NotificationTypes.AFK
                     r = New Rectangle(0, 48, 16, 16)
-                Case NotifcationTypes.Angry
+                Case NotificationTypes.Angry
                     r = New Rectangle(16, 48, 16, 16)
-                Case NotifcationTypes.CatFace
+                Case NotificationTypes.CatFace
                     r = New Rectangle(32, 48, 16, 16)
-                Case NotifcationTypes.Unsure
+                Case NotificationTypes.Unsure
                     r = New Rectangle(48, 48, 16, 16)
             End Select
 

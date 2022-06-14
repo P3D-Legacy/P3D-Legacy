@@ -25,12 +25,12 @@
                         Dim ID As Integer = int(Data(0))
                         Dim Position As New Vector3(sng(Data(1).Replace(".", GameController.DecSeparator)), sng(Data(2).Replace(".", GameController.DecSeparator)), sng(Data(3).Replace(".", GameController.DecSeparator)))
 
-                        Dim noType As MessageBulb.NotifcationTypes = MessageBulb.NotifcationTypes.Waiting
+                        Dim noType As MessageBulb.NotificationTypes = MessageBulb.NotificationTypes.Waiting
                         Select Case ID
                             Case 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
-                                noType = CType(ID, MessageBulb.NotifcationTypes)
+                                noType = CType(ID, MessageBulb.NotificationTypes)
                             Case Else
-                                noType = MessageBulb.NotifcationTypes.Exclamation
+                                noType = MessageBulb.NotificationTypes.Exclamation
                         End Select
 
                         Screen.Level.Entities.Add(New MessageBulb(Position, noType))

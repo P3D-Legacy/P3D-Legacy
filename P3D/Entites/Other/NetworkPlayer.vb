@@ -270,11 +270,11 @@
         Dim b As MessageBulb = Nothing
         Select Case BusyType
             Case "1"
-                b = New MessageBulb(New Vector3(Me.Position.X, Me.Position.Y + 1, Me.Position.Z), MessageBulb.NotifcationTypes.Battle)
+                b = New MessageBulb(New Vector3(Me.Position.X, Me.Position.Y + 1, Me.Position.Z), MessageBulb.NotificationTypes.Battle)
             Case "2"
-                b = New MessageBulb(New Vector3(Me.Position.X, Me.Position.Y + 1, Me.Position.Z), MessageBulb.NotifcationTypes.Waiting)
+                b = New MessageBulb(New Vector3(Me.Position.X, Me.Position.Y + 1, Me.Position.Z), MessageBulb.NotificationTypes.Waiting)
             Case "3"
-                b = New MessageBulb(New Vector3(Me.Position.X, Me.Position.Y + 1, Me.Position.Z), MessageBulb.NotifcationTypes.AFK)
+                b = New MessageBulb(New Vector3(Me.Position.X, Me.Position.Y + 1, Me.Position.Z), MessageBulb.NotificationTypes.AFK)
         End Select
         If Not b Is Nothing Then
             b.Visible = Me.Visible

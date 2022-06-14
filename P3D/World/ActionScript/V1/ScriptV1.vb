@@ -919,30 +919,30 @@
             Dim ID As Integer = CInt(Data(0))
             Dim Position As New Vector3(CSng(Data(1).Replace(".", GameController.DecSeparator)), CSng(Data(2).Replace(".", GameController.DecSeparator)), CSng(Data(3).Replace(".", GameController.DecSeparator)))
 
-            Dim noType As MessageBulb.NotifcationTypes = MessageBulb.NotifcationTypes.Waiting
+            Dim noType As MessageBulb.NotificationTypes = MessageBulb.NotificationTypes.Waiting
             Select Case ID
                 Case 0
-                    noType = MessageBulb.NotifcationTypes.Waiting
+                    noType = MessageBulb.NotificationTypes.Waiting
                 Case 1
-                    noType = MessageBulb.NotifcationTypes.Exclamation
+                    noType = MessageBulb.NotificationTypes.Exclamation
                 Case 2
-                    noType = MessageBulb.NotifcationTypes.Shouting
+                    noType = MessageBulb.NotificationTypes.Shouting
                 Case 3
-                    noType = MessageBulb.NotifcationTypes.Question
+                    noType = MessageBulb.NotificationTypes.Question
                 Case 4
-                    noType = MessageBulb.NotifcationTypes.Note
+                    noType = MessageBulb.NotificationTypes.Note
                 Case 5
-                    noType = MessageBulb.NotifcationTypes.Heart
+                    noType = MessageBulb.NotificationTypes.Heart
                 Case 6
-                    noType = MessageBulb.NotifcationTypes.Unhappy
+                    noType = MessageBulb.NotificationTypes.Unhappy
                 Case 7
-                    noType = MessageBulb.NotifcationTypes.Happy
+                    noType = MessageBulb.NotificationTypes.Happy
                 Case 8
-                    noType = MessageBulb.NotifcationTypes.Friendly
+                    noType = MessageBulb.NotificationTypes.Friendly
                 Case 9
-                    noType = MessageBulb.NotifcationTypes.Poisoned
+                    noType = MessageBulb.NotificationTypes.Poisoned
                 Case Else
-                    noType = MessageBulb.NotifcationTypes.Exclamation
+                    noType = MessageBulb.NotificationTypes.Exclamation
             End Select
 
             Screen.Level.Entities.Add(New MessageBulb(Position, noType))

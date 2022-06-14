@@ -126,7 +126,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("camera", "togglefix", "Sets the fix state of the camera to the opposite of the current state."))
             r(New ScriptCommand("camera", "update", "Updates the camera."))
             r(New ScriptCommand("camera", "setfocus", {New ScriptArgument("focusType", ScriptArgument.ArgumentTypes.Str, {"player", "npc", "entity"}),
-                                                   New ScriptArgument("focusID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Focuses the camera on an object. "))
+                                                   New ScriptArgument("focusID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Focuses the camera on an object."))
             r(New ScriptCommand("camera", "setfocustype", {New ScriptArgument("focusType", ScriptArgument.ArgumentTypes.Str, {"player", "npc", "entity"})}.ToList(), "Sets the focus type for the camera."))
             r(New ScriptCommand("camera", "setfocusid", {New ScriptArgument("focusID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the ID of the focus target for the camera."))
             r(New ScriptCommand("camera", "settoplayerfacing", "Sets the Yaw of the camera to accommodate the player's facing."))
@@ -152,6 +152,7 @@ Namespace ScriptVersion2
             ' Commands:
             r(New ScriptCommand("text", "show", {New ScriptArgument("text", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Displays a textbox with the given text."))
             r(New ScriptCommand("text", "setfont", {New ScriptArgument("font", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the font of the textbox. All fonts from loaded ContentPacks, GameModes and the standard game can be loaded."))
+            r(New ScriptCommand("text", "notification", {New ScriptArgument("message", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("delay", ScriptArgument.ArgumentTypes.Int, True, "500"), New ScriptArgument("backgroundindex", ScriptArgument.ArgumentTypes.Int, True, "0"), New ScriptArgument("iconindex", ScriptArgument.ArgumentTypes.Int, True, "0"), New ScriptArgument("soundeffect", ScriptArgument.ArgumentTypes.Str, True), New ScriptArgument("scriptfile", ScriptArgument.ArgumentTypes.Str, True)}.ToList(), "Displays a textbox with the given text."))
             r(New ScriptCommand("text", "debug", {New ScriptArgument("text", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Prints the ""text"" argument to the immediate window console."))
             r(New ScriptCommand("text", "log", {New ScriptArgument("text", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Logs the ""text"" argument into the log.dat file."))
         End Sub
@@ -227,11 +228,11 @@ Namespace ScriptVersion2
                                                           New ScriptArgument("x", ScriptArgument.ArgumentTypes.Sng),
                                                           New ScriptArgument("y", ScriptArgument.ArgumentTypes.Sng),
                                                           New ScriptArgument("z", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Warps the entity to a new location on the map."))
-            r(New ScriptCommand("entity", "scale", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("entity", "remove", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the entity from the map once it updates."))
+            r(New ScriptCommand("entity", "setscale", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
                                                           New ScriptArgument("xS", ScriptArgument.ArgumentTypes.Sng),
                                                           New ScriptArgument("yS", ScriptArgument.ArgumentTypes.Sng),
                                                           New ScriptArgument("zS", ScriptArgument.ArgumentTypes.Sng)}.ToList(), "Changes the Scale property of the selected entity."))
-            r(New ScriptCommand("entity", "remove", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Removes the entity from the map once it updates."))
             r(New ScriptCommand("entity", "setid", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("newID", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the entity ID of the selected entity to a new ID."))
             r(New ScriptCommand("entity", "setopacity", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
@@ -242,7 +243,7 @@ Namespace ScriptVersion2
                                                 New ScriptArgument("additionalValue", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Sets the AdditionalValue property of the selected entity."))
             r(New ScriptCommand("entity", "setcollision", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("collision", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Sets the Collision property of the selected entity."))
-            r(New ScriptCommand("entity", "settetxure", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
+            r(New ScriptCommand("entity", "settexture", {New ScriptArgument("entityID", ScriptArgument.ArgumentTypes.Int),
                                                 New ScriptArgument("textureIndex", ScriptArgument.ArgumentTypes.Str),
                                                 New ScriptArgument("textureName", ScriptArgument.ArgumentTypes.Str),
                                                 New ScriptArgument("rX", ScriptArgument.ArgumentTypes.Int),
@@ -268,7 +269,7 @@ Namespace ScriptVersion2
 
         Private Shared Sub DoPhone()
             ' Constructs:
-            r(New ScriptCommand("phone", "callflag", "str", "Returns, if the Pokégear is calling or getting called. Values: ""calling"", ""receiving""", ",", True))
+            r(New ScriptCommand("phone", "callflag", "str", "Returns if the Pokégear is calling or is being called. Values: ""calling"", ""receiving""", ",", True))
             r(New ScriptCommand("phone", "got", "bool", "Returns if the player got the Pokégear.", ",", True))
         End Sub
 
