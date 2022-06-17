@@ -184,7 +184,7 @@
 
 @player.setot(<system.random(0,65255)>)
 @player.addmoney(3000)
-
+@player.setrivalskin(4)
 
 @system.endnewgame(yourroom.dat,1,0.1,3,1)
 

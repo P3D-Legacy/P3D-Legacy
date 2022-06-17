@@ -25,7 +25,13 @@
                     Core.Player.HasPokegear = True
                     IsReady = True
                 Case "renamerival"
-                    Dim RivalTexture2D As Texture2D = TextureManager.GetTexture(GameModeManager.ActiveGameMode.ContentPath & "Textures\NPC\" & Core.Player.RivalSkin)
+                    If GameModeManager.ActiveGameMode.IsDefaultGamemode = True AndAlso Core.Player.RivalSkin <> "4" Then
+                        Core.Player.RivalSkin = "4"
+                    End If
+                    If Core.Player.RivalSkin = "" Then
+                        Core.Player.RivalSkin = "4"
+                    End If
+                    Dim RivalTexture2D As Texture2D = TextureManager.GetTexture("Textures\NPC\" & Core.Player.RivalSkin)
                     Dim RivalFrameSize As Size
                     If RivalTexture2D.Width = RivalTexture2D.Height / 2 Then
                         RivalFrameSize = New Size(CInt(RivalTexture2D.Width / 2), CInt(RivalTexture2D.Height / 4))

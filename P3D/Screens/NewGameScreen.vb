@@ -51,10 +51,6 @@
 
             BattleSystem.GameModeAttackLoader.Load()
 
-            If GameModeManager.ActiveGameMode.IsDefaultGamemode = False Then
-                'MusicManager.LoadMusic(True)
-                'SoundManager.LoadSounds(True)
-            End If
             SmashRock.Load()
             Badge.Load()
             Pokedex.Load()
@@ -397,7 +393,7 @@
             "MapFile|" & Me.startMap & Environment.NewLine &
             "Rotation|" & Me.startYaw.ToString() & Environment.NewLine &
             "RivalName|???" & Environment.NewLine &
-            "RivalSkin|Silver" & Environment.NewLine &
+            "RivalSkin|4" & Environment.NewLine &
             "Money|3000" & Environment.NewLine &
             "Badges|0" & Environment.NewLine &
             "Gender|Male" & Environment.NewLine &
@@ -411,6 +407,7 @@
             "skin|" & skinFiles(SkinIndex) & Environment.NewLine &
             "location|" & Me.startLocation & Environment.NewLine &
             "battleAnimations|1" & Environment.NewLine &
+            "RunMode|1" & Environment.NewLine &
             "BoxAmount|5" & Environment.NewLine &
             "LastRestPlace|" & startMap & Environment.NewLine &
             "LastRestPlacePosition|" & Me.startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
@@ -419,7 +416,7 @@
             "LastSavePlace|" & startMap & Environment.NewLine &
             "LastSavePlacePosition|" & Me.startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me.startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "Difficulty|" & GameModeManager.GetGameRuleValue("Difficulty", "0") & Environment.NewLine &
-            "BattleStyle|0" & Environment.NewLine &
+            "BattleStyle|1" & Environment.NewLine &
             "saveCreated|" & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & Environment.NewLine &
             "LastPokemonPosition|999,999,999" & Environment.NewLine &
             "DaycareSteps|0" & Environment.NewLine &
@@ -430,13 +427,14 @@
             "Surfing|0" & Environment.NewLine &
             "ShowModels|1" & Environment.NewLine &
             "GTSStars|4" & Environment.NewLine &
-            "SandBoxMode|0"
+            "SandBoxMode|0" & Environment.NewLine &
+            "EarnedAchievements|"
 
             Return s
         End Function
 
         Public Shared Function GetOptionsData() As String
-            Dim s As String = "FOV|50" & Environment.NewLine &
+            Dim s As String = "FOV|60" & Environment.NewLine &
             "TextSpeed|2" & Environment.NewLine &
             "MouseSpeed|12"
 

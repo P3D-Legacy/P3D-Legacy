@@ -17,7 +17,18 @@
             PreScreen = currentScreen
             CanBePaused = False
             UpdateFadeOut = True
+            For Each s As String In Core.GameOptions.ContentPackNames
+                ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
+            Next
+
             BattleSystem.GameModeAttackLoader.Load()
+
+            SmashRock.Load()
+            Badge.Load()
+            Pokedex.Load()
+            BattleSystem.BattleScreen.ResetVars()
+            LevelLoader.ClearTempStructures()
+            PokemonForms.Initialize()
 
             'Set up 3D environment variables (Effect, Camera, SkyDome and Level):
             Effect = New BasicEffect(GraphicsDevice)
@@ -119,6 +130,7 @@
         End Sub
 
         Public Shared Sub EndNewGame(ByVal map As String, ByVal x As Single, ByVal y As Single, ByVal z As Single, ByVal rot As Integer)
+
             Dim folderPath As String = Core.Player.Name.Replace("\", "_").Replace("/", "_").Replace(":", "_").Replace("*", "_").Replace("?", "_").Replace("""", "_").Replace("<", "_").Replace(">", "_").Replace("|", "_").Replace(",", "_").Replace(".", "_")
             Dim folderPrefix As Integer = 0
 
@@ -128,7 +140,7 @@
 
             Dim savePath As String = GameController.GamePath & "\Save\"
 
-            While IO.Directory.Exists(savePath & folderPath) = True
+            While System.IO.Directory.Exists(savePath & folderPath) = True
                 If folderPath <> Core.Player.Name Then
                     folderPath = folderPath.Remove(folderPath.Length - folderPrefix.ToString().Length, folderPrefix.ToString().Length)
                 End If
@@ -138,11 +150,11 @@
                 folderPrefix += 1
             End While
 
-            If IO.Directory.Exists(GameController.GamePath & "\Save") = False Then
-                IO.Directory.CreateDirectory(GameController.GamePath & "\Save")
+            If System.IO.Directory.Exists(GameController.GamePath & "\Save") = False Then
+                System.IO.Directory.CreateDirectory(GameController.GamePath & "\Save")
             End If
 
-            'IO.Directory.CreateDirectory(savePath & folderPath)
+            System.IO.Directory.CreateDirectory(savePath & folderPath)
 
             Core.Player.filePrefix = folderPath
             Core.Player.GameStart = Date.Now
@@ -158,7 +170,7 @@
             Core.Player.startRotation = CSng(MathHelper.Pi * (rot / 2))
 
             Core.Player.BerryData = CreateBerryData()
-            Core.Player.AddVisitedMap("yourroom.dat")
+            Core.Player.AddVisitedMap(map)
             Core.Player.SaveCreated = GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION
 
             Dim ot As String = Core.Random.Next(0, 999999).ToString()
@@ -166,8 +178,38 @@
                 ot = "0" & ot
             End While
             Core.Player.OT = ot
-        End Sub
 
+            System.IO.File.WriteAllText(savePath & folderPath & "\Player.dat", Core.Player.GetPlayerData(False))
+            System.IO.File.WriteAllText(savePath & folderPath & "\Pokedex.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\Items.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\Register.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\Berries.dat", Core.Player.BerryData)
+            System.IO.File.WriteAllText(savePath & folderPath & "\Apricorns.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\Daycare.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\Party.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\ItemData.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\Options.dat", CreateOptionsData())
+            System.IO.File.WriteAllText(savePath & folderPath & "\Box.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\NPC.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\HallOfFame.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\SecretBase.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\RoamingPokemon.dat", "")
+            System.IO.File.WriteAllText(savePath & folderPath & "\Statistics.dat", "")
+
+            Core.Player.IsGameJoltSave = False
+            Core.Player.LoadGame(folderPath)
+
+
+            'IO.Directory.CreateDirectory(savePath & folderPath)
+
+        End Sub
+        Public Shared Function CreateOptionsData() As String
+            Dim s As String = "FOV|" & Core.Player.startFOV & Environment.NewLine &
+            "TextSpeed|2" & Environment.NewLine &
+            "MouseSpeed|" & Core.Player.startRotationSpeed
+
+            Return s
+        End Function
         Private Shared Function CreateBerryData() As String
             Dim s As String = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
             "{route29.dat|14,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
