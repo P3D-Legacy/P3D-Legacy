@@ -154,7 +154,7 @@
                 System.IO.Directory.CreateDirectory(GameController.GamePath & "\Save")
             End If
 
-            System.IO.Directory.CreateDirectory(savePath & folderPath)
+            'System.IO.Directory.CreateDirectory(savePath & folderPath)
 
             Core.Player.filePrefix = folderPath
             Core.Player.GameStart = Date.Now
@@ -178,29 +178,6 @@
                 ot = "0" & ot
             End While
             Core.Player.OT = ot
-
-            System.IO.File.WriteAllText(savePath & folderPath & "\Player.dat", Core.Player.GetPlayerData(False))
-            System.IO.File.WriteAllText(savePath & folderPath & "\Pokedex.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\Items.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\Register.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\Berries.dat", Core.Player.BerryData)
-            System.IO.File.WriteAllText(savePath & folderPath & "\Apricorns.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\Daycare.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\Party.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\ItemData.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\Options.dat", CreateOptionsData())
-            System.IO.File.WriteAllText(savePath & folderPath & "\Box.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\NPC.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\HallOfFame.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\SecretBase.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\RoamingPokemon.dat", "")
-            System.IO.File.WriteAllText(savePath & folderPath & "\Statistics.dat", "")
-
-            Core.Player.IsGameJoltSave = False
-            Core.Player.LoadGame(folderPath)
-
-
-            'IO.Directory.CreateDirectory(savePath & folderPath)
 
         End Sub
         Public Shared Function CreateOptionsData() As String

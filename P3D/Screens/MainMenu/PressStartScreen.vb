@@ -1537,6 +1537,9 @@ Public Class GameModeSelectionScreen
 
             Dim displayText = _gameModes(i).Name.CropStringToWidth(FontManager.InGameFont, WIDTH - 32)
 
+            If displayText = "Kolben" Then
+                displayText = "Pokemon 3D"
+            End If
             For x = 0 To CInt(WIDTH / 16)
                 For y = 0 To CInt(HEIGHT / 16)
                     SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(x * 16 + (center - halfWidth)), CInt(y * 16 + ButtonY - 8), 16, 16), ButtonColor, Color.White)
@@ -1555,6 +1558,9 @@ Public Class GameModeSelectionScreen
             Dim GameMode As GameMode = GameModeManager.GetGameMode(_gameModes(_index).DirectoryName)
 
             Dim dispName As String = GameMode.Name
+            If dispName = "Kolben" Then
+                dispName = "Pokemon 3D"
+            End If
             Dim dispDescription As String = GameMode.Description
             Dim dispVersion As String = GameMode.Version
             Dim dispAuthor As String = GameMode.Author
