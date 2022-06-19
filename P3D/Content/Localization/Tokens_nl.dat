@@ -168,29 +168,29 @@ option_screen_graphics_renderdistance_description,The render distance determines
 option_screen_graphics_renderdistance_tiny,Heel dichtbij
 option_screen_graphics_renderdistance short,Dichtbij
 option_screen_graphics_renderdistance_normal,Normaal
-option_screen_graphics_renderdistance_far, Ver
+option_screen_graphics_renderdistance_far,Ver
 option_screen_graphics_renderdistance_extreme,Extreem ver
-option_screen_graphics_offset_mapquality,Offset-kaart kwaliteit
+option_screen_graphics_offset_mapquality,Offset-level kwaliteit
 option_screen_graphics_offset_mapquality_description,Sets the quality of the offset maps.~The details and update frequency of offset maps increase with this value.~Set this value to 0 to prevent the game from loading offset maps.
 option_screen_graphics_offset_mapquality_off,Uit
 option_screen_graphics_graphics,Beeldkwaliteit
 option_screen_graphics_graphics_description,Affects if some objects are rendered~or not. By turning this down, you can improve your FPS.~This settings is for all save states.
 option_screen_graphics_graphics_fancy,Hoog
 option_screen_graphics_graphics_fast,Laag
-option_screen_graphics_multisampling,Multi Sampling
+option_screen_graphics_multisampling,Multi-sampling
 
-option_screen_battle,Gevecht
+option_screen_battle,Gevechten
 option_screen_battle_3dmodels,3D Modellen
 option_screen_battle_animations,Animaties
 option_screen_battle_animations_description,Determines if the game shows battle animations.
-option_screen_battle_battlestyle,Gevechtstijl
+option_screen_battle_battlestyle,Vechtstijl
 option_screen_battle_battlestyle_shift,Wisselen
 option_screen_battle_battlestyle_set,Doorgaan
 option_screen_battle_style_description,Battle Style~Set: You are not asked to switch out your Pokémon~Shift: You can switch out your Pokémon after defeating an opponent.
 
 option_screen_controls,Besturing
 option_screen_controls_xboxgamepad,Xbox Gamepad
-option_screen_controls_resetkeybindings,Toetsen Herstellen
+option_screen_controls_resetkeybindings,Toetskoppelingen herstellen
 option_screen_controls_cameraspeed,Camerasnelheid
 option_screen_controls_cameraspeed_description,The camera speed sets the speed on which the~mouse can rotate the view.
 option_screen_controls_cameraspeed_slow,...Traag...
@@ -510,8 +510,8 @@ Places_Cianwood City Gym,Gym van Cyaanhout-stad
 Places_Olivine City Gym,Gym van Olijvenrank-stad
 Places_Mahogany City Gym,Gym van Mahonie-dorp
 Places_Blackthorn City Gym,Gym van Sleedoorn-stad
-Places_Your House,Jouw Huis
-Places_Your Room,Jouw Kamer
+Places_Your House,Jouw huis
+Places_Your Room,Jouw kamer
 Places_Daycare,Dagopvang
 Places_Pewter City Gym,Gym van Pewter-stad
 Places_Cerulean City Gym,Gym van Hemelsblauw-stad
@@ -546,13 +546,13 @@ Places_Whirl Islands,Draaikolkeilanden
 Places_Lake of Rage,Woedemeer
 Places_Underground,Ondergronds
 Places_Dragon's Den,Drakennest
-Places_Tohjo Falls, Watervallen van Tohjo
-Places_Victory Road,Victoriepad
+Places_Tohjo Falls,Watervallen van Tohjo
+Places_Victory Road,Overwinningsweg
 Places_Mt. Silver,Zilverberg
 Places_Diamond Dive,Diamantduik
 Places_Safari Zone,Safarigebied
-Places_Viridian Forest,Bos van Viridian
-Places_Cerulean Cave,Grot van Cerulean
+Places_Viridian Forest,Viridiaan-bos
+Places_Cerulean Cave,Hemelsblauw-grot
 Places_Power Plant,Energiecentrale
 Places_Rock Tunnel,Rotstunnel
 Places_Seafoam Islands,Zeeschuimeilanden
@@ -570,13 +570,13 @@ Places_Pattern Bush,Patroonstruik
 Places_Dotted Hole,Stippelgat
 Places_Tanoby Chambers,Tanoby-kamers
 Places_Tanoby Key,Tanoby-sleutel
-Places_Monean Chamber,Monean-Kamer
-Places_Liptoo Chamber,Liptoo-Kamer
-Places_Weepth Chamber,Weepth-Kamer
-Places_Dilford Chamber,Dilford-Kamer
-Places_Scrufib Chamber,Scrufib-Kamer
-Places_Rixy Chamber,Rixy-Kamer
-Places_Viapois Chamber,Viapois-Kamer
+Places_Monean Chamber,Monean-kamer
+Places_Liptoo Chamber,Liptoo-kamer
+Places_Weepth Chamber,Weepth-kamer
+Places_Dilford Chamber,Dilford-kamer
+Places_Scrufib Chamber,Scrufib-kamer
+Places_Rixy Chamber,Rixy-kamer
+Places_Viapois Chamber,Viapois-kamer
 Places_Ancient Ruins,Oude Ruïnes
 Places_Millenial Star Tower,Duizendjarige Sterrentoren
 Places_Kolben Tower,Kolbentoren

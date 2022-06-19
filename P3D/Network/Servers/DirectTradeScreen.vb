@@ -229,7 +229,7 @@
             Case ScreenStates.Idle
                 Me.UpdateIdle()
             Case ScreenStates.Stopped
-                If KeyBoardHandler.GetPressedKeys().Count > 0 Or ControllerHandler.HasControlerInput() = True Or Controls.Accept() = True Or Controls.Dismiss() = True Then
+                If KeyBoardHandler.GetPressedKeys().Count > 0 Or ControllerHandler.HasControllerInput() = True Or Controls.Accept() = True Or Controls.Dismiss() = True Then
                     SoundManager.PlaySound("select")
                     Core.SetScreen(Me.PreScreen)
                 End If

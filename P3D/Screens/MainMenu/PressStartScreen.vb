@@ -1282,14 +1282,14 @@ Public Class NewMainMenuScreen
                 Dim textB As String = ""
                 Select Case _OptionsMenuIndex
                     Case 0
-                        textA = Localization.Translate("main_menu_options_language", "Language")
+                        textA = Localization.Translate("option.language", "Language")
                     Case 1
-                        textA = Localization.Translate("main_menu_options_audio", "Audio")
+                        textA = Localization.Translate("option.audio.title", "Audio")
                     Case 2
-                        textA = Localization.Translate("main_menu_options_controls", "Controls")
+                        textA = Localization.Translate("option.controls.title", "Controls")
                     Case 3
-                        textA = Localization.Translate("main_menu_options_contentpacks_line1", "Content")
-                        textB = Localization.Translate("main_menu_options_contentpacks_line2", "Packs")
+                        textA = Localization.Translate("option.contentpacks.title1", "Content")
+                        textB = Localization.Translate("option.contentpacks.title2", "Packs")
                 End Select
 
                 If _OptionsMenuIndex <> 3 Then
