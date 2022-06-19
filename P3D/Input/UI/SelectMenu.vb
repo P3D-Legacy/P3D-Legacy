@@ -61,12 +61,13 @@
                         Index = 0
                     End If
                 End If
+                Dim PlaySelectSound As Boolean = False
                 If CurrentScreen.MouseVisible = True Then
                     For i = Scroll To Me.Scroll + 8
                         If i <= Me.Items.Count - 1 Then
                             If Controls.Accept(True, False, False) = True And i = Me.Index And New Rectangle(Core.windowSize.Width - 270, 72 * ((i + 1) - Scroll), 256, 64).Contains(MouseHandler.MousePosition) = True Or
                             Controls.Accept(False, True, True) = True And i = Me.Index Or Controls.Dismiss(True, True, True) = True And Me.BackIndex = Me.Index Then
-                                SoundManager.PlaySound("select")
+                                PlaySelectSound = True
                                 If Not ClickHandler Is Nothing Then
                                     ClickHandler(Me)
                                 End If
@@ -74,7 +75,7 @@
                             End If
                             If Controls.Dismiss(True, True, True) = True Then
                                 Me.Index = Me.BackIndex
-                                SoundManager.PlaySound("select")
+                                PlaySelectSound = True
                                 If Not ClickHandler Is Nothing Then
                                     ClickHandler(Me)
                                 End If
@@ -88,7 +89,7 @@
                 Else
                     For i = Scroll To Me.Scroll + 8
                         If Controls.Accept(True, True, True) = True And i = Me.Index Then
-                            SoundManager.PlaySound("select")
+                            PlaySelectSound = True
                             If Not ClickHandler Is Nothing Then
                                 ClickHandler(Me)
                             End If
@@ -96,13 +97,17 @@
                         End If
                         If Controls.Dismiss(True, True, True) = True Then
                             Me.Index = Me.BackIndex
-                            SoundManager.PlaySound("select")
+                            PlaySelectSound = True
                             If Not ClickHandler Is Nothing Then
                                 ClickHandler(Me)
                             End If
                             Me.Visible = False
                         End If
                     Next
+                End If
+                If PlaySelectSound = True Then
+                    SoundManager.PlaySound("select")
+                    PlaySelectSound = False
                 End If
             End If
             If Index - Scroll > 8 Then
