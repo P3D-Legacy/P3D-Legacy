@@ -567,7 +567,7 @@
 			"confirmation": "Do you really want to quit? Unsaved progress will be lost."
 		},
 		"characterselectionscreen": {
-			"select_apperance": "Select your appearance"
+			"select_appearance": "Select your appearance"
 		},
 		"menu_bag": {
 			"title": "Bag"
