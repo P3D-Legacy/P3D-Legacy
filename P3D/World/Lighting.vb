@@ -101,21 +101,22 @@ Public Class Lighting
             ' Anything higher than 3 = No Lighting
 
             Select Case GetLightingType()
-                Case 0 ' Day
-                    refEffect.AmbientLightColor = GetEnvironmentColor(1)
 
-                    refEffect.DirectionalLight0.DiffuseColor = GetEnvironmentColor(0)
-                    refEffect.DirectionalLight0.Direction = Vector3.Normalize(New Vector3(-1.0F, 0.0F, 1.0F))
-                    refEffect.DirectionalLight0.SpecularColor = New Vector3(0.0F)
-                    refEffect.DirectionalLight0.Enabled = True
-                Case 1 ' Night
+                Case 0 ' Night
                     refEffect.AmbientLightColor = GetEnvironmentColor(1)
 
                     refEffect.DirectionalLight0.DiffuseColor = GetEnvironmentColor(0)
                     refEffect.DirectionalLight0.Direction = Vector3.Normalize(New Vector3(1.0F, 1.0F, -1.0F))
                     refEffect.DirectionalLight0.SpecularColor = New Vector3(0.0F)
                     refEffect.DirectionalLight0.Enabled = True
-                Case 2 ' Morning
+                Case 1 ' Morning
+                    refEffect.AmbientLightColor = GetEnvironmentColor(1)
+
+                    refEffect.DirectionalLight0.DiffuseColor = GetEnvironmentColor(0)
+                    refEffect.DirectionalLight0.Direction = Vector3.Normalize(New Vector3(-1.0F, 0.0F, 1.0F))
+                    refEffect.DirectionalLight0.SpecularColor = New Vector3(0.0F)
+                    refEffect.DirectionalLight0.Enabled = True
+                Case 2 ' Day
                     refEffect.AmbientLightColor = GetEnvironmentColor(1)
 
                     refEffect.DirectionalLight0.DiffuseColor = GetEnvironmentColor(0)
@@ -144,9 +145,9 @@ Public Class Lighting
         ' Level's lighttype values:
         ' 0 = Get lighting from the current time of day.
         ' 1 = Disable lighting
-        ' 2 = Always Day
-        ' 3 = Always Night
-        ' 4 = Always Morning
+        ' 2 = Always Night
+        ' 3 = Always Morning
+        ' 4 = Always Day
         ' 5 = Always Evening
 
         If Screen.Level.LightingType = 1 Then ' If the level lighting type is 1, disable lighting (set index to 99).
