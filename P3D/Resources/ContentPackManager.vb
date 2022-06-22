@@ -136,7 +136,7 @@ Public Class TextureSource
     End Function
 
     Public Function IsEqual(ByVal TextureSource As TextureSource) As Boolean
-        If Me.TexturePath = TextureSource.TexturePath And Me.TextureRectangle = TextureSource.TextureRectangle Then
+        If Me.TexturePath.ToLower() = TextureSource.TexturePath.ToLower() And Me.TextureRectangle = TextureSource.TextureRectangle Then
             Return True
         End If
 

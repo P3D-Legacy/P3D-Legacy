@@ -1189,7 +1189,7 @@ Public Class StorageSystemScreen
                             c = New Color(65, 65, 65, 255)
                         End If
                         Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
-                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100 - CInt(pokeTexture.Width - 32), 200 + y * 84, pokeTexture.Width * 2, 64), c)
+                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100 - CInt(pokeTexture.Width - 32), 200 + y * 84, pokeTexture.Width * 2, pokeTexture.Height * 2), c)
                     End If
                 Next
             Else

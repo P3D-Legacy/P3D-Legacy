@@ -470,14 +470,14 @@
 
     Private Sub PackEnabledToggle(ByVal c As ToggleButton)
         If PackNames.Count > 0 Then
-            If EnabledPackNames.Contains(PackNames(packsMenuIndex(0) + packsMenuIndex(2))) Then
+            If EnabledPackNames.Contains(PackNames(packsMenuIndex(0))) Then
                 isSelectedEnabled = False
                 c.Toggled = False
-                ButtonToggle(PackNames(packsMenuIndex(0) + packsMenuIndex(2)))
+                ButtonToggle(PackNames(packsMenuIndex(0)))
             Else
                 isSelectedEnabled = True
                 c.Toggled = True
-                ButtonToggle(PackNames(packsMenuIndex(0) + packsMenuIndex(2)))
+                ButtonToggle(PackNames(packsMenuIndex(0)))
             End If
         Else
             isSelectedEnabled = False
