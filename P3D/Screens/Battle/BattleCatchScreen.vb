@@ -166,7 +166,7 @@ nextIndex:
                                 Dim CatchAnimation = New BattleSystem.AnimationQueryObject(Nothing, False, Nothing)
                                 CatchAnimation.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
 
-                                Dim BallPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 3, 0.15F, BattleScreen.OppPokemonNPC.Position.Z)
+                                Dim BallPosition As Vector3 = New Vector3(BattleScreen.OppPokemonNPC.Position.X - 3, BattleScreen.OppPokemonNPC.Position.Y + 0.15F, BattleScreen.OppPokemonNPC.Position.Z)
                                 Dim BallEntity As Entity = CatchAnimation.SpawnEntity(BallPosition, Ball.Texture, New Vector3(0.3F), 1.0F, 0, 0)
 
                                 CatchAnimation.AnimationMove(BallEntity, False, 3, 0.1F, 0, 0.075, False, False, 0F, 0F,,,, 0.025)
