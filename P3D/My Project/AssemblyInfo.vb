@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyProduct("Pokémon3D")> 
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("Kolben Games")>
-<Assembly: AssemblyCopyright("Copyright © Kolben 2012-2020")>
+<Assembly: AssemblyCopyright("Copyright © Kolben 2012-2022")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: AssemblyCulture("")>
 
@@ -31,4 +31,4 @@ Imports System.Runtime.InteropServices
 '      Build Number
 '      Revision
 '
-<Assembly: AssemblyVersion("0.58.1")>
+<Assembly: AssemblyVersion("0.59")>

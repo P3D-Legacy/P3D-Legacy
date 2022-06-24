@@ -6,8 +6,8 @@
         Shared _valid As Boolean = False
 
         Const RUNVALIDATION As Boolean = False
-        Const EXPECTEDSIZE As Integer = 48238526
-        Const METAHASH As String = "NzlEQkNFOEJCQzdCMkU1MDIzMkRBNzYxODcwNEUwQUM="
+        Const EXPECTEDSIZE As Integer = 51241078
+        Const METAHASH As String = "NDY5NUMwMERGMDAxNjVGMDhCRUZCRTlDREE3NzYzQjE="
 
         Public Shared ReadOnly Property IsValid(ByVal ForceResult As Boolean) As Boolean
             Get

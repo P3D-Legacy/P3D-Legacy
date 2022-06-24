@@ -5,7 +5,7 @@ Pokémon 3D is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc.
 Pokémon 3D
 
 	Created by Kolben Games 
-	2012-2020
+	2012-2022
 
 	Team Kolben
 		Nils Drescher
@@ -19,14 +19,16 @@ Pokémon 3D
 
 	Director
 		Nils Drescher
+		Benjamin Smith
 
-	Open Source Development Team
+	Pokémon 3D Team
 		Benjamin Smith 
 		"Aragas"
 		"Fanta" 
 		Jorge Luis Espinoza
 		Conner Joseph Brewster
 		"TheOmegaGhost"
+		Daniel S. Billing
 
 	Programming
 		Nils Drescher
@@ -49,6 +51,7 @@ Pokémon 3D
 		Grant Garrett
 		"Anvil555"
 		"TheOmegaGhost"
+		Jasper Speelman
 		"AgentPaperCraft"
 		"princess-phoenix"
 		"SageDeoxys"
@@ -85,7 +88,8 @@ Pokémon 3D
 		Andrew Leach
 		Jason Houston
 		Yong Jian Ming
-		"Aragas"
+		Conner Joseph Brewster
+		Jasper Speelman
 
 	Script System Development
 		Nils Drescher
@@ -93,20 +97,6 @@ Pokémon 3D
 		Hunter Graves
 		Yong Jian Ming
 		"Aragas"
-
-	KolbenWindowWidget Development & LUA Implementation
-		Jason Houston
-
-	Launcher Programming
-		Nils Drescher
-		Daniel S. Billing
-		"ThuxCommix"
-		"Aragas"
-
-	Pokéditor Programming
-		Nils Drescher 
-		Jason Houston 
-		Hunter Graves
 
 	Server Application Programming
 		Nils Drescher
@@ -119,7 +109,7 @@ Pokémon 3D
 		David DeCarmine
 		Nils Drescher
 
-	Debug Testing
+	QA Testing
 		Jan Mika Eine 
 		Tim Drescher
 		Daniel Steinborn
@@ -133,6 +123,13 @@ Pokémon 3D
 		Conner Joseph Brewster
 		"Fanta"
 		"Sanio"
+		Tim ten Brink
+		"iErws[GR]"
+		"Runaryu/agravedigger"
+		"AlexCorruptor"
+		"HantomPro"
+		"Lexichu_"
+		"Vanilla"
 
 	Special Thanks
 		"MunchingOrange"

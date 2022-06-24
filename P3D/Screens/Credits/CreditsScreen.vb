@@ -2,7 +2,7 @@ Public Class CreditsScreen
 
     Inherits Screen
 
-    Private Const COPYRIGHTYEAR As String = "2020"
+    Private Const COPYRIGHTYEAR As String = "2022"
 
     Dim CreditsPages As New List(Of CreditsPage)
     Dim CurrentPageIndex As Integer = 0
@@ -49,6 +49,7 @@ Public Class CreditsScreen
     End Sub
 
     ' The text that shows during the credits:
+    ' Shouldn't be more than 23 pages total and no more than 13 people per page
     Private Sub InitializeCreditsPages(ByVal ending As String)
         CreditsPages.Add(New CreditsPage("Pokémon3D Staff", Color.White, Color.Black))
         CreditsPages.Add(New CreditsPage("Pokémon", Color.White, Color.Black, {"made by", "Nintendo", "Game Freak", "The Pokémon Company"}.ToList()))
@@ -57,23 +58,23 @@ Public Class CreditsScreen
         Else
             CreditsPages.Add(New CreditsPage("Pokémon 3D", Color.White, Color.Black, {"Trademark (TM) 2012 - " & COPYRIGHTYEAR, "made by Kolben Games", "", "GameMode made by", GameModeManager.ActiveGameMode.Author}.ToList()))
         End If
-        CreditsPages.Add(New CreditsPage("Team Kolben", Color.White, Color.Black, {"Nils Drescher", "Andrew Leach", "Marc Boisvert-Dupras", "Grant Garrett", "Jason Houston", "Daniel S. Billing", "Benjamin Smith", "Hunter Graves"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Director", Color.White, Color.Black, {"Nils Drescher"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Open Source Development Team", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", """oXFantaXo""", "Jorge Luis Espinoza", "Conner Joseph Brewster", """The Omega Ghost"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "William Lang", "Benjamin Smith", "Yong Jian Ming", "Jorge Luis Espinoza", """Aragas""", "Jasper Speelman"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", """Godeken""", "Caleb Coleman", "Robert Nobbmann", "Manuel Lampe", "Miguel Nunez", "Grant Garrett", """Anvil555""", """The Omega Ghost""", """princess-phoenix""", """AgentPaperCraft"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine", "Jason Houston", """oXFantaXo"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Andrew Leach", "Jason Houston", "Yong Jian Ming", """Aragas"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Nils Drescher", "Benjamin Smith", "Hunter Graves", "Yong Jian Ming", """Aragas"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("KolbenWindowWidget Development & LUA Implementation", Color.White, Color.Black, {"Jason Houston"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Launcher Programming", Color.White, Color.Black, {"Nils Drescher", "Daniel S. Billing", """ThuxCommix""", """Aragas"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Pokéditor Programming", Color.White, Color.Black, {"Nils Drescher", "Jason Houston", "Hunter Graves"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Website Host/Server Maintenance", Color.White, Color.Black, {"Daniel S. Billing", "Daniel Laube"}.ToList()))
-        CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", "Nils Drescher"}.ToList()))
-        CreditsPages.Add(New CreditsPage("Debug Testing", Color.White, Color.Black, {"Jan Mika Eine", "Tim Drescher", "Daniel Steinborn", "Andrew Leach", "Marc Boisvert-Dupras", "Matt Chambers", "Hunter Graves", "Benjamin Smith", "William Hunn", "Torben Carrington", """oXFantaXo""", "Conner Joseph Brewster", """Sanio"""}.ToList()))
-        CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"""MunchingOrange""", """TheFlamingSpade""", """SlyFoxHound""", """ArsenioDev""", """TrUShade""", """Isaaking6"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("Pokémon 3D Team", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", """Fanta""", "Jorge Luis Espinoza", "Conner Joseph Brewster", """The Omega Ghost""", "Daniel S. Billing"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Director", Color.White, Color.Black, {"Benjamin Smith"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Initial Development", Color.White, Color.Black, {"""nilllzz""", "Jason Houston", "Daniel S. Billing", "Benjamin Smith", "Hunter Graves"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Programming", Color.White, Color.Black, {"Benjamin Smith", "Jorge Luis Espinoza", """Aragas""", "Jasper Speelman"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Graphic Design", Color.White, Color.Black, {"Benjamin Smith", """The Omega Ghost""", "Jasper Speelman", """Godeken""", "Caleb Coleman", "Miguel Nunez", "Grant Garrett", """Anvil555""", """princess-phoenix""", """AgentPaperCraft"""}.ToList())) '10
+        CreditsPages.Add(New CreditsPage("Map Design", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Actionscript", Color.White, Color.Black, {"Benjamin Smith", """Fanta""", "Conner Joseph Brewster", "Jasper Speelman"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Script System Development", Color.White, Color.Black, {"Benjamin Smith", """Aragas""", "Yong Jian Ming"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Website Host/Server Development", Color.White, Color.Black, {"Daniel S. Billing", """Aragas""", """iErws[GR]"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("GameJolt Service/API Programming", Color.White, Color.Black, {"David DeCarmine", """nilllzz"""}.ToList()))
+        CreditsPages.Add(New CreditsPage("Community Staff", Color.White, Color.Black, {"Conner Joseph Brewster", "Benjamin Smith", "Daniel S. Billing", """Fanta""", """MamaLeef""", "Tim ten Brink"}.ToList()))
+        CreditsPages.Add(New CreditsPage("0.59 QA Team", Color.White, Color.Black, {"Tim ten Brink", """iErws[GR]""", """Runaryu/agravedigger""", """AlexCorruptor""", """HantomPro""", """Lexichu_"""}.ToList())) '6
+        CreditsPages.Add(New CreditsPage("Past QA Team", Color.White, Color.Black, {"Tim Drescher", "Daniel Steinborn", "Marc Boisvert-Dupras", "Matt Chambers", "William Hunn", "Torben Carrington", """Sanio""", """Vanilla"""}.ToList())) '8
+        CreditsPages.Add(New CreditsPage("Legacy Contributors", Color.White, Color.Black, {"Yong Jian Ming", "Andrew Leach", "Manuel Lampe", "Robert Nobbmann", "Maximilian Schröder", "Jan Mika Eine"}.ToList()))
+        CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"""MunchingOrange""", """TheFlamingSpade""", """SlyFoxHound""", """ArsenioDev""", """TrUShade""", """Isaaking6""", """ParadiseGamer13"""}.ToList()))
         CreditsPages.Add(New CreditsPage("Special Thanks", Color.White, Color.Black, {"Davey Van Raaij", "Diego López", "The GameJolt Team", "The AppSharp Team", "The Smogon University Sprite Project Team"}.ToList()))
-        CreditsPages.Add(New CreditsPage("", Color.White, Color.Black, {"And probably a lot more.", "Especially all the awesome people from", "the pokemon3d.net community.", "Thanks for helping and playing this great game."}.ToList()))
+        CreditsPages.Add(New CreditsPage("", Color.White, Color.Black, {"And probably a lot more.", "Especially all the awesome people from", "the discord server and", "the pokemon3d.net community.", "Thanks for helping and playing this great game."}.ToList()))
         CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
         CreditsPages.Add(New CreditsPage("", Color.White, Color.Black))
         CreditsPages.Add(New CreditsPage("THE END", Color.White, Color.Black, {"Thank you for playing!"}.ToList()))
