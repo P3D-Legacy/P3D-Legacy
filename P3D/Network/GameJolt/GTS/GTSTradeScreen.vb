@@ -342,7 +342,7 @@
                 Dim l As List(Of API.JoltValue) = API.HandleData(result)
 
                 If CBool(l(0).Value) = True Then
-                    Dim newD As New GTSDataItem(Core.GameJoltSave.GameJoltID, D.FromUserID, "", "", "", "", P.GetSaveData(), "Pokemon 3D", "Trade for " & D.Pokemon.GetDisplayName(), GTSDataItem.SecurityCode.Private, GTSDataItem.ActionSwitches.Got, D.TradeID)
+                    Dim newD As New GTSDataItem(Core.GameJoltSave.GameJoltID, D.FromUserID, "", "", "", "", P.GetSaveData(), "Kolben", "Trade for " & D.Pokemon.GetDisplayName(), GTSDataItem.SecurityCode.Private, GTSDataItem.ActionSwitches.Got, D.TradeID)
 
                     Dim APICall As New APICall(AddressOf SentPokemon)
                     APICall.SetStorageData(newD.Key, newD.Data, False)

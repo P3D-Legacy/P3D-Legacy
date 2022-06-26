@@ -405,7 +405,7 @@
                         End If
                     End If
                 Else
-                    Me.D = New GTSDataItem(Core.GameJoltSave.GameJoltID, "", "", "9 and under", "", "", "", "Pokemon 3D", "", GTSDataItem.SecurityCode.Global, GTSDataItem.ActionSwitches.Set, "")
+                    Me.D = New GTSDataItem(Core.GameJoltSave.GameJoltID, "", "", "9 and under", "", "", "", "Kolben", "", GTSDataItem.SecurityCode.Global, GTSDataItem.ActionSwitches.Set, "")
                     NewTrade = True
                 End If
 
