@@ -76,24 +76,6 @@
         Dim _chooseIndex As Integer = 0
 
         Private Sub UpdateChoose()
-            If Controls.Accept(True, True, True) = True Then
-                If _chooseIndex = 0 Then
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
-                    AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
-                    SoundManager.PlaySound("select")
-                    Core.SetScreen(selScreen)
-                Else
-                    SoundManager.PlaySound("select")
-                    _ready = True
-                End If
-            End If
-        End Sub
-
-        Private Sub DrawChoose()
-            Dim rec As New Rectangle(Core.windowSize.Width - 250, Core.windowSize.Height - 450, 150, 150)
-
-            Canvas.DrawRectangle(rec, New Color(0, 0, 0, 150))
-
             If Controls.Down(True, True, True, True, True) = True Then
                 _chooseIndex += 1
             End If
@@ -102,6 +84,57 @@
             End If
 
             _chooseIndex = _chooseIndex.Clamp(0, 1)
+
+            Dim rec As New Rectangle(Core.windowSize.Width - 250, Core.windowSize.Height - 450, 150, 150)
+            If rec.Contains(MouseHandler.MousePosition) = False Then
+                If Controls.Accept(True, True, True) = True Then
+                    If _chooseIndex = 0 Then
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
+                        SoundManager.PlaySound("select")
+                        Core.SetScreen(selScreen)
+                    Else
+                        SoundManager.PlaySound("select")
+                        _ready = True
+                    End If
+                End If
+            Else
+                If Controls.Accept(False, True, True) = True Then
+                    If _chooseIndex = 0 Then
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
+                        SoundManager.PlaySound("select")
+                        Core.SetScreen(selScreen)
+                    Else
+                        SoundManager.PlaySound("select")
+                        _ready = True
+                    End If
+                End If
+                If Controls.Accept(True, False, False) Then
+                    If New Rectangle(Core.windowSize.Width - 213, Core.windowSize.Height - 438, 80, 50).Contains(MouseHandler.MousePosition) Then
+                        _chooseIndex = 0
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
+                        SoundManager.PlaySound("select")
+                        Core.SetScreen(selScreen)
+                    End If
+                    If New Rectangle(Core.windowSize.Width - 213, Core.windowSize.Height - 378, 80, 50).Contains(MouseHandler.MousePosition) Then
+                        _chooseIndex = 1
+                        SoundManager.PlaySound("select")
+                        _ready = True
+                    End If
+                End If
+                End If
+            If Controls.Dismiss(True, True, True) = True Then
+                SoundManager.PlaySound("select")
+                _ready = True
+            End If
+        End Sub
+
+        Private Sub DrawChoose()
+            Dim rec As New Rectangle(Core.windowSize.Width - 250, Core.windowSize.Height - 450, 150, 150)
+
+            Canvas.DrawRectangle(rec, New Color(0, 0, 0, 150))
 
             If _chooseIndex = 0 Then
                 Canvas.DrawRectangle(New Rectangle(Core.windowSize.Width - 213, Core.windowSize.Height - 438, 80, 50), Color.White)
@@ -167,7 +200,7 @@
             TransformText(BattleScreen.Trainer.Name & " " & Localization.GetString("battle_main_trainer_sent_out_3") & " " & NewPokemon.GetDisplayName() & Localization.GetString("battle_main_trainer_sent_out_4"))
         End Sub
 
-        Dim delay As Single = 3.0F
+        Dim delay As Single = 2.0F
 
         Public Overrides Sub Update(BV2Screen As BattleScreen)
             If TextReady = False Then
