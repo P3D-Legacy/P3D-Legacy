@@ -94,14 +94,14 @@
                                       "Do you want to do a Wonder Trade?"
 
                     Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 150, 600, 200), New Color(135, 168, 20, 100))
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 190), Color.Black, 0.0F, Vector2.Zero, New Vector2(1.0F, 1.1F), SpriteEffects.None, 0.0F)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), 190), Color.Black, 0.0F, Vector2.Zero, New Vector2(1.0F), SpriteEffects.None, 0.0F)
 
                     For i = 0 To Me.MenuItems.Count - 1
                         Core.SpriteBatch.Draw(Me.texture, New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 400 + i * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White)
                         Core.SpriteBatch.Draw(Me.texture, New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 64, 400 + i * 96, 64 * 2, 64), New Rectangle(32, 16, 16, 16), Color.White)
                         Core.SpriteBatch.Draw(Me.texture, New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 64 * 3, 400 + i * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, Me.MenuItems(i), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 20, 416 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Me.MenuItems(i), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 20, 416 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                     Next
 
                     DrawCursor()
@@ -110,21 +110,21 @@
                     Canvas.DrawRectangle(New Rectangle(0, Core.windowSize.Height - 150, Core.windowSize.Width, 50), New Color(135, 168, 20))
                     Canvas.DrawGradient(New Rectangle(0, Core.windowSize.Height - 100, Core.windowSize.Width, 50), New Color(135, 168, 20), New Color(255, 255, 255, 0), False, -1)
 
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Searching for a trade partner" & LoadingDots.Dots, New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString("Searching for a trade partner" & LoadingDots.Dots).X / 2), Core.windowSize.Height - 140), Color.White)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Searching for a trade partner" & LoadingDots.Dots, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString("Searching for a trade partner" & LoadingDots.Dots).X / 2), Core.windowSize.Height - 140), Color.White)
                 Case ScreenStates.Stopped
                     Canvas.DrawGradient(New Rectangle(0, Core.windowSize.Height - 200, Core.windowSize.Width, 50), New Color(255, 255, 255, 0), New Color(135, 168, 20), False, -1)
                     Canvas.DrawRectangle(New Rectangle(0, Core.windowSize.Height - 150, Core.windowSize.Width, 50), New Color(135, 168, 20))
                     Canvas.DrawGradient(New Rectangle(0, Core.windowSize.Height - 100, Core.windowSize.Width, 50), New Color(135, 168, 20), New Color(255, 255, 255, 0), False, -1)
 
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, DisconnectMessage, New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(DisconnectMessage).X / 2), Core.windowSize.Height - 140), Color.White)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, DisconnectMessage, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(DisconnectMessage).X / 2), Core.windowSize.Height - 140), Color.White)
                 Case ScreenStates.Idle, ScreenStates.PerformingTrade
                     If Me.SelectedPokemonIndex > -1 Then
                         Canvas.DrawGradient(New Rectangle(0, Core.windowSize.Height - 200, Core.windowSize.Width, 50), New Color(255, 255, 255, 0), New Color(135, 168, 20), False, -1)
                         Canvas.DrawRectangle(New Rectangle(0, Core.windowSize.Height - 150, Core.windowSize.Width, 50), New Color(135, 168, 20))
                         Canvas.DrawGradient(New Rectangle(0, Core.windowSize.Height - 100, Core.windowSize.Width, 50), New Color(135, 168, 20), New Color(255, 255, 255, 0), False, -1)
 
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Your trade partner:", New Vector2(CSng(Core.windowSize.Width / 2 - 256), Core.windowSize.Height - 140), Color.White)
-                        Me.PartnerEmblem.Draw(New Vector2(CSng(Core.windowSize.Width / 2), Core.windowSize.Height - 160), 2)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Your trade partner:", New Vector2(CInt(Core.windowSize.Width / 2 - 256), Core.windowSize.Height - 140), Color.White)
+                        Me.PartnerEmblem.Draw(New Vector2(CInt(Core.windowSize.Width / 2), Core.windowSize.Height - 160), 2)
 
                         Dim p As Pokemon = Me.SelectedPokemon
                         Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), 80, 256, 256), Color.White)
@@ -152,7 +152,7 @@
 
             Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, 40), New Color(135, 168, 20))
             Canvas.DrawGradient(New Rectangle(0, 40, Core.windowSize.Width, 100), New Color(135, 168, 20), New Color(255, 255, 255, 0), False, -1)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "Wondertrade", New Vector2(CSng(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString("Wondertrade").X / 2), 10), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Wondertrade", New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString("Wondertrade").X / 2), 10), Color.White)
         End Sub
 
         Private Sub DrawCursor()

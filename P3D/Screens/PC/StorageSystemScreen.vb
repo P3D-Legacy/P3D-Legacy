@@ -1222,7 +1222,7 @@ Public Class StorageSystemScreen
                                 c = New Color(65, 65, 65, 255)
                             End If
                             Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
-                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100 - CInt(pokeTexture.Width - 32), 200 + y * 84, pokeTexture.Width * 2, 64), c)
+                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100 - CInt(pokeTexture.Width - 32), 200 + y * 84, pokeTexture.Width * 2, pokeTexture.Height * 2), c)
                         End If
                     Next
                 Next
@@ -1401,7 +1401,7 @@ Public Class StorageSystemScreen
                 End If
 
                 Dim pokeTexture = Core.Player.Pokemons(i).GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(Core.windowSize.Width - 228 - CInt(pokeTexture.Width - 32), i * 100 + 60, pokeTexture.Width * 2, 64), c)
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(Core.windowSize.Width - 228 - CInt(pokeTexture.Width - 32), i * 100 + 60, pokeTexture.Width * 2, pokeTexture.Height * 2), c)
 
                 If Not Core.Player.Pokemons(i).Item Is Nothing And Core.Player.Pokemons(i).IsEgg() = False Then
                     Core.SpriteBatch.Draw(Core.Player.Pokemons(i).Item.Texture, New Rectangle(Core.windowSize.Width - 196, i * 100 + 92, 24, 24), Color.White)
@@ -1419,8 +1419,8 @@ Public Class StorageSystemScreen
 
         If Not Me.MovingPokemon Is Nothing Then
             Dim pokeTexture = Me.MovingPokemon.GetMenuTexture()
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 10) - CInt(pokeTexture.Width - 32), CInt(cPosition.Y + 44), pokeTexture.Width * 2, 64), New Color(0, 0, 0, 150))
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 20) - CInt(pokeTexture.Width - 32), CInt(cPosition.Y + 34), pokeTexture.Width * 2, 64), Color.White)
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 10) - CInt(pokeTexture.Width - 32), CInt(cPosition.Y + 44), pokeTexture.Width * 2, pokeTexture.Height * 2), New Color(0, 0, 0, 150))
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 20) - CInt(pokeTexture.Width - 32), CInt(cPosition.Y + 34), pokeTexture.Width * 2, pokeTexture.Height * 2), Color.White)
 
             If Not Me.MovingPokemon.Item Is Nothing And Me.MovingPokemon.IsEgg() = False Then
                 Core.SpriteBatch.Draw(Me.MovingPokemon.Item.Texture, New Rectangle(CInt(cPosition.X - 20) + 32, CInt(cPosition.Y + 34) + 32, 24, 24), Color.White)
