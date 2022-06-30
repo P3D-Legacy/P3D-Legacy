@@ -8,7 +8,7 @@ Public Class RoamingPokemon
     Public Sub New(ByVal DataLine As String)
         Dim data() As String = DataLine.Split(CChar("|"))
 
-        Me.PokemonReference = Pokemon.GetPokemonByData(data(5))
+        Me.PokemonReference = Pokemon.GetPokemonByData(data(6))
 
         Me.WorldID = CInt(data(2))
         Me.LevelFile = data(3)
