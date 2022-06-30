@@ -13985,9 +13985,15 @@
     <Content Include="Content\Pokemon\Sprites\Arctozolt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Pokemon\Sprites\Carkol.png" />
-    <Content Include="Content\Pokemon\Sprites\Coalossal.png" />
-    <Content Include="Content\Pokemon\Sprites\Cutiefly.png" />
+    <Content Include="Content\Pokemon\Sprites\Carkol.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Coalossal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Cutiefly.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pokemon\Sprites\Diglett_alola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -14060,8 +14066,12 @@
     <Content Include="Content\Pokemon\Sprites\Rattata_alola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Pokemon\Sprites\Ribombee.png" />
-    <Content Include="Content\Pokemon\Sprites\Rolycoly.png" />
+    <Content Include="Content\Pokemon\Sprites\Ribombee.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Sprites\Rolycoly.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pokemon\Sprites\Sandshrew_alola.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -29469,11 +29479,21 @@
     <Content Include="Content\Pokemon\Data\887.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\Pokemon\Data\742.dat" />
-    <None Include="Content\Pokemon\Data\743.dat" />
-    <None Include="Content\Pokemon\Data\837.dat" />
-    <None Include="Content\Pokemon\Data\838.dat" />
-    <None Include="Content\Pokemon\Data\839.dat" />
+    <Content Include="Content\Pokemon\Data\742.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Data\743.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Data\837.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Data\838.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Data\839.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="LICENSE" />
     <None Include="meta">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
