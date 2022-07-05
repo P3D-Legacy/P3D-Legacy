@@ -59,8 +59,7 @@
                 "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
                 "@overworldpokemon.hide" & Environment.NewLine &
                 "@player.move(1)" & Environment.NewLine &
-                "@overworldpokemon.hide" & Environment.NewLine &
-                "@player.resetspeed" & Environment.NewLine
+                "@overworldpokemon.hide" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then
                 s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
@@ -151,8 +150,7 @@
             "@player.move(1)" & Environment.NewLine &
             "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
             "@player.move(" & Steps & ")" & Environment.NewLine &
-            "@overworldpokemon.hide" & Environment.NewLine &
-            "@player.resetspeed" & Environment.NewLine
+            "@overworldpokemon.hide" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then
                 s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
