@@ -53,6 +53,16 @@
                     Return ReturnBoolean(Screen.Level.WildPokemonFloor)
                 Case "isdark"
                     Return ReturnBoolean(Screen.Level.IsDark)
+                Case "region"
+                    If argument <> "" Then
+                        Return Screen.Level.CurrentRegion.Split(CChar(","))(int(argument))
+                    End If
+                    Return Screen.Level.CurrentRegion
+                Case "regionalform"
+                    If argument <> "" Then
+                        Return Screen.Level.RegionalForm.Split(CChar(","))(int(argument))
+                    End If
+                    Return Screen.Level.RegionalForm
             End Select
 
             Return DEFAULTNULL
