@@ -46,6 +46,7 @@ Public Class Level
     Private _wildPokemonWater As Boolean = True
     Private _showOverworldPokemon As Boolean = True
     Private _currentRegion As String = "Johto"
+    Private _regionalForm As String = ""
     Private _hiddenabilitychance As Integer = 0
     Private _lightingType As Integer = 0
     Private _isSafariZone As Boolean = False
@@ -477,6 +478,18 @@ Public Class Level
     End Property
 
     ''' <summary>
+    ''' Regional forms available on this level.
+    ''' </summary>
+    Public Property RegionalForm As String
+        Get
+            Return _regionalForm
+        End Get
+        Set(value As String)
+            _regionalForm = value
+        End Set
+    End Property
+
+    ''' <summary>
     ''' Chance of a Hidden Ability being on a wild Pokémon.
     ''' </summary>
     Public Property HiddenAbilityChance As Integer
@@ -621,6 +634,7 @@ Public Class Level
             Return _backdropRenderer
         End Get
     End Property
+
 
 #End Region
 

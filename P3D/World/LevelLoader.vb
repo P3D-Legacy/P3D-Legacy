@@ -959,6 +959,12 @@
             Screen.Level.CurrentRegion = "Johto"
         End If
 
+        If TagExists(Tags, "RegionalForm") = True Then
+            Screen.Level.RegionalForm = CStr(GetTag(Tags, "RegionalForm"))
+        Else
+            Screen.Level.RegionalForm = ""
+        End If
+
         If TagExists(Tags, "HiddenAbility") Then
             Screen.Level.HiddenAbilityChance = CInt(GetTag(Tags, "HiddenAbility"))
         Else
