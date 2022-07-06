@@ -51,6 +51,8 @@ Move|42,435
 Move|45,113
 Move|50,87
 EvolutionCondition|26,item,23,item
+EvolutionCondition|26_alola,item,23,item
+EvolutionCondition|26_alola,region,sevii islands,item
 Item|5,163
 Item|50,2006
 TradeValue|20

@@ -52,4 +52,7 @@ Move|43,38
 Move|47,514
 TradeValue|35
 Item|5,118
+EvolutionCondition|105_alola,Level,28,Level
+EvolutionCondition|105_alola,region,sevii islands,Level
+EvolutionCondition|105_alola,daytime,0;3,level
 EvolutionCondition|105,Level,28,Level
