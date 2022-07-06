@@ -11,8 +11,8 @@ IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer
 Pokemon1|465,56
-Pokemon2|103,55,alola
-Pokemon3|103,56,alola
+Pokemon2|103_alola,55
+Pokemon3|103_alola,56
 Pokemon4|
 Pokemon5|
 Pokemon6|

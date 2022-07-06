@@ -14,8 +14,8 @@ Pokemon1|464,61
 Pokemon2|80,59
 Pokemon3|68,60
 Pokemon4|115,58
-Pokemon5|28,61,alola
-Pokemon6|89,60,alola
+Pokemon5|28_alola,61
+Pokemon6|89_alola,60
 Items|14,14,14
 Gender|0
 AI|2

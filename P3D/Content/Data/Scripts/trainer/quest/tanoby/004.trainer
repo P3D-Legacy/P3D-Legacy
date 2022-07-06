@@ -10,9 +10,9 @@ Region|Sevii Islands
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer
-Pokemon1|75,52,alola
-Pokemon2|76,54,alola
-Pokemon3|76,54,alola
+Pokemon1|75_alola,52
+Pokemon2|76_alola,54
+Pokemon3|76_alola,54
 Pokemon4|
 Pokemon5|
 Pokemon6|
