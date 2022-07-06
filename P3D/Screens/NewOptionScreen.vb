@@ -19,6 +19,9 @@
     Dim GamePadEnabled As Boolean = True
     Dim RunMode As Boolean = True
     Dim PreferMultiSampling As Boolean = True
+    Dim TempMusicVolume As Integer = 50
+    Dim TempSoundVolume As Integer = 50
+    Dim TempMuted As Integer = 0
     Private _subMenu As Integer = 0
     Private _screenSize As Size = New Size(CInt(windowSize.Width), CInt(windowSize.Height))
 
@@ -117,6 +120,10 @@
             Me.Difficulty = Core.Player.DifficultyMode
             Me.RunMode = Core.Player.RunMode
         End If
+        Me.TempMusicVolume = CInt(MusicManager.MasterVolume * 100)
+        Me.TempSoundVolume = CInt(SoundManager.Volume * 100)
+        Me.TempMuted = CInt(MusicManager.Muted.ToNumberString())
+        Me.Muted = CInt(MusicManager.Muted.ToNumberString())
         Me.Music = CInt(MusicManager.MasterVolume * 100)
         Me.Sound = CInt(SoundManager.Volume * 100)
         Me.RenderDistance = Core.GameOptions.RenderDistance
@@ -125,7 +132,6 @@
         Me.DiagonalMovement = Core.Player.DiagonalMovement
         Me.BattleStyle = Core.Player.BattleStyle
         Me.ShowModels = CInt(Core.Player.ShowModelsInBattle)
-        Me.Muted = CInt(MusicManager.Muted.ToNumberString())
         If Core.GameOptions.LoadOffsetMaps = 0 Then
             Me.LoadOffsetMaps = 0
         Else
@@ -970,7 +976,7 @@
                 Me.ControlList.Add(New ScrollBar(New Vector2(Delta_X + 100, Delta_Y + 120), 400, Localization.GetString("option_screen_audio_volume_sfx", "SoundFX Volume"), Me.Sound, 0, 100, AddressOf ChangeSoundVolume, 2))
                 Me.ControlList.Add(New ToggleButton(New Vector2(Delta_X + 100, Delta_Y + 200), 1, 64, Localization.GetString("option_screen_audio_muted", "Muted"), CBool(Me.Muted), AddressOf ToggleMute, {"No", "Yes"}.ToList(), 3))
                 If PreScreen.Identification = Identifications.MainMenuScreen Then
-                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf AudioApply, 4))
+                    Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 90 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_apply", "Apply"), AddressOf AudioSave, 4))
                     Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf Close, 5))
                 Else
                     Me.ControlList.Add(New CommandButton(New Vector2(Delta_X + 530 + 24, Delta_Y + 327), 1, 48, Localization.GetString("global_back", "Back"), AddressOf SwitchToMain, 4))
@@ -1018,6 +1024,16 @@
     Private Sub Close()
         If currentLanguage <> TempLanguage Then
             Localization.Load(TempLanguage)
+        End If
+        If MusicManager.MasterVolume * 100 <> Me.TempMusicVolume Then
+            MusicManager.MasterVolume = CSng(Me.TempMusicVolume / 100)
+        End If
+        If SoundManager.Volume * 100 <> Me.TempSoundVolume Then
+            SoundManager.Volume = CSng(Me.TempSoundVolume / 100)
+        End If
+        If MusicManager.Muted <> CBool(Me.TempMuted) Or SoundManager.Muted <> CBool(Me.TempMuted) Then
+            MusicManager.Muted = CBool(Me.TempMuted)
+            SoundManager.Muted = CBool(Me.TempMuted)
         End If
         _closing = True
     End Sub
@@ -1268,12 +1284,12 @@
 
     Private Sub ChangeMusicVolume(ByVal c As ScrollBar)
         Me.Music = c.Value
-        ApplyMusicChange()
+        ApplyAudioChange()
     End Sub
 
     Private Sub ChangeSoundVolume(ByVal c As ScrollBar)
         Me.Sound = c.Value
-        ApplyMusicChange()
+        ApplyAudioChange()
     End Sub
 
     Private Sub ToggleMute(ByVal c As ToggleButton)
@@ -1282,10 +1298,10 @@
         Else
             Me.Muted = 0
         End If
-        ApplyMusicChange()
+        ApplyAudioChange()
     End Sub
 
-    Private Sub ApplyMusicChange()
+    Private Sub ApplyAudioChange()
         MusicManager.Muted = CBool(Me.Muted)
         SoundManager.Muted = CBool(Me.Muted)
         MusicManager.MasterVolume = CSng(Me.Music / 100)
@@ -1293,7 +1309,7 @@
     End Sub
 
 
-    Private Sub AudioApply()
+    Private Sub AudioSave()
         MusicManager.MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
         MusicManager.Muted = CBool(Me.Muted)
