@@ -682,7 +682,8 @@ Public Class ChatScreen
 
         'First, draw global:
         DrawChatTab(100, "global", HasNewGlobalMessages, globalText, ChatState = ChatStates.Global)
-        If p.X >= 100 And p.X < 100 + 48 + globalTextWidth Then
+
+        If New Rectangle(100, CInt(Core.windowSize.Height - 50), 48 + globalTextWidth, 32).Contains(p) Then
             canClickOnTab = True
             canClickOnTabType = ChatStates.Global
             canClickOnTabText = "Global"
@@ -694,7 +695,7 @@ Public Class ChatScreen
         If HasCommandChat = True Then
             DrawChatTab(x + 100, "command", False, commandsText, ChatState = ChatStates.Command)
             x += CInt(48 + commandsTextWidth)
-            If p.X >= CInt(100 + 48 + globalTextWidth) And p.X < CInt(100 + 48 + globalTextWidth + 48 + commandsTextWidth) Then
+            If New Rectangle(100 + 48 + globalTextWidth, CInt(Core.windowSize.Height - 50), 48 + globalTextWidth + 48 + commandsTextWidth, 32).Contains(p) Then
                 canClickOnTab = True
                 canClickOnTabType = ChatStates.Command
                 canClickOnTabText = "Commands"
@@ -706,8 +707,7 @@ Public Class ChatScreen
         For i = 0 To PMChats.Count - 1
             If Core.ServersManager.PlayerCollection.HasPlayer(PMChats.Keys(i)) = True Then
                 tabWidth = DrawChatTab(x + 100, "pm", PMChats.Values(i), PMChats.Keys(i), ChatState = ChatStates.PM And PMChats.Keys(i) = CurrentPMChat)
-
-                If p.X >= 100 + x And p.X < 100 + x + tabWidth Then
+                If New Rectangle(100 + x, CInt(Core.windowSize.Height - 50), x + tabWidth, 32).Contains(p) Then
                     canClickOnTab = True
                     canClickOnTabType = ChatStates.PM
                     canClickOnTabText = PMChats.Keys(i)
@@ -717,7 +717,7 @@ Public Class ChatScreen
             Else
                 tabWidth = DrawChatTab(x + 100, "pmoff", PMChats.Values(i), PMChats.Keys(i), ChatState = ChatStates.PM And PMChats.Keys(i) = CurrentPMChat)
 
-                If p.X >= 100 + x And p.X < 100 + x + tabWidth Then
+                If New Rectangle(100 + x, CInt(Core.windowSize.Height - 50), x + tabWidth, 32).Contains(p) Then
                     canClickOnTab = True
                     canClickOnTabType = ChatStates.PM
                     canClickOnTabText = PMChats.Keys(i)
@@ -727,7 +727,7 @@ Public Class ChatScreen
             End If
         Next
 
-        If p.Y < Core.windowSize.Height - 114 Or p.Y >= Core.windowSize.Height - 82 Then
+        If p.Y < Core.windowSize.Height - 114 Then
             canClickOnTab = False
         End If
     End Sub
