@@ -468,7 +468,9 @@ Public Class MusicManager
                         End If
 
                         playedSong = introSong
-
+                    Else
+                        _isIntroStarted = False
+                        _fadeIntoIntro = False
                     End If
                 Else
                     _isIntroStarted = False
