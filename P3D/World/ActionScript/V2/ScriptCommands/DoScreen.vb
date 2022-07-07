@@ -81,13 +81,19 @@
                     CanContinue = False
                 Case "fadein"
                     Dim fadeSpeed As Integer = 5
+                    Dim fadeLimit As Integer = 0
                     If argument <> "" Then
-                        fadeSpeed = int(argument)
+                        If argument.Contains(",") Then
+                            fadeSpeed = int(argument.GetSplit(0, ","))
+                            fadeLimit = int(argument.GetSplit(1, ","))
+                        Else
+                            fadeSpeed = int(argument)
+                        End If
                     End If
-                    If OverworldScreen.FadeValue > 0 Then
+                    If OverworldScreen.FadeValue > fadeLimit Then
                         OverworldScreen.FadeValue -= fadeSpeed
-                        If OverworldScreen.FadeValue <= 0 Then
-                            OverworldScreen.FadeValue = 0
+                        If OverworldScreen.FadeValue <= fadeLimit Then
+                            OverworldScreen.FadeValue = fadeLimit
                             IsReady = True
                         End If
                     Else
@@ -95,13 +101,19 @@
                     End If
                 Case "fadeout"
                     Dim fadeSpeed As Integer = 5
+                    Dim fadeLimit As Integer = 255
                     If argument <> "" Then
-                        fadeSpeed = int(argument)
+                        If argument.Contains(",") Then
+                            fadeSpeed = int(argument.GetSplit(0, ","))
+                            fadeLimit = int(argument.GetSplit(1, ","))
+                        Else
+                            fadeSpeed = int(argument)
+                        End If
                     End If
-                    If OverworldScreen.FadeValue < 255 Then
+                    If OverworldScreen.FadeValue < fadeLimit Then
                         OverworldScreen.FadeValue += fadeSpeed
-                        If OverworldScreen.FadeValue >= 255 Then
-                            OverworldScreen.FadeValue = 255
+                        If OverworldScreen.FadeValue >= fadeLimit Then
+                            OverworldScreen.FadeValue = fadeLimit
                             IsReady = True
                         End If
                     Else
@@ -113,6 +125,8 @@
                         Dim colorG As Integer = int(argument.GetSplit(1))
                         Dim colorB As Integer = int(argument.GetSplit(2))
                         OverworldScreen.FadeColor = New Color(colorR, colorG, colorB)
+                    Else
+                        OverworldScreen.FadeColor = Color.Black
                     End If
                     IsReady = True
                 Case "setfade"
