@@ -318,11 +318,11 @@ nextScript:
             For Each d As String In Data
                 If d.StartsWith("[") = True And d.EndsWith("]") = False And d.Contains("]") = True Then
                     d = d.Remove(0, d.IndexOf("]") + 1)
-                    If d = i Then
+                    If d.ToLower = i.ToLower Then
                         Return True
                     End If
                 Else
-                    If d = i Then
+                    If d.ToLower = i.ToLower Then
                         Return True
                     End If
                 End If
@@ -332,11 +332,11 @@ nextScript:
         Else
             If Core.Player.RegisterData.StartsWith("[") = True And Core.Player.RegisterData.EndsWith("]") = False And Core.Player.RegisterData.Contains("]") = True Then
                 Dim d As String = Core.Player.RegisterData.Remove(0, Core.Player.RegisterData.IndexOf("]") + 1)
-                If d = i Then
+                If d.ToLower = i.ToLower Then
                     Return True
                 End If
             Else
-                If Core.Player.RegisterData = i Then
+                If Core.Player.RegisterData.ToLower = i.ToLower Then
                     Return True
                 End If
             End If
@@ -452,11 +452,11 @@ nextScript:
         Dim Data As String = Core.Player.RegisterData
 
         If Data = "" Then
-            Data = i
+            Data = i.ToLower
         Else
             Dim checkData() As String = Data.Split(CChar(","))
-            If checkData.Contains(i) = False Then
-                Data &= "," & i
+            If checkData.Contains(i.ToLower) = False Then
+                Data &= "," & i.ToLower
             End If
         End If
 
@@ -466,7 +466,7 @@ nextScript:
     Public Shared Sub RegisterID(ByVal name As String, ByVal type As String, ByVal value As String)
         Dim Data As String = Core.Player.RegisterData
 
-        Dim reg As String = "[" & type.ToUpper() & "|" & value & "]" & name
+        Dim reg As String = "[" & type.ToUpper() & "|" & value & "]" & name.ToLower
 
         If Data = "" Then
             Data = reg
@@ -485,7 +485,7 @@ nextScript:
         Dim Data As String = ""
 
         Dim checkList As List(Of String) = checkData.ToList()
-        checkList.Remove(i)
+        checkList.Remove(i.ToLower)
 
         checkData = checkList.ToArray()
         For a = 0 To checkData.Count - 1
@@ -509,11 +509,16 @@ nextScript:
                 Dim lType As String = line.Remove(0, 1)
                 lType = lType.Remove(lType.IndexOf("|"))
 
-                If lName <> name Or lType.ToLower() <> type.ToLower() Then
+                If lName.ToLower <> name.ToLower Or lType.ToLower() <> type.ToLower() Then
                     If newData <> "" Then
                         newData &= ","
                     End If
                     newData &= line
+                ElseIf lName.ToLower = name AndAlso lType.ToLower() = type.ToLower() Then
+                    If newData <> "" Then
+                        newData &= ","
+                    End If
+                    newData &= lName
                 End If
             Else
                 If newData <> "" Then
