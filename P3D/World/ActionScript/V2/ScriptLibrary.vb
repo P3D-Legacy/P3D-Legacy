@@ -305,13 +305,15 @@ Namespace ScriptVersion2
             r(New ScriptCommand("screen", "apricornkurt", "Opens the Apricorn Screen."))
             r(New ScriptCommand("screen", "trade", {New ScriptArgument("tradeItems", ScriptArgument.ArgumentTypes.ItemCollection),
                                                 New ScriptArgument("canBuy", ScriptArgument.ArgumentTypes.Bool),
-                                                New ScriptArgument("canSell", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Opens a new trade screen with the given items in stock. Item collection: {itemID|amount|price}{...}..., amount and price are default for -1", ","))
+                                                New ScriptArgument("canSell", ScriptArgument.ArgumentTypes.Bool),
+                                                New ScriptArgument("Currency", ScriptArgument.ArgumentTypes.Str, {"P", "BP"}, True, "P")}.ToList(), "Opens a new trade screen with the given items in stock. Item collection: {itemID|amount|price}{...}..., amount and price are default for -1", ","))
             r(New ScriptCommand("screen", "townmap", {New ScriptArgument("regionList", ScriptArgument.ArgumentTypes.StrArr)}.ToList(), "Opens the map screen with the given regions."))
             r(New ScriptCommand("screen", "donation", "Opens the donation screen."))
-            r(New ScriptCommand("screen", "blackout", "Opens the blackout screen and warps the player back to the last saveplace."))
+            r(New ScriptCommand("screen", "blackout", "Opens the blackout screen and warps the player back to the last restplace."))
             r(New ScriptCommand("screen", "fadein", {New ScriptArgument("fadeSpeed", ScriptArgument.ArgumentTypes.Int, True, "5")}.ToList(), "Fades the screen back in."))
             r(New ScriptCommand("screen", "fadeout", {New ScriptArgument("fadeSpeed", ScriptArgument.ArgumentTypes.Int, True, "5")}.ToList(), "Fades the screen to black."))
-            r(New ScriptCommand("screen", "setfade", {New ScriptArgument("fadeValue", ScriptArgument.ArgumentTypes.Int, {"0-255"})}.ToList(), "Sets the alpha value of the screen fade."))
+            r(New ScriptCommand("screen", "fadeoutcolor", {New ScriptArgument("color", ScriptArgument.ArgumentTypes.IntArr, {"0-255"}, True, "0,0,0")}.ToList(), "Sets the color of the screen fade."))
+            r(New ScriptCommand("screen", "setfade", {New ScriptArgument("alpha", ScriptArgument.ArgumentTypes.Int, {"0-255"})}.ToList(), "Sets the alpha value of the screen fade."))
             r(New ScriptCommand("screen", "credits", {New ScriptArgument("ending", ScriptArgument.ArgumentTypes.Str, True, "Johto")}.ToList(), "Displays the credits scene."))
             r(New ScriptCommand("screen", "halloffame", {New ScriptArgument("displayEntryIndex", ScriptArgument.ArgumentTypes.Int, True, "")}.ToList(), "Displays the Hall of Fame. If the argument ""displayEntryIndex"" is not empty, it displays only that entry."))
             r(New ScriptCommand("screen", "teachmoves", {New ScriptArgument("pokemonIndex", ScriptArgument.ArgumentTypes.Int),
@@ -319,11 +321,25 @@ Namespace ScriptVersion2
             r(New ScriptCommand("screen", "mailsystem", "Opens the PC Inbox screen."))
             r(New ScriptCommand("screen", "pvp", "Opens the PvP lobby screen (not finished yet, don't use)."))
             r(New ScriptCommand("screen", "input", {New ScriptArgument("defaultName", ScriptArgument.ArgumentTypes.Str, True, ""),
-                                                New ScriptArgument("inputMode", ScriptArgument.ArgumentTypes.Str, {"0-2", "name", "text", "numbers"}, True, "0"),
+                                                New ScriptArgument("inputMode", ScriptArgument.ArgumentTypes.Str, {"0-2", "name", "numbers", "text"}, True, "0"),
                                                 New ScriptArgument("currentText", ScriptArgument.ArgumentTypes.Str, True, ""),
                                                 New ScriptArgument("maxChars", ScriptArgument.ArgumentTypes.Int, True, "14")}.ToList(), "Displays the Input screen. The input can be retrieved with <system.lastinput>."))
             r(New ScriptCommand("screen", "mysteryevent", "Opens the Mystery Event screen."))
+            r(New ScriptCommand("screen", "showpokemon", {New ScriptArgument("PokemonID", ScriptArgument.ArgumentTypes.Int),
+                                                New ScriptArgument("Shiny", ScriptArgument.ArgumentTypes.Bool),
+                                                New ScriptArgument("Front", ScriptArgument.ArgumentTypes.Bool)}.ToList(), "Displays a box and an image of the specified Pokemon."))
+            r(New ScriptCommand("screen", "showimage", {New ScriptArgument("Texture", ScriptArgument.ArgumentTypes.Str),
+                                                New ScriptArgument("SoundEffect", ScriptArgument.ArgumentTypes.Str, True, ""),
+                                                New ScriptArgument("X", ScriptArgument.ArgumentTypes.Int, True),
+                                                New ScriptArgument("Y", ScriptArgument.ArgumentTypes.Int, True),
+                                                New ScriptArgument("Width", ScriptArgument.ArgumentTypes.Int, True),
+                                                New ScriptArgument("Height", ScriptArgument.ArgumentTypes.Int, True)}.ToList(), "Displays a box and (part of a) texture image."))
+            r(New ScriptCommand("screen", "showmessagebox", {New ScriptArgument("Message", ScriptArgument.ArgumentTypes.Str),
+                                                New ScriptArgument("BackgroundColor", ScriptArgument.ArgumentTypes.IntArr, {"0-255"}, True),
+                                                New ScriptArgument("FontColor", ScriptArgument.ArgumentTypes.IntArr, {"0-255"}, True),
+                                                New ScriptArgument("BorderColor", ScriptArgument.ArgumentTypes.IntArr, {"0-255"}, True)}.ToList(), "Displays a dynamically sized customizable message box in the center of the screen."))
             r(New ScriptCommand("screen", "secretbase", "Opens the Secret Base screen."))
+            r(New ScriptCommand("screen", "skinselection", "Opens the Player Skin selection screen."))
         End Sub
 
         Private Shared Sub DoScript()
@@ -345,6 +361,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("register", "registertime", {New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str),
                                                          New ScriptArgument("time", ScriptArgument.ArgumentTypes.Int),
                                                          New ScriptArgument("timeFormat", ScriptArgument.ArgumentTypes.Str, {"days", "hours", "minutes", "seconds", "years", "weeks", "months", "dayofweek"})}.ToList(), "Registers a time based register."))
+            r(New ScriptCommand("register", "change", {New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str), New ScriptArgument("value", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Changes the specified register's stored value to a new value."))
 
             ' Constructs:
             r(New ScriptCommand("register", "registered", "bool", {New ScriptArgument("name", ScriptArgument.ArgumentTypes.Str)}.ToList(), "Checks if a register with the given name is registered.", ",", True))
