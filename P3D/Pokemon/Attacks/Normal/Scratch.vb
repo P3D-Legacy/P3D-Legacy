@@ -52,6 +52,19 @@
             '#End
         End Sub
 
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Normal\Scratch", 0.5, 2.5)
+            Dim TextureXOffset As Integer = 0
+            If BattleFlip = True Then
+                TextureXOffset = 32
+            End If
+            Dim ScratchEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Scratch", New Rectangle(TextureXOffset, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
+            MoveAnimation.AnimationChangeTexture(ScratchEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Scratch", New Rectangle(TextureXOffset, 32, 32, 32), ""), 1, 1)
+            MoveAnimation.AnimationChangeTexture(ScratchEntity, True, TextureManager.GetTexture("Textures\Battle\Normal\Scratch", New Rectangle(TextureXOffset, 64, 32, 32), ""), 1, 1)
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
+
     End Class
 
 End Namespace
