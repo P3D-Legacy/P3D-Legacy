@@ -153,7 +153,7 @@
             For i = 0 To _party.Count - 1
                 Dim pokemonPos As Double = GetPokemonDest(i) - 16 - (64 + 16) * (_pokemonDest - _pokemonPos)
                 Dim pokeTexture = _party(i).GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokemonPos) - CInt(pokeTexture.Width - 32), DeltaY - 80, pokeTexture.Width * 2, 64), mainBackgroundColor)
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokemonPos) - CInt(pokeTexture.Width / 2), DeltaY - 80, pokeTexture.Width * 2, pokeTexture.Height * 2), mainBackgroundColor)
             Next
 
             SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\PokemonInfo"), New Rectangle(CInt(_pointerPos), DeltaY - 16, 32, 16), New Rectangle(0, 16, 32, 16), mainBackgroundColor)
