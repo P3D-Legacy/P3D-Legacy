@@ -49,24 +49,24 @@
             Select Case DittoAsParent
                 Case 0
                     If parent1.Gender = P3D.Pokemon.Genders.Female Then
-                        If parent1.Item.Name.ToLower() = "everstone" Then
+                        If parent1.Item IsNot Nothing AndAlso parent1.Item.Name.ToLower() = "everstone" Then
                             p.AdditionalData = parent1.AdditionalData
-                        ElseIf parent2.Number = parent1.Number And parent2.Item.Name.ToLower() = "everstone" Then
+                        ElseIf parent2.Number = parent1.Number And parent2.Item IsNot Nothing AndAlso parent2.Item.Name.ToLower() = "everstone" Then
                             p.AdditionalData = parent2.AdditionalData
                         End If
                     Else
-                        If parent2.Item.Name.ToLower() = "everstone" Then
+                        If parent2.Item IsNot Nothing AndAlso parent2.Item.Name.ToLower() = "everstone" Then
                             p.AdditionalData = parent2.AdditionalData
-                        ElseIf parent1.Number = parent2.Number And parent1.Item.Name.ToLower() = "everstone" Then
+                        ElseIf parent1.Number = parent2.Number And parent1.Item IsNot Nothing AndAlso parent1.Item.Name.ToLower() = "everstone" Then
                             p.AdditionalData = parent1.AdditionalData
                         End If
                     End If
                 Case 1
-                    If parent2.Item.Name.ToLower() = "everstone" Then
+                    If parent2.Item IsNot Nothing AndAlso parent2.Item.Name.ToLower() = "everstone" Then
                         p.AdditionalData = parent2.AdditionalData
                     End If
                 Case 2
-                    If parent1.Item.Name.ToLower() = "everstone" Then
+                    If parent1.Item IsNot Nothing AndAlso parent1.Item.Name.ToLower() = "everstone" Then
                         p.AdditionalData = parent1.AdditionalData
                     End If
             End Select
