@@ -170,9 +170,15 @@ Public Class Pokemon
             Return Me._additionalData
         End Get
         Set(value As String)
-            Me._additionalData = value
+            Dim oldval As String = Me._additionalData
 
-            Me.ClearTextures()
+            If oldval <> value Then
+                Me._additionalData = value
+                Me.ReloadDefinitions()
+                Me.ClearTextures()
+
+            End If
+
         End Set
     End Property
 
@@ -563,6 +569,7 @@ Public Class Pokemon
     Public PokedexEntry As PokedexEntry
     Public Cry As SoundEffect
     Public WildItems As New Dictionary(Of Integer, Integer)
+    Public RegionalForms As String = ""
 
     Private _name As String
     Private _number As Integer
@@ -1306,6 +1313,7 @@ Public Class Pokemon
     ''' Loads definition data from the data files and empties the temp textures.
     ''' </summary>
     Public Sub ReloadDefinitions()
+
         Me.LoadDefinitions(Me.Number, Me.AdditionalData)
         Me.ClearTextures()
     End Sub
@@ -1423,6 +1431,8 @@ Public Class Pokemon
                     End If
                 Case "eggpokemon"
                     Me.EggPokemon = CInt(Value)
+                Case "regionalforms"
+                    Me.RegionalForms = Value
                 Case "canbreed"
                     Me.CanBreed = CBool(Value)
                 Case "basehp"
@@ -1477,7 +1487,7 @@ Public Class Pokemon
 
                     Dim EvolutionData() As String = Value.Split(CChar(","))
 
-                    Dim Evolution As Integer = CInt(EvolutionData(0))
+                    Dim Evolution As String = EvolutionData(0)
                     Dim Type As String = EvolutionData(1)
                     Dim Argument As String = EvolutionData(2)
                     Dim Trigger As String = EvolutionData(3)
@@ -1901,12 +1911,17 @@ Public Class Pokemon
     ''' </summary>
     ''' <param name="newLevel">The level to set the Pokémon's level to.</param>
     ''' <param name="SetParameters">If the parameters like Nature and Ability should be set. Otherwise, it just loads the attacks and sets the level.</param>
-    Public Sub Generate(ByVal newLevel As Integer, ByVal SetParameters As Boolean)
+    ''' <param name="OpAdData">Optional value for setting the additional data, defaults to xXx to assume no additional data.</param>
+    Public Sub Generate(ByVal newLevel As Integer, ByVal SetParameters As Boolean, Optional OpAdData As String = "xXx")
         Me.Level = 0
 
         If SetParameters = True Then
             Me.GenerateIndividualValue()
-            Me.AdditionalData = PokemonForms.GetInitialAdditionalData(Me)
+            If OpAdData = "xXx" Then
+                Me.AdditionalData = PokemonForms.GetInitialAdditionalData(Me)
+            Else
+                Me.AdditionalData = OpAdData
+            End If
 
             Me.Nature = CType(Core.Random.Next(0, 25), Natures)
 
@@ -2748,8 +2763,8 @@ Public Class Pokemon
     ''' <param name="trigger">The trigger of the evolution.</param>
     ''' <param name="argument">An argument that specifies the evolution.</param>
     Public Function CanEvolve(ByVal trigger As EvolutionCondition.EvolutionTrigger, ByVal argument As String) As Boolean
-        Dim n As Integer = EvolutionCondition.EvolutionNumber(Me, trigger, argument)
-        If n = 0 Then
+        Dim n As String = EvolutionCondition.EvolutionNumber(Me, trigger, argument)
+        If n = "" Then
             Return False
         End If
         Return True
@@ -2760,7 +2775,7 @@ Public Class Pokemon
     ''' </summary>
     ''' <param name="trigger">The trigger of the evolution.</param>
     ''' <param name="argument">An argument that specifies the evolution.</param>
-    Public Function GetEvolutionID(ByVal trigger As EvolutionCondition.EvolutionTrigger, ByVal argument As String) As Integer
+    Public Function GetEvolutionID(ByVal trigger As EvolutionCondition.EvolutionTrigger, ByVal argument As String) As String
         Return EvolutionCondition.EvolutionNumber(Me, trigger, argument)
     End Function
 

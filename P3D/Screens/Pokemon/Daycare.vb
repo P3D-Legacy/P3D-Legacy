@@ -32,6 +32,48 @@
             p.SetCatchInfos(Item.GetItemByID(5), "obtained at")
             p.CatchBall = Item.GetItemByID(GetEggPokeballID({parent1, parent2}.ToList()))
 
+            ' Regional Form check
+            If Screen.Level.RegionalForm.Contains(CChar(",")) Then
+                For Each r As String In Screen.Level.RegionalForm.Split(CChar(","))
+                    If p.RegionalForms.Contains(r.ToLower()) Then
+                        p.AdditionalData = r.ToLower()
+                    End If
+                Next
+            Else
+                If p.RegionalForms.ToLower.Contains(Screen.Level.RegionalForm.ToLower()) Then
+                    p.AdditionalData = Screen.Level.RegionalForm.ToLower()
+                End If
+            End If
+
+            ' Form inheritance
+            Select Case DittoAsParent
+                Case 0
+                    If parent1.Gender = P3D.Pokemon.Genders.Female Then
+                        If parent1.Item.Name.ToLower() = "everstone" Then
+                            p.AdditionalData = parent1.AdditionalData
+                        ElseIf parent2.Number = parent1.Number And parent2.Item.Name.ToLower() = "everstone" Then
+                            p.AdditionalData = parent2.AdditionalData
+                        End If
+                    Else
+                        If parent2.Item.Name.ToLower() = "everstone" Then
+                            p.AdditionalData = parent2.AdditionalData
+                        ElseIf parent1.Number = parent2.Number And parent1.Item.Name.ToLower() = "everstone" Then
+                            p.AdditionalData = parent1.AdditionalData
+                        End If
+                    End If
+                Case 1
+                    If parent2.Item.Name.ToLower() = "everstone" Then
+                        p.AdditionalData = parent2.AdditionalData
+                    End If
+                Case 2
+                    If parent1.Item.Name.ToLower() = "everstone" Then
+                        p.AdditionalData = parent1.AdditionalData
+                    End If
+            End Select
+
+            p.ReloadDefinitions()
+            p.CalculateStats()
+
             ' Adding Egg Moves:
             Dim EggMoves As New List(Of BattleSystem.Attack)
 
@@ -602,7 +644,7 @@
     End Sub
 
     Public Shared Sub EggCircle()
-        Core.Player.PlayerTemp.DayCareCycle = 256
+        Core.Player.PlayerTemp.DayCareCycle = 2
         ObtainEgg()
     End Sub
 

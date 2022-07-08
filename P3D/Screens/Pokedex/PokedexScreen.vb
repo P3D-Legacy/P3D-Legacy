@@ -1267,8 +1267,8 @@ Public Class PokedexViewScreen
             If Me.Pokemon.EvolutionConditions.Count > 0 Then
                 Dim evolutions As New List(Of Integer)
                 For Each ev As EvolutionCondition In Me.Pokemon.EvolutionConditions
-                    If evolutions.Contains(ev.Evolution) = False And fromEvolution <> ev.Evolution Then
-                        evolutions.Add(ev.Evolution)
+                    If evolutions.Contains(CInt(ev.Evolution.Split(CChar("_"))(0))) = False And fromEvolution <> CInt(ev.Evolution.Split(CChar("_"))(0)) Then
+                        evolutions.Add(CInt(ev.Evolution.Split(CChar("_"))(0)))
                     End If
                 Next
 

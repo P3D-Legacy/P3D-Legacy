@@ -31,7 +31,7 @@ Public Class Spawner
             End If
         End If
 
-        Dim Pokemons As New List(Of Integer)
+        Dim Pokemons As New List(Of String)
         Dim Chances As New List(Of Integer)
         Dim LevelCaps As New List(Of String)
 
@@ -56,7 +56,7 @@ Public Class Spawner
                     Dim splits() As String = Line.Split(CChar("|"))
 
                     Dim PMethod As Integer = CInt(splits(0))
-                    Dim Pokemon As Integer = CInt(splits(1))
+                    Dim Pokemon As String = splits(1)
                     Dim Chance As Integer = CInt(splits(2))
                     Dim DayTime() As String = splits(3).Split(CChar(","))
                     Dim levelCap As String = splits(4)
@@ -131,7 +131,7 @@ Public Class Spawner
         Return Nothing
     End Function
 
-    Private Shared Function CalculatePokemon(ByVal Pokemons As List(Of Integer), ByVal Chances As List(Of Integer), ByVal LevelCaps As List(Of String)) As Pokemon
+    Private Shared Function CalculatePokemon(ByVal Pokemons As List(Of String), ByVal Chances As List(Of Integer), ByVal LevelCaps As List(Of String)) As Pokemon
         Dim totalNumber As Integer = 0
         For Each c As Integer In Chances
             totalNumber += c
@@ -174,8 +174,21 @@ Public Class Spawner
                     level = CInt(GameModeManager.GetGameRuleValue("MaxLevel", "100"))
                 End If
 
-                Dim p As Pokemon = Pokemon.GetPokemonByID(Pokemons(i))
-                p.Generate(level, True)
+                Dim PkID As Integer = CInt(Pokemons(i).Split(CChar("_"))(0))
+                Dim PkAD As String = ""
+                Dim p As Pokemon = Pokemon.GetPokemonByID(PkID)
+                For Each region As String In Screen.Level.RegionalForm.ToLower().Split(CChar(","))
+                    If p.RegionalForms <> Nothing AndAlso p.RegionalForms.ToLower().Contains(region) Then
+                        PkAD = region
+                    End If
+                Next
+                If Pokemons(i).Contains("_") Then
+                    PkAD = Pokemons(i).Split(CChar("_"))(1)
+                End If
+                p = Pokemon.GetPokemonByID(PkID, PkAD)
+                p.Generate(level, True, PkAD)
+                p.ReloadDefinitions()
+                p.CalculateStats()
 
                 BattleSystem.BattleScreen.TempPokeFile = pokeFile
 

@@ -260,8 +260,15 @@ Public Class Trainer
                         readData = readData.Remove(0, 1)
                     End While
 
-                    Dim ID As Integer = ScriptConversion.ToInteger(ScriptCommander.Parse(firstPart))
+                    Dim PK As String = ScriptCommander.Parse(firstPart).ToString()
                     Dim Level As Integer = ScriptConversion.ToInteger(ScriptCommander.Parse(secondPart))
+
+                    Dim ID As Integer = CInt(PK.Split(CChar("_"))(0))
+                    Dim AD As String = ""
+
+                    If PK.Contains(CChar("_")) Then
+                        AD = PK.Split(CChar("_"))(1)
+                    End If
 
                     Dim addLevel As Integer = 0
                     If Core.Player.DifficultyMode = 1 Then
@@ -282,8 +289,13 @@ Public Class Trainer
                     If FrontierTrainer > -1 Then
                         p = FrontierSpawner.GetPokemon(Level, FrontierTrainer, Nothing)
                     Else
-                        p = Pokemon.GetPokemonByID(ID)
-                        p.Generate(Level, True)
+                        If AD <> "" Then
+                            p = Pokemon.GetPokemonByID(ID, AD)
+                            p.Generate(Level, True, AD)
+                        Else
+                            p = Pokemon.GetPokemonByID(ID)
+                            p.Generate(Level, True)
+                        End If
                     End If
 
                     If p.IsGenderless = False Then

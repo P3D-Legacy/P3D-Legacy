@@ -334,7 +334,7 @@
     Private Sub EvolvePokemon()
         Dim HPpercentage As Integer = CInt((currentPokemon.HP / currentPokemon.MaxHP) * 100)
 
-        evolvedPokemon = Pokemon.GetPokemonByID(currentPokemon.GetEvolutionID(Me.EvolutionTrigger, Me.EvolutionArg))
+        evolvedPokemon = Pokemon.GetPokemonByID(CInt(currentPokemon.GetEvolutionID(Me.EvolutionTrigger, Me.EvolutionArg).Split(CChar("_"))(0)))
         evolvedPokemon.Status = currentPokemon.Status
 
         evolvedPokemon.EVHP = currentPokemon.EVHP
@@ -359,7 +359,11 @@
         evolvedPokemon.Attacks = currentPokemon.Attacks
         evolvedPokemon.Gender = currentPokemon.Gender
         evolvedPokemon.Nature = currentPokemon.Nature
+        If currentPokemon.GetEvolutionID(Me.EvolutionTrigger, Me.EvolutionArg).Contains(CChar("_")) Then
+            evolvedPokemon.AdditionalData = currentPokemon.GetEvolutionID(Me.EvolutionTrigger, Me.EvolutionArg).Split(CChar("_"))(1)
+        End If
 
+        evolvedPokemon.ReloadDefinitions()
         evolvedPokemon.CalculateStats()
 
         Dim hasOldAbility As Boolean = False

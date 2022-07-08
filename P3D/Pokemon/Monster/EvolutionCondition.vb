@@ -16,6 +16,7 @@ Public Class EvolutionCondition
         InParty
         InPartyType
         Weather
+        Region
     End Enum
 
     Public Structure Condition
@@ -24,10 +25,10 @@ Public Class EvolutionCondition
     End Structure
 
     Public Trigger As EvolutionTrigger
-    Public Evolution As Integer = 0
+    Public Evolution As String = ""
     Public Conditions As New List(Of Condition)
 
-    Public Sub SetEvolution(ByVal evolution As Integer)
+    Public Sub SetEvolution(ByVal evolution As String)
         Me.Evolution = evolution
     End Sub
 
@@ -66,6 +67,8 @@ Public Class EvolutionCondition
                 c.ConditionType = ConditionTypes.InPartyType
             Case "weather"
                 c.ConditionType = ConditionTypes.Weather
+            Case "region"
+                c.ConditionType = ConditionTypes.Region
         End Select
         Me.Conditions.Add(c)
     End Sub
@@ -102,10 +105,10 @@ Public Class EvolutionCondition
     ''' <param name="p">The Pokémon to get the evolution from.</param>
     ''' <param name="trigger">The trigger that triggered the evolution.</param>
     ''' <param name="arg">An argument (for example Item ID)</param>
-    Public Shared Function EvolutionNumber(ByVal p As Pokemon, ByVal trigger As EvolutionTrigger, ByVal arg As String) As Integer
+    Public Shared Function EvolutionNumber(ByVal p As Pokemon, ByVal trigger As EvolutionTrigger, ByVal arg As String) As String
         Dim e As EvolutionCondition = GetEvolutionCondition(p, trigger, arg)
         If e Is Nothing Then
-            Return 0
+            Return ""
         Else
             Return e.Evolution
         End If
@@ -225,6 +228,15 @@ Public Class EvolutionCondition
                             If World.GetCurrentRegionWeather().ToString.ToLower <> c.Argument.ToLower Then
                                 canEvolve = False
                             End If
+                        Case ConditionTypes.Region
+                            canEvolve = False
+                            Dim eregions As List(Of String) = c.Argument.ToLower.Split(CChar(";")).ToList()
+                            Dim regions As List(Of String) = Screen.Level.CurrentRegion.ToLower.Split(CChar(",")).ToList()
+                            For Each r As String In regions
+                                If eregions.Contains(r) Then
+                                    canEvolve = True
+                                End If
+                            Next
                     End Select
                 Next
             End If
