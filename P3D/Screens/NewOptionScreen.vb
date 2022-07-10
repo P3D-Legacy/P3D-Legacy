@@ -1022,18 +1022,20 @@
     End Sub
 
     Private Sub Close()
-        If currentLanguage <> TempLanguage Then
-            Localization.Load(TempLanguage)
-        End If
-        If MusicManager.MasterVolume * 100 <> Me.TempMusicVolume Then
-            MusicManager.MasterVolume = CSng(Me.TempMusicVolume / 100)
-        End If
-        If SoundManager.Volume * 100 <> Me.TempSoundVolume Then
-            SoundManager.Volume = CSng(Me.TempSoundVolume / 100)
-        End If
-        If MusicManager.Muted <> CBool(Me.TempMuted) Or SoundManager.Muted <> CBool(Me.TempMuted) Then
-            MusicManager.Muted = CBool(Me.TempMuted)
-            SoundManager.Muted = CBool(Me.TempMuted)
+        If PreScreen.Identification = Identifications.MainMenuScreen Then
+            If currentLanguage <> TempLanguage Then
+                Localization.Load(TempLanguage)
+            End If
+            If MusicManager.MasterVolume * 100 <> Me.TempMusicVolume Then
+                MusicManager.MasterVolume = CSng(Me.TempMusicVolume / 100)
+            End If
+            If SoundManager.Volume * 100 <> Me.TempSoundVolume Then
+                SoundManager.Volume = CSng(Me.TempSoundVolume / 100)
+            End If
+            If MusicManager.Muted <> CBool(Me.TempMuted) Or SoundManager.Muted <> CBool(Me.TempMuted) Then
+                MusicManager.Muted = CBool(Me.TempMuted)
+                SoundManager.Muted = CBool(Me.TempMuted)
+            End If
         End If
         _closing = True
     End Sub
