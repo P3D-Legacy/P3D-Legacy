@@ -66,7 +66,7 @@
                         "@sound.play(destroy)" & Environment.NewLine &
                         "@level.update" & Environment.NewLine &
                         "@text.show(A wild Pokémon~appeared!)" & Environment.NewLine &
-                        "@battle.wild(" & spawnedPokemon.Number & "," & spawnedPokemon.Level & ")" & Environment.NewLine &
+                        "@battle.wild(" & spawnedPokemon.GetSaveData() & ")" & Environment.NewLine &
                         ":end"
                     CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
                 End If
