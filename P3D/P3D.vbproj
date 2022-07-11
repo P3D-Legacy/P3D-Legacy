@@ -13708,9 +13708,15 @@
     <Content Include="Content\Pokemon\Overworld\Normal\809.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Pokemon\Overworld\Normal\837.png" />
-    <Content Include="Content\Pokemon\Overworld\Normal\838.png" />
-    <Content Include="Content\Pokemon\Overworld\Normal\839.png" />
+    <Content Include="Content\Pokemon\Overworld\Normal\837.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\838.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Normal\839.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pokemon\Overworld\Normal\880.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -13946,9 +13952,15 @@
     <Content Include="Content\Pokemon\Overworld\Shiny\809.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Pokemon\Overworld\Shiny\837.png" />
-    <Content Include="Content\Pokemon\Overworld\Shiny\838.png" />
-    <Content Include="Content\Pokemon\Overworld\Shiny\839.png" />
+    <Content Include="Content\Pokemon\Overworld\Shiny\837.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\838.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Pokemon\Overworld\Shiny\839.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pokemon\Overworld\Shiny\880.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
