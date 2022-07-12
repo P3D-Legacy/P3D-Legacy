@@ -644,7 +644,10 @@
         Dim AdditionalValue As String = CStr(GetTag(Tags, "AdditionalValue"))
         Dim Name As String = CStr(GetTag(Tags, "Name"))
         Dim ID As Integer = CInt(GetTag(Tags, "ID"))
-
+        Dim ModelPath As String = ""
+        If TagExists(Tags, "ModelPath") = True Then
+            ModelPath = CStr(GetTag(Tags, "ModelPath"))
+        End If
         Dim Movement As String = CStr(GetTag(Tags, "Movement"))
         Dim MoveRectangles As List(Of Rectangle) = CType(GetTag(Tags, "MoveRectangles"), List(Of Rectangle))
 
@@ -659,7 +662,7 @@
             AnimateIdle = CBool(GetTag(Tags, "AnimateIdle"))
         End If
 
-        Dim NPC As NPC = CType(Entity.GetNewEntity("NPC", Position, {Nothing}, {0, 0}, True, New Vector3(0), Scale, BaseModel.BillModel, ActionValue, AdditionalValue, True, Shader, -1, MapOrigin, "", Offset, {TextureID, Rotation, Name, ID, AnimateIdle, Movement, MoveRectangles}), NPC)
+        Dim NPC As NPC = CType(Entity.GetNewEntity("NPC", Position, {Nothing}, {0, 0}, True, New Vector3(0), Scale, BaseModel.BillModel, ActionValue, AdditionalValue, True, Shader, -1, MapOrigin, "", Offset, {TextureID, Rotation, Name, ID, AnimateIdle, Movement, MoveRectangles},,,,ModelPath), NPC)
 
         If loadOffsetMap = False Then
             Screen.Level.Entities.Add(NPC)
@@ -817,6 +820,11 @@
 
         Dim ModelID As Integer = CInt(GetTag(Tags, "ModelID"))
 
+        Dim ModelPath As String = ""
+        If TagExists(Tags, "ModelPath") = True Then
+            ModelPath = CStr(GetTag(Tags, "ModelPath"))
+        End If
+
         Dim ActionValue As Integer = CInt(GetTag(Tags, "Action"))
 
         Dim AdditionalValue As String = ""
@@ -921,7 +929,8 @@
                                                                    {},
                                                                    Opacity,
                                                                    AnimationData,
-                                                                   CameraDistanceDelta)
+                                                                   CameraDistanceDelta,
+                                                                   ModelPath)
                         newEnt.IsOffsetMapContent = loadOffsetMap
 
                         If Not newEnt Is Nothing Then

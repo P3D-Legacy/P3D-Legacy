@@ -22,7 +22,11 @@
     End Function
 
     Public Overrides Sub Render()
-        Me.Draw(Me.Model, Textures, False)
+        If Me.Model Is Nothing Then
+            Me.Draw(Me.BaseModel, Textures, False)
+        Else
+            Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+        End If
     End Sub
 
     Public Shared Function GetGrassTilesAroundPlayer(ByVal radius As Single) As List(Of Entity)

@@ -31,15 +31,18 @@
     End Sub
 
     Public Overrides Sub UpdateEntity()
-        If Not WaterAnimation Is Nothing Then
-            WaterAnimation.Update(0.01)
-            If currentRectangle <> WaterAnimation.TextureRectangle Then
-                ChangeTexture()
+        If Me.Model Is Nothing Then
+            If Not WaterAnimation Is Nothing Then
+                WaterAnimation.Update(0.01)
+                If currentRectangle <> WaterAnimation.TextureRectangle Then
+                    ChangeTexture()
 
-                currentRectangle = WaterAnimation.TextureRectangle
+                    currentRectangle = WaterAnimation.TextureRectangle
+                End If
             End If
+        Else
+            Me.Rotation.Y += 0.01F
         End If
-
         MyBase.UpdateEntity()
     End Sub
 
@@ -62,7 +65,11 @@
     End Sub
 
     Public Overrides Sub Render()
-        Me.Draw(Me.Model, Textures, False)
+        If Me.Model Is Nothing Then
+            Me.Draw(Me.BaseModel, Textures, False)
+        Else
+            Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+        End If
     End Sub
 
     Private Function ReturnWhirlPoolPokemonName() As String

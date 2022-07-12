@@ -71,9 +71,8 @@ Crates:
 {"EntityField"{ENT[{"Size"{intArr[1,5]}}{"Scale"{sngArr[0.45,0.45,0.45]}}{"Steps"{sngArr[1,4]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[0,0.7,7]}}{"TexturePath"{str[rocketbase]}}{"Textures"{recArr[[16,0,16,16][32,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[0]}}]}}
 
 Boats:
-{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"Scale"{sngArr[0.00002,0.00002,0.00002]}}{"EntityID"{str[ModelEntity]}}{"Position"{sngArr[6,0.77,7.55]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[models\boat\SSAqua]}}{"Rotation"{int[2]}}]}}
-{"Entity"{ENT[{"ID"{int[0]}}{"Scale"{sngArr[0.07,0.07,0.07]}}{"EntityID"{str[ModelEntity]}}{"Position"{sngArr[6,0.72,10.6]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[models\boat2\boat]}}{"Rotation"{int[0]}}]}}
-
+{"Entity"{ENT[{"Scale"{sngArr[0.1,0.1,0.1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,0.7,7.525]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"ModelPath"{str[models\boat\SSAqua]}}{"Rotation"{int[2]}}]}}
+{"Entity"{ENT[{"Scale"{sngArr[0.2,0.2,0.2]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,0.7,10.5]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[96,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"ModelPath"{str[models\boat2\boat]}}{"Rotation"{int[2]}}]}}
 
 Big Red Button:
 {"EntityField"{ENT[{"Size"{intArr[1,1]}}{"Scale"{sngArr[0.2,0.2,0.2]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[15,0.2,6.5]}}{"TexturePath"{str[kolben]}}{"Textures"{recArr[[16,32,16,16][48,32,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,1,1]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"RotationXYZ"{sngArr[1.57,1.57,1.57]}}]}}

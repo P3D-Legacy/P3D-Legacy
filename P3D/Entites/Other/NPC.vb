@@ -472,18 +472,28 @@
     End Function
 
     Public Overrides Sub UpdateEntity()
-        If Me.Rotation.Y <> Screen.Camera.Yaw Then
-            Me.Rotation.Y = Screen.Camera.Yaw
+        If Me.Model Is Nothing Then
+            If Me.Rotation.Y <> Screen.Camera.Yaw Then
+                Me.Rotation.Y = Screen.Camera.Yaw
+            End If
+        Else
+            If Me.Rotation.Y <> faceRotation Then
+                Me.Rotation.Y = GetRotationFromInteger(faceRotation).Y
+            End If
         End If
 
         MyBase.UpdateEntity()
     End Sub
 
     Public Overrides Sub Render()
-        Dim state = GraphicsDevice.DepthStencilState
-        GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
-        Draw(Me.Model, Me.Textures, True)
-        GraphicsDevice.DepthStencilState = state
+        If Me.Model Is Nothing Then
+            Dim state = GraphicsDevice.DepthStencilState
+            GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
+            Draw(Me.BaseModel, Me.Textures, True)
+            GraphicsDevice.DepthStencilState = state
+        Else
+            Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+        End If
     End Sub
 
 #Region "Movement and Camera"

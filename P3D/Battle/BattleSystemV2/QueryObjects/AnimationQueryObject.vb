@@ -9,7 +9,7 @@
 		Public AnimationSequence As List(Of BattleAnimation3D)
 		Public SpawnedEntities As List(Of Entity)
 		Public CurrentEntity As Entity
-		Public CurrentModel As ModelEntity
+		Public CurrentModel As Entity
 		Public DrawBeforeEntities As Boolean
 
 		Public Overrides ReadOnly Property IsReady As Boolean
@@ -18,7 +18,7 @@
 			End Get
 		End Property
 
-		Public Sub New(ByVal entity As Entity, ByVal BattleFlipped As Boolean, Optional ByVal model As ModelEntity = Nothing, Optional DrawBeforeEntities As Boolean = False)
+		Public Sub New(ByVal entity As Entity, ByVal BattleFlipped As Boolean, Optional ByVal model As Entity = Nothing, Optional DrawBeforeEntities As Boolean = False)
 			MyBase.New(QueryTypes.MoveAnimation)
 			Me.AnimationSequence = New List(Of BattleAnimation3D)
 			Me.SpawnedEntities = New List(Of Entity)

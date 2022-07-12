@@ -124,9 +124,11 @@
                 Case 2
                     Select Case Me._entity
                         Case BattleEntities.OwnPokemon
-                            BV2Screen.OwnPokemonModel.LoadModel(_newTexture)
+                            BV2Screen.OwnPokemonModel.ModelPath = _newTexture
+                            BV2Screen.OwnPokemonModel.Model = ModelManager.GetModel(BV2Screen.OwnPokemonModel.ModelPath)
                         Case BattleEntities.OppPokemon
-                            BV2Screen.OppPokemonModel.LoadModel(_newTexture)
+                            BV2Screen.OppPokemonModel.ModelPath = _newTexture
+                            BV2Screen.OppPokemonModel.Model = ModelManager.GetModel(BV2Screen.OppPokemonModel.ModelPath)
                     End Select
             End Select
             _done = True

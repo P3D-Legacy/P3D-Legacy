@@ -54,8 +54,11 @@
                 ChangeSand()
             End If
         End If
-
-        Me.Draw(Me.Model, Textures, False)
+        If Me.Model Is Nothing Then
+            Me.Draw(Me.BaseModel, Textures, False)
+        Else
+            Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+        End If
     End Sub
 
     Private Shared FloorDictionary As New Dictionary(Of String, Entity)
@@ -96,7 +99,7 @@
 
             If hasEntityOnAllSides = False Then
                 Me.Textures = {P3D.TextureManager.GetTexture("Routes", New Rectangle(208, 16, 16, 2)), P3D.TextureManager.GetTexture("Routes", New Rectangle(208, 16, 16, 16))}
-                Me.Model = BaseModel.BlockModel
+                Me.BaseModel = BaseModel.BlockModel
                 Me.TextureIndex = {sides(0), sides(0), sides(1), sides(1), sides(2), sides(2), sides(3), sides(3), 1, 1}
                 Me.Scale = New Vector3(1, 0.1F, 1)
                 Me.Position.Y -= 0.45F
@@ -153,7 +156,7 @@
 
             If hasEntityOnAllSides = False Then
                 Me.Textures = {P3D.TextureManager.GetTexture("Routes", New Rectangle(240, 80, 16, 2)), P3D.TextureManager.GetTexture("Routes", New Rectangle(240, 80, 16, 16))}
-                Me.Model = BaseModel.BlockModel
+                Me.BaseModel = BaseModel.BlockModel
                 Me.TextureIndex = {sides(0), sides(0), sides(1), sides(1), sides(2), sides(2), sides(3), sides(3), 1, 1}
                 Me.Scale = New Vector3(1, 0.1F, 1)
                 Me.Position.Y -= 0.45F

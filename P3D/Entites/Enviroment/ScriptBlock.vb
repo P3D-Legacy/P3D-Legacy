@@ -119,7 +119,11 @@
     End Function
 
     Public Overrides Sub Render()
-        Me.Draw(Me.Model, Textures, True)
+        If Me.Model Is Nothing Then
+            Me.Draw(Me.BaseModel, Textures, True)
+        Else
+            Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+        End If
     End Sub
 
     Public ReadOnly Property ScriptID() As String

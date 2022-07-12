@@ -250,7 +250,7 @@
     Public Overrides Sub Render()
         If ConnectScreen.Connected = True Then
             If IsCorrectScreen() = True Then
-                Me.Draw(Me.Model, Textures, False)
+                Me.Draw(Me.BaseModel, Textures, False)
                 If Core.GameOptions.ShowGUI = True Then
                     If Me.NameTexture IsNot Nothing Then
                         Dim state = GraphicsDevice.DepthStencilState

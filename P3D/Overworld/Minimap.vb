@@ -97,7 +97,7 @@
 
             Dim i As Integer = 0
 
-            Select Case e.Model.ID
+            Select Case e.BaseModel.ID
                 Case 0
                     i = 0
                 Case 1

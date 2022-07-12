@@ -156,7 +156,11 @@
     End Sub
 
     Public Overrides Sub Render()
-        Me.Draw(Me.Model, Me.Textures, False)
+        If Me.Model Is Nothing Then
+            Me.Draw(Me.BaseModel, Me.Textures, False)
+        Else
+            Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+        End If
     End Sub
 
 End Class

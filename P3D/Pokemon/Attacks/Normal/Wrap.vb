@@ -87,7 +87,7 @@
             End If
         End Sub
 
-        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As Entity)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Normal\Wrap", 5.0F, 0)
             Dim WrapEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 0, 80, 40), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 0.75)

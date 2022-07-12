@@ -2684,7 +2684,6 @@ Public Class Pokemon
                 z = -8
             Case 143
                 scale = 0.5
-                roll = 1.2F
             Case 144
                 z = -9
                 scale = 0.35

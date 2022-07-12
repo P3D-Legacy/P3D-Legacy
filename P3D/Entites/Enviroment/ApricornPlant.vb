@@ -38,6 +38,11 @@
             End While
 
             r = New Rectangle(x * 16, y * 16, 16, 16)
+            If ModelManager.ModelExist(Me.ModelPath & "_" & (y + x)) = True Then
+                Me.Model = ModelManager.GetModel(Me.ModelPath & "_" & (y + x))
+                Me.NeedsUpdate = True
+                ApplyEffect()
+            End If
         End If
 
         Textures(0) = TextureManager.GetTexture("Apricorn", r)
@@ -116,7 +121,11 @@
     End Sub
 
     Public Overrides Sub Render()
-        Draw(Model, Textures, False)
+        If Me.Model Is Nothing Then
+            Draw(BaseModel, Textures, False)
+        Else
+            Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+        End If
     End Sub
 
     Public Overrides Sub ClickFunction()

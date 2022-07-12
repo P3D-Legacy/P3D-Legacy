@@ -61,6 +61,8 @@
     <None Include="Content\Models\Environment\Test_floor\Test_floor.mtl" />
     <None Include="Content\Models\Environment\Test_floor\Test_floor.obj" />
     <None Include="Content\Models\Environment\Test_floor\Texture\floor.tga" />
+    <None Include="Content\Models\Pokemon\Snorlax\Normal.fbx" />
+    <None Include="Content\Models\Pokemon\Snorlax\Shiny.fbx" />
     <None Include="Content\Models\Snorlax\Normal.fbx" />
     <None Include="Content\Models\Snorlax\Shiny.fbx" />
     <None Include="Content\Models\truck2\Truck.fbx" />
@@ -86,6 +88,8 @@
     <Content Include="Content\Models\building\KolbenTower.png" />
     <Content Include="Content\Models\Environment\MtSilver\Gray.png" />
     <Content Include="Content\Models\Environment\MtSilver\White.png" />
+    <Content Include="Content\Models\Pokemon\Snorlax\Snorlax_Normal.png" />
+    <Content Include="Content\Models\Pokemon\Snorlax\Snorlax_Shiny.png" />
     <Content Include="Content\Models\Snorlax\Snorlax_Normal.png" />
     <Content Include="Content\Models\Snorlax\Snorlax_Shiny.png" />
     <Content Include="Content\Models\truck2\Truck.png" />

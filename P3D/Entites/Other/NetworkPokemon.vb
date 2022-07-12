@@ -87,7 +87,7 @@
                             If Me.Textures IsNot Nothing Then
                                 Dim state = GraphicsDevice.DepthStencilState
                                 GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
-                                Draw(Me.Model, {Me.Textures(0)}, False)
+                                Draw(Me.BaseModel, {Me.Textures(0)}, False)
                                 GraphicsDevice.DepthStencilState = state
                             End If
                         End If

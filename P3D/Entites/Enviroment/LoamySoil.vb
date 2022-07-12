@@ -4,8 +4,11 @@
 
     Public Overrides Sub Initialize()
         MyBase.Initialize()
-
-        Me.Visible = False
+        If Me.Model Is Nothing Then
+            Me.Visible = False
+        Else
+            Me.Visible = True
+        End If
     End Sub
 
     Public Overrides Sub ClickFunction()
@@ -50,7 +53,11 @@
     End Sub
 
     Public Overrides Sub Render()
-        Me.Draw(Me.Model, Textures, False)
+        If Me.Model Is Nothing Then
+            Me.Draw(Me.BaseModel, Textures, False)
+        Else
+            Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+        End If
     End Sub
 
 End Class

@@ -1,7 +1,7 @@
 Public Class ModelManager
 
     Shared ModelList As New Dictionary(Of String, Model)
-
+    Public Const MODELSCALE As Single = 0.00625F
     Public Shared Function GetModel(ByVal Path As String) As Model
         Dim cContent As ContentManager = ContentPackManager.GetContentManager(Path, ".xnb")
 
@@ -48,7 +48,7 @@ Public Class ModelManager
     End Sub
 
     Public Shared Function DrawModelToTexture(ByVal modelName As String, ByVal renderTarget As RenderTarget2D, ByVal modelPosition As Vector3, ByVal cameraPosition As Vector3, ByVal cameraRotation As Vector3, ByVal Scale As Single, ByVal enableLight As Boolean) As Texture2D
-
+        Dim _scale As Single = Scale * MODELSCALE
         Core.GraphicsDevice.SetRenderTarget(renderTarget)
         Core.GraphicsDevice.Clear(Color.Transparent)
 
@@ -77,7 +77,7 @@ Public Class ModelManager
             Next
         End If
 
-        m.Draw(Matrix.CreateFromYawPitchRoll(cameraRotation.X, cameraRotation.Y, cameraRotation.Z) * Matrix.CreateScale(New Vector3(Scale)) * Matrix.CreateTranslation(modelPosition), Matrix.CreateLookAt(cameraPosition, modelPosition, Vector3.Up), Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0F), Core.GraphicsDevice.Viewport.AspectRatio, 0.1F, 10000.0F))
+        m.Draw(Matrix.CreateFromYawPitchRoll(cameraRotation.X, cameraRotation.Y, cameraRotation.Z) * Matrix.CreateScale(New Vector3(_scale)) * Matrix.CreateTranslation(modelPosition), Matrix.CreateLookAt(cameraPosition, modelPosition, Vector3.Up), Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45.0F), Core.GraphicsDevice.Viewport.AspectRatio, 0.1F, 10000.0F))
 
         Core.GraphicsDevice.SetRenderTarget(Nothing)
 

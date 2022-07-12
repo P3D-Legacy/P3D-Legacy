@@ -1326,8 +1326,8 @@ Public Class StorageSystemScreen
                 If p.IsShiny = True Then
                     shinyString = "Shiny"
                 End If
-                If Core.Player.ShowModelsInBattle = True AndAlso ModelManager.ModelExist("Models\" & modelName & "\" & shinyString) = True And p.IsEgg() = False Then
-                    Draw3DModel(p, "Models\" & modelName & "\" & shinyString)
+                If Core.Player.ShowModelsInBattle = True AndAlso ModelManager.ModelExist("Models\Pokemon\" & modelName & "\" & shinyString) = True And p.IsEgg() = False Then
+                    Draw3DModel(p, "Models\Pokemon\" & modelName & "\" & shinyString)
                 Else
                     GetYOffset(p)
                     Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(634, 180 - yOffset, 256, 256), Color.White)

@@ -18,7 +18,8 @@
     Public TextureIndex() As Integer
     Public ActionValue As Integer
     Public AdditionalValue As String
-    Public Model As BaseModel
+    Public ModelPath As String = ""
+
     Public Visible As Boolean = True
     Public Shader As New Vector3(1.0F)
     Public Shaders As New List(Of Vector3)
@@ -35,14 +36,17 @@
     Public isDancing As Boolean = False
 
     Public Opacity As Single = 1.0F
-    Private _normalOpactity As Single = 1.0F
+    Private _normalOpacity As Single = 1.0F
+
+    Public BaseModel As BaseModel
+    Public Model As Model = Nothing
     Public Property NormalOpacity As Single
         Get
-            Return Me._normalOpactity
+            Return Me._normalOpacity
         End Get
         Set(value As Single)
             Me.Opacity = value
-            Me._normalOpactity = value
+            Me._normalOpacity = value
         End Set
     End Property
 
@@ -77,7 +81,7 @@
         MyBase.New(EntityTypes.Entity)
     End Sub
 
-    Public Sub New(ByVal X As Single, ByVal Y As Single, ByVal Z As Single, ByVal EntityID As String, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Integer, ByVal Scale As Vector3, ByVal Model As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Shader As Vector3)
+    Public Sub New(ByVal X As Single, ByVal Y As Single, ByVal Z As Single, ByVal EntityID As String, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Integer, ByVal Scale As Vector3, ByVal BaseModel As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Shader As Vector3, Optional ModelPath As String = "")
         MyBase.New(EntityTypes.Entity)
 
         Me.Position = New Vector3(X, Y, Z)
@@ -87,7 +91,8 @@
         Me.Collision = Collision
         Me.Rotation = GetRotationFromInteger(Rotation)
         Me.Scale = Scale
-        Me.Model = Model
+        Me.BaseModel = BaseModel
+        Me.ModelPath = ModelPath
         Me.ActionValue = ActionValue
         Me.AdditionalValue = AdditionalValue
         Me.Shader = Shader
@@ -126,7 +131,7 @@
         Me.UpdateEntity()
     End Sub
 
-    Public Shared Function GetNewEntity(ByVal EntityID As String, ByVal Position As Vector3, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Vector3, ByVal Scale As Vector3, ByVal Model As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Visible As Boolean, ByVal Shader As Vector3, ByVal ID As Integer, ByVal MapOrigin As String, ByVal SeasonColorTexture As String, ByVal Offset As Vector3, Optional ByVal Params() As Object = Nothing, Optional ByVal Opacity As Single = 1.0F, Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing, Optional ByVal CameraDistanceDelta As Single = 0.0F) As Entity
+    Public Shared Function GetNewEntity(ByVal EntityID As String, ByVal Position As Vector3, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Vector3, ByVal Scale As Vector3, ByVal BaseModel As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Visible As Boolean, ByVal Shader As Vector3, ByVal ID As Integer, ByVal MapOrigin As String, ByVal SeasonColorTexture As String, ByVal Offset As Vector3, Optional ByVal Params() As Object = Nothing, Optional ByVal Opacity As Single = 1.0F, Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing, Optional ByVal CameraDistanceDelta As Single = 0.0F, Optional ModelPath As String = "") As Entity
         Dim newEnt As New Entity()
         Dim propertiesEnt As New Entity()
 
@@ -137,7 +142,8 @@
         propertiesEnt.Collision = Collision
         propertiesEnt.Rotation = Rotation
         propertiesEnt.Scale = Scale
-        propertiesEnt.Model = Model
+        propertiesEnt.BaseModel = BaseModel
+        propertiesEnt.ModelPath = ModelPath
         propertiesEnt.ActionValue = ActionValue
         propertiesEnt.AdditionalValue = AdditionalValue
         propertiesEnt.Visible = Visible
@@ -149,7 +155,11 @@
         propertiesEnt.SeasonColorTexture = SeasonColorTexture
         propertiesEnt.Offset = Offset
         propertiesEnt.CameraDistanceDelta = CameraDistanceDelta
-
+        If ModelManager.ModelExist(ModelPath) = True Then
+            propertiesEnt.Scale *= ModelManager.MODELSCALE
+            propertiesEnt.ModelPath = ModelPath
+            propertiesEnt.Model = ModelManager.GetModel(ModelPath)
+        End If
         Select Case EntityID.ToLower()
             Case "animatedblock"
                 newEnt = New AnimatedBlock()
@@ -280,6 +290,8 @@
         newEnt.Collision = PropertiesEnt.Collision
         newEnt.Rotation = PropertiesEnt.Rotation
         newEnt.Scale = PropertiesEnt.Scale
+        newEnt.BaseModel = PropertiesEnt.BaseModel
+        newEnt.ModelPath = PropertiesEnt.ModelPath
         newEnt.Model = PropertiesEnt.Model
         newEnt.ActionValue = PropertiesEnt.ActionValue
         newEnt.AdditionalValue = PropertiesEnt.AdditionalValue
@@ -332,26 +344,35 @@
     End Sub
 
     Public Overridable Sub Update()
-
+        UpdateModel()
     End Sub
 
+    Public Sub UpdateModel()
+        If Not Me.Model Is Nothing Then
+            ViewBox = New BoundingBox(
+            Vector3.Transform(New Vector3(-1, -1, -1), Matrix.CreateScale(viewBoxScale) * Matrix.CreateTranslation(Position)),
+            Vector3.Transform(New Vector3(1, 1, 1), Matrix.CreateScale(viewBoxScale) * Matrix.CreateTranslation(Position)))
+
+            ApplyEffect()
+        End If
+    End Sub
     Public Overridable Sub OpacityCheck()
         If Me.CameraDistance > 10.0F Or
             Screen.Level.OwnPlayer IsNot Nothing AndAlso CameraDistance > Screen.Level.OwnPlayer.CameraDistance Then
 
-            Me.Opacity = Me._normalOpactity
+            Me.Opacity = Me._normalOpacity
             Exit Sub
         End If
 
         Dim notNames() As String = {"Floor", "OwnPlayer", "Water", "Whirlpool", "Particle", "OverworldPokemon", "ItemObject", "NetworkPokemon", "NetworkPlayer"}
         If Screen.Camera.Name = "Overworld" AndAlso notNames.Contains(Me.EntityID) = False Then
-            Me.Opacity = Me._normalOpactity
+            Me.Opacity = Me._normalOpacity
             If CType(Screen.Camera, OverworldCamera).ThirdPerson = True Then
                 Dim Ray As Ray = Screen.Camera.Ray
                 Dim result As Single? = Ray.Intersects(Me.boundingBox)
                 If result.HasValue = True Then
                     If result.Value < 0.3F + (CType(Screen.Camera, OverworldCamera).ThirdPersonOffset.Z - 1.5F) Then
-                        Me.Opacity = Me._normalOpactity - 0.5F
+                        Me.Opacity = Me._normalOpacity - 0.5F
                         If Me.Opacity < 0.3F Then
                             Me.Opacity = 0.3F
                         End If
@@ -495,8 +516,8 @@
         If CreatedWorld = False Or CreateWorldEveryFrame = True Then
             Dim v As Vector3 = Vector3.Zero '(Me.ViewBox.Min - Me.Position) + (Me.ViewBox.Max - Me.Position)
 
-            If Not Me.Model Is Nothing Then
-                Select Case Me.Model.ID
+            If Not Me.BaseModel Is Nothing Then
+                Select Case Me.BaseModel.ID
                     Case 0, 9, 10, 11
                         v.Y -= 0.5F
                 End Select
@@ -507,28 +528,35 @@
         Return Me.tempCenterVector
     End Function
 
-    Public Overridable Sub Draw(ByVal Model As BaseModel, ByVal Textures() As Texture2D, ByVal setRasterizerState As Boolean)
+    Public Overridable Sub Draw(ByVal BaseModel As BaseModel, ByVal Textures() As Texture2D, ByVal setRasterizerState As Boolean, Optional Model As Model = Nothing)
         If Visible = True Then
-            If Me.IsInFieldOfView() = True Then
-                If setRasterizerState = True Then
-                    Core.GraphicsDevice.RasterizerState = newRasterizerState
-                End If
-
-                Model.Draw(Me, Textures)
-
-                If setRasterizerState = True Then
-                    Core.GraphicsDevice.RasterizerState = oldRasterizerState
-                End If
-
-                Me.DrawnLastFrame = True
-
-                If Me.EntityID <> "Floor" And Me.EntityID <> "Water" Then
-                    If drawViewBox = True Then
-                        BoundingBoxRenderer.Render(ViewBox, GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.LightCoral)
-                    End If
+            If Not Model Is Nothing Then
+                Model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
+                If drawViewBox = True Then
+                    BoundingBoxRenderer.Render(ViewBox, Core.GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.Red)
                 End If
             Else
-                Me.DrawnLastFrame = False
+                If Me.IsInFieldOfView() = True Then
+                    If setRasterizerState = True Then
+                        Core.GraphicsDevice.RasterizerState = newRasterizerState
+                    End If
+
+                    BaseModel.Draw(Me, Textures)
+
+                    If setRasterizerState = True Then
+                        Core.GraphicsDevice.RasterizerState = oldRasterizerState
+                    End If
+
+                    Me.DrawnLastFrame = True
+
+                    If Me.EntityID <> "Floor" And Me.EntityID <> "Water" Then
+                        If drawViewBox = True Then
+                            BoundingBoxRenderer.Render(ViewBox, GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.LightCoral)
+                        End If
+                    End If
+                Else
+                    Me.DrawnLastFrame = False
+                End If
             End If
         Else
             Me.DrawnLastFrame = False
@@ -581,8 +609,8 @@
     Public ReadOnly Property VertexCount() As Integer
         Get
             If Me._cachedVertexCount = -1 Then
-                If Not Me.Model Is Nothing Then
-                    Dim c As Integer = CInt(Me.Model.vertexBuffer.VertexCount / 3)
+                If Not Me.BaseModel Is Nothing Then
+                    Dim c As Integer = CInt(Me.BaseModel.vertexBuffer.VertexCount / 3)
                     Dim min As Integer = 0
 
                     For i = 0 To Me.TextureIndex.Length - 1
@@ -616,5 +644,32 @@
         Next
         Return Nothing
     End Function
+
+    Public Sub ApplyEffect()
+        If Not Me.Model Is Nothing Then
+            For Each mesh As ModelMesh In Me.Model.Meshes
+                For Each part As ModelMeshPart In mesh.MeshParts
+                    If part.Effect.GetType().Name.ToLower() = Screen.Effect.GetType().Name.ToLower() Then
+                        With CType(part.Effect, BasicEffect)
+                            Lighting.UpdateLighting(CType(part.Effect, BasicEffect), True)
+
+                            .DiffuseColor = Screen.Effect.DiffuseColor
+
+                            If Not Screen.Level.World Is Nothing Then
+                                If Screen.Level.World.EnvironmentType = P3D.World.EnvironmentTypes.Outside Then
+                                    .DiffuseColor *= SkyDome.GetDaytimeColor(True).ToVector3()
+                                End If
+                            End If
+
+                            .FogEnabled = True
+                            .FogColor = Screen.Effect.FogColor
+                            .FogEnd = Screen.Effect.FogEnd
+                            .FogStart = Screen.Effect.FogStart
+                        End With
+                    End If
+                Next
+            Next
+        End If
+    End Sub
 
 End Class

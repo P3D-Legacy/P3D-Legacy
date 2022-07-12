@@ -103,7 +103,7 @@
     End Sub
 
     Public Overrides Sub Render()
-        MyBase.Draw(Me.Model, Me.Textures, False)
+        MyBase.Draw(Me.BaseModel, Me.Textures, False)
     End Sub
 
 End Class

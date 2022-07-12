@@ -99,7 +99,7 @@ Namespace BattleSystem.Moves.Water
                 End If
             End If
         End Sub
-        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As ModelEntity)
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As Entity)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip,, True)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
             Dim WhirlpoolEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(0, -0.3F, 0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)

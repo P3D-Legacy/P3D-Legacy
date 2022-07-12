@@ -193,7 +193,7 @@
         If InCameraFocus() = True Then
             Dim state = GraphicsDevice.DepthStencilState
             GraphicsDevice.DepthStencilState = DepthStencilState.DepthRead
-            Draw(Me.Model, Me.Textures, True)
+            Draw(Me.BaseModel, Me.Textures, True)
             GraphicsDevice.DepthStencilState = state
         End If
     End Sub

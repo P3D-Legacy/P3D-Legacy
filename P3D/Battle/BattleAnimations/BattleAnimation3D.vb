@@ -69,7 +69,6 @@
                 End If
             End If
         End If
-
         MyBase.Update()
     End Sub
 
@@ -97,7 +96,11 @@
     Public Overrides Sub Render()
         If Me.startDelay <= 0.0F Then
             If CanRemove = False Then
-                Draw(Me.Model, Me.Textures, True)
+                If Me.Model Is Nothing Then
+                    Draw(Me.BaseModel, Me.Textures, True)
+                Else
+                    Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+                End If
             End If
         End If
     End Sub
