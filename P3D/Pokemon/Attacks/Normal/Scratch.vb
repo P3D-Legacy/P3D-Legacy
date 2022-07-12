@@ -59,9 +59,9 @@
             If BattleFlip = True Then
                 TextureXOffset = 32
             End If
-            Dim ScratchEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Scratch", New Rectangle(TextureXOffset, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
-            MoveAnimation.AnimationChangeTexture(ScratchEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Scratch", New Rectangle(TextureXOffset, 32, 32, 32), ""), 1, 1)
-            MoveAnimation.AnimationChangeTexture(ScratchEntity, True, TextureManager.GetTexture("Textures\Battle\Normal\Scratch", New Rectangle(TextureXOffset, 64, 32, 32), ""), 1, 1)
+            Dim ScratchEntity = MoveAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Scratch", New Rectangle(TextureXOffset, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 0.5)
+            MoveAnimation.AnimationChangeTexture(ScratchEntity, False, TextureManager.GetTexture("Textures\Battle\Normal\Scratch", New Rectangle(TextureXOffset, 32, 32, 32), ""), 0.5, 0.5)
+            MoveAnimation.AnimationChangeTexture(ScratchEntity, True, TextureManager.GetTexture("Textures\Battle\Normal\Scratch", New Rectangle(TextureXOffset, 64, 32, 32), ""), 1, 0.5)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
 
