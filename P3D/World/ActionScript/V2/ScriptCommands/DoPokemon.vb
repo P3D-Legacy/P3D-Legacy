@@ -610,7 +610,7 @@
                         Core.Player.RoamingPokemonData &= Environment.NewLine
                     End If
 
-                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & data(5) & "|" & p.GetSaveData()
+                    Core.Player.RoamingPokemonData &= data(0) & "|" & data(1) & "|" & data(2) & "|" & data(3) & "|" & data(4) & "|" & p.IsShiny & "|" & p.GetSaveData()
                 Case "evolve"
                     Dim args() As String = argument.Split(CChar(","))
                     Dim triggerStr As String = "level"
