@@ -2520,13 +2520,21 @@ Public Class Pokemon
         If Textures(index) Is Nothing Then
             Select Case index
                 Case 0
-                    Textures(index) = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName, New Rectangle(0, 0, 128, 128), "")
+                    Dim TextureImage As Texture2D = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName)
+                    Dim TextureSize As Size = New Size(TextureImage.Width, TextureImage.Height)
+                    Textures(index) = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName, New Rectangle(0, 0, CInt(TextureSize.Width / 2), CInt(TextureSize.Height / 2)), "")
                 Case 1
-                    Textures(index) = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName, New Rectangle(128, 0, 128, 128), "")
+                    Dim TextureImage As Texture2D = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName)
+                    Dim TextureSize As Size = New Size(TextureImage.Width, TextureImage.Height)
+                    Textures(index) = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName, New Rectangle(128, 0, CInt(TextureSize.Width / 2), CInt(TextureSize.Height / 2)), "")
                 Case 2
-                    Textures(index) = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName, New Rectangle(0, 128, 128, 128), "")
+                    Dim TextureImage As Texture2D = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName)
+                    Dim TextureSize As Size = New Size(TextureImage.Width, TextureImage.Height)
+                    Textures(index) = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName, New Rectangle(0, 128, CInt(TextureSize.Width / 2), CInt(TextureSize.Height / 2)), "")
                 Case 3
-                    Textures(index) = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName, New Rectangle(128, 128, 128, 128), "")
+                    Dim TextureImage As Texture2D = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName)
+                    Dim TextureSize As Size = New Size(TextureImage.Width, TextureImage.Height)
+                    Textures(index) = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName, New Rectangle(128, 128, CInt(TextureSize.Width / 2), CInt(TextureSize.Height / 2)), "")
                 Case 4
                     Dim v As Vector2 = PokemonForms.GetMenuImagePosition(Me)
                     Dim s As Size = PokemonForms.GetMenuImageSize(Me)
