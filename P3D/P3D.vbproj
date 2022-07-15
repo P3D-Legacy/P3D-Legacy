@@ -31295,7 +31295,6 @@
     <Compile Include="World\ActionScript\V2\ScriptLibrary.vb" />
     <Compile Include="World\ActionScript\V2\ScriptV2.vb" />
     <Compile Include="World\Badge.vb" />
-    <Compile Include="World\BaseEntity.vb" />
     <Compile Include="Debug\DebugFileWatcher.vb" />
     <Compile Include="World\Level.vb" />
     <Compile Include="World\LevelLoader.vb" />

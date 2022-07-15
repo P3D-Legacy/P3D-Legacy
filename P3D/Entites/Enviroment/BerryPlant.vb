@@ -195,7 +195,7 @@
                     Screen.TextBox.TextColor = TextBox.PlayerColor
                     Screen.TextBox.Show(Text, {Me})
                     RemoveBerry()
-                    Screen.Level.Entities.Remove(Me)
+                    CanBeRemoved = True
                 Case 1
                     WaterBerry()
                     Dim Text As String = Core.Player.Name & " watered~the " & Berry.Name & "."
@@ -255,7 +255,7 @@
 
         Dim newEnt As Entity = Entity.GetNewEntity("BerryPlant", Position, {Nothing}, {0, 0}, True, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1.0F), -1, "", "", New Vector3(0))
         CType(newEnt, BerryPlant).Initialize(BerryIndex, 0, "", DateData, False)
-        Screen.Level.Entities.Add(newEnt)
+        Screen.Level.AddEntity(newEnt)
 
         Core.Player.Inventory.RemoveItem(BerryIndex + 2000, 1)
     End Sub

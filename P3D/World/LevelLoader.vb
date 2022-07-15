@@ -2,8 +2,9 @@
 
     Const MULTITHREAD As Boolean = False
 
-    Public Shared LoadedOffsetMapOffsets As New List(Of Vector3)
-    Public Shared LoadedOffsetMapNames As New List(Of String)
+    Public Shared ReadOnly LoadedOffsetMapOffsets As New List(Of Vector3)
+    Public Shared ReadOnly LoadedOffsetMapNames As New List(Of String)
+
     Private _reload As Boolean = False
 
     Private Enum TagTypes
@@ -26,14 +27,10 @@
     Dim MapOrigin As String = ""
     Dim sessionMapsLoaded As New List(Of String) ' Prevents infinite loops when loading more than one offset map level.
 
-    ' Store these so other classes can get them:
-    Private Entities As New List(Of Entity)
-    Private Floors As New List(Of Entity)
-
     ' A counter across all LevelLoader instances to count how many instances across the program are active:
     Shared Busy As Integer = 0
 
-    Public Shared ReadOnly Property IsBusy() As Boolean
+    Public Shared ReadOnly Property IsBusy As Boolean
         Get
             Return Busy > 0
         End Get
@@ -80,13 +77,9 @@
             Core.Player.LastSavePlacePosition = Player.Temp.LastPosition.X & "," & Player.Temp.LastPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Player.Temp.LastPosition.Z
 
             Core.OffsetMaps.Clear()
-            Screen.Level.Entities.Clear()
-            Screen.Level.Floors.Clear()
-            Screen.Level.Shaders.Clear()
-            Screen.Level.BackdropRenderer.Clear()
 
-            Screen.Level.OffsetmapFloors.Clear()
-            Screen.Level.OffsetmapEntities.Clear()
+            Screen.Level.ClearEntity()
+            Screen.Level.BackdropRenderer.Clear()
 
             Screen.Level.WildPokemonFloor = False
             Screen.Level.WalkedSteps = 0
@@ -115,7 +108,7 @@
             Exit Sub
         End If
 
-        Dim Data As List(Of String) = IO.File.ReadAllLines(levelPath).ToList()
+        Dim Data As List(Of String) = File.ReadAllLines(levelPath).ToList()
         Dim Tags As New Dictionary(Of String, Object)
 
         Me.Offset = offset
@@ -456,7 +449,7 @@
             End If
             Logger.Debug("Offset maps in store: " & OffsetMaps.Count)
 
-            Screen.Level.OffsetmapEntities = (From e In Screen.Level.OffsetmapEntities Order By e.CameraDistance Descending).ToList()
+            Screen.Level.SortOffsetmapEntities()
 
             For Each Entity As Entity In Screen.Level.OffsetmapEntities
                 Entity.UpdateEntity()
@@ -665,9 +658,9 @@
         Dim NPC As NPC = CType(Entity.GetNewEntity("NPC", Position, {Nothing}, {0, 0}, True, New Vector3(0), Scale, BaseModel.BillModel, ActionValue, AdditionalValue, True, Shader, -1, MapOrigin, "", Offset, {TextureID, Rotation, Name, ID, AnimateIdle, Movement, MoveRectangles},,,,ModelPath), NPC)
 
         If loadOffsetMap = False Then
-            Screen.Level.Entities.Add(NPC)
+            Screen.Level.AddEntity(NPC)
         Else
-            Screen.Level.OffsetmapEntities.Add(NPC)
+            Screen.Level.AddOffsetMapEntity(NPC)
         End If
     End Sub
 
@@ -723,11 +716,6 @@
             SeasonTexture = CStr(GetTag(Tags, "SeasonTexture"))
         End If
 
-        Dim floorList As List(Of Entity) = Screen.Level.Floors
-        If loadOffsetMap = True Then
-            floorList = Screen.Level.OffsetmapFloors
-        End If
-
         If RemoveFloor = False Then
             For x = 0 To Size.Width - 1
                 For z = 0 To Size.Height - 1
@@ -752,6 +740,7 @@
                         Ent.Textures = {Texture}
                         Ent.Visible = Visible
                         Ent.SeasonColorTexture = SeasonTexture
+                        Ent.CanBeRemoved = False
                         Ent.LoadSeasonTextures()
                         CType(Ent, Floor).SetRotation(rotation)
                         CType(Ent, Floor).hasSnow = hasSnow
@@ -766,22 +755,33 @@
                         f.SeasonColorTexture = SeasonTexture
                         f.LoadSeasonTextures()
                         f.IsOffsetMapContent = loadOffsetMap
-                        floorList.Add(f)
+
+                        If loadOffsetMap Then
+                            Screen.Level.AddOffsetMapEntity(f)
+                        Else
+                            Screen.Level.AddEntity(f)
+                        End If
                     End If
                 Next
             Next
         Else
             For x = 0 To Size.Width - 1
                 For z = 0 To Size.Height - 1
-                    For i = 0 To floorList.Count
-                        If i < floorList.Count Then
-                            Dim floor As Entity = floorList(i)
-                            If floor.Position.X = Position.X + x And floor.Position.Y = Position.Y And floor.Position.Z = Position.Z + z Then
-                                floorList.RemoveAt(i)
-                                i -= 1
-                            End If
-                        End If
-                    Next
+                    Dim tempX = x
+                    Dim tempZ = z
+                    If loadOffsetMap Then
+                        Screen.Level.ForEachEntity(Screen.Level.OffsetmapFloors, Sub(entity)
+                                                                                     If entity.Position.X = Position.X + tempX AndAlso entity.Position.Y = Position.Y AndAlso entity.Position.Z = Position.Z + tempZ Then
+                                                                                         entity.CanBeRemoved = True
+                                                                                     End If
+                                                                                 End Sub)
+                    Else
+                        Screen.Level.ForEachEntity(Screen.Level.Floors, Sub(entity)
+                                                                            If entity.Position.X = Position.X + tempX AndAlso entity.Position.Y = Position.Y AndAlso entity.Position.Z = Position.Z + tempZ Then
+                                                                                entity.CanBeRemoved = True
+                                                                            End If
+                                                                        End Sub)
+                    End If
                 Next
             Next
         End If
@@ -935,9 +935,9 @@
 
                         If Not newEnt Is Nothing Then
                             If loadOffsetMap = False Then
-                                Screen.Level.Entities.Add(newEnt)
+                                Screen.Level.AddEntity(newEnt)
                             Else
-                                Screen.Level.OffsetmapEntities.Add(newEnt)
+                                Screen.Level.AddOffsetMapEntity(newEnt)
                             End If
                         End If
                     End If
@@ -984,6 +984,10 @@
     End Sub
 
     Public Shared MapScript As String = ""
+
+    Public Sub New()
+
+    End Sub
 
     Private Sub SetupActions(ByVal Tags As Dictionary(Of String, Object))
         If TagExists(Tags, "CanTeleport") = True Then
@@ -1210,7 +1214,7 @@
                     Dim newEnt As Entity = Entity.GetNewEntity("BerryPlant", New Vector3(CSng(PData(0)), CSng(PData(1)), CSng(PData(2))), {Nothing}, {0, 0}, True, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1.0F), -1, MapOrigin, "", Offset)
                     CType(newEnt, BerryPlant).Initialize(CInt(BData(2)), CInt(BData(3)), CStr(BData(4)), BData(5), CBool(BData(6)))
 
-                    Screen.Level.Entities.Add(newEnt)
+                    Screen.Level.AddEntity(newEnt)
                 End If
             End If
         Next

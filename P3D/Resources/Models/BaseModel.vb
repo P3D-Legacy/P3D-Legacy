@@ -24,8 +24,8 @@
         Core.GraphicsDevice.SetVertexBuffer(vertexBuffer)
 
         If CInt(vertexBuffer.VertexCount / 3) > Entity.TextureIndex.Count Then
-            Dim newTextureIndex(CInt(vertexBuffer.VertexCount / 3)) As Integer
-            For i = 0 To CInt(vertexBuffer.VertexCount / 3)
+            Dim newTextureIndex(CInt(vertexBuffer.VertexCount / 3) - 1) As Integer
+            For i = 0 To CInt(vertexBuffer.VertexCount / 3) - 1
                 If Entity.TextureIndex.Count - 1 >= i Then
                     newTextureIndex(i) = Entity.TextureIndex(i)
                 Else
@@ -59,14 +59,29 @@
                 DebugDisplay.DrawnVertices += CInt(vertexBuffer.VertexCount / 3)
             End If
         Else
-            For i = 0 To vertexBuffer.VertexCount - 1 Step 3
-                If Entity.TextureIndex(CInt(i / 3)) > -1 Then
-                    Me.ApplyTexture(Textures(Entity.TextureIndex(CInt(i / 3))))
+            'For i = 0 To vertexBuffer.VertexCount - 1 Step 3
+            '    If Entity.TextureIndex(CInt(i / 3)) > -1 Then
+            '        Me.ApplyTexture(Textures(Entity.TextureIndex(CInt(i / 3))))
 
-                    Core.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, i, 1)
+            '        Core.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, i, 1)
+            '        DebugDisplay.DrawnVertices += 1
+            '    End If
+            'Next
+
+            Dim tempIndex As Integer = -1
+
+            For i As Integer = vertexBuffer.VertexCount / 3 - 1 To 0 Step -1
+                If Entity.TextureIndex(i) > -1 Then
+                    If tempIndex <> Entity.TextureIndex(i) Then
+                        tempIndex = Entity.TextureIndex(i)
+                        ApplyTexture(Textures(Entity.TextureIndex(i)))
+                    End If
+
+                    Core.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, i * 3, 1)
                     DebugDisplay.DrawnVertices += 1
                 End If
             Next
+
         End If
 
         Screen.Effect.DiffuseColor = effectDiffuseColor

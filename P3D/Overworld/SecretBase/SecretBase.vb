@@ -35,8 +35,8 @@
         ent = (From e In ent Order By e.CameraDistance Descending).ToList()
         floors = (From f In floors Order By f.CameraDistance Descending).ToList()
 
-        Level.Entities = ent
-        Level.Floors = floors
+        'Level.Entities = ent
+        'Level.Floors = floors
     End Sub
 
     Public Sub GenerateSecretBase()

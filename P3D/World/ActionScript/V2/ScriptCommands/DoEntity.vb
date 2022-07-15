@@ -33,11 +33,11 @@
                                 noType = MessageBulb.NotificationTypes.Exclamation
                         End Select
 
-                        Screen.Level.Entities.Add(New MessageBulb(Position, noType))
+                        Screen.Level.AddEntity(New MessageBulb(Position, noType))
                     End If
 
                     Dim contains As Boolean = False
-                    Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
+                    Screen.Level.SortEntities()
                     For Each e As Entity In Screen.Level.Entities
                         If e.EntityID = "MessageBulb" Then
                             e.Update()

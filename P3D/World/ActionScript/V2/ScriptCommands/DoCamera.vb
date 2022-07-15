@@ -150,7 +150,7 @@
             If doCameraUpdate = True Then
                 c.UpdateFrustum()
                 c.UpdateViewMatrix()
-                Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
+                Screen.Level.SortEntities()
                 Screen.Level.UpdateEntities()
             End If
 

@@ -631,13 +631,13 @@ endsub:
     Private Shared WeatherOffset As New Vector2(0, 0)
     Private Shared ObjectsList As New List(Of Rectangle)
 
-    Public Shared NoParticlesList() As Weathers = {Weathers.Clear, Weathers.Sunny, Weathers.Fog}
+    Public Shared ReadOnly NoParticlesList As Weathers() = {Weathers.Clear, Weathers.Sunny, Weathers.Fog}
+    Private Shared ReadOnly DrawWeatherOnIdentifications As Screen.Identifications() = {Screen.Identifications.OverworldScreen, Screen.Identifications.BattleScreen, Screen.Identifications.BattleCatchScreen}
 
     Public Shared Sub DrawWeather(ByVal MapWeather As Weathers)
         If NoParticlesList.Contains(MapWeather) = False Then
             If Core.GameOptions.GraphicStyle = 1 Then
-                Dim identifications() As Screen.Identifications = {Screen.Identifications.OverworldScreen, Screen.Identifications.MainMenuScreen, Screen.Identifications.BattleScreen, Screen.Identifications.BattleCatchScreen}
-                If identifications.Contains(Core.CurrentScreen.Identification) = True Then
+                If DrawWeatherOnIdentifications.Contains(Core.CurrentScreen.Identification) = True Then
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         If Screen.TextBox.Showing = False Then
                             GenerateParticles(0, MapWeather)
@@ -735,8 +735,7 @@ endsub:
         End If
 
         If LevelLoader.IsBusy = False Then
-            Dim validScreen() As Screen.Identifications = {Screen.Identifications.OverworldScreen, Screen.Identifications.BattleScreen, Screen.Identifications.BattleCatchScreen, Screen.Identifications.MainMenuScreen}
-            If validScreen.Contains(Core.CurrentScreen.Identification) = True Then
+            If Particle.UpdateOnIdentifications.Contains(Core.CurrentScreen.Identification) = True Then
                 If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
                         Exit Sub
@@ -812,7 +811,17 @@ endsub:
                                 Dim rY As Single = CSng(Core.Random.Next(0, 40) / 10) - 2.0F
                                 Dim rX As Single = CSng(Core.Random.NextDouble()) - 0.5F
                                 Dim rZ As Single = CSng(Core.Random.NextDouble()) - 0.5F
-                                Dim p As Particle = New Particle(New Vector3(x + rX, cameraPosition.Y + 1.8F + rY, z + rZ), {T}, {0, 0}, Core.Random.Next(0, 2), scale, BaseModel.BillModel, New Vector3(1))
+
+                                Dim p As Particle = GetParticleFromPool()
+                                Dim isNewParticle = False
+
+                                If p Is Nothing Then
+                                    p = New Particle(New Vector3(x + rX, cameraPosition.Y + 1.8F + rY, z + rZ), {T}, {0, 0}, Core.Random.Next(0, 2), scale, BaseModel.BillModel, New Vector3(1))
+                                    isNewParticle = True
+                                Else
+                                    p.Reset(New Vector3(x + rX, cameraPosition.Y + 1.8F + rY, z + rZ), Entity.GetRotationFromInteger(Core.Random.Next(0, 2)), scale, T)
+                                End If
+
                                 p.MoveSpeed = speed
                                 If MapWeather = Weathers.Rain Then
                                     p.Opacity = 0.7F
@@ -833,7 +842,10 @@ endsub:
                                 If MapWeather = Weathers.Blizzard Then
                                     p.Opacity = 1.0F
                                 End If
-                                Screen.Level.Entities.Add(p)
+
+                                If isNewParticle Then
+                                    Screen.Level.AddEntity(p)
+                                End If
                             End If
                         Next
                     Next
@@ -841,6 +853,18 @@ endsub:
             End If
         End If
     End Sub
+
+    Private Shared Function GetParticleFromPool() As Particle
+        SyncLock Screen.Level.EntityReadWriteSync
+            For i As Integer = Screen.Level.Particles.Count - 1 To 0 Step -1
+                Dim particle As Particle = Screen.Level.Particles(i)
+                If particle.Visible = False Then
+                    Return particle
+                End If
+            Next
+            Return Nothing
+        End SyncLock
+    End Function
 
     Private Shared SeasonTextureBuffer As New Dictionary(Of Texture2D, Texture2D)
     Private Shared BufferSeason As Seasons = Seasons.Fall

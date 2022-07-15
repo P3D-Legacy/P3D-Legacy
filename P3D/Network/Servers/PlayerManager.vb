@@ -123,6 +123,7 @@ Namespace Servers
                     If Screen.Level.NetworkPlayers.Count > 0 Then
                         For i = 0 To Screen.Level.NetworkPlayers.Count - 1
                             If i <= Screen.Level.NetworkPlayers.Count - 1 Then
+                                'Screen.Level.NetworkPlayers(i).CanBeRemoved = True
                                 Screen.Level.Entities.Remove(Screen.Level.NetworkPlayers(i))
                             End If
                         Next
@@ -130,6 +131,7 @@ Namespace Servers
                     If Screen.Level.NetworkPokemon.Count > 0 Then
                         For i = 0 To Screen.Level.NetworkPokemon.Count - 1
                             If i <= Screen.Level.NetworkPokemon.Count - 1 Then
+                                'Screen.Level.NetworkPokemon(i).CanBeRemoved = True
                                 Screen.Level.Entities.Remove(Screen.Level.NetworkPokemon(i))
                             End If
                         Next
@@ -239,6 +241,7 @@ Namespace Servers
                     If Screen.Level.NetworkPlayers.Count > 0 Then
                         For i = 0 To Screen.Level.NetworkPlayers.Count - 1
                             If i <= Screen.Level.NetworkPlayers.Count - 1 Then
+                                'Screen.Level.AddEntity(Screen.Level.NetworkPlayers(i))
                                 Screen.Level.Entities.Add(Screen.Level.NetworkPlayers(i))
                             End If
                         Next
@@ -246,6 +249,7 @@ Namespace Servers
                     If Screen.Level.NetworkPokemon.Count > 0 Then
                         For i = 0 To Screen.Level.NetworkPokemon.Count - 1
                             If i <= Screen.Level.NetworkPokemon.Count - 1 Then
+                                'Screen.Level.AddEntity(Screen.Level.NetworkPokemon(i))
                                 Screen.Level.Entities.Add(Screen.Level.NetworkPokemon(i))
                             End If
                         Next

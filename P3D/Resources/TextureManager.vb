@@ -10,7 +10,7 @@ Public Class TextureManager
     Public Shared TextureRectList As New Dictionary(Of KeyValuePair(Of Int32, Rectangle), Texture2D)
 
     Public Shared Function LoadDirect(textureFile As String) As Texture2D
-        Using stream As Stream = File.Open(GameController.GamePath & "\Content\" & textureFile, IO.FileMode.OpenOrCreate)
+        Using stream As Stream = File.Open(Path.Combine(GameController.GamePath, "Content", textureFile), FileMode.Open, FileAccess.Read)
             Return Texture2D.FromStream(Core.GraphicsDevice, stream)
         End Using
     End Function

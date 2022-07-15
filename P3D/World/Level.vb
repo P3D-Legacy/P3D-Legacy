@@ -1,14 +1,14 @@
 Imports System.Threading
+Imports System.Timers
+
 ''' <summary>
 ''' A class that manages the collection of entities to represent a map.
 ''' </summary>
 Public Class Level
 
-#Region "Fields"
+    Implements IDisposable
 
-    Private _routeSign As RouteSign = Nothing
-    Private _world As World = Nothing
-    Private _pokemonEncounter As PokemonEncounter = Nothing
+#Region "Fields"
 
     ''' <summary>
     ''' Stores warp data for warping to a new map.
@@ -18,66 +18,182 @@ Public Class Level
     ''' <summary>
     ''' Stores temporary Pokémon encounter data.
     ''' </summary>
-    Public PokemonEncounterData As PokemonEcounterDataStruct
+    Public PokemonEncounterData As PokemonEncounterDataStruct
 
     ' Level states:
-    Private _isSurfing As Boolean = False
-    Private _isRiding As Boolean = False
-    Private _usedStrength As Boolean = False
-    Private _isDark As Boolean = False
-    Private _walkedSteps As Integer = 0
 
     Private _offsetMapUpdateDelay As Integer = 50 ' Ticks until the next Offset Map update occurs.
 
     ' Map properties:
-    Private _terrain As Terrain = New Terrain(Terrain.TerrainTypes.Plain)
-    Private _mapName As String = ""
-    Private _musicLoop As String = ""
-    Private _levelFile As String = ""
-    Private _canTeleport As Boolean = True
-    Private _canDig As Boolean = False
-    Private _canFly As Boolean = False
-    Private _rideType As Integer = 0
-    Private _weatherType As Integer = 0
-    Public _DayTime As World.DayTimes = World.GetTime
-    Private _environmentType As Integer = 0
-    Private _wildPokemonGrass As Boolean = True
-    Private _wildPokemonFloor As Boolean = False
-    Private _wildPokemonWater As Boolean = True
-    Private _showOverworldPokemon As Boolean = True
-    Private _currentRegion As String = "Johto"
-    Private _regionalForm As String = ""
-    Private _hiddenabilitychance As Integer = 0
-    Private _lightingType As Integer = 0
-    Private _isSafariZone As Boolean = False
-    Private _isBugCatchingContest As Boolean = False
-
-    Private _bugCatchingContestData As String = ""
-    Private _battleMapData As String = ""
-
-    ' Entity enumerations:
-    Private _ownPlayer As OwnPlayer
-    Private _ownOverworldPokemon As OverworldPokemon
-
-    Private _entities As New List(Of Entity)
-    Private _floors As New List(Of Entity)
-    Private _shaders As New List(Of Shader)
-    Private _backdropRenderer As BackdropRenderer
-
-    Private _networkPlayers As New List(Of NetworkPlayer)
-    Private _networkPokemon As New List(Of NetworkPokemon)
-
-    Private _offsetMapEntities As New List(Of Entity)
-    Private _offsetMapFloors As New List(Of Entity)
-
-    ' Radio:
-    Private _isRadioOn As Boolean = False
-    Private _selectedRadioStation As GameJolt.PokegearScreen.RadioStation = Nothing
-    Private _radioChannels As New List(Of Decimal)
+    Private _dayTime As World.DayTimes = World.GetTime
 
     Private _offsetTimer As New Timers.Timer()
     Private _isUpdatingOffsetMaps As Boolean = False
 
+#End Region
+
+#Region "Entity Related"
+    ''' <summary>
+    ''' Entity Sync Point, using this will ensure that the entity is safe to read and write.
+    ''' </summary>
+    Public ReadOnly Property EntityReadWriteSync As Object = New Object()
+
+    ''' <summary>
+    ''' The array of all possible entities.
+    ''' </summary>
+    Public ReadOnly Property DrawingEntities As List(Of Entity) = New List(Of Entity)
+
+    ''' <summary>
+    ''' The array of floors the player can move on.
+    ''' </summary>
+    Public ReadOnly Property Floors As List(Of Entity) = New List(Of Entity)
+
+    ''' <summary>
+    ''' The array of entities composing the map.
+    ''' </summary>
+    Public ReadOnly Property Entities As List(Of Entity) = New List(Of Entity)
+
+    ''' <summary>
+    ''' The array of particles in the map.
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property Particles As List(Of Particle) = New List(Of Particle)
+
+    ''' <summary>
+    ''' The array of shaders that add specific lighting to the map.
+    ''' </summary>
+    Public ReadOnly Property Shaders As List(Of Shader) = New List(Of Shader)
+
+    ''' <summary>
+    ''' The array of floors the offset maps are composed of.
+    ''' </summary>
+    Public ReadOnly Property OffsetmapFloors As List(Of Entity) = New List(Of Entity)
+
+    ''' <summary>
+    ''' The array of entities the offset maps are composed of.
+    ''' </summary>
+    Public ReadOnly Property OffsetmapEntities As List(Of Entity) = New List(Of Entity)
+
+    ''' <summary>
+    ''' The reference to the active OwnPlayer instance.
+    ''' </summary>
+    Public Property OwnPlayer As OwnPlayer
+
+    ''' <summary>
+    ''' The reference to the active OverworldPokemon instance.
+    ''' </summary>
+    Public Property OverworldPokemon As OverworldPokemon
+
+    ''' <summary>
+    ''' The array of players on the server to render.
+    ''' </summary>
+    Public ReadOnly Property NetworkPlayers As List(Of NetworkPlayer) = New List(Of NetworkPlayer)
+
+    ''' <summary>
+    ''' The array of Pokémon on the server to render.
+    ''' </summary>
+    Public ReadOnly Property NetworkPokemon As List(Of NetworkPokemon) = New List(Of NetworkPokemon)
+
+    Public Sub AddEntity(e As Entity)
+        SyncLock EntityReadWriteSync
+            If TypeOf e Is Floor Then
+                Floors.Add(e)
+            ElseIf TypeOf e Is Particle Then
+                Particles.Add(CType(e, Particle))
+                Entities.Add(e)
+            Else
+                Entities.Add(e)
+            End If
+
+            e.InsertOrder = DrawingEntities.Count
+            DrawingEntities.Add(e)
+        End SyncLock
+    End Sub
+
+    Public Sub AddOffsetMapEntity(e As Entity)
+        SyncLock EntityReadWriteSync
+            If TypeOf e Is Floor Then
+                OffsetmapFloors.Add(e)
+            Else
+                OffsetmapEntities.Add(e)
+            End If
+
+            DrawingEntities.Add(e)
+        End SyncLock
+    End Sub
+
+    Public Sub AddRangeEntity(e As IReadOnlyList(Of Entity))
+        SyncLock EntityReadWriteSync
+            For Each entity As Entity In e
+                If TypeOf entity Is Floor Then
+                    Floors.Add(entity)
+                ElseIf TypeOf entity Is Particle Then
+                    Particles.Add(CType(entity, Particle))
+                    Entities.Add(entity)
+                Else
+                    Entities.Add(entity)
+                End If
+
+                entity.InsertOrder = DrawingEntities.Count
+                DrawingEntities.Add(entity)
+            Next
+        End SyncLock
+    End Sub
+
+    Public Sub ForEachEntity(entityType As List(Of Entity), action As Action(Of Entity))
+        SyncLock EntityReadWriteSync
+            For Each entity As Entity In entityType
+                action.Invoke(entity)
+            Next
+        End SyncLock
+    End Sub
+
+    Public Sub ClearEntity()
+        SyncLock EntityReadWriteSync
+            DrawingEntities.Clear()
+            Floors.Clear()
+            Entities.Clear()
+            Particles.Clear()
+            Shaders.Clear()
+            OffsetmapFloors.Clear()
+            OffsetmapEntities.Clear()
+            WallBlock.Dictionary.Clear()
+            AllSidesObject.Dictionary.Clear()
+        End SyncLock
+    End Sub
+
+    Private Shared Function SortByDrawOrder(entity As Entity, entity2 As Entity) As Integer
+        ' For drawing to be perfect, opaque object needed to be drawn first then transparent by furthest to nearest.
+        If TypeOf entity Is Floor AndAlso TypeOf entity2 IsNot Floor Then
+            Return 1
+        ElseIf TypeOf entity IsNot Floor AndAlso TypeOf entity2 Is Floor Then
+            Return -1
+        ElseIf TypeOf entity Is Floor AndAlso TypeOf entity2 Is Floor Then
+            If entity.CameraDistance < entity2.CameraDistance Then
+                Return 1
+            ElseIf entity.CameraDistance > entity2.CameraDistance Then
+                Return -1
+            Else
+                If entity.InsertOrder < entity2.InsertOrder Then
+                    Return 1
+                Else
+                    Return -1
+                End If
+            End If
+        Else
+            If entity.CameraDistance < entity2.CameraDistance Then
+                Return -1
+            ElseIf entity.CameraDistance > entity2.CameraDistance Then
+                Return 1
+            Else
+                If entity.InsertOrder < entity2.InsertOrder Then
+                    Return 1
+                Else
+                    Return -1
+                End If
+            End If
+        End If
+    End Function
 #End Region
 
 #Region "Properties"
@@ -85,265 +201,72 @@ Public Class Level
     ''' <summary>
     ''' The Terrain of this level.
     ''' </summary>
-    Public ReadOnly Property Terrain() As Terrain
-        Get
-            Return Me._terrain
-        End Get
-    End Property
+    Public ReadOnly Property Terrain As Terrain = New Terrain(Terrain.TerrainTypes.Plain)
 
     ''' <summary>
     ''' A RouteSign on the top left corner of the screen to display the map's name.
     ''' </summary>
-    Public ReadOnly Property RouteSign() As RouteSign
-        Get
-            Return Me._routeSign
-        End Get
-    End Property
+    Public ReadOnly Property RouteSign As RouteSign = New RouteSign()
 
     ''' <summary>
     ''' Indicates whether the player is Surfing.
     ''' </summary>
-    Public Property Surfing() As Boolean
-        Get
-            Return _isSurfing
-        End Get
-        Set(value As Boolean)
-            Me._isSurfing = value
-        End Set
-    End Property
+    Public Property Surfing As Boolean = False
 
     ''' <summary>
     ''' Indicates whether the player is Riding.
     ''' </summary>
-    Public Property Riding() As Boolean
-        Get
-            Return Me._isRiding
-        End Get
-        Set(value As Boolean)
-            Me._isRiding = value
-        End Set
-    End Property
+    Public Property Riding As Boolean = False
 
     ''' <summary>
     ''' Indicates whether the player used Strength already.
     ''' </summary>
-    Public Property UsedStrength() As Boolean
-        Get
-            Return Me._usedStrength
-        End Get
-        Set(value As Boolean)
-            Me._usedStrength = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The reference to the active OwnPlayer instance.
-    ''' </summary>
-    Public Property OwnPlayer() As OwnPlayer
-        Get
-            Return Me._ownPlayer
-        End Get
-        Set(value As OwnPlayer)
-            Me._ownPlayer = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The reference to the active OverworldPokemon instance.
-    ''' </summary>
-    Public Property OverworldPokemon() As OverworldPokemon
-        Get
-            Return Me._ownOverworldPokemon
-        End Get
-        Set(value As OverworldPokemon)
-            Me._ownOverworldPokemon = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The array of entities composing the map.
-    ''' </summary>
-    Public Property Entities() As List(Of Entity)
-        Get
-            Return Me._entities
-        End Get
-        Set(value As List(Of Entity))
-            Me._entities = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The array of floors the player can move on.
-    ''' </summary>
-    Public Property Floors() As List(Of Entity)
-        Get
-            Return Me._floors
-        End Get
-        Set(value As List(Of Entity))
-            Me._floors = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The array of shaders that add specific lighting to the map.
-    ''' </summary>
-    Public Property Shaders() As List(Of Shader)
-        Get
-            Return Me._shaders
-        End Get
-        Set(value As List(Of Shader))
-            Me._shaders = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The array of players on the server to render.
-    ''' </summary>
-    Public Property NetworkPlayers() As List(Of NetworkPlayer)
-        Get
-            Return Me._networkPlayers
-        End Get
-        Set(value As List(Of NetworkPlayer))
-            Me._networkPlayers = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The array of Pokémon on the server to render.
-    ''' </summary>
-    Public Property NetworkPokemon() As List(Of NetworkPokemon)
-        Get
-            Return Me._networkPokemon
-        End Get
-        Set(value As List(Of NetworkPokemon))
-            Me._networkPokemon = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The array of entities the offset maps are composed of.
-    ''' </summary>
-    Public Property OffsetmapEntities() As List(Of Entity)
-        Get
-            Return Me._offsetMapEntities
-        End Get
-        Set(value As List(Of Entity))
-            Me._offsetMapEntities = value
-        End Set
-    End Property
-
-    ''' <summary>
-    ''' The array of floors the offset maps are composed of.
-    ''' </summary>
-    Public Property OffsetmapFloors() As List(Of Entity)
-        Get
-            Return Me._offsetMapFloors
-        End Get
-        Set(value As List(Of Entity))
-            Me._offsetMapFloors = value
-        End Set
-    End Property
+    Public Property UsedStrength As Boolean = False
 
     ''' <summary>
     ''' The name of the current map.
     ''' </summary>
     ''' <remarks>This name gets displayed on the RouteSign.</remarks>
-    Public Property MapName() As String
-        Get
-            Return Me._mapName
-        End Get
-        Set(value As String)
-            Me._mapName = value
-        End Set
-    End Property
+    Public Property MapName As String = ""
 
     ''' <summary>
     ''' The default background music for this level.
     ''' </summary>
     ''' <remarks>Doesn't play for Surfing, Riding and Radio.</remarks>
-    Public Property MusicLoop() As String
-        Get
-            Return Me._musicLoop
-        End Get
-        Set(value As String)
-            Me._musicLoop = value
-        End Set
-    End Property
+    Public Property MusicLoop As String = ""
 
     ''' <summary>
     ''' The file this level got loaded from.
     ''' </summary>
     ''' <remarks>The path is relative to the \maps\ or \GameMode\[gamemode]\maps\ path.</remarks>
-    Public Property LevelFile() As String
-        Get
-            Return Me._levelFile
-        End Get
-        Set(value As String)
-            Me._levelFile = value
-        End Set
-    End Property
+    Public Property LevelFile As String = ""
 
     ''' <summary>
     ''' Whether the player can use the move Teleport.
     ''' </summary>
-    Public Property CanTeleport As Boolean
-        Get
-            Return Me._canTeleport
-        End Get
-        Set(value As Boolean)
-            Me._canTeleport = value
-        End Set
-    End Property
+    Public Property CanTeleport As Boolean = True
 
     ''' <summary>
     ''' Whether the player can use the move Dig or an Escape Rope.
     ''' </summary>
-    Public Property CanDig As Boolean
-        Get
-            Return Me._canDig
-        End Get
-        Set(value As Boolean)
-            Me._canDig = value
-        End Set
-    End Property
+    Public Property CanDig As Boolean = False
 
     ''' <summary>
     ''' Whether the player can use the move Fly.
     ''' </summary>
-    Public Property CanFly As Boolean
-        Get
-            Return Me._canFly
-        End Get
-        Set(value As Boolean)
-            Me._canFly = value
-        End Set
-    End Property
+    Public Property CanFly As Boolean = False
 
     ''' <summary>
     ''' The type of Ride the player can use on this map.
     ''' </summary>
     ''' <remarks>0 = Depends on CanDig and CanFly, 1 = True, 2 = False</remarks>
-    Public Property RideType As Integer
-        Get
-            Return Me._rideType
-        End Get
-        Set(value As Integer)
-            Me._rideType = value
-        End Set
-    End Property
+    Public Property RideType As Integer = 0
 
     ''' <summary>
     ''' The Weather on this map.
     ''' </summary>
     ''' <remarks>For the weather, look at the WeatherTypes enumeration in World.vb</remarks>
-    Public Property WeatherType As Integer
-        Get
-            Return Me._weatherType
-        End Get
-        Set(value As Integer)
-            Me._weatherType = value
-        End Set
-    End Property
+    Public Property WeatherType As Integer = 0
 
     ''' <summary>
     ''' The DayTime on this map.
@@ -351,7 +274,7 @@ Public Class Level
     ''' <remarks>For the day time, look at the DayTime enumeration in World.vb</remarks>
     Public Property DayTime As Integer
         Get
-            Select Case Me._DayTime
+            Select Case Me._dayTime
                 Case World.DayTimes.Night
                     Return 1
                 Case World.DayTimes.Morning
@@ -367,15 +290,15 @@ Public Class Level
         Set(value As Integer)
             Select Case value
                 Case 1
-                    Me._DayTime = World.DayTimes.Night
+                    Me._dayTime = World.DayTimes.Night
                 Case 2
-                    Me._DayTime = World.DayTimes.Morning
+                    Me._dayTime = World.DayTimes.Morning
                 Case 3
-                    Me._DayTime = World.DayTimes.Day
+                    Me._dayTime = World.DayTimes.Day
                 Case 4
-                    Me._DayTime = World.DayTimes.Evening
+                    Me._dayTime = World.DayTimes.Evening
                 Case Else
-                    Me._DayTime = World.GetTime
+                    Me._dayTime = World.GetTime
             End Select
         End Set
     End Property
@@ -383,185 +306,80 @@ Public Class Level
     ''' <summary>
     ''' The environment type for this map.
     ''' </summary>
-    Public Property EnvironmentType As Integer
-        Get
-            Return Me._environmentType
-        End Get
-        Set(value As Integer)
-            Me._environmentType = value
-        End Set
-    End Property
+    Public Property EnvironmentType As Integer = 0
 
     ''' <summary>
     ''' Whether the player can encounter wild Pokémon in the Grass entities.
     ''' </summary>
-    Public Property WildPokemonGrass As Boolean
-        Get
-            Return Me._wildPokemonGrass
-        End Get
-        Set(value As Boolean)
-            _wildPokemonGrass = value
-        End Set
-    End Property
+    Public Property WildPokemonGrass As Boolean = True
 
     ''' <summary>
     ''' Whether the player can encounter wild Pokémon on every floor tile.
     ''' </summary>
-    Public Property WildPokemonFloor As Boolean
-        Get
-            Return Me._wildPokemonFloor
-        End Get
-        Set(value As Boolean)
-            Me._wildPokemonFloor = value
-        End Set
-    End Property
+    Public Property WildPokemonFloor As Boolean = False
 
     ''' <summary>
     ''' Whether the player can encounter wild Pokémon while Surfing.
     ''' </summary>
-    Public Property WildPokemonWater As Boolean
-        Get
-            Return Me._wildPokemonWater
-        End Get
-        Set(value As Boolean)
-            Me._wildPokemonWater = value
-        End Set
-    End Property
+    Public Property WildPokemonWater As Boolean = True
 
     ''' <summary>
     ''' Whether the map is dark, and needs to be lightened up by Flash.
     ''' </summary>
-    Public Property IsDark As Boolean
-        Get
-            Return Me._isDark
-        End Get
-        Set(value As Boolean)
-            Me._isDark = value
-        End Set
-    End Property
+    Public Property IsDark As Boolean = False
 
     ''' <summary>
     ''' Whether the Overworld Pokémon is visible.
     ''' </summary>
-    Public Property ShowOverworldPokemon As Boolean
-        Get
-            Return Me._showOverworldPokemon
-        End Get
-        Set(value As Boolean)
-            Me._showOverworldPokemon = value
-        End Set
-    End Property
+    Public Property ShowOverworldPokemon As Boolean = True
 
     ''' <summary>
     ''' The amount of walked steps on this map.
     ''' </summary>
-    Public Property WalkedSteps As Integer
-        Get
-            Return Me._walkedSteps
-        End Get
-        Set(value As Integer)
-            Me._walkedSteps = value
-        End Set
-    End Property
+    Public Property WalkedSteps As Integer = 0
 
     ''' <summary>
     ''' The region this map is assigned to.
     ''' </summary>
     ''' <remarks>The default is "Johto".</remarks>
-    Public Property CurrentRegion As String
-        Get
-            Return Me._currentRegion
-        End Get
-        Set(value As String)
-            Me._currentRegion = value
-        End Set
-    End Property
+    Public Property CurrentRegion As String = "Johto"
 
     ''' <summary>
     ''' Regional forms available on this level.
     ''' </summary>
-    Public Property RegionalForm As String
-        Get
-            Return _regionalForm
-        End Get
-        Set(value As String)
-            _regionalForm = value
-        End Set
-    End Property
+    Public Property RegionalForm As String = ""
 
     ''' <summary>
     ''' Chance of a Hidden Ability being on a wild Pokémon.
     ''' </summary>
-    Public Property HiddenAbilityChance As Integer
-        Get
-            Return Me._hiddenabilitychance
-        End Get
-        Set(value As Integer)
-            Me._hiddenabilitychance = value
-        End Set
-    End Property
+    Public Property HiddenAbilityChance As Integer = 0
 
     ''' <summary>
     ''' The LightingType of this map. More information in the Level\UpdateLighting.
     ''' </summary>
-    Public Property LightingType As Integer
-        Get
-            Return Me._lightingType
-        End Get
-        Set(value As Integer)
-            Me._lightingType = value
-        End Set
-    End Property
+    Public Property LightingType As Integer = 0
 
     ''' <summary>
     ''' Whether the map is a part of the Safari Zone. This changes the Battle Menu and the Menu Screen.
     ''' </summary>
-    Public Property IsSafariZone As Boolean
-        Get
-            Return Me._isSafariZone
-        End Get
-        Set(value As Boolean)
-            Me._isSafariZone = value
-        End Set
-    End Property
+    Public Property IsSafariZone As Boolean = False
 
     ''' <summary>
     ''' Whether the map is a part of the Bug Catching Contest. This changes the Battle Menu and the Menu Screen.
     ''' </summary>
-    Public Property IsBugCatchingContest As Boolean
-        Get
-            Return Me._isBugCatchingContest
-        End Get
-        Set(value As Boolean)
-            Me._isBugCatchingContest = value
-        End Set
-    End Property
+    Public Property IsBugCatchingContest As Boolean = False
 
     ''' <summary>
     ''' Holds data for the Bug Catching Contest.
     ''' </summary>
     ''' <remarks>Composed of 3 values, separated by ",": 0 = script location for ending the contest, 1 = script location for selecting the remaining balls item, 2 = Menu Item name for the remaining balls item.</remarks>
-    Public Property BugCatchingContestData As String
-        Get
-            Return Me._bugCatchingContestData
-        End Get
-        Set(value As String)
-            Me._bugCatchingContestData = value
-        End Set
-    End Property
+    Public Property BugCatchingContestData As String = ""
 
     ''' <summary>
     ''' Used to modify the Battle Map camera position.
     ''' </summary>
     ''' <remarks>Data: MapName,x,y,z OR Mapname OR x,y,z OR empty</remarks>
-    Public Property BattleMapData() As String
-        Get
-            Return Me._battleMapData
-        End Get
-        Set(value As String)
-            Me._battleMapData = value
-        End Set
-    End Property
+    Public Property BattleMapData As String = ""
 
     ''' <summary>
     ''' Used to modify the Battle Map.
@@ -572,69 +390,32 @@ Public Class Level
     ''' <summary>
     ''' The instance of the World class, handling time, season and weather based operations.
     ''' </summary>
-    Public Property World() As World
-        Get
-            Return Me._world
-        End Get
-        Set(value As World)
-            Me._world = value
-        End Set
-    End Property
+    Public Property World As World = Nothing
 
     ''' <summary>
     ''' Whether the Radio is currently activated.
     ''' </summary>
-    Public Property IsRadioOn() As Boolean
-        Get
-            Return Me._isRadioOn
-        End Get
-        Set(value As Boolean)
-            Me._isRadioOn = value
-        End Set
-    End Property
+    Public Property IsRadioOn As Boolean = False
 
     ''' <summary>
     ''' The currently selected Radio station. If possible, this will replace the Music Loop.
     ''' </summary>
-    Public Property SelectedRadioStation() As GameJolt.PokegearScreen.RadioStation
-        Get
-            Return Me._selectedRadioStation
-        End Get
-        Set(value As GameJolt.PokegearScreen.RadioStation)
-            Me._selectedRadioStation = value
-        End Set
-    End Property
+    Public Property SelectedRadioStation As GameJolt.PokegearScreen.RadioStation = Nothing
 
     ''' <summary>
     ''' Allowed Radio channels on this map.
     ''' </summary>
-    Public Property AllowedRadioChannels() As List(Of Decimal)
-        Get
-            Return Me._radioChannels
-        End Get
-        Set(value As List(Of Decimal))
-            Me._radioChannels = value
-        End Set
-    End Property
+    Public Property AllowedRadioChannels As List(Of Decimal) = New List(Of Decimal)
 
     ''' <summary>
     ''' Handles wild Pokémon encounters.
     ''' </summary>
-    Public ReadOnly Property PokemonEncounter() As PokemonEncounter
-        Get
-            Return Me._pokemonEncounter
-        End Get
-    End Property
+    Public ReadOnly Property PokemonEncounter As PokemonEncounter = Nothing
 
     ''' <summary>
     ''' The backdrop renderer of this level.
     ''' </summary>
-    Public ReadOnly Property BackdropRenderer() As BackdropRenderer
-        Get
-            Return _backdropRenderer
-        End Get
-    End Property
-
+    Public ReadOnly Property BackdropRenderer As BackdropRenderer
 
 #End Region
 
@@ -678,7 +459,7 @@ Public Class Level
     ''' <summary>
     ''' A structure to store wild Pokémon encounter data in.
     ''' </summary>
-    Public Structure PokemonEcounterDataStruct
+    Public Structure PokemonEncounterDataStruct
         ''' <summary>
         ''' The assumed position the player will be in when encounterning the Pokémon.
         ''' </summary>
@@ -706,15 +487,18 @@ Public Class Level
     ''' Creates a new instance of the Level class.
     ''' </summary>
     Public Sub New()
-        Me._routeSign = New RouteSign()
-        Me.WarpData = New WarpDataStruct()
-        Me.PokemonEncounterData = New PokemonEcounterDataStruct()
-        Me._pokemonEncounter = New PokemonEncounter(Me)
+        WarpData = New WarpDataStruct()
+        PokemonEncounterData = New PokemonEncounterDataStruct()
+        PokemonEncounter = New PokemonEncounter(Me)
 
-        Me.StartOffsetMapUpdate()
+        StartOffsetMapUpdate()
 
-        Me._backdropRenderer = New BackdropRenderer()
-        Me._backdropRenderer.Initialize()
+        BackdropRenderer = New BackdropRenderer()
+        BackdropRenderer.Initialize()
+    End Sub
+
+    Protected Overrides Sub Finalize()
+        Dispose()
     End Sub
 
     ''' <summary>
@@ -728,7 +512,7 @@ Public Class Level
         Me._offsetTimer = New Timers.Timer()
         Me._offsetTimer.Interval = 16
         Me._offsetTimer.AutoReset = True
-        AddHandler Me._offsetTimer.Elapsed, AddressOf Me.UpdateOffsetMap
+        AddHandler _offsetTimer.Elapsed, AddressOf UpdateOffsetMap
         Me._offsetTimer.Start()
 
         Logger.Debug("Started Offset map update")
@@ -748,23 +532,18 @@ Public Class Level
     ''' </summary>
     ''' <param name="Levelpath">The path to load the level from. Start with "|" to prevent loading a levelfile.</param>
     Public Sub Load(ByVal Levelpath As String, Optional Reload As Boolean = False)
-
         ' copy all changed files
         If GameController.IS_DEBUG_ACTIVE Then
             DebugFileWatcher.TriggerReload()
         End If
 
-        ' Create a parameter array to pass over to the LevelLoader:
-        Dim params As New List(Of Object)
-        params.AddRange({Levelpath, False, New Vector3(0, 0, 0), 0, New List(Of String)})
-
         ' Create the world and load the level:
         World = New World(0, 0)
 
         If Levelpath.StartsWith("|") = False Then
-            Me.StopOffsetMapUpdate()
+            StopOffsetMapUpdate()
             Dim levelLoader As New LevelLoader()
-            levelLoader.LoadLevel(params.ToArray(), Reload)
+            levelLoader.LoadLevel({Levelpath, False, New Vector3(0, 0, 0), 0, New List(Of String)}, Reload)
         Else
             Logger.Debug("Don't attempt to load a levelfile.")
         End If
@@ -773,17 +552,18 @@ Public Class Level
         OwnPlayer = New OwnPlayer(0, 0, 0, {TextureManager.DefaultTexture}, Core.Player.Skin, 0, 0, "", "Gold", 0)
         OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
         OverworldPokemon.ChangeRotation()
-        Entities.AddRange({OwnPlayer, OverworldPokemon})
 
-        Me.Surfing = Core.Player.startSurfing
-        Me.StartOffsetMapUpdate()
+        AddRangeEntity({OwnPlayer, OverworldPokemon})
+
+        Surfing = Core.Player.startSurfing
+        StartOffsetMapUpdate()
     End Sub
 
     ''' <summary>
     ''' Renders the level.
     ''' </summary>
     Public Sub Draw()
-        Me._backdropRenderer.Draw()
+        Me.BackdropRenderer.Draw()
 
         ' Set the effect's View and Projection matrices:
         Screen.Effect.View = Screen.Camera.View
@@ -794,35 +574,20 @@ Public Class Level
         DebugDisplay.MaxVertices = 0
         DebugDisplay.MaxDistance = 0
 
-        Dim AllEntities As New List(Of Entity)
-        Dim AllFloors As New List(Of Entity)
+        SyncLock EntityReadWriteSync
+            DrawingEntities.Sort(AddressOf SortByDrawOrder)
 
-        AllEntities.AddRange(Entities)
-        AllFloors.AddRange(Floors)
+            For i As Integer = DrawingEntities.Count - 1 To 0 Step -1
+                Dim entity As Entity = DrawingEntities(i)
 
-        If Core.GameOptions.LoadOffsetMaps > 0 Then
-            AllEntities.AddRange(OffsetmapEntities)
-            AllFloors.AddRange(OffsetmapFloors)
-        End If
-
-        AllEntities = (From f In AllEntities Order By f.CameraDistance Descending).ToList()
-        AllFloors = (From f In AllFloors Order By f.CameraDistance Descending).ToList()
-
-        'Render floors:
-        For i = 0 To AllFloors.Count - 1
-            If i <= AllFloors.Count - 1 Then
-                AllFloors(i).Render()
-                DebugDisplay.MaxVertices += AllFloors(i).VertexCount
-            End If
-        Next
-
-        'Render all other entities:
-        For i = 0 To AllEntities.Count - 1
-            If i <= AllEntities.Count - 1 Then
-                AllEntities(i).Render()
-                DebugDisplay.MaxVertices += AllEntities(i).VertexCount
-            End If
-        Next
+                If entity.CanBeRemoved Then
+                    DrawingEntities.RemoveAt(i)
+                Else
+                    entity.Render()
+                    DebugDisplay.MaxVertices += entity.VertexCount
+                End If
+            Next
+        End SyncLock
 
         If IsDark = True Then
             DrawFlashOverlay()
@@ -833,17 +598,17 @@ Public Class Level
     ''' Updates the level's logic.
     ''' </summary>
     Public Sub Update()
-        Me._backdropRenderer.Update()
+        BackdropRenderer.Update()
 
-        Me.UpdatePlayerWarp()
-        Me._pokemonEncounter.TriggerBattle()
+        UpdatePlayerWarp()
+        PokemonEncounter.TriggerBattle()
 
         ' Reload map from file (Debug or Sandbox Mode):
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
             If KeyBoardHandler.KeyPressed(Keys.R) = True And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Core.OffsetMaps.Clear()
-                Logger.Debug(String.Format("Reload map file: {0}", Me._levelFile))
-                Me.Load(LevelFile, True)
+                Logger.Debug(String.Format("Reload map file: {0}", LevelFile))
+                Load(LevelFile, True)
             End If
         End If
 
@@ -853,90 +618,91 @@ Public Class Level
         End If
 
         ' Call Update and UpdateEntity methods of all entities:
-        Me.UpdateEntities()
+        UpdateEntities()
     End Sub
 
     ''' <summary>
     ''' Updates all entities on the map and offset map and sorts the enumarations.
     ''' </summary>
     Public Sub UpdateEntities()
-        ' Update and remove entities:
-        If LevelLoader.IsBusy = False Then
-            For i = 0 To Entities.Count - 1
-                If i <= Entities.Count - 1 Then
-                    If Entities.Count - 1 >= i AndAlso Entities(i).CanBeRemoved Then
-                        Entities.RemoveAt(i)
-                        i -= 1
-                    Else
-                        If Entities(i).NeedsUpdate Then
-                            Entities(i).Update()
-                        End If
+        SyncLock EntityReadWriteSync
+            For i As Integer = Entities.Count - 1 To 0 Step -1
+                Dim entity As Entity = Entities(i)
 
-                        ' UpdateEntity for all entities:
-                        Me.Entities(i).UpdateEntity()
-                    End If
-                Else
-                    Exit For
+                If entity.NeedsUpdate Then
+                    entity.Update()
+                End If
+
+                entity.UpdateEntity()
+
+                If entity.CanBeRemoved Then
+                    Entities.RemoveAt(i)
                 End If
             Next
-        End If
 
-        ' UpdateEntity for all floors:
-        For i = 0 To Me.Floors.Count - 1
-            If i <= Me.Floors.Count - 1 Then
-                Me.Floors(i).UpdateEntity()
-            End If
-        Next
+            For i As Integer = Floors.Count - 1 To 0 Step -1
+                Dim entity As Entity = Floors(i)
 
-        Me.SortEntities()
+                If entity.NeedsUpdate Then
+                    entity.Update()
+                End If
+
+                entity.UpdateEntity()
+
+                If entity.CanBeRemoved Then
+                    Floors.RemoveAt(i)
+                End If
+            Next
+        End SyncLock
     End Sub
 
     ''' <summary>
     ''' Sorts the entity enumerations.
     ''' </summary>
+    <Obsolete("This function does nothing and will be removed in future version.")>
     Public Sub SortEntities()
-        If LevelLoader.IsBusy = False Then
-            Entities = (From f In Entities Order By f.CameraDistance Descending).ToList()
-        End If
     End Sub
 
     ''' <summary>
     ''' Sorts and updates offset map entities.
     ''' </summary>
-    Public Sub UpdateOffsetMap()
+    Public Sub UpdateOffsetMap(sender As Object, e As ElapsedEventArgs)
         Me._isUpdatingOffsetMaps = True
         If Core.GameOptions.LoadOffsetMaps > 0 Then
             ' The Update function of entities on offset maps are not getting called.
 
             If Me._offsetMapUpdateDelay <= 0 Then ' Only when the delay is 0, update.
-                ' Sort the list:
-                If LevelLoader.IsBusy = False Then
-                    OffsetmapEntities = (From e In OffsetmapEntities Order By e.CameraDistance Descending).ToList()
-                End If
-
                 Me._offsetMapUpdateDelay = Core.GameOptions.LoadOffsetMaps - 1 'Set the new delay
 
-                ' Remove entities that CanBeRemoved (see what I did there?):
-                ' Now it also updates the remaining entities.
-                For i = 0 To OffsetmapEntities.Count - 1
-                    If i <= OffsetmapEntities.Count - 1 Then
-                        If OffsetmapEntities(i).CanBeRemoved Then
-                            OffsetmapEntities.RemoveAt(i)
-                            i -= 1
-                        Else
-                            OffsetmapEntities(i).UpdateEntity()
-                        End If
-                    Else
-                        Exit For
-                    End If
-                Next
+                SyncLock EntityReadWriteSync
+                    For i As Integer = OffsetmapEntities.Count - 1 To 0 Step -1
+                        Dim entity As Entity = OffsetmapEntities(i)
 
-                ' Call UpdateEntity on all offset map floors:
-                For i = Me.OffsetmapFloors.Count - 1 To 0 Step -1
-                    If i <= Me.OffsetmapFloors.Count - 1 Then
-                        Me.OffsetmapFloors(i).UpdateEntity()
-                    End If
-                Next
+                        If entity.NeedsUpdate Then
+                            entity.Update()
+                        End If
+
+                        entity.UpdateEntity()
+
+                        If entity.CanBeRemoved Then
+                            OffsetmapEntities.RemoveAt(i)
+                        End If
+                    Next
+
+                    For i As Integer = OffsetmapFloors.Count - 1 To 0 Step -1
+                        Dim entity As Entity = OffsetmapFloors(i)
+
+                        If entity.NeedsUpdate Then
+                            entity.Update()
+                        End If
+
+                        entity.UpdateEntity()
+
+                        If entity.CanBeRemoved Then
+                            OffsetmapFloors.RemoveAt(i)
+                        End If
+                    Next
+                End SyncLock
             Else
                 Me._offsetMapUpdateDelay -= 1
             End If
@@ -945,28 +711,10 @@ Public Class Level
     End Sub
 
     ''' <summary>
-    ''' Renders offset map entities.
+    ''' Sorts the entity enumerations.
     ''' </summary>
-    Private Sub RenderOffsetMap()
-        ' Render floors:
-        For i = 0 To Me.OffsetmapFloors.Count - 1
-            If i <= Me.OffsetmapFloors.Count - 1 Then
-                If Not Me.OffsetmapFloors(i) Is Nothing Then
-                    Me.OffsetmapFloors(i).Render()
-                    DebugDisplay.MaxVertices += Me.OffsetmapFloors(i).VertexCount
-                End If
-            End If
-        Next
-
-        ' Render entities:
-        For i = 0 To Me.OffsetmapEntities.Count - 1
-            If i <= Me.OffsetmapEntities.Count - 1 Then
-                If Not Me.OffsetmapEntities(i) Is Nothing Then
-                    Me.OffsetmapEntities(i).Render()
-                    DebugDisplay.MaxVertices += Me.OffsetmapEntities(i).VertexCount
-                End If
-            End If
-        Next
+    <Obsolete("This function does nothing and will be removed in future version.")>
+    Public Sub SortOffsetmapEntities()
     End Sub
 
     ''' <summary>
@@ -982,7 +730,7 @@ Public Class Level
     Private Sub UpdatePlayerWarp()
         If WarpData.DoWarpInNextTick = True Then ' If a warp event got scheduled.
             ' Disable wild Pokémon:
-            Me._wildPokemonFloor = False
+            Me.WildPokemonFloor = False
             Me.PokemonEncounterData.EncounteredPokemon = False
 
             ' Set the Surfing flag for the next map:
@@ -1018,7 +766,7 @@ Public Class Level
             OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
             OverworldPokemon.Visible = False
             OverworldPokemon.warped = True
-            Entities.AddRange({OwnPlayer, OverworldPokemon})
+            AddRangeEntity({OwnPlayer, OverworldPokemon})
 
             ' Set Ride skin, if needed:
             If Riding = True And CanRide() = False Then
@@ -1031,7 +779,7 @@ Public Class Level
             Screen.Camera.InstantTurn(WarpData.WarpRotations)
 
             ' Make the RouteSign appear:
-            Me._routeSign.Setup(MapName)
+            RouteSign.Setup(MapName)
 
             ' Play the correct music track:
             If IsRadioOn = True AndAlso GameJolt.PokegearScreen.StationCanPlay(Me.SelectedRadioStation) = True Then
@@ -1195,4 +943,8 @@ Public Class Level
         Return True
     End Function
 
+    Public Sub Dispose() Implements IDisposable.Dispose
+        RemoveHandler _offsetTimer.Elapsed, AddressOf UpdateOffsetMap
+        _offsetTimer.Dispose()
+    End Sub
 End Class

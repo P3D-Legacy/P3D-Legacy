@@ -1,11 +1,10 @@
 ﻿Public Class Entity
 
-    Inherits BaseEntity
-
     Public Shared MakeShake As Boolean = False
     Public Shared drawViewBox As Boolean = False
 
     Public ID As Integer = -1
+    Public InsertOrder As Integer = -1
 
     Public EntityID As String = ""
     Public MapOrigin As String = ""
@@ -78,11 +77,11 @@
     Protected DropUpdateUnlessDrawn As Boolean = True
 
     Public Sub New()
-        MyBase.New(EntityTypes.Entity)
+        'MyBase.New(EntityTypes.Entity)
     End Sub
 
     Public Sub New(ByVal X As Single, ByVal Y As Single, ByVal Z As Single, ByVal EntityID As String, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Integer, ByVal Scale As Vector3, ByVal BaseModel As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Shader As Vector3, Optional ModelPath As String = "")
-        MyBase.New(EntityTypes.Entity)
+        'MyBase.New(EntityTypes.Entity)
 
         Me.Position = New Vector3(X, Y, Z)
         Me.EntityID = EntityID
@@ -355,16 +354,18 @@
             ApplyEffect()
         End If
     End Sub
+
+    Private Shared ReadOnly SkipOpacityCheck() As String = {"Floor", "OwnPlayer", "Water", "Whirlpool", "Particle", "OverworldPokemon", "ItemObject", "NetworkPokemon", "NetworkPlayer"}
+
     Public Overridable Sub OpacityCheck()
-        If Me.CameraDistance > 10.0F Or
+        If Me.CameraDistance > 10.0F OrElse
             Screen.Level.OwnPlayer IsNot Nothing AndAlso CameraDistance > Screen.Level.OwnPlayer.CameraDistance Then
 
             Me.Opacity = Me._normalOpacity
             Exit Sub
         End If
 
-        Dim notNames() As String = {"Floor", "OwnPlayer", "Water", "Whirlpool", "Particle", "OverworldPokemon", "ItemObject", "NetworkPokemon", "NetworkPlayer"}
-        If Screen.Camera.Name = "Overworld" AndAlso notNames.Contains(Me.EntityID) = False Then
+        If Screen.Camera.Name = "Overworld" AndAlso SkipOpacityCheck.Contains(Me.EntityID) = False Then
             Me.Opacity = Me._normalOpacity
             If CType(Screen.Camera, OverworldCamera).ThirdPerson = True Then
                 Dim Ray As Ray = Screen.Camera.Ray
@@ -404,12 +405,12 @@
 
         CameraDistance = CalculateCameraDistance(CPosition)
 
-        If Me.DropUpdateUnlessDrawn = True And Me.DrawnLastFrame = False And Me.Visible = True And ActionScriptActive = False Then
+        If Me.DropUpdateUnlessDrawn = True AndAlso Me.DrawnLastFrame = False AndAlso Me.Visible = True AndAlso ActionScriptActive = False Then
             Exit Sub
         End If
 
 
-        If Me.Moved > 0.0F And Me.CanMove = True Then
+        If Me.Moved > 0.0F AndAlso Me.CanMove = True Then
             Me.Moved -= Me.Speed
 
             Dim movement As Vector3 = Vector3.Zero
@@ -442,31 +443,32 @@
             OpacityCheck()
         End If
 
-        If CreatedWorld = False Or CreateWorldEveryFrame = True Then
+        If CreatedWorld = False OrElse CreateWorldEveryFrame = True Then
             World = Matrix.CreateScale(Scale) * Matrix.CreateFromYawPitchRoll(Rotation.Y, Rotation.X, Rotation.Z) * Matrix.CreateTranslation(Position)
             CreatedWorld = True
         End If
 
         If CameraDistance < Screen.Camera.FarPlane * 2 Then
             If Me.Position <> Me.BoundingPositionCreated Then
-                Dim diff As New List(Of Single)
-                diff.AddRange({Me.BoundingPositionCreated.X - Me.Position.X, Me.BoundingPositionCreated.Y - Me.Position.Y, Me.BoundingPositionCreated.Z - Me.Position.Z})
+                Dim diffX = BoundingPositionCreated.X - Position.X
+                Dim diffY = BoundingPositionCreated.Y - Position.Y
+                Dim diffZ = BoundingPositionCreated.Z - Position.Z
 
-                ViewBox.Min.X -= diff(0)
-                ViewBox.Min.Y -= diff(1)
-                ViewBox.Min.Z -= diff(2)
+                ViewBox.Min.X -= diffX
+                ViewBox.Min.Y -= diffY
+                ViewBox.Min.Z -= diffZ
 
-                ViewBox.Max.X -= diff(0)
-                ViewBox.Max.Y -= diff(1)
-                ViewBox.Max.Z -= diff(2)
+                ViewBox.Max.X -= diffX
+                ViewBox.Max.Y -= diffY
+                ViewBox.Max.Z -= diffZ
 
-                boundingBox.Min.X -= diff(0)
-                boundingBox.Min.Y -= diff(1)
-                boundingBox.Min.Z -= diff(2)
+                boundingBox.Min.X -= diffX
+                boundingBox.Min.Y -= diffY
+                boundingBox.Min.Z -= diffZ
 
-                boundingBox.Max.X -= diff(0)
-                boundingBox.Max.Y -= diff(1)
-                boundingBox.Max.Z -= diff(2)
+                boundingBox.Max.X -= diffX
+                boundingBox.Max.Y -= diffY
+                boundingBox.Max.Z -= diffZ
 
                 Me.BoundingPositionCreated = Me.Position
             End If
@@ -512,7 +514,7 @@
     ''' Returns the offset from the 0,0,0 center of the position of the entity.
     ''' </summary>
     Private Function GetCenter() As Vector3
-        If CreatedWorld = False Or CreateWorldEveryFrame = True Then
+        If CreatedWorld = False OrElse CreateWorldEveryFrame = True Then
             Dim v As Vector3 = Vector3.Zero '(Me.ViewBox.Min - Me.Position) + (Me.ViewBox.Max - Me.Position)
 
             If Not Me.BaseModel Is Nothing Then
@@ -548,7 +550,7 @@
 
                     Me.DrawnLastFrame = True
 
-                    If Me.EntityID <> "Floor" And Me.EntityID <> "Water" Then
+                    If Me.EntityID <> "Floor" AndAlso Me.EntityID <> "Water" Then
                         If drawViewBox = True Then
                             BoundingBoxRenderer.Render(ViewBox, GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.LightCoral)
                         End If
@@ -632,11 +634,11 @@
     Protected Function GetEntity(ByVal List As List(Of Entity), ByVal Position As Vector3, ByVal IntComparison As Boolean, ByVal validEntitytypes As Type()) As Entity
         For Each e As Entity In (From selEnt As Entity In List Select selEnt Where validEntitytypes.Contains(selEnt.GetType()))
             If IntComparison = True Then
-                If e.Position.X.ToInteger() = Position.X.ToInteger() And e.Position.Y.ToInteger() = Position.Y.ToInteger() And e.Position.Z.ToInteger() = Position.Z.ToInteger() Then
+                If e.Position.X.ToInteger() = Position.X.ToInteger() AndAlso e.Position.Y.ToInteger() = Position.Y.ToInteger() AndAlso e.Position.Z.ToInteger() = Position.Z.ToInteger() Then
                     Return e
                 End If
             Else
-                If e.Position.X = Position.X And e.Position.Y = Position.Y And e.Position.Z = Position.Z Then
+                If e.Position.X = Position.X AndAlso e.Position.Y = Position.Y AndAlso e.Position.Z = Position.Z Then
                     Return e
                 End If
             End If

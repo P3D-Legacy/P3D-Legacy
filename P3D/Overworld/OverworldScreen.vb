@@ -171,7 +171,7 @@ Public Class OverworldScreen
         End If
 
         'If the MapScript has a value loaded from the MapScript map tag and there is no script running, start that script:
-        If LevelLoader.MapScript <> "" And ActionScript.IsReady = True Then
+        If LevelLoader.MapScript <> "" AndAlso ActionScript.IsReady = True Then
             ActionScript.reDelay = 0.0F
             ActionScript.StartScript(LevelLoader.MapScript, 0)
 
@@ -201,7 +201,7 @@ Public Class OverworldScreen
 
         'Middle click/Thumbstick press: Show first Pokémon in party.
         If ActionScript.IsReady = True Then
-            If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.MiddleButton) = True Or ControllerHandler.ButtonPressed(Buttons.LeftStick) = True Then
+            If MouseHandler.ButtonPressed(MouseHandler.MouseButtons.MiddleButton) = True OrElse ControllerHandler.ButtonPressed(Buttons.LeftStick) = True Then
                 If Core.Player.Pokemons.Count > 0 Then
                     Core.SetScreen(New SummaryScreen(CurrentScreen, Core.Player.Pokemons.ToArray, 0))
                 End If
@@ -209,9 +209,9 @@ Public Class OverworldScreen
         End If
 
         'If no dialogue is showing, do level update tasks:
-        If TextBox.Showing = False And ChooseBox.Showing = False And PokemonImageView.Showing = False And ImageView.Showing = False Then
+        If TextBox.Showing = False AndAlso ChooseBox.Showing = False AndAlso PokemonImageView.Showing = False AndAlso ImageView.Showing = False Then
             'If no script is running and no MapScript is in the queue, update camera and the level.
-            If ActionScript.IsReady = True And LevelLoader.MapScript = "" Then
+            If ActionScript.IsReady = True AndAlso LevelLoader.MapScript = "" Then
                 If Me.HandleServerRequests() = True Then
                     Camera.Update()
                     Level.Update()
@@ -225,8 +225,8 @@ Public Class OverworldScreen
             End If
 
             'Open the MenuScreen:
-            If KeyBoardHandler.KeyPressed(KeyBindings.OpenInventoryKey) = True Or ControllerHandler.ButtonPressed(Buttons.X) = True Then
-                If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.OpenInventoryKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.X) = True Then
+                If Screen.Camera.IsMoving() = False AndAlso ActionScript.IsReady = True Then
                     Level.RouteSign.Hide()
                     SoundManager.PlaySound("menu_open")
                     Core.SetScreen(New NewMenuScreen(Me))
@@ -234,12 +234,12 @@ Public Class OverworldScreen
             End If
 
             'Open the PokégearScreen:
-            If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.Y) = True Then
                 If NotificationPopupList.Count > 0 Then
                     NotificationPopupList(0).Dismiss()
                 Else
-                    If Core.Player.HasPokegear = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-                        If Screen.Camera.IsMoving() = False And ActionScript.IsReady = True Then
+                    If Core.Player.HasPokegear = True OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True Then
+                        If Screen.Camera.IsMoving() = False AndAlso ActionScript.IsReady = True Then
                             Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
                         End If
                     End If
@@ -307,7 +307,7 @@ Public Class OverworldScreen
                 End If
             End If
         End If
-        If Screen.Camera.IsMoving() = True Or Camera.Turning = True Or ActionScript.IsReady = False Or TextBox.Showing = True Or ChooseBox.Showing = True Then
+        If Screen.Camera.IsMoving() = True OrElse Camera.Turning = True OrElse ActionScript.IsReady = False OrElse TextBox.Showing = True OrElse ChooseBox.Showing = True Then
             'If any input is received, reset the delay:
             ShowControlsDelay = 8.0F
         End If

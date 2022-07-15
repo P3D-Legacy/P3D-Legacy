@@ -71,10 +71,10 @@
         Dim Ray As Ray = Screen.Camera.Ray
 
         Dim entities As New List(Of Entity)
-        entities.AddRange(Level.Entities.ToArray())
+        entities.AddRange(Level.Entities)
 
         If Core.GameOptions.LoadOffsetMaps > 0 Then
-            entities.AddRange(Level.OffsetmapEntities.ToArray())
+            entities.AddRange(Level.OffsetmapEntities)
         End If
 
         For Each e As Entity In entities

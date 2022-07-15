@@ -89,6 +89,7 @@
             checkedExistence = True
 
             If ItemExists(Me) = True Then
+                CanBeRemoved = True
                 RemoveItem(Me)
             End If
         End If
@@ -139,6 +140,7 @@
 
     Public Overrides Sub ClickFunction()
         If CanInteractWith Then
+            CanBeRemoved = True
             RemoveItem(Me)
             If Me.Item.Name.Contains("HM") Then
                 SoundManager.PlaySound("Receive_HM", True)
@@ -186,7 +188,7 @@
     End Function
 
     Public Shared Sub RemoveItem(ByVal ItemObject As ItemObject)
-        Screen.Level.Entities.Remove(ItemObject)
+        'Screen.Level.Entities.Remove(ItemObject)
 
         If Core.Player.ItemData = "" Then
             Core.Player.ItemData = (Screen.Level.LevelFile & "|" & ItemObject.ItemID.ToString()).ToLower()

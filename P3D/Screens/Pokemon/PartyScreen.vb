@@ -958,7 +958,7 @@ Public Class PartyScreen
             TextBox.Show(PokemonList(_index).GetDisplayName() & "~used Cut!", {}, True, False)
             PokemonList(_index).PlayCry()
             For Each e As Entity In grassEntities
-                Screen.Level.Entities.Remove(e)
+                e.CanBeRemoved = True
             Next
         Else
             TextBox.Show("There is nothing~to be Cut!", {}, True, False)

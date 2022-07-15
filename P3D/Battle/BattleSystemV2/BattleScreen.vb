@@ -233,9 +233,6 @@
                 OwnPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(12, -0.5F, 13) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 0.5F, 0), New Vector3(OwnPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 1, ownModel, True, New Vector3(1), 0, "", "", New Vector3(0), Nothing, 1), WallBlock)
             End If
 
-            Screen.Level.Entities.Add(OwnPokemonNPC)
-            Screen.Level.Entities.Add(OwnPokemonModel)
-
             If oppModel = "" Then
                 OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}), NPC)
                 OppPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(15, -0.5F, 13) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 1.5F, 0), New Vector3(OppPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 0, "", False, New Vector3(1), 0, "", "", New Vector3(0), Nothing,,,, "Models\Bulbasaur\Normal"), WallBlock)
@@ -244,8 +241,7 @@
                 OppPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(15, -0.5F, 13) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 1.5F, 0), New Vector3(OppPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 1, "", True, New Vector3(1), 0, "", "", New Vector3(0), Nothing,,,, oppModel), WallBlock)
             End If
 
-            Screen.Level.Entities.Add(OppPokemonNPC)
-            Screen.Level.Entities.Add(OppPokemonModel)
+            Screen.Level.AddRangeEntity({OwnPokemonNPC, OwnPokemonModel, OppPokemonNPC, OppPokemonModel})
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -256,7 +252,7 @@
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OwnTrainerNPC)
+            Screen.Level.AddEntity(OwnTrainerNPC)
 
             Dim cq As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 5)
             cq.PassThis = True
@@ -372,9 +368,6 @@
                 OwnPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(12, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 0.5F, 0), New Vector3(OwnPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 1, ownModel, True, New Vector3(1), 0, "", "", New Vector3(0), Nothing, InitiallyVisibleOwn), WallBlock)
             End If
 
-            Screen.Level.Entities.Add(OwnPokemonNPC)
-            Screen.Level.Entities.Add(OwnPokemonModel)
-
             Dim InitiallyVisibleOpp As Integer = 1
             If Core.Player.ShowBattleAnimations <> 0 Then
                 InitiallyVisibleOpp = 0
@@ -388,8 +381,7 @@
                 OppPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(15, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 1.5F, 0), New Vector3(OppPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 1, oppModel, True, New Vector3(1), 0, "", "", New Vector3(0), Nothing, InitiallyVisibleOpp), WallBlock)
             End If
 
-            Screen.Level.Entities.Add(OppPokemonNPC)
-            Screen.Level.Entities.Add(OppPokemonModel)
+            Screen.Level.AddRangeEntity({OwnPokemonNPC, OwnPokemonModel, OppPokemonNPC, OppPokemonModel})
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -400,10 +392,9 @@
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OwnTrainerNPC)
-
             OppTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(17, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {Trainer.SpriteName, 1, "Player", 3, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OppTrainerNPC)
+
+            Screen.Level.AddRangeEntity({OwnTrainerNPC, OppTrainerNPC})
 
             Dim cq As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 5)
             cq.PassThis = True
@@ -586,9 +577,6 @@
                 OwnPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(12, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 0.5F, 0), New Vector3(OwnPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 1, "", False, New Vector3(1), 0, "", "", New Vector3(0), Nothing,,,, ownModel), WallBlock)
             End If
 
-            Screen.Level.Entities.Add(OwnPokemonNPC)
-            Screen.Level.Entities.Add(OwnPokemonModel)
-
             If oppModel = "" Then
                 OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}), NPC)
                 OppPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(15, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 1.5F, 0), New Vector3(OppPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 0, "", False, New Vector3(1), 0, "", "", New Vector3(0), Nothing,,,, "Models\Bulbasaur\Normal"), WallBlock)
@@ -597,8 +585,7 @@
                 OppPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(15, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 1.5F, 0), New Vector3(OppPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 1, "", True, New Vector3(1), 0, "", "", New Vector3(0), Nothing,,,, oppModel), WallBlock)
             End If
 
-            Screen.Level.Entities.Add(OppPokemonNPC)
-            Screen.Level.Entities.Add(OppPokemonModel)
+            Screen.Level.AddRangeEntity({OwnPokemonNPC, OwnPokemonModel, OppPokemonNPC, OppPokemonModel})
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -609,7 +596,7 @@
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OwnTrainerNPC)
+            Screen.Level.AddEntity(OwnTrainerNPC)
 
             Dim cq As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 5)
             cq.PassThis = True
@@ -698,9 +685,6 @@
                 OwnPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(12, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 0.5F, 0), New Vector3(OwnPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 1, ownModel, True, New Vector3(1), 0, "", "", New Vector3(0), Nothing, 1), WallBlock)
             End If
 
-            Screen.Level.Entities.Add(OwnPokemonNPC)
-            Screen.Level.Entities.Add(OwnPokemonModel)
-
             If oppModel = "" Then
                 OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}), NPC)
                 OppPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(15, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 1.5F, 0), New Vector3(OppPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 0, "", False, New Vector3(1), 0, "", "", New Vector3(0), Nothing,,,, "Models\Bulbasaur\Normal"), WallBlock)
@@ -709,8 +693,7 @@
                 OppPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(15, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 1.5F, 0), New Vector3(OppPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 1, "", True, New Vector3(1), 0, "", "", New Vector3(0), Nothing,,,, oppModel), WallBlock)
             End If
 
-            Screen.Level.Entities.Add(OppPokemonNPC)
-            Screen.Level.Entities.Add(OppPokemonModel)
+            Screen.Level.AddRangeEntity({OwnPokemonNPC, OwnPokemonModel, OppPokemonNPC, OppPokemonModel})
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -721,7 +704,7 @@
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OwnTrainerNPC)
+            Screen.Level.AddEntity(OwnTrainerNPC)
 
             Dim cq As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 5)
             cq.PassThis = True
