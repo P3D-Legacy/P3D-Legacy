@@ -21,7 +21,7 @@ Public Class Pokemon
 
                 'ShinyCharm
                 If Core.Player.Inventory.GetItemAmount(242) > 0 Then
-                    shinyRate = CInt(shinyRate * 0.75F)
+                    shinyRate = CInt(shinyRate * 0.25F)
                 End If
             End If
 
@@ -1249,6 +1249,7 @@ Public Class Pokemon
     Public Shared Function GetPokemonByID(ByVal Number As Integer, ByVal AdditionalData As String) As Pokemon
         Dim p As New Pokemon()
         p.LoadDefinitions(Number, AdditionalData)
+        p.AdditionalData = AdditionalData
         Return p
     End Function
 

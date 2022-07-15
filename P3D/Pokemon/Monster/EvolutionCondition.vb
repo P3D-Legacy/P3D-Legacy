@@ -232,9 +232,17 @@ Public Class EvolutionCondition
                             canEvolve = False
                             Dim eregions As List(Of String) = c.Argument.ToLower.Split(CChar(";")).ToList()
                             Dim regions As List(Of String) = Screen.Level.CurrentRegion.ToLower.Split(CChar(",")).ToList()
-                            For Each r As String In regions
-                                If eregions.Contains(r) Then
-                                    canEvolve = True
+
+                            For Each r As String In eregions
+                                If r.Chars(0) = CChar("-") Then
+                                    canEvolve = False
+                                    If Not regions.Contains(r.Substring(1)) Then
+                                        canEvolve = True
+                                    End If
+                                Else
+                                    If regions.Contains(r) Then
+                                        canEvolve = True
+                                    End If
                                 End If
                             Next
                     End Select
