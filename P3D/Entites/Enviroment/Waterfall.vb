@@ -156,6 +156,7 @@
         If Me.Model Is Nothing Then
             Me.Draw(Me.BaseModel, Textures, False)
         Else
+            UpdateModel()
             Draw(Me.BaseModel, Me.Textures, True, Me.Model)
         End If
     End Sub

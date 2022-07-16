@@ -124,6 +124,7 @@
         If Me.Model Is Nothing Then
             Draw(BaseModel, Textures, False)
         Else
+            UpdateModel()
             Draw(Me.BaseModel, Me.Textures, True, Me.Model)
         End If
     End Sub

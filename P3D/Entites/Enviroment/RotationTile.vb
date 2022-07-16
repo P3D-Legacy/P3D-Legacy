@@ -42,7 +42,6 @@
                 End If
             End If
         End If
-        UpdateModel()
     End Sub
 
     Private Function GetSteps() As Integer
@@ -89,6 +88,7 @@ theend:
         If Me.Model Is Nothing Then
             Me.Draw(Me.BaseModel, Textures, False)
         Else
+            UpdateModel()
             Draw(Me.BaseModel, Me.Textures, True, Me.Model)
         End If
     End Sub

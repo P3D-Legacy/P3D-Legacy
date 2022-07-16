@@ -51,6 +51,7 @@
 				[Object].Render()
 			Next
 			For Each [Object] As Entity In RenderObjects
+				[Object].UpdateModel()
 				[Object].Render()
 			Next
 		End Sub

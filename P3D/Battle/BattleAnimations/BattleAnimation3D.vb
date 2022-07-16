@@ -69,7 +69,6 @@
                 End If
             End If
         End If
-        MyBase.Update()
     End Sub
 
     Public Overrides Sub UpdateEntity()
@@ -99,6 +98,7 @@
                 If Me.Model Is Nothing Then
                     Draw(Me.BaseModel, Me.Textures, True)
                 Else
+                    UpdateModel()
                     Draw(Me.BaseModel, Me.Textures, True, Me.Model)
                 End If
             End If

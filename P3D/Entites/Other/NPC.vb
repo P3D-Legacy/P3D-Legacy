@@ -492,6 +492,7 @@
             Draw(Me.BaseModel, Me.Textures, True)
             GraphicsDevice.DepthStencilState = state
         Else
+            UpdateModel()
             Draw(Me.BaseModel, Me.Textures, True, Me.Model)
         End If
     End Sub

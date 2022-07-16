@@ -344,7 +344,6 @@
     End Sub
 
     Public Overridable Sub Update()
-        UpdateModel()
     End Sub
 
     Public Sub UpdateModel()
@@ -564,7 +563,7 @@
     End Sub
 
     Public Overridable Sub Render()
-
+        UpdateModel()
     End Sub
 
     Public Overridable Sub ClickFunction()

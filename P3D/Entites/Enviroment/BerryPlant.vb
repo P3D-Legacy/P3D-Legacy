@@ -67,6 +67,7 @@
     End Sub
 
     Public Overrides Sub Update()
+
         If Me.LastUpdateDate.Year = 1 Then
             Me.LastUpdateDate = Date.Now
         End If
@@ -207,6 +208,7 @@
         If Me.Model Is Nothing Then
             Me.Draw(Me.BaseModel, Textures, False)
         Else
+            UpdateModel()
             Draw(Me.BaseModel, Me.Textures, True, Me.Model)
         End If
     End Sub
