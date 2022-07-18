@@ -105,21 +105,12 @@
 			Dim NewPosition As Vector3
 			If Not Position = Nothing Then
 				If BattleFlipped = True Then
-					If CurrentEntity IsNot Nothing Then
-						NewPosition.X = CurrentEntity.Position.X - Position.X
-						NewPosition.Y = CurrentEntity.Position.Y + Position.Y
-						NewPosition.Z = CurrentEntity.Position.Z - Position.Z
-					Else
-						NewPosition = Position
-					End If
+					Position.X *= -1
+				End If
+				If CurrentEntity IsNot Nothing Then
+					NewPosition = CurrentEntity.Position + Position
 				Else
-					If CurrentEntity IsNot Nothing Then
-						NewPosition.X = CurrentEntity.Position.X + Position.X
-						NewPosition.Y = CurrentEntity.Position.Y + Position.Y
-						NewPosition.Z = CurrentEntity.Position.Z + Position.Z
-					Else
-						NewPosition = Position
-					End If
+					NewPosition = Position
 				End If
 			Else
 				If CurrentEntity IsNot Nothing Then
@@ -169,8 +160,12 @@
 
 			If Not BattleFlipped = Nothing Then
 				If BattleFlipped = True Then
-					DestinationX -= DestinationX * 2.0F
-					DestinationZ -= DestinationZ * 2.0F
+					DestinationX *= -1.0F
+					DestinationZ *= -1.0F
+					If SpinZ = True Then
+						SpinXSpeed *= -1.0F
+						SpinZSpeed *= -1.0F
+					End If
 				End If
 			End If
 			If CurrentEntity Is Nothing Then
@@ -228,9 +223,24 @@
 			AnimationSequence.Add(baEntityRotate)
 
 			If RotateModel IsNot Nothing Then
-				Dim baModelOpacity As BAEntityRotate = New BAEntityRotate(CType(RotateModel, Entity), False, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
-				AnimationSequence.Add(baModelOpacity)
+				Dim baModelRotate As BAEntityRotate = New BAEntityRotate(CType(RotateModel, Entity), False, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
+				AnimationSequence.Add(baModelRotate)
 			End If
+
+		End Sub
+
+		Public Sub AnimationTurnNPC(ByVal TurnSteps As Integer, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal EndFaceRotation As Integer = -1, Optional ByVal TurnSpeed As Integer = 1, Optional ByVal TurnDelay As Single = 0.25F)
+			Dim TurnNPC As NPC = Nothing
+			Dim TurnModel As Entity = Nothing
+			If CurrentEntity IsNot Nothing Then
+				TurnNPC = CType(CurrentEntity, NPC)
+				If Me.CurrentModel IsNot Nothing Then
+					TurnModel = Me.CurrentModel
+				End If
+			End If
+
+			Dim BAEntityFaceRotate As BAEntityFaceRotate = New BAEntityFaceRotate(TurnNPC, TurnSteps, startDelay, endDelay, EndFaceRotation, TurnSpeed, TurnDelay, TurnModel)
+			AnimationSequence.Add(BAEntityFaceRotate)
 
 		End Sub
 		Public Sub AnimationScale(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal Anchors As String = "")

@@ -71,10 +71,6 @@
             Dim WaterDrop1Position As Vector3 = New Vector3(-0.25, 0.25, -0.25)
             Dim WaterDrop2Position As Vector3 = New Vector3(0, 0.25, 0)
             Dim WaterDrop3Position As Vector3 = New Vector3(0.25, 0.25, 0.25)
-            If BattleFlip = True Then
-                WaterDrop1Position = New Vector3(-0.25, 0.25, 0.25)
-                WaterDrop3Position = New Vector3(0.25, 0.25, -0.25)
-            End If
 
             Dim WaterDropEntity1 As Entity = MoveAnimation.SpawnEntity(WaterDrop1Position, TextureManager.GetTexture("Textures\Battle\Water\WaterGun", New Rectangle(0, 32, 16, 16), ""), New Vector3(0.5F), 0.75F, 5, 0)
             Dim WaterDropEntity2 As Entity = MoveAnimation.SpawnEntity(WaterDrop2Position, TextureManager.GetTexture("Textures\Battle\Water\WaterGun", New Rectangle(0, 32, 16, 16), ""), New Vector3(0.5F), 0.75F, 5, 0)

@@ -88,18 +88,15 @@
                 TextureYOffset = 16
             End If
 
-            Dim Bubble1Position As Vector3 = New Vector3(-0.25, -0.25, -0.25)
-            Dim Bubble2Position As Vector3 = New Vector3(0, -0.25, 0)
-            Dim Bubble3Position As Vector3 = New Vector3(0.25, -0.25, 0.25)
-            If BattleFlip = True Then
-                Bubble1Position = New Vector3(-0.25, -0.25, 0.25)
-                Bubble3Position = New Vector3(0.25, -0.25, -0.25)
-            End If
             Dim StingerEntity As Entity = MoveAnimation.SpawnEntity(New Vector3(-2.0, 0, 0.0), TextureManager.GetTexture("Textures\Battle\Poison\Stinger", New Rectangle(0, TextureYOffset, 16, 16), ""), New Vector3(0.2F), 1)
 
             MoveAnimation.AnimationMove(StingerEntity, True, 0.0, 0.0, 0.0, 0.08, False, False, 0.0, 0.0)
 
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Poison\PoisonSting_Hit", 1, 0)
+
+            Dim Bubble1Position As Vector3 = New Vector3(-0.25, -0.25, -0.25)
+            Dim Bubble2Position As Vector3 = New Vector3(0, -0.25, 0)
+            Dim Bubble3Position As Vector3 = New Vector3(0.25, -0.25, 0.25)
 
             Dim BubbleEntity1 As Entity = MoveAnimation.SpawnEntity(Bubble1Position, TextureManager.GetTexture("Textures\Battle\Poison\Bubble", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 2, 1)
 
