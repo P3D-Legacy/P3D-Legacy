@@ -28,8 +28,11 @@
         If Me.TurnSteps > 0 Then
             If Me.TurnTime <= 0.0F Then
                 Me.TargetEntity.faceRotation += Me.TurnSpeed
-                If Me.TargetEntity.faceRotation = 4 Then
-                    Me.TargetEntity.faceRotation = 0
+                If Me.TargetEntity.faceRotation > 3 Then
+                    Me.TargetEntity.faceRotation -= 4
+                End If
+                If Me.TargetEntity.faceRotation < 0 Then
+                    Me.TargetEntity.faceRotation += 4
                 End If
                 If Me.TargetModel IsNot Nothing Then
                     Me.TargetModel.Rotation = Entity.GetRotationFromInteger(Me.TargetEntity.faceRotation)
@@ -37,7 +40,7 @@
                 Me.TurnSteps -= TurnSpeed.ToPositive()
                 Me.TurnTime = TurnDelay
             Else
-                TurnDelay -= 0.1F
+                TurnTime -= 0.1F
             End If
         Else
             If Me.TargetEntity.faceRotation <> Me.EndFaceRotation Then
@@ -45,9 +48,8 @@
                 If Me.TargetModel IsNot Nothing Then
                     Me.TargetModel.Rotation = Entity.GetRotationFromInteger(Me.EndFaceRotation)
                 End If
-            Else
-                Me.Ready = True
             End If
+            Me.Ready = True
         End If
     End Sub
 

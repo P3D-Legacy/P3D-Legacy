@@ -3756,7 +3756,7 @@
 
             '***STAT INCREASE ANIMATION***
             If Core.Player.ShowBattleAnimations <> 0 Then
-                Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+                Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, False)
                 Dim maxAmount As Integer = 20 * val
                 Dim currentAmount As Integer = 0
                 While currentAmount <= maxAmount
@@ -4051,7 +4051,7 @@
             End If
             '***STAT DECREASE ANIMATION***
             If Core.Player.ShowBattleAnimations <> 0 Then
-                Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
+                Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, False)
                 Dim maxAmount As Integer = 20 * val
                 Dim currentAmount As Integer = 0
                 While currentAmount <= maxAmount
