@@ -148,8 +148,8 @@
 
                         If canSurf = True Then
                             Dim message As String = "Do you want to Surf?%Yes|No%"
-                            Screen.TextBox.Show(message, {Me}, True, True)
                             SoundManager.PlaySound("select")
+                            Screen.TextBox.Show(message, {Me}, True, True)
                         End If
                     End If
                 End If
@@ -185,7 +185,9 @@
         End If
         Dim i = Animations(n).CurrentRow
         Dim j = Animations(n).CurrentColumn
-        Me.Textures(n) = BlockTexturesTemp(AnimationNames(n) & "_" & (j + columns(n) * i))
+        If BlockTexturesTemp.ContainsKey(AnimationNames(n) & "_" & (j + columns(n) * i)) = True Then
+            Me.Textures(n) = BlockTexturesTemp(AnimationNames(n) & "_" & (j + columns(n) * i))
+        End If
 
         'End If
     End Sub
