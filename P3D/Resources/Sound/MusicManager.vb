@@ -66,6 +66,8 @@ Public Class LoopStream
                                     MusicManager._currentSongName = IntroSong.Name
                                     MusicManager._currentSong = IntroSong
                                     Logger.Debug($"Play song [{IntroSong.Name}]")
+                                Else
+                                    IntroSong = Nothing
                                 End If
                             Else
                                 Dim ContinueSong As SongContainer = MusicManager.GetSong(MusicManager._afterBattleIntroSong.Name)
