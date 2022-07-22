@@ -10,18 +10,24 @@
     Dim delay As Single = 4.0F
     Dim size As Single = 0.0F
 
+    Dim CanRename As Boolean = True
+    Dim Message As String = ""
+
     Dim cPokemon As Pokemon
 
-    Public Sub New(ByVal currentScreen As Screen, ByVal Pokemon As List(Of Pokemon))
+    Public Sub New(ByVal currentScreen As Screen, ByVal Pokemon As List(Of Pokemon), Optional CanRename As Boolean = True, Optional Message As String = "")
         Me.PreScreen = currentScreen
         PlayerStatistics.Track("Eggs hatched", 1)
 
         Me.Identification = Identifications.HatchEggScreen
         Me.Pokemons = Pokemon
+
         Me.cPokemon = Me.Pokemons(0)
         cPokemon.EggSteps = 0
         Core.Player.Pokemons.Add(cPokemon)
 
+        Me.CanRename = CanRename
+        Me.Message = Message
         If cPokemon.IsShiny = True Then
             Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, cPokemon.Number, 3)
         Else
@@ -85,7 +91,14 @@
                     cPokemon.PlayCry()
                     SoundManager.PlaySound("success", True)
                     Stage = 7
-                    TextBox.Show("Congratulations!~Your egg hatched into~a " & cPokemon.GetName() & "!*Do you want to give~a nickname to the freshly~hatched " & cPokemon.GetName() & "?%Yes|No%", AddressOf Me.ResultFunction, False, False, TextBox.DefaultColor)
+                    If Message = "" Then
+                        TextBox.Show("Congratulations!~Your egg hatched into~a " & cPokemon.GetName() & "!")
+                    Else
+                        TextBox.Show(Message)
+                    End If
+                    If CanRename = True Then
+                        TextBox.Show("Do you want to give~a nickname to the freshly~hatched " & cPokemon.GetName() & "?%Yes|No%", AddressOf Me.ResultFunction, False, False, TextBox.DefaultColor)
+                    End If
                 End If
             ElseIf Stage = 7 Then
                 If Me.IsCurrentScreen = True Then

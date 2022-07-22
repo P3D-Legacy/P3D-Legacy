@@ -849,6 +849,24 @@
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         Core.Player.Pokemons(Index).EggSteps = StepsToSet
                     End If
+                Case "hatch"
+                    ' @Pokemon.Hatch(PartyIndex,[CanRename],[Message])
+                    Dim Index As Integer = int(argument.GetSplit(0, ","))
+                    Dim CanRename As Boolean = True
+                    Dim Message As String = ""
+                    Dim Pokemon As Pokemon = Nothing
+                    If argument.Split(",").Count > 1 Then
+                        CanRename = CBool(argument.GetSplit(1, ","))
+                        If argument.Split(",").Count > 2 Then
+                            Message = CStr(argument.GetSplit(2, ","))
+                        End If
+                    End If
+                    If Core.Player.Pokemons.Count - 1 >= Index Then
+                        Pokemon = Core.Player.Pokemons(Index)
+                    End If
+                    Screen.TextBox.Show("?")
+                    SetScreen(New TransitionScreen(CType(CurrentScreen, OverworldScreen), New HatchEggScreen(CType(CurrentScreen, OverworldScreen), {Pokemon}.ToList, CanRename, Message), Color.White, False))
+                    CanContinue = False
             End Select
 
             IsReady = True
