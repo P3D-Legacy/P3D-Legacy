@@ -47,11 +47,6 @@ jappa
 {"EntityField"{ENT[{"Size"{intArr[7,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,0,7]}}{"TexturePath"{str[Kolben]}}{"Textures"{recArr[[256,32,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[20]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
 {"EntityField"{ENT[{"Size"{intArr[7,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,1,7]}}{"TexturePath"{str[Kolben]}}{"Textures"{recArr[[256,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[20]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
 {"EntityField"{ENT[{"Size"{intArr[7,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[6,2,7]}}{"TexturePath"{str[Kolben]}}{"Textures"{recArr[[256,0,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[20]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
-windows
-{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[7,0,7]}}{"TexturePath"{str[Kolben]}}{"Textures"{recArr[[272,32,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[20]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
-{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[7,1,7]}}{"TexturePath"{str[Kolben]}}{"Textures"{recArr[[272,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[20]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
-{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[11,0,7]}}{"TexturePath"{str[Kolben]}}{"Textures"{recArr[[272,32,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[20]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
-{"EntityField"{ENT[{"Size"{intArr[1,1]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[11,1,7]}}{"TexturePath"{str[Kolben]}}{"Textures"{recArr[[272,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[20]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
 
 East
 {"EntityField"{ENT[{"Size"{intArr[1,7]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[18,0,0]}}{"TexturePath"{str[Kolben]}}{"Textures"{recArr[[0,32,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[20]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
@@ -135,7 +130,7 @@ NPCs:
 {"NPC"{NPC[{"Position"{sngArr[2,0,3]}}{"TextureID"{str[TornadoBot]}}{"ID"{int[6]}}{"Name"{str[Tornado]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\tornado]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 
 {"NPC"{NPC[{"Position"{sngArr[9,0,5]}}{"TextureID"{str[JappaWakka]}}{"ID"{int[9]}}{"Name"{str[JappaWakka]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\jappa]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[8,0,5]}}{"TextureID"{str[[POKEMON|N]498]}}{"ID"{int[10]}}{"Name"{str[Alex]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\jappa_tepig]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"AnimateIdle"{bool[1]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[8,0,5]}}{"TextureID"{str[[POKEMON|S]498]}}{"ID"{int[10]}}{"Name"{str[Alex]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\jappa_tepig]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"AnimateIdle"{bool[1]}}{"MoveRectangles"{recArr[]}}]}}
 
 jappawakka
 Shelves
