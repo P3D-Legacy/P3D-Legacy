@@ -163,6 +163,13 @@
     End Function
 
     Public Overrides Sub UpdateEntity()
+        If Me.BaseModel Is BaseModel.getModelbyID(3) Then
+            If Me.Rotation.Y <> Screen.Camera.Yaw Then
+                Me.Rotation.Y = Screen.Camera.Yaw
+                CreatedWorld = False
+            End If
+        End If
+
         If Not Animations Is Nothing Then
             For n = 0 To Animations.Count - 1
                 Animations(n).Update(0.01)
