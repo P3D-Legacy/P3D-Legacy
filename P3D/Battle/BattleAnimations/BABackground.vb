@@ -24,7 +24,7 @@
     End Sub
 
     Public Overrides Sub Render()
-        If startDelay = 0.0F AndAlso Me.BackgroundOpacity > 0.0F Then
+        If Date.Now >= startDelay AndAlso Me.BackgroundOpacity > 0.0F Then
             Core.SpriteBatch.Draw(Me.Texture, New Rectangle(0, 0, windowSize.Width, windowSize.Height), New Color(255, 255, 255, CInt(255 * Me.BackgroundOpacity)))
         End If
     End Sub

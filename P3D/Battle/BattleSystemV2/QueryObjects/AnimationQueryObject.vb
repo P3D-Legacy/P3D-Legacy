@@ -195,7 +195,7 @@
 			Else
 				FadeEntity = Entity
 			End If
-			If startState = -1.0F Then startState = FadeEntity.Opacity
+			If startState = -1 Then startState = FadeEntity.NormalOpacity
 			Dim baEntityOpacity As BAEntityOpacity = New BAEntityOpacity(FadeEntity, RemoveEntityAfter, TransitionSpeed, FadeIn, EndState, startDelay, endDelay, startState)
 			AnimationSequence.Add(baEntityOpacity)
 

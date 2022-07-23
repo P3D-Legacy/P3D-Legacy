@@ -16,7 +16,7 @@
         Me.TransitionSpeed = TransitionSpeed
         Me.TargetEntity = entity
 
-        Me.TargetEntity.Opacity = StartState
+        Me.TargetEntity.NormalOpacity = StartState
         Me.Visible = False
 
         Me.AnimationType = AnimationTypes.Transition
@@ -24,22 +24,22 @@
 
     Public Overrides Sub DoActionActive()
         If Me.FadeIn = True Then
-            If Me.EndState > TargetEntity.Opacity Then
-                TargetEntity.Opacity += Me.TransitionSpeed
-                If TargetEntity.Opacity >= Me.EndState Then
-                    TargetEntity.Opacity = Me.EndState
+            If Me.EndState > TargetEntity.NormalOpacity Then
+                TargetEntity.NormalOpacity += Me.TransitionSpeed
+                If TargetEntity.NormalOpacity >= Me.EndState Then
+                    TargetEntity.NormalOpacity = Me.EndState
                 End If
             End If
         Else
-            If Me.EndState < TargetEntity.Opacity Then
-                TargetEntity.Opacity -= Me.TransitionSpeed
-                If TargetEntity.Opacity <= Me.EndState Then
-                    TargetEntity.Opacity = Me.EndState
+            If Me.EndState < TargetEntity.NormalOpacity Then
+                TargetEntity.NormalOpacity -= Me.TransitionSpeed
+                If TargetEntity.NormalOpacity <= Me.EndState Then
+                    TargetEntity.NormalOpacity = Me.EndState
                 End If
             End If
         End If
 
-        If TargetEntity.Opacity = Me.EndState Then
+        If TargetEntity.NormalOpacity = Me.EndState Then
             Me.Ready = True
         End If
     End Sub
