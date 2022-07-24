@@ -130,9 +130,9 @@
 
         GameOptions.LoadOptions()
 
-        If System.IO.Directory.Exists(GameController.GamePath & "\Temp") = True Then
+        If Directory.Exists(GameController.GamePath & "\Temp") = True Then
             Try
-                System.IO.Directory.Delete(GameController.GamePath & "\Temp", True)
+                Directory.Delete(GameController.GamePath & "\Temp", True)
                 Logger.Log(Logger.LogTypes.Message, "Core.vb: Deleted Temp directory.")
             Catch ex As Exception
                 Logger.Log(Logger.LogTypes.Warning, "Core.vb: Failed to delete the Temp directory.")

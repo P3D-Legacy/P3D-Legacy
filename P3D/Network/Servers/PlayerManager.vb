@@ -119,31 +119,11 @@ Namespace Servers
                 If _needsUpdate = True Then
                     Me._needsUpdate = False
 
-                    'Remove old entities from the level:
-                    If Screen.Level.NetworkPlayers.Count > 0 Then
-                        For i = 0 To Screen.Level.NetworkPlayers.Count - 1
-                            If i <= Screen.Level.NetworkPlayers.Count - 1 Then
-                                'Screen.Level.NetworkPlayers(i).CanBeRemoved = True
-                                Screen.Level.Entities.Remove(Screen.Level.NetworkPlayers(i))
-                            End If
-                        Next
-                    End If
-                    If Screen.Level.NetworkPokemon.Count > 0 Then
-                        For i = 0 To Screen.Level.NetworkPokemon.Count - 1
-                            If i <= Screen.Level.NetworkPokemon.Count - 1 Then
-                                'Screen.Level.NetworkPokemon(i).CanBeRemoved = True
-                                Screen.Level.Entities.Remove(Screen.Level.NetworkPokemon(i))
-                            End If
-                        Next
-                    End If
-
-                    'Remove players from list that quit the game:
-                    Dim removeList As New List(Of NetworkPlayer)
-                    For i = 0 To Screen.Level.NetworkPlayers.Count - 1
-                        If i <= Screen.Level.NetworkPlayers.Count - 1 Then
+                    SyncLock Screen.Level.EntityReadWriteSync
+                        For i = Screen.Level.NetworkPlayers.Count - 1 To 0 Step -1
                             Dim netPlayer As NetworkPlayer = Screen.Level.NetworkPlayers(i)
+                            Dim exists = False
 
-                            Dim exists As Boolean = False
                             For j = 0 To Core.ServersManager.PlayerCollection.Count - 1
                                 If j <= Core.ServersManager.PlayerCollection.Count - 1 Then
                                     Dim p As Player = Core.ServersManager.PlayerCollection(j)
@@ -153,24 +133,16 @@ Namespace Servers
                                     End If
                                 End If
                             Next
-                            If exists = False Then
-                                removeList.Add(netPlayer)
+
+                            If Not exists Then
+                                netPlayer.CanBeRemoved = True
                             End If
-                        End If
-                    Next
-                    For i = 0 To removeList.Count - 1
-                        If i <= removeList.Count - 1 Then
-                            Screen.Level.NetworkPlayers.Remove(removeList(i))
-                        End If
-                    Next
+                        Next
 
-                    'Remove pokemon from list that quit the game:
-                    Dim removePokeList As New List(Of NetworkPokemon)
-                    For i = 0 To Screen.Level.NetworkPokemon.Count - 1
-                        If i <= Screen.Level.NetworkPokemon.Count - 1 Then
+                        For i = Screen.Level.NetworkPokemon.Count - 1 To 0 Step -1
                             Dim netPokemon As NetworkPokemon = Screen.Level.NetworkPokemon(i)
+                            Dim exists = False
 
-                            Dim exists As Boolean = False
                             For j = 0 To Core.ServersManager.PlayerCollection.Count - 1
                                 If j <= Core.ServersManager.PlayerCollection.Count - 1 Then
                                     Dim p As Player = Core.ServersManager.PlayerCollection(j)
@@ -180,80 +152,56 @@ Namespace Servers
                                     End If
                                 End If
                             Next
-                            If exists = False Then
-                                removePokeList.Add(netPokemon)
+
+                            If Not exists Then
+                                netPokemon.CanBeRemoved = True
                             End If
-                        End If
-                    Next
-                    For i = 0 To removePokeList.Count - 1
-                        If i <= removePokeList.Count - 1 Then
-                            Screen.Level.NetworkPokemon.Remove(Screen.Level.NetworkPokemon(i))
-                        End If
-                    Next
+                        Next
 
-                    'Create new players and pokemon and add to the level.
-                    For i = 0 To Core.ServersManager.PlayerCollection.Count - 1
-                        If i <= Core.ServersManager.PlayerCollection.Count - 1 Then
-                            Dim p As Player = Core.ServersManager.PlayerCollection(i)
+                        'Create new players and pokemon and add to the level.
+                        For i = 0 To Core.ServersManager.PlayerCollection.Count - 1
+                            If i <= Core.ServersManager.PlayerCollection.Count - 1 Then
+                                Dim p As Player = Core.ServersManager.PlayerCollection(i)
 
-                            If p.Initialized = True Then
-                                If p.ServersID <> Core.ServersManager.ID Then
-                                    Dim exists As Boolean = False
-                                    For j = 0 To Screen.Level.NetworkPlayers.Count - 1
-                                        If j <= Screen.Level.NetworkPlayers.Count - 1 Then
+                                If p.Initialized = True Then
+                                    If p.ServersID <> Core.ServersManager.ID Then
+                                        Dim exists = False
+
+                                        For j = Screen.Level.NetworkPlayers.Count - 1 To 0 Step -1
                                             Dim netPlayer As NetworkPlayer = Screen.Level.NetworkPlayers(j)
+
                                             If netPlayer.NetworkID = p.ServersID Then
                                                 netPlayer.ApplyPlayerData(p)
                                                 exists = True
                                                 Exit For
                                             End If
-                                        End If
-                                    Next
+                                        Next
 
-                                    If exists = False Then
-                                        Dim netPlayer As New NetworkPlayer(p.Position.X, p.Position.Y, p.Position.Z, {Nothing}, p.Skin, p.Facing, 0, "", New Vector3(1), p.Name, p.ServersID)
-                                        netPlayer.ApplyPlayerData(p)
-                                        Screen.Level.NetworkPlayers.Add(netPlayer)
+                                        If Not exists Then
+                                            Dim netPlayer As New NetworkPlayer(p.Position.X, p.Position.Y, p.Position.Z, {Nothing}, p.Skin, p.Facing, 0, "", New Vector3(1), p.Name, p.ServersID)
+                                            netPlayer.ApplyPlayerData(p)
 
-                                        Dim netPokemon As New NetworkPokemon(p.PokemonPosition, p.PokemonSkin, p.PokemonVisible)
-                                        netPokemon.faceRotation = p.PokemonFacing
-                                        netPokemon.FaceDirection = p.PokemonFacing
-                                        netPokemon.PlayerID = p.ServersID
+                                            Dim netPokemon As New NetworkPokemon(p.PokemonPosition, p.PokemonSkin, p.PokemonVisible)
+                                            netPokemon.faceRotation = p.PokemonFacing
+                                            netPokemon.FaceDirection = p.PokemonFacing
+                                            netPokemon.PlayerID = p.ServersID
 
-                                        Screen.Level.NetworkPokemon.Add(netPokemon)
-                                    Else
-                                        For j = 0 To Screen.Level.NetworkPokemon.Count - 1
-                                            If j <= Screen.Level.NetworkPokemon.Count - 1 Then
+                                            Screen.Level.AddEntity(netPlayer)
+                                            Screen.Level.AddEntity(netPokemon)
+                                        Else
+                                            For j = 0 To Screen.Level.NetworkPokemon.Count - 1
                                                 Dim netPokemon As NetworkPokemon = Screen.Level.NetworkPokemon(j)
                                                 If netPokemon.PlayerID = p.ServersID Then
                                                     netPokemon.ApplyPlayerData(p)
                                                     Exit For
                                                 End If
-                                            End If
-                                        Next
+                                            Next
+                                        End If
                                     End If
                                 End If
                             End If
-                        End If
-                    Next
-
-                    'Add the newly added entities to the level entity enumeration.
-                    If Screen.Level.NetworkPlayers.Count > 0 Then
-                        For i = 0 To Screen.Level.NetworkPlayers.Count - 1
-                            If i <= Screen.Level.NetworkPlayers.Count - 1 Then
-                                'Screen.Level.AddEntity(Screen.Level.NetworkPlayers(i))
-                                Screen.Level.Entities.Add(Screen.Level.NetworkPlayers(i))
-                            End If
                         Next
-                    End If
-                    If Screen.Level.NetworkPokemon.Count > 0 Then
-                        For i = 0 To Screen.Level.NetworkPokemon.Count - 1
-                            If i <= Screen.Level.NetworkPokemon.Count - 1 Then
-                                'Screen.Level.AddEntity(Screen.Level.NetworkPokemon(i))
-                                Screen.Level.Entities.Add(Screen.Level.NetworkPokemon(i))
-                            End If
-                        Next
-                    End If
+                    End SyncLock
                 End If
             Catch ex As Exception
 

@@ -220,7 +220,7 @@
                                     AddShader(Tags)
                                 End If
                             Case TagTypes.OffsetMap
-                                If loadOffsetMap = False Or offsetMapLevel <= Core.GameOptions.MaxOffsetLevel Then
+                                If loadOffsetMap = False OrElse offsetMapLevel <= Core.GameOptions.MaxOffsetLevel Then
                                     AddOffsetMap(Tags)
                                 End If
                             Case TagTypes.Backdrop
@@ -250,9 +250,6 @@
         Logger.Debug("Loaded textures: " & TextureManager.TextureList.Count.ToString())
         timer.Stop()
         Logger.Debug("Map loading time: " & timer.ElapsedTicks & " Ticks; " & timer.ElapsedMilliseconds & " Milliseconds.")
-
-        ' Dim xmlLevelLoader As New XmlLevelLoader.
-        ' xmlLevelLoader.Load(My.Computer.FileSystem.SpecialDirectories.Desktop & "\t.xml", _5DHero.XmlLevelLoader.LevelTypes.Default, Vector3.Zero)
 
         Busy -= 1
 

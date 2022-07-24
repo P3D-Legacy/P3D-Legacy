@@ -149,7 +149,7 @@
     End Function
 
     Private Function CreateNewTextureIndex() As Integer()
-        Dim temp = New Integer(BaseModel.vertexBuffer.VertexCount / 3 - 1) {}
+        Dim temp = New Integer(BaseModel.VertexBuffer.VertexCount / 3 - 1) {}
 
         For i As Integer = 0 To TextureIndex.Length - 1
             If i >= temp.Length Then

@@ -33,7 +33,7 @@
     End Sub
 
     Public Overrides Sub Update()
-        If UpdateOnIdentifications.Contains(Core.CurrentScreen.Identification) = True Then
+        If Array.Exists(UpdateOnIdentifications, Function(identifications) identifications = Core.CurrentScreen.Identification) Then
             Select Case Me.Behavior
                 Case Behaviors.Falling
                     Me.Position.Y -= Me.MoveSpeed

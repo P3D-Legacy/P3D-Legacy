@@ -367,17 +367,14 @@
     End Sub
 
     Private Sub SelectEntry(ByVal index As Integer)
-        For i = 0 To Screen.Level.Entities.Count - 1
-            If i <= Screen.Level.Entities.Count - 1 Then
-                Dim Entity As Entity = Screen.Level.Entities(i)
-                If Entity.EntityID = "NPC" Then
-                    If CType(Entity, NPC).NPCID = 9001 Then
-                        Screen.Level.Entities.Remove(Entity)
-                        i -= 1
-                    End If
-                End If
-            End If
-        Next
+        Screen.Level.ForEachEntity(Screen.Level.Entities, Sub(entity)
+                                                              Dim npc = TryCast(entity, NPC)
+                                                              If npc IsNot Nothing Then
+                                                                  If npc.NPCID = 9001 Then
+                                                                      npc.CanBeRemoved = True
+                                                                  End If
+                                                              End If
+                                                          End Sub)
 
         Dim d As Integer = 1
         Dim e As Integer = 0
@@ -392,11 +389,11 @@
             End If
 
             Dim n As NPC = CType(Entity.GetNewEntity("NPC", New Vector3(10 + x, 0, 7), {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(p.GetPokemon()), 2, "", 9001, True, "Still", New List(Of Rectangle)}), NPC)
-            Level.Entities.Add(n)
+            Level.AddEntity(n)
         Next
 
         Dim playerNPC As NPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 7), {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {Me.Entries(index).Skin, 2, "", 9001, False, "Still", New List(Of Rectangle)}), NPC)
-        Level.Entities.Add(playerNPC)
+        Level.AddEntity(playerNPC)
         Me.SelectedEntry = Me.Entries(index)
 
         Me.menuState = 1

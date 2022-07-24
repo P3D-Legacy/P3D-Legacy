@@ -77,12 +77,9 @@
     Protected DropUpdateUnlessDrawn As Boolean = True
 
     Public Sub New()
-        'MyBase.New(EntityTypes.Entity)
     End Sub
 
     Public Sub New(ByVal X As Single, ByVal Y As Single, ByVal Z As Single, ByVal EntityID As String, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Integer, ByVal Scale As Vector3, ByVal BaseModel As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Shader As Vector3, Optional ModelPath As String = "")
-        'MyBase.New(EntityTypes.Entity)
-
         Me.Position = New Vector3(X, Y, Z)
         Me.EntityID = EntityID
         Me.Textures = Textures
@@ -611,7 +608,7 @@
         Get
             If Me._cachedVertexCount = -1 Then
                 If Not Me.BaseModel Is Nothing Then
-                    Dim c As Integer = CInt(Me.BaseModel.vertexBuffer.VertexCount / 3)
+                    Dim c As Integer = CInt(Me.BaseModel.VertexBuffer.VertexCount / 3)
                     Dim min As Integer = 0
 
                     For i = 0 To Me.TextureIndex.Length - 1

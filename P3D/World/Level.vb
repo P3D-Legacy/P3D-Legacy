@@ -34,6 +34,11 @@ Public Class Level
 
 #Region "Entity Related"
     ''' <summary>
+    ''' Entity insert order. (This is to ensure drawing can be done properly if two entities are of the same distance)
+    ''' </summary>
+    Private _insertEntityCount As Integer = 0
+
+    ''' <summary>
     ''' Entity Sync Point, using this will ensure that the entity is safe to read and write.
     ''' </summary>
     Public ReadOnly Property EntityReadWriteSync As Object = New Object()
@@ -52,6 +57,12 @@ Public Class Level
     ''' The array of entities composing the map.
     ''' </summary>
     Public ReadOnly Property Entities As List(Of Entity) = New List(Of Entity)
+
+    ''' <summary>
+    ''' The array of npc in the map.
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property Npcs As List(Of NPC) = New List(Of NPC)
 
     ''' <summary>
     ''' The array of particles in the map.
@@ -98,14 +109,25 @@ Public Class Level
         SyncLock EntityReadWriteSync
             If TypeOf e Is Floor Then
                 Floors.Add(e)
+            ElseIf TypeOf e Is NPC Then
+                Npcs.Add(CType(e, NPC))
+                Entities.Add(e)
             ElseIf TypeOf e Is Particle Then
                 Particles.Add(CType(e, Particle))
+                Entities.Add(e)
+            ElseIf TypeOf e Is NetworkPlayer Then
+                NetworkPlayers.Add(CType(e, NetworkPlayer))
+                Entities.Add(e)
+            ElseIf TypeOf e Is NetworkPokemon Then
+                NetworkPokemon.Add(CType(e, NetworkPokemon))
                 Entities.Add(e)
             Else
                 Entities.Add(e)
             End If
 
-            e.InsertOrder = DrawingEntities.Count
+            e.InsertOrder = _insertEntityCount
+            _insertEntityCount += 1
+
             DrawingEntities.Add(e)
         End SyncLock
     End Sub
@@ -118,25 +140,10 @@ Public Class Level
                 OffsetmapEntities.Add(e)
             End If
 
+            e.InsertOrder = _insertEntityCount
+            _insertEntityCount += 1
+
             DrawingEntities.Add(e)
-        End SyncLock
-    End Sub
-
-    Public Sub AddRangeEntity(e As IReadOnlyList(Of Entity))
-        SyncLock EntityReadWriteSync
-            For Each entity As Entity In e
-                If TypeOf entity Is Floor Then
-                    Floors.Add(entity)
-                ElseIf TypeOf entity Is Particle Then
-                    Particles.Add(CType(entity, Particle))
-                    Entities.Add(entity)
-                Else
-                    Entities.Add(entity)
-                End If
-
-                entity.InsertOrder = DrawingEntities.Count
-                DrawingEntities.Add(entity)
-            Next
         End SyncLock
     End Sub
 
@@ -150,9 +157,11 @@ Public Class Level
 
     Public Sub ClearEntity()
         SyncLock EntityReadWriteSync
+            _insertEntityCount = 0
             DrawingEntities.Clear()
             Floors.Clear()
             Entities.Clear()
+            Npcs.Clear()
             Particles.Clear()
             Shaders.Clear()
             OffsetmapFloors.Clear()
@@ -176,8 +185,10 @@ Public Class Level
             Else
                 If entity.InsertOrder < entity2.InsertOrder Then
                     Return 1
-                Else
+                ElseIf entity.InsertOrder > entity2.InsertOrder Then
                     Return -1
+                Else
+                    Return 0
                 End If
             End If
         Else
@@ -188,8 +199,10 @@ Public Class Level
             Else
                 If entity.InsertOrder < entity2.InsertOrder Then
                     Return 1
-                Else
+                ElseIf entity.InsertOrder > entity2.InsertOrder Then
                     Return -1
+                Else
+                    Return 0
                 End If
             End If
         End If
@@ -510,7 +523,7 @@ Public Class Level
         End If
 
         Me._offsetTimer = New Timers.Timer()
-        Me._offsetTimer.Interval = 16
+        Me._offsetTimer.Interval = Core.GameInstance.GetGame().TargetElapsedTime.TotalMilliseconds
         Me._offsetTimer.AutoReset = True
         AddHandler _offsetTimer.Elapsed, AddressOf UpdateOffsetMap
         Me._offsetTimer.Start()
@@ -553,7 +566,8 @@ Public Class Level
         OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
         OverworldPokemon.ChangeRotation()
 
-        AddRangeEntity({OwnPlayer, OverworldPokemon})
+        AddEntity(OwnPlayer)
+        AddEntity(OverworldPokemon)
 
         Surfing = Core.Player.startSurfing
         StartOffsetMapUpdate()
@@ -604,8 +618,8 @@ Public Class Level
         PokemonEncounter.TriggerBattle()
 
         ' Reload map from file (Debug or Sandbox Mode):
-        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
-            If KeyBoardHandler.KeyPressed(Keys.R) = True And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+        If GameController.IS_DEBUG_ACTIVE OrElse Core.Player.SandBoxMode = True Then
+            If KeyBoardHandler.KeyPressed(Keys.R) = True AndAlso Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 Core.OffsetMaps.Clear()
                 Logger.Debug(String.Format("Reload map file: {0}", LevelFile))
                 Load(LevelFile, True)
@@ -651,6 +665,30 @@ Public Class Level
 
                 If entity.CanBeRemoved Then
                     Floors.RemoveAt(i)
+                End If
+            Next
+
+            For i As Integer = Npcs.Count - 1 To 0 Step -1
+                Dim entity As NPC = Npcs(i)
+
+                If entity.CanBeRemoved Then
+                    Npcs.RemoveAt(i)
+                End If
+            Next
+
+            For i As Integer = NetworkPlayers.Count - 1 To 0 Step -1
+                Dim entity As NetworkPlayer = NetworkPlayers(i)
+
+                If entity.CanBeRemoved Then
+                    NetworkPlayers.RemoveAt(i)
+                End If
+            Next
+
+            For i As Integer = NetworkPokemon.Count - 1 To 0 Step -1
+                Dim entity As NetworkPokemon = NetworkPokemon(i)
+
+                If entity.CanBeRemoved Then
+                    NetworkPokemon.RemoveAt(i)
                 End If
             Next
         End SyncLock
@@ -766,7 +804,9 @@ Public Class Level
             OverworldPokemon = New OverworldPokemon(Screen.Camera.Position.X, Screen.Camera.Position.Y, Screen.Camera.Position.Z + 1)
             OverworldPokemon.Visible = False
             OverworldPokemon.warped = True
-            AddRangeEntity({OwnPlayer, OverworldPokemon})
+
+            AddEntity(OwnPlayer)
+            AddEntity(OverworldPokemon)
 
             ' Set Ride skin, if needed:
             If Riding = True And CanRide() = False Then
@@ -866,31 +906,35 @@ Public Class Level
     ''' <summary>
     ''' Returns an NPC based on their ID.
     ''' </summary>
-    ''' <param name="ID">The ID of the NPC to return from the level.</param>
+    ''' <param name="id">The ID of the NPC to return from the level.</param>
     ''' <returns>Returns either a matching NPC or Nothing.</returns>
-    Public Function GetNPC(ByVal ID As Integer) As NPC
-        For Each NPC As NPC In GetNPCs()
-            If NPC.NPCID = ID Then
-                Return NPC
-            End If
-        Next
+    Public Function GetNPC(ByVal id As Integer) As NPC
+        SyncLock EntityReadWriteSync
+            For Each npc As NPC In Npcs
+                If npc.NPCID = id Then
+                    Return npc
+                End If
+            Next
 
-        Return Nothing
+            Return Nothing
+        End SyncLock
     End Function
 
     ''' <summary>
     ''' Returns an NPC based on the entity ID.
     ''' </summary>
-    Public Function GetEntity(ByVal ID As Integer) As Entity
-        If ID = -1 Then
+    Public Function GetEntity(id As Integer) As Entity
+        If id = -1 Then
             Throw New Exception("-1 is the default value for NOT having an ID, therefore is not a valid ID.")
-        Else
-            For Each ent As Entity In Me.Entities
-                If ent.ID = ID Then
-                    Return ent
+        End If
+
+        SyncLock EntityReadWriteSync
+            For Each entity As Entity In Entities
+                If entity.ID = id Then
+                    Return entity
                 End If
             Next
-        End If
+        End SyncLock
 
         Return Nothing
     End Function
@@ -899,21 +943,20 @@ Public Class Level
     ''' Checks all NPCs on the map for if the player is in their line of sight.
     ''' </summary>
     Public Sub CheckTrainerSights()
-        For Each Entity As Entity In Entities
-            If Entity.EntityID = "NPC" Then
-                Dim NPC As NPC = CType(Entity, NPC)
-                If NPC.IsTrainer = True Then
-                    NPC.CheckInSight()
+        SyncLock EntityReadWriteSync
+            For Each npc As NPC In Npcs
+                If npc.IsTrainer Then
+                    npc.CheckInSight()
                 End If
-            End If
-        Next
+            Next
+        End SyncLock
     End Sub
 
     ''' <summary>
     ''' Determines whether the player can use Ride on this map.
     ''' </summary>
     Public Function CanRide() As Boolean
-        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then 'Always true for Sandboxmode and Debug mode.
+        If GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True Then 'Always true for Sandboxmode and Debug mode.
             Return True
         End If
         If RideType > 0 Then
@@ -924,7 +967,7 @@ Public Class Level
                     Return False
             End Select
         End If
-        If Screen.Level.CanDig = False And Screen.Level.CanFly = False Then
+        If Screen.Level.CanDig = False AndAlso Screen.Level.CanFly = False Then
             Return False
         Else
             Return True
@@ -935,12 +978,15 @@ Public Class Level
     ''' Whether the player can move based on the entity around him.
     ''' </summary>
     Public Function CanMove() As Boolean
-        For Each e As Entity In Me.Entities
-            If e.Position.X = Screen.Camera.Position.X And e.Position.Z = Screen.Camera.Position.Z And CInt(e.Position.Y) = CInt(Screen.Camera.Position.Y) Then
-                Return e.LetPlayerMove()
-            End If
-        Next
-        Return True
+        SyncLock EntityReadWriteSync
+            For Each entity As Entity In Entities
+                If entity.Position.X = Screen.Camera.Position.X AndAlso entity.Position.Z = Screen.Camera.Position.Z AndAlso CInt(entity.Position.Y) = CInt(Screen.Camera.Position.Y) Then
+                    Return entity.LetPlayerMove()
+                End If
+            Next
+
+            Return True
+        End SyncLock
     End Function
 
     Public Sub Dispose() Implements IDisposable.Dispose

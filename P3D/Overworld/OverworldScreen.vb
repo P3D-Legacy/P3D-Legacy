@@ -211,16 +211,10 @@ Public Class OverworldScreen
         'If no dialogue is showing, do level update tasks:
         If TextBox.Showing = False AndAlso ChooseBox.Showing = False AndAlso PokemonImageView.Showing = False AndAlso ImageView.Showing = False Then
             'If no script is running and no MapScript is in the queue, update camera and the level.
-            If ActionScript.IsReady = True AndAlso LevelLoader.MapScript = "" Then
-                If Me.HandleServerRequests() = True Then
+            If ActionScript.IsReady AndAlso LevelLoader.MapScript = "" Then
+                If HandleServerRequests() = True Then
                     Camera.Update()
                     Level.Update()
-                End If
-            Else
-                'Because other players (and their Pokémon) are moving around while you are standing still and no level update occurs,
-                'only sort entity lists so they can display transparency normally.
-                If JoinServerScreen.Online = True Then
-                    Level.SortEntities()
                 End If
             End If
 
