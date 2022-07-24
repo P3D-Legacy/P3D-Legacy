@@ -251,6 +251,9 @@
             If spriteIndex < 0 Then
                 spriteIndex += 4
             End If
+            If spriteIndex > 3 Then
+                spriteIndex -= 4
+            End If
 
             Dim x As Integer = 0
             If Me.Moved > 0.0F Or AnimateIdle = True Then

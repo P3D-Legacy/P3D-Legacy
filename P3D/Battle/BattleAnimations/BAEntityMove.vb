@@ -118,39 +118,39 @@
 			If TargetEntity.Position.X < Me.Destination.X Then
 				TargetEntity.Position.X += Me.MoveSpeed
 
-				If TargetEntity.Position.X >= Me.Destination.X Then
+				If TargetEntity.Position.X >= Me.Destination.X - 0.05 Then
 					TargetEntity.Position.X = Me.Destination.X
 				End If
 			ElseIf TargetEntity.Position.X > Me.Destination.X Then
 				TargetEntity.Position.X -= Me.MoveSpeed
 
-				If TargetEntity.Position.X <= Me.Destination.X Then
+				If TargetEntity.Position.X <= Me.Destination.X + 0.05 Then
 					TargetEntity.Position.X = Me.Destination.X
 				End If
 			End If
 			If TargetEntity.Position.Y < Me.Destination.Y Then
 				TargetEntity.Position.Y += Me.MoveYSpeed
 
-				If TargetEntity.Position.Y >= Me.Destination.Y Then
+				If TargetEntity.Position.Y >= Me.Destination.Y - 0.05 Then
 					TargetEntity.Position.Y = Me.Destination.Y
 				End If
 			ElseIf TargetEntity.Position.Y > Me.Destination.Y Then
 				TargetEntity.Position.Y -= Me.MoveYSpeed
 
-				If TargetEntity.Position.Y <= Me.Destination.Y Then
+				If TargetEntity.Position.Y <= Me.Destination.Y + 0.05 Then
 					TargetEntity.Position.Y = Me.Destination.Y
 				End If
 			End If
 			If TargetEntity.Position.Z < Me.Destination.Z Then
 				TargetEntity.Position.Z += Me.MoveSpeed
 
-				If TargetEntity.Position.Z >= Me.Destination.Z Then
+				If TargetEntity.Position.Z >= Me.Destination.Z - 0.05 Then
 					TargetEntity.Position.Z = Me.Destination.Z
 				End If
 			ElseIf TargetEntity.Position.Z > Me.Destination.Z Then
 				TargetEntity.Position.Z -= Me.MoveSpeed
 
-				If TargetEntity.Position.Z <= Me.Destination.Z Then
+				If TargetEntity.Position.Z <= Me.Destination.Z + 0.05 Then
 					TargetEntity.Position.Z = Me.Destination.Z
 				End If
 			End If

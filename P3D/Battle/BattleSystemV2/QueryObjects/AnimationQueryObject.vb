@@ -240,7 +240,8 @@
 			End If
 
 			If Not BattleFlipped = Nothing AndAlso BattleFlipped = True Then
-				EndFaceRotation -= 2
+				EndFaceRotation += 2
+				TurnSpeed *= -1
 			End If
 
 			Dim BAEntityFaceRotate As BAEntityFaceRotate = New BAEntityFaceRotate(TurnNPC, TurnSteps, startDelay, endDelay, EndFaceRotation, TurnSpeed, TurnDelay, TurnModel)
