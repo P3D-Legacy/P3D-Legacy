@@ -184,19 +184,17 @@
     End Sub
 
     Private Sub ChangeTexture(ByVal n As Integer)
-        'If Core.GameOptions.GraphicStyle = 1 Then
-
         If BlockTexturesTemp.Count = 0 Then
             ClearAnimationResources()
             CreateBlockTextureTemp()
         End If
-        Dim i = Animations(n).CurrentRow
-        Dim j = Animations(n).CurrentColumn
-        If BlockTexturesTemp.ContainsKey(AnimationNames(n) & "_" & (j + columns(n) * i)) = True Then
-            Me.Textures(n) = BlockTexturesTemp(AnimationNames(n) & "_" & (j + columns(n) * i))
+        If Not Animations Is Nothing Then
+            Dim i = Animations(n).CurrentRow
+            Dim j = Animations(n).CurrentColumn
+            If BlockTexturesTemp.ContainsKey(AnimationNames(n) & "_" & (j + columns(n) * i)) = True Then
+                Me.Textures(n) = BlockTexturesTemp(AnimationNames(n) & "_" & (j + columns(n) * i))
+            End If
         End If
-
-        'End If
     End Sub
 
     Public Overrides Sub ResultFunction(ByVal Result As Integer)
