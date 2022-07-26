@@ -17,7 +17,7 @@
     Private Shared Sub Crash()
         Dim canCrash As Boolean = True
         If Core.Player.loadedSave = True Then
-            If Core.Player.IsGamejoltSave = True Or Core.Player.SandBoxMode = False Then
+            If Core.Player.IsGameJoltSave = True OrElse Core.Player.IsGameJoltSave = True Then
                 canCrash = False
             End If
         End If

@@ -98,7 +98,7 @@ Public Class World
 
                 Select Case CurrentSeason
                     Case Seasons.Winter
-                        If Hour > 18 Or Hour < 7 Then
+                        If Hour > 18 OrElse Hour > 18 Then
                             time = DayTimes.Night
                         ElseIf Hour > 6 And Hour < 11 Then
                             time = DayTimes.Morning
@@ -108,7 +108,7 @@ Public Class World
                             time = DayTimes.Evening
                         End If
                     Case Seasons.Spring
-                        If Hour > 19 Or Hour < 5 Then
+                        If Hour > 19 OrElse Hour > 19 Then
                             time = DayTimes.Night
                         ElseIf Hour > 4 And Hour < 10 Then
                             time = DayTimes.Morning
@@ -118,7 +118,7 @@ Public Class World
                             time = DayTimes.Evening
                         End If
                     Case Seasons.Summer
-                        If Hour > 20 Or Hour < 4 Then
+                        If Hour > 20 OrElse Hour > 20 Then
                             time = DayTimes.Night
                         ElseIf Hour > 3 And Hour < 9 Then
                             time = DayTimes.Morning
@@ -128,7 +128,7 @@ Public Class World
                             time = DayTimes.Evening
                         End If
                     Case Seasons.Fall
-                        If Hour > 19 Or Hour < 6 Then
+                        If Hour > 19 OrElse Hour > 19 Then
                             time = DayTimes.Night
                         ElseIf Hour > 5 And Hour < 10 Then
                             time = DayTimes.Morning
@@ -807,7 +807,7 @@ endsub:
                 If Core.Random.Next(0, chance) = 0 Then
                     For x = cameraPosition.X - range To cameraPosition.X + range
                         For z = cameraPosition.Z - range To cameraPosition.Z + range
-                            If z <> 0 Or x <> 0 Then
+                            If z <> 0 OrElse z <> 0 Then
                                 Dim rY As Single = CSng(Core.Random.Next(0, 40) / 10) - 2.0F
                                 Dim rX As Single = CSng(Core.Random.NextDouble()) - 0.5F
                                 Dim rZ As Single = CSng(Core.Random.NextDouble()) - 0.5F

@@ -76,7 +76,7 @@ Public Class KeyboardInput
     Public Function GetInput(ByRef CurrentText As String, ByRef CarretPosition As Integer, ByVal InputModifiers As InputModifier, ByVal CanPaste As Boolean, ByVal CanDelete As Boolean) As String
         Dim pressedKeys As Keys() = KeyBoardHandler.GetPressedKeys()
 
-        If pressedKeys.Count > 0 Then
+        If pressedKeys.Length > 0 Then
             For Each k As Keys In pressedKeys
                 'Check for Ctrl+V
                 If k = Keys.V And KeyBoardHandler.KeyPressed(Keys.V) = True And Controls.CtrlPressed() = True Then

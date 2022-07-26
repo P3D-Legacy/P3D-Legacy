@@ -137,7 +137,7 @@ Public Class OverworldCamera
     ''' If the camera is pointing straight north, east, south or west.
     ''' </summary>
     Public Function IsPointingToNormalDirection() As Boolean
-        Return (Yaw = 0F Or Yaw = MathHelper.Pi * 0.5F Or Yaw = MathHelper.Pi Or Yaw = MathHelper.Pi * 1.5F)
+        Return (Yaw = 0F OrElse Yaw = MathHelper.Pi * 0.5F OrElse Yaw = MathHelper.Pi OrElse Yaw = MathHelper.Pi * 1.5F)
     End Function
 
     Public Sub SetAimDirection(ByVal direction As Integer)
@@ -170,13 +170,13 @@ Public Class OverworldCamera
 
     Public Overrides Sub Update()
 
-        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+        If Core.Player.SandBoxMode = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
             If KeyBoardHandler.KeyPressed(KeyBindings.DebugWalkKey) = True Then
                 _debugWalk = Not _debugWalk
             End If
         End If
-        If KeyBoardHandler.KeyPressed(KeyBindings.RunKey) = True Or ControllerHandler.ButtonPressed(Buttons.B) = True Then
-            If Screen.Level.Riding = False And Screen.Level.Surfing = False And Core.Player.Inventory.HasRunningShoes = True Then
+        If KeyBoardHandler.KeyPressed(KeyBindings.RunKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.B) = True Then
+            If Screen.Level.Riding = False AndAlso Screen.Level.Surfing = False AndAlso Core.Player.Inventory.HasRunningShoes = True Then
                 Core.Player.RunToggled = Not Core.Player.RunToggled
             End If
         End If
@@ -213,12 +213,12 @@ Public Class OverworldCamera
         Dim text As String = ""
 
         Dim dx As Single = mState.X - oldX
-        If gState.ThumbSticks.Right.X <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
+        If gState.ThumbSticks.Right.X <> 0.0F AndAlso Core.GameOptions.GamePadEnabled = True Then
             dx = gState.ThumbSticks.Right.X * 50.0F
         End If
 
         Dim dy As Single = mState.Y - oldY
-        If gState.ThumbSticks.Right.Y <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
+        If gState.ThumbSticks.Right.Y <> 0.0F AndAlso Core.GameOptions.GamePadEnabled = True Then
             dy = gState.ThumbSticks.Right.Y * 40.0F * -1.0F
         End If
 
@@ -249,7 +249,7 @@ Public Class OverworldCamera
             Dim OS As OverworldScreen = CType(CurrentScreen, OverworldScreen)
 
             If OS.ActionScript.IsReady = True Then
-                If (KeyBoardHandler.KeyPressed(KeyBindings.CameraLockKey) = True Or ControllerHandler.ButtonPressed(Buttons.RightStick)) = True And _moved = 0.0F And YawLocked = False Then
+                If (KeyBoardHandler.KeyPressed(KeyBindings.CameraLockKey) = True OrElse KeyBoardHandler.KeyPressed(KeyBindings.CameraLockKey) = True) = True And _moved = 0.0F And YawLocked = False Then
                     _freeCameraMode = Not _freeCameraMode
 
                     If _freeCameraMode = False Then
@@ -265,7 +265,7 @@ Public Class OverworldCamera
     Private Sub ScrollThirdPersonCamera()
         If _isFixed = False Then
             If Controls.Down(True, False, True, False, False, False) = True Then
-                If _scrollSpeed = 0.0F Or _scrollDirection <> 1 Then
+                If _scrollSpeed = 0.0F OrElse _scrollSpeed = 0.0F Then
                     _scrollSpeed = 0.01F
                 End If
 
@@ -274,7 +274,7 @@ Public Class OverworldCamera
             End If
 
             If Controls.Up(True, False, True, False, False, False) = True Then
-                If _scrollSpeed = 0.0F Or _scrollDirection <> -1 Then
+                If _scrollSpeed = 0.0F OrElse _scrollSpeed = 0.0F Then
                     _scrollSpeed = 0.01F
                 End If
 
@@ -288,7 +288,7 @@ Public Class OverworldCamera
                 ThirdPersonOffset.Y += _scrollSpeed * _scrollDirection
                 ThirdPersonOffset.Z += _scrollSpeed * _scrollDirection
 
-                If GameController.IS_DEBUG_ACTIVE = False And Core.Player.SandBoxMode = False Then
+                If GameController.IS_DEBUG_ACTIVE = False AndAlso Core.Player.SandBoxMode = False Then
                     ThirdPersonOffset.Y = ThirdPersonOffset.Y.Clamp(0, 1.32F)
                     ThirdPersonOffset.Z = ThirdPersonOffset.Z.Clamp(-0.1, 2.7F)
                 End If
@@ -303,7 +303,7 @@ Public Class OverworldCamera
 
     Public Sub UpdateThirdPersonCamera()
         If _isFixed = False Then
-            If KeyBoardHandler.KeyPressed(KeyBindings.PerspectiveSwitchKey) = True Or ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.PerspectiveSwitchKey) = True OrElse KeyBoardHandler.KeyPressed(KeyBindings.PerspectiveSwitchKey) = True Then
                 Dim actionscriptReady As Boolean = True
                 If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     actionscriptReady = CType(CurrentScreen, OverworldScreen).ActionScript.IsReady
@@ -317,13 +317,13 @@ Public Class OverworldCamera
             Select Case _cameraFocusType
                 Case CameraFocusTypes.Entity
                     Dim entList = (From ent As Entity In Screen.Level.Entities Select ent Where ent.ID = _cameraFocusID)
-                    If entList.Count() > 0 Then
+                    If entList.Any() Then
                         usePosition = entList(0).Position
                         usePosition.Y += 0.1F
                     End If
                 Case CameraFocusTypes.NPC
                     Dim entList = (From ent As Entity In Screen.Level.Entities Select ent Where ent.GetType() = GetType(NPC) AndAlso CType(ent, NPC).NPCID = _cameraFocusID)
-                    If entList.Count() > 0 Then
+                    If entList.Any() Then
                         usePosition = entList(0).Position
                         usePosition.Y += 0.1F
                     End If
@@ -427,9 +427,9 @@ Public Class OverworldCamera
                 Speed = 0.04F
             ElseIf Core.Player.IsRunning() = True Then
                 Speed = 0.06F
-                Else
-                    Speed = 0.04F
-                End If
+            Else
+                Speed = 0.04F
+            End If
         End If
         Screen.Level.OverworldPokemon.MoveSpeed = Speed
     End Sub
@@ -582,7 +582,7 @@ Public Class OverworldCamera
 #Region "PlayerMethods"
 
     Private Sub PlayerMovement()
-        If _moved > 0.0F And Turning = False Then
+        If _moved > 0.0F AndAlso Turning = False Then
             Dim v As Vector3 = PlannedMovement * Speed
 
             If Not Screen.Level.OwnPlayer().isDancing Then
@@ -621,7 +621,7 @@ Public Class OverworldCamera
                 LastStepPosition = Position
             End If
 
-            If Screen.Level.Surfing = False And _thirdPerson = False And _cameraFocusType = CameraFocusTypes.Player Then
+            If Screen.Level.Surfing = False AndAlso _thirdPerson = False AndAlso _cameraFocusType = CameraFocusTypes.Player Then
                 _bobbingTemp += 0.25F
             End If
         End If
@@ -653,7 +653,7 @@ Public Class OverworldCamera
     Private Sub FirstPersonMovement()
         Dim pressedDirection As Integer = -1
         If YawLocked = False And Turning = False Then
-            If (KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = True) And Turning = False Then
+            If (KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True OrElse KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True) And Turning = False Then
                 If _freeCameraMode = True Then
                     Yaw += RotationSpeed * 40.0F
 
@@ -662,7 +662,7 @@ Public Class OverworldCamera
                     pressedDirection = 1
                 End If
             End If
-            If (KeyBoardHandler.KeyDown(KeyBindings.BackwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickDown) = True) And Turning = False Then
+            If (KeyBoardHandler.KeyDown(KeyBindings.BackwardMoveKey) = True OrElse KeyBoardHandler.KeyDown(KeyBindings.BackwardMoveKey) = True) And Turning = False Then
                 If _freeCameraMode = True Then
                     If _moved <= 0F Then
                         Turn(2)
@@ -671,7 +671,7 @@ Public Class OverworldCamera
                     pressedDirection = 2
                 End If
             End If
-            If (KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True) And Turning = False Then
+            If (KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True OrElse KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True) And Turning = False Then
                 If _freeCameraMode = True Then
                     Yaw -= RotationSpeed * 40.0F
 
@@ -691,7 +691,7 @@ Public Class OverworldCamera
 
             ClampYaw()
 
-            If (KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickUp) = True) And Turning = False Then
+            If (KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) = True OrElse KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) = True) And Turning = False Then
                 MoveForward()
             End If
         End If
@@ -749,13 +749,13 @@ Public Class OverworldCamera
     Private Function IsThirdPersonMoveButtonDown(ByVal facing As Integer) As Boolean
         Select Case facing
             Case 0
-                Return KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickUp) = True Or ControllerHandler.ButtonDown(Buttons.DPadUp) = True
+                Return KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) = True OrElse KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.DPadUp) = True
             Case 1
-                Return KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickLeft) = True Or ControllerHandler.ButtonDown(Buttons.DPadLeft) = True
+                Return KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickLeft) = True OrElse (KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickLeft) = True)
             Case 2
-                Return KeyBoardHandler.KeyDown(KeyBindings.BackwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickDown) = True Or ControllerHandler.ButtonDown(Buttons.DPadDown) = True
+                Return KeyBoardHandler.KeyDown(KeyBindings.BackwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickDown) = True OrElse (KeyBoardHandler.KeyDown(KeyBindings.BackwardMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickDown) = True)
             Case 3
-                Return KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickRight) = True Or ControllerHandler.ButtonDown(Buttons.DPadRight) = True
+                Return KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickRight) = True OrElse (KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.LeftThumbstickRight) = True)
         End Select
         Return False
     End Function
@@ -849,7 +849,7 @@ Public Class OverworldCamera
             End If
         End If
 
-        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+        If GameController.IS_DEBUG_ACTIVE = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
             If _debugWalk = True AndAlso CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
                 cannotWalk = False
             End If
@@ -898,7 +898,7 @@ Public Class OverworldCamera
         End Select
 
         'DebugFeature:
-        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+        If GameController.IS_DEBUG_ACTIVE = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
             If KeyBoardHandler.KeyDown(Keys.LeftAlt) Then
                 If KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) Then
                     v.X = 0F
@@ -1030,7 +1030,7 @@ Public Class OverworldCamera
     End Sub
 
     Private Sub ControlThirdPersonCamera()
-        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+        If GameController.IS_DEBUG_ACTIVE = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
             If Controls.CtrlPressed() = True Then
                 If KeyBoardHandler.KeyDown(KeyBindings.UpKey) = True Then
                     ThirdPersonOffset.Y += Speed

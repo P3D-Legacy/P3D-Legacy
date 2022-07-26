@@ -61,7 +61,7 @@
                 RenderHalf(FOV, MathHelper.TwoPi - Yaw * 2, 0.0F, True, GetCloudsTexture(), 12, GetCloudAlpha) ' Draw the clouds.
             End If
         Else
-            If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Or Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Forest Then
+            If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave OrElse Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Cave Then
                 RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureUp, 20, 1.0F) ' Draw the sky
             Else
                 RenderHalf(FOV, Yaw, 0.0F, True, TextureUp, 16, 1.0F) ' Draw the sky

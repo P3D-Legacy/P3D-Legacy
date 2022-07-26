@@ -1,31 +1,28 @@
 ﻿Public Class FPSMonitor
 
-    Public Value As Double
-    Public Sample As TimeSpan
+    Private ReadOnly _stopwatch As Stopwatch
+    Private ReadOnly _sample As TimeSpan
 
-    Private sw As Stopwatch
-    Private Frames As Integer
+    Private _frames As Integer
+
+    Public Property Value As Double
 
     Public Sub New()
-        Me.Sample = TimeSpan.FromMilliseconds(100)
-
-        Value = 0
-        Frames = 0
-        sw = Stopwatch.StartNew()
+        _stopwatch = Stopwatch.StartNew()
+        _sample = TimeSpan.FromMilliseconds(100)
     End Sub
 
-    Public Sub Update(ByVal GameTime As GameTime)
-        If sw.Elapsed > Sample Then
-            Me.Value = Frames / sw.Elapsed.TotalSeconds
+    Public Sub Update()
+        If _stopwatch.Elapsed > _sample Then
+            Value = _frames / _stopwatch.Elapsed.TotalSeconds
 
-            Me.sw.Reset()
-            Me.sw.Start()
-            Me.Frames = 0
+            _stopwatch.Restart()
+            _frames = 0
         End If
     End Sub
 
     Public Sub DrawnFrame()
-        Me.Frames += 1
+        _frames += 1
     End Sub
 
 End Class

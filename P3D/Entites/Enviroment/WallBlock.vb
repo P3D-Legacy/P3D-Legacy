@@ -2,7 +2,7 @@
 
     Inherits Entity
 
-    Public Shared ReadOnly Dictionary As New Dictionary(Of String, Entity())
+    Public Shared ReadOnly Dictionary As New Dictionary(Of Vector3, Entity())
 
     Private _updateOnce As Boolean = False
 
@@ -130,8 +130,7 @@
     End Sub
 
     Private Shadows Function GetEntity(targetPosition As Vector3) As Entity()
-        Dim positionString As String = targetPosition.ToString()
-        If Dictionary.ContainsKey(positionString) = False Then
+        If Dictionary.ContainsKey(targetPosition) = False Then
             Dim temp = New List(Of Entity)
 
             SyncLock Screen.Level.EntityReadWriteSync
@@ -142,16 +141,16 @@
                 Next
             End SyncLock
 
-            Dictionary.Add(positionString, temp.ToArray())
+            Dictionary.Add(targetPosition, temp.ToArray())
         End If
 
-        Return Dictionary(positionString)
+        Return Dictionary(targetPosition)
     End Function
 
     Private Function CreateNewTextureIndex() As Integer()
         Dim temp = New Integer(BaseModel.VertexBuffer.VertexCount / 3 - 1) {}
 
-        For i As Integer = 0 To TextureIndex.Length - 1
+        For i = 0 To TextureIndex.Length - 1
             If i >= temp.Length Then
                 Exit For
             End If

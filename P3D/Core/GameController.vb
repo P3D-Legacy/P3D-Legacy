@@ -107,7 +107,7 @@ Public Class GameController
         MyBase.Update(gameTime)
 
         GameJolt.SessionManager.Update()
-        FPSMonitor.Update(gameTime)
+        FPSMonitor.Update()
     End Sub
 
     Protected Overrides Sub Draw(ByVal gameTime As GameTime)

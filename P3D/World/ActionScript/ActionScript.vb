@@ -488,7 +488,7 @@ nextScript:
         checkList.Remove(i.ToLower)
 
         checkData = checkList.ToArray()
-        For a = 0 To checkData.Count - 1
+        For a = 0 To checkData.Length - 1
             If a <> 0 Then
                 Data &= ","
             End If

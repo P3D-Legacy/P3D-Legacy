@@ -152,7 +152,7 @@
 
         Public Sub Draw(ByVal Indicies As Short())
             Dim vBuffer As New VertexBuffer(Core.GraphicsDevice, VertexPositionNormalTangentTexture.VertexDeclaration, _vertices.Count, BufferUsage.None)
-            Dim iBuffer As New IndexBuffer(Core.GraphicsDevice, GetType(Short), Indicies.Count, BufferUsage.None)
+            Dim iBuffer As New IndexBuffer(Core.GraphicsDevice, GetType(Short), Indicies.Length, BufferUsage.None)
 
             vBuffer.SetData(Of VertexPositionNormalTangentTexture)(_vertices.ToArray())
             iBuffer.SetData(Of Short)(Indicies)

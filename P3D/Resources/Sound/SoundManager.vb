@@ -120,7 +120,7 @@
                 AddSound(soundfile, forceReplace)
             End If
         Next
-        If Core.GameOptions.ContentPackNames.Count > 0 Then
+        If Core.GameOptions.ContentPackNames.Length > 0 Then
             For Each c As String In Core.GameOptions.ContentPackNames
                 Dim path As String = GameController.GamePath & "\ContentPacks\" & c & "\Sounds\"
 

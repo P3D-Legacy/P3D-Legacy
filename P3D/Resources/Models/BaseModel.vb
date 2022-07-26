@@ -4,7 +4,7 @@
     Public Property VertexBuffer As VertexBuffer
 
     Protected Sub Setup(vertexData As VertexPositionNormalTexture())
-        VertexBuffer = New VertexBuffer(Core.GraphicsDevice, GetType(VertexPositionNormalTexture), vertexData.Count, BufferUsage.WriteOnly)
+        VertexBuffer = New VertexBuffer(Core.GraphicsDevice, GetType(VertexPositionNormalTexture), vertexData.Length, BufferUsage.WriteOnly)
         VertexBuffer.SetData(vertexData)
     End Sub
 
@@ -59,8 +59,6 @@
                 DebugDisplay.DrawnVertices += triangleCount
             End If
         Else
-            Dim tempIndex As Integer = -1
-
             For i As Integer = triangleCount - 1 To 0 Step -1
                 If entity.TextureIndex(i) > -1 Then
                     ApplyTexture(textures(entity.TextureIndex(i)))
@@ -78,7 +76,7 @@
         End If
     End Sub
 
-    Private Sub ApplyTexture(ByVal texture As Texture2D)
+    Private Sub ApplyTexture(texture As Texture2D)
         Screen.Effect.Texture = texture
         Screen.Effect.CurrentTechnique.Passes(0).Apply()
     End Sub

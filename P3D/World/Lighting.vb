@@ -87,7 +87,7 @@ Public Class Lighting
     ''' <param name="refEffect">A reference to the BasicEffect that should receive the lighting update.</param>
     ''' <param name="ForceLighting">Checks, if the lighting update on the effect should be forced.</param>
     Public Shared Sub UpdateLighting(ByRef refEffect As BasicEffect, Optional ByVal ForceLighting As Boolean = False)
-        If Core.GameOptions.LightingEnabled = True Or ForceLighting = True Then ' Only update the lighting if either the currently loaded level instance allows this, or it's getting forced.
+        If Core.GameOptions.LightingEnabled = True OrElse ForceLighting = True Then ' Only update the lighting if either the currently loaded level instance allows this, or it's getting forced.
             ' Set default parameters:
             refEffect.LightingEnabled = True ' Enable lighting (gets disabled later, if not used)
             refEffect.PreferPerPixelLighting = True ' Yes. Please.
@@ -165,7 +165,7 @@ Public Class Lighting
                     LightType = 3
             End Select
         End If
-        If Screen.Level.LightingType > 1 And Screen.Level.LightingType < 6 Then ' If the level's lighting type is 2, 3, 4 or 5, set to the respective LightType (set time of day).
+        If Screen.Level.LightingType > 1 AndAlso Screen.Level.LightingType < 6 Then ' If the level's lighting type is 2, 3, 4 or 5, set to the respective LightType (set time of day).
             LightType = Screen.Level.LightingType - 2
         End If
         Return LightType

@@ -42,7 +42,7 @@ Public Class DebugDisplay
                 "C: " & _maxDistance.ToString() & " A: " & ActionscriptActive.ToString() &
                 MapPath
 
-            If Core.GameOptions.ContentPackNames.Count() > 0 Then
+            If Core.GameOptions.ContentPackNames.Length > 0 Then
                 Dim contentPackString As String = ""
                 For Each ContentPackName As String In Core.GameOptions.ContentPackNames
                     If contentPackString <> "" Then
@@ -71,7 +71,7 @@ Public Class DebugDisplay
     ''' <summary>
     ''' The amount of vertices rendered in the last frame.
     ''' </summary>
-    Public Shared Property DrawnVertices() As Integer
+    Public Shared Property DrawnVertices As Integer
         Get
             Return _drawnVertices
         End Get
@@ -83,7 +83,7 @@ Public Class DebugDisplay
     ''' <summary>
     ''' The maximum amount of vertices that are present in the current scene.
     ''' </summary>
-    Public Shared Property MaxVertices() As Integer
+    Public Shared Property MaxVertices As Integer
         Get
             Return _maxVertices
         End Get
@@ -128,7 +128,7 @@ Public Class DebugDisplay
     ''' <summary>
     ''' The distance of the vertex to the camera, that is the furthest away from the camera.
     ''' </summary>
-    Public Shared Property MaxDistance() As Integer
+    Public Shared Property MaxDistance As Integer
         Get
             Return _maxDistance
         End Get

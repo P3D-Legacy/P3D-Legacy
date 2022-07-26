@@ -17,10 +17,10 @@
         Me.TriggerID = Me.ActionValue
         If Me.AdditionalValue.Contains(",") Then
             Dim Data() As String = Me.AdditionalValue.Split(CChar(","))
-            For i = 0 To Data.Count - 2
+            For i = 0 To Data.Length - 2
                 AcceptedRotations.Add(CInt(Data(i)))
             Next
-            Me._scriptID = Data(Data.Count - 1)
+            Me._scriptID = Data(Data.Length - 1)
         Else
             Me._scriptID = Me.AdditionalValue
         End If

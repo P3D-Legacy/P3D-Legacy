@@ -185,7 +185,7 @@
         NData = nList.ToArray()
 
         Data = ""
-        For i = 0 To NData.Count - 1
+        For i = 0 To NData.Length - 1
             If i <> 0 Then
                 Data &= Environment.NewLine
             End If

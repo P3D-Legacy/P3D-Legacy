@@ -68,7 +68,7 @@
                         ContentPackManager.CreateContentPackFolder()
                         If value <> "" Then
                             Me.ContentPackNames = value.Split(CChar(","))
-                            If Me.ContentPackNames.Count > 0 Then
+                            If Me.ContentPackNames.Length > 0 Then
                                 For Each c As String In Me.ContentPackNames
                                     If Directory.Exists(GameController.GamePath & "\ContentPacks\" & c) = False Then
                                         Dim cList As List(Of String) = Me.ContentPackNames.ToList()
@@ -124,7 +124,7 @@
             Dim mutedString As String = MusicManager.Muted.ToNumberString()
             Dim showDebugString As String = Me.ShowDebug.ToString()
             Dim ContentPackString As String = ""
-            If Me.ContentPackNames.Count > 0 Then
+            If Me.ContentPackNames.Length > 0 Then
                 For Each c As String In Me.ContentPackNames
                     If ContentPackString <> "" Then
                         ContentPackString &= ","

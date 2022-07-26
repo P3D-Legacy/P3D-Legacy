@@ -59,17 +59,17 @@ Public Class PokemonEncounter
                         Dim p As Pokemon = Core.Player.Pokemons(0)
 
                         ' Arena Trap/Illuminate/No Guard/Swarm Ability:
-                        If p.Ability.Name.ToLower() = "arena trap" Or p.Ability.Name.ToLower() = "illuminate" Or p.Ability.Name.ToLower() = "no guard" Or p.Ability.Name.ToLower() = "swarm" Then
+                        If p.Ability.Name.ToLower() = "arena trap" OrElse p.Ability.Name.ToLower() = "illuminate" OrElse (p.Ability.Name.ToLower() = "arena trap" OrElse p.Ability.Name.ToLower() = "illuminate") OrElse (p.Ability.Name.ToLower() = "arena trap" OrElse p.Ability.Name.ToLower() = "illuminate" OrElse (p.Ability.Name.ToLower() = "arena trap" OrElse p.Ability.Name.ToLower() = "illuminate")) Then
                             encounterRate *= 2.0F
                         End If
 
                         ' Intimidate/Keen Eye/Quick Feet/Stench/White Smoke Ability:
-                        If p.Ability.Name.ToLower() = "intimidate" Or p.Ability.Name.ToLower() = "keen eye" Or p.Ability.Name.ToLower() = "quick feet" Or p.Ability.Name.ToLower() = "stench" Or p.Ability.Name.ToLower() = "white smoke" Then
+                        If p.Ability.Name.ToLower() = "intimidate" OrElse p.Ability.Name.ToLower() = "keen eye" OrElse p.Ability.Name.ToLower() = "quick feet" OrElse (p.Ability.Name.ToLower() = "intimidate" OrElse p.Ability.Name.ToLower() = "keen eye" OrElse p.Ability.Name.ToLower() = "quick feet") OrElse (p.Ability.Name.ToLower() = "intimidate" OrElse p.Ability.Name.ToLower() = "keen eye" OrElse p.Ability.Name.ToLower() = "quick feet" OrElse (p.Ability.Name.ToLower() = "intimidate" OrElse p.Ability.Name.ToLower() = "keen eye" OrElse p.Ability.Name.ToLower() = "quick feet")) Then
                             encounterRate *= 0.5F
                         End If
 
                         'Sand Veil Ability:
-                        If .WeatherType = 7 And p.Ability.Name.ToLower() = "sand veil" Then
+                        If .WeatherType = 7 AndAlso p.Ability.Name.ToLower() = "sand veil" Then
                             If Core.Random.Next(0, 100) < 50 Then
                                 Exit Sub
                             End If
@@ -77,7 +77,7 @@ Public Class PokemonEncounter
 
                         'Snow Cloak Ability:
                         If p.Ability.Name.ToLower() = "snow cloak" Then
-                            If .WeatherType = 2 Or .WeatherType = 9 Then
+                            If .WeatherType = 2 OrElse .WeatherType = 2 Then
                                 If Core.Random.Next(0, 100) < 50 Then
                                     Exit Sub
                                 End If
@@ -91,7 +91,7 @@ Public Class PokemonEncounter
 
                     If randomValue <= minEncounterValue Then
                         ' Don't encounter a Pokémon if the left control key is held down, for Debug or Sandbox Mode:
-                        If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                        If GameController.IS_DEBUG_ACTIVE = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
                             If KeyBoardHandler.KeyDown(Keys.LeftControl) = True Then
                                 Exit Sub
                             End If
