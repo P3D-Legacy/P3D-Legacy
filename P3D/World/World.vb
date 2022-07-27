@@ -856,8 +856,7 @@ endsub:
 
     Private Shared Function GetParticleFromPool() As Particle
         SyncLock Screen.Level.EntityReadWriteSync
-            For i As Integer = Screen.Level.Particles.Count - 1 To 0 Step -1
-                Dim particle As Particle = Screen.Level.Particles(i)
+            For Each particle As Particle In Screen.Level.Particles
                 If particle.Visible = False Then
                     Return particle
                 End If

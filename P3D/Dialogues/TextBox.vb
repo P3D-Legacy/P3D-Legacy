@@ -118,10 +118,10 @@
             ResetCursor()
             If PositionY <= Core.windowSize.Height - 160.0F Then
                 If through = False Then
-                    If Text.Count > currentChar Then
+                    If Text.Length > currentChar Then
                         If Delay <= 0.0F Then
                             If Text(currentChar).ToString() = "\" Then
-                                If Text.Count > currentChar + 1 Then
+                                If Text.Length > currentChar + 1 Then
                                     showText(currentLine) &= Text(currentChar + 1)
 
                                     currentChar += 2
@@ -149,7 +149,7 @@
                                 currentChar += 1
                             End If
 
-                            If KeyBoardHandler.KeyDown(KeyBindings.EnterKey1) Or KeyBoardHandler.KeyDown(KeyBindings.EnterKey2) Or MouseHandler.ButtonDown(MouseHandler.MouseButtons.LeftButton) = True Or ControllerHandler.ButtonDown(Buttons.A) = True Or ControllerHandler.ButtonDown(Buttons.B) = True Then
+                            If KeyBoardHandler.KeyDown(KeyBindings.EnterKey1) OrElse KeyBoardHandler.KeyDown(KeyBindings.EnterKey2) OrElse MouseHandler.ButtonDown(MouseHandler.MouseButtons.LeftButton) = True OrElse ControllerHandler.ButtonDown(Buttons.A) = True OrElse ControllerHandler.ButtonDown(Buttons.B) = True Then
                                 Delay = 0.0F
                             Else
                                 Delay = GetTextSpeed()
@@ -161,7 +161,7 @@
                         through = True
                     End If
                 Else
-                    If Controls.Accept() Or Controls.Dismiss() Then
+                    If Controls.Accept() OrElse Controls.Dismiss() Then
                         SoundManager.PlaySound("select")
                         If Text.Count <= currentChar Then
                             If CanProceed = True Then

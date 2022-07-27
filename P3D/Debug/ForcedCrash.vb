@@ -3,7 +3,7 @@
     Shared Delay As Single = 14.0F
 
     Public Shared Sub Update()
-        If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True And KeyBoardHandler.KeyDown(Keys.C) = True Then
+        If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True AndAlso KeyBoardHandler.KeyDown(Keys.C) = True Then
             Debug.Print("CRASH IN: " & Delay.ToString())
             Delay -= 0.1F
             If Delay <= 0.0F Then

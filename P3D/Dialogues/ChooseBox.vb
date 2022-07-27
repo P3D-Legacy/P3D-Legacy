@@ -107,7 +107,7 @@
                     Me.result = index
                     Me.HandleResult()
                 End If
-                If Controls.Dismiss() = True And CancelIndex > -1 Then
+                If Controls.Dismiss() = True AndAlso CancelIndex > -1 Then
                     Me.PlayClickSound()
                     Me.result = CancelIndex
                     Me.HandleResult()

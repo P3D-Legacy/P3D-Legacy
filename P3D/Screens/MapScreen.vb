@@ -507,8 +507,8 @@
         Dim PlayerTextureRectangle As Rectangle = New Rectangle(0, CInt(PlayerSkinHeight * 2), PlayerSkinWidth, PlayerSkinHeight)
 
         Dim v As Vector2 = GetPlayerPosition()
-        If v.X <> 0 Or v.Y <> 0 Then
-            Core.SpriteBatch.Draw(PlayerSkinTexture, New Rectangle(CInt(GetPlayerPosition.X + mapOffsetX - PlayerSkinWidth), CInt(GetPlayerPosition.Y + mapOffsetY - PlayerSkinHeight), CInt(PlayerSkinWidth * 2 * PlayerSkinScale), CInt(PlayerSkinHeight * 2 * PlayerSkinScale)), PlayerTextureRectangle, Color.White)
+        If v.X > 0 AndAlso v.Y > 0 Then
+            Core.SpriteBatch.Draw(PlayerSkinTexture, New Rectangle(CInt(GetPlayerPosition.X + mapOffsetX - (PlayerSkinWidth * PlayerSkinScale)), CInt(GetPlayerPosition.Y + mapOffsetY - (PlayerSkinHeight * PlayerSkinScale)), CInt(PlayerSkinWidth * 2 * PlayerSkinScale), CInt(PlayerSkinHeight * 2 * PlayerSkinScale)), PlayerTextureRectangle, Color.White)
         End If
 
         If Me.hoverText <> "" And Me.pokehoverText <> "" Then

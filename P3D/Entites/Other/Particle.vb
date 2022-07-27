@@ -36,8 +36,8 @@
         If Array.Exists(UpdateOnIdentifications, Function(identifications) identifications = Core.CurrentScreen.Identification) Then
             Select Case Me.Behavior
                 Case Behaviors.Falling
-                    Me.Position.Y -= Me.MoveSpeed
-                    If Me.Position.Y <= Me.Destination Then
+                    Position.Y -= MoveSpeed
+                    If Position.Y <= Destination Then
                         Visible = False
                     End If
                 Case Behaviors.Floating

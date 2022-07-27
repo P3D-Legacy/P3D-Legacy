@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Reflection
+Imports System.Windows.Forms
 Imports GameDevCommon
 
 Public Class Classified
@@ -167,7 +168,7 @@ Public Class GameController
     ''' <summary>
     ''' If the player hacked any instance of Pokémon3D at some point.
     ''' </summary>
-    Public Shared ReadOnly Property Hacker() As Boolean
+    Public Shared ReadOnly Property Hacker As Boolean
         Get
             Return GameHacked
         End Get
@@ -176,9 +177,9 @@ Public Class GameController
     ''' <summary>
     ''' The path to the game folder.
     ''' </summary>
-    Public Shared ReadOnly Property GamePath() As String
+    Public Shared ReadOnly Property GamePath As String
         Get
-            Return My.Application.Info.DirectoryPath
+            Return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
         End Get
     End Property
 

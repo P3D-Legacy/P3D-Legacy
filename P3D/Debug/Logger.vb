@@ -309,8 +309,7 @@ Public Class Logger
     End Sub
 
     Public Shared Sub DrawLog()
-        If DisplayLog = True And History.Count > 0 And Not FontManager.ChatFont Is Nothing Then
-            Dim items As New List(Of String)
+        If DisplayLog = True AndAlso History.Count > 0 AndAlso FontManager.ChatFont IsNot Nothing Then
             Dim max As Integer = History.Count - 1
 
             Dim itemCount As Integer = 10

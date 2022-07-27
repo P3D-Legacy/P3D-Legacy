@@ -344,13 +344,13 @@
     End Function
 
     Public Shared Sub MakeMouseVisible()
-        If Core.GameInstance.IsMouseVisible = False And Core.CurrentScreen.MouseVisible = True Then
+        If Core.GameInstance.IsMouseVisible = False AndAlso Core.CurrentScreen.MouseVisible = True Then
             Dim mState As MouseState = Mouse.GetState()
-            If mState.X <> MouseHandler.MousePosition.X Or mState.Y <> MouseHandler.MousePosition.Y Then
+            If mState.X <> MouseHandler.MousePosition.X OrElse mState.Y <> MouseHandler.MousePosition.Y Then
                 Core.GameInstance.IsMouseVisible = True
             End If
         ElseIf Core.GameInstance.IsMouseVisible = True Then
-            If ControllerHandler.HasControlerInput() = True Or Controls.HasKeyboardInput() = True Then
+            If ControllerHandler.HasControlerInput() = True OrElse Controls.HasKeyboardInput() = True Then
                 Core.GameInstance.IsMouseVisible = False
             End If
         End If

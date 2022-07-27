@@ -17,7 +17,7 @@
 
         Screen.Effect.DiffuseColor = effectDiffuseColor * entity.Shader * entity.Color
 
-        If Screen.Level.IsDark = True Then
+        If Screen.Level.IsDark Then
             Screen.Effect.DiffuseColor *= New Vector3(0.5, 0.5, 0.5)
         End If
 
@@ -28,7 +28,7 @@
         If triangleCount > entity.TextureIndex.Length Then
             Dim newTextureIndex = New Integer(triangleCount - 1) {}
 
-            For i As Integer = entity.TextureIndex.Length - 1 To 0 Step -1
+            For i As Integer = Math.Min(newTextureIndex.Length, entity.TextureIndex.Length) - 1 To 0 Step -1
                 newTextureIndex(i) = entity.TextureIndex(i)
             Next
 

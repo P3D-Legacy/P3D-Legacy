@@ -1,6 +1,5 @@
-﻿Imports Microsoft.VisualBasic
-Imports NAudio.Wave
-Imports NAudio.Wave.SampleProviders
+﻿Imports NAudio.Wave
+
 Public Class LoopStream
     Inherits WaveStream
     Private _sourceStream As WaveStream
@@ -133,6 +132,7 @@ Public Class LoopStream
         Return totalBytesRead
     End Function
 End Class
+
 Public Class MusicManager
 
     Private Const DEFAULT_FADE_SPEED As Single = 0.5F

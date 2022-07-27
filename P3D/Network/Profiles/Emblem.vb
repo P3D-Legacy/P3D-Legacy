@@ -379,7 +379,7 @@
                 Return tempT
             End If
 
-            Dim t As Texture2D = DownloadTexture2D.n_Remote_Texture2D(Core.GraphicsDevice, $"{Classified.Remote_Texture_URL}{GameJoltID}.png", False)
+            Dim t As Texture2D = DownloadTexture2D.GetRemoteTexture2D(Core.GraphicsDevice, $"{Classified.Remote_Texture_URL}{GameJoltID}.png", False)
 
             If TempDownloadedSprites.ContainsKey(GameJoltID) = False Then
                 TempDownloadedSprites.Add(GameJoltID, t)
@@ -1276,7 +1276,7 @@
         End Sub
 
         Private Shared Sub DownloadAchievedEmblemTextrure(ByVal url As Object)
-            Dim t As Texture2D = DownloadTexture2D.n_Remote_Texture2D(Core.GraphicsDevice, url.ToString(), True)
+            Dim t As Texture2D = DownloadTexture2D.GetRemoteTexture2D(Core.GraphicsDevice, url.ToString(), True)
 
             achieved_emblem_Texture = t
 
