@@ -863,10 +863,13 @@
                     End If
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         Pokemon = Core.Player.Pokemons(Index)
+                        Core.Player.Pokemons.Remove(Pokemon)
                     End If
-                    Screen.TextBox.Show("?")
-                    SetScreen(New TransitionScreen(CType(CurrentScreen, OverworldScreen), New HatchEggScreen(CType(CurrentScreen, OverworldScreen), {Pokemon}.ToList, CanRename, Message), Color.White, False))
-                    CanContinue = False
+                    If Pokemon.IsEgg() = True Then
+                        Screen.TextBox.Show("?")
+                        SetScreen(New TransitionScreen(CType(CurrentScreen, OverworldScreen), New HatchEggScreen(CType(CurrentScreen, OverworldScreen), {Pokemon}.ToList, CanRename, Message), Color.White, False))
+                        CanContinue = False
+                    End If
             End Select
 
             IsReady = True
