@@ -2543,7 +2543,7 @@ Public Class Pokemon
 
                     Dim shinypos As Integer = 0
                     If Me.IsShiny = True Then
-                        shinypos = 512
+                        shinypos = CInt(P3D.TextureManager.GetTexture("GUI\PokemonMenu\" & sheet).Width / 2)
                     End If
 
                     Textures(index) = P3D.TextureManager.GetTexture("GUI\PokemonMenu\" & sheet, New Rectangle(CInt(v.X) * s.Width + shinypos, CInt(v.Y) * s.Height, s.Width, s.Height), "")
