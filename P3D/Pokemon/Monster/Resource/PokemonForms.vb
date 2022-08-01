@@ -136,8 +136,9 @@ Public Class PokemonForms
                 Return listP.GetMenuImageSize(P)
             End If
         Next
-
-        Return New Size(32, 32)
+        Dim sheet As String = GetSheetName(P)
+        Dim _size As Integer = CInt(TextureManager.GetTexture("GUI\PokemonMenu\" & sheet).Width / 32)
+        Return New Size(_size, _size)
     End Function
 
     ''' <summary>
