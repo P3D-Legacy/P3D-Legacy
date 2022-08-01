@@ -38,9 +38,9 @@
         '_paperClipTexture = Content.Load(Of Texture2D)("SharedResources\Textures\UI\TrainerCard\Paperclip")
         '_papersTexture = Content.Load(Of Texture2D)("SharedResources\Textures\UI\TrainerCard\Papers")
 
-        _backTexture = TextureManager.LoadDirect("Textures\UI\TrainerCard\Back.png")
-        _paperClipTexture = TextureManager.LoadDirect("Textures\UI\TrainerCard\Paperclip.png")
-        _papersTexture = TextureManager.LoadDirect("Textures\UI\TrainerCard\Papers.png")
+        _backTexture = TextureManager.GetTexture("Textures\UI\TrainerCard\Back")
+        _paperClipTexture = TextureManager.GetTexture("Textures\UI\TrainerCard\Paperclip")
+        _papersTexture = TextureManager.GetTexture("Textures\UI\TrainerCard\Papers")
         target = New RenderTarget2D(GraphicsDevice, _backTexture.Width, _backTexture.Height + _paperClipTexture.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
         target2 = New RenderTarget2D(GraphicsDevice, Core.windowSize.Width, Core.windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
 
@@ -113,34 +113,34 @@
             Canvas.DrawRectangle(_textBatch, New Rectangle(-10, 300, 190, 30), New Color(0, 0, 0, 150))
 
             Dim emblemName = GameJoltSave.Emblem
-            _textBatch.DrawString(FontManager.MiniFont, emblemName(0).ToString().ToUpper() & emblemName.Substring(1, emblemName.Length - 1), New Vector2(15, 305), Color.White)
+            _textBatch.DrawString(FontManager.MainFont, emblemName(0).ToString().ToUpper() & emblemName.Substring(1, emblemName.Length - 1), New Vector2(15, 305), Color.White)
 
             DrawLevelProgress()
         End If
 
-        _textBatch.DrawString(FontManager.MainFont, "Trainer Card", New Vector2(260, 100), Color.Black, 0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, "Trainer Card", New Vector2(272, 112), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
-        _textBatch.DrawString(FontManager.MainFont, "Name: ", New Vector2(270, 160), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-        _textBatch.DrawString(FontManager.MainFont, "Money: ", New Vector2(270, 190), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-        _textBatch.DrawString(FontManager.MainFont, "OT: ", New Vector2(270, 220), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-        _textBatch.DrawString(FontManager.MainFont, "Time: ", New Vector2(270, 250), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
-        _textBatch.DrawString(FontManager.MainFont, "Points: ", New Vector2(270, 280), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        Dim PropertyOffset As Vector2 = New Vector2(272, 152)
+        _textBatch.DrawString(FontManager.MainFont, "Name: ", New Vector2(PropertyOffset.X, PropertyOffset.Y), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, "Money: ", New Vector2(PropertyOffset.X, PropertyOffset.Y + 32), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, "OT: ", New Vector2(PropertyOffset.X, PropertyOffset.Y + 32 + 32), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, "Time: ", New Vector2(PropertyOffset.X, PropertyOffset.Y + 32 + 32 + 32), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, "Points: ", New Vector2(PropertyOffset.X, PropertyOffset.Y + 32 + 32 + 32 + 32), Color.Black, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
-        _textBatch.DrawString(FontManager.MiniFont, Core.Player.Name, New Vector2(390, 165), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, Core.Player.Name, New Vector2(PropertyOffset.X + 112, PropertyOffset.Y), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
-        _textBatch.DrawString(FontManager.TextFont, "$", New Vector2(390, 195), New Color(80, 80, 80), 0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0F)
-        _textBatch.DrawString(FontManager.MiniFont, Core.Player.Money.ToString(), New Vector2(400, 195), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, "$" & Core.Player.Money.ToString(), New Vector2(PropertyOffset.X + 112, PropertyOffset.Y + 32), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
-        _textBatch.DrawString(FontManager.MiniFont, Core.Player.OT, New Vector2(390, 225), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, Core.Player.OT, New Vector2(PropertyOffset.X + 112, PropertyOffset.Y + 32 + 32), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
-        _textBatch.DrawString(FontManager.MiniFont, TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(390, 255), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, TimeHelpers.GetDisplayTime(TimeHelpers.GetCurrentPlayTime(), True), New Vector2(PropertyOffset.X + 112, PropertyOffset.Y + 32 + 32 + 32), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
         Dim points = Core.Player.Points
         If Core.Player.IsGameJoltSave Then
             points = GameJoltSave.Points
         End If
 
-        _textBatch.DrawString(FontManager.MiniFont, points.ToString(), New Vector2(390, 285), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
+        _textBatch.DrawString(FontManager.MainFont, points.ToString(), New Vector2(PropertyOffset.X + 112, PropertyOffset.Y + 32 + 32 + 32 + 32), New Color(80, 80, 80), 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
         DrawBadges()
 
@@ -163,7 +163,7 @@
     End Sub
 
     Private Sub DrawBadges()
-        _textBatch.DrawString(FontManager.MiniFont, Localization.GetString("trainer_screen_collected_badges") & ": " & Core.Player.Badges.Count, New Vector2(50, 360), Color.Black)
+        _textBatch.DrawString(FontManager.MainFont, Localization.GetString("trainer_screen_collected_badges") & ": " & Core.Player.Badges.Count, New Vector2(56, 356), Color.Black)
 
         Dim selectedRegion As String = Badge.GetRegion(_badgeRegionIndex)
         Dim badgesCount As Integer = Badge.GetBadgesCount(selectedRegion)
@@ -187,7 +187,7 @@
             _spriteBatch.Draw(Badge.GetBadgeTexture(badgeID), New Rectangle(16 + (i + 1) * 64, 412, 50, 50), Nothing, c, shake, New Vector2(CInt(Badge.GetBadgeTexture(badgeID).Width / 2), CInt(Badge.GetBadgeTexture(badgeID).Height / 2)), SpriteEffects.None, 0F)
         Next
 
-        _textBatch.DrawString(FontManager.MiniFont, badgeName, New Vector2(555 - FontManager.MiniFont.MeasureString(badgeName).X.ToInteger(), 360), Color.Black)
+        _textBatch.DrawString(FontManager.MainFont, badgeName, New Vector2(555 - FontManager.MainFont.MeasureString(badgeName).X.ToInteger(), 356), Color.Black)
     End Sub
 
     Private Sub DrawLevelProgress()
@@ -227,12 +227,12 @@
         End If
         Dim rankStr = "Rank: " & nxtLvl
 
-        _textBatch.DrawString(FontManager.MiniFont, rankStr, New Vector2(600 - FontManager.MiniFont.MeasureString(rankStr).X.ToInteger(), 290), Color.Black)
+        _textBatch.DrawString(FontManager.MainFont, rankStr, New Vector2(600 - FontManager.MainFont.MeasureString(rankStr).X.ToInteger(), 290), Color.Black)
 
         If needPoints = 1 Then
-            _textBatch.DrawString(FontManager.MiniFont, "Need " & needPoints & " point", New Vector2(280, 318), Color.Black)
+            _textBatch.DrawString(FontManager.MainFont, "Need " & needPoints & " point", New Vector2(280, 312), Color.Black)
         Else
-            _textBatch.DrawString(FontManager.MiniFont, "Need " & needPoints & " points", New Vector2(280, 318), Color.Black)
+            _textBatch.DrawString(FontManager.MainFont, "Need " & needPoints & " points", New Vector2(280, 312), Color.Black)
         End If
 
         'If totalNeedPoints > 0 Then
@@ -242,8 +242,8 @@
         '    Canvas.DrawRectangle(New Rectangle(140, 380, 320, 16), Color.Black)
         'End If
 
-        'Core.SpriteBatch.DrawString(FontManager.MiniFont, "Rank: " & currentLevel, New Vector2(100, 400), Color.Black)
-        'Core.SpriteBatch.DrawString(FontManager.MiniFont, "Rank: " & currentLevel + 1, New Vector2(430, 400), Color.Black)
+        'Core.SpriteBatch.DrawString(FontManager.MainFont, "Rank: " & currentLevel, New Vector2(100, 400), Color.Black)
+        'Core.SpriteBatch.DrawString(FontManager.MainFont, "Rank: " & currentLevel + 1, New Vector2(430, 400), Color.Black)
 
     End Sub
 
