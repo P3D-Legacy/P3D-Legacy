@@ -712,7 +712,8 @@ Public Class MusicManager
                 {"union_cave", "IlexForest"},
                 {"mt_mortar", "IlexForest"},
                 {"whirlpool_islands", "IlexForest"},
-                {"tohjo_falls", "IlexForest"}
+                {"tohjo_falls", "IlexForest"},
+                {"NO_MUSIC", NO_MUSIC}
             }
         End Get
     End Property

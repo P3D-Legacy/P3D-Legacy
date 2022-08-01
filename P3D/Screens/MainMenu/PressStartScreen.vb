@@ -8,7 +8,7 @@ Public Class PressStartScreen
 
     Inherits Screen
 
-    Private _fadeInMain As Single = 1.0F
+    Public _fadeInMain As Single = 1.0F
     Private _introDelay As Single = 4.0F
     Private _logoFade As Single = 1.0F
 
@@ -251,21 +251,21 @@ Public Class NewMainMenuScreen
 
     Inherits Screen
 
-    Private _screenOffset As Vector2 = New Vector2(0, 0) 'Position of the top row relative to the _screenOrigin
-    Private _screenOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the top needs to move to
-    Private _screenOrigin As Vector2 = New Vector2(CSng(windowSize.Width / 2 - 80 - 180), CInt(windowSize.Height / 4)) 'Center of the game window. It's adjusted when resizing the window.
+    Public _screenOffset As Vector2 = New Vector2(0, 0) 'Position of the top row relative to the _screenOrigin
+    Public _screenOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the top needs to move to
+    Public _screenOrigin As Vector2 = New Vector2(CSng(windowSize.Width / 2 - 80 - 180), CInt(windowSize.Height / 4)) 'Center of the game window. It's adjusted when resizing the window.
     Private _mainOffset As Vector2 = _screenOffset
 
-    Private _optionsOffset As Vector2 = New Vector2(0, 0) 'Position of the options row relative to the _screenOrigin
-    Private _optionsOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the options row needs to move to
+    Public _optionsOffset As Vector2 = New Vector2(0, 0) 'Position of the options row relative to the _screenOrigin
+    Public _optionsOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the options row needs to move to
 
     Private _gameJoltOffset As Vector2 = New Vector2(0, 0) 'Position of the gamejolt row relative to the _screenOrigin
     Private _gameJoltOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the gamejolt needs to move to
 
 
     Private _loading As Boolean = True
-    Private _fadeInMain As Single = 0F
-    Private _fadeInOptions As Single = 0F
+    Public _fadeInMain As Single = 0F
+    Public _fadeInOptions As Single = 0F
     Private _fadeInGameJolt As Single = 0F
     Private _GameJoltOpacity As Single = 0F
     Private _expandDisplay As Single = 0F

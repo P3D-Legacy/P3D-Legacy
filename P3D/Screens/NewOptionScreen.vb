@@ -515,9 +515,26 @@
             For Each s As String In Core.GameOptions.ContentPackNames
                 ContentPackManager.Load(GameController.GamePath & "\ContentPacks\" & s & "\exceptions.dat")
             Next
-            SoundManager.PlaySound("save", False)
-            Core.GameOptions.ChangedPack = True
             Core.OffsetMaps.Clear()
+
+            Dim PressStart = Me.PreScreen.PreScreen
+            Me.PreScreen = New NewMainMenuScreen(PressStart)
+            Dim MainMenu As NewMainMenuScreen = CType(Me.PreScreen, NewMainMenuScreen)
+            SetScreen(New NewOptionScreen(Me.PreScreen, 4))
+            MainMenu._fadeInMain = 1.0F
+            MainMenu._fadeInOptions = 1.0F
+            MainMenu._screenOffsetTarget.Y = 0 - 180 - 32
+            MainMenu._screenOffset.Y = MainMenu._screenOffsetTarget.Y
+            MainMenu._screenOffsetTarget.X = 180
+            MainMenu._screenOffset.X = MainMenu._screenOffsetTarget.X
+            MainMenu._optionsOffsetTarget.X = -360
+            MainMenu._optionsOffset.X = MainMenu._optionsOffsetTarget.X
+
+            NewMainMenuScreen._selectedProfileTemp = 0
+            NewMainMenuScreen._selectedProfile = 3
+            NewMainMenuScreen._menuIndex = 2
+
+            SoundManager.PlaySound("save", False)
             MusicManager.Play("title")
         End If
     End Sub

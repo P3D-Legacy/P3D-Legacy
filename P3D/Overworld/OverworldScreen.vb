@@ -429,11 +429,6 @@ Public Class OverworldScreen
         c.ResetCursor()
         Player.Temp.IsInBattle = False
 
-        If Core.GameOptions.ChangedPack = True Then
-            Screen.Level.Load(Screen.Level.LevelFile)
-            Core.GameOptions.ChangedPack = False
-        End If
-
         'Set to correct music:
         If TrainerEncountered = False Then
             Dim x = 0
