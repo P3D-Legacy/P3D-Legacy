@@ -21,16 +21,11 @@
     End Sub
 
     Public Shared Sub ReloadGameModeTokens()
-        For i = 0 To LocalizationTokens.Count - 1
-            If i <= LocalizationTokens.Count - 1 Then
-                Dim Token As Token = LocalizationTokens.Values(i)
+        LocalizationTokens.Clear()
 
-                If Token.IsGameModeToken = True Then
-                    LocalizationTokens.Remove(LocalizationTokens.Keys(i))
-                    i -= 1
-                End If
-            End If
-        Next
+        Localization.LanguageSuffix = LanguageSuffix
+
+        LoadTokenFile(GameMode.DefaultLocalizationsPath, False)
 
         If GameModeManager.GameModeCount > 0 Then
             Dim GameModeLocalizationPath As String = GameModeManager.ActiveGameMode.LocalizationsPath
