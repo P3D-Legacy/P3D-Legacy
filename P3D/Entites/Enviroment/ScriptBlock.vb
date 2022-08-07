@@ -66,6 +66,8 @@
             Screen.Camera.StopMovement()
             ActivateScript = False
             TriggerScript(False)
+        Else
+            TriggeredScriptBlock = False
         End If
 
         MyBase.Update()
