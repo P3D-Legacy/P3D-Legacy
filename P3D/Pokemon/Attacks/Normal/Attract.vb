@@ -63,7 +63,7 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            If op.Gender <> Pokemon.Genders.Genderless And op.Gender <> p.Gender Then
+            If p.Gender <> Pokemon.Genders.Genderless AndAlso op.Gender <> Pokemon.Genders.Genderless AndAlso op.Gender <> p.Gender Then
                 If op.Ability.Name.ToLower() <> "aroma veil" Then
                     If BattleScreen.Battle.InflictInfatuate(Not own, own, BattleScreen, "", "move:attract") = False Then
                         BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
