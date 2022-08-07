@@ -27,8 +27,8 @@
 
         Dim registers() As String = Core.Player.RegisterData.Split(CChar(","))
         For Each r As String In registers
-            If r.StartsWith("ACTIVATOR_REMOVE_STRENGTH_ROCK_" & Screen.Level.LevelFile & "_") = True Then
-                Dim RemoveID As String = r.Remove(0, ("ACTIVATOR_REMOVE_STRENGTHT_ROCK_" & Screen.Level.LevelFile & "_").Length - 1)
+            If r.StartsWith(("activator_remove_strength_rock_" & Screen.Level.LevelFile & "_").ToLower()) = True Then
+                Dim RemoveID As String = r.Remove(0, ("activator_remove_strength_rock_" & Screen.Level.LevelFile & "_").ToLower().Length - 1)
                 For Each sRock As Entity In Screen.Level.Entities
                     If sRock.EntityID = "StrengthRock" Then
                         If sRock.ID = CInt(RemoveID) Then
@@ -51,7 +51,7 @@
                             CType(sRock, StrengthRock).CanBeRemoved = True
                         End If
                         If RemoveForever = True Then
-                            ActionScript.RegisterID("ACTIVATOR_REMOVE_STRENGTH_ROCK_" & Screen.Level.LevelFile & "_" & sRock.ID.ToString())
+                            ActionScript.RegisterID("activator_remove_strength_rock_" & Screen.Level.LevelFile & "_" & sRock.ID.ToString())
                         End If
                         If ActivateScript <> "" Then
                             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then

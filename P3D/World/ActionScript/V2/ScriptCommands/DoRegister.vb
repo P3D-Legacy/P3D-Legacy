@@ -67,7 +67,7 @@
 
                     If validValue = True Then
                         If isValidFormat = True Then
-                            Dim s As String = "[TIME|" & ActionScript.TimeToUnix(Date.Now) & "|" & args(1) & "|" & format & "]" & args(0)
+                            Dim s As String = "[time|" & ActionScript.TimeToUnix(Date.Now) & "|" & args(1) & "|" & format & "]" & args(0)
                             ActionScript.RegisterID(s)
                         Else
                             Logger.Log(Logger.LogTypes.Warning, "ScriptCommander.vb: (@register." & command & ") Invalid date format used for time based register!")
