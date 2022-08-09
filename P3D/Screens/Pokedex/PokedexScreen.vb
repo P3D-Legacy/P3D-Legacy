@@ -551,7 +551,8 @@ Public Class PokedexScreen
                                 c = Color.White
                             End If
                             Dim pokeTexture = p.GetMenuTexture()
-                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 140 + y * 100, pokeTexture.Width * 2, 64), c)
+                            Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
+                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 140 + y * 100, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
                         End If
 
                         Dim no As String = "000"
@@ -1413,7 +1414,7 @@ Public Class PokedexViewScreen
         Core.SpriteBatch.Draw(Me.texture, New Rectangle(20 + 64 * 6, 20, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
         Dim pokeTexture = Pokemon.GetMenuTexture()
-        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(28, 20, pokeTexture.Width * 2, 64), Color.White)
+        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(28, 20, pokeTexture.Width * 2, pokeTexture.Height * 2), Color.White)
         Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetName(), New Vector2(100, 36), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
         If EntryType = 1 Then

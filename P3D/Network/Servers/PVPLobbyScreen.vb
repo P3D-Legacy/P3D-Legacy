@@ -361,7 +361,7 @@
 
             If BattleBoxPokemon.Count - 1 >= i Then
                 Dim pokeTexture = BattleBoxPokemon(i).GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, pokeTexture.Width * 2, 64), Color.White)
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, pokeTexture.Width * 2, pokeTexture.Height * 2), Color.White)
             End If
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Battle Box", New Vector2(CInt(startPos.X) + 80, CInt(startPos.Y) - 45), Color.White)
@@ -382,7 +382,7 @@
 
             If Core.Player.Pokemons.Count - 1 >= i Then
                 Dim pokeTexture = Core.Player.Pokemons(i).GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, pokeTexture.Width * 2, 64), Color.White)
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, pokeTexture.Width * 2, pokeTexture.Height * 2), Color.White)
             End If
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Team", New Vector2(CInt(startPos.X) + 106, CInt(startPos.Y) - 45), Color.White)
