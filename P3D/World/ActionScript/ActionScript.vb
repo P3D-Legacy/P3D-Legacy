@@ -358,8 +358,8 @@ nextScript:
                 If i <= Data.Count - 1 Then
                     Dim d As String = Data(i)
 
-                    If d.StartsWith("[time|") = True Then
-                        Dim timeString As String = d.Remove(0, ("[time|").Length)
+                    If d.StartsWith("[TIME|") = True Then
+                        Dim timeString As String = d.Remove(0, ("[TIME|").Length)
                         timeString = timeString.Remove(timeString.IndexOf("]"))
 
                         Dim timeData() As String = timeString.Split(CChar("|"))
