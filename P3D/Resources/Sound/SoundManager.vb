@@ -115,7 +115,7 @@
 
     Public Shared Sub LoadSounds(ByVal forceReplace As Boolean)
         For Each soundfile As String In System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Sounds\")
-            If soundfile.EndsWith(".wav") = True Then
+            If soundfile.EndsWith(".wav") = True Or soundfile.EndsWith(".xnb") = True Then
                 soundfile = System.IO.Path.GetFileNameWithoutExtension(soundfile)
                 AddSound(soundfile, forceReplace)
             End If
@@ -126,7 +126,7 @@
 
                 If System.IO.Directory.Exists(path) = True Then
                     For Each soundfile As String In System.IO.Directory.GetFiles(path, "*.*", IO.SearchOption.AllDirectories)
-                        If soundfile.EndsWith(".wav") = True Then
+                        If soundfile.EndsWith(".wav") = True Or soundfile.EndsWith(".xnb") = True Then
                             soundfile = System.IO.Path.GetFileNameWithoutExtension(soundfile)
                             AddSound(soundfile, forceReplace)
                         End If
@@ -141,7 +141,7 @@
         If _sounds.ContainsKey(Name.ToLower()) = True Then
             Return _sounds(Name.ToLower())
         Else
-            If TryAddGameModeSound(Name) = True Then
+            If TryAddGameModeSound(Name.ToLower()) = True Then
                 Return _sounds(Name.ToLower())
             Else
                 Logger.Log(Logger.LogTypes.Warning, "SoundManager.vb: Cannot find sound file """ & Name & """. Return nothing.")
