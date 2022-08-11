@@ -114,9 +114,9 @@
     End Sub
 
     Public Shared Sub LoadSounds(ByVal forceReplace As Boolean)
-        For Each soundfile As String In System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Sounds\")
+        For Each soundfile As String In System.IO.Directory.GetFiles(GameController.GamePath & "\Content\Sounds\", "*.*", IO.SearchOption.AllDirectories)
             If soundfile.EndsWith(".wav") = True Or soundfile.EndsWith(".xnb") = True Then
-                soundfile = System.IO.Path.GetFileNameWithoutExtension(soundfile)
+                soundfile = soundfile.Remove(soundfile.Length - 4, 4).Remove(0, (GameController.GamePath & "\Content\Sounds\").Length)
                 AddSound(soundfile, forceReplace)
             End If
         Next
@@ -127,7 +127,7 @@
                 If System.IO.Directory.Exists(path) = True Then
                     For Each soundfile As String In System.IO.Directory.GetFiles(path, "*.*", IO.SearchOption.AllDirectories)
                         If soundfile.EndsWith(".wav") = True Or soundfile.EndsWith(".xnb") = True Then
-                            soundfile = System.IO.Path.GetFileNameWithoutExtension(soundfile)
+                            soundfile = soundfile.Remove(soundfile.Length - 4, 4).Remove(0, path.Length)
                             AddSound(soundfile, forceReplace)
                         End If
                     Next
