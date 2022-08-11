@@ -110,7 +110,7 @@
         Dim p As Vector2 = New Vector2(40, 50)
 
         If Pokemon.Attacks.Count > 0 Then
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 432 - 352 + AttackPos), CInt(p.Y + 18), 288, 384))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 432 - 352 + AttackPos), CInt(p.Y + 18), 320, 384))
 
             Dim A As BattleSystem.Attack
             If AttackIndex = 4 Then
@@ -128,7 +128,7 @@
                     Dim c As Char = CChar(fullText(i).ToString().Replace("’", "'"))
 
                     If c = CChar(" ") Then
-                        If FontManager.MiniFont.MeasureString(n & c).X > 170 Then
+                        If FontManager.MainFont.MeasureString(n & c).X > 170 Then
                             t &= Environment.NewLine
                             n = ""
                         Else
@@ -151,8 +151,8 @@
                     acc = "-"
                 End If
 
-                .DrawString(FontManager.MiniFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & t, New Vector2(CInt(p.X + 432 - 300 + AttackPos), p.Y + 38), Color.Black)
-                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 432 - 150 + AttackPos), CInt(p.Y + 42), 56, 28), Color.White)
+                .DrawString(FontManager.MainFont, "Power: " & power & Environment.NewLine & "Accuracy: " & acc & Environment.NewLine & Environment.NewLine & t, New Vector2(CInt(p.X + 432 - 300 + AttackPos), p.Y + 40), Color.Black)
+                .Draw(A.GetDamageCategoryImage(), New Rectangle(CInt(p.X + 432 - 144 + AttackPos + 24), CInt(p.Y + 40), 56, 28), Color.White)
             End With
 
             Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X + 80), CInt(p.Y + 18), 320, 384))
@@ -212,19 +212,20 @@
 
     Private Sub DrawText()
         If currentCharIndex < (Pokemon.GetDisplayName() & " ").Length Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, (Pokemon.GetDisplayName() & " ").Remove(currentCharIndex), New Vector2(120, 20), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, (Pokemon.GetDisplayName() & " ").Remove(currentCharIndex), New Vector2(120, 20), Color.White)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, Pokemon.GetDisplayName() & " ", New Vector2(120, 20), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetDisplayName() & " ", New Vector2(120, 20), Color.White)
         End If
         If currentCharIndex > (Pokemon.GetDisplayName() & " ").Length Then
             Dim pokeTexture = Pokemon.GetMenuTexture()
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 120), 12, pokeTexture.Width, 32), Color.White)
+            Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 120), 12, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
         End If
         If currentCharIndex > (Pokemon.GetDisplayName() & " ").Length + 1 Then
             If currentCharIndex < GetText().Length Then
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, ("wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?").Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, ("wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?").Remove(currentCharIndex - (Pokemon.GetDisplayName() & " ").Length), New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?", New Vector2(FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "wants to learn """ & newAttack.Name & """. But " & Pokemon.GetDisplayName() & " can only learn 4 attacks." & Environment.NewLine & "Do you want " & Pokemon.GetDisplayName() & " to forget an attack to learn """ & newAttack.Name & """?", New Vector2(FontManager.MainFont.MeasureString(Pokemon.GetDisplayName()).X + 152, 20), Color.White)
             End If
         End If
     End Sub
@@ -248,7 +249,7 @@
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X) + 12, CInt(p.Y), 256, 64))
 
         With Core.SpriteBatch
-            .DrawString(FontManager.MiniFont, A.Name, New Vector2(CInt(p.X) + 30, CInt(p.Y + 26)), Color.Black)
+            .DrawString(FontManager.MainFont, A.Name, New Vector2(CInt(p.X) + 30, CInt(p.Y + 26)), Color.Black)
 
             Dim c As Color = Color.Black
             Dim per As Integer = CInt((A.CurrentPP / A.MaxPP) * 100)
@@ -259,7 +260,7 @@
                 c = Color.IndianRed
             End If
 
-            .DrawString(FontManager.MiniFont, "PP " & A.CurrentPP & " / " & A.MaxPP, New Vector2(CInt(p.X) + 160, CInt(p.Y + 58)), c)
+            .DrawString(FontManager.MainFont, "PP " & A.CurrentPP & " / " & A.MaxPP, New Vector2(CInt(p.X) + 144, CInt(p.Y + 58)), c)
 
             .Draw(TextureManager.GetTexture("GUI\Menus\Types", A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X) + 30, CInt(p.Y + 54), 48, 16), Color.White)
         End With

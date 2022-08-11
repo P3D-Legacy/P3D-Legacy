@@ -205,9 +205,9 @@
             Dim pokemonTexture = GetPokemon().GetTexture(_isFront)
             Dim textureHeight As Integer = CInt(pokemonTexture.Height * (height / 256))
 
-            Dim pokemonTextureOffset As Integer = 0 + 16
+            Dim pokemonTextureOffset As Integer = 0 + 8
             If GetPokemon().IsEgg() = True Then
-                pokemonTextureOffset = 32 + 16 + 8
+                pokemonTextureOffset = 32 + 8 + 8
             End If
 
             SpriteBatch.Draw(pokemonTexture, New Rectangle(DeltaX + 20 + 10, DeltaY + 64 - _yOffset + pokemonTextureOffset + 10, 256, height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), New Color(0, 0, 0, 150))
