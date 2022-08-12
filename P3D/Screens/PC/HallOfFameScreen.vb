@@ -192,7 +192,9 @@
 
                     For d = 0 To Me.Entries(i).PokemonList.Count - 1
                         Dim pokeTexture = Me.Entries(i).PokemonList(d).GetPokemon().GetMenuTexture()
-                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(360 + d * 40 - CInt((pokeTexture.Width - 32) / 2), 116 + p * 96, pokeTexture.Width, 32), New Color(255, 255, 255, alpha))
+                        Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
+
+                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(360 + d * 40, 116 + p * 96, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), New Color(255, 255, 255, alpha))
                     Next
                 End If
             Next
@@ -249,7 +251,8 @@
         Else
             Dim p As Pokemon = SelectedEntry.PokemonList(id).GetPokemon()
             Dim pokeTexture = p.GetMenuTexture()
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pos.X + 4) - CInt((pokeTexture.Width - 32) / 2), CInt(pos.Y + 6), pokeTexture.Width, 32), Color.White)
+            Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pos.X + 4) - CInt((pokeTexture.Width - 32) / 2), CInt(pos.Y + 6), CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(pos.X + 40, pos.Y + 4), Color.White, 0.0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Level" & Environment.NewLine & Environment.NewLine & "OT" & Environment.NewLine & Environment.NewLine & "Type 1" & Environment.NewLine & Environment.NewLine & "Type 2", New Vector2(pos.X + 10, pos.Y + 43), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
