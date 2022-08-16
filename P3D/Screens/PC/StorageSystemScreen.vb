@@ -1189,7 +1189,8 @@ Public Class StorageSystemScreen
                             c = New Color(65, 65, 65, 255)
                         End If
                         Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
-                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100 - CInt(pokeTexture.Width - 32), 200 + y * 84, pokeTexture.Width * 2, pokeTexture.Height * 2), c)
+                        Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
+                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 200 + y * 84, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
                     End If
                 Next
             Else
@@ -1222,7 +1223,8 @@ Public Class StorageSystemScreen
                                 c = New Color(65, 65, 65, 255)
                             End If
                             Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
-                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100 - CInt(pokeTexture.Width - 32), 200 + y * 84, pokeTexture.Width * 2, pokeTexture.Height * 2), c)
+                            Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
+                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(50 + x * 100, 200 + y * 84, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
                         End If
                     Next
                 Next
@@ -1253,7 +1255,8 @@ Public Class StorageSystemScreen
                             End If
 
                             Dim pokeTexture = box.Pokemon(id).GetPokemon().GetMenuTexture()
-                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(664 + x * 32 - CInt((pokeTexture.Width - 32) / 2), 215 + y * 32, pokeTexture.Width, 32), c)
+                            Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
+                            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(664 + x * 32, 215 + y * 32, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
 
                             If box.Pokemon(id).GetPokemon().Level < minLevel Or minLevel = -1 Then
                                 minLevel = box.Pokemon(id).GetPokemon().Level
@@ -1279,8 +1282,8 @@ Public Class StorageSystemScreen
 
                 Dim t As String = "Box:  " & box.Name & Environment.NewLine & "Pokémon:  " & box.Pokemon.Count & " / " & maxPokemon & Environment.NewLine & "Level:  " & levelString
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(667, 417), Color.Black)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(665, 415), Color.White)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(667, 417), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(665, 415), Color.White)
             End If
         Else
             Dim p As Pokemon = Nothing
@@ -1319,7 +1322,7 @@ Public Class StorageSystemScreen
                     c = New Color(84, 198, 216, 150)
                 End If
 
-                Canvas.DrawRectangle(New Rectangle(660, 200, 200, 200), c)
+                Canvas.DrawRectangle(New Rectangle(660, 200, 256, 256), c)
 
                 Dim modelName As String = p.AnimationName
                 Dim shinyString As String = "Normal"
@@ -1330,14 +1333,14 @@ Public Class StorageSystemScreen
                     Draw3DModel(p, "Models\Pokemon\" & modelName & "\" & shinyString)
                 Else
                     GetYOffset(p)
-                    Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(634, 180 - yOffset, 256, 256), Color.White)
+                    Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(660, 200 - yOffset, 256, 256), Color.White)
                 End If
 
-                Canvas.DrawRectangle(New Rectangle(660, 410, 200, 210), c)
+                Canvas.DrawRectangle(New Rectangle(660, 472, 320, 240), c)
 
                 If p.IsEgg() = True Then
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Egg", New Vector2(667, 417), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, "Egg", New Vector2(665, 415), Color.White)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Egg", New Vector2(667, 477 + 2), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, "Egg", New Vector2(665, 477), Color.White)
                 Else
                     Dim itemString As String = "None"
                     If Not p.Item Is Nothing Then
@@ -1360,8 +1363,8 @@ Public Class StorageSystemScreen
                                                  "SPEED  " & p.Speed & Environment.NewLine &
                                                  "ITEM  " & itemString
 
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(667, 417), Color.Black)
-                    Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(665, 415), Color.White)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(667, 477 + 2), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(665, 477), Color.White)
                 End If
             End If
         End If
@@ -1370,15 +1373,15 @@ Public Class StorageSystemScreen
     Private Sub Draw3DModel(ByVal p As Pokemon, ByVal modelName As String)
         Dim propList = p.GetModelProperties()
 
-        Dim scale As Single = propList.Item1
+        Dim scale As Single = propList.Item1 * 10
         Dim x As Single = propList.Item2
         Dim y As Single = propList.Item3
         Dim z As Single = propList.Item4
 
         Dim roll As Single = propList.Item5
 
-        Dim t As Texture2D = ModelManager.DrawModelToTexture(modelName, renderTarget, New Vector3(x, y, z), New Vector3(0.0F, 50.0F, 10.0F), New Vector3(0.0F, 0.2F, roll + modelRoll), scale, True)
-        Core.SpriteBatch.Draw(t, New Rectangle(160, 50, 1200, 680), Color.White)
+        Dim t As Texture2D = ModelManager.DrawModelToTexture(modelName, renderTarget, New Vector3(x, y, z), New Vector3(0.0F, 10.0F, 50.0F), New Vector3(roll + modelRoll, 0, 0), scale, True)
+        Core.SpriteBatch.Draw(t, New Rectangle(192, 72, 1200, 680), Color.White)
     End Sub
 
     Private Sub DrawTeamWindow()
@@ -1401,7 +1404,8 @@ Public Class StorageSystemScreen
                 End If
 
                 Dim pokeTexture = Core.Player.Pokemons(i).GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(Core.windowSize.Width - 228 - CInt(pokeTexture.Width - 32), i * 100 + 60, pokeTexture.Width * 2, pokeTexture.Height * 2), c)
+                Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(Core.windowSize.Width - 228, i * 100 + 60, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
 
                 If Not Core.Player.Pokemons(i).Item Is Nothing And Core.Player.Pokemons(i).IsEgg() = False Then
                     Core.SpriteBatch.Draw(Core.Player.Pokemons(i).Item.Texture, New Rectangle(Core.windowSize.Width - 196, i * 100 + 92, 24, 24), Color.White)
@@ -1419,8 +1423,9 @@ Public Class StorageSystemScreen
 
         If Not Me.MovingPokemon Is Nothing Then
             Dim pokeTexture = Me.MovingPokemon.GetMenuTexture()
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 10) - CInt(pokeTexture.Width - 32), CInt(cPosition.Y + 44), pokeTexture.Width * 2, pokeTexture.Height * 2), New Color(0, 0, 0, 150))
-            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 20) - CInt(pokeTexture.Width - 32), CInt(cPosition.Y + 34), pokeTexture.Width * 2, pokeTexture.Height * 2), Color.White)
+            Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 10), CInt(cPosition.Y + 44), CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), New Color(0, 0, 0, 150))
+            Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(cPosition.X - 20), CInt(cPosition.Y + 34), CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
 
             If Not Me.MovingPokemon.Item Is Nothing And Me.MovingPokemon.IsEgg() = False Then
                 Core.SpriteBatch.Draw(Me.MovingPokemon.Item.Texture, New Rectangle(CInt(cPosition.X - 20) + 32, CInt(cPosition.Y + 34) + 32, 24, 24), Color.White)
@@ -1434,7 +1439,7 @@ Public Class StorageSystemScreen
     Private Sub DrawMenuEntries()
         If Me.MenuHeader <> "" Then
             Canvas.DrawRectangle(New Rectangle(Core.windowSize.Width - 370, 100, 356, 64), New Color(0, 0, 0, 180))
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, MenuHeader, New Vector2(Core.windowSize.Width - 192 - FontManager.MiniFont.MeasureString(MenuHeader).X / 2, 120), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, MenuHeader, New Vector2(Core.windowSize.Width - 192 - FontManager.MainFont.MeasureString(MenuHeader).X / 2, 120), Color.White)
         End If
 
         For Each e As MenuEntry In Me.MenuEntries
