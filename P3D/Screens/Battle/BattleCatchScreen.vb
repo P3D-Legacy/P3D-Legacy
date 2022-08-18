@@ -87,7 +87,7 @@ nextIndex:
         TextBox.Draw()
     End Sub
 
-    Private Sub UpdateAnimations()
+    Public Sub UpdateAnimations()
         Dim cIndex As Integer = 0
 nextIndex:
         If AnimationList.Count > cIndex Then

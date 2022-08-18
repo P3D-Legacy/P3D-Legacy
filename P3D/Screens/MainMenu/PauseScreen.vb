@@ -81,6 +81,8 @@
     Public Overrides Sub Update()
         If PreScreen.Identification = Identifications.OverworldScreen Then
             Screen.Level.Update()
+        ElseIf PreScreen.Identification = Identifications.BattleCatchScreen Then
+            CType(PreScreen, BattleCatchScreen).UpdateAnimations()
         End If
 
         Screen.TextBox.reDelay = 0.0F
