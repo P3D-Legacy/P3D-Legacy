@@ -204,8 +204,8 @@ Items:
 	{"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[-21,-0.375,-3]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[1]}}{"AdditionalValue"{str[1,190]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.25,0.25,0.25]}}]}}
 	{"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[11,-0.375,30]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[1]}}{"AdditionalValue"{str[2,190]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.25,0.25,0.25]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[0,15,0]}}{"Map"{str[diamonddive\underwater\1.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[0,10,0]}}{"Map"{str[diamonddive\underwater\2.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[0,5,0]}}{"Map"{str[diamonddive\underwater\3.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[0,-5,0]}}{"Map"{str[diamonddive\underwater\5.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,15,0]}}{"Map"{str[diamonddive\underwater\1.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,10,0]}}{"Map"{str[diamonddive\underwater\2.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,5,0]}}{"Map"{str[diamonddive\underwater\3.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,-5,0]}}{"Map"{str[diamonddive\underwater\5.dat]}}]}}
 	

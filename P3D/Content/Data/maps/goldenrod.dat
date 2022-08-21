@@ -670,5 +670,5 @@ Rockets:
 Backdrops:
 {"Backdrop"{BAC[{"Position"{sngArr[-150.5,-0.76,-60.5]}}{"Size"{intArr[168,170]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[10,36]}}{"Map"{str[routes\route34.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[10,-36]}}{"Map"{str[routes\route35.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[10,36]}}{"Map"{str[routes\route34.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[10,-36]}}{"Map"{str[routes\route35.dat]}}]}}

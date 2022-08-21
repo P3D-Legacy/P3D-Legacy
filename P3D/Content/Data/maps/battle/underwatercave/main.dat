@@ -2,4 +2,4 @@
 
 {"Backdrop"{BAC[{"Position"{sngArr[-20,6.5,-20]}}{"Size"{intArr[70,65]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[texture]}}{"TexturePath"{str[UnderwaterCave]}}{"Texture"{rec[16,0,16,16]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[-10,-2,-4]}}{"Map"{str[underwatercave\main.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[-10,-2,-4]}}{"Map"{str[underwatercave\main.dat]}}]}}

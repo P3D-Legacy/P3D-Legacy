@@ -569,6 +569,6 @@ Stairs:
 Backdrops:
 {"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,-100.5]}}{"Size"{intArr[220,240]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[4,44]}}{"Map"{str[quest\town.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[28,44]}}{"Map"{str[quest\offset\north.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[4,64]}}{"Map"{str[quest\canyonent.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[4,44]}}{"Map"{str[quest\town.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[28,44]}}{"Map"{str[quest\offset\north.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[4,64]}}{"Map"{str[quest\canyonent.dat]}}]}}

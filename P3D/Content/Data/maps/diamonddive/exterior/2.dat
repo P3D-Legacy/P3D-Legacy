@@ -276,7 +276,7 @@ Items:
 {"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[40,2.625,0]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[1]}}{"AdditionalValue"{str[0,64]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.25,0.25,0.25]}}]}}
 {"Entity"{ENT[{"EntityID"{str[ItemObject]}}{"Position"{sngArr[64,4.625,12]}}{"TexturePath"{str[Routes]}}{"Textures"{recArr[[192,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[3]}}{"Action"{int[1]}}{"AdditionalValue"{str[1,2]}}{"Rotation"{int[0]}}{"Scale"{sngArr[0.25,0.25,0.25]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[-40,-8,0]}}{"Map"{str[diamonddive\exterior\1.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[100,10,-50]}}{"Map"{str[routes\route23.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[64,2,24]}}{"Map"{str[diamonddive\exterior\end.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[-40,-8,0]}}{"Map"{str[diamonddive\exterior\1.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[100,10,-50]}}{"Map"{str[routes\route23.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[64,2,24]}}{"Map"{str[diamonddive\exterior\end.dat]}}]}}
 

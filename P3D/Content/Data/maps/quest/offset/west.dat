@@ -178,7 +178,7 @@ Corners:
 {"Entity"{ENT[{"Position"{sngArr[19,5,37]}}{"EntityID"{str[WallBlock]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[96,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[6]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
 {"Entity"{ENT[{"Position"{sngArr[19,5,41]}}{"EntityID"{str[WallBlock]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[96,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[5]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[2]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[0,-60]}}{"Map"{str[quest\main.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[0,-40]}}{"Map"{str[quest\canyonent.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[24,-20]}}{"Map"{str[quest\sevault.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[-24,60]}}{"Map"{str[quest\tanoby\main.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,-60]}}{"Map"{str[quest\main.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,-40]}}{"Map"{str[quest\canyonent.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[24,-20]}}{"Map"{str[quest\sevault.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[-24,60]}}{"Map"{str[quest\tanoby\main.dat]}}]}}

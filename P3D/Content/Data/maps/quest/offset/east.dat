@@ -195,5 +195,5 @@ Corners:
 {"Entity"{ENT[{"Position"{sngArr[2,6,5]}}{"EntityID"{str[WallBlock]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[96,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[6]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
 {"Entity"{ENT[{"Position"{sngArr[3,6,5]}}{"EntityID"{str[WallBlock]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[96,16,16,16]]}}{"TextureIndex"{intArr[-1,-1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[5]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"Rotation"{int[3]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[-24,-40]}}{"Map"{str[quest\offset\north.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[-24,0]}}{"Map"{str[quest\sevault.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[-24,-40]}}{"Map"{str[quest\offset\north.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[-24,0]}}{"Map"{str[quest\sevault.dat]}}]}}

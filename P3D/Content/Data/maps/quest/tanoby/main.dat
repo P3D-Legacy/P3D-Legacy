@@ -402,6 +402,6 @@ chambers:
 Backdrops:
 {"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,-100.5]}}{"Size"{intArr[330,220]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[48,-80]}}{"Map"{str[quest\sevault.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[24,-60]}}{"Map"{str[quest\offset\west.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[72,-80]}}{"Map"{str[quest\offset\east.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[48,-80]}}{"Map"{str[quest\sevault.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[24,-60]}}{"Map"{str[quest\offset\west.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[72,-80]}}{"Map"{str[quest\offset\east.dat]}}]}}

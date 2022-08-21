@@ -189,7 +189,7 @@ Corners:
 Backdrops:
 {"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,-100.5]}}{"Size"{intArr[240,240]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[-24,20]}}{"Map"{str[quest\canyonent.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[-28,-44]}}{"Map"{str[quest\trainertower\main.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[-24,0]}}{"Map"{str[quest\main.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[0,40]}}{"Map"{str[quest\sevault.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[-24,20]}}{"Map"{str[quest\canyonent.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[-28,-44]}}{"Map"{str[quest\trainertower\main.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[-24,0]}}{"Map"{str[quest\main.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,40]}}{"Map"{str[quest\sevault.dat]}}]}}

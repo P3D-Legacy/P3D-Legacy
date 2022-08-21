@@ -396,7 +396,7 @@
 
     Private Sub AddOffsetMap(ByVal Tags As Dictionary(Of String, Object))
         If Core.GameOptions.LoadOffsetMaps > 0 Then
-            Dim OffsetList As List(Of Integer) = CType(GetTag(Tags, "Offset"), List(Of Integer))
+            Dim OffsetList As List(Of Single) = CType(GetTag(Tags, "Offset"), List(Of Single))
             Dim MapOffset As Vector3 = New Vector3(OffsetList(0), 0, OffsetList(1))
             If OffsetList.Count >= 3 Then
                 MapOffset = New Vector3(OffsetList(0), OffsetList(1), OffsetList(2))
