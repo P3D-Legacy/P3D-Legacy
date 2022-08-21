@@ -1016,6 +1016,14 @@
                 Screen.Level.EnvironmentType = 0
             End If
 
+            If TagExists(Tags, "Season") = True Then
+                If CInt(GetTag(Tags, "Season")) <> -1 Then
+                    World.setSeason = CType(CInt(GetTag(Tags, "Season")), World.Seasons)
+                Else
+                    World.setSeason = Nothing
+                End If
+            End If
+
             If TagExists(Tags, "Weather") = True Then
                 Screen.Level.WeatherType = CInt(GetTag(Tags, "Weather"))
             Else
