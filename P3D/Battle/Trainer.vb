@@ -263,7 +263,7 @@ Public Class Trainer
                     Dim PK As String = ScriptCommander.Parse(firstPart).ToString()
                     Dim Level As Integer = ScriptConversion.ToInteger(ScriptCommander.Parse(secondPart))
 
-                    Dim ID As Integer = CInt(PK.Split(CChar("_"))(0))
+                    Dim ID As Integer = ScriptConversion.ToInteger(PK.Split(CChar("_"))(0))
                     Dim AD As String = ""
 
                     If PK.Contains(CChar("_")) Then
