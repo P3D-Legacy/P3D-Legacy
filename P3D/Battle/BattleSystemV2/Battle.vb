@@ -5720,7 +5720,7 @@
                     End If
                 End If
                 If .FieldEffects.OppLeechSeed > 0 Then 'LeechSeed (opponent seeded)
-                    If .OppPokemon.HP > 0 And .OwnPokemon.HP > 0 And .OwnPokemon.HP < .OwnPokemon.MaxHP Then
+                    If .OppPokemon.HP > 0 And .OwnPokemon.HP > 0 Then
                         Dim loseHP As Integer = CInt(Math.Ceiling(.OppPokemon.MaxHP / 8))
                         Dim currHP As Integer = .OppPokemon.HP
 
@@ -6598,7 +6598,7 @@
                     End If
                 End If
                 If .FieldEffects.OwnLeechSeed > 0 Then 'LeechSeed (Own pokemon seeded)
-                    If .OwnPokemon.HP > 0 And .OppPokemon.HP > 0 And .OppPokemon.HP < .OppPokemon.MaxHP Then
+                    If .OwnPokemon.HP > 0 And .OppPokemon.HP > 0 Then
                         Dim loseHP As Integer = CInt(Math.Ceiling(.OwnPokemon.MaxHP / 8))
                         Dim currHP As Integer = .OwnPokemon.HP
 
