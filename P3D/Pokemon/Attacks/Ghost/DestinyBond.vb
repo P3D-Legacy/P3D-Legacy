@@ -66,7 +66,7 @@
             Else
                 If BattleScreen.FieldEffects.OppDestinyBond = False Then
                     BattleScreen.FieldEffects.OppDestinyBond = True
-                    BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " is trying to take its foe down with it."))
+                    BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & " is trying to take its foe down with it."))
                 Else
                     BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
                 End If
