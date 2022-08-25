@@ -103,10 +103,10 @@
 
     Public Shared Function GetTexturePath(ByVal TextureID As String) As String
         Dim texturePath As String = "Textures\NPC\"
-        If TextureID.StartsWith("[POKEMON|N]") = True Or TextureID.StartsWith("[Pokémon|N]") = True Then
+        If TextureID.StartsWith("[POKEMON|N]") = True Or TextureID.StartsWith("[POKEMON|N]") = True Then
             TextureID = TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Normal\"
-        ElseIf TextureID.StartsWith("[POKEMON|S]") = True Or TextureID.StartsWith("[Pokémon|S]") = True Then
+        ElseIf TextureID.StartsWith("[POKEMON|S]") = True Or TextureID.StartsWith("[POKEMON|S]") = True Then
             TextureID = TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Shiny\"
         End If
@@ -304,7 +304,7 @@
 
             Me.Name = p.Name
 
-            If Not p.Skin.StartsWith("[POKEMON|N]") AndAlso Not p.Skin.StartsWith("[Pokémon|N]") AndAlso Not p.Skin.StartsWith("[POKEMON|S]") AndAlso Not p.Skin.StartsWith("[Pokémon|S]") Then
+            If Not p.Skin.StartsWith("[POKEMON|N]") AndAlso Not p.Skin.StartsWith("[POKEMON|N]") AndAlso Not p.Skin.StartsWith("[POKEMON|S]") AndAlso Not p.Skin.StartsWith("[POKEMON|S]") Then
                 If Not String.IsNullOrWhiteSpace(GameJoltID) AndAlso CheckForOnlineSprite = False Then
                     CheckForOnlineSprite = True
                     Me.SetTexture(p.Skin)

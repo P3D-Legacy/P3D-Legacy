@@ -88,10 +88,10 @@
         Me.TextureID = UseTextureID
 
         Dim texturePath As String = "Textures\NPC\"
-        If Me.TextureID.StartsWith("[POKEMON|N]") = True Or Me.TextureID.StartsWith("[Pokémon|N]") = True Then
+        If Me.TextureID.StartsWith("[POKEMON|N]") = True Or Me.TextureID.StartsWith("[POKEMON|N]") = True Then
             Me.TextureID = Me.TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Normal\"
-        ElseIf Me.TextureID.StartsWith("[POKEMON|S]") = True Or Me.TextureID.StartsWith("[Pokémon|S]") = True Then
+        ElseIf Me.TextureID.StartsWith("[POKEMON|S]") = True Or Me.TextureID.StartsWith("[POKEMON|S]") = True Then
             Me.TextureID = Me.TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Shiny\"
         End If

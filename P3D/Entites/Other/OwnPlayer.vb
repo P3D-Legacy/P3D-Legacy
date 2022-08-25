@@ -30,10 +30,10 @@
         Me.SkinName = TextureID
 
         Dim texturePath As String = "Textures\NPC\"
-        If TextureID.StartsWith("[POKEMON|N]") Or TextureID.StartsWith("[Pokémon|N]") Then
+        If TextureID.StartsWith("[POKEMON|N]") Or TextureID.StartsWith("[POKEMON|N]") Then
             TextureID = TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Normal\"
-        ElseIf TextureID.StartsWith("[POKEMON|S]") Or TextureID.StartsWith("[Pokémon|S]") Then
+        ElseIf TextureID.StartsWith("[POKEMON|S]") Or TextureID.StartsWith("[POKEMON|S]") Then
             TextureID = TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Shiny\"
         End If
