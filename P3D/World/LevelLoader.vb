@@ -1009,6 +1009,11 @@
         Else
             Screen.Level.RideType = 0
         End If
+        If TagExists(Tags, "SaveOnly") = True Then
+            Screen.Level.SaveOnly = CBool(GetTag(Tags, "SaveOnly"))
+        Else
+            Screen.Level.SaveOnly = False
+        End If
         If _reload = False Then
             If TagExists(Tags, "EnvironmentType") = True Then
                 Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnvironmentType"))

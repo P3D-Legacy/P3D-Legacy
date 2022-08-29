@@ -41,6 +41,7 @@ Public Class Level
     Private _weatherType As Integer = 0
     Public _DayTime As World.DayTimes = World.GetTime
     Private _environmentType As Integer = 0
+    Private _saveonly As Boolean = False
     Private _wildPokemonGrass As Boolean = True
     Private _wildPokemonFloor As Boolean = False
     Private _wildPokemonWater As Boolean = True
@@ -377,6 +378,18 @@ Public Class Level
                 Case Else
                     Me._DayTime = World.GetTime
             End Select
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' If only the Save option should be available in the menu for this map.
+    ''' </summary>
+    Public Property SaveOnly As Boolean
+        Get
+            Return Me._saveonly
+        End Get
+        Set(value As Boolean)
+            Me._saveonly = value
         End Set
     End Property
 

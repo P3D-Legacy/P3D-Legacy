@@ -42,25 +42,30 @@
     End Sub
 
     Private Sub ConstructMenu()
-        If Core.Player.HasPokedex = True Then
-            _menuOptions.Add("Pokédex")
-        End If
+        If Screen.Level.SaveOnly = False Then
 
-        If Screen.Level.IsBugCatchingContest = True Then
-            _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177),
-                                    "Bag",
-                                    "|||" & Core.Player.Name, 'Trainer card
-                                    "End Contest"})
-        Else
-            If Core.Player.Pokemons.Count > 0 Then
-                _menuOptions.Add("Pokémon")
+            If Core.Player.HasPokedex = True Then
+                _menuOptions.Add("Pokédex")
             End If
-            _menuOptions.AddRange({"Bag",
-                                     "|||" & Core.Player.Name,
-                                    "Save"})
-        End If
 
-        _menuOptions.Add("Options")
+            If Screen.Level.IsBugCatchingContest = True Then
+                _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177),
+                                        "Bag",
+                                        "|||" & Core.Player.Name, 'Trainer card
+                                        "End Contest"})
+            Else
+                If Core.Player.Pokemons.Count > 0 Then
+                    _menuOptions.Add("Pokémon")
+                End If
+                _menuOptions.AddRange({"Bag",
+                                         "|||" & Core.Player.Name,
+                                        "Save"})
+            End If
+
+            _menuOptions.Add("Options")
+        Else
+            _menuOptions.Add("Save")
+        End If
     End Sub
 
     Private _blur As Resources.Blur.BlurHandler
