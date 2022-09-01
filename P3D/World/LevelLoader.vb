@@ -1155,7 +1155,20 @@
             DayTime = CType(GetTag(Tags, "DayTime"), List(Of Integer))
         End If
 
-        If DayTime.Contains(World.GetTime()) Or DayTime.Contains(-1) Or DayTime.Count = 0 Then
+        Dim CurrentTime As World.DayTimes = World.GetTime()
+
+        Select Case Screen.Level.DayTime
+            Case 1
+                CurrentTime = World.DayTimes.Night
+            Case 2
+                CurrentTime = World.DayTimes.Morning
+            Case 3
+                CurrentTime = World.DayTimes.Day
+            Case 4
+                CurrentTime = World.DayTimes.Evening
+        End Select
+
+        If DayTime.Contains(CurrentTime) Or DayTime.Contains(-1) Or DayTime.Count = 0 Then
             Dim NewShader As New Shader(Position, Size, Shader, StopOnContact)
             Screen.Level.Shaders.Add(NewShader)
         End If
