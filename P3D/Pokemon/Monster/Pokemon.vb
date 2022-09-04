@@ -1042,19 +1042,6 @@ Public Class Pokemon
 
         Me.Ability = Me._originalAbility
 
-        If Not Me._originalItem Is Nothing Then
-            If Me.Item IsNot Nothing Then
-                Core.Player.Inventory.AddItem(Me._originalItem.ID, 1)
-                SoundManager.PlaySound("item_found", True)
-                Screen.TextBox.Show(Core.Player.Name & " found~" & Me._originalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(_originalItem, 1))
-            Else
-                Me.Item = P3D.Item.GetItemByID(Me._originalItem.ID)
-                Me.Item.AdditionalData = Me._originalItem.AdditionalData
-                Screen.TextBox.Show(Core.Player.Name & " found~" & Me._originalItem.Name & "*and gave it back to~" & Me.GetDisplayName)
-            End If
-            Me._originalItem = Nothing
-        End If
-
         Me.IsTransformed = False
 
         Me.CalculateStats()

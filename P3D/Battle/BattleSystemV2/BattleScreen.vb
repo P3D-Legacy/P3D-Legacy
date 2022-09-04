@@ -1217,11 +1217,24 @@ nextIndex:
                     If p.hasLeveledUp = True Then
                         hasLevelUp = True
                     End If
-                    If IsRemoteBattle = True Or IsTrainerBattle = True Then
+                    If IsRemoteBattle = True Then
                         If p.OriginalItem IsNot Nothing Then
                             p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                            Screen.TextBox.Show(Core.Player.Name & " received" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName)
+                        End If
+                    Else
+                        If Not p.OriginalItem Is Nothing Then
+                            If p.Item IsNot Nothing Then
+                                Core.Player.Inventory.AddItem(p.OriginalItem.ID, 1)
+                                SoundManager.PlaySound("item_found", True)
+                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
+                            Else
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                                p.Item.AdditionalData = p.OriginalItem.AdditionalData
+                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                            End If
+                            p.OriginalItem = Nothing
                         End If
                     End If
                     p.ResetTemp()
@@ -1267,11 +1280,24 @@ nextIndex:
                 Next
             Else
                 For Each p As Pokemon In Core.Player.Pokemons
-                    If IsRemoteBattle = True Or IsTrainerBattle = True Then
+                    If IsRemoteBattle = True Then
                         If p.OriginalItem IsNot Nothing Then
                             p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
-                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                            Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName)
+                        End If
+                    Else
+                        If Not p.OriginalItem Is Nothing Then
+                            If p.Item IsNot Nothing Then
+                                Core.Player.Inventory.AddItem(p.OriginalItem.ID, 1)
+                                SoundManager.PlaySound("item_found", True)
+                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.originalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.originalItem, 1))
+                            Else
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                                p.Item.AdditionalData = p.OriginalItem.AdditionalData
+                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                            End If
+                            p.OriginalItem = Nothing
                         End If
                     End If
                     p.ResetTemp()
