@@ -7,6 +7,7 @@ OutroMessage|Tch!~Too strong for me!
 DefeatMessage|What's that?~I don't act the way I look?*Heh, that's a part of my~strategy!
 TextureID|pinkshirtgirl
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

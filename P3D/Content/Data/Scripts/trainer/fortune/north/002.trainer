@@ -7,6 +7,7 @@ OutroMessage|I didn't lose to you at swimming.~This doesn't bother me.
 DefeatMessage|Are you headed for the island~up past here?*I didn't see anything~interesting there.
 TextureID|35
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

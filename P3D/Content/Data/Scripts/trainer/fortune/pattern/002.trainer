@@ -7,6 +7,7 @@ OutroMessage|You raise your Pokémon with a whole lot of love!
 DefeatMessage|In the same way your mother~raised you full of love,~you should raise your Pokémon.
 TextureID|1
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

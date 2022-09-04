@@ -7,6 +7,7 @@ OutroMessage|Oh, the heartbreak of losing so easily to you!
 DefeatMessage|Experience the joy of climbing!
 TextureID|2
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

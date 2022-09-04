@@ -7,6 +7,7 @@ OutroMessage|Super awesome!
 DefeatMessage|The funny patterns on the~ground...*They look like the patterns on~my grandpa's clothes.
 TextureID|14
 Region|Sevii Islands
+InSightMusic|trainer_boy1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

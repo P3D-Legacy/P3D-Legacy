@@ -7,6 +7,7 @@ OutroMessage|Uh-huh...
 DefeatMessage|Trainers like you from cities,~they sure are tough.*You'll be headed for the Tower,~won't you?
 TextureID|89
 Region|Sevii Islands
+InSightMusic|trainer_boy2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

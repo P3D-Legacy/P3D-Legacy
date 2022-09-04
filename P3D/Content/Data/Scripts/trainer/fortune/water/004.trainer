@@ -7,6 +7,7 @@ OutroMessage|Oh, no, no, no.
 DefeatMessage|I couldn't lift the stigma of~being a Swimmer...
 TextureID|34
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

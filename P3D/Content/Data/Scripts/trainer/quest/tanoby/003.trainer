@@ -7,6 +7,7 @@ OutroMessage|We might get in trouble for being noisy here.
 DefeatMessage|I said that I wanted to paint~an old building.*So Clifford brought me here.
 TextureID|pinkshirtgirl
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

@@ -7,6 +7,7 @@ OutroMessage|Thank you, I feel like I've been set free by losing to you.
 DefeatMessage|For some reason, I get furious~over the lightest thing.*I'll calm myself by breathing~deeply.
 TextureID|23
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

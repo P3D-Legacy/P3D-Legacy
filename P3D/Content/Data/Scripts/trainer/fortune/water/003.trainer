@@ -7,6 +7,7 @@ OutroMessage|Awww, I knew this would happen!
 DefeatMessage|When I can't be with my~boyfriend, I spend time with~the Pokémon he gave me.
 TextureID|35
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

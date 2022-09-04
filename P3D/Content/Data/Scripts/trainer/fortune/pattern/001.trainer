@@ -7,6 +7,7 @@ OutroMessage|I bet you think I'm weak, don't you, eh?
 DefeatMessage|Ayup, you townies come around~all so dandy with a hat that~flashy...~How about giving me that?
 TextureID|14
 Region|Sevii Islands
+InSightMusic|trainer_boy1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

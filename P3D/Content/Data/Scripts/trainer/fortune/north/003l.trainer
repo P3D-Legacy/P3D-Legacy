@@ -7,6 +7,7 @@ OutroMessage|Ava: Oh, you're amazing!~Even better, you're on your own!
 DefeatMessage|Ava: You know, I do prefer~the sea over any pool.
 TextureID|35
 Region|Sevii Islands
+InSightMusic|trainer_boy2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

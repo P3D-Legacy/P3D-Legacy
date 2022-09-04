@@ -7,6 +7,7 @@ OutroMessage|Big boo-boo!
 DefeatMessage|I am so scatterbrained!*I need to focus so I can~teleport properly to my house!
 TextureID|29
 Region|Sevii Islands
+InSightMusic|trainer_boy1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

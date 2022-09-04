@@ -7,6 +7,7 @@ OutroMessage|That was uncalled for.~You don't have to be so rough.
 DefeatMessage|The Tanoby Ruins date back at~least 1,500 years.*But it's a baffling mystery as~to why it was built in the first~place. 
 TextureID|2
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

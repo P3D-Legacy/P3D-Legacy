@@ -7,6 +7,7 @@ OutroMessage|Jon: When I'm with Eve, it doesn't feel like I've lost!
 DefeatMessage|Jon: When I'm with Eve, I feel~giddy whether I win or lose.*It's magical!
 TextureID|9,15
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

@@ -7,6 +7,7 @@ OutroMessage|Huh?~Something's not right...
 DefeatMessage|The way I am now, I may have to~hold off on Trainer Tower...
 TextureID|87
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

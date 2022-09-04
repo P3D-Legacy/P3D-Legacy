@@ -7,6 +7,7 @@ OutroMessage|It wasn't a bug.~I cut my shin on some grass.
 DefeatMessage|A little cut like that...~A little spit's enough to cure~it!
 TextureID|16
 Region|Sevii Islands
+InSightMusic|trainer_girl2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

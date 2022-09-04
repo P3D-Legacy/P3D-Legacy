@@ -7,6 +7,7 @@ OutroMessage|You don't need to be so pushy. I'll be happy to tell you.
 DefeatMessage|The door to the ruins...*It has these strange patterns~engraved on the outside.~I don't know what they mean,~though.
 TextureID|20
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

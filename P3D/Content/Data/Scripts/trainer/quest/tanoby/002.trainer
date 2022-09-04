@@ -7,6 +7,7 @@ OutroMessage|My, how extraordinary.
 DefeatMessage|Ah, so you are studying~Pokémon on your own...*Yes, you certainly are quite~the extraordinary person,~indeed.
 TextureID|oldhatman
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

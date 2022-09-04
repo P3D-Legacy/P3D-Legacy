@@ -7,6 +7,7 @@ OutroMessage|I lost, but I'm still laughing.~Am I the only girl like that?
 DefeatMessage|I'm going to keep on collecting~bug Pokémon.*Am I the only girl like that?
 TextureID|10
 Region|Sevii Islands
+InSightMusic|trainer_girl2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

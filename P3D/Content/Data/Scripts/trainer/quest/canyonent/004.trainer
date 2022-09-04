@@ -7,6 +7,7 @@ OutroMessage|You don't seem to be a problem trainer.
 DefeatMessage|If you treat your Pokémon with~kindness, they'll understand.
 TextureID|90
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer
