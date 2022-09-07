@@ -509,6 +509,7 @@
         If PackNames.Count > 0 Then
             Core.GameOptions.ContentPackNames = EnabledPackNames.ToArray()
             Core.GameOptions.SaveOptions()
+            FontManager.LoadFonts()
             MusicManager.PlayNoMusic()
             ContentPackManager.Clear()
             Water.WaterSpeed = 8

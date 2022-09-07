@@ -1309,17 +1309,17 @@ Public Class NewMainMenuScreen
                     End If
                 Else
                     If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
-                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
-                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 116 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 116 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
 
-                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
-                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 116 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 116 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
                     Else
-                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
-                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 116 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 116 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
 
-                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
-                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 116 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 116 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
                     End If
                 End If
 
