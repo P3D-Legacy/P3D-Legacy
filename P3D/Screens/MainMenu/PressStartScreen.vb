@@ -1564,12 +1564,10 @@ Public Class GameModeSelectionScreen
             Dim dispDescription As String = GameMode.Description
             Dim dispVersion As String = GameMode.Version
             Dim dispAuthor As String = GameMode.Author
-            Dim dispContentPath As String = GameMode.ContentPath
 
             tempGameModesDisplay = Localization.GetString("gamemode_menu_name") & ": " & dispName & Environment.NewLine &
                 Localization.GetString("gamemode_menu_version") & ": " & dispVersion & Environment.NewLine &
                 Localization.GetString("gamemode_menu_author") & ": " & dispAuthor & Environment.NewLine &
-                Localization.GetString("gamemode_menu_contentpath") & ": " & dispContentPath & Environment.NewLine &
                 Localization.GetString("gamemode_menu_description") & ": " & dispDescription
         End If
 
