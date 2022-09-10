@@ -402,6 +402,12 @@
         evolvedPokemon.Item = currentPokemon.Item
 
         evolvedPokemon.CatchBall = currentPokemon.CatchBall
+        If currentPokemon.CatchMethod = "" Then
+            currentPokemon.CatchMethod = "Somehow obtained at"
+        End If
+        If currentPokemon.CatchLocation = "" Then
+            currentPokemon.CatchLocation = "an unknown place"
+        End If
         evolvedPokemon.CatchLocation = currentPokemon.CatchLocation
         evolvedPokemon.CatchMethod = currentPokemon.CatchMethod
         evolvedPokemon.CatchTrainerName = currentPokemon.CatchTrainerName

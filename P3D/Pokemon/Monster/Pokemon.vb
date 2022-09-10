@@ -906,9 +906,9 @@ Public Class Pokemon
     Private _OT As String = "00000"
     Private _status As StatusProblems = StatusProblems.None
     Private _nature As Natures
-    Private _catchLocation As String = "at unknown place"
+    Private _catchLocation As String = "an unknown place"
     Private _catchTrainerName As String = "???"
-    Private _catchMethod As String = "somehow obtained"
+    Private _catchMethod As String = "Somehow obtained at"
     Private _friendship As Integer
     Private _isShiny As Boolean
     Private _individualValue As String = ""
