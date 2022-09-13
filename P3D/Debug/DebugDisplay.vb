@@ -119,7 +119,7 @@ Public Class DebugDisplay
             "State: " + _outputDevice.PlaybackState.ToString() + Environment.NewLine +
             "Volume: " + MusicManager.MasterVolume.ToString() + Environment.NewLine +
             "Is Muted: " + MusicManager.Muted.ToString() + Environment.NewLine +
-            "Is Repeating: " + MusicManager._isLooping.ToString()
+            "Is Repeating: " + MusicManager.IsLooping.ToString()
 
         Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, str, New Vector2(7, 7), Color.Black)
         Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, str, New Vector2(5, 5), Color.White)

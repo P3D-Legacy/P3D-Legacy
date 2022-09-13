@@ -16,6 +16,15 @@ Public Class SongContainer
         Me.AudioType = type
     End Sub
 
+    Public ReadOnly Property IsLoop() As Boolean
+        Get
+            If Me.Song.Contains("intro\") OrElse Me.Song.Contains("_intro") Then
+                Return False
+            Else
+                Return True
+            End If
+        End Get
+    End Property
 
     Public ReadOnly Property IsStandardSong() As Boolean
         Get
