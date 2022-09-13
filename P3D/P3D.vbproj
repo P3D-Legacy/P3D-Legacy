@@ -15477,7 +15477,7 @@
     <Content Include="Content\Songs\johto_rival.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Songs\johto_rivalintro.ogg">
+    <Content Include="Content\Songs\johto_rival_intro.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Songs\johto_rival_encounter.ogg">

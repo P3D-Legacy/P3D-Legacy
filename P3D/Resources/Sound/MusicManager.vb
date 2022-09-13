@@ -694,7 +694,6 @@ Public Class MusicManager
                 {"darkcave", "dark_cave"},
                 {"showmearound", "show_me_around"},
                 {"sprouttower", "sprout_tower"},
-                {"johto_rival_intro", "johto_rivalintro"},
                 {"johto_rival_appear", "johto_rival_encounter"},
                 {"ilex_forest", "IlexForest"},
                 {"union_cave", "IlexForest"},
