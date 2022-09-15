@@ -515,7 +515,7 @@ Public Class Level
     End Property
 
     ''' <summary>
-    ''' The LightingType of this map. More information in the Level\UpdateLighting.
+    ''' The LightingType of this map. More information in the Lighting\UpdateLighting.
     ''' </summary>
     Public Property LightingType As Integer
         Get
