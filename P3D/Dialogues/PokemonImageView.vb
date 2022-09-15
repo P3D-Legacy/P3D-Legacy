@@ -56,7 +56,7 @@
 
             Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), ""), 2, New Rectangle(CInt(p.X), CInt(p.Y), 320, 320))
 
-            Core.SpriteBatch.Draw(Me.Texture, New Rectangle(CInt(p.X + 48), CInt(p.Y + 48), 256, 256), Color.White)
+            Core.SpriteBatch.Draw(Me.Texture, New Rectangle(CInt(p.X + 160 + 16 - MathHelper.Min(Me.Texture.Width * 3, 288) / 2), CInt(p.Y + 160 + 16 - MathHelper.Min(Me.Texture.Height * 3, 288) / 2), MathHelper.Min(Me.Texture.Width * 3, 288), MathHelper.Min(Me.Texture.Height * 3, 288)), Color.White)
 
             If Me.Delay = 0.0F Then
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Overworld\TextBox"), New Rectangle(CInt(p.X) + 144 + 160, CInt(p.Y) + 144 + 160 + 32, 16, 16), New Rectangle(0, 48, 16, 16), Color.White)

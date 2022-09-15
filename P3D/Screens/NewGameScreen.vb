@@ -26,7 +26,7 @@
         Dim ballPosition As Vector2
         Dim ballIndex As Vector2 = New Vector2(0, 0)
         Dim ballAnimationDelay As Single = 0.2F
-        Dim ballVelocity As Single = -4.0F
+        Dim ballVelocity As Single = -7.0F
         Dim pokePosition As Vector2
         Dim pokeID As Integer = 0
 
@@ -232,10 +232,10 @@
                 Case 1
                     Core.SpriteBatch.Draw(mainTexture, New Rectangle(CInt(ballPosition.X), CInt(ballPosition.Y), 22, 22), New Rectangle(62 + CInt(ballIndex.X * 22), 48 + CInt(ballIndex.Y * 22), 22, 22), Color.White)
                 Case 2
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokePosition.X) - 100, CInt(pokePosition.Y) - 218, 256, 256), Color.White)
+                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokePosition.X) - MathHelper.Min(CInt(pokeTexture.Width), 128), CInt(pokePosition.Y) - MathHelper.Min(CInt(pokeTexture.Height), 128), MathHelper.Min(CInt(pokeTexture.Width * 2), 256), MathHelper.Min(CInt(pokeTexture.Height * 2), 256)), Color.White)
                 Case 3
                     If Index < 6 Then
-                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 300, CInt(Core.windowSize.Height / 2) - 218, 256, 256), New Color(255, 255, 255, ProfAlpha))
+                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokePosition.X) - MathHelper.Min(CInt(pokeTexture.Width), 128), CInt(Core.windowSize.Height / 2) - MathHelper.Min(CInt(pokeTexture.Height), 128), MathHelper.Min(CInt(pokeTexture.Width * 2), 256), MathHelper.Min(CInt(pokeTexture.Height * 2), 256)), New Color(255, 255, 255, ProfAlpha))
                     End If
             End Select
 
@@ -245,11 +245,11 @@
             Select Case pokeIndex
                 Case 0
                     ballPosition = New Vector2(CInt(Core.windowSize.Width / 2) - 40, CInt(Core.windowSize.Height / 2) - 110)
-                    pokePosition = New Vector2(CInt(Core.windowSize.Width / 2) - 200, CInt(Core.windowSize.Height / 2) - 110)
+                    pokePosition = New Vector2(CInt(Core.windowSize.Width / 2) - MathHelper.Min(CInt(pokeTexture.Width * 2), 256), CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(pokeTexture.Height * 2), 256)))
                     pokeIndex = 1
                     AnimateBall()
                 Case 1
-                    If ballPosition.X > CInt(Core.windowSize.Width / 2) - 200 Then
+                    If ballPosition.X > CInt(Core.windowSize.Width / 2) - MathHelper.Min(CInt(pokeTexture.Width * 2), 256) Then
                         ballPosition.X -= 3
                         ballPosition.Y += ballVelocity
                         ballVelocity += 0.2F

@@ -645,10 +645,10 @@ Public Class PokedexScreen
         End While
 
         If entryType = 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(830, 200), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "???" & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName() & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(830, 200), Color.White)
-            Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(670, 140, 128, 128), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetName() & Environment.NewLine & Environment.NewLine & "No. " & no, New Vector2(864, 200), Color.White)
+            Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(680 - p.GetTexture(True).Width / 4), CInt(140 - p.GetTexture(True).Height / 4), MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), Color.White)
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "SPECIES", New Vector2(680, 310), Color.Black)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "TYPE", New Vector2(680, 350), Color.Black)
@@ -685,14 +685,14 @@ Public Class PokedexScreen
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, p.PokedexEntry.Text.CropStringToWidth(FontManager.MainFont, 448), New Vector2(688, 490), Color.Black)
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(928, 242, 20, 20), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 160, 10, 10), ""), New Rectangle(992, 242, 20, 20), Color.White)
             Else
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "??? Pokémon", New Vector2(850, 310), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(850, 350), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "??? m", New Vector2(850, 390), Color.Black)
                 Core.SpriteBatch.DrawString(FontManager.MainFont, "??? kg", New Vector2(850, 430), Color.Black)
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(928, 242, 20, 20), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokedexhabitat", New Rectangle(160, 170, 10, 10), ""), New Rectangle(992, 242, 20, 20), Color.White)
             End If
         End If
     End Sub
@@ -1449,8 +1449,8 @@ Public Class PokedexViewScreen
     Dim playedCry As Boolean = False
 
     Private Sub DrawPage1()
-        Dim v As Vector2 = Core.GetMiddlePosition(New Size(512, 512))
-        Core.SpriteBatch.Draw(Pokemon.GetTexture(Me.FrontView), New Rectangle(CInt(v.X), CInt(v.Y) - yOffset * 2, 512, 512), New Color(255, 255, 255, fadeMainImage))
+        Dim v As Vector2 = Core.GetMiddlePosition(New Size(MathHelper.Min(Pokemon.GetTexture(True).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(True).Height * 4, 512)))
+        Core.SpriteBatch.Draw(Pokemon.GetTexture(Me.FrontView), New Rectangle(CInt(v.X), CInt(v.Y) - yOffset * 2 + 32, MathHelper.Min(Pokemon.GetTexture(True).Width * 4, 512), MathHelper.Min(Pokemon.GetTexture(True).Height * 4, 512)), New Color(255, 255, 255, fadeMainImage))
 
         If fadeMainImage = 255 Then
             Dim mV As Vector2 = Core.GetMiddlePosition(New Size(0, 0))

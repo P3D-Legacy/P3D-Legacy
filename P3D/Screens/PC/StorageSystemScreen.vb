@@ -1333,7 +1333,7 @@ Public Class StorageSystemScreen
                     Draw3DModel(p, "Models\Pokemon\" & modelName & "\" & shinyString)
                 Else
                     GetYOffset(p)
-                    Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(660, 200 - yOffset, 256, 256), Color.White)
+                    Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(792 - CInt(MathHelper.Min(p.GetTexture(True).Width * 3, 288) / 2), 192 - yOffset, MathHelper.Min(p.GetTexture(True).Width * 3, 288), MathHelper.Min(p.GetTexture(True).Height * 3, 288)), Color.White)
                 End If
 
                 Canvas.DrawRectangle(New Rectangle(660, 472, 320, 240), c)

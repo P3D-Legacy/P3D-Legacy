@@ -114,11 +114,11 @@
     End Sub
 
     Public Overrides Sub Render()
-
+        Dim PokemonTexture = GetPokemon().GetTexture(True)
         _pixelFade = 1  'Remove when pixel fading effect is properly implemented.
 
-        Dim pixelSize As Integer = CInt(256 * _pixelFade).Clamp(16, 256)
-        If pixelSize = 256 Or Core.GraphicsManager.IsFullScreen = True Then
+        Dim pixelSize As Integer = CInt(MathHelper.Min(PokemonTexture.Width * 3, 288) * _pixelFade).Clamp(16, MathHelper.Min(PokemonTexture.Width * 3, 288))
+        If pixelSize = MathHelper.Min(PokemonTexture.Width * 3, 288) Or Core.GraphicsManager.IsFullScreen = True Then
             pixeledPokemonTexture = GetPokemon().GetTexture(True)
         Else
             Dim pixeled As New RenderTarget2D(GraphicsDevice, pixelSize, pixelSize, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
@@ -126,15 +126,15 @@
             GraphicsDevice.Clear(Color.Transparent)
             Dim s As New SpriteBatch(GraphicsDevice)
             s.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise)
-            s.Draw(GetPokemon().GetTexture(True), New Rectangle(0, 0, pixelSize, pixelSize), Color.White)
+            s.Draw(PokemonTexture, New Rectangle(0, 0, pixelSize, pixelSize), Color.White)
             s.End()
 
-            Dim dePixeled As New RenderTarget2D(GraphicsDevice, 256, 256, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
+            Dim dePixeled As New RenderTarget2D(GraphicsDevice, MathHelper.Min(PokemonTexture.Width * 3, 288), MathHelper.Min(PokemonTexture.Height * 3, 288), False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
             GraphicsDevice.SetRenderTarget(dePixeled)
             GraphicsDevice.Clear(Color.Transparent)
             s = New SpriteBatch(GraphicsDevice)
             s.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise)
-            s.Draw(pixeled, New Rectangle(0, 0, 256, 256), Color.White)
+            s.Draw(pixeled, New Rectangle(0, 0, MathHelper.Min(PokemonTexture.Width * 3, 288), MathHelper.Min(PokemonTexture.Height * 3, 288)), Color.White)
             s.End()
             pixeledPokemonTexture = dePixeled
 
@@ -201,17 +201,15 @@
 
         'Draw Pokémon preview:
         If _enrollY >= 160 Then
-            Dim height As Integer = CInt(_enrollY - 160).Clamp(0, 256)
             Dim pokemonTexture = GetPokemon().GetTexture(_isFront)
-            Dim textureHeight As Integer = CInt(pokemonTexture.Height * (height / 256))
+            Dim height As Integer = CInt(_enrollY - 160).Clamp(0, MathHelper.Min(pokemonTexture.Height * 3, 288))
 
-            Dim pokemonTextureOffset As Integer = 0 + 8
-            If GetPokemon().IsEgg() = True Then
-                pokemonTextureOffset = 32 + 8 + 8
-            End If
+            Dim textureHeight As Integer = CInt(pokemonTexture.Height * (height / MathHelper.Min(pokemonTexture.Height * 3, 288)))
 
-            SpriteBatch.Draw(pokemonTexture, New Rectangle(DeltaX + 20 + 10, DeltaY + 64 - _yOffset + pokemonTextureOffset + 10, 256, height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), New Color(0, 0, 0, 150))
-            SpriteBatch.Draw(pokemonTexture, New Rectangle(DeltaX + 20, DeltaY + 64 - _yOffset + pokemonTextureOffset, 256, height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), Color.White)
+            Dim pokemonTextureOffset As Integer = CInt(MathHelper.Min(pokemonTexture.Height * 3, 288) / 2)
+
+            SpriteBatch.Draw(pokemonTexture, New Rectangle(DeltaX + 144 - CInt(MathHelper.Min(pokemonTexture.Width * 3, 288) / 2) + 10, DeltaY + 208 - _yOffset - pokemonTextureOffset + 10, MathHelper.Min(pokemonTexture.Width * 3, 288), height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), New Color(0, 0, 0, 150))
+            SpriteBatch.Draw(pokemonTexture, New Rectangle(DeltaX + 144 - CInt(MathHelper.Min(pokemonTexture.Width * 3, 288) / 2), DeltaY + 208 - _yOffset - pokemonTextureOffset, MathHelper.Min(pokemonTexture.Width * 3, 288), height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), Color.White)
         End If
 
         'Draw main infos:
