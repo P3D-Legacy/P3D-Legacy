@@ -67,7 +67,7 @@
                         Return 161
                     Case Terrain.TerrainTypes.Cave
                         Return 247
-                    Case Terrain.TerrainTypes.DisortionWorld
+                    Case Terrain.TerrainTypes.DistortionWorld
                         Return 185
                     Case Terrain.TerrainTypes.LongGrass
                         Return 75
