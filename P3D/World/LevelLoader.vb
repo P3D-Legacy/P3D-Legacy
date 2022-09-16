@@ -1054,6 +1054,12 @@
             Screen.Level.IsDark = False
         End If
 
+        If TagExists(Tags, "IsAurora") = True Then
+            World.IsAurora = CBool(GetTag(Tags, "IsAurora"))
+        Else
+            World.IsAurora = False
+        End If
+
         If Screen.Level.DayTime = World.DayTimes.Night Then
             If World.IsAurora = False Then
                 Dim chance = Random.Next(0, 250)
@@ -1064,13 +1070,6 @@
         Else
             World.IsAurora = False
         End If
-
-        If TagExists(Tags, "IsAurora") = True Then
-            World.IsAurora = CBool(GetTag(Tags, "IsAurora"))
-        Else
-            World.IsAurora = False
-        End If
-
 
         If TagExists(Tags, "Terrain") = True Then
             Screen.Level.Terrain.TerrainType = Terrain.FromString(CStr(GetTag(Tags, "Terrain")))
