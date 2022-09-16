@@ -30,6 +30,7 @@ Public Class OverworldCamera
     Public LastStepPosition As Vector3 = New Vector3(0, -2, 0)
     Public YawLocked As Boolean = False
     Public ThirdPersonOffset As Vector3 = New Vector3(0F, 0.3F, 1.5F)
+    Public IsSliding As Boolean = False
 
     'Debug variables
     Public oldDate As Date = Date.Now
@@ -563,7 +564,7 @@ Public Class OverworldCamera
     End Sub
 
     Private Function GetBobbing() As Single
-        If Core.GameOptions.ViewBobbing = False Then
+        If IsSliding = True OrElse Core.GameOptions.ViewBobbing = False Then
             Return 0.0F
         End If
         If Screen.Level?.Riding = True Then
@@ -863,7 +864,10 @@ Public Class OverworldCamera
         For Each Floor As Entity In Screen.Level.Floors
             If Floor.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
                 If CType(Floor, Floor).IsIce = True Then
+                    IsSliding = True
                     Return CType(Floor, Floor).GetIceFloors()
+                Else
+                    IsSliding = False
                 End If
             End If
         Next
