@@ -362,7 +362,7 @@ Public Class OverworldCamera
                     Core.GameMessage.ShowMessage(Localization.GetString("game_message_third_person_on"), 12, FontManager.MainFont, Color.White)
                 End If
             Else
-                Yaw = GetAimYawFromDirection(_playerFacing)
+                Yaw = GetAimYawFromDirection(GetFacingDirection())
                 If showMessage = True Then
                     Core.GameMessage.ShowMessage(Localization.GetString("game_message_third_person_off"), 12, FontManager.MainFont, Color.White)
                 End If
