@@ -28401,7 +28401,9 @@
     <Content Include="Content\Data\maps\battle\diamonddive\end.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Content\Data\berrydata.dat" />
+    <None Include="Content\Data\berrydata.dat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Content\Data\maps\battle\goldenrod\club.dat">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
