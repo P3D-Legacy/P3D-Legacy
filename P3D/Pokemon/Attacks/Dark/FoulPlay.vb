@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Dark
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Foul Play"
-            Me.Description = "	The user turns the target's power against it. The higher the target's Attack stat, the greater the move's power."
+            Me.Description = "The user turns the target's power against it. The higher the target's Attack stat, the greater the move's power."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

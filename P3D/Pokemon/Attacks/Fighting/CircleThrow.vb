@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Fighting
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Circle Throw"
-            Me.Description = "	The target is thrown, and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon."
+            Me.Description = "The target is thrown, and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
