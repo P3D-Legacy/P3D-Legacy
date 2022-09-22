@@ -108,27 +108,27 @@
 
     Public Overrides Sub Draw()
         Me.PreScreen.Draw()
-        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 800, 480))
+        Canvas.DrawImageBorder(TextureManager.GetTexture(mainTexture, New Rectangle(0, 0, 48, 48)), 2, New Rectangle(60, 100, 864, 480))
 
-        Core.SpriteBatch.Draw(Pokemon.GetTexture(True), New Rectangle(80, 100, 128, 128), Color.White)
+        Core.SpriteBatch.Draw(Pokemon.GetTexture(True), New Rectangle(176 - MathHelper.Min(CInt(Pokemon.GetTexture(True).Width), 128), 208 - MathHelper.Min(CInt(Pokemon.GetTexture(True).Height), 128), MathHelper.Min(CInt(Pokemon.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(Pokemon.GetTexture(True).Height * 2), 256)), Color.White)
 
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, Pokemon.GetDisplayName() & Environment.NewLine & "Level: " & Pokemon.Level, New Vector2(80, 260), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Pokemon.GetDisplayName() & Environment.NewLine & "Level: " & Pokemon.Level, New Vector2(80, 304), Color.Black)
 
-        Core.SpriteBatch.DrawString(FontManager.MiniFont, "Pokémon's moves:", New Vector2(245, 140), Color.Black)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, "Pokémon's moves:", New Vector2(312, 140), Color.Black)
         For i = 0 To Pokemon.Attacks.Count - 1
             If i <= Pokemon.Attacks.Count - 1 Then
-                DrawAttack(245, i, Pokemon.Attacks(i), False)
+                DrawAttack(312, i, Pokemon.Attacks(i), False)
             End If
         Next
 
         If Me.MovesList.Count = 0 Then
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "The Pokémon cannot learn" & Environment.NewLine & "a new move here.", New Vector2(580, 140), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "The Pokémon cannot learn" & Environment.NewLine & "a new move here.", New Vector2(580, 140), Color.Black)
         Else
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Tutor moves (" & MovesList.Count & "):", New Vector2(580, 140), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Tutor moves (" & MovesList.Count & "):", New Vector2(644, 140), Color.Black)
 
             For i = scrollIndex To scrollIndex + 3
                 If i <= MovesList.Count - 1 Then
-                    DrawAttack(580, i, MovesList(i), True)
+                    DrawAttack(644, i, MovesList(i), True)
                 End If
             Next
         End If
@@ -149,17 +149,21 @@
         Dim p As New Vector2(x, 160 + y * (64 + 32))
 
         Dim CanvasTexture As Texture2D = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
-
+        Dim FontColor As Color = Color.Black
         If Me.index = i And isLearnMove = True Then
             CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 48, 48, 48), "")
+            FontColor = Color.White
         End If
 
         Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(p.X - 18), CInt(p.Y), 256, 64))
 
         With Core.SpriteBatch
-            .DrawString(FontManager.MiniFont, A.Name, New Vector2(p.X, CInt(p.Y + 26)), Color.Black)
+            If FontColor <> Color.Black Then
+                .DrawString(FontManager.MainFont, A.Name, New Vector2(p.X + 2, CInt(p.Y + 26 + 2)), Color.Black)
+            End If
+            .DrawString(FontManager.MainFont, A.Name, New Vector2(p.X, CInt(p.Y + 26)), FontColor)
 
-            Dim c As Color = Color.Black
+            Dim c As Color = FontColor
             Dim per As Integer = CInt((A.CurrentPP / A.MaxPP) * 100)
 
             If per <= 33 And per > 10 Then
@@ -168,7 +172,10 @@
                 c = Color.IndianRed
             End If
 
-            .DrawString(FontManager.MiniFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 130, CInt(p.Y + 58)), c)
+            If c <> Color.Black Then
+                .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 112 + 2, CInt(p.Y + 58 + 2)), Color.Black)
+            End If
+            .DrawString(FontManager.MainFont, Localization.GetString("PP") & " " & A.CurrentPP & " / " & A.MaxPP, New Vector2(p.X + 112, CInt(p.Y + 58)), c)
 
             .Draw(TextureManager.GetTexture("GUI\Menus\Types", A.Type.GetElementImage(), ""), New Rectangle(CInt(p.X), CInt(p.Y + 54), 48, 16), Color.White)
         End With
