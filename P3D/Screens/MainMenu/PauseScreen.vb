@@ -303,9 +303,7 @@
         Core.OffsetMaps.Clear()
         TextureManager.TextureList.Clear()
         TextureManager.TextureRectList.Clear()
-        Water.ClearAnimationResources()
         Whirlpool.LoadedWaterTemp = False
-        Waterfall.ClearAnimationResources()
         Core.SetScreen(New PressStartScreen())
         Core.Player.loadedSave = False
     End Sub
