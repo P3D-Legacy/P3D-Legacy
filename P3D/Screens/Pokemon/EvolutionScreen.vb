@@ -167,18 +167,18 @@
 
     Public Overrides Sub Draw()
         Canvas.DrawRectangle(New Rectangle(0, 0, Core.windowSize.Width, Core.windowSize.Height), Color.Black)
-
-        Dim Size As Integer = 256
+        Dim T As Texture2D = currentPokemon.GetTexture(True)
+        Dim Size As Vector2 = New Vector2(CInt(MathHelper.Min(T.Width * 3, 288)), CInt(MathHelper.Min(T.Height * 3, 288)))
 
         If evolved = True Then
-            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Evolution\Light"), New Rectangle(CInt((Core.windowSize.Width / 2) - Size), CInt((Core.windowSize.Height / 2) - Size), Size * 2, Size * 2), Color.White)
+            Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Evolution\Light"), New Rectangle(CInt((Core.windowSize.Width / 2) - Size.X), CInt((Core.windowSize.Height / 2) - Size.Y), CInt(Size.X * 2), CInt(Size.Y * 2)), Color.White)
         End If
 
-        Dim T As Texture2D = currentPokemon.GetTexture(True)
         If evolved = True Then
             T = evolvedPokemon.GetTexture(True)
+            Size = New Vector2(CInt(MathHelper.Min(T.Width * 3, 288)), CInt(MathHelper.Min(T.Height * 3, 288)))
         End If
-        Core.SpriteBatch.Draw(T, New Rectangle(CInt((Core.windowSize.Width / 2) - Size / 2), CInt((Core.windowSize.Height / 2) - Size / 2), Size, Size), Color.White)
+        Core.SpriteBatch.Draw(T, New Rectangle(CInt((Core.windowSize.Width / 2) - Size.X / 2), CInt((Core.windowSize.Height / 2) - Size.Y / 2), CInt(Size.X), CInt(Size.Y)), Color.White)
 
         For Each Spark As Spark In Sparks
             Spark.Draw()
@@ -247,7 +247,7 @@
                         SoundManager.PlaySound("success", True)
 
                         evolutionReady = True
-                        Dim t As String = "Congratulations!*Your " & currentPokemon.GetDisplayName() & " evolved into a~" & evolvedPokemon.GetName() & "!"
+                        Dim t As String = "Congratulations!*Your " & currentPokemon.GetDisplayName() & " evolved into~" & evolvedPokemon.GetName() & "!"
                         If evolvedPokemon.AttackLearns.ContainsKey(evolvedPokemon.Level) = True Then
                             If evolvedPokemon.KnowsMove(evolvedPokemon.AttackLearns(evolvedPokemon.Level)) = False Then
                                 If evolvedPokemon.Attacks.Count = 4 Then
