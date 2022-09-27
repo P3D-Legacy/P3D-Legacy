@@ -75,6 +75,12 @@
 	End Sub
 
 	Private Sub Move()
+
+		Dim DestinationOffset As Vector3 = New Vector3(0)
+		If TargetEntity.Model IsNot Nothing Then
+			DestinationOffset = New Vector3(0, -0.5, 0)
+		End If
+
 		Select Case MovementCurve
 			Case Curves.EaseIn
 				If EasedIn = False Then
@@ -128,17 +134,17 @@
 					TargetEntity.Position.X = Me.Destination.X
 				End If
 			End If
-			If TargetEntity.Position.Y < Me.Destination.Y Then
+			If TargetEntity.Position.Y < Me.Destination.Y + DestinationOffset.Y Then
 				TargetEntity.Position.Y += Me.MoveYSpeed
 
-				If TargetEntity.Position.Y >= Me.Destination.Y - 0.05 Then
-					TargetEntity.Position.Y = Me.Destination.Y
+				If TargetEntity.Position.Y >= Me.Destination.Y + DestinationOffset.Y - 0.05 Then
+					TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
 				End If
-			ElseIf TargetEntity.Position.Y > Me.Destination.Y Then
+			ElseIf TargetEntity.Position.Y > Me.Destination.Y + DestinationOffset.Y Then
 				TargetEntity.Position.Y -= Me.MoveYSpeed
 
-				If TargetEntity.Position.Y <= Me.Destination.Y + 0.05 Then
-					TargetEntity.Position.Y = Me.Destination.Y
+				If TargetEntity.Position.Y <= Me.Destination.Y + DestinationOffset.Y + 0.05 Then
+					TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
 				End If
 			End If
 			If TargetEntity.Position.Z < Me.Destination.Z Then
@@ -166,15 +172,15 @@
 					TargetEntity.Position.X = Me.Destination.X
 				End If
 			End If
-			If TargetEntity.Position.Y < Me.Destination.Y Then
-				TargetEntity.Position.Y = MathHelper.Lerp(TargetEntity.Position.Y, Me.Destination.Y, Me.InterpolationSpeed)
-				If TargetEntity.Position.Y > Me.Destination.Y - 0.05 Then
-					TargetEntity.Position.Y = Me.Destination.Y
+			If TargetEntity.Position.Y < Me.Destination.Y + DestinationOffset.Y Then
+				TargetEntity.Position.Y = MathHelper.Lerp(TargetEntity.Position.Y, Me.Destination.Y + DestinationOffset.Y, Me.InterpolationSpeed)
+				If TargetEntity.Position.Y > Me.Destination.Y + DestinationOffset.Y - 0.05 Then
+					TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
 				End If
-			ElseIf TargetEntity.Position.Y > Me.Destination.Y Then
-				TargetEntity.Position.Y = MathHelper.Lerp(TargetEntity.Position.Y, Me.Destination.Y, Me.InterpolationSpeed)
-				If TargetEntity.Position.Y < Me.Destination.Y + 0.05 Then
-					TargetEntity.Position.Y = Me.Destination.Y
+			ElseIf TargetEntity.Position.Y > Me.Destination.Y + DestinationOffset.Y Then
+				TargetEntity.Position.Y = MathHelper.Lerp(TargetEntity.Position.Y, Me.Destination.Y + DestinationOffset.Y, Me.InterpolationSpeed)
+				If TargetEntity.Position.Y < Me.Destination.Y + DestinationOffset.Y + 0.05 Then
+					TargetEntity.Position.Y = Me.Destination.Y + DestinationOffset.Y
 				End If
 			End If
 			If TargetEntity.Position.Z < Me.Destination.Z Then
@@ -189,7 +195,7 @@
 				End If
 			End If
 		End If
-		If TargetEntity.Position = Destination Then
+		If TargetEntity.Position = Destination + DestinationOffset Then
 			Me.Ready = True
 		End If
 	End Sub

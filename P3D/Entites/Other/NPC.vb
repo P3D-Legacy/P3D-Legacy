@@ -481,8 +481,12 @@
                 Me.Rotation.Y = Screen.Camera.Yaw
             End If
         Else
-            If Me.Rotation.Y <> faceRotation Then
-                Me.Rotation.Y = GetRotationFromInteger(faceRotation).Y
+            Dim ChangeRotation As Integer = faceRotation + 2
+            If ChangeRotation > 3 Then
+                ChangeRotation -= 4
+            End If
+            If Me.Rotation.Y <> ChangeRotation Then
+                Me.Rotation.Y = GetRotationFromInteger(ChangeRotation).Y
             End If
         End If
 

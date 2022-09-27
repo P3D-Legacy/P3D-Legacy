@@ -651,7 +651,7 @@
                     If part.Effect.GetType().Name.ToLower() = Screen.Effect.GetType().Name.ToLower() Then
                         With CType(part.Effect, BasicEffect)
                             Lighting.UpdateLighting(CType(part.Effect, BasicEffect), True)
-
+                            .Alpha = Me.Opacity
                             .DiffuseColor = Screen.Effect.DiffuseColor
 
                             If Not Screen.Level.World Is Nothing Then

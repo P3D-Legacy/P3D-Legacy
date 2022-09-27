@@ -17,7 +17,6 @@
 
     Dim p As Pokemon
 
-    Dim ModelVisible As Boolean = True
     Dim SpriteVisible As Boolean = False
 
     Dim BattleScreen As BattleSystem.BattleScreen
@@ -34,7 +33,6 @@
         Me.BattleScreen = BattleScreen
         p = BattleScreen.OppPokemon
 
-        Me.ModelVisible = BattleScreen.OppPokemonModel.Visible
         Me.SpriteVisible = BattleScreen.OppPokemonNPC.Visible
 
         SetCamera()
@@ -47,11 +45,7 @@
 
         Dim RenderObjects As New List(Of Entity)
 
-        If BattleScreen.OppPokemonModel IsNot Nothing Then
-            RenderObjects.Add(BattleScreen.OppPokemonModel)
-        Else
-            RenderObjects.Add(BattleScreen.OppPokemonNPC)
-        End If
+        RenderObjects.Add(BattleScreen.OppPokemonNPC)
 
         If RenderObjects.Count > 0 Then
             RenderObjects = (From r In RenderObjects Order By r.CameraDistance Descending).ToList()
@@ -192,9 +186,6 @@ nextIndex:
                                 Loop While SmokeParticlesClose <= 38
                                 ' Pokémon Shrinks
                                 CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, False, 0.0F, 0.0F, 0.0F, 0.035F, 3, 0)
-                                If BattleScreen.OppPokemonModel IsNot Nothing Then
-                                    CatchAnimation.AnimationScale(BattleScreen.OppPokemonModel, False, False, 0.0F, 0.0F, 0.0F, 0.035F, 3, 0)
-                                End If
 
                                 ' Ball falls
                                 CatchAnimation.AnimationMove(BallEntity, False, 3, -0.35, 0, 0.1F, False, False, 8, 0)
@@ -242,9 +233,7 @@ nextIndex:
 
                                     ' Pokemon appears
                                     CatchAnimation.AnimationScale(BattleScreen.OppPokemonNPC, False, True, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.035F, 12 + Shakes.Count * 10, 0)
-                                    If BattleScreen.OppPokemonModel IsNot Nothing Then
-                                        CatchAnimation.AnimationScale(BattleScreen.OppPokemonModel, False, True, PokemonScale.X, PokemonScale.Y, PokemonScale.Z, 0.035F, 12 + Shakes.Count * 10, 0)
-                                    End If
+
                                 End If
 
                                 AnimationList.Add(CatchAnimation)
