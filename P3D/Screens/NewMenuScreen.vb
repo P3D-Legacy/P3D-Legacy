@@ -293,7 +293,11 @@
             Case "|||" & Core.Player.Name
                 Core.SetScreen(New NewTrainerScreen(Me))
             Case "Save"
-                Core.SetScreen(New SaveScreen(Me))
+                If CBool(GameModeManager.GetGameRuleValue("SavingDisabled", "0")) = True Then
+                    Screen.TextBox.Show("Saving is not possible right now.")
+                Else
+                    Core.SetScreen(New SaveScreen(Me))
+                End If
             Case "Options"
                 Core.SetScreen(New NewOptionScreen(Me))
             Case "Exit"
