@@ -26,6 +26,7 @@ Public Class OverworldCamera
     Private _scrollSpeed As Single = 0F
     Private _scrollDirection As Integer = 1
     Public _moved As Single = 0F
+    Public PreventMovement As Boolean = False
 
     Public LastStepPosition As Vector3 = New Vector3(0, -2, 0)
     Public YawLocked As Boolean = False
@@ -634,7 +635,7 @@ Public Class OverworldCamera
             isActionscriptReady = OS.ActionScript.IsReady
         End If
 
-        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False And Screen.Level.CanMove() = True Then
+        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False AndAlso Screen.Level.CanMove() = True AndAlso PreventMovement = False Then
             If _thirdPerson = False And _cameraFocusType = CameraFocusTypes.Player Then
                 FirstPersonMovement()
             Else

@@ -204,6 +204,14 @@
                     Screen.Camera.StopMovement()
 
                     IsReady = True
+                Case "preventmovement"
+                    CType(Screen.Camera, OverworldCamera).PreventMovement = True
+
+                    IsReady = True
+                Case "allowmovement"
+                    CType(Screen.Camera, OverworldCamera).PreventMovement = False
+
+                    IsReady = True
                 Case "money", "addmoney"
                     Core.Player.Money += int(argument)
 
