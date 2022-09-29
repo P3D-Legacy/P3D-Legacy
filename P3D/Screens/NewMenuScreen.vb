@@ -294,6 +294,11 @@
                 Core.SetScreen(New NewTrainerScreen(Me))
             Case "Save"
                 If CBool(GameModeManager.GetGameRuleValue("SavingDisabled", "0")) = True Then
+                    Dim s As Screen = Core.CurrentScreen
+                    While Not s.PreScreen Is Nothing And s.Identification <> Identifications.OverworldScreen
+                        s = s.PreScreen
+                    End While
+                    Core.SetScreen(s)
                     Screen.TextBox.Show("Saving is not possible right now.")
                 Else
                     Core.SetScreen(New SaveScreen(Me))
