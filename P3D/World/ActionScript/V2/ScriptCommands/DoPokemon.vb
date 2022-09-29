@@ -866,7 +866,7 @@
                         Core.Player.Pokemons.Remove(Pokemon)
                     End If
                     If Pokemon.IsEgg() = True Then
-                        Screen.TextBox.Show("?")
+                        Screen.TextBox.Show("Huh?")
                         SetScreen(New TransitionScreen(CType(CurrentScreen, OverworldScreen), New HatchEggScreen(CType(CurrentScreen, OverworldScreen), {Pokemon}.ToList, CanRename, Message), Color.White, False))
                         CanContinue = False
                     End If
