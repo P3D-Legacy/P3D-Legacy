@@ -293,7 +293,7 @@
             Case "|||" & Core.Player.Name
                 Core.SetScreen(New NewTrainerScreen(Me))
             Case "Save"
-                If CBool(GameModeManager.GetGameRuleValue("SavingDisabled", "0")) = True Then
+                If CBool(GameModeManager.GetGameRuleValue("SavingDisabled", "0")) = True AndAlso Core.Player.SandBoxMode = False Then
                     Dim s As Screen = Core.CurrentScreen
                     While Not s.PreScreen Is Nothing And s.Identification <> Identifications.OverworldScreen
                         s = s.PreScreen
