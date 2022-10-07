@@ -86,7 +86,7 @@ Public Class JoinServerScreen
             Next
         Next
 
-        Canvas.DrawRectangle(New Rectangle(0, 75, Core.ScreenSize.Width, Core.ScreenSize.Height - 240), New Color(0, 0, 0, 128), True)
+        Canvas.DrawRectangle(New Rectangle(0, 72, Core.ScreenSize.Width, Core.ScreenSize.Height - 240), New Color(0, 0, 0, 128), True)
 
         Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join a server:", New Vector2(CInt(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join A Server").X) + 4, 14 + 4), Color.Black, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)
         Core.SpriteBatch.DrawInterfaceString(FontManager.MainFont, "Join a server:", New Vector2(CInt(Core.ScreenSize.Width / 2 - FontManager.MainFont.MeasureString("Join A Server").X), 14), Color.White, 0.0F, New Vector2(0), 2.0F, SpriteEffects.None, 0.0F)

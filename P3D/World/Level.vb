@@ -317,6 +317,18 @@ Public Class Level
     End Property
 
     ''' <summary>
+    ''' If only the Save option should be available in the menu for this map.
+    ''' </summary>
+    Public Property SaveOnly As Boolean
+        Get
+            Return Me._saveonly
+        End Get
+        Set(value As Boolean)
+            Me._saveonly = value
+        End Set
+    End Property
+
+    ''' <summary>
     ''' The environment type for this map.
     ''' </summary>
     Public Property EnvironmentType As Integer = 0
@@ -368,7 +380,7 @@ Public Class Level
     Public Property HiddenAbilityChance As Integer = 0
 
     ''' <summary>
-    ''' The LightingType of this map. More information in the Level\UpdateLighting.
+    ''' The LightingType of this map. More information in the Lighting\UpdateLighting.
     ''' </summary>
     Public Property LightingType As Integer = 0
 

@@ -136,8 +136,9 @@ Public Class PokemonForms
                 Return listP.GetMenuImageSize(P)
             End If
         Next
-
-        Return New Size(32, 32)
+        Dim sheet As String = GetSheetName(P)
+        Dim _size As Integer = CInt(TextureManager.GetTexture("GUI\PokemonMenu\" & sheet).Width / 32)
+        Return New Size(_size, _size)
     End Function
 
     ''' <summary>
@@ -277,7 +278,9 @@ Public Class PokemonForms
         End Function
 
         Public Overridable Function GetMenuImageSize(ByVal P As Pokemon) As Size
-            Return New Size(32, 32)
+            Dim sheet As String = GetSheetName(P)
+            Dim _size As Integer = CInt(TextureManager.GetTexture("GUI\PokemonMenu\" & sheet).Width / 32)
+            Return New Size(_size, _size)
         End Function
 
         Public Overridable Function GetOverworldAddition(ByVal P As Pokemon) As String
@@ -2941,17 +2944,17 @@ Public Class PokemonForms
 
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
             If P.AdditionalData = "1" Then
-                Return P.OriginalName & "e"
+                Return P.OriginalName & "_e"
             Else
-                Return P.OriginalName & "w"
+                Return P.OriginalName & "_w"
             End If
         End Function
 
         Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
             If P.AdditionalData = "1" Then
-                Return "e"
+                Return "_e"
             Else
-                Return "w"
+                Return "_w"
             End If
         End Function
 
@@ -2984,17 +2987,17 @@ Public Class PokemonForms
 
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
             If P.AdditionalData = "1" Then
-                Return P.OriginalName & "e"
+                Return P.OriginalName & "_e"
             Else
-                Return P.OriginalName & "w"
+                Return P.OriginalName & "_w"
             End If
         End Function
 
         Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
             If P.AdditionalData = "1" Then
-                Return "e"
+                Return "_e"
             Else
-                Return "w"
+                Return "_w"
             End If
         End Function
 

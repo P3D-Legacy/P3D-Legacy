@@ -8,7 +8,7 @@ Public Class PressStartScreen
 
     Inherits Screen
 
-    Private _fadeInMain As Single = 1.0F
+    Public _fadeInMain As Single = 1.0F
     Private _introDelay As Single = 4.0F
     Private _logoFade As Single = 1.0F
 
@@ -251,21 +251,21 @@ Public Class NewMainMenuScreen
 
     Inherits Screen
 
-    Private _screenOffset As Vector2 = New Vector2(0, 0) 'Position of the top row relative to the _screenOrigin
-    Private _screenOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the top needs to move to
-    Private _screenOrigin As Vector2 = New Vector2(CSng(windowSize.Width / 2 - 80 - 180), CInt(windowSize.Height / 4)) 'Center of the game window. It's adjusted when resizing the window.
+    Public _screenOffset As Vector2 = New Vector2(0, 0) 'Position of the top row relative to the _screenOrigin
+    Public _screenOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the top needs to move to
+    Public _screenOrigin As Vector2 = New Vector2(CSng(windowSize.Width / 2 - 80 - 180), CInt(windowSize.Height / 4)) 'Center of the game window. It's adjusted when resizing the window.
     Private _mainOffset As Vector2 = _screenOffset
 
-    Private _optionsOffset As Vector2 = New Vector2(0, 0) 'Position of the options row relative to the _screenOrigin
-    Private _optionsOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the options row needs to move to
+    Public _optionsOffset As Vector2 = New Vector2(0, 0) 'Position of the options row relative to the _screenOrigin
+    Public _optionsOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the options row needs to move to
 
     Private _gameJoltOffset As Vector2 = New Vector2(0, 0) 'Position of the gamejolt row relative to the _screenOrigin
     Private _gameJoltOffsetTarget As Vector2 = New Vector2(0, 0) 'Target where the gamejolt needs to move to
 
 
     Private _loading As Boolean = True
-    Private _fadeInMain As Single = 0F
-    Private _fadeInOptions As Single = 0F
+    Public _fadeInMain As Single = 0F
+    Public _fadeInOptions As Single = 0F
     Private _fadeInGameJolt As Single = 0F
     Private _GameJoltOpacity As Single = 0F
     Private _expandDisplay As Single = 0F
@@ -1309,17 +1309,17 @@ Public Class NewMainMenuScreen
                     End If
                 Else
                     If alpha >= 250 And CurrentScreen.Identification = Identifications.MainMenuScreen Then
-                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
-                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 116 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 116 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
 
-                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
-                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 116 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                        FontRenderer.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 116 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
                     Else
-                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
-                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 120 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2 + 2), CInt(offset.Y + 116 - (FontManager.InGameFont.MeasureString(textA).Y) / 2 + 2)), New Color(0, 0, 0, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textA, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textA).X) / 2), CInt(offset.Y + 116 - (FontManager.InGameFont.MeasureString(textA).Y) / 2)), New Color(255, 255, 255, alpha))
 
-                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
-                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 120 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2 + 2), CInt(offset.Y + 116 + FontManager.InGameFont.MeasureString(textB).Y / 2 + 2)), New Color(0, 0, 0, alpha))
+                        SpriteBatch.DrawString(FontManager.InGameFont, textB, New Vector2(CInt(offset.X + 80 - (FontManager.InGameFont.MeasureString(textB).X) / 2), CInt(offset.Y + 116 + FontManager.InGameFont.MeasureString(textB).Y / 2)), New Color(255, 255, 255, alpha))
                     End If
                 End If
 
@@ -1564,12 +1564,10 @@ Public Class GameModeSelectionScreen
             Dim dispDescription As String = GameMode.Description
             Dim dispVersion As String = GameMode.Version
             Dim dispAuthor As String = GameMode.Author
-            Dim dispContentPath As String = GameMode.ContentPath
 
             tempGameModesDisplay = Localization.GetString("gamemode_menu_name") & ": " & dispName & Environment.NewLine &
                 Localization.GetString("gamemode_menu_version") & ": " & dispVersion & Environment.NewLine &
                 Localization.GetString("gamemode_menu_author") & ": " & dispAuthor & Environment.NewLine &
-                Localization.GetString("gamemode_menu_contentpath") & ": " & dispContentPath & Environment.NewLine &
                 Localization.GetString("gamemode_menu_description") & ": " & dispDescription
         End If
 

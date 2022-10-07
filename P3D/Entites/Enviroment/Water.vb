@@ -26,22 +26,43 @@
         If Core.GameOptions.GraphicStyle = 1 Then
             Dim textureData As List(Of String) = Me.AdditionalValue.Split(CChar(",")).ToList()
             If textureData.Count >= 5 Then
+                Dim RotationOffsetVertical As Boolean = False '''False = Horizontal, True = Vertical
+                If textureData.Count >= 6 Then
+                    RotationOffsetVertical = CBool(textureData(5))
+                End If
                 Dim r As New Rectangle(CInt(textureData(1)), CInt(textureData(2)), CInt(textureData(3)), CInt(textureData(4)))
                 Dim texturePath As String = textureData(0)
                 Me.waterTextureName = AdditionalValue
-                If Water.WaterTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_0", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_1", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_2", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_3", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 3, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_4", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 4, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_5", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 5, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_6", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 6, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_7", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 7, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_8", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 8, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_9", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 9, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_10", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 10, r.Y, r.Width, r.Height)))
-                    Water.WaterTexturesTemp.Add(AdditionalValue & "_11", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 11, r.Y, r.Width, r.Height)))
+                If RotationOffsetVertical = True Then
+                    If Water.WaterTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_0", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_1", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_2", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_3", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y + r.Height, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_4", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y + r.Height, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_5", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y + r.Height, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_6", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y + r.Height * 2, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_7", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y + r.Height * 2, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_8", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y + r.Height * 2, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_9", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y + r.Height * 3, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_10", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y + r.Height * 3, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_11", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y + r.Height * 3, r.Width, r.Height)))
+                    End If
+                Else
+                    If Water.WaterTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_0", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_1", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_2", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_3", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 3, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_4", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 4, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_5", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 5, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_6", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 6, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_7", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 7, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_8", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 8, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_9", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 9, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_10", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 10, r.Y, r.Width, r.Height)))
+                        Water.WaterTexturesTemp.Add(AdditionalValue & "_11", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 11, r.Y, r.Width, r.Height)))
+                    End If
                 End If
             Else
                 If Water.WaterTexturesTemp.ContainsKey("_0") = False Then

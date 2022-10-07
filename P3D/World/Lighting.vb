@@ -94,9 +94,9 @@ Public Class Lighting
             refEffect.SpecularPower = 2000.0F
 
             ' LightType results:
-            ' 0 = Day
-            ' 1 = Night
-            ' 2 = Morning
+            ' 0 = Night
+            ' 1 = Morning
+            ' 2 = Day
             ' 3 = Evening
             ' Anything higher than 3 = No Lighting
 

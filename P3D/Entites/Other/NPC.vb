@@ -88,10 +88,10 @@
         Me.TextureID = UseTextureID
 
         Dim texturePath As String = "Textures\NPC\"
-        If Me.TextureID.StartsWith("[POKEMON|N]") = True Or Me.TextureID.StartsWith("[Pokémon|N]") = True Then
+        If Me.TextureID.StartsWith("[POKEMON|N]") = True Or Me.TextureID.StartsWith("[POKEMON|N]") = True Then
             Me.TextureID = Me.TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Normal\"
-        ElseIf Me.TextureID.StartsWith("[POKEMON|S]") = True Or Me.TextureID.StartsWith("[Pokémon|S]") = True Then
+        ElseIf Me.TextureID.StartsWith("[POKEMON|S]") = True Or Me.TextureID.StartsWith("[POKEMON|S]") = True Then
             Me.TextureID = Me.TextureID.Remove(0, 11)
             texturePath = "Pokemon\Overworld\Shiny\"
         End If
@@ -359,16 +359,17 @@
 
                                     Dim trainerContent() As String = System.IO.File.ReadAllLines(trainerFilePath)
                                     For Each line As String In trainerContent
-                                        If line.StartsWith("@Trainer:") = True Then
-                                            Dim trainerID As String = line.GetSplit(1, ":")
+                                        Dim l As String = line.Trim().ToLower()
+                                        If l.StartsWith("@trainer:") = True Then
+                                            Dim trainerID As String = l.GetSplit(1, ":")
                                             If Trainer.IsBeaten(trainerID) = True Then
                                                 Exit Sub
                                             Else
                                                 Dim t As New Trainer(trainerID)
                                                 InSightMusic = t.GetInSightMusic()
                                             End If
-                                        ElseIf line.ToLower().StartsWith("@battle.starttrainer(") = True Then
-                                            Dim trainerID As String = line.Remove(line.Length - 1, 1).Remove(0, "@battle.starttrainer(".Length)
+                                        ElseIf l.StartsWith("@battle.starttrainer(") = True Then
+                                            Dim trainerID As String = l.Remove(l.Length - 1, 1).Remove(0, "@battle.starttrainer(".Length)
                                             If Trainer.IsBeaten(trainerID) = True Then
                                                 Exit Sub
                                             Else
@@ -480,8 +481,12 @@
                 Me.Rotation.Y = Screen.Camera.Yaw
             End If
         Else
-            If Me.Rotation.Y <> faceRotation Then
-                Me.Rotation.Y = GetRotationFromInteger(faceRotation).Y
+            Dim ChangeRotation As Integer = faceRotation + 2
+            If ChangeRotation > 3 Then
+                ChangeRotation -= 4
+            End If
+            If Me.Rotation.Y <> ChangeRotation Then
+                Me.Rotation.Y = GetRotationFromInteger(ChangeRotation).Y
             End If
         End If
 

@@ -18,7 +18,7 @@ Public Class Terrain
         PondWater
         SeaWater
         Underwater
-        DisortionWorld
+        DistortionWorld
         Puddles
         Snow
         Magma
@@ -87,8 +87,8 @@ Public Class Terrain
                 Return TerrainTypes.SeaWater
             Case "underwater"
                 Return TerrainTypes.Underwater
-            Case "disortionworld"
-                Return TerrainTypes.DisortionWorld
+            Case "distortionworld"
+                Return TerrainTypes.DistortionWorld
             Case "puddles"
                 Return TerrainTypes.Puddles
             Case "snow"

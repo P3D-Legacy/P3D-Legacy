@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Crush Claw"
-            Me.Description = "The target is bitten with viciously sharp fangs. It may make the target flinch."
+            Me.Description = "The user slashes the target with hard and sharp claws. This may also lower the target's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget

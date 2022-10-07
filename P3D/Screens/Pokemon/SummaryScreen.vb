@@ -114,11 +114,11 @@
     End Sub
 
     Public Overrides Sub Render()
-
+        Dim PokemonTexture = GetPokemon().GetTexture(True)
         _pixelFade = 1  'Remove when pixel fading effect is properly implemented.
 
-        Dim pixelSize As Integer = CInt(256 * _pixelFade).Clamp(16, 256)
-        If pixelSize = 256 Or Core.GraphicsManager.IsFullScreen = True Then
+        Dim pixelSize As Integer = CInt(MathHelper.Min(PokemonTexture.Width * 3, 288) * _pixelFade).Clamp(16, MathHelper.Min(PokemonTexture.Width * 3, 288))
+        If pixelSize = MathHelper.Min(PokemonTexture.Width * 3, 288) Or Core.GraphicsManager.IsFullScreen = True Then
             pixeledPokemonTexture = GetPokemon().GetTexture(True)
         Else
             Dim pixeled As New RenderTarget2D(GraphicsDevice, pixelSize, pixelSize, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
@@ -126,15 +126,15 @@
             GraphicsDevice.Clear(Color.Transparent)
             Dim s As New SpriteBatch(GraphicsDevice)
             s.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise)
-            s.Draw(GetPokemon().GetTexture(True), New Rectangle(0, 0, pixelSize, pixelSize), Color.White)
+            s.Draw(PokemonTexture, New Rectangle(0, 0, pixelSize, pixelSize), Color.White)
             s.End()
 
-            Dim dePixeled As New RenderTarget2D(GraphicsDevice, 256, 256, False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
+            Dim dePixeled As New RenderTarget2D(GraphicsDevice, MathHelper.Min(PokemonTexture.Width * 3, 288), MathHelper.Min(PokemonTexture.Height * 3, 288), False, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents)
             GraphicsDevice.SetRenderTarget(dePixeled)
             GraphicsDevice.Clear(Color.Transparent)
             s = New SpriteBatch(GraphicsDevice)
             s.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullCounterClockwise)
-            s.Draw(pixeled, New Rectangle(0, 0, 256, 256), Color.White)
+            s.Draw(pixeled, New Rectangle(0, 0, MathHelper.Min(PokemonTexture.Width * 3, 288), MathHelper.Min(PokemonTexture.Height * 3, 288)), Color.White)
             s.End()
             pixeledPokemonTexture = dePixeled
 
@@ -153,7 +153,8 @@
             For i = 0 To _party.Count - 1
                 Dim pokemonPos As Double = GetPokemonDest(i) - 16 - (64 + 16) * (_pokemonDest - _pokemonPos)
                 Dim pokeTexture = _party(i).GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokemonPos) - CInt(pokeTexture.Width / 2), DeltaY - 80, pokeTexture.Width * 2, pokeTexture.Height * 2), mainBackgroundColor)
+                Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width * 2), CSng(32 / pokeTexture.Height * 2))
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokemonPos), CInt(DeltaY - 32 - pokeTexture.Height * pokeTextureScale.Y), CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), mainBackgroundColor)
             Next
 
             SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\PokemonInfo"), New Rectangle(CInt(_pointerPos), DeltaY - 16, 32, 16), New Rectangle(0, 16, 32, 16), mainBackgroundColor)
@@ -200,17 +201,15 @@
 
         'Draw Pokémon preview:
         If _enrollY >= 160 Then
-            Dim height As Integer = CInt(_enrollY - 160).Clamp(0, 256)
             Dim pokemonTexture = GetPokemon().GetTexture(_isFront)
-            Dim textureHeight As Integer = CInt(pokemonTexture.Height * (height / 256))
+            Dim height As Integer = CInt(_enrollY - 160).Clamp(0, MathHelper.Min(pokemonTexture.Height * 3, 288))
 
-            Dim pokemonTextureOffset As Integer = 0 + 16
-            If GetPokemon().IsEgg() = True Then
-                pokemonTextureOffset = 32 + 16 + 8
-            End If
+            Dim textureHeight As Integer = CInt(pokemonTexture.Height * (height / MathHelper.Min(pokemonTexture.Height * 3, 288)))
 
-            SpriteBatch.Draw(pokemonTexture, New Rectangle(DeltaX + 20 + 10, DeltaY + 64 - _yOffset + pokemonTextureOffset + 10, 256, height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), New Color(0, 0, 0, 150))
-            SpriteBatch.Draw(pokemonTexture, New Rectangle(DeltaX + 20, DeltaY + 64 - _yOffset + pokemonTextureOffset, 256, height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), Color.White)
+            Dim pokemonTextureOffset As Integer = CInt(MathHelper.Min(pokemonTexture.Height * 3, 288) / 2)
+
+            SpriteBatch.Draw(pokemonTexture, New Rectangle(DeltaX + 144 - CInt(MathHelper.Min(pokemonTexture.Width * 3, 288) / 2) + 10, DeltaY + 208 - _yOffset - pokemonTextureOffset + 10, MathHelper.Min(pokemonTexture.Width * 3, 288), height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), New Color(0, 0, 0, 150))
+            SpriteBatch.Draw(pokemonTexture, New Rectangle(DeltaX + 144 - CInt(MathHelper.Min(pokemonTexture.Width * 3, 288) / 2), DeltaY + 208 - _yOffset - pokemonTextureOffset, MathHelper.Min(pokemonTexture.Width * 3, 288), height), New Rectangle(0, 0, pokemonTexture.Width, textureHeight), Color.White)
         End If
 
         'Draw main infos:
@@ -399,8 +398,16 @@
 
             SpriteBatch.DrawString(FontManager.MainFont, "Catch Method", New Vector2(DeltaX + 360, DeltaY + 366 + 64), New Color(255, 255, 255, CInt(220 * _interfaceFade * _pageFade)))
 
-            Dim text As String = .CatchMethod.Replace(.CatchMethod(0), Char.ToUpper(.CatchMethod(0))) & " " & .CatchLocation
-            SpriteBatch.DrawString(FontManager.MainFont, text.CropStringToWidth(FontManager.MainFont, 1.0F, 300 - 64), New Vector2(DeltaX + 358, DeltaY + 336 + 128), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
+            If .CatchMethod = "" Then
+                .CatchMethod = "Somehow obtained at"
+            End If
+            If .CatchLocation = "" Then
+                .CatchLocation = "an unknown place"
+            End If
+
+            Dim text As String = .CatchMethod.Replace(.CatchMethod(0), Char.ToUpper(.CatchMethod(0))) & " " & .CatchLocation & "."
+
+            SpriteBatch.DrawString(FontManager.MainFont, text.CropStringToWidth(FontManager.MainFont, 1.0F, 300), New Vector2(DeltaX + 358, DeltaY + 336 + 128), New Color(255, 255, 255, CInt(220 * _fadeIn * _pageFade)))
 
             'EV/IV values
             Canvas.DrawRectangle(New Rectangle(DeltaX + 734 - 12, DeltaY + 362 - 64, 300 + 48, 32), New Color(0, 0, 0, CInt(100 * _interfaceFade * _pageFade)))

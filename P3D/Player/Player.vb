@@ -1807,6 +1807,7 @@
                     Pokemons.Remove(p)
                 Next
 
+                Screen.TextBox.Show("Huh?")
                 SetScreen(New TransitionScreen(CurrentScreen, New HatchEggScreen(CurrentScreen, eggsReady), Color.White, False))
 
                 _stepEventEggHatched = True

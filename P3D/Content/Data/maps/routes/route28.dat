@@ -358,5 +358,5 @@ warps:
 floor:
 {"Floor"{ENT[{"Size"{intArr[1,2]}}{"Position"{intArr[61,0,6]}}{"TexturePath"{str[Routes]}}{"Texture"{rec[112,16,16,16]}}{"Visible"{bool[0]}}{"hasSnow"{bool[0]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[-30,2,1]}}{"Map"{str[mtsilver\exterior.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[61,-7,6]}}{"Map"{str[routes\route23.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[-30,2,1]}}{"Map"{str[mtsilver\exterior.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[61,-7,6]}}{"Map"{str[routes\route23.dat]}}]}}

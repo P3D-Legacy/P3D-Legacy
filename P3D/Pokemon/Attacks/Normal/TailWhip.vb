@@ -62,8 +62,8 @@
             End If
         End Sub
 
-        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As Entity)
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip, CurrentModel)
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
             MoveAnimation.AnimationTurnNPC(2, 0, 0, 1, -1)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Normal\TailWhip", 1, 0)
             MoveAnimation.AnimationMove(Nothing, False, 0, 0, -0.1, 0.025, False, False, 1, 0.5)

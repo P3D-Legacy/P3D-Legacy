@@ -28,7 +28,6 @@
 
     Public Sub SetTexture(ByVal TextureID As String, ByVal UseGameJoltID As Boolean)
         Me.SkinName = TextureID
-
         Dim texturePath As String = "Textures\NPC\"
         If TextureID.StartsWith("[POKEMON|N]") Or TextureID.StartsWith("[Pokémon|N]") Then
             TextureID = TextureID.Remove(0, 11)

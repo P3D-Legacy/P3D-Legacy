@@ -112,6 +112,7 @@
         SoundManager.Clear()
         ModelManager.Clear()
         TextureManager.TextureList.Clear()
+        TextureManager.TextureRectList.Clear()
         Water.ClearAnimationResources()
         Whirlpool.LoadedWaterTemp = False
         Waterfall.ClearAnimationResources()

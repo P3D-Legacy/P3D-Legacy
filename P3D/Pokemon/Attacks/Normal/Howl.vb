@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = "Howl"
-            Me.Description = "	The user howls loudly to raise the spirit of itself and allies. This raises their Attack stats."
+            Me.Description = "The user howls loudly to raise the spirit of itself and allies. This raises their Attack stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.AllAllies

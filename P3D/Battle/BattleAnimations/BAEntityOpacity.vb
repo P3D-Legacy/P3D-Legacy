@@ -15,7 +15,6 @@
         Me.FadeIn = FadeIn
         Me.TransitionSpeed = TransitionSpeed
         Me.TargetEntity = entity
-
         Me.TargetEntity.NormalOpacity = StartState
         Me.Visible = False
 

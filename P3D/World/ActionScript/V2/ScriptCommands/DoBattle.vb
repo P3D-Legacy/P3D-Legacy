@@ -127,11 +127,22 @@
                         End If
                     Else
                         If argument.Length > 0 Then
-                            Dim ID As Integer = int(argument.GetSplit(0))
+                            Dim ID As Integer = int(argument.GetSplit(0).Split(CChar("_"))(0))
+                            Dim AD As String = ""
+                            If argument.GetSplit(0).Contains(CChar("_")) Then
+                                AD = argument.GetSplit(0).Split(CChar("_"))(1)
+                            End If
                             Dim Level As Integer = int(argument.GetSplit(1))
 
-                            p = Pokemon.GetPokemonByID(ID)
-                            p.Generate(Level, True)
+                            If AD IsNot "" Then
+                                p = Pokemon.GetPokemonByID(ID, AD)
+                                p.Generate(Level, True, AD)
+                            Else
+                                p = Pokemon.GetPokemonByID(ID)
+                                p.Generate(Level, True)
+
+                            End If
+
 
                             Dim args() As String = argument.Split(CChar(","))
 

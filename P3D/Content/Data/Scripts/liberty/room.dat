@@ -3,7 +3,7 @@ version=2
 	:if:<register.registered(shinyvictini)>=false
 		@register.register(shinyvictini,bool,false)
 		:if:<system.random(1,<math.floor(<pokemon.mastershinyrate>/2)>)>=1
-			@register.register(shinyvictini,bool,true)
+			@register.change(shinyvictini,true)
 		:endif
 	:endif
 	:if:<register.value(shinyvictini)>=true

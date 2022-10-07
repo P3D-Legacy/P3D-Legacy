@@ -63,7 +63,7 @@
             End If
         End Sub
 
-        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As Entity)
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
             Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Normal\Leer", 0, 0)
             Dim SpawnEntity = MoveAnimation.SpawnEntity(New Vector3(0, 0.1, 0.1), TextureManager.GetTexture("Textures\Battle\Normal\Leer"), New Vector3(0.5F), 1.0F, 0, 2)
@@ -74,8 +74,8 @@
             MoveAnimation.AnimationFade(SpawnEntity, True, 1.0F, False, 0.0F, 2, 0)
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
-        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As Entity)
-            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip, CurrentModel)
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            Dim MoveAnimation As AnimationQueryObject = New AnimationQueryObject(CurrentEntity, BattleFlip)
             MoveAnimation.AnimationMove(Nothing, False, 0, 0, -0.1, 0.025, False, False, 0, 0.5)
             MoveAnimation.AnimationMove(Nothing, False, 0, 0, 0.1, 0.025, False, False, 0.75, 0.5)
             MoveAnimation.AnimationMove(Nothing, False, 0, 0, -0.1, 0.025, False, False, 1.75, 0.5)

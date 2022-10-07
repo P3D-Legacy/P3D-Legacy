@@ -386,7 +386,7 @@
 
     Private Sub AddOffsetMap(ByVal Tags As Dictionary(Of String, Object))
         If Core.GameOptions.LoadOffsetMaps > 0 Then
-            Dim OffsetList As List(Of Integer) = CType(GetTag(Tags, "Offset"), List(Of Integer))
+            Dim OffsetList As List(Of Single) = CType(GetTag(Tags, "Offset"), List(Of Single))
             Dim MapOffset As Vector3 = New Vector3(OffsetList(0), 0, OffsetList(1))
             If OffsetList.Count >= 3 Then
                 MapOffset = New Vector3(OffsetList(0), OffsetList(1), OffsetList(2))
@@ -1010,11 +1010,24 @@
         Else
             Screen.Level.RideType = 0
         End If
+        If TagExists(Tags, "SaveOnly") = True Then
+            Screen.Level.SaveOnly = CBool(GetTag(Tags, "SaveOnly"))
+        Else
+            Screen.Level.SaveOnly = False
+        End If
         If _reload = False Then
             If TagExists(Tags, "EnvironmentType") = True Then
                 Screen.Level.EnvironmentType = CInt(GetTag(Tags, "EnvironmentType"))
             Else
                 Screen.Level.EnvironmentType = 0
+            End If
+
+            If TagExists(Tags, "Season") = True Then
+                If CInt(GetTag(Tags, "Season")) <> -1 Then
+                    World.setSeason = CType(CInt(GetTag(Tags, "Season")), World.Seasons)
+                Else
+                    World.setSeason = Nothing
+                End If
             End If
 
             If TagExists(Tags, "Weather") = True Then
@@ -1026,7 +1039,11 @@
             If TagExists(Tags, "DayTime") = True Then
                 Screen.Level.DayTime = CInt(GetTag(Tags, "DayTime"))
             Else
-                Screen.Level.DayTime = 0
+                If World.setDaytime = Nothing Then
+                    Screen.Level.DayTime = World.GetTime + 1
+                Else
+                    Screen.Level.DayTime = World.setDaytime
+                End If
             End If
         End If
 
@@ -1042,23 +1059,20 @@
             Screen.Level.IsDark = False
         End If
 
-        If Screen.Level.DayTime = World.DayTimes.Night Then
-            If World.IsAurora = False Then
-                Dim chance = Random.Next(0, 250)
-                If chance = 0 Then
-                    World.IsAurora = True
-                End If
-            End If
-        Else
-            World.IsAurora = False
-        End If
-
         If TagExists(Tags, "IsAurora") = True Then
             World.IsAurora = CBool(GetTag(Tags, "IsAurora"))
         Else
-            World.IsAurora = False
+            If Screen.Level.DayTime = World.DayTimes.Night Then
+                If World.IsAurora = False Then
+                    Dim chance = Random.Next(0, 250)
+                    If chance = 0 Then
+                        World.IsAurora = True
+                    End If
+                End If
+            Else
+                World.IsAurora = False
+            End If
         End If
-
 
         If TagExists(Tags, "Terrain") = True Then
             Screen.Level.Terrain.TerrainType = Terrain.FromString(CStr(GetTag(Tags, "Terrain")))
@@ -1143,7 +1157,20 @@
             DayTime = CType(GetTag(Tags, "DayTime"), List(Of Integer))
         End If
 
-        If DayTime.Contains(World.GetTime()) Or DayTime.Contains(-1) Or DayTime.Count = 0 Then
+        Dim CurrentTime As World.DayTimes = World.GetTime()
+
+        Select Case Screen.Level.DayTime
+            Case 1
+                CurrentTime = World.DayTimes.Night
+            Case 2
+                CurrentTime = World.DayTimes.Morning
+            Case 3
+                CurrentTime = World.DayTimes.Day
+            Case 4
+                CurrentTime = World.DayTimes.Evening
+        End Select
+
+        If DayTime.Contains(CurrentTime) Or DayTime.Contains(-1) Or DayTime.Count = 0 Then
             Dim NewShader As New Shader(Position, Size, Shader, StopOnContact)
             Screen.Level.Shaders.Add(NewShader)
         End If

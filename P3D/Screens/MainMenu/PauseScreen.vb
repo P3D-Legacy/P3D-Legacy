@@ -81,6 +81,8 @@
     Public Overrides Sub Update()
         If PreScreen.Identification = Identifications.OverworldScreen Then
             Screen.Level.Update()
+        ElseIf PreScreen.Identification = Identifications.BattleCatchScreen Then
+            CType(PreScreen, BattleCatchScreen).UpdateAnimations()
         End If
 
         Screen.TextBox.reDelay = 0.0F
@@ -298,6 +300,10 @@
         GameModeManager.SetGameModePointer("Kolben")
         Localization.LocalizationTokens.Clear()
         Localization.LoadTokenFile(GameMode.DefaultLocalizationsPath, False)
+        Core.OffsetMaps.Clear()
+        TextureManager.TextureList.Clear()
+        TextureManager.TextureRectList.Clear()
+        Whirlpool.LoadedWaterTemp = False
         Core.SetScreen(New PressStartScreen())
         Core.Player.loadedSave = False
     End Sub

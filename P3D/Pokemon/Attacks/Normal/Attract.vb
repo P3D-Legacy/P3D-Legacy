@@ -63,7 +63,7 @@
                 op = BattleScreen.OwnPokemon
             End If
 
-            If op.Gender <> Pokemon.Genders.Genderless And op.Gender <> p.Gender Then
+            If p.Gender <> Pokemon.Genders.Genderless AndAlso op.Gender <> Pokemon.Genders.Genderless AndAlso op.Gender <> p.Gender Then
                 If op.Ability.Name.ToLower() <> "aroma veil" Then
                     If BattleScreen.Battle.InflictInfatuate(Not own, own, BattleScreen, "", "move:attract") = False Then
                         BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))
@@ -76,7 +76,7 @@
             End If
         End Sub
 
-        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As Entity)
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
             Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
             For i = 0 To 6
                 Dim HeartEntity = MoveAnimation.SpawnEntity(Nothing, TextureManager.GetTexture("Textures\Battle\Normal\Attract"), New Vector3(0.25F), 1.0F, CSng(i * 0.2))
@@ -89,7 +89,7 @@
             BattleScreen.BattleQuery.Add(MoveAnimation)
         End Sub
 
-        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC, ByVal CurrentModel As Entity)
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
             Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
 
             For i = 0 To 6

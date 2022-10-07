@@ -285,12 +285,5 @@ Public Class CreditsScreen
 
     End Class
 
-    Public Overrides Sub ChangeFrom()
-        MusicManager._isLooping = True
-    End Sub
-
-    Public Overrides Sub ChangeTo()
-        MusicManager._isLooping = False
-    End Sub
 
 End Class

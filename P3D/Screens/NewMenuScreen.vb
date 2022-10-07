@@ -42,25 +42,30 @@
     End Sub
 
     Private Sub ConstructMenu()
-        If Core.Player.HasPokedex = True Then
-            _menuOptions.Add("Pokédex")
-        End If
+        If Screen.Level.SaveOnly = False Then
 
-        If Screen.Level.IsBugCatchingContest = True Then
-            _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177),
-                                    "Bag",
-                                    "|||" & Core.Player.Name, 'Trainer card
-                                    "End Contest"})
-        Else
-            If Core.Player.Pokemons.Count > 0 Then
-                _menuOptions.Add("Pokémon")
+            If Core.Player.HasPokedex = True Then
+                _menuOptions.Add("Pokédex")
             End If
-            _menuOptions.AddRange({"Bag",
-                                     "|||" & Core.Player.Name,
-                                    "Save"})
-        End If
 
-        _menuOptions.Add("Options")
+            If Screen.Level.IsBugCatchingContest = True Then
+                _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177),
+                                        "Bag",
+                                        "|||" & Core.Player.Name, 'Trainer card
+                                        "End Contest"})
+            Else
+                If Core.Player.Pokemons.Count > 0 Then
+                    _menuOptions.Add("Pokémon")
+                End If
+                _menuOptions.AddRange({"Bag",
+                                         "|||" & Core.Player.Name,
+                                        "Save"})
+            End If
+
+            _menuOptions.Add("Options")
+        Else
+            _menuOptions.Add("Save")
+        End If
     End Sub
 
     Private _blur As Resources.Blur.BlurHandler
@@ -288,7 +293,16 @@
             Case "|||" & Core.Player.Name
                 Core.SetScreen(New NewTrainerScreen(Me))
             Case "Save"
-                Core.SetScreen(New SaveScreen(Me))
+                If CBool(GameModeManager.GetGameRuleValue("SavingDisabled", "0")) = True AndAlso Core.Player.SandBoxMode = False Then
+                    Dim s As Screen = Core.CurrentScreen
+                    While Not s.PreScreen Is Nothing And s.Identification <> Identifications.OverworldScreen
+                        s = s.PreScreen
+                    End While
+                    Core.SetScreen(s)
+                    Screen.TextBox.Show("Saving is not possible right now.")
+                Else
+                    Core.SetScreen(New SaveScreen(Me))
+                End If
             Case "Options"
                 Core.SetScreen(New NewOptionScreen(Me))
             Case "Exit"

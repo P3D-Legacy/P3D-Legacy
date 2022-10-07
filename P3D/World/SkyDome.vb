@@ -50,7 +50,14 @@
 
     Public Sub Draw(ByVal FOV As Single)
         If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside Then
-            If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then ' Don't render the sky if the weather is set to Fog.
+            Dim DrawSky As Boolean
+            Select Case World.GetWeatherFromWeatherType(Screen.Level.WeatherType)
+                Case World.Weathers.Fog, World.Weathers.Blizzard, World.Weathers.Thunderstorm
+                    DrawSky = False
+                Case Else
+                    DrawSky = True
+            End Select
+            If DrawSky = True Then ' Don't render the sky if the weather is set to Fog.
                 RenderHalf(FOV, Yaw, 0.0F, True, GetSkyTexture(), 20, 1.0F) ' Draw the sky
                 RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureDown, 18, GetStarsAlpha()) ' Draw the stars.
                 If GetSunAlpha() > 0 Then
@@ -58,6 +65,8 @@
                 Else
                     RenderHalf(FOV, MathHelper.TwoPi, 0.0F, True, TextureMoon, 16, 1.0F) ' Draw the Moon.
                 End If
+            End If
+            If World.GetWeatherFromWeatherType(Screen.Level.WeatherType) <> World.Weathers.Fog Then
                 RenderHalf(FOV, MathHelper.TwoPi - Yaw * 2, 0.0F, True, GetCloudsTexture(), 12, GetCloudAlpha) ' Draw the clouds.
             End If
         Else

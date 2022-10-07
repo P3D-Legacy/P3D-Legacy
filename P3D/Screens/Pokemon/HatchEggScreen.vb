@@ -84,7 +84,7 @@
                     Egg = GetEggTexture()
                 End If
             ElseIf Stage = 6 Then
-                If size < 3.5F Then
+                If size < 4.0F Then
                     size += 0.08F
                 Else
                     MusicManager.Play("wild_defeat")

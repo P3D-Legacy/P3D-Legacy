@@ -233,7 +233,7 @@ Public Class OverworldScreen
                     NotificationPopupList(0).Dismiss()
                 Else
                     If Core.Player.HasPokegear = True OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True Then
-                        If Screen.Camera.IsMoving() = False AndAlso ActionScript.IsReady = True Then
+                        If Screen.Camera.IsMoving() = False AndAlso ActionScript.IsReady = True AndAlso Screen.Level.SaveOnly = False Then
                             Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
                         End If
                     End If
@@ -422,11 +422,6 @@ Public Class OverworldScreen
         c.oldY = MouseHandler.MousePosition.Y
         c.ResetCursor()
         Player.Temp.IsInBattle = False
-
-        If Core.GameOptions.ChangedPack = True Then
-            Screen.Level.Load(Screen.Level.LevelFile)
-            Core.GameOptions.ChangedPack = False
-        End If
 
         'Set to correct music:
         If TrainerEncountered = False Then

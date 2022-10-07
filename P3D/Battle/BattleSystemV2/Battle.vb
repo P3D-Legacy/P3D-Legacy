@@ -1434,8 +1434,8 @@
 
                         ConfusedAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
                         Dim DuckEntity1 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
-                        Dim DuckEntity2 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
-                        Dim DuckEntity3 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                        Dim DuckEntity2 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                        Dim DuckEntity3 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
 
                         ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
                         ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
@@ -2716,7 +2716,7 @@
 
             If BattleScreen.IsTrainerBattle = False AndAlso Core.Player.ShowBattleAnimations <> 0 Then
                 If own = False Then
-                    Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
+                    Dim FaintAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
                     FaintAnimation.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 2, False, True)
                     FaintAnimation.AnimationMove(Nothing, False, 0, -1, 0, 0.05, False, False, 2, 2)
                     BattleScreen.BattleQuery.Add(FaintAnimation)
@@ -3570,12 +3570,12 @@
                 Me.ChangeCameraAngle(1, own, BattleScreen)
                 'Confused Animation
                 If Core.Player.ShowBattleAnimations <> 0 Then
-                    Dim ConfusedAnimation As New AnimationQueryObject(pNPC, Not own)
+                    Dim ConfusedAnimation As New AnimationQueryObject(pNPC, own)
 
                     ConfusedAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
                     Dim DuckEntity1 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
-                    Dim DuckEntity2 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
-                    Dim DuckEntity3 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                    Dim DuckEntity2 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0, 0.25, 0), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
+                    Dim DuckEntity3 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(0.25, 0.25, 0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)
 
                     ConfusedAnimation.AnimationChangeTexture(DuckEntity1, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
                     ConfusedAnimation.AnimationChangeTexture(DuckEntity2, False, TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 16, 16, 16), ""), 0.75F, 0)
@@ -4049,6 +4049,7 @@
                     val = 6 + statC
                 End If
             End If
+            Me.ChangeCameraAngle(1, own, BattleScreen)
             '***STAT DECREASE ANIMATION***
             If Core.Player.ShowBattleAnimations <> 0 Then
                 Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, False)
@@ -4084,13 +4085,10 @@
                     printMessage &= " slightly fell."
             End Select
 
-
-
             Select Case statString
                 Case "attack"
                     p.StatAttack -= val
 
-                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -4107,7 +4105,6 @@
                 Case "defense"
                     p.StatDefense -= val
 
-                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -4124,7 +4121,6 @@
                 Case "special attack"
                     p.StatSpAttack -= val
 
-                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -4141,7 +4137,6 @@
                 Case "special defense"
                     p.StatSpDefense -= val
 
-                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -4158,7 +4153,6 @@
                 Case "speed"
                     p.StatSpeed -= val
 
-                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -4175,7 +4169,6 @@
                 Case "evasion"
                     p.Evasion -= val
 
-                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -4192,7 +4185,6 @@
                 Case "accuracy"
                     p.Accuracy -= val
 
-                    Me.ChangeCameraAngle(1, own, BattleScreen)
                     Select Case message
                         Case "" 'Print default message only
                             BattleScreen.BattleQuery.Add(New TextQueryObject(printMessage))
@@ -4377,11 +4369,9 @@
         Public Sub ReduceHP(ByVal HPAmount As Integer, ByVal own As Boolean, ByVal from As Boolean, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String, ByVal sound As String)
             Dim p As Pokemon = BattleScreen.OwnPokemon
             Dim pNPC As Entity = BattleScreen.OwnPokemonNPC
-            Dim pModel As Entity = BattleScreen.OwnPokemonModel
             If own = False Then
                 p = BattleScreen.OppPokemon
                 pNPC = BattleScreen.OppPokemonNPC
-                pModel = BattleScreen.OppPokemonModel
             End If
 
             If p.HP > 0 And p.Status <> Pokemon.StatusProblems.Fainted Then
@@ -4398,7 +4388,7 @@
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(sound, False, 0.0F))
                 End If
                 If Core.Player.ShowBattleAnimations <> 0 Then
-                    Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own, pModel)
+                    Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
                     HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 0, 0)
                     HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 1, 0)
                     HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 2, 0)
@@ -5720,7 +5710,7 @@
                     End If
                 End If
                 If .FieldEffects.OppLeechSeed > 0 Then 'LeechSeed (opponent seeded)
-                    If .OppPokemon.HP > 0 And .OwnPokemon.HP > 0 And .OwnPokemon.HP < .OwnPokemon.MaxHP Then
+                    If .OppPokemon.HP > 0 And .OwnPokemon.HP > 0 Then
                         Dim loseHP As Integer = CInt(Math.Ceiling(.OppPokemon.MaxHP / 8))
                         Dim currHP As Integer = .OppPokemon.HP
 
@@ -5929,7 +5919,7 @@
                             'Whirlpool Animation
                             If Core.Player.ShowBattleAnimations <> 0 Then
 
-                                Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False,, True)
+                                Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False, True)
                                 WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
                                 Dim WhirlpoolEntity As Entity = WhirlpoolAnimation.SpawnEntity(New Vector3(0, -0.3, 0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
                                 WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, CSng(MathHelper.Pi * 1.5), 0, 0, CSng(MathHelper.Pi * 1.5), 0, 0, 0, 0, True, False, False, False)
@@ -6598,7 +6588,7 @@
                     End If
                 End If
                 If .FieldEffects.OwnLeechSeed > 0 Then 'LeechSeed (Own pokemon seeded)
-                    If .OwnPokemon.HP > 0 And .OppPokemon.HP > 0 And .OppPokemon.HP < .OppPokemon.MaxHP Then
+                    If .OwnPokemon.HP > 0 And .OppPokemon.HP > 0 Then
                         Dim loseHP As Integer = CInt(Math.Ceiling(.OwnPokemon.MaxHP / 8))
                         Dim currHP As Integer = .OwnPokemon.HP
 
@@ -6806,7 +6796,7 @@
                             ChangeCameraAngle(1, False, BattleScreen)
                             'Whirlpool Animation
                             If Core.Player.ShowBattleAnimations <> 0 Then
-                                Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True,, True)
+                                Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True, True)
                                 WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
                                 Dim WhirlpoolEntity As Entity = WhirlpoolAnimation.SpawnEntity(New Vector3(0, -0.3, 0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
                                 WhirlpoolAnimation.AnimationRotate(WhirlpoolEntity, False, CSng(MathHelper.Pi * 1.5), 0, 0, CSng(MathHelper.Pi * 1.5), 0, 0, 0, 0, True, False, False, False)
@@ -7352,14 +7342,20 @@
 
                 BattleScreen.AddToQuery(InsertIndex, New TextQueryObject(insertMessage))
 
-                Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False, BattleScreen.OwnPokemonModel)
+                Dim PositionOffsetY As Single = 0.0F
+                If BattleScreen.OwnPokemonNPC.Model IsNot Nothing Then
+                    PositionOffsetY = 0.5F
+                End If
+
+                Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False)
+
                 If Core.Player.ShowBattleAnimations <> 0 Then
                     ' Ball Closes
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
                     Dim SmokeReturned As Integer = 0
                     Do
-                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
-                        Dim SmokeDestination As Vector3 = New Vector3(0, 0, 0)
+                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + PositionOffsetY, CSng(Random.Next(-10, 10) / 10))
+                        Dim SmokeDestination As Vector3 = New Vector3(0, PositionOffsetY, 0)
 
                         Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
@@ -7376,12 +7372,11 @@
                 ' Pokemon disappears
                 BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
                 If Core.Player.ShowBattleAnimations <> 0 Then
-                    BallReturn.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 2, 0,,, 3)
 
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
-                    Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(Nothing, BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 1, 0,, 0.3)
+                    Dim BallReturnEntity As Entity = BallReturn.SpawnEntity(New Vector3(0, 0 + PositionOffsetY, 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0 + PositionOffsetY, 0, 0.1, False, True, 1, 0,, 0.3)
                 End If
                 BattleScreen.AddToQuery(InsertIndex, BallReturn)
 
@@ -7408,6 +7403,7 @@
                     ownShiny = "S"
                 End If
 
+                Dim FallOffset = 0.0F
                 Dim ownModel As String = BattleScreen.GetModelName(True)
                 If ownModel = "" Then
                     BattleScreen.AddToQuery(InsertIndex, New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OwnPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OwnPokemon), 0, 1, -1, -1))
@@ -7418,27 +7414,27 @@
                 BattleScreen.AddToQuery(InsertIndex, New TextQueryObject("Go, " & BattleScreen.OwnPokemon.GetDisplayName() & "!"))
 
                 ' Ball is thrown
-                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False, BattleScreen.OwnPokemonModel)
+                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False)
 
                 If Core.Player.ShowBattleAnimations <> 0 Then
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
 
-                    Dim BallThrowEntity As Entity = BallThrow.SpawnEntity(New Vector3(-2, -0.15, 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                    BallThrow.AnimationMove(BallThrowEntity, True, 0, 0.35, 0, 0.1, False, True, 0F, 0.5F,, -0.3,, 0.025F)
+                    Dim BallThrowEntity As Entity = BallThrow.SpawnEntity(New Vector3(-2, CSng(-0.15 + PositionOffsetY), 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallThrow.AnimationMove(BallThrowEntity, True, 0, CSng(0.35 + PositionOffsetY), 0, 0.1, False, True, 0F, 0.5F,, -0.3,, 0.025F)
 
                     ' Ball Opens
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Open", 3, 0)
 
                     Dim SmokeSpawned As Integer = 0
                     Do
-                        Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+                        Dim SmokeDestination = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + PositionOffsetY, CSng(Random.Next(-10, 10) / 10))
 
                         Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
 
                         Dim SmokeScale = New Vector3(CSng(Random.Next(2, 6) / 10))
                         Dim SmokeSpeed = CSng(Random.Next(1, 3) / 20.0F)
 
-                        Dim SmokeEntity As Entity = BallThrow.SpawnEntity(Nothing, SmokeTexture, SmokeScale, 1.0F, 3)
+                        Dim SmokeEntity As Entity = BallThrow.SpawnEntity(New Vector3(0, PositionOffsetY, 0), SmokeTexture, SmokeScale, 1.0F, 3)
                         BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
 
                         Threading.Interlocked.Increment(SmokeSpawned)
@@ -7447,10 +7443,11 @@
 
                 If Core.Player.ShowBattleAnimations <> 0 Then
                     ' Pokemon appears
+                    BallThrow.AnimationSetPosition(Nothing, False, 12, CSng(0.5), 13, 0, 0)
                     BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OwnPokemon.Number), 4, 0,, True)
                     '  Pokémon falls down
-                    BallThrow.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 5, 0,,, 3)
+                    BallThrow.AnimationMove(Nothing, False, 0, 0 + PositionOffsetY, 0, 0.05F, False, False, 5, 0,,, 3)
                 Else
                     ' Pokemon appears
                     BallThrow.AnimationFade(Nothing, False, 1, True, 1, 0, 0)
@@ -7728,7 +7725,7 @@
                     BattleScreen.BattleQuery.Add(New TextQueryObject(message))
 
                     If Core.Player.ShowBattleAnimations <> 0 Then
-                        Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
+                        Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
                         ' Ball Closes
                         BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
                         Dim SmokeReturned As Integer = 0
@@ -7794,7 +7791,7 @@
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Come back, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
                 If Core.Player.ShowBattleAnimations <> 0 Then
-                    Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True, BattleScreen.OppPokemonModel)
+                    Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
 
                     ' Ball Closes
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
@@ -7852,7 +7849,7 @@
                 BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, 1, -1, -1, -1, -1))
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
-                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False, BattleScreen.OppPokemonModel)
+                Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
                 If Core.Player.ShowBattleAnimations <> 0 Then
                     ' Ball is thrown
 

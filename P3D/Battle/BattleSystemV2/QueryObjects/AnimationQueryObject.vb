@@ -9,7 +9,6 @@
 		Public AnimationSequence As List(Of BattleAnimation3D)
 		Public SpawnedEntities As List(Of Entity)
 		Public CurrentEntity As Entity
-		Public CurrentModel As Entity
 		Public DrawBeforeEntities As Boolean
 
 		Public Overrides ReadOnly Property IsReady As Boolean
@@ -18,7 +17,7 @@
 			End Get
 		End Property
 
-		Public Sub New(ByVal entity As Entity, ByVal BattleFlipped As Boolean, Optional ByVal model As Entity = Nothing, Optional DrawBeforeEntities As Boolean = False)
+		Public Sub New(ByVal entity As Entity, ByVal BattleFlipped As Boolean, Optional DrawBeforeEntities As Boolean = False)
 			MyBase.New(QueryTypes.MoveAnimation)
 			Me.AnimationSequence = New List(Of BattleAnimation3D)
 			Me.SpawnedEntities = New List(Of Entity)
@@ -26,9 +25,6 @@
 			Me.BattleFlipped = BattleFlipped
 			If entity IsNot Nothing Then
 				Me.CurrentEntity = entity
-			End If
-			If model IsNot Nothing Then
-				Me.CurrentModel = model
 			End If
 			AnimationSequenceBegin()
 		End Sub
@@ -101,7 +97,7 @@
 			AnimationEnded = True
 		End Sub
 
-		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal startDelay As Single = 0.0F, Optional ByVal endDelay As Single = 0.0F) As Entity
+		Public Function SpawnEntity(ByVal Position As Vector3, ByVal Texture As Texture2D, ByVal Scale As Vector3, ByVal Opacity As Single, Optional ByVal startDelay As Single = 0.0F, Optional ByVal endDelay As Single = 0.0F, Optional ModelPath As String = "") As Entity
 			Dim NewPosition As Vector3
 			If Not Position = Nothing Then
 				If BattleFlipped = True Then
@@ -123,6 +119,19 @@
 			SpawnedEntity.Opacity = Opacity
 			SpawnedEntity.Visible = False
 
+			If ModelPath <> "" Then
+				SpawnedEntity.ModelPath = ModelPath
+				SpawnedEntity.Model = ModelManager.GetModel(SpawnedEntity.ModelPath)
+				SpawnedEntity.Scale *= ModelManager.MODELSCALE
+				If BattleFlipped = True Then
+					Dim FlipRotation As Integer = Entity.GetRotationFromVector(SpawnedEntity.Rotation)
+					FlipRotation += 2
+					If FlipRotation > 3 Then
+						FlipRotation -= 4
+					End If
+					SpawnedEntity.Rotation.Y = Entity.GetRotationFromInteger(FlipRotation).Y
+				End If
+			End If
 			SpawnedEntities.Add(SpawnedEntity)
 
 			Return SpawnedEntity
@@ -146,22 +155,19 @@
 
 		Public Sub AnimationMove(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal DestinationX As Single, ByVal DestinationY As Single, ByVal DestinationZ As Single, ByVal Speed As Single, ByVal SpinX As Boolean, ByVal SpinZ As Boolean, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal SpinXSpeed As Single = 0.1F, Optional ByVal SpinZSpeed As Single = 0.1F, Optional MovementCurve As Integer = 3, Optional MoveYSpeed As Single = 0.0F)
 			Dim MoveEntity As Entity
-			Dim ModelEntity As Entity = Nothing
 			Dim Destination As Vector3
 
 			If Entity Is Nothing Then
 				MoveEntity = CurrentEntity
-				If Me.CurrentModel IsNot Nothing Then
-					ModelEntity = Me.CurrentModel
-				End If
 			Else
 				MoveEntity = Entity
 			End If
 
+
 			If Not BattleFlipped = Nothing Then
 				If BattleFlipped = True Then
 					DestinationX *= -1.0F
-					DestinationZ *= -1.0F
+
 					If SpinZ = True Then
 						SpinXSpeed *= -1.0F
 						SpinZSpeed *= -1.0F
@@ -177,21 +183,29 @@
 			Dim baEntityMove As BAEntityMove = New BAEntityMove(MoveEntity, RemoveEntityAfter, Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
 			AnimationSequence.Add(baEntityMove)
 
-			If ModelEntity IsNot Nothing Then
-				Dim baModelMove As BAEntityMove = New BAEntityMove(CType(CurrentModel, Entity), False, Destination, Speed, SpinX, SpinZ, startDelay, endDelay, SpinXSpeed, SpinZSpeed, MovementCurve, MoveYSpeed)
-				AnimationSequence.Add(baModelMove)
+		End Sub
+
+		Public Sub AnimationSetPosition(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal PositionX As Single, ByVal PositionY As Single, ByVal PositionZ As Single, ByVal startDelay As Single, ByVal endDelay As Single)
+			Dim SetEntity As Entity
+			Dim SetPosition As Vector3
+
+			If Entity Is Nothing Then
+				SetEntity = CurrentEntity
+			Else
+				SetEntity = Entity
 			End If
+
+			SetPosition = New Vector3(PositionX, PositionY, PositionZ) + BattleScreen.BattleMapOffset
+
+			Dim baEntitySetPosition As BAEntitySetPosition = New BAEntitySetPosition(SetEntity, RemoveEntityAfter, SetPosition, startDelay, endDelay)
+			AnimationSequence.Add(baEntitySetPosition)
 
 		End Sub
 
 		Public Sub AnimationFade(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal TransitionSpeed As Single, ByVal FadeIn As Boolean, ByVal EndState As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal startState As Single = -1.0F)
 			Dim FadeEntity As Entity
-			Dim FadeModel As Entity = Nothing
 			If Entity Is Nothing Then
 				FadeEntity = CurrentEntity
-				If Me.CurrentModel IsNot Nothing Then
-					FadeModel = Me.CurrentModel
-				End If
 			Else
 				FadeEntity = Entity
 			End If
@@ -199,20 +213,11 @@
 			Dim baEntityOpacity As BAEntityOpacity = New BAEntityOpacity(FadeEntity, RemoveEntityAfter, TransitionSpeed, FadeIn, EndState, startDelay, endDelay, startState)
 			AnimationSequence.Add(baEntityOpacity)
 
-			If FadeModel IsNot Nothing Then
-				Dim baModelOpacity As BAEntityOpacity = New BAEntityOpacity(CType(FadeModel, Entity), False, TransitionSpeed, FadeIn, EndState, startDelay, endDelay, startState)
-				AnimationSequence.Add(baModelOpacity)
-			End If
-
 		End Sub
 		Public Sub AnimationRotate(Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal RotationSpeedX As Single, ByVal RotationSpeedY As Single, ByVal RotationSpeedZ As Single, ByVal EndRotationX As Single, ByVal EndRotationY As Single, ByVal EndRotationZ As Single, ByVal startDelay As Single, ByVal endDelay As Single, ByVal DoXRotation As Boolean, ByVal DoYRotation As Boolean, ByVal DoZRotation As Boolean, ByVal DoReturn As Boolean)
 			Dim RotateEntity As Entity
-			Dim RotateModel As Entity = Nothing
 			If Entity Is Nothing Then
 				RotateEntity = CurrentEntity
-				If Me.CurrentModel IsNot Nothing Then
-					RotateModel = Me.CurrentModel
-				End If
 			Else
 				RotateEntity = Entity
 			End If
@@ -222,21 +227,13 @@
 			Dim baEntityRotate As BAEntityRotate = New BAEntityRotate(RotateEntity, RemoveEntityAfter, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
 			AnimationSequence.Add(baEntityRotate)
 
-			If RotateModel IsNot Nothing Then
-				Dim baModelRotate As BAEntityRotate = New BAEntityRotate(CType(RotateModel, Entity), False, RotationSpeedVector, EndRotation, startDelay, endDelay, DoXRotation, DoYRotation, DoZRotation, DoReturn)
-				AnimationSequence.Add(baModelRotate)
-			End If
 
 		End Sub
 
 		Public Sub AnimationTurnNPC(ByVal TurnSteps As Integer, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal EndFaceRotation As Integer = -1, Optional ByVal TurnSpeed As Integer = 1, Optional ByVal TurnDelay As Single = 0.25F)
 			Dim TurnNPC As NPC = Nothing
-			Dim TurnModel As Entity = Nothing
 			If CurrentEntity IsNot Nothing Then
 				TurnNPC = CType(CurrentEntity, NPC)
-				If Me.CurrentModel IsNot Nothing Then
-					TurnModel = Me.CurrentModel
-				End If
 			End If
 
 			If Not BattleFlipped = Nothing AndAlso BattleFlipped = True Then
@@ -244,17 +241,19 @@
 				TurnSpeed *= -1
 			End If
 
-			Dim BAEntityFaceRotate As BAEntityFaceRotate = New BAEntityFaceRotate(TurnNPC, TurnSteps, startDelay, endDelay, EndFaceRotation, TurnSpeed, TurnDelay, TurnModel)
+			Dim BAEntityFaceRotate As BAEntityFaceRotate = New BAEntityFaceRotate(TurnNPC, TurnSteps, startDelay, endDelay, EndFaceRotation, TurnSpeed, TurnDelay)
 			AnimationSequence.Add(BAEntityFaceRotate)
 
 		End Sub
 		Public Sub AnimationScale(ByVal Entity As Entity, ByVal RemoveEntityAfter As Boolean, ByVal Grow As Boolean, ByVal EndSizeX As Single, ByVal EndSizeY As Single, ByVal EndSizeZ As Single, ByVal SizeSpeed As Single, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal Anchors As String = "")
 			Dim ScaleEntity As Entity
-			Dim ScaleModel As Entity = Nothing
 			If Entity Is Nothing Then
 				ScaleEntity = CurrentEntity
-				If Me.CurrentModel IsNot Nothing Then
-					ScaleModel = Me.CurrentModel
+				If ScaleEntity.Model IsNot Nothing Then
+					EndSizeX *= ModelManager.MODELSCALE
+					EndSizeY *= ModelManager.MODELSCALE
+					EndSizeZ *= ModelManager.MODELSCALE
+					SizeSpeed *= ModelManager.MODELSCALE
 				End If
 			Else
 				ScaleEntity = Entity
@@ -264,10 +263,6 @@
 			Dim EndSize As Vector3 = New Vector3(EndSizeX, EndSizeY, EndSizeZ)
 			Dim baEntityScale As BAEntityScale = New BAEntityScale(ScaleEntity, RemoveEntityAfter, Scale, Grow, EndSize, SizeSpeed, startDelay, endDelay, Anchors)
 			AnimationSequence.Add(baEntityScale)
-
-			If ScaleModel IsNot Nothing Then
-				Dim baModelScale As BAEntityScale = New BAEntityScale(CType(ScaleModel, Entity), False, Scale, Grow, EndSize, SizeSpeed, startDelay, endDelay, Anchors)
-			End If
 		End Sub
 
 		Public Sub AnimationPlaySound(ByVal sound As String, ByVal startDelay As Single, ByVal endDelay As Single, Optional ByVal stopMusic As Boolean = False, Optional ByVal IsPokemon As Boolean = False)

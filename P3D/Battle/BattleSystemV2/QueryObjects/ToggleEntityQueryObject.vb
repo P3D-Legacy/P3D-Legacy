@@ -79,15 +79,8 @@
         Public Overrides Sub Update(BV2Screen As BattleScreen)
             If changedIDs = False Then
                 changedIDs = True
-
-                If Me.ownModelID > -1 Then
-                    BV2Screen.OwnPokemonModel.ID = ownModelID
-                End If
                 If Me.ownNPCID > -1 Then
                     BV2Screen.OwnPokemonNPC.ID = ownNPCID
-                End If
-                If Me.oppModelID > -1 Then
-                    BV2Screen.OppPokemonModel.ID = oppModelID
                 End If
                 If Me.oppNPCID > -1 Then
                     BV2Screen.OppPokemonNPC.ID = oppNPCID
@@ -98,37 +91,34 @@
                 Case 0
                     Select Case Me._entity
                         Case BattleEntities.OwnPokemon
-                            If BV2Screen.OwnPokemonNPC.ID = 1 Then
-                                BV2Screen.OwnPokemonNPC.Visible = GetVisible(BV2Screen.OwnPokemonNPC.Visible)
-                                BV2Screen.OwnPokemonModel.Visible = False
-                            Else
-                                BV2Screen.OwnPokemonModel.Visible = GetVisible(BV2Screen.OwnPokemonModel.Visible)
-                                BV2Screen.OwnPokemonNPC.Visible = False
-                            End If
+                            BV2Screen.OwnPokemonNPC.Visible = GetVisible(BV2Screen.OwnPokemonNPC.Visible)
                         Case BattleEntities.OppPokemon
-                            If BV2Screen.OppPokemonNPC.ID = 1 Then
-                                BV2Screen.OppPokemonNPC.Visible = GetVisible(BV2Screen.OppPokemonNPC.Visible)
-                                BV2Screen.OppPokemonModel.Visible = False
-                            Else
-                                BV2Screen.OppPokemonModel.Visible = GetVisible(BV2Screen.OppPokemonModel.Visible)
-                                BV2Screen.OppPokemonNPC.Visible = False
-                            End If
+                            BV2Screen.OppPokemonNPC.Visible = GetVisible(BV2Screen.OppPokemonNPC.Visible)
                     End Select
                 Case 1
                     Select Case Me._entity
                         Case BattleEntities.OwnPokemon
+                            BV2Screen.OwnPokemonNPC.ModelPath = ""
+                            BV2Screen.OwnPokemonNPC.Model = Nothing
+                            BV2Screen.OwnPokemonNPC.Scale = New Vector3(1)
                             BV2Screen.OwnPokemonNPC.SetupSprite(_newTexture, "", False)
+
                         Case BattleEntities.OppPokemon
+                            BV2Screen.OppPokemonNPC.ModelPath = ""
+                            BV2Screen.OppPokemonNPC.Model = Nothing
+                            BV2Screen.OppPokemonNPC.Scale = New Vector3(1)
                             BV2Screen.OppPokemonNPC.SetupSprite(_newTexture, "", False)
                     End Select
                 Case 2
                     Select Case Me._entity
                         Case BattleEntities.OwnPokemon
-                            BV2Screen.OwnPokemonModel.ModelPath = _newTexture
-                            BV2Screen.OwnPokemonModel.Model = ModelManager.GetModel(BV2Screen.OwnPokemonModel.ModelPath)
+                            BV2Screen.OwnPokemonNPC.Scale = New Vector3(BV2Screen.OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                            BV2Screen.OwnPokemonNPC.ModelPath = _newTexture
+                            BV2Screen.OwnPokemonNPC.Model = ModelManager.GetModel(BV2Screen.OwnPokemonNPC.ModelPath)
                         Case BattleEntities.OppPokemon
-                            BV2Screen.OppPokemonModel.ModelPath = _newTexture
-                            BV2Screen.OppPokemonModel.Model = ModelManager.GetModel(BV2Screen.OppPokemonModel.ModelPath)
+                            BV2Screen.OppPokemonNPC.Scale = New Vector3(BV2Screen.OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
+                            BV2Screen.OppPokemonNPC.ModelPath = _newTexture
+                            BV2Screen.OppPokemonNPC.Model = ModelManager.GetModel(BV2Screen.OppPokemonNPC.ModelPath)
                     End Select
             End Select
             _done = True

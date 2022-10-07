@@ -245,6 +245,6 @@ Gate:
 Backdrops:
 {"Backdrop"{BAC[{"Position"{sngArr[-100.5,-0.8,-100.5]}}{"Size"{intArr[280,230]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[48,45]}}{"Map"{str[fortune\town.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[72,0]}}{"Map"{str[fortune\water.dat]}}]}}
-{"OffsetMap"{MAP[{"Offset"{intArr[0,-80]}}{"Map"{str[fortune\outcast.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[48,45]}}{"Map"{str[fortune\town.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[72,0]}}{"Map"{str[fortune\water.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,-80]}}{"Map"{str[fortune\outcast.dat]}}]}}

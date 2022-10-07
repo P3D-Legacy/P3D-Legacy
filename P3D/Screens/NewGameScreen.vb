@@ -26,7 +26,7 @@
         Dim ballPosition As Vector2
         Dim ballIndex As Vector2 = New Vector2(0, 0)
         Dim ballAnimationDelay As Single = 0.2F
-        Dim ballVelocity As Single = -4.0F
+        Dim ballVelocity As Single = -7.0F
         Dim pokePosition As Vector2
         Dim pokeID As Integer = 0
 
@@ -232,10 +232,10 @@
                 Case 1
                     Core.SpriteBatch.Draw(mainTexture, New Rectangle(CInt(ballPosition.X), CInt(ballPosition.Y), 22, 22), New Rectangle(62 + CInt(ballIndex.X * 22), 48 + CInt(ballIndex.Y * 22), 22, 22), Color.White)
                 Case 2
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokePosition.X) - 100, CInt(pokePosition.Y) - 218, 256, 256), Color.White)
+                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokePosition.X) - MathHelper.Min(CInt(pokeTexture.Width), 128), CInt(pokePosition.Y) - MathHelper.Min(CInt(pokeTexture.Height), 128), MathHelper.Min(CInt(pokeTexture.Width * 2), 256), MathHelper.Min(CInt(pokeTexture.Height * 2), 256)), Color.White)
                 Case 3
                     If Index < 6 Then
-                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(Core.windowSize.Width / 2) - 300, CInt(Core.windowSize.Height / 2) - 218, 256, 256), New Color(255, 255, 255, ProfAlpha))
+                        Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(pokePosition.X) - MathHelper.Min(CInt(pokeTexture.Width), 128), CInt(Core.windowSize.Height / 2) - MathHelper.Min(CInt(pokeTexture.Height), 128), MathHelper.Min(CInt(pokeTexture.Width * 2), 256), MathHelper.Min(CInt(pokeTexture.Height * 2), 256)), New Color(255, 255, 255, ProfAlpha))
                     End If
             End Select
 
@@ -245,11 +245,11 @@
             Select Case pokeIndex
                 Case 0
                     ballPosition = New Vector2(CInt(Core.windowSize.Width / 2) - 40, CInt(Core.windowSize.Height / 2) - 110)
-                    pokePosition = New Vector2(CInt(Core.windowSize.Width / 2) - 200, CInt(Core.windowSize.Height / 2) - 110)
+                    pokePosition = New Vector2(CInt(Core.windowSize.Width / 2) - MathHelper.Min(CInt(pokeTexture.Width * 2), 256), CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(pokeTexture.Height * 2), 256)))
                     pokeIndex = 1
                     AnimateBall()
                 Case 1
-                    If ballPosition.X > CInt(Core.windowSize.Width / 2) - 200 Then
+                    If ballPosition.X > CInt(Core.windowSize.Width / 2) - MathHelper.Min(CInt(pokeTexture.Width * 2), 256) Then
                         ballPosition.X -= 3
                         ballPosition.Y += ballVelocity
                         ballVelocity += 0.2F
@@ -442,32 +442,41 @@
         End Function
 
         Public Shared Function GetBerryData() As String
-            Dim s As String = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route29.dat|14,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route29.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{azalea.dat|9,0,3|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{azalea.dat|9,0,4|1|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{azalea.dat|9,0,5|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route30.dat|7,0,41|10|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route30.dat|14,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route30.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route30.dat|16,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{routes\route35.dat|0,0,4|7|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{routes\route35.dat|1,0,4|8|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route36.dat|37,0,7|0|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route36.dat|38,0,7|4|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route36.dat|39,0,7|3|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route39.dat|8,0,2|9|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route39.dat|8,0,3|6|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route38.dat|13,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route38.dat|14,0,12|23|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{route38.dat|15,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{routes\route43.dat|13,0,45|23|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{routes\route43.dat|13,0,46|24|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{routes\route43.dat|13,0,47|25|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{safarizone\main.dat|3,0,11|5|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{safarizone\main.dat|4,0,11|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
-            "{safarizone\main.dat|5,0,11|6|3|0|2012,9,21,4,0,0|1}"
+            Dim s As String = ""
+            If File.Exists(GameModeManager.GetContentFilePath("Data\BerryData.dat")) Then
+                Dim Berries() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\BerryData.dat"))
+
+                For Each line In Berries
+                    s &= line
+                Next
+            Else
+                s = "{route29.dat|13,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route29.dat|14,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route29.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{azalea.dat|9,0,3|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{azalea.dat|9,0,4|1|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{azalea.dat|9,0,5|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route30.dat|7,0,41|10|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route30.dat|14,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route30.dat|15,0,5|6|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route30.dat|16,0,5|2|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{routes\route35.dat|0,0,4|7|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{routes\route35.dat|1,0,4|8|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route36.dat|37,0,7|0|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route36.dat|38,0,7|4|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route36.dat|39,0,7|3|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route39.dat|8,0,2|9|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route39.dat|8,0,3|6|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route38.dat|13,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route38.dat|14,0,12|23|1|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{route38.dat|15,0,12|16|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{routes\route43.dat|13,0,45|23|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{routes\route43.dat|13,0,46|24|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{routes\route43.dat|13,0,47|25|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{safarizone\main.dat|3,0,11|5|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{safarizone\main.dat|4,0,11|0|2|0|2012,9,21,4,0,0|1}" & Environment.NewLine &
+                    "{safarizone\main.dat|5,0,11|6|3|0|2012,9,21,4,0,0|1}"
+            End If
 
             Return s
         End Function

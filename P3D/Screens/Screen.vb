@@ -245,7 +245,7 @@ Public MustInherit Class Screen
     End Sub
 
     ''' <summary>
-    ''' The base update fucntion of a screen.
+    ''' The base update function of a screen.
     ''' </summary>
     ''' <remarks>Contains no default code.</remarks>
     Public Overridable Overloads Sub Update()

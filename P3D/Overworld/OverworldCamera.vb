@@ -26,10 +26,12 @@ Public Class OverworldCamera
     Private _scrollSpeed As Single = 0F
     Private _scrollDirection As Integer = 1
     Public _moved As Single = 0F
+    Public PreventMovement As Boolean = False
 
     Public LastStepPosition As Vector3 = New Vector3(0, -2, 0)
     Public YawLocked As Boolean = False
     Public ThirdPersonOffset As Vector3 = New Vector3(0F, 0.3F, 1.5F)
+    Public IsSliding As Boolean = False
 
     'Debug variables
     Public oldDate As Date = Date.Now
@@ -361,7 +363,7 @@ Public Class OverworldCamera
                     Core.GameMessage.ShowMessage(Localization.GetString("game_message_third_person_on"), 12, FontManager.MainFont, Color.White)
                 End If
             Else
-                Yaw = GetAimYawFromDirection(_playerFacing)
+                Yaw = GetAimYawFromDirection(GetFacingDirection())
                 If showMessage = True Then
                     Core.GameMessage.ShowMessage(Localization.GetString("game_message_third_person_off"), 12, FontManager.MainFont, Color.White)
                 End If
@@ -563,7 +565,7 @@ Public Class OverworldCamera
     End Sub
 
     Private Function GetBobbing() As Single
-        If Core.GameOptions.ViewBobbing = False Then
+        If IsSliding = True OrElse Core.GameOptions.ViewBobbing = False Then
             Return 0.0F
         End If
         If Screen.Level?.Riding = True Then
@@ -633,7 +635,7 @@ Public Class OverworldCamera
             isActionscriptReady = OS.ActionScript.IsReady
         End If
 
-        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False And Screen.Level.CanMove() = True Then
+        If isActionscriptReady = True AndAlso ScriptBlock.TriggeredScriptBlock = False AndAlso Screen.Level.CanMove() = True AndAlso PreventMovement = False Then
             If _thirdPerson = False And _cameraFocusType = CameraFocusTypes.Player Then
                 FirstPersonMovement()
             Else
@@ -863,7 +865,10 @@ Public Class OverworldCamera
         For Each Floor As Entity In Screen.Level.Floors
             If Floor.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
                 If CType(Floor, Floor).IsIce = True Then
+                    IsSliding = True
                     Return CType(Floor, Floor).GetIceFloors()
+                Else
+                    IsSliding = False
                 End If
             End If
         Next

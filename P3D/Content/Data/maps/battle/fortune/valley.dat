@@ -545,5 +545,5 @@ WaterPath:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[48,0,10]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[fortune\water.dat,-1,0.1,90,0]}}{"Rotation"{int[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[48,0,11]}}{"Visible"{bool[0]}}{"TexturePath"{str[Cherrygrove]}}{"Textures"{recArr[[32,16,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[fortune\water.dat,-1,0.1,91,0]}}{"Rotation"{int[0]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{intArr[48,-80]}}{"Map"{str[fortune\water.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[48,-80]}}{"Map"{str[fortune\water.dat]}}]}}
 

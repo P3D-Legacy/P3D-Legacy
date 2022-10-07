@@ -59,7 +59,7 @@
                         Screen.Level.DayTime = daytime
                     Else
                         World.setDaytime = Nothing
-                        Screen.Level.DayTime = World.GetTime
+                        Screen.Level.DayTime = World.GetTime + 1
                     End If
                     IsReady = True
             End Select
