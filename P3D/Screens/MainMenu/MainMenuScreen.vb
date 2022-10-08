@@ -879,28 +879,14 @@
         GameJoltSave.Gender = "0"
 
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
-        Select Case GameJoltSave.Gender
-            Case "0"
-                Core.Player.Male = True
-            Case "1"
-                Core.Player.Male = False
-            Case Else
-                Core.Player.Male = True
-        End Select
+        Core.Player.Gender = "Male"
     End Sub
 
     Private Sub ButtonChangeFemale()
         GameJoltSave.Gender = "1"
 
         Core.Player.Skin = GameJolt.Emblem.GetPlayerSpriteFile(GameJolt.Emblem.GetPlayerLevel(GameJoltSave.Points), GameJoltSave.GameJoltID, GameJoltSave.Gender)
-        Select Case GameJoltSave.Gender
-            Case "0"
-                Core.Player.Male = True
-            Case "1"
-                Core.Player.Male = False
-            Case Else
-                Core.Player.Male = True
-        End Select
+        Core.Player.Gender = "Female"
     End Sub
 
     Private Sub ButtonResetSave()
@@ -1798,7 +1784,7 @@
         TextBox.CanProceed = True
         OverworldScreen.FadeValue = 0
 
-        MusicManager.PlayMusic("title", True, 0.0F, 0.0F)
+        MusicManager.Play("title", True, 0.0F, 0.0F)
     End Sub
 
 End Class

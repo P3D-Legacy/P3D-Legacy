@@ -241,10 +241,9 @@
             If oppModel <> "" Then
                 OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
             End If
+            
             Screen.Level.AddEntity(OwnPokemonNPC)
-            Screen.Level.AddEntity(OwnPokemonModel)
             Screen.Level.AddEntity(OppPokemonNPC)
-            Screen.Level.AddEntity(OppPokemonModel)
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -360,14 +359,6 @@
                 InitiallyVisibleOwn = 0
             End If
 
-            If ownModel = "" Then
-                OwnPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(12, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OwnPokemon), 3, OwnPokemon.GetDisplayName(), 0, True, "Still", New List(Of Rectangle)}, InitiallyVisibleOwn), NPC)
-                OwnPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(12, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 0.5F, 0), New Vector3(OwnPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 0, "", False, New Vector3(1), 0, "", "", New Vector3(0), Nothing,,,, "Models\Bulbasaur\Normal"), WallBlock)
-            Else
-                OwnPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(12, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", False, New Vector3(1), 0, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OwnPokemon), 3, OwnPokemon.GetDisplayName(), 0, True, "Still", New List(Of Rectangle)}), NPC)
-                OwnPokemonModel = CType(Entity.GetNewEntity("WallBlock", New Vector3(12, -0.5F, 12.5F) + BattleMapOffset, {}, {}, False, New Vector3(0, MathHelper.Pi * 0.5F, 0), New Vector3(OwnPokemon.GetModelProperties().Item1), BaseModel.BlockModel, 1, ownModel, True, New Vector3(1), 0, "", "", New Vector3(0), Nothing, InitiallyVisibleOwn), WallBlock)
-            End If
-
             Dim InitiallyVisibleOpp As Integer = 1
             If Core.Player.ShowBattleAnimations <> 0 Then
                 InitiallyVisibleOpp = 0
@@ -398,9 +389,7 @@
             End If
 
             Screen.Level.AddEntity(OwnPokemonNPC)
-            Screen.Level.AddEntity(OwnPokemonModel)
             Screen.Level.AddEntity(OppPokemonNPC)
-            Screen.Level.AddEntity(OppPokemonModel)
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -622,9 +611,7 @@
             End If
 
             Screen.Level.AddEntity(OwnPokemonNPC)
-            Screen.Level.AddEntity(OwnPokemonModel)
             Screen.Level.AddEntity(OppPokemonNPC)
-            Screen.Level.AddEntity(OppPokemonModel)
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -738,9 +725,7 @@
             End If
 
             Screen.Level.AddEntity(OwnPokemonNPC)
-            Screen.Level.AddEntity(OwnPokemonModel)
             Screen.Level.AddEntity(OppPokemonNPC)
-            Screen.Level.AddEntity(OppPokemonModel)
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then

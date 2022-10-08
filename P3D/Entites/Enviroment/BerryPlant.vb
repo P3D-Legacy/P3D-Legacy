@@ -47,7 +47,7 @@
 
             NewTexture()
         Else
-            With My.Computer.Clock.LocalTime
+            With DateTime.Now
                 Dim diff As Integer = CInt((Date.Now - d).TotalSeconds)
 
                 Grow += diff

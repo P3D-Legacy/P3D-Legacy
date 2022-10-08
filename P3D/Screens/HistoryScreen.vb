@@ -8,7 +8,7 @@
             End If
 
             Dim dateString As String = ""
-            With My.Computer.Clock.LocalTime
+            With DateTime.Now
                 Dim hour As String = .Hour.ToString()
                 If hour.Length = 1 Then
                     hour = "0" & hour

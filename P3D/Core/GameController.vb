@@ -77,7 +77,7 @@ Public Class GameController
 
         FPSMonitor = New FPSMonitor()
 
-        GameHacked = System.IO.File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\temp")
+        GameHacked = System.IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) & "\temp")
         If GameHacked = True Then
             Security.HackerAlerts.Activate()
         End If
@@ -121,7 +121,7 @@ Public Class GameController
 
     Public Shared ReadOnly Property DecSeparator As String
         Get
-            Return My.Application.Culture.NumberFormat.NumberDecimalSeparator
+            Return Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator
         End Get
     End Property
 
@@ -179,7 +179,7 @@ Public Class GameController
     ''' </summary>
     Public Shared ReadOnly Property GamePath As String
         Get
-            Return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            Return Path.GetDirectoryName(System.AppContext.BaseDirectory)
         End Get
     End Property
 

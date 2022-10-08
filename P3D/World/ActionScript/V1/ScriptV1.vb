@@ -521,7 +521,7 @@
                     T = True
                 End If
             Case "day"
-                If CInt(condition) = My.Computer.Clock.LocalTime.DayOfWeek Then
+                If CInt(condition) = DateTime.Now.DayOfWeek Then
                     T = True
                 End If
             Case "aurora"

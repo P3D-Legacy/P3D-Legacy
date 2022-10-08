@@ -1,4 +1,6 @@
-﻿Public Class Controls
+﻿Imports System.Windows.Forms
+
+Public Class Controls
 
     Private Enum PressDirections
         Up
@@ -36,7 +38,7 @@
         Return False
     End Function
 
-    Private Shared Function CheckDirectionalPress(ByVal Direction As PressDirections, ByVal WASDKey As Keys, ByVal DirectionalKey As Keys, ByVal ThumbStickDirection As Buttons, ByVal DPadDirecion As Buttons,
+    Private Shared Function CheckDirectionalPress(ByVal Direction As PressDirections, ByVal WASDKey As Input.Keys, ByVal DirectionalKey As Input.Keys, ByVal ThumbStickDirection As Buttons, ByVal DPadDirecion As Buttons,
                                                   ByVal ArrowKeys As Boolean, ByVal WASD As Boolean, ByVal ThumbStick As Boolean, ByVal DPad As Boolean) As Boolean
         Dim command As Boolean = False
         If WASD = True Then
@@ -240,13 +242,13 @@
     End Function
 
     Public Shared Function ShiftDown(Optional ByVal PressedFlag As String = "LR", Optional TriggerButtons As Boolean = True) As Boolean
-        If PressedFlag.Contains("L") And KeyBoardHandler.KeyDown(Keys.LeftShift) = True Then
+        If PressedFlag.Contains("L") And KeyBoardHandler.KeyDown(Input.Keys.LeftShift) = True Then
             Return True
         End If
         If PressedFlag.Contains("L") And ControllerHandler.ButtonDown(Buttons.LeftTrigger) = True And TriggerButtons = True Then
             Return True
         End If
-        If PressedFlag.Contains("R") And KeyBoardHandler.KeyDown(Keys.RightShift) = True Then
+        If PressedFlag.Contains("R") And KeyBoardHandler.KeyDown(Input.Keys.RightShift) = True Then
             Return True
         End If
         If PressedFlag.Contains("R") And ControllerHandler.ButtonDown(Buttons.RightTrigger) = True And TriggerButtons = True Then
@@ -256,13 +258,13 @@
     End Function
 
     Public Shared Function ShiftPressed(Optional ByVal PressedFlag As String = "LR", Optional TriggerButtons As Boolean = True) As Boolean
-        If PressedFlag.Contains("L") And KeyBoardHandler.KeyPressed(Keys.LeftShift) = True Then
+        If PressedFlag.Contains("L") And KeyBoardHandler.KeyPressed(Input.Keys.LeftShift) = True Then
             Return True
         End If
         If PressedFlag.Contains("L") And ControllerHandler.ButtonPressed(Buttons.LeftTrigger) = True And TriggerButtons = True Then
             Return True
         End If
-        If PressedFlag.Contains("R") And KeyBoardHandler.KeyPressed(Keys.RightShift) = True Then
+        If PressedFlag.Contains("R") And KeyBoardHandler.KeyPressed(Input.Keys.RightShift) = True Then
             Return True
         End If
         If PressedFlag.Contains("R") And ControllerHandler.ButtonPressed(Buttons.RightTrigger) = True And TriggerButtons = True Then
@@ -275,13 +277,13 @@
         If System.Windows.Forms.Control.ModifierKeys = (System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) Then
             Return False
         End If
-        If PressedFlag.Contains("L") And My.Computer.Keyboard.CtrlKeyDown() = True Then
+        If PressedFlag.Contains("L") And (Control.ModifierKeys And Keys.Control) = Keys.Control Then
             Return True
         End If
         If PressedFlag.Contains("L") And ControllerHandler.ButtonDown(Buttons.LeftTrigger) = True And TriggerButtons = True Then
             Return True
         End If
-        If PressedFlag.Contains("R") And My.Computer.Keyboard.CtrlKeyDown() = True Then
+        If PressedFlag.Contains("R") And (Control.ModifierKeys And Keys.Control) = Keys.Control Then
             Return True
         End If
         If PressedFlag.Contains("R") And ControllerHandler.ButtonDown(Buttons.RightTrigger) = True And TriggerButtons = True Then
@@ -291,8 +293,8 @@
     End Function
 
     Public Shared Function HasKeyboardInput() As Boolean
-        Dim keyArr() As Keys = {KeyBindings.ForwardMoveKey, KeyBindings.LeftMoveKey, KeyBindings.BackwardMoveKey, KeyBindings.RightMoveKey, KeyBindings.UpKey, KeyBindings.LeftKey, KeyBindings.DownKey, KeyBindings.RightKey}
-        For Each key As Keys In keyArr
+        Dim keyArr() As Input.Keys = {KeyBindings.ForwardMoveKey, KeyBindings.LeftMoveKey, KeyBindings.BackwardMoveKey, KeyBindings.RightMoveKey, KeyBindings.UpKey, KeyBindings.LeftKey, KeyBindings.DownKey, KeyBindings.RightKey}
+        For Each key As Input.Keys In keyArr
             If KeyBoardHandler.KeyPressed(key) = True Then
                 Return True
             End If

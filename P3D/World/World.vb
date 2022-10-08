@@ -48,7 +48,7 @@ Public Class World
 
     Public Shared ReadOnly Property WeekOfYear() As Integer
         Get
-            Return CInt(((My.Computer.Clock.LocalTime.DayOfYear - (My.Computer.Clock.LocalTime.DayOfWeek - 1)) / 7) + 1)
+            Return CInt(((DateTime.Now.DayOfYear - (DateTime.Now.DayOfWeek - 1)) / 7) + 1)
         End Get
     End Property
 
@@ -89,8 +89,8 @@ Public Class World
                 Return setDaytime
             Else
                 Dim time As DayTimes = DayTimes.Day
-
-                Dim Hour As Integer = My.Computer.Clock.LocalTime.Hour
+                
+                Dim Hour As Integer = DateTime.Now.Hour
                 If NeedServerObject() = True Then
                     Dim data() As String = ServerTimeData.Split(CChar(","))
                     Hour = CInt(data(0))
@@ -925,7 +925,7 @@ endsub:
 
                 Return hours * 3600 + minutes * 60 + seconds
             Else
-                Return My.Computer.Clock.LocalTime.Hour * 3600 + My.Computer.Clock.LocalTime.Minute * 60 + My.Computer.Clock.LocalTime.Second
+                Return DateTime.Now.Hour * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second
             End If
         End Get
     End Property
@@ -941,7 +941,7 @@ endsub:
 
                 Return hours * 60 + minutes
             Else
-                Return My.Computer.Clock.LocalTime.Hour * 60 + My.Computer.Clock.LocalTime.Minute
+                Return DateTime.Now.Hour * 60 + DateTime.Now.Minute
             End If
         End Get
     End Property

@@ -6,8 +6,8 @@
         Shared _valid As Boolean = False
 
         Const RUNVALIDATION As Boolean = False
-        Const EXPECTEDSIZE As Integer = 51268031
-        Const METAHASH As String = "QzQxOTkzQzQ1Nzg4QUE4NEIzN0EzMDRBOEVDOEJBOTY="
+        Const EXPECTEDSIZE As Integer = 51261408
+        Const METAHASH As String = "RDI0REQzREVDOURENUU1RDZBQTUxMUE0QUI4RUIxMzA="
 
         Public Shared ReadOnly Property IsValid(ByVal ForceResult As Boolean) As Boolean
             Get
@@ -16,7 +16,7 @@
                     _valid = FilesValid()
                 End If
 
-                If GameController.IS_DEBUG_ACTIVE = True And ForceResult = False Then
+                If GameController.IS_DEBUG_ACTIVE = True AndAlso ForceResult = False Then
                     Return True
                 Else
                     Return _valid

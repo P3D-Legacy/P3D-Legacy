@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "P3D", "P3D\P3D.vbproj", "{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{3CE8099E-129D-40F9-8D23-005DFF32E2A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P3D.ContentPipeline", "lib\P3D.ContentPipeline\P3D.ContentPipeline.csproj", "{C0456069-ED23-4009-BC24-C5B35B25E63B}"
@@ -21,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TearDown", "lib\tools\TearD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDevCommon", "lib\game-dev-common\src\GameDevCommon\GameDevCommon.csproj", "{087378EE-7591-47CE-979F-6824FC0606EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ttf2bmp", "lib\ttf2bmp\ttf2bmp.csproj", "{61691D80-1572-4EFE-BC53-608D6063AF22}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "P3D", "P3D\P3D.vbproj", "{D408D650-EAF0-4FAC-A44C-C66B61D916A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,14 +31,6 @@ Global
 		ReleaseNoContent|Any CPU = ReleaseNoContent|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugNoContent|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.DebugNoContent|Any CPU.Build.0 = Debug|Any CPU
-		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseNoContent|Any CPU.ActiveCfg = ReleaseNoContent|Any CPU
-		{2AAF65BE-C81D-4663-ABF4-E2E09B16E12F}.ReleaseNoContent|Any CPU.Build.0 = ReleaseNoContent|Any CPU
 		{C0456069-ED23-4009-BC24-C5B35B25E63B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C0456069-ED23-4009-BC24-C5B35B25E63B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0456069-ED23-4009-BC24-C5B35B25E63B}.DebugNoContent|Any CPU.ActiveCfg = Debug|Any CPU
@@ -85,6 +79,22 @@ Global
 		{087378EE-7591-47CE-979F-6824FC0606EF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{087378EE-7591-47CE-979F-6824FC0606EF}.ReleaseNoContent|Any CPU.ActiveCfg = Release|Any CPU
 		{087378EE-7591-47CE-979F-6824FC0606EF}.ReleaseNoContent|Any CPU.Build.0 = Release|Any CPU
+		{61691D80-1572-4EFE-BC53-608D6063AF22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61691D80-1572-4EFE-BC53-608D6063AF22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61691D80-1572-4EFE-BC53-608D6063AF22}.DebugNoContent|Any CPU.ActiveCfg = Debug|Any CPU
+		{61691D80-1572-4EFE-BC53-608D6063AF22}.DebugNoContent|Any CPU.Build.0 = Debug|Any CPU
+		{61691D80-1572-4EFE-BC53-608D6063AF22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61691D80-1572-4EFE-BC53-608D6063AF22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61691D80-1572-4EFE-BC53-608D6063AF22}.ReleaseNoContent|Any CPU.ActiveCfg = Debug|Any CPU
+		{61691D80-1572-4EFE-BC53-608D6063AF22}.ReleaseNoContent|Any CPU.Build.0 = Debug|Any CPU
+		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.DebugNoContent|Any CPU.ActiveCfg = Debug|Any CPU
+		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.DebugNoContent|Any CPU.Build.0 = Debug|Any CPU
+		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.ReleaseNoContent|Any CPU.ActiveCfg = Debug|Any CPU
+		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.ReleaseNoContent|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +107,7 @@ Global
 		{417FEA8A-9334-4938-9370-519EF1551B05} = {7877D883-AA51-4C27-ADA5-C4F85F86F4EE}
 		{0AE314A4-6005-48C7-BCD4-33E4C5057CFD} = {7877D883-AA51-4C27-ADA5-C4F85F86F4EE}
 		{087378EE-7591-47CE-979F-6824FC0606EF} = {3CE8099E-129D-40F9-8D23-005DFF32E2A2}
+		{61691D80-1572-4EFE-BC53-608D6063AF22} = {3CE8099E-129D-40F9-8D23-005DFF32E2A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FE3951F-DE18-41FF-A035-32DF597A91F2}

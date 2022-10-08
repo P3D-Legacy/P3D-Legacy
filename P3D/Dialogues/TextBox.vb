@@ -108,7 +108,7 @@
         Me.Text = Me.Text.Replace("[POKE]", "Poké")
         Me.Text = Me.Text.Replace("[POKEMON]", "Pokémon")
 
-        Dim ClockTime = New DateTime(My.Computer.Clock.LocalTime.Year, My.Computer.Clock.LocalTime.Month, My.Computer.Clock.LocalTime.Day, My.Computer.Clock.LocalTime.Hour, My.Computer.Clock.LocalTime.Minute, My.Computer.Clock.LocalTime.Second)
+        Dim ClockTime = New DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second)
         Me.Text = Me.Text.Replace("<clocktime>", ClockTime.ToString("t", New System.Globalization.CultureInfo("en-US")))
         Me.Text = Me.Text.Replace("<daytime>", World.GetTime.ToString)
     End Sub

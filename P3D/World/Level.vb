@@ -124,10 +124,10 @@ Public Class Level
             Else
                 Entities.Add(e)
             End If
-
+            
             e.InsertOrder = _insertEntityCount
             _insertEntityCount += 1
-
+            
             DrawingEntities.Add(e)
         End SyncLock
     End Sub
@@ -320,13 +320,6 @@ Public Class Level
     ''' If only the Save option should be available in the menu for this map.
     ''' </summary>
     Public Property SaveOnly As Boolean
-        Get
-            Return Me._saveonly
-        End Get
-        Set(value As Boolean)
-            Me._saveonly = value
-        End Set
-    End Property
 
     ''' <summary>
     ''' The environment type for this map.
