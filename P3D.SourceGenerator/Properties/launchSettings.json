@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Source Generator": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\P3D\\P3D.vbproj"
+    }
+  }
+}

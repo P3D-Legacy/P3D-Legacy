@@ -1,13 +1,11 @@
 ﻿Namespace Security
 
-    Public Class FileValidation
+     Public Partial Class FileValidation
 
         Shared _validated As Boolean = False
         Shared _valid As Boolean = False
 
         Const RUNVALIDATION As Boolean = False
-        Const EXPECTEDSIZE As Integer = 51261408
-        Const METAHASH As String = "RDI0REQzREVDOURENUU1RDZBQTUxMUE0QUI4RUIxMzA="
 
         Public Shared ReadOnly Property IsValid(ByVal ForceResult As Boolean) As Boolean
             Get

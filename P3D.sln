@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ttf2bmp", "lib\ttf2bmp\ttf2
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "P3D", "P3D\P3D.vbproj", "{D408D650-EAF0-4FAC-A44C-C66B61D916A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P3D.SourceGenerator", "P3D.SourceGenerator\P3D.SourceGenerator.csproj", "{DA40E74C-88A6-496B-9959-4AFF5BF91293}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -95,6 +97,14 @@ Global
 		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.ReleaseNoContent|Any CPU.ActiveCfg = Debug|Any CPU
 		{D408D650-EAF0-4FAC-A44C-C66B61D916A7}.ReleaseNoContent|Any CPU.Build.0 = Debug|Any CPU
+		{DA40E74C-88A6-496B-9959-4AFF5BF91293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA40E74C-88A6-496B-9959-4AFF5BF91293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA40E74C-88A6-496B-9959-4AFF5BF91293}.DebugNoContent|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA40E74C-88A6-496B-9959-4AFF5BF91293}.DebugNoContent|Any CPU.Build.0 = Debug|Any CPU
+		{DA40E74C-88A6-496B-9959-4AFF5BF91293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA40E74C-88A6-496B-9959-4AFF5BF91293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA40E74C-88A6-496B-9959-4AFF5BF91293}.ReleaseNoContent|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA40E74C-88A6-496B-9959-4AFF5BF91293}.ReleaseNoContent|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

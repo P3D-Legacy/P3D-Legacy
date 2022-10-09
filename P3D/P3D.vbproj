@@ -84,5 +84,6 @@
             <Project>{087378ee-7591-47ce-979f-6824fc0606ef}</Project>
             <Name>GameDevCommon</Name>
         </ProjectReference>
+        <ProjectReference Include="..\P3D.SourceGenerator\P3D.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 </Project>
