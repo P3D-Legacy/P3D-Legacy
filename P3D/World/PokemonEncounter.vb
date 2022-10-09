@@ -91,7 +91,7 @@ Public Class PokemonEncounter
 
                     If randomValue <= minEncounterValue Then
                         ' Don't encounter a Pokémon if the left control key is held down, for Debug or Sandbox Mode:
-                        If GameController.IS_DEBUG_ACTIVE = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
+                        If GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True Then
                             If KeyBoardHandler.KeyDown(Keys.LeftControl) = True Then
                                 Exit Sub
                             End If

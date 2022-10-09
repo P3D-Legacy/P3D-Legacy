@@ -851,7 +851,7 @@ Public Class OverworldCamera
             End If
         End If
 
-        If GameController.IS_DEBUG_ACTIVE = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
+        If GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True Then
             If _debugWalk = True AndAlso CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
                 cannotWalk = False
             End If
@@ -903,7 +903,7 @@ Public Class OverworldCamera
         End Select
 
         'DebugFeature:
-        If GameController.IS_DEBUG_ACTIVE = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
+        If GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True Then
             If KeyBoardHandler.KeyDown(Keys.LeftAlt) Then
                 If KeyBoardHandler.KeyDown(KeyBindings.ForwardMoveKey) Then
                     v.X = 0F
@@ -1035,7 +1035,7 @@ Public Class OverworldCamera
     End Sub
 
     Private Sub ControlThirdPersonCamera()
-        If GameController.IS_DEBUG_ACTIVE = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
+        If GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True Then
             If Controls.CtrlPressed() = True Then
                 If KeyBoardHandler.KeyDown(KeyBindings.UpKey) = True Then
                     ThirdPersonOffset.Y += Speed
