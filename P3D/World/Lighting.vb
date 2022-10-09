@@ -55,6 +55,9 @@ Public Class Lighting
                 Select Case Screen.Level.EnvironmentType
                     Case 0
                         x = GetLightingType()
+                        If x = 99 Then
+                            x = Screen.Level.DayTime - 1
+                        End If
                         If x > 2 Then
                             x = 0
                             y += 1
