@@ -3,6 +3,19 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
 	    <IsRoslynComponent>true</IsRoslynComponent>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+
+        <Version>0.59.1</Version>
+        <Title>Pokémon3D Source Generator</Title>
+        <Authors>Kolben Games</Authors>
+        <Copyright>Copyright © Kolben 2012-2022</Copyright>
+        <PackageProjectUrl>https://github.com/P3D-Legacy/P3D-Legacy</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/P3D-Legacy/P3D-Legacy</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DebugType>none</DebugType>
     </PropertyGroup>
 
     <ItemGroup>

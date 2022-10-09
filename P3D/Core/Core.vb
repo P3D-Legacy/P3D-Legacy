@@ -1,6 +1,8 @@
-﻿Public Module Core
+﻿Imports System.Net.Http
 
-    Public GameInstance As GameController
+Public Module Core
+
+    Public ReadOnly Property GameInstance As GameController
 
     Public ReadOnly Property GraphicsManager As GraphicsDeviceManager
         Get
@@ -50,9 +52,11 @@
     Public BackgroundColor As Color = New Color(173, 216, 255)
 
     Public OffsetMaps As New Dictionary(Of String, List(Of List(Of Entity)))
+    
+    Public ReadOnly Property HttpClient as HttpClient = New HttpClient()
 
     Public Sub Initialize(gameReference As GameController)
-        GameInstance = gameReference
+        _GameInstance = gameReference
 
         If CommandLineArgHandler.ForceGraphics = True Then
             Window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " (FORCED GRAPHICS)"

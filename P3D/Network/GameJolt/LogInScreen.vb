@@ -444,11 +444,10 @@ Namespace GameJolt
 
         Private Sub DownloadBanList()
             Try
-                Dim w As New System.Net.WebClient
-                BanList = w.DownloadString("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/banlist.dat")
-                BanReasons = w.DownloadString("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/banreasons.dat")
+                BanList = Core.HttpClient.GetStringAsync("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/banlist.dat").GetAwaiter().GetResult()
+                BanReasons = Core.HttpClient.GetStringAsync("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/banreasons.dat").GetAwaiter().GetResult()
                 Logger.Log(Logger.LogTypes.Message, "Retrieved ban list data.")
-                Me.DownloadedBanList = True
+                DownloadedBanList = True
             Catch ex As Exception
                 Logger.Log(Logger.LogTypes.ErrorMessage, "Failed to fetch ban list data!")
                 Logger.Log(Logger.LogTypes.Debug, ex.Message)

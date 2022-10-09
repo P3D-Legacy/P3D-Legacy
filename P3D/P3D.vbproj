@@ -1,36 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-	    <OutputType>WinExe</OutputType>
+        <OutputType>WinExe</OutputType>
         <TargetFramework>net6.0-windows</TargetFramework>
-		<UseWindowsForms>True</UseWindowsForms>
-	    <AssemblyName>Pokemon3D</AssemblyName>
-	    <RootNamespace>P3D</RootNamespace>
-	    <ApplicationIcon>Pokemon3D.ico</ApplicationIcon>
+        <UseWindowsForms>True</UseWindowsForms>
+        <AssemblyName>Pokemon3D</AssemblyName>
+        <RootNamespace>P3D</RootNamespace>
+        <ApplicationIcon>Pokemon3D.ico</ApplicationIcon>
 
-		<Version>0.59.1</Version>
-	    <Title>Pokémon3D</Title>
-	    <Authors>Kolben Games</Authors>
-	    <Copyright>Copyright © Kolben 2012-2022</Copyright>
-	    <PackageProjectUrl>https://github.com/P3D-Legacy/P3D-Legacy</PackageProjectUrl>
-	    <RepositoryUrl>https://github.com/P3D-Legacy/P3D-Legacy</RepositoryUrl>
-	    <RepositoryType>git</RepositoryType>
+        <Version>0.59.1</Version>
+        <Title>Pokémon3D</Title>
+        <Authors>Kolben Games</Authors>
+        <Copyright>Copyright © Kolben 2012-2022</Copyright>
+        <PackageProjectUrl>https://github.com/P3D-Legacy/P3D-Legacy</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/P3D-Legacy/P3D-Legacy</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
 
-	    <PublishSingleFile>true</PublishSingleFile>
+        <PublishSingleFile>true</PublishSingleFile>
         <PublishRelease>true</PublishRelease>
         <PublishTrimmed>false</PublishTrimmed>
         <PublishReadyToRun>false</PublishReadyToRun>
 
-	    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <IsTrimmable>false</IsTrimmable>
 
-		<OptionExplicit>On</OptionExplicit>
+        <OptionExplicit>On</OptionExplicit>
         <OptionCompare>Text</OptionCompare>
         <OptionStrict>Off</OptionStrict>
         <OptionInfer>On</OptionInfer>
 
         <ApplicationManifest>app.manifest</ApplicationManifest>
+
+        <Configurations>Debug;Release;DebugNoContent;ReleaseNoContent</Configurations>
+        <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'DebugNoContent'">
         <OutputPath>bin\Debug\</OutputPath>
@@ -45,7 +48,7 @@
         <DebugSymbols>true</DebugSymbols>
         <DebugType>embedded</DebugType>
     </PropertyGroup>
-	<ItemGroup>
+    <ItemGroup>
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
         <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
         <PackageReference Include="NAudio" Version="2.1.0" />
@@ -59,25 +62,27 @@
         <Import Include="NAudio.Utils" />
         <Import Include="NAudio.Vorbis" />
         <Import Include="System.IO" />
-		<Import Include="Microsoft.Xna.Framework" />
-		<Import Include="Microsoft.Xna.Framework.Graphics" />
-		<Import Include="Microsoft.Xna.Framework.Input" />
-		<Import Include="Microsoft.Xna.Framework.Content" />
-		<Import Include="Microsoft.Xna.Framework.Media" />
-		<Import Include="Microsoft.Xna.Framework.Audio" />
-	</ItemGroup>
-	<ItemGroup>
-	    <MonoGameContentReference Include="..\lib\P3D.ContentPipeline\Content\Content.mgcb">
-			<Link>Content\Content.mgcb</Link>
-		</MonoGameContentReference>
-		<Content Include="Content\**\*" Exclude="Content\bin\**\*;Content\obj\**\*">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="meta">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	    <Content Include="Pokemon3D.ico" />
-	    <None Include="Pokemon\Items\_itemList.txt" />
+        <Import Include="Microsoft.Xna.Framework" />
+        <Import Include="Microsoft.Xna.Framework.Graphics" />
+        <Import Include="Microsoft.Xna.Framework.Input" />
+        <Import Include="Microsoft.Xna.Framework.Content" />
+        <Import Include="Microsoft.Xna.Framework.Media" />
+        <Import Include="Microsoft.Xna.Framework.Audio" />
+    </ItemGroup>
+    <ItemGroup Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Release' ">
+        <MonoGameContentReference Include="..\lib\P3D.ContentPipeline\Content\Content.mgcb">
+            <Link>Content\Content.mgcb</Link>
+        </MonoGameContentReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="Content\**\*" Exclude="Content\bin\**\*;Content\obj\**\*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="meta">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <Content Include="Pokemon3D.ico" />
+        <None Include="Pokemon\Items\_itemList.txt" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\lib\game-dev-common\src\GameDevCommon\GameDevCommon.csproj">

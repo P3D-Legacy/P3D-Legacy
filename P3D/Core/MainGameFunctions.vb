@@ -64,7 +64,8 @@
         Try
             Core.GameMessage.HideMessage()
 
-            Dim fileName As String = ""
+            Dim fileName As String
+            
             With DateTime.Now
                 Dim month As String = .Month.ToString()
                 If month.Length = 1 Then

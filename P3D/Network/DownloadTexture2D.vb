@@ -1,10 +1,8 @@
-﻿Imports System.Net
-
-Public NotInheritable Class DownloadTexture2D
+﻿Public NotInheritable Class DownloadTexture2D
 
     Public Shared Function GetRemoteTexture2D(graphics As GraphicsDevice, url As String, logError As Boolean) As Texture2D
         Try
-            Using stream = GetResponseStream(url)
+            Using stream = Core.HttpClient.GetStreamAsync(url).GetAwaiter().GetResult()
                 Dim result = Texture2D.FromStream(graphics, stream)
                 Return result
             End Using
@@ -14,12 +12,6 @@ Public NotInheritable Class DownloadTexture2D
             End If
             Return Nothing
         End Try
-    End Function
-
-    Private Shared Function GetResponseStream(url As String) As Stream
-        Dim request As WebRequest = WebRequest.Create(url)
-        request.Method = "GET"
-        Return request.GetResponse().GetResponseStream()
     End Function
 
 End Class

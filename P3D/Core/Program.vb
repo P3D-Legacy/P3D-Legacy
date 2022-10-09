@@ -1,5 +1,3 @@
-Imports System.Windows.Forms
-
 Module Program
     ''' <summary>
     ''' The main entry point for the application.
@@ -14,14 +12,12 @@ Module Program
 
         Logger.Debug("---Start game---")
 
-        Application.SetHighDpiMode(HighDpiMode.PerMonitorV2)
-
-        Using Game As New GameController()
+        Using game As New GameController()
             If GameController.IS_DEBUG_ACTIVE AndAlso Debugger.IsAttached Then
-                Game.Run()
+                game.Run()
             Else
                 Try
-                    Game.Run()
+                    game.Run()
                 Catch ex As Exception
                     Dim informationItem As New Logger.ErrorInformation(ex)
                     Logger.LogCrash(ex)

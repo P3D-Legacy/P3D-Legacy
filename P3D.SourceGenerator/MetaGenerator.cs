@@ -50,7 +50,7 @@ namespace P3D.SourceGenerator
             var metaHash = ComputeMd5Hash(File.OpenRead(metaFilePath));
             var metaResult = Convert.ToBase64String(Encoding.UTF8.GetBytes(metaHash));
 
-            context.AddSource("FileValidation.g.vb", $@"
+            context.AddSource("FileValidation.Generated.vb", $@"
 Namespace Security
 
     Public Partial Class FileValidation

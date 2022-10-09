@@ -6,7 +6,7 @@ Public MustInherit Class WindowScreen
     Inherits Screen
 
     ' Shared controller to check if any other window screen is drawing a gradient already. If so, don't draw another gradient on top:
-    Public Shared IsDrawingGradients As Boolean = False
+    Public Shadows Shared IsDrawingGradients As Boolean = False
 
     Const STARTWINDOWSINK As Integer = -35
 

@@ -1,4 +1,4 @@
-Namespace BattleSystem.Moves.Dragon
+ï»¿Namespace BattleSystem.Moves.Dragon
 
     Public Class ClangingScales
 
@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Dragon
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
             Me.Name = "Clanging Scales"
-            Me.Description = "The user rubs the scales on its entire body and makes a huge noise to attack the opposing Pokémon. The user's Defense stat goes down after the attack."
+            Me.Description = "The user rubs the scales on its entire body and makes a huge noise to attack the opposing Pokï¿½mon. The user's Defense stat goes down after the attack."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.AllAdjacentFoes

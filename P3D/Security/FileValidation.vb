@@ -64,10 +64,9 @@
             Else
                 If System.IO.File.Exists(GameController.GamePath & "\meta") = True Then
                     Dim A = GetMD5FromFile(GameController.GamePath & "\meta")
-                    Dim X = StringObfuscation.Obfuscate(A)
                     Dim B = StringObfuscation.DeObfuscate(METAHASH)
                     If A = B Then
-                        files = System.IO.File.ReadAllText(GameController.GamePath & "\meta").Split(CChar(",")).ToList()
+                        files = File.ReadAllText(GameController.GamePath & "\meta").Split(CChar(",")).ToList()
                         Logger.Debug("Meta loaded. Files to check: " & files.Count)
                     Else
                         Logger.Log(Logger.LogTypes.Warning, "FileValidation.vb: Failed to load Meta (Hash incorrect)! File Validation will fail!")
@@ -112,7 +111,7 @@
         End Sub
 
         Private Shared Function ValidateFile(ByVal file As String, ByVal relativePath As Boolean) As String
-            If Core.Player.IsGameJoltSave = True And GameController.IS_DEBUG_ACTIVE = False Then
+            If Core.Player.IsGameJoltSave = True AndAlso GameController.IS_DEBUG_ACTIVE = False Then
                 Dim filePath As String = file.Replace("/", "\")
                 If relativePath = True Then
                     filePath = GameController.GamePath & "\" & file
@@ -142,7 +141,7 @@
             Dim Hash As Byte()
             Dim sb As New System.Text.StringBuilder()
 
-            Using st As New IO.FileStream(file, IO.FileMode.Open, IO.FileAccess.Read)
+            Using st As New FileStream(file, FileMode.Open, FileAccess.Read)
                 Hash = MD5.ComputeHash(st)
             End Using
 
