@@ -1,6 +1,5 @@
 ﻿Imports System.Security.Cryptography
 Imports System.Text
-Imports System.IO
 
 Public Class Encryption
 
@@ -21,7 +20,7 @@ Public Class Encryption
         ms.Write(iv, 0, iv.Length)
 
         Dim cs As New CryptoStream(ms, rd.CreateEncryptor, CryptoStreamMode.Write)
-        Dim data() As Byte = System.Text.Encoding.UTF8.GetBytes(s)
+        Dim data() As Byte = Encoding.UTF8.GetBytes(s)
 
         cs.Write(data, 0, data.Length)
         cs.FlushFinalBlock()
@@ -57,7 +56,7 @@ Public Class Encryption
 
         cs.Close()
         rd.Clear()
-        Return System.Text.Encoding.UTF8.GetString(data, 0, i)
+        Return Encoding.UTF8.GetString(data, 0, i)
     End Function
 
 End Class

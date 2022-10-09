@@ -4,7 +4,7 @@ Imports System.Timers
 ''' <summary>
 ''' A class that manages the collection of entities to represent a map.
 ''' </summary>
-Public Class Level
+Public NotInheritable Class Level
 
     Implements IDisposable
 

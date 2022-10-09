@@ -1,5 +1,4 @@
-﻿Imports System.Reflection
-Imports System.Windows.Forms
+﻿Imports System.Threading
 Imports GameDevCommon
 
 Public Class Classified
@@ -65,7 +64,7 @@ Public Class GameController
     Private _componentManager As ComponentManager
 
     Public Sub New()
-        Me.window_change = False
+        window_change = False
         Graphics = New GraphicsDeviceManager(Me)
         Content.RootDirectory = "Content"
 
@@ -99,7 +98,7 @@ Public Class GameController
 
     End Sub
 
-    Protected Overrides Sub Update(ByVal gameTime As GameTime)
+    Protected Overrides Sub Update(gameTime As GameTime)
         If Me.window_change Then
             SetWindowSize(New Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height))
             Me.window_change = Not Me.window_change
@@ -111,7 +110,7 @@ Public Class GameController
         FPSMonitor.Update()
     End Sub
 
-    Protected Overrides Sub Draw(ByVal gameTime As GameTime)
+    Protected Overrides Sub Draw(gameTime As GameTime)
         Core.Draw()
 
         MyBase.Draw(gameTime)
@@ -121,11 +120,11 @@ Public Class GameController
 
     Public Shared ReadOnly Property DecSeparator As String
         Get
-            Return Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator
+            Return Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator
         End Get
     End Property
 
-    Protected Overrides Sub OnExiting(sender As Object, args As System.EventArgs)
+    Protected Overrides Sub OnExiting(sender As Object, args As EventArgs)
         GameJolt.SessionManager.Close()
 
         If Core.ServersManager.ServerConnection.Connected = True Then
@@ -135,23 +134,23 @@ Public Class GameController
         Logger.Debug("---Exit Game---")
     End Sub
 
-    Protected Sub Window_ClientSizeChanged(ByVal sender As Object, ByVal e As EventArgs)
+    Protected Sub Window_ClientSizeChanged(sender As Object, e As EventArgs)
         Me.window_change = True
         Core.windowSize = New Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height)
-
-
+        
         If Not Core.CurrentScreen Is Nothing Then
             Core.CurrentScreen.SizeChanged()
             Screen.TextBox.PositionY = Core.windowSize.Height - 160.0F
         End If
+        
         NetworkPlayer.ScreenRegionChanged()
     End Sub
 
-    Private Sub DGame_Activated(sender As Object, e As System.EventArgs) Handles Me.Activated
+    Private Sub DGame_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         NetworkPlayer.ScreenRegionChanged()
     End Sub
 
-    Private Sub DGame_Deactivated(sender As Object, e As System.EventArgs) Handles Me.Deactivated
+    Private Sub DGame_Deactivated(sender As Object, e As EventArgs) Handles Me.Deactivated
         NetworkPlayer.ScreenRegionChanged()
     End Sub
 
@@ -179,7 +178,7 @@ Public Class GameController
     ''' </summary>
     Public Shared ReadOnly Property GamePath As String
         Get
-            Return Path.GetDirectoryName(System.AppContext.BaseDirectory)
+            Return Path.GetDirectoryName(AppContext.BaseDirectory)
         End Get
     End Property
 

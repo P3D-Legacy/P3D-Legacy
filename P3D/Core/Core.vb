@@ -29,7 +29,7 @@
     Public SpriteBatch As CoreSpriteBatch
     Public FontRenderer As SpriteBatch
     Public GameTime As GameTime
-    Public Random As System.Random = New System.Random()
+    Public Random As Random = New Random()
 
     Public KeyboardInput As KeyboardInput
 
@@ -51,7 +51,7 @@
 
     Public OffsetMaps As New Dictionary(Of String, List(Of List(Of Entity)))
 
-    Public Sub Initialize(ByVal gameReference As GameController)
+    Public Sub Initialize(gameReference As GameController)
         GameInstance = gameReference
 
         If CommandLineArgHandler.ForceGraphics = True Then
@@ -234,7 +234,7 @@
         CurrentScreen.Render()
     End Sub
 
-    Public Sub SetScreen(ByVal newScreen As Screen)
+    Public Sub SetScreen(newScreen As Screen)
         If Not CurrentScreen Is Nothing Then
             CurrentScreen.ChangeFrom()
         End If
@@ -254,19 +254,19 @@
         CurrentScreen.ChangeTo()
     End Sub
 
-    Public Function GetMiddlePosition(ByVal OffsetFull As Size) As Vector2
-        Dim v As New Vector2(CSng(Core.windowSize.Width / 2) - CSng(OffsetFull.Width / 2), CSng(Core.windowSize.Height / 2) - CSng(OffsetFull.Height / 2))
+    Public Function GetMiddlePosition(offsetFull As Size) As Vector2
+        Dim v As New Vector2(CSng(Core.windowSize.Width / 2) - CSng(offsetFull.Width / 2), CSng(Core.windowSize.Height / 2) - CSng(offsetFull.Height / 2))
 
         Return v
     End Function
 
-    Public Sub StartThreadedSub(ByVal s As System.Threading.ParameterizedThreadStart)
+    Public Sub StartThreadedSub(s As Threading.ParameterizedThreadStart)
         Dim t As New Threading.Thread(s)
         t.IsBackground = True
         t.Start()
     End Sub
 
-    Public ReadOnly Property ScreenSize() As Rectangle
+    Public ReadOnly Property ScreenSize As Rectangle
         Get
             Dim x As Double = SpriteBatch.InterfaceScale()
             If x = 1D Then Return Core.windowSize
@@ -274,7 +274,7 @@
         End Get
     End Property
 
-    Public ReadOnly Property ScaleScreenRec(ByVal rec As Rectangle) As Rectangle
+    Public ReadOnly Property ScaleScreenRec(rec As Rectangle) As Rectangle
         Get
             Dim x As Double = SpriteBatch.InterfaceScale()
             If x = 1D Then Return rec
@@ -282,7 +282,7 @@
         End Get
     End Property
 
-    Public ReadOnly Property ScaleScreenVec(ByVal vec As Vector2) As Vector2
+    Public ReadOnly Property ScaleScreenVec(vec As Vector2) As Vector2
         Get
             Dim x As Double = SpriteBatch.InterfaceScale()
             If x = 1D Then Return vec
@@ -290,13 +290,13 @@
         End Get
     End Property
 
-    Public Sub SetWindowSize(ByVal Size As Vector2)
-        GraphicsManager.PreferredBackBufferWidth = CInt(Size.X)
-        GraphicsManager.PreferredBackBufferHeight = CInt(Size.Y)
+    Public Sub SetWindowSize(size As Vector2)
+        GraphicsManager.PreferredBackBufferWidth = CInt(size.X)
+        GraphicsManager.PreferredBackBufferHeight = CInt(size.Y)
 
         GraphicsManager.ApplyChanges()
 
-        windowSize = New Rectangle(0, 0, CInt(Size.X), CInt(Size.Y))
+        windowSize = New Rectangle(0, 0, CInt(size.X), CInt(size.Y))
     End Sub
 
 End Module

@@ -1,26 +1,21 @@
 ﻿Module CommandLineArgHandler
+    Public ReadOnly Property ForceGraphics As Boolean
 
-    Private _forceGraphics As Boolean = False
-    Private _nosplash As Boolean = False
+    Public ReadOnly Property NoSplash As Boolean
 
-    Public Sub Initialize(ByVal args() As String)
-        If args.Length > 0 Then
-            If args.Any(Function(arg As String)
-                     Return arg = "-forcegraphics"
-                     End Function) Then
-                _forceGraphics = True
-            End If
-            If args.Any(Function(arg As String)
-                     Return arg = "-nosplash"
-                     End Function) Then
-                _nosplash = True
-            End If
-        End If
-
+    Public Sub Initialize(args() As String)
         For Each arg As String In args
-            If arg.Contains(":") = True Then
-                Dim identifier As String = arg.Remove(arg.IndexOf(":"))
-                Dim value As String = arg.Remove(0, arg.IndexOf(":") + 1)
+            If arg.Equals("-forcegraphics", StringComparison.OrdinalIgnoreCase) Then
+                _ForceGraphics = True
+            End If
+
+            If arg.Equals("-nosplash", StringComparison.OrdinalIgnoreCase) Then
+                _NoSplash = True
+            End If
+
+            If arg.Contains(":"c) = True Then
+                Dim identifier As String = arg.Remove(arg.IndexOf(":", StringComparison.Ordinal))
+                Dim value As String = arg.Remove(0, arg.IndexOf(":", StringComparison.Ordinal) + 1)
 
                 Select Case identifier
                     Case "MAP"
@@ -29,17 +24,4 @@
             End If
         Next
     End Sub
-
-    Public ReadOnly Property ForceGraphics() As Boolean
-        Get
-            Return _forceGraphics
-        End Get
-    End Property
-
-        Public ReadOnly Property NoSplash() As Boolean
-        Get
-            Return _nosplash
-        End Get
-    End Property
-
 End Module
