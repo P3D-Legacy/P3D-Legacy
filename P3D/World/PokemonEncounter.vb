@@ -59,12 +59,12 @@ Public Class PokemonEncounter
                         Dim p As Pokemon = Core.Player.Pokemons(0)
 
                         ' Arena Trap/Illuminate/No Guard/Swarm Ability:
-                        If p.Ability.Name.ToLower() = "arena trap" OrElse p.Ability.Name.ToLower() = "illuminate" OrElse (p.Ability.Name.ToLower() = "arena trap" OrElse p.Ability.Name.ToLower() = "illuminate") OrElse (p.Ability.Name.ToLower() = "arena trap" OrElse p.Ability.Name.ToLower() = "illuminate" OrElse (p.Ability.Name.ToLower() = "arena trap" OrElse p.Ability.Name.ToLower() = "illuminate")) Then
+                        If p.Ability.Name.ToLower() = "arena trap" OrElse p.Ability.Name.ToLower() = "illuminate" OrElse p.Ability.Name.ToLower() = "no guard" OrElse p.Ability.Name.ToLower() = "swarm" Then
                             encounterRate *= 2.0F
                         End If
 
                         ' Intimidate/Keen Eye/Quick Feet/Stench/White Smoke Ability:
-                        If p.Ability.Name.ToLower() = "intimidate" OrElse p.Ability.Name.ToLower() = "keen eye" OrElse p.Ability.Name.ToLower() = "quick feet" OrElse (p.Ability.Name.ToLower() = "intimidate" OrElse p.Ability.Name.ToLower() = "keen eye" OrElse p.Ability.Name.ToLower() = "quick feet") OrElse (p.Ability.Name.ToLower() = "intimidate" OrElse p.Ability.Name.ToLower() = "keen eye" OrElse p.Ability.Name.ToLower() = "quick feet" OrElse (p.Ability.Name.ToLower() = "intimidate" OrElse p.Ability.Name.ToLower() = "keen eye" OrElse p.Ability.Name.ToLower() = "quick feet")) Then
+                        If p.Ability.Name.ToLower() = "intimidate" OrElse p.Ability.Name.ToLower() = "keen eye" OrElse p.Ability.Name.ToLower() = "quick feet" OrElse p.Ability.Name.ToLower() = "stench" OrElse p.Ability.Name.ToLower() = "white smoke" Then
                             encounterRate *= 0.5F
                         End If
 
@@ -77,7 +77,7 @@ Public Class PokemonEncounter
 
                         'Snow Cloak Ability:
                         If p.Ability.Name.ToLower() = "snow cloak" Then
-                            If .WeatherType = 2 OrElse .WeatherType = 2 Then
+                            If .WeatherType = 2 OrElse .WeatherType = 9 Then
                                 If Core.Random.Next(0, 100) < 50 Then
                                     Exit Sub
                                 End If
