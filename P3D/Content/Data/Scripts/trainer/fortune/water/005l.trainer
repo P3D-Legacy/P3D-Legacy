@@ -7,6 +7,7 @@ OutroMessage|Miu: Oh, no!~Mommy!
 DefeatMessage|Miu: It makes me all sad inside~when we lose...
 TextureID|littlegirl,littlegirl
 Region|Sevii Islands
+InSightMusic|trainer_girl2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

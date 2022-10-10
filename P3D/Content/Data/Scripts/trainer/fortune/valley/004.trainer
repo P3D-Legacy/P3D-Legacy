@@ -7,6 +7,7 @@ OutroMessage|It's been so long since I battled, My instincts are off.
 DefeatMessage|There are several ruins on the~Sevii Islands.~The majority of them date back~a long way.
 TextureID|2
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

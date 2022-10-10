@@ -7,6 +7,7 @@ OutroMessage|Geb: Wow, Big Sister, this person's really good!
 DefeatMessage|Geb: I'm hanging onto my~sister because I can't touch~the bottom.
 TextureID|34
 Region|Sevii Islands
+InSightMusic|trainer_boy2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

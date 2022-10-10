@@ -7,6 +7,7 @@ OutroMessage|It's okay, losing is a fun part of Pokémon's appeal, too.
 DefeatMessage|By the way, "appeal" is a weird~word, if you think about it.*Like, is it like an orange peel?~Or like a ringing bell?
 TextureID|bugcatcher
 Region|Sevii Islands
+InSightMusic|trainer_boy1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

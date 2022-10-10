@@ -7,6 +7,7 @@ OutroMessage|Oh, for someone so young, you are tremendous!
 DefeatMessage|I'm not saying that you~shouldn't catch Pokémon.*I just want people to raise~their Pokémon responsibly.
 TextureID|1
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

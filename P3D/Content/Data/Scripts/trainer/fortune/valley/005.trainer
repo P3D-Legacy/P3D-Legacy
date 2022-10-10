@@ -7,6 +7,7 @@ OutroMessage|Oh, interesting.
 DefeatMessage|Those ruins over there...*I haven't had any luck in~finding how I can get inside.
 TextureID|2
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

@@ -7,6 +7,7 @@ OutroMessage|I knew it!~You're as tough as I thought!
 DefeatMessage|The way you battle has given~me a lot of useful data.*Thanks so much!
 TextureID|13
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

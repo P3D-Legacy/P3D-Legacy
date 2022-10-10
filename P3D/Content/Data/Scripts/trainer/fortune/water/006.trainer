@@ -7,6 +7,7 @@ OutroMessage|Giggle... You're so cute when you're determined.
 DefeatMessage|I want to go to the woods over~there, but...*There are lots of Bug Pokémon.~They scare me a little.
 TextureID|PinkShirtGirl
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

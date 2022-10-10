@@ -7,6 +7,7 @@ OutroMessage|Nobody saw me losing, right?
 DefeatMessage|As a performer, I don't want~people to know about the~effort I put in.
 TextureID|27
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

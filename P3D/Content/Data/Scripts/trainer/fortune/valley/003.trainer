@@ -7,6 +7,7 @@ OutroMessage|Hmm...
 DefeatMessage|I suggest to you that you, too,~give a thought to the secrets~and mysteries of our world~once a day.
 TextureID|2
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

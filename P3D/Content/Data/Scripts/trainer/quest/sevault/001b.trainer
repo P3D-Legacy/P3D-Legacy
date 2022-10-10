@@ -7,6 +7,7 @@ OutroMessage|Nya: Oh, no...~I'm so sorry, I...
 DefeatMessage|Nya: I think I'm going to need~much more seasoning and~tutoring under Lex...*...So, Lex, please, may I stay~with you like this?
 TextureID|23
 Region|Sevii Islands
+InSightMusic|trainer_boy2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

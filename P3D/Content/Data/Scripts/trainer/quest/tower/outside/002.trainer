@@ -7,6 +7,7 @@ OutroMessage|Give up...
 DefeatMessage|In your future, I sense that~you will meet many others.*I think you will be linked~to each other by a strange~power.
 TextureID|29
 Region|Sevii Islands
+InSightMusic|trainer_boy1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

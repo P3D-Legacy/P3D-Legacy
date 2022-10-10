@@ -7,6 +7,7 @@ OutroMessage|Lex: I seem to have been too careless...
 DefeatMessage|Lex: I think it was a good~experience for Nya.*You have my gratitude.
 TextureID|13
 Region|Sevii Islands
+InSightMusic|trainer_boy2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

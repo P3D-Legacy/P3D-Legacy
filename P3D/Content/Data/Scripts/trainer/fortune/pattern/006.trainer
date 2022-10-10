@@ -7,6 +7,7 @@ OutroMessage|I got beat while I was still busy celebrating!
 DefeatMessage|I'm going to bring my little~brother here next time.
 TextureID|bugcatcher
 Region|Sevii Islands
+InSightMusic|trainer_boy1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

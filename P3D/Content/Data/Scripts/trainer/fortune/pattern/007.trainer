@@ -7,6 +7,7 @@ OutroMessage|Have you taken a good look around your feet?
 DefeatMessage|There are places here in~Pattern Bush where grass~won't grow.*What would be the cause of~such a phenomenon?
 TextureID|2
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

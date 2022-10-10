@@ -7,6 +7,7 @@ OutroMessage|You're hot stuff in spite of your cute looks.
 DefeatMessage|Where did you get these snazzy~shoes from?~I want to buy a pair!
 TextureID|90
 Region|Sevii Islands
+InSightMusic|trainer_girl1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

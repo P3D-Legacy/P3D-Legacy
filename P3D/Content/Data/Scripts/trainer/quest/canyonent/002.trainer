@@ -7,6 +7,7 @@ OutroMessage|Oh, so you're not a fan...*Well, I can change that.~Let me sing for
 DefeatMessage|Lalalah...~My Pokémon, I send them out,~all the girls scream and shout!
 TextureID|27
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure1_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer

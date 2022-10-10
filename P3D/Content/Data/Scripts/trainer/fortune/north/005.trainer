@@ -7,6 +7,7 @@ OutroMessage|Nope, no luck at all...
 DefeatMessage|I can't very well go home~without catching something,~though.
 TextureID|19
 Region|Sevii Islands
+InSightMusic|trainer_suspiciousfigure2_encounter
 IniMusic|johto_trainer_intro
 DefeatMusic|trainer_defeat
 BattleMusic|johto_trainer
