@@ -51,7 +51,9 @@ The first build of the game will take a little longer due to the MonoGame Conten
 
 To build the game, you can either use the publish tool in Visual Studio or Dotnet CLI.
 
-Dotnet CLI: `dotnet publish -c Release -r win-x64 -o bin/win-x64 --self-contained`
+Dotnet CLI (Windows x64): `dotnet publish -c Release -r win-x64 -o bin/win-x64 --self-contained`
+
+This game only supports windows for now due to Windows Form usage. Trimming is disabled due to it as well. AOT compilation is also not possible due to refelction usage.
 
 # Classified information
 
