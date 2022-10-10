@@ -33,7 +33,7 @@ namespace P3D.SourceGenerator
             var metaFileOutput = new StringBuilder();
             var measuredSize = 0L;
 
-            foreach (var fileSystemEntry in Directory.EnumerateFiles(contentDirectory.FullName, "*", SearchOption.AllDirectories))
+            foreach (var fileSystemEntry in Directory.EnumerateFiles(contentDirectory.FullName, "*.*", SearchOption.AllDirectories))
             {
                 if (_excludedFolder.Any(folderName => fileSystemEntry.Contains(Path.Combine("Content", folderName)))) continue;
                 if (!_includedExtensions.Contains(Path.GetExtension(fileSystemEntry))) continue;
