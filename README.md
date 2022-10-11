@@ -33,14 +33,14 @@ If you want to play online on the official Pokémon 3D server, you need a GameJo
 
 # Instructions to build the game from source
 
-The game is written in Visual Basic/VB.NET and was compiled targeting the .NET Framework 4.6
+The game is written in Visual Basic/VB.NET and was compiled targeting the .NET 6
 
 It is built using the MonoGame framework as graphics middleware.
 
 In order to build the game's solution, you need the following:
-* Microsoft Windows operating system (XP and up)
+* Microsoft Windows operating system (7 and up)
 * [Microsoft Visual Studio Community Edition](https://www.visualstudio.com/) (2019 and up)
-* [MonoGame 3.7.1 for Visual Studio](https://community.monogame.net/t/monogame-3-7-1/11173)
+* [Dotnet 6 SDK - Included in VS 2022](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 * [Visual C++ Redistributable Packages for Visual Studio 2012 Update 4](http://www.microsoft.com/en-NZ/download/details.aspx?id=30679)
 * [Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-us/download/details.aspx?id=40784)
 
@@ -48,6 +48,12 @@ Make sure you've cloned the repository to a filepath without any spaces in it. I
 To run the game after a successful build, you also need an applicable graphics card that supports DirectX (version 9 minimum).
 
 The first build of the game will take a little longer due to the MonoGame Content Pipeline building all assets for the first time.
+
+To build the game, you can either use the publish tool in Visual Studio or Dotnet CLI.
+
+Dotnet CLI (Windows x64): `dotnet publish -c Release -r win-x64 -o bin/win-x64 --self-contained`
+
+This game only supports windows for now due to Windows Form usage. Trimming is disabled due to it as well. AOT compilation is also not possible due to refelction usage.
 
 # Classified information
 
@@ -66,23 +72,7 @@ Hardcoded into the game's code is the hash for the *meta file*, to ensure that i
 
 The code responsible for this is located in *Security/FileValidation.vb*.
 
-To generate a valid meta file for the current state of the files in the game, go to the aforementioned code file and set this:
-
-        Const RUNVALIDATION As Boolean = True ' Instead of False
-
-Also, be sure to set the Solution Configuration at the top of the screen to Release instead of Debug.
-
-Then build and debug-run the game. The console output during the game's launch will output an expected size and metahash value.
-It will also produce an updated "meta" file in the "P3D\bin\Release\" folder. Copy this to the main project folder (that's called P3D) and replace the file that's already there.
-
-Stop the debugging of the game and copy these two values into the correct places at the top of the FileValidation code:
-
-        Const EXPECTEDSIZE As Integer = <your expected size output here>
-        Const METAHASH As String = <your meta hash here>
-
-Once you have done this, disable the *RUNVALIDATION* variable again and build the game again to have it boot up like normal.
-
-If you want to continue working on the code, it is recommended to set the Solution Configuration at the top of the screen back to Debug instead of Release.
+The generation of meta file is done during compile time using source generators. The code will be generated when building the game.
 
 # Development
 
