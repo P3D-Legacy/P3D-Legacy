@@ -285,7 +285,7 @@ Public Class Logger
     Shared longestStackEntryName As String = "GameModeManager.SetGameModePointer"
 
     Public Shared Sub Debug(ByVal message As String)
-        Dim stackTraceEntry As String = Environment.StackTrace.SplitAtNewline()(0)
+        Dim stackTraceEntry As String = Environment.StackTrace.SplitAtNewline()(2)
 
         While stackTraceEntry.StartsWith(" ") = True
             stackTraceEntry = stackTraceEntry.Remove(0, 1)
