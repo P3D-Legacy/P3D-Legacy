@@ -797,7 +797,7 @@ Public Class OverworldCamera
     Public Function CheckCollision(ByVal newPosition As Vector3) As Boolean
         Dim cannotWalk As Boolean = True
         Dim setSurfFalse As Boolean = False
-        Dim Position2D As Vector3 = New Vector3(newPosition.X, newPosition.Y - 0.1F, newPosition.Z)
+        Dim Position2D As Vector3 = New Vector3(newPosition.X, CSng(Math.Floor(newPosition.Y)), newPosition.Z)
         For Each Floor As Entity In Screen.Level.Floors
             If Floor.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
                 cannotWalk = False
@@ -807,7 +807,7 @@ Public Class OverworldCamera
 
         If cannotWalk = False Then
             For Each Entity As Entity In Screen.Level.Entities
-                If Entity.boundingBox.Contains(newPosition) = ContainmentType.Contains Then
+                If Entity.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
                     If cannotWalk = False Then
                         If Entity.Collision = True Then
                             cannotWalk = Entity.WalkAgainstFunction()
@@ -815,17 +815,17 @@ Public Class OverworldCamera
                             cannotWalk = Entity.WalkIntoFunction()
                         End If
                     End If
-                ElseIf Entity.boundingBox.Contains(New Vector3(newPosition.X, newPosition.Y - 1, newPosition.Z)) = ContainmentType.Contains Then
+                ElseIf Entity.boundingBox.Contains(New Vector3(Position2D.X, Position2D.Y - 1, Position2D.Z)) = ContainmentType.Contains Then
                     Entity.WalkOntoFunction()
                 End If
             Next
         Else
             For Each Entity As Entity In Screen.Level.Entities
-                If Entity.boundingBox.Contains(New Vector3(newPosition.X, newPosition.Y - 1, newPosition.Z)) = ContainmentType.Contains Then
+                If Entity.boundingBox.Contains(New Vector3(Position2D.X, Position2D.Y - 1, Position2D.Z)) = ContainmentType.Contains Then
                     Entity.WalkOntoFunction()
                 End If
                 If Screen.Level.Surfing = True Then
-                    If Entity.boundingBox.Contains(newPosition) = ContainmentType.Contains Then
+                    If Entity.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
                         If Entity.Collision = True Then
                             Entity.WalkAgainstFunction()
                         Else
