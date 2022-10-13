@@ -325,7 +325,7 @@ nextIndex:
         Else
             Dim boxName As String = StorageSystemScreen.GetBoxName(StorageSystemScreen.DepositPokemon(p, Player.Temp.PCBoxIndex))
 
-            s = "It was transfered to Box~""" & boxName & """~on your PC."
+            s = "It was transfered to Box~""" & boxName & """~on the PC."
         End If
 
         If p.IsShiny = True Then
