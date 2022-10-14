@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+        <Version>0.59.1</Version>
+        <Title>Pokémon3D C# Extensions</Title>
+        <Authors>Kolben Games</Authors>
+        <Copyright>Copyright © Kolben 2012-2022</Copyright>
+        <PackageProjectUrl>https://github.com/P3D-Legacy/P3D-Legacy</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/P3D-Legacy/P3D-Legacy</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+    
+</Project>

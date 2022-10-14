@@ -1,6 +1,7 @@
 ﻿Namespace Security
 
-     Public Partial Class FileValidation
+    Public Partial Class FileValidation
+        Inherits FileValidationHash
 
         Shared _validated As Boolean = False
         Shared _valid As Boolean = False

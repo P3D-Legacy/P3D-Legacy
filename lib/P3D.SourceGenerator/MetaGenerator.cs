@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -12,7 +13,7 @@ namespace P3D.SourceGenerator
     {
         private const string FileValidationFileName = "FileValidation.vb";
 
-        private readonly string[] _excludedFolder = { "bin", "obj", "Localization" };
+        private readonly string[] _excludedFolder = { "bin", "obj", "Effects", "GUI", "Items", "Localization", "SkyDomeResource", "Songs", "Sounds", "Textures" };
         private readonly string[] _includedExtensions = { ".dat", ".poke", ".lua", ".trainer" };
 
         private MD5 _md5;
@@ -29,7 +30,9 @@ namespace P3D.SourceGenerator
             var projectDirectory = new DirectoryInfo(Path.Combine(fileValidationDirectory, ".."));
             var contentDirectory = new DirectoryInfo(Path.Combine(fileValidationDirectory, "..", "Content"));
             var metaFilePath = Path.Combine(projectDirectory.FullName, "meta");
+            var fileValidationHashPath = Path.Combine(fileValidationDirectory, "FileValidationHash.vb");
 
+            var filesToCompute = new List<FileInfo>();
             var metaFileOutput = new StringBuilder();
             var measuredSize = 0L;
 
@@ -37,29 +40,57 @@ namespace P3D.SourceGenerator
             {
                 if (_excludedFolder.Any(folderName => fileSystemEntry.Contains(Path.Combine("Content", folderName)))) continue;
                 if (!_includedExtensions.Contains(Path.GetExtension(fileSystemEntry))) continue;
+                
+                filesToCompute.Add(new FileInfo(fileSystemEntry));
+            }
 
-                var file = new FileInfo(fileSystemEntry);
+            foreach (var file in filesToCompute.OrderBy(info => info.FullName))
+            {
                 var fileSize = file.Length;
                 measuredSize += fileSize;
 
-                metaFileOutput.AppendFormat(metaFileOutput.Length == 0 ? "{0}:{1}" : ",{0}:{1}", fileSystemEntry.Remove(0, projectDirectory.FullName.Length + 1), ComputeMd5Hash(file.OpenRead()));
+                metaFileOutput.AppendFormat(metaFileOutput.Length == 0 ? "{0}:{1}" : ",{0}:{1}", file.FullName.Remove(0, projectDirectory.FullName.Length + 1), ComputeMd5Hash(file.OpenRead()));
             }
 
             File.WriteAllText(metaFilePath, metaFileOutput.ToString());
 
             var metaHash = ComputeMd5Hash(File.OpenRead(metaFilePath));
             var metaResult = Convert.ToBase64String(Encoding.UTF8.GetBytes(metaHash));
-
-            context.AddSource("FileValidation.Generated.vb", $@"
+            
+            File.WriteAllText(fileValidationHashPath, $@"
 Namespace Security
 
-    Public Partial Class FileValidation
-        Private Const EXPECTEDSIZE As Integer = {measuredSize}
-        Private Const METAHASH As String = ""{metaResult}""
+    Public MustInherit Class FileValidationHash
+        '
+        ' Dev notes:
+        ' This would be auto generated via P3D.SourceGenerator.
+        ' The fields are here so that the error would go away and also act as a fall back if generation fails.
+        ' Actual code will be read from FileValidation.Generated.vb which generates a FileValidation class with
+        ' the same details as here.
+        '
+        Protected Shared EXPECTEDSIZE As Integer = {measuredSize}
+        Protected Shared METAHASH As String = ""{metaResult}""
+
+#Region ""Generated File Hashes""
+        ' {string.Join($"{Environment.NewLine}        ' ", metaFileOutput.ToString().Split(','))}
+#End Region
     End Class
 
 End Namespace
 ");
+            
+            context.AddSource("FileValidation.Generated.vb", $@"
+Namespace Security
+
+    Public Partial Class FileValidation
+        Protected Shadows Shared EXPECTEDSIZE As Integer = {measuredSize}
+        Protected Shadows Shared METAHASH As String = ""{metaResult}""
+    End Class
+
+End Namespace
+");
+            
+            _md5.Dispose();
         }
 
         private string ComputeMd5Hash(Stream stream)

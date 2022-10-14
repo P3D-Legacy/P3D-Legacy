@@ -75,12 +75,12 @@
         </MonoGameContentReference>
     </ItemGroup>
     <ItemGroup>
-        <Content Include="Content\**\*" Exclude="Content\bin\**\*;Content\obj\**\*">
+        <None Include="Content\**\*" Exclude="Content\bin\**\*;Content\obj\**\*">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
-        <Content Include="meta">
+        </None>
+        <None Include="meta">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </Content>
+        </None>
         <Content Include="Pokemon3D.ico" />
         <None Include="Pokemon\Items\_itemList.txt" />
     </ItemGroup>
@@ -89,6 +89,6 @@
             <Project>{087378ee-7591-47ce-979f-6824fc0606ef}</Project>
             <Name>GameDevCommon</Name>
         </ProjectReference>
-        <ProjectReference Include="..\P3D.SourceGenerator\P3D.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\lib\P3D.SourceGenerator\P3D.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 </Project>
