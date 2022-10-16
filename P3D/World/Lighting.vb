@@ -54,7 +54,7 @@ Public Class Lighting
                 ColorTexture = FogColorTexture
                 Select Case Screen.Level.EnvironmentType
                     Case 0
-                        x = GetLightingType()
+                        x = Screen.Level.DayTime - 1
                         If x > 2 Then
                             x = 0
                             y += 1
