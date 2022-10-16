@@ -166,8 +166,7 @@ Public NotInheritable Class Level
             Shaders.Clear()
             OffsetmapFloors.Clear()
             OffsetmapEntities.Clear()
-            WallBlock.Dictionary.Clear()
-            AllSidesObject.Dictionary.Clear()
+            Entity.EntityDictionary.Clear()
         End SyncLock
     End Sub
 

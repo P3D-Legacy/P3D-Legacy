@@ -2,6 +2,7 @@
 
     Public Shared MakeShake As Boolean = False
     Public Shared drawViewBox As Boolean = False
+    Public Shared ReadOnly EntityDictionary As New Dictionary(Of Vector3, Entity())
 
     Public ID As Integer = -1
     Public InsertOrder As Integer = -1
@@ -604,7 +605,7 @@
 
     Dim _cachedVertexCount As Integer = -1 'Stores the vertex count so it doesnt need to be recalculated.
 
-    Public ReadOnly Property VertexCount() As Integer
+    Public ReadOnly Property VertexCount As Integer
         Get
             If Me._cachedVertexCount = -1 Then
                 If Not Me.BaseModel Is Nothing Then
@@ -669,5 +670,37 @@
             Next
         End If
     End Sub
+    
+    Protected Shared Function GetEntityByPosition(targetPosition As Vector3) As Entity()
+        If EntityDictionary.ContainsKey(targetPosition) = False Then
+            Dim temp = New List(Of Entity)
+
+            SyncLock Screen.Level.EntityReadWriteSync
+                For Each entity As Entity In Screen.Level.Entities
+                    If entity.ID = -1 AndAlso entity.Position = targetPosition Then
+                        temp.Add(entity)
+                    End If
+                Next
+            End SyncLock
+
+            EntityDictionary.Add(targetPosition, temp.ToArray())
+        End If
+
+        Return EntityDictionary(targetPosition)
+    End Function
+    
+    Protected Function CreateNewTextureIndex() As Integer()
+        Dim temp = New Integer(BaseModel.VertexBuffer.VertexCount / 3 - 1) {}
+
+        For i As Integer = 0 To TextureIndex.Length - 1
+            If i >= temp.Length Then
+                Exit For
+            End If
+
+            temp(i) = TextureIndex(i)
+        Next
+
+        Return temp
+    End Function
 
 End Class
