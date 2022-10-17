@@ -303,9 +303,9 @@
                 pokedexNo = "0" & pokedexNo
             End While
         Else
-            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8 + 16, DeltaY + 330 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
-            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8 + 16, DeltaY + 362 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
-            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8 + 16, DeltaY + 394 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8, DeltaY + 330 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8, DeltaY + 362 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
+            SpriteBatch.DrawString(FontManager.MainFont, "???", New Vector2(DeltaX + 96 + 8, DeltaY + 394 + 4), New Color(255, 255, 255, CInt(220 * _fadeIn)))
         End If
 
         'Pokedex no.
