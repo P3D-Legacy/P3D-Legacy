@@ -12,10 +12,20 @@
 
             Select Case command.ToLower()
                 Case "play"
-                    MusicManager.Play(argument, True)
+                    Dim LoopSong As Boolean = True
+                    If argument.Split(",").Length > 1 Then
+                        LoopSong = CBool(argument.GetSplit(1, ","))
+                    End If
+                    MusicManager.Play(argument.GetSplit(0, ","), LoopSong, LoopSong)
 
-                    If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-                        Screen.Level.MusicLoop = argument
+                    If LoopSong = True Then
+                        If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                            Screen.Level.MusicLoop = argument
+                        End If
+                    Else
+                        If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                            Screen.Level.MusicLoop = "silence"
+                        End If
                     End If
                 Case "forceplay"
                     MusicManager.ClearCurrentlyPlaying()
