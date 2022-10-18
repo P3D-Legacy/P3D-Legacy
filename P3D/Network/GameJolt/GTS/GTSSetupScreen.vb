@@ -86,7 +86,7 @@
                         End If
 
                         'Pokemon image/data:
-                        Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(500, 164, 128, 128), Color.White)
+                        Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(500, 164, MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Height * 2), 256)), Color.White)
 
                         If D.Pokemon.GetDisplayName() <> D.Pokemon.OriginalName Then
                             Core.SpriteBatch.DrawString(FontManager.MainFont, D.Pokemon.GetDisplayName(), New Vector2(630, 190), Color.Black)
@@ -113,7 +113,7 @@
                         'RequestPokemon:
                         Dim p As Pokemon = TempPokemon
 
-                        Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(800, 164, 128, 128), Color.White)
+                        Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(800, 164, MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), Color.White)
 
                         If D.Pokemon.GetDisplayName() <> p.OriginalName Then
                             Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(930, 190), Color.Black)
@@ -437,7 +437,7 @@
                 Canvas.DrawRectangle(New Rectangle(400, 100, 750, 500), New Color(255, 255, 255, 150))
 
                 If Not D.Pokemon Is Nothing Then
-                    Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(50, 120, 128, 128), Color.White)
+                    Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(50, 120, MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Height * 2), 256)), Color.White)
 
                     If D.Pokemon.GetDisplayName() <> D.Pokemon.OriginalName Then
                         Core.SpriteBatch.DrawString(FontManager.MainFont, D.Pokemon.GetDisplayName(), New Vector2(180, 146), Color.Black)
@@ -496,7 +496,7 @@
                         End If
                         Dim p As Pokemon = TempPokemon
 
-                        Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(800, 120, 128, 128), Color.White)
+                        Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(800, 120, MathHelper.Min(CInt(p.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(p.GetTexture(True).Height * 2), 256)), Color.White)
                         Core.SpriteBatch.DrawString(FontManager.MainFont, p.OriginalName, New Vector2(180 + 750, 176), Color.Black)
 
                         'Stars:

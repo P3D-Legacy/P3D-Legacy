@@ -127,7 +127,7 @@
                         Me.PartnerEmblem.Draw(New Vector2(CInt(Core.windowSize.Width / 2), Core.windowSize.Height - 160), 2)
 
                         Dim p As Pokemon = Me.SelectedPokemon
-                        Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), 80, 256, 256), Color.White)
+                        Core.SpriteBatch.Draw(p.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(p.GetTexture(True).Width * 3 / 2), 144)), 80, MathHelper.Min(p.GetTexture(True).Width * 3, 288), MathHelper.Min(p.GetTexture(True).Height * 3, 288)), Color.White)
 
                         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - 300), 350, 600, 40), New Color(135, 168, 20, 100))
                         Core.SpriteBatch.DrawString(FontManager.MainFont, p.GetDisplayName(), New Vector2(CInt(Core.windowSize.Width / 2 - 298), 355), Color.White)
@@ -338,19 +338,19 @@
         Private Sub DrawTrading()
             Select Case tState
                 Case 0
-                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), ownPokemonPosition, 256, 256), Color.White)
+                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(True), New Rectangle(CInt(MathHelper.Min(CInt(SelectedPokemon.GetTexture(True).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(SelectedPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(True).Height * 3, 288)), Color.White)
                 Case 1
-                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), CInt(Core.windowSize.Height / 2 - 128), 256, 256), Color.White)
+                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(False), New Rectangle(CInt(MathHelper.Min(CInt(SelectedPokemon.GetTexture(False).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(False).Height * 3 / 2), 144)), MathHelper.Min(SelectedPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(False).Height * 3, 288)), Color.White)
 
                     Dim t As String = "Sending " & Me.SelectedPokemon.GetDisplayName() & " to Wondertrade." & Environment.NewLine & "Good-bye, " & Me.SelectedPokemon.GetDisplayName() & "!"
 
                     Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 130)), Color.White)
                 Case 2
-                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), ownPokemonPosition, 256, 256), Color.White)
+                    Core.SpriteBatch.Draw(Me.SelectedPokemon.GetTexture(False), New Rectangle(CInt(MathHelper.Min(CInt(SelectedPokemon.GetTexture(False).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(SelectedPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(False).Height * 3, 288)), Color.White)
                 Case 3
-                    Core.SpriteBatch.Draw(Me.WonderTradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), oppPokemonPosition, 256, 256), Color.White)
+                    Core.SpriteBatch.Draw(Me.WonderTradePokemon.GetTexture(True), New Rectangle(CInt(MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Width * 3 / 2), 144)), oppPokemonPosition, MathHelper.Min(WonderTradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(True).Height * 3, 288)), Color.White)
                 Case 4
-                    Core.SpriteBatch.Draw(Me.WonderTradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), CInt(Core.windowSize.Height / 2 - 128), 256, 256), Color.White)
+                    Core.SpriteBatch.Draw(Me.WonderTradePokemon.GetTexture(True), New Rectangle(CInt(MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Height * 3 / 2), 144)), MathHelper.Min(WonderTradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(SelectedPokemon.GetTexture(True).Height * 3, 288)), Color.White)
 
                     Dim t As String = Me.PartnerEmblem.Username & " sent over " & Me.WonderTradePokemon.GetDisplayName() & "."
 
@@ -361,10 +361,10 @@
         Private Sub UpdateTrading()
             Select Case tState
                 Case 0
-                    If ownPokemonPosition > CInt(Core.windowSize.Height / 2 - 128) Then
+                    If ownPokemonPosition > CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(True).Height * 3 / 2), 144)) Then
                         ownPokemonPosition -= 4
-                        If ownPokemonPosition <= CInt(Core.windowSize.Height / 2 - 128) Then
-                            ownPokemonPosition = CInt(Core.windowSize.Height / 2 - 128)
+                        If ownPokemonPosition <= CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(True).Height * 3 / 2), 144)) Then
+                            ownPokemonPosition = CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(SelectedPokemon.GetTexture(True).Height * 3 / 2), 144))
                             tState = 1
                             SoundManager.PlayPokemonCry(SelectedPokemon.Number)
                         End If
@@ -387,10 +387,10 @@
                         End If
                     End If
                 Case 3
-                    If oppPokemonPosition < CInt(Core.windowSize.Height / 2 - 128) Then
+                    If oppPokemonPosition < CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Height * 3 / 2), 144)) Then
                         oppPokemonPosition += 4
-                        If oppPokemonPosition >= CInt(Core.windowSize.Height / 2 - 128) Then
-                            oppPokemonPosition = CInt(Core.windowSize.Height / 2 - 128)
+                        If oppPokemonPosition >= CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Height * 3 / 2), 144)) Then
+                            oppPokemonPosition = CInt(Core.windowSize.Height / 2 - MathHelper.Min(CInt(WonderTradePokemon.GetTexture(True).Height * 3 / 2), 144))
                             tState = 4
                             SoundManager.PlayPokemonCry(WonderTradePokemon.Number)
                         End If
