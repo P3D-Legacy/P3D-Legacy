@@ -100,6 +100,7 @@ nextScript:
     ''' <param name="Input">The input string.</param>
     ''' <param name="InputType">Type of information; 0: Script path, 1: Text, 2: Direct input.</param>
     Public Sub StartScript(ByVal Input As String, ByVal InputType As Integer, Optional ByVal CheckDelay As Boolean = True, Optional ByVal ResetInsight As Boolean = True)
+        Screen.Level.OwnPlayer.Opacity = 1
         ScriptLevelIndex += 1
 
         TempSpin = False
