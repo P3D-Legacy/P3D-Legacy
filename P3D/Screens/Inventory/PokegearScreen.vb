@@ -28,7 +28,7 @@
 
         Dim FunctionList As New List(Of String)
 
-        Dim width As Integer = 672
+        Dim width As Integer = 720
         Dim heigth As Integer = 400
 
         Dim Cursors() As Integer
@@ -1258,8 +1258,8 @@
                         End If
 
                         Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(96, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 80 + i * 36), 496, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
-                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 496), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16), CInt(startPos.Y + 80 + i * 36), 584, 32), New Rectangle(102, 112, 4, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
+                        Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\pokegear"), New Rectangle(CInt(startPos.X + 40 + 16 + 584), CInt(startPos.Y + 80 + i * 36), 16, 32), New Rectangle(104, 112, 8, 16), Color.White, 0.0F, Vector2.Zero, eff, 0.0F)
 
                         Dim _spriteTexture As Texture2D = TextureManager.GetTexture("Textures\NPC\" & C.Texture)
 
@@ -1277,10 +1277,10 @@
                         End If
                         Core.SpriteBatch.Draw(_spriteTexture, New Rectangle(CInt(startPos.X + 48), CInt(startPos.Y + 80 + 16 - (frameSize.Height * frameScale / 2) + i * 36), CInt(frameSize.Width * frameScale), CInt(frameSize.Height * frameScale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
                         Core.SpriteBatch.DrawString(FontManager.MainFont, C.Name, New Vector2(CInt(startPos.X + 88), CInt(startPos.Y + 84 + i * 36)), Color.Black)
-                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Location: " & C.Location, New Vector2(CInt(startPos.X + 262), CInt(startPos.Y + 84 + i * 36)), Color.Black)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Location: " & C.Location, New Vector2(CInt(startPos.X + 320), CInt(startPos.Y + 84 + i * 36)), Color.Black)
                     End If
                 Next
-                Canvas.DrawScrollBar(New Vector2(startPos.X + 600, startPos.Y + 88), PhoneContacts.Count, 9, PhoneScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
+                Canvas.DrawScrollBar(New Vector2(startPos.X + width - 32, startPos.Y + 88), PhoneContacts.Count, 9, PhoneScroll, New Size(4, 300), False, New Color(252, 196, 68), New Color(217, 120, 18))
             End If
         End Sub
 
@@ -1830,7 +1830,7 @@
                 Dim outputList As New List(Of String)
 
                 For Each e As String In l
-                    outputList.AddRange(e.CropStringToWidth(FontManager.InGameFont, 400).SplitAtNewline())
+                    outputList.AddRange(e.CropStringToWidth(FontManager.InGameFont, 480).SplitAtNewline())
                 Next
 
                 outputList.Insert(0, "")
@@ -1857,7 +1857,7 @@
 
             For i = 0 To 21
                 Dim tP As Integer = CInt(i * 20)
-                Canvas.DrawRectangle(New Rectangle(CInt(startPos.X + 89 + tP), CInt(startPos.Y + 108), 2, 9), Color.Black)
+                Canvas.DrawRectangle(New Rectangle(CInt(startPos.X + 88 + tP), CInt(startPos.Y + 108), 2, 9), Color.Black)
             Next
 
             Dim cursorPosition As Integer = CInt(RadioCursor * 20)
@@ -1878,19 +1878,19 @@
                 End If
             End If
             If text2 <> "" Then
-                Core.SpriteBatch.DrawString(FontManager.MainFont, text2, New Vector2(startPos.X + 400 - CInt(FontManager.MainFont.MeasureString(text2).X / 2), startPos.Y + 152), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, text2, New Vector2(startPos.X + 480 - CInt(FontManager.MainFont.MeasureString(text2).X / 2), startPos.Y + 152), Color.Black)
             End If
 
             Dim CanvasTexture As Texture2D
             CanvasTexture = TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(0, 0, 48, 48), "")
 
-            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(startPos.X) + 44, CInt(startPos.Y) + 260, 96 * 5, 96))
+            Canvas.DrawImageBorder(CanvasTexture, 2, New Rectangle(CInt(startPos.X) + 44, CInt(startPos.Y) + 260, 96 * 6, 96))
 
             If BroadCastLines.Count > 0 Then
-                Core.SpriteBatch.DrawString(FontManager.InGameFont, BroadCastLines(0), New Vector2(CInt(startPos.X) + 300 - CInt(FontManager.InGameFont.MeasureString(BroadCastLines(0)).X / 2), CInt(startPos.Y) + 286), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.InGameFont, BroadCastLines(0), New Vector2(CInt(startPos.X) + 44 + CInt(96 * 6 / 2) - CInt(FontManager.InGameFont.MeasureString(BroadCastLines(0)).X / 2), CInt(startPos.Y) + 286), Color.Black)
                 If BroadCastLines.Count > 1 Then
 
-                    Core.SpriteBatch.DrawString(FontManager.InGameFont, BroadCastLines(1), New Vector2(CInt(startPos.X) + 300 - CInt(FontManager.InGameFont.MeasureString(BroadCastLines(1)).X / 2), CInt(startPos.Y) + 320), Color.Black)
+                    Core.SpriteBatch.DrawString(FontManager.InGameFont, BroadCastLines(1), New Vector2(CInt(startPos.X) + 44 + CInt(96 * 6 / 2) - CInt(FontManager.InGameFont.MeasureString(BroadCastLines(1)).X / 2), CInt(startPos.Y) + 320), Color.Black)
                 End If
             End If
         End Sub
