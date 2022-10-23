@@ -130,7 +130,7 @@
 
             If Not P Is Nothing Then
                 'Pokemon image/data:
-                Core.SpriteBatch.Draw(P.GetTexture(True), New Rectangle(100 + OwnX, 164, 128, 128), Color.White)
+                Core.SpriteBatch.Draw(P.GetTexture(True), New Rectangle(100 + OwnX, 164, MathHelper.Min(CInt(P.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(P.GetTexture(True).Height * 2), 256)), Color.White)
 
                 If P.GetDisplayName() <> P.OriginalName Then
                     Core.SpriteBatch.DrawString(FontManager.MainFont, P.GetDisplayName(), New Vector2(230 + OwnX, 190), Color.Black)
@@ -187,7 +187,7 @@
 
             If Not D.Pokemon Is Nothing Then
                 'Pokemon image/data:
-                Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(100 + OppX, 164, 128, 128), Color.White)
+                Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(100 + OppX, 164, MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Height * 2), 256)), Color.White)
 
                 If D.Pokemon.GetDisplayName() <> D.Pokemon.OriginalName Then
                     Core.SpriteBatch.DrawString(FontManager.MainFont, D.Pokemon.GetDisplayName(), New Vector2(230 + OppX, 190), Color.Black)
@@ -402,8 +402,8 @@
                     Core.SpriteBatch.DrawString(FontManager.MiniFont, "Version " & GTSMainScreen.GTSVersion, New Vector2(4, Core.windowSize.Height - 1 - FontManager.MiniFont.MeasureString("Version " & GTSMainScreen.GTSVersion).Y), Color.DarkGray)
                 Else
                     Fur.Draw()
-                    Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(CInt(P1Pos.X), CInt(P1Pos.Y), 128, 128), Color.White)
-                    Core.SpriteBatch.Draw(P.GetTexture(True), New Rectangle(CInt(P2Pos.X), CInt(P2Pos.Y), 128, 128), Color.White)
+                    Core.SpriteBatch.Draw(D.Pokemon.GetTexture(True), New Rectangle(CInt(P1Pos.X), CInt(P1Pos.Y), MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(D.Pokemon.GetTexture(True).Height * 2), 256)), Color.White)
+                    Core.SpriteBatch.Draw(P.GetTexture(True), New Rectangle(CInt(P2Pos.X), CInt(P2Pos.Y), MathHelper.Min(CInt(P.GetTexture(True).Width * 2), 256), MathHelper.Min(CInt(P.GetTexture(True).Height * 2), 256)), Color.White)
 
                 End If
             End Sub

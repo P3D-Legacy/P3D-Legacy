@@ -321,6 +321,7 @@ Public Class MusicManager
     End Sub
 
     Public Shared Sub [Stop]()
+        Playlist.Clear()
         MusicManager.Play(NO_MUSIC, False, 0.0F)
         _isIntroStarted = False
     End Sub

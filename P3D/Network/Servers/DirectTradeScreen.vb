@@ -95,7 +95,7 @@
 
         If Not Me.OfferPokemon Is Nothing Then
             GetYOffset(offerYOffset, OfferPokemon)
-            Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(True), New Rectangle(100, 100 - offerYOffset, 256, 256), Color.White)
+            Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(True), New Rectangle(100, 100 - offerYOffset, MathHelper.Min(OfferPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(OfferPokemon.GetTexture(True).Height * 3, 288)), Color.White)
 
             Canvas.DrawRectangle(New Rectangle(100, 400, 256, 128), New Color(255, 255, 255, 150))
 
@@ -164,7 +164,7 @@
 
         If Not TradePokemon Is Nothing Then
             GetYOffset(tradeYOffset, TradePokemon)
-            Core.SpriteBatch.Draw(TradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width - 356), 100 - tradeYOffset, 256, 256), Color.White)
+            Core.SpriteBatch.Draw(TradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width - 356), 100 - tradeYOffset, MathHelper.Min(TradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(TradePokemon.GetTexture(True).Height * 3, 288)), Color.White)
 
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 356), 400, 256, 128), New Color(255, 255, 255, 150))
 
@@ -424,9 +424,9 @@
     Private Sub DrawTrading()
         Select Case tState
             Case 0
-                Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), ownPokemonPosition, 256, 256), Color.White)
+                Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(OfferPokemon.GetTexture(True).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(OfferPokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(OfferPokemon.GetTexture(True).Height * 3, 288)), Color.White)
             Case 1
-                Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), CInt(Core.windowSize.Height / 2 - 128), 256, 256), Color.White)
+                Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(OfferPokemon.GetTexture(False).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - 128), MathHelper.Min(OfferPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(OfferPokemon.GetTexture(False).Height * 3, 288)), Color.White)
 
                 Dim p As Servers.Player = Nothing
                 For Each pp As Servers.Player In Core.ServersManager.PlayerCollection
@@ -440,11 +440,11 @@
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(CInt(Core.windowSize.Width / 2 - FontManager.MainFont.MeasureString(t).X / 2), CInt(Core.windowSize.Height / 2 + 130)), Color.White)
             Case 2
-                Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), ownPokemonPosition, 256, 256), Color.White)
+                Core.SpriteBatch.Draw(Me.OfferPokemon.GetTexture(False), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(OfferPokemon.GetTexture(False).Width * 3 / 2), 144)), ownPokemonPosition, MathHelper.Min(OfferPokemon.GetTexture(False).Width * 3, 288), MathHelper.Min(OfferPokemon.GetTexture(False).Height * 3, 288)), Color.White)
             Case 3
-                Core.SpriteBatch.Draw(TradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), oppPokemonPosition, 256, 256), Color.White)
+                Core.SpriteBatch.Draw(TradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(TradePokemon.GetTexture(True).Width * 3 / 2), 144)), oppPokemonPosition, MathHelper.Min(TradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(TradePokemon.GetTexture(True).Height * 3, 288)), Color.White)
             Case 4
-                Core.SpriteBatch.Draw(TradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - 128), CInt(Core.windowSize.Height / 2 - 128), 256, 256), Color.White)
+                Core.SpriteBatch.Draw(TradePokemon.GetTexture(True), New Rectangle(CInt(Core.windowSize.Width / 2 - MathHelper.Min(CInt(TradePokemon.GetTexture(True).Width * 3 / 2), 144)), CInt(Core.windowSize.Height / 2 - 128), MathHelper.Min(TradePokemon.GetTexture(True).Width * 3, 288), MathHelper.Min(TradePokemon.GetTexture(True).Height * 3, 288)), Color.White)
 
                 Dim p As Servers.Player = Nothing
                 For Each pp As Servers.Player In Core.ServersManager.PlayerCollection

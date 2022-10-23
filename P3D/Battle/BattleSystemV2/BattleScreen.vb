@@ -378,8 +378,8 @@
                 OppEntityOffsetY = -0.5F
             End If
 
-            OwnPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(12, OwnEntityOffsetY, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OwnPokemon), 3, WildPokemon.GetDisplayName(), 0, True, "Still", New List(Of Rectangle)}, InitiallyVisibleOwn,,, ownModel), NPC)
-            OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, OppEntityOffsetY, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(WildPokemon), 1, WildPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}, InitiallyVisibleOpp,,, oppModel), NPC)
+            OwnPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(12, OwnEntityOffsetY, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OwnPokemon), 3, OwnPokemon.GetDisplayName(), 0, True, "Still", New List(Of Rectangle)}, InitiallyVisibleOwn,,, ownModel), NPC)
+            OppPokemonNPC = CType(Entity.GetNewEntity("NPC", New Vector3(15, OppEntityOffsetY, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 1, "", "", New Vector3(0), {PokemonForms.GetOverworldSpriteName(OppPokemon), 1, OppPokemon.GetDisplayName(), 1, True, "Still", New List(Of Rectangle)}, InitiallyVisibleOpp,,, oppModel), NPC)
 
             If ownModel <> "" Then
                 OwnPokemonNPC.Scale = New Vector3(OwnPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE

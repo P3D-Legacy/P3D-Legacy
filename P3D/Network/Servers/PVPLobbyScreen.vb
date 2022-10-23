@@ -161,7 +161,8 @@
                 For i = 0 To OwnTeam.Count - 1
                     Dim p As Pokemon = OwnTeam(i)
                     Dim pokeTexture = p.GetMenuTexture()
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(40 + i * 40 - CInt((pokeTexture.Width - 32) / 2), 264, pokeTexture.Width, 32), Color.White)
+                    Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
+                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(40 + i * 40 - CInt((pokeTexture.Width - 32) / 2), 264, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
                 Next
             End If
         End If
@@ -228,7 +229,9 @@
                 For i = 0 To OppTeam.Count - 1
                     Dim p As Pokemon = OppTeam(i)
                     Dim pokeTexture = p.GetMenuTexture()
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(Core.windowSize.Width - 360) + i * 40 - CInt((pokeTexture.Width - 32) / 2), 264, pokeTexture.Width, 32), Color.White)
+                    Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
+
+                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(Core.windowSize.Width - 360) + i * 40 - CInt((pokeTexture.Width - 32) / 2), 264, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
                 Next
             End If
         End If
@@ -361,7 +364,9 @@
 
             If BattleBoxPokemon.Count - 1 >= i Then
                 Dim pokeTexture = BattleBoxPokemon(i).GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, pokeTexture.Width * 2, pokeTexture.Height * 2), Color.White)
+                Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
+
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
             End If
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Battle Box", New Vector2(CInt(startPos.X) + 80, CInt(startPos.Y) - 45), Color.White)
@@ -382,7 +387,8 @@
 
             If Core.Player.Pokemons.Count - 1 >= i Then
                 Dim pokeTexture = Core.Player.Pokemons(i).GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, pokeTexture.Width * 2, pokeTexture.Height * 2), Color.White)
+                Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width) * 2, CSng(32 / pokeTexture.Height) * 2)
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(startPos.X) + x * 140 + 32 - CInt(pokeTexture.Width - 32), y * 100 + CInt(startPos.Y) + 10, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
             End If
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, "Team", New Vector2(CInt(startPos.X) + 106, CInt(startPos.Y) - 45), Color.White)
@@ -727,7 +733,8 @@
                     c = New Color(65, 65, 65, 255)
                 End If
                 Dim pokeTexture = p.GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(40 + i * 40 - CInt((pokeTexture.Width - 32) / 2), 264, pokeTexture.Width, 32), c)
+                Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(40 + i * 40 - CInt((pokeTexture.Width - 32) / 2), 264, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
             Next
 
             'Draw Own Statistics:
@@ -810,7 +817,8 @@
                     c = New Color(65, 65, 65, 255)
                 End If
                 Dim pokeTexture = p.GetMenuTexture()
-                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(Core.windowSize.Width - 360) + i * 40 - CInt((pokeTexture.Width - 32) / 2), 264, pokeTexture.Width, 32), c)
+                Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
+                Core.SpriteBatch.Draw(pokeTexture, New Rectangle(CInt(Core.windowSize.Width - 360) + i * 40 - CInt((pokeTexture.Width - 32) / 2), 264, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), c)
             Next
 
             'Draw Opp Statistics:

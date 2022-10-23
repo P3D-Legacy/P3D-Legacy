@@ -797,7 +797,7 @@ Public Class OverworldCamera
     Public Function CheckCollision(ByVal newPosition As Vector3) As Boolean
         Dim cannotWalk As Boolean = True
         Dim setSurfFalse As Boolean = False
-        Dim Position2D As Vector3 = New Vector3(newPosition.X, Math.Floor(newPosition.Y), newPosition.Z)
+        Dim Position2D As Vector3 = New Vector3(newPosition.X, CSng(Math.Floor(newPosition.Y)), newPosition.Z)
         For Each Floor As Entity In Screen.Level.Floors
             If Floor.boundingBox.Contains(Position2D) = ContainmentType.Contains Then
                 cannotWalk = False
