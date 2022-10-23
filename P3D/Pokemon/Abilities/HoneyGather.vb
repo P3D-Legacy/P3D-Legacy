@@ -1,11 +1,11 @@
-Namespace Abilities
+﻿Namespace Abilities
 
     Public Class HoneyGather
 
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(118, "Honey Gather", "The Pok�mon may gather Honey from somewhere.")
+            MyBase.New(118, "Honey Gather", "The Pokémon may gather Honey from somewhere.")
         End Sub
 
         Public Shared Sub GatherHoney()

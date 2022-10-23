@@ -1,4 +1,4 @@
-Namespace Items
+﻿Namespace Items
 
     ''' <summary>
     ''' The base item for all Arceus plates.
@@ -14,7 +14,7 @@ Namespace Items
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 1000
 
         Public Sub New(ByVal Type As Element.Types)
-            Description = "An item to be held by a Pok�mon. It's a stone tablet that boosts the power of " & Type.ToString() & "-type moves."
+            Description = "An item to be held by a Pokémon. It's a stone tablet that boosts the power of " & Type.ToString() & "-type moves."
             _textureSource = "Items\Plates"
             _textureRectangle = GetTextureRectangle(Type)
         End Sub
