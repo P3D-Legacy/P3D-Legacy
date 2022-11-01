@@ -320,7 +320,7 @@ Public Class OverworldCamera
 
     Public Sub UpdateThirdPersonCamera()
         If _isFixed = False Then
-            If KeyBoardHandler.KeyPressed(KeyBindings.PerspectiveSwitchKey) = True Or ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.PerspectiveSwitchKey) = True Or ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True AndAlso PreventMovement = False Then
                 Dim actionscriptReady As Boolean = True
                 If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     actionscriptReady = CType(CurrentScreen, OverworldScreen).ActionScript.IsReady
