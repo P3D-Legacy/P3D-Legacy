@@ -350,7 +350,7 @@
                 Core.GameInstance.IsMouseVisible = True
             End If
         ElseIf Core.GameInstance.IsMouseVisible = True Then
-            If ControllerHandler.HasControlerInput() = True Or Controls.HasKeyboardInput() = True Then
+            If ControllerHandler.HasControllerInput() = True Or Controls.HasKeyboardInput() = True Then
                 Core.GameInstance.IsMouseVisible = False
             End If
         End If

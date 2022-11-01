@@ -221,7 +221,7 @@ Public Class OverworldCamera
 
         Dim dy As Single = mState.Y - oldY
         If gState.ThumbSticks.Right.Y <> 0.0F And Core.GameOptions.GamePadEnabled = True Then
-            dy = gState.ThumbSticks.Right.Y * 40.0F * -1.0F
+            dy = gState.ThumbSticks.Right.Y * 35.0F * -1.0F
         End If
 
         If _isFixed = False AndAlso (dx <> 0 OrElse dy <> 0) Then
@@ -274,7 +274,14 @@ Public Class OverworldCamera
                 _scrollDirection = 1
                 _scrollSpeed += _scrollSpeed.Clamp(0, 0.01)
             End If
+            If ControllerHandler.ButtonDown(Buttons.LeftTrigger) = True Then
+                If _scrollSpeed = 0.0F Or _scrollDirection <> 1 Then
+                    _scrollSpeed = 0.002F
+                End If
 
+                _scrollDirection = 1
+                _scrollSpeed += _scrollSpeed.Clamp(0, 0.002F)
+            End If
             If Controls.Up(True, False, True, False, False, False) = True Then
                 If _scrollSpeed = 0.0F Or _scrollDirection <> -1 Then
                     _scrollSpeed = 0.01F
@@ -282,6 +289,14 @@ Public Class OverworldCamera
 
                 _scrollDirection = -1
                 _scrollSpeed += _scrollSpeed.Clamp(0, 0.01)
+            End If
+            If ControllerHandler.ButtonDown(Buttons.RightTrigger) = True Then
+                If _scrollSpeed = 0.0F Or _scrollDirection <> -1 Then
+                    _scrollSpeed = 0.002F
+                End If
+
+                _scrollDirection = -1
+                _scrollSpeed += _scrollSpeed.Clamp(0, 0.002F)
             End If
 
             _scrollSpeed = _scrollSpeed.Clamp(0, 0.08)
