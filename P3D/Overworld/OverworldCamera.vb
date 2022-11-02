@@ -957,7 +957,7 @@ Public Class OverworldCamera
         Return 0F
     End Function
 
-    Public Overrides Sub Turn(ByVal turns As Integer)
+    Public Overrides Sub Turn(ByVal turns As Integer, Optional ForceCameraTurn As Boolean = False)
         If turns > 0 Then
             If _thirdPerson = True Then
                 _playerFacing += turns
@@ -965,6 +965,17 @@ Public Class OverworldCamera
                     _playerFacing -= 4
                 End While
                 Screen.Level.OwnPlayer.Opacity = 1.0F
+                If ForceCameraTurn = True Then
+                    Dim facing As Integer = GetFacingDirection()
+                    facing += _playerFacing - GetFacingDirection()
+
+                    While facing > 3
+                        facing -= 4
+                    End While
+
+                    Turning = True
+                    _aimDirection = facing
+                End If
             Else
                 Dim facing As Integer = GetFacingDirection()
                 facing += turns
