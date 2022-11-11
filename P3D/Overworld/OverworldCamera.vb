@@ -221,7 +221,7 @@ Public Class OverworldCamera
 
         Dim dy As Single = mState.Y - oldY
         If gState.ThumbSticks.Right.Y <> 0.0F AndAlso Core.GameOptions.GamePadEnabled = True Then
-            dy = gState.ThumbSticks.Right.Y * 40.0F * -1.0F
+            dy = gState.ThumbSticks.Right.Y * 35.0F * -1.0F
         End If
 
         If _isFixed = False AndAlso (dx <> 0 OrElse dy <> 0) Then
@@ -274,7 +274,14 @@ Public Class OverworldCamera
                 _scrollDirection = 1
                 _scrollSpeed += _scrollSpeed.Clamp(0, 0.01)
             End If
+            If ControllerHandler.ButtonDown(Buttons.LeftTrigger) = True Then
+                If _scrollSpeed = 0.0F Or _scrollDirection <> 1 Then
+                    _scrollSpeed = 0.002F
+                End If
 
+                _scrollDirection = 1
+                _scrollSpeed += _scrollSpeed.Clamp(0, 0.002F)
+            End If
             If Controls.Up(True, False, True, False, False, False) = True Then
                 If _scrollSpeed = 0.0F OrElse _scrollDirection <> -1 Then
                     _scrollSpeed = 0.01F
@@ -282,6 +289,14 @@ Public Class OverworldCamera
 
                 _scrollDirection = -1
                 _scrollSpeed += _scrollSpeed.Clamp(0, 0.01)
+            End If
+            If ControllerHandler.ButtonDown(Buttons.RightTrigger) = True Then
+                If _scrollSpeed = 0.0F Or _scrollDirection <> -1 Then
+                    _scrollSpeed = 0.002F
+                End If
+
+                _scrollDirection = -1
+                _scrollSpeed += _scrollSpeed.Clamp(0, 0.002F)
             End If
 
             _scrollSpeed = _scrollSpeed.Clamp(0, 0.08)
@@ -305,7 +320,7 @@ Public Class OverworldCamera
 
     Public Sub UpdateThirdPersonCamera()
         If _isFixed = False Then
-            If KeyBoardHandler.KeyPressed(KeyBindings.PerspectiveSwitchKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True Then
+            If PreventMovement = False AndAlso KeyBoardHandler.KeyPressed(KeyBindings.PerspectiveSwitchKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.LeftShoulder) = True Then
                 Dim actionscriptReady As Boolean = True
                 If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     actionscriptReady = CType(CurrentScreen, OverworldScreen).ActionScript.IsReady
@@ -942,7 +957,7 @@ Public Class OverworldCamera
         Return 0F
     End Function
 
-    Public Overrides Sub Turn(ByVal turns As Integer)
+    Public Overrides Sub Turn(ByVal turns As Integer, Optional ForceCameraTurn As Boolean = False)
         If turns > 0 Then
             If _thirdPerson = True Then
                 _playerFacing += turns
@@ -950,6 +965,17 @@ Public Class OverworldCamera
                     _playerFacing -= 4
                 End While
                 Screen.Level.OwnPlayer.Opacity = 1.0F
+                If ForceCameraTurn = True Then
+                    Dim facing As Integer = GetFacingDirection()
+                    facing += _playerFacing - GetFacingDirection()
+
+                    While facing > 3
+                        facing -= 4
+                    End While
+
+                    Turning = True
+                    _aimDirection = facing
+                End If
             Else
                 Dim facing As Integer = GetFacingDirection()
                 facing += turns

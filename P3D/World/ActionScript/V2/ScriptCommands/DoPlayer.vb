@@ -94,8 +94,13 @@
                     IsReady = True
                     Screen.Level.OverworldPokemon.Visible = False
                 Case "turn"
+					Dim TurnAmount As Integer = argument.GetSplit(0, ",")
+                    Dim ForceCameraTurn As Boolean = False
+                    If argument.Split(",").Count > 1 Then
+                        ForceCameraTurn = CBool(argument.GetSplit(1, ","))
+                    End If
                     If Started = False Then
-                        Screen.Camera.Turn(int(argument))
+                        Screen.Camera.Turn(int(TurnAmount), ForceCameraTurn)
                         Started = True
                         Screen.Level.OverworldPokemon.Visible = False
                     Else
@@ -120,31 +125,45 @@
                         End If
                     End If
                 Case "turnasync"
-                    Screen.Camera.Turn(int(argument))
+					Dim TurnAmount As Integer = argument.GetSplit(0, ",")
+                    Dim ForceCameraTurn As Boolean = False
+                    If argument.Split(",").Count > 1 Then
+                        ForceCameraTurn = CBool(argument.GetSplit(1, ","))
+                    End If
+                    
+                    Screen.Camera.Turn(int(TurnAmount), ForceCameraTurn)
                     IsReady = True
                     Screen.Level.OverworldPokemon.Visible = False
                 Case "turntoasync"
-                    Dim turns As Integer = int(argument) - Screen.Camera.GetPlayerFacingDirection()
+					Dim ForceCameraTurn As Boolean = False
+                    If argument.Split(",").Count > 1 Then
+                        ForceCameraTurn = CBool(argument.GetSplit(1, ","))
+                    End If
+                    Dim turns As Integer = int(argument.GetSplit(0, ",")) - Screen.Camera.GetPlayerFacingDirection()
                     If turns < 0 Then
                         turns = turns + 4
                     End If
 
                     If turns > 0 Then
-                        Screen.Camera.Turn(turns)
+                        Screen.Camera.Turn(turns, ForceCameraTurn)
                         Started = True
                         Screen.Level.OverworldPokemon.Visible = False
                     End If
 
                     IsReady = True
                 Case "turnto"
+					Dim ForceCameraTurn As Boolean = False
+                    If argument.Split(",").Count > 1 Then
+                        ForceCameraTurn = CBool(argument.GetSplit(1, ","))
+                    End If
                     If Started = False Then
-                        Dim turns As Integer = int(argument) - Screen.Camera.GetPlayerFacingDirection()
+                        Dim turns As Integer = int(argument.GetSplit(0, ",")) - Screen.Camera.GetPlayerFacingDirection()
                         If turns < 0 Then
                             turns = turns + 4
                         End If
 
                         If turns > 0 Then
-                            Screen.Camera.Turn(turns)
+                            Screen.Camera.Turn(turns, ForceCameraTurn)
                             Started = True
                             Screen.Level.OverworldPokemon.Visible = False
                         Else

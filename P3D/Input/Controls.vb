@@ -352,7 +352,7 @@ Public Class Controls
                 Core.GameInstance.IsMouseVisible = True
             End If
         ElseIf Core.GameInstance.IsMouseVisible = True Then
-            If ControllerHandler.HasControlerInput() = True OrElse Controls.HasKeyboardInput() = True Then
+            If ControllerHandler.HasControllerInput() = True OrElse Controls.HasKeyboardInput() = True Then
                 Core.GameInstance.IsMouseVisible = False
             End If
         End If

@@ -53,7 +53,7 @@
         Return (GamePad.GetState(CType(index, PlayerIndex)).IsConnected = True And Core.GameOptions.GamePadEnabled = True)
     End Function
 
-    Public Shared Function HasControlerInput(Optional ByVal index As Integer = 0) As Boolean
+    Public Shared Function HasControllerInput(Optional ByVal index As Integer = 0) As Boolean
         If IsConnected() = False Then
             Return False
         End If
