@@ -41,8 +41,6 @@ In order to build the game's solution, you need the following:
 * Microsoft Windows operating system (7 and up)
 * [Microsoft Visual Studio Community Edition](https://www.visualstudio.com/) (2022 and up)
 * [Dotnet 6 SDK - Included in VS 2022](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-* [Visual C++ Redistributable Packages for Visual Studio 2012 Update 4](http://www.microsoft.com/en-NZ/download/details.aspx?id=30679)
-* [Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-us/download/details.aspx?id=40784)
 
 Make sure you've cloned the repository to a filepath without any spaces in it. It won't build otherwise.
 To run the game after a successful build, you also need an applicable graphics card that supports DirectX (version 9 minimum).
@@ -53,7 +51,7 @@ To build the game, you can either use the publish tool in Visual Studio or Dotne
 
 Dotnet CLI (Windows x64): `dotnet publish -c Release -r win-x64 -o bin/win-x64 --self-contained`
 
-This game only supports windows for now due to Windows Form usage. Trimming is disabled due to it as well. AOT compilation is also not possible due to refelction usage.
+This game only supports windows for now due to Windows Form usage. Trimming is disabled due to it as well.
 
 # Classified information
 
