@@ -166,6 +166,8 @@
                         Else
                             Dim TempQuery = TempScreen.BattleQuery.ToArray
                             If TempScreen.OwnPokemonIndex <> PokeIndex Then
+                                TempScreen.ParticipatedPokemon.Clear()
+                                TempScreen.ParticipatedPokemon.Add(PokeIndex)
                                 If TempScreen.IsRemoteBattle = True And TempScreen.IsHost = False Then
                                     TempScreen.OppFaint = False
                                     TempScreen.OwnStatistics.Switches += 1
