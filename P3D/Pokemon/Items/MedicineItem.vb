@@ -77,7 +77,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the poison of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cures the poison~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
                 PlayerStatistics.Track("[17]Medicine Items used", 1)
 
@@ -114,7 +114,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the sleep of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cures the sleep~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
@@ -151,7 +151,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the burn of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cures the burn~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
@@ -190,7 +190,7 @@ Namespace Items
 
                 Screen.TextBox.reDelay = 0.0F
 
-                Dim t As String = "Cures the ice of " & Pokemon.GetDisplayName() & "."
+                Dim t As String = "Cures the ice~of " & Pokemon.GetDisplayName() & "."
                 t &= RemoveItem()
 
                 SoundManager.PlaySound("Use_Item", False)
