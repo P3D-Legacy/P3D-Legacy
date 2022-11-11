@@ -39,7 +39,7 @@ It is built using the MonoGame framework as graphics middleware.
 
 In order to build the game's solution, you need the following:
 * Microsoft Windows operating system (7 and up)
-* [Microsoft Visual Studio Community Edition](https://www.visualstudio.com/) (2019 and up)
+* [Microsoft Visual Studio Community Edition](https://www.visualstudio.com/) (2022 and up)
 * [Dotnet 6 SDK - Included in VS 2022](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 * [Visual C++ Redistributable Packages for Visual Studio 2012 Update 4](http://www.microsoft.com/en-NZ/download/details.aspx?id=30679)
 * [Visual C++ Redistributable Packages for Visual Studio 2013](https://www.microsoft.com/en-us/download/details.aspx?id=40784)
