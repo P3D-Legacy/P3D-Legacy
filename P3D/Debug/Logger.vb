@@ -234,9 +234,6 @@ Public Class Logger
                             "System specifications:" & Environment.NewLine & Environment.NewLine &
                             specs & Environment.NewLine & Environment.NewLine &
                             CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
-                            ".Net installation information:" & Environment.NewLine & Environment.NewLine &
-                            DotNetVersion.GetInstalled() & Environment.NewLine &
-                            CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
                             GetGraphicsCardInformation() & Environment.NewLine & Environment.NewLine &
                             CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
                             "Error information:" & Environment.NewLine &

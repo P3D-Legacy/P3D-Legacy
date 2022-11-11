@@ -9,8 +9,8 @@ Namespace Security
         ' Actual code will be read from FileValidation.Generated.vb which generates a FileValidation class with
         ' the same details as here.
         '
-        Protected Shared EXPECTEDSIZE As Integer = 51293936
-        Protected Shared METAHASH As String = "NTgzN0E3MzcyMTc3NDgyOTA0NzNDQ0NENzlFMDhDMUU="
+        Protected Shared EXPECTEDSIZE As Integer = 51294009
+        Protected Shared METAHASH As String = "OTE1QTdBQkQ4RjZDQjU4MTc2RDFDNzI4QTFDOEVDMjc="
 
 #Region "Generated File Hashes"
         ' Content\Data\badges.dat:ABCB97936D5FF133509D2A47FFAF27FF
@@ -1674,8 +1674,8 @@ Namespace Security
         ' Content\Data\Scripts\ecruteak\rumor_lighthouse.dat:C3C416D278B8B21ABD851317D2A9A0D9
         ' Content\Data\Scripts\ecruteak\suicune_encounter.dat:8931FF466B9D9723C6FD00397A922D61
         ' Content\Data\Scripts\ecruteak\surf_man.dat:7CAED1C8A07F48D85EAD2529FDC13134
-        ' Content\Data\Scripts\ecruteak\tintowersage1.dat:8D45218BF1DD0128F1653DF95BD4A2F2
-        ' Content\Data\Scripts\ecruteak\tintowersage2.dat:7F1D13CA2588F01B68496846FEF648EC
+        ' Content\Data\Scripts\ecruteak\tintowersage1.dat:175340C1FD4250E84FDF05242127DFC9
+        ' Content\Data\Scripts\ecruteak\tintowersage2.dat:07C13B549683E21F00DB62A847B69DED
         ' Content\Data\Scripts\ecruteak\tintowersage3.dat:009066FF30ECB0A8857DEB7696BB608F
         ' Content\Data\Scripts\ecruteak\tower_story.dat:122AD884EE242DEBABE0D81C5FACFD86
         ' Content\Data\Scripts\elmlab\chikorita.dat:4A34FCA0E993B9E428E1368581CAF5AB
@@ -1828,7 +1828,7 @@ Namespace Security
         ' Content\Data\Scripts\goldenrod\radiotower\info_board.dat:0C08B3360BD647E3045B5203810DC764
         ' Content\Data\Scripts\goldenrod\rapidash_tameshop.dat:4836A62F2E9D6F1ED1CF6505577BE61B
         ' Content\Data\Scripts\goldenrod\trainman.dat:99A64B654EC97FB5B451A51AE502DF08
-        ' Content\Data\Scripts\goldenrod\trainsaffron.dat:593219212416E7DFBA9CF718B895FEBA
+        ' Content\Data\Scripts\goldenrod\trainsaffron.dat:EF0156CF93362356ECFD61D46ABD6DC1
         ' Content\Data\Scripts\goldenrod\underground_barbershop_1.dat:8604AD3C30A17E0D6D5E033C86C469C7
         ' Content\Data\Scripts\goldenrod\underground_barbershop_2.dat:2CEB698838DC0B031FA5F45381D39B8D
         ' Content\Data\Scripts\goldenrod\underground_bargainshop.dat:6029F5B45244BC425523ACD19C4163EE
@@ -2359,7 +2359,7 @@ Namespace Security
         ' Content\Data\Scripts\saffron\rotom\recall.dat:8872679FE8A4ED77115E981BDD72B35D
         ' Content\Data\Scripts\saffron\rotom\removeattacks.dat:BFE826CDECE7C12C7EF36CD6D87CE181
         ' Content\Data\Scripts\saffron\rotom\wash.dat:4CB9F420309134C2B0C20AC2652784DA
-        ' Content\Data\Scripts\saffron\traingoldenrod.dat:806BB4C00E49D98B7DCC906B84D75777
+        ' Content\Data\Scripts\saffron\traingoldenrod.dat:1FD4FFD117CAA5C500143DCB1DF48D9B
         ' Content\Data\Scripts\saffron\trainman.dat:BA260129952903C7B93907747535DE37
         ' Content\Data\Scripts\saffron\warp.dat:425AC7CD599711ACC11F06436BF59D86
         ' Content\Data\Scripts\seafoam\articuno.dat:0E7EFB91055E3DFDAA190EF27B181507
@@ -2367,7 +2367,7 @@ Namespace Security
         ' Content\Data\Scripts\seafoam\GymGuy.dat:32A7EBC1BFF146DB14E28485E518F85C
         ' Content\Data\Scripts\Shelf.dat:9AB5FB20F1D167810E899FE152299698
         ' Content\Data\Scripts\slenderman.dat:692A500B3FCA28AC61AE9E4E8CE22F76
-        ' Content\Data\Scripts\speedboatscene.dat:F3187A69CE4ADFB132132945C181E76D
+        ' Content\Data\Scripts\speedboatscene.dat:5ED0EF2C4B1C7AA2B86DBD8D09B8CC8B
         ' Content\Data\Scripts\ssaqua\bed.dat:16795761F98909EB2D0E1C13BDB8341E
         ' Content\Data\Scripts\ssaqua\first trip\bed.dat:4BB7ADA6DE81612A8B580F1C6239BDFD
         ' Content\Data\Scripts\ssaqua\first trip\block.dat:A2D31E9051110F269697A0B8619B1CBD
@@ -4401,7 +4401,7 @@ Namespace Security
         ' Content\Pokemon\Data\273.dat:2967D3B76B6F0CA4E9476670248115AC
         ' Content\Pokemon\Data\274.dat:5773927DC3D93AB7F2DCA20128B7AC14
         ' Content\Pokemon\Data\275.dat:738DE19B6F7D4C9093E01D25420B124C
-        ' Content\Pokemon\Data\276.dat:5132BBFC33377E95A5D2E73E322E5639
+        ' Content\Pokemon\Data\276.dat:B66043E3DBB98DF8CFC2E011F19A40A7
         ' Content\Pokemon\Data\277.dat:A031F6961BAA635182BB9581CFF56948
         ' Content\Pokemon\Data\278.dat:CC26E4E8445D0859DD3051E273B4AD41
         ' Content\Pokemon\Data\279.dat:349C07263388CF34980243A82EAD4FAA
@@ -4413,7 +4413,7 @@ Namespace Security
         ' Content\Pokemon\Data\282.dat:1C0090C4E4042EF80BA62A988A50CF0A
         ' Content\Pokemon\Data\283.dat:DAD12F68FFBB1A9EC8C328FBC042199C
         ' Content\Pokemon\Data\284.dat:DEA53B873A34927DE042740E81C13998
-        ' Content\Pokemon\Data\285.dat:B560397D5F7A7CF6FE3BB3F2AA0B181C
+        ' Content\Pokemon\Data\285.dat:E25865AEE8D2A88875F8061479FFC218
         ' Content\Pokemon\Data\286.dat:94682C9BD13A24E9BCA5EFDA1F257405
         ' Content\Pokemon\Data\287.dat:4AC16923A7BF2599265824BBD73141FD
         ' Content\Pokemon\Data\288.dat:3BBF253C03DE8AADBD9CE7B551807BA3
@@ -4422,13 +4422,13 @@ Namespace Security
         ' Content\Pokemon\Data\290.dat:394EB55F32D2639C583092B593128E57
         ' Content\Pokemon\Data\291.dat:22AE12397BB5B272D68A064E63BC3CE2
         ' Content\Pokemon\Data\292.dat:80F9731571AC9A3699E3B985D00DFD92
-        ' Content\Pokemon\Data\293.dat:7A15AA56D32B0D3095663B6550EBAB7F
+        ' Content\Pokemon\Data\293.dat:B1E67B2832E1E7244FD90B240ABE8B26
         ' Content\Pokemon\Data\294.dat:13B20818BAD19A80180EB45870C3223C
         ' Content\Pokemon\Data\295.dat:3F3D7B9543308BF4DD24D839CBC723B9
         ' Content\Pokemon\Data\296.dat:17EF3CAF20C8963B5A5ABC68D7695CEB
         ' Content\Pokemon\Data\297.dat:1355AEA41205A3AAFBB7C0DCE825AD79
         ' Content\Pokemon\Data\298.dat:6B10688E077C5591A8B17584D6E23851
-        ' Content\Pokemon\Data\299.dat:7E26EB6BA571DB92B9405A08A0E056ED
+        ' Content\Pokemon\Data\299.dat:FCB9175A01CD866C0FA92833F3A39384
         ' Content\Pokemon\Data\3_mega.dat:0091F5A5CBA98EB0C7866C34B898F675
         ' Content\Pokemon\Data\3.dat:751E9BC4290199D2C43CDA1B6DB0E9B5
         ' Content\Pokemon\Data\30.dat:3E71543A3476651459499B4A2C6A1A72
@@ -4443,8 +4443,8 @@ Namespace Security
         ' Content\Pokemon\Data\306_mega.dat:5E86A0AD3E037F3B9042631046086ADA
         ' Content\Pokemon\Data\306.dat:51A6D6611F9485BE6B4E90A63DB1EE94
         ' Content\Pokemon\Data\307.dat:13E793DD6603711A994848DE7312527D
-        ' Content\Pokemon\Data\308_mega.dat:9C9E14BC8A36CC1321D7C3C1E7BFA076
-        ' Content\Pokemon\Data\308.dat:96A2E9CDDD84C09BAC0FE6F3E4A53495
+        ' Content\Pokemon\Data\308_mega.dat:EB5EEB84F1E0FBA70496715505823DB0
+        ' Content\Pokemon\Data\308.dat:EC8D5E9B39C678612CBE956D8B609B48
         ' Content\Pokemon\Data\309.dat:43F4BE991144B7B127C219693C61599F
         ' Content\Pokemon\Data\31.dat:544327204DD0BB7BB36C003F6F33091C
         ' Content\Pokemon\Data\310_mega.dat:1F8ED815D232C8C281A8028A85A68353
@@ -4481,7 +4481,7 @@ Namespace Security
         ' Content\Pokemon\Data\335.dat:C4B8209A44B2A60059022D3AE894CC7F
         ' Content\Pokemon\Data\336.dat:E32B0349CE08EF6FA145A292ED4D5907
         ' Content\Pokemon\Data\337.dat:11C532A983195A6D8999480550339481
-        ' Content\Pokemon\Data\338.dat:DA15C328EBBC42C5A5A61B9D1E9B3B5C
+        ' Content\Pokemon\Data\338.dat:B262A08C73BF338A0161A7F2C10BF9AC
         ' Content\Pokemon\Data\339.dat:3977F7FE8BF80C77FB120849B2C2EAAA
         ' Content\Pokemon\Data\34.dat:C6B53A6E860448D041AD1DA44D28018D
         ' Content\Pokemon\Data\340.dat:5E2E90818424F26370245A20C9D4D489
@@ -4515,7 +4515,7 @@ Namespace Security
         ' Content\Pokemon\Data\363.dat:2A58C214179D514108F1BC1E404E1FC7
         ' Content\Pokemon\Data\364.dat:9598AA9D564264126B97A138136D1F8E
         ' Content\Pokemon\Data\365.dat:58AE559A72EB2CF1D2318D7A5117D11C
-        ' Content\Pokemon\Data\366.dat:15EEA98EC105145DD80C8003836A4D38
+        ' Content\Pokemon\Data\366.dat:0A4E4B2DD2C3D9F89068276DF074DFEB
         ' Content\Pokemon\Data\367.dat:35A4046C63FC3F802B407E65DF955870
         ' Content\Pokemon\Data\368.dat:EB3C9B0CCFF9D58BA330A275517E42D3
         ' Content\Pokemon\Data\369.dat:41F3A5DAB43B5EF0799DADB05C167EF2
@@ -4646,7 +4646,7 @@ Namespace Security
         ' Content\Pokemon\Data\465.dat:282ECD681F797ED14BEF45130D5DC1D7
         ' Content\Pokemon\Data\466.dat:08F63757FC3586174A7F1DAB6BC6915E
         ' Content\Pokemon\Data\467.dat:8DFA3A636043944ABD3F485A043D821C
-        ' Content\Pokemon\Data\468.dat:23E3DEDED7F9FC5164640227BEFA723A
+        ' Content\Pokemon\Data\468.dat:A677077BCF2446028FB1629FA633C9EA
         ' Content\Pokemon\Data\469.dat:21AC15580445F6BA42C4F3D01A3D370B
         ' Content\Pokemon\Data\47.dat:7A78CB60C86B61E74900E606F2119D86
         ' Content\Pokemon\Data\470.dat:1A20ABED7385C75144ACCB71F6001B6E
@@ -4730,8 +4730,8 @@ Namespace Security
         ' Content\Pokemon\Data\53_alola.dat:36842310B85F86B38BA2B967D09B04A0
         ' Content\Pokemon\Data\53.dat:D3C2A0D8A9FFDE5B1D56750E88C347D9
         ' Content\Pokemon\Data\530.dat:2FDEF8DFF18A24059FC11484ACF3B986
-        ' Content\Pokemon\Data\531_mega.dat:9D440C6BDA0A5FC11FF1FCDF95C678A0
-        ' Content\Pokemon\Data\531.dat:D20E95F4BB365521F1EEC5288E29674E
+        ' Content\Pokemon\Data\531_mega.dat:E0F0AA101B4634D807298091B68C6FFF
+        ' Content\Pokemon\Data\531.dat:6D347C8DF70F8E151D50439F1A00A63A
         ' Content\Pokemon\Data\532.dat:1B48C47915A2D6D1FF82D76A960F42E9
         ' Content\Pokemon\Data\533.dat:8D599B0F916A53495D51853E0CD9BD5E
         ' Content\Pokemon\Data\534.dat:66C1E2B1929579397862022FC1CF3EC3
@@ -4840,7 +4840,7 @@ Namespace Security
         ' Content\Pokemon\Data\623.dat:46F582F262E745020FC17454DFBBF322
         ' Content\Pokemon\Data\624.dat:E8363196F9E61AF00B5FD9F08469C864
         ' Content\Pokemon\Data\625.dat:B36A4F0B624641A3C48C9FDA3BE3F485
-        ' Content\Pokemon\Data\626.dat:4C1327DE4DC1750F9D7D557C26E7E309
+        ' Content\Pokemon\Data\626.dat:D1D890705578578FC2FC85A5F44C60C1
         ' Content\Pokemon\Data\627.dat:9D9160CAB77410715508683A5AF5D657
         ' Content\Pokemon\Data\628.dat:5A1B4D1BDB6E2ECB255E7A3F92CEBD3C
         ' Content\Pokemon\Data\629.dat:7AE17931271A98505700DBE1B7E69C08

@@ -117,7 +117,7 @@ public sealed class GameJoltApi
 
         foreach (var h in hash)
         {
-            uriBuilder.Append(h.ToString("x2"));
+            uriBuilder.Append($"{h:x2}");
         }
 
         return uriBuilder.ToString();
