@@ -9,6 +9,9 @@ namespace P3D.ExternalLibrary.Network.GameJolt;
 
 public sealed class GameJoltApi
 {
+    /// <summary>
+    /// Game Jolt API Max Post size is 1 MB.
+    /// </summary>
     public const int MaxPostSize = 1 * 1024 * 1024;
     
     public string GameId { get; }

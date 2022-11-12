@@ -8,6 +8,6 @@
         <IncludeBuildOutput>false</IncludeBuildOutput>
     </PropertyGroup>
     <ItemGroup>
-        <None Remove="Content/bin/**;Content/obj/**/*"/>
+        <None Remove="Content/bin/**;Content/obj/**/*" />
     </ItemGroup>
 </Project>

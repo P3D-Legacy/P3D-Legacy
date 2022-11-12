@@ -64,7 +64,8 @@ public class FetchUserMethod
 
     public static int CalculateParameterSize(string key, string value)
     {
-        return GameJoltRequest.EscapeValue(key).Length + 1 + GameJoltRequest.EscapeValue(value).Length;
+        return 0;
+        //return GameJoltRequest.EscapeValue(key).Length + 1 + GameJoltRequest.EscapeValue(value).Length;
     }
     
     private static bool TryAddParameter(IDictionary<string, string> parameter, string key, string value, ref int parameterSize)

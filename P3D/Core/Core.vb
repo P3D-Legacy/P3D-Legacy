@@ -72,7 +72,6 @@ Public Module Core
         GraphicsDevice.PresentationParameters.BackBufferFormat = SurfaceFormat.Rgba1010102
         GraphicsDevice.PresentationParameters.DepthStencilFormat = DepthFormat.Depth24Stencil8
 
-
         GraphicsManager.PreferMultiSampling = True
         GraphicsManager.GraphicsProfile = GraphicsProfile.HiDef
 

@@ -10,7 +10,7 @@ Public NotInheritable Class GameJoltAPI
         Inherits JsonNamingPolicy
 
         Public Overrides Function ConvertName(name As String) As String
-            Return String.Join("", name.Select(Function(c, i) IIf(i > 0 AndAlso Char.IsUpper(c), $"_{Char.ToLowerInvariant(c)}", Char.ToLowerInvariant(c))))
+            Return String.Join("", name.Select(Function(c, i) If(i > 0 AndAlso Char.IsUpper(c), $"_{Char.ToLowerInvariant(c)}", Char.ToLowerInvariant(c))))
         End Function
     End Class
 
