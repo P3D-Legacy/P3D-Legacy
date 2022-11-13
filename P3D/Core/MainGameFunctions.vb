@@ -33,10 +33,10 @@
             End If
 
             Core.GameOptions.SaveOptions()
-                Core.CurrentScreen.ToggledMute()
-            End If
+            Core.CurrentScreen.ToggledMute()
+        End If
 
-            If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
+        If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
             If KeyBoardHandler.KeyPressed(Keys.F) Then
                 TextureManager.TextureList.Clear()
                 Core.GameMessage.ShowMessage(Localization.GetString("game_message_debug_texture_list_clear", "Texture list have cleared"), 12, FontManager.MainFont, Color.White)
