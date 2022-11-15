@@ -94,7 +94,7 @@
                     IsReady = True
                     Screen.Level.OverworldPokemon.Visible = False
                 Case "turn"
-					Dim TurnAmount As Integer = argument.GetSplit(0, ",")
+                    Dim TurnAmount As Integer = int(argument.GetSplit(0, ","))
                     Dim ForceCameraTurn As Boolean = False
                     If argument.Split(",").Count > 1 Then
                         ForceCameraTurn = CBool(argument.GetSplit(1, ","))
@@ -125,7 +125,7 @@
                         End If
                     End If
                 Case "turnasync"
-					Dim TurnAmount As Integer = argument.GetSplit(0, ",")
+                    Dim TurnAmount As Integer = int(argument.GetSplit(0, ","))
                     Dim ForceCameraTurn As Boolean = False
                     If argument.Split(",").Count > 1 Then
                         ForceCameraTurn = CBool(argument.GetSplit(1, ","))

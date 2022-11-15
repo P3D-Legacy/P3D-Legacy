@@ -494,11 +494,15 @@
             Select Case Screen.Level.World.EnvironmentType
                 Case P3D.World.EnvironmentTypes.Outside
                     Me.Shader = New Vector3(1.0F)
-                Case P3D.World.EnvironmentTypes.Dark Or Screen.Level.LightingType = 6
+                Case P3D.World.EnvironmentTypes.Dark
                     Me.Shader = New Vector3(0.5F)
                 Case Else
                     Me.Shader = New Vector3(1.0F)
             End Select
+        End If
+
+        If Screen.Level.LightingType = 6 Then
+            Me.Shader = New Vector3(0.5F)
         End If
 
         For Each s As Vector3 In Me.Shaders
