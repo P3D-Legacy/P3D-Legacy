@@ -14,7 +14,7 @@
                 Player.Temp.LastUsedRepel = ID
 
                 SoundManager.PlaySound("Use_Repel", False)
-                Screen.TextBox.Show(Core.Player.Name & " used a~" & Name, {}, True, True)
+                Screen.TextBox.Show(Core.Player.Name & " used a~" & Name & ".", {}, True, True)
                 Core.Player.RepelSteps = RepelSteps
                 PlayerStatistics.Track("[42]Repels used", 1)
             Else
