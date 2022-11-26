@@ -17,7 +17,7 @@
 
         Screen.Effect.DiffuseColor = effectDiffuseColor * Entity.Shader * Entity.Color
 
-        If Screen.Level.IsDark = True Then
+        If Screen.Level.IsDark = True OrElse Screen.Level.LightingType = 6 Then
             Screen.Effect.DiffuseColor *= New Vector3(0.5, 0.5, 0.5)
         End If
 

@@ -168,6 +168,10 @@ Public Class Lighting
         If Screen.Level.LightingType > 1 And Screen.Level.LightingType < 6 Then ' If the level's lighting type is 2, 3, 4 or 5, set to the respective LightType (set time of day).
             LightType = Screen.Level.LightingType - 2
         End If
+        If Screen.Level.LightingType = 6 AndAlso Screen.Level.EnvironmentType = 1 OrElse Screen.Level.LightingType > 6 Then
+            LightType = 99
+        End If
+
         Return LightType
     End Function
 
