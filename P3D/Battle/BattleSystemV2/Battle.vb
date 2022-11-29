@@ -1430,7 +1430,7 @@
                     Me.ChangeCameraAngle(1, own, BattleScreen)
                     'Confused Animation
                     If Core.Player.ShowBattleAnimations <> 0 Then
-                        Dim ConfusedAnimation As New AnimationQueryObject(pNPC, Not own)
+                        Dim ConfusedAnimation As New AnimationQueryObject(pNPC, own)
 
                         ConfusedAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
                         Dim DuckEntity1 As Entity = ConfusedAnimation.SpawnEntity(New Vector3(-0.25, 0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Confused", New Rectangle(0, 0, 16, 16), ""), New Vector3(0.25F), 1, 0, 0)

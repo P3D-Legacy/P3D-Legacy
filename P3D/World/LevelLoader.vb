@@ -733,7 +733,7 @@
                                                        End Function)
                     End If
 
-                    If Not Ent Is Nothing Then
+                    If Not Ent Is Nothing AndAlso Visible = True Then
                         Ent.Textures = {Texture}
                         Ent.Visible = Visible
                         Ent.SeasonColorTexture = SeasonTexture
