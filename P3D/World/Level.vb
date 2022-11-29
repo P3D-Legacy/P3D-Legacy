@@ -125,8 +125,10 @@ Public NotInheritable Class Level
                 Entities.Add(e)
             End If
             
-            e.InsertOrder = _insertEntityCount
-            _insertEntityCount += 1
+            If e.InsertOrder = -1 Then
+                e.InsertOrder = _insertEntityCount
+                _insertEntityCount += 1
+            End If
             
             DrawingEntities.Add(e)
         End SyncLock
@@ -140,8 +142,10 @@ Public NotInheritable Class Level
                 OffsetmapEntities.Add(e)
             End If
 
-            e.InsertOrder = _insertEntityCount
-            _insertEntityCount += 1
+            If e.InsertOrder = -1 Then
+                e.InsertOrder = _insertEntityCount
+                _insertEntityCount += 1
+            End If
 
             DrawingEntities.Add(e)
         End SyncLock
@@ -893,26 +897,11 @@ Public NotInheritable Class Level
     End Sub
 
     ''' <summary>
-    ''' Returns a list of all NPCs on the map.
-    ''' </summary>
-    Public Function GetNPCs() As List(Of NPC)
-        Dim reList As New List(Of NPC)
-
-        For Each Entity As Entity In Me.Entities
-            If Entity.EntityID = "NPC" Then
-                reList.Add(CType(Entity, NPC))
-            End If
-        Next
-
-        Return reList
-    End Function
-
-    ''' <summary>
     ''' Returns an NPC based on their ID.
     ''' </summary>
     ''' <param name="id">The ID of the NPC to return from the level.</param>
     ''' <returns>Returns either a matching NPC or Nothing.</returns>
-    Public Function GetNPC(ByVal id As Integer) As NPC
+    Public Function GetNPC(id As Integer) As NPC
         SyncLock EntityReadWriteSync
             For Each npc As NPC In Npcs
                 If npc.NPCID = id Then

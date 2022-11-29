@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows</TargetFramework>
+        <TargetFramework>net7.0-windows</TargetFramework>
         <UseWindowsForms>True</UseWindowsForms>
         <AssemblyName>Pokemon3D</AssemblyName>
         <RootNamespace>P3D</RootNamespace>
@@ -15,7 +15,6 @@
         <RepositoryUrl>https://github.com/P3D-Legacy/P3D-Legacy</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
 
-        <PublishSingleFile>true</PublishSingleFile>
         <PublishRelease>true</PublishRelease>
         <PublishTrimmed>false</PublishTrimmed>
         <PublishReadyToRun>false</PublishReadyToRun>
@@ -47,6 +46,7 @@
         <Optimize>true</Optimize>
         <DebugSymbols>true</DebugSymbols>
         <DebugType>embedded</DebugType>
+        <PublishSingleFile>true</PublishSingleFile>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />

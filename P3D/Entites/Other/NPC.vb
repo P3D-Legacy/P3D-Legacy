@@ -610,7 +610,7 @@
                         blocked = True
                     End If
                     '' check if an NPC is not in the way
-                    For Each NPC As NPC In Screen.Level.GetNPCs()
+                    For Each NPC As NPC In Screen.Level.Npcs
                         If CInt(NPC.Position.X) = newPosition.X And CInt(NPC.Position.Z) = newPosition.Z And NPC.NPCID <> Me.NPCID Then
                             blocked = True
                             Exit For
