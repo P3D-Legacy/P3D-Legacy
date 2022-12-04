@@ -957,6 +957,721 @@ pokemon_name_Tyranitar,Tyranitar
 pokemon_name_Lugia,Lugia
 pokemon_name_Ho-Oh,Ho-Oh
 pokemon_name_Celebi,Celebi
+--------------
+Item categories:
+item_category_Standard,Standard
+item_category_Medicine,Medicine
+item_category_Machines,TM/HM
+item_category_Pokeballs,Pokéballs
+item_category_Plants,Plants
+item_category_KeyItems,Key Items
+item_category_BattleItems,Battle Items
+item_category_Mail,Mail
+---
+Item names:
+Balls:
+item_name_1,Master Ball
+item_name_2,Ultra Ball
+item_name_3,Premier Ball
+item_name_4,Great Ball
+item_name_5,Poké Ball
+item_name_45,Cherish Ball
+item_name_79,Dive Ball
+item_name_80,Net Ball
+item_name_129,Quick Ball
+item_name_150,Timer Ball
+item_name_157,Heavy Ball
+item_name_158,Dusk Ball
+item_name_159,Level Ball
+item_name_160,Lure Ball
+item_name_161,Fast Ball
+item_name_164,Friend Ball
+item_name_165,Moon Ball
+item_name_166,Love Ball
+item_name_168,Repeat Ball
+item_name_174,Luxury Ball
+item_name_177,Sport Ball
+item_name_181,Safari Ball
+item_name_186,Heal Ball
+item_name_188,Nest Ball
+
+Key Items:
+item_name_6,Bicycle
+item_name_41,S.S. Ticket
+item_name_54,Coin Case
+item_name_55,Item Finder
+item_name_56,Crystal Wing
+item_name_58,Old Rod
+item_name_59,Good Rod
+item_name_61,Super Rod
+item_name_66,Red Scale
+item_name_67,Secret Potion
+item_name_69,Mystery Egg
+item_name_71,Silver Wing
+item_name_78,Running Shoes
+item_name_115,GS Ball
+item_name_116,Blue Card
+item_name_127,Card Key
+item_name_128,Machine Part
+item_name_130,Lost Item
+item_name_133,Basement Key
+item_name_134,Pass
+item_name_175,Squirt Bottle
+item_name_178,Rainbow Wing
+item_name_241,Oval Charm
+item_name_242,Shiny Charm
+item_name_265,Tri Pass
+item_name_284,Rainbow Pass
+item_name_285,Old Sea Map
+item_name_286,Ancient Shard
+item_name_292,Empty Sea Map
+item_name_592,Liberty Sea Map
+item_name_576,Mega Bracelet
+item_name_651,Light Stone
+item_name_652,Dark Stone
+item_name_653,PokéNav
+
+Technical Machines:
+item_name_191,TM01
+item_name_192,TM02
+item_name_193,TM03
+item_name_194,TM04
+item_name_195,TM05
+item_name_196,TM06
+item_name_197,TM07
+item_name_198,TM08
+item_name_199,TM09
+item_name_200,TM10
+item_name_201,TM11
+item_name_202,TM12
+item_name_203,TM13
+item_name_204,TM14
+item_name_205,TM15
+item_name_206,TM16
+item_name_207,TM17
+item_name_208,TM18
+item_name_209,TM19
+item_name_210,TM20
+item_name_211,TM21
+item_name_212,TM22
+item_name_213,TM23
+item_name_214,TM24
+item_name_215,TM25
+item_name_216,TM26
+item_name_217,TM27
+item_name_218,TM28
+item_name_219,TM29
+item_name_220,TM30
+item_name_221,TM31
+item_name_222,TM32
+item_name_223,TM33
+item_name_224,TM34
+item_name_225,TM35
+item_name_226,TM36
+item_name_227,TM37
+item_name_228,TM38
+item_name_229,TM39
+item_name_230,TM40
+item_name_231,TM41
+item_name_232,TM42
+item_name_233,TM43
+item_name_234,TM44
+item_name_235,TM45
+item_name_236,TM46
+item_name_237,TM47
+item_name_238,TM48
+item_name_239,TM49
+item_name_240,TM50
+item_name_351,TM51
+item_name_352,TM52
+item_name_353,TM53
+item_name_354,TM54
+item_name_355,TM55
+item_name_356,TM56
+item_name_357,TM57
+item_name_358,TM58
+item_name_359,TM59
+item_name_360,TM60
+item_name_361,TM61
+item_name_362,TM62
+item_name_363,TM63
+item_name_364,TM64
+item_name_365,TM65
+item_name_366,TM66
+item_name_367,TM67
+item_name_368,TM68
+item_name_369,TM69
+item_name_370,TM70
+item_name_371,TM71
+item_name_372,TM72
+item_name_373,TM73
+item_name_374,TM74
+item_name_375,TM75
+item_name_376,TM76
+item_name_377,TM77
+item_name_378,TM78
+item_name_379,TM79
+item_name_380,TM80
+item_name_381,TM81
+item_name_382,TM82
+item_name_383,TM83
+item_name_384,TM84
+item_name_385,TM85
+item_name_386,TM86
+item_name_387,TM87
+item_name_388,TM88
+item_name_389,TM89
+item_name_390,TM90
+item_name_391,TM91
+item_name_392,TM92
+item_name_393,TM93
+item_name_394,TM94
+item_name_395,TM95
+item_name_396,TM96
+item_name_397,TM97
+item_name_398,TM98
+item_name_399,TM99
+item_name_400,TM100
+item_name_401,TM101
+item_name_402,TM102
+item_name_403,TM103
+item_name_404,TM104
+item_name_405,TM105
+item_name_406,TM106
+item_name_407,TM107
+item_name_408,TM108
+item_name_409,TM109
+item_name_410,TM110
+item_name_411,TM111
+item_name_412,TM112
+item_name_413,TM113
+item_name_414,TM114
+item_name_415,TM115
+item_name_416,TM116
+item_name_417,TM117
+item_name_418,TM118
+item_name_419,TM119
+item_name_420,TM120
+item_name_421,TM121
+item_name_422,TM122
+item_name_423,TM123
+item_name_424,TM124
+item_name_425,TM125
+item_name_426,TM126
+item_name_427,TM127
+item_name_428,TM128
+item_name_429,TM129
+item_name_430,TM130
+item_name_431,TM131
+item_name_432,TM132
+item_name_433,TM133
+item_name_434,TM134
+item_name_435,TM135
+item_name_436,TM136
+item_name_437,TM137
+item_name_438,TM138
+item_name_439,TM139
+item_name_440,TM140
+item_name_441,TM141
+item_name_442,TM142
+item_name_443,TM143
+item_name_444,TM144
+item_name_445,TM145
+item_name_446,TM146
+item_name_447,TM147
+item_name_448,TM148
+item_name_449,TM149
+item_name_450,TM150
+item_name_451,TM151
+item_name_452,TM152
+item_name_453,TM153
+item_name_454,TM154
+item_name_455,TM155
+item_name_456,TM156
+item_name_457,TM157
+item_name_458,TM158
+item_name_459,TM159
+item_name_460,TM160
+item_name_461,TM161
+item_name_462,TM162
+item_name_463,TM163
+item_name_464,TM164
+item_name_465,TM165
+item_name_466,TM166
+item_name_467,TM167
+item_name_468,TM168
+item_name_469,TM169
+item_name_470,TM170
+item_name_471,TM171
+item_name_472,TM172
+item_name_473,TM173
+item_name_474,TM174
+item_name_475,TM175
+item_name_476,TM176
+item_name_477,TM177
+item_name_478,TM178
+item_name_479,TM179
+item_name_480,TM180
+item_name_481,TM181
+
+Hidden Machines:
+item_name_247,HM01
+item_name_244,HM02
+item_name_245,HM03
+item_name_246,HM04
+item_name_243,HM05
+item_name_248,HM06
+item_name_249,HM07
+item_name_250,HM08
+item_name_251,HM09
+item_name_252,HM10
+
+Medicine:
+item_name_7,Lava Cookie
+item_name_9,Antidote
+item_name_10,Burn Heal
+item_name_11,Ice Heal
+item_name_12,Awakening
+item_name_13,Paralyze Heal
+item_name_14,Full Restore
+item_name_15,Max Potion
+item_name_16,Hyper Potion
+item_name_17,Super Potion
+item_name_18,Potion
+item_name_21,Max Elixir
+item_name_32,Rare Candy
+item_name_38,Full Heal
+item_name_39,Revive
+item_name_40,Max Revive
+item_name_46,Fresh Water
+item_name_47,Soda Pop
+item_name_48,Lemonade
+item_name_62,PPUp
+item_name_63,Ether
+item_name_64,Max Ether
+item_name_65,Elixir
+item_name_72,Moo Moo Milk
+item_name_114,Rage Candy Bar
+item_name_121,Energy Powder
+item_name_122,Energy Root
+item_name_123,Heal Powder
+item_name_124,Revival Herb
+item_name_139,Berry Juice
+item_name_152,Pewter Crunchies
+item_name_156,Sacred Ash
+item_name_266,Fanta
+item_name_502,PPMax
+
+Berries:
+item_name_2000,Cheri Berry
+item_name_2001,Chesto Berry
+item_name_2002,Pecha Berry
+item_name_2003,Rawst Berry
+item_name_2004,Aspear Berry
+item_name_2005,Leppa Berry
+item_name_2006,Oran Berry
+item_name_2007,Persim Berry
+item_name_2008,Lum Berry
+item_name_2009,Sitrus Berry
+item_name_2010,Figy Berry
+item_name_2011,Wiki Berry
+item_name_2012,Mago Berry
+item_name_2013,Aguav Berry
+item_name_2014,Iapapa Berry
+item_name_2015,Razz Berry
+item_name_2016,Bluk Berry
+item_name_2017,Nanab Berry
+item_name_2018,Wepear Berry
+item_name_2019,Pinap Berry
+item_name_2020,Pomeg Berry
+item_name_2021,Kelpsy Berry
+item_name_2022,Qualot Berry
+item_name_2023,Hondew Berry
+item_name_2024,Grepa Berry
+item_name_2025,Tamato Berry
+item_name_2026,Cornn Berry
+item_name_2027,Magost Berry
+item_name_2028,Rabuta Berry
+item_name_2029,Nomel Berry
+item_name_2030,Spelon Berry
+item_name_2031,Pamtre Berry
+item_name_2032,Watmel Berry
+item_name_2033,Durin Berry
+item_name_2034,Belue Berry
+item_name_2035,Occa Berry
+item_name_2036,Passho Berry
+item_name_2037,Wacan Berry
+item_name_2038,Rindo Berry
+item_name_2039,YacheBerry
+item_name_2040,Chople Berry
+item_name_2041,Kebia Berry
+item_name_2042,Shuca Berry
+item_name_2043,Coba Berry
+item_name_2044,Payapa Berry
+item_name_2045,Tanga Berry
+item_name_2046,Charti Berry
+item_name_2047,Kasib Berry
+item_name_2048,Haban Berry
+item_name_2049,Colbur Berry
+item_name_2050,Babiri Berry
+item_name_2051,Chilan Berry
+item_name_2052,Liechi Berry
+item_name_2053,Ganlon Berry
+item_name_2054,Salac Berry
+item_name_2055,Petaya Berry
+item_name_2056,Apicot Berry
+item_name_2057,Lansat Berry
+item_name_2058,Starf Berry
+item_name_2059,Enigma Berry
+item_name_2060,Micle Berry
+item_name_2061,Custap Berry
+item_name_2062,Jaboca Berry
+item_name_2063,Rowap Berry
+item_name_2064,Roseli Berry
+item_name_2065,Kee Berry
+item_name_2066,Maranga Berry
+
+Stones:
+item_name_8,Moon Stone
+item_name_22,Fire Stone
+item_name_23,Thunder Stone
+item_name_24,Water Stone
+item_name_34,Leaf Stone
+item_name_112,Everstone
+item_name_169,Sun Stone
+item_name_262,Sticky Rock
+
+Standard:
+item_name_19,Escape Rope
+item_name_30,Lucky Punch
+item_name_35,Metal Powder
+item_name_36,Nugget
+item_name_37,Poké Doll
+item_name_57,Exp. Share
+item_name_60,Silver Leaf
+item_name_70,Sticky Barb
+item_name_73,Quick Claw
+item_name_74,Zoom Lens
+item_name_75,Gold Leaf
+item_name_76,Soft Sand
+item_name_77,Sharp Beak
+item_name_81,Poison Barb
+item_name_82,Kings Rock
+item_name_83,Prism Scale
+item_name_84,Reaper Cloth
+item_name_88,Silver Powder
+item_name_90,Silk Scarf
+item_name_91,Amulet Coin
+item_name_94,Cleanse Tag
+item_name_95,Mystic Water
+item_name_96,Twisted Spoon
+item_name_98,Black Belt
+item_name_100,Magmarizer
+item_name_102,Black Glasses
+item_name_103,Slowpoke Tail
+item_name_104,Pink Bow
+item_name_105,Stick
+item_name_106,Smoke Ball
+item_name_107,Nevermelt Ice
+item_name_108,Magnet
+item_name_109,Rare Bone
+item_name_110,Pearl
+item_name_111,Big Pearl
+item_name_113,Spell Tag
+item_name_117,Miracle Seed
+item_name_118,Thick Club
+item_name_119,Focus Band
+item_name_120,Electirizer
+item_name_125,Hard Stone
+item_name_126,Lucky Egg
+item_name_131,Stardust
+item_name_132,Star Piece
+item_name_135,Shiny Stone
+item_name_136,Dusk Stone
+item_name_137,Dawn Stone
+item_name_138,Charcoal
+item_name_140,Scope Lens
+item_name_141,Protector
+item_name_142,Lagging Tail
+item_name_143,Metal Coat
+item_name_144,Dragon Fang
+item_name_145,Wave Incense
+item_name_146,Leftovers
+item_name_147,White Flute
+item_name_148,Soothe Bell
+item_name_149,Comet Shard
+item_name_151,Dragon Scale
+item_name_153,Balm Mushroom
+item_name_154,Shed Shell
+item_name_155,Quick Powder
+item_name_162,Deep Sea Scale
+item_name_163,Light Ball
+item_name_167,Deep Sea Tooth
+item_name_170,Berserk Gene
+item_name_171,Wide Lens
+item_name_172,Up Grade
+item_name_173,Pearl String
+item_name_176,Grip Claw
+item_name_179,Oval Stone
+item_name_180,Brick Piece
+item_name_182,Black Sludge
+item_name_183,Razor Fang
+item_name_184,Razor Claw
+item_name_185,Dubious Disc
+item_name_187,Ability Capsule
+item_name_189,Big Nugget
+item_name_190,Heart Scale
+item_name_263,Odd Incense
+item_name_264,Sea Incense
+item_name_287,Rose Incence
+item_name_288,Full Incense
+item_name_289,Lax Incense
+item_name_290,Luck Incense
+item_name_291,Luck Incense
+item_name_293,Damp Rock
+item_name_294,Heat Rock
+item_name_295,Smooth Rock
+item_name_296,Icy Rock
+item_name_297,Light Clay
+item_name_298,Eviolite
+item_name_299,Rock Incense
+item_name_503,Sachet
+item_name_504,Whipped Dream
+item_name_505,Toxic Orb
+item_name_506,Life Orb
+item_name_577,Flame Orb
+item_name_578,Choice Band
+item_name_579,Choice Scarf
+item_name_580,Choice Specs
+item_name_581,Macho Brace
+item_name_582,Power Weight
+item_name_583,Power Bracer
+item_name_584,Power Belt
+item_name_585,Power Lens
+item_name_586,Power Band
+item_name_587,Power Anklet
+item_name_591,Expert Belt
+item_name_593,Ice Stone
+item_name_594,Snowball
+item_name_595,Cell Battery
+item_name_596,Electric Seed
+item_name_597,Grassy Seed
+item_name_598,Misty Seed
+item_name_599,Psychic Seed
+item_name_600,Terrain Extender
+item_name_648,Poke Toy
+item_name_649,Fluffy Tail
+item_name_650,Bright Powder
+item_name_1996,Burn Drive
+item_name_1997,Chill Drive
+item_name_1998,Douse Drive
+item_name_1999,Shock Drive
+
+Fossils:
+item_name_601,Helix Fossil
+item_name_602,Dome Fossil
+item_name_603,Old Amber
+item_name_604,Root Fossil
+item_name_605,Claw Fossil
+item_name_606,Skull Fossil
+item_name_607,Armor Fossil
+item_name_608,Cover Fossil
+item_name_609,Plume Fossil
+item_name_610,Jaw Fossil
+item_name_611,Sail Fossil
+
+Repels:
+item_name_20,Repel
+item_name_42,Super Repel
+item_name_43,Max Repel
+
+Vitamins:
+item_name_25,Zinc
+item_name_26,HPUp
+item_name_27,Protein
+item_name_28,Iron
+item_name_29,Carbos
+item_name_31,Calcium
+
+XItems:
+item_name_33,XAccuracy
+item_name_44,Dire Hit
+item_name_49,XAttack
+item_name_50,XSp Def
+item_name_51,XDefend
+item_name_52,XSpeed
+item_name_53,XSpecial
+item_name_68,Guard Spec
+
+Apricorns:
+item_name_85,Red Apricorn
+item_name_89,Blu Apricorn
+item_name_92,Ylw Apricorn
+item_name_93,Grn Apricorn
+item_name_97,Wht Apricorn
+item_name_99,Blk Apricorn
+item_name_101,Pnk Apricorn
+
+Plants:
+item_name_86,Tiny Mushroom
+item_name_87,Big Mushroom
+item_name_253,Honey
+
+Wings:
+item_name_254,Health Wing
+item_name_255,Muscle Wing
+item_name_256,Resist Wing
+item_name_257,Genius Wing
+item_name_258,Clever Wing
+item_name_259,Swift Wing
+item_name_260,Pretty Wing
+item_name_261,Sticky Wing
+
+Plates:
+item_name_267,Draco Plate
+item_name_268,Dread Plate
+item_name_269,Earth Plate
+item_name_270,Fist Plate
+item_name_271,Flame Plate
+item_name_272,Icicle Plate
+item_name_273,Insect Plate
+item_name_274,Iron Plate
+item_name_275,Meadow Plate
+item_name_276,Mind Plate
+item_name_277,Pixie Plate
+item_name_278,Sky Plate
+item_name_279,Splash Plate
+item_name_280,Spooky Plate
+item_name_281,Stone Plate
+item_name_282,Toxic Plate
+item_name_283,Zap Plate
+
+Mail:
+item_name_300,Grass Mail
+item_name_301,Bead Mail
+item_name_302,Dream Mail
+item_name_303,Fab Mail
+item_name_304,Glitter Mail
+item_name_305,Harbor Mail
+item_name_306,Mech Mail
+item_name_307,Orange Mail
+item_name_308,Retro Mail
+item_name_309,Shadow Mail
+item_name_310,Tropic Mail
+item_name_311,Wave Mail
+item_name_312,Wood Mail
+item_name_313,Air Mail
+item_name_314,Bloom Mail
+item_name_315,Brick Mail
+item_name_316,Bubble Mail
+item_name_317,Flame Mail
+item_name_318,Heart Mail
+item_name_319,Mosaic Mail
+item_name_320,Snow Mail
+item_name_321,Space Mail
+item_name_322,Steel Mail
+item_name_323,Tunnel Mail
+item_name_324,Bridge Mail T
+item_name_325,Bridge Mail D
+item_name_326,Bridge Mail S
+item_name_327,Bridge Mail V
+item_name_328,Bridge Mail M
+item_name_329,Favored Mail
+item_name_330,Thanks Mail
+item_name_331,Inquiry Mail
+item_name_332,Greet Mail
+item_name_333,RSVPMail
+item_name_334,Like Mail
+item_name_335,Reply Mail
+item_name_336,Kolben Mail
+
+Mega Stones:
+item_name_507,Abomasite
+item_name_508,Absolite
+item_name_509,Aerodactylite
+item_name_510,Aggronite
+item_name_511,Alakazite
+item_name_512,Ampharosite
+item_name_513,Banettite
+item_name_514,Blastoisinite
+item_name_515,Blazikenite
+item_name_516,Charizardite X
+item_name_517,Charizardite Y
+item_name_518,Garchompite
+item_name_519,Gardevoirite
+item_name_520,Gengarite
+item_name_521,Gyaradosite
+item_name_522,Heracronite
+item_name_523,Houndoominite
+item_name_524,Kangaskhanite
+item_name_525,Lucarionite
+item_name_526,Manectite
+item_name_527,Mawilite
+item_name_528,Medichamite
+item_name_529,Mewtwonite X
+item_name_530,Mewtwonite Y
+item_name_531,Pinsirite
+item_name_532,Scizorite
+item_name_533,Tyranitarite
+item_name_534,Venusaurite
+item_name_535,Altarianite
+item_name_536,Audinite
+item_name_537,Beedrillite
+item_name_538,Cameruptite
+item_name_539,Diancite
+item_name_540,Galladite
+item_name_541,Glalitite
+item_name_542,Latiasite
+item_name_543,Latiosite
+item_name_544,Lopunnite
+item_name_545,Metagrossite
+item_name_546,Pidgeotite
+item_name_547,Sablenite
+item_name_548,Salamencite
+item_name_549,Sceptilite
+item_name_550,Sharpedonite
+item_name_551,Slowbronite
+item_name_552,Steelixite
+item_name_553,Swampertite
+
+Gems:
+item_name_630,Fire Gem
+item_name_631,Water Gem
+item_name_632,Electric Gem
+item_name_633,Grass Gem
+item_name_634,Ice Gem
+item_name_635,Fighting Gem
+item_name_636,Poison Gem
+item_name_637,Ground Gem
+item_name_638,Flying Gem
+item_name_639,Psychic Gem
+item_name_640,Bug Gem
+item_name_641,Rock Gem
+item_name_642,Ghost Gem
+item_name_643,Dragon Gem
+item_name_644,Dark Gem
+item_name_645,Steel Gem
+item_name_646,Normal Gem
+item_name_647,Fairy Gem
+
+Memories:
+item_name_660,Bug Memory
+item_name_661,Dark Memory
+item_name_662,Dragon Memory
+item_name_663,Electric Memory
+item_name_664,Fairy Memory
+item_name_665,Fighting Memory
+item_name_666,Fire Memory
+item_name_667,Flying Memory
+item_name_668,Ghost Memory
+item_name_669,Grass Memory
+item_name_670,Ground Memory
+item_name_671,Ice Memory
+item_name_672,Poison Memory
+item_name_673,Psychic Memory
+item_name_674,Rock Memory
+item_name_675,Steel Memory
+item_name_676,Water Memory
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---
