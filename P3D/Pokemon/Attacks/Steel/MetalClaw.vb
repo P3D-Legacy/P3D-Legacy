@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Metal Claw"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Metal Claw")
             Me.Description = "The target is raked with steel claws. It may also raise the user's Attack stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

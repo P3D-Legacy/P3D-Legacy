@@ -1672,6 +1672,621 @@ item_name_673,Psychic Memory
 item_name_674,Rock Memory
 item_name_675,Steel Memory
 item_name_676,Water Memory
+-------------------
+Move Names:
+move_name_1,Pound
+move_name_2,Karate Chop
+move_name_3,Double Slap
+move_name_4,Comet Punch
+move_name_5,Mega Punch
+move_name_6,Pay Day
+move_name_7,Fire Punch
+move_name_8,Ice Punch
+move_name_9,Thunder Punch
+move_name_10,Scratch
+move_name_11,Vice Grip
+move_name_12,Guillotine
+move_name_13,Razor Wind
+move_name_14,Swords Dance
+move_name_15,Cut
+move_name_16,Gust
+move_name_17,Wing Attack
+move_name_18,Whirlwind
+move_name_19,Fly
+move_name_20,Bind
+move_name_21,Slam
+move_name_22,Vine Whip
+move_name_23,Stomp
+move_name_24,Double Kick
+move_name_25,Mega Kick
+move_name_26,Jump Kick
+move_name_27,Rolling Kick
+move_name_28,Sand Attack
+move_name_29,Headbutt
+move_name_30,Horn Attack
+move_name_31,Fury Attack
+move_name_32,Horn Drill
+move_name_33,Tackle
+move_name_34,Body Slam
+move_name_35,Wrap
+move_name_36,Take Down
+move_name_37,Thrash
+move_name_38,Double Edge
+move_name_39,Tail Whip
+move_name_40,Poison Sting
+move_name_41,Twineedle
+move_name_42,Pin Missile
+move_name_43,Leer
+move_name_44,Bite
+move_name_45,Growl
+move_name_46,Roar
+move_name_47,Sing
+move_name_48,Supersonic
+move_name_49,Sonic Boom
+move_name_51,Acid
+move_name_52,Ember
+move_name_53,Flamethrower
+move_name_54,Mist
+move_name_55,Water Gun
+move_name_56,Hydro Pump
+move_name_57,Surf
+move_name_58,Ice Beam
+move_name_59,Blizzard
+move_name_60,Psybeam
+move_name_61,Bubble Beam
+move_name_62,Aurora Beam
+move_name_63,Hyper Beam
+move_name_64,Peck
+move_name_65,Drill Peck
+move_name_66,Submission
+move_name_67,Low Kick
+move_name_68,Counter
+move_name_69,Seismic Toss
+move_name_70,Strength
+move_name_71,Absorb
+move_name_72,Mega Drain
+move_name_73,Leech Seed
+move_name_74,Growth
+move_name_75,Razor Leaf
+move_name_76,Solar Beam
+move_name_77,Poison Powder
+move_name_78,Stun Spore
+move_name_79,Sleep Powder
+move_name_80,Petal Dance
+move_name_81,String Shot
+move_name_82,Dragon Rage
+move_name_83,Fire Spin
+move_name_84,Thunder Shock
+move_name_85,Thunderbolt
+move_name_86,Thunder Wave
+move_name_87,Thunder
+move_name_88,Rock Throw
+move_name_89,Earthquake
+move_name_90,Fissure
+move_name_91,Dig
+move_name_92,Toxic
+move_name_93,Confusion
+move_name_94,Psychic
+move_name_95,Hypnosis
+move_name_96,Meditate
+move_name_97,Agility
+move_name_98,Quick Attack
+move_name_99,Rage
+move_name_100,Teleport
+move_name_101,Night Shade
+move_name_102,Mimic
+move_name_103,Screech
+move_name_104,Double Team
+move_name_105,Recover
+move_name_106,Harden
+move_name_107,Minimize
+move_name_108,Smokescreen
+move_name_109,Confuse Ray
+move_name_110,Withdraw
+move_name_111,Defense Curl
+move_name_112,Barrier
+move_name_113,Light Screen
+move_name_114,Haze
+move_name_115,Reflect
+move_name_116,Focus Energy
+move_name_117,Bide
+move_name_118,Metronome
+move_name_119,Mirror Move
+move_name_120,Self Destruct
+move_name_121,Egg Bomb
+move_name_122,Lick
+move_name_123,Smog
+move_name_124,Sludge
+move_name_125,Bone Club
+move_name_126,Fire Blast
+move_name_127,Waterfall
+move_name_128,Clamp
+move_name_129,Swift
+move_name_130,Skull Bash
+move_name_131,Spike Cannon
+move_name_132,Constrict
+move_name_133,Amnesia
+move_name_134,Kinesis
+move_name_135,Soft Boiled
+move_name_136,High Jump Kick
+move_name_137,Glare
+move_name_138,Dream Eater
+move_name_139,Poison Gas
+move_name_140,Barrage
+move_name_141,Leech Life
+move_name_142,Lovely Kiss
+move_name_143,Sky Attack
+move_name_144,Transform
+move_name_145,Bubble
+move_name_146,Dizzy Punch
+move_name_147,Spore
+move_name_148,Flash
+move_name_149,Psywave
+move_name_150,Splash
+move_name_151,Acid Armor
+move_name_152,Crabhammer
+move_name_153,Explosion
+move_name_154,Fury Swipes
+move_name_155,Bonemerang
+move_name_156,Rest
+move_name_157,Rock Slide
+move_name_158,Hyper Fang
+move_name_159,Sharpen
+move_name_160,Conversion
+move_name_161,Tri Attack
+move_name_162,Super Fang
+move_name_163,Slash
+move_name_164,Substitute
+move_name_165,Struggle
+move_name_166,Sketch
+move_name_167,Triple Kick
+move_name_168,Thief
+move_name_169,Spider Web
+move_name_170,Mind Reader
+move_name_171,Nightmare
+move_name_172,Flame Wheel
+move_name_173,Snore
+move_name_174,Curse
+move_name_175,Flail
+move_name_176,Conversion2
+move_name_177,Aeroblast
+move_name_178,Cotton Spore
+move_name_179,Reversal
+move_name_180,Spite
+move_name_181,Powder Snow
+move_name_182,Protect
+move_name_183,Mach Punch
+move_name_184,Scary Face
+move_name_185,Feint Attack
+move_name_186,Sweet Kiss
+move_name_187,Belly Drum
+move_name_188,Sludge Bomb
+move_name_189,Mud Slap
+move_name_190,Octazooka
+move_name_191,Spikes
+move_name_192,Zap Cannon
+move_name_193,Foresight
+move_name_194,Destiny Bond
+move_name_195,Perish Song
+move_name_196,Icy Wind
+move_name_197,Detect
+move_name_198,Bone Rush
+move_name_199,Lock On
+move_name_200,Outrage
+move_name_201,Sandstorm
+move_name_202,Giga Drain
+move_name_203,Endure
+move_name_204,Charm
+move_name_205,Rollout
+move_name_206,False Swipe
+move_name_207,Swagger
+move_name_208,Milk Drink
+move_name_209,Spark
+move_name_210,Fury Cutter
+move_name_211,Steel Wing
+move_name_212,Mean Look
+move_name_213,Attract
+move_name_214,Sleep Talk
+move_name_215,Heal Bell
+move_name_216,Return
+move_name_217,Present
+move_name_218,Frustration
+move_name_219,Safeguard
+move_name_220,Pain Split
+move_name_221,Sacred Fire
+move_name_222,Magnitude
+move_name_223,Dynamic Punch
+move_name_224,Megahorn
+move_name_225,Dragon Breath
+move_name_226,Baton Pass
+move_name_227,Encore
+move_name_228,Pursuit
+move_name_229,Rapid Spin
+move_name_230,Sweet Scent
+move_name_231,Iron Tail
+move_name_232,Metal Claw
+move_name_233,Vital Throw
+move_name_234,Morning Sun
+move_name_235,Synthesis
+move_name_236,Moonlight
+move_name_237,Hidden Power
+move_name_238,Cross Chop
+move_name_239,Twister
+move_name_240,Rain Dance
+move_name_241,Sunny Day
+move_name_242,Crunch
+move_name_243,Mirror Coat
+move_name_244,Psych Up
+move_name_245,Extreme Speed
+move_name_246,Ancient Power
+move_name_247,Shadow Ball
+move_name_248,Future Sight
+move_name_249,Rock Smash
+move_name_250,Whirlpool
+move_name_251,Beat Up
+move_name_252,Fake Out
+move_name_253,Uproar
+move_name_254,Stockpile
+move_name_255,Spit Up
+move_name_256,Swallow
+move_name_257,Heat Wave
+move_name_258,Hail
+move_name_259,Torment
+move_name_260,Flatter
+move_name_261,WillOWisp
+move_name_262,Memento
+move_name_263,Facade
+move_name_264,Focus Punch
+move_name_265,Smelling Salts
+move_name_267,Nature Power
+move_name_268,Charge
+move_name_269,Taunt
+move_name_271,Trick
+move_name_272,Role Play
+move_name_273,Wish
+move_name_274,Assist
+move_name_275,Ingrain
+move_name_276,Super Power
+move_name_277,Magic Coat
+move_name_278,Recycle
+move_name_279,Revenge
+move_name_280,Brick Break
+move_name_281,Yawn
+move_name_282,Knock Off
+move_name_283,Endeavor
+move_name_284,Eruption
+move_name_285,Skill Swap
+move_name_287,Refresh
+move_name_289,Snatch
+move_name_291,Dive
+move_name_292,Arm Thrust
+move_name_294,Tailglow
+move_name_295,Luster Purge
+move_name_296,Mist Ball
+move_name_297,Feather Dance
+move_name_298,Teeter Dance
+move_name_299,Blaze Kick
+move_name_300,Mud Sport
+move_name_301,Ice Ball
+move_name_302,Needle Arm
+move_name_303,Slack Off
+move_name_304,Hyper Voice
+move_name_305,Poison Fang
+move_name_306,Crush Claw
+move_name_307,Blast Burn
+move_name_308,Hydrocannon
+move_name_309,Meteor Mash
+move_name_310,Astonish
+move_name_311,Weather Ball
+move_name_312,Aromatherapy
+move_name_313,Fake Tears
+move_name_314,Air Cutter
+move_name_315,Overheat
+move_name_316,Odor Sleuth
+move_name_317,Rock Tomb
+move_name_318,Silverwind
+move_name_319,Metal Sound
+move_name_320,Grass Whistle
+move_name_321,Tickle
+move_name_322,Cosmic Power
+move_name_323,Water Spout
+move_name_324,Signal Beam
+move_name_325,Shadow Punch
+move_name_326,Extrasensory
+move_name_327,Sky Uppercut
+move_name_328,Sand Tomb
+move_name_329,Sheer Cold
+move_name_330,Muddywater
+move_name_331,Bullet Seed
+move_name_332,Aerial Ace
+move_name_333,Icicle Spear
+move_name_334,Iron Defense
+move_name_335,Block
+move_name_336,Howl
+move_name_337,Dragon Claw
+move_name_338,Frenzy Plant
+move_name_339,Bulk Up
+move_name_340,Bounce
+move_name_341,Mud Shot
+move_name_342,Poison Tail
+move_name_343,Covet
+move_name_344,Volt Tackle
+move_name_345,Magical Leaf
+move_name_346,Water Sport
+move_name_347,Calm Mind
+move_name_348,Leaf Blade
+move_name_349,Dragon Dance
+move_name_350,Rock Blast
+move_name_351,Shock Wave
+move_name_352,Water Pulse
+move_name_353,Doom Desire
+move_name_354,Psycho Boost
+move_name_355,Roost
+move_name_356,Gravity
+move_name_357,Miracle Eye
+move_name_358,Wake UpSlap
+move_name_359,Hammer Arm
+move_name_360,Gyro Ball
+move_name_361,Healing Wish
+move_name_362,Brine
+move_name_363,Natural Gift
+move_name_364,Feint
+move_name_365,Pluck
+move_name_366,Tailwind
+move_name_367,Acupressure
+move_name_368,Metal Burst
+move_name_369,UTurn
+move_name_370,Close Combat
+move_name_371,Payback
+move_name_372,Assurance
+move_name_373,Embargo
+move_name_374,Fling
+move_name_375,Psycho Shift
+move_name_376,Trump Card
+move_name_377,Heal Block
+move_name_378,Wring Out
+move_name_379,Power Trick
+move_name_384,Power Swap
+move_name_385,Guard Swap
+move_name_386,Punishment
+move_name_387,Last Resort
+move_name_388,Worry Seed
+move_name_389,Sucker Punch
+move_name_390,Toxic Spikes
+move_name_391,Heart Swap
+move_name_392,Aqua Ring
+move_name_393,Magnet Rise
+move_name_394,Flare Blitz
+move_name_395,Force Palm
+move_name_396,Aura Sphere
+move_name_397,Rock Polish
+move_name_398,Poison Jab
+move_name_399,Dark Pulse
+move_name_400,Nightslash
+move_name_401,Aquatail
+move_name_402,Seed Bomb
+move_name_403,Air Slash
+move_name_404,Xscissor
+move_name_405,Bug Buzz
+move_name_406,Dragon Pulse
+move_name_407,Dragon Rush
+move_name_408,Power Gem
+move_name_409,Drain Punch
+move_name_410,Vacuum Wave
+move_name_411,Focus Blast
+move_name_412,Energy Ball
+move_name_413,Brave Bird
+move_name_414,Earth Power
+move_name_415,Switcheroo
+move_name_416,Giga Impact
+move_name_417,Nasty Plot
+move_name_418,Bullet Punch
+move_name_419,Avalanche
+move_name_420,Ice Shard
+move_name_421,Shadow Claw
+move_name_422,Thunder Fang
+move_name_423,Ice Fang
+move_name_424,Fire Fang
+move_name_425,Shadow Sneak
+move_name_426,Mud Bomb
+move_name_427,Psycho Cut
+move_name_428,Zen Headbutt
+move_name_429,Mirror Shot
+move_name_430,Flash Cannon
+move_name_431,Rock Climb
+move_name_432,Defog
+move_name_433,Trick Room
+move_name_434,Draco Meteor
+move_name_435,Discharge
+move_name_436,Lava Plume
+move_name_437,Leaf Storm
+move_name_438,Power Whip
+move_name_439,Rock Wrecker
+move_name_440,Crosspoison
+move_name_441,Gunk Shot
+move_name_442,Ironhead
+move_name_443,Magnet Bomb
+move_name_444,Stone Edge
+move_name_445,Captivate
+move_name_446,Stealth Rock
+move_name_447,Grass Knot
+move_name_448,Chatter
+move_name_449,Judgement
+move_name_450,Bug Bite
+move_name_451,Chargebeam
+move_name_452,Wood Hammer
+move_name_453,Aquajet
+move_name_454,Attack Order
+move_name_455,Defend Order
+move_name_456,Heal Order
+move_name_457,Head Smash
+move_name_458,Double Hit
+move_name_459,Roar OfTime
+move_name_460,Spacial Rend
+move_name_462,Crush Grip
+move_name_463,Magma Storm
+move_name_464,Dark Void
+move_name_465,Seedflare
+move_name_466,Ominous Wind
+move_name_467,Shadow Force
+move_name_468,Hone Claws
+move_name_473,Psyshock
+move_name_474,Venoshock
+move_name_475,Autotomize
+move_name_479,Smack Down
+move_name_480,Storm Throw
+move_name_481,Flame Burst
+move_name_482,Sludge Wave
+move_name_483,Quiver Dance
+move_name_484,Heavy Slam
+move_name_485,Synchronoise
+move_name_486,Electro Ball
+move_name_488,Flame Charge
+move_name_489,Coil
+move_name_490,Low Sweep
+move_name_491,Acid Spray
+move_name_492,Foul Play
+move_name_493,Simple Beam
+move_name_494,Entrainment
+move_name_496,Round
+move_name_497,Echoed Voice
+move_name_498,Chip Away
+move_name_499,Clear Smog
+move_name_500,Stored Power
+move_name_503,Scald
+move_name_504,Shell Smash
+move_name_505,Heal Pulse
+move_name_506,Hex
+move_name_508,Shift Gear
+move_name_509,Circle Throw
+move_name_510,Incinerate
+move_name_512,Acrobatics
+move_name_513,Reflect Type
+move_name_515,Final Gambit
+move_name_516,Bestow
+move_name_517,Inferno
+move_name_518,Water Pledge
+move_name_519,Fire Pledge
+move_name_520,Grass Pledge
+move_name_521,Volt Switch
+move_name_522,Struggle Bug
+move_name_523,Bulldoze
+move_name_524,Frost Breath
+move_name_525,Dragon Tail
+move_name_526,Work Up
+move_name_527,Electroweb
+move_name_528,Wild Charge
+move_name_529,Drill Run
+move_name_530,Dual Chop
+move_name_531,Heart Stamp
+move_name_532,Horn Leech
+move_name_533,Sacred Sword
+move_name_534,Razor Shell
+move_name_535,Heat Crash
+move_name_536,Leaf Tornado
+move_name_537,Steamroller
+move_name_538,Cotton Guard
+move_name_539,Night Daze
+move_name_540,Psystrike
+move_name_541,Tail Slap
+move_name_542,Hurricane
+move_name_543,Head Charge
+move_name_544,Gear Grind
+move_name_545,Searing Shot
+move_name_546,Techno Blast
+move_name_548,Secret Sword
+move_name_549,Glaciate
+move_name_550,Bolt Strike
+move_name_551,Blue Flare
+move_name_552,Fiery Dance
+move_name_553,Freeze Shock
+move_name_554,Ice Burn
+move_name_555,Snarl
+move_name_556,Icicle Crash
+move_name_557,VCreate
+move_name_558,Fusion Flare
+move_name_559,Fusion Bolt
+move_name_560,Ride
+move_name_564,Sticky Web
+move_name_565,Fell Stinger
+move_name_566,Phantom Force
+move_name_568,Noble Roar
+move_name_570,Parabolic Charge
+move_name_572,Petal Blizzard
+move_name_573,Freeze Dry
+move_name_574,Disarming Voice
+move_name_575,Parting Shot
+move_name_577,Draining Kiss
+move_name_580,Grassy Terrain
+move_name_581,Misty Terrain
+move_name_583,Play Rough
+move_name_584,Fairy Wind
+move_name_585,Moonblast
+move_name_586,Boomburst
+move_name_588,Kings Shield
+move_name_589,Play Nice
+move_name_590,Confide
+move_name_591,Diamond Storm
+move_name_592,Steam Eruption
+move_name_593,Hyperspace Hole
+move_name_594,Water Shuriken
+move_name_595,Mystical Fire
+move_name_598,Eerie Impulse
+move_name_599,Venom Drench
+move_name_601,Geomancy
+move_name_604,Electric Terrain
+move_name_605,Dazzling Gleam
+move_name_606,Celebrate
+move_name_608,Baby Doll Eyes
+move_name_609,Nuzzle
+move_name_610,Hold Back
+move_name_611,Infestation
+move_name_612,Power UpPunch
+move_name_613,Oblivion Wing
+move_name_614,Thousand Arrows
+move_name_615,Thousand Waves
+move_name_616,Lands Wrath
+move_name_617,Light OfRuin
+move_name_618,Origin Pulse
+move_name_619,Precipice Blades
+move_name_620,Dragon Ascent
+move_name_621,Hyperspace Fury
+move_name_659,Shore Up
+move_name_660,First Impression
+move_name_662,Spirit Shackle
+move_name_663,Darkest Lariat
+move_name_664,Sparkling Aria
+move_name_665,Ice Hammer
+move_name_667,High Horsepower
+move_name_668,Strength Sap
+move_name_669,Solar Blade
+move_name_670,Leafage
+move_name_672,Toxic Thread
+move_name_674,Gear Up
+move_name_676,Pollen Puff
+move_name_677,Anchor Shot
+move_name_678,Psychic Terrain
+move_name_679,Lunge
+move_name_680,Fire Lash
+move_name_681,Power Trip
+move_name_682,Burn Up
+move_name_684,Smart Strike
+move_name_686,Revelation Dance
+move_name_688,Trop Kick
+move_name_691,Clanging Scales
+move_name_692,Dragon Hammer
+move_name_693,Brutal Swing
+move_name_705,Fleur Cannon
+move_name_706,Psychic Fangs
+move_name_708,Shadow Bone
+move_name_709,Accelerock
+move_name_710,Liquidation
+move_name_711,Prismatic Laser
+move_name_715,Tearful Look
+move_name_716,Zing Zap
+move_name_717,Natures Madness
+move_name_749,Tar Shot
+move_name_796,Steel Beam
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Story translation:
 ---

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Conversion 2"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Conversion 2")
             Me.Description = "The user changes its type to make itself resistant to the type of the attack the opponent used last."
             Me.CriticalChance = 0
             Me.IsHMMove = False

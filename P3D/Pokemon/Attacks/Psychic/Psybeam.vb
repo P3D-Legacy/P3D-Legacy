@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Psybeam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Psybeam")
             Me.Description = "The target is attacked with a peculiar ray. It may also cause confusion."
             Me.CriticalChance = 1
             Me.IsHMMove = False

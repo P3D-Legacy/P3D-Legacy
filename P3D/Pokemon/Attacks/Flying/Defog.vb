@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Defog"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Defog")
             Me.Description = "A strong wind blows away the target's barriers such as Reflect or Light Screen. This also lowers the target's evasiveness."
             Me.CriticalChance = 1
             Me.IsHMMove = False

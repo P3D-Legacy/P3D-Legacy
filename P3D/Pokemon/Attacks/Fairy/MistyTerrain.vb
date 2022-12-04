@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Misty Terrain"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Misty Terrain")
             Me.Description = "This protects Pokémon on the ground from status conditions and halves damage from Dragon-type moves for five turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

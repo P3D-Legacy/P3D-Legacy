@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Cut"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Cut")
             Me.Description = "The target is cut with a scythe or a claw. It can also be used to cut down thin trees."
             Me.CriticalChance = 1
             Me.IsHMMove = True

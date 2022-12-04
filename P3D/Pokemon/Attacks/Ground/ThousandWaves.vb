@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Thousand Waves"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Thousand Waves")
             Me.Description = "The user attacks with a wave that crawls along the ground. Those hit can't flee from battle."
             Me.CriticalChance = 1
             Me.IsHMMove = False

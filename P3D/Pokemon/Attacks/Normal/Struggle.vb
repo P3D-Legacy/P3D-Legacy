@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Struggle"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Struggle")
             Me.Description = "An attack that is used in desperation only if the user has no PP. It also hurts the user slightly."
             Me.CriticalChance = 0
             Me.IsHMMove = False

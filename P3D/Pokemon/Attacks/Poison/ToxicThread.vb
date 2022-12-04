@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Toxic Thread"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Toxic Thread")
             Me.Description = "The user shoots poisonous threads to poison the target and lower the target's Speed stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

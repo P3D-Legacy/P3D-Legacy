@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Slack Off"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Slack Off")
             Me.Description = "The user slacks off, restoring its own HP by up to half of its maximum HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

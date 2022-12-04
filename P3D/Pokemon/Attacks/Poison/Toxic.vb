@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Poison
             Me.Accuracy = 90
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Toxic"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Toxic")
             Me.Description = "A move that leaves the target badly poisoned. Its poison damage worsens every turn."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Electric
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Bolt Strike"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bolt Strike")
             Me.Description = "The user surrounds itself with a great amount of electricity and charges its target. This may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

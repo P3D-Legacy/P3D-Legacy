@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Poison Jab"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Poison Jab")
             Me.Description = "The target is stabbed with a tentacle or arm steeped in poison. It may also poison the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

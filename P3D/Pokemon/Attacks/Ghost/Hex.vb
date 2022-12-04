@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Hex"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hex")
             Me.Description = "This relentless attack does massive damage to a target affected by status problems."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Solar Beam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Solar Beam")
             Me.Description = "A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

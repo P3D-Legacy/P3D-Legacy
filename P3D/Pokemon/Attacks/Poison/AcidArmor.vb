@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Poison
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Acid Armor"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Acid Armor")
             Me.Description = "The user alters its cellular structure to liquefy itself, sharply raising its Defense stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

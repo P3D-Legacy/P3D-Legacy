@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Thunderbolt"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Thunderbolt")
             Me.Description = "A strong electric blast is loosed at the target. It may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

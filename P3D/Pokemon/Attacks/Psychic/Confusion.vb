@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Confusion"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Confusion")
             Me.Description = "The target is hit by a weak telekinetic force. It may also leave the target confused."
             Me.CriticalChance = 1
             Me.IsHMMove = False

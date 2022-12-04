@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Grass
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Trop Kick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Trop Kick")
             Me.Description = "The user lands an intense kick of tropical origins on the target. This also lowers the target's Attack stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

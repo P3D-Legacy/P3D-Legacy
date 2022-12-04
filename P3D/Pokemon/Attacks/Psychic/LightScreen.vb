@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Light Screen"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Light Screen")
             Me.Description = "A wondrous wall of light is put up to suppress damage from special attacks for five turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

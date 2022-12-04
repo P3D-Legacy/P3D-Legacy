@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Ground
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Mud Shot"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mud Shot")
             Me.Description = "The user attacks by hurling a blob of mud at the target. This also lowers the target's Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

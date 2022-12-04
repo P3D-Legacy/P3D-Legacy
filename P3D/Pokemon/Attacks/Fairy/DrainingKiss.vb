@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Draining Kiss"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Draining Kiss")
             Me.Description = "The user steals the target's energy with a kiss. The user's HP is restored by over half of the damage taken by the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

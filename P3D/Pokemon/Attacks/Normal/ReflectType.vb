@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Reflect Type"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Reflect Type")
             Me.Description = "The user reflects the target's type, making it the same type as the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

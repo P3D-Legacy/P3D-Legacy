@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Water Pulse"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Water Pulse")
             Me.Description = "The user attacks the target with a pulsing blast of water. It may also confuse the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

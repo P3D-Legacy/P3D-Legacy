@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Sheer Cold"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sheer Cold")
             Me.Description = "The target is attacked with a blast of absolute-zero cold. The target instantly faints if it hits."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Chip Away"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Chip Away")
             Me.Description = "Looking for an opening, the user strikes consistently. The target's stat changes don't affect this attack's damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

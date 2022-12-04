@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Bug Buzz"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bug Buzz")
             Me.Description = "The user vibrates its wings to generate a damaging sound wave. This may also lower the target's Sp. Def stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

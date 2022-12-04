@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Echoed Voice"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Echoed Voice")
             Me.Description = "The user attacks the target with an echoing voice. If this move is used every turn, its power is increased."
             Me.CriticalChance = 1
             Me.IsHMMove = False

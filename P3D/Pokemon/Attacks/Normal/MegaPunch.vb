@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Mega Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mega Punch")
             Me.Description = "The target is slugged by a punch thrown with muscle-packed power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

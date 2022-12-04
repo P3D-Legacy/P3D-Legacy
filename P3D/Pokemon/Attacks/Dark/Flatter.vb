@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Flatter"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Flatter")
             Me.Description = "Flattery is used to confuse the target. However, it also raises the target's Sp. Atk stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

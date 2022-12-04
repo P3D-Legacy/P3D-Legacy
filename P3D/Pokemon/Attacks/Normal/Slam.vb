@@ -15,7 +15,7 @@
             Me.Accuracy = 75
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Slam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Slam")
             Me.Description = "The target is slammed with a long tail, vines, etc., to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

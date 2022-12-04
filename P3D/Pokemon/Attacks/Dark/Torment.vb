@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Torment"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Torment")
             Me.Description = "The user torments and enrages the target, making it incapable of using the same move twice in a row."
             Me.CriticalChance = 0
             Me.IsHMMove = False

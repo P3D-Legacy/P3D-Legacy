@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Rock Polish"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rock Polish")
             Me.Description = "The user polishes its body to reduce drag. This can sharply raise the Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Leaf Storm"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Leaf Storm")
             Me.Description = "The user whips up a storm of leaves around the target. The attack's recoil harshly lowers the user's Sp. Atk stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

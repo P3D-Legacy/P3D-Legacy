@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "String Shot"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"String Shot")
             Me.Description = "The targets are bound with silk blown from the user's mouth. This silk reduces the targets' Speed stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

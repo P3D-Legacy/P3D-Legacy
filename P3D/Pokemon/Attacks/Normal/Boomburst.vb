@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Boomburst"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Boomburst")
             Me.Description = "The user attacks everything around it with the destructive power of a terrible, explosive sound."
             Me.CriticalChance = 1
             Me.IsHMMove = False

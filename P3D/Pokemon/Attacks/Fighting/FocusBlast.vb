@@ -15,7 +15,7 @@
             Me.Accuracy = 70
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Focus Blast"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Focus Blast")
             Me.Description = "The user heightens its mental focus and unleashes its power. It may also lower the target’s Sp. Def."
             Me.CriticalChance = 1
             Me.IsHMMove = False

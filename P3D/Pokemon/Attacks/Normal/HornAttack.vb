@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Horn Attack"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Horn Attack")
             Me.Description = "The target is jabbed with a sharply pointed horn to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

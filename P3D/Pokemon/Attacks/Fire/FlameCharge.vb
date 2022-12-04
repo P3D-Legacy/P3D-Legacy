@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Flame Charge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Flame Charge")
             Me.Description = "The user cloaks itself with flame and attacks. Building up more power, it raises the user's Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

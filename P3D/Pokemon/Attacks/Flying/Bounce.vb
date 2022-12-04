@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Bounce"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bounce")
             Me.Description = "The user bounces up high, then drops on the target on the second turn. This may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

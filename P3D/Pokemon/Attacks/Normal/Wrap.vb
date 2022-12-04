@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Wrap"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Wrap")
             Me.Description = "A long body or vines are used to wrap and squeeze the target for four to five turns."
             Me.CriticalChance = 1
             Me.IsHMMove = False

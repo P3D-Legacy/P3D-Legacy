@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Roar"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Roar")
             Me.Description = "The target is scared off and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon."
             Me.CriticalChance = 0
             Me.IsHMMove = False

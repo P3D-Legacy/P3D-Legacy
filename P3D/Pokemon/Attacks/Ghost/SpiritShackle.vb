@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Spirit Shackle"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Spirit Shackle")
             Me.Description = "The user attacks while simultaneously stitching the target's shadow to the ground to prevent the target from escaping."
             Me.CriticalChance = 1
             Me.IsHMMove = False

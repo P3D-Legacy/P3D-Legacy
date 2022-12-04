@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Blaze Kick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Blaze Kick")
             Me.Description = "The user launches a kick that lands a critical hit more easily. It may also leave the target with a burn."
             Me.CriticalChance = 2
             Me.IsHMMove = False

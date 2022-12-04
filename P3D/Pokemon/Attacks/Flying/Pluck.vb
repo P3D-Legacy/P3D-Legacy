@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Flying
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Pluck"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Pluck")
             Me.Description = "The user pecks the target. If the target is holding a Berry, the user eats it and gains its effect."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Brave Bird"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Brave Bird")
             Me.Description = "The user tucks in its wings and charges from a low altitude. The user also takes serious damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

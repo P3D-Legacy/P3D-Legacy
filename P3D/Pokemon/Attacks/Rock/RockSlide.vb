@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Rock Slide"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rock Slide")
             Me.Description = "Large boulders are hurled at the opposing team to inflict damage. They may also make the targets flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Shift Gear"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Shift Gear")
             Me.Description = "The user rotates its gears, raising its Attack and sharply raising its Speed."
             Me.CriticalChance = 0
             Me.IsHMMove = False

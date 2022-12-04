@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Steel
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Iron Defense"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Iron Defense")
             Me.Description = "The user hardens its body's surface like iron, sharply raising its Defense stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

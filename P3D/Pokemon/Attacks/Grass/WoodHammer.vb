@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Wood Hammer"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Wood Hammer")
             Me.Description = "The user slams its rugged body into the target to attack. The user also sustains serious damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

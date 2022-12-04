@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Wild Charge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Wild Charge")
             Me.Description = "The user shrouds itself in electricity and smashes into its target. It also damages the user a little."
             Me.CriticalChance = 1
             Me.IsHMMove = False

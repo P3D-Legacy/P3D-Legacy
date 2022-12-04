@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Present"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Present")
             Me.Description = "The user attacks by giving the target a gift with a hidden trap. It restores HP sometimes, however."
             Me.CriticalChance = 1
             Me.IsHMMove = False

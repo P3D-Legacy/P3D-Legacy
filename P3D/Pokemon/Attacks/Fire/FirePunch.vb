@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Fire Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fire Punch")
             Me.Description = "The target is punched with a fiery fist. It may also leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

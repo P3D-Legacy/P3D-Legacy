@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Sketch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sketch")
             Me.Description = "It enables the user to permanently learn the move last used by the target. Once used, Sketch disappears."
             Me.CriticalChance = 0
             Me.IsHMMove = False

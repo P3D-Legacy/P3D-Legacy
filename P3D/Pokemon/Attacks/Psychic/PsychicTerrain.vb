@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Psychic Terrain"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Psychic Terrain")
             Me.Description = "This protects Pokémon on the ground from priority moves and powers up Psychic-type moves for five turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

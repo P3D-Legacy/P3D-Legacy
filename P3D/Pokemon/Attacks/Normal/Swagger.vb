@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Swagger"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Swagger")
             Me.Description = "The user enrages and confuses the target. However, it also sharply raises the target's Attack stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Aurora Beam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Aurora Beam")
             Me.Description = "The target is hit with a rainbow-colored beam. This may also lower the target's Attack stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

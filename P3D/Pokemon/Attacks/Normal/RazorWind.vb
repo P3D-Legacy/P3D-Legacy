@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Razor Wind"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Razor Wind")
             Me.Description = "A two-turn attack. Blades of wind hit opposing Pokémon on the second turn. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

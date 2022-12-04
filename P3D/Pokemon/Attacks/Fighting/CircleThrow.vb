@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fighting
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Circle Throw"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Circle Throw")
             Me.Description = "The target is thrown, and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon."
             Me.CriticalChance = 1
             Me.IsHMMove = False

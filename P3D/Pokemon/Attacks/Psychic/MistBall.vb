@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Mist Ball"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mist Ball")
             Me.Description = "A mistlike flurry of down envelops and damages the target. It may also lower the target's Sp. Atk."
             Me.CriticalChance = 1
             Me.IsHMMove = False

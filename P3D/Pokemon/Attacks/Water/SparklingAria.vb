@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Sparkling Aria"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sparkling Aria")
             Me.Description = "The user bursts into song, emitting many bubbles. Any Pokémon suffering from a burn will be healed by the touch of these bubbles."
             Me.CriticalChance = 1
             Me.IsHMMove = False

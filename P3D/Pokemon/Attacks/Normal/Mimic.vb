@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Mimic"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mimic")
             Me.Description = "The user copies the target's last move. The move can be used during battle until the Pokémon is switched out."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Fusion Bolt"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fusion Bolt")
             Me.Description = "The user throws down a giant thunderbolt. This attack does greater damage when influenced by an enormous flame."
             Me.CriticalChance = 1
             Me.IsHMMove = False

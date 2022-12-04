@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Precipice Blades"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Precipice Blades")
             Me.Description = "The user attacks opposing Pokémon by manifesting the power of the land in fearsome blades of stone."
             Me.CriticalChance = 1
             Me.IsHMMove = False

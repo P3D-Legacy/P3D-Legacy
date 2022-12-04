@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Fake Out"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fake Out")
             Me.Description = "An attack that hits first and makes the target flinch. It only works the first turn the user is in battle."
             Me.CriticalChance = 1
             Me.IsHMMove = False

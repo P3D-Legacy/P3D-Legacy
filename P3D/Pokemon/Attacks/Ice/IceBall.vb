@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Ice Ball"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ice Ball")
             Me.Description = "The user continually rolls into the target over five turns. It becomes stronger each time it hits."
             Me.CriticalChance = 1
             Me.IsHMMove = False

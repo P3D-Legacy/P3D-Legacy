@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Role Play"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Role Play")
             Me.Description = "The user mimics the target completely, copying the target's natural Ability."
             Me.CriticalChance = 0
             Me.IsHMMove = False

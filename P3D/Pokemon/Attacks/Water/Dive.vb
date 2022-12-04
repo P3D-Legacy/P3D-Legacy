@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Dive"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dive")
             Me.Description = "Diving on the first turn, the user floats up and attacks on the next turn."
             Me.CriticalChance = 1
             Me.IsHMMove = True

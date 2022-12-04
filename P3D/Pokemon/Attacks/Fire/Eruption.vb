@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fire
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Eruption"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Eruption")
             Me.Description = "The user attacks the opposing team with explosive fury. The lower the user's HP, the less powerful this attack becomes."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 75
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Egg Bomb"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Egg Bomb")
             Me.Description = "A large egg is hurled at the target with maximum force to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

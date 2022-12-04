@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Psywave"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Psywave")
             Me.Description = "The target is attacked with an odd psychic wave. The attack varies in intensity."
             Me.CriticalChance = 0
             Me.IsHMMove = False

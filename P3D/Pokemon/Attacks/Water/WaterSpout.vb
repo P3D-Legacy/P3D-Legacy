@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Water
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Water Spout"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Water Spout")
             Me.Description = "The user spouts water to damage opposing Pokémon. The lower the user's HP, the lower the move's power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Leech Seed"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Leech Seed")
             Me.Description = "A seed is planted on the target. It steals some HP from the target every turn."
             Me.CriticalChance = 0
             Me.IsHMMove = False

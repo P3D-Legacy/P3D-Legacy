@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Defense Curl"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Defense Curl")
             Me.Description = "The user curls up to conceal weak spots and raise its Defense stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

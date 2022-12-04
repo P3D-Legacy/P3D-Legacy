@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Light of Ruin"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Light of Ruin")
             Me.Description = "Drawing power from the Eternal Flower, the user fires a powerful beam of light. This also damages the user quite a lot."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Snatch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Snatch")
             Me.Description = "The user steals the effects of any attempts to use a healing or stat-changing move."
             Me.CriticalChance = 0
             Me.IsHMMove = False

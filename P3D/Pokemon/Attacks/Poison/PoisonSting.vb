@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Poison Sting"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Poison Sting")
             Me.Description = "The user stabs the target with a poisonous stinger. This may also poison the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

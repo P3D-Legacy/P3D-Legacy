@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fire
             Me.Accuracy = 85
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Blue Flare"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Blue Flare")
             Me.Description = "The user attacks by engulfing the target in an intense, yet beautiful, blue flame. This may also leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

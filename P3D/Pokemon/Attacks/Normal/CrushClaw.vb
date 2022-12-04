@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Crush Claw"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Crush Claw")
             Me.Description = "The user slashes the target with hard and sharp claws. This may also lower the target's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

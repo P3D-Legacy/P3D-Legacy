@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Yawn"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Yawn")
             Me.Description = "The user lets loose a huge yawn that lulls the target into falling asleep on the next turn."
             Me.CriticalChance = 0
             Me.IsHMMove = False

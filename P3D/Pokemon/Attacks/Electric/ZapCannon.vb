@@ -15,7 +15,7 @@
             Me.Accuracy = 50
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Zap Cannon"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Zap Cannon")
             Me.Description = "The user fires an electric blast like a cannon to inflict damage and cause paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

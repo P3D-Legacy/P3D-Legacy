@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Discharge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Discharge")
             Me.Description = "The user strikes everything around it by letting loose a flare of electricity. This may also cause paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

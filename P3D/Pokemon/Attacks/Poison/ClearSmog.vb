@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Clear Smog"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Clear Smog")
             Me.Description = "The user attacks by throwing a clump of special mud. All stat changes are returned to normal."
             Me.CriticalChance = 0
             Me.IsHMMove = False

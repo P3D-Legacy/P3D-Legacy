@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Last Resort"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Last Resort")
             Me.Description = "This move can be used only after the user has used all the other moves it knows in the battle."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Electric
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Volt Tackle"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Volt Tackle")
             Me.Description = "The user electrifies itself, then charges. This also damages the user quite a lot. This may leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

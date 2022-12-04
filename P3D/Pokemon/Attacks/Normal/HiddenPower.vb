@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Hidden Power"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hidden Power")
             Me.Description = "A unique attack that varies in type depending on the Pokémon using it."
             Me.CriticalChance = 1
             Me.IsHMMove = False

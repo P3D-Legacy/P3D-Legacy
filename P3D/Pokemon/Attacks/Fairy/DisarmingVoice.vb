@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 0
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Disarming Voice"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Disarming Voice")
             Me.Description = "Letting out a charming cry, the user does emotional damage to opposing Pokémon. This attack never misses."
             Me.CriticalChance = 1
             Me.IsHMMove = False

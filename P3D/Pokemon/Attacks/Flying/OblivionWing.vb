@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Flying
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Oblivion Wing"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Oblivion Wing")
             Me.Description = "The user absorbs its target's HP. The user's HP is restored by over half of the damage taken by the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

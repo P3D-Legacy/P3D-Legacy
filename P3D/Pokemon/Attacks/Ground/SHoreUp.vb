@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Shore Up"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Shore Up")
             Me.Description = "The user regains up to half of its max HP. It restores more HP in a sandstorm."
             Me.CriticalChance = 0
             Me.IsHMMove = False

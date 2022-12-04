@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Trick Room"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Trick Room")
             Me.Description = "The user creates a bizarre area in which slower Pokémon get to move first for five turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

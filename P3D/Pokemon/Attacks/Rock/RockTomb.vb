@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Rock
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Rock Tomb"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rock Tomb")
             Me.Description = "Boulders are hurled at the target. This also lowers the target's Speed stat by preventing its movement."
             Me.CriticalChance = 1
             Me.IsHMMove = False

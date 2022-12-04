@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Nightmare"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Nightmare")
             Me.Description = "A sleeping target sees a nightmare that inflicts some damage every turn."
             Me.CriticalChance = 0
             Me.IsHMMove = False

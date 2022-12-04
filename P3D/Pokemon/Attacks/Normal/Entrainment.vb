@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Entrainment"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Entrainment")
             Me.Description = "The user dances with an odd rhythm that compels the target to mimic it, making the target's Ability the same as the user's."
             Me.CriticalChance = 0
             Me.IsHMMove = False

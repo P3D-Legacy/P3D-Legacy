@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Celebrate"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Celebrate")
             Me.Description = "The Pokémon congratulates you on your special day!"
             Me.CriticalChance = 0
             Me.IsHMMove = False

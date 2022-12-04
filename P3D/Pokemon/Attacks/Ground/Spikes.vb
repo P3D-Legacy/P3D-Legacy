@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Spikes"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Spikes")
             Me.Description = "The user lays a trap of spikes at the opposing team's feet. The trap hurts Pokémon that switch into battle."
             Me.CriticalChance = 0
             Me.IsHMMove = False

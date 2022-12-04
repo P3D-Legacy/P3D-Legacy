@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Thief"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Thief")
             Me.Description = "The user attacks and steals the target's item simultaneously. It can't steal if the user holds an item."
             Me.CriticalChance = 1
             Me.IsHMMove = False

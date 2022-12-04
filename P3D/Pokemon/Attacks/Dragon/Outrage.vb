@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Outrage"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Outrage")
             Me.Description = "The user rampages and attacks for two to three turns. It then becomes confused, however."
             Me.CriticalChance = 1
             Me.IsHMMove = False

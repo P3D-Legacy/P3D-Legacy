@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Double Slap"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Double Slap")
             Me.Description = "The target is slapped repeatedly, back and forth, two to five times in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

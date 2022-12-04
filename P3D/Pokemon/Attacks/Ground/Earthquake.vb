@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Earthquake"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Earthquake")
             Me.Description = "The user sets off an earthquake that strikes those around it."
             Me.CriticalChance = 1
             Me.IsHMMove = False

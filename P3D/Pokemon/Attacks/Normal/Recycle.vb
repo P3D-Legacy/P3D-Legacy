@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Recycle"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Recycle")
             Me.Description = "The user recycles a held item that has been used in battle so it can be used again."
             Me.CriticalChance = 0
             Me.IsHMMove = False

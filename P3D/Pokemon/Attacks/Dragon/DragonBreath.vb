@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Dragon Breath"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dragon Breath")
             Me.Description = "The user exhales a mighty gust that inflicts damage. It may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

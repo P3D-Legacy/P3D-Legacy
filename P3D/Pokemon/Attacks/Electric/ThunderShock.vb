@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Thunder Shock"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Thunder Shock")
             Me.Description = "A jolt of electricity is hurled at the target to inflict damage. It may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

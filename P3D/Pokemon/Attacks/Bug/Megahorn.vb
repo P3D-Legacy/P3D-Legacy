@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Megahorn"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Megahorn")
             Me.Description = "Using its tough and impressive horn, the user rams into the target with no letup."
             Me.CriticalChance = 1
             Me.IsHMMove = False

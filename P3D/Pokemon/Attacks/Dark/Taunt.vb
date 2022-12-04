@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Taunt"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Taunt")
             Me.Description = "The target is taunted into a rage that allows it to use only attack moves for three turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

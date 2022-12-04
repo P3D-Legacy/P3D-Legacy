@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Sky Attack"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sky Attack")
             Me.Description = "A second-turn attack move where critical hits land more easily. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

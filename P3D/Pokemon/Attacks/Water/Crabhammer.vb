@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Crabhammer"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Crabhammer")
             Me.Description = "The target is hammered with a large pincer. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

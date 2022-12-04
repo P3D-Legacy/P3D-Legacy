@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Energy Ball"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Energy Ball")
             Me.Description = "The user draws power from nature and fires it at the target. It may also lower the target's Sp. Def."
             Me.CriticalChance = 1
             Me.IsHMMove = False

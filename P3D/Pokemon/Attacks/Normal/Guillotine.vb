@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Guillotine"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Guillotine")
             Me.Description = "A vicious, tearing attack with big pincers. The target will faint instantly if this attack hits."
             Me.CriticalChance = 0
             Me.IsHMMove = False

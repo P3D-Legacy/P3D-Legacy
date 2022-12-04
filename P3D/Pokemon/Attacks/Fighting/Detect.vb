@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Detect"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Detect")
             Me.Description = "It enables the user to evade all attacks. Its chance of failing rises if it is used in succession."
             Me.CriticalChance = 0
             Me.IsHMMove = False

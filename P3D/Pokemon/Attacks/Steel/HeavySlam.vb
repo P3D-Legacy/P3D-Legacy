@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Heavy Slam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Heavy Slam")
             Me.Description = "The user slams into the target with its heavy body. The more the user outweighs the target, the greater its damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Silver Wind"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Silver Wind")
             Me.Description = "The target is attacked with powdery scales blown by wind. It may also raise all the user's stats."
             Me.CriticalChance = 1
             Me.IsHMMove = False

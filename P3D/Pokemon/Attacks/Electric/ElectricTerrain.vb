@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Electric Terrain"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Electric Terrain")
             Me.Description = "The user electrifies the ground for five turns, powering up Electric-type moves. Pokémon on the ground no longer fall asleep."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Agility"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Agility")
             Me.Description = "The user relaxes and lightens its body to move faster. It sharply boosts the Speed stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

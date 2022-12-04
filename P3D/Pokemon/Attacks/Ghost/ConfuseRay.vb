@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Confuse Ray"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Confuse Ray")
             Me.Description = "The target is exposed to a sinister ray that triggers confusion."
             Me.CriticalChance = 0
             Me.IsHMMove = False

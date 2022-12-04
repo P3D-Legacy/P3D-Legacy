@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Skull Bash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Skull Bash")
             Me.Description = "The user tucks in its head to raise its Defense in the first turn, then rams the target on the next turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

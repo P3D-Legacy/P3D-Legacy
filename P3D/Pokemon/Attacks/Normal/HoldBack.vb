@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Hold Back"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hold Back")
             Me.Description = "The user holds back when it attacks, and the target is left with at least 1 HP."
             Me.CriticalChance = 1
             Me.IsHMMove = False

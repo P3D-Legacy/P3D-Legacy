@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Brutal Swing"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Brutal Swing")
             Me.Description = "The user swings its body around violently to inflict damage on everything in its vicinity."
             Me.CriticalChance = 1
             Me.IsHMMove = False

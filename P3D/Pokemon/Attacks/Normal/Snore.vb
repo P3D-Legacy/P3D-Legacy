@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Snore"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Snore")
             Me.Description = "An attack that can be used only if the user is asleep. The harsh noise may make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

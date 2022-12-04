@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Strength"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Strength")
             Me.Description = "The target is slugged with a punch thrown at maximum power. This move can also be used to move boulders."
             Me.CriticalChance = 1
             Me.IsHMMove = True

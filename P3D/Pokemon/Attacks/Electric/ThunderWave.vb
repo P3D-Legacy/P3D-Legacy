@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Thunder Wave"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Thunder Wave")
             Me.Description = "A weak electric charge is launched at the target. It causes paralysis if it hits."
             Me.CriticalChance = 0
             Me.IsHMMove = False

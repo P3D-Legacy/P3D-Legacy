@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Icy Wind"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Icy Wind")
             Me.Description = "The user attacks with a gust of chilled air. It also reduces the targets' Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

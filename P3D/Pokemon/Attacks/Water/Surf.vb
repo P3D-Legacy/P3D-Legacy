@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Surf"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Surf")
             Me.Description = "It swamps the area around the user with a giant wave. It can also be used for crossing water."
             Me.CriticalChance = 1
             Me.IsHMMove = True

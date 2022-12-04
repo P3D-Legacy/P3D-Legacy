@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Spite"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Spite")
             Me.Description = "The user unleashes its grudge on the move last used by the target by cutting 4 PP from it."
             Me.CriticalChance = 0
             Me.IsHMMove = False

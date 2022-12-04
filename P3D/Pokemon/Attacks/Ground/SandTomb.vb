@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Sand Tomb"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sand Tomb")
             Me.Description = "The user traps the target inside a harshly raging sandstorm for four to five turns."
             Me.CriticalChance = 1
             Me.IsHMMove = False

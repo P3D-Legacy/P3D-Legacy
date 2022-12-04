@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Tar Shot"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Tar Shot")
             Me.Description = "The user pours sticky tar over the target, lowering the target's Speed stat. The target becomes weaker to Fire-type moves."
             Me.CriticalChance = 1
             Me.IsHMMove = False

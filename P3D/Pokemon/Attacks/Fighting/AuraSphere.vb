@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Aura Sphere"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Aura Sphere")
             Me.Description = "The user looses a blast of aura power from deep within its body at the target. This move is certain to hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False

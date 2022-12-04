@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Razor Leaf"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Razor Leaf")
             Me.Description = "Sharp-edged leaves are launched to slash at the opposing team. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

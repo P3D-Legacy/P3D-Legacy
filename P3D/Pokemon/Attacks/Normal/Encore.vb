@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Encore"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Encore")
             Me.Description = "The user compels the target to keep using only the move it last used for three turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

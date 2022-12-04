@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fighting
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Brick Break"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Brick Break")
             Me.Description = "The user attacks with a swift chop. It can also break barriers, such as Light Screen and Reflect."
             Me.CriticalChance = 1
             Me.IsHMMove = False

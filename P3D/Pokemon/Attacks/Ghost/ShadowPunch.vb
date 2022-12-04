@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Ghost
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Shadow Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Shadow Punch")
             Me.Description = "The user throws a punch from the shadows. This attack never misses."
             Me.CriticalChance = 1
             Me.IsHMMove = False

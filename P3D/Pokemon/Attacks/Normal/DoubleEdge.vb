@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Double-Edge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Double-Edge")
             Me.Description = "A reckless, life-risking tackle. It also damages the user by a fairly large amount, however."
             Me.CriticalChance = 1
             Me.IsHMMove = False

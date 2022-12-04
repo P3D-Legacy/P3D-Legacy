@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Dark Pulse"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dark Pulse")
             Me.Description = "The user releases a horrible aura imbued with dark thoughts. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

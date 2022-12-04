@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Water
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Steam Eruption"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Steam Eruption")
             Me.Description = "The user immerses the target in superheated steam. This may also leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

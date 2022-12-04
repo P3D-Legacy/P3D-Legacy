@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Play Rough"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Play Rough")
             Me.Description = "The user plays rough with the target and attacks it. This may also lower the target's Attack stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

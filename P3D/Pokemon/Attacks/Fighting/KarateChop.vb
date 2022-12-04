@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Karate Chop"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Karate Chop")
             Me.Description = "The target is attacked with a sharp chop. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

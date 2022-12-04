@@ -15,7 +15,7 @@
             Me.Accuracy = 80
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Hydro Pump"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hydro Pump")
             Me.Description = "The target is blasted by a huge volume of water launched under great pressure."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 70
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Smog"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Smog")
             Me.Description = "The target is attacked with a discharge of filthy gases. It may also poison the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Dream Eater"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dream Eater")
             Me.Description = "The user eats the dreams of a sleeping target. It absorbs half the damage caused to heal the user's HP."
             Me.CriticalChance = 1
             Me.IsHMMove = False

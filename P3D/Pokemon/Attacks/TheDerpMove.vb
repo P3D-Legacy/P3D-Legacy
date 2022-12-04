@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "TheUltimateDerp"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"TheUltimateDerp")
             Me.Description = "The Pokémon derps around to the max. Nothing can stop it now. Not even a cookie."
             Me.CriticalChance = 0
             Me.IsHMMove = False

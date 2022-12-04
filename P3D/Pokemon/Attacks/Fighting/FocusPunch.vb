@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Focus Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Focus Punch")
             Me.Description = "The user focuses its mind before launching a punch. It will fail if the user is hit before it is used."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Water Gun"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Water Gun")
             Me.Description = "The target is blasted with a forceful shot of water."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 75
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Magma Storm"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Magma Storm")
             Me.Description = "The target becomes trapped within a maelstrom of fire that rages for four to five turns."
             Me.CriticalChance = 1
             Me.IsHMMove = False

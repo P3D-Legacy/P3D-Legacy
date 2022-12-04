@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Leech Life"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Leech Life")
             Me.Description = "The user drains the target's blood. The user's HP is restored by half the damage taken by the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

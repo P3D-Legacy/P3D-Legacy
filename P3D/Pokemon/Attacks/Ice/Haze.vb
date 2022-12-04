@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Haze"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Haze")
             Me.Description = "The user creates a haze that eliminates every stat change among all the Pokémon engaged in battle."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Hyper Beam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hyper Beam")
             Me.Description = "The target is attacked with a powerful beam. The user must rest on the next turn to regain its energy."
             Me.CriticalChance = 1
             Me.IsHMMove = False

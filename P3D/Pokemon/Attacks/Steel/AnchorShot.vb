@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Anchor Shot"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Anchor Shot")
             Me.Description = "The user entangles the target with its anchor chain while attacking. The target becomes unable to flee."
             Me.CriticalChance = 1
             Me.IsHMMove = False

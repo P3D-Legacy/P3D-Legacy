@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fire
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "V-Create"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"V-Create")
             Me.Description = "With a hot flame on its forehead, the user hurls itself at its target. This lowers the user's Defense, Sp. Def, and Speed stats."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Extreme Speed"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Extreme Speed")
             Me.Description = "The user charges the target at blinding speed. This attack always goes before any other move."
             Me.CriticalChance = 1
             Me.IsHMMove = False

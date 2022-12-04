@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Stomp"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Stomp")
             Me.Description = "The target is stomped with a big foot. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

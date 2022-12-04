@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Aromatherapy"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Aromatherapy")
             Me.Description = "The user releases a soothing scent that heals all status conditions affecting the user's party."
             Me.CriticalChance = 0
             Me.IsHMMove = False

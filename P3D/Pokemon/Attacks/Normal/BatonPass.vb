@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Baton Pass"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Baton Pass")
             Me.Description = "The user switches places with a party Pokémon in waiting and passes along any stat changes."
             Me.CriticalChance = 0
             Me.IsHMMove = False

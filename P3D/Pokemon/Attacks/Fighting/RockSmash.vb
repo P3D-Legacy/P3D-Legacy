@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Rock Smash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rock Smash")
             Me.Description = "The user attacks with a punch that can shatter a rock. It may also lower the target's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

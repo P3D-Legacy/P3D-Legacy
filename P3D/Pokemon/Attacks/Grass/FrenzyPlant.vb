@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Grass
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Frenzy Plant"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Frenzy Plant")
             Me.Description = "The user slams the target with an enormous tree. The user can't move on the next turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

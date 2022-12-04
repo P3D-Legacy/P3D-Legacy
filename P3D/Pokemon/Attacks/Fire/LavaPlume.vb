@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Lava Plume"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Lava Plume")
             Me.Description = "An inferno of scarlet flames torches everything around the user. It may leave targets with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

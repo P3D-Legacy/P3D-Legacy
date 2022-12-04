@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Rest"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rest")
             Me.Description = "The user goes to sleep for two turns. It fully restores the user’s HP and heals any status problem."
             Me.CriticalChance = 0
             Me.IsHMMove = False

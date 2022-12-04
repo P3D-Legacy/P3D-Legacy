@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Psych Up"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Psych Up")
             Me.Description = "The user hypnotizes itself into copying any stat change made by the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Reflect"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Reflect")
             Me.Description = "A wondrous wall is put up to suppress damage from physical attacks for five turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

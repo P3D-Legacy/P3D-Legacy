@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Bug
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Lunge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Lunge")
             Me.Description = "The user makes a lunge at the target, attacking with full force. This also lowers the target's Attack stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

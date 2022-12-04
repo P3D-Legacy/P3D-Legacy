@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Flying
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Feather Dance"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Feather Dance")
             Me.Description = "The user covers the target's body with a mass of down that harshly lowers its Attack stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

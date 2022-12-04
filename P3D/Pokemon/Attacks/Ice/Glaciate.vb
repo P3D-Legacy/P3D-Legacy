@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Glaciate"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Glaciate")
             Me.Description = "The user attacks by blowing freezing cold air at opposing Pokémon. This lowers their Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

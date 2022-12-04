@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Psychic Fangs"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Psychic Fangs")
             Me.Description = "The user bites the target with its psychic capabilities. This can also destroy Light Screen and Reflect."
             Me.CriticalChance = 1
             Me.IsHMMove = False

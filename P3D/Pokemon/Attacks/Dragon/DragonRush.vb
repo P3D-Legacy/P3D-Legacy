@@ -15,7 +15,7 @@
             Me.Accuracy = 75
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Dragon Rush"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dragon Rush")
             Me.Description = "The user tackles the target while exhibiting overwhelming menace. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

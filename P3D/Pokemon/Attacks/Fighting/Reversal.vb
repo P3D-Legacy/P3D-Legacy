@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Reversal"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Reversal")
             Me.Description = "An all-out attack that becomes more powerful the less HP the user has."
             Me.CriticalChance = 1
             Me.IsHMMove = False

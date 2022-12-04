@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Bulldoze"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bulldoze")
             Me.Description = "The user strikes everything around it by stomping down on the ground. This lowers the Speed stat of those hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False

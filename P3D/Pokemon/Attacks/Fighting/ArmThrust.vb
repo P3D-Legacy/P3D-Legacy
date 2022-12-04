@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fighting
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Arm Thrust"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Arm Thrust")
             Me.Description = "The user lets loose a flurry of open-palmed arm thrusts that hit two to five times in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

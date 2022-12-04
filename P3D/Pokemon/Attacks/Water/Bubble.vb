@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Bubble"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bubble")
             Me.Description = "A spray of countless bubbles is jetted at the opposing team. It may also lower the targets' Speed stats."
             Me.CriticalChance = 1
             Me.IsHMMove = False

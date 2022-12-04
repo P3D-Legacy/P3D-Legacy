@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Curse"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Curse")
             Me.Description = "A move that works differently for the Ghost type than for all other types."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Belly Drum"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Belly Drum")
             Me.Description = "The user maximizes its Attack stat in exchange for HP equal to half its max HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

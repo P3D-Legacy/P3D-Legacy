@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Nasty Plot"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Nasty Plot")
             Me.Description = "The user stimulates its brain by thinking bad thoughts. It sharply raises the user's Sp. Atk."
             Me.CriticalChance = 0
             Me.IsHMMove = False

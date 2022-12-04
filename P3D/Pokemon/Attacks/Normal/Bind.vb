@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Bind"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bind")
             Me.Description = "Things such as long bodies or tentacles are used to bind and squeeze the target for four to five turns."
             Me.CriticalChance = 1
             Me.IsHMMove = False

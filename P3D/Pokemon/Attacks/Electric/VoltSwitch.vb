@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Electric
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Volt Switch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Volt Switch")
             Me.Description = "After making its attack, the user rushes back to switch places with a party Pokémon in waiting."
             Me.CriticalChance = 1
             Me.IsHMMove = False

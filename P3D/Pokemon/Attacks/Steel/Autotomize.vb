@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Autotomize"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Autotomize")
             Me.Description = "The user sheds part of its body to make itself lighter and sharply raise its Speed stat. "
             Me.CriticalChance = 0
             Me.IsHMMove = False

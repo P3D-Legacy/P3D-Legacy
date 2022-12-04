@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Head Charge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Head Charge")
             Me.Description = "The user charges its head into its target, using its powerful guard hair. This also damages the user a little."
             Me.CriticalChance = 1
             Me.IsHMMove = False

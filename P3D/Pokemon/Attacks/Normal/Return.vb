@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Return"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Return")
             Me.Description = "A full-power attack that grows more powerful the more the user likes its Trainer."
             Me.CriticalChance = 1
             Me.IsHMMove = False

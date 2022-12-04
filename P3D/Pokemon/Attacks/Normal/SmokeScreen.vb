@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Smokescreen"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Smokescreen")
             Me.Description = "The user releases an obscuring cloud of smoke or ink. It reduces the target's accuracy."
             Me.CriticalChance = 0
             Me.IsHMMove = False

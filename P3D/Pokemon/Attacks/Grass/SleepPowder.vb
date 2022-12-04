@@ -15,7 +15,7 @@
             Me.Accuracy = 75
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Sleep Powder"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sleep Powder")
             Me.Description = "The user scatters a big cloud of sleep-inducing dust around the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Water Pledge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Water Pledge")
             Me.Description = "A column of water strikes the target. When combined with its fire equivalent, the damage increases and a rainbow appears."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Endure"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Endure")
             Me.Description = "The user endures any attack with at least 1 HP. Its chance of failing rises if it is used in succession."
             Me.CriticalChance = 0
             Me.IsHMMove = False

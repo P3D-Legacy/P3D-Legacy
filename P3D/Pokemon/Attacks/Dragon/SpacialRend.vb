@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Spacial Rend"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Spacial Rend")
             Me.Description = "The user tears the target along with the space around it. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

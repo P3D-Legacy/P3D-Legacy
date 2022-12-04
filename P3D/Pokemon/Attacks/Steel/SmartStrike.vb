@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Steel
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Smart Strike"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Smart Strike")
             Me.Description = "The user stabs the target with a sharp horn. This attack never misses."
             Me.CriticalChance = 1
             Me.IsHMMove = False

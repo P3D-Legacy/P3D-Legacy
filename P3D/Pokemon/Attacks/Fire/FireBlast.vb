@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Fire Blast"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fire Blast")
             Me.Description = "The target is attacked with an intense blast of all-consuming fire. It may also leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

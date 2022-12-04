@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Earth Power"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Earth Power")
             Me.Description = "The user makes the ground under the target erupt with power. This may also lower the target's Sp. Def."
             Me.CriticalChance = 1
             Me.IsHMMove = False

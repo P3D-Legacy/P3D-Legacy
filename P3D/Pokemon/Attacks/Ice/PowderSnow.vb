@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Powder Snow"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Powder Snow")
             Me.Description = "The user attacks with a chilling gust of powdery snow. It may also freeze the targets."
             Me.CriticalChance = 1
             Me.IsHMMove = False

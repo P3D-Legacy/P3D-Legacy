@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Confide"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Confide")
             Me.Description = "The user tells the target a secret, and the target loses its ability to concentrate. This lowers the target's Sp. Atk. stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

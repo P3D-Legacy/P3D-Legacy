@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Flying Press"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Flying Press")
             Me.Description = "The user dives down onto the target from the sky. This move is Fighting and Flying type simultaneously."
             Me.CriticalChance = 1
             Me.IsHMMove = False

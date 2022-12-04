@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Comet Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Comet Punch")
             Me.Description = "The target is hit with a flurry of punches that strike two to five times in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

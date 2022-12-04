@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Ice
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Freeze Dry"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Freeze Dry")
             Me.Description = "The user rapidly cools the target. This may also leave the target frozen. This move is super effective on Water types."
             Me.CriticalChance = 1
             Me.IsHMMove = False

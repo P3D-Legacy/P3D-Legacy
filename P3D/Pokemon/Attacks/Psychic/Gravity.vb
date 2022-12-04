@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Gravity"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Gravity")
             Me.Description = "Gravity is intensified for five turns, making moves involving flying unusable and negating Levitate."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Flamethrower"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Flamethrower")
             Me.Description = "The target is scorched with an intense blast of fire. It may also leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Poison
             Me.Accuracy = 75
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Poison Powder"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Poison Powder")
             Me.Description = "The user scatters a cloud of poisonous dust on the target. It may poison the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

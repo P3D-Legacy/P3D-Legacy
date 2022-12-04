@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Techno Blast"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Techno Blast")
             Me.Description = "The user fires a beam of light at its target. The move's type changes depending on the Drive the user holds."
             Me.CriticalChance = 1
             Me.IsHMMove = False

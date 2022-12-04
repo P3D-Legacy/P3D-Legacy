@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Mud-Slap"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mud-Slap")
             Me.Description = "The user hurls mud in the target's face to inflict damage and lower its accuracy."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Body Slam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Body Slam")
             Me.Description = "The user drops onto the target with its full body weight. It may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

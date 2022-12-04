@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Bone Rush"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bone Rush")
             Me.Description = "The user strikes the target with a hard bone two to five times in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

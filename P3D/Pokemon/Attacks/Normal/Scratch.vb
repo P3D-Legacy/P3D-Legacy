@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Scratch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Scratch")
             Me.Description = "Hard, pointed, and sharp claws rake the target to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

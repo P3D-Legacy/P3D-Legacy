@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Shell Smash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Shell Smash")
             Me.Description = "The user breaks its shell, lowering its Defense and Sp. Def stats but sharply raising Attack, Sp. Atk, and Speed stats."
             Me.CriticalChance = 1
             Me.IsHMMove = False

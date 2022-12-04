@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Barrage"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Barrage")
             Me.Description = "Round objects are hurled at the target to strike two to five times in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

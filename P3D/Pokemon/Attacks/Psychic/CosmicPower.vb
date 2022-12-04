@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Cosmic Power"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Cosmic Power")
             Me.Description = "The user absorbs a mystical power from space to raise its Defense and Sp. Def stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False

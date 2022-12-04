@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Geomancy"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Geomancy")
             Me.Description = "The user absorbs energy and sharply raises its Sp. Atk, Sp. Def, and Speed stats on the next turn."
             Me.CriticalChance = 0
             Me.IsHMMove = False

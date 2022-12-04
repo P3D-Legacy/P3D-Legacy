@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Endeavor"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Endeavor")
             Me.Description = "An attack move that cuts down the target's HP to equal the user's HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

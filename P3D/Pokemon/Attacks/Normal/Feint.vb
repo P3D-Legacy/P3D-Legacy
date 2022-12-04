@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Feint"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Feint")
             Me.Description = "An attack that hits a target using Protect or Detect. This also lifts the effects of those moves."
             Me.CriticalChance = 0
             Me.IsHMMove = False

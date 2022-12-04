@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Steel
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Steel Beam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Steel Beam")
             Me.Description = "The user fires a beam of steel that it collected from its entire body. This also damages the user."
             Me.CriticalChance = 1
             Me.IsHMMove = False

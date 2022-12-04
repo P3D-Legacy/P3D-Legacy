@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Scary Face"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Scary Face")
             Me.Description = "The user frightens the target with a scary face to harshly reduce its speed stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

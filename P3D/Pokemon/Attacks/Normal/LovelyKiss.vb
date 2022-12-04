@@ -15,7 +15,7 @@
             Me.Accuracy = 75
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Lovely Kiss"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Lovely Kiss")
             Me.Description = "With a scary face, the user tries to force a kiss on the target. If it succeeds, the target falls asleep."
             Me.CriticalChance = 0
             Me.IsHMMove = False

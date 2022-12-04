@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Sacred Fire"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sacred Fire")
             Me.Description = "The target is razed with a mystical fire of great intensity. It may also leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

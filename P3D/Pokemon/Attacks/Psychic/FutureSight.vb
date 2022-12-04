@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Future Sight"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Future Sight")
             Me.Description = "Two turns after this move is used, a hunk of psychic energy attacks the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Grass Pledge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Grass Pledge")
             Me.Description = "A column of grass hits opposing Pokémon. When used with its water equivalent, its damage increases into a vast swamp."
             Me.CriticalChance = 1
             Me.IsHMMove = False

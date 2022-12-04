@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Screech"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Screech")
             Me.Description = "An earsplitting screech harshly reduces the target's Defense stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

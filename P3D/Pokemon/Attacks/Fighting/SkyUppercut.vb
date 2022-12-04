@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Sky Uppercut"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sky Uppercut")
             Me.Description = "The user attacks the target with an uppercut thrown skyward with force."
             Me.CriticalChance = 1
             Me.IsHMMove = False

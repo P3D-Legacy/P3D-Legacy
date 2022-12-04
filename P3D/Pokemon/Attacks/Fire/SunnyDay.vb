@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Sunny Day"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sunny Day")
             Me.Description = "The user intensifies the sun for five turns, powering up Fire-type moves."
             Me.CriticalChance = 0
             Me.IsHMMove = False

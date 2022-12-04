@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Aeroblast"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Aeroblast")
             Me.Description = "A vortex of air is shot at the target to inflict damage. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

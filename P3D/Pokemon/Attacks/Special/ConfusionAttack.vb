@@ -14,7 +14,7 @@
             Me.Power = 40
             Me.Accuracy = -1
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "ConfusionAttack"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"ConfusionAttack")
             Me.Description = "Hits to the face."
             Me.CriticalChance = 1
             Me.IsHMMove = False

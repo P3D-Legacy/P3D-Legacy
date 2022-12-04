@@ -15,7 +15,7 @@
             Me.Accuracy = 50
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Inferno"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Inferno")
             Me.Description = "The user attacks by engulfing the target in an intense fire. It leaves the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

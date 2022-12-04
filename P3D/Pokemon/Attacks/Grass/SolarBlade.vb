@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Solar Blade"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Solar Blade")
             Me.Description = "In this two-turn attack, the user gathers light and fills a blade with the light's energy, attacking the target on the next turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

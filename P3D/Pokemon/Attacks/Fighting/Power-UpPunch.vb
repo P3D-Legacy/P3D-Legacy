@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fighting
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Power-Up Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Power-Up Punch")
             Me.Description = "Striking opponents over and over makes the user's fists harder. Hitting a target raises the Attack stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

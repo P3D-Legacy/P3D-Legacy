@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Morning Sun"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Morning Sun")
             Me.Description = "The user restores its own HP. The amount of HP regained varies with the weather."
             Me.CriticalChance = 0
             Me.IsHMMove = False

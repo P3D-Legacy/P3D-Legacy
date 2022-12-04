@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Bug
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Infestation"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Infestation")
             Me.Description = "The target is infested and attacked for four to five turns. The target can't flee during this time."
             Me.CriticalChance = 1
             Me.IsHMMove = False

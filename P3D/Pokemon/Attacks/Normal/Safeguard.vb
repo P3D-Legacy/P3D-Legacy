@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Safeguard"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Safeguard")
             Me.Description = "The user creates a protective field that prevents status problems for five turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

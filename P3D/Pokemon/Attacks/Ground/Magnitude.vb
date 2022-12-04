@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Magnitude"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Magnitude")
             Me.Description = "The user looses a ground- shaking quake affecting everyone around the user. Its power varies."
             Me.CriticalChance = 1
             Me.IsHMMove = False

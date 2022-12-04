@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Accelerock"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Accelerock")
             Me.Description = "The user smashes into the target at high speed. This move always goes first."
             Me.CriticalChance = 1
             Me.IsHMMove = False

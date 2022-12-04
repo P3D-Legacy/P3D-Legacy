@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Mud Sport"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mud Sport")
             Me.Description = "The user covers itself with mud. This weakens Electric-type moves for five turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Mist"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mist")
             Me.Description = "The user cloaks its body with a white mist that prevents any of its stats from being cut for five turns."
             Me.CriticalChance = 0
             Me.IsHMMove = False

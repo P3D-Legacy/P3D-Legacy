@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Brine"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Brine")
             Me.Description = "If the target's HP is down to about half, this attack will hit with double the power."
             Me.CriticalChance = 0
             Me.IsHMMove = False

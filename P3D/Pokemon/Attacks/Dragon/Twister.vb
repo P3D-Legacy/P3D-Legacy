@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Twister"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Twister")
             Me.Description = "The user whips up a vicious tornado to tear at the opposing team. It may also make targets flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

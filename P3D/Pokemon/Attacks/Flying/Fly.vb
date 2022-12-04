@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Fly"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fly")
             Me.Description = "The user soars, then strikes its target on the second turn. It can also be used for flying to any familiar town."
             Me.CriticalChance = 1
             Me.IsHMMove = True

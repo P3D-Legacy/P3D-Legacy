@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Ice Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ice Punch")
             Me.Description = "The target is punched with an icy fist. It may also leave the target frozen."
             Me.CriticalChance = 1
             Me.IsHMMove = False

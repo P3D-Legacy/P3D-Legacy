@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fire
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Blast Burn"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Blast Burn")
             Me.Description = "The target is razed by a fiery explosion. The user can't move on the next turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

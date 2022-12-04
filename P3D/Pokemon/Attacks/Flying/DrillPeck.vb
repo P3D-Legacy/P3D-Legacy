@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Drill Peck"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Drill Peck")
             Me.Description = "A corkscrewing attack with the sharp beak acting as a drill."
             Me.CriticalChance = 1
             Me.IsHMMove = False

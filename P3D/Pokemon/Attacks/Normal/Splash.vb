@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Splash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Splash")
             Me.Description = "The user just flops and splashes around to no effect at all..."
             Me.CriticalChance = 0
             Me.IsHMMove = False

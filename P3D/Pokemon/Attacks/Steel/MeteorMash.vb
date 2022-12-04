@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Steel
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Meteor Mash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Meteor Mash")
             Me.Description = "The target is hit with a hard punch fired like a meteor. This may also raise the user's Attack stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

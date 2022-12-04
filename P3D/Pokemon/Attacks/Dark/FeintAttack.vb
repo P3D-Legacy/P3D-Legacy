@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Feint Attack"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Feint Attack")
             Me.Description = "The user approaches the target disarmingly, then throws a sucker punch. It hits without fail."
             Me.CriticalChance = 1
             Me.IsHMMove = False

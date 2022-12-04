@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Thunder Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Thunder Punch")
             Me.Description = "The target is punched with an electrified fist. It may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

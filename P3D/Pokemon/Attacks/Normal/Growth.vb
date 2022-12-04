@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Growth"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Growth")
             Me.Description = "The user's body grows all at once, raising the Attack and Sp. Atk stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False

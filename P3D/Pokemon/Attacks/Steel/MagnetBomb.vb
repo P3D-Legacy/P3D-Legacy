@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Steel
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Magnet Bomb"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Magnet Bomb")
             Me.Description = "The user launches steel bombs that stick to the target. This attack will not miss."
             Me.CriticalChance = 1
             Me.IsHMMove = False

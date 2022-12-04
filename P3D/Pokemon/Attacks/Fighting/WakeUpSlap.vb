@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Wake-Up Slap"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Wake-Up Slap")
             Me.Description = "This attack inflicts big damage on a sleeping target. It also wakes the target up, however."
             Me.CriticalChance = 1
             Me.IsHMMove = False

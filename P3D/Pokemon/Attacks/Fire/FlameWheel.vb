@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Flame Wheel"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Flame Wheel")
             Me.Description = "The user cloaks itself in fire and charges at the target. It may also leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

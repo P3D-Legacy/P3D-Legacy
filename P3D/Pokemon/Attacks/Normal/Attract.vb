@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Attract"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Attract")
             Me.Description = "If it is the opposite gender of the user, the target becomes infatuated and less likely to attack."
             Me.CriticalChance = 0
             Me.IsHMMove = False

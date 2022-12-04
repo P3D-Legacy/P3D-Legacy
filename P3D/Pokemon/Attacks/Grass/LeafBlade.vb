@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Grass
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Leaf Blade"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Leaf Blade")
             Me.Description = "The user handles a sharp leaf like a sword and attacks by cutting its target. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

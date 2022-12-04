@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fire
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Mystical Fire"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mystical Fire")
             Me.Description = "The user attacks by breathing a special, hot fire. This also lowers the target's Sp. Atk stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

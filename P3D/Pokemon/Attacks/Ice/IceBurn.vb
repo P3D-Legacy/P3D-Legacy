@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Ice Burn"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ice Burn")
             Me.Description = "On the second turn, an ultracold, freezing wind surrounds the target. This may leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

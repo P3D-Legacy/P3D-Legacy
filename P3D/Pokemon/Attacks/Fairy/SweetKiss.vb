@@ -15,7 +15,7 @@
             Me.Accuracy = 75
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Sweet Kiss"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sweet Kiss")
             Me.Description = "The user kisses the target with a sweet, angelic cuteness that causes confusion."
             Me.CriticalChance = 0
             Me.IsHMMove = False

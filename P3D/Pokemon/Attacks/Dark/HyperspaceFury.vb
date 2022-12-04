@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Hyperspace Fury"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hyperspace Fury")
             Me.Description = "Using its many arms, the user unleashes a barrage of attacks that ignore the effects of moves like Protect and Detect. But the user's Defense stat falls."
             Me.CriticalChance = 1
             Me.IsHMMove = False

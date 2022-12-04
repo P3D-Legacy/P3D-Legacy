@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Lock-On"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Lock-On")
             Me.Description = "The user takes sure aim at the target. It ensures the next attack does not fail to hit the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Revelation Dance"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Revelation Dance")
             Me.Description = "The user attacks the target by dancing very hard. The user's type determines the type of this move."
             Me.CriticalChance = 1
             Me.IsHMMove = False

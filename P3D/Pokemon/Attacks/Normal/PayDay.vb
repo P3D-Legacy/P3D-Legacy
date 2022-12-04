@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Pay Day"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Pay Day")
             Me.Description = "Numerous coins are hurled at the target to inflict damage. Money is earned after the battle."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Spore"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Spore")
             Me.Description = "The user scatters bursts of spores that induce sleep."
             Me.CriticalChance = 0
             Me.IsHMMove = False
