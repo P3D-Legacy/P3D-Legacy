@@ -999,7 +999,7 @@
                 If Pokemon.IsEgg() = False Then
                     If Pokemon.Status <> P3D.Pokemon.StatusProblems.Fainted Then
                         If BattleCalculation.CanSwitch(TempBattleScreen, True) = False Then
-                            Screen.TextBox.Show("Cannot switch out.", {}, True, False)
+                            Screen.TextBox.Show(Localization.GetString("battle_main_cannot_switch", "Cannot switch out."), {}, True, False)
                         Else
                             If TempBattleScreen.OwnPokemonIndex <> PokeIndex Then
                                 If TempBattleScreen.IsRemoteBattle = True And TempBattleScreen.IsHost = False Then

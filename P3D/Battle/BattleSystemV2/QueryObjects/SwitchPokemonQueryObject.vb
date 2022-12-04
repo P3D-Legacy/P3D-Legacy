@@ -162,7 +162,7 @@
                 If Pokemon.IsEgg() = False Then
                     If Pokemon.Status <> P3D.Pokemon.StatusProblems.Fainted Then
                         If BattleCalculation.CanSwitch(TempScreen, True) = False Then
-                            Screen.TextBox.Show("Cannot switch out.", {}, True, False)
+                            Screen.TextBox.Show(Localization.GetString("battle_main_cannot_switch", "Cannot switch out."), {}, True, False)
                         Else
                             Dim TempQuery = TempScreen.BattleQuery.ToArray
                             If TempScreen.OwnPokemonIndex <> PokeIndex Then

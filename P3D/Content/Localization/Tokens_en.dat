@@ -423,6 +423,7 @@ battle_main_trainer_defeat_2, and~
 battle_main_trainer_defeat_3,~were defeated!
 battle_main_trainer_defeat_4, got 
 battle_main_trainer_defeat_5,~PokéDollars for winning!
+battle_main_cannot_switch,Cannot switch out.
 ---
 attackTurn:
 battle_attack_poison_damage,~was hurt by poison!
