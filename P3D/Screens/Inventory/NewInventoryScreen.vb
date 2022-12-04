@@ -468,7 +468,7 @@ Public Class NewInventoryScreen
 
         Dim itemTitle As String = cItem.Name
         Dim itemSubTitle As String = cItem.ItemType.ToString()
-        Dim itemDescription As String = cItem.Description
+        Dim itemDescription As String = cItem.GetDescription
 
         Select Case cItem.ItemType
             Case Items.ItemTypes.Machines
