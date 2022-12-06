@@ -509,7 +509,7 @@ endsub:
             Case 0 ' Overworld
                 Me.EnvironmentType = EnvironmentTypes.Outside
                 Me.UseLighting = True
-            Case 1 ' Permanent Day
+            Case 1 ' Inside
                 Me.EnvironmentType = EnvironmentTypes.Inside
                 Me.UseLighting = False
             Case 2 ' Cave
@@ -518,7 +518,7 @@ endsub:
                     Me.CurrentMapWeather = Weathers.Clear
                 End If
                 Me.UseLighting = False
-            Case 3 ' Permanent Night
+            Case 3 ' Dark
                 Me.EnvironmentType = EnvironmentTypes.Dark
                 If WeatherType = 0 Then
                     Me.CurrentMapWeather = Weathers.Clear
