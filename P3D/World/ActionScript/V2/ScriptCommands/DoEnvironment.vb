@@ -62,6 +62,11 @@
                         Screen.Level.DayTime = World.GetTime + 1
                     End If
                     IsReady = True
+                Case "setenvironmenttype"
+                    Dim newtype As Integer = int(argument)
+                    If newtype >= 0 AndAlso newtype <= 5 Then
+                        Screen.Level.EnvironmentType = newtype
+                    End If
             End Select
 
             Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)

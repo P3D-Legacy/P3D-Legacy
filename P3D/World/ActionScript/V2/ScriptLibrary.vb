@@ -427,6 +427,7 @@ Namespace ScriptVersion2
             r(New ScriptCommand("environment", "setrenderdistance", {New ScriptArgument("distance", ScriptArgument.ArgumentTypes.Str, {"0-4", "tiny", "small", "normal", "far", "extreme"})}.ToList(), "Sets the render distance."))
             r(New ScriptCommand("environment", "toggledarkness", "Toggles the ""IsDark"" parameter of the current map."))
             r(New ScriptCommand("environment", "setdaytime", {New ScriptArgument("daytime", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the daytime to use for the Outside EnvironmentType (0). Can be 1-4, any other number resets to the default daytime."))
+            r(New ScriptCommand("environment", "setenvironmenttype", {New ScriptArgument("environmenttype", ScriptArgument.ArgumentTypes.Int)}.ToList(), "Sets the ""EnvironmentType"" parameter of the map, which also changes the sky texture and sometimes adds particles. Value can be 0-5."))
             ' Constructs:
             r(New ScriptCommand("environment", "daytime", "str", "Returns the current DayTime of the game.", ",", True))
             r(New ScriptCommand("environment", "daytimeID", "int", "Returns the current DayTimeID of the game.", ",", True))
