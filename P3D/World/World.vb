@@ -227,7 +227,7 @@ Public Class World
                         Screen.Camera.FarPlane = 100
                 End Select
             Case EnvironmentTypes.Outside
-                Select Case World.GetTime
+                Select Case Screen.Level.DayTime
                     Case DayTimes.Night
                         Select Case Core.GameOptions.RenderDistance
                             Case 0
