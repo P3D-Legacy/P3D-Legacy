@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Heal Pulse"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Heal Pulse")
             Me.Description = "The user emits a healing pulse which restores the target's HP by up to half of its max HP."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Cotton Guard"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Cotton Guard")
             Me.Description = "The user protects itself by wrapping its body in soft cotton, which drastically raises the user's Defense stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

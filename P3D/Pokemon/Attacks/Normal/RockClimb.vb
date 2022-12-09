@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Rock Climb"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rock Climb")
             Me.Description = "The user attacks the target by smashing into it with incredible force. This may also confuse the target."
             Me.CriticalChance = 1
             Me.IsHMMove = True

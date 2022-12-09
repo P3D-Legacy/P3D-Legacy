@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Leaf Tornado"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Leaf Tornado")
             Me.Description = "The user attacks its target by encircling it in sharp leaves. This attack may also lower the target's accuracy."
             Me.CriticalChance = 1
             Me.IsHMMove = False

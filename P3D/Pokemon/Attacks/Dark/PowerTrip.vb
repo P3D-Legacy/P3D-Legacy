@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Power Trip"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Power Trip")
             Me.Description = "The user boasts its strength and attacks the target. The more the user's stats are raised, the greater the move's power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Electroweb"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Electroweb")
             Me.Description = "The user attacks and captures opposing Pokémon by using an electric net. This lowers their Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Refresh"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Refresh")
             Me.Description = "The user rests to cure itself of a poisoning, burn, or paralysis."
             Me.CriticalChance = 0
             Me.IsHMMove = False

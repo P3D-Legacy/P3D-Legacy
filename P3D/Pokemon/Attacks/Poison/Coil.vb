@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Coil"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Coil")
             Me.Description = "The user coils up and concentrates. This raises its Attack and Defense stats as well as its accuracy."
             Me.CriticalChance = 0
             Me.IsHMMove = False

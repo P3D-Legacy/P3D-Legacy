@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Heat Crash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Heat Crash")
             Me.Description = "The user slams its target with its flame-covered body. The more the user outweighs the target, the greater the move's power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

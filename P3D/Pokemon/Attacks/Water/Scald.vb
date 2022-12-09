@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Scald"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Scald")
             Me.Description = "The user shoots boiling hot water at its target. This may also leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

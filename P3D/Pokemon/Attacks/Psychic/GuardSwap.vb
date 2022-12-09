@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Guard Swap"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Guard Swap")
             Me.Description = "The user employs its psychic power to switch changes to its Defense and Sp. Def stats with the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Double Hit"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Double Hit")
             Me.Description = "The user slams the target with a long tail, vines, or a tentacle. The target is hit twice in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

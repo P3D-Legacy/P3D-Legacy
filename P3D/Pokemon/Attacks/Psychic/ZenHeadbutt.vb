@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Zen Headbutt"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Zen Headbutt")
             Me.Description = "The user focuses its willpower to its head and attacks the target. This may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Gear Grind"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Gear Grind")
             Me.Description = "The user attacks by throwing steel gears at its target twice."
             Me.CriticalChance = 1
             Me.IsHMMove = False

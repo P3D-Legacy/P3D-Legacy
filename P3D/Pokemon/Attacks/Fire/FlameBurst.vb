@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Flame Burst"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Flame Burst")
             Me.Description = "The user attacks the target with a bursting flame. The bursting flame damages Pokémon next to the target as well."
             Me.CriticalChance = 1
             Me.IsHMMove = False

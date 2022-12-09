@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Teleport"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Teleport")
             Me.Description = "Use it to flee from any wild Pokémon. It can also warp to the last Pokémon Center visited."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Searing Shot"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Searing Shot")
             Me.Description = "An inferno of scarlet flames torches everything around the user. It may leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

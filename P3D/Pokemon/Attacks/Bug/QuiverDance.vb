@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Quiver Dance"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Quiver Dance")
             Me.Description = "The user lightly performs a beautiful, mystic dance. This boosts the user's Sp. Atk, Sp. Def, and Speed stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Steamroller"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Steamroller")
             Me.Description = "The user crushes its targets by rolling over them with its rolled-up body. This attack may make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

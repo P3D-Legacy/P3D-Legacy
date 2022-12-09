@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Vacuum Wave"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Vacuum Wave")
             Me.Description = "The user whirls its fists to send a wave of pure vacuum at the target. This move always goes first."
             Me.CriticalChance = 1
             Me.IsHMMove = False

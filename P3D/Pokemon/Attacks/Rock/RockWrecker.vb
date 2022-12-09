@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Rock Wrecker"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rock Wrecker")
             Me.Description = "The user launches a huge boulder at the target to attack. The user can't move on the next turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

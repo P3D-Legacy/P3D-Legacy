@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Clanging Scales"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Clanging Scales")
             Me.Description = "The user rubs the scales on its entire body and makes a huge noise to attack the opposing Pokémon. The user's Defense stat goes down after the attack."
             Me.CriticalChance = 1
             Me.IsHMMove = False

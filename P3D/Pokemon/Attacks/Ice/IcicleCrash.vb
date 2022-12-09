@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Icicle Crash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Icicle Crash")
             Me.Description = "The user attacks by harshly dropping large icicles onto the target. This may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

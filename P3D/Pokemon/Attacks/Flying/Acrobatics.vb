@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Acrobatics"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Acrobatics")
             Me.Description = "The user nimbly strikes the target. If the user is not holding an item, this attack inflicts massive damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

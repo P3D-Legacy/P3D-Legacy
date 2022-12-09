@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Razor Shell"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Razor Shell")
             Me.Description = "The user cuts its target with sharp shells. This may also lower the target's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

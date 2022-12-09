@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Stored Power"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Stored Power")
             Me.Description = "The user attacks the target with stored power. The more the user's stats are raised, the greater the move's power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

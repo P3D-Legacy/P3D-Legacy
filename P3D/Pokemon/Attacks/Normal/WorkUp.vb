@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Work Up"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Work Up")
             Me.Description = "The user is roused, and its Attack and Sp. Atk stats increase."
             Me.CriticalChance = 0
             Me.IsHMMove = False

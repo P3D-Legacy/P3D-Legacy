@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Grass Knot"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Grass Knot")
             Me.Description = "The user snares the target with grass and trips it. The heavier the target, the greater the move's power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

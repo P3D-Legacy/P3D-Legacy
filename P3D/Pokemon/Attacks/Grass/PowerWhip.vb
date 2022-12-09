@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Power Whip"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Power Whip")
             Me.Description = "The user violently whirls its vines or tentacles to harshly lash the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

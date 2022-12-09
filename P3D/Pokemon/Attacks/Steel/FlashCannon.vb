@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Flash Cannon"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Flash Cannon")
             Me.Description = "The user gathers all its light energy and releases it at once. This may also lower the target's Sp. Def stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

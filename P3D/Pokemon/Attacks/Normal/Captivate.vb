@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Captivate"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Captivate")
             Me.Description = "If any opposing Pokemon is the opposite gender of the user, it is charmed, which harshly lowers its Sp. Atk stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

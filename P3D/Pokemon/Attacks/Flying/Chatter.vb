@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Chatter"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Chatter")
             Me.Description = "The user attacks using a sound wave based on words it has learned. This confuses the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

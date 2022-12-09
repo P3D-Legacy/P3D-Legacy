@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Acid Spray"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Acid Spray")
             Me.Description = "The user spits fluid that works to melt the target. This harshly lowers the target's Sp. Def stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

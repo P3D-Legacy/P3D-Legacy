@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Psycho Cut"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Psycho Cut")
             Me.Description = "The user tears at the target with blades formed by psychic power. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

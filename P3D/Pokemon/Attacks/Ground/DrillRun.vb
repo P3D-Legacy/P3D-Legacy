@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Drill Run"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Drill Run")
             Me.Description = "The user crashes into its target while rotating its body like a drill. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

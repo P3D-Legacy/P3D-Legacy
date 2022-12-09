@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Fiery Dance"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fiery Dance")
             Me.Description = "Cloaked in flames, the user dances and flaps its wings. This may also raise the user's Sp. Atk stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

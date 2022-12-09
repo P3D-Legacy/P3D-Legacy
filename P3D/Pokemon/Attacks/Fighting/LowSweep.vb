@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Low Sweep"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Low Sweep")
             Me.Description = "The user makes a swift attack on the target's legs, which lowers the target's Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Hone Claws"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hone Claws")
             Me.Description = "The user sharpens its claws to boost its Attack stat and accuracy."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Heart Stamp"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Heart Stamp")
             Me.Description = "The user unleashes a vicious blow after its cute act makes the target less wary. This may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

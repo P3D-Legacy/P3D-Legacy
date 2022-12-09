@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Sludge Wave"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sludge Wave")
             Me.Description = "The user strikes everything around it by swamping the area with a giant sludge wave. This may also poison those hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False

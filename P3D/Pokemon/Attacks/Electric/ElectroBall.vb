@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Electro Ball"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Electro Ball")
             Me.Description = "The user hurls an electric orb at the target. The faster the user is than the target, the greater the move's power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

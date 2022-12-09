@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Dual Chop"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dual Chop")
             Me.Description = "The user attacks its target by hitting it with brutal strikes. The target is hit twice in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False
