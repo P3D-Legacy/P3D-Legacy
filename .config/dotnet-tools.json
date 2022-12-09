@@ -19,6 +19,12 @@
       "commands": [
         "mgcb-editor-windows"
       ]
+    },
+    "dotnet-mgfxc": {
+      "version": "3.8.1.303",
+      "commands": [
+        "mgfxc"
+      ]
     }
   }
 }

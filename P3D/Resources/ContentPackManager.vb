@@ -116,7 +116,6 @@
         Water.ClearAnimationResources()
         Whirlpool.LoadedWaterTemp = False
         Waterfall.ClearAnimationResources()
-        Entity.EntityTextureDictionary.Clear()
 
         Logger.Debug("---Cleared ContentPackManager---")
     End Sub

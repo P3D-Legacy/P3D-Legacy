@@ -26,7 +26,7 @@
         Me.CanMuteAudio = False
         Me.CanTakeScreenshot = True
 
-        Effect = New BasicEffect(Core.GraphicsDevice)
+        Effect = New BasicEffectWithAlphaTest(Core.GraphicsDevice)
         Effect.FogEnabled = True
 
         Camera = New MapPreviewCamera()

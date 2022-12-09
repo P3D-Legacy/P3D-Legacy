@@ -25,7 +25,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "P3D", "P3D\P3D.vbproj", "{D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P3D.SourceGenerator", "lib\P3D.SourceGenerator\P3D.SourceGenerator.csproj", "{DA40E74C-88A6-496B-9959-4AFF5BF91293}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P3D.ExternalLibrary", "lib\P3D.ExternalLibrary\P3D.ExternalLibrary.csproj", "{78C82E67-F082-4628-A86B-D24291B6AC01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P3D.CSharpLibrary", "lib\P3D.CSharpLibrary\P3D.CSharpLibrary.csproj", "{78C82E67-F082-4628-A86B-D24291B6AC01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

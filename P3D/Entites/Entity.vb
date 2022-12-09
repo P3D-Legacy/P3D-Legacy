@@ -3,7 +3,6 @@
     Public Shared MakeShake As Boolean = False
     Public Shared drawViewBox As Boolean = False
     Public Shared ReadOnly EntityDictionary As New Dictionary(Of Vector3, Entity())
-    Public Shared ReadOnly EntityTextureDictionary As New Dictionary(Of Texture, Boolean)
 
     Public ID As Integer = -1
     Public InsertOrder As Integer = -1
@@ -706,33 +705,6 @@
         Next
 
         Return temp
-    End Function
-
-    Protected Function HasTransparentPixel() As Boolean
-        For Each texture As Texture2D In Textures
-            If EntityTextureDictionary.ContainsKey(texture) Then
-                If EntityTextureDictionary(texture) = True Then
-                    Return True
-                Else
-                    Continue For
-                End If
-            Else 
-                Dim colors = New Color(texture.Width * texture.Height - 1) {}
-
-                texture.GetData(colors)
-
-                For Each color As Color In colors
-                    If color.A <> 255 Then
-                        EntityTextureDictionary.Add(texture, True)
-                        Return True
-                    End If
-                Next
-                
-                EntityTextureDictionary.Add(texture, False)
-            End If
-        Next
-
-        Return False
     End Function
 
 End Class

@@ -3,7 +3,7 @@
         <OutputType>Library</OutputType>
         <RootNamespace>P3D.ContentPipeline</RootNamespace>
         <AssemblyName>P3D.ContentPipeline</AssemblyName>
-        <TargetFramework>net6.0-windows</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
 
         <IncludeBuildOutput>false</IncludeBuildOutput>
     </PropertyGroup>

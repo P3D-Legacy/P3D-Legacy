@@ -53,7 +53,7 @@
         PokemonImageView.Showing = False
         ChooseBox.Showing = False
 
-        Effect = New BasicEffect(GraphicsDevice)
+        Effect = New BasicEffectWithAlphaTest(GraphicsDevice)
         Effect.FogEnabled = True
         SkyDome = New SkyDome()
         Camera = New MainMenuCamera()
