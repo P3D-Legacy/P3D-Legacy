@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Aqua Jet"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Aqua Jet")
             Me.Description = "The user lunges at the target speed that makes it almost invisible. This move always goes first."
             Me.CriticalChance = 1
             Me.IsHMMove = False

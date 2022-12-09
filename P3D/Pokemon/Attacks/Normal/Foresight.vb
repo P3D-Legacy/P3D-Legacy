@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Foresight"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Foresight")
             Me.Description = "Enables a Ghost-type target to be hit by Normal- and Fighting-type attacks. It also enables an evasive target to be hit."
             Me.CriticalChance = 0
             Me.IsHMMove = False

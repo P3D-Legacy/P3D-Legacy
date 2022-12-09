@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Bullet Seed"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bullet Seed")
             Me.Description = "The user forcefully shoots seeds at the target. Two to five seeds are shot in rapid succession."
             Me.CriticalChance = 1
             Me.IsHMMove = False

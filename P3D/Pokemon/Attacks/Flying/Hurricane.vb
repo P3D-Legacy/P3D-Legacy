@@ -15,7 +15,7 @@
             Me.Accuracy = 70
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Hurricane"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hurricane")
             Me.Description = "The user attacks by wrapping its opponent in a fierce wind that flies up into the sky. It may also confuse the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

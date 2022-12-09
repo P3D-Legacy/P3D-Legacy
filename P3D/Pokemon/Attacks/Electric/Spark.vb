@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Spark"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Spark")
             Me.Description = "The user throws an electrically charged tackle at the target. It may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

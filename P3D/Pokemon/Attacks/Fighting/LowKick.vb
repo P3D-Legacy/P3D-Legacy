@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Low Kick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Low Kick")
             Me.Description = "A powerful low kick that makes the target fall over. It inflicts greater damage on heavier targets."
             Me.CriticalChance = 1
             Me.IsHMMove = False

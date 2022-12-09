@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Headbutt"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Headbutt")
             Me.Description = "The user sticks out its head and attacks by charging straight into the target. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

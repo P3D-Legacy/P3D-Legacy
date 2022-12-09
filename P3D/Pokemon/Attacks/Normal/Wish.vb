@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Wish"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Wish")
             Me.Description = "One turn after this move is used, the target's HP is restored by half the user's maximum HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

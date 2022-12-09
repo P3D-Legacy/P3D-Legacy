@@ -15,7 +15,7 @@
             Me.Accuracy = 80
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Submission"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Submission")
             Me.Description = "The user grabs the target and recklessly dives for the ground. It also hurts the user slightly."
             Me.CriticalChance = 1
             Me.IsHMMove = False

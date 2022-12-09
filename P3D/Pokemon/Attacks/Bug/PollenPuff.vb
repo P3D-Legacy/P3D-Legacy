@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Pollen Puff"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Pollen Puff")
             Me.Description = "The user attacks the enemy with a pollen puff that explodes. If the target is an ally, it gives the ally a pollen puff that restores its HP instead."
             Me.CriticalChance = 1
             Me.IsHMMove = False

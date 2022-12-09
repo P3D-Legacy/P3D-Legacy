@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Meditate"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Meditate")
             Me.Description = "The user meditates to awaken the power deep within its body and raise its Attack stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

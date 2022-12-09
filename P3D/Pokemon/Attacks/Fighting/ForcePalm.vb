@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Force Palm"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Force Palm")
             Me.Description = "The target is attacked with a shock wave. This may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

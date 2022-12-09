@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Beat Up"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Beat Up")
             Me.Description = "The user gets all party Pokémon to attack the target. The more party Pokémon, the greater the number of attacks."
             Me.CriticalChance = 1
             Me.IsHMMove = False

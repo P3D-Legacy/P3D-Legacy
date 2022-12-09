@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Mind Reader"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mind Reader")
             Me.Description = "The user senses the target's movements with its mind to ensure its next attack does not miss the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

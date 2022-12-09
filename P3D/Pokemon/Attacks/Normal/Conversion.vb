@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Conversion"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Conversion")
             Me.Description = "The user changes its type to become the same type as the move at the top of the list of moves it knows."
             Me.CriticalChance = 0
             Me.IsHMMove = False

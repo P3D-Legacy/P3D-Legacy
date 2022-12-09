@@ -15,7 +15,7 @@
             Me.Accuracy = 80
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Fury Swipes"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fury Swipes")
             Me.Description = "The target is raked with sharp claws or scythes for two to five times in quick succession."
             Me.CriticalChance = 1
             Me.IsHMMove = False

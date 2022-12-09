@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Seed Bomb"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Seed Bomb")
             Me.Description = "The user slams a barrage of hard-shelled seeds on the target from above."
             Me.CriticalChance = 1
             Me.IsHMMove = False

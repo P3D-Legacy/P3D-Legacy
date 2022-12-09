@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Crush Grip"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Crush Grip")
             Me.Description = "The target is crushed with great force. The attack is more powerful the more HP the target has left."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Iron Head"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Iron Head")
             Me.Description = "The user slams the target with its steel-hard head. This may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

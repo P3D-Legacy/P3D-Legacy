@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Sleep Talk"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sleep Talk")
             Me.Description = "While it is asleep, the user randomly uses one of the moves it knows."
             Me.CriticalChance = 0
             Me.IsHMMove = False

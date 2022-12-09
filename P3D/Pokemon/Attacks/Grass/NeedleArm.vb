@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Grass
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Needle Arm"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Needle Arm")
             Me.Description = "The user attacks by wildly swinging its thorny arms. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

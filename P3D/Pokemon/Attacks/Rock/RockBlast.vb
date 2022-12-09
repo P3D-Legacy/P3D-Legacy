@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Rock
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Rock Blast"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rock Blast")
             Me.Description = "The user hurls hard rocks at the target. Two to five rocks are launched in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

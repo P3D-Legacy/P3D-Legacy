@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Fissure"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fissure")
             Me.Description = "The user opens up a fissure in the ground and drops the target in. The target instantly faints if it hits."
             Me.CriticalChance = 0
             Me.IsHMMove = False

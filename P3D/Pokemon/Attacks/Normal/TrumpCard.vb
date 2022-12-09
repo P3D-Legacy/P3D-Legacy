@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 0
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Trump Card"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Trump Card")
             Me.Description = "The fewer PP this move has, the greater its attack power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

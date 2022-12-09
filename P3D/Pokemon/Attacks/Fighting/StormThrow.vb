@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fighting
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Storm Throw"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Storm Throw")
             Me.Description = "The user strikes the target with a fierce blow. This attack always results in a critical hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False

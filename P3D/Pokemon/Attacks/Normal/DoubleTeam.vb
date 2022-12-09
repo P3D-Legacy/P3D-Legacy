@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Double Team"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Double Team")
             Me.Description = "By moving rapidly, the user makes illusory copies of itself to raise its evasiveness."
             Me.CriticalChance = 0
             Me.IsHMMove = False

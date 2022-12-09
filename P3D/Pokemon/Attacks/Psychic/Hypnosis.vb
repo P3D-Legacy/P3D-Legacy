@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 60
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Hypnosis"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hypnosis")
             Me.Description = "The user employs hypnotic suggestion to make the target fall into a deep sleep."
             Me.CriticalChance = 0
             Me.IsHMMove = False

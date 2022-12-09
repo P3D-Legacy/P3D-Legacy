@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Electric
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Parabolic Charge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Parabolic Charge")
             Me.Description = "The user attacks everything around it. The user's HP is restored by half the damage taken by those hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False

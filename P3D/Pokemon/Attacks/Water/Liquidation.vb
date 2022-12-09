@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Liquidation"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Liquidation")
             Me.Description = "The user slams into the target using a full-force blast of water. This may also lower the target's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

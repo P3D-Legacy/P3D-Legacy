@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Assist"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Assist")
             Me.Description = "The user hurriedly and randomly uses a move among those known by other Pokémon in the party."
             Me.CriticalChance = 0
             Me.IsHMMove = False

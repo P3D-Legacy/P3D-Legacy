@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Magnet Rise"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Magnet Rise")
             Me.Description = "The user levitates using electrically generated magnetism for five turns."
             Me.CriticalChance = 1
             Me.IsHMMove = False

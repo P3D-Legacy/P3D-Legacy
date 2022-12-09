@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Flying
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Tailwind"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Tailwind")
             Me.Description = "The user whips up a turbulent whirlwind that ups the Speed stat of the user and its allies for four turns."
             Me.CriticalChance = 1
             Me.IsHMMove = False

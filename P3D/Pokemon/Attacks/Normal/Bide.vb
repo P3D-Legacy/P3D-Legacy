@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Bide"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bide")
             Me.Description = "The user endures attacks for two turns, then strikes back to cause double the damage taken."
             Me.CriticalChance = 0
             Me.IsHMMove = False

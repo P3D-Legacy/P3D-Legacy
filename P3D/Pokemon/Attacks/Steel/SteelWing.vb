@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Steel Wing"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Steel Wing")
             Me.Description = "The target is hit with wings of steel. It may also raise the user's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

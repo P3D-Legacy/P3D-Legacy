@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Water
             Me.Accuracy = 85
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Whirlpool"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Whirlpool")
             Me.Description = "Traps foes in a violent swirling whirlpool for four to five turns."
             Me.CriticalChance = 1
             Me.IsHMMove = True

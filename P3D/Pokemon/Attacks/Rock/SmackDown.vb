@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Smack Down"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Smack Down")
             Me.Description = "The user throws a stone or similar projectile to attack an opponent. A flying Pokémon will fall to the ground when it's hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False

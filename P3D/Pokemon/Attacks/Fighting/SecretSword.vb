@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Secret Sword"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Secret Sword")
             Me.Description = "The user cuts with its long horn. The odd power contained in the horn does physical damage to the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

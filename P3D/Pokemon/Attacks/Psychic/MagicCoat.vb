@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Magic Coat"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Magic Coat")
             Me.Description = "A barrier reflects back to the target moves like Leech Seed and moves that damage status."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Tail Whip"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Tail Whip")
             Me.Description = "The user wags its tail cutely, making opposing Pokémon less wary and lowering their Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Ice
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Frost Breath"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Frost Breath")
             Me.Description = "The user blows its cold breath on the target. This attack always results in a critical hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False

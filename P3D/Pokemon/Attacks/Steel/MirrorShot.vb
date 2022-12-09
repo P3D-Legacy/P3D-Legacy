@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Mirror Shot"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mirror Shot")
             Me.Description = "The user lets loose a flash of energy at the target from its polished body. This may also lower the target's accuracy."
             Me.CriticalChance = 1
             Me.IsHMMove = False

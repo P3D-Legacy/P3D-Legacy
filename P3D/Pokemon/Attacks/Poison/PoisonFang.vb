@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Poison Fang"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Poison Fang")
             Me.Description = "The user bites the target with toxic fangs. It may also leave the target badly poisoned."
             Me.CriticalChance = 1
             Me.IsHMMove = False

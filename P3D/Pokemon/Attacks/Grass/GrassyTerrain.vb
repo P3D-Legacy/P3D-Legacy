@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Grassy Terrain"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Grassy Terrain")
             Me.Description = "The user turns the ground to grass for five turns. This restores the HP of Pokémon on the ground a little every turn and powers up Grass type-moves."
             Me.CriticalChance = 0
             Me.IsHMMove = False

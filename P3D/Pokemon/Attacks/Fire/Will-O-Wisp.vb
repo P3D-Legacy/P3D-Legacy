@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Will-O-Wisp"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Will-O-Wisp")
             Me.Description = " The user shoots a sinister, bluish-white flame at the target to inflict a burn."
             Me.CriticalChance = 0
             Me.IsHMMove = False

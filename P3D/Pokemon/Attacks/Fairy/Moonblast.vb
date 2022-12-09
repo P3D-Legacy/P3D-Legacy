@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Moonblast"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Moonblast")
             Me.Description = "Borrowing the power of the moon, the user attacks the target. This may also lower the target's Sp. Atk stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

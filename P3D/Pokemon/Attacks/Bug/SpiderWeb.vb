@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Spider Web"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Spider Web")
             Me.Description = "The user ensnares the target with thin, gooey silk so it can't flee from battle."
             Me.CriticalChance = 0
             Me.IsHMMove = False

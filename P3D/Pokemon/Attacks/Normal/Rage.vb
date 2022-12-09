@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Rage"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rage")
             Me.Description = "As long as this move is in use, the power of rage raises the Attack stat each time the user is hit in battle."
             Me.CriticalChance = 1
             Me.IsHMMove = False

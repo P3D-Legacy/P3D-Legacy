@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Ice Beam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ice Beam")
             Me.Description = "The target is struck with an icy-cold beam of energy. It may also freeze the target solid."
             Me.CriticalChance = 1
             Me.IsHMMove = False

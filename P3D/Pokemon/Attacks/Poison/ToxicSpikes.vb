@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Toxic Spikes"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Toxic Spikes")
             Me.Description = "The user lays a trap of poison spikes at the opponent's feet. They poison opponents that switch into battle."
             Me.CriticalChance = 0
             Me.IsHMMove = False

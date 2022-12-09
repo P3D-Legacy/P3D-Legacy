@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Water
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Water Shuriken"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Water Shuriken")
             Me.Description = "The user hits the target with throwing stars two to five times in a row. This move always goes first."
             Me.CriticalChance = 1
             Me.IsHMMove = False

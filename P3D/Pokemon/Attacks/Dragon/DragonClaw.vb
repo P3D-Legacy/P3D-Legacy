@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Dragon Claw"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dragon Claw")
             Me.Description = "The user slashes the target with huge, sharp claws."
             Me.CriticalChance = 1
             Me.IsHMMove = False

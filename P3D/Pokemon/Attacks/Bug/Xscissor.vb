@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "X-Scissor"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"X-Scissor")
             Me.Description = "The user slashes at the target by crossing its scythes or claws as if they were a pair of scissors."
             Me.CriticalChance = 1
             Me.IsHMMove = False

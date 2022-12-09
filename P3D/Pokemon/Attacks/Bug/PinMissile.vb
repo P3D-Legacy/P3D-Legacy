@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Pin Missile"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Pin Missile")
             Me.Description = "Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

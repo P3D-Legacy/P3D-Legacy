@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Signal Beam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Signal Beam")
             Me.Description = "The user attacks with a sinister beam of light. It may also confuse the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

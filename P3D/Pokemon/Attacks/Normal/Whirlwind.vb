@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Whirlwind"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Whirlwind")
             Me.Description = "The target is blown away, and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon."
             Me.CriticalChance = 0
             Me.IsHMMove = False

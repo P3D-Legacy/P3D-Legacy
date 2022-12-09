@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Pain Split"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Pain Split")
             Me.Description = "The user adds its HP to the target's HP, then equally shares the combined HP with the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

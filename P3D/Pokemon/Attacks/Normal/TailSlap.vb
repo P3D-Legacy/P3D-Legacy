@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Tail Slap"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Tail Slap")
             Me.Description = "The user attacks by striking the target with its hard tail. It hits the Pokémon two to five times in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

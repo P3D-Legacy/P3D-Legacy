@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Sacred Sword"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sacred Sword")
             Me.Description = "The user attacks by slicing with a long horn. The target's stat changes don't affect this attack's damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

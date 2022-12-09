@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Gyro Ball"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Gyro Ball")
             Me.Description = "The user tackles the target with a high-speed spin. The slower the user, the greater the damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

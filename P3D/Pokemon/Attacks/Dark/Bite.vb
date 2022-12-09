@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Bite"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bite")
             Me.Description = "The target is bitten with viciously sharp fangs. It may make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

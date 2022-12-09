@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Hydro Cannon"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hydro Cannon")
             Me.Description = "The target is hit by a watery blast. The user can't move on the next turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

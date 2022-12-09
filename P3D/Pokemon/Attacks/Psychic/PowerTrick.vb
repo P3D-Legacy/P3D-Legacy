@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Power Trick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Power Trick")
             Me.Description = "The user employs its psychic power to switch its Attack with its Defense stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

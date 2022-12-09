@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Shadow Bone"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Shadow Bone")
             Me.Description = "The user attacks by beating the target with a bone that contains a spirit. This may also lower the target's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

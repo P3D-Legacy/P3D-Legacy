@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Quick Attack"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Quick Attack")
             Me.Description = "The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first."
             Me.CriticalChance = 1
             Me.IsHMMove = False

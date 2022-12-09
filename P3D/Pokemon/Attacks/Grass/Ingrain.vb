@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Ingrain"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ingrain")
             Me.Description = "The user lays roots that restore its HP on every turn. Because it is rooted, it can't switch out."
             Me.CriticalChance = 0
             Me.IsHMMove = False

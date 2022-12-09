@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Bone Club"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bone Club")
             Me.Description = "The user clubs the target with a bone. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

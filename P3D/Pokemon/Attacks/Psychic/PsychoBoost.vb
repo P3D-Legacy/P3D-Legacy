@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Psycho Boost"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Psycho Boost")
             Me.Description = "The user attacks the target at full power. The attack's recoil harshly reduces the user's Sp. Atk stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

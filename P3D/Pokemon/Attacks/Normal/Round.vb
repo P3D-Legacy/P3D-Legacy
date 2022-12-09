@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Round"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Round")
             Me.Description = "The user attacks the target with a song. Others can join in the Round to increase the power of the attack."
             Me.CriticalChance = 1
             Me.IsHMMove = False

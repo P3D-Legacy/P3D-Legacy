@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Weather Ball"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Weather Ball")
             Me.Description = "An attack move that varies in power and type depending on the weather."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Ice Fang"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ice Fang")
             Me.Description = "The user bites with cold-infused fangs. It may also make the target flinch or leave it frozen."
             Me.CriticalChance = 1
             Me.IsHMMove = False

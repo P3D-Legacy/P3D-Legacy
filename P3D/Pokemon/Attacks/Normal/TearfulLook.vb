@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Tearful Look"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Tearful Look")
             Me.Description = "The user gets teary eyed to make the target lose its combative spirit. This lowers the target's Attack and Sp. Atk stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "False Swipe"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"False Swipe")
             Me.Description = "A restrained attack that prevents the target from fainting. The target is left with at least 1 HP."
             Me.CriticalChance = 1
             Me.IsHMMove = False

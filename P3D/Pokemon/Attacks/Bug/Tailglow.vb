@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Tail Glow"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Tail Glow")
             Me.Description = "The user stares at flashing lights to focus its mind, drastically raising its Sp. Atk stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

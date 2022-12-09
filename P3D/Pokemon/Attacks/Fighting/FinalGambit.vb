@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Final Gambit"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Final Gambit")
             Me.Description = "The user risks everything to attack its target. The user faints but does damage equal to its HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

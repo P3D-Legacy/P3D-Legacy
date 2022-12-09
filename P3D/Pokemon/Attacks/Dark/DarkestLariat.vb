@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Darkest Lariat"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Darkest Lariat")
             Me.Description = "The user swings both arms and hits the target. The target's stat changes don't affect this attack's damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

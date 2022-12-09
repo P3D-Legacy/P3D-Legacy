@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Explosion"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Explosion")
             Me.Description = "The user explodes to inflict damage on those around it. The user faints upon using this move."
             Me.CriticalChance = 1
             Me.IsHMMove = False

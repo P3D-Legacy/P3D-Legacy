@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Facade"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Facade")
             Me.Description = "An attack move that doubles its power if the user is poisoned, burned, or has paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

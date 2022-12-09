@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Rolling Kick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rolling Kick")
             Me.Description = "The user lashes out with a quick, spinning kick. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Swift"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Swift")
             Me.Description = "Star-shaped rays are shot at the opposing team. This attack never misses."
             Me.CriticalChance = 1
             Me.IsHMMove = False

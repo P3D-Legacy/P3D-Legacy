@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Mirror Coat"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mirror Coat")
             Me.Description = "A retaliation move that counters any special attack, inflicting double the damage taken."
             Me.CriticalChance = 0
             Me.IsHMMove = False

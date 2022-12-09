@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Extrasensory"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Extrasensory")
             Me.Description = "The user attacks with an odd, unseeable power. This may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

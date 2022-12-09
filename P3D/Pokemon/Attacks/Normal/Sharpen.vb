@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Sharpen"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sharpen")
             Me.Description = "The user reduces its polygon count to make itself more jagged, raising the Attack stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

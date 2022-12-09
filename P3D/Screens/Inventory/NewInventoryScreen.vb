@@ -297,14 +297,14 @@ Public Class NewInventoryScreen
         Canvas.DrawGradient(Core.SpriteBatch, New Rectangle(halfWidth - 400 + 384 + TabDesriptionWidth + 16, halfHeight - 200, 800 - (384 + TabDesriptionWidth), 48), New Color(0, 0, 0, CInt(TbgColor.A * 0.5)), New Color(0, 0, 0, CInt(TbgColor.A * 0.00)), True, -1)
         Dim TabName As String = ""
         Select Case _tabIndex
-            Case 0 : TabName = "Standard"
-            Case 1 : TabName = "Medicine"
-            Case 2 : TabName = "Plants"
-            Case 3 : TabName = "Pokéball"
-            Case 4 : TabName = "TM/HM"
-            Case 5 : TabName = "Mail"
-            Case 6 : TabName = "Battle Items"
-            Case 7 : TabName = "Key Items"
+            Case 0 : TabName = Localization.GetString("item_category_Standard", "Standard")
+            Case 1 : TabName = Localization.GetString("item_category_Medicine", "Medicine")
+            Case 2 : TabName = Localization.GetString("item_category_Plants", "Plants")
+            Case 3 : TabName = Localization.GetString("item_category_Pokeballs", "Pokéballs")
+            Case 4 : TabName = Localization.GetString("item_category_Machines", "TM/HM")
+            Case 5 : TabName = Localization.GetString("item_category_Mail", "Mail")
+            Case 6 : TabName = Localization.GetString("item_category_BattleItems", "Battle Items")
+            Case 7 : TabName = Localization.GetString("item_category_KeyItems", "Key Items")
         End Select
         Dim gColor As New Color(164, 164, 164)
         If _closing Then
@@ -468,7 +468,7 @@ Public Class NewInventoryScreen
 
         Dim itemTitle As String = cItem.Name
         Dim itemSubTitle As String = cItem.ItemType.ToString()
-        Dim itemDescription As String = cItem.Description
+        Dim itemDescription As String = cItem.GetDescription
 
         Select Case cItem.ItemType
             Case Items.ItemTypes.Machines

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Ice
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Icicle Spear"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Icicle Spear")
             Me.Description = "The user launches sharp icicles at the target two to five times in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

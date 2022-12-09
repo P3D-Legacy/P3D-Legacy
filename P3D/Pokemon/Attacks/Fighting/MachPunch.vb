@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Mach Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mach Punch")
             Me.Description = "The user throws a punch at blinding speed. It is certain to strike first."
             Me.CriticalChance = 1
             Me.IsHMMove = False

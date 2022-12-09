@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Prismatic Laser"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Prismatic Laser")
             Me.Description = "The user shoots powerful lasers using the power of a prism. The user can't move on the next turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Thousand Arrows"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Thousand Arrows")
             Me.Description = "This move also hits opposing Pokémon that are in the air. Those Pokémon are knocked down to the ground."
             Me.CriticalChance = 1
             Me.IsHMMove = False

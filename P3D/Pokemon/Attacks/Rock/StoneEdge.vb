@@ -15,7 +15,7 @@
             Me.Accuracy = 80
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Stone Edge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Stone Edge")
             Me.Description = "The user stabs the foe with sharpened stones from below. It has a high critical-hit ratio."
             Me.CriticalChance = 2
             Me.IsHMMove = False

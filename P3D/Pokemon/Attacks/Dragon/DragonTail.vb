@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Dragon Tail"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dragon Tail")
             Me.Description = "The target is knocked away, and a different Pokémon is dragged out. In the wild, this ends a battle against a single Pokémon."
             Me.CriticalChance = 1
             Me.IsHMMove = False

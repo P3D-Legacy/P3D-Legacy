@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Lick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Lick")
             Me.Description = "The target is licked with a long tongue, causing damage. It may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

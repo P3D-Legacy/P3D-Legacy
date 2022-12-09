@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Crunch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Crunch")
             Me.Description = "The user crunches up the target with sharp fangs. It may also lower the target's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

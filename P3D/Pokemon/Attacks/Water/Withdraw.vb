@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Withdraw"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Withdraw")
             Me.Description = "The user withdraws its body into its hard shell, raising its Defense stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

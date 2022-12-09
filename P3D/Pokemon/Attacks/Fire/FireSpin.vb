@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Fire Spin"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fire Spin")
             Me.Description = "The target becomes trapped within a fierce vortex of fire that rages for four to five turns."
             Me.CriticalChance = 1
             Me.IsHMMove = False

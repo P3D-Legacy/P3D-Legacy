@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Drain Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Drain Punch")
             Me.Description = "An energy-draining punch. The user's HP is restored by half the damage taken by the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

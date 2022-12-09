@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Wring Out"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Wring Out")
             Me.Description = "The user powerfully wrings the target. The more HP the target has, the greater the move's power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

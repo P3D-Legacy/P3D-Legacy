@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Stealth Rock"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Stealth Rock")
             Me.Description = "The user lays a trap of levitating stones around the opposing team. The trap hurts opposing Pokémon that switch into battle."
             Me.CriticalChance = 0
             Me.IsHMMove = False

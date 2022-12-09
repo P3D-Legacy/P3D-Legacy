@@ -237,6 +237,7 @@
                     Next
 
                     If allReady = True Then
+                        Sparks.Clear()
                         Dim type As Integer = 2
                         If evolvedPokemon.IsShiny = True Then
                             type = 3
@@ -247,7 +248,7 @@
                         SoundManager.PlaySound("success", True)
 
                         evolutionReady = True
-                        Dim t As String = "Congratulations!*Your " & currentPokemon.GetDisplayName() & " evolved into~" & evolvedPokemon.GetName() & "!"
+                        Dim t As String = "Congratulations!*Your " & currentPokemon.GetDisplayName() & "~evolved into " & evolvedPokemon.GetName() & "!"
                         If evolvedPokemon.AttackLearns.ContainsKey(evolvedPokemon.Level) = True Then
                             If evolvedPokemon.KnowsMove(evolvedPokemon.AttackLearns(evolvedPokemon.Level)) = False Then
                                 If evolvedPokemon.Attacks.Count = 4 Then
@@ -397,7 +398,7 @@
                 evolvedPokemon.Ability = currentPokemon.Ability
             End If
         End If
-
+        evolvedPokemon.SetOriginalAbility()
         evolvedPokemon.IsShiny = currentPokemon.IsShiny
         evolvedPokemon.Item = currentPokemon.Item
 

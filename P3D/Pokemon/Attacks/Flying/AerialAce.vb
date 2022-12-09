@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Flying
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Aerial Ace"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Aerial Ace")
             Me.Description = "The user confounds the target with speed, then slashes. This attack never misses."
             Me.CriticalChance = 1
             Me.IsHMMove = False

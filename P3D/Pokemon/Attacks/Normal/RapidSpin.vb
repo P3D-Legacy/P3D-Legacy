@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Rapid Spin"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rapid Spin")
             Me.Description = "A spin attack that can also eliminate such moves as Bind, Wrap, Leech Seed, and Spikes. This also raises the user's Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Take Down"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Take Down")
             Me.Description = "A reckless, full-body charge attack for slamming into the target. It also damages the user a little."
             Me.CriticalChance = 1
             Me.IsHMMove = False

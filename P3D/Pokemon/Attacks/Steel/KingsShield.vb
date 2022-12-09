@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "King's Shield"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"King's Shield")
             Me.Description = "The user takes a defensive stance while it protects itself from damage. It also harshly lowers the Attack stat of any attacker who makes direct contact."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Uproar"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Uproar")
             Me.Description = "The user attacks in an uproar for three turns. Over that time, no one can fall asleep."
             Me.CriticalChance = 1
             Me.IsHMMove = False

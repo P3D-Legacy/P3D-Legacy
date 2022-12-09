@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Transform"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Transform")
             Me.Description = "The user transforms into a copy of the target right down to having the same move set."
             Me.CriticalChance = 0
             Me.IsHMMove = False

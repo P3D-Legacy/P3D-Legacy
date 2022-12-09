@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Trick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Trick")
             Me.Description = "The user catches the target off guard and swaps its held item with its own."
             Me.CriticalChance = 0
             Me.IsHMMove = False

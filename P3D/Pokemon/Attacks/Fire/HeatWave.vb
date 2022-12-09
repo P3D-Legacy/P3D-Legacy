@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Heat Wave"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Heat Wave")
             Me.Description = "The user attacks by exhaling hot breath on the opposing team. It may also leave targets with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

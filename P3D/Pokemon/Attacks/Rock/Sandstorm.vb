@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Sandstorm"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sandstorm")
             Me.Description = "A five-turn sandstorm is summoned to hurt all combatants except the Rock, Ground, and Steel types."
             Me.CriticalChance = 0
             Me.IsHMMove = False

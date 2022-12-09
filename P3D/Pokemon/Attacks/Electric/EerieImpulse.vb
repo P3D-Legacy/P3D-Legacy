@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Electric
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Eerie Impulse"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Eerie Impulse")
             Me.Description = "The user's body generates an eerie impulse. Exposing the target to it harshly lowers the target's Sp. Atk stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

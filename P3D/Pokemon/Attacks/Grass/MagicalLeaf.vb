@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Grass
             Me.Accuracy = 0
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Magical Leaf"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Magical Leaf")
             Me.Description = "The user scatters curious leaves that chase the target. This attack never misses."
             Me.CriticalChance = 1
             Me.IsHMMove = False

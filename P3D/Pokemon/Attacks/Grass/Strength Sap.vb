@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Strength Sap"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Strength Sap")
             Me.Description = "The user restores its HP by the same amount as the target's Attack stat. It also lowers the target's Attack stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

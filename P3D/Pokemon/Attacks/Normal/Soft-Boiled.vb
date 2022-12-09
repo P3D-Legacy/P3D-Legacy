@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Soft-Boiled"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Soft-Boiled")
             Me.Description = "The user restores its own HP by up to half of its maximum HP. May also be used in the field to heal HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

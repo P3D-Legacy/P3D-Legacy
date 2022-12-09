@@ -15,7 +15,7 @@
             Me.Accuracy = 75
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Iron Tail"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Iron Tail")
             Me.Description = "The target is slammed with a steel-hard tail. It may also lower the target's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

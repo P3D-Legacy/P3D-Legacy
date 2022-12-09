@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Origin Pulse"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Origin Pulse")
             Me.Description = "The user attacks opposing Pokémon with countless beams of light that glow a deep and brilliant blue."
             Me.CriticalChance = 1
             Me.IsHMMove = False

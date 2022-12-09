@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Slash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Slash")
             Me.Description = "The target is attacked with a slash of claws or blades. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 80
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Gunk Shot"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Gunk Shot")
             Me.Description = "The user shoots filthy garbage at the target to attack. It may also poison the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 80
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Kinesis"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Kinesis")
             Me.Description = "The user distracts the target by bending a spoon. It lowers the target's accuracy."
             Me.CriticalChance = 0
             Me.IsHMMove = False

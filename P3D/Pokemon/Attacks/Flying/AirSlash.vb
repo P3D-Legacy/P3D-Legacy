@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Air Slash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Air Slash")
             Me.Description = "The user attacks with a blade of air that slices even the sky. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

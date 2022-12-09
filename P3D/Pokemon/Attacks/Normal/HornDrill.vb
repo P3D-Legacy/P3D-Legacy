@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Horn Drill"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Horn Drill")
             Me.Description = "The user stabs the target with a horn that rotates like a drill. If it hits, the target faints instantly."
             Me.CriticalChance = 0
             Me.IsHMMove = False

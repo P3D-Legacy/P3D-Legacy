@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Nature's Madness"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Nature's Madness")
             Me.Description = "The user hits the target with the force of nature. It halves the target's HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

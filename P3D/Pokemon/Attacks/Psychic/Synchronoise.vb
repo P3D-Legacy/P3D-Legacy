@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Synchronoise"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Synchronoise")
             Me.Description = "Using an odd shock wave, the user inflicts damage on any Pokémon of the same type in the area around it."
             Me.CriticalChance = 1
             Me.IsHMMove = False

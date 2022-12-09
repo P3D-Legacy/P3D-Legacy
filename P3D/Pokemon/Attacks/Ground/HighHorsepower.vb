@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "High Horsepower"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"High Horsepower")
             Me.Description = "The user fiercely attacks the target using its entire body."
             Me.CriticalChance = 1
             Me.IsHMMove = False

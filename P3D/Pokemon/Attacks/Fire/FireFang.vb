@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Fire Fang"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fire Fang")
             Me.Description = "The user bites with flame cloaked fangs. It may also make the target flinch or leave it burned."
             Me.CriticalChance = 1
             Me.IsHMMove = False

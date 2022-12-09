@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Focus Energy"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Focus Energy")
             Me.Description = "The user takes a deep breath and focuses so that critical hits land more easily."
             Me.CriticalChance = 0
             Me.IsHMMove = False

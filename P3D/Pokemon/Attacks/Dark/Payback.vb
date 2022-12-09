@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Payback"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Payback")
             Me.Description = "If the user moves after the target, this attack's power will be doubled"
             Me.CriticalChance = 1
             Me.IsHMMove = False

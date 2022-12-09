@@ -15,7 +15,7 @@
             Me.Accuracy = 55
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Sing"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sing")
             Me.Description = "A soothing lullaby is sung in a calming voice that puts the target into a deep slumber."
             Me.CriticalChance = 1
             Me.IsHMMove = False

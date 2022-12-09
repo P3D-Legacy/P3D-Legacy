@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Rock
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Rollout"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rollout")
             Me.Description = "The user continually rolls into the target over five turns. It becomes stronger each time it hits."
             Me.CriticalChance = 1
             Me.IsHMMove = False

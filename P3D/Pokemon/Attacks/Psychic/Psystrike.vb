@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Psystrike"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Psystrike")
             Me.Description = "The user materializes an odd psychic wave to attack the target. This attack does physical damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

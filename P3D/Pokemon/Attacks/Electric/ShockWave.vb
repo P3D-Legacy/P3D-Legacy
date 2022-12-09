@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Electric
             Me.Accuracy = 0
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Shock Wave"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Shock Wave")
             Me.Description = "The user strikes the target with a quick jolt of electricity. This attack cannot be evaded."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Gust"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Gust")
             Me.Description = "A gust of wind is whipped up by wings and launched at the target to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

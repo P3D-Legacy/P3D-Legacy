@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Bonemerang"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bonemerang")
             Me.Description = "The user throws the bone it holds. The bone loops to hit the target twice, coming and going."
             Me.CriticalChance = 1
             Me.IsHMMove = False

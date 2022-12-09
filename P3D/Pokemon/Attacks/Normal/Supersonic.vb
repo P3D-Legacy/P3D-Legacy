@@ -15,7 +15,7 @@
             Me.Accuracy = 55
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Supersonic"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Supersonic")
             Me.Description = "The user generates odd sound waves from its body. It may confuse the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

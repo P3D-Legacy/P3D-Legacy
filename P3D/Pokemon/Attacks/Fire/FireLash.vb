@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fire
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Fire Lash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fire Lash")
             Me.Description = "The user strikes the target with a burning lash. This also lowers the target's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

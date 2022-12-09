@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Odor Sleuth"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Odor Sleuth")
             Me.Description = "Enables a Ghost-type target to be hit with Normal- and Fighting-type attacks. This also enables an evasive target to be hit."
             Me.CriticalChance = 0
             Me.IsHMMove = False

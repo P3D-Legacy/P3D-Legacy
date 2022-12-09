@@ -15,7 +15,7 @@
             Me.Accuracy = 70
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Blizzard"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Blizzard")
             Me.Description = "A howling blizzard is summoned to strike the opposing team. It may also freeze them solid."
             Me.CriticalChance = 1
             Me.IsHMMove = False

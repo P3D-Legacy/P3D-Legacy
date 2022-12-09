@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Rock Throw"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rock Throw")
             Me.Description = "The user picks up and throws a small rock at the target to attack."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Shadow Claw"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Shadow Claw")
             Me.Description = "The user slashes with a sharp claw made from shadows. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

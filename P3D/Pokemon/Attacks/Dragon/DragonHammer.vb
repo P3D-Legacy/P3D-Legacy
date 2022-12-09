@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Dragon Hammer"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dragon Hammer")
             Me.Description = "The user uses its body like a hammer to attack the target and inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

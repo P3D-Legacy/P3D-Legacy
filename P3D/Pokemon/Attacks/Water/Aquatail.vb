@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Aqua Tail"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Aqua Tail")
             Me.Description = "The user attacks by swinging its tail as if it were a vicious wave in a raging storm."
             Me.CriticalChance = 1
             Me.IsHMMove = False

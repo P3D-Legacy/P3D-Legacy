@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Covet"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Covet")
             Me.Description = "The user endearingly approaches the target, then steals the target's held item."
             Me.CriticalChance = 1
             Me.IsHMMove = False

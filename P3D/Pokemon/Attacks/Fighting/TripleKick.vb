@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Triple Kick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Triple Kick")
             Me.Description = "A consecutive three-kick attack that becomes more powerful with each successive hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Hyper Fang"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hyper Fang")
             Me.Description = "The user bites hard on the target with its sharp front fangs. It may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

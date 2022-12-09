@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Twineedle"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Twineedle")
             Me.Description = "The user damages the target twice in succession by jabbing it with two spikes. It may also poison the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

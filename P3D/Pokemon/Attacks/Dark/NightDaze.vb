@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Night Daze"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Night Daze")
             Me.Description = "The user lets loose a pitch-black shock wave at its target. This may also lower the target's accuracy."
             Me.CriticalChance = 1
             Me.IsHMMove = False

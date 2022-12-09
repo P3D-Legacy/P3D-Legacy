@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Flail"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Flail")
             Me.Description = "The user flails about aimlessly to attack. It becomes more powerful the less HP the user has."
             Me.CriticalChance = 1
             Me.IsHMMove = False

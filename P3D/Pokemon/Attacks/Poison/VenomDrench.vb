@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Venom Drench"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Venom Drench")
             Me.Description = "Opposing Pokémon are drenched in an odd poisonous liquid. This lowers the Attack, Sp. Atk, and Speed stats of a poisoned target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

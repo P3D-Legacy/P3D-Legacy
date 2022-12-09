@@ -15,7 +15,7 @@
             Me.Accuracy = 50
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Dark Void"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dark Void")
             Me.Description = "Opposing Pokémon are dragged into a world of total darkness that makes them sleep."
             Me.CriticalChance = 0
             Me.IsHMMove = False

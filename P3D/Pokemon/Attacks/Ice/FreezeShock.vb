@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Freeze Shock"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Freeze Shock")
             Me.Description = "On the second turn, the user hits the target with electrically charged ice. It may leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

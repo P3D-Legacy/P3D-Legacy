@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Jump Kick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Jump Kick")
             Me.Description = "The user jumps up high, then strikes with a kick. If the kick misses, the user hurts itself."
             Me.CriticalChance = 1
             Me.IsHMMove = False

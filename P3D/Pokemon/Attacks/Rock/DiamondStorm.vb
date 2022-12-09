@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Diamond Storm"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Diamond Storm")
             Me.Description = "The user whips up a storm of diamonds to damage opposing Pokémon. This may also sharply raise the user's Defense stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

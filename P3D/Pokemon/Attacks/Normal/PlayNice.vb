@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Play Nice"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Play Nice")
             Me.Description = "The user and the target become friends, and the target loses its will to fight. This lowers the target's Attack stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

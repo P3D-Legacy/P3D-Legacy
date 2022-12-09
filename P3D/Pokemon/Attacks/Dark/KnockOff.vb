@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Knock Off"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Knock Off")
             Me.Description = "The user slaps down the target's held item, and that item can't be used in that battle. The move does more damage if the target has a held item."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Destiny Bond"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Destiny Bond")
             Me.Description = "When this move is used, if the user faints, the Pokémon that landed the knockout hit also faints."
             Me.CriticalChance = 0
             Me.IsHMMove = False

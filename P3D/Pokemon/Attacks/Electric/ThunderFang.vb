@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Thunder Fang"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Thunder Fang")
             Me.Description = "The user bites with electrified fangs. It may also make the target flinch or leave it with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

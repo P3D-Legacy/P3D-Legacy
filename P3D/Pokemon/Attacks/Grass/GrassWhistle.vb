@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Grass
             Me.Accuracy = 55
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Grass Whistle"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Grass Whistle")
             Me.Description = "The user plays a pleasant melody that lulls the target into a deep sleep."
             Me.CriticalChance = 1
             Me.IsHMMove = False

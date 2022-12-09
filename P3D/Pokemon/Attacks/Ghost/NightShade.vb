@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Night Shade"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Night Shade")
             Me.Description = "The user makes the target see a frightening mirage. It inflicts damage matching the user's level."
             Me.CriticalChance = 0
             Me.IsHMMove = False

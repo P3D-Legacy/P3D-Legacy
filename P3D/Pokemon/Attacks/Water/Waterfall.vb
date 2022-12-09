@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Waterfall"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Waterfall")
             Me.Description = "The user charges at the target and may make it flinch. It can also be used to climb a waterfall."
             Me.CriticalChance = 1
             Me.IsHMMove = True

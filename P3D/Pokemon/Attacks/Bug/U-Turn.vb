@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "U-turn"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"U-turn")
             Me.Description = "After making its attack, the user rushes back to switch places with a party Pokémon in waiting."
             Me.CriticalChance = 1
             Me.IsHMMove = False

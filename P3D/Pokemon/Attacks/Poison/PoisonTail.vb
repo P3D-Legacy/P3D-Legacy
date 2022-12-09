@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Poison
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Poison Tail"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Poison Tail")
             Me.Description = "The user hits the target with its tail. This may also poison the target. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

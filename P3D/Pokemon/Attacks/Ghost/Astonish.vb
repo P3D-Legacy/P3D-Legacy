@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Ghost
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Astonish"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Astonish")
             Me.Description = "The user attacks the target while shouting in a startling fashion. This may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

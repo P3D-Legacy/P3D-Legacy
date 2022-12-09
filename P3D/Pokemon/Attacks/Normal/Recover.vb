@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Recover"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Recover")
             Me.Description = "Restoring its own cells, the user restores its own HP by half of its max HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

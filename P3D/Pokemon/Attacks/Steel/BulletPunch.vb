@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Bullet Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bullet Punch")
             Me.Description = "The user strikes the target with tough punches as fast as bullets. This move always goes first."
             Me.CriticalChance = 1
             Me.IsHMMove = False

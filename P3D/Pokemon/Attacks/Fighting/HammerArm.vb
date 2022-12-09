@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Hammer Arm"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hammer Arm")
             Me.Description = "The user swings and hits with its strong and heavy fist. It lowers the user’s Speed, however."
             Me.CriticalChance = 1
             Me.IsHMMove = False

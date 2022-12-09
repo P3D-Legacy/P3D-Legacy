@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Healing Wish"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Healing Wish")
             Me.Description = "The user faints. In return, the Pokemon taking its place will have its HP restored and status conditions cured."
             Me.CriticalChance = 0
             Me.IsHMMove = False

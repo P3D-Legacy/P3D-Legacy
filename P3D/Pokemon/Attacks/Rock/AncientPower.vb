@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Ancient Power"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ancient Power")
             Me.Description = "The user attacks with a prehistoric power. It may also raise all the user's stats at once."
             Me.CriticalChance = 1
             Me.IsHMMove = False

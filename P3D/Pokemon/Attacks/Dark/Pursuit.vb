@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Pursuit"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Pursuit")
             Me.Description = "An attack move that inflicts double damage if used on a target that is switching out of battle."
             Me.CriticalChance = 1
             Me.IsHMMove = False

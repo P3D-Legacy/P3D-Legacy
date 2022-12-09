@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Rain Dance"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Rain Dance")
             Me.Description = "The user summons a heavy rain that falls for five turns, powering up Water-type moves."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Double Kick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Double Kick")
             Me.Description = "The target is quickly kicked twice in succession using both feet."
             Me.CriticalChance = 1
             Me.IsHMMove = False

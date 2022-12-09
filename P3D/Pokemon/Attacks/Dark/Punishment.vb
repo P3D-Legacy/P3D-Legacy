@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Dark
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Punishment"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Punishment")
             Me.Description = "This attack's power increases the more the target has powered up with stat changes."
             Me.CriticalChance = 1
             Me.IsHMMove = False

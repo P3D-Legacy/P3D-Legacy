@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Dazzling Gleam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dazzling Gleam")
             Me.Description = "The user damages opposing Pokémon by emitting a powerful flash."
             Me.CriticalChance = 1
             Me.IsHMMove = False

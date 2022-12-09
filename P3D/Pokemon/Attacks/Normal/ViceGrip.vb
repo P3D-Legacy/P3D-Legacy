@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Vise Grip"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Vise Grip")
             Me.Description = "The target is gripped and squeezed from both sides to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

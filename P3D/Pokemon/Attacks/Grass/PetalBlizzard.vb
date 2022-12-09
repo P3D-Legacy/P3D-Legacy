@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Grass
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Petal Blizzard"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Petal Blizzard")
             Me.Description = "The user stirs up a violent petal blizzard and attacks everything around it."
             Me.CriticalChance = 1
             Me.IsHMMove = False

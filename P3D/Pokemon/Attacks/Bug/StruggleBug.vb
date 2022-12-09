@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Struggle Bug"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Struggle Bug")
             Me.Description = "While resisting, the user attacks the opposing Pokémon. This lowers the Sp. Atk stat of those hit."
             Me.CriticalChance = 1
             Me.IsHMMove = False

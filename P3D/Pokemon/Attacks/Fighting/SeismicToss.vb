@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Seismic Toss"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Seismic Toss")
             Me.Description = "The target is thrown using the power of gravity. It inflicts damage equal to the user's level."
             Me.CriticalChance = 0
             Me.IsHMMove = False

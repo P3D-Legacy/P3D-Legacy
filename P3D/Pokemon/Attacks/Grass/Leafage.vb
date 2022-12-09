@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Leafage"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Leafage")
             Me.Description = "The user attacks by pelting the target with leaves."
             Me.CriticalChance = 1
             Me.IsHMMove = False

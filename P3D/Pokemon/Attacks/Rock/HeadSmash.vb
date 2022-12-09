@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Rock
             Me.Accuracy = 80
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Head Smash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Head Smash")
             Me.Description = "The user attacks the target with a hazardous, full-power headbutt. This also damages the user terribly."
             Me.CriticalChance = 1
             Me.IsHMMove = False

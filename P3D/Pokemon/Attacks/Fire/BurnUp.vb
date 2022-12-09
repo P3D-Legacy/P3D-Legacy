@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Burn Up"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Burn Up")
             Me.Description = "To inflict massive damage, the user burns itself out. After using this move, the user will no longer be Fire type."
             Me.CriticalChance = 1
             Me.IsHMMove = False

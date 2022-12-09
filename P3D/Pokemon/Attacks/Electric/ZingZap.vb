@@ -14,7 +14,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Zing Zap"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Zing Zap")
             Me.Description = "A strong electric blast crashes down on the target, giving it an electric shock. This may also make the target flinch."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Venoshock"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Venoshock")
             Me.Description = "The user drenches the target in a special poisonous liquid. This move's power is doubled if the target is poisoned."
             Me.CriticalChance = 1
             Me.IsHMMove = False

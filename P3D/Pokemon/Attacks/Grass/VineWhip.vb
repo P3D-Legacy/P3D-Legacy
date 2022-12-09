@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Vine Whip"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Vine Whip")
             Me.Description = "The target is struck with slender, whiplike vines to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Peck"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Peck")
             Me.Description = "The target is jabbed with a sharply pointed beak or horn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

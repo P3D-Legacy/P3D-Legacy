@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Heal Order"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Heal Order")
             Me.Description = "The user calls out its underlings to heal it. The user regains up to half of its max HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

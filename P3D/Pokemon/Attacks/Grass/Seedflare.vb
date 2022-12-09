@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Seed Flare"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Seed Flare")
             Me.Description = "The user emits a shock wave from its body to attack its target. It may harshly lower the target's Sp. Def."
             Me.CriticalChance = 1
             Me.IsHMMove = False

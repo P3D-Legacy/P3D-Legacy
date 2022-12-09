@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Steel
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Doom Desire"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Doom Desire")
             Me.Description = "Two turns after this move is used, the user blasts the target with a concentrated bundle of light."
             Me.CriticalChance = 0
             Me.IsHMMove = False

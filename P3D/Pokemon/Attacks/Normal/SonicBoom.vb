@@ -15,7 +15,7 @@
             Me.Accuracy = 90
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Sonic Boom"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sonic Boom")
             Me.Description = "The target is hit with a destructive shock wave that always inflicts 20 HP damage."
             Me.CriticalChance = 0
             Me.IsHMMove = False

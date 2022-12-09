@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Avalanche"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Avalanche")
             Me.Description = "The power of this attack move is doubled if the user has been hurt by the target in the same turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

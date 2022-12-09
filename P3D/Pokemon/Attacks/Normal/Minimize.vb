@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Minimize"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Minimize")
             Me.Description = "The user compresses its body to make itself look smaller, which sharply raises its evasiveness."
             Me.CriticalChance = 0
             Me.IsHMMove = False

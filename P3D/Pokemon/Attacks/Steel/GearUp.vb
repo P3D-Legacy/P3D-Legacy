@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Gear Up"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Gear Up")
             Me.Description = "The user engages its gears to raise the Attack and Sp. Atk stats of ally Pokémon with the Plus or Minus Ability."
             Me.CriticalChance = 0
             Me.IsHMMove = False

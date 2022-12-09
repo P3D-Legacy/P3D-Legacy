@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Bestow"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bestow")
             Me.Description = "The user passes its held item to the target when the target isn't holding an item."
             Me.CriticalChance = 0
             Me.IsHMMove = False

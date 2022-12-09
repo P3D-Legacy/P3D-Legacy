@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Hyperspace Hole"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hyperspace Hole")
             Me.Description = "Using a hyperspace hole, the user appears right next to the target and strikes. This also hits a target using a move such as Protect or Detect."
             Me.CriticalChance = 1
             Me.IsHMMove = False

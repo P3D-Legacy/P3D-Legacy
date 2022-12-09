@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Growl"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Growl")
             Me.Description = "The user growls in an endearing way, making the opposing team less wary. The foes' Attack stats are lowered."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Fell Stinger"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fell Stinger")
             Me.Description = "When the user knocks out a target with this move, the user's Attack stat rises drastically."
             Me.CriticalChance = 1
             Me.IsHMMove = False

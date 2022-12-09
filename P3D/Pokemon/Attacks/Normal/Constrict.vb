@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Constrict"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Constrict")
             Me.Description = "The target is attacked with long, creeping tentacles or vines. It may also lower the target's Speed stat."
             Me.CriticalChance = 1
             Me.IsHMMove = False

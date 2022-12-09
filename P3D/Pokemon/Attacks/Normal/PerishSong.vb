@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Perish Song"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Perish Song")
             Me.Description = "Any Pokémon that hears this song faints in three turns, unless it switches out of battle."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Swallow"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Swallow")
             Me.Description = "The power stored using the move Stockpile is absorbed by the user to heal its HP. Storing more power heals more HP."
             Me.CriticalChance = 0
             Me.IsHMMove = False

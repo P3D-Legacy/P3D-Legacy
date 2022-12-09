@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Tickle"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Tickle")
             Me.Description = "The user tickles the target into laughing, reducing its Attack and Defense stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False

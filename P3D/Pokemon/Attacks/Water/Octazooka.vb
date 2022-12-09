@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Octazooka"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Octazooka")
             Me.Description = "The user attacks by spraying ink in the target's face or eyes. It may also lower the target's accuracy."
             Me.CriticalChance = 1
             Me.IsHMMove = False

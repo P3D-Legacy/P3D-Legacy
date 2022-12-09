@@ -15,7 +15,7 @@
             Me.Accuracy = 95
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Fury Cutter"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fury Cutter")
             Me.Description = "The target is slashed with scythes or claws. Its power increases if it hits in succession."
             Me.CriticalChance = 1
             Me.IsHMMove = False

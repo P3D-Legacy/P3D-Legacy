@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Spit Up"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Spit Up")
             Me.Description = "The power stored using the move Stockpile is released at once in an attack. The more power is stored, the greater the damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 70
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Thunder"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Thunder")
             Me.Description = "A wicked thunderbolt is dropped on the target to inflict damage. It may also leave the target with paralysis."
             Me.CriticalChance = 1
             Me.IsHMMove = False

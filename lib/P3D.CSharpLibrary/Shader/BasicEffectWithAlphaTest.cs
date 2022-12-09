@@ -311,7 +311,7 @@ public class BasicEffectWithAlphaTest : Effect, IEffectMatrices, IEffectLights, 
         DirectionalLight0.Enabled = true;
         SpecularColor = Vector3.One;
         SpecularPower = 16;
-        AlphaCutoff = 0.5f;
+        AlphaCutoff = 0.01f;
     }
 
     /// <summary>

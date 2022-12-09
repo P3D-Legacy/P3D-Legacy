@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Pound"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Pound")
             Me.Description = "The target is physically pounded with a long tail or a foreleg, etc."
             Me.CriticalChance = 1
             Me.IsHMMove = False

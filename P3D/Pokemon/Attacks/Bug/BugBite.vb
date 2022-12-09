@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Bug Bite"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Bug Bite")
             Me.Description = "The user bites the target. If the target is holding a Berry, the user eats it and gains its effect."
             Me.CriticalChance = 1
             Me.IsHMMove = False

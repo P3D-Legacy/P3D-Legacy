@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Horn Leech"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Horn Leech")
             Me.Description = "The user drains the target's energy with its horns. The user's HP is restored by half the damage taken by the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

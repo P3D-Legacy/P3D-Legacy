@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Wing Attack"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Wing Attack")
             Me.Description = "The target is struck with large, imposing wings spread wide to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

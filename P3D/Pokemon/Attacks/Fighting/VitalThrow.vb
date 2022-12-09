@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Vital Throw"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Vital Throw")
             Me.Description = "The user attacks last. In return, this throw move is guaranteed not to miss."
             Me.CriticalChance = 1
             Me.IsHMMove = False

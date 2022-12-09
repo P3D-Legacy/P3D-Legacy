@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Aqua Ring"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Aqua Ring")
             Me.Description = "The user envelops itself in a veil made of water. It regains some HP on every turn."
             Me.CriticalChance = 0
             Me.IsHMMove = False

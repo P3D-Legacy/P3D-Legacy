@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Sludge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sludge")
             Me.Description = "Unsanitary sludge is hurled at the target. It may also poison the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

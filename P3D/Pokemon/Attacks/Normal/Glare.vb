@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Glare"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Glare")
             Me.Description = "The user intimidates the target with the pattern on its belly to cause paralysis."
             Me.CriticalChance = 0
             Me.IsHMMove = False

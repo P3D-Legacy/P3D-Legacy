@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Metal Burst"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Metal Burst")
             Me.Description = "The user retaliates with much greater power against the target that last inflicted damage on it."
             Me.CriticalChance = 1
             Me.IsHMMove = False

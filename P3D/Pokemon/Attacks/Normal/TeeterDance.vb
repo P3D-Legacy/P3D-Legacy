@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Teeter Dance"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Teeter Dance")
             Me.Description = "The user performs a wobbly dance that confuses the Pokémon around it."
             Me.CriticalChance = 0
             Me.IsHMMove = False

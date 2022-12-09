@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Power Gem"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Power Gem")
             Me.Description = "The user attacks with a ray of light that sparkles as if it were made of gemstones."
             Me.CriticalChance = 1
             Me.IsHMMove = False

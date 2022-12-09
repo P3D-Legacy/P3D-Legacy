@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Ride"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ride")
             Me.Description = "The user runs over the target rapidly. The power rises when the user's accuracy stat is low."
             Me.CriticalChance = 1
             Me.IsHMMove = True

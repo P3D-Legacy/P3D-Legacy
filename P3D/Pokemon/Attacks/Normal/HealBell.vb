@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Heal Bell"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Heal Bell")
             Me.Description = "The user makes a soothing bell chime to heal the status problems of all the party Pokémon."
             Me.CriticalChance = 0
             Me.IsHMMove = False

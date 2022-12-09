@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Incinerate"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Incinerate")
             Me.Description = "The user attacks opposing Pokémon with fire. If a Pokémon is holding a certain item, such as a Berry, the item becomes burned up and unusable."
             Me.CriticalChance = 1
             Me.IsHMMove = False

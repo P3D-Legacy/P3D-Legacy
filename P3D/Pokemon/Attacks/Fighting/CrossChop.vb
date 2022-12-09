@@ -15,7 +15,7 @@
             Me.Accuracy = 80
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Cross Chop"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Cross Chop")
             Me.Description = "The user delivers a double chop with its forearms crossed. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

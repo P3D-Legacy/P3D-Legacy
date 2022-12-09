@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Fire Pledge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fire Pledge")
             Me.Description = "A column of fire hits opposing Pokémon. When used with its Grass equivalent, its damage increases into a vast sea of fire."
             Me.CriticalChance = 1
             Me.IsHMMove = False

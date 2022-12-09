@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fighting
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Revenge"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Revenge")
             Me.Description = "An attack move that inflicts double the damage if the user has been hurt by the opponent in the same turn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Shadow Sneak"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Shadow Sneak")
             Me.Description = "The user extends its shadow and attacks the target from behind. This move always goes first."
             Me.CriticalChance = 1
             Me.IsHMMove = False

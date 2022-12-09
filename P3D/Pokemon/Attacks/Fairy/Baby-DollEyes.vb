@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Baby-Doll Eyes"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Baby-Doll Eyes")
             Me.Description = "The user growls in an endearing way, making the opposing team less wary. The foes' Attack stats are lowered."
             Me.CriticalChance = 0
             Me.IsHMMove = False

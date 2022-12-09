@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Stockpile"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Stockpile")
             Me.Description = "The user charges up power and raises both its Defense and Sp. Def. The move can be used three times."
             Me.CriticalChance = 0
             Me.IsHMMove = False

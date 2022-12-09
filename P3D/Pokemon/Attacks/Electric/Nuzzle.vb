@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Electric
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Nuzzle"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Nuzzle")
             Me.Description = "The user attacks by nuzzling its electrified cheeks against the target. This also leaves the target with paralysis."
             Me.CriticalChance = 0
             Me.IsHMMove = False

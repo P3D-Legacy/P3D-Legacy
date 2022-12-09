@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Muddy Water"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Muddy Water")
             Me.Description = "The user attacks by shooting muddy water at the opposing team. It may also lower the targets' accuracy."
             Me.CriticalChance = 1
             Me.IsHMMove = False

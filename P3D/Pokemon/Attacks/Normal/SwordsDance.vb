@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Swords Dance"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Swords Dance")
             Me.Description = "A frenetic dance to uplift the fighting spirit. It sharply raises the user’s Attack stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Acupressure"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Acupressure")
             Me.Description = "The user applies pressure to stress points, sharply boosting one of its or its allies' stats."
             Me.CriticalChance = 0
             Me.IsHMMove = False

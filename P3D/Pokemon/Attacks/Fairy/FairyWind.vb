@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Fairy Wind"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fairy Wind")
             Me.Description = "The user stirs up a fairy wind and strikes the target with it."
             Me.CriticalChance = 1
             Me.IsHMMove = False

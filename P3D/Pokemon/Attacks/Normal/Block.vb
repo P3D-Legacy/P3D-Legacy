@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Block"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Block")
             Me.Description = "The user blocks the target's way with arms spread wide to prevent escape."
             Me.CriticalChance = 0
             Me.IsHMMove = False

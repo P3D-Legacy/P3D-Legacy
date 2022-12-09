@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Skill Swap"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Skill Swap")
             Me.Description = "The user employs its psychic power to exchange Abilities with the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Tackle"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Tackle")
             Me.Description = "A physical attack in which the user charges and slams into the target with its whole body."
             Me.CriticalChance = 1
             Me.IsHMMove = False

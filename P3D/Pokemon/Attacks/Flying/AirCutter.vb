@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Flying
             Me.Accuracy = 95
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Air Cutter"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Air Cutter")
             Me.Description = "The user launches razor-like wind to slash the opposing Pokémon. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False

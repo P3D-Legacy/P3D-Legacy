@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Petal Dance"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Petal Dance")
             Me.Description = "The user attacks the target by scattering petals for two to three turns. The user then becomes confused."
             Me.CriticalChance = 1
             Me.IsHMMove = False

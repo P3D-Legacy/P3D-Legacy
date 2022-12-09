@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "First Impression"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"First Impression")
             Me.Description = "Although this move has great power, it only works the first turn the user is in battle."
             Me.CriticalChance = 1
             Me.IsHMMove = False

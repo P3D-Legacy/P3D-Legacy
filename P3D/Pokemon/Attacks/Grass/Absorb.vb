@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Absorb"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Absorb")
             Me.Description = "Inflicts damage on the target, then restores the user's HP based on the damage inflicted."
             Me.CriticalChance = 1
             Me.IsHMMove = False

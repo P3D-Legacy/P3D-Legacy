@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Superpower"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Superpower")
             Me.Description = "The user attacks the target with great power. However, it also lowers the user's Attack and Defense."
             Me.CriticalChance = 1
             Me.IsHMMove = False

@@ -15,7 +15,7 @@
             Me.Accuracy = 50
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Dynamic Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dynamic Punch")
             Me.Description = "The user punches the target with full, concentrated power. It confuses the target if it hits."
             Me.CriticalChance = 1
             Me.IsHMMove = False

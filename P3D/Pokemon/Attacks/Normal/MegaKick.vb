@@ -15,7 +15,7 @@
             Me.Accuracy = 75
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Mega Kick"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mega Kick")
             Me.Description = "The target is attacked by a kick launched with muscle-packed power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

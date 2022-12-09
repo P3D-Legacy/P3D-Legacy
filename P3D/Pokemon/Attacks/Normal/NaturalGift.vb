@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Natural Gift"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Natural Gift")
             Me.Description = "The user draws power to attack by using its held Berry. The Berry determines the move's type and power."
             Me.CriticalChance = 1
             Me.IsHMMove = False

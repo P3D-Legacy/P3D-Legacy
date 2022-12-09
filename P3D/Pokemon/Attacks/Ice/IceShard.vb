@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Ice
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Ice Shard"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ice Shard")
             Me.Description = "The user flash freezes chunks of ice and hurls them at the target. This move always goes first."
             Me.CriticalChance = 1
             Me.IsHMMove = False

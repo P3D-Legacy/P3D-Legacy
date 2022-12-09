@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Cotton Spore"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Cotton Spore")
             Me.Description = "The user releases cotton-like spores that cling to the target, harshly reducing its Speed stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

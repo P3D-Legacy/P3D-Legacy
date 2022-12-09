@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Attack Order"
+            Me.Name = Localization.GetString("move_name_" & Me.ID, "Attack Order")
             Me.Description = "The user calls out its underlings to pummel the target. Critical hits land easier."
             Me.CriticalChance = 2
             Me.IsHMMove = False

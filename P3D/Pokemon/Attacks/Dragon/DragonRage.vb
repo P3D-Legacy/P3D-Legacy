@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Dragon Rage"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Dragon Rage")
             Me.Description = "This attack hits the target with a shock wave of pure rage. This attack always inflicts 40 HP damage."
             Me.CriticalChance = 0
             Me.IsHMMove = False

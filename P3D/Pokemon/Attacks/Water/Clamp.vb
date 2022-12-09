@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Water
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Clamp"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Clamp")
             Me.Description = "The target is clamped and squeezed by the user's very thick and sturdy shell for four to five turns."
             Me.CriticalChance = 1
             Me.IsHMMove = False

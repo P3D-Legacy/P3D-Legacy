@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Normal
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Mean Look"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mean Look")
             Me.Description = "The user pins the target with a dark, arresting look. The target becomes unable to flee."
             Me.CriticalChance = 0
             Me.IsHMMove = False

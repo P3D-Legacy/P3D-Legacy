@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Hail"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hail")
             Me.Description = "The user summons a hailstorm lasting five turns. It damages all Pokémon except the Ice type."
             Me.CriticalChance = 0
             Me.IsHMMove = False

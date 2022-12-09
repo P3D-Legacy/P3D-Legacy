@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Sweet Scent"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sweet Scent")
             Me.Description = "A sweet scent that lowers the opposing team's evasiveness. It also lures wild Pokémon if used in grass, etc."
             Me.CriticalChance = 0
             Me.IsHMMove = False

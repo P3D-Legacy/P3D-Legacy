@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Acid"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Acid")
             Me.Description = "The opposing team is attacked with a spray of harsh acid. The acid may also lower the targets' Sp. Def stats."
             Me.CriticalChance = 1
             Me.IsHMMove = False

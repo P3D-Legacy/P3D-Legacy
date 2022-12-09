@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Barrier"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Barrier")
             Me.Description = "The user throws up a sturdy wall that sharply raises its Defense stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

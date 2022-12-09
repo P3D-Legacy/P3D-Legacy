@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Fairy
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Charm"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Charm")
             Me.Description = "The user gazes at the target rather charmingly, making it less wary. The target's Attack is harshly lowered."
             Me.CriticalChance = 0
             Me.IsHMMove = False

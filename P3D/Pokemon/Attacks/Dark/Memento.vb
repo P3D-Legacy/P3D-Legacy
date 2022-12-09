@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Memento"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Memento")
             Me.Description = "The user faints when using this move. In return, it harshly lowers the target's Attack and Sp. Atk."
             Me.CriticalChance = 0
             Me.IsHMMove = False

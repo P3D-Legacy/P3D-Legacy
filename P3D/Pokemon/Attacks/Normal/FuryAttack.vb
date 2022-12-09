@@ -15,7 +15,7 @@
             Me.Accuracy = 85
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Fury Attack"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Fury Attack")
             Me.Description = "The target is jabbed repeatedly with a horn or beak two to five times in a row."
             Me.CriticalChance = 1
             Me.IsHMMove = False

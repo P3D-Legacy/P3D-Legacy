@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Giga Drain"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Giga Drain")
             Me.Description = "A nutrient-draining attack. The user's HP is restored by half the damage taken by the target."
             Me.CriticalChance = 1
             Me.IsHMMove = False

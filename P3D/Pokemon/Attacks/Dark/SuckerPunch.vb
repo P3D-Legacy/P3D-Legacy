@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Sucker Punch"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Sucker Punch")
             Me.Description = "This move enables the user to attack first. It fails if the target is not readying an attack, however."
             Me.CriticalChance = 1
             Me.IsHMMove = False

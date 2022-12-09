@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Ember"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Ember")
             Me.Description = "The target is attacked with small flames. It may also leave the target with a burn."
             Me.CriticalChance = 1
             Me.IsHMMove = False

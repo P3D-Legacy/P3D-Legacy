@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Mirror Move"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Mirror Move")
             Me.Description = "The user counters the target by mimicking the target's last move."
             Me.CriticalChance = 0
             Me.IsHMMove = False

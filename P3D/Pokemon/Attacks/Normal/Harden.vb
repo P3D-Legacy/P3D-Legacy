@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Harden"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Harden")
             Me.Description = "The user stiffens all the muscles in its body to raise its Defense stat."
             Me.CriticalChance = 0
             Me.IsHMMove = False

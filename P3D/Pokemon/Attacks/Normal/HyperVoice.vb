@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = "Hyper Voice"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Hyper Voice")
             Me.Description = "The user lets loose a horribly echoing shout with the power to inflict damage."
             Me.CriticalChance = 1
             Me.IsHMMove = False

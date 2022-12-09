@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = "Psycho Shift"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Psycho Shift")
             Me.Description = "Using its psychic power of suggestion, the user transfers its status conditions to the target."
             Me.CriticalChance = 0
             Me.IsHMMove = False

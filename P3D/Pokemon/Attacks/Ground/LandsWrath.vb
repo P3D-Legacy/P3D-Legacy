@@ -15,7 +15,7 @@ Namespace BattleSystem.Moves.Ground
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Tough
-            Me.Name = "Land's Wrath"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Land's Wrath")
             Me.Description = "The user gathers the energy of the land and focuses that power on opposing Pokémon to damage them."
             Me.CriticalChance = 1
             Me.IsHMMove = False

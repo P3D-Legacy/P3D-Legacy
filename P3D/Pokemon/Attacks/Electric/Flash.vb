@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = "Flash"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Flash")
             Me.Description = "The user flashes a bright light with enormous speed at the target. It cuts the user's accuracy though."
             Me.CriticalChance = 1
             Me.IsHMMove = True

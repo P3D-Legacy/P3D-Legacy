@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = "Simple Beam"
+            Me.Name = Localization.GetString("move_name_" & Me.ID,"Simple Beam")
             Me.Description = "The user's mysterious psychic wave changes the target's Ability to Simple."
             Me.CriticalChance = 0
             Me.IsHMMove = False
