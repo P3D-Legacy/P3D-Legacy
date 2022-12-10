@@ -9,8 +9,8 @@ Namespace Security
         ' Actual code will be read from FileValidation.Generated.vb which generates a FileValidation class with
         ' the same details as here.
         '
-        Protected Shared EXPECTEDSIZE As Integer = 51294009
-        Protected Shared METAHASH As String = "MEZFNzA1QTRCOEFCRTVGM0UxMUZFMThFMkYyMjdFQjk="
+        Protected Shared EXPECTEDSIZE As Integer = 51294203
+        Protected Shared METAHASH As String = "MTBGNTQ0NTZCNzVCM0UxOTRGNzdBMDczNzZBRDUxREU="
 
 #Region "Generated File Hashes"
         ' Content\Data\badges.dat:ABCB97936D5FF133509D2A47FFAF27FF
@@ -53,8 +53,8 @@ Namespace Security
         ' Content\Data\maps\battle\chrono\resort.dat:38B42E6D18804FB58CCF52841FB3839B
         ' Content\Data\maps\battle\chrono\warehouse.dat:386BABBF576415915C66013BDC7BD230
         ' Content\Data\maps\battle\cianwood.dat:E5C1782FBB173E75A8C349DDF9D553AA
-        ' Content\Data\maps\battle\darkcave\darkcave0.dat:167D68F930156DDEF5AC1285ACA599F4
-        ' Content\Data\maps\battle\darkcave\darkcave1.dat:167D68F930156DDEF5AC1285ACA599F4
+        ' Content\Data\maps\battle\darkcave\darkcave0.dat:8279F4EE83E2D84299CDFC9DC8A742EE
+        ' Content\Data\maps\battle\darkcave\darkcave1.dat:8279F4EE83E2D84299CDFC9DC8A742EE
         ' Content\Data\maps\battle\diamonddive\end.dat:FA2FF2FBC0E84387AB80BD99911CB99D
         ' Content\Data\maps\battle\diamonddive\exterior.dat:A775D3F2603A05E1229471045ED69376
         ' Content\Data\maps\battle\diamonddive\interior.dat:4C90F974C538FC723E6D57199F665602
@@ -1249,7 +1249,7 @@ Namespace Security
         ' Content\Data\maps\routes\route24.dat:E6DB717F3EF87F15EB3EA8235327AC7C
         ' Content\Data\maps\routes\route25.dat:1632486D585CEF1E7EE667DBB3426E30
         ' Content\Data\maps\routes\route25\bill.dat:6C3C0B3834473C3214089DCC0D7B5B21
-        ' Content\Data\maps\routes\route26.dat:9878A9F3F69705A30FEC930858DE5F8E
+        ' Content\Data\maps\routes\route26.dat:26296834C793EB0D8F291A18F74D737B
         ' Content\Data\maps\routes\route26\0.dat:A885C8550612F8C39951C88A32866D4E
         ' Content\Data\maps\routes\route26\1.dat:85A413BCD9F6515F0A41A5522B46286B
         ' Content\Data\maps\routes\route27.dat:C05BD78D971F9BAD7FA535C0FE52C39F
@@ -1704,7 +1704,7 @@ Namespace Security
         ' Content\Data\Scripts\eusine\route14.dat:0AD6F93B6A5ECFE6DC9B709FC7C04EE7
         ' Content\Data\Scripts\eusine\route25.dat:222F9C36C17A31369BFC64D624D09EDD
         ' Content\Data\Scripts\eusine\route42.dat:5648A46712916691BCDC392B7D0A2961
-        ' Content\Data\Scripts\eusine\route42map.dat:6B0DF4B2DCE92416902E0F6F7628DBAD
+        ' Content\Data\Scripts\eusine\route42map.dat:E8B0756A2535F122742FD88DED981BA6
         ' Content\Data\Scripts\eusine\suicunebattle.dat:88EE373A8AAC74EE5E359D4A5B2BDEB6
         ' Content\Data\Scripts\eusine\vermilion.dat:CA5852AC7ACAFE1779C2A17AB42214A7
         ' Content\Data\Scripts\faraway\ancestoremblemcheck.dat:9A97FF16D52AEBC30A34BE3C836979DE
