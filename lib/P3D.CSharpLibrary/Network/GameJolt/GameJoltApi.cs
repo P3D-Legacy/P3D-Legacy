@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
-using P3D.ExternalLibrary.Json;
+using P3D.CSharpLibrary.Json;
 
 namespace P3D.ExternalLibrary.Network.GameJolt;
 

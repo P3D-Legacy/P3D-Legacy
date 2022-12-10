@@ -133,15 +133,6 @@ Public Module Core
 
         GameOptions.LoadOptions()
 
-        If Directory.Exists(GameController.GamePath & "\Temp") = True Then
-            Try
-                Directory.Delete(GameController.GamePath & "\Temp", True)
-                Logger.Log(Logger.LogTypes.Message, "Core.vb: Deleted Temp directory.")
-            Catch ex As Exception
-                Logger.Log(Logger.LogTypes.Warning, "Core.vb: Failed to delete the Temp directory.")
-            End Try
-        End If
-
         GameJolt.StaffProfile.SetupStaff()
 
         ScriptVersion2.ScriptLibrary.InitializeLibrary()

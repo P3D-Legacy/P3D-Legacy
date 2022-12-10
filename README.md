@@ -33,14 +33,14 @@ If you want to play online on the official Pokémon 3D server, you need a GameJo
 
 # Instructions to build the game from source
 
-The game is written in Visual Basic/VB.NET and was compiled targeting the .NET 6
+The game is written in Visual Basic/VB.NET and was compiled targeting the .NET 7
 
 It is built using the MonoGame framework as graphics middleware.
 
 In order to build the game's solution, you need the following:
 * Microsoft Windows operating system (7 and up)
 * [Microsoft Visual Studio Community Edition](https://www.visualstudio.com/) (2022 and up)
-* [Dotnet 6 SDK - Included in VS 2022](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+* [Dotnet 7 SDK - Included in VS 2022](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
 
 Make sure you've cloned the repository to a filepath without any spaces in it. It won't build otherwise.
 To run the game after a successful build, you also need an applicable graphics card that supports DirectX (version 9 minimum).

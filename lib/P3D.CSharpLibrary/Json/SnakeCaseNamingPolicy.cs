@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json;
 
-namespace P3D.ExternalLibrary.Json;
+namespace P3D.CSharpLibrary.Json;
 
 public class SnakeCaseNamingPolicy : JsonNamingPolicy
 {

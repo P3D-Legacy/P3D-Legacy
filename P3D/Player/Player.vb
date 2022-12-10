@@ -1150,53 +1150,55 @@
 
         If IsGameJoltSave = True Then
             If Core.GameOptions.Extras.Contains("Backup Save Feature") Then
-                If Not Directory.Exists(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Encrypted") Then
-                    Directory.CreateDirectory(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Encrypted")
+                Dim encryptedBackupSaveDirectory = Path.Combine(GameController.GamePath, "Backup Save", GameJoltSave.GameJoltID.ToString(), "Encrypted")
+                
+                If Not Directory.Exists(encryptedBackupSaveDirectory) Then
+                    Directory.CreateDirectory(encryptedBackupSaveDirectory)
                 End If
 
                 Dim OriginalHASH As String =
-                Encryption.EncryptString(GetApricornsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetBerriesData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetBoxData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetDaycareData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetHallOfFameData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetItemDataData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetItemsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetNPCDataData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetOptionsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetPartyData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetApricornsData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetBerriesData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetBoxData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetDaycareData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetHallOfFameData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetItemDataData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetItemsData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetNPCDataData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetOptionsData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetPartyData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
                 Encryption.EncryptString(GetPlayerData(False), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetPokedexData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetRegisterData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetRoamingPokemonData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetSecretBaseData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
-                Encryption.EncryptString(GetStatisticsData, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
+                Encryption.EncryptString(GetPokedexData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetRegisterData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetRoamingPokemonData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetSecretBaseData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)) & "|" &
+                Encryption.EncryptString(GetStatisticsData(), StringObfuscation.Obfuscate(GameJoltSave.GameJoltID))
 
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID.ToString() & "/Encrypted/Encrypted.dat",
-                                  OriginalHASH & "|" & Encryption.EncryptString(OriginalHASH, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)))
+                File.WriteAllText(Path.Combine(encryptedBackupSaveDirectory, "Encrypted.dat"), OriginalHASH & "|" & Encryption.EncryptString(OriginalHASH, StringObfuscation.Obfuscate(GameJoltSave.GameJoltID)))
 
                 Dim timestamp As String = Date.Now.ToString("yyyy-MM-dd_HH.mm.ss")
+                Dim backupSaveDirectory = Path.Combine(GameController.GamePath, "Backup Save", GameJoltSave.GameJoltID.ToString(), timestamp)
 
-                If Not Directory.Exists(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp) Then
-                    Directory.CreateDirectory(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp)
+                If Not Directory.Exists(backupSaveDirectory) Then
+                    Directory.CreateDirectory(backupSaveDirectory)
                 End If
 
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Apricorns.dat", GetApricornsData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Berries.dat", GetBerriesData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Box.dat", GetBoxData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Daycare.dat", GetDaycareData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/HallOfFame.dat", GetHallOfFameData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/ItemData.dat", GetItemDataData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Items.dat", GetItemsData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/NPC.dat", GetNPCDataData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Options.dat", GetOptionsData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Party.dat", GetPartyData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Player.dat", GetPlayerData(False))
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Pokedex.dat", GetPokedexData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Register.dat", GetRegisterData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/RoamingPokemon.dat", GetRoamingPokemonData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/SecretBase.dat", GetSecretBaseData)
-                File.WriteAllText(GameController.GamePath & "/Backup Save/" & GameJoltSave.GameJoltID & "/" & timestamp & "/Statistics.dat", GetStatisticsData)
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Apricorns.dat"), GetApricornsData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Berries.dat"), GetBerriesData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Box.dat"), GetBoxData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Daycare.dat"), GetDaycareData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "HallOfFame.dat"), GetHallOfFameData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "ItemData.dat"), GetItemDataData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Items.dat"), GetItemsData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "NPC.dat"), GetNPCDataData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Options.dat"), GetOptionsData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Party.dat"), GetPartyData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Player.dat"), GetPlayerData(False))
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Pokedex.dat"), GetPokedexData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Register.dat"), GetRegisterData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "RoamingPokemon.dat"), GetRoamingPokemonData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "SecretBase.dat"), GetSecretBaseData())
+                File.WriteAllText(Path.Combine(backupSaveDirectory, "Statistics.dat"), GetStatisticsData())
             End If
 
             Dim APICallSave As New GameJolt.APICall(AddressOf SaveGameHelpers.CompleteGameJoltSave)
