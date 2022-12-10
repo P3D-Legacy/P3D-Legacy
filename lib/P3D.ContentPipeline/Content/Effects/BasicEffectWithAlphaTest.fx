@@ -337,7 +337,7 @@ float4 PSBasic(VSOutput pin) : SV_Target0
 {
     float4 color = pin.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
     
     ApplyFog(color, pin.Specular.w);
     
@@ -350,7 +350,7 @@ float4 PSBasicNoFog(VSOutputNoFog pin) : SV_Target0
 {
     float4 color = pin.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
 
     return color;
 }
@@ -361,7 +361,7 @@ float4 PSBasicTx(VSOutputTx pin) : SV_Target0
 {
     float4 color = SAMPLE_TEXTURE(Texture, pin.TexCoord) * pin.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
     
     ApplyFog(color, pin.Specular.w);
     
@@ -374,7 +374,7 @@ float4 PSBasicTxNoFog(VSOutputTxNoFog pin) : SV_Target0
 {
     float4 color = SAMPLE_TEXTURE(Texture, pin.TexCoord) * pin.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
 
     return color;
 }
@@ -385,7 +385,7 @@ float4 PSBasicVertexLighting(VSOutput pin) : SV_Target0
 {
     float4 color = pin.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
 
     AddSpecular(color, pin.Specular.rgb);
     ApplyFog(color, pin.Specular.w);
@@ -399,7 +399,7 @@ float4 PSBasicVertexLightingNoFog(VSOutput pin) : SV_Target0
 {
     float4 color = pin.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
     
     AddSpecular(color, pin.Specular.rgb);
     
@@ -412,7 +412,7 @@ float4 PSBasicVertexLightingTx(VSOutputTx pin) : SV_Target0
 {
     float4 color = SAMPLE_TEXTURE(Texture, pin.TexCoord) * pin.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
     
     AddSpecular(color, pin.Specular.rgb);
     ApplyFog(color, pin.Specular.w);
@@ -426,7 +426,7 @@ float4 PSBasicVertexLightingTxNoFog(VSOutputTx pin) : SV_Target0
 {
     float4 color = SAMPLE_TEXTURE(Texture, pin.TexCoord) * pin.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
     
     AddSpecular(color, pin.Specular.rgb);
     
@@ -446,7 +446,7 @@ float4 PSBasicPixelLighting(VSOutputPixelLighting pin) : SV_Target0
 
     color.rgb *= lightResult.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
     
     AddSpecular(color, lightResult.Specular);
     ApplyFog(color, pin.PositionWS.w);
@@ -467,7 +467,7 @@ float4 PSBasicPixelLightingTx(VSOutputPixelLightingTx pin) : SV_Target0
     
     color.rgb *= lightResult.Diffuse;
 
-    clip(color.a < AlphaTest ? -1 : 1);
+    clip(color.a <= AlphaTest ? -1 : 1);
 
     AddSpecular(color, lightResult.Specular);
     ApplyFog(color, pin.PositionWS.w);

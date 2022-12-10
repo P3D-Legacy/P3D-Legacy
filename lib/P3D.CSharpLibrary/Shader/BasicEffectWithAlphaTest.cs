@@ -304,14 +304,14 @@ public class BasicEffectWithAlphaTest : Effect, IEffectMatrices, IEffectLights, 
     /// <summary>
     ///     Creates a new BasicEffect with default parameter settings.
     /// </summary>
-    public BasicEffectWithAlphaTest(GraphicsDevice device) : base(device, File.ReadAllBytes(Path.Join(Path.GetDirectoryName(AppContext.BaseDirectory), "Content", "Effects", "BasicEffectWithAlphaTest.mgfx")))
+    public BasicEffectWithAlphaTest(GraphicsDevice device) : base(device, File.ReadAllBytes(Path.Join(Path.GetDirectoryName(AppContext.BaseDirectory), "Content", "Effects", "BasicEffectWithAlphaTest.mgfxdx")))
     {
         CacheEffectParameters(null);
 
         DirectionalLight0.Enabled = true;
         SpecularColor = Vector3.One;
         SpecularPower = 16;
-        AlphaCutoff = 0.01f;
+        AlphaCutoff = 0;
     }
 
     /// <summary>
