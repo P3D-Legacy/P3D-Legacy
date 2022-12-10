@@ -182,7 +182,12 @@
 
     Private Function GetCloudAlpha() As Single
         If Screen.Level.World.EnvironmentType = World.EnvironmentTypes.Outside And World.IsAurora = False Then
-            Return 1.0F
+            Select Case World.GetWeatherFromWeatherType(Screen.Level.WeatherType)
+                Case World.Weathers.Blizzard, World.Weathers.Thunderstorm
+                    Return 0.25F
+                Case Else
+                    Return 1.0F
+            End Select
         Else
             Return 0.0F
         End If
