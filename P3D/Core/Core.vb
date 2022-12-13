@@ -1,4 +1,5 @@
 ﻿Imports System.Net.Http
+Imports System.Threading
 
 Public Module Core
 
@@ -51,12 +52,16 @@ Public Module Core
 
     Public BackgroundColor As Color = New Color(173, 216, 255)
 
-    Public OffsetMaps As New Dictionary(Of String, List(Of List(Of Entity)))
+    Public OffsetMaps As New Dictionary(Of String, List(Of List(Of Entity)))()
     
-    Public ReadOnly Property HttpClient as HttpClient = New HttpClient()
+    Public ReadOnly Property HttpClient As New HttpClient()
+    
+    Private _currentThread As Thread
+    Private ReadOnly _uiThreadTasks As New Queue(Of (Action, TaskCompletionSource))()
 
     Public Sub Initialize(gameReference As GameController)
         _GameInstance = gameReference
+        _currentThread = Thread.CurrentThread
 
         If CommandLineArgHandler.ForceGraphics = True Then
             Window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " (FORCED GRAPHICS)"
@@ -140,6 +145,17 @@ Public Module Core
 
     Public Sub Update(ByVal gameTime As GameTime)
         Core.GameTime = gameTime
+        
+        Dim threadAction As (action As Action, tcs As TaskCompletionSource)
+        
+        While _uiThreadTasks.TryDequeue(threadAction)
+            Try
+                threadAction.action.Invoke()
+                threadAction.tcs.SetResult()
+            Catch exception As Exception
+                threadAction.tcs.SetException(exception)
+            End Try
+        End While
 
         ConnectScreen.UpdateConnectSet()
 
@@ -292,5 +308,23 @@ Public Module Core
 
         windowSize = New Rectangle(0, 0, CInt(size.X), CInt(size.Y))
     End Sub
+    
+    Public Function RunOnUiThread(action As Action) As Task
+        Dim result = New TaskCompletionSource()
+        
+        If Thread.CurrentThread.Equals(_currentThread) Then
+            Try
+                action.Invoke()
+                result.SetResult()
+            Catch exception As Exception
+                result.SetException(exception)
+            End Try
+            
+            Return result.Task
+        Else 
+            _uiThreadTasks.Enqueue((action, result))
+            Return result.Task
+        End If
+    End Function
 
 End Module

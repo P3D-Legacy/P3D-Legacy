@@ -2,10 +2,9 @@
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net7.0-windows</TargetFramework>
-        <UseWindowsForms>True</UseWindowsForms>
         <AssemblyName>Pokemon3D</AssemblyName>
         <RootNamespace>P3D</RootNamespace>
-        <ApplicationIcon>Pokemon3D.ico</ApplicationIcon>
+        <ApplicationIcon>Icon.ico</ApplicationIcon>
 
         <Version>0.59.1</Version>
         <Title>Pokémon3D</Title>
@@ -81,7 +80,8 @@
         <None Include="meta">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <Content Include="Pokemon3D.ico" />
+        <EmbeddedResource Include="Icon.ico" />
+        <EmbeddedResource Include="Icon.bmp" />
         <None Include="Pokemon\Items\_itemList.txt" />
     </ItemGroup>
     <ItemGroup>

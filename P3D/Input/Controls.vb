@@ -1,6 +1,4 @@
-﻿Imports System.Windows.Forms
-
-Public Class Controls
+﻿Public Class Controls
 
     Private Enum PressDirections
         Up
@@ -274,16 +272,13 @@ Public Class Controls
     End Function
 
     Public Shared Function CtrlPressed(Optional ByVal PressedFlag As String = "LR", Optional TriggerButtons As Boolean = True) As Boolean
-        If System.Windows.Forms.Control.ModifierKeys = (System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) Then
-            Return False
-        End If
-        If PressedFlag.Contains("L") And (Control.ModifierKeys And Keys.Control) = Keys.Control Then
+        If PressedFlag.Contains("L") And (KeyBoardHandler.KeyPressed(Keys.LeftControl)) Then
             Return True
         End If
         If PressedFlag.Contains("L") And ControllerHandler.ButtonDown(Buttons.LeftTrigger) = True And TriggerButtons = True Then
             Return True
         End If
-        If PressedFlag.Contains("R") And (Control.ModifierKeys And Keys.Control) = Keys.Control Then
+        If PressedFlag.Contains("R") And (KeyBoardHandler.KeyPressed(Keys.RightControl)) Then
             Return True
         End If
         If PressedFlag.Contains("R") And ControllerHandler.ButtonDown(Buttons.RightTrigger) = True And TriggerButtons = True Then

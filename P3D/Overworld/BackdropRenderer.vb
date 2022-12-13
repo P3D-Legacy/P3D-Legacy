@@ -40,12 +40,12 @@
             Public pos As Vector3
             Public uv As Vector2
             Public normal As Vector3
-            Public tangent As Vector3
+            'Public tangent As Vector3
 
             Public Sub New(ByVal position As Vector3, ByVal nor As Vector3, ByVal tan As Vector3, ByVal texturePosition As Vector2)
                 Me.pos = position
                 Me.normal = nor
-                Me.tangent = tan
+                'Me.tangent = tan
                 Me.uv = texturePosition
             End Sub
 
@@ -55,8 +55,7 @@
 
             Public Shared VertexElements As VertexElement() = {New VertexElement(0, VertexElementFormat.Vector3, VertexElementUsage.Position, 0),
                  New VertexElement(12, VertexElementFormat.Vector2, VertexElementUsage.TextureCoordinate, 0),
-                 New VertexElement(20, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0),
-                 New VertexElement(32, VertexElementFormat.Vector3, VertexElementUsage.Tangent, 0)}
+                 New VertexElement(20, VertexElementFormat.Vector3, VertexElementUsage.Normal, 0)}
 
             Public Shared VertexDeclaration As VertexDeclaration = New VertexDeclaration(VertexElements)
 

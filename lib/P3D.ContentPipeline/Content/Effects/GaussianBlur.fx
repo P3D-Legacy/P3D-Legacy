@@ -1,4 +1,12 @@
-﻿#define RADIUS  7
+﻿#if OPENGL
+    #define VS_SHADERMODEL vs_3_0
+    #define PS_SHADERMODEL ps_3_0
+#else
+    #define VS_SHADERMODEL vs_4_0_level_9_1
+    #define PS_SHADERMODEL ps_4_0_level_9_1
+#endif
+
+#define RADIUS  7
 #define KERNEL_SIZE (RADIUS * 2 + 1)
 
 //-----------------------------------------------------------------------------
@@ -36,6 +44,6 @@ technique GaussianBlur
 {
     pass Pass1
     {
-        PixelShader = compile ps_4_0 PS_MAIN();
+        PixelShader = compile PS_SHADERMODEL PS_MAIN();
     }
 }
