@@ -656,7 +656,7 @@ NPCs:
 {"NPC"{NPC[{"Position"{sngArr[7,0,18]}}{"TextureID"{str[11]}}{"ID"{int[4]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[They built the new~Radio Tower to*replace the old,~creaky one.]}}{"Rotation"{int[0]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[12,0,16]}}{"TextureID"{str[7]}}{"ID"{int[5]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[Is that man in~black dressed up*like a Team Rocket~member? How silly!]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[17,0,10]}}{"TextureID"{str[15]}}{"ID"{int[6]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[The man at that~house rates your~Pokémon names.*He can even rename~your Pokémon.]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"NPC"{NPC[{"Position"{sngArr[30,0,17]}}{"TextureID"{str[9]}}{"ID"{int[7]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[I know there's a~new Bike Shop, but*I can't find it~anywhere.]}}{"Rotation"{int[1]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[30,0,17]}}{"TextureID"{str[9]}}{"ID"{int[7]}}{"Name"{str[random]}}{"Action"{int[0]}}{"AdditionalValue"{str[I know there's a~new Ride Shop, but*I can't find it~anywhere.]}}{"Rotation"{int[1]}}{"Movement"{str[Looking]}}{"MoveRectangles"{recArr[]}}]}}
 
 Rockets:
 {"NPC"{NPC[{"Position"{sngArr[4,0,16]}}{"TextureID"{str[GruntM]}}{"ID"{int[8]}}{"Name"{str[rocket1]}}{"Action"{int[0]}}{"AdditionalValue"{str[So this is the~Radio Tower...*What do you want,~you pest? Scram!]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}

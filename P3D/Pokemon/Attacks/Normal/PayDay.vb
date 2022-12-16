@@ -68,6 +68,12 @@ Namespace BattleSystem.Moves.Normal
                 End If
             End If
 
+            For Each mysteryEvent As MysteryEventScreen.MysteryEvent In MysteryEventScreen.ActivatedMysteryEvents
+                If mysteryEvent.EventType = MysteryEventScreen.EventTypes.MoneyMultiplier Then
+                    coinAmount = CInt(coinAmount * CDbl(mysteryEvent.Value.Replace(".", GameController.DecSeparator)))
+                End If
+            Next
+
             If own = True Then
                 BattleScreen.FieldEffects.OwnPayDayCounter += coinAmount
             Else

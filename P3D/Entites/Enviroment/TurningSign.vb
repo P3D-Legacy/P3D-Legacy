@@ -2,7 +2,7 @@
 
     Inherits Entity
 
-    Dim TurningSpeed As Single = 0.01F
+    Dim TurningSpeed As Single = 1 / 100 * MathHelper.Pi
 
     Public Overrides Sub Initialize()
         MyBase.Initialize()
@@ -18,12 +18,17 @@
         End Select
 
         If StringHelper.IsNumeric(Me.AdditionalValue) = True Then
-            Me.TurningSpeed = CSng(CInt(Me.AdditionalValue) / 100)
+            Me.TurningSpeed = CSng(CInt(Me.AdditionalValue) / 100 * MathHelper.Pi)
         End If
         Me.CreateWorldEveryFrame = True
     End Sub
 
     Public Overrides Sub UpdateEntity()
+        If Me.TurningSpeed <> CSng(CInt(Me.AdditionalValue) / 100 * MathHelper.Pi) Then
+            If StringHelper.IsNumeric(Me.AdditionalValue) = True Then
+                Me.TurningSpeed = CSng(CInt(Me.AdditionalValue) / 100 * MathHelper.Pi)
+            End If
+        End If
         Select Case Me.ActionValue
             Case 1
                 Me.Rotation.X += TurningSpeed
