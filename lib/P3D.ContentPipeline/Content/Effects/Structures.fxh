@@ -8,53 +8,58 @@
 
 // Vertex shader input structures.
 
+struct VSHWInputInstance
+{
+    float4 Position : POSITION1;
+};
+
 struct VSInput
 {
-    float4 Position : POSITION;
+    float4 Position : POSITION0;
 };
 
 struct VSInputVc
 {
-    float4 Position : POSITION;
+    float4 Position : POSITION0;
     float4 Color    : COLOR;
 };
 
 struct VSInputTx
 {
-    float4 Position : POSITION;
+    float4 Position : POSITION0;
     float2 TexCoord : TEXCOORD;
 };
 
 struct VSInputTxVc
 {
-    float4 Position : POSITION;
+    float4 Position : POSITION0;
     float2 TexCoord : TEXCOORD;
     float4 Color    : COLOR;
 };
 
 struct VSInputNm
 {
-    float4 Position : POSITION;
+    float4 Position : POSITION0;
     float3 Normal   : NORMAL;
 };
 
 struct VSInputNmVc
 {
-    float4 Position : POSITION;
+    float4 Position : POSITION0;
     float3 Normal   : NORMAL;
     float4 Color    : COLOR;
 };
 
 struct VSInputNmTx
 {
-    float4 Position : POSITION;
+    float4 Position : POSITION0;
     float3 Normal   : NORMAL;
     float2 TexCoord : TEXCOORD;
 };
 
 struct VSInputNmTxVc
 {
-    float4 Position : POSITION;
+    float4 Position : POSITION0;
     float3 Normal   : NORMAL;
     float2 TexCoord : TEXCOORD;
     float4 Color    : COLOR;

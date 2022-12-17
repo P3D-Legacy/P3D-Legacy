@@ -9,8 +9,8 @@ Namespace Security
         ' Actual code will be read from FileValidation.Generated.vb which generates a FileValidation class with
         ' the same details as here.
         '
-        Protected Shared EXPECTEDSIZE As Integer = 51294203
-        Protected Shared METAHASH As String = "MTBGNTQ0NTZCNzVCM0UxOTRGNzdBMDczNzZBRDUxREU="
+        Protected Shared EXPECTEDSIZE As Integer = 51448075
+        Protected Shared METAHASH As String = "OUM0QURGNTRBRDQwOTVBQzgwQjE0RkQ2M0VCQzdDMEM="
 
 #Region "Generated File Hashes"
         ' Content\Data\badges.dat:ABCB97936D5FF133509D2A47FFAF27FF
@@ -470,11 +470,11 @@ Namespace Security
         ' Content\Data\maps\chrono\center.dat:5868589EDA7779B50D1206230FDCF6ED
         ' Content\Data\maps\chrono\dock.dat:418D12AAA09A0236AC148BAF771296B2
         ' Content\Data\maps\chrono\labyrinth.dat:ACB32897809ECB8C0688322748579D75
-        ' Content\Data\maps\chrono\meadow.dat:9235593CE7A561704D0351E6C55C0409
-        ' Content\Data\maps\chrono\memorial.dat:705611123E7C29CB25A63926A0857780
+        ' Content\Data\maps\chrono\meadow.dat:6144DBDC5858F43EC23A160F7D403761
+        ' Content\Data\maps\chrono\memorial.dat:A3049FCD33B0F7C634FD73DBE2C2DB0A
         ' Content\Data\maps\chrono\resort.dat:94286308589370B9DC8BFACC4392B359
         ' Content\Data\maps\chrono\selphy.dat:ED58F7B98C033E6C4E3624725F30CE2D
-        ' Content\Data\maps\chrono\town.dat:8552023E5723AFE1CA0BD6FCACC9E388
+        ' Content\Data\maps\chrono\town.dat:929ED74B17270A495CADBCCDEA3C608C
         ' Content\Data\maps\chrono\warehouse.dat:A8A9C4D6880C6C8074968F172EB6D54E
         ' Content\Data\maps\cianwood.dat:F65E27FC2485FF511F8446C294B3E374
         ' Content\Data\maps\cianwood\000.dat:FDCA1914CDD40BB1BA37192240DF2C48
@@ -560,7 +560,7 @@ Namespace Security
         ' Content\Data\maps\dungeon\2\7.dat:E6C050065E50833F93F1EF8370A2F87A
         ' Content\Data\maps\dungeon\2\mega.dat:529A45A95BA629134B94D6EC2D1E80B0
         ' Content\Data\maps\dungeon\2\offset.dat:4412CC3999E71456DED7673FBEC835F1
-        ' Content\Data\maps\dungeon\2\outside.dat:6DDF59FAB5162E5FD7057B551A37D612
+        ' Content\Data\maps\dungeon\2\outside.dat:F56AE7053AE1ACE291D342199C8E06D4
         ' Content\Data\maps\dungeon\checkpoint1.dat:13842649B778B9CC26D3F8F069BEA8D8
         ' Content\Data\maps\dungeon\chess.dat:D4BE4900C0B64E200C1D835CAEFA1F72
         ' Content\Data\maps\dungeon\main.dat:CE41B65583DD2A21BAD97B143DFCA06B
@@ -596,7 +596,7 @@ Namespace Security
         ' Content\Data\maps\floe\daycare.dat:E1810DED08D09E4B42151433C214AE85
         ' Content\Data\maps\floe\dock.dat:C6F825902FD8C82D2CB5D2B725E93005
         ' Content\Data\maps\floe\mart.dat:61635323BB8A65048E4B8C778ABD0BCA
-        ' Content\Data\maps\floe\town.dat:B4EB649DC279AA94B319AA8BFAEA7E5C
+        ' Content\Data\maps\floe\town.dat:D320E9496F65824F668006D9A2C42EDC
         ' Content\Data\maps\fortune\0.dat:020684BB167AD66E78A40DD5FE96836E
         ' Content\Data\maps\fortune\1.dat:2F7B83D6EA510E70B4627134D225C1A2
         ' Content\Data\maps\fortune\2.dat:3C56E68B6ED4B38E265EBF9F487269E4
@@ -656,7 +656,7 @@ Namespace Security
         ' Content\Data\maps\gates\saffronsouth.dat:1F617909ADCD7661758307B0AF879A3D
         ' Content\Data\maps\gates\saffronwest.dat:98A44BE1CD755DCB4BADFF058D70278D
         ' Content\Data\maps\gates\zephyr.dat:F83669C41736DEC900FD7772722B6904
-        ' Content\Data\maps\goldenrod.dat:9BEFC7E121B563110F5C0C8555758228
+        ' Content\Data\maps\goldenrod.dat:BC2788E604FD62FC68B50C62B4CD04A0
         ' Content\Data\maps\goldenrod\001.dat:ADFB052FFB1D1833198F23338C425FDD
         ' Content\Data\maps\goldenrod\002.dat:625AC7FA2B48254001640CDE9E964D1C
         ' Content\Data\maps\goldenrod\bill.dat:B1406D16732CC6F5D502BD569D4F4533
@@ -1148,24 +1148,24 @@ Namespace Security
         ' Content\Data\maps\poke\whirlislands\wfall.poke:65779666A2AB8757233FA797F6FE1F1F
         ' Content\Data\maps\quest\0.dat:F06A6AD7FBEF7070149B9B272AE6C1CA
         ' Content\Data\maps\quest\1.dat:C29544438B9FB5CA21F82ACBB842E95C
-        ' Content\Data\maps\quest\canyonent.dat:7B2B30E4EDADCFDC8847082A956DEA20
+        ' Content\Data\maps\quest\canyonent.dat:327DE4A87A27CB34A68EE0E55731874E
         ' Content\Data\maps\quest\center.dat:0176201DA7FC79B647929A215A09DF4A
         ' Content\Data\maps\quest\dock.dat:EE9FB1FDB3BB7AC0CB43E23FA224C83A
         ' Content\Data\maps\quest\mart.dat:84F491AF5E71597B8E22C5E24C637574
-        ' Content\Data\maps\quest\offset\east.dat:9928F0D9A6468688922059FAF43C8D99
-        ' Content\Data\maps\quest\offset\north.dat:297437E1265658F856404CC4638B3B6D
-        ' Content\Data\maps\quest\offset\west.dat:D8A0E74D8588859392EA686AC20547B0
-        ' Content\Data\maps\quest\sevault.dat:742635206E8434A6B60F1AE771B79262
+        ' Content\Data\maps\quest\offset\east.dat:920C7B824EEC5F4E12EED6BD69A5E07D
+        ' Content\Data\maps\quest\offset\north.dat:C7CF5D49C4D12B4E24286E03BD865871
+        ' Content\Data\maps\quest\offset\west.dat:35F7BF10DBDA86863AD27308B10C764C
+        ' Content\Data\maps\quest\sevault.dat:36BA2D0D9D7BE651C581057B5FE7C8E0
         ' Content\Data\maps\quest\tanoby\dilford.dat:2138D868CEC9A9B8F6AAF7CE9E3AAB09
         ' Content\Data\maps\quest\tanoby\key.dat:76B57BA99EAC7CAF4861B316D579B960
         ' Content\Data\maps\quest\tanoby\liptoo.dat:67A37690A7901800C95812696DE6DE23
-        ' Content\Data\maps\quest\tanoby\main.dat:568FB89E52A1D88FCFF93F15EC533275
+        ' Content\Data\maps\quest\tanoby\main.dat:BE0636201E16E14759CC1D05EDD4A5EF
         ' Content\Data\maps\quest\tanoby\monean.dat:5DD7A02B5FB4C8C75589F416B7678177
         ' Content\Data\maps\quest\tanoby\rixy.dat:11E9568E4507289C1BDF148A54DCE019
         ' Content\Data\maps\quest\tanoby\scufib.dat:FE6B5ECC6F315A4E9C61E1F819AEAE7F
         ' Content\Data\maps\quest\tanoby\viapois.dat:0EEFB38CC4431584D75B6CAF675DD6BB
         ' Content\Data\maps\quest\tanoby\weepth.dat:734FFD0C9328527E25BD588C180B1BA1
-        ' Content\Data\maps\quest\town.dat:9985A2153E43801713B99CC12F0FD618
+        ' Content\Data\maps\quest\town.dat:16A50DD4A8199897B00CC538263B0D48
         ' Content\Data\maps\quest\trainertower\double\1f.dat:67C5153DC83919384FD5FF083C84E8C6
         ' Content\Data\maps\quest\trainertower\double\2f.dat:B34AE7757ED8FC326F9FF2EA279601AC
         ' Content\Data\maps\quest\trainertower\double\3f.dat:A0F1D466B40802A38B94F03A9028EDDF
@@ -1183,7 +1183,7 @@ Namespace Security
         ' Content\Data\maps\quest\trainertower\knockout\6f.dat:7731AE9947619FCC2692C26067C006E9
         ' Content\Data\maps\quest\trainertower\knockout\7f.dat:8A81484592F2527D3F9548BAABA115F4
         ' Content\Data\maps\quest\trainertower\knockout\8f.dat:C3EEAC00C3EB5B4E791FF2CFA7DFE454
-        ' Content\Data\maps\quest\trainertower\main.dat:18DA7D9D59D0E9A8416C617B2988CD4A
+        ' Content\Data\maps\quest\trainertower\main.dat:00D7AC48406AD10266BB56067DB9DBF7
         ' Content\Data\maps\quest\trainertower\mixed\1f.dat:5FBFA635B6D733DD08EAF689A47B441E
         ' Content\Data\maps\quest\trainertower\mixed\2f.dat:BE4A063B284D1BA41452140F36B32F12
         ' Content\Data\maps\quest\trainertower\mixed\3f.dat:59154A768013BD956D32BCBAEDAD963A
@@ -1371,6 +1371,9 @@ Namespace Security
         ' Content\Data\maps\SSAqua\vermilion\main.dat:BBC1EB012BF775B95DA0B31FF4AB55F3
         ' Content\Data\maps\structures\cyclingroad\lamp_east.dat:ED33CA3F3082AC8D9337224A68123300
         ' Content\Data\maps\structures\cyclingroad\lamp_west.dat:AF7AD9CDF21BA6BDFC503082BF00ADC3
+        ' Content\Data\maps\structures\frontier\facilities\factory.dat:C8DE0B30DA241A2075E4C9233D09952A
+        ' Content\Data\maps\structures\frontier\facilities\pike.dat:91235B72FA132AEAA3EB14FE45228246
+        ' Content\Data\maps\structures\frontier\facilities\tower.dat:B28D7C26E6660F37E3BABA134F9DE3A9
         ' Content\Data\maps\structures\frontier\factory.dat:BDB3D61313D4502E1AA99C35DDC6DFDE
         ' Content\Data\maps\structures\frontier\flag.dat:DC77E21957FCBA554420B08711B82C14
         ' Content\Data\maps\structures\frontier\small_house0.dat:B2652BF513A549D628A6C3C822C7C890
@@ -1395,6 +1398,7 @@ Namespace Security
         ' Content\Data\maps\structures\saffron\shortwdoor.dat:451B0C1FFBED1FDFC297182417C4AED9
         ' Content\Data\maps\structures\saffron\shortwestwall.dat:2CC63A0EFAB51053A054D7BDC19780EC
         ' Content\Data\maps\structures\saffron\tall.dat:E060B5BAE1E9D4B78E3EE2F93351EB9C
+        ' Content\Data\maps\structures\SeaPlane.dat:C055532E3C426B089A2A4C6CBA65DFD8
         ' Content\Data\maps\structures\sevii\brownhouse.dat:94214CB3BEE744764D9F6934869EDEF9
         ' Content\Data\maps\structures\sevii\center.dat:3CEE73707B61DA77BE571A1596FBE79A
         ' Content\Data\maps\structures\sevii\dock.dat:672A427872CD3E18F7397C7B86CAF789

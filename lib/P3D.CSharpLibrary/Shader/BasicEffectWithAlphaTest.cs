@@ -264,6 +264,23 @@ public class BasicEffectWithAlphaTest : Effect, IEffectMatrices, IEffectLights, 
         set => alphaTestParam.SetValue(value);
     }
 
+    /// <summary>
+    ///     Gets or sets hardware instancing.
+    /// </summary>
+    public bool EnableHardwareInstancing
+    {
+        get => hwEnabled;
+
+        set
+        {
+            if (hwEnabled != value)
+            {
+                hwEnabled = value;
+                dirtyFlags |= EffectDirtyFlags.ShaderIndex;
+            }
+        }
+    }
+
     private EffectParameter textureParam;
     private EffectParameter diffuseColorParam;
     private EffectParameter emissiveColorParam;
@@ -298,6 +315,8 @@ public class BasicEffectWithAlphaTest : Effect, IEffectMatrices, IEffectLights, 
 
     private float fogStart;
     private float fogEnd = 1;
+
+    private bool hwEnabled;
 
     private EffectDirtyFlags dirtyFlags = EffectDirtyFlags.All;
 
@@ -422,6 +441,11 @@ public class BasicEffectWithAlphaTest : Effect, IEffectMatrices, IEffectLights, 
                 {
                     shaderIndex += 8;
                 }
+            }
+
+            if (hwEnabled)
+            {
+                shaderIndex += 32;
             }
 
             dirtyFlags &= ~EffectDirtyFlags.ShaderIndex;
