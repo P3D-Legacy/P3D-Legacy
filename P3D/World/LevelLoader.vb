@@ -1148,9 +1148,6 @@
         Dim PosList As List(Of Integer) = CType(GetTag(Tags, "Position"), List(Of Integer))
         Dim Position As Vector3 = New Vector3(PosList(0) + Offset.X, PosList(1) + Offset.Y, PosList(2) + Offset.Z)
 
-        Dim ObjectSizeList As List(Of Integer) = CType(GetTag(Tags, "Size"), List(Of Integer))
-        Dim ObjectSize As New Size(ObjectSizeList(0), ObjectSizeList(1))
-
         Dim DayTime As New List(Of Integer)
         If TagExists(Tags, "DayTime") = True Then
             DayTime = CType(GetTag(Tags, "DayTime"), List(Of Integer))
