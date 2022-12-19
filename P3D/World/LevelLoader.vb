@@ -211,7 +211,7 @@
                             Case TagTypes.Entity
                                 AddEntity(Tags, New Size(1, 1), 1, True, New Vector3(1, 1, 1))
                             Case TagTypes.Floor
-                                AddFloor(Tags)
+                                AddFloor(Tags, loadOffsetMap)
                             Case TagTypes.Level
                                 If loadOffsetMap = False Then
                                     SetupLevel(Tags)
@@ -433,9 +433,7 @@
                     entList.Add(Screen.Level.OffsetmapEntities(i))
                 Next
                 For i = offsetFloorCount To Screen.Level.OffsetmapFloors.Count - 1
-                    If Screen.Level.OffsetmapFloors(i).Visible = True Then
-                        floorList.Add(Screen.Level.OffsetmapFloors(i))
-                    End If
+                    floorList.Add(Screen.Level.OffsetmapFloors(i))
                 Next
                 mapList.AddRange({entList, floorList})
 
@@ -673,7 +671,7 @@
         End If
     End Sub
 
-    Private Sub AddFloor(ByVal Tags As Dictionary(Of String, Object))
+    Private Sub AddFloor(ByVal Tags As Dictionary(Of String, Object), Optional IsOffsetFloor As Boolean = False)
         Dim sizeList As List(Of Integer) = CType(GetTag(Tags, "Size"), List(Of Integer))
         Dim Size As Size = New Size(sizeList(0), sizeList(1))
 
@@ -729,63 +727,64 @@
         If loadOffsetMap = True Then
             floorList = Screen.Level.OffsetmapFloors
         End If
+        If IsOffsetFloor = False OrElse IsOffsetFloor = True AndAlso Visible = True Then
+            If RemoveFloor = False Then
+                For x = 0 To Size.Width - 1
+                    For z = 0 To Size.Height - 1
+                        Dim exists As Boolean = False
 
-        If RemoveFloor = False Then
-            For x = 0 To Size.Width - 1
-                For z = 0 To Size.Height - 1
-                    Dim exists As Boolean = False
+                        Dim iZ As Integer = z
+                        Dim iX As Integer = x
 
-                    Dim iZ As Integer = z
-                    Dim iX As Integer = x
+                        Dim Ent As Entity = Nothing
 
-                    Dim Ent As Entity = Nothing
+                        If loadOffsetMap = True Then
+                            Ent = Screen.Level.OffsetmapFloors.Find(Function(e As Entity)
+                                                                        Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
+                                                                    End Function)
+                        Else
+                            Ent = Screen.Level.Floors.Find(Function(e As Entity)
+                                                               Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
+                                                           End Function)
+                        End If
 
-                    If loadOffsetMap = True Then
-                        Ent = Screen.Level.OffsetmapFloors.Find(Function(e As Entity)
-                                                                    Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
-                                                                End Function)
-                    Else
-                        Ent = Screen.Level.Floors.Find(Function(e As Entity)
-                                                           Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
-                                                       End Function)
-                    End If
+                        If Not Ent Is Nothing Then
+                            Ent.Textures = {Texture}
+                            Ent.Visible = Visible
+                            Ent.SeasonColorTexture = SeasonTexture
+                            Ent.LoadSeasonTextures()
+                            CType(Ent, Floor).SetRotation(rotation)
+                            CType(Ent, Floor).hasSnow = hasSnow
+                            CType(Ent, Floor).IsIce = hasIce
+                            CType(Ent, Floor).hasSand = hasSand
+                            exists = True
+                        End If
 
-                    If Not Ent Is Nothing Then
-                        Ent.Textures = {Texture}
-                        Ent.Visible = Visible
-                        Ent.SeasonColorTexture = SeasonTexture
-                        Ent.LoadSeasonTextures()
-                        CType(Ent, Floor).SetRotation(rotation)
-                        CType(Ent, Floor).hasSnow = hasSnow
-                        CType(Ent, Floor).IsIce = hasIce
-                        CType(Ent, Floor).hasSand = hasSand
-                        exists = True
-                    End If
-
-                    If exists = False Then
-                        Dim f As Floor = New Floor(Position.X + x, Position.Y, Position.Z + z, {TextureManager.GetTexture(TexturePath, TextureRectangle)}, {0, 0}, False, rotation, New Vector3(1.0F), BaseModel.FloorModel, 0, "", Visible, Shader, hasSnow, hasIce, hasSand)
-                        f.MapOrigin = MapOrigin
-                        f.SeasonColorTexture = SeasonTexture
-                        f.LoadSeasonTextures()
-                        f.IsOffsetMapContent = loadOffsetMap
-                        floorList.Add(f)
-                    End If
-                Next
-            Next
-        Else
-            For x = 0 To Size.Width - 1
-                For z = 0 To Size.Height - 1
-                    For i = 0 To floorList.Count
-                        If i < floorList.Count Then
-                            Dim floor As Entity = floorList(i)
-                            If floor.Position.X = Position.X + x And floor.Position.Y = Position.Y And floor.Position.Z = Position.Z + z Then
-                                floorList.RemoveAt(i)
-                                i -= 1
-                            End If
+                        If exists = False Then
+                            Dim f As Floor = New Floor(Position.X + x, Position.Y, Position.Z + z, {TextureManager.GetTexture(TexturePath, TextureRectangle)}, {0, 0}, False, rotation, New Vector3(1.0F), BaseModel.FloorModel, 0, "", Visible, Shader, hasSnow, hasIce, hasSand)
+                            f.MapOrigin = MapOrigin
+                            f.SeasonColorTexture = SeasonTexture
+                            f.LoadSeasonTextures()
+                            f.IsOffsetMapContent = loadOffsetMap
+                            floorList.Add(f)
                         End If
                     Next
                 Next
-            Next
+            Else
+                For x = 0 To Size.Width - 1
+                    For z = 0 To Size.Height - 1
+                        For i = 0 To floorList.Count
+                            If i < floorList.Count Then
+                                Dim floor As Entity = floorList(i)
+                                If floor.Position.X = Position.X + x And floor.Position.Y = Position.Y And floor.Position.Z = Position.Z + z Then
+                                    floorList.RemoveAt(i)
+                                    i -= 1
+                                End If
+                            End If
+                        Next
+                    Next
+                Next
+            End If
         End If
     End Sub
 
