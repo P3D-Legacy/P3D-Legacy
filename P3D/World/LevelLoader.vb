@@ -433,7 +433,9 @@
                     entList.Add(Screen.Level.OffsetmapEntities(i))
                 Next
                 For i = offsetFloorCount To Screen.Level.OffsetmapFloors.Count - 1
-                    floorList.Add(Screen.Level.OffsetmapFloors(i))
+                    If Screen.Level.OffsetmapFloors(i).Visible = True Then
+                        floorList.Add(Screen.Level.OffsetmapFloors(i))
+                    End If
                 Next
                 mapList.AddRange({entList, floorList})
 
