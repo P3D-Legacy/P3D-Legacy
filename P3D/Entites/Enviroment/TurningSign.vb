@@ -17,16 +17,20 @@
                 Me.Rotation.Y = randomValue
         End Select
 
-        If StringHelper.IsNumeric(Me.AdditionalValue) = True Then
-            Me.TurningSpeed = CSng(CInt(Me.AdditionalValue) / 100 * MathHelper.Pi)
+        If Me.AdditionalValue <> "" Then
+            If StringHelper.IsNumeric(Me.AdditionalValue) = True Then
+                Me.TurningSpeed = CSng(CInt(Me.AdditionalValue) / 100 * MathHelper.Pi)
+            End If
         End If
         Me.CreateWorldEveryFrame = True
     End Sub
 
     Public Overrides Sub UpdateEntity()
-        If Me.TurningSpeed <> CSng(CInt(Me.AdditionalValue) / 100 * MathHelper.Pi) Then
-            If StringHelper.IsNumeric(Me.AdditionalValue) = True Then
-                Me.TurningSpeed = CSng(CInt(Me.AdditionalValue) / 100 * MathHelper.Pi)
+        If Me.AdditionalValue <> "" Then
+            If Me.TurningSpeed <> CSng(CInt(Me.AdditionalValue) / 100 * MathHelper.Pi) Then
+                If StringHelper.IsNumeric(Me.AdditionalValue) = True Then
+                    Me.TurningSpeed = CSng(CInt(Me.AdditionalValue) / 100 * MathHelper.Pi)
+                End If
             End If
         End If
         Select Case Me.ActionValue
