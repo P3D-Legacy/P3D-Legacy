@@ -30914,7 +30914,7 @@
     <Compile Include="Pokemon\Attacks\Poison\AcidSpray.vb" />
     <Compile Include="Pokemon\Attacks\Poison\ClearSmog.vb" />
     <Compile Include="Pokemon\Attacks\Poison\Coil.vb" />
-    <Compile Include="Pokemon\Attacks\Poison\Crosspoison.vb" />
+    <Compile Include="Pokemon\Attacks\Poison\CrossPoison.vb" />
     <Compile Include="Pokemon\Attacks\Poison\GunkShot.vb" />
     <Compile Include="Pokemon\Attacks\Poison\PoisonFang.vb" />
     <Compile Include="Pokemon\Attacks\Poison\PoisonGas.vb" />
@@ -30984,7 +30984,7 @@
     <Compile Include="Pokemon\Attacks\Rock\Rollout.vb" />
     <Compile Include="Pokemon\Attacks\Rock\Sandstorm.vb" />
     <Compile Include="Pokemon\Attacks\Rock\SmackDown.vb" />
-    <Compile Include="Pokemon\Attacks\Rock\Stealthrock.vb" />
+    <Compile Include="Pokemon\Attacks\Rock\StealthRock.vb" />
     <Compile Include="Pokemon\Attacks\Rock\StoneEdge.vb" />
     <Compile Include="Pokemon\Attacks\Special\ConfusionAttack.vb" />
     <Compile Include="Pokemon\Attacks\Steel\Autotomize.vb" />

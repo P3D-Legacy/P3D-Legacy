@@ -1123,7 +1123,7 @@
                 Case 439
                     returnMove = New Moves.Rock.RockWrecker()
                 Case 440
-                    returnMove = New Moves.Poison.Crosspoison()
+                    returnMove = New Moves.Poison.CrossPoison()
                 Case 441
                     returnMove = New Moves.Poison.GunkShot()
                 Case 442

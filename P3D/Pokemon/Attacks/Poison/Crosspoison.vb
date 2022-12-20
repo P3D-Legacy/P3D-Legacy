@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Poison
 
-    Public Class Crosspoison
+    Public Class CrossPoison
 
         Inherits Attack
 
@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cool
-            Me.Name = Localization.GetString("move_name_" & Me.ID,"Cross Poison")
+            Me.Name = Localization.GetString("move_name_" & Me.ID, "Cross Poison")
             Me.Description = "A slashing attack with a poisonous blade that may also leave the target poisoned. Critical hits land more easily."
             Me.CriticalChance = 2
             Me.IsHMMove = False
