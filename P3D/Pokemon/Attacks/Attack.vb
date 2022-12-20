@@ -228,7 +228,6 @@
         Public IsJawMove As Boolean = False
         Public IsDanceMove As Boolean = False
         Public IsExplosiveMove As Boolean = False
-        Public IsMouthMove As Boolean = False
         Public IsPowderMove As Boolean = False
         Public IsPunchingMove As Boolean = False
         Public IsSlicingMove As Boolean = False
