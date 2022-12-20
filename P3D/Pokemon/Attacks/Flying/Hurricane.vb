@@ -41,10 +41,9 @@
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-
+            Me.IsWindMove = True
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False

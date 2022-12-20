@@ -42,6 +42,7 @@ Namespace BattleSystem.Moves.Flying
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
             Me.IsSlicingMove = True
+            Me.IsWindMove = True
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
 
