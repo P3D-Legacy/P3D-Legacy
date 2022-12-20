@@ -41,9 +41,9 @@ Namespace BattleSystem.Moves.Normal
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
+            Me.IsSoundMove = True
 
 
             Me.IsAffectedBySubstitute = True
