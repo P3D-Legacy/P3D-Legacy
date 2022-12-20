@@ -71,6 +71,10 @@
                 .OwnSpikes = 0
                 .OwnStealthRock = 0
                 .OwnToxicSpikes = 0
+                .ElectricTerrain = 0
+                .PsychicTerrain = 0
+                .MistyTerrain = 0
+                .GrassyTerrain = 0
             End With
         End Sub
 

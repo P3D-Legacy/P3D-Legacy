@@ -1963,15 +1963,15 @@
                     End If
                 Case Element.Types.Electric
                     If BattleScreen.FieldEffects.ElectricTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
-                        SR = 1.5F
+                        SR = 1.3F
                     End If
                 Case Element.Types.Grass
                     If BattleScreen.FieldEffects.GrassyTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
-                        SR = 1.5F
+                        SR = 1.3F
                     End If
                 Case Element.Types.Psychic
                     If BattleScreen.FieldEffects.PsychicTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
-                        SR = 1.5F
+                        SR = 1.3F
                     End If
             End Select
 
