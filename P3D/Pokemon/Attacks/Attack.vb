@@ -188,40 +188,52 @@
         '#End
 
         '#SpecialDefinitions
+        'Damage and effect types
         Public MakesContact As Boolean = True
+        Public HasSecondaryEffect As Boolean = False
+        Public IsHealingMove As Boolean = False
+        Public IsDamagingMove As Boolean = True
+        Public IsProtectMove As Boolean = False
+        Public IsOneHitKOMove As Boolean = False
+        Public IsRecoilMove As Boolean = False
+        Public IsTrappingMove As Boolean = False
+        Public RemovesFrozen As Boolean = False
+
+        'effected by various moves items and abilities
         Public ProtectAffected As Boolean = True
         Public MagicCoatAffected As Boolean = False
         Public SnatchAffected As Boolean = False
         Public MirrorMoveAffected As Boolean = True
         Public KingsrockAffected As Boolean = True
         Public CounterAffected As Boolean = True
+        Public IsAffectedBySubstitute As Boolean = True
+        Public ImmunityAffected As Boolean = True
+        Public IsWonderGuardAffected As Boolean = True
         Public DisabledWhileGravity As Boolean = False
         Public UseEffectiveness As Boolean = True
-        Public IsHealingMove As Boolean = False
-        Public RemovesFrozen As Boolean = False
-        Public IsRecoilMove As Boolean = False
-        Public IsPunchingMove As Boolean = False
-        Public ImmunityAffected As Boolean = True
-        Public IsDamagingMove As Boolean = True
-        Public IsProtectMove As Boolean = False
-        Public IsSoundMove As Boolean = False
-        Public HasSecondaryEffect As Boolean = False
-        Public IsAffectedBySubstitute As Boolean = True
-        Public IsOneHitKOMove As Boolean = False
-        Public IsWonderGuardAffected As Boolean = True
+
+        'ignore stats status or positioning?
         Public UseAccEvasion As Boolean = True
         Public CanHitInMidAir As Boolean = False
         Public CanHitUnderground As Boolean = False
         Public CanHitUnderwater As Boolean = False
         Public CanHitSleeping As Boolean = True
         Public CanGainSTAB As Boolean = True
-        Public IsPowderMove As Boolean = False
-        Public IsTrappingMove As Boolean = False
+        Public UseOppDefense As Boolean = True
+        Public UseOppEvasion As Boolean = True
+
+        'categories
         Public IsPulseMove As Boolean = False
         Public IsBulletMove As Boolean = False
         Public IsJawMove As Boolean = False
-        Public UseOppDefense As Boolean = True
-        Public UseOppEvasion As Boolean = True
+        Public IsDanceMove As Boolean = False
+        Public IsExplosiveMove As Boolean = False
+        Public IsMouthMove As Boolean = False
+        Public IsPowderMove As Boolean = False
+        Public IsPunchingMove As Boolean = False
+        Public IsSlicingMove As Boolean = False
+        Public IsSoundMove As Boolean = False
+        Public IsWindMove As Boolean = False
 
         Public FocusOppPokemon As Boolean = True
         '#End
