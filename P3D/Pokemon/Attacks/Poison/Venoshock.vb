@@ -61,7 +61,7 @@
                 op = BattleScreen.OwnPokemon
             End If
             If op.Status = Pokemon.StatusProblems.Poison OrElse op.Status = Pokemon.StatusProblems.BadPoison Then
-                Return 130
+                Return Me.Power * 2
             Else
                 Return Me.Power
             End If
