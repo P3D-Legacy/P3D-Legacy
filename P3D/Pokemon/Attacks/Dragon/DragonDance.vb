@@ -45,6 +45,7 @@
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
             Me.IsSoundMove = False
+            Me.IsDanceMove = True
 
             Me.IsAffectedBySubstitute = False
             Me.IsOneHitKOMove = False

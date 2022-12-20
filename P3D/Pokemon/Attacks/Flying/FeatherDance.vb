@@ -45,6 +45,7 @@ Namespace BattleSystem.Moves.Flying
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
             Me.IsSoundMove = False
+            Me.IsDanceMove = True
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
