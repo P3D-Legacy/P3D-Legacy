@@ -40,11 +40,11 @@
             Me.RemovesFrozen = False
 
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.ImmunityAffected = True
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False

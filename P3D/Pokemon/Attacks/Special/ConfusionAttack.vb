@@ -36,11 +36,11 @@
             Me.IsHealingMove = False
             Me.RemovesFrozen = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.ImmunityAffected = True
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
             Me.HasSecondaryEffect = False
             Me.IsAffectedBySubstitute = False
             '#End
