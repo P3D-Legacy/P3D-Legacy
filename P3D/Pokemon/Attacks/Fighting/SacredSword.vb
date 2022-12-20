@@ -49,9 +49,10 @@
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
-            
-            'Sacred Sword interaction with evasion
+
+            'Sacred Sword interaction with stats
             Me.UseOppEvasion = False
+            Me.UseOppDefense = False
             '#End
         End Sub
 
