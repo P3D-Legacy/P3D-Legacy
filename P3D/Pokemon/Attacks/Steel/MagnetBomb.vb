@@ -50,6 +50,7 @@ Namespace BattleSystem.Moves.Steel
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
             Me.IsBulletMove = True
+            Me.UseAccEvasion = False
             '#End
 
             Me.AIField1 = AIField.Damage
