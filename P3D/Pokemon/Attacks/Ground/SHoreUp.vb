@@ -65,10 +65,8 @@
             Select Case BattleScreen.FieldEffects.Weather
                 Case BattleWeather.WeatherTypes.Sandstorm
                     restoreHP = CInt(Math.Ceiling((2 / 3) * p.MaxHP))
-                Case BattleWeather.WeatherTypes.Clear
-                    restoreHP = CInt(Math.Ceiling((1 / 2) * p.MaxHP))
                 Case Else
-                    restoreHP = CInt(Math.Ceiling((1 / 4) * p.MaxHP))
+                    restoreHP = CInt(Math.Ceiling((1 / 2) * p.MaxHP))
             End Select
 
             If p.HP < p.MaxHP And p.HP > 0 Then
