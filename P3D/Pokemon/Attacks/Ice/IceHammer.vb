@@ -41,7 +41,7 @@
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-
+            Me.IsPunchingMove = True
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
 
