@@ -45,6 +45,7 @@ Namespace BattleSystem.Moves.Rock
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
             Me.IsSoundMove = False
+            Me.IsBulletMove = True
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
