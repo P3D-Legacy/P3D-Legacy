@@ -41,10 +41,9 @@ Namespace BattleSystem.Moves.Normal
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = True
+            Me.IsPunchingMove = True 'P3D Only
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
