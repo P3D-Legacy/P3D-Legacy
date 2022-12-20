@@ -30870,7 +30870,7 @@
     <Compile Include="Pokemon\Attacks\Normal\SleepTalk.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SmellingSalts.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Smokescreen.vb" />
-    <Compile Include="Pokemon\Attacks\Normal\Snatch.vb" />
+    <Compile Include="Pokemon\Attacks\Dark\Snatch.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Snore.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Soft-Boiled.vb" />
     <Compile Include="Pokemon\Attacks\Normal\SonicBoom.vb" />

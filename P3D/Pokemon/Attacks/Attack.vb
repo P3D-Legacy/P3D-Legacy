@@ -821,7 +821,7 @@
                     'Case 288
                     'Grudge
                 Case 289
-                    returnMove = New Moves.Normal.Snatch()
+                    returnMove = New Moves.Dark.Snatch()
                     'Case 290
                     'Secret Power
                 Case 291

@@ -1,4 +1,4 @@
-﻿Namespace BattleSystem.Moves.Normal
+﻿Namespace BattleSystem.Moves.Dark
 
     Public Class Snatch
 
@@ -6,7 +6,7 @@
 
         Public Sub New()
             '#Definitions
-            Me.Type = New Element(Element.Types.Normal)
+            Me.Type = New Element(Element.Types.Dark)
             Me.ID = 289
             Me.OriginalPP = 10
             Me.CurrentPP = 10
@@ -15,7 +15,7 @@
             Me.Accuracy = 0
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Smart
-            Me.Name = Localization.GetString("move_name_" & Me.ID,"Snatch")
+            Me.Name = Localization.GetString("move_name_" & Me.ID, "Snatch")
             Me.Description = "The user steals the effects of any attempts to use a healing or stat-changing move."
             Me.CriticalChance = 0
             Me.IsHMMove = False
