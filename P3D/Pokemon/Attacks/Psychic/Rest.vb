@@ -8,9 +8,9 @@ Namespace BattleSystem.Moves.Psychic
             '#Definitions
             Me.Type = New Element(Element.Types.Psychic)
             Me.ID = 156
-            Me.OriginalPP = 10
-            Me.CurrentPP = 10
-            Me.MaxPP = 10
+            Me.OriginalPP = 5
+            Me.CurrentPP = 5
+            Me.MaxPP = 5
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
