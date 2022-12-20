@@ -41,15 +41,14 @@ Namespace BattleSystem.Moves.Dark
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
-            Me.IsJawMove = False
             '#End
 
         End Sub
