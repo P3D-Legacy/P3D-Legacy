@@ -42,6 +42,7 @@
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
             Me.IsSlicingMove = True
+            Me.IsWindMove = True 'P3D only
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
 

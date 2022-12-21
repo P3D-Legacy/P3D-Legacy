@@ -30504,7 +30504,7 @@
     <Compile Include="Pokemon\Attacks\Bug\PinMissile.vb" />
     <Compile Include="Pokemon\Attacks\Bug\QuiverDance.vb" />
     <Compile Include="Pokemon\Attacks\Bug\SignalBeam.vb" />
-    <Compile Include="Pokemon\Attacks\Bug\Silverwind.vb" />
+    <Compile Include="Pokemon\Attacks\Bug\SilverWind.vb" />
     <Compile Include="Pokemon\Attacks\Bug\SpiderWeb.vb" />
     <Compile Include="Pokemon\Attacks\Bug\Steamroller.vb" />
     <Compile Include="Pokemon\Attacks\Bug\StickyWeb.vb" />

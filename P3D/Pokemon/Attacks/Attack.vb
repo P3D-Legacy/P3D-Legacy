@@ -890,7 +890,7 @@
                 Case 317
                     returnMove = New Moves.Rock.RockTomb()
                 Case 318
-                    returnMove = New Moves.Bug.Silverwind()
+                    returnMove = New Moves.Bug.SilverWind()
                 Case 319
                     returnMove = New Moves.Steel.MetalSound()
                 Case 320

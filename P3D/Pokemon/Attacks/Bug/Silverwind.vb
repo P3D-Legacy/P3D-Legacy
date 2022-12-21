@@ -1,6 +1,6 @@
 ﻿Namespace BattleSystem.Moves.Bug
 
-    Public Class Silverwind
+    Public Class SilverWind
 
         Inherits Attack
 
@@ -15,7 +15,7 @@
             Me.Accuracy = 100
             Me.Category = Categories.Special
             Me.ContestCategory = ContestCategories.Beauty
-            Me.Name = Localization.GetString("move_name_" & Me.ID,"Silver Wind")
+            Me.Name = Localization.GetString("move_name_" & Me.ID, "Silver Wind")
             Me.Description = "The target is attacked with powdery scales blown by wind. It may also raise all the user's stats."
             Me.CriticalChance = 1
             Me.IsHMMove = False
@@ -41,10 +41,9 @@
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-
+            Me.IsWindMove = True 'P3D only
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
