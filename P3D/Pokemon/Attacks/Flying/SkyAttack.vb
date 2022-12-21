@@ -17,7 +17,7 @@
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Sky Attack")
             Me.Description = "A second-turn attack move where critical hits land more easily. It may also make the target flinch."
-            Me.CriticalChance = 1
+            Me.CriticalChance = 2
             Me.IsHMMove = False
             Me.Target = Targets.OneTarget
             Me.Priority = 0
