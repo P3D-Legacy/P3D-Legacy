@@ -2364,7 +2364,7 @@
                                                 If Core.Random.Next(0, 100) < 30 Then
                                                     ChangeCameraAngle(2, own, BattleScreen)
                                                     BattleScreen.BattleQuery.Add(New TextQueryObject(op.GetDisplayName() & "'s Cursed Body disabled " & moveUsed.Name & "!"))
-                                                    moveUsed.Disabled = Core.Random.Next(1, 6)
+                                                    moveUsed.Disabled = 4
                                                 End If
                                             End If
                                         End If
@@ -5445,7 +5445,12 @@
                                 .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the Torment" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
-                            'Remove disable
+                            For Each a As BattleSystem.Attack In .OwnPokemon.Attacks
+                                If a.Disabled > 0 Then
+                                    a.Disabled = 0
+                                    .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & "'s" & " " & a.Name & " " & "is no longer disabled" & Environment.NewLine & "due to Mental Herb!"))
+                                End If
+                            Next
                             If usedMentalHerb = True Then
                                 .OwnPokemon.Item = Nothing
                             End If
@@ -6092,6 +6097,14 @@
 
                 'Disable
                 'For each move in moveset, reduce Disable count. If disable count = 0, print message.
+                For Each a As BattleSystem.Attack In .OwnPokemon.Attacks
+                    If a.Disabled > 0 Then
+                        a.Disabled -= 1
+                        If a.Disabled = 0 Then
+                            .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & "'s" & " " & a.Name & " " & "is no longer disabled."))
+                        End If
+                    End If
+                Next
 
                 If .FieldEffects.OwnEncore > 0 And .OwnPokemon.HP > 0 Then 'Encore
                     .FieldEffects.OwnEncore -= 1
@@ -6328,7 +6341,12 @@
                                 .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & " got healed from the Torment" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If
-                            'Remove disable
+                            For Each a As BattleSystem.Attack In .OppPokemon.Attacks
+                                If a.Disabled > 0 Then
+                                    a.Disabled = 0
+                                    .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & "'s" & " " & a.Name & " " & "is no longer disabled" & Environment.NewLine & "due to Mental Herb!"))
+                                End If
+                            Next
                             If usedMentalHerb = True Then
                                 .OppPokemon.Item = Nothing
                             End If
@@ -6969,6 +6987,14 @@
 
                 'Disable
                 'For each move in moveset, reduce Disable count. If disable count = 0, print message.
+                For Each a As BattleSystem.Attack In .OppPokemon.Attacks
+                    If a.Disabled > 0 Then
+                        a.Disabled -= 1
+                        If a.Disabled = 0 Then
+                            .BattleQuery.Add(New TextQueryObject(.OppPokemon.GetDisplayName() & "'s" & " " & a.Name & " " & "is no longer disabled."))
+                        End If
+                    End If
+                Next
 
                 If .FieldEffects.OppEncore > 0 And .OppPokemon.HP > 0 Then 'Encore
                     .FieldEffects.OppEncore -= 1

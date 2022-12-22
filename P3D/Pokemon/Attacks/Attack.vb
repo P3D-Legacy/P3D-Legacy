@@ -353,8 +353,8 @@
                     returnMove = New Moves.Normal.Supersonic()
                 Case 49
                     returnMove = New Moves.Normal.SonicBoom()
-                    'Case 50
-                    'Disable
+                Case 50
+                    returnMove = New Moves.Normal.Disable()
                 Case 51
                     returnMove = New Moves.Poison.Acid()
                 Case 52

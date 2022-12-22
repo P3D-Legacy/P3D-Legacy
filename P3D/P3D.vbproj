@@ -28282,6 +28282,7 @@
     <Compile Include="Pokemon\Attacks\Ice\IceHammer.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Bestow.vb" />
     <Compile Include="Pokemon\Attacks\Normal\Celebrate.vb" />
+    <Compile Include="Pokemon\Attacks\Normal\Disable.vb" />
     <Compile Include="Pokemon\Attacks\Normal\TearfulLook.vb" />
     <Compile Include="Pokemon\Attacks\Normal\RevelationDance.vb" />
     <Compile Include="Pokemon\Attacks\Normal\HoldBack.vb" />
