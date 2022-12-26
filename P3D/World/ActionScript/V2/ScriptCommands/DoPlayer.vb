@@ -311,6 +311,9 @@
                 Case "setrivalname"
                     Core.Player.RivalName = argument
                     IsReady = True
+                Case "showbattleanimations"
+                    Core.Player.ShowBattleAnimations = CInt(argument)
+                    IsReady = True
                 Case "setgender"
                     Select Case argument
                         Case "0", "Male", "male"
