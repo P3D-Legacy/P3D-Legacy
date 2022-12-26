@@ -108,6 +108,35 @@
                                 Message = f.GetSplit(2, ",")
                             End If
                             BattleScreen.Battle.FaintPokemon(Not Target, BattleScreen, Message)
+                        Case "switch"
+                            Dim Target As Boolean = CBool(f.GetSplit(1, ","))
+                            Dim SwitchTo As Integer = CInt(f.GetSplit(2, ","))
+                            Dim Message As String = ""
+
+
+                            If f.Split(CChar(",")).Count > 3 Then
+                                Message = f.GetSplit(3, ",")
+                            End If
+                            If Target = True Then
+                                If f.GetSplit(2, ",").StartsWith("~+") Then
+                                    SwitchTo = BattleScreen.OppPokemonIndex + CInt(f.GetSplit(2, ",").Remove(0, 2))
+                                End If
+                                If f.GetSplit(2, ",").StartsWith("~-") Then
+                                    SwitchTo = BattleScreen.OppPokemonIndex - CInt(f.GetSplit(2, ",").Remove(0, 2))
+                                End If
+                                BattleScreen.Battle.SwitchOutOpp(BattleScreen, SwitchTo, Message)
+                            Else
+                                If f.GetSplit(2, ",").StartsWith("~+") Then
+                                    SwitchTo = BattleScreen.OwnPokemonIndex + CInt(f.GetSplit(2, ",").Remove(0, 2))
+                                End If
+                                If f.GetSplit(2, ",").StartsWith("~-") Then
+                                    SwitchTo = BattleScreen.OwnPokemonIndex - CInt(f.GetSplit(2, ",").Remove(0, 2))
+                                End If
+                                BattleScreen.Battle.SwitchOutOwn(BattleScreen, SwitchTo, -1, Message)
+                            End If
+                        Case "endround"
+                            Dim Type As Integer = CInt(f.GetSplit(1, ","))
+                            BattleScreen.Battle.EndRound(BattleScreen, Type)
                         Case Else
                             fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
                     End Select
