@@ -4,6 +4,7 @@
 
         Inherits Screen
 
+        Public NextPokemonIndex As Integer = -1
         'Used for after fainting switching
         Public OwnFaint As Boolean = False
         Public OppFaint As Boolean = False
@@ -1351,10 +1352,14 @@ nextIndex:
                     End While
 
                 Else
-                    i = Core.Random.Next(0, Trainer.Pokemons.Count)
-                    While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse OppPokemonIndex = i OrElse Trainer.Pokemons(i).HP <= 0
+                    If Me.NextPokemonIndex <> -1 Then
+                        i = NextPokemonIndex
+                    Else
                         i = Core.Random.Next(0, Trainer.Pokemons.Count)
-                    End While
+                        While Trainer.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse OppPokemonIndex = i OrElse Trainer.Pokemons(i).HP <= 0
+                            i = Core.Random.Next(0, Trainer.Pokemons.Count)
+                        End While
+                    End If
                 End If
             End If
 
@@ -1364,6 +1369,7 @@ nextIndex:
             If Pokedex.GetEntryType(Core.Player.PokedexData, OppPokemon.Number) = 0 Then
                 Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, OppPokemon.Number, 1)
             End If
+            NextPokemonIndex = -1
         End Sub
 
         Public Function GetModelName(ByVal own As Boolean) As String

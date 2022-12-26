@@ -218,7 +218,7 @@
             End If
         End Sub
 
-        Private Sub DeleteHostQuery(ByVal BattleScreen As BattleScreen)
+        Public Sub DeleteHostQuery(ByVal BattleScreen As BattleScreen)
             If BattleScreen.IsRemoteBattle Then
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.TempPVPBattleQuery.Clear()

@@ -32,7 +32,14 @@
                                     BattleScreen.Battle.ChangeCameraAngle(2, True, BattleScreen)
                             End Select
                         Case "message", "text"
-                            fSub = Localization.GetString(fSub, fSub)
+                            Dim OppPokemon As Pokemon = BattleScreen.OppPokemon
+                            Dim OwnPokemon As Pokemon = BattleScreen.OwnPokemon
+                            If own = False Then
+                                OwnPokemon = BattleScreen.OppPokemon
+                                OppPokemon = BattleScreen.OwnPokemon
+                            End If
+
+                            fSub = Localization.GetString(fSub, fSub).Replace("[OPPNAME]", OppPokemon.GetDisplayName).Replace("[OWNNAME]", OwnPokemon.GetDisplayName)
                             BattleScreen.BattleQuery.Add(New TextQueryObject(fSub))
                         Case "raisestat", "increasestat"
                             Dim Stat As String = f.GetSplit(1, ",")
@@ -103,16 +110,35 @@
                         Case "faint"
                             Dim Target As Boolean = CBool(f.GetSplit(1, ","))
                             Dim Message As String = ""
+                            Dim NextPokemonIndex As Integer = -1
+
+                            Dim OppPokemon As Pokemon = BattleScreen.OppPokemon
+                            Dim OwnPokemon As Pokemon = BattleScreen.OwnPokemon
+                            If Target = False Then
+                                OwnPokemon = BattleScreen.OppPokemon
+                                OppPokemon = BattleScreen.OwnPokemon
+                            End If
+
+                            If Target = True Then
+                                If f.Split(CChar(",")).Count > 3 Then
+                                    If f.GetSplit(3, ",").StartsWith("~+") Then
+                                        NextPokemonIndex = BattleScreen.OppPokemonIndex + CInt(f.GetSplit(3, ",").Remove(0, 2))
+                                    End If
+                                    If f.GetSplit(3, ",").StartsWith("~-") Then
+                                        NextPokemonIndex = BattleScreen.OppPokemonIndex - CInt(f.GetSplit(3, ",").Remove(0, 2))
+                                    End If
+                                End If
+                            End If
+                            BattleScreen.NextPokemonIndex = NextPokemonIndex
 
                             If f.Split(CChar(",")).Count > 2 Then
-                                Message = f.GetSplit(2, ",")
+                                Message = f.GetSplit(2, ",").Replace("[OPPNAME]", OppPokemon.GetDisplayName).Replace("[OWNNAME]", OwnPokemon.GetDisplayName)
                             End If
                             BattleScreen.Battle.FaintPokemon(Not Target, BattleScreen, Message)
                         Case "switch"
                             Dim Target As Boolean = CBool(f.GetSplit(1, ","))
-                            Dim SwitchTo As Integer = CInt(f.GetSplit(2, ","))
+                            Dim SwitchTo As Integer = 0
                             Dim Message As String = ""
-
 
                             If f.Split(CChar(",")).Count > 3 Then
                                 Message = f.GetSplit(3, ",")
@@ -135,8 +161,12 @@
                                 BattleScreen.Battle.SwitchOutOwn(BattleScreen, SwitchTo, -1, Message)
                             End If
                         Case "endround"
-                            Dim Type As Integer = CInt(f.GetSplit(1, ","))
-                            BattleScreen.Battle.EndRound(BattleScreen, Type)
+                            BattleScreen.Battle.DeleteHostQuery(BattleScreen)
+                            Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
+                            Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+                            cq2.PassThis = True
+                            BattleScreen.BattleQuery.AddRange({cq1, cq2})
+                            BattleScreen.Battle.StartRound(BattleScreen)
                         Case Else
                             fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
                     End Select
