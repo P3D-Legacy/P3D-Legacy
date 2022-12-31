@@ -160,6 +160,11 @@
                                 End If
                                 BattleScreen.Battle.SwitchOutOwn(BattleScreen, SwitchTo, -1, Message)
                             End If
+                        Case Else
+                            fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
+                    End Select
+                Else
+                    Select Case f.ToLower()
                         Case "endround"
                             BattleScreen.Battle.DeleteHostQuery(BattleScreen)
                             Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
@@ -167,11 +172,6 @@
                             cq2.PassThis = True
                             BattleScreen.BattleQuery.AddRange({cq1, cq2})
                             BattleScreen.Battle.StartRound(BattleScreen)
-                        Case Else
-                            fSub = CInt(f.GetSplit(1, ",")).Clamp(0, 100).ToString
-                    End Select
-                Else
-                    Select Case f.ToLower()
                         Case "freeze"
                             fSub = "15"
                         Case "poison"
