@@ -235,6 +235,10 @@
                     Core.Player.Money += int(argument)
 
                     IsReady = True
+                Case "removemoney"
+                    Core.Player.Money -= int(argument)
+
+                    IsReady = True
                 Case "setmovement"
                     Dim movements() As String = argument.Split(CChar(","))
 
