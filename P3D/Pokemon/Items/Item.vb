@@ -33,6 +33,10 @@ Public MustInherit Class Item
         Return _attribute
     End Function
 
+    Public Function OriginalName() As String
+        Return GetAttribute().Name
+    End Function
+
     ''' <summary>
     ''' The singular item name.
     ''' </summary>

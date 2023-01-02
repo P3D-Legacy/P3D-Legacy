@@ -1072,7 +1072,7 @@
                 End If
             End With
 
-            If p.Item IsNot Nothing AndAlso p.Item.Name.ToLower() = "power herb" AndAlso BattleScreen.CanUseItems Then
+            If p.Item IsNot Nothing AndAlso p.Item.OriginalName.ToLower() = "power herb" AndAlso BattleScreen.CanUseItems Then
                 Return False
             End If
             Select Case moveUsed.Name.ToLower
@@ -1336,7 +1336,7 @@
 
             If own = True Then
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "choice band" Or p.Item.Name.ToLower() = "choice specs" Or p.Item.Name.ToLower() = "choice scarf" Then
+                    If p.Item.OriginalName.ToLower() = "choice band" Or p.Item.OriginalName.ToLower() = "choice specs" Or p.Item.OriginalName.ToLower() = "choice scarf" Then
                         If Not BattleScreen.FieldEffects.OwnChoiceMove Is Nothing Then
                             If Not moveUsed Is BattleScreen.FieldEffects.OwnChoiceMove Then
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.Name & "!"))
@@ -1349,7 +1349,7 @@
                 End If
             Else
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "choice band" Or p.Item.Name.ToLower() = "choice specs" Or p.Item.Name.ToLower() = "choice scarf" Then
+                    If p.Item.OriginalName.ToLower() = "choice band" Or p.Item.OriginalName.ToLower() = "choice specs" Or p.Item.OriginalName.ToLower() = "choice scarf" Then
                         If Not BattleScreen.FieldEffects.OppChoiceMove Is Nothing Then
                             If Not moveUsed Is BattleScreen.FieldEffects.OppChoiceMove Then
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s move was prevented due to " & p.Item.Name & "!"))
@@ -2264,7 +2264,7 @@
                                 End If
                                 If op.HP > 0 AndAlso op.Status <> Pokemon.StatusProblems.Fainted Then
                                     If Not p.Item Is Nothing Then
-                                        If p.Item.Name.ToLower() = "king's rock" Or p.Item.Name.ToLower() = "razor fang" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                        If p.Item.OriginalName.ToLower() = "king's rock" Or p.Item.OriginalName.ToLower() = "razor fang" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                             If Core.Random.Next(0, 100) < 10 Then
                                                 InflictFlinch(Not own, own, BattleScreen, "", "item:king's rock")
                                             End If
@@ -2408,13 +2408,13 @@
                                                 If p.Item.IsMegaStone = True Then
                                                     canSteal = False
                                                 End If
-                                                If p.Ability.Name.ToLower() = "multitype" AndAlso p.Item.Name.ToLower().EndsWith(" plate") Then
+                                                If p.Ability.Name.ToLower() = "multitype" AndAlso p.Item.OriginalName.ToLower().EndsWith(" plate") Then
                                                     canSteal = False
                                                 End If
-                                                If p.Item.Name.ToLower() = "griseous orb" And p.Number = 487 Then
+                                                If p.Item.OriginalName.ToLower() = "griseous orb" And p.Number = 487 Then
                                                     canSteal = False
                                                 End If
-                                                If p.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
+                                                If p.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
                                                     canSteal = False
                                                 End If
                                                 If canSteal Then
@@ -2454,13 +2454,13 @@
                                             If op.Item.IsMegaStone = True Then
                                                 canSteal = False
                                             End If
-                                            If op.Ability.Name.ToLower() = "multitype" AndAlso op.Item.Name.ToLower().EndsWith(" plate") Then
+                                            If op.Ability.Name.ToLower() = "multitype" AndAlso op.Item.OriginalName.ToLower().EndsWith(" plate") Then
                                                 canSteal = False
                                             End If
-                                            If op.Item.Name.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
+                                            If op.Item.OriginalName.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
                                                 canSteal = False
                                             End If
-                                            If op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+                                            If op.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
                                                 canSteal = False
                                             End If
                                             If canSteal Then
@@ -2483,7 +2483,7 @@
                             If substitute = 0 And op.HP > 0 Then
                                 If Not op.Item Is Nothing Then
                                     If BattleScreen.FieldEffects.CanUseItem(Not own) AndAlso BattleScreen.FieldEffects.CanUseOwnItem(Not own, BattleScreen) = True Then
-                                        Select Case op.Item.Name.ToLower()
+                                        Select Case op.Item.OriginalName.ToLower()
                                             Case "enigma"
                                                 If RemoveHeldItem(Not own, Not own, BattleScreen, op.GetDisplayName() & " used the Enigma Berry to recover.", "berry:enigma") = True Then
                                                     GainHP(CInt(Math.Ceiling(op.MaxHP / 4)), Not own, Not own, BattleScreen, "", "berry:enigma")
@@ -2587,7 +2587,7 @@
                         'ABILITY SHIT GOES HERE
 
                         If Not p.Item Is Nothing Then
-                            If p.Item.Name.ToLower() = "sticky barb" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                            If p.Item.OriginalName.ToLower() = "sticky barb" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                 If p.Ability.Name.ToLower() <> "magic guard" Then
                                     ReduceHP(CInt(Math.Floor(p.MaxHP / 8)), True, True, BattleScreen, p.GetDisplayName() & " was harmed by Sticky Barb.", "stickybarb")
                                 End If
@@ -2603,7 +2603,7 @@
 
                         If p.HP > 0 Then
                             If Not p.Item Is Nothing AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                                Select Case p.Item.Name.ToLower()
+                                Select Case p.Item.OriginalName.ToLower()
                                     Case "shell bell"
                                         If p.HP < p.MaxHP Then
                                             GainHP(CInt(AllDamage / 8), own, own, BattleScreen, p.GetDisplayName() & " gains some HP due to the Shell Bell.", "shellbell")
@@ -2904,7 +2904,7 @@
                                 End If
 
                                 If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "rawst" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                    If p.Item.OriginalName.ToLower() = "rawst" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:rawst") = True Then
                                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Rawst Berry cured the burn of " & p.GetDisplayName() & "!", "berry:rawst")
@@ -2913,7 +2913,7 @@
                                 End If
 
                                 If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                    If p.Item.OriginalName.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the burn of " & p.GetDisplayName() & "!", "berry:lum")
@@ -3049,7 +3049,7 @@
                             End If
 
                             If Not p.Item Is Nothing Then
-                                If p.Item.Name.ToLower() = "aspear" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Item.OriginalName.ToLower() = "aspear" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:aspear") = True Then
                                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Aspear Berry thraw out " & p.GetDisplayName() & "!", "berry:aspear")
@@ -3058,7 +3058,7 @@
                             End If
 
                             If Not p.Item Is Nothing Then
-                                If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Item.OriginalName.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Lum Berry thraw out " & p.GetDisplayName() & "!", "berry:lum")
@@ -3183,7 +3183,7 @@
                             End If
 
                             If Not p.Item Is Nothing Then
-                                If p.Item.Name.ToLower() = "cheri" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Item.OriginalName.ToLower() = "cheri" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:cheri") = True Then
                                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Cheri Berry cured the paralysis of " & p.GetDisplayName() & "!", "berry:cheri")
@@ -3192,7 +3192,7 @@
                             End If
 
                             If Not p.Item Is Nothing Then
-                                If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                If p.Item.OriginalName.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                         BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                         CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the paralyzis of " & p.GetDisplayName() & "!", "berry:lum")
@@ -3346,7 +3346,7 @@
                                                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " fell asleep!"))
                                         End Select
                                         If Not p.Item Is Nothing Then
-                                            If p.Item.Name.ToLower() = "chesto" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                            If p.Item.OriginalName.ToLower() = "chesto" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:chesto") = True Then
                                                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                                     CureStatusProblem(own, own, BattleScreen, "The Chesto Berry woke up " & p.GetDisplayName() & "!", "berry:chesto")
@@ -3355,7 +3355,7 @@
                                         End If
 
                                         If Not p.Item Is Nothing Then
-                                            If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                            If p.Item.OriginalName.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                                     CureStatusProblem(own, own, BattleScreen, "The Lum Berry woke up " & p.GetDisplayName() & "!", "berry:lum")
@@ -3503,7 +3503,7 @@
                                 End If
 
                                 If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "pecha" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                    If p.Item.OriginalName.ToLower() = "pecha" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:pecha") = True Then
                                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Pecha Berry cured the poison of " & p.GetDisplayName() & "!", "berry:pecha")
@@ -3512,7 +3512,7 @@
                                 End If
 
                                 If Not p.Item Is Nothing Then
-                                    If p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                                    If p.Item.OriginalName.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
                                             CureStatusProblem(own, own, BattleScreen, "The Lum Berry cured the poison of " & p.GetDisplayName() & "!", "berry:lum")
@@ -3629,7 +3629,7 @@
                 End If
 
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "persim" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    If p.Item.OriginalName.ToLower() = "persim" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:persim") = True Then
                             Me.ChangeCameraAngle(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
@@ -3641,7 +3641,7 @@
                             End If
                             p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                         End If
-                    ElseIf p.Item.Name.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    ElseIf p.Item.OriginalName.ToLower() = "lum" AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True AndAlso BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         If RemoveHeldItem(own, own, BattleScreen, "", "berry:lum") = True Then
                             Me.ChangeCameraAngle(1, own, BattleScreen)
                             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
@@ -4262,7 +4262,7 @@
                 p.AddVolatileStatus(Pokemon.VolatileStatus.Infatuation)
 
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "destiny knot" And from <> own And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    If p.Item.OriginalName.ToLower() = "destiny knot" And from <> own And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         Me.InflictInfatuate(Not own, Not own, BattleScreen, "Destiny Knot reflects the infatuation.", "destinyknot")
                     End If
                 End If
@@ -4398,7 +4398,7 @@
                     HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
                     BattleScreen.BattleQuery.Add(HitAnimation)
                 End If
-                
+
                 If own = True Then
                     BattleScreen.BattleQuery.Add(New MathHPQueryObject(p.HP, p.MaxHP, HPAmount, New Vector2(200, 256)))
                 Else
@@ -4427,7 +4427,7 @@
                     Dim effectiveness As Single = BattleCalculation.CalculateEffectiveness(Not own, lastMove, BattleScreen)
                     If effectiveness > 1.0F Then
                         If Not p.Item Is Nothing Then
-                            If p.Item.Name.ToLower() = "enigma" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                            If p.Item.OriginalName.ToLower() = "enigma" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:enigma") = True Then
                                     UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
                                 End If
@@ -4438,7 +4438,7 @@
 
                 If p.HP > 0 And p.HP < CInt(Math.Ceiling(p.MaxHP / 3)) Then
                     If Not p.Item Is Nothing Then
-                        If p.Item.Name.ToLower() = "oran" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                        If p.Item.OriginalName.ToLower() = "oran" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                             If RemoveHeldItem(own, own, BattleScreen, "", "berry:oran") = True Then
                                 UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
                             End If
@@ -4448,7 +4448,7 @@
                 If p.HP > 0 And p.HP < CInt(Math.Ceiling(p.MaxHP / 2)) Then
                     If Not p.Item Is Nothing Then
                         If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                            Select Case p.Item.Name.ToLower()
+                            Select Case p.Item.OriginalName.ToLower()
                                 Case "sitrus"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:sitrus") = True Then
                                         UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
@@ -4460,7 +4460,7 @@
                 If p.HP > 0 And p.HP < CInt(Math.Ceiling(p.MaxHP / 4)) Then
                     If Not p.Item Is Nothing Then
                         If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                            Select Case p.Item.Name.ToLower()
+                            Select Case p.Item.OriginalName.ToLower()
                                 Case "figy"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:figy") = True Then
                                         UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
@@ -4535,7 +4535,7 @@
             Dim berry As Items.Berry = CType(BerryItem, Items.Berry)
 
             BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Use_Item", False))
-            Select Case BerryItem.Name.ToLower()
+            Select Case BerryItem.OriginalName.ToLower()
                 Case "oran"
                     GainHP(10, own, from, BattleScreen, "The Oran Berry filled up " & p.GetDisplayName() & "'s HP!", "berry:oran")
                 Case "sitrus"
@@ -4744,7 +4744,7 @@
 
                     'If Not p.Item Is Nothing Then
                     '    If BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                    '        Select Case p.Item.Name.ToLower()
+                    '        Select Case p.Item.OriginalName.ToLower()
                     '            Case "damp rock"
                     '                If newWeather = BattleWeather.WeatherTypes.Rain Then
                     '                    weatherRounds += 3
@@ -4913,7 +4913,7 @@
                                 Dim changeType As Boolean = False
                                 Dim newType As Element = Nothing
 
-                                Select Case p.Item.Name.ToLower()
+                                Select Case p.Item.OriginalName.ToLower()
                                     Case "draco plate"
                                         changeType = True
                                         newType = New Element(Element.Types.Dragon)
@@ -5038,7 +5038,7 @@
                 End If
                 If Not p.Item Is Nothing Then
                     If .FieldEffects.CanUseItem(own) = True And .FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
-                        Select Case p.Item.Name.ToLower()
+                        Select Case p.Item.OriginalName.ToLower()
                             Case "electric seed"
                                 If .FieldEffects.ElectricTerrain > 0 And p.StatDefense < 6 Then
                                     If RemoveHeldItem(own, own, BattleScreen, "-1", "") = True Then
@@ -5423,7 +5423,7 @@
                 End If
                 If .OwnPokemon.HP > 0 Then
                     If Not .OwnPokemon.Item Is Nothing Then
-                        If .OwnPokemon.Item.Name.ToLower() = "mental herb" Then
+                        If .OwnPokemon.Item.OriginalName.ToLower() = "mental herb" Then
                             Dim usedMentalHerb As Boolean = False
                             If .OwnPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
                                 .OwnPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
@@ -5455,7 +5455,7 @@
                                 .OwnPokemon.Item = Nothing
                             End If
                         End If
-                        If .OwnPokemon.Item.Name.ToLower() = "white herb" Then
+                        If .OwnPokemon.Item.OriginalName.ToLower() = "white herb" Then
                             Dim hasNegativeStats As Boolean = False
                             With .OwnPokemon
                                 If .StatAttack < 0 Then
@@ -5653,7 +5653,7 @@
                     If .FieldEffects.OppHealBlock = 0 Then
                         Dim healHP As Integer = CInt(BattleScreen.OwnPokemon.MaxHP / 16)
                         If Not BattleScreen.OwnPokemon.Item Is Nothing Then
-                            If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            If .OwnPokemon.Item.OriginalName.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 healHP = CInt(healHP * 1.3F)
                             End If
                         End If
@@ -5665,7 +5665,7 @@
                     If .FieldEffects.OppHealBlock = 0 Then
                         Dim healHP As Integer = CInt(BattleScreen.OwnPokemon.MaxHP / 16)
                         If Not .OwnPokemon.Item Is Nothing Then
-                            If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            If .OwnPokemon.Item.OriginalName.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 healHP = CInt(healHP * 1.3F)
                             End If
                         End If
@@ -5695,7 +5695,7 @@
                 End If
 
                 If Not .OwnPokemon.Item Is Nothing Then 'Black Sludge
-                    If .OwnPokemon.Item.Name.ToLower() = "black sludge" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                    If .OwnPokemon.Item.OriginalName.ToLower() = "black sludge" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                         If .OwnPokemon.Type1.Type = Element.Types.Poison Or .OwnPokemon.Type2.Type = Element.Types.Poison Then
                             If .OwnPokemon.HP < .OwnPokemon.MaxHP And .OwnPokemon.HP > 0 Then
                                 GainHP(CInt(.OwnPokemon.MaxHP / 16), True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " gained HP from Black Sludge!", "blacksludge")
@@ -5711,7 +5711,7 @@
                 If .OwnPokemon.HP < .OwnPokemon.MaxHP And .OwnPokemon.HP > 0 Then
                     If .FieldEffects.OppHealBlock = 0 Then
                         If Not .OwnPokemon.Item Is Nothing Then 'Leftovers
-                            If .OwnPokemon.Item.Name.ToLower() = "leftovers" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            If .OwnPokemon.Item.OriginalName.ToLower() = "leftovers" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 GainHP(CInt(.OwnPokemon.MaxHP / 16), True, True, BattleScreen, .OwnPokemon.GetDisplayName() & " restored some HP from Leftovers!", "leftovers")
                             End If
                         End If
@@ -5728,7 +5728,7 @@
 
                         Dim addHP As Integer = loseHP
                         If Not .OwnPokemon.Item Is Nothing Then
-                            If .OwnPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                            If .OwnPokemon.Item.OriginalName.ToLower() = "big root" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                                 addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
                             End If
                         End If
@@ -5882,7 +5882,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5919,7 +5919,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5946,7 +5946,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5960,7 +5960,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -5996,7 +5996,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6027,7 +6027,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6041,7 +6041,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6055,7 +6055,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OwnPokemon.MaxHP / 8)
                             If Not .OppPokemon.Item Is Nothing And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
-                                If .OppPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OppPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OwnPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6179,7 +6179,7 @@
 
                 If .OwnPokemon.HP > 0 And .OwnPokemon.Status = Pokemon.StatusProblems.None Then
                     If Not .OwnPokemon.Item Is Nothing Then
-                        If .OwnPokemon.Item.Name.ToLower() = "flame orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If .OwnPokemon.Item.OriginalName.ToLower() = "flame orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             InflictBurn(True, True, BattleScreen, "Flame Orb inflicts a burn!", "flameorb")
                         End If
                     End If
@@ -6187,7 +6187,7 @@
 
                 If .OwnPokemon.HP > 0 And .OwnPokemon.Status = Pokemon.StatusProblems.None Then
                     If Not .OwnPokemon.Item Is Nothing Then
-                        If .OwnPokemon.Item.Name.ToLower() = "toxic orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If .OwnPokemon.Item.OriginalName.ToLower() = "toxic orb" And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             InflictPoison(True, True, BattleScreen, True, "Toxic Orb inflicts a poisoning!", "toxicorb")
                         End If
                     End If
@@ -6319,7 +6319,7 @@
                 End If
                 If .OppPokemon.HP > 0 Then
                     If Not .OppPokemon.Item Is Nothing Then
-                        If .OppPokemon.Item.Name.ToLower() = "mental herb" Then
+                        If .OppPokemon.Item.OriginalName.ToLower() = "mental herb" Then
                             Dim usedMentalHerb As Boolean = False
                             If .OppPokemon.HasVolatileStatus(Pokemon.VolatileStatus.Infatuation) = True Then
                                 .OppPokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Infatuation)
@@ -6351,7 +6351,7 @@
                                 .OppPokemon.Item = Nothing
                             End If
                         End If
-                        If .OppPokemon.Item.Name.ToLower() = "white herb" Then
+                        If .OppPokemon.Item.OriginalName.ToLower() = "white herb" Then
                             Dim hasNegativeStats As Boolean = False
                             With .OppPokemon
                                 If .StatAttack < 0 Then
@@ -6544,7 +6544,7 @@
                     If .FieldEffects.OwnHealBlock = 0 Then
                         Dim healHP As Integer = CInt(BattleScreen.OppPokemon.MaxHP / 16)
                         If Not BattleScreen.OppPokemon.Item Is Nothing Then
-                            If .OppPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            If .OppPokemon.Item.OriginalName.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 healHP = CInt(healHP * 1.3F)
                             End If
                         End If
@@ -6556,7 +6556,7 @@
                     If .FieldEffects.OwnHealBlock = 0 Then
                         Dim healHP As Integer = CInt(BattleScreen.OppPokemon.MaxHP / 16)
                         If Not .OppPokemon.Item Is Nothing Then
-                            If .OppPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            If .OppPokemon.Item.OriginalName.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 healHP = CInt(healHP * 1.3F)
                             End If
                         End If
@@ -6586,7 +6586,7 @@
                 End If
 
                 If Not .OppPokemon.Item Is Nothing Then 'Black Sludge
-                    If .OppPokemon.Item.Name.ToLower() = "black sludge" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                    If .OppPokemon.Item.OriginalName.ToLower() = "black sludge" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                         If .OppPokemon.Type1.Type = Element.Types.Poison Or .OppPokemon.Type2.Type = Element.Types.Poison Then
                             If .OppPokemon.HP < .OppPokemon.MaxHP And .OppPokemon.HP > 0 Then
                                 GainHP(CInt(.OppPokemon.MaxHP / 16), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " gained HP from Black Sludge!", "blacksludge")
@@ -6602,7 +6602,7 @@
                 If .OppPokemon.HP < .OppPokemon.MaxHP And .OppPokemon.HP > 0 Then
                     If .FieldEffects.OwnHealBlock = 0 Then
                         If Not .OppPokemon.Item Is Nothing Then 'Leftovers
-                            If .OppPokemon.Item.Name.ToLower() = "leftovers" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            If .OppPokemon.Item.OriginalName.ToLower() = "leftovers" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 GainHP(CInt(.OppPokemon.MaxHP / 16), False, False, BattleScreen, .OppPokemon.GetDisplayName() & " restored some HP from Leftovers!", "leftovers")
                             End If
                         End If
@@ -6619,7 +6619,7 @@
 
                         Dim addHP As Integer = loseHP
                         If Not .OppPokemon.Item Is Nothing Then
-                            If .OppPokemon.Item.Name.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                            If .OppPokemon.Item.OriginalName.ToLower() = "big root" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                                 addHP += CInt(Math.Ceiling(addHP * (30 / 100)))
                             End If
                         End If
@@ -6774,7 +6774,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6810,7 +6810,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6836,7 +6836,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6850,7 +6850,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6886,7 +6886,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6917,7 +6917,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6931,7 +6931,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -6945,7 +6945,7 @@
                         Else
                             Dim multiHP As Integer = CInt(.OppPokemon.MaxHP / 8)
                             If Not .OwnPokemon.Item Is Nothing And .FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
-                                If .OwnPokemon.Item.Name.ToLower() = "binding band" Then
+                                If .OwnPokemon.Item.OriginalName.ToLower() = "binding band" Then
                                     multiHP = CInt(.OppPokemon.MaxHP / 6)
                                 End If
                             End If
@@ -7068,7 +7068,7 @@
 
                 If .OppPokemon.HP > 0 And .OppPokemon.Status <> Pokemon.StatusProblems.Burn Then
                     If Not .OppPokemon.Item Is Nothing Then
-                        If .OppPokemon.Item.Name.ToLower() = "flame orb" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If .OppPokemon.Item.OriginalName.ToLower() = "flame orb" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             InflictBurn(False, False, BattleScreen, "Flame Orb inflicts a burn!", "flameorb")
                         End If
                     End If
@@ -7076,7 +7076,7 @@
 
                 If .OppPokemon.HP > 0 And .OppPokemon.Status <> Pokemon.StatusProblems.Poison And .OppPokemon.Status <> Pokemon.StatusProblems.BadPoison Then
                     If Not .OppPokemon.Item Is Nothing Then
-                        If .OppPokemon.Item.Name.ToLower() = "toxic orb" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If .OppPokemon.Item.OriginalName.ToLower() = "toxic orb" And .FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             InflictPoison(False, False, BattleScreen, True, "Toxic Orb inflicts a poisoning!", "toxicorb")
                         End If
                     End If
@@ -7492,7 +7492,7 @@
                 End If
 
                 If Not .OwnPokemon.Item Is Nothing Then
-                    If .OwnPokemon.Item.Name.ToLower() = "amulet coin" Or .OwnPokemon.Item.Name.ToLower() = "luck incense" Then
+                    If .OwnPokemon.Item.OriginalName.ToLower() = "amulet coin" Or .OwnPokemon.Item.OriginalName.ToLower() = "luck incense" Then
                         If .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             BattleScreen.FieldEffects.AmuletCoin += 1
                         End If
@@ -8102,7 +8102,7 @@
                 Next
 
                 For i = 0 To Core.Player.Pokemons.Count - 1
-                    If expPokemon.Contains(i) = False And Not Core.Player.Pokemons(i).Item Is Nothing AndAlso Core.Player.Pokemons(i).Item.Name.ToLower() = "exp share" AndAlso Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted AndAlso Core.Player.Pokemons(i).IsEgg() = False Then
+                    If expPokemon.Contains(i) = False And Not Core.Player.Pokemons(i).Item Is Nothing AndAlso Core.Player.Pokemons(i).Item.OriginalName.ToLower() = "exp share" AndAlso Core.Player.Pokemons(i).Status <> Pokemon.StatusProblems.Fainted AndAlso Core.Player.Pokemons(i).IsEgg() = False Then
                         expPokemon.Add(i)
                     End If
                 Next

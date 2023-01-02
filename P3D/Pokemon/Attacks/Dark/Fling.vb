@@ -93,7 +93,7 @@
                 'Clear prior effect chances to add the chance depending on the item.
                 Me.EffectChances.Clear()
 
-                Select Case p.Item.Name.ToLower()
+                Select Case p.Item.OriginalName.ToLower()
                     Case "flame orb" 'cause burn
                         Me.EffectChances.Add(30)
                         If Core.Random.Next(0, 100) < Me.GetEffectChance(0, own, BattleScreen) Then

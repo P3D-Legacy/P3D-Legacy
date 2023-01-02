@@ -69,7 +69,7 @@ Namespace BattleSystem.Moves.Normal
             End If
 
             If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "grip claw" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                If p.Item.OriginalName.ToLower() = "grip claw" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                     turns = 5
                 End If
             End If

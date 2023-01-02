@@ -2473,7 +2473,7 @@ Public Class Pokemon
                 add += 1
             End If
             If Not Me.Item Is Nothing Then
-                If Me.Item.Name.ToLower() = "soothe bell" Then
+                If Me.Item.OriginalName.ToLower() = "soothe bell" Then
                     add *= 2
                 End If
             End If

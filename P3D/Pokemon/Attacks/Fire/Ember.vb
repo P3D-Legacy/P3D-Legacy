@@ -87,7 +87,11 @@
                 TextureYOffset = 32
             End If
             Dim FireballEntity = MoveAnimation.SpawnEntity(New Vector3(-2.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Fire\FireBall", New Rectangle(0, TextureYOffset, 32, 32), ""), New Vector3(0.5F), 1.0F)
-            MoveAnimation.AnimationMove(FireballEntity, True, -0.05, 0.0, 0.0, 0.05, False, True, 0.0, 1.0,, -0.5)
+            If BattleFlip = False Then
+                MoveAnimation.AnimationMove(FireballEntity, True, -0.05, 0.0, 0.0, 0.05, False, True, 0.0, 1.0,, -0.5)
+            Else
+                MoveAnimation.AnimationMove(FireballEntity, True, -0.05, 0.0, 0.0, 0.05, False, True, 0.0, 1.0,, 0.5)
+            End If
 
             MoveAnimation.AnimationPlaySound("Battle\Attacks\Fire\Ember_Hit", 4, 0)
 

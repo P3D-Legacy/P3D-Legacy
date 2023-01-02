@@ -77,7 +77,7 @@ Namespace BattleSystem.Moves.Electric
                 BattleScreen.Battle.ReduceHP(heal, own, own, BattleScreen, "Liquid Ooze damaged " & p.GetDisplayName() & "!", "liquidooze")
             Else
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "big root" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                    If p.Item.OriginalName.ToLower() = "big root" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                         heal = CInt(Math.Ceiling(damage * (80 / 100)))
                     End If
                 End If
