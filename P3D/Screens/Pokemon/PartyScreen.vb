@@ -1053,6 +1053,14 @@ Public Class PartyScreen
 
             PlayerStatistics.Track("Dig used", 1)
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+            If Screen.Level.Surfing = True Then
+                Screen.Level.Surfing = False
+                Screen.Level.OwnPlayer.SetTexture(Core.Player.TempSurfSkin, True)
+                Core.Player.Skin = Core.Player.TempSurfSkin
+
+                Screen.Level.OverworldPokemon.warped = True
+                Screen.Level.OverworldPokemon.Visible = False
+            End If
         Else
             TextBox.Show("Cannot use Dig here.", {}, True, False)
         End If
@@ -1098,6 +1106,14 @@ Public Class PartyScreen
 
             PlayerStatistics.Track("Teleport used", 1)
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+            If Screen.Level.Surfing = True Then
+                Screen.Level.Surfing = False
+                Screen.Level.OwnPlayer.SetTexture(Core.Player.TempSurfSkin, True)
+                Core.Player.Skin = Core.Player.TempSurfSkin
+
+                Screen.Level.OverworldPokemon.warped = True
+                Screen.Level.OverworldPokemon.Visible = False
+            End If
         Else
             TextBox.Show("Cannot use Teleport here.", {}, True, False)
         End If
