@@ -5,7 +5,7 @@ Money|3142
 IntroMessage|
 OutroMessage|Nice work!~You took on my future Gym Leader team!
 DefeatMessage|I'm not exactly a competitive~battler, as you can see.
-TextureID|tornado
+TextureID|TornadoBot
 Region|Sevii Islands
 IniMusic|Johto_champion_intro
 DefeatMusic|champion_defeat
