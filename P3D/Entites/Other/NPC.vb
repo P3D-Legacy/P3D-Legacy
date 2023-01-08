@@ -359,7 +359,7 @@
 
                                     Dim trainerContent() As String = System.IO.File.ReadAllLines(trainerFilePath)
                                     For Each line As String In trainerContent
-                                        Dim l As String = line.Trim().ToLower()
+                                        Dim l As String = line.Trim()
                                         If l.StartsWith("@trainer:") = True Then
                                             Dim trainerID As String = l.GetSplit(1, ":")
                                             If Trainer.IsBeaten(trainerID) = True Then
