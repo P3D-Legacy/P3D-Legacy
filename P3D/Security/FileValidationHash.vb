@@ -9,8 +9,8 @@ Namespace Security
         ' Actual code will be read from FileValidation.Generated.vb which generates a FileValidation class with
         ' the same details as here.
         '
-        Protected Shared EXPECTEDSIZE As Integer = 51453861
-        Protected Shared METAHASH As String = "NDVGMTUyMjcxNUQwQjY0NjY1Qzg1MzcyMDYyRTIyM0I="
+        Protected Shared EXPECTEDSIZE As Integer = 51453171
+        Protected Shared METAHASH As String = "QjQyRjMyODlBRTJGMjRFMTk5M0JFN0JBOTIwMEI0OEU="
 
 #Region "Generated File Hashes"
         ' Content\Data\badges.dat:ABCB97936D5FF133509D2A47FFAF27FF
@@ -496,7 +496,7 @@ Namespace Security
         ' Content\Data\maps\diamonddive\interior\3.dat:52CA1CB02090785B3961B49FBDC93E60
         ' Content\Data\maps\diamonddive\interior\4.dat:D7FEB69A8C1E9F88A9767078A33F62D7
         ' Content\Data\maps\diamonddive\interior\5.dat:FA982D7ADC7FB4CC1C681B4168F14E3C
-        ' Content\Data\maps\diamonddive\interior\6.dat:CEEA3C61070608A412B08EC64E6CB523
+        ' Content\Data\maps\diamonddive\interior\6.dat:B54C579F4A63EA3C9C0927FF68678708
         ' Content\Data\maps\diamonddive\interior\7.dat:2AD96BF9969AA141CE3F2F7F2D3774F4
         ' Content\Data\maps\diamonddive\underwater\1.dat:BD1E5E698D1ACA92CFB3A002546962F7
         ' Content\Data\maps\diamonddive\underwater\2.dat:B1A61A531899833A92AE50F4FE19F208
@@ -1950,7 +1950,7 @@ Namespace Security
         ' Content\Data\Scripts\kolben\darkfire.dat:F8609F9CA4249E9A7866BB6B59CE76E2
         ' Content\Data\Scripts\kolben\daziman.dat:08200C0B415E394CD13BDD6EE4F71A8D
         ' Content\Data\Scripts\kolben\elevator.dat:6B6CEEB0B2175BACB89BDB1B5AFC9CE5
-        ' Content\Data\Scripts\kolben\enethil.dat:A43E47EDB78B8FC6C95ECA9A49464435
+        ' Content\Data\Scripts\kolben\enethil.dat:4ED75D35C93E5CA8551CC061940B6E3F
         ' Content\Data\Scripts\kolben\falkner.dat:EE29DDA8876DF07BD0DC965C1E10D0B4
         ' Content\Data\Scripts\kolben\fanta.dat:2068EC52D136D3EABBB8F03A89E94F6C
         ' Content\Data\Scripts\kolben\jappa_bowl.dat:CF16595DA4303633F878EABB45AA3455
@@ -2090,8 +2090,8 @@ Namespace Security
         ' Content\Data\Scripts\nationalpark\end_contest_menu.dat:88DE2ADB20D0481819DFDBB8B464F7F0
         ' Content\Data\Scripts\nationalpark\end_contest_officer0.dat:FA4D77CC00F1CC0A9AA0D97298BA01D5
         ' Content\Data\Scripts\nationalpark\end_contest_officer1.dat:5DAD3E2069D6A051A75D807B71B750C0
-        ' Content\Data\Scripts\nationalpark\park_officer0.dat:E41429651DFE69963819CB0A3811FA42
-        ' Content\Data\Scripts\nationalpark\park_officer1.dat:C3C95316839097F16871154A139F8DF3
+        ' Content\Data\Scripts\nationalpark\park_officer0.dat:BBE55DB2C0436A5965D63586D73C7DD5
+        ' Content\Data\Scripts\nationalpark\park_officer1.dat:6AFB4FE8C84BDAE60E71DCA116F2D147
         ' Content\Data\Scripts\nationalpark\persian.dat:A3924D7B15DCC25D806DB74F2D3C5AC6
         ' Content\Data\Scripts\nationalpark\quick_claw.dat:6FDCCDD5574FAFFBF3CEF4201230406B
         ' Content\Data\Scripts\nationalpark\sport_balls.dat:EE87C9C14DB8C2AE4A6193C394D39979
@@ -2165,7 +2165,7 @@ Namespace Security
         ' Content\Data\Scripts\phone\033.dat:7C07443FE7FC98C382C6E72E67F622DE
         ' Content\Data\Scripts\phone\034.dat:AB1941E9FF470A29F2C679E0F6D8239C
         ' Content\Data\Scripts\phone\035.dat:8E75D99E7A27544BD2076D586EFAB79D
-        ' Content\Data\Scripts\phone\contacts.dat:109D611C967B49E70C79E12743688ACB
+        ' Content\Data\Scripts\phone\contacts.dat:E354E474C77D1728A17C43744C473CC5
         ' Content\Data\Scripts\powerplant\call.dat:24CDBFA028DCFC04EB7F9B1AE95D3921
         ' Content\Data\Scripts\powerplant\cop1.dat:065804609847C78D6CD075D4A3B63530
         ' Content\Data\Scripts\powerplant\cop2.dat:2168D9A7FE004979F90282BDB52338A0
@@ -3115,7 +3115,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\kolben\omega\OmegaT.trainer:6C947C2824A5507A2250200A597C788D
         ' Content\Data\Scripts\trainer\kolben\Omega1.trainer:6695DC45F858C69B371749A56FFC7640
         ' Content\Data\Scripts\trainer\kolben\Segis.trainer:44305D87B076A636FA5ED8D0430DA93B
-        ' Content\Data\Scripts\trainer\kolben\tornado.trainer:1CBFE11ED0D4FF178A3847CE85DC774D
+        ' Content\Data\Scripts\trainer\kolben\tornado.trainer:8FC238AC9812F8101FFBA035A0E22ED6
         ' Content\Data\Scripts\trainer\lakeofrage\001.dat:0335AEAD01A421D70073D21FFAC90635
         ' Content\Data\Scripts\trainer\lakeofrage\001.trainer:5A27F926D1915BB887078E7A1DF026CC
         ' Content\Data\Scripts\trainer\lakeofrage\002.dat:24F2B662A892BF1569EA65F7DFA186FC
