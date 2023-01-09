@@ -9,8 +9,8 @@ Namespace Security
         ' Actual code will be read from FileValidation.Generated.vb which generates a FileValidation class with
         ' the same details as here.
         '
-        Protected Shared EXPECTEDSIZE As Integer = 51448075
-        Protected Shared METAHASH As String = "OUM0QURGNTRBRDQwOTVBQzgwQjE0RkQ2M0VCQzdDMEM="
+        Protected Shared EXPECTEDSIZE As Integer = 51453861
+        Protected Shared METAHASH As String = "NDVGMTUyMjcxNUQwQjY0NjY1Qzg1MzcyMDYyRTIyM0I="
 
 #Region "Generated File Hashes"
         ' Content\Data\badges.dat:ABCB97936D5FF133509D2A47FFAF27FF
@@ -26,7 +26,7 @@ Namespace Security
         ' Content\Data\maps\alph\alphhouse.dat:C88623B3C3EF0035AAAF64B6F86B7F7D
         ' Content\Data\maps\alph\deepruins.dat:D329B16F7B01CCDEEBED863A57630047
         ' Content\Data\maps\alph\ruinsofalph.dat:7D317F3A49E8856A02F547BFEF40D648
-        ' Content\Data\maps\azalea.dat:3F77A8743410D4E2AC56AF66EADF680A
+        ' Content\Data\maps\azalea.dat:EB9A87CBDC2C1A38192664148D365E35
         ' Content\Data\maps\azalea\0.dat:47A74F154393AF166FD7EFF04479085C
         ' Content\Data\maps\azalea\center.dat:BF60F2C397F39D0A5674B64C78C10E5B
         ' Content\Data\maps\azalea\kurt.dat:5F2313FD629F918D6CC68E1B1C3C4749
@@ -448,7 +448,7 @@ Namespace Security
         ' Content\Data\maps\celadon\condo3.dat:F65EC5490C844883607EAD0D8F9C40F9
         ' Content\Data\maps\celadon\condo4.dat:FBA03F652BBF888796ED9B3296D0FB44
         ' Content\Data\maps\celadon\diner.dat:B321A0B1A1692E3B985FE640C5FE8107
-        ' Content\Data\maps\celadon\main.dat:537033BC5A52A17CFC072810C4EF8535
+        ' Content\Data\maps\celadon\main.dat:2A743A6DD0C1D47BE8D4B3EDC0D7380A
         ' Content\Data\maps\celadon\mart.dat:26974E5D7A2FB78E9DFA3BC990FE2C6E
         ' Content\Data\maps\cerulean\1.dat:0496B9BB54D47E40CFAFBF1E9F035F88
         ' Content\Data\maps\cerulean\2.dat:A5A1457BC35EBB0BF3A521C7F415644B
@@ -476,7 +476,7 @@ Namespace Security
         ' Content\Data\maps\chrono\selphy.dat:ED58F7B98C033E6C4E3624725F30CE2D
         ' Content\Data\maps\chrono\town.dat:929ED74B17270A495CADBCCDEA3C608C
         ' Content\Data\maps\chrono\warehouse.dat:A8A9C4D6880C6C8074968F172EB6D54E
-        ' Content\Data\maps\cianwood.dat:F65E27FC2485FF511F8446C294B3E374
+        ' Content\Data\maps\cianwood.dat:65724C74C89314C248046733E587E80C
         ' Content\Data\maps\cianwood\000.dat:FDCA1914CDD40BB1BA37192240DF2C48
         ' Content\Data\maps\cianwood\001.dat:A8A4436AC423D7723B74F2A08C7CEE37
         ' Content\Data\maps\cianwood\002.dat:AC8BE0765253CAA2E533D4060AA2B80C
@@ -566,7 +566,7 @@ Namespace Security
         ' Content\Data\maps\dungeon\main.dat:CE41B65583DD2A21BAD97B143DFCA06B
         ' Content\Data\maps\dungeon\mindend.dat:EAB6CB1EAED5B638C8A0F6A82582AB9E
         ' Content\Data\maps\dungeon\passage.dat:184439FD9A55BC0EB90EC2832132AA4B
-        ' Content\Data\maps\Ecruteak.dat:E42ED63267371BA7B5ADF2B78CB467DA
+        ' Content\Data\maps\Ecruteak.dat:C7015EDEF6DBFB7306B995509D82CE19
         ' Content\Data\maps\ecruteak\001.dat:CAC8CCE5AEB4D94B32C4E829E79EA273
         ' Content\Data\maps\ecruteak\002.dat:A4A3E8F09F601DFAF1404A3676930BD3
         ' Content\Data\maps\ecruteak\center.dat:5EC12F7235932D090D4F41F9600A21C9
@@ -656,7 +656,7 @@ Namespace Security
         ' Content\Data\maps\gates\saffronsouth.dat:1F617909ADCD7661758307B0AF879A3D
         ' Content\Data\maps\gates\saffronwest.dat:98A44BE1CD755DCB4BADFF058D70278D
         ' Content\Data\maps\gates\zephyr.dat:F83669C41736DEC900FD7772722B6904
-        ' Content\Data\maps\goldenrod.dat:BC2788E604FD62FC68B50C62B4CD04A0
+        ' Content\Data\maps\goldenrod.dat:FB80DE7AE3D75DA961445181C70C46D3
         ' Content\Data\maps\goldenrod\001.dat:ADFB052FFB1D1833198F23338C425FDD
         ' Content\Data\maps\goldenrod\002.dat:625AC7FA2B48254001640CDE9E964D1C
         ' Content\Data\maps\goldenrod\bill.dat:B1406D16732CC6F5D502BD569D4F4533
@@ -672,7 +672,7 @@ Namespace Security
         ' Content\Data\maps\goldenrod\radiotower\2f.dat:95B864E096C782501DE32933F6E78307
         ' Content\Data\maps\goldenrod\radiotower\3f.dat:71B375D3694742A95D0B73DB84C9856D
         ' Content\Data\maps\goldenrod\radiotower\4f.dat:A9C8075C0B96ADFC0F12B59191F070AF
-        ' Content\Data\maps\goldenrod\radiotower\5f.dat:1D88B9FFD5B83932EF67D376BB36E27C
+        ' Content\Data\maps\goldenrod\radiotower\5f.dat:6F78490D0F1D52BFE0AFAC756317DD80
         ' Content\Data\maps\goldenrod\taming_shop.dat:F60AE69756A52492EF49115859F71185
         ' Content\Data\maps\goldenrod\trainstation.dat:651580DC6C72DD9CF6013BC39AA4E8CB
         ' Content\Data\maps\goldenrod\underground0.dat:8E2836E013AA523A9CFCE45AF786F4D4
@@ -734,7 +734,7 @@ Namespace Security
         ' Content\Data\maps\indigo\karen.dat:E0A19D06C5630540BF8A8DA24CA8B3EE
         ' Content\Data\maps\indigo\koga.dat:1AF0D99AB3A11554CC6A7108F0B98D3D
         ' Content\Data\maps\indigo\lance.dat:99C8CEE0AA0BA4B5F9BFB006EBE52864
-        ' Content\Data\maps\indigo\outside.dat:254DCBE481C44D662272EF8CAFB21544
+        ' Content\Data\maps\indigo\outside.dat:A82146B8D21AAAC50059A55D402F6C6E
         ' Content\Data\maps\indigo\portraitplace.dat:813691B3EA84B9FFB48CFAD9C4AFF78E
         ' Content\Data\maps\indigo\will.dat:E2E38072CE4B51E223DD6F2D7FD0846B
         ' Content\Data\maps\kin\1.dat:22E6C7B1D6D206110962B39B342A822D
@@ -776,7 +776,7 @@ Namespace Security
         ' Content\Data\maps\lavender\3.dat:E476084785E3380B5A8B121C44A17B98
         ' Content\Data\maps\lavender\cemetary.dat:D112EB3D5BD4925D0D19C28EB4575FED
         ' Content\Data\maps\lavender\center.dat:10CEF94119474E65A4BF48003DDE880E
-        ' Content\Data\maps\lavender\main.dat:055B3746EDFA89FA41E9C5054E8C13DC
+        ' Content\Data\maps\lavender\main.dat:8BC2F8A0FD26AFE85BAB25C11A156F4D
         ' Content\Data\maps\lavender\mart.dat:6E14D8BBDC3BCF426E5E80893EA51920
         ' Content\Data\maps\lavender\radio.dat:B53E879D90B36D7D75F380A40463C3DF
         ' Content\Data\maps\liberty\garden.dat:4B3BC025C8681982F8254A5AF526C13C
@@ -798,15 +798,15 @@ Namespace Security
         ' Content\Data\maps\lostcave\extra4.dat:769F1BECE21B7DC4AB81B300923BFA9A
         ' Content\Data\maps\lostcave\ladder.dat:CEA0A3344B6EE9AB33BFB1B6C78E91AE
         ' Content\Data\maps\lostcave\selphy.dat:6A38E77297F6CB587FCF28A76914E08F
-        ' Content\Data\maps\mahogany.dat:8AB7E1F72ABB82DFF17DCED74C11AA24
+        ' Content\Data\maps\mahogany.dat:1246AED0669F4F6490257CB533C66490
         ' Content\Data\maps\mahogany\0.dat:6FD3619F98CC99121FC51234F69A96DB
         ' Content\Data\maps\mahogany\center.dat:515953067BC1C282086EC7C9460F7692
         ' Content\Data\maps\mahogany\shop.dat:18019B337E884B2BB40EA97D26CF3E66
-        ' Content\Data\maps\mainmenu\_mainmenu3.dat:B7830E82D35C3261B49A7DCB680C4C77
+        ' Content\Data\maps\mainmenu\_mainmenu3.dat:336C19514BBCC981E09FC97EE0B6A352
         ' Content\Data\maps\mainmenu\cubetest.dat:5615DFB13243B203D828B3DE18806C06
         ' Content\Data\maps\mainmenu\mainmenu0.dat:16682D7909E8665C7E3BB43FA18CBC83
         ' Content\Data\maps\mainmenu\mainmenu1.dat:AB87E8E43AC991C4D97A5797A67F858A
-        ' Content\Data\maps\mainmenu\mainmenu2.dat:29DA1C1F240670BD01C051D15654677B
+        ' Content\Data\maps\mainmenu\mainmenu2.dat:F9FA28EC2D7F7D80CD316DE03B040051
         ' Content\Data\maps\mrpokemonhouse.dat:B5E3386EA9DE178E5242776F03E5678D
         ' Content\Data\maps\mtember\braille1.dat:0D08FE354BADE2E9AD9680C19FF47C54
         ' Content\Data\maps\mtember\braille2.dat:88C2524D82BA2F62DF1E3A536F59ECD2
@@ -1207,8 +1207,8 @@ Namespace Security
         ' Content\Data\maps\rocktunnel\bf1.dat:840335EA8967005BC1FE2E44CE1A8203
         ' Content\Data\maps\rocktunnel\bf2.dat:1D0473F1C008E6E8F296BF936B36021A
         ' Content\Data\maps\route29.dat:53FF38D4F1B28F8482C56862C531CB11
-        ' Content\Data\maps\route30.dat:EA8FD964FA186D6FA368FF779B83F83C
-        ' Content\Data\maps\route31.dat:A898F5F7D76ECF7C44A797734F0721E7
+        ' Content\Data\maps\route30.dat:B7435F79690408922460C512F5F1EEE8
+        ' Content\Data\maps\route31.dat:8003B6C0ADCC48E4755BE83279534016
         ' Content\Data\maps\route32_center.dat:182EB3DA4B05014DE266EBDA59D0F4C4
         ' Content\Data\maps\route32.dat:6BCDE8A3A7C0A0670E7B6391AC8058D0
         ' Content\Data\maps\route33.dat:7083D34E17DA7455A62CA05CE46F9BC2
@@ -1285,7 +1285,7 @@ Namespace Security
         ' Content\Data\maps\routes\route49.dat:4805FEBFDDB3110F64BC8F76AC94D34F
         ' Content\Data\maps\routes\route5.dat:9D8CEF94359E7F76BC7A35CB022A0823
         ' Content\Data\maps\routes\route5\1.dat:96911549D090D71420CB8F67FAE63C17
-        ' Content\Data\maps\routes\route50.dat:1ACCF6825619B62C4A78C742237E3E6F
+        ' Content\Data\maps\routes\route50.dat:CFBDDF5CC412E3D57DCBE617828D622A
         ' Content\Data\maps\routes\route6.dat:3C62EC14E22D9A6E0E112B4E92A96FED
         ' Content\Data\maps\routes\route7.dat:685BA6620E82AAFEFF8CD87E0F2021BC
         ' Content\Data\maps\routes\route8.dat:2F76202309336C3ECE0DE16AB5A39985
@@ -1387,7 +1387,7 @@ Namespace Security
         ' Content\Data\maps\structures\goldenrod\chair.dat:A57D71CC4A6B27C6EA4838E0913AD320
         ' Content\Data\maps\structures\goldenrod\chandelier.dat:0E2B6D8F7D8D0BAF8866721A2CCB0227
         ' Content\Data\maps\structures\goldenrod\table.dat:3255F25BD845BD852B2C4E95766B2BC2
-        ' Content\Data\maps\structures\HealingMachine.dat:142A132F616B01AAC53B40EFE09E6870
+        ' Content\Data\maps\structures\HealingMachine.dat:5C795A9CE6833EB07B2A3BEE38B9F5AA
         ' Content\Data\maps\structures\kolben\Monitor_Jappa.dat:B9FC54CBDC3B33CD403E99E97CC47A5E
         ' Content\Data\maps\structures\magnettrain.dat:9734D9A1BE659DDB6FC2E2C24CAE9F7B
         ' Content\Data\maps\structures\PokeCenterInterior.dat:3C02A65BEF98BD1A4B48046B380042B7
@@ -1398,7 +1398,7 @@ Namespace Security
         ' Content\Data\maps\structures\saffron\shortwdoor.dat:451B0C1FFBED1FDFC297182417C4AED9
         ' Content\Data\maps\structures\saffron\shortwestwall.dat:2CC63A0EFAB51053A054D7BDC19780EC
         ' Content\Data\maps\structures\saffron\tall.dat:E060B5BAE1E9D4B78E3EE2F93351EB9C
-        ' Content\Data\maps\structures\SeaPlane.dat:C055532E3C426B089A2A4C6CBA65DFD8
+        ' Content\Data\maps\structures\SeaPlane.dat:37638C6A91AE1697DC12DB65DB06FFD0
         ' Content\Data\maps\structures\sevii\brownhouse.dat:94214CB3BEE744764D9F6934869EDEF9
         ' Content\Data\maps\structures\sevii\center.dat:3CEE73707B61DA77BE571A1596FBE79A
         ' Content\Data\maps\structures\sevii\dock.dat:672A427872CD3E18F7397C7B86CAF789
@@ -1473,7 +1473,7 @@ Namespace Security
         ' Content\Data\maps\victoryroad\3.dat:26B67D678460512A0C0EB94F4E360F16
         ' Content\Data\maps\violet_center.dat:927BD7D5AF524E68134E94855B0514E4
         ' Content\Data\maps\violet_mart.dat:410946A0F162322D0A039DC7861260FD
-        ' Content\Data\maps\violet.dat:797A84CB00B7A8494F205FE3EE409BEC
+        ' Content\Data\maps\violet.dat:DC0C18B0B2FC666462F0E69FF2EB6BE1
         ' Content\Data\maps\violet\001.dat:0B3110DFB11CBC95FEA2231DC6C65592
         ' Content\Data\maps\violet\002.dat:6DBAE25DA9568744097DAC7DB3F852AB
         ' Content\Data\maps\violet\school.dat:3683AEE56DFD8507365482D9CE92FD04
@@ -1944,7 +1944,7 @@ Namespace Security
         ' Content\Data\Scripts\kolben\botoff.dat:6D0B68CD7B8C6733460602F8B044D774
         ' Content\Data\Scripts\kolben\boton.dat:F69658718CB0A2C356AED7E0F416C82D
         ' Content\Data\Scripts\kolben\BSOD.dat:A37CE03837D6F8AC63A433108A4527FE
-        ' Content\Data\Scripts\kolben\BSODPorygon.dat:5E510F02D38E6CB7453119575E6E798A
+        ' Content\Data\Scripts\kolben\BSODPorygon.dat:7D49FDE08F194F9FD421D05F14DCC258
         ' Content\Data\Scripts\kolben\chachamaru.dat:B6911276E5464641CAC2ABB960E81861
         ' Content\Data\Scripts\kolben\daniel.dat:C3AAE1D943238ABD1C7B6ABAA7AD90A7
         ' Content\Data\Scripts\kolben\darkfire.dat:F8609F9CA4249E9A7866BB6B59CE76E2
@@ -3643,7 +3643,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\route30\003.dat:B5E7144FF2CE767D03CF46D476A33704
         ' Content\Data\Scripts\trainer\route31\001.dat:5B5A3A493F539E599F9907FF4EBDA6A1
         ' Content\Data\Scripts\trainer\route32\001.dat:DEA5B946B1F559539460745E3F8685B1
-        ' Content\Data\Scripts\trainer\route32\002.dat:5BA5049288CE15FE1951F1A4DE91595B
+        ' Content\Data\Scripts\trainer\route32\002.dat:BFBAC6E96A91208E166C02E70789B3CD
         ' Content\Data\Scripts\trainer\route32\003.dat:45C4697CD4B0878FF97D75F450566AFB
         ' Content\Data\Scripts\trainer\route32\004.dat:951268C78C275CBAB9C1BC2EA285F3C6
         ' Content\Data\Scripts\trainer\route32\005.dat:491C0E3BC4210D74A3822A68DD5E86B2
@@ -3651,7 +3651,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\route32\007.dat:7C4789E57FA065E1AA4D547564F50040
         ' Content\Data\Scripts\trainer\route32\008.dat:7C9ABA5FDA245EED6B1A5EDA8BA14954
         ' Content\Data\Scripts\trainer\route32\32001.trainer:E2360ED4E7CB20D8CED08199DD801206
-        ' Content\Data\Scripts\trainer\route32\32002_1.trainer:A3DF4962446A8843353C2D500B08CFD8
+        ' Content\Data\Scripts\trainer\route32\32002_1.trainer:05BF44A3B2BE346FCD0A8EAD22F1CC31
         ' Content\Data\Scripts\trainer\route32\32002_2.trainer:29A23A6D18D55367CF254ED0594D2109
         ' Content\Data\Scripts\trainer\route32\32002.trainer:AD770A397ECC7520EC4DF58F6131C308
         ' Content\Data\Scripts\trainer\route32\32003.trainer:5B2EBD6A772C02966D06605F14F4ABBF
@@ -4680,7 +4680,7 @@ Namespace Security
         ' Content\Pokemon\Data\486.dat:76E75B27CA9C185C015AB9E98F0ED816
         ' Content\Pokemon\Data\487_origin.dat:BDE731D64435F4218DA3AD5006459D73
         ' Content\Pokemon\Data\487.dat:61DF60A209089AA69A28DC1EE6D763AD
-        ' Content\Pokemon\Data\488.dat:6EC90C1FB793810E4D8B8099DB92D67A
+        ' Content\Pokemon\Data\488.dat:4491904A732530221CA7F9673B8F3F3E
         ' Content\Pokemon\Data\489.dat:CD278B606A35D272743D0707AFDF67CB
         ' Content\Pokemon\Data\49.dat:C87AF6FF04FB726026025F721C69E8D3
         ' Content\Pokemon\Data\490.dat:131EF8EE11E5B49203C9CAB502DA95A1
