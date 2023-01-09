@@ -88,8 +88,18 @@
 
     Private Sub DrawIdle()
         'Own Side:
-        Core.SpriteBatch.Draw(Screen.Level.OwnPlayer.Texture, New Rectangle(100, 32, 64, 64), New Rectangle(0, 64, 32, 32), Color.White)
-        Core.SpriteBatch.DrawString(FontManager.MainFont, Core.Player.Name, New Vector2(170, 54), Color.White, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+        Dim _ownTexture As Texture2D = Screen.Level.OwnPlayer.Texture
+        Dim _ownframeSize As Size
+        If _ownTexture.Width = _ownTexture.Height / 2 Then
+            _ownframeSize = New Size(CInt(_ownTexture.Width / 2), CInt(_ownTexture.Height / 4))
+        ElseIf _ownTexture.Width = _ownTexture.Height Then
+            _ownframeSize = New Size(CInt(_ownTexture.Width / 4), CInt(_ownTexture.Height / 4))
+        Else
+            _ownframeSize = New Size(CInt(_ownTexture.Width / 3), CInt(_ownTexture.Height / 4))
+        End If
+        _ownTexture = TextureManager.GetTexture(_ownTexture, New Rectangle(0, _ownframeSize.Height * 2, _ownframeSize.Width, _ownframeSize.Height))
+
+        Core.SpriteBatch.Draw(_ownTexture, New Rectangle(100, 32, 64, 64), Color.White)
 
         Canvas.DrawRectangle(New Rectangle(100, 100, 256, 256), New Color(255, 255, 255, 150))
 
@@ -156,8 +166,18 @@
         Next
 
         If Not t Is Nothing And Not tempPlayer Is Nothing Then
-            Core.SpriteBatch.Draw(t, New Rectangle(CInt(Core.windowSize.Width - 356), 32, 64, 64), New Rectangle(0, 64, 32, 32), Color.White)
-            Core.SpriteBatch.DrawString(FontManager.MainFont, tempPlayer.Name, New Vector2(CInt(Core.windowSize.Width - 356) + 70, 54), Color.White, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+            Dim _otherTexture As Texture2D = t
+            Dim _otherframeSize As Size
+            If _otherTexture.Width = _otherTexture.Height / 2 Then
+                _otherframeSize = New Size(CInt(_otherTexture.Width / 2), CInt(_otherTexture.Height / 4))
+            ElseIf _otherTexture.Width = _otherTexture.Height Then
+                _otherframeSize = New Size(CInt(_otherTexture.Width / 4), CInt(_otherTexture.Height / 4))
+            Else
+                _otherframeSize = New Size(CInt(_otherTexture.Width / 3), CInt(_otherTexture.Height / 4))
+            End If
+            _otherTexture = TextureManager.GetTexture(_ownTexture, New Rectangle(0, _ownframeSize.Height * 2, _ownframeSize.Width, _ownframeSize.Height))
+
+            Core.SpriteBatch.Draw(_otherTexture, New Rectangle(CInt(Core.windowSize.Width - 356), 32, 64, 64), Color.White)
         End If
 
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 356), 100, 256, 256), New Color(255, 255, 255, 150))

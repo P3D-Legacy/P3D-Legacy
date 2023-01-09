@@ -62,6 +62,10 @@ Public Class ChatScreen
         If PreScreen.Identification = Identifications.OverworldScreen And JoinServerScreen.Online = True Then
             Screen.Level.Update()
         End If
+        If PreScreen.Identification = Screen.Identifications.BattleScreen Then
+            PreScreen.Update()
+        End If
+
         If CursorDelay > 0 Then
             CursorDelay -= 1
         Else

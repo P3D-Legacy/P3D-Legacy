@@ -233,7 +233,7 @@ Public Class OverworldScreen
                     NotificationPopupList(0).Dismiss()
                 Else
                     If Core.Player.HasPokegear = True OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True Then
-                        If Screen.Camera.IsMoving() = False AndAlso ActionScript.IsReady = True AndAlso Screen.Level.SaveOnly = False Then
+                        If Screen.Camera.IsMoving() = False AndAlso ActionScript.IsReady = True AndAlso Screen.Level.SaveOnly = False AndAlso Screen.Level.IsBugCatchingContest = False Then
                             Core.SetScreen(New GameJolt.PokegearScreen(Me, GameJolt.PokegearScreen.EntryModes.MainMenu, {}))
                         End If
                     End If
