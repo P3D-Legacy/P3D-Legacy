@@ -41,15 +41,15 @@
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = False
             Me.IsOneHitKOMove = False
             Me.IsWonderGuardAffected = True
-            Me.IsPowderMove = True
+            Me.IsPowderMove = True 'P3D Only
             '#End
 
             Me.AIField1 = AIField.Support

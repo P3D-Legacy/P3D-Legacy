@@ -10,14 +10,14 @@
         'Darker center: 255,0,0 (get from middle color)
         'Light dots: 0,255,0
         'Darker dots: 255,255,0
-
+        Dim OnlySpots As Boolean = False
         Dim egg As Texture2D = EggTemplate
         Dim sprite As Texture2D = Pokemon.GetMenuTexture(False)
 
         Dim arr As List(Of Color) = GetColors2(sprite, New Rectangle(0, 0, sprite.Width, sprite.Height), PUFFER).ToList()
 
         If arr.Count < 2 Then
-            Return DefaultEggSprite
+            OnlySpots = True
         Else
             While arr.Count < 4
                 For i = 0 To arr.Count - 1
@@ -28,11 +28,20 @@
             End While
         End If
 
-        While arr.Count > 4
-            arr.RemoveAt(arr.Count - 1)
-        End While
+        If OnlySpots = True Then
+            arr.Add(New Color(arr(0).R - 32, arr(0).G - 32, arr(0).B - 32))
+            arr = (From c As Color In arr Order By (CInt(c.R) + CInt(c.G) + CInt(c.B)) Descending).ToList()
+            arr.Insert(0, New Color(255, 246, 222))
+            arr.Insert(1, New Color(205, 189, 131))
 
-        arr = (From c As Color In arr Order By (CInt(c.R) + CInt(c.G) + CInt(c.B)) Descending).ToList()
+        Else
+            While arr.Count > 4
+                arr.RemoveAt(arr.Count - 1)
+            End While
+
+            arr = (From c As Color In arr Order By (CInt(c.R) + CInt(c.G) + CInt(c.B)) Descending).ToList()
+
+        End If
 
         Dim inputColors() As Color = {New Color(0, 255, 255), New Color(255, 0, 0), New Color(0, 255, 0), New Color(255, 255, 0)}
         egg = egg.ReplaceColors(inputColors, arr.ToArray())

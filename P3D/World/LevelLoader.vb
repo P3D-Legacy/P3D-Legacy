@@ -204,7 +204,7 @@
                             Case TagTypes.Entity
                                 AddEntity(Tags, New Size(1, 1), 1, True, New Vector3(1, 1, 1))
                             Case TagTypes.Floor
-                                AddFloor(Tags)
+                                AddFloor(Tags, loadOffsetMap)
                             Case TagTypes.Level
                                 If loadOffsetMap = False Then
                                     SetupLevel(Tags)
@@ -661,7 +661,7 @@
         End If
     End Sub
 
-    Private Sub AddFloor(ByVal Tags As Dictionary(Of String, Object))
+    Private Sub AddFloor(ByVal Tags As Dictionary(Of String, Object), Optional IsOffsetFloor As Boolean = False)
         Dim sizeList As List(Of Integer) = CType(GetTag(Tags, "Size"), List(Of Integer))
         Dim Size As Size = New Size(sizeList(0), sizeList(1))
 
@@ -718,22 +718,22 @@
                 For z = 0 To Size.Height - 1
                     Dim exists As Boolean = False
 
-                    Dim iZ As Integer = z
-                    Dim iX As Integer = x
+                        Dim iZ As Integer = z
+                        Dim iX As Integer = x
 
-                    Dim Ent As Entity = Nothing
+                        Dim Ent As Entity = Nothing
 
-                    If loadOffsetMap = True Then
-                        Ent = Screen.Level.OffsetmapFloors.Find(Function(e As Entity)
-                                                                    Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
-                                                                End Function)
-                    Else
-                        Ent = Screen.Level.Floors.Find(Function(e As Entity)
-                                                           Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
-                                                       End Function)
-                    End If
+                        If loadOffsetMap = True Then
+                            Ent = Screen.Level.OffsetmapFloors.Find(Function(e As Entity)
+                                                                        Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
+                                                                    End Function)
+                        Else
+                            Ent = Screen.Level.Floors.Find(Function(e As Entity)
+                                                               Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
+                                                           End Function)
+                        End If
 
-                    If Not Ent Is Nothing AndAlso Visible = True Then
+                    If Not Ent Is Nothing Then
                         Ent.Textures = {Texture}
                         Ent.Visible = Visible
                         Ent.SeasonColorTexture = SeasonTexture
@@ -1148,9 +1148,6 @@
 
         Dim PosList As List(Of Integer) = CType(GetTag(Tags, "Position"), List(Of Integer))
         Dim Position As Vector3 = New Vector3(PosList(0) + Offset.X, PosList(1) + Offset.Y, PosList(2) + Offset.Z)
-
-        Dim ObjectSizeList As List(Of Integer) = CType(GetTag(Tags, "Size"), List(Of Integer))
-        Dim ObjectSize As New Size(ObjectSizeList(0), ObjectSizeList(1))
 
         Dim DayTime As New List(Of Integer)
         If TagExists(Tags, "DayTime") = True Then

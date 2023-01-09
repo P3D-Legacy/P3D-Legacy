@@ -41,10 +41,8 @@ Namespace BattleSystem.Moves.Electric
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
-            Me.IsSoundMove = True
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False

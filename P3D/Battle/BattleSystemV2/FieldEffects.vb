@@ -364,10 +364,10 @@
                         grounded = False
                     End If
                     If Not p.Item Is Nothing Then
-                        If p.Item.Name.ToLower() = "air balloon" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If p.Item.OriginalName.ToLower() = "air balloon" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             grounded = False
                         End If
-                        If p.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If p.Item.OriginalName.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(True) = True And BattleScreen.FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             grounded = True
                         End If
                     End If
@@ -387,10 +387,10 @@
                         grounded = False
                     End If
                     If Not p.Item Is Nothing Then
-                        If p.Item.Name.ToLower() = "air balloon" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If p.Item.OriginalName.ToLower() = "air balloon" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             grounded = False
                         End If
-                        If p.Item.Name.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If p.Item.OriginalName.ToLower() = "iron ball" And BattleScreen.FieldEffects.CanUseItem(False) = True And BattleScreen.FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             grounded = True
                         End If
                     End If

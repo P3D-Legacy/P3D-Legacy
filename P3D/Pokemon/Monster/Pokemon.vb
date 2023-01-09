@@ -2473,7 +2473,7 @@ Public Class Pokemon
                 add += 1
             End If
             If Not Me.Item Is Nothing Then
-                If Me.Item.Name.ToLower() = "soothe bell" Then
+                If Me.Item.OriginalName.ToLower() = "soothe bell" Then
                     add *= 2
                 End If
             End If
@@ -2515,6 +2515,8 @@ Public Class Pokemon
                     Dim TextureImage As Texture2D
                     If TextureManager.TextureExist("Pokemon\Sprites\" & Me.Number & TextureNumberSuffix) = True Then
                         TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.Number & TextureNumberSuffix)
+                    ElseIf TextureManager.TextureExist("Pokemon\Sprites\" & Me.Number) = True Then
+                        TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.Number)
                     Else
                         TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName)
                     End If
@@ -2524,6 +2526,8 @@ Public Class Pokemon
                     Dim TextureImage As Texture2D
                     If TextureManager.TextureExist("Pokemon\Sprites\" & Me.Number & TextureNumberSuffix) = True Then
                         TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.Number & TextureNumberSuffix)
+                    ElseIf TextureManager.TextureExist("Pokemon\Sprites\" & Me.Number) = True Then
+                        TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.Number)
                     Else
                         TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName)
                     End If
@@ -2533,6 +2537,8 @@ Public Class Pokemon
                     Dim TextureImage As Texture2D
                     If TextureManager.TextureExist("Pokemon\Sprites\" & Me.Number & TextureNumberSuffix) = True Then
                         TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.Number & TextureNumberSuffix)
+                    ElseIf TextureManager.TextureExist("Pokemon\Sprites\" & Me.Number) = True Then
+                        TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.Number)
                     Else
                         TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName)
                     End If
@@ -2542,6 +2548,8 @@ Public Class Pokemon
                     Dim TextureImage As Texture2D
                     If TextureManager.TextureExist("Pokemon\Sprites\" & Me.Number & TextureNumberSuffix) = True Then
                         TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.Number & TextureNumberSuffix)
+                    ElseIf TextureManager.TextureExist("Pokemon\Sprites\" & Me.Number) = True Then
+                        TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.Number)
                     Else
                         TextureImage = P3D.TextureManager.GetTexture("Pokemon\Sprites\" & Me.AnimationName)
                     End If

@@ -188,40 +188,51 @@
         '#End
 
         '#SpecialDefinitions
+        'Damage and effect types
         Public MakesContact As Boolean = True
+        Public HasSecondaryEffect As Boolean = False
+        Public IsHealingMove As Boolean = False
+        Public IsDamagingMove As Boolean = True
+        Public IsProtectMove As Boolean = False
+        Public IsOneHitKOMove As Boolean = False
+        Public IsRecoilMove As Boolean = False
+        Public IsTrappingMove As Boolean = False
+        Public RemovesFrozen As Boolean = False
+
+        'effected by various moves items and abilities
         Public ProtectAffected As Boolean = True
         Public MagicCoatAffected As Boolean = False
         Public SnatchAffected As Boolean = False
         Public MirrorMoveAffected As Boolean = True
         Public KingsrockAffected As Boolean = True
         Public CounterAffected As Boolean = True
+        Public IsAffectedBySubstitute As Boolean = True
+        Public ImmunityAffected As Boolean = True
+        Public IsWonderGuardAffected As Boolean = True
         Public DisabledWhileGravity As Boolean = False
         Public UseEffectiveness As Boolean = True
-        Public IsHealingMove As Boolean = False
-        Public RemovesFrozen As Boolean = False
-        Public IsRecoilMove As Boolean = False
-        Public IsPunchingMove As Boolean = False
-        Public ImmunityAffected As Boolean = True
-        Public IsDamagingMove As Boolean = True
-        Public IsProtectMove As Boolean = False
-        Public IsSoundMove As Boolean = False
-        Public HasSecondaryEffect As Boolean = False
-        Public IsAffectedBySubstitute As Boolean = True
-        Public IsOneHitKOMove As Boolean = False
-        Public IsWonderGuardAffected As Boolean = True
+
+        'ignore stats status or positioning?
         Public UseAccEvasion As Boolean = True
         Public CanHitInMidAir As Boolean = False
         Public CanHitUnderground As Boolean = False
         Public CanHitUnderwater As Boolean = False
         Public CanHitSleeping As Boolean = True
         Public CanGainSTAB As Boolean = True
-        Public IsPowderMove As Boolean = False
-        Public IsTrappingMove As Boolean = False
+        Public UseOppDefense As Boolean = True
+        Public UseOppEvasion As Boolean = True
+
+        'categories
         Public IsPulseMove As Boolean = False
         Public IsBulletMove As Boolean = False
         Public IsJawMove As Boolean = False
-        Public UseOppDefense As Boolean = True
-        Public UseOppEvasion As Boolean = True
+        Public IsDanceMove As Boolean = False
+        Public IsExplosiveMove As Boolean = False
+        Public IsPowderMove As Boolean = False
+        Public IsPunchingMove As Boolean = False
+        Public IsSlicingMove As Boolean = False
+        Public IsSoundMove As Boolean = False
+        Public IsWindMove As Boolean = False
 
         Public FocusOppPokemon As Boolean = True
         '#End
@@ -342,8 +353,8 @@
                     returnMove = New Moves.Normal.Supersonic()
                 Case 49
                     returnMove = New Moves.Normal.SonicBoom()
-                    'Case 50
-                    'Disable
+                Case 50
+                    returnMove = New Moves.Normal.Disable()
                 Case 51
                     returnMove = New Moves.Poison.Acid()
                 Case 52
@@ -821,7 +832,7 @@
                     'Case 288
                     'Grudge
                 Case 289
-                    returnMove = New Moves.Normal.Snatch()
+                    returnMove = New Moves.Dark.Snatch()
                     'Case 290
                     'Secret Power
                 Case 291
@@ -879,7 +890,7 @@
                 Case 317
                     returnMove = New Moves.Rock.RockTomb()
                 Case 318
-                    returnMove = New Moves.Bug.Silverwind()
+                    returnMove = New Moves.Bug.SilverWind()
                 Case 319
                     returnMove = New Moves.Steel.MetalSound()
                 Case 320
@@ -1123,7 +1134,7 @@
                 Case 439
                     returnMove = New Moves.Rock.RockWrecker()
                 Case 440
-                    returnMove = New Moves.Poison.Crosspoison()
+                    returnMove = New Moves.Poison.CrossPoison()
                 Case 441
                     returnMove = New Moves.Poison.GunkShot()
                 Case 442

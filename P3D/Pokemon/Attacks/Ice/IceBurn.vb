@@ -41,10 +41,10 @@
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
@@ -53,7 +53,7 @@
 
             Me.AIField1 = AIField.Damage
             Me.AIField2 = AIField.MultiTurn
-            Me.AIField3 = AIField.CanFreeze
+            Me.AIField3 = AIField.CanBurn
 
             EffectChances.Add(30)
         End Sub
@@ -72,7 +72,7 @@
             End If
 
             If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "power herb" And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
+                If p.Item.OriginalName.ToLower() = "power herb" And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
                     If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "Power Herb pushed the use of Ice Burn!", "move:iceburn") = True Then
                         iceburn = 1
                     End If

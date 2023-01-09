@@ -53,6 +53,14 @@ Namespace Items.Standard
 :end"
 
                 CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+                If Screen.Level.Surfing = True Then
+                    Screen.Level.Surfing = False
+                    Screen.Level.OwnPlayer.SetTexture(Core.Player.TempSurfSkin, True)
+                    Core.Player.Skin = Core.Player.TempSurfSkin
+
+                    Screen.Level.OverworldPokemon.warped = True
+                    Screen.Level.OverworldPokemon.Visible = False
+                End If
             Else
                 Screen.TextBox.Show("Cannot use the Escape~Rope here!", {}, True, True)
             End If

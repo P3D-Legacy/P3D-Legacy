@@ -468,10 +468,14 @@
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Types", Me.Move.Type.GetElementImage(), ""), New Rectangle(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 132 + Index * 96, 48, 16), New Color(255, 255, 255, 255 - deductAlpha))
 
                 If isSelected = True Then
-                    Dim ppColor As Color = GetPPColor()
-                    ppColor.A = CByte((extraExtended + AllExtended - deductAlpha).Clamp(0, 255))
+                    If Move.Disabled > 0 Then
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, "Disabled!", New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), Color.Black)
+                    Else
+                        Dim ppColor As Color = GetPPColor()
+                        ppColor.A = CByte((extraExtended + AllExtended - deductAlpha).Clamp(0, 255))
 
-                    Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.CurrentPP & "/" & Me.Move.MaxPP, New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), ppColor)
+                        Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.CurrentPP & "/" & Me.Move.MaxPP, New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28), CInt(152 + Index * 96)), ppColor)
+                    End If
                     Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.Name, New Vector2(CInt(Core.ScreenSize.Width - (AllExtended + extraExtended) + 86), CInt(132 + Index * 96)), New Color(0, 0, 0, (SelExtended + AllExtended) - deductAlpha))
                 Else
                     Core.SpriteBatch.DrawString(FontManager.MainFont, Me.Move.Name, New Vector2(Core.ScreenSize.Width - (AllExtended + extraExtended) + 28, 152 + Index * 96), New Color(0, 0, 0, 255 - (extraExtended + AllExtended) - deductAlpha))

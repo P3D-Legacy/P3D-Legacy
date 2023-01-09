@@ -17,7 +17,7 @@
             Me.ContestCategory = ContestCategories.Cool
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Sky Attack")
             Me.Description = "A second-turn attack move where critical hits land more easily. It may also make the target flinch."
-            Me.CriticalChance = 1
+            Me.CriticalChance = 2
             Me.IsHMMove = False
             Me.Target = Targets.OneTarget
             Me.Priority = 0
@@ -41,10 +41,10 @@
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
@@ -97,7 +97,7 @@
             End If
 
             If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "power herb" And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
+                If p.Item.OriginalName.ToLower() = "power herb" And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
                     If BattleScreen.Battle.RemoveHeldItem(Own, Own, BattleScreen, "Power Herb pushed the use of Sky Attack!", "move:skyattack") = True Then
                         skyattack = 1
                     End If

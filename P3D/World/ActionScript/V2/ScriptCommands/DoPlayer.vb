@@ -235,6 +235,13 @@
                     Core.Player.Money += int(argument)
 
                     IsReady = True
+                Case "removemoney"
+                    Core.Player.Money -= int(argument)
+
+                    If Core.Player.Money < 0 Then
+                        Core.Player.Money = 0
+                    End If
+                    IsReady = True
                 Case "setmovement"
                     Dim movements() As String = argument.Split(CChar(","))
 
@@ -310,6 +317,9 @@
                     IsReady = True
                 Case "setrivalname"
                     Core.Player.RivalName = argument
+                    IsReady = True
+                Case "showbattleanimations"
+                    Core.Player.ShowBattleAnimations = CInt(argument)
                     IsReady = True
                 Case "setgender"
                     Select Case argument

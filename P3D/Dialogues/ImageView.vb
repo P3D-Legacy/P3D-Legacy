@@ -35,9 +35,16 @@
         If Me.Showing = True Then
             Dim FrameSize As Size = New Size(288, 288)
             Dim ImageSize As Size = New Size(288, 288)
+            Dim DefaultImageSize As Size = New Size(288, 288)
             If Texture.Width > Texture.Height Then
                 FrameSize.Width = CInt(Math.Ceiling(Texture.Width / Texture.Height) * 288)
                 ImageSize.Width = CInt(Texture.Width / Texture.Height * 288)
+                Dim ScaleInt = 9
+                While ImageSize.Width > Core.windowSize.Width - 288
+                    ImageSize = New Size(CInt(Texture.Width / Texture.Height * 32 * ScaleInt), CInt(DefaultImageSize.Height / 9 * ScaleInt))
+                    FrameSize = New Size(CInt(Math.Ceiling(Texture.Width / Texture.Height) * 32 * ScaleInt), CInt(DefaultImageSize.Height / 9 * ScaleInt))
+                    ScaleInt -= 1
+                End While
                 While ImageSize.Width > FrameSize.Width - 32
                     FrameSize.Width += 32
                 End While
@@ -45,6 +52,12 @@
             If Texture.Height > Texture.Width Then
                 FrameSize.Height = CInt(Math.Floor(Texture.Height / Texture.Width) * 288)
                 ImageSize.Height = CInt(Texture.Height / Texture.Width * 288)
+                Dim ScaleInt = 9
+                While ImageSize.Height > Core.windowSize.Height - 288
+                    ImageSize = New Size(CInt(DefaultImageSize.Height / 9 * ScaleInt), CInt(Texture.Height / Texture.Width * 32 * ScaleInt))
+                    FrameSize = New Size(CInt(DefaultImageSize.Width / 9 * ScaleInt), CInt(Math.Floor(Texture.Height / Texture.Width) * 32 * ScaleInt))
+                    ScaleInt -= 1
+                End While
                 While ImageSize.Height > FrameSize.Height - 32
                     FrameSize.Height += 32
                 End While

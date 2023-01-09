@@ -41,10 +41,9 @@
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+            Me.IsWindMove = True
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
@@ -71,7 +70,47 @@
                 Return Me.Power
             End If
         End Function
+        Public Overrides Sub InternalUserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
 
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Flying\Gust", 0, 0)
+            Dim GustEntity = MoveAnimation.SpawnEntity(New Vector3(0), TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), New Vector3(0.5F, 1.0F, 0.5F), 1.0F)
+            MoveAnimation.AnimationMove(GustEntity, True, 2.0, 0.0, 0.0, 0.04, False, False, 0.0, 0.0)
+
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 0.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 1, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 1.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 2.0, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 2.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 3.0, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 3.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 4.0, 0.5)
+
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
+
+        Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)
+            Dim MoveAnimation = New AnimationQueryObject(CurrentEntity, BattleFlip)
+
+            MoveAnimation.AnimationPlaySound("Battle\Attacks\Flying\Gust", 0, 0)
+            Dim GustEntity = MoveAnimation.SpawnEntity(New Vector3(-2, 0, 0), TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), New Vector3(0.5F, 1.0F, 0.5F), 1.0F)
+            MoveAnimation.AnimationMove(GustEntity, False, -0.05, 0.0, 0.0, 0.04, False, False, 0.0, 0.0)
+
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 0.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 1, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 1.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 2.0, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 2.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 3.0, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 3.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 4.0, 0.5)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 4.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 5.0, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, False, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(32, 0, 32, 64), ""), 5.5, 0)
+            MoveAnimation.AnimationChangeTexture(GustEntity, True, TextureManager.GetTexture("Textures\Battle\Flying\Gust", New Rectangle(0, 0, 32, 64), ""), 6.0, 0.5)
+
+            BattleScreen.BattleQuery.Add(MoveAnimation)
+        End Sub
     End Class
 
 End Namespace

@@ -8,9 +8,9 @@
             '#Definitions
             Me.Type = New Element(Element.Types.Psychic)
             Me.ID = 156
-            Me.OriginalPP = 10
-            Me.CurrentPP = 10
-            Me.MaxPP = 10
+            Me.OriginalPP = 5
+            Me.CurrentPP = 5
+            Me.MaxPP = 5
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
@@ -41,10 +41,10 @@
 
             Me.IsHealingMove = True
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = False
             Me.IsOneHitKOMove = False

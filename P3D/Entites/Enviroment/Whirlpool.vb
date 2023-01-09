@@ -3,8 +3,9 @@
     Inherits Entity
 
     Public Shared LoadedWaterTemp As Boolean = False
-    Public Shared WaterTexturesTemp As New List(Of Texture2D)
+    Public Shared WaterTexturesTemp As New Dictionary(Of String, Texture2D)
 
+    Dim WaterTextureName As String = ""
     Dim WaterAnimation As Animation
     Dim currentRectangle As New Rectangle(0, 0, 0, 0)
 
@@ -13,20 +14,34 @@
 
         WaterAnimation = New Animation(P3D.TextureManager.GetTexture("Textures\Routes"), 1, 4, 16, 16, 9, 12, 0)
 
-        If Whirlpool.LoadedWaterTemp = False Then
-
-        End If
+        CreateWaterTextureTemp()
+    End Sub
+    Public Shared Sub ClearAnimationResources()
+        WaterTexturesTemp.Clear()
     End Sub
 
-    Public Shared Sub CreateWaterTextureTemp()
+    Public Sub CreateWaterTextureTemp()
         If Core.GameOptions.GraphicStyle = 1 Then
-            Whirlpool.WaterTexturesTemp.Clear()
+            Dim textureData As List(Of String) = Me.AdditionalValue.Split(CChar(",")).ToList()
+            If textureData.Count >= 4 Then
+                Dim r As New Rectangle(CInt(textureData(1)), CInt(textureData(2)), CInt(textureData(3)), CInt(textureData(4)))
+                Dim texturePath As String = textureData(0)
+                Me.WaterTextureName = AdditionalValue
 
-            Whirlpool.WaterTexturesTemp.Add(P3D.TextureManager.GetTexture("Routes", New Rectangle(0, 176, 16, 16)))
-            Whirlpool.WaterTexturesTemp.Add(P3D.TextureManager.GetTexture("Routes", New Rectangle(16, 176, 16, 16)))
-            Whirlpool.WaterTexturesTemp.Add(P3D.TextureManager.GetTexture("Routes", New Rectangle(32, 176, 16, 16)))
-            Whirlpool.WaterTexturesTemp.Add(P3D.TextureManager.GetTexture("Routes", New Rectangle(48, 176, 16, 16)))
-            Whirlpool.LoadedWaterTemp = True
+                If Whirlpool.WaterTexturesTemp.ContainsKey(AdditionalValue & "_0") = False Then
+                    Whirlpool.WaterTexturesTemp.Add(AdditionalValue & "_0", TextureManager.GetTexture(texturePath, New Rectangle(r.X, r.Y, r.Width, r.Height)))
+                    Whirlpool.WaterTexturesTemp.Add(AdditionalValue & "_1", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width, r.Y, r.Width, r.Height)))
+                    Whirlpool.WaterTexturesTemp.Add(AdditionalValue & "_2", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 2, r.Y, r.Width, r.Height)))
+                    Whirlpool.WaterTexturesTemp.Add(AdditionalValue & "_3", TextureManager.GetTexture(texturePath, New Rectangle(r.X + r.Width * 3, r.Y, r.Width, r.Height)))
+                End If
+            Else
+                If Whirlpool.WaterTexturesTemp.ContainsKey("_0") = False Then
+                    Whirlpool.WaterTexturesTemp.Add("_0", TextureManager.GetTexture("Routes", New Rectangle(0, 176, 16, 16)))
+                    Whirlpool.WaterTexturesTemp.Add("_1", TextureManager.GetTexture("Routes", New Rectangle(16, 176, 16, 16)))
+                    Whirlpool.WaterTexturesTemp.Add("_2", TextureManager.GetTexture("Routes", New Rectangle(32, 176, 16, 16)))
+                    Whirlpool.WaterTexturesTemp.Add("_3", TextureManager.GetTexture("Routes", New Rectangle(48, 176, 16, 16)))
+                End If
+            End If
         End If
     End Sub
 
@@ -48,25 +63,27 @@
 
     Private Sub ChangeTexture()
         If Core.GameOptions.GraphicStyle = 1 Then
-            If Whirlpool.LoadedWaterTemp = False Then
-                Whirlpool.CreateWaterTextureTemp()
+            If WaterTexturesTemp.Count = 0 Then
+                ClearAnimationResources()
+                CreateWaterTextureTemp()
             End If
             Select Case WaterAnimation.CurrentColumn
                 Case 0
-                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(0)
+                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(WaterTextureName & "_0")
                 Case 1
-                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(1)
+                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(WaterTextureName & "_1")
                 Case 2
-                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(2)
+                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(WaterTextureName & "_2")
                 Case 3
-                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(3)
+                    Me.Textures(0) = Whirlpool.WaterTexturesTemp(WaterTextureName & "_3")
             End Select
         End If
     End Sub
 
     Public Overrides Sub Render()
+        Dim setRasterizerState As Boolean = Me.BaseModel.ID <> 0
         If Me.Model Is Nothing Then
-            Me.Draw(Me.BaseModel, Textures, False)
+            Me.Draw(Me.BaseModel, Textures, setRasterizerState)
         Else
             UpdateModel()
             Draw(Me.BaseModel, Me.Textures, True, Me.Model)

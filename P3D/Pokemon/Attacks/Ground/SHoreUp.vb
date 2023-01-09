@@ -8,9 +8,9 @@
             '#Definitions
             Me.Type = New Element(Element.Types.Ground)
             Me.ID = 659
-            Me.OriginalPP = 10
-            Me.CurrentPP = 10
-            Me.MaxPP = 10
+            Me.OriginalPP = 5
+            Me.CurrentPP = 5
+            Me.MaxPP = 5
             Me.Power = 0
             Me.Accuracy = 0
             Me.Category = Categories.Status
@@ -41,10 +41,10 @@
 
             Me.IsHealingMove = True
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = False
             Me.IsOneHitKOMove = False
@@ -65,10 +65,8 @@
             Select Case BattleScreen.FieldEffects.Weather
                 Case BattleWeather.WeatherTypes.Sandstorm
                     restoreHP = CInt(Math.Ceiling((2 / 3) * p.MaxHP))
-                Case BattleWeather.WeatherTypes.Clear
-                    restoreHP = CInt(Math.Ceiling((1 / 2) * p.MaxHP))
                 Case Else
-                    restoreHP = CInt(Math.Ceiling((1 / 4) * p.MaxHP))
+                    restoreHP = CInt(Math.Ceiling((1 / 2) * p.MaxHP))
             End Select
 
             If p.HP < p.MaxHP And p.HP > 0 Then

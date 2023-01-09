@@ -12,7 +12,7 @@
             End If
             Dim ability As String = p.Ability.Name.ToLower()
             If p.Item IsNot Nothing AndAlso BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                Select Case p.Item.Name.ToLower()
+                Select Case p.Item.OriginalName.ToLower()
                     Case "damp rock"
                         If ability = "drizzle" Or moveName = "rain dance" Then
                             turns = 8
@@ -242,7 +242,7 @@
                 End If
 
                 Dim SlowDownItems As List(Of String) = {"iron ball", "macho brace", "power bracer", "power belt", "power lens", "power band", "power anklet", "power weight"}.ToList()
-                If SlowDownItems.Contains(p.Item.Name.ToLower()) = True And BattleScreen.FieldEffects.CanUseItem(own) = True Then
+                If SlowDownItems.Contains(p.Item.OriginalName.ToLower()) = True And BattleScreen.FieldEffects.CanUseItem(own) = True Then
                     speed = CInt(speed / 2)
                 End If
 
@@ -505,13 +505,13 @@
             result = INIT * ACCM
 
             If Not op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not own) = True Then
-                If op.Item.Name.ToLower() = "bright powder" Or op.Item.Name.ToLower() = "lax incense" Then
+                If op.Item.OriginalName.ToLower() = "bright powder" Or op.Item.OriginalName.ToLower() = "lax incense" Then
                     result *= 0.9F
                 End If
             End If
 
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                Select Case p.Item.Name.ToLower()
+                Select Case p.Item.OriginalName.ToLower()
                     Case "wide lens"
                         result *= 1.1F
                     Case "zoom lens"
@@ -633,7 +633,7 @@
             End If
 
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(own) = True Then
-                Select Case p.Item.Name.ToLower()
+                Select Case p.Item.OriginalName.ToLower()
                     Case "lucky punch"
                         If p.Number = 113 Then
                             C += 2
@@ -697,7 +697,7 @@
             End If
 
             If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "smoke ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
+                If p.Item.OriginalName.ToLower() = "smoke ball" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                     Return True
                 End If
             End If
@@ -876,7 +876,7 @@
             End If
 
             If Not op.Item Is Nothing Then
-                If op.Item.Name.ToLower() = "ring target" And BattleScreen.FieldEffects.CanUseItem(Not own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not own, BattleScreen) = True Then
+                If op.Item.OriginalName.ToLower() = "ring target" And BattleScreen.FieldEffects.CanUseItem(Not own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not own, BattleScreen) = True Then
                     If Type1 = 0 Then
                         effectiveness = Type2
                     End If
@@ -1004,7 +1004,7 @@
 
             Dim e As Double = 1D
             If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "lucky egg" Then
+                If p.Item.OriginalName.ToLower() = "lucky egg" Then
                     e = 1.5D
                 End If
             End If
@@ -1017,7 +1017,7 @@
             Dim expShares As Integer = 0
             For Each po As Pokemon In Core.Player.Pokemons
                 If Not po.Item Is Nothing Then
-                    If po.Item.Name.ToLower() = "exp share" Then
+                    If po.Item.OriginalName.ToLower() = "exp. share" Then
                         expShares += 1
                     End If
                 End If
@@ -1025,7 +1025,7 @@
 
             If expShares > 0 Then
                 If Not p.Item Is Nothing Then
-                    If p.Item.Name.ToLower() = "exp share" Then
+                    If p.Item.OriginalName.ToLower() = "exp. share" Then
                         s = 2D
                     Else
                         s = (PokemonList.Count * 2D) * expShares
@@ -1106,7 +1106,7 @@
 
                 With BattleScreen
                     If Not .OwnPokemon.Item Is Nothing Then
-                        If .OwnPokemon.Item.Name.ToLower() = "shed shell" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
+                        If .OwnPokemon.Item.OriginalName.ToLower() = "shed shell" And .FieldEffects.CanUseItem(True) = True And .FieldEffects.CanUseOwnItem(True, BattleScreen) = True Then
                             Return True
                         End If
                     End If
@@ -1154,7 +1154,7 @@
 
                 With BattleScreen
                     If Not .OppPokemon.Item Is Nothing Then
-                        If .OppPokemon.Item.Name.ToLower() = "shed shell" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
+                        If .OppPokemon.Item.OriginalName.ToLower() = "shed shell" And .FieldEffects.CanUseItem(False) = True And .FieldEffects.CanUseOwnItem(False, BattleScreen) = True Then
                             Return True
                         End If
                     End If
@@ -1222,7 +1222,7 @@
 
             'IT (Item attack power modifier)
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                Select Case p.Item.Name.ToLower()
+                Select Case p.Item.OriginalName.ToLower()
                     Case "muscle band"
                         If Attack.Category = Attack.Categories.Physical Then
                             IT = 1.1F
@@ -1686,7 +1686,7 @@
                 End Select
 
                 If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                    Select Case p.Item.Name.ToLower()
+                    Select Case p.Item.OriginalName.ToLower()
                         Case "choice band"
                             IM = 1.5F
                         Case "light ball"
@@ -1731,7 +1731,7 @@
                 End Select
 
                 If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                    Select Case p.Item.Name.ToLower()
+                    Select Case p.Item.OriginalName.ToLower()
                         Case "choice specs"
                             IM = 1.5F
                         Case "light ball"
@@ -1814,7 +1814,7 @@
                 End If
 
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
-                    Select Case Op.Item.Name.ToLower()
+                    Select Case Op.Item.OriginalName.ToLower()
                         Case "metal powder"
                             If Op.Number = 132 Then
                                 DMod = 1.5F
@@ -1857,7 +1857,7 @@
                 End If
 
                 If Not Op.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
-                    Select Case Op.Item.Name.ToLower()
+                    Select Case Op.Item.OriginalName.ToLower()
                         Case "metal powder"
                             If Op.Number = 132 Then
                                 DMod = 1.5F
@@ -1963,15 +1963,15 @@
                     End If
                 Case Element.Types.Electric
                     If BattleScreen.FieldEffects.ElectricTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
-                        SR = 1.5F
+                        SR = 1.3F
                     End If
                 Case Element.Types.Grass
                     If BattleScreen.FieldEffects.GrassyTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
-                        SR = 1.5F
+                        SR = 1.3F
                     End If
                 Case Element.Types.Psychic
                     If BattleScreen.FieldEffects.PsychicTerrain > 0 And BattleScreen.FieldEffects.IsGrounded(Own, BattleScreen) = True Then
-                        SR = 1.5F
+                        SR = 1.3F
                     End If
             End Select
 
@@ -2022,7 +2022,7 @@
             Dim Mod2 As Single = 1.0F
 
             If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                If p.Item.Name.ToLower() = "life orb" Then
+                If p.Item.OriginalName.ToLower() = "life orb" Then
                     Mod2 = 1.3F
                 End If
             End If
@@ -2066,14 +2066,14 @@
                 End If
 
                 If Not p.Item Is Nothing And BattleScreen.FieldEffects.CanUseItem(Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Own, BattleScreen) = True Then
-                    If p.Item.Name.ToLower() = "expert belt" Then
+                    If p.Item.OriginalName.ToLower() = "expert belt" Then
                         EB = 1.2F
                     End If
                 End If
 
                 If Not Op.Item Is Nothing Then
                     If BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
-                        Select Case Op.Item.Name.ToLower()
+                        Select Case Op.Item.OriginalName.ToLower()
                             Case "occa"
                                 If Attack.Type.Type = Element.Types.Fire Then
                                     If BattleScreen.Battle.RemoveHeldItem(Not Own, Not Own, BattleScreen, "The Occa Berry weakened the effect of " & Attack.Name & " on " & Op.GetDisplayName() & "!", "berry:occa") = True Then
@@ -2183,7 +2183,7 @@
 
             If Not Op.Item Is Nothing Then
                 If BattleScreen.FieldEffects.CanUseItem(Not Own) = True And BattleScreen.FieldEffects.CanUseOwnItem(Not Own, BattleScreen) = True Then
-                    If Op.Item.Name.ToLower() = "chilan" Then
+                    If Op.Item.OriginalName.ToLower() = "chilan" Then
                         If Attack.Type.Type = Element.Types.Normal Then
                             If BattleScreen.Battle.RemoveHeldItem(Not Own, Not Own, BattleScreen, "The Chilan Berry weakened the effect of " & Attack.Name & " on " & Op.GetDisplayName() & "!", "berry:chilan") = True Then
                                 TRB = 0.5F

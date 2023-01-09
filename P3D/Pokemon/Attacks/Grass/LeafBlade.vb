@@ -41,10 +41,9 @@ Namespace BattleSystem.Moves.Grass
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+            Me.IsSlicingMove = True
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False

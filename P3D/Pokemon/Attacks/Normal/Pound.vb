@@ -25,34 +25,56 @@
             '#End
 
             '#SpecialDefinitions
-            Me.MakesContact = True
+            'Generic Secondary effects
+            Me.HasSecondaryEffect = False
+            Me.IsHealingMove = False
+            Me.IsDamagingMove = True
+            Me.IsProtectMove = False
+            Me.IsOneHitKOMove = False
+            Me.IsRecoilMove = False
+            Me.IsTrappingMove = False
+            Me.RemovesFrozen = False
+
+            'Interacts with other moves/effects
             Me.ProtectAffected = True
             Me.MagicCoatAffected = False
             Me.SnatchAffected = False
             Me.MirrorMoveAffected = True
             Me.KingsrockAffected = True
             Me.CounterAffected = True
-
-            Me.DisabledWhileGravity = False
-            Me.UseEffectiveness = True
-            Me.ImmunityAffected = True
-            Me.RemovesFrozen = False
-            Me.HasSecondaryEffect = False
-
-            Me.IsHealingMove = False
-            Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
-            Me.IsDamagingMove = True
-            Me.IsProtectMove = False
-            Me.IsSoundMove = False
-
             Me.IsAffectedBySubstitute = True
-            Me.IsOneHitKOMove = False
+            Me.ImmunityAffected = True
             Me.IsWonderGuardAffected = True
+            Me.DisabledWhileGravity = False
+
+            'ignore stats status or positioning?
+            Me.UseAccEvasion = True
+            Me.CanHitInMidAir = False
+            Me.CanHitUnderground = False
+            Me.CanHitUnderwater = False
+            Me.CanHitSleeping = True
+            Me.CanGainSTAB = True
+            Me.UseOppDefense = True
+            Me.UseOppEvasion = True
+            Me.UseEffectiveness = True
+
+            'categories
+            Me.MakesContact = True
+            Me.IsPulseMove = False
+            Me.IsBulletMove = False
+            Me.IsJawMove = False
+            Me.IsDanceMove = False
+            Me.IsExplosiveMove = False
+            Me.IsPowderMove = False
+            Me.IsPunchingMove = False
+            Me.IsSlicingMove = False
+            Me.IsSoundMove = False
+            Me.IsWindMove = False
             '#End
 
             Me.AIField1 = AIField.Damage
             Me.AIField2 = AIField.Nothing
+            Me.AIField3 = AIField.Nothing
         End Sub
 
         Public Overrides Sub InternalOpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal BattleFlip As Boolean, ByVal CurrentPokemon As Pokemon, ByVal CurrentEntity As NPC)

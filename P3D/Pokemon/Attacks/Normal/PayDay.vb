@@ -41,10 +41,10 @@ Namespace BattleSystem.Moves.Normal
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
@@ -63,7 +63,7 @@ Namespace BattleSystem.Moves.Normal
             Dim coinAmount As Integer = p.Level * 5
 
             If Not p.Item Is Nothing Then
-                If p.Item.Name.ToLower() = "amulet coin" Or p.Item.Name.ToLower() = "luck incense" Then
+                If p.Item.OriginalName.ToLower() = "amulet coin" Or p.Item.OriginalName.ToLower() = "luck incense" Then
                     coinAmount *= 2
                 End If
             End If

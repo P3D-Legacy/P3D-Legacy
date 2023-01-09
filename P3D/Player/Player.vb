@@ -168,6 +168,14 @@
             _daycareSteps = value
         End Set
     End Property
+    Public Property PoisonSteps() As Integer
+        Get
+            Return _poisonSteps
+        End Get
+        Set(value As Integer)
+            _poisonSteps = value
+        End Set
+    End Property
 
     Public Property GameMode() As String
         Get
@@ -393,6 +401,7 @@
     Private _repelSteps As Integer = 0
     Private _saveCreated As String = "Pre 0.21"
     Private _daycareSteps As Integer = 0
+    Private _poisonSteps As Integer = 0
     Private _gameMode As String = "Kolben"
     Private _skin As String = "Hilbert"
     Private _visitedMaps As String = ""
@@ -1732,6 +1741,8 @@
             Screen.Level.WalkedSteps += 1
             Temp.MapSteps += 1
             DaycareSteps += stepAmount
+            StepEventPoison(stepAmount)
+
             PlayerStatistics.Track("Steps taken", stepAmount)
 
             'Daycare cycle:
@@ -1861,6 +1872,42 @@
         If CanFireStepEvent() = True Then
             If Screen.Level.WildPokemonFloor = True And Screen.Level.Surfing = False Then
                 Screen.Level.PokemonEncounter.TryEncounterWildPokemon(Screen.Camera.Position, Spawner.EncounterMethods.Land, "")
+            End If
+        End If
+    End Sub
+    Private Sub StepEventPoison(ByVal stepAmount As Integer)
+        If CanFireStepEvent() = True Then
+            If CInt(GameModeManager.GetGameRuleValue("OverworldPoison", "0")) > 0 Then
+                Dim PoisonAmount As Integer = 0
+                PoisonSteps += stepAmount
+                If PoisonSteps >= 3 Then
+                    PoisonAmount += 1
+                    PoisonSteps -= 4
+                End If
+                If PoisonAmount > 0 Then
+                    For i = 0 To Core.Player.Pokemons.Count - 1
+                        If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison Then
+                            If Core.Player.Pokemons(i).Ability IsNot Ability.GetAbilityByID(17) Then
+                                Core.Player.Pokemons(i).HP -= 1 * PoisonAmount
+                            End If
+                        End If
+                    Next
+                    If CInt(GameModeManager.GetGameRuleValue("OverworldPoison", "0")) = 1 Then
+                        For i = 0 To Core.Player.Pokemons.Count - 1
+                            If Core.Player.Pokemons(i).HP <= 0 Then
+                                Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted
+                            End If
+                        Next
+                    ElseIf CInt(GameModeManager.GetGameRuleValue("OverworldPoison", "0")) = 2 Then
+                        For i = 0 To Core.Player.Pokemons.Count - 1
+                            If Core.Player.Pokemons(i).HP <= 1 Then
+                                Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.None
+                                Core.Player.Pokemons(i).HP = 1
+                                Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & "was cured of Poison")
+                            End If
+                        Next
+                    End If
+                End If
             End If
         End If
     End Sub

@@ -41,10 +41,10 @@ Namespace BattleSystem.Moves.Fairy
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = True
-            Me.IsPunchingMove = False
+
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False

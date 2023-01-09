@@ -15,8 +15,8 @@
             Me.Accuracy = 100
             Me.Category = Categories.Physical
             Me.ContestCategory = ContestCategories.Cute
-            Me.Name = Localization.GetString("move_name_" & Me.ID,"Pound")
-            Me.Description = "The target is physically pounded with a long tail or a foreleg, etc."
+            Me.Name = Localization.GetString("move_name_" & Me.ID, "Dizzy Punch")
+            Me.Description = "The target is hit with rhythmically launched punches. This may also leave the target confused."
             Me.CriticalChance = 1
             Me.IsHMMove = False
             Me.Target = Targets.OneAdjacentTarget
@@ -44,7 +44,7 @@
             Me.IsPunchingMove = True
             Me.IsDamagingMove = True
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False

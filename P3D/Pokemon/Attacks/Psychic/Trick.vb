@@ -41,10 +41,10 @@ Namespace BattleSystem.Moves.Psychic
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False
-            Me.IsPunchingMove = False
+
             Me.IsDamagingMove = False
             Me.IsProtectMove = False
-            Me.IsSoundMove = False
+
 
             Me.IsAffectedBySubstitute = True
             Me.IsOneHitKOMove = False
@@ -69,34 +69,34 @@ Namespace BattleSystem.Moves.Psychic
             If BattleScreen.FieldEffects.CanUseAbility(Not own, BattleScreen) AndAlso op.Ability.Name.ToLower() = "sticky hold" Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower() = "griseous orb" AndAlso p.Number = 487 Then
+            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower() = "griseous orb" AndAlso p.Number = 487 Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
+            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower() = "griseous orb" AndAlso op.Number = 487 Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
+            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso p.Number = 649 Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
+            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" drive") = True AndAlso op.Number = 649 Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" plate") = True AndAlso p.Number = 493 Then
+            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" plate") = True AndAlso p.Number = 493 Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" plate") = True AndAlso op.Number = 493 Then
+            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" plate") = True AndAlso op.Number = 493 Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" memory") = True AndAlso p.Number = 773 Then
+            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" memory") = True AndAlso p.Number = 773 Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" memory") = True AndAlso op.Number = 773 Then
+            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" memory") = True AndAlso op.Number = 773 Then
                 CanSwitchItems = False
             End If
-            If Not p.Item Is Nothing AndAlso p.Item.Name.ToLower().EndsWith(" mail") = True Then
+            If Not p.Item Is Nothing AndAlso p.Item.OriginalName.ToLower().EndsWith(" mail") = True Then
                 CanSwitchItems = False
             End If
-            If Not op.Item Is Nothing AndAlso op.Item.Name.ToLower().EndsWith(" mail") = True Then
+            If Not op.Item Is Nothing AndAlso op.Item.OriginalName.ToLower().EndsWith(" mail") = True Then
                 CanSwitchItems = False
             End If
             If (p.Item IsNot Nothing AndAlso p.Item.IsMegaStone) OrElse (op.Item IsNot Nothing AndAlso op.Item.IsMegaStone) Then
