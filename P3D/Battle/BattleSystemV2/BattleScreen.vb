@@ -1025,11 +1025,13 @@ nextIndexForeground:
             End If
 
             Lighting.UpdateLighting(Screen.Effect)
-            Camera.Update()
-            Level.Update()
+            If IsCurrentScreen() = True Then
+                Camera.Update()
 
-            SkyDome.Update()
+                Level.Update()
 
+                SkyDome.Update()
+            End If
             TextBox.Update()
             If TextBox.Showing = False Then
                 Dim cIndex As Integer = 0

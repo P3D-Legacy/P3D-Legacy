@@ -593,6 +593,9 @@
     End Sub
 
     Public Overrides Sub Update()
+        If PreScreen.PreScreen.Identification = Screen.Identifications.BattleScreen Then
+            PreScreen.PreScreen.Update()
+        End If
         If _closing = True Then
             If _fadeIn > 0F Then
                 _fadeIn = MathHelper.Lerp(0, _fadeIn, 0.8F)

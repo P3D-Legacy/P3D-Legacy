@@ -7,11 +7,18 @@
             Moves
         End Enum
 
+        Public CanInteract As Boolean = True
         Public MenuState As MenuStates = MenuStates.Main
         Public Visible As Boolean = False
 
         Public Sub New()
             Me.Reset()
+            Dim blockinteractscreen() As Screen.Identifications = {Screen.Identifications.PartyScreen, Screen.Identifications.SummaryScreen, Screen.Identifications.PauseScreen, Screen.Identifications.ChatScreen}
+            If blockinteractscreen.Contains(Core.CurrentScreen.Identification) = True Then
+                CanInteract = False
+            Else
+                CanInteract = True
+            End If
         End Sub
 
         Public Sub Reset()
@@ -193,9 +200,9 @@
             End If
 
             Dim cX As Integer = 0
-            If HPpercentage <= 50.0F And HPpercentage > 15.0F Then
+            If HPpercentage <= 75.0F And HPpercentage > 25.0F Then
                 cX = 2
-            ElseIf HPpercentage <= 15.0F Then
+            ElseIf HPpercentage <= 25.0F Then
                 cX = 4
             End If
 
@@ -307,12 +314,14 @@
         End Sub
 
         Public Sub Update(ByRef BattleScreen As BattleScreen)
-            Select Case MenuState
-                Case MenuStates.Main
-                    UpdateMainMenu(BattleScreen)
-                Case MenuStates.Moves
-                    UpdateMoveMenu(BattleScreen)
-            End Select
+            If CanInteract = True Then
+                Select Case MenuState
+                    Case MenuStates.Main
+                        UpdateMainMenu(BattleScreen)
+                    Case MenuStates.Moves
+                        UpdateMoveMenu(BattleScreen)
+                End Select
+            End If
         End Sub
 
         Private _allItemsExtended As Integer = 0

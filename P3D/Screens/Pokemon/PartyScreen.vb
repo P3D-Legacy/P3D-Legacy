@@ -420,6 +420,9 @@ Public Class PartyScreen
     End Function
 
     Public Overrides Sub Update()
+        If PreScreen.Identification = Screen.Identifications.BattleScreen Then
+            PreScreen.Update()
+        End If
         If _pokemonAnimations.Count > 0 Then
             Dim animation As PokemonAnimation = _pokemonAnimations(_index)
             If animation._shakeLeft Then

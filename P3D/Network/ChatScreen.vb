@@ -61,9 +61,11 @@ Public Class ChatScreen
         'Updates the level screen so online player entities get drawn.
         If PreScreen.Identification = Identifications.OverworldScreen And JoinServerScreen.Online = True Then
             Screen.Level.Update()
-        End If
-        If PreScreen.Identification = Screen.Identifications.BattleScreen Then
+        ElseIf PreScreen.Identification = Screen.Identifications.BattleScreen Then
             PreScreen.Update()
+        ElseIf PreScreen.Identification = Identifications.BattleCatchScreen Then
+            PreScreen.Update()
+            CType(PreScreen, BattleCatchScreen).UpdateAnimations()
         End If
 
         If CursorDelay > 0 Then
