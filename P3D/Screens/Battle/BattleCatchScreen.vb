@@ -116,7 +116,7 @@ nextIndex:
         Lighting.UpdateLighting(Screen.Effect)
         If textboxStart = False Then
             textboxStart = True
-            TextBox.Show(Core.Player.Name & " used a " & Ball.Name & "!", {}, False, False)
+            TextBox.Show(Core.Player.Name & " used a~" & Ball.Name & "!", {}, False, False)
         End If
         TextBox.Update()
 
