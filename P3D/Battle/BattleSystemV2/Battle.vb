@@ -234,7 +234,9 @@
             SelectedMoveOpp = True
 
             If Not BattleScreen.IsRemoteBattle Then
-                StartMultiTurnAction(BattleScreen)
+                If BattleScreen.HasSwitchedOwn = False Then
+                    StartMultiTurnAction(BattleScreen)
+                End If
             End If
 
             'Going to menu:
@@ -247,6 +249,7 @@
             For i = 0 To 99
                 BattleScreen.InsertCasualCameramove()
             Next
+            BattleScreen.HasSwitchedOwn = False
         End Sub
 
         Public Function GetOppStep(ByVal BattleScreen As BattleScreen, ByVal OwnStep As RoundConst) As RoundConst
@@ -5372,7 +5375,9 @@
 
                         BattleScreen.BattleQuery.AddRange({cq1, cq2})
 
-                        StartRound(BattleScreen)
+                        If BattleScreen.OppFaint = False Then
+                            StartRound(BattleScreen)
+                        End If
                         BattleScreen.ClearMainMenuTime = True
                         BattleScreen.ClearMoveMenuTime = True
                     Case 1 'Own round
@@ -7820,13 +7825,17 @@
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Come back, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
                 If Core.Player.ShowBattleAnimations <> 0 Then
+                Dim PositionOffsetY As Single = 0.0F
+                If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
+                    PositionOffsetY = 0.5F
+                End If
                     Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
 
                     ' Ball Closes
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
                     Dim SmokeReturned As Integer = 0
                     Do
-                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10))
+                        Dim SmokePosition = New Vector3(CSng(Random.Next(-10, 10) / 10), CSng(Random.Next(-10, 10) / 10) + PositionOffsetY, CSng(Random.Next(-10, 10) / 10))
                         Dim SmokeDestination = New Vector3(0, 0, 0)
 
                         Dim SmokeTexture As Texture2D = TextureManager.GetTexture("Textures\Battle\Smoke")
@@ -7844,8 +7853,8 @@
 
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
-                    Dim BallReturnEntity = BallReturn.SpawnEntity(New Vector3(0, 0, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
-                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0, 0.1, False, True, 0F, 0F,, 0.3)
+                    Dim BallReturnEntity = BallReturn.SpawnEntity(New Vector3(0, 0 + PositionOffsetY, 0), BattleScreen.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
+                    BallReturn.AnimationMove(BallReturnEntity, True, -2, 0, 0 + PositionOffsetY, 0.1, False, True, 0F, 0F,, 0.3)
 
                     BattleScreen.BattleQuery.Add(BallReturn)
                 Else
@@ -7867,7 +7876,7 @@
                 'Switch BattleStyle
                 If Core.Player.BattleStyle <> 1 And OppStep.StepType <> RoundConst.StepTypes.Switch Then
                     BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
-                    ChangeCameraAngle(1, False, BattleScreen)
+                    BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
                 End If
                 If oppModel = "" Then
                     BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon), -1, -1, 0, 1))
@@ -7902,6 +7911,8 @@
                         BallThrow.AnimationMove(SmokeEntity, True, SmokeDestination.X, SmokeDestination.Y, SmokeDestination.Z, SmokeSpeed, False, False, 3.0F, 0.0F)
                         Threading.Interlocked.Increment(SmokeSpawned)
                     Loop While SmokeSpawned <= 38
+                Else
+                    BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
                 End If
 
                 If Core.Player.ShowBattleAnimations <> 0 Then

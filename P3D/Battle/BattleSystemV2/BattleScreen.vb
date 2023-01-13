@@ -61,6 +61,8 @@
         Public OwnTrainerNPC As NPC
         Public OppTrainerNPC As NPC
 
+        Public HasSwitchedOwn As Boolean = False
+
         Public OwnPokemonIndex As Integer = 0
         Public OppPokemonIndex As Integer = 0
 

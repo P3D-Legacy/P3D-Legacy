@@ -166,7 +166,6 @@
                 Else
                     Select Case f.ToLower()
                         Case "endround"
-                            BattleScreen.Battle.DeleteHostQuery(BattleScreen)
                             Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
                             Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                             cq2.PassThis = True
