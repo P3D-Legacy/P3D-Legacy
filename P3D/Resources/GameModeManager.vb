@@ -584,6 +584,8 @@ Public Class GameMode
         gameRules.Add(New GameRule("GameOverAt0Pokemon", "0"))
         gameRules.Add(New GameRule("CanGetAchievements", "1"))
         gameRules.Add(New GameRule("ShowFollowPokemon", "1"))
+        gameRules.Add(New GameRule("OverworldPoison", "0"))
+        gameRules.Add(New GameRule("SavingDisabled", "0"))
 
         gameMode.GameRules = gameRules
 
