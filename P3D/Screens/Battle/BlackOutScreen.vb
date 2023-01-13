@@ -111,7 +111,7 @@
 
             Dim p As New Vector2(CSng(Core.windowSize.Width / 2 - f.MeasureString(aText).X / 2), CSng(Core.windowSize.Height / 2 - (f.MeasureString(aText).Y) / 2))
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, aText, p, Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, aText, p, Color.White)
         End If
 
         If Me.IsGameOver = True Or Me.ready = True Then
