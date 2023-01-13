@@ -142,6 +142,7 @@ Public Class GameModeManager
         Return ActiveGameMode.GameRules
     End Function
 
+
     ''' <summary>
     ''' Returns the Value of a chosen GameRule from the currently active GameMode.
     ''' </summary>
@@ -383,7 +384,7 @@ Public Class GameMode
     ''' <param name="SkinFiles">The skin files for the new GameMode. Must be the same amount as SkinColors and SkinNames.</param>
     ''' <param name="SkinNames">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
     ''' <param name="SkinGenders">The skin names for the new GameMode. Must be the same amount as SkinFiles and SkinColors.</param>
-    Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule),
+    Public Sub New(ByVal Name As String, ByVal Description As String, ByVal Version As String, ByVal Author As String, ByVal MapPath As String, ByVal ScriptPath As String, ByVal PokeFilePath As String, ByVal PokemonDataPath As String, ByVal ContentPath As String, ByVal LocalizationsPath As String, ByVal GameRules As List(Of GameRule), ByVal HardGameRules As List(Of GameRule),
                    ByVal StartMap As String, ByVal StartPosition As Vector3, ByVal StartRotation As Single, ByVal StartLocationName As String, ByVal StartDialogue As String, ByVal StartColor As Color, ByVal PokemonAppear As String, ByVal IntroMusic As String, ByVal IntroType As String, ByVal SkinColors As List(Of Color), ByVal SkinFiles As List(Of String), ByVal SkinNames As List(Of String), ByVal SkinGenders As List(Of String))
         Me._name = Name
         Me._description = Description
@@ -396,6 +397,7 @@ Public Class GameMode
         Me._contentPath = ContentPath
         Me._localizationsPath = LocalizationsPath
         Me._gameRules = GameRules
+        Me._hardGameRules = HardGameRules
 
         Me._startMap = StartMap
         Me._startPosition = StartPosition
@@ -455,6 +457,22 @@ Public Class GameMode
                                         rule = rule.Remove(0, 1)
 
                                         _gameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
+                                        _hardGameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
+                                    End If
+                                Next
+                            End If
+                        Case "hardgamerules"
+                            If Value <> "" And Value.Contains("(") And Value.Contains(")") And Value.Contains("|") = True Then
+                                Dim rules() As String = Value.Split(CChar(")"))
+                                For Each rule As String In rules
+                                    If rule.StartsWith("(") = True Then
+                                        rule = rule.Remove(0, 1)
+                                        For Each HardRule As GameRule In _hardGameRules
+                                            If HardRule.RuleName.ToLower = rule.GetSplit(0, "|").ToLower Then
+                                                _hardGameRules.Remove(HardRule)
+                                            End If
+                                        Next
+                                        _hardGameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
                                     End If
                                 Next
                             End If
@@ -568,7 +586,7 @@ Public Class GameMode
         Dim SkinNames As List(Of String) = {"Ethan", "Lyra", "Nate", "Rosa", "Hilbert", "Hilda"}.ToList()
         Dim SkinGenders As List(Of String) = {"Male", "Female", "Male", "Female", "Male", "Female"}.ToList()
 
-        Dim gameMode As New GameMode("Kolben", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule),
+        Dim gameMode As New GameMode("Kolben", "The normal game mode.", GameController.GAMEVERSION, "Kolben Games", "\Content\Data\maps\", "\Content\Data\Scripts\", "\Content\Data\maps\poke\", "\Content\Pokemon\Data\", "\Content\", "\Content\Localization\", New List(Of GameRule), New List(Of GameRule),
                                      "newgame\intro0.dat", New Vector3(1.0F, 0.1F, 3.0F), MathHelper.PiOver2, "Your Room", "", New Color(59, 123, 165), "0", "welcome", "1", SkinColors, SkinFiles, SkinNames, SkinGenders)
 
         gameMode.StartScript = "startscript\main"
@@ -587,8 +605,12 @@ Public Class GameMode
         gameRules.Add(New GameRule("OverworldPoison", "0"))
         gameRules.Add(New GameRule("SavingDisabled", "0"))
 
-        gameMode.GameRules = gameRules
+        gameMode._gameRules = gameRules
 
+        Dim hardGameRules As New List(Of GameRule)
+        hardGameRules.Add(New GameRule("OverworldPoison", "1"))
+
+        gameMode._hardGameRules = hardGameRules
         Return gameMode
     End Function
 
@@ -719,6 +741,7 @@ Public Class GameMode
     Private _localizationsPath As String = ""
     Private _contentPath As String = ""
     Private _gameRules As New List(Of GameRule)
+    Private _hardGameRules As New List(Of GameRule)
 
     ''' <summary>
     ''' The name of this GameMode.
@@ -845,10 +868,18 @@ Public Class GameMode
     ''' </summary>
     Public Property GameRules() As List(Of GameRule)
         Get
-            Return Me._gameRules
+            If Core.Player.DifficultyMode > 0 Then
+                Return Me._hardGameRules
+            Else
+                Return Me._gameRules
+            End If
         End Get
         Set(value As List(Of GameRule))
-            Me._gameRules = value
+            If Core.Player.DifficultyMode > 0 Then
+                Me._hardGameRules = value
+            Else
+                Me._gameRules = value
+            End If
         End Set
     End Property
 
