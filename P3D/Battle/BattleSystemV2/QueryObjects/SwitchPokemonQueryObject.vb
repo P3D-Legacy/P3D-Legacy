@@ -244,7 +244,7 @@
             BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
             Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 ' Ball is thrown
                 BallThrow.AnimationMove(Nothing, False, 0, 0.5, 0, 0.5, False, False, 0, 0,,, 3)
 
@@ -270,7 +270,7 @@
                 Loop While SmokeSpawned <= 38
             End If
 
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 ' Pokemon appears
                 BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
                 BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)

@@ -362,7 +362,7 @@
             End If
 
             Dim InitiallyVisibleOpp As Integer = 1
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 InitiallyVisibleOpp = 0
             End If
 
@@ -430,7 +430,7 @@
             ' Ball is thrown
             Dim BallThrowOpp As AnimationQueryObject = New AnimationQueryObject(OppPokemonNPC, False)
 
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 BallThrowOpp.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                 BallThrowOpp.AnimationSetPosition(Nothing, False, 15, CSng(0.5 + OppEntityOffsetY), 13, 0, 0)
                 Dim BallThrowEntity As Entity = BallThrowOpp.SpawnEntity(New Vector3(2, -0.15, 0), Me.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
@@ -462,7 +462,7 @@
 
 
             '  Pokémon falls down
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 '  Pokémon falls down
                 BallThrowOpp.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 4, 0,,, 3)
             End If

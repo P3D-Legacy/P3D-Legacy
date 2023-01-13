@@ -510,7 +510,7 @@
                 p.LoadAltAbility()
                 Me.ChangeCameraAngle(1, own, BattleScreen)
                 '***Mega Evolution Animation***
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     Dim MegaAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
                     MegaAnimation.AnimationPlaySound("Battle\Effects\MegaEvolution", 0, 0)
 
@@ -1228,7 +1228,7 @@
                 Else
                     'Frozen animation
                     ChangeCameraAngle(1, own, BattleScreen)
-                    If Core.Player.ShowBattleAnimations <> 0 Then
+                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                         Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
 
                         FrozenAnimation.AnimationPlaySound("Battle\Effects\Frozen", 0, 0)
@@ -1295,7 +1295,7 @@
                         If sleepTurns > 0 Then
                             ChangeCameraAngle(1, own, BattleScreen)
                             'Sleep Animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
 
                                 SleepAnimation.AnimationPlaySound("Battle\Effects\Asleep", 0, 0)
@@ -1432,7 +1432,7 @@
                 Else
                     Me.ChangeCameraAngle(1, own, BattleScreen)
                     'Confused Animation
-                    If Core.Player.ShowBattleAnimations <> 0 Then
+                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                         Dim ConfusedAnimation As New AnimationQueryObject(pNPC, own)
 
                         ConfusedAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
@@ -1520,7 +1520,7 @@
                     If Core.Random.Next(0, 2) = 0 Then
                         Me.ChangeCameraAngle(1, own, BattleScreen)
                         'Infatuated animation
-                        If Core.Player.ShowBattleAnimations <> 0 Then
+                        If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                             Dim HeartAnimation = New AnimationQueryObject(pNPC, Not own)
                             For i = 0 To 6
                                 Dim HeartEntity = HeartAnimation.SpawnEntity(New Vector3(0.0, 0.0, 0.0), TextureManager.GetTexture("Textures\Battle\Normal\Attract"), New Vector3(0.25F), 1.0F, CSng(i * 0.2))
@@ -1540,7 +1540,7 @@
             If p.Status = Pokemon.StatusProblems.Paralyzed Then
                 If Core.Random.Next(0, 4) = 0 Then
                     Me.ChangeCameraAngle(1, own, BattleScreen)
-                    If Core.Player.ShowBattleAnimations <> 0 Then
+                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                         Dim ParalyzedAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
 
                         ParalyzedAnimation.AnimationPlaySound("Battle\Effects\Paralyzed", 0, 0)
@@ -3007,7 +3007,7 @@
                             p.Status = Pokemon.StatusProblems.Freeze
                             ChangeCameraAngle(1, own, BattleScreen)
                             'Frozen animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim FrozenAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, Not own)
 
                                 FrozenAnimation.AnimationPlaySound("Battle\Effects\Frozen", 0, 0)
@@ -3142,7 +3142,7 @@
                             'Works!
                             p.Status = Pokemon.StatusProblems.Paralyzed
                             ChangeCameraAngle(1, own, BattleScreen)
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim ParalyzedAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
 
                                 ParalyzedAnimation.AnimationPlaySound("Battle\Effects\Paralyzed", 0, 0)
@@ -3307,7 +3307,7 @@
                                         'Works!
                                         ChangeCameraAngle(1, own, BattleScreen)
                                         'Sleep Animation
-                                        If Core.Player.ShowBattleAnimations <> 0 Then
+                                        If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                             Dim SleepAnimation As New AnimationQueryObject(pNPC, Not own)
 
                                             SleepAnimation.AnimationPlaySound("Battle\Effects\Asleep", 0, 0)
@@ -3449,7 +3449,7 @@
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(message))
                                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is badly poisoned!"))
                                     End Select
-                                    If Core.Player.ShowBattleAnimations <> 0 Then
+                                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                         Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
                                         PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
                                         Dim BubbleEntity1 As Entity = PoisonAnimation.SpawnEntity(New Vector3(-0.25, -0.25, -0.25), TextureManager.GetTexture("Textures\Battle\StatusEffect\Poisoned", New Rectangle(0, 0, 32, 32), ""), New Vector3(0.5F), 1, 0, 1)
@@ -3472,7 +3472,7 @@
                                     End If
                                 Else
                                     'Poison animation
-                                    If Core.Player.ShowBattleAnimations <> 0 Then
+                                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                         Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
 
                                         PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
@@ -3575,7 +3575,7 @@
                 'Works!
                 Me.ChangeCameraAngle(1, own, BattleScreen)
                 'Confused Animation
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     Dim ConfusedAnimation As New AnimationQueryObject(pNPC, own)
 
                     ConfusedAnimation.AnimationPlaySound("Battle\Effects\Confused", 0, 0)
@@ -3761,7 +3761,7 @@
             End If
 
             '***STAT INCREASE ANIMATION***
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, False)
                 Dim maxAmount As Integer = 20 * val
                 Dim currentAmount As Integer = 0
@@ -4057,7 +4057,7 @@
             End If
             Me.ChangeCameraAngle(1, own, BattleScreen)
             '***STAT DECREASE ANIMATION***
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 Dim StatAnimation As AnimationQueryObject = New AnimationQueryObject(Nothing, False)
                 Dim maxAmount As Integer = 20 * val
                 Dim currentAmount As Integer = 0
@@ -4329,7 +4329,7 @@
                 End If
 
                 '***HP INCREASE ANIMATION***
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     Dim HealAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, Not own)
                     Dim maxAmount As Integer = 20
                     Dim currentAmount As Integer = 0
@@ -4393,7 +4393,7 @@
                     End If
                     BattleScreen.BattleQuery.Add(New PlaySoundQueryObject(sound, False, 0.0F))
                 End If
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     Dim HitAnimation As AnimationQueryObject = New AnimationQueryObject(pNPC, own)
                     HitAnimation.AnimationFade(Nothing, False, 1, False, 0, 0, 0)
                     HitAnimation.AnimationFade(Nothing, False, 1, True, 1, 1, 0)
@@ -5762,7 +5762,7 @@
                             If .OwnPokemon.Status = Pokemon.StatusProblems.Poison Then 'Own Poison
                                 ChangeCameraAngle(1, True, BattleScreen)
                                 'Poison animation
-                                If Core.Player.ShowBattleAnimations <> 0 Then
+                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
@@ -5785,7 +5785,7 @@
 
                                 ChangeCameraAngle(1, True, BattleScreen)
                                 'Poison animation
-                                If Core.Player.ShowBattleAnimations <> 0 Then
+                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
@@ -5823,7 +5823,7 @@
                             End If
                             ChangeCameraAngle(1, True, BattleScreen)
                             'Burn animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, True)
                                 BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
@@ -5893,7 +5893,7 @@
                             End If
                             ChangeCameraAngle(1, True, BattleScreen)
                             'Wrap Animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
 
                                 Dim WrapAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False)
                                 WrapAnimation.AnimationPlaySound("Battle\Attacks\Normal\Wrap", 5.0F, 0)
@@ -5930,7 +5930,7 @@
                             End If
                             ChangeCameraAngle(1, True, BattleScreen)
                             'Whirlpool Animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
 
                                 Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False, True)
                                 WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
@@ -5971,7 +5971,7 @@
                             End If
                             ChangeCameraAngle(1, True, BattleScreen)
                             'Bind Animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim BindAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, False)
                                 BindAnimation.AnimationPlaySound("Battle\Attacks\Normal\Bind", 5.0F, 0)
                                 Dim BindEntity = BindAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 0, 80, 40), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 0.75)
@@ -6007,7 +6007,7 @@
                             End If
                             ChangeCameraAngle(1, True, BattleScreen)
                             'Clamp Animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim ClampAnimation As AnimationQueryObject = New AnimationQueryObject(.OwnPokemonNPC, True)
                                 Dim offsetLeft As Single = 0.35
                                 Dim offsetRight As Single = -0.35
@@ -6653,7 +6653,7 @@
                             If .OppPokemon.Status = Pokemon.StatusProblems.Poison Then 'Opp Poison
                                 ChangeCameraAngle(1, False, BattleScreen)
                                 'Poison animation
-                                If Core.Player.ShowBattleAnimations <> 0 Then
+                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
 
                                     PoisonAnimation.AnimationPlaySound("Battle\Effects\Poisoned", 0, 0)
@@ -6674,7 +6674,7 @@
                                 .FieldEffects.OppPoisonCounter += 1
                                 Dim multiplier As Double = (.FieldEffects.OppPoisonCounter / 16)
                                 ChangeCameraAngle(1, False, BattleScreen)
-                                If Core.Player.ShowBattleAnimations <> 0 Then
+                                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                     'Poison animation
                                     Dim PoisonAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
 
@@ -6714,7 +6714,7 @@
                             End If
                             ChangeCameraAngle(1, False, BattleScreen)
                             'Burn animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim BurnAnimation As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
                                 BurnAnimation.AnimationPlaySound("Battle\Effects\Burned", 0, 0)
 
@@ -6785,7 +6785,7 @@
                             End If
                             ChangeCameraAngle(1, False, BattleScreen)
                             'Wrap Animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim WrapAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True)
                                 WrapAnimation.AnimationPlaySound("Battle\Attacks\Normal\Wrap", 5.0F, 0)
                                 Dim WrapEntity = WrapAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Wrap", New Rectangle(0, 0, 80, 40), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 0.75)
@@ -6821,7 +6821,7 @@
                             End If
                             ChangeCameraAngle(1, False, BattleScreen)
                             'Whirlpool Animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim WhirlpoolAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True, True)
                                 WhirlpoolAnimation.AnimationPlaySound("Battle\Attacks\Water\Whirlpool", 0.0F, 0)
                                 Dim WhirlpoolEntity As Entity = WhirlpoolAnimation.SpawnEntity(New Vector3(0, -0.3, 0), TextureManager.GetTexture("Textures\Battle\Water\Whirlpool"), New Vector3(0.0F), 1.0F, 0.0F, 0.0F)
@@ -6861,7 +6861,7 @@
                             End If
                             ChangeCameraAngle(1, False, BattleScreen)
                             'Bind Animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim BindAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, True)
                                 BindAnimation.AnimationPlaySound("Battle\Attacks\Normal\Bind", 5.0F, 0)
                                 Dim BindEntity = BindAnimation.SpawnEntity(New Vector3(0, -0.2, 0), TextureManager.GetTexture("Textures\Battle\Normal\Bind", New Rectangle(0, 0, 80, 40), ""), New Vector3(1.0F, 0.5F, 1.0F), 1, 0, 0.75)
@@ -6897,7 +6897,7 @@
                             End If
                             ChangeCameraAngle(1, False, BattleScreen)
                             'Clamp Animation
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                                 Dim ClampAnimation As AnimationQueryObject = New AnimationQueryObject(.OppPokemonNPC, False)
                                 Dim offsetLeft As Single = -0.35
                                 Dim offsetRight As Single = 0.35
@@ -7383,7 +7383,7 @@
 
                 Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False)
 
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Ball Closes
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
                     Dim SmokeReturned As Integer = 0
@@ -7405,7 +7405,7 @@
 
                 ' Pokemon disappears
                 BallReturn.AnimationFade(Nothing, False, 1, False, 0, 1, 0)
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
 
                     ' Ball returns
                     BallReturn.AnimationPlaySound("Battle\Pokeball\Throw", 1, 0)
@@ -7450,7 +7450,7 @@
                 ' Ball is thrown
                 Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OwnPokemonNPC, False)
 
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
 
                     Dim BallThrowEntity As Entity = BallThrow.SpawnEntity(New Vector3(-2, CSng(-0.15 + PositionOffsetY), 0), BattleScreen.OwnPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
@@ -7475,7 +7475,7 @@
                     Loop While SmokeSpawned <= 38
                 End If
 
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Pokemon appears
                     BallThrow.AnimationSetPosition(Nothing, False, 12, CSng(0.5), 13, 0, 0)
                     BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
@@ -7758,7 +7758,7 @@
 
                     BattleScreen.BattleQuery.Add(New TextQueryObject(message))
 
-                    If Core.Player.ShowBattleAnimations <> 0 Then
+                    If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                         Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
                         ' Ball Closes
                         BallReturn.AnimationPlaySound("Battle\Pokeball\Open", 0, 0)
@@ -7823,12 +7823,11 @@
                 ChangeCameraAngle(1, False, BattleScreen)
                 HasSwitchedInOpp = True
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Come back, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
-
-                If Core.Player.ShowBattleAnimations <> 0 Then
                 Dim PositionOffsetY As Single = 0.0F
                 If BattleScreen.OppPokemonNPC.Model IsNot Nothing Then
                     PositionOffsetY = 0.5F
                 End If
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     Dim BallReturn As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, True)
 
                     ' Ball Closes
@@ -7888,7 +7887,7 @@
                 BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.Trainer.Name & ": ""Go, " & BattleScreen.OppPokemon.GetDisplayName() & "!"""))
 
                 Dim BallThrow As AnimationQueryObject = New AnimationQueryObject(BattleScreen.OppPokemonNPC, False)
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Ball is thrown
 
                     BallThrow.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
@@ -7915,7 +7914,7 @@
                     BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
                 End If
 
-                If Core.Player.ShowBattleAnimations <> 0 Then
+                If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                     ' Pokemon appears
                     BallThrow.AnimationFade(Nothing, False, 1, True, 1, 3, 0)
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 4, 0,, True)
