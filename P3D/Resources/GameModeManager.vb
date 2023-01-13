@@ -630,12 +630,19 @@ Public Class GameMode
             "ContentPath|" & Me._contentPath & Environment.NewLine &
             "LocalizationsPath|" & Me._localizationsPath & Environment.NewLine
 
-        Dim GameRuleString As String = "Gamerules|"
+        Dim GameRuleString As String = "GameRules|"
         For Each rule As GameRule In Me._gameRules
             GameRuleString &= "(" & rule.RuleName & "|" & rule.RuleValue & ")"
         Next
 
-        s &= GameRuleString & Environment.NewLine &
+        s &= GameRuleString & Environment.NewLine
+
+        Dim HardGameRuleString As String = "HardGameRules|"
+        For Each rule As GameRule In Me._hardGameRules
+            HardGameRuleString &= "(" & rule.RuleName & "|" & rule.RuleValue & ")"
+        Next
+
+        s &= HardGameRuleString & Environment.NewLine &
             "StartMap|" & Me._startMap & Environment.NewLine &
             "StartPosition|" & Me._startPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & Me._startPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
             "StartRotation|" & Me._startRotation.ToString().Replace(GameController.DecSeparator, ".") & Environment.NewLine &
