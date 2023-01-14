@@ -357,7 +357,7 @@
             End If
 
             Dim InitiallyVisibleOwn As Integer = 1
-            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 Then
+            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 InitiallyVisibleOwn = 0
             End If
 
@@ -477,7 +477,7 @@
 
             Me.BattleQuery.AddRange({cq, q, q1, q11, BallThrowOpp, q2, q3, q31, q4})
 
-            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 Then
+            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 ' Ball is thrown
                 Dim BallThrowOwn As AnimationQueryObject = New AnimationQueryObject(Me.OwnPokemonNPC, False)
 
