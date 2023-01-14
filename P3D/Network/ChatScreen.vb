@@ -770,7 +770,7 @@ Public Class ChatScreen
         End If
 
         If textureType = "pm" Or textureType = "pmoff" Then
-            drawWidth = CInt(MathHelper.Clamp(40 + FontManager.MainFont.MeasureString(Text).X * 0.75F, 120, 200))
+            drawWidth = CInt(MathHelper.Clamp(48 + FontManager.MainFont.MeasureString(Text).X, 120, 200))
         End If
 
         Canvas.DrawRectangle(New Rectangle(xPosition, CInt(Core.windowSize.Height - 50), drawWidth, drawHeight), New Color(0, 0, 0, 150))
@@ -788,7 +788,7 @@ Public Class ChatScreen
         End Select
 
         If HasNewMessages = True Then
-            Core.SpriteBatch.Draw(texture, New Rectangle(xPosition, Core.windowSize.Height - 50 - drawHeight - 12, 24, 24), New Rectangle(48, 0, 24, 24), Color.White)
+            Core.SpriteBatch.Draw(texture, New Rectangle(xPosition + 6, CInt(Core.windowSize.Height - 50 + drawHeight / 2 - 12), 24, 24), New Rectangle(48, 0, 24, 24), Color.White)
         End If
 
         Core.SpriteBatch.DrawString(FontManager.MainFont, Text, New Vector2(xPosition + 24 + 12, CInt(Core.windowSize.Height - 50 + drawHeight / 2 - FontManager.MainFont.MeasureString(Text).Y / 2)), Color.White, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
@@ -908,8 +908,8 @@ Public Class ChatScreen
             If hasNewMessages = True Then
                 Canvas.DrawRectangle(New Rectangle(0, Core.windowSize.Height - 64, 64, 64), New Color(0, 0, 0, 150))
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Chat\Icons"), New Rectangle(22, Core.windowSize.Height - 40, 24, 24), New Rectangle(10, 0, 12, 12), Color.White)
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Chat\Icons"), New Rectangle(8, Core.windowSize.Height - 52, 24, 24), New Rectangle(22, 0, 12, 12), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Chat\Icons"), New Rectangle(22, Core.windowSize.Height - 40, 24, 24), New Rectangle(24, 0, 24, 24), Color.White)
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Chat\Icons"), New Rectangle(8, Core.windowSize.Height - 52, 24, 24), New Rectangle(48, 0, 24, 24), Color.White)
             End If
         End If
     End Sub
