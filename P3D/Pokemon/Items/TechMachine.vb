@@ -110,7 +110,7 @@
 
                     Return True
                 Else
-                    If IsTM = True And Core.Player.DifficultyMode > 0 Then
+                    If IsTM = True AndAlso CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
                         Core.Player.Inventory.RemoveItem(ID, 1)
                     End If
                     p.Attacks.Add(BattleSystem.Attack.GetAttackByID(a.ID))

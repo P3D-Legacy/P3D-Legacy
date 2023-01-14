@@ -607,11 +607,13 @@ Public Class GameMode
         gameRules.Add(New GameRule("ShowFollowPokemon", "1"))
         gameRules.Add(New GameRule("OverworldPoison", "0"))
         gameRules.Add(New GameRule("SavingDisabled", "0"))
+        gameRules.Add(New GameRule("SingleUseTM", "0"))
 
         gameMode._gameRules = gameRules
 
         Dim hardGameRules As New List(Of GameRule)
         hardGameRules.Add(New GameRule("OverworldPoison", "1"))
+        hardGameRules.Add(New GameRule("SingleUseTM", "1"))
 
         gameMode._hardGameRules = hardGameRules
         Return gameMode

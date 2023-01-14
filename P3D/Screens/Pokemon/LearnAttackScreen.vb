@@ -259,7 +259,7 @@
 
                 If Me.MachineItemID > -1 Then
                     PlayerStatistics.Track("TMs/HMs used", 1)
-                    If Core.Player.DifficultyMode > 0 Then
+                    If CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
                         Dim TechMachine As Item = Item.GetItemByID(Me.MachineItemID)
                         If TechMachine.ItemType = Items.ItemTypes.Machines Then
                             If CType(TechMachine, Items.TechMachine).IsTM = True Then
