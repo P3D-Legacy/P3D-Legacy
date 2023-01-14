@@ -467,9 +467,12 @@ Public Class GameMode
                                 For Each rule As String In rules
                                     If rule.StartsWith("(") = True Then
                                         rule = rule.Remove(0, 1)
-                                        For Each HardRule As GameRule In _hardGameRules
-                                            If HardRule.RuleName.ToLower = rule.GetSplit(0, "|").ToLower Then
-                                                _hardGameRules.Remove(HardRule)
+                                        For i = 0 To _hardGameRules.Count - 1
+                                            If i <= _hardGameRules.Count - 1 Then
+                                                If _hardGameRules(i).RuleName.ToLower = rule.GetSplit(0, "|").ToLower Then
+                                                    _hardGameRules.RemoveAt(i)
+                                                    i -= 1
+                                                End If
                                             End If
                                         Next
                                         _hardGameRules.Add(New GameRule(rule.GetSplit(0, "|"), rule.GetSplit(1, "|")))
