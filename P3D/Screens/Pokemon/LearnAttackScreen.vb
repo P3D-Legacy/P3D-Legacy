@@ -52,7 +52,11 @@
                 Me.AttackIndex = CInt(MathHelper.Clamp(Me.AttackIndex, 0, 4))
 
                 If AttackIndex < 4 Then
-                    canForget = Not Pokemon.Attacks(AttackIndex).IsHMMove
+                    If CBool(GameModeManager.GetGameRuleValue("CanForgetHM", "0")) = True Then
+                        canForget = True
+                    Else
+                        canForget = Not Pokemon.Attacks(AttackIndex).IsHMMove
+                    End If
                 Else
                     canForget = True
                 End If
