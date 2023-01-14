@@ -1030,7 +1030,7 @@ item_name_592,Liberty Sea Map
 item_name_576,Mega Bracelet
 item_name_651,Light Stone
 item_name_652,Dark Stone
-item_name_653,PokéNav
+item_name_653,Black Augurite
 
 Technical Machines:
 item_name_191,TM 01
@@ -1463,6 +1463,7 @@ item_name_600,Terrain Extender
 item_name_648,Poke Toy
 item_name_649,Fluffy Tail
 item_name_650,Bright Powder
+item_name_654,Peat Block
 item_name_1996,Burn Drive
 item_name_1997,Chill Drive
 item_name_1998,Douse Drive
