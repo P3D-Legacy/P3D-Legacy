@@ -57,7 +57,7 @@
 
             If y > -1 Then
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\WeatherIcons"), New Rectangle(22, Core.windowSize.Height - 90, 176, 68), New Rectangle(x, y, 88, 34), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(110 - FontManager.MiniFont.MeasureString(t).X / 2, Core.windowSize.Height - 44), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(110 - FontManager.MainFont.MeasureString(t).X / 2, Core.windowSize.Height - 44), Color.Black)
             End If
         End Sub
 
@@ -91,7 +91,7 @@
 
             If y > -1 Then
                 Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\WeatherIcons"), New Rectangle(222, Core.windowSize.Height - 90, 176, 68), New Rectangle(x, y, 88, 34), Color.White)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, t, New Vector2(310 - FontManager.MiniFont.MeasureString(t).X / 2, Core.windowSize.Height - 44), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, t, New Vector2(310 - FontManager.MainFont.MeasureString(t).X / 2, Core.windowSize.Height - 44), Color.Black)
             End If
         End Sub
 
@@ -113,19 +113,19 @@
                 'Name:
                 Dim nameInformation As String = p.GetDisplayName() & " Lv. " & p.Level.ToString()
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, nameInformation, New Vector2(pos.X + 2, pos.Y + 2), New Color(0, 0, 0, _moveMenuAlpha))
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, nameInformation, New Vector2(pos.X, pos.Y), shinyHue)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, nameInformation, New Vector2(pos.X + 2, pos.Y + 2), New Color(0, 0, 0, _moveMenuAlpha))
+                Core.SpriteBatch.DrawString(FontManager.MainFont, nameInformation, New Vector2(pos.X, pos.Y), shinyHue)
 
                 'Gender:
                 If p.Gender = Pokemon.Genders.Male Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MiniFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 ElseIf p.Gender = Pokemon.Genders.Female Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MiniFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 End If
 
                 'HP indicator:
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 102, pos.Y + 37 + 3), New Color(0, 0, 0, _moveMenuAlpha))
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 100, pos.Y + 35 + 3), shinyHue)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 102, pos.Y + 37 + 3), New Color(0, 0, 0, _moveMenuAlpha))
+                Core.SpriteBatch.DrawString(FontManager.MainFont, p.HP & "/" & p.MaxHP, New Vector2(pos.X + 100, pos.Y + 35 + 3), shinyHue)
 
                 'EXP Bar:
                 If BattleScreen.CanReceiveEXP = True Then
@@ -170,14 +170,14 @@
                 'Name:
                 Dim nameInformation As String = p.GetDisplayName() & " Lv. " & p.Level.ToString()
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, nameInformation, New Vector2(pos.X + 2, pos.Y + 2), New Color(0, 0, 0, _moveMenuAlpha))
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, nameInformation, New Vector2(pos.X, pos.Y), shinyHue)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, nameInformation, New Vector2(pos.X + 2, pos.Y + 2), New Color(0, 0, 0, _moveMenuAlpha))
+                Core.SpriteBatch.DrawString(FontManager.MainFont, nameInformation, New Vector2(pos.X, pos.Y), shinyHue)
 
                 'Gender:
                 If p.Gender = Pokemon.Genders.Male Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MiniFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(0, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 ElseIf p.Gender = Pokemon.Genders.Female Then
-                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MiniFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
+                    Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Battle\Interface"), New Rectangle(CInt(pos.X + 6 + FontManager.MainFont.MeasureString(nameInformation).X), CInt(pos.Y), 12, 20), New Rectangle(6, 104, 6, 10), New Color(255, 255, 255, _moveMenuAlpha))
                 End If
             End If
 
