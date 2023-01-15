@@ -1718,7 +1718,9 @@ nextIndex:
 
             'prevents multi turn action to take place in an after fainting switching turn
             If Not (BV2Screen.OppFaint And BV2Screen.IsRemoteBattle) Then
-                BV2Screen.Battle.StartMultiTurnAction(BV2Screen)
+                If BV2Screen.HasSwitchedOwn = False Then
+                    BV2Screen.Battle.StartMultiTurnAction(BV2Screen)
+                End If
             Else
                 BV2Screen.BattleMenu.Visible = True
             End If
