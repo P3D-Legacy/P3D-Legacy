@@ -2007,8 +2007,10 @@
                     'Protean Ability:
                     If p.Ability.Name.ToLower() = "protean" Then
                         If p.Type1.Type <> moveUsed.Type.Type Or p.Type2.Type <> Element.Types.Blank Then
+                            p.OriginalType1.Type = p.Type1.Type
                             p.Type1.Type = moveUsed.Type.Type
                             If p.Type2.Type <> Element.Types.Blank Then
+                                p.OriginalType2.Type = p.Type2.Type
                                 p.Type2.Type = Element.Types.Blank
                             End If
                             BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s type changed to " & p.Type1.ToString() & " due to Protean."))
