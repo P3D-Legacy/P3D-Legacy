@@ -683,13 +683,12 @@ Public Class PartyScreen
                 If Badge.CanUseHMMove(CType(hmMove, Badge.HMMoves)) = False Then
                     Return False
                 End If
-
-                For Each a As BattleSystem.Attack In p.Attacks
-                    If a.Name.ToLower() = moveName.ToLower() Then
-                        Return True
-                    End If
-                Next
             End If
+            For Each a As BattleSystem.Attack In p.Attacks
+                If a.Name.ToLower() = moveName.ToLower() Then
+                    Return True
+                End If
+            Next
         End If
         Return False
     End Function
