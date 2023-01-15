@@ -1250,12 +1250,13 @@ nextIndex:
                                 Core.Player.Inventory.AddItem(p.OriginalItem.ID, 1)
                                 SoundManager.PlaySound("item_found", True)
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
+                                p.OriginalItem = Nothing
                             Else
                                 p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                                p.OriginalItem = Nothing
                             End If
-                            p.OriginalItem = Nothing
                         End If
                     End If
                     p.ResetTemp()
@@ -1310,13 +1311,14 @@ nextIndex:
                             If p.Item IsNot Nothing Then
                                 Core.Player.Inventory.AddItem(p.OriginalItem.ID, 1)
                                 SoundManager.PlaySound("item_found", True)
-                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.originalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.originalItem, 1))
+                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
+                                p.OriginalItem = Nothing
                             Else
                                 p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
+                                p.OriginalItem = Nothing
                             End If
-                            p.OriginalItem = Nothing
                         End If
                     End If
                     p.ResetTemp()
