@@ -614,7 +614,6 @@ Public Class GameMode
 
         Dim hardGameRules As New List(Of GameRule)
         hardGameRules.Add(New GameRule("OverworldPoison", "1"))
-        hardGameRules.Add(New GameRule("SingleUseTM", "1"))
 
         gameMode._hardGameRules = hardGameRules
         Return gameMode
