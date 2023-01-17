@@ -107,16 +107,18 @@
                     BasicEffect.DiffuseColor = New Vector3(1)
                 Else
                     Select Case Screen.Level.World.CurrentMapWeather
-                        Case World.Weathers.Clear, World.Weathers.Sunny
+                        Case World.Weathers.Clear
                             BasicEffect.DiffuseColor = New Vector3(1)
+                        Case World.Weathers.Sunny
+                            BasicEffect.DiffuseColor = New Vector3(1.5, 1.3, 1.3)
                         Case World.Weathers.Rain
                             BasicEffect.DiffuseColor = New Vector3(0.4, 0.4, 0.7)
                         Case World.Weathers.Snow
-                            BasicEffect.DiffuseColor = New Vector3(0.8)
+                            BasicEffect.DiffuseColor = New Vector3(0.9)
                         Case World.Weathers.Underwater
                             BasicEffect.DiffuseColor = New Vector3(0.1, 0.3, 0.9)
                         Case World.Weathers.Fog
-                            BasicEffect.DiffuseColor = New Vector3(0.7, 0.7, 0.8)
+                            BasicEffect.DiffuseColor = New Vector3(0.7, 0.7, 0.7)
                         Case World.Weathers.Sandstorm
                             BasicEffect.DiffuseColor = New Vector3(0.8, 0.5, 0.2)
                         Case World.Weathers.Ash

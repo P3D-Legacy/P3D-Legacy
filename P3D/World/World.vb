@@ -399,23 +399,30 @@ endsub:
                     Return Weathers.Snow
                 End If
             Case Seasons.Spring
-                If r < 45 Then
+                If r < 70 Then
                     Return Weathers.Clear
-                ElseIf r >= 45 And r < 95 Then
+                ElseIf r >= 70 And r < 90 Then
                     Return Weathers.Rain
                 Else
                     Return Weathers.Snow
                 End If
             Case Seasons.Summer
-                If r < 90 Then
+                If r < 60 Then
                     Return Weathers.Clear
+                ElseIf r >= 60 And r < 95 Then
+                    Select Case Screen.Level.DayTime
+                        Case DayTimes.Day, DayTimes.Morning
+                            Return Weathers.Sunny
+                        Case Else
+                            Return Weathers.Clear
+                    End Select
                 Else
                     Return Weathers.Rain
                 End If
             Case Seasons.Fall
-                If r < 50 Then
+                If r < 60 Then
                     Return Weathers.Clear
-                ElseIf r >= 50 And r < 85 Then
+                ElseIf r >= 60 And r < 90 Then
                     Return Weathers.Rain
                 Else
                     Return Weathers.Snow
@@ -547,13 +554,13 @@ endsub:
             Case Weathers.Rain, Weathers.Thunderstorm
                 Screen.Effect.DiffuseColor = New Vector3(0.4, 0.4, 0.7)
             Case Weathers.Snow
-                Screen.Effect.DiffuseColor = New Vector3(0.8)
+                Screen.Effect.DiffuseColor = New Vector3(0.9, 0.9, 0.9)
             Case Weathers.Underwater
                 Screen.Effect.DiffuseColor = New Vector3(0.1, 0.3, 0.9)
             Case Weathers.Sunny
-                Screen.Effect.DiffuseColor = New Vector3(1.6, 1.3, 1.3)
+                Screen.Effect.DiffuseColor = New Vector3(1.5, 1.3, 1.3)
             Case Weathers.Fog
-                Screen.Effect.DiffuseColor = New Vector3(0.5, 0.5, 0.6)
+                Screen.Effect.DiffuseColor = New Vector3(0.7, 0.7, 0.7)
             Case Weathers.Sandstorm
                 Screen.Effect.DiffuseColor = New Vector3(0.8, 0.5, 0.2)
             Case Weathers.Ash
