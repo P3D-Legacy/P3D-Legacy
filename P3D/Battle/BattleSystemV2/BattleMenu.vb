@@ -511,21 +511,27 @@
             Public Sub Activate(ByVal BattleScreen As BattleScreen, ByVal AllExtended As Integer, ByVal isSelected As Boolean)
                 If BattleScreen.BattleMenu._isExtracting = False And BattleScreen.BattleMenu._isRetracting = False Then
                     If Me.Move.CurrentPP > 0 Or isSelected = False Then
+
                         If Controls.Accept(False, True, True) = True And isSelected = True Then
                             SoundManager.PlaySound("select")
-                            Me.ClickAction(BattleScreen)
+                            If Me.Move.Disabled = 0 Then
+                                Me.ClickAction(BattleScreen)
+                            End If
                         End If
                         If Controls.Accept(True, False, False) = True Then
                             If MouseHandler.IsInRectangle(New Rectangle(Core.ScreenSize.Width - 255, 116 + Index * 96, 255, 80)) = True Then
                                 If isSelected = True Then
                                     SoundManager.PlaySound("select")
-                                    Me.ClickAction(BattleScreen)
+                                    If Me.Move.Disabled = 0 Then
+                                        Me.ClickAction(BattleScreen)
+                                    End If
                                 Else
                                     BattleScreen.BattleMenu._moveMenuNextIndex = Me.Index
                                     BattleScreen.BattleMenu._isRetracting = True
                                 End If
                             End If
                         End If
+
                     End If
                 End If
             End Sub
