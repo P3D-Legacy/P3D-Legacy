@@ -61,6 +61,8 @@
         Public OwnTrainerNPC As NPC
         Public OppTrainerNPC As NPC
 
+        Public HasSwitchedOwn As Boolean = False
+
         Public OwnPokemonIndex As Integer = 0
         Public OppPokemonIndex As Integer = 0
 
@@ -356,12 +358,12 @@
             End If
 
             Dim InitiallyVisibleOwn As Integer = 1
-            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 Then
+            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 InitiallyVisibleOwn = 0
             End If
 
             Dim InitiallyVisibleOpp As Integer = 1
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 InitiallyVisibleOpp = 0
             End If
 
@@ -429,7 +431,7 @@
             ' Ball is thrown
             Dim BallThrowOpp As AnimationQueryObject = New AnimationQueryObject(OppPokemonNPC, False)
 
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 BallThrowOpp.AnimationPlaySound("Battle\Pokeball\Throw", 0, 0)
                 BallThrowOpp.AnimationSetPosition(Nothing, False, 15, CSng(0.5 + OppEntityOffsetY), 13, 0, 0)
                 Dim BallThrowEntity As Entity = BallThrowOpp.SpawnEntity(New Vector3(2, -0.15, 0), Me.OppPokemon.CatchBall.Texture, New Vector3(0.3F), 1.0F)
@@ -461,7 +463,7 @@
 
 
             '  Pokémon falls down
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 '  Pokémon falls down
                 BallThrowOpp.AnimationMove(Nothing, False, 0, 0, 0, 0.05F, False, False, 4, 0,,, 3)
             End If
@@ -476,7 +478,7 @@
 
             Me.BattleQuery.AddRange({cq, q, q1, q11, BallThrowOpp, q2, q3, q31, q4})
 
-            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 Then
+            If IsPVPBattle = True AndAlso Core.Player.ShowBattleAnimations <> 0 AndAlso IsPVPBattle = False Then
                 ' Ball is thrown
                 Dim BallThrowOwn As AnimationQueryObject = New AnimationQueryObject(Me.OwnPokemonNPC, False)
 
@@ -1024,11 +1026,13 @@ nextIndexForeground:
             End If
 
             Lighting.UpdateLighting(Screen.Effect)
-            Camera.Update()
-            Level.Update()
+            If IsCurrentScreen() = True Then
+                Camera.Update()
 
-            SkyDome.Update()
+                Level.Update()
 
+                SkyDome.Update()
+            End If
             TextBox.Update()
             If TextBox.Showing = False Then
                 Dim cIndex As Integer = 0
@@ -1247,12 +1251,13 @@ nextIndex:
                                 Core.Player.Inventory.AddItem(p.OriginalItem.ID, 1)
                                 SoundManager.PlaySound("item_found", True)
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
+                                p.OriginalItem = Nothing
                             Else
                                 p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
-                    End If
-                            p.OriginalItem = Nothing
+                                p.OriginalItem = Nothing
+                            End If
                         End If
                     End If
                     p.ResetTemp()
@@ -1307,13 +1312,14 @@ nextIndex:
                             If p.Item IsNot Nothing Then
                                 Core.Player.Inventory.AddItem(p.OriginalItem.ID, 1)
                                 SoundManager.PlaySound("item_found", True)
-                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.originalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.originalItem, 1))
+                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
+                                p.OriginalItem = Nothing
                             Else
                                 p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
-                    End If
-                            p.OriginalItem = Nothing
+                                p.OriginalItem = Nothing
+                            End If
                         End If
                     End If
                     p.ResetTemp()
@@ -1715,7 +1721,9 @@ nextIndex:
 
             'prevents multi turn action to take place in an after fainting switching turn
             If Not (BV2Screen.OppFaint And BV2Screen.IsRemoteBattle) Then
-                BV2Screen.Battle.StartMultiTurnAction(BV2Screen)
+                If BV2Screen.HasSwitchedOwn = False Then
+                    BV2Screen.Battle.StartMultiTurnAction(BV2Screen)
+                End If
             Else
                 BV2Screen.BattleMenu.Visible = True
             End If

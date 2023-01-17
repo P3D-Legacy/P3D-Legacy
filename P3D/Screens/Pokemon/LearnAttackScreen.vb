@@ -52,7 +52,11 @@
                 Me.AttackIndex = CInt(MathHelper.Clamp(Me.AttackIndex, 0, 4))
 
                 If AttackIndex < 4 Then
-                    canForget = Not Pokemon.Attacks(AttackIndex).IsHMMove
+                    If CBool(GameModeManager.GetGameRuleValue("CanForgetHM", "0")) = True Then
+                        canForget = True
+                    Else
+                        canForget = Not Pokemon.Attacks(AttackIndex).IsHMMove
+                    End If
                 Else
                     canForget = True
                 End If
@@ -259,7 +263,7 @@
 
                 If Me.MachineItemID > -1 Then
                     PlayerStatistics.Track("TMs/HMs used", 1)
-                    If Core.Player.DifficultyMode > 0 Then
+                    If CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
                         Dim TechMachine As Item = Item.GetItemByID(Me.MachineItemID)
                         If TechMachine.ItemType = Items.ItemTypes.Machines Then
                             If CType(TechMachine, Items.TechMachine).IsTM = True Then

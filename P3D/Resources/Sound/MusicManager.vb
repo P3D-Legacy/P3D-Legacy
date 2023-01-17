@@ -554,7 +554,11 @@ Public Class MusicManager
                 Return _songs(key)
             End If
         Else
-            Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: Cannot find music file """ & songName & """. Return nothing.")
+            If GameController.IS_DEBUG_ACTIVE = True Then
+                Logger.Debug("MusicManager.vb: Cannot find music file """ & songName & """. Return nothing.")
+            ElseIf songName.Contains("intro\") = False Then
+                Logger.Log(Logger.LogTypes.Warning, "MusicManager.vb: Cannot find music file """ & songName & """. Return nothing.")
+            End If
         End If
         Return Nothing
 

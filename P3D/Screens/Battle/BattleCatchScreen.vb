@@ -116,7 +116,7 @@ nextIndex:
         Lighting.UpdateLighting(Screen.Effect)
         If textboxStart = False Then
             textboxStart = True
-            TextBox.Show(Core.Player.Name & " used a " & Ball.Name & "!", {}, False, False)
+            TextBox.Show(Core.Player.Name & " used a~" & Ball.Name & "!", {}, False, False)
         End If
         TextBox.Update()
 
@@ -152,7 +152,7 @@ nextIndex:
                                     InBall = False
                                 End If
                             Next
-                            If Core.Player.ShowBattleAnimations <> 0 Then
+                            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
 
 
                                 PokemonScale = BattleScreen.OppPokemonNPC.Scale

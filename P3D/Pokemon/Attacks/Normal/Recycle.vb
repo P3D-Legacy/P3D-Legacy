@@ -58,7 +58,6 @@
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
             If own = True Then
                 Dim p As Pokemon = BattleScreen.OwnPokemon
-
                 If Not BattleScreen.FieldEffects.OwnConsumedItem Is Nothing Then
                     p.Item = BattleScreen.FieldEffects.OwnConsumedItem
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " found one " & p.Item.Name & "!"))

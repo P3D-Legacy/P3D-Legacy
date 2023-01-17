@@ -652,7 +652,7 @@
                 Dim b As New BattleSystem.BattleScreen(t, Core.CurrentScreen, 0)
                 b.IsPVPBattle = True
                 b.PVPGameJoltID = OppEmblem.GameJoltID
-                Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, t, t.GetIniMusicName(), t.IntroType))
+                Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, t, "pvp_intro", t.IntroType))
                 PlayerStatistics.Track("Battle Spot battles", 1)
             End If
         End Sub

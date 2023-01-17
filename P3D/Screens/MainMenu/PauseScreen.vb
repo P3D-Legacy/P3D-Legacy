@@ -82,7 +82,10 @@
         If PreScreen.Identification = Identifications.OverworldScreen Then
             Screen.Level.Update()
         ElseIf PreScreen.Identification = Identifications.BattleCatchScreen Then
+            PreScreen.Update()
             CType(PreScreen, BattleCatchScreen).UpdateAnimations()
+        ElseIf PreScreen.Identification = Screen.Identifications.BattleScreen Then
+            PreScreen.Update()
         End If
 
         Screen.TextBox.reDelay = 0.0F

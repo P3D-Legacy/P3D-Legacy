@@ -11,7 +11,7 @@
     Dim ShowBattleAnimations As Integer = 1
     Dim DiagonalMovement As Boolean = True
     Dim Difficulty As Integer = 0
-    Dim BattleStyle As Integer = 0
+    Dim BattleStyle As Integer = 1
     Dim LoadOffsetMaps As Integer = 1
     Dim ViewBobbing As Boolean = True
     Dim ShowModels As Integer = 1

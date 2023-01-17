@@ -587,6 +587,9 @@ Public Class NewInventoryScreen
     End Function
 
     Public Overrides Sub Update()
+        If PreScreen.Identification = Screen.Identifications.BattleScreen Then
+            PreScreen.Update()
+        End If
         'Updates the tab highlight:
         For index = 0 To _tabHighlight.Length - 1
             If index <> _tabIndex Then

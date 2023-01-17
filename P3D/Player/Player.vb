@@ -1894,16 +1894,20 @@
                     Next
                     If CInt(GameModeManager.GetGameRuleValue("OverworldPoison", "0")) = 1 Then
                         For i = 0 To Core.Player.Pokemons.Count - 1
-                            If Core.Player.Pokemons(i).HP <= 0 Then
-                                Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted
+                            If Core.Player.Pokemons(i).HP <= 1 Then
+                                Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.None
+                                Core.Player.Pokemons(i).HP = 1
+                                Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & " was cured of Poison.")
                             End If
                         Next
                     ElseIf CInt(GameModeManager.GetGameRuleValue("OverworldPoison", "0")) = 2 Then
                         For i = 0 To Core.Player.Pokemons.Count - 1
-                            If Core.Player.Pokemons(i).HP <= 1 Then
-                                Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.None
-                                Core.Player.Pokemons(i).HP = 1
-                                Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & "was cured of Poison")
+                            If Core.Player.Pokemons(i).HP <= 0 Then
+                                Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted
+                                Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & " Fainted.")
+                            End If
+                            If Core.Player.CountFightablePokemon = 0 Then
+                                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
                             End If
                         Next
                     End If

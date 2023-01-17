@@ -2175,7 +2175,7 @@
 #Region "Animation"
 
         Public Sub UserPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 Dim BattleFlip As Boolean = False
                 Dim CurrentPokemon As Pokemon = BattleScreen.OwnPokemon
                 Dim CurrentEntity As NPC = BattleScreen.OwnPokemonNPC
@@ -2193,7 +2193,7 @@
         End Sub
 
         Public Sub OpponentPokemonMoveAnimation(ByVal BattleScreen As BattleScreen, ByVal own As Boolean)
-            If Core.Player.ShowBattleAnimations <> 0 Then
+            If Core.Player.ShowBattleAnimations <> 0 AndAlso BattleScreen.IsPVPBattle = False Then
                 Dim BattleFlip As Boolean = False
                 Dim CurrentPokemon As Pokemon = BattleScreen.OppPokemon
                 Dim CurrentEntity As NPC = BattleScreen.OppPokemonNPC

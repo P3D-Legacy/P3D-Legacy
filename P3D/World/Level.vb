@@ -840,7 +840,11 @@ Public NotInheritable Class Level
                     If Me.Riding = True Then
                         MusicManager.Play("ride", True)
                     Else
-                        MusicManager.Play(MusicLoop, True)
+                        If MusicManager.GetSong(MusicLoop) IsNot Nothing Then
+                            MusicManager.Play(MusicLoop, True)
+                        Else
+                            MusicManager.Play("silence")
+                        End If
                     End If
                 End If
             End If

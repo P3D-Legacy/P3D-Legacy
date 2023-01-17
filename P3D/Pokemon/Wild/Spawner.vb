@@ -145,8 +145,12 @@ Public Class Spawner
             If r < x Then
                 Dim levelCap() As String = LevelCaps(i).Split(CChar(","))
                 Dim minLevel As Integer = CInt(levelCap(0))
-                Dim maxLevel As Integer = CInt(levelCap(1))
-
+                Dim maxLevel As Integer
+                If levelCap.Count > 1 Then
+                    maxLevel = CInt(levelCap(1))
+                Else
+                    maxLevel = minLevel
+                End If
                 If maxLevel < minLevel Then
                     maxLevel = minLevel
                 End If

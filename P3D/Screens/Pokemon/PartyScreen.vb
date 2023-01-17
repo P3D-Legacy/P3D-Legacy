@@ -309,7 +309,7 @@ Public Class PartyScreen
 
             'Item:
             If p.Item IsNot Nothing Then
-                SpriteBatch.Draw(p.Item.Texture, New Rectangle(CInt(position.X) + 42, CInt(position.Y) + 36, 24, 24), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+                SpriteBatch.Draw(p.Item.Texture, New Rectangle(CInt(position.X) + 38, CInt(position.Y) + 32, 24, 24), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
             End If
 
             'name:
@@ -384,7 +384,7 @@ Public Class PartyScreen
                         End If
                 End Select
             End If
-            GetFontRenderer().DrawString(FontManager.MainFont, AttackLabel, New Vector2(position.X + 210, position.Y + 50), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
+            GetFontRenderer().DrawString(FontManager.MainFont, AttackLabel, New Vector2(position.X + 216, position.Y + 28), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
         End If
 
@@ -683,13 +683,12 @@ Public Class PartyScreen
                 If Badge.CanUseHMMove(CType(hmMove, Badge.HMMoves)) = False Then
                     Return False
                 End If
-
-                For Each a As BattleSystem.Attack In p.Attacks
-                    If a.Name.ToLower() = moveName.ToLower() Then
-                        Return True
-                    End If
-                Next
             End If
+            For Each a As BattleSystem.Attack In p.Attacks
+                If a.Name.ToLower() = moveName.ToLower() Then
+                    Return True
+                End If
+            Next
         End If
         Return False
     End Function
