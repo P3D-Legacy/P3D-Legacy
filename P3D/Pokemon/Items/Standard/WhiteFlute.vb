@@ -5,7 +5,7 @@ Namespace Items.Standard
 
         Inherits Item
 
-        Public Overrides ReadOnly Property Description As String = "A white flute made from blown glass. Its melody makes wild Pokémon more likely to appear."
+        Public Overrides ReadOnly Property Description As String = "A lovely toy flute to admire. It's made from white glass."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 500
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
