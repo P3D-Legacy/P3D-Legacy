@@ -2812,18 +2812,18 @@ Public Class PokemonForms
         Public Overrides Function GetAnimationName(ByVal P As Pokemon) As String
             Select Case P.Gender
                 Case Pokemon.Genders.Male
-                    Return P.OriginalName & "_male"
+                    Return P.OriginalName & "_m"
                 Case Else
-                    Return P.OriginalName & "_female"
+                    Return P.OriginalName & "_f"
             End Select
         End Function
 
         Public Overrides Function GetOverworldAddition(ByVal P As Pokemon) As String
             Select Case P.Gender
                 Case Pokemon.Genders.Male
-                    Return "_male"
+                    Return "_m"
                 Case Else
-                    Return "_female"
+                    Return "_f"
             End Select
         End Function
     End Class
