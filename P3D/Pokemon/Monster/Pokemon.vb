@@ -978,6 +978,12 @@ Public Class Pokemon
     Public Sub ResetTemp()
         _volatiles.Clear()
 
+        For Each attack As BattleSystem.Attack In Me.Attacks
+            If attack.Disabled > 0 Then
+                attack.Disabled = 0
+            End If
+        Next
+
         StatAttack = 0
         StatDefense = 0
         StatSpAttack = 0
