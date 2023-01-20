@@ -2513,7 +2513,7 @@ Public Class Pokemon
     Private Function GetTexture(ByVal index As Integer) As Texture2D
         Dim TextureNumberSuffix As String = ""
         If Me.AnimationName.Contains("_") Then
-            TextureNumberSuffix = AnimationName.Remove(0, GetName.Length)
+            TextureNumberSuffix = AnimationName.Remove(0, OriginalName.Length)
         End If
         If Textures(index) Is Nothing Then
             Select Case index

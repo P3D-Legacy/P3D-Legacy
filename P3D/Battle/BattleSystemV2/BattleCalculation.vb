@@ -676,7 +676,7 @@
             Return False
         End Function
 
-        Public Shared Function CanRun(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
+        Public Shared Function CanRun(ByVal own As Boolean, ByVal BattleScreen As BattleScreen, Optional ByVal IsEscapeMove As Boolean = False) As Boolean
             If BattleScreen.BattleMode = BattleScreen.BattleModes.Safari Then
                 Return True
             End If
@@ -734,6 +734,10 @@
             End If
             If ingrain > 0 Then
                 Return False
+            End If
+
+            If IsEscapeMove = True Then
+                Return True
             End If
 
             If p.Speed > op.Speed Then
