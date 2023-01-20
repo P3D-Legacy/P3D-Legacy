@@ -45,7 +45,7 @@
             ElseIf KeyBoardHandler.KeyPressed(Keys.L) Then
                 Logger.DisplayLog = Not Logger.DisplayLog
             ElseIf KeyBoardHandler.KeyPressed(Keys.B) Then
-                Entity.drawViewBox = Not Entity.drawViewBox
+                Entity.DrawViewBox = Not Entity.DrawViewBox
             End If
         End If
 

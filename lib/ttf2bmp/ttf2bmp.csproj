@@ -3,7 +3,7 @@
     <AssemblyName>ttf2bmp</AssemblyName>
     <RootNamespace>TrueTypeConverter</RootNamespace>
     <OutputType>Library</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     
     <Version>8.0.50727</Version>
     <Title>ttf2bmpPlus</Title>

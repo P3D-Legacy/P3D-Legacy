@@ -5,9 +5,7 @@
 
         Shared _validated As Boolean = False
         Shared _valid As Boolean = False
-
-        Const RUNVALIDATION As Boolean = False
-
+        
         Public Shared ReadOnly Property IsValid(ByVal ForceResult As Boolean) As Boolean
             Get
                 If _validated = False Then
@@ -29,68 +27,35 @@
             Dim files As New List(Of String)
             Dim paths() As String = {"Content"}
             Dim includeExt() As String = {".dat", ".poke", ".lua", ".trainer"}
-
-            If RUNVALIDATION = True Then
-                Logger.Log(Logger.LogTypes.Debug, "FileValidation.vb: WARNING! FILE VALIDATION IS RUNNING!")
-                For Each subFolder As String In paths
-                    For Each file As String In System.IO.Directory.GetFiles(GameController.GamePath & "\" & subFolder, "*.*", IO.SearchOption.AllDirectories)
-                        If file.Contains("\Content\Localization\") = False Then
-                            Dim ext As String = System.IO.Path.GetExtension(file)
-                            If includeExt.Contains(ext.ToLower()) = True Then
-                                files.Add(file.Remove(0, GameController.GamePath.Length + 1))
-                            End If
-                        End If
-                    Next
-                Next
-
-                Dim s As String = ""
-                For Each f As String In files
-                    Dim i As Long = New System.IO.FileInfo(GameController.GamePath & "\" & f).Length
-                    Dim hash As String = GetMD5FromFile(GameController.GamePath & "\" & f)
-
-                    FileDictionary.Add((GameController.GamePath & "\" & f).ToLower(), New ValidationStorage(i, hash))
-                    MeasuredSize += i
-
-                    If s <> "" Then
-                        s &= ","
-                    End If
-                    s &= f & ":" & hash
-                Next
-
-                System.IO.File.WriteAllText(GameController.GamePath & "\meta", s)
-                Logger.Log(Logger.LogTypes.Debug, "FileValidation.vb: Meta created! Expected Size: " & MeasuredSize &
-                           "|MetaHash: " & StringObfuscation.Obfuscate(GetMD5FromFile(GameController.GamePath & "\meta")))
-
-                Core.GameInstance.Exit()
-            Else
-                If System.IO.File.Exists(GameController.GamePath & "\meta") = True Then
-                    Dim A = GetMD5FromFile(GameController.GamePath & "\meta")
-                    Dim B = StringObfuscation.DeObfuscate(METAHASH)
-                    If A = B Then
-                        files = File.ReadAllText(GameController.GamePath & "\meta").Split(CChar(",")).ToList()
-                        Logger.Debug("Meta loaded. Files to check: " & files.Count)
-                    Else
-                        Logger.Log(Logger.LogTypes.Warning, "FileValidation.vb: Failed to load Meta (Hash incorrect)! File Validation will fail!")
-                    End If
+            
+            If File.Exists(GameController.GamePath & "\meta") = True Then
+                Dim A = GetMD5FromFile(GameController.GamePath & "\meta")
+                Dim B = StringObfuscation.DeObfuscate(METAHASH)
+                If A = B Then
+                    files = File.ReadAllText(GameController.GamePath & "\meta").Split(CChar(",")).ToList()
+                    Logger.Debug("Meta loaded. Files to check: " & files.Count)
                 Else
-                    Logger.Log(Logger.LogTypes.Warning, "FileValidation.vb: Failed to load Meta (File not found)! File Validation will fail!")
+                    Logger.Log(Logger.LogTypes.Warning, "FileValidation.vb: Failed to load Meta (Hash incorrect)! File Validation will fail!")
                 End If
-
-                For Each f As String In files
-                    Dim fileName As String = f.Split(CChar(":"))(0)
-                    Dim fileHash As String = f.Split(CChar(":"))(1)
-
-                    If System.IO.File.Exists(GameController.GamePath & "\" & fileName) Then
-                        Dim i As Long = New System.IO.FileInfo(GameController.GamePath & "\" & fileName).Length
-                        FileDictionary.Add((GameController.GamePath & "\" & fileName).ToLower(), New ValidationStorage(i, fileHash))
-                        MeasuredSize += i
-                    End If
-                Next
+            Else
+                Logger.Log(Logger.LogTypes.Warning, "FileValidation.vb: Failed to load Meta (File not found)! File Validation will fail!")
             End If
+
+            For Each f As String In files
+                Dim fileName As String = f.Split(CChar(":"))(0)
+                Dim fileHash As String = f.Split(CChar(":"))(1)
+
+                If System.IO.File.Exists(GameController.GamePath & "\" & fileName) Then
+                    Dim i As Long = New System.IO.FileInfo(GameController.GamePath & "\" & fileName).Length
+                    FileDictionary.Add((GameController.GamePath & "\" & fileName).ToLower(), New ValidationStorage(i, fileHash))
+                    MeasuredSize += i
+                End If
+            Next
 
             If MeasuredSize = EXPECTEDSIZE Then
                 Return True
             End If
+            
             Return False
         End Function
 

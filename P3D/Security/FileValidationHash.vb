@@ -9,8 +9,8 @@ Namespace Security
         ' Actual code will be read from FileValidation.Generated.vb which generates a FileValidation class with
         ' the same details as here.
         '
-        Protected Shared EXPECTEDSIZE As Integer = 51453171
-        Protected Shared METAHASH As String = "QjQyRjMyODlBRTJGMjRFMTk5M0JFN0JBOTIwMEI0OEU="
+        Protected Shared EXPECTEDSIZE As Integer = 51453941
+        Protected Shared METAHASH As String = "RjEyQjU3NUUzQzZGRkQ2MTA1NURDNjAwMDFBQTM4MzI="
 
 #Region "Generated File Hashes"
         ' Content\Data\badges.dat:ABCB97936D5FF133509D2A47FFAF27FF
@@ -671,7 +671,7 @@ Namespace Security
         ' Content\Data\maps\goldenrod\radiotower\1f.dat:CA615D561347DC2F3A6BA36F2DE9EE30
         ' Content\Data\maps\goldenrod\radiotower\2f.dat:95B864E096C782501DE32933F6E78307
         ' Content\Data\maps\goldenrod\radiotower\3f.dat:71B375D3694742A95D0B73DB84C9856D
-        ' Content\Data\maps\goldenrod\radiotower\4f.dat:A9C8075C0B96ADFC0F12B59191F070AF
+        ' Content\Data\maps\goldenrod\radiotower\4f.dat:7D3C4476472673530F0B65D16299A0F7
         ' Content\Data\maps\goldenrod\radiotower\5f.dat:6F78490D0F1D52BFE0AFAC756317DD80
         ' Content\Data\maps\goldenrod\taming_shop.dat:F60AE69756A52492EF49115859F71185
         ' Content\Data\maps\goldenrod\trainstation.dat:651580DC6C72DD9CF6013BC39AA4E8CB
@@ -1207,7 +1207,7 @@ Namespace Security
         ' Content\Data\maps\rocktunnel\bf1.dat:840335EA8967005BC1FE2E44CE1A8203
         ' Content\Data\maps\rocktunnel\bf2.dat:1D0473F1C008E6E8F296BF936B36021A
         ' Content\Data\maps\route29.dat:53FF38D4F1B28F8482C56862C531CB11
-        ' Content\Data\maps\route30.dat:B7435F79690408922460C512F5F1EEE8
+        ' Content\Data\maps\route30.dat:175C22EDFF1256DEB084339C08941946
         ' Content\Data\maps\route31.dat:8003B6C0ADCC48E4755BE83279534016
         ' Content\Data\maps\route32_center.dat:182EB3DA4B05014DE266EBDA59D0F4C4
         ' Content\Data\maps\route32.dat:6BCDE8A3A7C0A0670E7B6391AC8058D0
@@ -1249,7 +1249,7 @@ Namespace Security
         ' Content\Data\maps\routes\route24.dat:E6DB717F3EF87F15EB3EA8235327AC7C
         ' Content\Data\maps\routes\route25.dat:1632486D585CEF1E7EE667DBB3426E30
         ' Content\Data\maps\routes\route25\bill.dat:6C3C0B3834473C3214089DCC0D7B5B21
-        ' Content\Data\maps\routes\route26.dat:26296834C793EB0D8F291A18F74D737B
+        ' Content\Data\maps\routes\route26.dat:131E82338BC551C211D9550D9400D74D
         ' Content\Data\maps\routes\route26\0.dat:A885C8550612F8C39951C88A32866D4E
         ' Content\Data\maps\routes\route26\1.dat:85A413BCD9F6515F0A41A5522B46286B
         ' Content\Data\maps\routes\route27.dat:C05BD78D971F9BAD7FA535C0FE52C39F
@@ -2644,7 +2644,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\fortune\water\006.trainer:21912F962DA7EE20E20E42580B24C496
         ' Content\Data\Scripts\trainer\frontier\battletower\0.trainer:1D8A663F6552515CE19CE1A2FD39E77F
         ' Content\Data\Scripts\trainer\frontier\battletower\1.trainer:4795ECFB9F27A2F9223520712DB7128F
-        ' Content\Data\Scripts\trainer\frontier\battletower\10.trainer:BB674F1291496BBF7C76887E4F5BEA53
+        ' Content\Data\Scripts\trainer\frontier\battletower\10.trainer:78E012EF430AB0DAEF212846B325F7CF
         ' Content\Data\Scripts\trainer\frontier\battletower\100.trainer:DEA98D63D27558D062E0C99527DCA668
         ' Content\Data\Scripts\trainer\frontier\battletower\101.trainer:EA39581FE0D654BEF7C919F4D7DBBF67
         ' Content\Data\Scripts\trainer\frontier\battletower\102.trainer:1518B34EFC7C4E0216C43E25649E9EB4
@@ -2674,13 +2674,13 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\124.trainer:986CCA556CE677F9B5EF7947265D9615
         ' Content\Data\Scripts\trainer\frontier\battletower\125.trainer:69569BAD6D18F0250175CBA9136370FE
         ' Content\Data\Scripts\trainer\frontier\battletower\126.trainer:276DAD1F85F6A2BFFCC7F633A395F3FF
-        ' Content\Data\Scripts\trainer\frontier\battletower\127.trainer:DD0FDAE204EB403EA8CE18687CDACB7F
-        ' Content\Data\Scripts\trainer\frontier\battletower\128.trainer:62D1CCB1CFC60398F9CCBD321770B974
-        ' Content\Data\Scripts\trainer\frontier\battletower\129.trainer:2B9670E9BFFC58188EC1162756FFA7A8
+        ' Content\Data\Scripts\trainer\frontier\battletower\127.trainer:3B393EA4E1E5D949A0B2DD0F86E54E60
+        ' Content\Data\Scripts\trainer\frontier\battletower\128.trainer:8373D87732A6F225AF75BD64726C4AAA
+        ' Content\Data\Scripts\trainer\frontier\battletower\129.trainer:0CBE6453321F1FEC1789235CEE2C20E2
         ' Content\Data\Scripts\trainer\frontier\battletower\13.trainer:9130D8A0AC7C3E36F0718588DA440244
-        ' Content\Data\Scripts\trainer\frontier\battletower\130.trainer:483261F2A3100661F286286155A743A9
-        ' Content\Data\Scripts\trainer\frontier\battletower\131.trainer:54B460E505D13065676BE7C642465E33
-        ' Content\Data\Scripts\trainer\frontier\battletower\132.trainer:806DA90830C5CB376074E5063BD02046
+        ' Content\Data\Scripts\trainer\frontier\battletower\130.trainer:93F822964FFB89D08413002F157B5A85
+        ' Content\Data\Scripts\trainer\frontier\battletower\131.trainer:77E0EA5DB4E1E0462E9E21E763CEEF29
+        ' Content\Data\Scripts\trainer\frontier\battletower\132.trainer:8E101EF69089B2C0C923CDE7486BA5BE
         ' Content\Data\Scripts\trainer\frontier\battletower\133.trainer:43D68ADD70603E2423774C18AC862B26
         ' Content\Data\Scripts\trainer\frontier\battletower\134.trainer:1E62F5E4F75EDFDD8FC215D9AB106E74
         ' Content\Data\Scripts\trainer\frontier\battletower\135.trainer:B58E729FC6F7B43616856FA6A1615D91
@@ -2689,7 +2689,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\138.trainer:2F714FD40A5B70BF82419403FCCA6DE5
         ' Content\Data\Scripts\trainer\frontier\battletower\139.trainer:E68310B423F1748F5AF3E8402E8E8366
         ' Content\Data\Scripts\trainer\frontier\battletower\14.trainer:A1B422714EB56723CB7952E1D8BF5081
-        ' Content\Data\Scripts\trainer\frontier\battletower\140.trainer:F6AD967BBCAEDEBE5FF404F17F5E78B2
+        ' Content\Data\Scripts\trainer\frontier\battletower\140.trainer:C59542795D6709CBA3B254A73658A9AC
         ' Content\Data\Scripts\trainer\frontier\battletower\141.trainer:2ADA72EBC16049F2FCBC69A1F8038CBA
         ' Content\Data\Scripts\trainer\frontier\battletower\142.trainer:37D2CBD27F1E37C91BC2E936243D9478
         ' Content\Data\Scripts\trainer\frontier\battletower\143.trainer:0CDE861B85916A876811C4727EC8BE68
@@ -2705,7 +2705,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\152.trainer:D9AAF0EDBD5D95D0561ECDBCE5451A86
         ' Content\Data\Scripts\trainer\frontier\battletower\153.trainer:42D4B452BFA732EB15A3E7647CF0A5C3
         ' Content\Data\Scripts\trainer\frontier\battletower\154.trainer:52C0C00D803DED86BEC3D9965124F477
-        ' Content\Data\Scripts\trainer\frontier\battletower\155.trainer:B807F00FE04022C77125562B361E00C5
+        ' Content\Data\Scripts\trainer\frontier\battletower\155.trainer:389BBDB595DB8E04C4226BCBD1ED6D65
         ' Content\Data\Scripts\trainer\frontier\battletower\156.trainer:3D3B40CD32B06A4C07CDC239CF421F09
         ' Content\Data\Scripts\trainer\frontier\battletower\157.trainer:BED2EBA856F5585F6E8F014A346A8EDE
         ' Content\Data\Scripts\trainer\frontier\battletower\158.trainer:360926A3C3FFBDFA0B324CF04187F783
@@ -2755,7 +2755,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\198.trainer:A3239C78240FBF0F650262C54EFD6166
         ' Content\Data\Scripts\trainer\frontier\battletower\199.trainer:90265CF770BB2DB3A86F15ACC6AD7A0E
         ' Content\Data\Scripts\trainer\frontier\battletower\2.trainer:F6E82478F59B2B7F014488D0D201191D
-        ' Content\Data\Scripts\trainer\frontier\battletower\20.trainer:69F886A3CC9140F0332B313925D6D1E5
+        ' Content\Data\Scripts\trainer\frontier\battletower\20.trainer:77549657097AD6917D39377AB7E21409
         ' Content\Data\Scripts\trainer\frontier\battletower\200.trainer:B348255B5AA4332CAA53AE645241E886
         ' Content\Data\Scripts\trainer\frontier\battletower\201.trainer:79C1BED941D9E21FC4AB99FA3CE3DDC9
         ' Content\Data\Scripts\trainer\frontier\battletower\202.trainer:82D849217EFCE1A13C45D9F554FDBAA7
@@ -2769,13 +2769,13 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\21.trainer:1225F79716B4D95A00A7C5BF2A8B48D3
         ' Content\Data\Scripts\trainer\frontier\battletower\210.trainer:20A8CD924E0DC5EA4BC9507689316E31
         ' Content\Data\Scripts\trainer\frontier\battletower\211.trainer:52ECB81367DCD3785B126FDC0497BF4E
-        ' Content\Data\Scripts\trainer\frontier\battletower\212.trainer:CE082364613FA504E98C8E7FA6A36531
+        ' Content\Data\Scripts\trainer\frontier\battletower\212.trainer:6F17CB02DBB120D16DABF264399596B0
         ' Content\Data\Scripts\trainer\frontier\battletower\213.trainer:C8522F9F0A8A595F2EB140E637155273
         ' Content\Data\Scripts\trainer\frontier\battletower\214.trainer:08F8428CD302177A8EAAA058A06B9362
         ' Content\Data\Scripts\trainer\frontier\battletower\215.trainer:3381275D566802199C4ABE855E488C05
         ' Content\Data\Scripts\trainer\frontier\battletower\216.trainer:23728FC2320B387DDFC4E3FAAB4E69A9
         ' Content\Data\Scripts\trainer\frontier\battletower\217.trainer:FEBA68865B1B963D6D9B6533E12CEE60
-        ' Content\Data\Scripts\trainer\frontier\battletower\218.trainer:2506C6DFF09B5D70D8C9E894FC377C1E
+        ' Content\Data\Scripts\trainer\frontier\battletower\218.trainer:A83C106A04087709823905A8B7D49932
         ' Content\Data\Scripts\trainer\frontier\battletower\219.trainer:287912C65D09490DBCC7AFB13DA13CD5
         ' Content\Data\Scripts\trainer\frontier\battletower\22.trainer:9A1985634F9CD259FE5CAFCF0885184C
         ' Content\Data\Scripts\trainer\frontier\battletower\220.trainer:951D28EC437C9D3A7E03BFA1EF107D84
@@ -2792,12 +2792,12 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\230.trainer:A6CA25FF254672C01652AB5DD713FADF
         ' Content\Data\Scripts\trainer\frontier\battletower\231.trainer:263661C7F43364FDB405CC151D40F468
         ' Content\Data\Scripts\trainer\frontier\battletower\232.trainer:7D61B6DB7D9742494973645666FA1CEB
-        ' Content\Data\Scripts\trainer\frontier\battletower\233.trainer:1BB35E80D09F02397591402FC8D20F54
+        ' Content\Data\Scripts\trainer\frontier\battletower\233.trainer:7DDB16A0C55392AF51D96345D2A63C48
         ' Content\Data\Scripts\trainer\frontier\battletower\234.trainer:30A41A7245BECB0B272D3AC321F832A0
         ' Content\Data\Scripts\trainer\frontier\battletower\235.trainer:20A87AB2786AA109DC0C12EDF1477959
         ' Content\Data\Scripts\trainer\frontier\battletower\236.trainer:C7207A3E197C684C84CE27273776B55E
         ' Content\Data\Scripts\trainer\frontier\battletower\237.trainer:B1FFDAC91A6CE4618BFB5E8AFB8522BC
-        ' Content\Data\Scripts\trainer\frontier\battletower\238.trainer:78CA6B930B770FD628C00628F818EA96
+        ' Content\Data\Scripts\trainer\frontier\battletower\238.trainer:EFCB6492484C6C6DD9C29C6A43483041
         ' Content\Data\Scripts\trainer\frontier\battletower\239.trainer:72FE01BF6D9E3B8FE8C99C00588B2C87
         ' Content\Data\Scripts\trainer\frontier\battletower\24.trainer:62641AE0C4CC8B00C0F781B7C490F2EB
         ' Content\Data\Scripts\trainer\frontier\battletower\240.trainer:AEAC7F0337A4E0D9B5DA1DBA76AAA96A
@@ -2821,7 +2821,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\257.trainer:1BBD005E9B927316C4AA259CD0E42C99
         ' Content\Data\Scripts\trainer\frontier\battletower\258.trainer:29A7D9E70B90B592642151A946879685
         ' Content\Data\Scripts\trainer\frontier\battletower\259.trainer:FAAFC68D7AEE7520F80FA0E40029044F
-        ' Content\Data\Scripts\trainer\frontier\battletower\26.trainer:C7BEADD5A1650C21C4495682583B51F4
+        ' Content\Data\Scripts\trainer\frontier\battletower\26.trainer:DA4127758710C8F6DA8AD366C875C79A
         ' Content\Data\Scripts\trainer\frontier\battletower\260.trainer:020EFA930BA85D42D0CDDA79C0FAEC21
         ' Content\Data\Scripts\trainer\frontier\battletower\261.trainer:F70228D34AE04D5FF0A233E25159F6AD
         ' Content\Data\Scripts\trainer\frontier\battletower\262.trainer:8BF7ED3270E42C0EA6EAF019ADED9A6A
@@ -2842,7 +2842,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\276.trainer:05DDF2212E4ABE6C11CD9F614AD3FB88
         ' Content\Data\Scripts\trainer\frontier\battletower\277.trainer:B228E8862DA269CA95ED6BBE890F932D
         ' Content\Data\Scripts\trainer\frontier\battletower\278.trainer:D4D76B8478833322C3EE202B60E3D36D
-        ' Content\Data\Scripts\trainer\frontier\battletower\279.trainer:EE6940CB10E7DBE76C3EA7140698214E
+        ' Content\Data\Scripts\trainer\frontier\battletower\279.trainer:712465F2855D0C977A191D58A1162167
         ' Content\Data\Scripts\trainer\frontier\battletower\28.trainer:4A5B5D249345FF65ABC295A8C55702B8
         ' Content\Data\Scripts\trainer\frontier\battletower\280.trainer:313B2475F8E4D52714CD47FC04351661
         ' Content\Data\Scripts\trainer\frontier\battletower\281.trainer:1ACF68A966A296EB5209F4E344B2B0CC
@@ -2859,7 +2859,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\291.trainer:FC2EF9FA200CBEBEC1AD92453EDA3A75
         ' Content\Data\Scripts\trainer\frontier\battletower\292.trainer:6912430574D19FB3C7BCEDCFEB130AAB
         ' Content\Data\Scripts\trainer\frontier\battletower\293.trainer:5C95E366D2F5BB5131306BB191E3404A
-        ' Content\Data\Scripts\trainer\frontier\battletower\294.trainer:AF0CAC2B61881E1EADF409A99FAD7B50
+        ' Content\Data\Scripts\trainer\frontier\battletower\294.trainer:1DF0485267CC0FD68430E7F41637D5E4
         ' Content\Data\Scripts\trainer\frontier\battletower\295.trainer:B6C84814180E1EBBE9EB0C27249D4ABE
         ' Content\Data\Scripts\trainer\frontier\battletower\296.trainer:646B400F36D0172E73487F4497D9EC02
         ' Content\Data\Scripts\trainer\frontier\battletower\297.trainer:2ED7AD12A5DFB0974D493F344451EADC
@@ -2894,7 +2894,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\46.trainer:D0D5797D97A5D6367178BD96C100303A
         ' Content\Data\Scripts\trainer\frontier\battletower\47.trainer:F591273E23AD0C4C45A83ED656C7C5A9
         ' Content\Data\Scripts\trainer\frontier\battletower\48.trainer:315F8A06F966B9E029ECB83855287E4A
-        ' Content\Data\Scripts\trainer\frontier\battletower\49.trainer:43CA1AEAA7EA62CE2619AC2FC668DB5C
+        ' Content\Data\Scripts\trainer\frontier\battletower\49.trainer:BA7FE5D5E0E17AEE23E57B25DFEA31C4
         ' Content\Data\Scripts\trainer\frontier\battletower\5.trainer:0B33C2787306D078F7F03EBBC1FB26BA
         ' Content\Data\Scripts\trainer\frontier\battletower\50.trainer:7A77461DF21D550CDFB163E720745AC4
         ' Content\Data\Scripts\trainer\frontier\battletower\51.trainer:E4E9D68D6715D2D7D528679F480904C8
@@ -2909,12 +2909,12 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\6.trainer:93BCD2D5C9D7729C5AEB19B243F6D854
         ' Content\Data\Scripts\trainer\frontier\battletower\60.trainer:ADF7203DBD882E60E69F3AE39F8D0F80
         ' Content\Data\Scripts\trainer\frontier\battletower\61.trainer:FA378773451D5BDD576740B0AC4F0F19
-        ' Content\Data\Scripts\trainer\frontier\battletower\62.trainer:630F2D109C2938D45BD2D1476FCBAE2A
+        ' Content\Data\Scripts\trainer\frontier\battletower\62.trainer:2FAC6C29569A2228A8BD5E59CCBFEF5D
         ' Content\Data\Scripts\trainer\frontier\battletower\63.trainer:3F3860F0E897C416FE7C5BCD116AC751
-        ' Content\Data\Scripts\trainer\frontier\battletower\64.trainer:8F590D6C62E1A005788CB0976347BC50
+        ' Content\Data\Scripts\trainer\frontier\battletower\64.trainer:C409A2AA302C6D2FAECCFF48F3B76090
         ' Content\Data\Scripts\trainer\frontier\battletower\65.trainer:C9A3C73F22EB574D37078F8A62A9F6EC
         ' Content\Data\Scripts\trainer\frontier\battletower\66.trainer:46D0AB0FEE8D1BC7C1713313C8FEDAC2
-        ' Content\Data\Scripts\trainer\frontier\battletower\67.trainer:0231FC1A51F9BEC0D31B98176E782400
+        ' Content\Data\Scripts\trainer\frontier\battletower\67.trainer:29B06AFA376E1E7E003A0AFE414CECE3
         ' Content\Data\Scripts\trainer\frontier\battletower\68.trainer:EFBB6E64CB411998E5A576F5D0426A7D
         ' Content\Data\Scripts\trainer\frontier\battletower\69.trainer:64CC1EEC02A8A0B20CADA3F5F9DD2ECC
         ' Content\Data\Scripts\trainer\frontier\battletower\7.trainer:41A38EDFE83DEE2540DC6D8191EC6FAF
@@ -2928,7 +2928,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\77.trainer:8EF0B8CD9B789C7E8DF672FDAEFA876E
         ' Content\Data\Scripts\trainer\frontier\battletower\78.trainer:8C1AD6117072D5429B8DD5707B3FA894
         ' Content\Data\Scripts\trainer\frontier\battletower\79.trainer:B02D733180AC1C704E1280832913C3A1
-        ' Content\Data\Scripts\trainer\frontier\battletower\8.trainer:170B0C507ACE065CD26764C16E12512D
+        ' Content\Data\Scripts\trainer\frontier\battletower\8.trainer:AFE02B46E3086069A7A969E0D45304A7
         ' Content\Data\Scripts\trainer\frontier\battletower\80.trainer:597855DDDE8AAAE8D0FB5385C4B214A9
         ' Content\Data\Scripts\trainer\frontier\battletower\81.trainer:5AAD352C7250857E70510E58AEB944A1
         ' Content\Data\Scripts\trainer\frontier\battletower\82.trainer:7B6A7658055808D2D3898CB7DF5C2EB1
@@ -2937,13 +2937,13 @@ Namespace Security
         ' Content\Data\Scripts\trainer\frontier\battletower\85.trainer:47168DDE9C11E21639890AF3BA386661
         ' Content\Data\Scripts\trainer\frontier\battletower\86.trainer:A943B3C6E29085245D0C8C55A7449785
         ' Content\Data\Scripts\trainer\frontier\battletower\87.trainer:96CAA4266F0B15C287F131E525AB3626
-        ' Content\Data\Scripts\trainer\frontier\battletower\88.trainer:12E42B252DBC01AC25F7EF45BC4369A8
-        ' Content\Data\Scripts\trainer\frontier\battletower\89.trainer:5B3B13FEF049E4693E99EED995C3F4DD
-        ' Content\Data\Scripts\trainer\frontier\battletower\9.trainer:EB9F77BA1CF16CE8194562F095AC4F3C
+        ' Content\Data\Scripts\trainer\frontier\battletower\88.trainer:99D2A936C48503EBBF97A0A74EA64183
+        ' Content\Data\Scripts\trainer\frontier\battletower\89.trainer:441BA8F10627E029FD7206B61FE7B0F6
+        ' Content\Data\Scripts\trainer\frontier\battletower\9.trainer:CE86E7A4BB13F29FBEF2F106B55933AE
         ' Content\Data\Scripts\trainer\frontier\battletower\90.trainer:E905F54F532702EF6AFBD12773179C3D
         ' Content\Data\Scripts\trainer\frontier\battletower\91.trainer:292BC2BFAEA079B06F106FA3434D5702
         ' Content\Data\Scripts\trainer\frontier\battletower\92.trainer:D8F79CF9922262DB3F7160537DA9AE44
-        ' Content\Data\Scripts\trainer\frontier\battletower\93.trainer:84E6199E87FDAF53A865B5B5932D39A7
+        ' Content\Data\Scripts\trainer\frontier\battletower\93.trainer:E41F917870B4FDD81A1974BFD679FC29
         ' Content\Data\Scripts\trainer\frontier\battletower\94.trainer:4C4504A29ED32F4BD1A517D5D81ADF20
         ' Content\Data\Scripts\trainer\frontier\battletower\95.trainer:439FAC0B41D845338425B41223DA196F
         ' Content\Data\Scripts\trainer\frontier\battletower\96.trainer:30290DFB1F0B253F204CD6B602F5EDEB
@@ -3170,7 +3170,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\Lighthouse\006.dat:C5A2DFA43C61F01A886D8ADF5C220BAF
         ' Content\Data\Scripts\trainer\Lighthouse\006.trainer:42C4434EB3F8502CF28039F897C28C68
         ' Content\Data\Scripts\trainer\Lighthouse\007.dat:6DDCD8C344908B22C4AEEF14749DB484
-        ' Content\Data\Scripts\trainer\Lighthouse\007.trainer:B256A9CDAB5816E91FFD3C2913A12346
+        ' Content\Data\Scripts\trainer\Lighthouse\007.trainer:DB68479721D4C0C773818E614E6524CD
         ' Content\Data\Scripts\trainer\Lighthouse\008.dat:0AD7F1A58D20564BF223C0550B234E2D
         ' Content\Data\Scripts\trainer\Lighthouse\008.trainer:2A74B72D056A2AC792C95CAD323EB01E
         ' Content\Data\Scripts\trainer\Lighthouse\009.dat:BA7F39020D40D340F57AEC9390591630
@@ -4002,10 +4002,10 @@ Namespace Security
         ' Content\Data\Scripts\trainer\ssaqua\vermilion\009.trainer:F198F723AC41BAB4EA5C901175709454
         ' Content\Data\Scripts\trainer\ssaqua\vermilion\010.dat:EBF67DCD1019D9507B93995FAEBDB358
         ' Content\Data\Scripts\trainer\ssaqua\vermilion\010.trainer:992535199E9C9AF50C2CEE2B4543B643
-        ' Content\Data\Scripts\trainer\test.trainer:E7C47E78B90751E5D93E230609C1B623
+        ' Content\Data\Scripts\trainer\test.trainer:A5378A080A187A76B010FA5D67400E3D
         ' Content\Data\Scripts\trainer\tohjo\Giovanni.trainer:A930E38BB9E1BB8911EFF7489746A030
         ' Content\Data\Scripts\trainer\trainerhouse\cal.dat:CA233A427A50C4C1941D5FA687ADAE87
-        ' Content\Data\Scripts\trainer\trainerhouse\cal.trainer:DF8070A451B1C27B6FB7FE2A58A6A97E
+        ' Content\Data\Scripts\trainer\trainerhouse\cal.trainer:2DFB273B12FE19EECA7E8BCFC0BD0B6B
         ' Content\Data\Scripts\trainer\treasure\001.dat:20FFB1F71E5B705E11DC31DCB235ADEE
         ' Content\Data\Scripts\trainer\treasure\001.trainer:B5FCE75E36CBCEF11314F9C8B6CA730A
         ' Content\Data\Scripts\trainer\underground\001.dat:E665D708524BF4ECD2C6B92F9628E5BE
@@ -4051,7 +4051,7 @@ Namespace Security
         ' Content\Data\Scripts\trainer\unioncave\012.dat:F6BBC40887903E8AB7FE7CF8D0C4DE65
         ' Content\Data\Scripts\trainer\unioncave\012.trainer:B0FC770C8C40124D7504E44FCAD2CFD0
         ' Content\Data\Scripts\trainer\v_forest\001.dat:35AF0F1CD3FC59E2167C0DDCE21760D0
-        ' Content\Data\Scripts\trainer\v_forest\001.trainer:991EF21927334F7B82F6D7945F92898E
+        ' Content\Data\Scripts\trainer\v_forest\001.trainer:90842C78F685A9A26A365C2004B62663
         ' Content\Data\Scripts\trainer\v_forest\002.dat:F36EF6FC00BDFA48501A6B84037E7B2B
         ' Content\Data\Scripts\trainer\v_forest\002.trainer:C42FC2D72044ACB6F9CDBDD5A662FE4C
         ' Content\Data\Scripts\trainer\v_forest\003.dat:D3AE43A8FA88A9AB80889CEEC13B81DA

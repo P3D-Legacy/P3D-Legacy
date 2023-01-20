@@ -114,7 +114,7 @@
         Me.Offset = offset
 
         For Each line As String In Data
-            If line.Contains("{") = True Then
+            If line.Contains("{"c) = True Then
                 line = line.Remove(0, line.IndexOf("{"))
 
                 If line.StartsWith("{""Comment""{COM") = True Then
@@ -135,7 +135,7 @@
 
             Dim line As String = Data(i)
             Tags.Clear()
-            If line.Contains("{") = True And line.Contains("}") = True Then
+            If line.Contains("{"c) = True And line.Contains("}"c) = True Then
                 Try
                     Dim TagType As TagTypes = TagTypes.None
                     line = line.Remove(0, line.IndexOf("{") + 2)
@@ -354,27 +354,19 @@
         Next
     End Sub
 
-    Private Function GetTag(ByVal Tags As Dictionary(Of String, Object), ByVal TagName As String) As Object
-        If Tags.ContainsKey(TagName) = True Then
-            Return Tags(TagName)
-        End If
-
-        For i = 0 To Tags.Count - 1
-            If Tags.Keys(i).ToLower() = TagName.ToLower() Then
-                Return Tags.Values(i)
+    Private Shared Function GetTag(tags As Dictionary(Of String, Object), tagName As String) As Object
+        For i = tags.Count - 1 To 0 Step -1
+            If [String].Equals(tags.Keys(i), tagName, StringComparison.InvariantCultureIgnoreCase) Then
+                Return tags.Values(i)
             End If
         Next
 
         Return Nothing
     End Function
 
-    Private Function TagExists(ByVal Tags As Dictionary(Of String, Object), ByVal TagName As String) As Boolean
-        If Tags.ContainsKey(TagName) = True Then
-            Return True
-        End If
-
-        For i = 0 To Tags.Count - 1
-            If Tags.Keys(i).ToLower() = TagName.ToLower() Then
+    Private Shared Function TagExists(tags As Dictionary(Of String, Object), tagName As String) As Boolean
+        For i = tags.Count - 1 To 0 Step -1
+            If [String].Equals(tags.Keys(i), tagName, StringComparison.InvariantCultureIgnoreCase) Then
                 Return True
             End If
         Next
@@ -721,28 +713,28 @@
                         Dim iZ As Integer = z
                         Dim iX As Integer = x
 
-                        Dim Ent As Entity = Nothing
+                        Dim entity As Entity = Nothing
 
                         If loadOffsetMap = True Then
-                            Ent = Screen.Level.OffsetmapFloors.Find(Function(e As Entity)
+                            entity = Screen.Level.OffsetmapFloors.Find(Function(e As Entity)
                                                                         Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
                                                                     End Function)
                         Else
-                            Ent = Screen.Level.Floors.Find(Function(e As Entity)
+                            entity = Screen.Level.Floors.Find(Function(e As Entity)
                                                                Return e.Position = New Vector3(Position.X + iX, Position.Y, Position.Z + iZ)
                                                            End Function)
                         End If
 
-                    If Not Ent Is Nothing Then
-                        Ent.Textures = {Texture}
-                        Ent.Visible = Visible
-                        Ent.SeasonColorTexture = SeasonTexture
-                        Ent.CanBeRemoved = False
-                        Ent.LoadSeasonTextures()
-                        CType(Ent, Floor).SetRotation(rotation)
-                        CType(Ent, Floor).hasSnow = hasSnow
-                        CType(Ent, Floor).IsIce = hasIce
-                        CType(Ent, Floor).hasSand = hasSand
+                    If entity IsNot Nothing Then
+                        entity.Textures = {Texture}
+                        entity.Visible = Visible
+                        entity.SeasonColorTexture = SeasonTexture
+                        entity.CanBeRemoved = False
+                        entity.LoadSeasonTextures()
+                        CType(entity, Floor).SetRotation(rotation)
+                        CType(entity, Floor).hasSnow = hasSnow
+                        CType(entity, Floor).IsIce = hasIce
+                        CType(entity, Floor).hasSand = hasSand
                         exists = True
                     End If
 
@@ -855,9 +847,7 @@
             Dim ShaderList As List(Of Single) = CType(GetTag(Tags, "Shader"), List(Of Single))
             Shader = New Vector3(ShaderList(0), ShaderList(1), ShaderList(2))
         End If
-
-
-
+        
         Dim SeasonTexture As String = ""
         If TagExists(Tags, "SeasonTexture") = True Then
             SeasonTexture = CStr(GetTag(Tags, "SeasonTexture"))

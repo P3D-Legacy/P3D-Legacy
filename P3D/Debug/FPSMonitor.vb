@@ -14,7 +14,7 @@
 
     Public Sub Update()
         If _stopwatch.Elapsed > _sample Then
-            Value = _frames / _stopwatch.Elapsed.TotalSeconds
+            _value = _frames / _stopwatch.Elapsed.TotalSeconds
 
             _stopwatch.Restart()
             _frames = 0

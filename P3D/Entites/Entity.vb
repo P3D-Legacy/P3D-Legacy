@@ -1,7 +1,7 @@
 ﻿Public Class Entity
 
     Public Shared MakeShake As Boolean = False
-    Public Shared drawViewBox As Boolean = False
+    Public Shared DrawViewBox As Boolean = False
     Public Shared ReadOnly EntityDictionary As New Dictionary(Of Vector3, Entity())
 
     Public ID As Integer = -1
@@ -19,6 +19,11 @@
     Public ActionValue As Integer
     Public AdditionalValue As String
     Public ModelPath As String = ""
+    
+    Public EntitySize As Vector3
+    Public EntityStepSize As Vector3
+    Public Texture As Texture2D
+    Public TextureRectangles() As Rectangle
 
     Public Visible As Boolean = True
     Public Shader As New Vector3(1.0F)
@@ -66,9 +71,6 @@
     Public CanBeRemoved As Boolean = False
     Public NeedsUpdate As Boolean = False
 
-    Shared newRasterizerState As RasterizerState
-    Shared oldRasterizerState As RasterizerState
-
     Private BoundingPositionCreated As Vector3 = New Vector3(1110)
     Private BoundingRotationCreated As Vector3 = New Vector3(-1)
 
@@ -98,7 +100,7 @@
     End Sub
 
     Public Overridable Sub Initialize()
-        If GetRotationFromVector(Me.Rotation) Mod 2 = 1 Then
+        If GetRotationFromVector(Rotation) Mod 2 = 1 Then
             ViewBox = New BoundingBox(
                      Vector3.Transform(New Vector3(-(Me.Scale.Z / 2), -(Me.Scale.Y / 2), -(Me.Scale.X / 2)), Matrix.CreateScale(viewBoxScale) * Matrix.CreateTranslation(Position)),
                      Vector3.Transform(New Vector3((Me.Scale.Z / 2), (Me.Scale.Y / 2), (Me.Scale.X / 2)), Matrix.CreateScale(viewBoxScale) * Matrix.CreateTranslation(Position)))
@@ -112,20 +114,11 @@
                      Vector3.Transform(New Vector3(-0.5F), Matrix.CreateScale(boundingBoxScale) * Matrix.CreateTranslation(Position)),
                      Vector3.Transform(New Vector3(0.5F), Matrix.CreateScale(boundingBoxScale) * Matrix.CreateTranslation(Position)))
 
-        Me.BoundingPositionCreated = Me.Position
-        Me.BoundingRotationCreated = Me.Rotation
+        BoundingPositionCreated = Position
+        BoundingRotationCreated = Rotation
 
-        If newRasterizerState Is Nothing Then
-            newRasterizerState = New RasterizerState
-            oldRasterizerState = New RasterizerState
-
-            newRasterizerState.CullMode = CullMode.None
-            oldRasterizerState.CullMode = CullMode.CullCounterClockwiseFace
-        End If
-
-        Me.LoadSeasonTextures()
-
-        Me.UpdateEntity()
+        LoadSeasonTextures()
+        UpdateEntity()
     End Sub
 
     Public Shared Function GetNewEntity(ByVal EntityID As String, ByVal Position As Vector3, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Vector3, ByVal Scale As Vector3, ByVal BaseModel As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Visible As Boolean, ByVal Shader As Vector3, ByVal ID As Integer, ByVal MapOrigin As String, ByVal SeasonColorTexture As String, ByVal Offset As Vector3, Optional ByVal Params() As Object = Nothing, Optional ByVal Opacity As Single = 1.0F, Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing, Optional ByVal CameraDistanceDelta As Single = 0.0F, Optional ModelPath As String = "") As Entity
@@ -279,7 +272,7 @@
         Return newEnt
     End Function
 
-    Friend Shared Sub SetProperties(ByRef newEnt As Entity, ByVal PropertiesEnt As Entity)
+    Public Shared Sub SetProperties(ByRef newEnt As Entity, ByVal PropertiesEnt As Entity)
         newEnt.EntityID = PropertiesEnt.EntityID
         newEnt.Position = PropertiesEnt.Position
         newEnt.Textures = PropertiesEnt.Textures
@@ -363,7 +356,7 @@
             Exit Sub
         End If
 
-        If Screen.Camera.Name = "Overworld" AndAlso SkipOpacityCheck.Contains(Me.EntityID) = False Then
+        If Screen.Camera.Name = "Overworld" AndAlso SkipOpacityCheck.Contains(EntityID) = False Then
             Me.Opacity = Me._normalOpacity
             If CType(Screen.Camera, OverworldCamera).ThirdPerson = True Then
                 Dim Ray As Ray = Screen.Camera.Ray
@@ -393,7 +386,7 @@
         Dim ActionScriptActive As Boolean = False
 
 
-        If Not Core.CurrentScreen Is Nothing Then
+        If Core.CurrentScreen IsNot Nothing Then
             CPosition = Screen.Camera.CPosition
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 ActionScriptActive = Not CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
@@ -519,41 +512,41 @@
         If CreatedWorld = False OrElse CreateWorldEveryFrame = True Then
             Dim v As Vector3 = Vector3.Zero '(Me.ViewBox.Min - Me.Position) + (Me.ViewBox.Max - Me.Position)
 
-            If Not Me.BaseModel Is Nothing Then
-                Select Case Me.BaseModel.ID
+            If BaseModel IsNot Nothing Then
+                Select Case BaseModel.ID
                     Case 0, 9, 10, 11
                         v.Y -= 0.5F
                 End Select
             End If
-            Me.tempCenterVector = v
+            tempCenterVector = v
         End If
 
-        Return Me.tempCenterVector
+        Return tempCenterVector
     End Function
 
     Public Overridable Sub Draw(ByVal BaseModel As BaseModel, ByVal Textures() As Texture2D, ByVal setRasterizerState As Boolean, Optional Model As Model = Nothing)
         If Visible = True Then
             If Not Model Is Nothing Then
                 Model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
-                If drawViewBox = True Then
+                If DrawViewBox = True Then
                     BoundingBoxRenderer.Render(ViewBox, Core.GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.Red)
                 End If
             Else
-                If Me.IsInFieldOfView() = True Then
+                If IsInFieldOfView() = True Then
                     If setRasterizerState = True Then
-                        Core.GraphicsDevice.RasterizerState = newRasterizerState
+                        Core.GraphicsDevice.RasterizerState = RasterizerState.CullNone
                     End If
                     
                     BaseModel.Draw(Me, Textures)
 
                     If setRasterizerState = True Then
-                        Core.GraphicsDevice.RasterizerState = oldRasterizerState
+                        Core.GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise
                     End If
 
                     Me.DrawnLastFrame = True
 
                     If Me.EntityID <> "Floor" AndAlso Me.EntityID <> "Water" Then
-                        If drawViewBox = True Then
+                        If DrawViewBox = True Then
                             BoundingBoxRenderer.Render(ViewBox, GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.LightCoral)
                         End If
                     End If

@@ -1,4 +1,5 @@
-﻿Imports System.Text
+﻿Imports System.Reflection
+Imports System.Text
 Imports NAudio.Wave
 
 Public Class DebugDisplay
@@ -11,7 +12,7 @@ Public Class DebugDisplay
             Dim stringBuilder = New StringBuilder()
 
             If GameController.IS_DEBUG_ACTIVE Then
-                stringBuilder.AppendFormat("{0} {1} {2} / FPS: {3:F0} (Debugmode / {4})", GameController.GAMENAME, GameController.GAMEDEVELOPMENTSTAGE, GameController.GAMEVERSION, Core.GameInstance.FPSMonitor.Value, File.GetLastWriteTime(System.Reflection.Assembly.GetExecutingAssembly.Location).ToString())
+                stringBuilder.AppendFormat("{0} {1} {2} / FPS: {3:F0} (Debugmode / {4})", GameController.GAMENAME, GameController.GAMEDEVELOPMENTSTAGE, GameController.GAMEVERSION, Core.GameInstance.FPSMonitor.Value, File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location).ToString())
                 stringBuilder.AppendLine()
             Else
                 stringBuilder.AppendFormat("{0} {1} {2} / FPS: {3:F0}", GameController.GAMENAME, GameController.GAMEDEVELOPMENTSTAGE, GameController.GAMEVERSION, Core.GameInstance.FPSMonitor.Value)

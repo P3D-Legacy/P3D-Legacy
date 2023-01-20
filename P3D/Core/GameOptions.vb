@@ -51,7 +51,7 @@
                     Case "showdebug"
                         Me.ShowDebug = CInt(value)
                     Case "showboundingboxes"
-                        Entity.drawViewBox = CBool(value)
+                        Entity.DrawViewBox = CBool(value)
                     Case "showdebugconsole"
                         Logger.DisplayLog = CBool(value)
                     Case "showgui"
@@ -137,7 +137,7 @@
                 "Muted|" & mutedString & Environment.NewLine &
                 "RenderDistance|" & Me.RenderDistance.ToString() & Environment.NewLine &
                 "ShowDebug|" & showDebugString & Environment.NewLine &
-                "ShowBoundingBoxes|" & Entity.drawViewBox.ToNumberString() & Environment.NewLine &
+                "ShowBoundingBoxes|" & Entity.DrawViewBox.ToNumberString() & Environment.NewLine &
                 "ShowDebugConsole|" & Logger.DisplayLog.ToNumberString() & Environment.NewLine &
                 "ShowGUI|" & Me.ShowGUI.ToNumberString() & Environment.NewLine &
                 "GraphicStyle|" & Me.GraphicStyle.ToString() & Environment.NewLine &

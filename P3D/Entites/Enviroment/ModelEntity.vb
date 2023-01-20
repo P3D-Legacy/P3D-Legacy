@@ -39,7 +39,7 @@
                 _model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
             End If
 
-            If drawViewBox = True Then
+            If DrawViewBox = True Then
                 BoundingBoxRenderer.Render(ViewBox, Core.GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.Red)
             End If
         End If

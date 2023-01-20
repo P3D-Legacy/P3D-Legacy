@@ -153,8 +153,8 @@ Public NotInheritable Class Level
 
     Public Sub ForEachEntity(entityType As List(Of Entity), action As Action(Of Entity))
         SyncLock EntityReadWriteSync
-            For Each entity As Entity In entityType
-                action.Invoke(entity)
+            For i = entityType.Count - 1 To 0 Step -1
+                action.Invoke(entityType(i))
             Next
         End SyncLock
     End Sub
