@@ -251,7 +251,7 @@ Public Class ScriptConversion
     ''' Tries to convert a single number into a <see cref="Double"/>.
     ''' </summary>
     Private Shared Function InternalToDouble(ByVal expression As String, Optional ByRef hasError As Boolean = False) As Double
-        expression = expression.Replace(".", My.Application.Culture.NumberFormat.NumberDecimalSeparator)
+        expression = expression.Replace(".",  Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator)
 
         If StringHelper.IsNumeric(expression) Then
             Return System.Convert.ToDouble(expression)

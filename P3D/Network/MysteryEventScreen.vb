@@ -81,13 +81,12 @@
         Me.finishedDownload = False
 
         Try
-            Dim w As New System.Net.WebClient
-            Dim data() As String = w.DownloadString("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/Events.txt").SplitAtNewline()
+            Dim data() As String = Core.HttpClient.GetStringAsync("https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy-Data/master/Events.txt").GetAwaiter().GetResult().SplitAtNewline()
 
             For Each line As String In data
-                If line.Contains("|") = True Then
+                If line.Contains("|"c) = True Then
                     Dim eventData() As String = line.Split(CChar("|"))
-                    If eventData.Count = 5 Then
+                    If eventData.Length = 5 Then
                         Me.EventData.Add(New MysteryEvent(eventData(0), eventData(1), eventData(2), eventData(3), eventData(4)))
                     End If
                 End If

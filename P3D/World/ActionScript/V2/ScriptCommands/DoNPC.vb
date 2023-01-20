@@ -13,8 +13,7 @@
             Select Case command.ToLower()
                 Case "remove"
                     Dim targetNPC As Entity = Screen.Level.GetNPC(int(argument))
-
-                    Screen.Level.Entities.Remove(targetNPC)
+                    targetNPC.CanBeRemoved = True
 
                     IsReady = True
                 Case "position", "warp"
@@ -237,7 +236,7 @@
                     End If
 
                     Dim NPC As NPC = CType(Entity.GetNewEntity("NPC", position, {Nothing}, {0, 0}, True, New Vector3(0.0F), New Vector3(1.0F), BaseModel.BillModel, actionValue, additionalValue, True, New Vector3(1.0F), -1, Screen.Level.LevelFile, "", New Vector3(0), {TextureID, Rotation, Name, ID, AnimateIdle, Movement, MoveRectangles}), NPC)
-                    Screen.Level.Entities.Add(NPC)
+                    Screen.Level.AddEntity(NPC)
 
                     IsReady = True
                 Case "setspeed"

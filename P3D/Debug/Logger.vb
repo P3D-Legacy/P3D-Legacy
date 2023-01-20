@@ -1,4 +1,5 @@
 ﻿Imports System.Management
+Imports System.Runtime.InteropServices
 Imports System.Windows.Forms
 
 Public Class Logger
@@ -82,7 +83,7 @@ Public Class Logger
             End If
 
             Dim logName As String = ""
-            With My.Computer.Clock.LocalTime
+            With DateTime.Now
                 Dim month As String = .Month.ToString()
                 If month.Length = 1 Then
                     month = "0" & month
@@ -169,13 +170,13 @@ Public Class Logger
                 architectureString = "64 Bit"
             End If
 
-            Dim specs As String = "Operating system: " & My.Computer.Info.OSFullName & " [" & My.Computer.Info.OSVersion & "]" & Environment.NewLine &
+            Dim specs As String = "Operating system: " & RuntimeInformation.OSDescription & " [" & Environment.OSVersion.Version.ToString() & "]" & Environment.NewLine &
                 "Core architecture: " & architectureString & Environment.NewLine &
-                "System time: " & My.Computer.Clock.LocalTime.ToString() & Environment.NewLine &
+                "System time: " & DateTime.Now.ToString() & Environment.NewLine &
                 "System language: " & Globalization.CultureInfo.CurrentCulture.EnglishName & "(" & Globalization.CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName & ") / Loaded game language: " & Localization.LanguageSuffix & Environment.NewLine &
-                "Decimal separator: " & GameController.DecSeparator & Environment.NewLine &
-                "Available physical memory: " & Math.Round((My.Computer.Info.TotalPhysicalMemory / Math.Pow(1024, 3)), 2).ToString() & " Gigabyte" & Environment.NewLine &
+                "Decimal separator: " & GameController.DecSeparator & Environment.NewLine & 
                 "Available logical processors: " & Environment.ProcessorCount.ToString()
+                '"Available physical memory: " & Math.Round((My.Computer.Info.TotalPhysicalMemory / Math.Pow(1024, 3)), 2).ToString() & " Gigabyte" & Environment.NewLine &
 
             Dim innerException As String = "NOTHING"
             If Not ex.InnerException Is Nothing Then
@@ -233,9 +234,6 @@ Public Class Logger
                             "System specifications:" & Environment.NewLine & Environment.NewLine &
                             specs & Environment.NewLine & Environment.NewLine &
                             CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
-                            ".Net installation information:" & Environment.NewLine & Environment.NewLine &
-                            DotNetVersion.GetInstalled() & Environment.NewLine &
-                            CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
                             GetGraphicsCardInformation() & Environment.NewLine & Environment.NewLine &
                             CRASHLOGSEPARATOR & Environment.NewLine & Environment.NewLine &
                             "Error information:" & Environment.NewLine &
@@ -284,7 +282,7 @@ Public Class Logger
     Shared longestStackEntryName As String = "GameModeManager.SetGameModePointer"
 
     Public Shared Sub Debug(ByVal message As String)
-        Dim stackTraceEntry As String = Environment.StackTrace.SplitAtNewline()(3)
+        Dim stackTraceEntry As String = Environment.StackTrace.SplitAtNewline()(2)
 
         While stackTraceEntry.StartsWith(" ") = True
             stackTraceEntry = stackTraceEntry.Remove(0, 1)
@@ -309,8 +307,7 @@ Public Class Logger
     End Sub
 
     Public Shared Sub DrawLog()
-        If DisplayLog = True And History.Count > 0 And Not FontManager.ChatFont Is Nothing Then
-            Dim items As New List(Of String)
+        If DisplayLog = True AndAlso History.Count > 0 AndAlso FontManager.ChatFont IsNot Nothing Then
             Dim max As Integer = History.Count - 1
 
             Dim itemCount As Integer = 10

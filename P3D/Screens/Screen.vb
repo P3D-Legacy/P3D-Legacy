@@ -1,4 +1,3 @@
-Imports net.Pokemon3D.Game
 ''' <summary>
 ''' The base class for all screens in the game.
 ''' </summary>
@@ -125,7 +124,7 @@ Public MustInherit Class Screen
     ''' <summary>
     ''' A global BasicEffect instance, that carries over screen instances.
     ''' </summary>
-    Public Shared Property Effect() As BasicEffect
+    Public Shared Property Effect() As BasicEffectWithAlphaTest
 
     ''' <summary>
     ''' A global SkyDome instance, that carries over screen instances.

@@ -1,4 +1,4 @@
-Namespace BattleSystem.Moves.Psychic
+﻿Namespace BattleSystem.Moves.Psychic
 
     Public Class Rest
 
@@ -16,7 +16,7 @@ Namespace BattleSystem.Moves.Psychic
             Me.Category = Categories.Status
             Me.ContestCategory = ContestCategories.Cute
             Me.Name = Localization.GetString("move_name_" & Me.ID,"Rest")
-            Me.Description = "The user goes to sleep for two turns. It fully restores the user�s HP and heals any status problem."
+            Me.Description = "The user goes to sleep for two turns. It fully restores the user’s HP and heals any status problem."
             Me.CriticalChance = 0
             Me.IsHMMove = False
             Me.Target = Targets.Self

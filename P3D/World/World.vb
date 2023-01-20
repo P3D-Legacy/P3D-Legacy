@@ -48,7 +48,7 @@ Public Class World
 
     Public Shared ReadOnly Property WeekOfYear() As Integer
         Get
-            Return CInt(((My.Computer.Clock.LocalTime.DayOfYear - (My.Computer.Clock.LocalTime.DayOfWeek - 1)) / 7) + 1)
+            Return CInt(((DateTime.Now.DayOfYear - (DateTime.Now.DayOfWeek - 1)) / 7) + 1)
         End Get
     End Property
 
@@ -89,8 +89,8 @@ Public Class World
                 Return setDaytime
             Else
                 Dim time As DayTimes = DayTimes.Day
-
-                Dim Hour As Integer = My.Computer.Clock.LocalTime.Hour
+                
+                Dim Hour As Integer = DateTime.Now.Hour
                 If NeedServerObject() = True Then
                     Dim data() As String = ServerTimeData.Split(CChar(","))
                     Hour = CInt(data(0))
@@ -98,7 +98,7 @@ Public Class World
 
                 Select Case CurrentSeason
                     Case Seasons.Winter
-                        If Hour > 18 Or Hour < 7 Then
+                        If Hour > 18 OrElse Hour < 7 Then
                             time = DayTimes.Night
                         ElseIf Hour > 6 And Hour < 11 Then
                             time = DayTimes.Morning
@@ -108,7 +108,7 @@ Public Class World
                             time = DayTimes.Evening
                         End If
                     Case Seasons.Spring
-                        If Hour > 19 Or Hour < 5 Then
+                        If Hour > 19 OrElse Hour < 5 Then
                             time = DayTimes.Night
                         ElseIf Hour > 4 And Hour < 10 Then
                             time = DayTimes.Morning
@@ -118,7 +118,7 @@ Public Class World
                             time = DayTimes.Evening
                         End If
                     Case Seasons.Summer
-                        If Hour > 20 Or Hour < 4 Then
+                        If Hour > 20 OrElse Hour < 4 Then
                             time = DayTimes.Night
                         ElseIf Hour > 3 And Hour < 9 Then
                             time = DayTimes.Morning
@@ -128,7 +128,7 @@ Public Class World
                             time = DayTimes.Evening
                         End If
                     Case Seasons.Fall
-                        If Hour > 19 Or Hour < 6 Then
+                        If Hour > 19 OrElse Hour < 6 Then
                             time = DayTimes.Night
                         ElseIf Hour > 5 And Hour < 10 Then
                             time = DayTimes.Morning
@@ -644,13 +644,13 @@ endsub:
     Private Shared WeatherOffset As New Vector2(0, 0)
     Private Shared ObjectsList As New List(Of Rectangle)
 
-    Public Shared NoParticlesList() As Weathers = {Weathers.Clear, Weathers.Sunny, Weathers.Fog}
+    Public Shared ReadOnly NoParticlesList As Weathers() = {Weathers.Clear, Weathers.Sunny, Weathers.Fog}
+    Private Shared ReadOnly DrawWeatherOnIdentifications As Screen.Identifications() = {Screen.Identifications.OverworldScreen, Screen.Identifications.BattleScreen, Screen.Identifications.BattleCatchScreen}
 
     Public Shared Sub DrawWeather(ByVal MapWeather As Weathers)
         If NoParticlesList.Contains(MapWeather) = False Then
             If Core.GameOptions.GraphicStyle = 1 Then
-                Dim identifications() As Screen.Identifications = {Screen.Identifications.OverworldScreen, Screen.Identifications.MainMenuScreen, Screen.Identifications.BattleScreen, Screen.Identifications.BattleCatchScreen}
-                If identifications.Contains(Core.CurrentScreen.Identification) = True Then
+                If DrawWeatherOnIdentifications.Contains(Core.CurrentScreen.Identification) = True Then
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         If Screen.TextBox.Showing = False Then
                             GenerateParticles(0, MapWeather)
@@ -748,8 +748,7 @@ endsub:
         End If
 
         If LevelLoader.IsBusy = False Then
-            Dim validScreen() As Screen.Identifications = {Screen.Identifications.OverworldScreen, Screen.Identifications.BattleScreen, Screen.Identifications.BattleCatchScreen, Screen.Identifications.MainMenuScreen}
-            If validScreen.Contains(Core.CurrentScreen.Identification) = True Then
+            If Particle.UpdateOnIdentifications.Contains(Core.CurrentScreen.Identification) = True Then
                 If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                     If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = False Then
                         Exit Sub
@@ -821,11 +820,21 @@ endsub:
                 If Core.Random.Next(0, chance) = 0 Then
                     For x = cameraPosition.X - range To cameraPosition.X + range
                         For z = cameraPosition.Z - range To cameraPosition.Z + range
-                            If z <> 0 Or x <> 0 Then
+                            If z <> 0 OrElse x <> 0 Then
                                 Dim rY As Single = CSng(Core.Random.Next(0, 40) / 10) - 2.0F
                                 Dim rX As Single = CSng(Core.Random.NextDouble()) - 0.5F
                                 Dim rZ As Single = CSng(Core.Random.NextDouble()) - 0.5F
-                                Dim p As Particle = New Particle(New Vector3(x + rX, cameraPosition.Y + 1.8F + rY, z + rZ), {T}, {0, 0}, Core.Random.Next(0, 2), scale, BaseModel.BillModel, New Vector3(1))
+
+                                Dim p As Particle = GetParticleFromPool()
+                                Dim isNewParticle = False
+
+                                If p Is Nothing Then
+                                    p = New Particle(New Vector3(x + rX, cameraPosition.Y + 1.8F + rY, z + rZ), {T}, {0, 0}, Core.Random.Next(0, 2), scale, BaseModel.BillModel, New Vector3(1))
+                                    isNewParticle = True
+                                Else
+                                    p.Reset(New Vector3(x + rX, cameraPosition.Y + 1.8F + rY, z + rZ), Entity.GetRotationFromInteger(Core.Random.Next(0, 2)), scale, T)
+                                End If
+
                                 p.MoveSpeed = speed
                                 If MapWeather = Weathers.Rain Then
                                     p.Opacity = 0.7F
@@ -846,7 +855,10 @@ endsub:
                                 If MapWeather = Weathers.Blizzard Then
                                     p.Opacity = 1.0F
                                 End If
-                                Screen.Level.Entities.Add(p)
+
+                                If isNewParticle Then
+                                    Screen.Level.AddEntity(p)
+                                End If
                             End If
                         Next
                     Next
@@ -854,6 +866,17 @@ endsub:
             End If
         End If
     End Sub
+
+    Private Shared Function GetParticleFromPool() As Particle
+        SyncLock Screen.Level.EntityReadWriteSync
+            For Each particle As Particle In Screen.Level.Particles
+                If particle.Visible = False Then
+                    Return particle
+                End If
+            Next
+            Return Nothing
+        End SyncLock
+    End Function
 
     Private Shared SeasonTextureBuffer As New Dictionary(Of Texture2D, Texture2D)
     Private Shared BufferSeason As Seasons = Seasons.Fall
@@ -915,7 +938,7 @@ endsub:
 
                 Return hours * 3600 + minutes * 60 + seconds
             Else
-                Return My.Computer.Clock.LocalTime.Hour * 3600 + My.Computer.Clock.LocalTime.Minute * 60 + My.Computer.Clock.LocalTime.Second
+                Return DateTime.Now.Hour * 3600 + DateTime.Now.Minute * 60 + DateTime.Now.Second
             End If
         End Get
     End Property
@@ -931,7 +954,7 @@ endsub:
 
                 Return hours * 60 + minutes
             Else
-                Return My.Computer.Clock.LocalTime.Hour * 60 + My.Computer.Clock.LocalTime.Minute
+                Return DateTime.Now.Hour * 60 + DateTime.Now.Minute
             End If
         End Get
     End Property

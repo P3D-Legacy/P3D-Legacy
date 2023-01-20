@@ -61,7 +61,7 @@
 
     Public Shared Function GetContentManager(ByVal file As String, ByVal fileEndings As String) As ContentManager
         Dim contentPath As String = ""
-        If Core.GameOptions.ContentPackNames.Count() > 0 Then
+        If Core.GameOptions.ContentPackNames.Length > 0 Then
             For Each c As String In Core.GameOptions.ContentPackNames
                 contentPath = "ContentPacks\" & c
 

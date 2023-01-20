@@ -379,14 +379,14 @@
                 Return tempT
             End If
 
-            Dim t As Texture2D = DownloadTexture2D.n_Remote_Texture2D(Core.GraphicsDevice, $"{Classified.Remote_Texture_URL}{GameJoltID}.png", False)
+            Dim t As Texture2D = DownloadTexture2D.GetRemoteTexture2D(Core.GraphicsDevice, $"{Classified.Remote_Texture_URL}{GameJoltID}.png", False)
 
             If TempDownloadedSprites.ContainsKey(GameJoltID) = False Then
                 TempDownloadedSprites.Add(GameJoltID, t)
             End If
 
-            If Not t Is Nothing Then
-                If t.Width >= 96 And t.Height >= 128 Then
+            If t IsNot Nothing Then
+                If t.Width >= 96 AndAlso t.Height >= 128 Then
                     If t.Width / 3 = t.Height / 4 Then
                         Return t
                     End If
@@ -1268,15 +1268,15 @@
                     Case "difficulty"
                         achieved_emblem_difficulty = line.Value
                     Case "image_url"
-                        Dim t As New Threading.Thread(AddressOf DownloadAchievedEmblemTextrure)
+                        Dim t As New Threading.Thread(AddressOf DownloadAchievedEmblemTexture)
                         t.IsBackground = True
                         t.Start(line.Value)
                 End Select
             Next
         End Sub
 
-        Private Shared Sub DownloadAchievedEmblemTextrure(ByVal url As Object)
-            Dim t As Texture2D = DownloadTexture2D.n_Remote_Texture2D(Core.GraphicsDevice, url.ToString(), True)
+        Private Shared Sub DownloadAchievedEmblemTexture(ByVal url As Object)
+            Dim t As Texture2D = DownloadTexture2D.GetRemoteTexture2D(Core.GraphicsDevice, url.ToString(), True)
 
             achieved_emblem_Texture = t
 

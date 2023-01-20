@@ -1,4 +1,4 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Threading
 Imports GameDevCommon
 
 Public Class Classified
@@ -61,25 +61,37 @@ Public Class GameController
     Private window_change As Boolean = False
     Public Shared UpdateChecked As Boolean = False
 
-    Private _componentManager As ComponentManager
+    Private ReadOnly _componentManager As ComponentManager
+    
+    ''' <summary>
+    ''' If the player hacked any instance of Pokémon3D at some point.
+    ''' </summary>
+    Public Shared ReadOnly Property Hacker As Boolean = False
+
+    ''' <summary>
+    ''' The path to the game folder.
+    ''' </summary>
+    Public Shared ReadOnly Property GamePath As String
+        Get
+            Return Path.GetDirectoryName(AppContext.BaseDirectory)
+        End Get
+    End Property
+    
+    Public Shared ReadOnly Property DecSeparator As String
+        Get
+            Return Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator
+        End Get
+    End Property
 
     Public Sub New()
-        Me.window_change = False
+        window_change = False
         Graphics = New GraphicsDeviceManager(Me)
         Content.RootDirectory = "Content"
 
         Window.AllowUserResizing = True
         AddHandler Window.ClientSizeChanged, AddressOf Window_ClientSizeChanged
-
-        'Dim gameForm As Form = CType(Form.FromHandle(Window.Handle), Form)
-        'gameForm.MinimumSize = New System.Drawing.Size(600, 360)
-
+        
         FPSMonitor = New FPSMonitor()
-
-        GameHacked = System.IO.File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\temp")
-        If GameHacked = True Then
-            Security.HackerAlerts.Activate()
-        End If
 
         _componentManager = New ComponentManager()
         GameInstanceProvider.SetInstance(Me)
@@ -95,36 +107,29 @@ Public Class GameController
     End Sub
 
     Protected Overrides Sub UnloadContent()
-
     End Sub
 
-    Protected Overrides Sub Update(ByVal gameTime As GameTime)
-        If Me.window_change Then
+    Protected Overrides Sub Update(gameTime As GameTime)
+        If window_change Then
             SetWindowSize(New Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height))
-            Me.window_change = Not Me.window_change
+            window_change = Not window_change
         End If
+        
         Core.Update(gameTime)
-        MyBase.Update(gameTime)
-
         GameJolt.SessionManager.Update()
-        FPSMonitor.Update(gameTime)
+        FPSMonitor.Update()
+        
+        MyBase.Update(gameTime)
     End Sub
 
-    Protected Overrides Sub Draw(ByVal gameTime As GameTime)
+    Protected Overrides Sub Draw(gameTime As GameTime)
         Core.Draw()
-
-        MyBase.Draw(gameTime)
-
         FPSMonitor.DrawnFrame()
+        
+        MyBase.Draw(gameTime)
     End Sub
 
-    Public Shared ReadOnly Property DecSeparator As String
-        Get
-            Return My.Application.Culture.NumberFormat.NumberDecimalSeparator
-        End Get
-    End Property
-
-    Protected Overrides Sub OnExiting(sender As Object, args As System.EventArgs)
+    Protected Overrides Sub OnExiting(sender As Object, args As EventArgs)
         GameJolt.SessionManager.Close()
 
         If Core.ServersManager.ServerConnection.Connected = True Then
@@ -134,23 +139,23 @@ Public Class GameController
         Logger.Debug("---Exit Game---")
     End Sub
 
-    Protected Sub Window_ClientSizeChanged(ByVal sender As Object, ByVal e As EventArgs)
-        Me.window_change = True
+    Private Sub Window_ClientSizeChanged(sender As Object, e As EventArgs)
+        window_change = True
         Core.windowSize = New Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height)
-
-
-        If Not Core.CurrentScreen Is Nothing Then
+        
+        If Core.CurrentScreen IsNot Nothing Then
             Core.CurrentScreen.SizeChanged()
             Screen.TextBox.PositionY = Core.windowSize.Height - 160.0F
         End If
+        
         NetworkPlayer.ScreenRegionChanged()
     End Sub
 
-    Private Sub DGame_Activated(sender As Object, e As System.EventArgs) Handles Me.Activated
+    Private Sub DGame_Activated(sender As Object, e As EventArgs) Handles Me.Activated
         NetworkPlayer.ScreenRegionChanged()
     End Sub
 
-    Private Sub DGame_Deactivated(sender As Object, e As System.EventArgs) Handles Me.Deactivated
+    Private Sub DGame_Deactivated(sender As Object, e As EventArgs) Handles Me.Deactivated
         NetworkPlayer.ScreenRegionChanged()
     End Sub
 
@@ -161,25 +166,5 @@ Public Class GameController
     Public Function GetComponentManager() As ComponentManager Implements IGame.GetComponentManager
         Return _componentManager
     End Function
-
-    Private Shared GameHacked As Boolean = False 'Temp value that stores if a hacking file was detected at game start.
-
-    ''' <summary>
-    ''' If the player hacked any instance of Pokémon3D at some point.
-    ''' </summary>
-    Public Shared ReadOnly Property Hacker() As Boolean
-        Get
-            Return GameHacked
-        End Get
-    End Property
-
-    ''' <summary>
-    ''' The path to the game folder.
-    ''' </summary>
-    Public Shared ReadOnly Property GamePath() As String
-        Get
-            Return My.Application.Info.DirectoryPath
-        End Get
-    End Property
-
+    
 End Class

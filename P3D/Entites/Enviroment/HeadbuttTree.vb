@@ -79,10 +79,10 @@
 
     Public Overrides Sub Render()
         If Me.Model Is Nothing Then
-            Me.Draw(Me.BaseModel, Textures, False)
+            Draw(BaseModel, Textures, False)
         Else
             UpdateModel()
-            Draw(Me.BaseModel, Me.Textures, True, Me.Model)
+            Draw(BaseModel, Textures, True, Model)
         End If
     End Sub
 

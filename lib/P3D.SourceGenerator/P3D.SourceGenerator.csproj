@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        
+	    <IsRoslynComponent>true</IsRoslynComponent>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+
+        <Version>0.59.1</Version>
+        <Title>Pokémon3D Source Generator</Title>
+        <Authors>Kolben Games</Authors>
+        <Copyright>Copyright © Kolben 2012-2022</Copyright>
+        <PackageProjectUrl>https://github.com/P3D-Legacy/P3D-Legacy</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/P3D-Legacy/P3D-Legacy</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.1" />
+    </ItemGroup>
+</Project>

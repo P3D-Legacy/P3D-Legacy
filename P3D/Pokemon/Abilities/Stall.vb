@@ -1,11 +1,11 @@
-Namespace Abilities
+ï»¿Namespace Abilities
 
     Public Class Stall
 
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(100, "Stall", "The Pokémon moves after all other Pokémon do.")
+            MyBase.New(100, "Stall", "The PokÃ©mon moves after all other PokÃ©mon do.")
         End Sub
 
     End Class

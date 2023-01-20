@@ -51,7 +51,7 @@
                     Case "showdebug"
                         Me.ShowDebug = CInt(value)
                     Case "showboundingboxes"
-                        Entity.drawViewBox = CBool(value)
+                        Entity.DrawViewBox = CBool(value)
                     Case "showdebugconsole"
                         Logger.DisplayLog = CBool(value)
                     Case "showgui"
@@ -67,7 +67,7 @@
                         ContentPackManager.CreateContentPackFolder()
                         If value <> "" Then
                             Me.ContentPackNames = value.Split(CChar(","))
-                            If Me.ContentPackNames.Count > 0 Then
+                            If Me.ContentPackNames.Length > 0 Then
                                 For Each c As String In Me.ContentPackNames
                                     If Directory.Exists(GameController.GamePath & "\ContentPacks\" & c) = False Then
                                         Dim cList As List(Of String) = Me.ContentPackNames.ToList()
@@ -123,7 +123,7 @@
             Dim mutedString As String = MusicManager.Muted.ToNumberString()
             Dim showDebugString As String = Me.ShowDebug.ToString()
             Dim ContentPackString As String = ""
-            If Me.ContentPackNames.Count > 0 Then
+            If Me.ContentPackNames.Length > 0 Then
                 For Each c As String In Me.ContentPackNames
                     If ContentPackString <> "" Then
                         ContentPackString &= ","
@@ -137,7 +137,7 @@
                 "Muted|" & mutedString & Environment.NewLine &
                 "RenderDistance|" & Me.RenderDistance.ToString() & Environment.NewLine &
                 "ShowDebug|" & showDebugString & Environment.NewLine &
-                "ShowBoundingBoxes|" & Entity.drawViewBox.ToNumberString() & Environment.NewLine &
+                "ShowBoundingBoxes|" & Entity.DrawViewBox.ToNumberString() & Environment.NewLine &
                 "ShowDebugConsole|" & Logger.DisplayLog.ToNumberString() & Environment.NewLine &
                 "ShowGUI|" & Me.ShowGUI.ToNumberString() & Environment.NewLine &
                 "GraphicStyle|" & Me.GraphicStyle.ToString() & Environment.NewLine &

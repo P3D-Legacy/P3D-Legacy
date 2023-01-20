@@ -1,6 +1,5 @@
-﻿Imports Microsoft.VisualBasic
-Imports NAudio.Wave
-Imports NAudio.Wave.SampleProviders
+﻿Imports NAudio.Wave
+
 Public Class LoopStream
     Inherits WaveStream
     Private _sourceStream As WaveStream
@@ -89,6 +88,7 @@ Public Class LoopStream
         Return totalBytesRead
     End Function
 End Class
+
 Public Class MusicManager
 
     Private Const DEFAULT_FADE_SPEED As Single = 0.5F
@@ -635,7 +635,7 @@ Public Class MusicManager
                 AddSong(musicFile, forceReplace)
             End If
         Next
-        If Core.GameOptions.ContentPackNames.Count > 0 Then
+        If Core.GameOptions.ContentPackNames.Length > 0 Then
             For Each c As String In Core.GameOptions.ContentPackNames
                 Dim path As String = GameController.GamePath & "\ContentPacks\" & c & "\Songs\"
                 If System.IO.Directory.Exists(path) = True Then

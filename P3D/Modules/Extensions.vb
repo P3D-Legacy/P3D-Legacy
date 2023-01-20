@@ -170,16 +170,16 @@ Module Extensions
         If (font.MeasureString(fulltext).X * scale) <= width Then
             Return fulltext
         Else
-            If fulltext.Contains(" ") = False Then
+            If fulltext.Contains(" "c) = False Then
                 Dim newText As String = ""
                 While fulltext.Length > 0
                     If (font.MeasureString(newText & fulltext(0).ToString()).X * scale) > width Then
                         newText &= Environment.NewLine
                         newText &= fulltext(0).ToString()
-                        fulltext.Remove(0, 1)
+                        ' fulltext.Remove(0, 1)
                     Else
                         newText &= fulltext(0).ToString()
-                        fulltext.Remove(0, 1)
+                        ' fulltext.Remove(0, 1)
                     End If
                 End While
                 Return newText

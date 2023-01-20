@@ -241,13 +241,13 @@
     Private Sub DrawPokemonTile(ByVal i As Integer, ByVal Pokemon As Pokemon)
         Dim BorderTexture As Texture2D
         If i = index Then
-            If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
+            If Pokemon.Status = Pokemon.StatusProblems.Fainted Then
                 BorderTexture = TextureManager.GetTexture(MainTexture, New Rectangle(0, 128, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
             Else
                 BorderTexture = TextureManager.GetTexture(MainTexture, New Rectangle(48, 0, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
             End If
         Else
-            If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
+            If Pokemon.Status = Pokemon.StatusProblems.Fainted Then
                 BorderTexture = TextureManager.GetTexture(MainTexture, New Rectangle(48, 48, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
             Else
                 BorderTexture =  TextureManager.GetTexture(MainTexture, New Rectangle(0, 0, 48, 48), ContentPackManager.GetTextureResolution("GUI\Menus\Menu"))
@@ -300,7 +300,7 @@
             If i = index Then
                 offset *= 3
             End If
-            If Pokemon.Status = net.Pokemon3D.Game.Pokemon.StatusProblems.Fainted Then
+            If Pokemon.Status = Pokemon.StatusProblems.Fainted Then
                 offset = 0
             End If
 
@@ -310,9 +310,9 @@
             If Pokemon.IsEgg() = False Then
                 .Draw(MainTexture, New Rectangle(CInt(p.X + 72), CInt(p.Y + 46), 26, 12), New Rectangle(96, 10, 13, 6), Color.White)
 
-                If Pokemon.Gender = net.Pokemon3D.Game.Pokemon.Genders.Male Then
+                If Pokemon.Gender = Pokemon.Genders.Male Then
                     .Draw(MainTexture, New Rectangle(CInt(p.X + FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 80), CInt(p.Y + 18), 12, 20), New Rectangle(96, 0, 6, 10), Color.White)
-                ElseIf Pokemon.Gender = net.Pokemon3D.Game.Pokemon.Genders.Female Then
+                ElseIf Pokemon.Gender = Pokemon.Genders.Female Then
                     .Draw(MainTexture, New Rectangle(CInt(p.X + FontManager.MiniFont.MeasureString(Pokemon.GetDisplayName()).X + 80), CInt(p.Y + 18), 12, 20), New Rectangle(102, 0, 6, 10), Color.White)
                 End If
             End If

@@ -1,6 +1,9 @@
-﻿Public Module Core
+﻿Imports System.Net.Http
+Imports System.Threading
 
-    Public GameInstance As GameController
+Public Module Core
+
+    Public ReadOnly Property GameInstance As GameController
 
     Public ReadOnly Property GraphicsManager As GraphicsDeviceManager
         Get
@@ -29,7 +32,7 @@
     Public SpriteBatch As CoreSpriteBatch
     Public FontRenderer As SpriteBatch
     Public GameTime As GameTime
-    Public Random As System.Random = New System.Random()
+    Public Random As Random = New Random()
 
     Public KeyboardInput As KeyboardInput
 
@@ -49,10 +52,16 @@
 
     Public BackgroundColor As Color = New Color(173, 216, 255)
 
-    Public OffsetMaps As New Dictionary(Of String, List(Of List(Of Entity)))
+    Public OffsetMaps As New Dictionary(Of String, List(Of List(Of Entity)))()
+    
+    Public ReadOnly Property HttpClient As New HttpClient()
+    
+    Private _currentThread As Thread
+    Private ReadOnly _uiThreadTasks As New Queue(Of (Action, TaskCompletionSource))()
 
-    Public Sub Initialize(ByVal gameReference As GameController)
-        GameInstance = gameReference
+    Public Sub Initialize(gameReference As GameController)
+        _GameInstance = gameReference
+        _currentThread = Thread.CurrentThread
 
         If CommandLineArgHandler.ForceGraphics = True Then
             Window.Title = GameController.GAMENAME & " " & GameController.GAMEDEVELOPMENTSTAGE & " " & GameController.GAMEVERSION & " (FORCED GRAPHICS)"
@@ -67,7 +76,6 @@
         GraphicsManager.PreferredBackBufferHeight = CInt(GameOptions.WindowSize.Y)
         GraphicsDevice.PresentationParameters.BackBufferFormat = SurfaceFormat.Rgba1010102
         GraphicsDevice.PresentationParameters.DepthStencilFormat = DepthFormat.Depth24Stencil8
-
 
         GraphicsManager.PreferMultiSampling = True
         GraphicsManager.GraphicsProfile = GraphicsProfile.HiDef
@@ -130,15 +138,6 @@
 
         GameOptions.LoadOptions()
 
-        If System.IO.Directory.Exists(GameController.GamePath & "\Temp") = True Then
-            Try
-                System.IO.Directory.Delete(GameController.GamePath & "\Temp", True)
-                Logger.Log(Logger.LogTypes.Message, "Core.vb: Deleted Temp directory.")
-            Catch ex As Exception
-                Logger.Log(Logger.LogTypes.Warning, "Core.vb: Failed to delete the Temp directory.")
-            End Try
-        End If
-
         GameJolt.StaffProfile.SetupStaff()
 
         ScriptVersion2.ScriptLibrary.InitializeLibrary()
@@ -146,6 +145,17 @@
 
     Public Sub Update(ByVal gameTime As GameTime)
         Core.GameTime = gameTime
+        
+        Dim threadAction As (action As Action, tcs As TaskCompletionSource)
+        
+        While _uiThreadTasks.TryDequeue(threadAction)
+            Try
+                threadAction.action.Invoke()
+                threadAction.tcs.SetResult()
+            Catch exception As Exception
+                threadAction.tcs.SetException(exception)
+            End Try
+        End While
 
         ConnectScreen.UpdateConnectSet()
 
@@ -158,15 +168,16 @@
             ControllerHandler.Update()
             Controls.MakeMouseVisible()
             MouseHandler.Update()
-            If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True Or ControllerHandler.ButtonDown(Buttons.Start) = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.EscapeKey) = True OrElse ControllerHandler.ButtonDown(Buttons.Start) = True Then
                 CurrentScreen.EscapePressed()
             End If
         End If
 
         CurrentScreen.Update()
+
         If CurrentScreen.CanChat = True Then
-            If KeyBoardHandler.KeyPressed(KeyBindings.ChatKey) = True Or ControllerHandler.ButtonPressed(Buttons.RightShoulder) = True Then
-                If JoinServerScreen.Online = True Or Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.ChatKey) = True OrElse ControllerHandler.ButtonPressed(Buttons.RightShoulder) = True Then
+                If JoinServerScreen.Online = True OrElse Player.SandBoxMode = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
                     SetScreen(New ChatScreen(CurrentScreen))
                 End If
             End If
@@ -197,14 +208,14 @@
             GraphicsDevice.SamplerStates(0) = SamplerState.PointClamp
             CurrentScreen.Draw()
 
-            If Not Core.Player Is Nothing Then
+            If Core.Player IsNot Nothing Then
                 If Core.Player.IsGameJoltSave = True Then
                     GameJolt.Emblem.DrawNewEmblems()
                 End If
                 Core.Player.DrawLevelUp()
             End If
 
-            If JoinServerScreen.Online = True Or Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
+            If JoinServerScreen.Online = True OrElse Player.SandBoxMode = True OrElse GameController.IS_DEBUG_ACTIVE = True Then
                 If CurrentScreen.Identification <> Screen.Identifications.ChatScreen Then
                     ChatScreen.DrawNewMessages()
                 End If
@@ -233,7 +244,7 @@
         CurrentScreen.Render()
     End Sub
 
-    Public Sub SetScreen(ByVal newScreen As Screen)
+    Public Sub SetScreen(newScreen As Screen)
         If Not CurrentScreen Is Nothing Then
             CurrentScreen.ChangeFrom()
         End If
@@ -253,19 +264,19 @@
         CurrentScreen.ChangeTo()
     End Sub
 
-    Public Function GetMiddlePosition(ByVal OffsetFull As Size) As Vector2
-        Dim v As New Vector2(CSng(Core.windowSize.Width / 2) - CSng(OffsetFull.Width / 2), CSng(Core.windowSize.Height / 2) - CSng(OffsetFull.Height / 2))
+    Public Function GetMiddlePosition(offsetFull As Size) As Vector2
+        Dim v As New Vector2(CSng(Core.windowSize.Width / 2) - CSng(offsetFull.Width / 2), CSng(Core.windowSize.Height / 2) - CSng(offsetFull.Height / 2))
 
         Return v
     End Function
 
-    Public Sub StartThreadedSub(ByVal s As System.Threading.ParameterizedThreadStart)
+    Public Sub StartThreadedSub(s As Threading.ParameterizedThreadStart)
         Dim t As New Threading.Thread(s)
         t.IsBackground = True
         t.Start()
     End Sub
 
-    Public ReadOnly Property ScreenSize() As Rectangle
+    Public ReadOnly Property ScreenSize As Rectangle
         Get
             Dim x As Double = SpriteBatch.InterfaceScale()
             If x = 1D Then Return Core.windowSize
@@ -273,7 +284,7 @@
         End Get
     End Property
 
-    Public ReadOnly Property ScaleScreenRec(ByVal rec As Rectangle) As Rectangle
+    Public ReadOnly Property ScaleScreenRec(rec As Rectangle) As Rectangle
         Get
             Dim x As Double = SpriteBatch.InterfaceScale()
             If x = 1D Then Return rec
@@ -281,7 +292,7 @@
         End Get
     End Property
 
-    Public ReadOnly Property ScaleScreenVec(ByVal vec As Vector2) As Vector2
+    Public ReadOnly Property ScaleScreenVec(vec As Vector2) As Vector2
         Get
             Dim x As Double = SpriteBatch.InterfaceScale()
             If x = 1D Then Return vec
@@ -289,13 +300,31 @@
         End Get
     End Property
 
-    Public Sub SetWindowSize(ByVal Size As Vector2)
-        GraphicsManager.PreferredBackBufferWidth = CInt(Size.X)
-        GraphicsManager.PreferredBackBufferHeight = CInt(Size.Y)
+    Public Sub SetWindowSize(size As Vector2)
+        GraphicsManager.PreferredBackBufferWidth = CInt(size.X)
+        GraphicsManager.PreferredBackBufferHeight = CInt(size.Y)
 
         GraphicsManager.ApplyChanges()
 
-        windowSize = New Rectangle(0, 0, CInt(Size.X), CInt(Size.Y))
+        windowSize = New Rectangle(0, 0, CInt(size.X), CInt(size.Y))
     End Sub
+    
+    Public Function RunOnUiThread(action As Action) As Task
+        Dim result = New TaskCompletionSource()
+        
+        If Thread.CurrentThread.Equals(_currentThread) Then
+            Try
+                action.Invoke()
+                result.SetResult()
+            Catch exception As Exception
+                result.SetException(exception)
+            End Try
+            
+            Return result.Task
+        Else 
+            _uiThreadTasks.Enqueue((action, result))
+            Return result.Task
+        End If
+    End Function
 
 End Module

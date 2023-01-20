@@ -33,10 +33,10 @@
             End If
 
             Core.GameOptions.SaveOptions()
-                Core.CurrentScreen.ToggledMute()
-            End If
+            Core.CurrentScreen.ToggledMute()
+        End If
 
-            If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
+        If KeyBoardHandler.KeyDown(KeyBindings.DebugKey) = True Then
             If KeyBoardHandler.KeyPressed(Keys.F) Then
                 TextureManager.TextureList.Clear()
                 Core.GameMessage.ShowMessage(Localization.GetString("game_message_debug_texture_list_clear", "Texture list have cleared"), 12, FontManager.MainFont, Color.White)
@@ -45,7 +45,7 @@
             ElseIf KeyBoardHandler.KeyPressed(Keys.L) Then
                 Logger.DisplayLog = Not Logger.DisplayLog
             ElseIf KeyBoardHandler.KeyPressed(Keys.B) Then
-                Entity.drawViewBox = Not Entity.drawViewBox
+                Entity.DrawViewBox = Not Entity.DrawViewBox
             End If
         End If
 
@@ -64,8 +64,9 @@
         Try
             Core.GameMessage.HideMessage()
 
-            Dim fileName As String = ""
-            With My.Computer.Clock.LocalTime
+            Dim fileName As String
+            
+            With DateTime.Now
                 Dim month As String = .Month.ToString()
                 If month.Length = 1 Then
                     month = "0" & month

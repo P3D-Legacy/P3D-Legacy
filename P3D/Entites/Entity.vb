@@ -1,11 +1,11 @@
 ﻿Public Class Entity
 
-    Inherits BaseEntity
-
     Public Shared MakeShake As Boolean = False
-    Public Shared drawViewBox As Boolean = False
+    Public Shared DrawViewBox As Boolean = False
+    Public Shared ReadOnly EntityDictionary As New Dictionary(Of Vector3, Entity())
 
     Public ID As Integer = -1
+    Public InsertOrder As Integer = -1
 
     Public EntityID As String = ""
     Public MapOrigin As String = ""
@@ -19,6 +19,11 @@
     Public ActionValue As Integer
     Public AdditionalValue As String
     Public ModelPath As String = ""
+    
+    Public EntitySize As Vector3
+    Public EntityStepSize As Vector3
+    Public Texture As Texture2D
+    Public TextureRectangles() As Rectangle
 
     Public Visible As Boolean = True
     Public Shader As New Vector3(1.0F)
@@ -66,9 +71,6 @@
     Public CanBeRemoved As Boolean = False
     Public NeedsUpdate As Boolean = False
 
-    Shared newRasterizerState As RasterizerState
-    Shared oldRasterizerState As RasterizerState
-
     Private BoundingPositionCreated As Vector3 = New Vector3(1110)
     Private BoundingRotationCreated As Vector3 = New Vector3(-1)
 
@@ -78,12 +80,9 @@
     Protected DropUpdateUnlessDrawn As Boolean = True
 
     Public Sub New()
-        MyBase.New(EntityTypes.Entity)
     End Sub
 
     Public Sub New(ByVal X As Single, ByVal Y As Single, ByVal Z As Single, ByVal EntityID As String, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Integer, ByVal Scale As Vector3, ByVal BaseModel As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Shader As Vector3, Optional ModelPath As String = "")
-        MyBase.New(EntityTypes.Entity)
-
         Me.Position = New Vector3(X, Y, Z)
         Me.EntityID = EntityID
         Me.Textures = Textures
@@ -101,7 +100,7 @@
     End Sub
 
     Public Overridable Sub Initialize()
-        If GetRotationFromVector(Me.Rotation) Mod 2 = 1 Then
+        If GetRotationFromVector(Rotation) Mod 2 = 1 Then
             ViewBox = New BoundingBox(
                      Vector3.Transform(New Vector3(-(Me.Scale.Z / 2), -(Me.Scale.Y / 2), -(Me.Scale.X / 2)), Matrix.CreateScale(viewBoxScale) * Matrix.CreateTranslation(Position)),
                      Vector3.Transform(New Vector3((Me.Scale.Z / 2), (Me.Scale.Y / 2), (Me.Scale.X / 2)), Matrix.CreateScale(viewBoxScale) * Matrix.CreateTranslation(Position)))
@@ -115,20 +114,11 @@
                      Vector3.Transform(New Vector3(-0.5F), Matrix.CreateScale(boundingBoxScale) * Matrix.CreateTranslation(Position)),
                      Vector3.Transform(New Vector3(0.5F), Matrix.CreateScale(boundingBoxScale) * Matrix.CreateTranslation(Position)))
 
-        Me.BoundingPositionCreated = Me.Position
-        Me.BoundingRotationCreated = Me.Rotation
+        BoundingPositionCreated = Position
+        BoundingRotationCreated = Rotation
 
-        If newRasterizerState Is Nothing Then
-            newRasterizerState = New RasterizerState
-            oldRasterizerState = New RasterizerState
-
-            newRasterizerState.CullMode = CullMode.None
-            oldRasterizerState.CullMode = CullMode.CullCounterClockwiseFace
-        End If
-
-        Me.LoadSeasonTextures()
-
-        Me.UpdateEntity()
+        LoadSeasonTextures()
+        UpdateEntity()
     End Sub
 
     Public Shared Function GetNewEntity(ByVal EntityID As String, ByVal Position As Vector3, ByVal Textures() As Texture2D, ByVal TextureIndex() As Integer, ByVal Collision As Boolean, ByVal Rotation As Vector3, ByVal Scale As Vector3, ByVal BaseModel As BaseModel, ByVal ActionValue As Integer, ByVal AdditionalValue As String, ByVal Visible As Boolean, ByVal Shader As Vector3, ByVal ID As Integer, ByVal MapOrigin As String, ByVal SeasonColorTexture As String, ByVal Offset As Vector3, Optional ByVal Params() As Object = Nothing, Optional ByVal Opacity As Single = 1.0F, Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing, Optional ByVal CameraDistanceDelta As Single = 0.0F, Optional ModelPath As String = "") As Entity
@@ -282,7 +272,7 @@
         Return newEnt
     End Function
 
-    Friend Shared Sub SetProperties(ByRef newEnt As Entity, ByVal PropertiesEnt As Entity)
+    Public Shared Sub SetProperties(ByRef newEnt As Entity, ByVal PropertiesEnt As Entity)
         newEnt.EntityID = PropertiesEnt.EntityID
         newEnt.Position = PropertiesEnt.Position
         newEnt.Textures = PropertiesEnt.Textures
@@ -355,16 +345,18 @@
             ApplyEffect()
         End If
     End Sub
+
+    Private Shared ReadOnly SkipOpacityCheck() As String = {"Floor", "OwnPlayer", "Water", "Whirlpool", "Particle", "OverworldPokemon", "ItemObject", "NetworkPokemon", "NetworkPlayer"}
+
     Public Overridable Sub OpacityCheck()
-        If Me.CameraDistance > 10.0F Or
+        If Me.CameraDistance > 10.0F OrElse
             Screen.Level.OwnPlayer IsNot Nothing AndAlso CameraDistance > Screen.Level.OwnPlayer.CameraDistance Then
 
             Me.Opacity = Me._normalOpacity
             Exit Sub
         End If
 
-        Dim notNames() As String = {"Floor", "OwnPlayer", "Water", "Whirlpool", "Particle", "OverworldPokemon", "ItemObject", "NetworkPokemon", "NetworkPlayer"}
-        If Screen.Camera.Name = "Overworld" AndAlso notNames.Contains(Me.EntityID) = False Then
+        If Screen.Camera.Name = "Overworld" AndAlso SkipOpacityCheck.Contains(EntityID) = False Then
             Me.Opacity = Me._normalOpacity
             If CType(Screen.Camera, OverworldCamera).ThirdPerson = True Then
                 Dim Ray As Ray = Screen.Camera.Ray
@@ -394,7 +386,7 @@
         Dim ActionScriptActive As Boolean = False
 
 
-        If Not Core.CurrentScreen Is Nothing Then
+        If Core.CurrentScreen IsNot Nothing Then
             CPosition = Screen.Camera.CPosition
             If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                 ActionScriptActive = Not CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady
@@ -404,12 +396,12 @@
 
         CameraDistance = CalculateCameraDistance(CPosition)
 
-        If Me.DropUpdateUnlessDrawn = True And Me.DrawnLastFrame = False And Me.Visible = True And ActionScriptActive = False Then
+        If Me.DropUpdateUnlessDrawn = True AndAlso Me.DrawnLastFrame = False AndAlso Me.Visible = True AndAlso ActionScriptActive = False Then
             Exit Sub
         End If
 
 
-        If Me.Moved > 0.0F And Me.CanMove = True Then
+        If Me.Moved > 0.0F AndAlso Me.CanMove = True Then
             Me.Moved -= Me.Speed
 
             Dim movement As Vector3 = Vector3.Zero
@@ -442,31 +434,32 @@
             OpacityCheck()
         End If
 
-        If CreatedWorld = False Or CreateWorldEveryFrame = True Then
+        If CreatedWorld = False OrElse CreateWorldEveryFrame = True Then
             World = Matrix.CreateScale(Scale) * Matrix.CreateFromYawPitchRoll(Rotation.Y, Rotation.X, Rotation.Z) * Matrix.CreateTranslation(Position)
             CreatedWorld = True
         End If
 
         If CameraDistance < Screen.Camera.FarPlane * 2 Then
             If Me.Position <> Me.BoundingPositionCreated Then
-                Dim diff As New List(Of Single)
-                diff.AddRange({Me.BoundingPositionCreated.X - Me.Position.X, Me.BoundingPositionCreated.Y - Me.Position.Y, Me.BoundingPositionCreated.Z - Me.Position.Z})
+                Dim diffX = BoundingPositionCreated.X - Position.X
+                Dim diffY = BoundingPositionCreated.Y - Position.Y
+                Dim diffZ = BoundingPositionCreated.Z - Position.Z
 
-                ViewBox.Min.X -= diff(0)
-                ViewBox.Min.Y -= diff(1)
-                ViewBox.Min.Z -= diff(2)
+                ViewBox.Min.X -= diffX
+                ViewBox.Min.Y -= diffY
+                ViewBox.Min.Z -= diffZ
 
-                ViewBox.Max.X -= diff(0)
-                ViewBox.Max.Y -= diff(1)
-                ViewBox.Max.Z -= diff(2)
+                ViewBox.Max.X -= diffX
+                ViewBox.Max.Y -= diffY
+                ViewBox.Max.Z -= diffZ
 
-                boundingBox.Min.X -= diff(0)
-                boundingBox.Min.Y -= diff(1)
-                boundingBox.Min.Z -= diff(2)
+                boundingBox.Min.X -= diffX
+                boundingBox.Min.Y -= diffY
+                boundingBox.Min.Z -= diffZ
 
-                boundingBox.Max.X -= diff(0)
-                boundingBox.Max.Y -= diff(1)
-                boundingBox.Max.Z -= diff(2)
+                boundingBox.Max.X -= diffX
+                boundingBox.Max.Y -= diffY
+                boundingBox.Max.Z -= diffZ
 
                 Me.BoundingPositionCreated = Me.Position
             End If
@@ -516,44 +509,44 @@
     ''' Returns the offset from the 0,0,0 center of the position of the entity.
     ''' </summary>
     Private Function GetCenter() As Vector3
-        If CreatedWorld = False Or CreateWorldEveryFrame = True Then
+        If CreatedWorld = False OrElse CreateWorldEveryFrame = True Then
             Dim v As Vector3 = Vector3.Zero '(Me.ViewBox.Min - Me.Position) + (Me.ViewBox.Max - Me.Position)
 
-            If Not Me.BaseModel Is Nothing Then
-                Select Case Me.BaseModel.ID
+            If BaseModel IsNot Nothing Then
+                Select Case BaseModel.ID
                     Case 0, 9, 10, 11
                         v.Y -= 0.5F
                 End Select
             End If
-            Me.tempCenterVector = v
+            tempCenterVector = v
         End If
 
-        Return Me.tempCenterVector
+        Return tempCenterVector
     End Function
 
     Public Overridable Sub Draw(ByVal BaseModel As BaseModel, ByVal Textures() As Texture2D, ByVal setRasterizerState As Boolean, Optional Model As Model = Nothing)
         If Visible = True Then
             If Not Model Is Nothing Then
                 Model.Draw(Me.World, Screen.Camera.View, Screen.Camera.Projection)
-                If drawViewBox = True Then
+                If DrawViewBox = True Then
                     BoundingBoxRenderer.Render(ViewBox, Core.GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.Red)
                 End If
             Else
-                If Me.IsInFieldOfView() = True Then
+                If IsInFieldOfView() = True Then
                     If setRasterizerState = True Then
-                        Core.GraphicsDevice.RasterizerState = newRasterizerState
+                        Core.GraphicsDevice.RasterizerState = RasterizerState.CullNone
                     End If
-
+                    
                     BaseModel.Draw(Me, Textures)
 
                     If setRasterizerState = True Then
-                        Core.GraphicsDevice.RasterizerState = oldRasterizerState
+                        Core.GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise
                     End If
 
                     Me.DrawnLastFrame = True
 
-                    If Me.EntityID <> "Floor" And Me.EntityID <> "Water" Then
-                        If drawViewBox = True Then
+                    If Me.EntityID <> "Floor" AndAlso Me.EntityID <> "Water" Then
+                        If DrawViewBox = True Then
                             BoundingBoxRenderer.Render(ViewBox, GraphicsDevice, Screen.Camera.View, Screen.Camera.Projection, Microsoft.Xna.Framework.Color.LightCoral)
                         End If
                     End If
@@ -609,11 +602,11 @@
 
     Dim _cachedVertexCount As Integer = -1 'Stores the vertex count so it doesnt need to be recalculated.
 
-    Public ReadOnly Property VertexCount() As Integer
+    Public ReadOnly Property VertexCount As Integer
         Get
             If Me._cachedVertexCount = -1 Then
                 If Not Me.BaseModel Is Nothing Then
-                    Dim c As Integer = CInt(Me.BaseModel.vertexBuffer.VertexCount / 3)
+                    Dim c As Integer = CInt(Me.BaseModel.VertexBuffer.VertexCount / 3)
                     Dim min As Integer = 0
 
                     For i = 0 To Me.TextureIndex.Length - 1
@@ -636,11 +629,11 @@
     Protected Function GetEntity(ByVal List As List(Of Entity), ByVal Position As Vector3, ByVal IntComparison As Boolean, ByVal validEntitytypes As Type()) As Entity
         For Each e As Entity In (From selEnt As Entity In List Select selEnt Where validEntitytypes.Contains(selEnt.GetType()))
             If IntComparison = True Then
-                If e.Position.X.ToInteger() = Position.X.ToInteger() And e.Position.Y.ToInteger() = Position.Y.ToInteger() And e.Position.Z.ToInteger() = Position.Z.ToInteger() Then
+                If e.Position.X.ToInteger() = Position.X.ToInteger() AndAlso e.Position.Y.ToInteger() = Position.Y.ToInteger() AndAlso e.Position.Z.ToInteger() = Position.Z.ToInteger() Then
                     Return e
                 End If
             Else
-                If e.Position.X = Position.X And e.Position.Y = Position.Y And e.Position.Z = Position.Z Then
+                If e.Position.X = Position.X AndAlso e.Position.Y = Position.Y AndAlso e.Position.Z = Position.Z Then
                     Return e
                 End If
             End If
@@ -674,5 +667,37 @@
             Next
         End If
     End Sub
+    
+    Protected Shared Function GetEntityByPosition(targetPosition As Vector3) As Entity()
+        If EntityDictionary.ContainsKey(targetPosition) = False Then
+            Dim temp = New List(Of Entity)
+
+            SyncLock Screen.Level.EntityReadWriteSync
+                For Each entity As Entity In Screen.Level.Entities
+                    If entity.ID = -1 AndAlso entity.Position = targetPosition Then
+                        temp.Add(entity)
+                    End If
+                Next
+            End SyncLock
+
+            EntityDictionary.Add(targetPosition, temp.ToArray())
+        End If
+
+        Return EntityDictionary(targetPosition)
+    End Function
+
+    Protected Function CreateNewTextureIndex() As Integer()
+        Dim temp = New Integer(BaseModel.VertexBuffer.VertexCount / 3 - 1) {}
+
+        For i = 0 To TextureIndex.Length - 1
+            If i >= temp.Length Then
+                Exit For
+            End If
+
+            temp(i) = TextureIndex(i)
+        Next
+
+        Return temp
+    End Function
 
 End Class

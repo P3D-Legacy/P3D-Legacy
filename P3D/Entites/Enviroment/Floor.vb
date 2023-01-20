@@ -62,7 +62,7 @@
         End If
     End Sub
 
-    Private Shared FloorDictionary As New Dictionary(Of String, Entity)
+    Private Shared FloorDictionary As New Dictionary(Of Vector3, Entity)
 
     Private Sub ChangeSnow()
         Me.Rotation = New Vector3(Me.Rotation.X, 0.0F, Me.Rotation.Z)
@@ -114,8 +114,8 @@
         Me.CreatedWorld = False
         Me.UpdateEntity()
 
-        If FloorDictionary.ContainsKey(Me.Position.ToString()) = False Then
-            FloorDictionary.Add(Me.Position.ToString(), Me)
+        If FloorDictionary.ContainsKey(Me.Position) = False Then
+            FloorDictionary.Add(Me.Position, Me)
         End If
 
         Me._changedToSnow = True
@@ -171,8 +171,8 @@
         Me.CreatedWorld = False
         Me.UpdateEntity()
 
-        If FloorDictionary.ContainsKey(Me.Position.ToString()) = False Then
-            FloorDictionary.Add(Me.Position.ToString(), Me)
+        If FloorDictionary.ContainsKey(Me.Position) = False Then
+            FloorDictionary.Add(Me.Position, Me)
         End If
 
         Me._changedToSand = True
@@ -218,12 +218,11 @@
     End Function
 
     Private Shadows Function GetEntity(ByVal List As List(Of Entity), ByVal Position As Vector3) As Entity
-        Dim positionString As String = Position.ToString()
-        If FloorDictionary.ContainsKey(positionString) = False Then
-            FloorDictionary.Add(positionString, (From ent As Entity In List Select ent Where ent.Position = Position)(0))
+        If FloorDictionary.ContainsKey(Position) = False Then
+            FloorDictionary.Add(Position, (From ent As Entity In List Select ent Where ent.Position = Position)(0))
         End If
 
-        Return FloorDictionary(positionString)
+        Return FloorDictionary(Position)
     End Function
 
     ''' <summary>

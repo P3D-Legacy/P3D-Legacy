@@ -92,9 +92,9 @@
                 Case "unixtimestamp"
                     Return (DateTime.Now - New DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds
                 Case "dayofyear"
-                    Return My.Computer.Clock.LocalTime.DayOfYear
+                    Return DateTime.Now.DayOfYear
                 Case "year"
-                    Return My.Computer.Clock.LocalTime.Year
+                    Return DateTime.Now.Year
                 Case "booltoint"
                     If argument.ToLower() = "false" Then
                         Return "0"

@@ -100,7 +100,7 @@
             End If
         Next
 
-        If net.Pokemon3D.Game.Controls.Dismiss(True, True, True) = True Then
+        If P3D.Controls.Dismiss(True, True, True) = True Then
             Close()
         End If
     End Sub
@@ -215,8 +215,8 @@
         C.RotationSpeed = CSng(Me.MouseSpeed / 10000)
         MusicManager.MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
-        MusicManager.Mute(CBool(Me.Muted))
-        SoundManager.Mute(CBool(Me.Muted))
+        MusicManager.Muted = (CBool(Me.Muted))
+        SoundManager.Muted = (CBool(Me.Muted))
         Core.GameOptions.RenderDistance = Me.RenderDistance
         Core.GameOptions.GraphicStyle = Me.GraphicStyle
         Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
@@ -412,8 +412,8 @@
     End Sub
 
     Private Sub ApplyMusicChange()
-        MusicManager.Mute(CBool(Me.Muted))
-        SoundManager.Mute(CBool(Me.Muted))
+        MusicManager.Muted = (CBool(Me.Muted))
+        SoundManager.Muted = (CBool(Me.Muted))
         MusicManager.MasterVolume = CSng(Me.Music / 100)
         SoundManager.Volume = CSng(Me.Sound / 100)
     End Sub
@@ -522,7 +522,7 @@
             Dim r As New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size, 96)
 
             If r.Contains(MouseHandler.MousePosition) = True Then
-                If net.Pokemon3D.Game.Controls.Accept(True, False, False) = True Then
+                If P3D.Controls.Accept(True, False, False) = True Then
                     Me._toggled = Not Me._toggled
                     OnToggleTrigger(Me)
                 End If
@@ -595,7 +595,7 @@
             Dim r As New Rectangle(CInt(_position.X), CInt(_position.Y) + YScroll, 32 * _size + 32, 96)
 
             If r.Contains(MouseHandler.MousePosition) = True Then
-                If net.Pokemon3D.Game.Controls.Accept(True, False, False) = True Then
+                If P3D.Controls.Accept(True, False, False) = True Then
                     OnClickTrigger(Me)
                 End If
             End If

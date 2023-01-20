@@ -507,8 +507,8 @@
         Dim PlayerTextureRectangle As Rectangle = New Rectangle(0, CInt(PlayerSkinHeight * 2), PlayerSkinWidth, PlayerSkinHeight)
 
         Dim v As Vector2 = GetPlayerPosition()
-        If v.X <> 0 Or v.Y <> 0 Then
-            Core.SpriteBatch.Draw(PlayerSkinTexture, New Rectangle(CInt(GetPlayerPosition.X + mapOffsetX - PlayerSkinWidth), CInt(GetPlayerPosition.Y + mapOffsetY - PlayerSkinHeight), CInt(PlayerSkinWidth * 2 * PlayerSkinScale), CInt(PlayerSkinHeight * 2 * PlayerSkinScale)), PlayerTextureRectangle, Color.White)
+        If v.X > 0 AndAlso v.Y > 0 Then
+            Core.SpriteBatch.Draw(PlayerSkinTexture, New Rectangle(CInt(GetPlayerPosition.X + mapOffsetX - (PlayerSkinWidth * PlayerSkinScale)), CInt(GetPlayerPosition.Y + mapOffsetY - (PlayerSkinHeight * PlayerSkinScale)), CInt(PlayerSkinWidth * 2 * PlayerSkinScale), CInt(PlayerSkinHeight * 2 * PlayerSkinScale)), PlayerTextureRectangle, Color.White)
         End If
 
         If Me.hoverText <> "" And Me.pokehoverText <> "" Then
@@ -842,7 +842,7 @@
         Public Function CanFlyTo(ByVal flag() As Object) As Boolean
             If flag(0).ToString().ToLower() = "fly" Then
                 If FlyToPosition <> Nothing And FlyToFile <> "" Then
-                    If Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                    If Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True OrElse GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True Then
                         Return True
                     End If
                 End If
@@ -1173,7 +1173,7 @@
         Public Function CanFlyTo(ByVal flag() As Object) As Boolean
             If flag(0).ToString().ToLower() = "fly" Then
                 If FlyToPosition <> Nothing And FlyToFile <> "" Then
-                    If Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+                    If GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True OrElse Core.Player.VisitedMaps.Split(CChar(",")).Contains(FlyToFile) = True Then
                         Return True
                     End If
                 End If

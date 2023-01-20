@@ -1,11 +1,11 @@
-Namespace Abilities
+﻿Namespace Abilities
 
     Public Class Pickpocket
 
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(124, "Pickpocket", "Steals an item when hit by another Pok�mon.")
+            MyBase.New(124, "Pickpocket", "Steals an item when hit by another Pokémon.")
         End Sub
 
     End Class

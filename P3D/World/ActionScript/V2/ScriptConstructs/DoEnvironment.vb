@@ -20,17 +20,17 @@
                 Case "seasonid"
                     Return int(CInt(World.CurrentSeason)).ToString()
                 Case "day"
-                    Return My.Computer.Clock.LocalTime.DayOfWeek.ToString()
+                    Return DateTime.Now.DayOfWeek.ToString()
                 Case "dayofyear"
-                    Return My.Computer.Clock.LocalTime.DayOfYear().ToString()
+                    Return DateTime.Now.DayOfYear().ToString()
                 Case "dayinformation"
-                    Return My.Computer.Clock.LocalTime.DayOfWeek.ToString() & "," & World.GetTime.ToString()
+                    Return DateTime.Now.DayOfWeek.ToString() & "," & World.GetTime.ToString()
                 Case "week"
                     Return World.WeekOfYear.ToString()
                 Case "hour"
-                    Return My.Computer.Clock.LocalTime.Hour.ToString()
+                    Return DateTime.Now.Hour.ToString()
                 Case "year"
-                    Return My.Computer.Clock.LocalTime.Year.ToString()
+                    Return DateTime.Now.Year.ToString()
                 Case "weather", "mapweather", "currentmapweather"
                     Return Screen.Level.World.CurrentMapWeather.ToString()
                 Case "weatherid", "mapweatherid", "currentmapweatherid"

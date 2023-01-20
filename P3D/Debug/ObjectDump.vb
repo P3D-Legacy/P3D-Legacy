@@ -8,7 +8,7 @@ Public Class ObjectDump
 
     Public ReadOnly Property Dump As String = ""
 
-    Public Sub New(ByVal sender As Object)
+    Public Sub New(sender As Object)
         If sender Is Nothing Then
             Dump = "Object reference not set to an instance of an object."
         Else
@@ -25,10 +25,10 @@ Public Class ObjectDump
                     Dump &= Environment.NewLine
                 End If
 
-                Dim fieldAccessToken As String = ""
-                Dim fieldNameToken As String = ""
-                Dim fieldTypeToken As String = ""
-                Dim fieldValueToken As String = ""
+                Dim fieldAccessToken = ""
+                Dim fieldNameToken = ""
+                Dim fieldTypeToken = ""
+                Dim fieldValueToken = ""
 
                 If field.IsPublic Then
                     fieldAccessToken = "Public "
@@ -65,9 +65,9 @@ Public Class ObjectDump
             Next
 
             Dump &= Environment.NewLine & Environment.NewLine &
-                "--------------------------------------------------" & Environment.NewLine &
-                "Generated Property:" & Environment.NewLine &
-                "--------------------------------------------------" & Environment.NewLine
+                    "--------------------------------------------------" & Environment.NewLine &
+                    "Generated Property:" & Environment.NewLine &
+                    "--------------------------------------------------" & Environment.NewLine
 
             For Each [property] As PropertyInfo In properties
                 If [property].CanRead Then
@@ -75,9 +75,9 @@ Public Class ObjectDump
                         Dump &= Environment.NewLine
                     End If
 
-                    Dim propertyNameToken As String = ""
-                    Dim propertyTypeToken As String = ""
-                    Dim propertyValueToken As String = ""
+                    Dim propertyNameToken = ""
+                    Dim propertyTypeToken = ""
+                    Dim propertyValueToken = ""
 
                     propertyNameToken = [property].Name
                     propertyTypeToken = [property].PropertyType.Name
@@ -104,16 +104,14 @@ Public Class ObjectDump
         End If
     End Sub
 
-    Private Function DumpArray(ByVal obj As Object) As String
+    Private Shared Function DumpArray(obj As Object) As String
         Try
             If obj IsNot Nothing Then
-                Dim listValue As Array = CType(obj, Array)
+                Dim listValue = CType(obj, Array)
                 If listValue.Length = 0 Then
                     Return "{}"
                 Else
-                    Return "{" & String.Join(", ", listValue.Cast(Of Object).Select(Function(a)
-                                                                                        Return a.ToString()
-                                                                                    End Function).ToArray()) & "}"
+                    Return "{" & String.Join(", ", listValue.Cast(Of Object).Select(Function(a) a.ToString()).ToArray()) & "}"
                 End If
             Else
                 Return "Nothing"
@@ -123,17 +121,15 @@ Public Class ObjectDump
         End Try
     End Function
 
-    Private Function DumpGenericArray(ByVal obj As Object, ByVal genericType As String) As String
+    Private Shared Function DumpGenericArray(obj As Object, genericType As String) As String
         Try
             If obj IsNot Nothing Then
                 If genericType = "List`1" Then
-                    Dim listValue As Array = CType(obj.GetType().GetMethod("ToArray").Invoke(obj, Nothing), Array)
+                    Dim listValue = CType(obj.GetType().GetMethod("ToArray").Invoke(obj, Nothing), Array)
                     If listValue.Length = 0 Then
                         Return "{}"
                     Else
-                        Return "{" & String.Join(", ", listValue.Cast(Of Object).Select(Function(a)
-                                                                                            Return a.ToString()
-                                                                                        End Function).ToArray()) & "}"
+                        Return "{" & String.Join(", ", listValue.Cast(Of Object).Select(Function(a) a.ToString()).ToArray()) & "}"
                     End If
                 ElseIf genericType = "Dictionary`2" Then
                     Dim dictionaryKeys As Array = CType(obj.GetType().GetProperty("Keys").GetValue(obj), IEnumerable).Cast(Of Object).ToArray()
@@ -142,8 +138,8 @@ Public Class ObjectDump
                     If dictionaryKeys.Length = 0 OrElse dictonaryValues.Length = 0 Then
                         Return "{}"
                     Else
-                        Dim result As String = ""
-                        For i As Integer = 0 To dictionaryKeys.Length - 1
+                        Dim result = ""
+                        For i = 0 To dictionaryKeys.Length - 1
                             If i > 0 Then
                                 result &= ", "
                             End If
@@ -162,20 +158,15 @@ Public Class ObjectDump
         End Try
     End Function
 
-    Private Function DumpTexture2D(ByVal obj As Object) As String
+    Private Shared Function DumpTexture2D(obj As Object) As String
         Try
             If obj IsNot Nothing Then
-                Dim textureName As String = ""
-                Dim width As Integer = Convert.ToInt32(obj.GetType().GetProperty("Width").GetValue(obj))
-                Dim height As Integer = Convert.ToInt32(obj.GetType().GetProperty("Height").GetValue(obj))
+                Dim texture2D = CType(obj, Texture2D)
 
-                If String.IsNullOrEmpty((obj.GetType().GetProperty("Name").GetValue(obj)?.ToString())) Then
-                    textureName = """"""
-                Else
-                    textureName = obj.GetType().GetProperty("Name").GetValue(obj)?.ToString()
-                End If
+                Dim width As Integer = texture2D.Width
+                Dim height As Integer = texture2D.Height
 
-                Return $"{{Name = {textureName}, Width = {width}, Height = {height}}}"
+                Return $"{{Width = {width}, Height = {height}}}"
             Else
                 Return "Nothing"
             End If
@@ -184,7 +175,7 @@ Public Class ObjectDump
         End Try
     End Function
 
-    Private Function DumpObject(ByVal obj As Object) As String
+    Private Shared Function DumpObject(obj As Object) As String
         Try
             If obj IsNot Nothing Then
                 If String.IsNullOrEmpty(obj.ToString()) Then

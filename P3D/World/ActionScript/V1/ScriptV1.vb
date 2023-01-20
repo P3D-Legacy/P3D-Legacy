@@ -410,7 +410,7 @@
             c.UpdateFrustum()
             c.UpdateViewMatrix()
             Screen.Level.UpdateEntities()
-            Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
+            Screen.Level.SortEntities()
             Screen.Level.UpdateEntities()
         End If
 
@@ -521,7 +521,7 @@
                     T = True
                 End If
             Case "day"
-                If CInt(condition) = My.Computer.Clock.LocalTime.DayOfWeek Then
+                If CInt(condition) = DateTime.Now.DayOfWeek Then
                     T = True
                 End If
             Case "aurora"
@@ -759,7 +759,7 @@
                     c.UpdateFrustum()
                     c.UpdateViewMatrix()
                     Screen.Level.UpdateEntities()
-                    Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
+                    Screen.Level.SortEntities()
                     Screen.Level.UpdateEntities()
                 End If
             Case Me.Value.ToLower() = "activatethirdperson"
@@ -770,7 +770,7 @@
                     c.UpdateFrustum()
                     c.UpdateViewMatrix()
                     Screen.Level.UpdateEntities()
-                    Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
+                    Screen.Level.SortEntities()
                     Screen.Level.UpdateEntities()
                 End If
             Case Me.Value.ToLower() = "deactivatethirdperson"
@@ -781,7 +781,7 @@
                     c.UpdateFrustum()
                     c.UpdateViewMatrix()
                     Screen.Level.UpdateEntities()
-                    Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
+                    Screen.Level.SortEntities()
                     Screen.Level.UpdateEntities()
                 End If
             Case Me.Value.ToLower().StartsWith("setfont(")
@@ -949,7 +949,7 @@
         End If
 
         Dim contains As Boolean = False
-        Screen.Level.Entities = (From e In Screen.Level.Entities Order By e.CameraDistance Descending).ToList()
+        Screen.Level.SortEntities()
         For Each e As Entity In Screen.Level.Entities
             If e.EntityID = "MessageBulb" Then
                 e.Update()

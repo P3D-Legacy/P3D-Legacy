@@ -1,11 +1,11 @@
-Namespace Abilities
+﻿Namespace Abilities
 
     Public Class Pickup
 
         Inherits Ability
 
         Public Sub New()
-            MyBase.New(53, "Pickup", "The Pok�mon may pick up items.")
+            MyBase.New(53, "Pickup", "The Pokémon may pick up items.")
         End Sub
 
         Public Shared Sub Pickup()

@@ -6,7 +6,7 @@ Public Class OverworldStorage
     Public OverworldScreen As Screen
     Public Level As Level
     Public Camera As Camera
-    Public Effect As BasicEffect
+    Public Effect As BasicEffectWithAlphaTest
     Public SkyDome As SkyDome
 
     ''' <summary>

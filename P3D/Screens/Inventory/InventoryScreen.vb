@@ -172,21 +172,21 @@
     Private Sub ChangeBag()
         Select Case bagIndex
             Case 0
-                bagIdentifier = Game.Items.ItemTypes.Standard
+                bagIdentifier = P3D.Items.ItemTypes.Standard
             Case 1
-                bagIdentifier = Game.Items.ItemTypes.Medicine
+                bagIdentifier = P3D.Items.ItemTypes.Medicine
             Case 2
-                bagIdentifier = Game.Items.ItemTypes.Machines
+                bagIdentifier = P3D.Items.ItemTypes.Machines
             Case 3
-                bagIdentifier = Game.Items.ItemTypes.Pokéballs
+                bagIdentifier = P3D.Items.ItemTypes.Pokéballs
             Case 4
-                bagIdentifier = Game.Items.ItemTypes.Plants
+                bagIdentifier = P3D.Items.ItemTypes.Plants
             Case 5
-                bagIdentifier = Game.Items.ItemTypes.Mail
+                bagIdentifier = P3D.Items.ItemTypes.Mail
             Case 6
-                bagIdentifier = Game.Items.ItemTypes.BattleItems
+                bagIdentifier = P3D.Items.ItemTypes.BattleItems
             Case 7
-                bagIdentifier = Game.Items.ItemTypes.KeyItems
+                bagIdentifier = P3D.Items.ItemTypes.KeyItems
         End Select
 
         cItems.Clear()

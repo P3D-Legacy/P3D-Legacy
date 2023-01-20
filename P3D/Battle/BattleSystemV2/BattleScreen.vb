@@ -152,7 +152,7 @@
             Screen.ImageView.Showing = False
             Screen.ChooseBox.Showing = False
 
-            Effect = New BasicEffect(Core.GraphicsDevice)
+            Effect = New BasicEffectWithAlphaTest(Core.GraphicsDevice)
             Effect.FogEnabled = True
             SkyDome = New SkyDome()
             Camera = New BattleCamera()
@@ -244,8 +244,9 @@
             If oppModel <> "" Then
                 OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
             End If
-            Screen.Level.Entities.Add(OwnPokemonNPC)
-            Screen.Level.Entities.Add(OppPokemonNPC)
+            
+            Screen.Level.AddEntity(OwnPokemonNPC)
+            Screen.Level.AddEntity(OppPokemonNPC)
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -256,7 +257,7 @@
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OwnTrainerNPC)
+            Screen.Level.AddEntity(OwnTrainerNPC)
 
             Dim cq As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 5)
             cq.PassThis = True
@@ -390,8 +391,8 @@
                 OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
             End If
 
-            Screen.Level.Entities.Add(OwnPokemonNPC)
-            Screen.Level.Entities.Add(OppPokemonNPC)
+            Screen.Level.AddEntity(OwnPokemonNPC)
+            Screen.Level.AddEntity(OppPokemonNPC)
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -402,10 +403,10 @@
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OwnTrainerNPC)
-
             OppTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(17, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {Trainer.SpriteName, 1, "Player", 3, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OppTrainerNPC)
+
+            Screen.Level.AddEntity(OwnTrainerNPC)
+            Screen.Level.AddEntity(OppTrainerNPC)
 
             Dim cq As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 5)
             cq.PassThis = True
@@ -612,8 +613,8 @@
                 OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
             End If
 
-            Screen.Level.Entities.Add(OwnPokemonNPC)
-            Screen.Level.Entities.Add(OppPokemonNPC)
+            Screen.Level.AddEntity(OwnPokemonNPC)
+            Screen.Level.AddEntity(OppPokemonNPC)
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -624,7 +625,7 @@
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OwnTrainerNPC)
+            Screen.Level.AddEntity(OwnTrainerNPC)
 
             Dim cq As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 5)
             cq.PassThis = True
@@ -726,8 +727,8 @@
                 OppPokemonNPC.Scale = New Vector3(OppPokemon.GetModelProperties().Item1) * ModelManager.MODELSCALE
             End If
 
-            Screen.Level.Entities.Add(OwnPokemonNPC)
-            Screen.Level.Entities.Add(OppPokemonNPC)
+            Screen.Level.AddEntity(OwnPokemonNPC)
+            Screen.Level.AddEntity(OppPokemonNPC)
 
             Dim ownSkin As String = Core.Player.Skin
             If SavedOverworld.Level.Surfing = True Then
@@ -738,7 +739,7 @@
             End If
 
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OwnTrainerNPC)
+            Screen.Level.AddEntity(OwnTrainerNPC)
 
             Dim cq As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 5)
             cq.PassThis = True

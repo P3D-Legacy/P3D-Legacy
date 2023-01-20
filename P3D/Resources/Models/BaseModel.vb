@@ -1,11 +1,14 @@
 ﻿Public Class BaseModel
 
     Public ID As Integer = 0
-    Public vertexBuffer As VertexBuffer
+    Public VertexBuffer As VertexBuffer
 
-    Protected Sub Setup(ByVal vertexData As VertexPositionNormalTexture())
-        vertexBuffer = New VertexBuffer(Core.GraphicsDevice, GetType(VertexPositionNormalTexture), vertexData.Count, BufferUsage.WriteOnly)
-        vertexBuffer.SetData(vertexData.ToArray())
+    Protected Sub Setup(vertexData As VertexPositionNormalTexture())
+        VertexBuffer = New VertexBuffer(Core.GraphicsDevice, GetType(VertexPositionNormalTexture), vertexData.Length, BufferUsage.WriteOnly)
+        VertexBuffer.SetData(vertexData.ToArray())
+    End Sub
+    
+    Protected Overridable Sub CreateModel(entity As Entity)
     End Sub
 
     Public Sub Draw(ByVal Entity As Entity, ByVal Textures() As Texture2D)
@@ -21,11 +24,11 @@
             Screen.Effect.DiffuseColor *= New Vector3(0.5, 0.5, 0.5)
         End If
 
-        Core.GraphicsDevice.SetVertexBuffer(vertexBuffer)
+        Core.GraphicsDevice.SetVertexBuffer(VertexBuffer)
 
-        If CInt(vertexBuffer.VertexCount / 3) > Entity.TextureIndex.Count Then
-            Dim newTextureIndex(CInt(vertexBuffer.VertexCount / 3)) As Integer
-            For i = 0 To CInt(vertexBuffer.VertexCount / 3)
+        If CInt(VertexBuffer.VertexCount / 3) > Entity.TextureIndex.Count Then
+            Dim newTextureIndex(CInt(VertexBuffer.VertexCount / 3)) As Integer
+            For i = 0 To CInt(VertexBuffer.VertexCount / 3)
                 If Entity.TextureIndex.Count - 1 >= i Then
                     newTextureIndex(i) = Entity.TextureIndex(i)
                 Else
@@ -54,12 +57,12 @@
             If Entity.TextureIndex(0) > -1 Then
                 Me.ApplyTexture(Textures(Entity.TextureIndex(0)))
 
-                Core.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, CInt(vertexBuffer.VertexCount / 3))
+                Core.GraphicsDevice.DrawPrimitives(PrimitiveType.TriangleList, 0, CInt(VertexBuffer.VertexCount / 3))
 
-                DebugDisplay.DrawnVertices += CInt(vertexBuffer.VertexCount / 3)
+                DebugDisplay.DrawnVertices += CInt(VertexBuffer.VertexCount / 3)
             End If
         Else
-            For i = 0 To vertexBuffer.VertexCount - 1 Step 3
+            For i = 0 To VertexBuffer.VertexCount - 1 Step 3
                 If Entity.TextureIndex(CInt(i / 3)) > -1 Then
                     Me.ApplyTexture(Textures(Entity.TextureIndex(CInt(i / 3))))
 
@@ -74,8 +77,23 @@
             DebugDisplay.MaxDistance = CInt(Entity.CameraDistance)
         End If
     End Sub
+    
+    Public Sub Draw(entity As Entity)
+        Dim effectDiffuseColor As Vector3 = Screen.Effect.DiffuseColor
 
-    Private Sub ApplyTexture(ByVal texture As Texture2D)
+        Screen.Effect.TextureEnabled = True
+        Screen.Effect.World = entity.World
+        Screen.Effect.Alpha = entity.Opacity
+        Screen.Effect.DiffuseColor = effectDiffuseColor * entity.Shader * entity.Color
+
+        If Screen.Level.IsDark = True OrElse Screen.Level.LightingType = 6 Then
+            Screen.Effect.DiffuseColor *= New Vector3(0.5, 0.5, 0.5)
+        End If
+
+        Core.GraphicsDevice.SetVertexBuffer(VertexBuffer)
+    End Sub
+
+    Private Sub ApplyTexture(texture As Texture2D)
         Screen.Effect.Texture = texture
         Screen.Effect.CurrentTechnique.Passes(0).Apply()
     End Sub

@@ -1,7 +1,7 @@
 ﻿Public Class OnlineStatus
 
     Public Shared Sub Draw()
-        If JoinServerScreen.Online = True And ConnectScreen.Connected = True Then
+        If JoinServerScreen.Online = True AndAlso ConnectScreen.Connected = True Then
             If KeyBoardHandler.KeyDown(KeyBindings.OnlineStatusKey) = True Then
                 Dim playerList = Core.ServersManager.PlayerCollection
 
@@ -26,7 +26,7 @@
                                 name = Core.Player.Name
                                 c = Chat.OwnColor
                             Else
-                                If Core.Player.IsGamejoltSave = True Then
+                                If Core.Player.IsGameJoltSave = True Then
                                     Dim GJID As String = playerList((x - 1) * 10 + (y - 1)).GameJoltId
                                     If GJID <> "" AndAlso Core.GameJoltSave.Friends.Contains(GJID) = True Then
                                         c = Chat.FriendColor

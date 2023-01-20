@@ -161,9 +161,12 @@
                 If SaveGameHelpers.EncounteredErrors = True Then
                     Me.saveSessionFailed = True
                 Else
-                    If (File.Exists(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID.ToString() & "\Encrypted\Encrypted.dat")) Then
-                        File.Delete(GameController.GamePath & "\Backup Save\" & GameJoltSave.GameJoltID.ToString() & "\Encrypted\Encrypted.dat")
+                    Dim backupSaveFile = Path.Combine(GameController.GamePath, "Backup Save", GameJoltSave.GameJoltID.ToString(), "Encrypted", "Encrypted.dat")
+                    
+                    If File.Exists(backupSaveFile) Then
+                        File.Delete(backupSaveFile)
                     End If
+                    
                     SoundManager.PlaySound("save")
                 End If
 
