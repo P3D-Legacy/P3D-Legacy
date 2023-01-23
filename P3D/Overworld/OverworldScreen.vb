@@ -318,19 +318,28 @@ Public Class OverworldScreen
     ''' </summary>
     ''' <returns>True, if no requests are in the queue, False otherwise.</returns>
     Private Function HandleServerRequests() As Boolean
-        If GameJolt.PokegearScreen.BattleRequestData <> -1 Then 'A Servers ID from another player is set here.
-            If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.BattleRequestData) = True Then 'If the player still exists on the server.
-                Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.BattleRequest, {GameJolt.PokegearScreen.BattleRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.BattleRequestData).GameJoltId}))
-                Return False
-            Else 'Otherwise, reset the data.
+        If Screen.Level.IsBugCatchingContest = False Then
+            If GameJolt.PokegearScreen.BattleRequestData <> -1 Then 'A Servers ID from another player is set here.
+                If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.BattleRequestData) = True Then 'If the player still exists on the server.
+                    Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.BattleRequest, {GameJolt.PokegearScreen.BattleRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.BattleRequestData).GameJoltId}))
+                    Return False
+                Else 'Otherwise, reset the data.
+                    GameJolt.PokegearScreen.BattleRequestData = -1
+                End If
+            End If
+            If GameJolt.PokegearScreen.TradeRequestData <> -1 Then 'A Servers ID from another player is set here.
+                If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.TradeRequestData) = True Then 'If the player still exists on the server.
+                    Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.TradeRequest, {GameJolt.PokegearScreen.TradeRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.TradeRequestData).GameJoltId}))
+                    Return False
+                Else 'Otherwise, reset the data.
+                    GameJolt.PokegearScreen.TradeRequestData = -1
+                End If
+            End If
+        Else
+            If GameJolt.PokegearScreen.BattleRequestData <> -1 Then
                 GameJolt.PokegearScreen.BattleRequestData = -1
             End If
-        End If
-        If GameJolt.PokegearScreen.TradeRequestData <> -1 Then 'A Servers ID from another player is set here.
-            If Core.ServersManager.PlayerCollection.HasPlayer(GameJolt.PokegearScreen.TradeRequestData) = True Then 'If the player still exists on the server.
-                Core.SetScreen(New GameJolt.PokegearScreen(Core.CurrentScreen, GameJolt.PokegearScreen.EntryModes.TradeRequest, {GameJolt.PokegearScreen.TradeRequestData, Core.ServersManager.PlayerCollection.GetPlayer(GameJolt.PokegearScreen.TradeRequestData).GameJoltId}))
-                Return False
-            Else 'Otherwise, reset the data.
+            If GameJolt.PokegearScreen.TradeRequestData <> -1 Then
                 GameJolt.PokegearScreen.TradeRequestData = -1
             End If
         End If
