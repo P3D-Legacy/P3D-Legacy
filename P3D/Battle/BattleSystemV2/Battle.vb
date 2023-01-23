@@ -7879,9 +7879,11 @@
 
                 Dim oppModel As String = BattleScreen.GetModelName(False)
                 'Switch BattleStyle
-                If Core.Player.BattleStyle <> 1 And OppStep.StepType <> RoundConst.StepTypes.Switch And BattleScreen.IsPVPBattle = False Then
-                    BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
-                    BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
+                If BattleScreen.FieldEffects.OwnDigCounter = 0 AndAlso BattleScreen.FieldEffects.OwnFlyCounter = 0 AndAlso BattleScreen.FieldEffects.OwnDiveCounter = 0 Then
+                    If Core.Player.BattleStyle <> 1 And OppStep.StepType <> RoundConst.StepTypes.Switch And BattleScreen.IsPVPBattle = False Then
+                        BattleScreen.BattleQuery.Add(New SwitchPokemonQueryObject(BattleScreen, BattleScreen.OppPokemon))
+                        BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
+                    End If
                 End If
                 If oppModel = "" Then
                     BattleScreen.BattleQuery.Add(New ToggleEntityQueryObject(True, ToggleEntityQueryObject.BattleEntities.OppPokemon, PokemonForms.GetOverworldSpriteName(BattleScreen.OppPokemon), -1, -1, 0, 1))
