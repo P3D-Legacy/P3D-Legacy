@@ -377,6 +377,10 @@
                 p.IsShiny = False
             End If
 
+            If p.HP > p.MaxHP Then
+                p.HP = p.MaxHP
+            End If
+
             Return p
         End If
 
