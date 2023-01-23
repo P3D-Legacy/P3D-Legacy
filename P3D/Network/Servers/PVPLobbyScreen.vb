@@ -173,7 +173,7 @@
                     Dim p As Pokemon = OwnTeam(i)
                     Dim pokeTexture = p.GetMenuTexture()
                     Dim pokeTextureScale As Vector2 = New Vector2(CSng(32 / pokeTexture.Width), CSng(32 / pokeTexture.Height))
-                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(40 + i * 40 - CInt((pokeTexture.Width - 32) / 2), 264, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
+                    Core.SpriteBatch.Draw(pokeTexture, New Rectangle(40 + i * 40 - CInt((pokeTexture.Width * pokeTextureScale.X - 32) / 2), 264, CInt(pokeTexture.Width * pokeTextureScale.X), CInt(pokeTexture.Height * pokeTextureScale.Y)), Color.White)
                 Next
             End If
         End If
@@ -181,11 +181,11 @@
         'Menu:
         If ReceivedBattleOffer = True Then
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Your opponent wants to" & Environment.NewLine & "battle with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Your opponent wants to" & Environment.NewLine & "battle with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
         Else
             If SentBattleOffer = True Then
                 Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "You want to battle" & Environment.NewLine & "with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "You want to battle" & Environment.NewLine & "with this setup.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
             End If
         End If
 
@@ -238,7 +238,7 @@
             Else
                 _otherframeSize = New Size(CInt(_otherTexture.Width / 3), CInt(_otherTexture.Height / 4))
             End If
-            _otherTexture = TextureManager.GetTexture(_otherTexture, New Rectangle(0, _otherTexture.Height * 2, _otherTexture.Width, _otherTexture.Height))
+            _otherTexture = TextureManager.GetTexture(_otherTexture, New Rectangle(0, _otherframeSize.Height * 2, _otherframeSize.Width, _otherframeSize.Height))
 
             Core.SpriteBatch.DrawString(FontManager.MainFont, tempPlayer.Name, New Vector2(Core.windowSize.Width - 260, 215), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
             Core.SpriteBatch.Draw(_otherTexture, New Rectangle(CInt(Core.windowSize.Width - 340), 200, 64, 64), Color.White)
@@ -787,8 +787,8 @@
                                    .NoEffect & Environment.NewLine & Environment.NewLine &
                                    .Critical
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, s1, New Vector2(40, 340), Color.White, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, s2, New Vector2(250, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s1, New Vector2(40, 340), Color.White, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(250, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
             End With
 
             'Draw Pokémon left:
@@ -837,7 +837,7 @@
                 Else
                     _otherframeSize = New Size(CInt(_otherTexture.Width / 3), CInt(_otherTexture.Height / 4))
                 End If
-                _otherTexture = TextureManager.GetTexture(_otherTexture, New Rectangle(0, _otherTexture.Height * 2, _otherTexture.Width, _otherTexture.Height))
+                _otherTexture = TextureManager.GetTexture(_otherTexture, New Rectangle(0, _otherframeSize.Height * 2, _otherframeSize.Width, _otherframeSize.Height))
 
                 Core.SpriteBatch.DrawString(FontManager.MainFont, tempPlayer.Name, New Vector2(Core.windowSize.Width - 260, 215), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
                 Core.SpriteBatch.Draw(_otherTexture, New Rectangle(CInt(Core.windowSize.Width - 340), 200, 64, 64), Color.White)
@@ -874,8 +874,8 @@
                                    .NoEffect & Environment.NewLine & Environment.NewLine &
                                    .Critical
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, s1, New Vector2(Core.windowSize.Width - 360, 340), Color.White, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, s2, New Vector2(Core.windowSize.Width - 150, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s1, New Vector2(Core.windowSize.Width - 360, 340), Color.White, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, s2, New Vector2(Core.windowSize.Width - 150, 340), Color.LightBlue, 0.0F, Vector2.Zero, 1.1F, SpriteEffects.None, 0.0F)
             End With
 
         End If

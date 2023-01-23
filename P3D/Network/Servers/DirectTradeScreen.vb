@@ -100,6 +100,7 @@
         _ownTexture = TextureManager.GetTexture(_ownTexture, New Rectangle(0, _ownframeSize.Height * 2, _ownframeSize.Width, _ownframeSize.Height))
 
         Core.SpriteBatch.Draw(_ownTexture, New Rectangle(100, 32, 64, 64), Color.White)
+        Core.SpriteBatch.DrawString(FontManager.MainFont, Core.Player.Name, New Vector2(170, 54), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
 
         Canvas.DrawRectangle(New Rectangle(100, 100, 256, 256), New Color(255, 255, 255, 150))
 
@@ -114,17 +115,17 @@
                 itemString = OfferPokemon.Item.Name
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, OfferPokemon.GetDisplayName() & Environment.NewLine & "Level: " & OfferPokemon.Level & Environment.NewLine & "OT: " & OfferPokemon.OT & " / " & OfferPokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(114, 414), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, OfferPokemon.GetDisplayName() & Environment.NewLine & "Level: " & OfferPokemon.Level & Environment.NewLine & "OT: " & OfferPokemon.OT & " / " & OfferPokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(114, 414), Color.Black)
         End If
 
         'Menu:
         If ReceivedTradeOffer = True Then
             Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, "Your trade partner" & Environment.NewLine & "accepts this trade.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, "Your trade partner" & Environment.NewLine & "accepts this trade.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
         Else
             If SentTradeOffer = True Then
                 Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2), 100, 64 * 4, 64), New Color(255, 255, 255, 150))
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "You accepted" & Environment.NewLine & "this trade.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "You accepted" & Environment.NewLine & "this trade.", New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 4, 104), Color.Black)
             End If
         End If
 
@@ -133,7 +134,7 @@
             Core.SpriteBatch.Draw(Me.texture, New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 64, 200 + i * 96, 64 * 2, 64), New Rectangle(32, 16, 16, 16), Color.White)
             Core.SpriteBatch.Draw(Me.texture, New Rectangle(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 64 * 3, 200 + i * 96, 64, 64), New Rectangle(16, 16, 16, 16), Color.White, 0.0F, Vector2.Zero, SpriteEffects.FlipHorizontally, 0.0F)
 
-            Core.SpriteBatch.DrawString(FontManager.MainFont, Me.menuItems(i), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 20, 216 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.25F, SpriteEffects.None, 0.0F)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, Me.menuItems(i), New Vector2(CInt(Core.windowSize.Width / 2 - (64 * 4) / 2) + 20, 216 + i * 96), Color.Black, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         Next
 
         DrawCursor()
@@ -175,9 +176,10 @@
             Else
                 _otherframeSize = New Size(CInt(_otherTexture.Width / 3), CInt(_otherTexture.Height / 4))
             End If
-            _otherTexture = TextureManager.GetTexture(_ownTexture, New Rectangle(0, _ownframeSize.Height * 2, _ownframeSize.Width, _ownframeSize.Height))
+            _otherTexture = TextureManager.GetTexture(_otherTexture, New Rectangle(0, _otherframeSize.Height * 2, _otherframeSize.Width, _otherframeSize.Height))
 
             Core.SpriteBatch.Draw(_otherTexture, New Rectangle(CInt(Core.windowSize.Width - 356), 32, 64, 64), Color.White)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, tempPlayer.Name, New Vector2(CInt(Core.windowSize.Width - 356) + 70, 54), Color.White, 0.0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0.0F)
         End If
 
         Canvas.DrawRectangle(New Rectangle(CInt(Core.windowSize.Width - 356), 100, 256, 256), New Color(255, 255, 255, 150))
@@ -193,7 +195,7 @@
                 itemString = TradePokemon.Item.Name
             End If
 
-            Core.SpriteBatch.DrawString(FontManager.MiniFont, TradePokemon.GetDisplayName() & Environment.NewLine & "Level: " & TradePokemon.Level & Environment.NewLine & "OT: " & TradePokemon.OT & " / " & TradePokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(CInt(Core.windowSize.Width - 356) + 14, 414), Color.Black)
+            Core.SpriteBatch.DrawString(FontManager.MainFont, TradePokemon.GetDisplayName() & Environment.NewLine & "Level: " & TradePokemon.Level & Environment.NewLine & "OT: " & TradePokemon.OT & " / " & TradePokemon.CatchTrainerName & Environment.NewLine & "Item: " & itemString, New Vector2(CInt(Core.windowSize.Width - 356) + 14, 414), Color.Black)
         End If
     End Sub
 
