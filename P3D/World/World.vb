@@ -155,7 +155,7 @@ Public Class World
 
         If Weather = Weathers.Blizzard Then
             Screen.Effect.FogStart = -40
-            Screen.Effect.FogEnd = 20
+            Screen.Effect.FogEnd = 18
 
             Screen.Camera.FarPlane = 24
             GoTo endsub
@@ -552,19 +552,19 @@ endsub:
             Case Weathers.Clear
                 Screen.Effect.DiffuseColor = New Vector3(1)
             Case Weathers.Rain, Weathers.Thunderstorm
-                Screen.Effect.DiffuseColor = New Vector3(0.4, 0.4, 0.7)
+                Screen.Effect.DiffuseColor = New Vector3(0.7, 0.7, 0.8)
             Case Weathers.Snow
                 Screen.Effect.DiffuseColor = New Vector3(0.9, 0.9, 0.9)
             Case Weathers.Underwater
                 Screen.Effect.DiffuseColor = New Vector3(0.1, 0.3, 0.9)
             Case Weathers.Sunny
-                Screen.Effect.DiffuseColor = New Vector3(1.5, 1.3, 1.3)
+                Screen.Effect.DiffuseColor = New Vector3(1.2, 1.1, 1.1)
             Case Weathers.Fog
                 Screen.Effect.DiffuseColor = New Vector3(0.7, 0.7, 0.7)
             Case Weathers.Sandstorm
                 Screen.Effect.DiffuseColor = New Vector3(0.8, 0.5, 0.2)
             Case Weathers.Ash
-                Screen.Effect.DiffuseColor = New Vector3(0.5, 0.5, 0.5)
+                Screen.Effect.DiffuseColor = New Vector3(0.6, 0.6, 0.6)
             Case Weathers.Blizzard
                 Screen.Effect.DiffuseColor = New Vector3(0.6, 0.6, 0.6)
         End Select

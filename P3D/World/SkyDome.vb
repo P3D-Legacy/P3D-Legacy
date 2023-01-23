@@ -110,9 +110,9 @@
                         Case World.Weathers.Clear
                             BasicEffect.DiffuseColor = New Vector3(1)
                         Case World.Weathers.Sunny
-                            BasicEffect.DiffuseColor = New Vector3(1.5, 1.3, 1.3)
-                        Case World.Weathers.Rain
-                            BasicEffect.DiffuseColor = New Vector3(0.4, 0.4, 0.7)
+                            BasicEffect.DiffuseColor = New Vector3(1.2, 1.1, 1.1)
+                        Case World.Weathers.Rain, World.Weathers.Thunderstorm
+                            BasicEffect.DiffuseColor = New Vector3(0.7, 0.7, 0.8)
                         Case World.Weathers.Snow
                             BasicEffect.DiffuseColor = New Vector3(0.9)
                         Case World.Weathers.Underwater
@@ -122,7 +122,7 @@
                         Case World.Weathers.Sandstorm
                             BasicEffect.DiffuseColor = New Vector3(0.8, 0.5, 0.2)
                         Case World.Weathers.Ash
-                            BasicEffect.DiffuseColor = New Vector3(0.5, 0.5, 0.5)
+                            BasicEffect.DiffuseColor = New Vector3(0.6, 0.6, 0.6)
                         Case World.Weathers.Blizzard
                             BasicEffect.DiffuseColor = New Vector3(0.6, 0.6, 0.6)
                     End Select
