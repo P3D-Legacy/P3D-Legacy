@@ -214,6 +214,7 @@
 
             Dim EmblemBackgroundTexture As Texture2D = Nothing
             Dim EmblemFontColor As Color = GetEmblemFontColor(EmblemBackground)
+            Dim EmblemFontShadowColor As Color = GetEmblemFontShadowColor(EmblemBackground)
 
             If UserBanned = True Then
                 EmblemBackgroundTexture = GetEmblemBackgroundTexture("missingno")
@@ -226,9 +227,15 @@
             Core.SpriteBatch.Draw(PlayerTexture, New Rectangle(CInt(Position.X), CInt(Position.Y), CInt(32 * Scale), CInt(32 * Scale)), New Rectangle(0, frameSize.Height * 2, frameSize.Width, frameSize.Height), Color.White)
 
             If PokemonList Is Nothing OrElse PokemonList.Count = 0 Then
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 10 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 12 + Position.X, 12 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 12 + Position.X, 10 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 12 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 10 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
             Else
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 6 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 12 + Position.X, 8 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 12 + Position.X, 6 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 8 + Position.Y), EmblemFontShadowColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, PlayerName & Environment.NewLine & PlayerTitle & Environment.NewLine & "Level: " & PlayerLevel & Environment.NewLine & "(Points: " & PlayerPoints & ")", New Vector2(32 * Scale + 10 + Position.X, 6 + Position.Y), EmblemFontColor, 0.0F, Vector2.Zero, CSng(Scale / 4), SpriteEffects.None, 0.0F)
 
                 For i = 0 To 5
                     Core.SpriteBatch.Draw(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(192, 0, 32, 32), ""), New Rectangle(CInt(32 * Scale + (10 / 4) * Scale + Position.X + i * (10 * Scale)), CInt(Position.Y + 22.5F * Scale), CInt(Scale * 8), CInt(Scale * 8)), Color.White)
@@ -341,11 +348,21 @@
             Return TextureManager.LoadDirect("Textures\Emblem\" & emblemName & ".png")
         End Function
 
+        Public Shared Function GetEmblemFontShadowColor(ByVal emblemName As String) As Color
+            Select Case emblemName.ToLower()
+                Case "alph", "genetics", "legendary", "kanto", "trainer", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "johto", "earth", "shooting star", "victorious", "mega", "time", "deep sea", "heart gold", "soul silver"
+                    Return Color.Black
+                Case "eevee", "pokedex", "snow", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "eruption", "ancestor", "tao", "floral"
+                    Return Color.White
+            End Select
+            Return Color.Black
+        End Function
+
         Public Shared Function GetEmblemFontColor(ByVal emblemName As String) As Color
             Select Case emblemName.ToLower()
-                Case "alph", "genetics", "legendary", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "earth", "shooting star", "victorious", "mega", "time", "deep sea", "heart gold", "soul silver"
+                Case "alph", "genetics", "legendary", "kanto", "trainer", "stars", "champion", "overkill", "cyber", "glowing", "material", "fog", "mineral", "storm", "eggsplosion", "missingno", "thunder", "rainbow", "marsh", "volcano", "johto", "earth", "shooting star", "victorious", "mega", "time", "deep sea", "heart gold", "soul silver"
                     Return Color.White
-                Case "eevee", "pokedex", "snow", "trainer", "kanto", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "johto", "eruption", "ancestor", "tao", "floral"
+                Case "eevee", "pokedex", "snow", "glacier", "hive", "plain", "zephyr", "rising", "mailman", "cascade", "boulder", "unodostres", "silver ability", "gold ability", "silver knowledge", "gold knowledge", "eruption", "ancestor", "tao", "floral"
                     Return Color.Black
             End Select
             Return Color.White
@@ -1007,7 +1024,7 @@
             'Temporary, remove when GameJolt side support is brought back
             If Not Core.GameJoltSave.AchievedEmblems.Contains(emblem) Then
                 Core.GameJoltSave.AchievedEmblems.Add(emblem)
-                Dim emblemTexture As Texture2D = TextureManager.GetTexture("Textures\Emblem\Square\" & emblem)
+                Dim emblemTexture As Texture2D = TextureManager.LoadDirect("Textures\Emblem\Square\" & emblem & ".png")
                 achieved_emblem_Texture = emblemTexture
                 achieved_emblem_title = GetEmblemTitle(emblem)
                 achieved_emblem_description = GetEmblemDescription(emblem)
@@ -1268,14 +1285,14 @@
                     Case "difficulty"
                         achieved_emblem_difficulty = line.Value
                     Case "image_url"
-                        Dim t As New Threading.Thread(AddressOf DownloadAchievedEmblemTextrure)
+                        Dim t As New Threading.Thread(AddressOf DownloadAchievedEmblemTexture)
                         t.IsBackground = True
                         t.Start(line.Value)
                 End Select
             Next
         End Sub
 
-        Private Shared Sub DownloadAchievedEmblemTextrure(ByVal url As Object)
+        Private Shared Sub DownloadAchievedEmblemTexture(ByVal url As Object)
             Dim t As Texture2D = DownloadTexture2D.n_Remote_Texture2D(Core.GraphicsDevice, url.ToString(), True)
 
             achieved_emblem_Texture = t
@@ -1301,25 +1318,34 @@
 
         Public Shared Sub DrawNewEmblems()
             If displayEmblemDelay > 0.0F Then
+                Dim EmblemTitleString As String = "Achieved new emblem background: " & achieved_emblem_title
+                Dim descText As String = achieved_emblem_description.CropStringToWidth(FontManager.MainFont, 500)
+                Dim EmblemDescWidth As Integer = CInt(FontManager.MainFont.MeasureString(descText).X + 104)
+                Dim EmblemWidth As Integer = CInt(FontManager.MainFont.MeasureString(EmblemTitleString).X + 104)
+                If EmblemDescWidth > EmblemWidth Then
+                    EmblemWidth = EmblemDescWidth
+                End If
+
                 displayEmblemDelay -= 0.1F
                 If displayEmblemDelay <= 6.4F Then
                     If emblemPositionX < Core.windowSize.Width Then
-                        emblemPositionX += 8
+                        emblemPositionX += 10
                     End If
                 Else
-                    If emblemPositionX > Core.windowSize.Width - 512 Then
-                        emblemPositionX -= 8
+                    If emblemPositionX > Core.windowSize.Width - EmblemWidth Then
+                        emblemPositionX -= 10
                     End If
                 End If
 
-                Canvas.DrawRectangle(New Rectangle(emblemPositionX + 10, 0, 512, 98), Color.Black)
+                Canvas.DrawRectangle(New Rectangle(emblemPositionX + 10, 0, EmblemWidth, 102), Color.Black)
+
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("Textures\Emblem\background"), New Rectangle(emblemPositionX, 0, 79, 102), Color.White)
 
                 If Not achieved_emblem_Texture Is Nothing Then
-                    Core.SpriteBatch.Draw(achieved_emblem_Texture, New Rectangle(emblemPositionX + 2, 2, 75, 75), Color.White)
+                    Core.SpriteBatch.Draw(achieved_emblem_Texture, New Rectangle(emblemPositionX + 6, 6, 75, 75), Color.White)
                 End If
 
-                Core.SpriteBatch.Draw(TextureManager.GetTexture("Textures\Emblem\border"), New Rectangle(emblemPositionX, 0, 79, 98), Color.White)
-
+                Core.SpriteBatch.Draw(TextureManager.GetTexture("Textures\Emblem\border"), New Rectangle(emblemPositionX + 4, 4, 79, 79), Color.White)
                 Dim fontColor As Color = Color.White
                 Select Case achieved_emblem_difficulty.ToLower()
                     Case "bronze"
@@ -1331,13 +1357,13 @@
                     Case "platinum"
                         fontColor = New Color(172, 201, 202)
                 End Select
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, achieved_emblem_difficulty, New Vector2(emblemPositionX + (38 - CInt(FontManager.MiniFont.MeasureString(achieved_emblem_difficulty).X / 2)), 77), fontColor)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, achieved_emblem_difficulty, New Vector2(emblemPositionX + (46 - CInt(FontManager.MainFont.MeasureString(achieved_emblem_difficulty).X / 2)), 77), fontColor)
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, "Achieved new emblem background: " & achieved_emblem_title, New Vector2(emblemPositionX + 88, 4), fontColor)
+                Core.SpriteBatch.DrawString(FontManager.MainFont, "Achieved new emblem background: " & achieved_emblem_title, New Vector2(emblemPositionX + 88, 4), fontColor)
 
-                Dim desText As String = achieved_emblem_description.CropStringToWidth(FontManager.MiniFont, 300)
 
-                Core.SpriteBatch.DrawString(FontManager.MiniFont, desText, New Vector2(emblemPositionX + 94, 24), Color.White)
+
+                Core.SpriteBatch.DrawString(FontManager.MainFont, descText, New Vector2(emblemPositionX + 94, 24), Color.White)
 
                 If displayEmblemDelay <= 0.0F Then
                     displayEmblemDelay = 0.0F
