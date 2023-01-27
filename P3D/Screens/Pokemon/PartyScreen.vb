@@ -75,6 +75,7 @@ Public Class PartyScreen
     Public LearnType As Integer = 0
     Dim moveLearnArg As Object = Nothing
 
+    Public EvolutionItemID As Integer = -1
     'Stuff related to blurred PreScreens
     Private _preScreenTexture As RenderTarget2D
     Private _preScreenTarget As RenderTarget2D
@@ -372,6 +373,17 @@ Public Class PartyScreen
             Else
                 SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(position.X) + 78, CInt(position.Y) + 32, 24, 15), New Rectangle(0, 32, 16, 10), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
             End If
+
+            'Able/unable display (when using an Evolution Item)
+            Dim ItemLabel As String = ""
+            If EvolutionItemID <> -1 Then
+                ItemLabel = "Unable!"
+                If p.IsEgg() = False And p.CanEvolve(EvolutionCondition.EvolutionTrigger.ItemUse, EvolutionItemID.ToString()) = True Then
+                    ItemLabel = "Able!"
+                End If
+            End If
+
+            GetFontRenderer().DrawString(FontManager.MainFont, ItemLabel, New Vector2(position.X + 216, position.Y + 28), New Color(255, 255, 255, CInt(255 * _interfaceFade)))
 
             'Able/unable display (when using TM/HM)
             Dim AttackLabel As String = ""
