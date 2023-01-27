@@ -48,6 +48,9 @@ Namespace Items.Medicine
 
                             Dim t As String = Me.RemoveItem()
                             If t <> "" Then
+                                If t.StartsWith("*") Then
+                                    t.Remove(0, 1)
+                                End If
                                 s &= "@text.show(" & t & ")" & Environment.NewLine
                             End If
                             removedItem = True
