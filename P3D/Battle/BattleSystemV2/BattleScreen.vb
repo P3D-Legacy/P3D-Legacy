@@ -1243,6 +1243,7 @@ nextIndex:
                             p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
                             Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName)
+                            p.OriginalItem = Nothing
                         End If
                     Else
                         If Not p.OriginalItem Is Nothing Then
@@ -1252,11 +1253,9 @@ nextIndex:
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
                                 p.OriginalItem = Nothing
                             Else
-                                Core.Player.Inventory.AddItem(p.Item.ID, 1)
+                                Core.Player.Inventory.AddItem(p.OriginalItem.ID, 1)
                                 SoundManager.PlaySound("item_found", True)
-                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.Item, 1))
-                                p.Item = p.OriginalItem
-                                p.Item.AdditionalData = p.OriginalItem.AdditionalData
+                                Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
                                 p.OriginalItem = Nothing
                             End If
                         End If
