@@ -7,7 +7,7 @@ Namespace Items.Wings
 
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property Description As String = "It's a feather that sticks to other feathers, but it's just a regular feather and has no effect on Pokémon."
+        Public Overrides ReadOnly Property Description As String = "It's a feather that sticks to other feathers, a Pokémon that holds it will find more feathers."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
         Public Overrides ReadOnly Property FlingDamage As Integer = 20
 

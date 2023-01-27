@@ -6,7 +6,7 @@ Namespace Items.Stones
         Inherits Item
 
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 300
-        Public Overrides ReadOnly Property Description As String = "It's a stone that sticks to other stones, but it's just a regular rock and has no effect on Pokémon."
+        Public Overrides ReadOnly Property Description As String = "It's a stone that sticks to other stones, a Pokémon that holds it will find more stones."
         Public Overrides ReadOnly Property CanBeUsed As Boolean = False
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
 
