@@ -214,15 +214,7 @@
         End Function
 
         Private Function GetBattleMapOffset() As Vector3
-            Dim v As New Vector3(0)
-            Dim s As Screen = Core.CurrentScreen
-            While s.Identification <> Screen.Identifications.BattleScreen And Not s.PreScreen Is Nothing
-                s = s.PreScreen
-            End While
-            If s.Identification = Screen.Identifications.BattleScreen Then
-                v = CType(s, BattleScreen).BattleMapOffset
-            End If
-            Return v
+            Return BattleScreen.BattleMapOffset
         End Function
 
         Public Overrides ReadOnly Property CPosition() As Vector3
