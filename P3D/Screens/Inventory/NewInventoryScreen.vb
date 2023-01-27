@@ -909,6 +909,7 @@ Public Class NewInventoryScreen
             Select Case _infoItemOptionsNormal(_infoItemOptionSelection)
                 Case INFO_ITEM_OPTION_USE
                     cItem.Use()
+                    LoadItems()
                 Case INFO_ITEM_OPTION_GIVE
                     Dim selScreen = New PartyScreen(Core.CurrentScreen) With {.Mode = ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf GiveItemHandler

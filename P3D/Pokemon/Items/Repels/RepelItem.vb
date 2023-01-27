@@ -17,7 +17,6 @@
                 Dim t As String = Core.Player.Name & " used a~" & Name & "."
                 t &= RemoveItem()
                 Screen.TextBox.Show(t, {}, True, True)
-                CType(CurrentScreen, NewInventoryScreen).LoadItems()
             Else
                 Screen.TextBox.Show("The Repel is still~in effect.", {}, True, True)
             End If
