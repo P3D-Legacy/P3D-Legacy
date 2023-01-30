@@ -99,6 +99,13 @@ Public Class PlayerInventory
                     End If
                 End If
             Next
+        Else
+            For Each c As ItemContainer In Me
+                If c.ItemID = ID Then
+                    Me.Remove(c)
+                    Exit Sub
+                End If
+            Next
         End If
     End Sub
 
