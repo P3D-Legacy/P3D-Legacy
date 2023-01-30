@@ -48,9 +48,6 @@ Namespace Items.Medicine
 
                             Dim t As String = Me.RemoveItem()
                             If t <> "" Then
-                                If t.StartsWith("*") Then
-                                    t.Remove(0, 1)
-                                End If
                                 s &= "@text.show(" & t & ")" & Environment.NewLine
                             End If
                             removedItem = True
@@ -58,7 +55,7 @@ Namespace Items.Medicine
                             Pokemon.Attacks.Add(Pokemon.AttackLearns(Pokemon.Level))
 
                             s &= "@sound.play(success_small,1)" & Environment.NewLine &
-                                 "@text.show(" & Pokemon.GetDisplayName() & " learned~" & Pokemon.AttackLearns(Pokemon.Level).Name & "!*" & Me.RemoveItem() & ")" & Environment.NewLine
+                                 "@text.show(" & Pokemon.GetDisplayName() & " learned~" & Pokemon.AttackLearns(Pokemon.Level).Name & "!" & Me.RemoveItem() & ")" & Environment.NewLine
                             removedItem = True
                             PlayerStatistics.Track("Moves learned", 1)
                         End If
