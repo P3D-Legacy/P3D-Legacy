@@ -5381,7 +5381,7 @@
 
                         BattleScreen.BattleQuery.AddRange({cq1, cq2})
 
-                        If BattleScreen.OppFaint = False Then
+                        If BattleScreen.OppFaint = False AndAlso OppStep.StepType <> RoundConst.StepTypes.Switch Then
                             StartRound(BattleScreen)
                         End If
                         BattleScreen.ClearMainMenuTime = True
