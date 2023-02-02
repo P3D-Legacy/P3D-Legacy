@@ -123,6 +123,18 @@ Namespace BattleSystem.Moves.Psychic
                 End If
                 p.Item = i2
                 op.Item = i1
+
+                If p.Item IsNot Nothing AndAlso p.OriginalItem IsNot Nothing Then
+                    If p.Item.ID = p.OriginalItem.ID AndAlso p.Item.AdditionalData = p.OriginalItem.AdditionalData Then
+                        p.OriginalItem = Nothing
+                    End If
+                End If
+                If op.Item IsNot Nothing AndAlso op.OriginalItem IsNot Nothing Then
+                    If op.Item.ID = op.OriginalItem.ID AndAlso op.Item.AdditionalData = op.OriginalItem.AdditionalData Then
+                        p.OriginalItem = Nothing
+                    End If
+                End If
+
                 BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " switched items with " & op.GetDisplayName() & "."))
             Else
                 BattleScreen.BattleQuery.Add(New TextQueryObject(Me.Name & " failed!"))

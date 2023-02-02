@@ -998,13 +998,17 @@ Public Class Pokemon
             _originalNumber = -1
         End If
 
+        If Not _originalItem Is Nothing Then
+            Me._originalItem = Nothing
+        End If
+
         If Not _originalType1 Is Nothing Then
-            Me.Type1 = _originalType1
+            Me.Type1.Type = _originalType1.Type
             _originalType1 = Nothing
         End If
 
         If Not _originalType2 Is Nothing Then
-            Me.Type2 = _originalType2
+            Me.Type2.Type = _originalType2.Type
             _originalType2 = Nothing
         End If
 
@@ -1162,9 +1166,7 @@ Public Class Pokemon
             Return Me._originalItem
         End Get
         Set(value As Item)
-            If Me._originalItem Is Nothing Then
-                Me._originalItem = value
-            End If
+            Me._originalItem = value
         End Set
     End Property
 
