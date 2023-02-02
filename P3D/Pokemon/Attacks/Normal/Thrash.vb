@@ -93,7 +93,18 @@
             End If
 
         End Sub
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim thrash As Integer = BattleScreen.FieldEffects.OwnThrash
+            If own = False Then
+                thrash = BattleScreen.FieldEffects.OppThrash
+            End If
 
+            If thrash > 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
         Public Overrides Sub MoveHasNoEffect(own As Boolean, BattleScreen As BattleScreen)
             Interruption(own, BattleScreen)
         End Sub

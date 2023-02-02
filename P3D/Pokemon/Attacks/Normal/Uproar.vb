@@ -63,6 +63,18 @@
                 End If
             End If
         End Sub
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim uproar As Integer = BattleScreen.FieldEffects.OwnUproar
+            If own = False Then
+                uproar = BattleScreen.FieldEffects.OwnUproar
+            End If
+
+            If uproar > 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
 
         Private Sub Interruption(own As Boolean, BattleScreen As BattleScreen)
             Dim p As Pokemon = BattleScreen.OwnPokemon

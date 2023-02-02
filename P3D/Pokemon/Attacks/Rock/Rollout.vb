@@ -101,6 +101,18 @@ Namespace BattleSystem.Moves.Rock
                 End If
             End If
         End Sub
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim rollout As Integer = BattleScreen.FieldEffects.OwnRolloutCounter
+            If own = False Then
+                rollout = BattleScreen.FieldEffects.OppRolloutCounter
+            End If
+
+            If rollout > 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
 
         Private Sub Interruption(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             If own = True Then

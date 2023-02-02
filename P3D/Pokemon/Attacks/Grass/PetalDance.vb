@@ -94,7 +94,18 @@
                 BattleScreen.FieldEffects.OppPetalDance = 0
             End If
         End Sub
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim petalDance As Integer = BattleScreen.FieldEffects.OwnPetalDance
+            If own = False Then
+                petalDance = BattleScreen.FieldEffects.OppPetalDance
+            End If
 
+            If petalDance > 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
         Public Overrides Sub MoveHasNoEffect(own As Boolean, BattleScreen As BattleScreen)
             Interruption(own, BattleScreen)
         End Sub

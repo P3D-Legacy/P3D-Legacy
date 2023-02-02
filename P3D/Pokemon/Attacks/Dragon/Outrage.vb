@@ -71,6 +71,18 @@
                 End If
             End If
         End Sub
+        Public Overrides Function DeductPP(own As Boolean, BattleScreen As BattleScreen) As Boolean
+            Dim outrage As Integer = BattleScreen.FieldEffects.OwnOutrage
+            If own = False Then
+                outrage = BattleScreen.FieldEffects.OppOutrage
+            End If
+
+            If outrage > 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
 
         Private Sub Interruption(ByVal own As Boolean, ByVal BattleScreen As BattleScreen)
             Dim outrage As Integer = 0
