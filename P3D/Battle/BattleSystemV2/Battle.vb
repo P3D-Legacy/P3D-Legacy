@@ -2008,12 +2008,12 @@
                     If p.Ability.Name.ToLower() = "protean" Then
                         If p.Type1.Type <> moveUsed.Type.Type Then
                             If p.OriginalType1 Is Nothing Then
-                                p.OriginalType1 = p.Type1
+                                p.OriginalType1 = New Element(p.Type1.Type)
                             End If
                             p.Type1.Type = moveUsed.Type.Type
                             If p.Type2.Type <> Element.Types.Blank Then
                                 If p.OriginalType2 Is Nothing Then
-                                    p.OriginalType2 = p.Type2
+                                    p.OriginalType2 = New Element(p.Type2.Type)
                                 End If
                                 p.Type2.Type = Element.Types.Blank
                             End If
