@@ -53,15 +53,13 @@ Move|37,38
 Move|41,387
 Move|45,376
 TradeValue|25
-EvolutionCondition|134,item,24,item
-EvolutionCondition|135,item,23,item
 EvolutionCondition|136,item,22,item
-EvolutionCondition|470,item,34,item
-EvolutionCondition|471,item,593,item
-EvolutionCondition|196,daytime,1;2,level
+EvolutionCondition|135,item,23,item
+EvolutionCondition|134,item,24,item
 EvolutionCondition|197,daytime,0;3,level
-EvolutionCondition|196,friendship,220,level
 EvolutionCondition|197,friendship,220,level
+EvolutionCondition|196,daytime,1;2,level
+EvolutionCondition|196,friendship,220,level
 EvolutionCondition|470,location,Ilex Forest,level
 EvolutionCondition|471,location,Ice Path,level
 EvolutionCondition|700,inpartytype,fairy,level
