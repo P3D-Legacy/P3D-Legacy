@@ -222,7 +222,7 @@ Public Class NameObjectScreen
     ''' <remarks>Only numbers and alphabetic characters are allowed (0-9, a-z, A-Z)</remarks>
     Private Function ReplaceInvalidChars(ByVal text As String) As String
         ' Creating the char array:
-        Dim chars() As Char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray()
+        Dim chars() As Char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ".ToCharArray()
 
         ' Create a new string to store the "purified" text in. YOU SHALL NOT PASS, EXTENDED LATIN.
         Dim newText As String = ""
@@ -243,9 +243,17 @@ Public Class NameObjectScreen
             If _currentText <> "" Then
                 If _renamePokemon = True Then
                     If _pokemon.GetName() <> _currentText Then
+                        ' Remove spaces at the end
+                        While _currentText.EndsWith(" ")
+                            _currentText = _currentText.Remove(_currentText.Length - 1, 1)
+                        End While
                         _pokemon.NickName = _currentText
                     End If
                 Else
+                    ' Remove spaces at the end
+                    While _currentText.EndsWith(" ")
+                        _currentText = _currentText.Remove(_currentText.Length - 1, 1)
+                    End While
                     Me._acceptName(_currentText)
                 End If
 
@@ -255,7 +263,11 @@ Public Class NameObjectScreen
         Else
             Me._askedRename = True
             If ControllerHandler.IsConnected() = True Then
-                Core.SetScreen(New InputScreen(Me, Me._defaultName, InputScreen.InputModes.Name, Me._defaultName, 14, New List(Of Texture2D), AddressOf Me.GetControllerInput))
+                If _pokemon IsNot Nothing Then
+                    Core.SetScreen(New InputScreen(Me, Me._defaultName, InputScreen.InputModes.Pokemon, Me._defaultName, 14, New List(Of Texture2D), AddressOf Me.GetControllerInput))
+                Else
+                    Core.SetScreen(New InputScreen(Me, Me._defaultName, InputScreen.InputModes.Name, Me._defaultName, 14, New List(Of Texture2D), AddressOf Me.GetControllerInput))
+                End If
             End If
         End If
     End Sub
@@ -270,7 +282,7 @@ Public Class NameObjectScreen
     End Sub
 
     Public Sub GetControllerInput(ByVal input As String)
-        Me._currentText = input
+        Me._currentText = ReplaceInvalidChars(input)
     End Sub
 
 End Class

@@ -8,6 +8,7 @@
         Text = 0
         Numbers = 1
         Name = 2
+        Pokemon = 3
     End Enum
 
     Dim DefaultName As String = ""
@@ -63,7 +64,7 @@
         Select Case Me.InputMode
             Case InputModes.Text
                 Me.InitializeText()
-            Case InputModes.Name
+            Case InputModes.Name, InputModes.Pokemon
                 Me.InitializeName()
             Case InputModes.Numbers
                 Me.InitializeNumbers()
@@ -101,7 +102,13 @@
     End Sub
 
     Private Sub InitializeName()
-        Dim chars() As String = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", " ", " ", " ", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", " ", "'", "-", "u", "v", "w", "x", "y", "z", " ", " ", " ", " ", "!", "?", "_"}
+        Dim chars() As String
+        If InputMode = InputModes.Name Then
+            chars = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", " ", ".", ",", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", " ", "'", "-", "u", "v", "w", "x", "y", "z", " ", " ", " ", " ", "!", "?", "_"}
+        Else
+            chars = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", " ", " ", " ", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", " ", " ", " ", "u", "v", "w", "x", "y", "z", " ", " ", " ", " ", " ", " ", " "}
+        End If
+
         Dim x As Integer = 0
         Dim y As Integer = 0
 
