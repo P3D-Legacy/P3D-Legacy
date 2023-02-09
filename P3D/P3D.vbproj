@@ -18806,6 +18806,9 @@
     <Content Include="Content\Textures\Emblem\ancestor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\Emblem\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\Emblem\beast.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
