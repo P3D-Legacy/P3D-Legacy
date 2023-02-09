@@ -346,7 +346,7 @@ Public Class MusicManager
         If Not song Is Nothing Then
 
             Logger.Debug($"Play song [{song.Name}]")
-            If Not outputDevice Is Nothing Then
+            If outputDevice IsNot Nothing Then
                 outputDevice.Dispose()
             End If
             outputDevice = New WaveOutEvent()
@@ -363,9 +363,16 @@ Public Class MusicManager
                 audioFileWMA = New MediaFoundationReader(song.Song)
                 _stream = New NAudio.Wave.WaveChannel32(New LoopStream(audioFileWMA, song.IsLoop))
             End If
-            outputDevice.Init(_stream)
-            If Paused = False Then
-                outputDevice.Play()
+            Try
+                outputDevice.Init(_stream)
+            Catch ex As Exception
+                Logger.Log(Logger.LogTypes.ErrorMessage, "No usable audio device")
+                outputDevice = Nothing
+            End Try
+            If outputDevice IsNot Nothing Then
+                If Paused = False Then
+                    outputDevice.Play()
+                End If
             End If
             _stream.Volume = Volume * MasterVolume
             _currentSongName = song.Name
