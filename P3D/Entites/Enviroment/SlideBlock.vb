@@ -70,6 +70,8 @@
 
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
             Return True
+        Else
+            Return True
         End If
 
         facing = CInt(Me.Rotation.Y / MathHelper.PiOver2)
