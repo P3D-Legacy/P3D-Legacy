@@ -5,6 +5,7 @@
     Dim TempScriptEntity As ScriptBlock = Nothing
 
     Public Overrides Function WalkAgainstFunction() As Boolean
+        CType(Screen.Camera, OverworldCamera).PreventMovement = True
         Dim facing As Integer = CInt(Me.Rotation.Y / MathHelper.PiOver2)
         facing -= 2
         If facing < 0 Then
@@ -59,7 +60,8 @@
                 "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",0," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
                 "@overworldpokemon.hide" & Environment.NewLine &
                 "@player.move(1)" & Environment.NewLine &
-                "@overworldpokemon.hide" & Environment.NewLine
+                "@overworldpokemon.hide" & Environment.NewLine &
+                "@player.allowmovement" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then
                 s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
@@ -71,6 +73,7 @@
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
             Return True
         Else
+            CType(Screen.Camera, OverworldCamera).PreventMovement = False
             Return True
         End If
 
@@ -79,9 +82,11 @@
             facing += 4
         End If
         If Screen.Camera.GetPlayerFacingDirection() = facing Then
+            CType(Screen.Camera, OverworldCamera).PreventMovement = False
             Return False
         End If
 
+        CType(Screen.Camera, OverworldCamera).PreventMovement = False
         Return True
     End Function
 
@@ -103,6 +108,7 @@
     End Function
 
     Public Overrides Sub WalkOntoFunction()
+        CType(Screen.Camera, OverworldCamera).PreventMovement = True
         Dim facing As Integer = CInt(Me.Rotation.Y / MathHelper.PiOver2)
 
         Screen.Camera.PlannedMovement = Vector3.Zero
@@ -152,7 +158,8 @@
             "@player.move(1)" & Environment.NewLine &
             "@player.setmovement(" & Screen.Camera.GetMoveDirection().X & ",-1," & Screen.Camera.GetMoveDirection().Z & ")" & Environment.NewLine &
             "@player.move(" & Steps & ")" & Environment.NewLine &
-            "@overworldpokemon.hide" & Environment.NewLine
+            "@overworldpokemon.hide" & Environment.NewLine &
+            "@player.allowmovement" & Environment.NewLine
 
             If Not Me.TempScriptEntity Is Nothing Then
                 s &= GetScriptStartLine(Me.TempScriptEntity) & Environment.NewLine
@@ -162,6 +169,8 @@
             s &= ":end"
 
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+        Else
+            CType(Screen.Camera, OverworldCamera).PreventMovement = False
         End If
     End Sub
 

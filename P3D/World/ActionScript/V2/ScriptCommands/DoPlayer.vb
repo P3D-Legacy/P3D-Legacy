@@ -228,7 +228,7 @@
 
                     IsReady = True
                 Case "allowmovement"
-                    CType(Screen.Camera, OverworldCamera).PreventMovement = False
+                    CType(CurrentScreen, OverworldScreen).ActionScript.AllowMovementAfterEnd = True
 
                     IsReady = True
                 Case "money", "addmoney"

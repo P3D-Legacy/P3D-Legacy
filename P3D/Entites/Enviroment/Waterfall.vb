@@ -199,7 +199,7 @@
         If Me.ActionValue = 1 Then
             Exit Sub
         End If
-
+        CType(Screen.Camera, OverworldCamera).PreventMovement = True
         Dim isOnTop As Boolean = True
         Dim OnTopcheckPosition As Vector3 = New Vector3(Me.Position.X, Me.Position.Y + 1, Me.Position.Z)
         Dim Oe As Entity = GetEntity(Screen.Level.Entities, OnTopcheckPosition, True, {GetType(Waterfall)})
@@ -234,7 +234,6 @@
             End While
 
             s = "version=2" & Environment.NewLine &
-                "@player.preventmovement" & Environment.NewLine &
                 "@player.stopmovement" & Environment.NewLine &
                 "@player.move(2)" & Environment.NewLine &
                 "@player.setmovement(0,-1,0)" & Environment.NewLine &
@@ -254,6 +253,7 @@
 
         Dim p As Pokemon = ReturnWaterFallPokemonName()
         If Badge.CanUseHMMove(Badge.HMMoves.Waterfall) = True And Not p Is Nothing Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+            CType(Screen.Camera, OverworldCamera).PreventMovement = True
             Dim s As String = ""
 
             Dim pName As String = ""
@@ -284,7 +284,6 @@
                 End If
             End While
             s = "version=2" & Environment.NewLine &
-                "@player.preventmovement" & Environment.NewLine &
                 "@player.stopmovement" & Environment.NewLine &
                 "@pokemon.cry(" & pNumber & ")" & Environment.NewLine &
                 "@sound.play(select)" & Environment.NewLine &
