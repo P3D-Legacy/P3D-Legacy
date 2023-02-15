@@ -65,7 +65,8 @@ Monitore:
 NPCs:
 {"NPC"{NPC[{"Position"{sngArr[16,0,3]}}{"TextureID"{str[nilllzz]}}{"ID"{int[0]}}{"Name"{str[nilllzz]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\nilllzz]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[2,0,3]}}{"TextureID"{str[darkfire]}}{"ID"{int[1]}}{"Name"{str[darkfire]}}{"Action"{int[1]}}{"AdditionalValue"{str[kolben\darkfire]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
-{"EntityField"{ENT[{"EntityID"{str[ScriptBlock]}}{"Size"{intArr[1,7]}}{"Position"{sngArr[15,0,0]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[kolben\nilllzzhide]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"EntityID"{str[ScriptBlock]}}{"Size"{intArr[1,2]}}{"Position"{sngArr[15,0,0]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[kolben\nilllzzhide]}}{"Rotation"{int[0]}}]}}
+{"EntityField"{ENT[{"EntityID"{str[ScriptBlock]}}{"Size"{intArr[1,2]}}{"Position"{sngArr[15,0,5]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[kolben\nilllzzhide]}}{"Rotation"{int[0]}}]}}
 {"EntityField"{ENT[{"EntityID"{str[ScriptBlock]}}{"Size"{intArr[1,7]}}{"Position"{sngArr[14,0,0]}}{"TexturePath"{str[Center]}}{"Textures"{recArr[[0,48,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[kolben\nilllzzunhide]}}{"Rotation"{int[0]}}]}}
 
 shelf:
