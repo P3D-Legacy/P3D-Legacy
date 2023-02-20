@@ -1,6 +1,6 @@
 version=2
 
-#Warp Player/NPCs
+#Warp Player\NPCs
 @screen.fadeout
 @player.warp(18,0.1,25)
 @player.turnto(0)
