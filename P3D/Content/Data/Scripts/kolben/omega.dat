@@ -76,7 +76,7 @@ version=2
 			@text.show(Omega: It's a pleasure~to see you once again.*Say, do you want a real~battle now?)
 			@options.show(Yes,No)
 				:when:Yes
-					@script.start(kolben/omega2)
+					@script.start(kolben\omega2)
 				:when:No			
 					@text.show(Oke.)
 					:end

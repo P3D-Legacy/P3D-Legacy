@@ -84,5 +84,5 @@ Warps:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[4,0,10]}}{"TexturePath"{str[park]}}{"Textures"{recArr[[64,48,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[liberty\interior.dat,4,-1.9,0,0]}}{"Rotation"{int[0]}}]}}
 
 NPC:
-{"NPC"{NPC[{"Position"{sngArr[4,0,3]}}{"TextureID"{str[[POKEMON|N]494]}}{"AnimateIdle"{bool[1]}}{"ID"{int[0]}}{"Name"{str[Rival]}}{"Action"{int[1]}}{"AdditionalValue"{str[liberty/victini]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[4,0,3]}}{"TextureID"{str[[POKEMON|N]494]}}{"AnimateIdle"{bool[1]}}{"ID"{int[0]}}{"Name"{str[Rival]}}{"Action"{int[1]}}{"AdditionalValue"{str[liberty\victini]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[4,-3,5]}}{"TextureID"{str[Petrel]}}{"ID"{int[6]}}{"Name"{str[Petrel]}}{"Action"{int[0]}}{"AdditionalValue"{str[Derp]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[[17,2,2,1]]}}]}}
