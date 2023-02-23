@@ -253,7 +253,15 @@ Public MustInherit Class Item
     ''' </summary>
     Public Function RemoveItem() As String
         Core.Player.Inventory.RemoveItem(Me.ID, 1)
-        If Core.Player.Inventory.GetItemAmount(Me.ID) = 0 Then
+        Dim s As Screen = Core.CurrentScreen
+        While Not s.PreScreen Is Nothing And s.Identification <> Screen.Identifications.InventoryScreen
+            s = s.PreScreen
+        End While
+
+        If s.Identification = Screen.Identifications.InventoryScreen Then
+            CType(s, NewInventoryScreen).LoadItems()
+        End If
+        If Core.Player.Inventory.GetItemAmount(Me.ID) <= 0 Then
             Return "*There are no~" & Me.PluralName & " left."
         End If
         Return ""
