@@ -127,6 +127,7 @@
                         Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                         cq2.PassThis = True
                         TempScreen.BattleQuery.AddRange({cq1, cq2})
+                        TempScreen.HasSwitchedOwn = False
                         TempScreen.Battle.StartRound(TempScreen)
                         _ready = True
                     End If
@@ -140,6 +141,7 @@
                 Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                 cq2.PassThis = True
                 TempScreen.BattleQuery.AddRange({cq1, cq2})
+                TempScreen.HasSwitchedOwn = False
                 TempScreen.Battle.StartRound(TempScreen)
                 _ready = True
             End If

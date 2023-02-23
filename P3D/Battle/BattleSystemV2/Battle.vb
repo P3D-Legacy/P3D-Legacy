@@ -5381,7 +5381,7 @@
 
                         BattleScreen.BattleQuery.AddRange({cq1, cq2})
 
-                        If BattleScreen.OppFaint = False AndAlso OppStep.StepType <> RoundConst.StepTypes.Switch Then
+                        If BattleScreen.OppFaint = False Then
                             StartRound(BattleScreen)
                         End If
                         BattleScreen.ClearMainMenuTime = True
@@ -8024,8 +8024,10 @@
                 Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
                 cq2.PassThis = True
                 BattleScreen.BattleQuery.AddRange({cq1, cq2})
-                BattleScreen.HasSwitchedOwn = False
-                BattleScreen.Battle.StartRound(BattleScreen)
+                If Core.Player.BattleStyle = 1 Then
+                    BattleScreen.HasSwitchedOwn = False
+                    StartRound(BattleScreen)
+                End If
             End With
         End Sub
 
