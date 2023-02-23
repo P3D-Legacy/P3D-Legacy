@@ -7,7 +7,7 @@ version=2
 		@text.show(Something seems wrong.*Maybe you should come~back with less Pokémon?)
 		:end
 	:else
-		@script.start(ilex/spiky)
+		@script.start(ilex\spiky)
 		:end
 	:endif
 :endif
