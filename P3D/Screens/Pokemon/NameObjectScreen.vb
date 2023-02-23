@@ -240,20 +240,21 @@ Public Class NameObjectScreen
 
     Private Sub ClickYes()
         If _askedRename = True Then
+            ' Remove spaces at the start
+            While _currentText.StartsWith(" ")
+                _currentText = _currentText.Remove(0, 1)
+            End While
+            ' Remove spaces at the end
+            While _currentText.EndsWith(" ")
+                _currentText = _currentText.Remove(_currentText.Length - 1, 1)
+            End While
+
             If _currentText <> "" Then
                 If _renamePokemon = True Then
                     If _pokemon.GetName() <> _currentText Then
-                        ' Remove spaces at the end
-                        While _currentText.EndsWith(" ")
-                            _currentText = _currentText.Remove(_currentText.Length - 1, 1)
-                        End While
                         _pokemon.NickName = _currentText
                     End If
                 Else
-                    ' Remove spaces at the end
-                    While _currentText.EndsWith(" ")
-                        _currentText = _currentText.Remove(_currentText.Length - 1, 1)
-                    End While
                     Me._acceptName(_currentText)
                 End If
 
