@@ -231,7 +231,7 @@
         Dim delay As Single = 2.0F
 
         Public Sub FinishOppSwitch(BattleScreen As BattleScreen)
-            BattleScreen.OppPokemonNPC.Position.Y = 0
+            BattleScreen.OppPokemonNPC.Position.Y = 0 + BattleScreen.BattleMapOffset.Y
             BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
             Dim oppModel As String = BattleScreen.GetModelName(False)
             If oppModel = "" Then

@@ -813,6 +813,8 @@
                             levelfile = battleMapData(0)
                             BattleMapOffset = New Vector3(CSng(battleMapData(1).Replace(".", GameController.DecSeparator)), CSng(battleMapData(2).Replace(".", GameController.DecSeparator)), CSng(battleMapData(3).Replace(".", GameController.DecSeparator)))
                     End Select
+                Else
+                    BattleMapOffset = New Vector3(0)
                 End If
 
                 If File.Exists(GameController.GamePath & "\Content\Data\maps\battle\" & levelfile) = False And File.Exists(GameController.GamePath & GameModeManager.ActiveGameMode.MapPath & "battle\" & levelfile) = False Then
