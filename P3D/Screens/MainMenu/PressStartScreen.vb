@@ -1532,7 +1532,7 @@ Public Class GameModeSelectionScreen
             Dim ButtonAccent = Screens.UI.ColorProvider.AccentColor(False, CInt(255))
             If i <> _index Then
                 ButtonColor = New Rectangle(40, 48, 16, 16)
-                ButtonAccent = New Color(84, 198, 216)
+                ButtonAccent = Screens.UI.ColorProvider.MainColor(False, CInt(255))
             End If
 
             Dim displayText = _gameModes(i).Name.CropStringToWidth(FontManager.InGameFont, WIDTH - 32)
@@ -1581,7 +1581,7 @@ Public Class GameModeSelectionScreen
                 SpriteBatch.Draw(_menuTexture, New Rectangle(CInt(x * 16 + displayRect.X), CInt(y * 16) + displayRect.Y - 8, 16, 16), New Rectangle(0, 0, 16, 16), Color.White)
             Next
         Next
-        Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y - 8, displayWidth * 16 + 16, 3), New Color(84, 198, 216))
+        Canvas.DrawRectangle(New Rectangle(displayRect.X, displayRect.Y - 8, displayWidth * 16 + 16, 3), Screens.UI.ColorProvider.AccentColor(False, CInt(255)))
 
         SpriteBatch.DrawString(FontManager.InGameFont, tempGameModesDisplay, New Vector2(displayRect.X + 32 + 2, displayRect.Y + 32 + 2), Color.Black)
         SpriteBatch.DrawString(FontManager.InGameFont, tempGameModesDisplay, New Vector2(displayRect.X + 32, displayRect.Y + 32), Color.White)
