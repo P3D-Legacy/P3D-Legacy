@@ -1906,14 +1906,12 @@
 
                                 'Remove fainted Pokémon from player's team if the DeathInsteadOfFaint GameRule is activated.
                                 If CBool(GameModeManager.GetGameRuleValue("DeathInsteadOfFaint", "0")) = True Then
-                                    For i = 0 To Core.Player.Pokemons.Count - 1
-                                        If i <= Core.Player.Pokemons.Count - 1 Then
-                                            If Core.Player.Pokemons(i).HP <= 0 Or Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted Then
-                                                Core.Player.Pokemons.RemoveAt(i)
-                                                i -= 1
-                                            End If
+                                    If i <= Core.Player.Pokemons.Count - 1 Then
+                                        If Core.Player.Pokemons(i).HP <= 0 Or Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted Then
+                                            Core.Player.Pokemons.RemoveAt(i)
+                                            i -= 1
                                         End If
-                                    Next
+                                    End If
                                 End If
                             End If
                             If Core.Player.CountFightablePokemon = 0 Then
