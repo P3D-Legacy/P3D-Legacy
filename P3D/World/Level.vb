@@ -849,7 +849,9 @@ Public Class Level
         Me._backdropRenderer.Update()
 
         Me.UpdatePlayerWarp()
-        Me._pokemonEncounter.TriggerBattle()
+        If Core.Player.Pokemons.Count > 0 Then
+            Me._pokemonEncounter.TriggerBattle()
+        End If
 
         ' Reload map from file (Debug or Sandbox Mode):
         If GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
