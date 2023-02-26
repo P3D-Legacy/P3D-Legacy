@@ -676,8 +676,8 @@
                     If BattleScreen.OwnFaint Then
                         _mainMenuIndex = 0
                         _mainMenuNextIndex = 0
-                        _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 0, AddressOf MainMenuOpenPokemon))
                         If BattleScreen.IsRemoteBattle AndAlso Not BattleScreen.IsHost Then
+                            _mainMenuItemList.Add(New MainMenuItem(1, "Pokémon", 0, AddressOf MainMenuOpenPokemon))
                             BattleScreen.OwnFaint = False
                         End If
                     ElseIf BattleScreen.OppFaint And BattleScreen.IsRemoteBattle Then
@@ -1013,27 +1013,29 @@
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
             If PokeIndex = TempBattleScreen.OwnPokemonIndex Then
-                Screen.TextBox.Show(Pokemon.GetDisplayName() & " is already~in battle!", {}, True, False)
+                If Pokemon.Status <> P3D.Pokemon.StatusProblems.Fainted Then
+                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " is already~in battle!", {}, True, False)
+                Else
+                    Screen.TextBox.Show(Pokemon.GetDisplayName() & " is fainted!", {}, True, False)
+                End If
             Else
                 If Pokemon.IsEgg() = False Then
                     If Pokemon.Status <> P3D.Pokemon.StatusProblems.Fainted Then
                         If BattleCalculation.CanSwitch(TempBattleScreen, True) = False Then
                             Screen.TextBox.Show(Localization.GetString("battle_main_cannot_switch", "Cannot switch out."), {}, True, False)
                         Else
-                            If TempBattleScreen.OwnPokemonIndex <> PokeIndex Then
-                                If TempBattleScreen.IsRemoteBattle = True And TempBattleScreen.IsHost = False Then
-                                    TempBattleScreen.OppFaint = False
-                                    TempBattleScreen.OwnStatistics.Switches += 1
-                                    TempBattleScreen.BattleQuery.Clear()
-                                    TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
-                                    TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                                    TempBattleScreen.SendClientCommand("SWITCH|" & PokeIndex.ToString())
-                                Else
-                                    TempBattleScreen.BattleQuery.Clear()
-                                    TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
-                                    TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                                    TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Switch, .Argument = PokeIndex.ToString()})
-                                End If
+                            If TempBattleScreen.IsRemoteBattle = True And TempBattleScreen.IsHost = False Then
+                                TempBattleScreen.OppFaint = False
+                                TempBattleScreen.OwnStatistics.Switches += 1
+                                TempBattleScreen.BattleQuery.Clear()
+                                TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
+                                TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+                                TempBattleScreen.SendClientCommand("SWITCH|" & PokeIndex.ToString())
+                            Else
+                                TempBattleScreen.BattleQuery.Clear()
+                                TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
+                                TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
+                                TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New Battle.RoundConst With {.StepType = Battle.RoundConst.StepTypes.Switch, .Argument = PokeIndex.ToString()})
                             End If
                         End If
                     Else

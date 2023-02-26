@@ -94,6 +94,7 @@
                                 ClickHandler(Me)
                             End If
                             Me.Visible = False
+                            Exit For
                         End If
                         If Controls.Dismiss(True, True, True) = True Then
                             Me.Index = Me.BackIndex
@@ -102,6 +103,7 @@
                                 ClickHandler(Me)
                             End If
                             Me.Visible = False
+                            Exit For
                         End If
                     Next
                 End If
