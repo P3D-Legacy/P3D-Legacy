@@ -77,16 +77,24 @@
                         Screen.Level.World.Initialize(Screen.Level.EnvironmentType, Screen.Level.WeatherType)
 
                         Dim positionString() As String = Core.Player.LastRestPlacePosition.Split(CChar(","))
-                        CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).YawLocked = False
+                        If PreScreen.Identification = Identifications.BattleScreen Then
+                            CType(BattleScreen.SavedOverworld.Camera, OverworldCamera).YawLocked = False
+                        Else
+                            CType(Screen.Camera, OverworldCamera).YawLocked = False
+                        End If
                         Screen.Camera.Yaw = MathHelper.Pi
                         Screen.Camera.Position = New Vector3(CSng(positionString(0).Replace(".", GameController.DecSeparator)), CSng(positionString(1).Replace(".", GameController.DecSeparator)), CSng(positionString(2).Replace(".", GameController.DecSeparator)))
-                        CType(BattleScreen.SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.Scripts.Clear()
+                        If PreScreen.Identification = Identifications.BattleScreen Then
+                            CType(BattleScreen.SavedOverworld.OverworldScreen, OverworldScreen).ActionScript.Scripts.Clear()
+                        Else
+                            CType(PreScreen, OverworldScreen).ActionScript.Scripts.Clear()
+                        End If
 
                         While Core.CurrentScreen.Identification <> Identifications.OverworldScreen
-                            Core.SetScreen(Core.CurrentScreen.PreScreen)
-                        End While
+                                Core.SetScreen(Core.CurrentScreen.PreScreen)
+                            End While
+                        End If
                     End If
-                End If
             End If
         End If
     End Sub

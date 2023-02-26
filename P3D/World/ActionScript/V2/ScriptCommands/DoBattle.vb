@@ -52,7 +52,7 @@
 
                         CanContinue = False
                     Else
-                        IsReady = True
+                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
                     End If
                 Case "trainer"
                     If Core.Player.Pokemons.Count > 0 Then
@@ -92,7 +92,7 @@
 
                         CanContinue = False
                     Else
-                        IsReady = True
+                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
                     End If
                 Case "wild"
                     ' ID,    Level,  [shiny],    [musicloop],    [introtype]
@@ -177,7 +177,7 @@
 
                         CanContinue = False
                     Else
-                        IsReady = True
+                        Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
                     End If
                 Case "setvar"
                     Dim varname As String = argument.GetSplit(0)

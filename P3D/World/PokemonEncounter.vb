@@ -116,61 +116,67 @@ Public Class PokemonEncounter
     Public Sub TriggerBattle()
         ' If the encounter check is true:
         If Me._levelReference.PokemonEncounterData.EncounteredPokemon = True And Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
-            ' If the player met the set position:
-            If Screen.Camera.Position.X = Me._levelReference.PokemonEncounterData.Position.X And Screen.Camera.Position.Z = Me._levelReference.PokemonEncounterData.Position.Z Then
-                ' Make the player stop and set encounter check to false:
+            If Core.Player.Pokemons.Count = 0 Then
+                Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New BlackOutScreen(Core.CurrentScreen), Color.Black, False))
                 Me._levelReference.PokemonEncounterData.EncounteredPokemon = False
-                Screen.Camera.StopMovement()
+                Exit Sub
+            Else
+                ' If the player met the set position:
+                If Screen.Camera.Position.X = Me._levelReference.PokemonEncounterData.Position.X And Screen.Camera.Position.Z = Me._levelReference.PokemonEncounterData.Position.Z Then
+                    ' Make the player stop and set encounter check to false:
+                    Me._levelReference.PokemonEncounterData.EncounteredPokemon = False
+                    Screen.Camera.StopMovement()
 
-                ' Generate new wild Pokémon:
-                Dim Pokemon As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Me._levelReference.PokemonEncounterData.Method, True, Me._levelReference.PokemonEncounterData.PokeFile)
+                    ' Generate new wild Pokémon:
+                    Dim Pokemon As Pokemon = Spawner.GetPokemon(Screen.Level.LevelFile, Me._levelReference.PokemonEncounterData.Method, True, Me._levelReference.PokemonEncounterData.PokeFile)
 
-                If Not Pokemon Is Nothing And CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = False And CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
-                    Screen.Level.RouteSign.Hide() ' When a battle starts, hide the Route sign.
+                    If Not Pokemon Is Nothing And CType(Core.CurrentScreen, OverworldScreen).TrainerEncountered = False And CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True Then
+                        Screen.Level.RouteSign.Hide() ' When a battle starts, hide the Route sign.
 
-                    ' If the player has a Repel going and the first Pokémon in the party's level is greater than the wild Pokémon's level, don't start the battle:
-                    If Core.Player.RepelSteps > 0 Then
-                        Dim p As Pokemon = Core.Player.GetWalkPokemon()
-                        If Not p Is Nothing Then
-                            If p.Level >= Pokemon.Level Then
-                                Exit Sub
-                            End If
-                        End If
-                    End If
-
-                    ' Cleanse Tag prevents wild Pokémon encounters if held by the first Pokémon in the party:
-                    If Core.Player.Pokemons(0).Level >= Pokemon.Level Then
-                        If Not Core.Player.Pokemons(0).Item Is Nothing Then
-                            If Core.Player.Pokemons(0).Item.ID = 94 Then
-                                If Core.Random.Next(0, 3) = 0 Then
+                        ' If the player has a Repel going and the first Pokémon in the party's level is greater than the wild Pokémon's level, don't start the battle:
+                        If Core.Player.RepelSteps > 0 Then
+                            Dim p As Pokemon = Core.Player.GetWalkPokemon()
+                            If Not p Is Nothing Then
+                                If p.Level >= Pokemon.Level Then
                                     Exit Sub
                                 End If
                             End If
                         End If
-                    End If
 
-                    ' Pure Incense lowers the chance of encountering wild Pokémon if held by the first Pokémon in the party:
-                    If Core.Player.Pokemons(0).Level >= Pokemon.Level Then
-                        If Not Core.Player.Pokemons(0).Item Is Nothing Then
-                            If Core.Player.Pokemons(0).Item.ID = 291 Then
-                                If Core.Random.Next(0, 3) = 0 Then
-                                    Exit Sub
+                        ' Cleanse Tag prevents wild Pokémon encounters if held by the first Pokémon in the party:
+                        If Core.Player.Pokemons(0).Level >= Pokemon.Level Then
+                            If Not Core.Player.Pokemons(0).Item Is Nothing Then
+                                If Core.Player.Pokemons(0).Item.ID = 94 Then
+                                    If Core.Random.Next(0, 3) = 0 Then
+                                        Exit Sub
+                                    End If
                                 End If
                             End If
                         End If
+
+                        ' Pure Incense lowers the chance of encountering wild Pokémon if held by the first Pokémon in the party:
+                        If Core.Player.Pokemons(0).Level >= Pokemon.Level Then
+                            If Not Core.Player.Pokemons(0).Item Is Nothing Then
+                                If Core.Player.Pokemons(0).Item.ID = 291 Then
+                                    If Core.Random.Next(0, 3) = 0 Then
+                                        Exit Sub
+                                    End If
+                                End If
+                            End If
+                        End If
+
+                        ' Register the wild Pokémon as Seen in the Pokédex:
+                        Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, 1)
+
+                        ' Determine wild Pokémon intro type. If it's a Roaming Pokémon battle, set to 12:
+                        Dim introType As Integer = Core.Random.Next(0, 10)
+                        If BattleSystem.BattleScreen.RoamingBattle = True Then
+                            introType = 12
+                        End If
+
+                        Dim b As New BattleSystem.BattleScreen(Pokemon, Core.CurrentScreen, Me._levelReference.PokemonEncounterData.Method)
+                        Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, introType))
                     End If
-
-                    ' Register the wild Pokémon as Seen in the Pokédex:
-                    Core.Player.PokedexData = Pokedex.ChangeEntry(Core.Player.PokedexData, Pokemon.Number, 1)
-
-                    ' Determine wild Pokémon intro type. If it's a Roaming Pokémon battle, set to 12:
-                    Dim introType As Integer = Core.Random.Next(0, 10)
-                    If BattleSystem.BattleScreen.RoamingBattle = True Then
-                        introType = 12
-                    End If
-
-                    Dim b As New BattleSystem.BattleScreen(Pokemon, Core.CurrentScreen, Me._levelReference.PokemonEncounterData.Method)
-                    Core.SetScreen(New BattleIntroScreen(Core.CurrentScreen, b, introType))
                 End If
             End If
         End If
