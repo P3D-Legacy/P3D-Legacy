@@ -27,10 +27,7 @@
 
         If Not parent1 Is Nothing And Not parent2 Is Nothing And EggID <> 0 Then
             Dim p As Pokemon = Pokemon.GetPokemonByID(EggID)
-            p.Generate(1, True)
-            p.EggSteps = 1
-            p.SetCatchInfos(Item.GetItemByID(5), "obtained at")
-            p.CatchBall = Item.GetItemByID(GetEggPokeballID({parent1, parent2}.ToList()))
+            Dim OptionalAdditionalData As String = "xXx"
 
             ' Regional Form check
             If Screen.Level.RegionalForm.Contains(CChar(",")) Then
@@ -70,6 +67,15 @@
                         p.AdditionalData = parent1.AdditionalData
                     End If
             End Select
+
+            If p.AdditionalData <> "" Then
+                OptionalAdditionalData = p.AdditionalData
+            End If
+
+            p.Generate(1, True, OptionalAdditionalData)
+            p.EggSteps = 1
+            p.SetCatchInfos(Item.GetItemByID(5), "obtained at")
+            p.CatchBall = Item.GetItemByID(GetEggPokeballID({parent1, parent2}.ToList()))
 
             p.ReloadDefinitions()
             p.CalculateStats()
