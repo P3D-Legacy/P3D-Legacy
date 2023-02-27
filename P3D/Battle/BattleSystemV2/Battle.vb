@@ -4531,6 +4531,9 @@
                     End If
                 End If
             End If
+            If p.HP <= 0 And cause.Contains("move:") = False Then
+                FaintPokemon(own, BattleScreen, "")
+            End If
         End Sub
 
         Public Sub UseBerry(ByVal own As Boolean, ByVal from As Boolean, ByVal BerryItem As Item, ByVal BattleScreen As BattleScreen, ByVal message As String, ByVal cause As String)

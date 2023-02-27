@@ -87,7 +87,7 @@
                                     Message = f.GetSplit(3, ",")
                                 End If
                             End If
-                            BattleScreen.Battle.ReduceHP(HPAmount, Target, own, BattleScreen, Message, Move.Name.ToLower)
+                            BattleScreen.Battle.ReduceHP(HPAmount, Target, own, BattleScreen, Message, "move:" & Move.Name.ToLower)
                         Case "gainhp", "increasehp", "heal"
                             Dim Target As Boolean = CBool(f.GetSplit(1, ","))
                             Dim HPAmount As Integer = 0
@@ -99,7 +99,7 @@
                                     Message = f.GetSplit(3, ",")
                                 End If
                             End If
-                            BattleScreen.Battle.GainHP(HPAmount, Target, own, BattleScreen, Message, Move.Name.ToLower)
+                            BattleScreen.Battle.GainHP(HPAmount, Target, own, BattleScreen, Message, "move:" & Move.Name.ToLower)
                         Case "endbattle"
                             Dim Blackout As Boolean = False
 
