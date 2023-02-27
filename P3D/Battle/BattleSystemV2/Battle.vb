@@ -7938,6 +7938,10 @@
                     BallThrow.AnimationPlaySound(CStr(BattleScreen.OppPokemon.Number), 0, 0,, True)
                 End If
                 BattleScreen.BattleQuery.Add(BallThrow)
+                Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
+                Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
+                cq2.PassThis = True
+                BattleScreen.BattleQuery.AddRange({cq1, cq2})
             End If
 
             With BattleScreen
@@ -8023,10 +8027,7 @@
                         CureStatusProblem(False, False, BattleScreen, "", "move:healingwish")
                     End If
                 End If
-                Dim cq1 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, True, 16)
-                Dim cq2 As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 16)
-                cq2.PassThis = True
-                BattleScreen.BattleQuery.AddRange({cq1, cq2})
+
                 If Core.Player.BattleStyle = 1 Then
                     BattleScreen.HasSwitchedOwn = False
                     StartRound(BattleScreen)
