@@ -4531,7 +4531,7 @@
                     End If
                 End If
             End If
-            If p.HP <= 0 And cause.Contains("move:") = False Then
+            If p.HP <= 0 And cause.StartsWith("move:") = False And cause.Contains("battledamage") = False Then
                 FaintPokemon(own, BattleScreen, "")
             End If
         End Sub
