@@ -669,10 +669,14 @@ Public Class OverworldCamera
 
     Private Sub FirstPersonMovement()
         Dim pressedDirection As Integer = -1
+        Dim ControllerTurnModifier As Single = 1.0F
+        If ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = True OrElse ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True Then
+            ControllerTurnModifier = 0.25F
+        End If
         If YawLocked = False And Turning = False Then
             If (KeyBoardHandler.KeyDown(KeyBindings.LeftMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickLeft) = True) And Turning = False Then
                 If _freeCameraMode = True Then
-                    Yaw += RotationSpeed * 40.0F
+                    Yaw += RotationSpeed * 40.0F * ControllerTurnModifier
 
                     ClampYaw()
                 Else
@@ -690,7 +694,7 @@ Public Class OverworldCamera
             End If
             If (KeyBoardHandler.KeyDown(KeyBindings.RightMoveKey) = True Or ControllerHandler.ButtonDown(Buttons.RightThumbstickRight) = True) And Turning = False Then
                 If _freeCameraMode = True Then
-                    Yaw -= RotationSpeed * 40.0F
+                    Yaw -= RotationSpeed * 40.0F * ControllerTurnModifier
 
                     ClampYaw()
                 Else
