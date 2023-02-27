@@ -91,7 +91,7 @@
         End Sub
 
         Public Overrides Sub Use()
-            SoundManager.PlaySound("PC\pc_logon", False)
+            SoundManager.PlaySound("PC\LogOn", False)
             Dim selScreen = New PartyScreen(Core.CurrentScreen, Me, AddressOf Me.UseOnPokemon, "Use " & Me.Name, True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
             AddHandler selScreen.SelectedObject, AddressOf UseItemhandler
 
