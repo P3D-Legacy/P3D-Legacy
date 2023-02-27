@@ -234,7 +234,7 @@ Public Class OverworldScreen
             End If
 
             'Open the PokégearScreen:
-            If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Y) = True Then
+            If KeyBoardHandler.KeyPressed(KeyBindings.SpecialKey) = True Or ControllerHandler.ButtonPressed(Buttons.Back) = True Then
                 If NotificationPopupList.Count > 0 Then
                     NotificationPopupList(0).Dismiss()
                 Else
@@ -381,7 +381,7 @@ Public Class OverworldScreen
 
             d.Add(Buttons.X, Localization.GetString("game_interaction_gamemenu", "Game Menu"))
             If Core.Player.HasPokegear = True Then
-                d.Add(Buttons.Y, Localization.GetString("game_interaction_pokegear", "Pokégear"))
+                d.Add(Buttons.Back, Localization.GetString("game_interaction_pokegear", "Pokégear"))
             End If
             d.Add(Buttons.Start, Localization.GetString("game_interaction_pausemenu", "Game Menu"))
 

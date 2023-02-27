@@ -317,7 +317,7 @@ Public MustInherit Class Screen
         'Loop through the buttons and add to the x location.
         For i = 0 To Descriptions.Count - 1
             Select Case Descriptions.Keys(i)
-                Case Buttons.A, Buttons.B, Buttons.X, Buttons.Y, Buttons.Start, Buttons.LeftStick, Buttons.RightStick, Buttons.LeftTrigger, Buttons.RightTrigger
+                Case Buttons.A, Buttons.B, Buttons.X, Buttons.Y, Buttons.Start, Buttons.Back, Buttons.LeftStick, Buttons.RightStick, Buttons.LeftTrigger, Buttons.RightTrigger
                     x -= 32 + 4
                 Case Buttons.LeftShoulder, Buttons.RightShoulder
                     x -= 64 + 4
@@ -373,6 +373,8 @@ Public MustInherit Class Screen
                         t &= "RightTrigger"
                     Case Buttons.Start
                         t &= "Start"
+                    Case Buttons.Back
+                        t &= "Back"
                 End Select
 
                 'Draw the buttons (first, the "shadow" with a black color, then the real button).

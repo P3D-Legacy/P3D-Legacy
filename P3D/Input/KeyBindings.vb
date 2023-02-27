@@ -24,6 +24,7 @@ Public Class KeyBindings
     Public Shared DebugKey As Keys = Keys.F3
     Public Shared LightKey As Keys = Keys.F4
     Public Shared PerspectiveSwitchKey As Keys = Keys.F5
+    Public Shared DisableControllerKey As Keys = Keys.F6
     Public Shared FullScreenKey As Keys = Keys.F11
     Public Shared DebugWalkKey As Keys = Keys.LeftControl
 
@@ -257,6 +258,7 @@ Public Class KeyBindings
                 "[DebugWalkKey]=" & GetKeyName(Keys.LeftControl) & Environment.NewLine &
                 "[LightKey]=" & GetKeyName(Keys.F4) & Environment.NewLine &
                 "[PerspectiveSwitch]=" & GetKeyName(Keys.F5) & Environment.NewLine &
+                "[DisableController]=" & GetKeyName(Keys.F6) & Environment.NewLine &
                 "[FullScreen]=" & GetKeyName(Keys.F11) & Environment.NewLine &
                 "[Enter1]=" & GetKeyName(Keys.Enter) & Environment.NewLine &
                 "[Enter2]=" & GetKeyName(Keys.Space) & Environment.NewLine &
@@ -293,6 +295,7 @@ Public Class KeyBindings
                 "[DebugControl]=" & GetKeyName(DebugKey) & Environment.NewLine &
                 "[LightKey]=" & GetKeyName(LightKey) & Environment.NewLine &
                 "[PerspectiveSwitch]=" & GetKeyName(PerspectiveSwitchKey) & Environment.NewLine &
+                "[DisableController]=" & GetKeyName(DisableControllerKey) & Environment.NewLine &
                 "[FullScreen]=" & GetKeyName(FullScreenKey) & Environment.NewLine &
                 "[Enter1]=" & GetKeyName(EnterKey1) & Environment.NewLine &
                 "[Enter2]=" & GetKeyName(EnterKey2) & Environment.NewLine &
