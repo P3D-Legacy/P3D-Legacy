@@ -60,6 +60,7 @@
         Public OwnPokemonNPC As NPC
         Public OwnTrainerNPC As NPC
         Public OppTrainerNPC As NPC
+        Public OppTrainer2NPC As NPC
 
         Public HasSwitchedOwn As Boolean = False
 
@@ -404,8 +405,15 @@
             OwnTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(10, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {ownSkin, 3, "Player", 2, False, "Still", New List(Of Rectangle)}), NPC)
             Screen.Level.Entities.Add(OwnTrainerNPC)
 
-            OppTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(17, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {Trainer.SpriteName, 1, "Player", 3, False, "Still", New List(Of Rectangle)}), NPC)
-            Screen.Level.Entities.Add(OppTrainerNPC)
+            If Trainer.DoubleTrainer = False Then
+                OppTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(17, 0, 13) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {Trainer.SpriteName, 1, "Player", 3, False, "Still", New List(Of Rectangle)}), NPC)
+                Screen.Level.Entities.Add(OppTrainerNPC)
+            Else
+                OppTrainerNPC = CType(Entity.GetNewEntity("NPC", New Vector3(17, 0, 12.5) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {Trainer.SpriteName, 1, "Player", 3, False, "Still", New List(Of Rectangle)}), NPC)
+                OppTrainer2NPC = CType(Entity.GetNewEntity("NPC", New Vector3(17, 0, 13.5) + BattleMapOffset, {Nothing}, {0, 0}, False, New Vector3(0), New Vector3(1), BaseModel.BillModel, 0, "", True, New Vector3(1), 0, "", "", New Vector3(0), {Trainer.SpriteName2, 1, "Player", 3, False, "Still", New List(Of Rectangle)}), NPC)
+                Screen.Level.Entities.Add(OppTrainerNPC)
+                Screen.Level.Entities.Add(OppTrainer2NPC)
+            End If
 
             Dim cq As ScreenFadeQueryObject = New ScreenFadeQueryObject(ScreenFadeQueryObject.FadeTypes.Vertical, Color.Black, False, 5)
             cq.PassThis = True
