@@ -32,6 +32,7 @@ Public Class OverworldCamera
     Public YawLocked As Boolean = False
     Public ThirdPersonOffset As Vector3 = New Vector3(0F, 0.3F, 1.5F)
     Public IsSliding As Boolean = False
+    Public IsPushingStrengthRock As Boolean = False
 
     'Debug variables
     Public oldDate As Date = Date.Now
@@ -796,7 +797,7 @@ Public Class OverworldCamera
                 Move(walkSteps)
             Else
                 'Walked against something, set player transparent
-                If Screen.Level.Surfing = False Then
+                If Screen.Level.Surfing = False AndAlso IsPushingStrengthRock = False Then
                     If _thirdPerson = True Then
                         If _didWalkAgainst = True Then
                             Screen.Level.OwnPlayer.Opacity = 0.5F

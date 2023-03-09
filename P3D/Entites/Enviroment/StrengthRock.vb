@@ -85,6 +85,7 @@
             newPosition.Z += Screen.Camera.GetMoveDirection().Z
 
             If CheckCollision(newPosition) = True Then
+                CType(Screen.Camera, OverworldCamera).IsPushingStrengthRock = True
                 Me.Moved = 1
                 Me.FaceDirection = Screen.Camera.GetPlayerFacingDirection()
                 SoundManager.PlaySound("destroy", False)

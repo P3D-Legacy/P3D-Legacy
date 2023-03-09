@@ -431,6 +431,9 @@
 
             If Me.Moved <= 0.0F Then
                 Me.Moved = 0.0F
+                If Me.EntityID.ToLower = "strengthrock" Then
+                    CType(Screen.Camera, OverworldCamera).IsPushingStrengthRock = False
+                End If
 
                 Me.Position.X = CInt(Me.Position.X)
                 Me.Position.Z = CInt(Me.Position.Z)
