@@ -115,7 +115,7 @@ Namespace BattleSystem
                 Dim OppAttackChoice As Integer = Core.Random.Next(0, AvailableAttacks.Count)
                 Dim Ready As Boolean = False
                 While Ready = False
-                    If m(OppAttackChoice).Disabled > 0 Then
+                    If m(OppAttackChoice).Disabled > 0 OrElse BattleScreen.FieldEffects.OppTaunt > 0 AndAlso BattleScreen.OppPokemon.Attacks(OppAttackChoice).Category = Attack.Categories.Status Then
                         AvailableAttacks.Remove(OppAttackChoice)
                         If AvailableAttacks.Count > 0 Then
                             OppAttackChoice = AvailableAttacks(Core.Random.Next(0, AvailableAttacks.Count))
@@ -368,16 +368,20 @@ Namespace BattleSystem
 
             'If own pokemon is asleep, try to use Sleep Talk (100%)
             If p.Status = Pokemon.StatusProblems.Sleep And BattleScreen.FieldEffects.OppSleepTurns > 1 And HasMove(m, 214) = True AndAlso m(IDtoMoveIndex(m, 214)).Disabled = 0 Then
-                Return ProduceOppStep(m, IDtoMoveIndex(m, 214))
+                If BattleScreen.FieldEffects.OppTaunt = 0 OrElse m(IDtoMoveIndex(m, 214)).Category <> Attack.Categories.Status Then
+                    Return ProduceOppStep(m, IDtoMoveIndex(m, 214))
+                End If
             End If
 
             'If own pokemon is asleep, try to use Snore (100%)
             If p.Status = Pokemon.StatusProblems.Sleep And BattleScreen.FieldEffects.OppSleepTurns > 1 And HasMove(m, 173) = True AndAlso m(IDtoMoveIndex(m, 173)).Disabled = 0 Then
-                Return ProduceOppStep(m, IDtoMoveIndex(m, 173))
+                If BattleScreen.FieldEffects.OppTaunt = 0 OrElse m(IDtoMoveIndex(m, 173)).Category <> Attack.Categories.Status Then
+                    Return ProduceOppStep(m, IDtoMoveIndex(m, 173))
+                End If
             End If
 
-            'If own pokemon is frozen and has a move to thraw out -> use that move
-            If p.Status = Pokemon.StatusProblems.Freeze Then
+                'If own pokemon is frozen and has a move to thraw out -> use that move
+                If p.Status = Pokemon.StatusProblems.Freeze Then
                 Dim chosenMove As Integer = MoveAI(m, Attack.AIField.ThrawOut)
                 If chosenMove > -1 Then
                     Return ProduceOppStep(m, chosenMove)
@@ -539,8 +543,10 @@ Namespace BattleSystem
             If op.IsType(Element.Types.Grass) = False Then
                 If BattleScreen.FieldEffects.OwnLeechSeed = 0 Then
                     If HasMove(m, 73) = True AndAlso m(IDtoMoveIndex(m, 73)).Disabled = 0 Then
-                        If RPercent(75) = True Then
-                            Return ProduceOppStep(m, IDtoMoveIndex(m, 73))
+                        If BattleScreen.FieldEffects.OppTaunt = 0 OrElse m(IDtoMoveIndex(m, 75)).Category <> Attack.Categories.Status Then
+                            If RPercent(75) = True Then
+                                Return ProduceOppStep(m, IDtoMoveIndex(m, 73))
+                            End If
                         End If
                     End If
                 End If
@@ -549,8 +555,10 @@ Namespace BattleSystem
             'try to use FocusEnergy (50%)
             If BattleScreen.FieldEffects.OppFocusEnergy = 0 Then
                 If HasMove(m, 116) = True AndAlso m(IDtoMoveIndex(m, 116)).Disabled = 0 Then
-                    If RPercent(50) = True Then
-                        Return ProduceOppStep(m, IDtoMoveIndex(m, 116))
+                    If BattleScreen.FieldEffects.OppTaunt = 0 OrElse m(IDtoMoveIndex(m, 116)).Category <> Attack.Categories.Status Then
+                        If RPercent(50) = True Then
+                            Return ProduceOppStep(m, IDtoMoveIndex(m, 116))
+                        End If
                     End If
                 End If
             End If
@@ -643,10 +651,14 @@ Namespace BattleSystem
             'Use LightScreen/Reflect (75%):
             If RPercent(75) = True Then
                 If HasMove(m, 113) = True And op.SpAttack > op.Attack And BattleScreen.FieldEffects.OppLightScreen = 0 AndAlso m(IDtoMoveIndex(m, 113)).Disabled = 0 Then
-                    Return ProduceOppStep(m, IDtoMoveIndex(m, 113))
+                    If BattleScreen.FieldEffects.OppTaunt = 0 OrElse m(IDtoMoveIndex(m, 113)).Category <> Attack.Categories.Status Then
+                        Return ProduceOppStep(m, IDtoMoveIndex(m, 113))
+                    End If
                 End If
                 If HasMove(m, 115) = True And op.Attack > op.SpAttack And BattleScreen.FieldEffects.OppReflect = 0 AndAlso m(IDtoMoveIndex(m, 115)).Disabled = 0 Then
-                    Return ProduceOppStep(m, IDtoMoveIndex(m, 115))
+                    If BattleScreen.FieldEffects.OppTaunt = 0 OrElse m(IDtoMoveIndex(m, 115)).Category <> Attack.Categories.Status Then
+                        Return ProduceOppStep(m, IDtoMoveIndex(m, 115))
+                    End If
                 End If
             End If
 
@@ -654,10 +666,14 @@ Namespace BattleSystem
             ' - Defense Curl + Rollout
             If HasMove(m, 205) = True And HasMove(m, 111) = True Then
                 If BattleScreen.FieldEffects.OppDefenseCurl = 0 AndAlso m(IDtoMoveIndex(m, 111)).Disabled = 0 Then
-                    Return ProduceOppStep(m, IDtoMoveIndex(m, 111))
+                    If BattleScreen.FieldEffects.OppTaunt = 0 OrElse m(IDtoMoveIndex(m, 111)).Category <> Attack.Categories.Status Then
+                        Return ProduceOppStep(m, IDtoMoveIndex(m, 111))
+                    End If
                 Else
-                    If m(IDtoMoveIndex(m, 205)).Disabled = 0 Then
-                        Return ProduceOppStep(m, IDtoMoveIndex(m, 205))
+                    If BattleScreen.FieldEffects.OppTaunt = 0 OrElse m(IDtoMoveIndex(m, 205)).Category <> Attack.Categories.Status Then
+                        If m(IDtoMoveIndex(m, 205)).Disabled = 0 Then
+                            Return ProduceOppStep(m, IDtoMoveIndex(m, 205))
+                        End If
                     End If
                 End If
             End If
@@ -667,7 +683,9 @@ Namespace BattleSystem
             Dim attackDic As New Dictionary(Of Integer, Integer)
             For i = 0 To m.Count - 1
                 If MoveHasAIField(m(i), Attack.AIField.Damage) = True AndAlso m(i).Disabled = 0 Then
-                    attackDic.Add(i, 0)
+                    If BattleScreen.FieldEffects.OppTaunt = 0 OrElse m(IDtoMoveIndex(m, 214)).Category <> Attack.Categories.Status Then
+                        attackDic.Add(i, 0)
+                    End If
                 End If
             Next
             'If has more than 0 attacking moves:
@@ -857,10 +875,13 @@ Namespace BattleSystem
 
         Private Shared Function MoveAI(ByVal m As List(Of Attack), ByVal AIType As Attack.AIField) As Integer
             Dim validMoves As New List(Of Integer)
+            Dim battleScreen As BattleScreen = CType(CurrentScreen, BattleScreen)
             For i = 0 To m.Count - 1
                 If m(i).Disabled = 0 Then
-                    If m(i).AIField1 = AIType Or m(i).AIField2 = AIType Or m(i).AIField3 = AIType Then
-                        validMoves.Add(i)
+                    If battleScreen.FieldEffects.OppTaunt = 0 OrElse m(i).Category <> Attack.Categories.Status Then
+                        If m(i).AIField1 = AIType Or m(i).AIField2 = AIType Or m(i).AIField3 = AIType Then
+                            validMoves.Add(i)
+                        End If
                     End If
                 End If
             Next
