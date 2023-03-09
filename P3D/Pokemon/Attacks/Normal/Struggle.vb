@@ -55,7 +55,7 @@
         End Sub
 
         Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " has no PP left!"))
+            BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " has no usable attacks left!"))
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)

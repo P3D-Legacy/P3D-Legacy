@@ -421,7 +421,26 @@
                 AI_MegaEvolve(BattleScreen)
                 Return TrainerAI.GetAIMove(BattleScreen, OwnStep)
             Else
-                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = BattleScreen.OppPokemon.Attacks(Core.Random.Next(0, BattleScreen.OppPokemon.Attacks.Count))}
+                Dim AvailableAttacks As List(Of Integer) = New List(Of Integer)
+                For i = 0 To BattleScreen.OppPokemon.Attacks.Count - 1
+                    AvailableAttacks.Add(i)
+                Next
+                Dim OppAttackChoice As Integer = Core.Random.Next(0, AvailableAttacks.Count)
+                Dim Ready As Boolean = False
+                While Ready = False
+                    If BattleScreen.OppPokemon.Attacks(OppAttackChoice).Disabled > 0 Then
+                        AvailableAttacks.Remove(OppAttackChoice)
+                        If AvailableAttacks.Count > 0 Then
+                            OppAttackChoice = AvailableAttacks(Core.Random.Next(0, AvailableAttacks.Count))
+                        Else
+                            Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = Attack.GetAttackByID(165)}
+                        End If
+                    Else
+                        Ready = True
+                    End If
+                End While
+
+                Return New RoundConst() With {.StepType = RoundConst.StepTypes.Move, .Argument = BattleScreen.OppPokemon.Attacks(OppAttackChoice)}
             End If
         End Function
 
