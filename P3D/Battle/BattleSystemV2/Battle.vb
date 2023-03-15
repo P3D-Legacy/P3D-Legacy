@@ -2024,7 +2024,7 @@
                     End If
 
                     'Protean Ability:
-                    If p.Ability.Name.ToLower() = "protean" Then
+                    If p.Ability.Name.ToLower() = "protean" AndAlso moveUsed.ID <> 165 Then ''165 = Struggle
                         If p.Type1.Type <> moveUsed.Type.Type OrElse p.Type2.Type <> Element.Types.Blank Then
                             If p.OriginalType1 Is Nothing Then
                                 p.OriginalType1 = New Element(p.Type1.Type)
