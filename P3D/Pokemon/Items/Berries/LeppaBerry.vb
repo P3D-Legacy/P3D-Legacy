@@ -27,7 +27,12 @@ Namespace Items.Berries
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
             Core.SetScreen(New ChooseAttackScreen(Core.CurrentScreen, Core.Player.Pokemons(PokeIndex), True, True, AddressOf UseOnAttack))
-            Return True
+            If Core.CurrentScreen.Identification <> Screen.Identifications.ChooseAttackScreen Then
+                If ChooseAttackScreen.Selected <> -1 Then
+                    Return True
+                End If
+            End If
+            Return False
         End Function
 
         Private Sub UseOnAttack(ByVal Pokemon As Pokemon, ByVal AttackIndex As Integer)
