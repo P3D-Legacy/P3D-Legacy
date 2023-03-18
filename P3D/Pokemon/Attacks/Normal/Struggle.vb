@@ -55,7 +55,11 @@
         End Sub
 
         Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
-            BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " has no usable attacks left!"))
+            Dim p As Pokemon = BattleScreen.OwnPokemon
+            If own = False Then
+                p = BattleScreen.OppPokemon
+            End If
+            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " has no usable attacks left!"))
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
