@@ -875,10 +875,13 @@ Namespace BattleSystem
 
         Private Shared Function MoveAI(ByVal m As List(Of Attack), ByVal AIType As Attack.AIField) As Integer
             Dim validMoves As New List(Of Integer)
-            Dim battleScreen As BattleScreen = CType(CurrentScreen, BattleScreen)
+            Dim _battleScreen As Screen = Core.CurrentScreen
+            While _battleScreen.Identification <> Screen.Identifications.BattleScreen
+                _battleScreen = _battleScreen.PreScreen
+            End While
             For i = 0 To m.Count - 1
                 If m(i).Disabled = 0 Then
-                    If battleScreen.FieldEffects.OppTaunt = 0 OrElse m(i).Category <> Attack.Categories.Status Then
+                    If CType(_battleScreen, BattleScreen).FieldEffects.OppTaunt = 0 OrElse m(i).Category <> Attack.Categories.Status Then
                         If m(i).AIField1 = AIType Or m(i).AIField2 = AIType Or m(i).AIField3 = AIType Then
                             validMoves.Add(i)
                         End If
