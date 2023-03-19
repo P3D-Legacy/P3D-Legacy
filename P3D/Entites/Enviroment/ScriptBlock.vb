@@ -62,11 +62,15 @@
     End Sub
 
     Public Overrides Sub Update()
-        If CType(Screen.Camera, OverworldCamera).IsPushingStrengthRock = False Then
-            If Me.ActivateScript = True And Screen.Camera.Position.X = Me.Position.X And Screen.Camera.Position.Z = Me.Position.Z And CInt(Screen.Camera.Position.Y) = CInt(Me.Position.Y) Then
-                Screen.Camera.StopMovement()
-                ActivateScript = False
-                TriggerScript(False)
+        If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+            If CType(Screen.Camera, OverworldCamera).IsPushingStrengthRock = False Then
+                If Me.ActivateScript = True And Screen.Camera.Position.X = Me.Position.X And Screen.Camera.Position.Z = Me.Position.Z And CInt(Screen.Camera.Position.Y) = CInt(Me.Position.Y) Then
+                    Screen.Camera.StopMovement()
+                    ActivateScript = False
+                    TriggerScript(False)
+                End If
+            Else
+                TriggeredScriptBlock = False
             End If
         Else
             TriggeredScriptBlock = False
