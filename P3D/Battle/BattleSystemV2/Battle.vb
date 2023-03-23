@@ -428,7 +428,7 @@
                 Dim OppAttackChoice As Integer = Core.Random.Next(0, AvailableAttacks.Count)
                 Dim Ready As Boolean = False
                 While Ready = False
-                    If BattleScreen.OppPokemon.Attacks(OppAttackChoice).Disabled > 0 OrElse BattleScreen.FieldEffects.OppTaunt > 0 AndAlso BattleScreen.OppPokemon.Attacks(OppAttackChoice).Category = Attack.Categories.Status Then
+                    If BattleScreen.OppPokemon.Attacks(OppAttackChoice).Disabled > 0 OrElse BattleScreen.FieldEffects.OppTaunt > 0 AndAlso BattleScreen.OppPokemon.Attacks(OppAttackChoice).Category = Attack.Categories.Status Or BattleScreen.OppPokemon.Attacks(OppAttackChoice).CurrentPP <= 0 Then
                         AvailableAttacks.Remove(OppAttackChoice)
                         If AvailableAttacks.Count > 0 Then
                             OppAttackChoice = AvailableAttacks(Core.Random.Next(0, AvailableAttacks.Count))

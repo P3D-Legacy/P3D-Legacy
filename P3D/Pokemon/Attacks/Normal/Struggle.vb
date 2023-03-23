@@ -53,13 +53,22 @@
             Me.UseAccEvasion = False
             '#End
         End Sub
-
+        Public Overrides Function DeductPP(ByVal own As Boolean, ByVal BattleScreen As BattleScreen) As Boolean
+            Return False
+        End Function
         Public Overrides Sub MoveSelected(own As Boolean, BattleScreen As BattleScreen)
             Dim p As Pokemon = BattleScreen.OwnPokemon
-            If own = False Then
-                p = BattleScreen.OppPokemon
+            If own = True Then
+                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " has no usable attacks left!"))
             End If
-            BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " has no usable attacks left!"))
+        End Sub
+
+        Public Overrides Sub PreAttack(own As Boolean, BattleScreen As BattleScreen)
+            Dim p As Pokemon = BattleScreen.OppPokemon
+            If own = False Then
+                BattleScreen.Battle.ChangeCameraAngle(1, False, BattleScreen)
+                BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " has no usable attacks left!"))
+            End If
         End Sub
 
         Public Overrides Sub MoveHits(own As Boolean, BattleScreen As BattleScreen)
