@@ -64,13 +64,17 @@
     Public Overrides Sub Update()
         If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
             If CType(Screen.Camera, OverworldCamera).IsPushingStrengthRock = False Then
-                If Me.ActivateScript = True And Screen.Camera.Position.X = Me.Position.X And Screen.Camera.Position.Z = Me.Position.Z And CInt(Screen.Camera.Position.Y) = CInt(Me.Position.Y) Then
+                If Me.ActivateScript = True AndAlso Screen.Camera.Position.X = Me.Position.X And Screen.Camera.Position.Z = Me.Position.Z And CInt(Screen.Camera.Position.Y) = CInt(Me.Position.Y) Then
                     Screen.Camera.StopMovement()
                     ActivateScript = False
                     TriggerScript(False)
+                ElseIf CType(Screen.Camera, OverworldCamera)._moved = 0.0F Then
+                    TriggeredScriptBlock = False
+                    ActivateScript = False
                 End If
-            Else
+            ElseIf CType(Screen.Camera, OverworldCamera)._moved = 0.0F Then
                 TriggeredScriptBlock = False
+                ActivateScript = False
             End If
         Else
             TriggeredScriptBlock = False
