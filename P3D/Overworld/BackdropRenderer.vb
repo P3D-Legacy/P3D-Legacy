@@ -93,8 +93,8 @@
             _shader = Content.Load(Of Effect)("Effects\BackdropShader")
 
             _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(0, 0, 0), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(0, 0)))
-            _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(Width, 0, 0), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(0, 1)))
-            _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(0, 0, Height), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(1, 0)))
+            _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(Width, 0, 0), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(1, 0)))
+            _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(0, 0, Height), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(0, 1)))
             _vertices.Add(New VertexPositionNormalTangentTexture(New Vector3(Width, 0, Height), New Vector3(-1, 0, 0), New Vector3(0, 1, 0), New Vector2(1, 1)))
 
             Me._position = Position
@@ -107,7 +107,8 @@
             Select Case BackdropType.ToLower()
                 Case "water"
                     Me._backdropType = BackdropTypes.Water
-                    WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Backdrops\Water"), 1, 3, 64, 64, Water.WaterSpeed, 0, 0)
+                    Dim WaterSize As Integer = CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Height)
+                    WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Backdrops\Water"), 1, 3, WaterSize, WaterSize, Water.WaterSpeed, 0, 0)
                     _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", WaterAnimation.TextureRectangle, "")
                 Case "grass"
                     Me._backdropType = BackdropTypes.Grass
@@ -131,20 +132,21 @@
                     End If
                 Case BackdropTypes.Grass
                     If Me._setTexture = False Then
+                        Dim GrassSize As Integer = CInt(TextureManager.GetTexture("Backdrops\Grass").Height)
                         Dim x As Integer = 0
 
                         Select Case World.CurrentSeason
                             Case World.Seasons.Winter
                                 x = 0
                             Case World.Seasons.Spring
-                                x = 16
+                                x = GrassSize
                             Case World.Seasons.Summer
-                                x = 32
+                                x = GrassSize * 2
                             Case World.Seasons.Fall
-                                x = 48
+                                x = GrassSize * 3
                         End Select
 
-                        _backdropTexture = TextureManager.GetTexture("Backdrops\Grass", New Rectangle(x, 0, 16, 16))
+                        _backdropTexture = TextureManager.GetTexture("Backdrops\Grass", New Rectangle(x, 0, GrassSize, GrassSize))
                         Me._setTexture = True
                     End If
             End Select
@@ -186,11 +188,11 @@
                     Case P3D.World.EnvironmentTypes.Outside
                         dayColor = SkyDome.GetDaytimeColor(True).ToVector3()
                     Case P3D.World.EnvironmentTypes.Dark
-                        dayColor = New Vector3(0.5F, 0.5F, 0.6F)
+                        dayColor = New Vector3(0.5F, 0.5F, 0.5F)
                 End Select
             End If
 
-            Return (dayColor * diffuseColor).ToColor().ToVector4()
+            Return (dayColor * diffuseColor * Lighting.GetEnvironmentColor(1)).ToColor().ToVector4()
         End Function
 
     End Class
