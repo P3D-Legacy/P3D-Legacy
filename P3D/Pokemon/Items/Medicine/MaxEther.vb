@@ -21,12 +21,15 @@ Namespace Items.Medicine
 
         Public Overrides Function UseOnPokemon(ByVal PokeIndex As Integer) As Boolean
             Core.SetScreen(New ChooseAttackScreen(Core.CurrentScreen, Core.Player.Pokemons(PokeIndex), True, True, AddressOf UseOnAttack))
-            If Core.CurrentScreen.Identification <> Screen.Identifications.ChooseAttackScreen Then
-                If ChooseAttackScreen.Selected <> -1 Then
-                    Return True
-                End If
+            Dim s As Screen = Core.CurrentScreen
+            While s.Identification <> Screen.Identifications.BattleScreen AndAlso s.PreScreen IsNot Nothing
+                s = s.PreScreen
+            End While
+            If s.Identification = Screen.Identifications.BattleScreen Then
+                Return False
+            Else
+                Return True
             End If
-            Return False
         End Function
 
         Private Sub UseOnAttack(ByVal Pokemon As Pokemon, ByVal AttackIndex As Integer)
