@@ -428,7 +428,7 @@
                 Dim OppAttackChoice As Integer = Core.Random.Next(0, AvailableAttacks.Count)
                 Dim Ready As Boolean = False
                 While Ready = False
-                    If BattleScreen.OppPokemon.Attacks(OppAttackChoice).Disabled > 0 OrElse BattleScreen.FieldEffects.OppTaunt > 0 AndAlso BattleScreen.OppPokemon.Attacks(OppAttackChoice).Category = Attack.Categories.Status Or BattleScreen.OppPokemon.Attacks(OppAttackChoice).CurrentPP <= 0 Then
+                    If BattleScreen.OppPokemon.Attacks(OppAttackChoice) Is BattleScreen.FieldEffects.OppTormentMove OrElse BattleScreen.OppPokemon.Attacks(OppAttackChoice).Disabled > 0 OrElse BattleScreen.FieldEffects.OppTaunt > 0 AndAlso BattleScreen.OppPokemon.Attacks(OppAttackChoice).Category = Attack.Categories.Status Or BattleScreen.OppPokemon.Attacks(OppAttackChoice).CurrentPP <= 0 Then
                         AvailableAttacks.Remove(OppAttackChoice)
                         If AvailableAttacks.Count > 0 Then
                             OppAttackChoice = AvailableAttacks(Core.Random.Next(0, AvailableAttacks.Count))
@@ -1604,6 +1604,24 @@
                 BattleScreen.FieldEffects.OwnLastMove = moveUsed
             Else
                 BattleScreen.FieldEffects.OppLastMove = moveUsed
+            End If
+
+            If own = True Then
+                If BattleScreen.FieldEffects.OwnTorment > 0 Then
+                    If moveUsed Is BattleScreen.FieldEffects.OwnTormentMove Then
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(moveUsed.Name & " failed!"))
+                        Exit Sub
+                    End If
+                    BattleScreen.FieldEffects.OwnTormentMove = BattleScreen.FieldEffects.OwnLastMove
+                End If
+            Else
+                If BattleScreen.FieldEffects.OppTorment > 0 Then
+                    If moveUsed Is BattleScreen.FieldEffects.OppTormentMove Then
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(moveUsed.Name & " failed!"))
+                        Exit Sub
+                    End If
+                    BattleScreen.FieldEffects.OppTormentMove = BattleScreen.FieldEffects.OppLastMove
+                End If
             End If
 
             If own = True Then
@@ -5475,6 +5493,7 @@
                             End If
                             If .FieldEffects.OwnTorment > 0 Then
                                 .FieldEffects.OwnTorment = 0
+                                .FieldEffects.OwnTormentMove = Nothing
                                 .BattleQuery.Add(New TextQueryObject(.OwnPokemon.GetDisplayName() & " got healed from the Torment" & Environment.NewLine & "due to Mental Herb!"))
                                 usedMentalHerb = True
                             End If

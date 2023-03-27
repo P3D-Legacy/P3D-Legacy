@@ -65,12 +65,14 @@
                 If own = True Then
                     If BattleScreen.OppPokemon.Ability.Name.ToLower() <> "aroma veil" Then
                         BattleScreen.FieldEffects.OppTorment = 1
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OppPokemon.GetDisplayName() & " was subjected to " & Me.Name & "!"))
                     Else
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Aroma Veil protected " & BattleScreen.OppPokemon.GetDisplayName() & " from " & Me.Name & "!"))
                     End If
                 Else
                     If BattleScreen.OwnPokemon.Ability.Name.ToLower() <> "aroma veil" Then
                         BattleScreen.FieldEffects.OwnTorment = 1
+                        BattleScreen.BattleQuery.Add(New TextQueryObject(BattleScreen.OwnPokemon.GetDisplayName() & " was subjected to " & Me.Name & "!"))
                     Else
                         BattleScreen.BattleQuery.Add(New TextQueryObject("Aroma Veil protected " & BattleScreen.OwnPokemon.GetDisplayName() & " from " & Me.Name & "!"))
                     End If
