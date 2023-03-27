@@ -1242,6 +1242,12 @@
             BattleScreen.BattleQuery.Add(New DelayQueryObject(20))
 
             If p.Status = Pokemon.StatusProblems.Freeze Then
+                If moveUsed.RemovesFrozen = True Then
+                    CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " got defrosted by " & moveUsed.Name & ".", "defrostmove")
+                End If
+            End If
+
+            If p.Status = Pokemon.StatusProblems.Freeze Then
                 If Core.Random.Next(0, 100) < 20 Then
                     CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " thawed out.", "own defrost")
                 Else
@@ -1591,12 +1597,6 @@
                     End If
                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & " is fully paralyzed!" & Environment.NewLine & "It cannot move!"))
                     Exit Sub
-                End If
-            End If
-
-            If p.Status = Pokemon.StatusProblems.Freeze Then
-                If moveUsed.RemovesFrozen = True Then
-                    CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " got defrosted by " & moveUsed.Name & ".", "defrostmove")
                 End If
             End If
 
