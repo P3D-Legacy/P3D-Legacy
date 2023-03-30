@@ -1,4 +1,4 @@
-﻿{"Level"{LEV[{"Name"{str[Diamond Dive]}}{"MusicLoop"{str[ilex_forest]}}{"CurrentRegion"{str[Johto]}}]}}
+﻿{"Level"{LEV[{"Name"{str[Diamond Dive]}}{"MusicLoop"{str[IlexForest]}}{"CurrentRegion"{str[Johto]}}]}}
 {"Actions"{LEV[{"CanTeleport"{bool[1]}}{"CanDig"{bool[0]}}{"CanFly"{bool[1]}}{"EnvironmentType"{int[0]}}{"BattleMap"{str[diamonddive\exterior.dat,6,1,62]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}]}}
 
 Floor:
