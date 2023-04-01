@@ -51,6 +51,7 @@ Public Class Level
     Private _hiddenabilitychance As Integer = 0
     Private _lightingType As Integer = 0
     Private _isSafariZone As Boolean = False
+    Private _isOutside As Boolean = False
     Private _isBugCatchingContest As Boolean = False
 
     Private _bugCatchingContestData As String = ""
@@ -535,6 +536,18 @@ Public Class Level
         End Get
         Set(value As Boolean)
             Me._isSafariZone = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Overrides whether the map is outside. Affects item pickup interaction.
+    ''' </summary>
+    Public Property IsOutside As Boolean
+        Get
+            Return Me._isOutside
+        End Get
+        Set(value As Boolean)
+            Me._isOutside = value
         End Set
     End Property
 

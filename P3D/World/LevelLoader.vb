@@ -1086,6 +1086,12 @@
             Screen.Level.IsSafariZone = False
         End If
 
+        If TagExists(Tags, "IsOutside") = True Then
+            Screen.Level.IsOutside = CBool(GetTag(Tags, "IsOutside"))
+        Else
+            Screen.Level.IsOutside = False
+        End If
+
         If TagExists(Tags, "BugCatchingContest") = True Then
             Screen.Level.IsBugCatchingContest = True
             Screen.Level.BugCatchingContestData = CStr(GetTag(Tags, "BugCatchingContest"))

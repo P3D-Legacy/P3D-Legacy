@@ -1,5 +1,5 @@
 {"Level"{LEV[{"Name"{str[National Park]}}{"MusicLoop"{str[bugcontest]}}]}}
-{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}{"BugCatchingContest"{str[nationalpark\end_contest_menu,nationalpark\sport_balls,Sport Balls]}}]}}
+{"Actions"{LEV[{"CanTeleport"{bool[0]}}{"CanDig"{bool[0]}}{"CanFly"{bool[0]}}{"IsOutside"{bool[1]}}{"EnvironmentType"{int[0]}}{"Weather"{int[0]}}{"Lighting"{int[0]}}{"BugCatchingContest"{str[nationalpark\end_contest_menu,nationalpark\sport_balls,Sport Balls]}}]}}
 
 Floor:
 Grass:

@@ -1062,7 +1062,7 @@
 #Region "Checks"
 
     Private Shared Function IsOutside() As Boolean
-        If Screen.Level.CanFly = True And Screen.Level.CanDig = False And Screen.Level.CanTeleport = True Then
+        If Screen.Level.IsOutside = True OrElse Screen.Level.CanFly = True And Screen.Level.CanDig = False And Screen.Level.CanTeleport = True Then
             Return True
         End If
         Return False
