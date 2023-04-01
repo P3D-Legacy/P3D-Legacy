@@ -130,8 +130,10 @@
                                 move.UseEffectiveness = CBool(value)
                             Case "ishealingmove"
                                 move.IsHealingMove = CBool(value)
-                            Case "removesfrozen"
-                                move.RemovesFrozen = CBool(value)
+                            Case "removesownfrozen", "removesfrozen"
+                                move.RemovesOwnFrozen = CBool(value)
+                            Case "removesoppfrozen"
+                                move.RemovesOppFrozen = CBool(value)
                             Case "isrecoilmove"
                                 move.IsRecoilMove = CBool(value)
                             Case "ispunchingmove"

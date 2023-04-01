@@ -37,7 +37,7 @@ Namespace BattleSystem.Moves.Water
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
             Me.HasSecondaryEffect = True
-            Me.RemovesFrozen = True
+            Me.RemovesOwnFrozen = True
 
             Me.IsHealingMove = False
             Me.IsRecoilMove = False

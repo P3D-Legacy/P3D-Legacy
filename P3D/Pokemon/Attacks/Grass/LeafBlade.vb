@@ -36,7 +36,7 @@ Namespace BattleSystem.Moves.Grass
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.ImmunityAffected = True
-            Me.RemovesFrozen = False
+            Me.RemovesOwnFrozen = False
             Me.HasSecondaryEffect = False
 
             Me.IsHealingMove = False

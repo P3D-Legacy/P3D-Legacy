@@ -33,7 +33,7 @@
             Me.IsOneHitKOMove = False
             Me.IsRecoilMove = False
             Me.IsTrappingMove = False
-            Me.RemovesFrozen = False
+            Me.RemovesOwnFrozen = False
 
             'Interacts with other moves/effects
             Me.ProtectAffected = True

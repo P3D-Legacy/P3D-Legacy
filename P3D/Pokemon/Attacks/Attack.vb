@@ -197,7 +197,8 @@
         Public IsOneHitKOMove As Boolean = False
         Public IsRecoilMove As Boolean = False
         Public IsTrappingMove As Boolean = False
-        Public RemovesFrozen As Boolean = False
+        Public RemovesOwnFrozen As Boolean = False
+        Public RemovesOppFrozen As Boolean = False
 
         'effected by various moves items and abilities
         Public ProtectAffected As Boolean = True

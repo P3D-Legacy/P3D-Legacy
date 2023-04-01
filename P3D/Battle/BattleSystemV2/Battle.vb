@@ -1242,7 +1242,7 @@
             BattleScreen.BattleQuery.Add(New DelayQueryObject(20))
 
             If p.Status = Pokemon.StatusProblems.Freeze Then
-                If moveUsed.RemovesFrozen = True Then
+                If moveUsed.RemovesOwnFrozen = True Then
                     CureStatusProblem(own, own, BattleScreen, p.GetDisplayName() & " got defrosted by " & moveUsed.Name & ".", "defrostmove")
                 End If
             End If
@@ -2306,6 +2306,9 @@
                                 If canUseEffect AndAlso multiUseEffect OrElse (multiUseEffect = False AndAlso i = TimesToAttack) Then
                                     If substitute = 0 OrElse moveUsed.IsAffectedBySubstitute = False Then
                                         moveUsed.MoveHits(own, BattleScreen)
+                                        If moveUsed.RemovesOppFrozen = True Then
+                                            CureStatusProblem(Not own, own, BattleScreen, op.GetDisplayName() & " got defrosted by " & moveUsed.Name & ".", "defrostmove")
+                                        End If
                                     End If
                                 End If
                                 If op.HP > 0 AndAlso op.Status <> Pokemon.StatusProblems.Fainted Then

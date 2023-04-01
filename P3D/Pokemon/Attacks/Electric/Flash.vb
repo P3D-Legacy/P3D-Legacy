@@ -35,7 +35,7 @@
             Me.DisabledWhileGravity = False
             Me.UseEffectiveness = True
             Me.IsHealingMove = False
-            Me.RemovesFrozen = False
+            Me.RemovesOwnFrozen = False
             Me.IsRecoilMove = False
 
             Me.ImmunityAffected = True
