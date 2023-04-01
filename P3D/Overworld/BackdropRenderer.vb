@@ -107,8 +107,8 @@
             Select Case BackdropType.ToLower()
                 Case "water"
                     Me._backdropType = BackdropTypes.Water
-                    Dim WaterSize As Integer = CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Height)
-                    WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Backdrops\Water"), 1, 3, WaterSize, WaterSize, Water.WaterSpeed, 0, 0)
+                    Dim WaterSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Width / 3), CInt(TextureManager.GetTexture("Textures\Backdrops\Water").Height))
+                    WaterAnimation = New Animation(TextureManager.GetTexture("Textures\Backdrops\Water"), 1, 3, WaterSize.Width, WaterSize.Height, Water.WaterSpeed, 0, 0)
                     _backdropTexture = TextureManager.GetTexture("Textures\Backdrops\Water", WaterAnimation.TextureRectangle, "")
                 Case "grass"
                     Me._backdropType = BackdropTypes.Grass
