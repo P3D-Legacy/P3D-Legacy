@@ -239,6 +239,8 @@
                                     inputMode = InputScreen.InputModes.Name
                                 Case "numbers"
                                     inputMode = InputScreen.InputModes.Numbers
+                                Case "pokemon"
+                                    inputMode = InputScreen.InputModes.Pokemon
                             End Select
                         End If
                     End If

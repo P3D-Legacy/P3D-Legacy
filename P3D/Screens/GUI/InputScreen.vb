@@ -281,6 +281,14 @@
 
     Public Sub Confirm()
         Dim t As String = Me.CurrentText
+        ' Remove spaces at the start
+        While t.StartsWith(" ")
+            t = t.Remove(0, 1)
+        End While
+        ' Remove spaces at the end
+        While t.EndsWith(" ")
+            t = t.Remove(t.Length - 1, 1)
+        End While
         If t = "" Then
             t = Me.DefaultName
         End If
