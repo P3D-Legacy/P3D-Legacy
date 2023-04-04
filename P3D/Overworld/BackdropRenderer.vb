@@ -132,21 +132,21 @@
                     End If
                 Case BackdropTypes.Grass
                     If Me._setTexture = False Then
-                        Dim GrassSize As Integer = CInt(TextureManager.GetTexture("Backdrops\Grass").Height)
+                        Dim GrassSize As Size = New Size(CInt(TextureManager.GetTexture("Textures\Backdrops\Grass").Width / 4), CInt(TextureManager.GetTexture("Textures\Backdrops\Grass").Height))
                         Dim x As Integer = 0
 
                         Select Case World.CurrentSeason
                             Case World.Seasons.Winter
                                 x = 0
                             Case World.Seasons.Spring
-                                x = GrassSize
+                                x = GrassSize.Width
                             Case World.Seasons.Summer
-                                x = GrassSize * 2
+                                x = GrassSize.Width * 2
                             Case World.Seasons.Fall
-                                x = GrassSize * 3
+                                x = GrassSize.Width * 3
                         End Select
 
-                        _backdropTexture = TextureManager.GetTexture("Backdrops\Grass", New Rectangle(x, 0, GrassSize, GrassSize))
+                        _backdropTexture = TextureManager.GetTexture("Backdrops\Grass", New Rectangle(x, 0, GrassSize.Width, GrassSize.Height))
                         Me._setTexture = True
                     End If
             End Select
@@ -164,7 +164,7 @@
             _shader.Parameters("View").SetValue(Screen.Camera.View)
             _shader.Parameters("Projection").SetValue(Screen.Camera.Projection)
             _shader.Parameters("DiffuseColor").SetValue(GetDiffuseColor())
-            _shader.Parameters("TexStretch").SetValue(New Vector2(Me._height, Me._width))
+            _shader.Parameters("TexStretch").SetValue(New Vector2(Me._width, Me._height))
             _shader.Parameters("color").SetValue(_backdropTexture)
 
             For Each pass As EffectPass In _shader.CurrentTechnique.Passes
