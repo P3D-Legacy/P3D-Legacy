@@ -5,13 +5,14 @@ version=2
 		@storage.set(str,billspcname,Bill's PC)
 	:endif
 	
-	@storage.set(int,canind,2)
-	@storage.set(str,computer_options,<storage.get(str,billspcname)>,Inbox)
-	
-	@storage.set(str,computer_options,<storage.get(str,computer_options)>,Mystery Events)
-	@storage.set(int,canind,<storage.get(int,canind)>+1)
-	
-	
+	:if:<register.registered(pokemongot)>=true
+		@storage.set(int,canind,2)
+		@storage.set(str,computer_options,<storage.get(str,billspcname)>,Inbox)
+	:else
+		@storage.set(int,canind,1)
+		@storage.set(str,computer_options,Inbox)
+	:endif
+
 	:if:<player.haspokedex>=true
 		@storage.set(str,computer_options,<storage.get(str,computer_options)>,Prof. Oak's PC)
 		@storage.set(int,canind,<storage.get(int,canind)>+1)
@@ -21,6 +22,9 @@ version=2
 		@storage.set(str,computer_options,<storage.get(str,computer_options)>,Hall of Fame)
 		@storage.set(int,canind,<storage.get(int,canind)>+1)
 	:endif
+	
+	@storage.set(str,computer_options,<storage.get(str,computer_options)>,Mystery Events)
+	@storage.set(int,canind,<storage.get(int,canind)>+1)
 	
 	:if:<player.isgamejolt(1)>=true
 		@storage.set(str,computer_options,<storage.get(str,computer_options)>,Daily Rewards)
@@ -32,14 +36,9 @@ version=2
 	
 	@options.show(<storage.get(str,computer_options)>)
 		:when:<storage.get(str,billspcname)>
-			:if:<register.registered(bill_encounter)>=true
-				@sound.play(PC\LogOn)
-				@screen.storagesystem
-				@script.start(computer_choose)
-			:else:if:<register.registered(bill_encounter)>=false
-				@text.show(You can't interact with~the Storage System yet.)
-				:end
-			:endif
+			@sound.play(PC\LogOn)
+			@screen.storagesystem
+			@script.start(computer_choose)
 		:when:Mystery Events
 			@sound.play(PC\LogOn)
 			@screen.mysteryevent
