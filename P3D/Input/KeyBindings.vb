@@ -7,6 +7,7 @@ Public Class KeyBindings
     Public Shared RunKey As Keys = Keys.LeftShift
 
     Public Shared OpenInventoryKey As Keys = Keys.E
+	Public Shared KeyReuseKey As Keys = Keys.F
     Public Shared ChatKey As Keys = Keys.T
     Public Shared SpecialKey As Keys = Keys.Q
 
@@ -61,6 +62,8 @@ Public Class KeyBindings
                             RunKey = binding
                         Case "inventory"
                             OpenInventoryKey = binding
+						Case "keyreuse"
+							KeyReuseKey = binding
                         Case "chat"
                             ChatKey = binding
                         Case "special", "pokegear"
@@ -244,6 +247,7 @@ Public Class KeyBindings
                 "[RightMove]=" & GetKeyName(Keys.D) & Environment.NewLine &
                 "[Run]=" & GetKeyName(Keys.LeftShift) & Environment.NewLine &
                 "[Inventory]=" & GetKeyName(Keys.E) & Environment.NewLine &
+				"[KeyReuse]=" & GetKeyName(Keys.F) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(Keys.T) & Environment.NewLine &
                 "[Special]=" & GetKeyName(Keys.Q) & Environment.NewLine &
                 "[MuteAudio]=" & GetKeyName(Keys.M) & Environment.NewLine &
@@ -282,6 +286,7 @@ Public Class KeyBindings
                 "[RightMove]=" & GetKeyName(RightMoveKey) & Environment.NewLine &
                 "[Run]=" & GetKeyName(RunKey) & Environment.NewLine &
                 "[Inventory]=" & GetKeyName(OpenInventoryKey) & Environment.NewLine &
+				"[KeyReuse]=" & GetKeyName(KeyReuseKey) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(ChatKey) & Environment.NewLine &
                 "[Special]=" & GetKeyName(SpecialKey) & Environment.NewLine &
                 "[MuteAudio]=" & GetKeyName(MuteAudioKey) & Environment.NewLine &
