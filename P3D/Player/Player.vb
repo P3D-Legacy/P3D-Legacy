@@ -353,6 +353,8 @@
             _emblemBackground = value
         End Set
     End Property
+    
+    Public Property LastUsedItemID As Integer = -1
 
 #End Region
 
