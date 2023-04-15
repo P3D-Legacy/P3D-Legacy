@@ -6,6 +6,8 @@
             Core.GameOptions.SaveOptions()
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.ScreenshotKey) AndAlso Core.CurrentScreen.CanTakeScreenshot Then
             CaptureScreen()
+		ElseIf KeyBoardHandler.KeyPressed(KeyBindings.KeyReuseKey)
+			KeyReuse()
         ElseIf KeyBoardHandler.KeyPressed(KeyBindings.DebugKey) Then
             Core.GameOptions.ShowDebug += 1
             If Core.GameOptions.ShowDebug >= 2 Then
@@ -59,6 +61,25 @@
             Core.GameOptions.SaveOptions()
         End If
     End Sub
+    
+	Private Shared Sub KeyReuse()
+		' Check if we are on the Overworld Screen (KeyReuse can only be used in this Screen)
+		Dim s As Screen = Core.CurrentScreen
+		Dim useditem As Boolean = 0
+		If s.Identification = Screen.Identifications.OverworldScreen Then
+			If Core.Player.LastUsedItemID <> -1 Then
+				Select Case Core.Player.LastUsedItemID
+					Case 58, 59, 61, 55
+						Item.GetItemByID(Core.Player.LastUsedItemID).Use
+						useditem = 1
+						Core.GameMessage.ShowMessage("[SUCCESS]: The Item " & Item.GetItemByID(Core.Player.LastUsedItemID).OriginalName & " has been reused!", 12, FontManager.MainFont, Color.White)
+				End Select
+				If useditem = 0 Then
+					Core.GameMessage.ShowMessage("[ERROR]: The Item " & Item.GetItemByID(Core.Player.LastUsedItemID).OriginalName & " cannot be reused in this way!", 12, FontManager.MainFont, Color.White)
+				End If
+			End If
+		End If
+	End Sub
 
     Private Shared Sub CaptureScreen()
         Try
