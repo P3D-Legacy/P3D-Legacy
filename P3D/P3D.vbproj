@@ -28429,6 +28429,7 @@
     <Compile Include="Pokemon\Items\Medicine\PewterCrunchies.vb" />
     <Compile Include="Pokemon\Items\GemItem.vb" />
     <Compile Include="Pokemon\Items\FossilItem.vb" />
+    <Compile Include="Pokemon\Items\Standard\DestinyKnot.vb" />
     <Compile Include="Pokemon\Items\Standard\ChoiceBand.vb" />
     <Compile Include="Pokemon\Items\Standard\ChoiceScarf.vb" />
     <Compile Include="Pokemon\Items\Standard\ChoiceSpecs.vb" />
