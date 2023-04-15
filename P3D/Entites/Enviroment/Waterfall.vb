@@ -252,7 +252,7 @@
         End If
 
         Dim p As Pokemon = ReturnWaterFallPokemonName()
-        If Badge.CanUseHMMove(Badge.HMMoves.Waterfall) = True And Not p Is Nothing Or GameController.IS_DEBUG_ACTIVE = True Or Core.Player.SandBoxMode = True Then
+        If GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True OrElse Badge.CanUseHMMove(Badge.HMMoves.Waterfall) = True AndAlso Not p Is Nothing Then
             CType(Screen.Camera, OverworldCamera).PreventMovement = True
             Dim s As String = ""
 
@@ -299,6 +299,8 @@
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
 
             Return False
+        Else
+            CType(Screen.Camera, OverworldCamera).PreventMovement = False
         End If
 
         If Me.Collision = True Then
