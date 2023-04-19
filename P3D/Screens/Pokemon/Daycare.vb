@@ -244,7 +244,12 @@
                 End If
             End If
 
-            While IV1.Count + IV2.Count < (3 + CInt(DKnot) * 2)
+            Dim InheritIV As Integer = 3
+            If DKnot = True Then
+                InheritIV = 5
+            End If
+
+            While IV1.Count + IV2.Count < InheritIV
                 Dim newStat As String = ""
                 While newStat = "" Or IV1.Contains(newStat) = True Or IV2.Contains(newStat) = True
                     Select Case Core.Random.Next(0, 6)
