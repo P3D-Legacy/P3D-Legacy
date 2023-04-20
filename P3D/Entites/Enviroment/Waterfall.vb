@@ -199,7 +199,7 @@
         If Me.ActionValue = 1 Then
             Exit Sub
         End If
-        CType(Screen.Camera, OverworldCamera).PreventMovement = True
+
         Dim isOnTop As Boolean = True
         Dim OnTopcheckPosition As Vector3 = New Vector3(Me.Position.X, Me.Position.Y + 1, Me.Position.Z)
         Dim Oe As Entity = GetEntity(Screen.Level.Entities, OnTopcheckPosition, True, {GetType(Waterfall)})
@@ -234,6 +234,7 @@
             End While
 
             s = "version=2" & Environment.NewLine &
+                "@player.preventmovement" & Environment.NewLine &
                 "@player.stopmovement" & Environment.NewLine &
                 "@player.move(2)" & Environment.NewLine &
                 "@player.setmovement(0,-1,0)" & Environment.NewLine &
@@ -243,6 +244,9 @@
                 ":end"
 
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
+            If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True And CType(Screen.Camera, OverworldCamera).PreventMovement = True Then
+                CType(Screen.Camera, OverworldCamera).PreventMovement = False
+            End If
         End If
     End Sub
 
@@ -253,7 +257,6 @@
 
         Dim p As Pokemon = ReturnWaterFallPokemonName()
         If GameController.IS_DEBUG_ACTIVE = True OrElse Core.Player.SandBoxMode = True OrElse Badge.CanUseHMMove(Badge.HMMoves.Waterfall) = True AndAlso Not p Is Nothing Then
-            CType(Screen.Camera, OverworldCamera).PreventMovement = True
             Dim s As String = ""
 
             Dim pName As String = ""
@@ -284,6 +287,7 @@
                 End If
             End While
             s = "version=2" & Environment.NewLine &
+                "@player.preventmovement" & Environment.NewLine &
                 "@player.stopmovement" & Environment.NewLine &
                 "@pokemon.cry(" & pNumber & ")" & Environment.NewLine &
                 "@sound.play(select)" & Environment.NewLine &
@@ -297,10 +301,12 @@
 
             PlayerStatistics.Track("Waterfall used", 1)
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2)
-
+            If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True And CType(Screen.Camera, OverworldCamera).PreventMovement = True Then
+                CType(Screen.Camera, OverworldCamera).PreventMovement = False
+            End If
             Return False
         Else
-            CType(Screen.Camera, OverworldCamera).PreventMovement = False
+        CType(Screen.Camera, OverworldCamera).PreventMovement = False
         End If
 
         If Me.Collision = True Then

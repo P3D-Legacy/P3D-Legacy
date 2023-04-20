@@ -3,7 +3,6 @@ Public Class ActionScript
 
     Public Scripts As New List(Of Script)
 
-    Public AllowMovementAfterEnd As Boolean = False
     Public Class ScriptLevel
         Public WaitingEndWhen As New List(Of Boolean)
         Public Switched As New List(Of Boolean)
@@ -79,10 +78,6 @@ nextScript:
                 If reDelay <= 0.0F Then
                     reDelay = 0.0F
                 End If
-            End If
-            If AllowMovementAfterEnd = True Then
-                CType(Screen.Camera, OverworldCamera).PreventMovement = False
-                AllowMovementAfterEnd = False
             End If
         End If
     End Sub

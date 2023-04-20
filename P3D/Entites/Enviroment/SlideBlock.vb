@@ -71,6 +71,9 @@
             s &= ":end"
 
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+            If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True And CType(Screen.Camera, OverworldCamera).PreventMovement = True Then
+                CType(Screen.Camera, OverworldCamera).PreventMovement = False
+            End If
             Return True
         Else
             CType(Screen.Camera, OverworldCamera).PreventMovement = False
@@ -169,6 +172,9 @@
             s &= ":end"
 
             CType(Core.CurrentScreen, OverworldScreen).ActionScript.StartScript(s, 2, False)
+            If CType(Core.CurrentScreen, OverworldScreen).ActionScript.IsReady = True And CType(Screen.Camera, OverworldCamera).PreventMovement = True Then
+                CType(Screen.Camera, OverworldCamera).PreventMovement = False
+            End If
         Else
             CType(Screen.Camera, OverworldCamera).PreventMovement = False
         End If

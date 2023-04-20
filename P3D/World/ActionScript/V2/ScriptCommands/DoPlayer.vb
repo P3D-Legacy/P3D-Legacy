@@ -228,9 +228,11 @@
 
                     IsReady = True
                 Case "allowmovement"
-                    CType(CurrentScreen, OverworldScreen).ActionScript.AllowMovementAfterEnd = True
+                    If CType(Screen.Camera, OverworldCamera)._moved = 0.0F Then
+                        CType(Screen.Camera, OverworldCamera).PreventMovement = False
 
-                    IsReady = True
+                        IsReady = True
+                    End If
                 Case "money", "addmoney"
                     Core.Player.Money += int(argument)
 
