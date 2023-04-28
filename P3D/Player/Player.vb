@@ -1892,24 +1892,28 @@
                     Next
                     If CInt(GameModeManager.GetGameRuleValue("OverworldPoison", "0")) = 1 Then
                         For i = 0 To Core.Player.Pokemons.Count - 1
-                            If Core.Player.Pokemons(i).HP <= 1 Then
-                                Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.None
-                                Core.Player.Pokemons(i).HP = 1
-                                Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & " was cured of Poison.")
+                            If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison Then
+                                If Core.Player.Pokemons(i).HP <= 1 Then
+                                    Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.None
+                                    Core.Player.Pokemons(i).HP = 1
+                                    Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & " was cured~of Poison.")
+                                End If
                             End If
                         Next
                     ElseIf CInt(GameModeManager.GetGameRuleValue("OverworldPoison", "0")) = 2 Then
                         For i = 0 To Core.Player.Pokemons.Count - 1
-                            If Core.Player.Pokemons(i).HP <= 0 Then
-                                Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted
-                                Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & " Fainted.")
+                            If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison Then
+                                If Core.Player.Pokemons(i).HP <= 0 Then
+                                    Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted
+                                    Screen.TextBox.Show(Core.Player.Pokemons(i).GetDisplayName & "Fainted.")
 
-                                'Remove fainted Pokémon from player's team if the DeathInsteadOfFaint GameRule is activated.
-                                If CBool(GameModeManager.GetGameRuleValue("DeathInsteadOfFaint", "0")) = True Then
-                                    If i <= Core.Player.Pokemons.Count - 1 Then
-                                        If Core.Player.Pokemons(i).HP <= 0 Or Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted Then
-                                            Core.Player.Pokemons.RemoveAt(i)
-                                            i -= 1
+                                    'Remove fainted Pokémon from player's team if the DeathInsteadOfFaint GameRule is activated.
+                                    If CBool(GameModeManager.GetGameRuleValue("DeathInsteadOfFaint", "0")) = True Then
+                                        If i <= Core.Player.Pokemons.Count - 1 Then
+                                            If Core.Player.Pokemons(i).HP <= 0 Or Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted Then
+                                                Core.Player.Pokemons.RemoveAt(i)
+                                                i -= 1
+                                            End If
                                         End If
                                     End If
                                 End If
