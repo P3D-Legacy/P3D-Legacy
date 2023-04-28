@@ -1369,7 +1369,7 @@
 
             Dim reg() As String = Core.Player.RegisterData.Split(CChar(","))
 
-            Dim contactData() As String = System.IO.File.ReadAllLines(GameController.GamePath & "\Content\Data\Scripts\phone\contacts.dat")
+            Dim contactData() As String = System.IO.File.ReadAllLines(GameModeManager.GetContentFilePath("Data\contacts.dat"))
 
             For Each r As String In reg
                 If r.StartsWith("phone_contact_") = True Then
@@ -1401,10 +1401,12 @@
         Public Shared Sub CallID(ByVal ID As String, ByVal checkRegistered As Boolean, ByVal checkLocation As Boolean)
             Dim reg() As String = Core.Player.RegisterData.Split(CChar(","))
 
-            Security.FileValidation.CheckFileValid(GameController.GamePath & "\Content\Data\Scripts\phone\contacts.dat", False, "PokegearScreen.vb")
-            Dim contactData() As String = System.IO.File.ReadAllLines(GameController.GamePath & "\Content\Data\Scripts\phone\contacts.dat")
+            Dim file As String = GameModeManager.GetContentFilePath("Data\contacts.dat")
 
-            Dim tempContacs As New List(Of Contact)
+            Security.FileValidation.CheckFileValid(file, False, "PokegearScreen.vb")
+            Dim contactData() As String = System.IO.File.ReadAllLines(file)
+
+            Dim tempContacts As New List(Of Contact)
 
             For Each r As String In reg
                 If r.StartsWith("phone_contact_") = True Then
@@ -1417,7 +1419,7 @@
 
                                 Dim newContact As New Contact With {.ID = NCD(0), .Name = NCD(1), .Texture = NCD(2), .Location = NCD(3), .CanRandomCall = CBool(NCD(4))}
 
-                                tempContacs.Add(newContact)
+                                tempContacts.Add(newContact)
                             End If
                         Next
                     End If
@@ -1425,7 +1427,7 @@
             Next
 
             Dim countPossibleContacts As Integer = 0
-            For Each c As Contact In tempContacs
+            For Each c As Contact In tempContacts
                 If c.Location.ToLower() <> Level.MapName.ToLower() Or checkLocation = False Then
                     countPossibleContacts += 1
                 End If
@@ -1434,7 +1436,7 @@
             If countPossibleContacts > 0 Then
                 Dim chosenID As String = "-1"
                 While chosenID = "-1"
-                    Dim nC As Contact = tempContacs(Core.Random.Next(0, tempContacs.Count))
+                    Dim nC As Contact = tempContacts(Core.Random.Next(0, tempContacts.Count))
 
                     If nC.Location.ToLower() <> Level.MapName.ToLower() Or checkLocation = False Then
                         chosenID = nC.ID
@@ -1454,10 +1456,12 @@
 
             Dim reg() As String = Core.Player.RegisterData.Split(CChar(","))
 
-            Security.FileValidation.CheckFileValid(GameController.GamePath & "\Content\Data\Scripts\phone\contacts.dat", False, "PokegearScreen.vb")
-            Dim contactData() As String = System.IO.File.ReadAllLines(GameController.GamePath & "\Content\Data\Scripts\phone\contacts.dat")
+            Dim file As String = GameModeManager.GetContentFilePath("Data\contacts.dat")
 
-            Dim tempContacs As New List(Of Contact)
+            Security.FileValidation.CheckFileValid(file, False, "PokegearScreen.vb")
+            Dim contactData() As String = System.IO.File.ReadAllLines(file)
+
+            Dim tempContacts As New List(Of Contact)
 
             For Each r As String In reg
                 If r.StartsWith("phone_contact_") = True Then
@@ -1469,14 +1473,14 @@
 
                             Dim newContact As New Contact With {.ID = NCD(0), .Name = NCD(1), .Texture = NCD(2), .Location = NCD(3), .CanRandomCall = CBool(NCD(4))}
 
-                            tempContacs.Add(newContact)
+                            tempContacts.Add(newContact)
                         End If
                     Next
                 End If
             Next
 
             Dim countPossibleContacts As Integer = 0
-            For Each c As Contact In tempContacs
+            For Each c As Contact In tempContacts
                 If c.CanRandomCall = True And c.Location.ToLower() <> Level.MapName.ToLower() Then
                     countPossibleContacts += 1
                 End If
@@ -1485,7 +1489,7 @@
             If countPossibleContacts > 0 Then
                 Dim chosenID As String = "-1"
                 While chosenID = "-1"
-                    Dim nC As Contact = tempContacs(Core.Random.Next(0, tempContacs.Count))
+                    Dim nC As Contact = tempContacts(Core.Random.Next(0, tempContacts.Count))
 
                     If nC.CanRandomCall = True And nC.Location.ToLower() <> Level.MapName.ToLower() Then
                         chosenID = nC.ID
