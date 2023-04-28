@@ -2098,87 +2098,85 @@
     Public Sub Unload()
         'This function clears all data from the loaded player and restores the default values.
 
-        If loadedSave = True Then
-            'Clearning lists:
-            Pokemons.Clear()
-            Pokedexes.Clear()
-            Inventory.Clear()
-            Badges.Clear()
-            PokeFiles.Clear()
-            EarnedAchievements.Clear()
-            PokegearModules.Clear()
-            PhoneContacts.Clear()
-            Mails.Clear()
-            Trophies.Clear()
+        'Clearning lists:
+        Pokemons.Clear()
+        Pokedexes.Clear()
+        Inventory.Clear()
+        Badges.Clear()
+        PokeFiles.Clear()
+        EarnedAchievements.Clear()
+        PokegearModules.Clear()
+        PhoneContacts.Clear()
+        Mails.Clear()
+        Trophies.Clear()
 
-            'Restore default values:
-            Name = "<playername>"
-            RivalName = ""
-            RivalSkin = ""
-            Money = 0
-            PlayTime = TimeSpan.Zero
-            GameStart = Date.Now
-            OT = "00000"
-            Points = 0
-            BP = 0
-            Coins = 0
-            HasPokedex = False
-            HasPokegear = False
-            ShowBattleAnimations = 1
-            BoxAmount = 10
-            LastRestPlace = "yourroom.dat"
-            LastRestPlacePosition = "1,0.1,3"
-            LastSavePlace = "yourroom.dat"
-            LastSavePlacePosition = "1,0.1,3"
-            DiagonalMovement = False
-            RepelSteps = 0
-            DifficultyMode = 0
-            BattleStyle = 1
-            ShowModelsInBattle = True
-            SaveCreated = "Pre 0.21"
-            LastPokemonPosition = New Vector3(999)
-            DaycareSteps = 0
-            GameMode = "Kolben"
-            VisitedMaps = ""
-            TempSurfSkin = "Hilbert"
-            TempRideSkin = ""
-            GTSStars = 8
-            SandBoxMode = False
-            Statistics = ""
-            startPosition = New Vector3(14, 0.1, 10)
-            startRotation = 0
-            startFreeCameraMode = False
-            startMap = "barktown.dat"
-            startFOV = 45.0F
-            startRotationSpeed = 12
-            startThirdPerson = False
-            startSurfing = False
-            startRiding = False
-            Skin = "Hilbert"
+        'Restore default values:
+        Name = "<playername>"
+        RivalName = ""
+        RivalSkin = ""
+        Money = 0
+        PlayTime = TimeSpan.Zero
+        GameStart = Date.Now
+        OT = "00000"
+        Points = 0
+        BP = 0
+        Coins = 0
+        HasPokedex = False
+        HasPokegear = False
+        ShowBattleAnimations = 1
+        BoxAmount = 10
+        LastRestPlace = "yourroom.dat"
+        LastRestPlacePosition = "1,0.1,3"
+        LastSavePlace = "yourroom.dat"
+        LastSavePlacePosition = "1,0.1,3"
+        DiagonalMovement = False
+        RepelSteps = 0
+        DifficultyMode = 0
+        BattleStyle = 1
+        ShowModelsInBattle = True
+        SaveCreated = "Pre 0.21"
+        LastPokemonPosition = New Vector3(999)
+        DaycareSteps = 0
+        GameMode = "Kolben"
+        VisitedMaps = ""
+        TempSurfSkin = "Hilbert"
+        TempRideSkin = ""
+        GTSStars = 8
+        SandBoxMode = False
+        Statistics = ""
+        startPosition = New Vector3(14, 0.1, 10)
+        startRotation = 0
+        startFreeCameraMode = False
+        startMap = "barktown.dat"
+        startFOV = 45.0F
+        startRotationSpeed = 12
+        startThirdPerson = False
+        startSurfing = False
+        startRiding = False
+        Skin = "Hilbert"
 
-            'Clear temp save data:
-            RegisterData = ""
-            BerryData = ""
-            PokedexData = ""
-            ItemData = ""
-            BoxData = ""
-            NPCData = ""
-            ApricornData = ""
-            SecretBaseData = ""
-            DaycareData = ""
-            HallOfFameData = ""
-            RoamingPokemonData = ""
+        'Clear temp save data:
+        RegisterData = ""
+        BerryData = ""
+        PokedexData = ""
+        ItemData = ""
+        BoxData = ""
+        NPCData = ""
+        ApricornData = ""
+        SecretBaseData = ""
+        DaycareData = ""
+        HallOfFameData = ""
+        RoamingPokemonData = ""
 
-            filePrefix = "nilllzz"
-            newFilePrefix = ""
-            AutosaveUsed = False
-            loadedSave = False
+        filePrefix = "nilllzz"
+        newFilePrefix = ""
+        AutosaveUsed = False
+        loadedSave = False
 
-            IsGameJoltSave = False
-            EmblemBackground = "standard"
+        IsGameJoltSave = False
+        EmblemBackground = "standard"
 
-            ResetNewLevel()
-        End If
+        ResetNewLevel()
     End Sub
 
 End Class
