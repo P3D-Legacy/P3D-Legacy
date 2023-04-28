@@ -194,7 +194,7 @@
                     Dim args() As String = argument.Split(CChar(","))
 
                     ' Required parameters: position
-                    ' Optional parameters: actionvalue, additionalvalue, textureid, animateidle, rotation, name, id, movement
+                    ' Optional parameters: actionvalue, additionalvalue, textureid, animateidle, rotation, name, id, movement, moverectangles
 
                     Dim position As Vector3 = New Vector3(sng(args(0)), sng(args(1)), sng(args(2)))
                     Dim actionValue As Integer = 0
@@ -223,6 +223,22 @@
                                                 ID = int(args(9))
                                                 If args.Count >= 11 Then
                                                     Movement = args(10)
+                                                    If args.Count >= 12 Then
+                                                        Dim rectangles As String = argument.Remove(0, argument.IndexOf("[[") + 1)
+                                                        rectangles = rectangles.Remove(rectangles.Length - 1, 1)
+                                                        Dim values As String() = rectangles.Split(CChar("]"))
+                                                        Dim arr As New List(Of Rectangle)
+                                                        For Each value As String In values
+                                                            If value.Length > 0 Then
+                                                                If value.StartsWith("[") Then
+                                                                    value = value.Remove(0, 1)
+                                                                End If
+                                                                Dim content() As String = value.Split(CChar(","))
+                                                                arr.Add(New Rectangle(CInt(content(0)), CInt(content(1)), CInt(content(2)), CInt(content(3))))
+                                                            End If
+                                                        Next
+                                                        MoveRectangles = arr
+                                                    End If
                                                 End If
                                             End If
                                         End If
