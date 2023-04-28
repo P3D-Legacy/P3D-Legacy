@@ -8212,7 +8212,7 @@
                                 BattleScreen.BattleQuery.Add(New PlaySoundQueryObject("Battle\exp_max", False))
                                 BattleScreen.BattleQuery.Add(New TextQueryObject(Core.Player.Pokemons(PokeIndex).GetDisplayName() & " reached level " & moveLevel & "!"))
                                 BattleScreen.BattleQuery.Add(New DisplayLevelUpQueryObject(Core.Player.Pokemons(PokeIndex), oldStats))
-                                If Core.Player.Pokemons(PokeIndex).AttackLearns.ContainsKey(moveLevel) = True Then
+                                If Core.Player.Pokemons(PokeIndex).AttackLearns.ContainsKey(moveLevel) = True AndAlso Core.Player.Pokemons(PokeIndex).KnowsMove(Core.Player.Pokemons(PokeIndex).AttackLearns(Core.Player.Pokemons(PokeIndex).Level)) = False Then
                                     BattleScreen.BattleQuery.Add(New LearnMovesQueryObject(Core.Player.Pokemons(PokeIndex), Core.Player.Pokemons(PokeIndex).AttackLearns(moveLevel), BattleScreen))
                                 End If
                             End If
