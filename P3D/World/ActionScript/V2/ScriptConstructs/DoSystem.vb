@@ -70,6 +70,8 @@
                             key = KeyBindings.LightKey
                         Case "hidegui"
                             key = KeyBindings.GUIControlKey
+                        Case "run"
+                            key = KeyBindings.RunKey
                     End Select
                     If key <> Nothing Then
                         buttonName = KeyBindings.GetKeyName(key)
