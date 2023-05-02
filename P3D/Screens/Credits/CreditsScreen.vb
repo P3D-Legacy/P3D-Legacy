@@ -2,7 +2,7 @@ Public Class CreditsScreen
 
     Inherits Screen
 
-    Private Const COPYRIGHTYEAR As String = "2022"
+    Private Const COPYRIGHTYEAR As String = "2023"
 
     Dim CreditsPages As New List(Of CreditsPage)
     Dim CurrentPageIndex As Integer = 0
