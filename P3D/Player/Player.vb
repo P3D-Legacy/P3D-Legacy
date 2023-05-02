@@ -1883,7 +1883,16 @@
                     PoisonSteps -= 4
                 End If
                 If PoisonAmount > 0 Then
-                    SoundManager.PlaySound("OverworldPoison")
+                    Dim PlayPoisonSound As Boolean = False
+                    For i = 0 To Core.Player.Pokemons.Count - 1
+                        If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison Then
+                            PlayPoisonSound = True
+                            Exit For
+                        End If
+                    Next
+                    If PlayPoisonSound = True Then
+                        SoundManager.PlaySound("OverworldPoison")
+                    End If
                     For i = 0 To Core.Player.Pokemons.Count - 1
                         If Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Poison OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.BadPoison Then
                             If Core.Player.Pokemons(i).Ability IsNot Ability.GetAbilityByID(17) Then
