@@ -1009,8 +1009,12 @@
                 Case 15 'Max Potion
                     Me.GainHP(p.MaxHP, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Max Potion on " & p.GetDisplayName() & "!", "item:maxpotion")
                 Case 14 'Full Restore
+                    Dim Message As String = ""
+                    If p.HP >= p.MaxHP Then
+                        Message = BattleScreen.Trainer.Name & " used a Full Restore on " & p.GetDisplayName() & "!"
+                    End If
                     Me.GainHP(p.MaxHP, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Full Restore on " & p.GetDisplayName() & "!", "item:fullrestore")
-                    Me.CureStatusProblem(False, False, BattleScreen, "", "item:fullrestore")
+                    Me.CureStatusProblem(False, False, BattleScreen, Message, "item:fullrestore")
                     p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Case 38 'Full Heal
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Full Heal on " & p.GetDisplayName() & "!", "item:fullheal")
