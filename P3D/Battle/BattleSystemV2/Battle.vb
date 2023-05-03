@@ -1011,6 +1011,7 @@
                 Case 14 'Full Restore
                     Me.GainHP(p.MaxHP, False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Full Restore on " & p.GetDisplayName() & "!", "item:fullrestore")
                     Me.CureStatusProblem(False, False, BattleScreen, "", "item:fullrestore")
+                    p.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                 Case 38 'Full Heal
                     Me.CureStatusProblem(False, False, BattleScreen, BattleScreen.Trainer.Name & " used a Full Heal on " & p.GetDisplayName() & "!", "item:fullheal")
                 Case 9 'Antidote
