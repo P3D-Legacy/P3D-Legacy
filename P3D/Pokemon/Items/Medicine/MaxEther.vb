@@ -42,6 +42,19 @@ Namespace Items.Medicine
 
                 SoundManager.PlaySound("Use_Item", False)
                 Screen.TextBox.Show(t, {}, True, True)
+                Dim s As Screen = Core.CurrentScreen
+                While s.Identification <> Screen.Identifications.BattleScreen AndAlso s.PreScreen IsNot Nothing
+                    s = s.PreScreen
+                End While
+                If s.Identification = Screen.Identifications.BattleScreen Then
+                    Dim TempBattleScreen As BattleSystem.BattleScreen = CType(s, BattleSystem.BattleScreen)
+
+                    TempBattleScreen.BattleQuery.Clear()
+                    TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
+                    TempBattleScreen.BattleQuery.Insert(0, New BattleSystem.ToggleMenuQueryObject(True))
+                    TempBattleScreen.Battle.InitializeRound(TempBattleScreen, New BattleSystem.Battle.RoundConst With {.StepType = BattleSystem.Battle.RoundConst.StepTypes.Item, .Argument = Me.ID.ToString()})
+                    Core.SetScreen(TempBattleScreen)
+                End If
             Else
                 Screen.TextBox.Show("The move already has~full PP.", {}, True, True)
             End If
