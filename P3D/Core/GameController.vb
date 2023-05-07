@@ -19,12 +19,12 @@ Public Class GameController
     ''' <summary>
     ''' The current version of the game.
     ''' </summary>
-    Public Const GAMEVERSION As String = "0.59.2"
+    Public Const GAMEVERSION As String = "0.59.3"
 
     ''' <summary>
     ''' The number of released iterations of the game.
     ''' </summary>
-    Public Const RELEASEVERSION As String = "104"
+    Public Const RELEASEVERSION As String = "105"
 
     ''' <summary>
     ''' The development stage the game is in.
