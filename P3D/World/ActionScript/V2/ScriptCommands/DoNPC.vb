@@ -212,7 +212,14 @@
                         If args.Count >= 5 Then
                             additionalValue = args(4)
                             If args.Count >= 6 Then
-                                TextureID = args(5)
+                                Dim _texturePath As String = args(5)
+                                If _texturePath.ToLower = "<rival.skin>" Then
+                                    _texturePath = Core.Player.RivalSkin
+                                End If
+                                If _texturePath.ToLower = "<player.skin>" Then
+                                    _texturePath = Core.Player.Skin
+                                End If
+                                TextureID = _texturePath
                                 If args.Count >= 7 Then
                                     AnimateIdle = CBool(args(6))
                                     If args.Count >= 8 Then

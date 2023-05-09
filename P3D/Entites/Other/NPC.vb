@@ -96,11 +96,11 @@
             texturePath = "Pokemon\Overworld\Shiny\"
         End If
 
-        If Me.TextureID = "<player.skin>" Then
+        If Me.TextureID.ToLower = "<player.skin>" Then
             Me.TextureID = Core.Player.Skin
         End If
 
-        If Me.TextureID = "<rival.skin>" Then
+        If Me.TextureID.ToLower = "<rival.skin>" Then
             Me.TextureID = Core.Player.RivalSkin
         End If
 
