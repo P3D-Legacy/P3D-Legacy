@@ -584,6 +584,10 @@
             replaceString = "{""position""{intarr["
         End If
 
+        If line.ToLower().Contains("{""offset""{sngarr[") = True Then
+            replaceString = "{""offset""{sngarr["
+        End If
+
         If replaceString <> "" Then
             Dim positionString As String = line.Remove(0, line.ToLower().IndexOf(replaceString))
             positionString = positionString.Remove(positionString.IndexOf("]}}") + 3)
@@ -596,8 +600,10 @@
 
             If line.ToLower().Contains("{""position""{sngarr[") = True Then
                 line = line.Replace(positionString, "{""position""{sngarr[" & newPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & newPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & newPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & "]}}")
-            Else
+            ElseIf line.ToLower().Contains("{""position""{intarr[") = True Then
                 line = line.Replace(positionString, "{""position""{intarr[" & CInt(newPosition.X).ToString().Replace(GameController.DecSeparator, ".") & "," & CInt(newPosition.Y).ToString().Replace(GameController.DecSeparator, ".") & "," & CInt(newPosition.Z).ToString().Replace(GameController.DecSeparator, ".") & "]}}")
+            Else
+                line = line.Replace(positionString, "{""offset""{sngarr[" & newPosition.X.ToString().Replace(GameController.DecSeparator, ".") & "," & newPosition.Y.ToString().Replace(GameController.DecSeparator, ".") & "," & newPosition.Z.ToString().Replace(GameController.DecSeparator, ".") & "]}}")
             End If
         End If
 
