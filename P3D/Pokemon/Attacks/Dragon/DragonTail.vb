@@ -97,8 +97,8 @@
                                         End If
                                     Else
                                         If Core.Player.CountFightablePokemon > 1 Then
-                                             Dim i As Integer = Core.Random.Next(0, Core.Player.Pokemons.Count)
-                                            While Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OwnPokemonIndex = i OrElse Core.Player.Pokemons(i).HP <= 0
+                                            Dim i As Integer = Core.Random.Next(0, Core.Player.Pokemons.Count)
+                                            While Core.Player.Pokemons(i).IsEgg = True OrElse Core.Player.Pokemons(i).Status = Pokemon.StatusProblems.Fainted OrElse BattleScreen.OwnPokemonIndex = i OrElse Core.Player.Pokemons(i).HP <= 0
                                                 i = Core.Random.Next(0, Core.Player.Pokemons.Count - 1)
                                             End While
                                             BattleScreen.Battle.SwitchOutOwn(BattleScreen, i, -1)
