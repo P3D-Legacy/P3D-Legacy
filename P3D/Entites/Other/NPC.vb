@@ -802,11 +802,13 @@
 
             If Moved <= 0.0F Then
                 MoveAsync = False
+                If Not isDancing Then
+                    Me.Position = New Vector3(CInt(Me.Position.X), CSng(Me.Position.Y), CInt(Me.Position.Z))
+                End If
                 Moved = 0.0F
                 MoveY = 0.0F
                 AnimationX = 1
                 AnimationDelay = AnimationDelayLength
-                Me.Position = New Vector3(CInt(Me.Position.X), CSng(Me.Position.Y), CInt(Me.Position.Z))
                 ChangeTexture()
                 ApplyShaders()
                 Speed = NPC.STANDARD_SPEED
