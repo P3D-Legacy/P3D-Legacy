@@ -52,4 +52,4 @@ Move|44,285
 Move|48,94
 Move|50,574
 TradeValue|25
-EvolutionCondition|683,item,503,item
+EvolutionCondition|683,holditem,503,trade
