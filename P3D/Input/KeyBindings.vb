@@ -59,7 +59,7 @@ Public Class KeyBindings
                             RightMoveKey = binding
                         Case "run"
                             RunKey = binding
-                        Case "inventory"
+                        Case "inventory", "openmenu"
                             OpenInventoryKey = binding
                         Case "chat"
                             ChatKey = binding
@@ -243,7 +243,7 @@ Public Class KeyBindings
                 "[BackwardMove]=" & GetKeyName(Keys.S) & Environment.NewLine &
                 "[RightMove]=" & GetKeyName(Keys.D) & Environment.NewLine &
                 "[Run]=" & GetKeyName(Keys.LeftShift) & Environment.NewLine &
-                "[Inventory]=" & GetKeyName(Keys.E) & Environment.NewLine &
+                "[OpenMenu]=" & GetKeyName(Keys.E) & Environment.NewLine &
                 "[Chat]=" & GetKeyName(Keys.T) & Environment.NewLine &
                 "[Special]=" & GetKeyName(Keys.Q) & Environment.NewLine &
                 "[MuteAudio]=" & GetKeyName(Keys.M) & Environment.NewLine &
