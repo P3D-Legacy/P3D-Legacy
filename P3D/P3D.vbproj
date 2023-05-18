@@ -31802,6 +31802,7 @@
     <Compile Include="Screens\Pokemon\HatchEggScreen.vb" />
     <Compile Include="Screens\Pokemon\LearnAttackScreen.vb" />
     <Compile Include="Screens\Pokemon\NameObjectScreen.vb" />
+    <Compile Include="Screens\VoltorbFlipScreen.vb" />
     <Compile Include="Screens\Pokemon\PartyScreen.vb" />
     <Compile Include="Screens\Pokemon\SummaryScreen.vb" />
     <Compile Include="Screens\Pokemon\TeachMovesScreen.vb" />
