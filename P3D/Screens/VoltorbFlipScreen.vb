@@ -6,19 +6,36 @@ Namespace VoltorbFlip
         Inherits Screen
 
         'Animation:
-        Private _closing As Boolean = False
 
         Private _enrollY As Single = 0F
         Private _interfaceFade As Single = 0F
-        Private _cursorPosition As New Vector2
-        Private _cursorDest As New Vector2
+        Private BoardCursorPosition As New Vector2(0, 0)
+        Private BoardCursorDestination As New Vector2(0, 0)
 
+        Private MemoIndex As Integer = 0
+
+        Public GameState As States = States.Opening
         Public Shared ReadOnly GridSize As Integer = 5
         Public Property PreviousLevel As Integer = 1
         Public Property CurrentLevel As Integer = 1
         Public Property CurrentCoins As Integer = 0
         Public Property TotalCoins As Integer = 0
         Public Property MaxCoins As Integer = 1
+
+        Public Board As List(Of List(Of Tile))
+        Private GameSize As New Vector2(512, 512)
+        Private TileSize As New Vector2(66, 66)
+        Private GameOrigin As New Vector2(CInt(windowSize.Width - GameSize.X / 2), CInt(windowSize.Height / 2 - GameSize.Y / 2))
+
+        Public Enum States
+            Opening
+            Closing
+            Game
+            Memo
+            GameWon
+            GameLost
+            NewLevel
+        End Enum
 
         'Stuff related to blurred PreScreens
         Private _preScreenTexture As RenderTarget2D
@@ -33,7 +50,7 @@ Namespace VoltorbFlip
 
         Public Sub New(ByVal currentScreen As Screen)
 
-            CreateBoard(1)
+            Board = CreateBoard(1)
 
             _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
             _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
@@ -92,17 +109,13 @@ Namespace VoltorbFlip
             SpriteBatch.Draw(_blur.Perform(_preScreenTexture), windowSize, New Color(255, 255, 255, CInt(255 * _interfaceFade * 2).Clamp(0, 255)))
         End Sub
 
-
         Private Sub DrawBackground()
             Dim mainBackgroundColor As Color = New Color(48, 151, 70)
-            If _closing Then
+            If GameState = States.Closing Then
                 mainBackgroundColor = New Color(48, 151, 70, CInt(255 * _interfaceFade))
             End If
 
-            Dim halfWidth As Integer = CInt(Core.windowSize.Width / 2)
-            Dim halfHeight As Integer = CInt(Core.windowSize.Height / 2)
-
-            Canvas.DrawRectangle(New Rectangle(halfWidth - 256, halfHeight - 256, 512, 512), mainBackgroundColor)
+            Canvas.DrawRectangle(New Rectangle(CInt(GameOrigin.X), CInt(GameOrigin.Y - _enrollY), CInt(GameSize.X), CInt(GameSize.Y)), mainBackgroundColor)
 
         End Sub
 
@@ -175,6 +188,19 @@ Namespace VoltorbFlip
             Return Grid
         End Function
 
+        Public Function GetCursorOffset(ByVal Column As Integer, ByVal Row As Integer) As Vector2
+            Dim Offset As Vector2 = New Vector2(Nothing, Nothing)
+            If Column = Not Nothing Then
+                Offset.X = TileSize.X * Column
+            End If
+            If Row = Not Nothing Then
+                Offset.Y = TileSize.Y * Row
+            End If
+            Return Offset
+        End Function
+        Public Function GetCurrentTile() As Vector2
+            Return GetCursorOffset(CInt(BoardCursorDestination.X / TileSize.X), CInt(BoardCursorDestination.Y / TileSize.Y))
+        End Function
         Public Function GetLevelData(ByVal LevelNumber As Integer) As List(Of Integer)
             Select Case LevelNumber
                 Case 1
@@ -290,13 +316,78 @@ Namespace VoltorbFlip
             End If
         End Function
 
-
+        Public Overrides Sub SizeChanged()
+            GameOrigin = New Vector2(CInt(windowSize.Width - GameSize.X / 2), CInt(windowSize.Height / 2 - GameSize.Y / 2))
+        End Sub
         Public Overrides Sub Update()
 
-            If KeyBoardHandler.KeyPressed(KeyBindings.BackKey1) = True Then
-                SetScreen(Me.PreScreen)
+            If GameState = States.Game OrElse GameState = States.Memo Then
+                If Controls.Up(True, True, False) Then
+                    If BoardCursorDestination.Y > GetCursorOffset(Nothing, 0).Y Then
+                        BoardCursorDestination.Y -= GetCursorOffset(Nothing, 1).Y
+                    Else
+                        BoardCursorDestination.Y = GetCursorOffset(Nothing, 4).Y
+                    End If
+                End If
+
+                If Controls.Down(True, True, False) = True Then
+                    If BoardCursorDestination.Y < GetCursorOffset(Nothing, 4).Y Then
+                        BoardCursorDestination.Y += GetCursorOffset(Nothing, 1).Y
+                    Else
+                        BoardCursorDestination.Y = GetCursorOffset(Nothing, 0).Y
+                    End If
+                End If
+
+                If Controls.Left(True, True, False) = True Then
+                    If BoardCursorDestination.X > GetCursorOffset(Nothing, 0).X Then
+                        BoardCursorDestination.X -= GetCursorOffset(Nothing, 1).X
+                    Else
+                        BoardCursorDestination.X = GetCursorOffset(Nothing, 4).X
+                    End If
+                End If
+
+                If Controls.Right(True, True, False) = True Then
+                    If BoardCursorDestination.X < GetCursorOffset(Nothing, 4).X Then
+                        BoardCursorDestination.X += GetCursorOffset(Nothing, 1).X
+                    Else
+                        BoardCursorDestination.X = GetCursorOffset(Nothing, 0).X
+                    End If
+                End If
+
             End If
-            If _closing Then
+
+            If KeyBoardHandler.KeyPressed(KeyBindings.OpenInventoryKey) Or ControllerHandler.ButtonPressed(Buttons.X) Then
+                If GameState = States.Game Then
+                    GameState = States.Memo
+                ElseIf GameState = States.Memo Then
+                    GameState = States.Game
+                End If
+            End If
+
+            If GameState = States.Memo Then
+
+                If Controls.Left(False, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.LeftShoulder) Then
+                    MemoIndex -= 1
+                    If MemoIndex < 0 Then
+                        MemoIndex = 3
+                    End If
+                End If
+                If Controls.Right(False, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.RightShoulder) Then
+                    MemoIndex += 1
+                    If MemoIndex > 3 Then
+                        MemoIndex = 0
+                    End If
+                End If
+
+            End If
+            If Controls.Dismiss And GameState = States.Game Then
+                GameState = States.Closing
+            End If
+            If Controls.Dismiss And GameState = States.Memo Then
+
+            End If
+
+            If GameState = States.Closing Then
                 If _interfaceFade > 0F Then
                     _interfaceFade = MathHelper.Lerp(0, _interfaceFade, 0.8F)
                     If _interfaceFade < 0F Then
@@ -314,7 +405,7 @@ Namespace VoltorbFlip
                 End If
             Else
 
-                Dim maxWindowHeight As Integer = 400
+                Dim maxWindowHeight As Integer = CInt(GameSize.Y / 2)
                 If _enrollY < maxWindowHeight Then
                     _enrollY = MathHelper.Lerp(maxWindowHeight, _enrollY, 0.8F)
                     If _enrollY >= maxWindowHeight Then
@@ -325,6 +416,9 @@ Namespace VoltorbFlip
                     _interfaceFade = MathHelper.Lerp(1, _interfaceFade, 0.95F)
                     If _interfaceFade > 1.0F Then
                         _interfaceFade = 1.0F
+                        If GameState = States.Opening Then
+                            GameState = States.Game
+                        End If
                     End If
                 End If
 
@@ -332,6 +426,7 @@ Namespace VoltorbFlip
             End If
 
         End Sub
+
 
     End Class
 
