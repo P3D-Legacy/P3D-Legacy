@@ -23,6 +23,10 @@ Namespace VoltorbFlip
         Public Property MaxCoins As Integer = 1
 
         Public Board As List(Of List(Of Tile))
+
+        Public VoltorbSums As List(Of List(Of Integer))
+        Public CoinSums As List(Of List(Of Integer))
+
         Private GameSize As New Vector2(512, 512)
         Private TileSize As New Vector2(66, 66)
         Private GameOrigin As New Vector2(CInt(windowSize.Width - GameSize.X / 2), CInt(windowSize.Height / 2 - GameSize.Y / 2))
@@ -172,6 +176,9 @@ Namespace VoltorbFlip
 
             MaxCoins = CInt(Math.Pow(2, Data(0)) * Math.Pow(3, Data(1)))
 
+            VoltorbSums = GenerateSums(Board, True)
+            CoinSums = GenerateSums(Board, False)
+
             Return Board
 
         End Function
@@ -188,6 +195,67 @@ Namespace VoltorbFlip
             Return Grid
         End Function
 
+        ''' <summary>
+        ''' Returns amount of either Coins or Voltorbs in each row and column of a grid of tiles
+        ''' </summary>
+        ''' <param name="Board"></param> A grid of Tiles
+        ''' <param name="CoinsOrVoltorbs"></param> True returns amount of Voltorbs, False returns amount of Coins
+        ''' <returns></returns>
+        Private Function GenerateSums(ByVal Board As List(Of List(Of Tile)), ByVal CoinsOrVoltorbs As Boolean) As List(Of List(Of Integer))
+            Dim RowSums As New List(Of Integer)
+            Dim ColumnSums As New List(Of Integer)
+            Dim RowBombs As New List(Of Integer)
+            Dim ColumnBombs As New List(Of Integer)
+
+            For _row = 0 To GridSize - 1
+                For _column = 0 To GridSize - 1
+                    If Board(_row)(_column).Value = Tile.Values.Voltorb Then
+                        If RowBombs(_row) = Nothing Then
+                            RowBombs.Add(1)
+                        Else
+                            RowBombs(_row) += 1
+                        End If
+                    Else
+                        If RowSums(_row) = Nothing Then
+                            RowSums.Add(Board(_row)(_column).Value)
+                        Else
+                            RowSums(_row) += Board(_row)(_column).Value
+                        End If
+                    End If
+                Next
+            Next
+
+            For _column = 0 To GridSize - 1
+                For _row = 0 To GridSize - 1
+                    If Board(_row)(_column).Value = Tile.Values.Voltorb Then
+                        If ColumnBombs(_column) = Nothing Then
+                            ColumnBombs.Add(1)
+                        Else
+                            ColumnBombs(_column) += 1
+                        End If
+                    Else
+                        If ColumnSums(_column) = Nothing Then
+                            ColumnSums.Add(Board(_row)(_column).Value)
+                        Else
+                            ColumnSums(_column) += Board(_row)(_column).Value
+                        End If
+                    End If
+                Next
+            Next
+
+
+            If CoinsOrVoltorbs = False Then
+                Dim Sums As New List(Of List(Of Integer))
+                Sums.AddRange({RowSums, ColumnSums})
+                Return Sums
+            Else
+                Dim Voltorbs As New List(Of List(Of Integer))
+                Voltorbs.AddRange({RowBombs, ColumnBombs})
+                Return Voltorbs
+            End If
+
+        End Function
+
         Public Function GetCursorOffset(ByVal Column As Integer, ByVal Row As Integer) As Vector2
             Dim Offset As Vector2 = New Vector2(Nothing, Nothing)
             If Column = Not Nothing Then
@@ -201,6 +269,7 @@ Namespace VoltorbFlip
         Public Function GetCurrentTile() As Vector2
             Return GetCursorOffset(CInt(BoardCursorDestination.X / TileSize.X), CInt(BoardCursorDestination.Y / TileSize.Y))
         End Function
+
         Public Function GetLevelData(ByVal LevelNumber As Integer) As List(Of Integer)
             Select Case LevelNumber
                 Case 1
