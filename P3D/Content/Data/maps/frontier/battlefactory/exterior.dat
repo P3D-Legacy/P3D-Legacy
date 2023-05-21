@@ -1500,5 +1500,6 @@ Gate:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\main.dat,33,0.1,59,0]}}{"Rotation"{int[0]}}{"Position"{sngArr[33,4,53]}}]}}
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[24,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\main.dat,33,4.1,53,0]}}{"Rotation"{int[0]}}{"Position"{sngArr[33,0,59]}}]}}
 
-{"OffsetMap"{MAP[{"Offset"{sngArr[-30,0]}}{"Map"{str[frontier\battlefactory\exterior.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[30,0]}}{"Map"{str[frontier\main.dat]}}]}}
+
 {"Backdrop"{BAC[{"Position"{sngArr[-50.5,-1,-65]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
