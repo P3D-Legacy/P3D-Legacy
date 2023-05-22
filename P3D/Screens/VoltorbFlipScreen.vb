@@ -5,20 +5,35 @@ Namespace VoltorbFlip
 
         Inherits Screen
 
-        'Animation:
+        ' Variables & Properties
 
-        Private _enrollY As Single = 0F
-        Private _interfaceFade As Single = 0F
+        Private _screenTransitionY As Single = 0F
+        Public Shared _interfaceFade As Single = 0F
+
+        Private MemoWindowX As Single = 0F
+        Private MemoWindowSize As New Size(112, 112)
+
+        Private Shared ReadOnly GameSize As New Size(512, 512)
+        Public Shared ReadOnly BoardSize As New Size(384, 384)
+        Public Shared ReadOnly TileSize As New Size(64, 64)
+        Private Shared ReadOnly GridSize As Integer = 5
+
+        Public Shared GameOrigin As New Vector2(CInt(windowSize.Width - GameSize.Width / 2), CInt(windowSize.Height / 2 - GameSize.Height / 2))
+        Public Shared BoardOrigin As New Vector2(GameOrigin.X + 32, GameOrigin.Y + 32)
+
         Private BoardCursorPosition As New Vector2(0, 0)
         Private BoardCursorDestination As New Vector2(0, 0)
 
         Private MemoIndex As Integer = 0
 
-        Public GameState As States = States.Opening
-        Public Shared ReadOnly GridSize As Integer = 5
+        Public Shared GameState As States = States.Opening
+
         Public Property PreviousLevel As Integer = 1
         Public Property CurrentLevel As Integer = 1
-        Public Property CurrentCoins As Integer = 0
+
+        Public Shared ReadOnly MinLevel As Integer = 1
+        Public Shared ReadOnly MaxLevel As Integer = 8
+        Public Shared Property CurrentCoins As Integer = 0
         Public Property TotalCoins As Integer = 0
         Public Property MaxCoins As Integer = 1
 
@@ -27,21 +42,21 @@ Namespace VoltorbFlip
         Public VoltorbSums As List(Of List(Of Integer))
         Public CoinSums As List(Of List(Of Integer))
 
-        Private GameSize As New Vector2(512, 512)
-        Private TileSize As New Vector2(66, 66)
-        Private GameOrigin As New Vector2(CInt(windowSize.Width - GameSize.X / 2), CInt(windowSize.Height / 2 - GameSize.Y / 2))
-
         Public Enum States
             Opening
             Closing
+            QuitQuestion
             Game
             Memo
             GameWon
             GameLost
+            FlipWon
+            FlipLost
             NewLevel
         End Enum
 
         'Stuff related to blurred PreScreens
+        Private _blur As Resources.Blur.BlurHandler
         Private _preScreenTexture As RenderTarget2D
         Private _preScreenTarget As RenderTarget2D
         Private _blurScreens As Identifications() = {Identifications.BattleScreen,
@@ -81,10 +96,11 @@ Namespace VoltorbFlip
 
             DrawBackground()
 
+            DrawBoard()
+
+            TextBox.Draw()
+            ChooseBox.Draw()
         End Sub
-
-
-        Private _blur As Resources.Blur.BlurHandler
 
         Private Sub DrawPrescreen()
             If _preScreenTexture Is Nothing OrElse _preScreenTexture.IsContentLost Then
@@ -114,15 +130,34 @@ Namespace VoltorbFlip
         End Sub
 
         Private Sub DrawBackground()
-            Dim mainBackgroundColor As Color = New Color(48, 151, 70)
-            If GameState = States.Closing Then
-                mainBackgroundColor = New Color(48, 151, 70, CInt(255 * _interfaceFade))
+            Dim mainBackgroundColor As Color = New Color(255, 255, 255)
+            If GameState = States.Closing Or GameState = States.Opening Then
+                mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
             End If
 
-            Canvas.DrawRectangle(New Rectangle(CInt(GameOrigin.X), CInt(GameOrigin.Y - _enrollY), CInt(GameSize.X), CInt(GameSize.Y)), mainBackgroundColor)
+            Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\Background"), 2, New Rectangle(CInt(GameOrigin.X), CInt(GameOrigin.Y - _screenTransitionY), CInt(GameSize.Width), CInt(GameSize.Height)), mainBackgroundColor, True)
 
         End Sub
 
+        Private Sub DrawBoard()
+            Dim mainBackgroundColor As Color = New Color(255, 255, 255)
+            If GameState = States.Closing Or GameState = States.Opening Then
+                mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
+            End If
+
+            SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Board"), New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height), mainBackgroundColor)
+
+            DrawTiles()
+        End Sub
+
+        Private Sub DrawTiles()
+            For _row = 0 To GridSize - 1
+                For _column = 0 To GridSize - 1
+                    Dim _tile As Tile = Board(_row)(_column)
+                    _tile.Draw()
+                Next
+            Next
+        End Sub
         Public Function CreateBoard(ByVal Level As Integer) As List(Of List(Of Tile))
 
             Dim Board As List(Of List(Of Tile)) = CreateGrid()
@@ -183,6 +218,10 @@ Namespace VoltorbFlip
 
         End Function
 
+        ''' <summary>
+        ''' Returns an empty grid of Tiles
+        ''' </summary>
+        ''' <returns></returns>
         Private Function CreateGrid() As List(Of List(Of Tile))
             Dim Grid As New List(Of List(Of Tile))
             For _row = 1 To VoltorbFlipScreen.GridSize
@@ -196,7 +235,7 @@ Namespace VoltorbFlip
         End Function
 
         ''' <summary>
-        ''' Returns amount of either Coins or Voltorbs in each row and column of a grid of tiles
+        ''' Returns amount of either Coins or Voltorbs in each row and column of a grid of Tiles
         ''' </summary>
         ''' <param name="Board"></param> A grid of Tiles
         ''' <param name="CoinsOrVoltorbs"></param> True returns amount of Voltorbs, False returns amount of Coins
@@ -259,15 +298,26 @@ Namespace VoltorbFlip
         Public Function GetCursorOffset(ByVal Column As Integer, ByVal Row As Integer) As Vector2
             Dim Offset As Vector2 = New Vector2(Nothing, Nothing)
             If Column = Not Nothing Then
-                Offset.X = TileSize.X * Column
+                Offset.X = TileSize.Width * Column
             End If
             If Row = Not Nothing Then
-                Offset.Y = TileSize.Y * Row
+                Offset.Y = TileSize.Height * Row
             End If
             Return Offset
         End Function
+
+        ''' <summary>
+        ''' Get the tile that the cursor is on
+        ''' </summary>
+        ''' <returns></returns>
         Public Function GetCurrentTile() As Vector2
-            Return GetCursorOffset(CInt(BoardCursorDestination.X / TileSize.X), CInt(BoardCursorDestination.Y / TileSize.Y))
+            Return GetCursorOffset(CInt(BoardCursorDestination.X / TileSize.Width), CInt(BoardCursorDestination.Y / TileSize.Height))
+        End Function
+
+        Public Function GetTileUnderMouse() As Vector2
+            Dim AbsoluteMousePosition As Vector2 = MouseHandler.MousePosition.ToVector2
+            Dim RelativeMousePosition As Vector2 = New Vector2(Clamp(AbsoluteMousePosition.X - BoardOrigin.X, 0, BoardSize.Width), Clamp(AbsoluteMousePosition.Y - BoardOrigin.Y, 0, BoardSize.Height))
+            Return New Vector2(CInt(Math.Floor(RelativeMousePosition.X / TileSize.Width)), CInt(Math.Floor(RelativeMousePosition.Y / TileSize.Height)))
         End Function
 
         Public Function GetLevelData(ByVal LevelNumber As Integer) As List(Of Integer)
@@ -276,99 +326,113 @@ Namespace VoltorbFlip
                     Dim chance As Integer = CInt(Random.Next(0, 5))
                     Select Case chance
                         Case 0
-                            Return {5, 0, 6}.ToList
-                        Case 1
-                            Return {4, 1, 6}.ToList
-                        Case 2
                             Return {3, 1, 6}.ToList
+                        Case 1
+                            Return {0, 3, 6}.ToList
+                        Case 2
+                            Return {5, 0, 6}.ToList
                         Case 3
                             Return {2, 2, 6}.ToList
                         Case 4
-                            Return {0, 3, 6}.ToList
+                            Return {4, 1, 6}.ToList
                     End Select
                 Case 2
                     Dim chance As Integer = CInt(Random.Next(0, 5))
                     Select Case chance
                         Case 0
-                            Return {6, 0, 7}.ToList
+                            Return {1, 3, 7}.ToList
                         Case 1
-                            Return {5, 1, 7}.ToList
+                            Return {6, 0, 7}.ToList
                         Case 2
                             Return {3, 2, 7}.ToList
                         Case 3
-                            Return {1, 3, 7}.ToList
-                        Case 4
                             Return {0, 4, 7}.ToList
+                        Case 4
+                            Return {5, 1, 7}.ToList
                     End Select
                 Case 3
                     Dim chance As Integer = CInt(Random.Next(0, 5))
                     Select Case chance
                         Case 0
-                            Return {7, 0, 8}.ToList
+                            Return {2, 3, 8}.ToList
                         Case 1
-                            Return {6, 1, 8}.ToList
+                            Return {7, 0, 8}.ToList
                         Case 2
                             Return {4, 2, 8}.ToList
                         Case 3
-                            Return {2, 3, 8}.ToList
-                        Case 4
                             Return {1, 4, 8}.ToList
+                        Case 4
+                            Return {6, 1, 8}.ToList
                     End Select
                 Case 4
                     Dim chance As Integer = CInt(Random.Next(0, 5))
                     Select Case chance
                         Case 0
-                            Return {8, 0, 10}.ToList
-                        Case 1
-                            Return {5, 2, 10}.ToList
-                        Case 2
                             Return {3, 3, 8}.ToList
-                        Case 3
-                            Return {2, 4, 10}.ToList
-                        Case 4
+                        Case 1
                             Return {0, 5, 8}.ToList
+                        Case 2
+                            Return {8, 0, 10}.ToList
+                        Case 3
+                            Return {5, 2, 10}.ToList
+                        Case 4
+                            Return {2, 4, 10}.ToList
                     End Select
                 Case 5
                     Dim chance As Integer = CInt(Random.Next(0, 5))
                     Select Case chance
                         Case 0
-                            Return {9, 0, 10}.ToList
-                        Case 1
                             Return {7, 1, 10}.ToList
-                        Case 2
-                            Return {6, 2, 10}.ToList
-                        Case 3
+                        Case 1
                             Return {4, 3, 10}.ToList
-                        Case 4
+                        Case 2
                             Return {1, 5, 10}.ToList
+                        Case 3
+                            Return {9, 0, 10}.ToList
+                        Case 4
+                            Return {6, 2, 10}.ToList
                     End Select
                 Case 6
                     Dim chance As Integer = CInt(Random.Next(0, 5))
                     Select Case chance
                         Case 0
-                            Return {8, 1, 10}.ToList
-                        Case 1
-                            Return {5, 3, 10}.ToList
-                        Case 2
                             Return {3, 4, 10}.ToList
-                        Case 3
-                            Return {2, 5, 10}.ToList
-                        Case 4
+                        Case 1
                             Return {0, 6, 10}.ToList
+                        Case 2
+                            Return {8, 1, 10}.ToList
+                        Case 3
+                            Return {5, 3, 10}.ToList
+                        Case 4
+                            Return {2, 5, 10}.ToList
                     End Select
                 Case 7
                     Dim chance As Integer = CInt(Random.Next(0, 5))
                     Select Case chance
                         Case 0
-                            Return {9, 1, 13}.ToList
-                        Case 1
                             Return {7, 2, 10}.ToList
-                        Case 2
-                            Return {6, 3, 10}.ToList
-                        Case 3
+                        Case 1
                             Return {4, 4, 10}.ToList
-                        Case 4
+                        Case 2
                             Return {1, 6, 13}.ToList
+                        Case 3
+                            Return {9, 1, 13}.ToList
+                        Case 4
+                            Return {6, 3, 10}.ToList
+                    End Select
+                Case 8
+                    Dim chance As Integer = CInt(Random.Next(0, 5))
+                    Select Case chance
+                        Case 0
+                            Return {0, 7, 10}.ToList
+                        Case 1
+                            Return {8, 2, 10}.ToList
+                        Case 2
+                            Return {5, 4, 10}.ToList
+                        Case 3
+                            Return {2, 6, 10}.ToList
+                        Case 4
+                            Return {7, 3, 10}.ToList
                     End Select
                 Case Else
                     Return Nothing
@@ -386,11 +450,26 @@ Namespace VoltorbFlip
         End Function
 
         Public Overrides Sub SizeChanged()
-            GameOrigin = New Vector2(CInt(windowSize.Width - GameSize.X / 2), CInt(windowSize.Height / 2 - GameSize.Y / 2))
+            GameOrigin = New Vector2(CInt(windowSize.Width - GameSize.Width / 2), CInt(windowSize.Height / 2 - GameSize.Height / 2))
+            BoardOrigin = New Vector2(GameOrigin.X + 32, GameOrigin.Y + 32)
+            BoardCursorDestination = GetCursorOffset(0, 0)
+            BoardCursorPosition = GetCursorOffset(0, 0)
+        End Sub
+
+        Public Sub UpdateTiles()
+            For _row = 0 To GridSize - 1
+                For _column = 0 To GridSize - 1
+                    Dim _tile As Tile = Board(_row)(_column)
+                    _tile.Update()
+                Next
+            Next
         End Sub
         Public Overrides Sub Update()
+            UpdateTiles()
 
-            If GameState = States.Game OrElse GameState = States.Memo Then
+            If ChooseBox.Showing = False AndAlso TextBox.Showing = False AndAlso GameState = States.Game Or GameState = States.Memo Then
+
+                'Moving the cursor between Tiles on the board
                 If Controls.Up(True, True, False) Then
                     If BoardCursorDestination.Y > GetCursorOffset(Nothing, 0).Y Then
                         BoardCursorDestination.Y -= GetCursorOffset(Nothing, 1).Y
@@ -423,8 +502,17 @@ Namespace VoltorbFlip
                     End If
                 End If
 
+                'Animation of Cursor
+                BoardCursorPosition.X = MathHelper.Lerp(BoardCursorDestination.X, BoardCursorPosition.X, 0.8F)
+                BoardCursorPosition.Y = MathHelper.Lerp(BoardCursorDestination.Y, BoardCursorPosition.Y, 0.8F)
+
+            Else
+                'Reset cursor position between levels
+                BoardCursorDestination = GetCursorOffset(0, 0)
+                BoardCursorPosition = GetCursorOffset(0, 0)
             End If
 
+            'Switching between Game and Memo GameStates
             If KeyBoardHandler.KeyPressed(KeyBindings.OpenInventoryKey) Or ControllerHandler.ButtonPressed(Buttons.X) Then
                 If GameState = States.Game Then
                     GameState = States.Memo
@@ -434,28 +522,183 @@ Namespace VoltorbFlip
             End If
 
             If GameState = States.Memo Then
+                'Animate opening the Memo window
+                If MemoWindowX < MemoWindowSize.Width Then
+                    MemoWindowX = MathHelper.Lerp(MemoWindowSize.Width, MemoWindowX, 0.9F)
+                    If MemoWindowX >= MemoWindowSize.Width Then
+                        MemoWindowX = MemoWindowSize.Width
+                    End If
+                End If
 
-                If Controls.Left(False, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.LeftShoulder) Then
+                'Cycling through the 4 Memo types (Voltorb, One, Two, Three)
+                If Controls.Left(True, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.LeftShoulder) Then
                     MemoIndex -= 1
                     If MemoIndex < 0 Then
                         MemoIndex = 3
                     End If
                 End If
-                If Controls.Right(False, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.RightShoulder) Then
+                If Controls.Right(True, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.RightShoulder) Then
                     MemoIndex += 1
                     If MemoIndex > 3 Then
                         MemoIndex = 0
                     End If
                 End If
-
+            Else
+                'Animate Closing the Memo window
+                If MemoWindowX > 0F Then
+                    MemoWindowX = MathHelper.Lerp(0F, MemoWindowX, 0.9F)
+                    If MemoWindowX <= 0F Then
+                        MemoWindowX = 0F
+                    End If
+                End If
             End If
+
+            'Quiting Voltorb Flip
             If Controls.Dismiss And GameState = States.Game Then
-                GameState = States.Closing
-            End If
-            If Controls.Dismiss And GameState = States.Memo Then
+                GameState = States.QuitQuestion
+                TextBox.Show("Do you want to stop~playing Voltorb Flip?%Yes|No%")
+                If ChooseBox.readyForResult = True Then
+                    If ChooseBox.result = 0 Then
+                        GameState = States.Closing
+                    Else
+                        GameState = States.Game
+                    End If
+                End If
 
             End If
 
+            'Flip currently selected Tile
+            If Controls.Accept(False, True, True) And GameState = States.Game Then
+                Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).Flip()
+            End If
+
+            'Flip the Tile that the mouse is on
+            If Controls.Accept(True, False, False) And GameState = States.Game Then
+                Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
+                BoardCursorDestination = TileUnderMouse
+                Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).Flip()
+            End If
+
+            'Adding currently selected Memo to currently selected Tile
+            If Controls.Accept(False, True, True) And GameState = States.Memo Then
+                Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).SetMemo(MemoIndex, True)
+            End If
+
+            'Adding currently selected Memo to Tile that the mouse is on
+            If Controls.Accept(True, False, False) And GameState = States.Memo Then
+                Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
+                BoardCursorDestination = TileUnderMouse
+                Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, True)
+            End If
+
+            'Removing currently selected Memo from currently selected Tile
+            If Controls.Dismiss(False, True, True) And GameState = States.Memo Then
+                Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).SetMemo(MemoIndex, False)
+            End If
+
+            'Removing currently selected Memo from Tile that the mouse is on
+            If Controls.Dismiss(True, False, False) And GameState = States.Memo Then
+                Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
+                BoardCursorDestination = TileUnderMouse
+                Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, False)
+            End If
+
+            'Completed the level
+            If GameState = States.GameWon Then
+                TextBox.Show("Game clear! You received" & " " & CurrentCoins & " " & "Coins!")
+                TotalCoins += CurrentCoins
+
+                If TotalCoins > 99999 Then
+                    TotalCoins = 99999
+                End If
+
+                CurrentCoins = 0
+                'Flip all Tiles to reveal contents
+                For _row = 0 To GridSize
+                    For _column = 0 To GridSize
+                        Board(_row)(_column).Reveal()
+                    Next
+                Next
+                GameState = States.FlipWon
+            End If
+
+            'Revealed a Voltorb
+            If GameState = States.GameLost Then
+                TextBox.Show("Oh no! You get 0 coins")
+                CurrentCoins = 0
+                'Flip all Tiles to reveal contents
+                For _row = 0 To GridSize
+                    For _column = 0 To GridSize
+                        Board(_row)(_column).Reveal()
+                    Next
+                Next
+                GameState = States.FlipLost
+
+            End If
+
+            'Change Level, reset Tiles
+            If GameState = States.FlipWon Then
+                If Controls.Accept = True And TextBox.Showing = False Then
+                    For _row = 0 To GridSize
+                        For _column = 0 To GridSize
+                            Board(_row)(_column).Reset()
+                        Next
+                    Next
+
+                    PreviousLevel = CurrentLevel
+                    CurrentLevel += 1
+
+                    If CurrentLevel > MaxLevel Then
+                        CurrentLevel = MaxLevel
+                    End If
+
+                    GameState = States.NewLevel
+                End If
+            End If
+
+            'Change Level, reset Tiles
+            If GameState = States.FlipLost Then
+                If Controls.Accept = True And TextBox.Showing = False Then
+                    For _row = 0 To GridSize
+                        For _column = 0 To GridSize
+                            Board(_row)(_column).Reset()
+                        Next
+                    Next
+
+                    PreviousLevel = CurrentLevel
+                    CurrentLevel -= 1
+
+                    If CurrentLevel < MinLevel Then
+                        CurrentLevel = MinLevel
+                    End If
+
+                    GameState = States.NewLevel
+                End If
+            End If
+
+            'Prepare new Level
+            If GameState = States.NewLevel Then
+
+                If CurrentLevel < PreviousLevel Then
+                    TextBox.Show("Dropped to Game Lv." & " " & CurrentLevel & "!")
+                End If
+
+                If CurrentLevel = PreviousLevel Then
+                    TextBox.Show("Ready to play Game Lv." & " " & CurrentLevel & "!")
+                End If
+
+                If CurrentLevel > PreviousLevel Then
+                    TextBox.Show("Advanced to Game Lv." & " " & CurrentLevel & "!")
+                End If
+
+                Board = CreateBoard(CurrentLevel)
+
+                If TextBox.Showing = False Then
+                    GameState = States.Game
+                End If
+            End If
+
+            'Animation of opening/closing the window
             If GameState = States.Closing Then
                 If _interfaceFade > 0F Then
                     _interfaceFade = MathHelper.Lerp(0, _interfaceFade, 0.8F)
@@ -463,22 +706,22 @@ Namespace VoltorbFlip
                         _interfaceFade = 0F
                     End If
                 End If
-                If _enrollY > 0 Then
-                    _enrollY = MathHelper.Lerp(0, _enrollY, 0.8F)
-                    If _enrollY <= 0 Then
-                        _enrollY = 0
+                If _screenTransitionY > 0 Then
+                    _screenTransitionY = MathHelper.Lerp(0, _screenTransitionY, 0.8F)
+                    If _screenTransitionY <= 0 Then
+                        _screenTransitionY = 0
                     End If
                 End If
-                If _enrollY <= 2.0F Then
+                If _screenTransitionY <= 2.0F Then
                     SetScreen(PreScreen)
                 End If
             Else
 
-                Dim maxWindowHeight As Integer = CInt(GameSize.Y / 2)
-                If _enrollY < maxWindowHeight Then
-                    _enrollY = MathHelper.Lerp(maxWindowHeight, _enrollY, 0.8F)
-                    If _enrollY >= maxWindowHeight Then
-                        _enrollY = maxWindowHeight
+                Dim maxWindowHeight As Integer = CInt(GameSize.Height / 2)
+                If _screenTransitionY < maxWindowHeight Then
+                    _screenTransitionY = MathHelper.Lerp(maxWindowHeight, _screenTransitionY, 0.8F)
+                    If _screenTransitionY >= maxWindowHeight Then
+                        _screenTransitionY = maxWindowHeight
                     End If
                 End If
                 If _interfaceFade < 1.0F Then
@@ -496,8 +739,8 @@ Namespace VoltorbFlip
 
         End Sub
 
-
     End Class
+
 
     Public Class Tile
         Public Enum Values
@@ -515,17 +758,85 @@ Namespace VoltorbFlip
         Private Property Memo3 As Boolean = False
         Private Property Memo4 As Boolean = False
 
+        Private Property Activated As Boolean = False
+        Private Property FlipProgress As Integer = 0
+
         Public Sub Flip()
             If Flipped = False Then
-                Flipped = True
+                FlipProgress = 3
+            End If
+        End Sub
+
+        Public Sub Reveal()
+            If Flipped = False Then
+                FlipProgress = 1
             End If
         End Sub
         Public Sub Reset()
-            Row = 0
-            Column = 0
-            Value = Tile.Values.Voltorb
-            Flipped = False
+            If Flipped = True Then
+                Flipped = False
+                Activated = False
+            End If
         End Sub
+
+        Public Sub Draw()
+            Dim mainBackgroundColor As Color = New Color(255, 255, 255)
+            If VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.Closing Or VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.Opening Then
+                mainBackgroundColor = New Color(255, 255, 255, CInt(255 * VoltorbFlipScreen._interfaceFade))
+            End If
+
+            Dim TileWidth = VoltorbFlipScreen.TileSize.Width
+            Dim TileHeight = VoltorbFlipScreen.TileSize.Height
+            Dim FlipWidth As Single = 1.0F
+
+            If FlipProgress = 1 OrElse FlipProgress = 3 Then
+                If FlipWidth > 0F Then
+                    FlipWidth -= 0.05F
+                End If
+                If FlipWidth <= 0F Then
+                    FlipWidth = 0F
+                    Flipped = True
+                    FlipProgress += 1
+                End If
+            End If
+            If FlipProgress = 2 OrElse FlipProgress = 4 Then
+                If FlipWidth < 1.0F Then
+                    FlipWidth += 0.05F
+                End If
+                If FlipWidth >= 1.0F Then
+                    FlipWidth = 1.0F
+                    FlipProgress = 0
+                End If
+            End If
+
+            SpriteBatch.Draw(GetImage, New Rectangle(CInt(VoltorbFlipScreen.BoardOrigin.X + TileWidth * Column + (TileWidth - FlipWidth * TileWidth)), CInt(VoltorbFlipScreen.BoardOrigin.Y + TileHeight * Row), CInt(TileWidth * FlipWidth), TileHeight), mainBackgroundColor)
+
+        End Sub
+
+        Public Sub Update()
+            If FlipProgress <= 2 Then
+                Activated = False
+            Else
+                If Flipped = True Then
+                    If Activated = False Then
+                        If Me.Value = Values.Voltorb Then
+                            VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.GameLost
+                        Else
+                            VoltorbFlipScreen.CurrentCoins *= Me.Value
+                        End If
+                        Activated = True
+                    End If
+                End If
+            End If
+        End Sub
+
+        Public Function GetImage() As Texture2D
+            If Flipped = True Then
+                Return TextureManager.GetTexture("VoltorbFlip\Tile_Front", New Rectangle(Value * 32, 0, 32, 32))
+            Else
+                Return TextureManager.GetTexture("VoltorbFlip\Tile_Back", New Rectangle(0, 0, 32, 32))
+            End If
+        End Function
         Public Function GetMemo(ByVal MemoNumber As Integer) As Boolean
             Select Case MemoNumber
                 Case 1
@@ -540,6 +851,7 @@ Namespace VoltorbFlip
                     Return Nothing
             End Select
         End Function
+
         Public Sub SetMemo(ByVal MemoNumber As Integer, ByVal Value As Boolean)
             Select Case MemoNumber
                 Case Tile.Values.Voltorb
