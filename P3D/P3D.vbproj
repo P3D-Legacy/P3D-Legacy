@@ -28211,7 +28211,13 @@
     <Content Include="Content\Textures\VoltorbFlip\Memo_Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\VoltorbFlip\Memo_Button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Textures\VoltorbFlip\Memo_Enabled.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\VoltorbFlip\Memo_Index.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\VoltorbFlip\Tile_Back.png">
