@@ -26,6 +26,7 @@ Grass:
 {"Floor"{ENT[{"Size"{intArr[3,1]}}{"SeasonTexture"{str[Grass]}}{"Position"{intArr[43,3,6]}}{"TexturePath"{str[frontier]}}{"Texture"{rec[16,0,16,16]}}]}}
 
 Paths:
+{"Floor"{ENT[{"Size"{intArr[5,1]}}{"Position"{intArr[31,3,-7]}}{"TexturePath"{str[frontier]}}{"Visible"{bool[0]}}{"Texture"{rec[0,0,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[1,5]}}{"Position"{intArr[-7,3,31]}}{"TexturePath"{str[frontier]}}{"Visible"{bool[0]}}{"Texture"{rec[0,0,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[15,5]}}{"Position"{intArr[-6,3,31]}}{"TexturePath"{str[frontier]}}{"Texture"{rec[0,0,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[15,5]}}{"Position"{intArr[58,3,31]}}{"TexturePath"{str[frontier]}}{"Texture"{rec[0,0,16,16]}}]}}
@@ -1512,6 +1513,13 @@ Factory:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[-7,3,33]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlefactory\exterior.dat,44,3.1,33,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[-7,3,34]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlefactory\exterior.dat,44,3.1,34,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[-7,3,35]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlefactory\exterior.dat,44,3.1,35,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+Pike:
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[31,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\exterior.dat,31,3.1,72,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[32,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\exterior.dat,32,3.1,72,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[33,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\exterior.dat,33,3.1,72,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[34,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\exterior.dat,34,3.1,72,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[35,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battlepike\exterior.dat,35,3.1,72,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
 
 {"OffsetMap"{MAP[{"Offset"{sngArr[-50,0]}}{"Map"{str[frontier\battlefactory\exterior.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,-78]}}{"Map"{str[frontier\battlepike\exterior.dat]}}]}}
 {"Backdrop"{BAC[{"Position"{sngArr[-50.5,-1,-65]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
