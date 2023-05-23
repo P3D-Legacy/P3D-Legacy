@@ -96,7 +96,10 @@ Namespace VoltorbFlip
 
             DrawBackground()
 
+            DrawMemoMenuAndButton()
+
             DrawBoard()
+            DrawCursor()
 
             TextBox.Draw()
             ChooseBox.Draw()
@@ -158,7 +161,72 @@ Namespace VoltorbFlip
                 Next
             Next
         End Sub
-        Public Function CreateBoard(ByVal Level As Integer) As List(Of List(Of Tile))
+
+        Private Sub DrawMemoMenuAndButton()
+            Dim mainBackgroundColor As Color = New Color(255, 255, 255)
+            If GameState = States.Closing Or GameState = States.Opening Then
+                mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
+            End If
+
+            'Draw Button
+            Dim ButtonOriginX As Integer = CInt(BoardOrigin.X + BoardSize.Width + MemoWindowSize.Width)
+            SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Memo_Button", New Rectangle(0, 0, 56, 56)), New Rectangle(ButtonOriginX, CInt(BoardOrigin.Y), MemoWindowSize.Width, MemoWindowSize.Height), mainBackgroundColor)
+
+            Dim ButtonTextTop As String = "Open"
+            Dim ButtonTextBottom As String = "Memos"
+
+            If GameState = States.Memo Then
+                ButtonTextTop = "Close"
+            End If
+
+            SpriteBatch.DrawString(FontManager.MainFont, ButtonTextTop, New Vector2(CInt(ButtonOriginX + MemoWindowSize.Width / 2 - FontManager.MainFont.MeasureString(ButtonTextTop).X / 2), CInt(BoardOrigin.Y + 22)), mainBackgroundColor)
+            SpriteBatch.DrawString(FontManager.MainFont, ButtonTextBottom, New Vector2(CInt(ButtonOriginX + MemoWindowSize.Width / 2 - FontManager.MainFont.MeasureString(ButtonTextBottom).X / 2), CInt(BoardOrigin.Y + 22 + FontManager.MainFont.MeasureString(ButtonTextTop).Y)), mainBackgroundColor)
+
+            'Draw Memo Menu
+            If MemoWindowX > 0 Then
+                Dim CurrentTile As Tile = Board(CInt(GetCurrentTile.X))(CInt(GetCurrentTile.Y))
+
+                'Draw Background
+                SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Memo_Background", New Rectangle(0, 0, 56, 56)), New Rectangle(CInt(BoardOrigin.X + BoardSize.Width - MemoWindowSize.Width + MemoWindowX), CInt(BoardOrigin.Y + MemoWindowSize.Height + 32), MemoWindowSize.Width, MemoWindowSize.Height), mainBackgroundColor)
+
+                If GameState = States.Memo Then
+                    'Draw lit up Memos in the Memo menu when it's enabled on a tile
+                    If CurrentTile.GetMemo(0) = True Then 'Voltorb
+                        SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Memo_Enabled", New Rectangle(0, 0, 56, 56)), New Rectangle(CInt(BoardOrigin.X + BoardSize.Width - MemoWindowSize.Width + MemoWindowX), CInt(BoardOrigin.Y + MemoWindowSize.Height + 32), MemoWindowSize.Width, MemoWindowSize.Height), mainBackgroundColor)
+                    End If
+                    If CurrentTile.GetMemo(1) = True Then 'x1
+                        SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Memo_Enabled", New Rectangle(56, 0, 56, 56)), New Rectangle(CInt(BoardOrigin.X + BoardSize.Width - MemoWindowSize.Width + MemoWindowX), CInt(BoardOrigin.Y + MemoWindowSize.Height + 32), MemoWindowSize.Width, MemoWindowSize.Height), mainBackgroundColor)
+                    End If
+                    If CurrentTile.GetMemo(2) = True Then 'x2
+                        SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Memo_Enabled", New Rectangle(56 + 56, 0, 56, 56)), New Rectangle(CInt(BoardOrigin.X + BoardSize.Width - MemoWindowSize.Width + MemoWindowX), CInt(BoardOrigin.Y + MemoWindowSize.Height + 32), MemoWindowSize.Width, MemoWindowSize.Height), mainBackgroundColor)
+                    End If
+                    If CurrentTile.GetMemo(3) = True Then 'x3
+                        SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Memo_Enabled", New Rectangle(56 + 56 + 56, 0, 56, 56)), New Rectangle(CInt(BoardOrigin.X + BoardSize.Width - MemoWindowSize.Width + MemoWindowX), CInt(BoardOrigin.Y + MemoWindowSize.Height + 32), MemoWindowSize.Width, MemoWindowSize.Height), mainBackgroundColor)
+                    End If
+
+                    'Draw indicator of currently selected Memo
+                    SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Memo_Index", New Rectangle(56 * MemoIndex, 0, 56, 56)), New Rectangle(CInt(BoardOrigin.X + BoardSize.Width - MemoWindowSize.Width + MemoWindowX), CInt(BoardOrigin.Y + MemoWindowSize.Height + 32), MemoWindowSize.Width, MemoWindowSize.Height), mainBackgroundColor)
+                End If
+            End If
+
+        End Sub
+        Private Sub DrawCursor()
+            If GameState = States.Game OrElse GameState = States.Memo Then
+                Dim mainBackgroundColor As Color = New Color(255, 255, 255)
+                If GameState = States.Closing Or GameState = States.Opening Then
+                    mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
+                End If
+
+                Dim CursorImage As Texture2D = TextureManager.GetTexture("Textures\VoltorbFlip\Cursor_Game")
+                If GameState = States.Memo Then
+                    CursorImage = TextureManager.GetTexture("Textures\VoltorbFlip\Cursor_Memo")
+                End If
+
+                SpriteBatch.Draw(CursorImage, New Rectangle(CInt(VoltorbFlipScreen.BoardOrigin.X + BoardCursorPosition.X), CInt(VoltorbFlipScreen.BoardOrigin.Y + BoardCursorPosition.Y), TileSize.Width, TileSize.Height), mainBackgroundColor)
+            End If
+        End Sub
+
+        Private Function CreateBoard(ByVal Level As Integer) As List(Of List(Of Tile))
 
             Dim Board As List(Of List(Of Tile)) = CreateGrid()
             Dim Data As List(Of Integer) = GetLevelData(Level)
@@ -512,8 +580,18 @@ Namespace VoltorbFlip
                 BoardCursorPosition = GetCursorOffset(0, 0)
             End If
 
-            'Switching between Game and Memo GameStates
+            'Switching between Game and Memo GameStates (Keys & GamePad)
             If KeyBoardHandler.KeyPressed(KeyBindings.OpenInventoryKey) Or ControllerHandler.ButtonPressed(Buttons.X) Then
+                If GameState = States.Game Then
+                    GameState = States.Memo
+                ElseIf GameState = States.Memo Then
+                    GameState = States.Game
+                End If
+            End If
+
+            'Switching between Game and Memo GameStates (Mouse)
+            Dim ButtonRectangle As Rectangle = New Rectangle(CInt(BoardOrigin.X + BoardSize.Width + MemoWindowSize.Width), CInt(BoardOrigin.Y), MemoWindowSize.Width, MemoWindowSize.Height)
+            If Controls.Accept(True, False, False) = True AndAlso MouseHandler.IsInRectangle(ButtonRectangle) Then
                 If GameState = States.Game Then
                     GameState = States.Memo
                 ElseIf GameState = States.Memo Then
@@ -753,10 +831,10 @@ Namespace VoltorbFlip
         Public Property Column As Integer = 0
         Public Property Value As Integer = Tile.Values.Voltorb
         Public Property Flipped As Boolean = False
+        Private Property MemoVoltorb As Boolean = False
         Private Property Memo1 As Boolean = False
         Private Property Memo2 As Boolean = False
         Private Property Memo3 As Boolean = False
-        Private Property Memo4 As Boolean = False
 
         Private Property Activated As Boolean = False
         Private Property FlipProgress As Integer = 0
@@ -809,8 +887,22 @@ Namespace VoltorbFlip
                 End If
             End If
 
+            'Draw Tile
             SpriteBatch.Draw(GetImage, New Rectangle(CInt(VoltorbFlipScreen.BoardOrigin.X + TileWidth * Column + (TileWidth - FlipWidth * TileWidth)), CInt(VoltorbFlipScreen.BoardOrigin.Y + TileHeight * Row), CInt(TileWidth * FlipWidth), TileHeight), mainBackgroundColor)
 
+            'Draw Memos
+            If GetMemo(0) = True Then 'Voltorb
+                SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Tile_MemoIcons", New Rectangle(0, 0, 32, 32)), New Rectangle(CInt(VoltorbFlipScreen.BoardOrigin.X + TileWidth * Column + (TileWidth - FlipWidth * TileWidth)), CInt(VoltorbFlipScreen.BoardOrigin.Y + TileHeight * Row), CInt(TileWidth * FlipWidth), TileHeight), mainBackgroundColor)
+            End If
+            If GetMemo(1) = True Then 'x1
+                SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Tile_MemoIcons", New Rectangle(32, 0, 32, 32)), New Rectangle(CInt(VoltorbFlipScreen.BoardOrigin.X + TileWidth * Column + (TileWidth - FlipWidth * TileWidth)), CInt(VoltorbFlipScreen.BoardOrigin.Y + TileHeight * Row), CInt(TileWidth * FlipWidth), TileHeight), mainBackgroundColor)
+            End If
+            If GetMemo(2) = True Then 'x2
+                SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Tile_MemoIcons", New Rectangle(32 + 32, 0, 32, 32)), New Rectangle(CInt(VoltorbFlipScreen.BoardOrigin.X + TileWidth * Column + (TileWidth - FlipWidth * TileWidth)), CInt(VoltorbFlipScreen.BoardOrigin.Y + TileHeight * Row), CInt(TileWidth * FlipWidth), TileHeight), mainBackgroundColor)
+            End If
+            If GetMemo(3) = True Then 'x3
+                SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Tile_MemoIcons", New Rectangle(32 + 32 + 32, 0, 32, 32)), New Rectangle(CInt(VoltorbFlipScreen.BoardOrigin.X + TileWidth * Column + (TileWidth - FlipWidth * TileWidth)), CInt(VoltorbFlipScreen.BoardOrigin.Y + TileHeight * Row), CInt(TileWidth * FlipWidth), TileHeight), mainBackgroundColor)
+            End If
         End Sub
 
         Public Sub Update()
@@ -837,16 +929,17 @@ Namespace VoltorbFlip
                 Return TextureManager.GetTexture("VoltorbFlip\Tile_Back", New Rectangle(0, 0, 32, 32))
             End If
         End Function
+
         Public Function GetMemo(ByVal MemoNumber As Integer) As Boolean
             Select Case MemoNumber
+                Case 0
+                    Return MemoVoltorb
                 Case 1
                     Return Memo1
                 Case 2
                     Return Memo2
                 Case 3
                     Return Memo3
-                Case 3
-                    Return Memo4
                 Case Else
                     Return Nothing
             End Select
@@ -855,13 +948,13 @@ Namespace VoltorbFlip
         Public Sub SetMemo(ByVal MemoNumber As Integer, ByVal Value As Boolean)
             Select Case MemoNumber
                 Case Tile.Values.Voltorb
-                    Memo1 = Value
+                    MemoVoltorb = Value
                 Case Tile.Values.One
-                    Memo2 = Value
+                    Memo1 = Value
                 Case Tile.Values.Two
-                    Memo3 = Value
+                    Memo2 = Value
                 Case Tile.Values.Three
-                    Memo4 = Value
+                    Memo3 = Value
             End Select
         End Sub
 
