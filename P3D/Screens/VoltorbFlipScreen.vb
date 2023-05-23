@@ -19,7 +19,7 @@ Namespace VoltorbFlip
         Private Shared ReadOnly GridSize As Integer = 5
 
         Public Shared GameOrigin As New Vector2(CInt(windowSize.Width - GameSize.Width / 2), CInt(windowSize.Height / 2 - GameSize.Height / 2))
-        Public Shared BoardOrigin As New Vector2(GameOrigin.X + 32, GameOrigin.Y + 32)
+        Public Shared BoardOrigin As New Vector2(GameOrigin.X + 32, GameOrigin.Y + 96)
 
         Private BoardCursorPosition As New Vector2(0, 0)
         Private BoardCursorDestination As New Vector2(0, 0)
@@ -684,13 +684,30 @@ Namespace VoltorbFlip
             'Completed the level
             If GameState = States.GameWon Then
                 TextBox.Show("Game clear! You received" & " " & CurrentCoins & " " & "Coins!")
-                TotalCoins += CurrentCoins
 
-                If TotalCoins > 99999 Then
-                    TotalCoins = 99999
-                End If
+                Dim ResultCoins As Integer = TotalCoins + CurrentCoins
+                Dim AnimationTotalCoins As Single = TotalCoins
+                Dim AnimationCurrentCoins As Single = CurrentCoins
 
-                CurrentCoins = 0
+                While TotalCoins < ResultCoins
+                    AnimationTotalCoins += 0.05F
+                    If AnimationTotalCoins >= ResultCoins Then
+                        AnimationTotalCoins = ResultCoins
+                    End If
+
+                    AnimationCurrentCoins -= -0.05F
+                    If AnimationCurrentCoins <= 0 Then
+                        AnimationCurrentCoins = 0
+                    End If
+
+                    TotalCoins = CInt(Math.Floor(AnimationTotalCoins))
+                    If TotalCoins > 99999 Then
+                        TotalCoins = 99999
+                    End If
+
+                    CurrentCoins = CInt(Math.Ceiling(AnimationCurrentCoins))
+                End While
+
                 'Flip all Tiles to reveal contents
                 For _row = 0 To GridSize
                     For _column = 0 To GridSize
@@ -703,7 +720,19 @@ Namespace VoltorbFlip
             'Revealed a Voltorb
             If GameState = States.GameLost Then
                 TextBox.Show("Oh no! You get 0 coins")
-                CurrentCoins = 0
+
+                Dim ResultCoins As Integer = 0
+                Dim AnimationCurrentCoins As Single = CurrentCoins
+
+                While CurrentCoins > ResultCoins
+                    AnimationCurrentCoins -= -0.05F
+                    If AnimationCurrentCoins <= 0 Then
+                        AnimationCurrentCoins = 0
+                    End If
+
+                    CurrentCoins = CInt(Math.Ceiling(AnimationCurrentCoins))
+                End While
+
                 'Flip all Tiles to reveal contents
                 For _row = 0 To GridSize
                     For _column = 0 To GridSize

@@ -88,6 +88,15 @@
 /processorParam:TextureFormat=Color
 /build:Fonts/BMP/Unown.png
 
+#begin Fonts/BMP/VoltorbFlipFont.png
+/importer:TextureImporter
+/processor:LocalizedFontTextureProcessor
+/processorParam:DefaultCharacter=?
+/processorParam:FirstCharacter=
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:Fonts/BMP/VoltorbFlipFont.png
+
 #begin Models/BattlePike/BattlePike.fbx
 /importer:FbxImporter
 /processor:ModelProcessor
