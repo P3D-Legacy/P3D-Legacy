@@ -51,8 +51,8 @@ Paths;
 
 {"Floor"{ENT[{"Size"{intArr[1,5]}}{"Position"{intArr[5,3,27]}}{"TexturePath"{str[frontier]}}{"Visible"{bool[0]}}{"Texture"{rec[0,0,16,16]}}]}}
 {"Floor"{ENT[{"Size"{intArr[1,5]}}{"Position"{intArr[61,3,27]}}{"TexturePath"{str[frontier]}}{"Visible"{bool[0]}}{"Texture"{rec[0,0,16,16]}}]}}
-{"Floor"{ENT[{"Size"{intArr[5,1]}}{"Position"{intArr[33,3,72]}}{"TexturePath"{str[frontier]}}{"Visible"{bool[0]}}{"Texture"{rec[0,0,16,16]}}]}}
-{"Floor"{ENT[{"Size"{intArr[5,1]}}{"Position"{intArr[33,3,-7]}}{"TexturePath"{str[frontier]}}{"Visible"{bool[0]}}{"Texture"{rec[0,0,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[5,1]}}{"Position"{intArr[31,3,72]}}{"TexturePath"{str[frontier]}}{"Visible"{bool[0]}}{"Texture"{rec[0,0,16,16]}}]}}
+{"Floor"{ENT[{"Size"{intArr[5,1]}}{"Position"{intArr[31,3,-7]}}{"TexturePath"{str[frontier]}}{"Visible"{bool[0]}}{"Texture"{rec[0,0,16,16]}}]}}
 
 Mountains:
 Level 0:
@@ -561,7 +561,7 @@ south:
 {"Structure"{STR[{"Map"{str[structures\stairs\frontier\n.dat]}}{"Offset"{sngArr[35,3,50]}}]}}
 
 Signs:
-{"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[35,4,42]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle Pike*East to Battle Hall~West to Battle Castle~North to Battle Tower~South to Battle Plaza.]}}{"Rotation"{int[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[35,4,42]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle Pike*East to Battle Hall~West to Battle Castle~North to Battle Tower~South to Frontier Plaza.]}}{"Rotation"{int[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[24,4,27]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle Castle ahead.]}}{"Rotation"{int[1]}}]}}
 {"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[42,4,31]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle hall ahead.]}}{"Rotation"{int[1]}}]}}
 {"Entity"{ENT[{"EntityID"{str[SignBlock]}}{"Position"{sngArr[35,4,12]}}{"TexturePath"{str[frontier]}}{"Textures"{recArr[[0,82,16,14][0,82,3,14]]}}{"TextureIndex"{intArr[0,0,1,1,1,1,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[4]}}{"Action"{int[0]}}{"AdditionalValue"{str[Battle Tower ahead.]}}{"Rotation"{int[0]}}]}}
@@ -591,5 +591,12 @@ Plaza:
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[34,3,72]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\main.dat,34,3.1,-7,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
 {"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[35,3,72]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\main.dat,35,3.1,-7,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
 
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[31,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battletower\exterior.dat,31,3.1,46,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[32,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battletower\exterior.dat,32,3.1,46,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[33,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battletower\exterior.dat,33,3.1,46,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[34,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battletower\exterior.dat,34,3.1,46,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+{"Entity"{ENT[{"EntityID"{str[WarpBlock]}}{"Position"{sngArr[35,3,-7]}}{"TexturePath"{str[Village]}}{"Textures"{recArr[[128,16,16,16]]}}{"TextureIndex"{intArr[0,0,0,0,0,0,0,0,0,0]}}{"Collision"{bool[1]}}{"ModelID"{int[0]}}{"Action"{int[0]}}{"AdditionalValue"{str[frontier\battletower\exterior.dat,35,3.1,46,0]}}{"Rotation"{int[0]}}{"Visible"{bool[0]}}]}}
+
 {"OffsetMap"{MAP[{"Offset"{sngArr[0,78]}}{"Map"{str[frontier\main.dat]}}]}}
+{"OffsetMap"{MAP[{"Offset"{sngArr[0,-52]}}{"Map"{str[frontier\battletower\exterior.dat]}}]}}
 {"Backdrop"{BAC[{"Position"{sngArr[-50.5,-1,-65]}}{"Size"{intArr[200,200]}}{"Rotation"{sngArr[0,0,0]}}{"Type"{str[Water]}}{"TexturePath"{str[Village]}}{"Texture"{rec[32,48,16,16]}}]}}
