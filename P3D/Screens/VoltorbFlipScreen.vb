@@ -32,9 +32,13 @@ Namespace VoltorbFlip
         Public Property CurrentLevel As Integer = 1
 
         Public Shared ReadOnly MinLevel As Integer = 1
-        Public Shared ReadOnly MaxLevel As Integer = 8
+        Public Shared ReadOnly MaxLevel As Integer = 7
+        Public Shared Property CurrentFlips As Integer = 0
+        Public Shared Property TotalFlips As Integer = 0
+
         Public Shared Property CurrentCoins As Integer = 0
-        Public Property TotalCoins As Integer = 0
+        Public Shared Property TotalCoins As Integer = 0
+        Public Shared Property ConsequentWins As Integer = 0
         Public Property MaxCoins As Integer = 1
 
         Public Board As List(Of List(Of Tile))
@@ -68,8 +72,6 @@ Namespace VoltorbFlip
                                                  Identifications.PVPLobbyScreen}
 
         Public Sub New(ByVal currentScreen As Screen)
-
-            Board = CreateBoard(1)
 
             _preScreenTarget = New RenderTarget2D(GraphicsDevice, windowSize.Width, windowSize.Height, False, SurfaceFormat.Color, DepthFormat.Depth24Stencil8)
             _blur = New Resources.Blur.BlurHandler(windowSize.Width, windowSize.Height)
@@ -151,6 +153,9 @@ Namespace VoltorbFlip
             SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Board"), New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height), mainBackgroundColor)
 
             DrawTiles()
+
+            DrawSums()
+
         End Sub
 
         Private Sub DrawTiles()
@@ -160,6 +165,60 @@ Namespace VoltorbFlip
                     _tile.Draw()
                 Next
             Next
+        End Sub
+
+        Private Sub DrawSums()
+            Dim mainBackgroundColor As Color = New Color(255, 255, 255)
+            If GameState = States.Closing Or GameState = States.Opening Then
+                mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
+            End If
+
+            'Draw Rows
+            'Coins
+            For RowIndex = 0 To GridSize - 1
+                Dim CoinSumString As String = "00"
+                If GameState = States.Game Or GameState = States.Memo Then
+                    Dim CoinSumInteger As Integer = CoinSums(0)(RowIndex)
+                    If CoinSumInteger < 10 Then
+                        CoinSumString = "0" & CoinSumInteger.ToString
+                    Else
+                        CoinSumString = CoinSumInteger.ToString
+                    End If
+                End If
+                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, CoinSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * (GridSize - 1) - TileSize.Width / 2 - FontManager.VoltorbFlipFont.MeasureString(CoinSumString).X / 2), BoardOrigin.Y + TileSize.Height * RowIndex + 4), mainBackgroundColor)
+            Next
+            'Voltorbs
+            For RowIndex = 0 To GridSize - 1
+                Dim VoltorbSumString As String = "0"
+                If GameState = States.Game Or GameState = States.Memo Then
+                    VoltorbSumString = VoltorbSums(0)(RowIndex).ToString
+                End If
+                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, VoltorbSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * (GridSize - 1) - TileSize.Width / 2 - FontManager.VoltorbFlipFont.MeasureString(VoltorbSumString).X / 2), BoardOrigin.Y + TileSize.Height * RowIndex + 17), mainBackgroundColor)
+            Next
+
+            'Draw Columns
+            'Coins
+            For ColumnIndex = 0 To GridSize - 1
+                Dim CoinSumString As String = "00"
+                If GameState = States.Game Or GameState = States.Memo Then
+                    Dim CoinSumInteger As Integer = CoinSums(1)(ColumnIndex)
+                    If CoinSumInteger < 10 Then
+                        CoinSumString = "0" & CoinSumInteger.ToString
+                    Else
+                        CoinSumString = CoinSumInteger.ToString
+                    End If
+                End If
+                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, CoinSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * ColumnIndex + TileSize.Width / 2 - FontManager.VoltorbFlipFont.MeasureString(CoinSumString).X / 2), BoardOrigin.Y + TileSize.Height * (GridSize - 1) + 4), mainBackgroundColor)
+            Next
+            'Voltorbs
+            For ColumnIndex = 0 To GridSize - 1
+                Dim VoltorbSumString As String = "0"
+                If GameState = States.Game Or GameState = States.Memo Then
+                    VoltorbSumString = VoltorbSums(1)(ColumnIndex).ToString
+                End If
+                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, VoltorbSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * ColumnIndex + TileSize.Width / 2 - FontManager.VoltorbFlipFont.MeasureString(VoltorbSumString).X / 2), BoardOrigin.Y + TileSize.Height * (GridSize - 1) + 17), mainBackgroundColor)
+            Next
+
         End Sub
 
         Private Sub DrawMemoMenuAndButton()
@@ -752,18 +811,26 @@ Namespace VoltorbFlip
                         Next
                     Next
 
-                    PreviousLevel = CurrentLevel
-                    CurrentLevel += 1
+                    TotalFlips += CurrentFlips
+                    CurrentFlips = 0
+                    ConsequentWins += 1
 
-                    If CurrentLevel > MaxLevel Then
-                        CurrentLevel = MaxLevel
+                    If ConsequentWins = 5 And TotalFlips >= 8 Then
+                        CurrentLevel = 8
+                    Else
+                        PreviousLevel = CurrentLevel
+                        CurrentLevel += 1
+
+                        If CurrentLevel > MaxLevel Then
+                            CurrentLevel = MaxLevel
+                        End If
                     End If
 
                     GameState = States.NewLevel
                 End If
             End If
 
-            'Change Level, reset Tiles
+            'Drop Level(s), reset Tiles
             If GameState = States.FlipLost Then
                 If Controls.Accept = True And TextBox.Showing = False Then
                     For _row = 0 To GridSize
@@ -773,7 +840,8 @@ Namespace VoltorbFlip
                     Next
 
                     PreviousLevel = CurrentLevel
-                    CurrentLevel -= 1
+                    CurrentLevel = CurrentFlips.Clamp(1, CurrentLevel.Clamp(1, 7))
+                    CurrentFlips = 0
 
                     If CurrentLevel < MinLevel Then
                         CurrentLevel = MinLevel
@@ -836,7 +904,7 @@ Namespace VoltorbFlip
                     If _interfaceFade > 1.0F Then
                         _interfaceFade = 1.0F
                         If GameState = States.Opening Then
-                            GameState = States.Game
+                            GameState = States.NewLevel
                         End If
                     End If
                 End If
@@ -871,6 +939,7 @@ Namespace VoltorbFlip
         Public Sub Flip()
             If Flipped = False Then
                 FlipProgress = 3
+                VoltorbFlipScreen.CurrentFlips += 1
             End If
         End Sub
 
