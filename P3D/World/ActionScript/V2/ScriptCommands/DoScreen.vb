@@ -276,6 +276,30 @@
                     IsReady = True
 
                     CanContinue = False
+                Case "voltorbflip"
+                    If Core.Player.Inventory.GetItemAmount(54) > 0 Then
+                        If Core.Player.Coins < 50000 Then
+                            Core.SetScreen(New VoltorbFlip.VoltorbFlipScreen(CurrentScreen))
+
+                            If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
+                                If VoltorbFlip.VoltorbFlipScreen.TotalCoins > 0 Then
+                                    Screen.TextBox.Show("You've won" & " " & VoltorbFlip.VoltorbFlipScreen.TotalCoins & " " & "Coins!")
+                                    Core.Player.Coins += VoltorbFlip.VoltorbFlipScreen.TotalCoins
+                                    VoltorbFlip.VoltorbFlipScreen.TotalCoins = 0
+                                    CanContinue = False
+                                Else
+                                    Screen.TextBox.Show("Too bad, you didn't win~any Coins!*Better luck next time!")
+                                End If
+                                IsReady = True
+                            End If
+                        Else
+                            Screen.TextBox.Show("Your Coin Case is already full!")
+                            IsReady = True
+                        End If
+                    Else
+                        Screen.TextBox.Show("You don't have a Coin Case!~Come back when you have one!")
+                        IsReady = True
+                    End If
                 Case "skinselection"
                     If Screens.MainMenu.NewNewGameScreen.CharacterSelectionScreen.SelectedSkin <> "" Then
                         IsReady = True

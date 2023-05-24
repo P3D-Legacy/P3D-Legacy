@@ -28,8 +28,8 @@ Namespace VoltorbFlip
 
         Public Shared GameState As States = States.Opening
 
-        Public Property PreviousLevel As Integer = 1
-        Public Property CurrentLevel As Integer = 1
+        Public Shared Property PreviousLevel As Integer = 1
+        Public Shared Property CurrentLevel As Integer = 1
 
         Public Shared ReadOnly MinLevel As Integer = 1
         Public Shared ReadOnly MaxLevel As Integer = 7
@@ -569,7 +569,7 @@ Namespace VoltorbFlip
         End Function
 
         Protected Overrides Function GetFontRenderer() As SpriteBatch
-            If IsCurrentScreen() And _interfaceFade + 0.01F >= 1.0F Then
+            If IsCurrentScreen() AndAlso _interfaceFade + 0.01F >= 1.0F Then
                 Return FontRenderer
             Else
                 Return SpriteBatch
@@ -691,12 +691,12 @@ Namespace VoltorbFlip
             End If
 
             'Quiting Voltorb Flip
-            If Controls.Dismiss And GameState = States.Game Then
+            If Controls.Dismiss AndAlso GameState = States.Game Then
                 GameState = States.QuitQuestion
                 TextBox.Show("Do you want to stop~playing Voltorb Flip?%Yes|No%")
                 If ChooseBox.readyForResult = True Then
                     If ChooseBox.result = 0 Then
-                        GameState = States.Closing
+                        Quit()
                     Else
                         GameState = States.Game
                     End If
@@ -705,36 +705,36 @@ Namespace VoltorbFlip
             End If
 
             'Flip currently selected Tile
-            If Controls.Accept(False, True, True) And GameState = States.Game Then
+            If Controls.Accept(False, True, True) AndAlso GameState = States.Game Then
                 Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).Flip()
             End If
 
             'Flip the Tile that the mouse is on
-            If Controls.Accept(True, False, False) And GameState = States.Game Then
+            If Controls.Accept(True, False, False) AndAlso GameState = States.Game Then
                 Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
                 BoardCursorDestination = TileUnderMouse
                 Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).Flip()
             End If
 
             'Adding currently selected Memo to currently selected Tile
-            If Controls.Accept(False, True, True) And GameState = States.Memo Then
+            If Controls.Accept(False, True, True) AndAlso GameState = States.Memo Then
                 Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).SetMemo(MemoIndex, True)
             End If
 
             'Adding currently selected Memo to Tile that the mouse is on
-            If Controls.Accept(True, False, False) And GameState = States.Memo Then
+            If Controls.Accept(True, False, False) AndAlso GameState = States.Memo Then
                 Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
                 BoardCursorDestination = TileUnderMouse
                 Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, True)
             End If
 
             'Removing currently selected Memo from currently selected Tile
-            If Controls.Dismiss(False, True, True) And GameState = States.Memo Then
+            If Controls.Dismiss(False, True, True) AndAlso GameState = States.Memo Then
                 Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).SetMemo(MemoIndex, False)
             End If
 
             'Removing currently selected Memo from Tile that the mouse is on
-            If Controls.Dismiss(True, False, False) And GameState = States.Memo Then
+            If Controls.Dismiss(True, False, False) AndAlso GameState = States.Memo Then
                 Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
                 BoardCursorDestination = TileUnderMouse
                 Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, False)
@@ -759,21 +759,33 @@ Namespace VoltorbFlip
                         AnimationCurrentCoins = 0
                     End If
 
+                    CurrentCoins = CInt(Math.Ceiling(AnimationCurrentCoins))
+
                     TotalCoins = CInt(Math.Floor(AnimationTotalCoins))
-                    If TotalCoins > 99999 Then
-                        TotalCoins = 99999
+
+                    If Core.Player.Coins + TotalCoins > 50000 Then
+                        ResultCoins = 50000 - Core.Player.Coins
+                        TotalCoins = ResultCoins
+                        TextBox.Show("Your Coin Case can't fit~any more Coins!")
+                        Quit()
                     End If
 
-                    CurrentCoins = CInt(Math.Ceiling(AnimationCurrentCoins))
                 End While
 
                 'Flip all Tiles to reveal contents
+                Dim ReadyAmount As Integer = 0
                 For _row = 0 To GridSize
                     For _column = 0 To GridSize
                         Board(_row)(_column).Reveal()
+                        If Board(_row)(_column).FlipProgress = 0 Then
+                            ReadyAmount += 1
+                        End If
                     Next
                 Next
-                GameState = States.FlipWon
+
+                If ReadyAmount = CInt(GridSize * GridSize) Then
+                    GameState = States.FlipWon
+                End If
             End If
 
             'Revealed a Voltorb
@@ -793,21 +805,31 @@ Namespace VoltorbFlip
                 End While
 
                 'Flip all Tiles to reveal contents
+                Dim ReadyAmount As Integer = 0
                 For _row = 0 To GridSize
                     For _column = 0 To GridSize
                         Board(_row)(_column).Reveal()
+                        If Board(_row)(_column).FlipProgress = 0 Then
+                            ReadyAmount += 1
+                        End If
                     Next
                 Next
-                GameState = States.FlipLost
 
+                If ReadyAmount = CInt(GridSize * GridSize) Then
+                    GameState = States.FlipLost
+                End If
             End If
 
-            'Change Level, reset Tiles
+            'Increase Level, reset Tiles
             If GameState = States.FlipWon Then
-                If Controls.Accept = True And TextBox.Showing = False Then
-                    For _row = 0 To GridSize
-                        For _column = 0 To GridSize
+                Dim ReadyAmount As Integer = 0
+                If Controls.Accept = True AndAlso TextBox.Showing = False Then
+                    For _row = 0 To GridSize - 1
+                        For _column = 0 To GridSize - 1
                             Board(_row)(_column).Reset()
+                            If Board(_row)(_column).FlipProgress = 0 Then
+                                ReadyAmount += 1
+                            End If
                         Next
                     Next
 
@@ -815,8 +837,8 @@ Namespace VoltorbFlip
                     CurrentFlips = 0
                     ConsequentWins += 1
 
-                    If ConsequentWins = 5 And TotalFlips >= 8 Then
-                        CurrentLevel = 8
+                    If ConsequentWins = 5 AndAlso TotalFlips >= 8 Then
+                        CurrentLevel = MaxLevel + 1
                     Else
                         PreviousLevel = CurrentLevel
                         CurrentLevel += 1
@@ -825,28 +847,32 @@ Namespace VoltorbFlip
                             CurrentLevel = MaxLevel
                         End If
                     End If
-
+                End If
+                If ReadyAmount = CInt(GridSize * GridSize) Then
                     GameState = States.NewLevel
                 End If
             End If
 
-            'Drop Level(s), reset Tiles
+            'Drop Level, reset Tiles
             If GameState = States.FlipLost Then
-                If Controls.Accept = True And TextBox.Showing = False Then
-                    For _row = 0 To GridSize
-                        For _column = 0 To GridSize
+                Dim ReadyAmount As Integer = 0
+                If Controls.Accept = True AndAlso TextBox.Showing = False Then
+                    For _row = 0 To GridSize - 1
+                        For _column = 0 To GridSize - 1
                             Board(_row)(_column).Reset()
+                            If Board(_row)(_column).FlipProgress = 0 Then
+                                ReadyAmount += 1
+                            End If
                         Next
                     Next
 
                     PreviousLevel = CurrentLevel
-                    CurrentLevel = CurrentFlips.Clamp(1, CurrentLevel.Clamp(1, 7))
+
+                    CurrentLevel = CurrentFlips.Clamp(MinLevel, CurrentLevel.Clamp(MinLevel, MaxLevel))
                     CurrentFlips = 0
 
-                    If CurrentLevel < MinLevel Then
-                        CurrentLevel = MinLevel
-                    End If
-
+                End If
+                If ReadyAmount = CInt(GridSize * GridSize) Then
                     GameState = States.NewLevel
                 End If
             End If
@@ -875,6 +901,18 @@ Namespace VoltorbFlip
 
             'Animation of opening/closing the window
             If GameState = States.Closing Then
+                Dim ResultCoins As Integer = 0
+                Dim AnimationCurrentCoins As Single = CurrentCoins
+
+                While CurrentCoins > ResultCoins
+                    AnimationCurrentCoins -= -0.05F
+                    If AnimationCurrentCoins <= 0 Then
+                        AnimationCurrentCoins = 0
+                    End If
+
+                    CurrentCoins = CInt(Math.Ceiling(AnimationCurrentCoins))
+                End While
+
                 If _interfaceFade > 0F Then
                     _interfaceFade = MathHelper.Lerp(0, _interfaceFade, 0.8F)
                     If _interfaceFade < 0F Then
@@ -911,9 +949,21 @@ Namespace VoltorbFlip
 
 
             End If
-
         End Sub
 
+        Public Sub Quit()
+            CurrentLevel = CurrentFlips.Clamp(MinLevel, CurrentLevel.Clamp(MinLevel, MaxLevel))
+            PreviousLevel = CurrentLevel
+
+            TextBox.Show("Game Over!~Dropped to Game Lv." & " " & CurrentLevel & "!")
+
+            CurrentFlips = 0
+            TotalFlips = 0
+
+            CurrentCoins = 0
+
+            GameState = States.Closing
+        End Sub
     End Class
 
 
@@ -934,7 +984,7 @@ Namespace VoltorbFlip
         Private Property Memo3 As Boolean = False
 
         Private Property Activated As Boolean = False
-        Private Property FlipProgress As Integer = 0
+        Public Property FlipProgress As Integer = 0
 
         Public Sub Flip()
             If Flipped = False Then
@@ -950,7 +1000,7 @@ Namespace VoltorbFlip
         End Sub
         Public Sub Reset()
             If Flipped = True Then
-                Flipped = False
+                FlipProgress = 1
                 Activated = False
             End If
         End Sub
@@ -971,10 +1021,14 @@ Namespace VoltorbFlip
                 End If
                 If FlipWidth <= 0F Then
                     FlipWidth = 0F
-                    Flipped = True
+                    If Flipped = False Then
+                        Flipped = True
+                    Else
+                        Flipped = False
+                    End If
                     FlipProgress += 1
+                    End If
                 End If
-            End If
             If FlipProgress = 2 OrElse FlipProgress = 4 Then
                 If FlipWidth < 1.0F Then
                     FlipWidth += 0.05F
