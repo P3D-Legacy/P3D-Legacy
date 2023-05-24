@@ -185,7 +185,7 @@ Namespace VoltorbFlip
                         CoinSumString = CoinSumInteger.ToString
                     End If
                 End If
-                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, CoinSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * (GridSize - 1) - TileSize.Width / 2 - FontManager.VoltorbFlipFont.MeasureString(CoinSumString).X / 2), BoardOrigin.Y + TileSize.Height * RowIndex + 4), mainBackgroundColor)
+                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, CoinSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * (GridSize - 1) + TileSize.Width / 2 - FontManager.VoltorbFlipFont.MeasureString(CoinSumString).X / 2), BoardOrigin.Y + TileSize.Height * RowIndex + 4), mainBackgroundColor)
             Next
             'Voltorbs
             For RowIndex = 0 To GridSize - 1
@@ -193,7 +193,7 @@ Namespace VoltorbFlip
                 If GameState = States.Game Or GameState = States.Memo Then
                     VoltorbSumString = VoltorbSums(0)(RowIndex).ToString
                 End If
-                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, VoltorbSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * (GridSize - 1) - TileSize.Width / 2 - FontManager.VoltorbFlipFont.MeasureString(VoltorbSumString).X / 2), BoardOrigin.Y + TileSize.Height * RowIndex + 17), mainBackgroundColor)
+                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, VoltorbSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * (GridSize - 1) + TileSize.Width / 4 * 3 - FontManager.VoltorbFlipFont.MeasureString(VoltorbSumString).X / 2), BoardOrigin.Y + TileSize.Height * RowIndex + 17), mainBackgroundColor)
             Next
 
             'Draw Columns
@@ -216,7 +216,7 @@ Namespace VoltorbFlip
                 If GameState = States.Game Or GameState = States.Memo Then
                     VoltorbSumString = VoltorbSums(1)(ColumnIndex).ToString
                 End If
-                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, VoltorbSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * ColumnIndex + TileSize.Width / 2 - FontManager.VoltorbFlipFont.MeasureString(VoltorbSumString).X / 2), BoardOrigin.Y + TileSize.Height * (GridSize - 1) + 17), mainBackgroundColor)
+                SpriteBatch.DrawString(FontManager.VoltorbFlipFont, VoltorbSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * ColumnIndex + TileSize.Width / 4 * 3 - FontManager.VoltorbFlipFont.MeasureString(VoltorbSumString).X / 2), BoardOrigin.Y + TileSize.Height * (GridSize - 1) + 17), mainBackgroundColor)
             Next
 
         End Sub
