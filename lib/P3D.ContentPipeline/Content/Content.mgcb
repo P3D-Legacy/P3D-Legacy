@@ -89,9 +89,9 @@
 /build:Fonts/BMP/Unown.png
 
 #begin Fonts/BMP/VoltorbFlipFont.png
-/importer:TextureImporter
+/importer:LocalizedFontTextureImporter
 /processor:LocalizedFontTextureProcessor
-/processorParam:DefaultCharacter=?
+/processorParam:DefaultCharacter= 
 /processorParam:FirstCharacter=
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Color

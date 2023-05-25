@@ -16,7 +16,7 @@ Public Class FontContainer
         Me._spriteFont = Font
 
         Select Case FontName.ToLower()
-            Case "braille"
+            Case "braille", "voltorbflipfont"
                 Me._spriteFont.DefaultCharacter = CChar(" ")
             Case Else
                 Me._spriteFont.DefaultCharacter = CChar("?")

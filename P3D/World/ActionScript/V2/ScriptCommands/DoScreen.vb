@@ -280,17 +280,17 @@
                     If Core.Player.Inventory.GetItemAmount(54) > 0 Then
                         If Core.Player.Coins < 50000 Then
                             Core.SetScreen(New VoltorbFlip.VoltorbFlipScreen(CurrentScreen))
+                            IsReady = True
+                            CanContinue = False
 
                             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                                 If VoltorbFlip.VoltorbFlipScreen.TotalCoins > 0 Then
                                     Screen.TextBox.Show("You've won" & " " & VoltorbFlip.VoltorbFlipScreen.TotalCoins & " " & "Coins!")
                                     Core.Player.Coins += VoltorbFlip.VoltorbFlipScreen.TotalCoins
                                     VoltorbFlip.VoltorbFlipScreen.TotalCoins = 0
-                                    CanContinue = False
                                 Else
                                     Screen.TextBox.Show("Too bad, you didn't win~any Coins!*Better luck next time!")
                                 End If
-                                IsReady = True
                             End If
                         Else
                             Screen.TextBox.Show("Your Coin Case is already full!")
