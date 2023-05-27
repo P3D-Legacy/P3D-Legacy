@@ -434,6 +434,13 @@ VoltorbFlip_NewLevel_Higher2,!
 
 VoltorbFlip_GameOver1,Game Over!~Dropped to Game Lv.
 VoltorbFlip_GameOver2,!
+
+VoltorbFlip_AfterGame_Won1,You've won
+VoltorbFlip_AfterGame_Won2,Coins!
+VoltorbFlip_AfterGame_Lost,Too bad, you didn't win~any Coins!*Better luck next time!
+
+VoltorbFlip_BeforeGame_FullCoinCase,Your Coin Case is already full!
+VoltorbFlip_BeforeGame_NoCoinCase,You don't have a Coin Case!~Come back when you have one!
 ---
 Battle:
 ---
@@ -1708,6 +1715,10 @@ item_name_673,Psychic Memory
 item_name_674,Rock Memory
 item_name_675,Steel Memory
 item_name_676,Water Memory
+
+Item Use Text:
+Key Items:
+item_use_54,Your coins:~
 -------------------
 Move Names:
 move_name_1,Pound

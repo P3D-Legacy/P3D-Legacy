@@ -208,19 +208,19 @@ Namespace VoltorbFlip
             Dim TotalCoinsText3 As String = ""
 
             TotalCoinsText3 &= "["
-            If TotalCoins < 10000 Then
+            If TotalCoins + Core.Player.Coins < 10000 Then
                 TotalCoinsText3 &= "0"
             End If
-            If TotalCoins < 1000 Then
+            If TotalCoins < 1000 + Core.Player.Coins Then
                 TotalCoinsText3 &= "0"
             End If
-            If TotalCoins < 100 Then
+            If TotalCoins < 100 + Core.Player.Coins Then
                 TotalCoinsText3 &= "0"
             End If
-            If TotalCoins < 10 Then
+            If TotalCoins < 10 + Core.Player.Coins Then
                 TotalCoinsText3 &= "0"
             End If
-            TotalCoinsText3 &= TotalCoins.ToString & "]"
+            TotalCoinsText3 &= CInt(TotalCoins + Core.Player.Coins).ToString & "]"
 
             SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText1, New Vector2(CInt(GameOrigin.X + 440 + 28 - FontManager.MainFont.MeasureString(TotalCoinsText1).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2 - FontManager.MainFont.MeasureString(TotalCoinsText1).Y)), Fontcolor)
             SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText2, New Vector2(CInt(GameOrigin.X + 440 + 28 - FontManager.MainFont.MeasureString(TotalCoinsText2).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2)), Fontcolor)
