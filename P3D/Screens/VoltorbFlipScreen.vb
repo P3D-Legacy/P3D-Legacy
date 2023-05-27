@@ -932,19 +932,20 @@ TryAgain:
                 If Delay = 0 Then
                     PreviousLevel = CurrentLevel
 
-                    TotalFlips += CurrentFlips
+                    If CurrentFlips >= 8 Then
+                        TotalFlips += 1
+                    End If
+
                     CurrentFlips = 0
                     ConsecutiveWins += 1
 
-                    If ConsecutiveWins = 5 AndAlso TotalFlips >= 8 Then
+                    If ConsecutiveWins = 5 AndAlso TotalFlips = 5 Then
                         CurrentLevel = MaxLevel + 1
                     Else
-                        If CurrentLevel < MaxLevel + 1 Then
-                            If CurrentLevel + 1 > MaxLevel Then
-                                CurrentLevel = MaxLevel
-                            Else
-                                CurrentLevel += 1
-                            End If
+                        If CurrentLevel + 1 > MaxLevel Then
+                            CurrentLevel = MaxLevel
+                        Else
+                            CurrentLevel += 1
                         End If
                     End If
 
@@ -1055,6 +1056,10 @@ TryAgain:
                 If TextBox.Showing = False Then
                     SoundManager.PlaySound("VoltorbFlip\StartGame")
                     Board = CreateBoard(CurrentLevel)
+                    If CurrentLevel = 8 Then
+                        TotalFlips = 0
+                        ConsecutiveWins = 0
+                    End If
                     If CurrentLevel < PreviousLevel Then
                         TextBox.Show("Dropped to Game Lv." & " " & CurrentLevel & "!")
                     End If

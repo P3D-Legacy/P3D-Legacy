@@ -299,6 +299,7 @@
         VoltorbFlip.VoltorbFlipScreen.CurrentLevel = 1
         VoltorbFlip.VoltorbFlipScreen.PreviousLevel = 1
         VoltorbFlip.VoltorbFlipScreen.ConsecutiveWins = 0
+        VoltorbFlip.VoltorbFlipScreen.TotalFlips = 0
 
         If JoinServerScreen.Online = True Then
             Core.ServersManager.ServerConnection.Disconnect()
