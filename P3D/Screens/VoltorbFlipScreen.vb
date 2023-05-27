@@ -286,7 +286,7 @@ Namespace VoltorbFlip
             'Coins
             For ColumnIndex = 0 To GridSize - 1
                 Dim CoinSumString As String = "00"
-                If GameState = States.Game Or GameState = States.Memo Then
+                If GameState = States.Game Or GameState = States.Memo Or GameState = States.QuitQuestion Then
                     Dim CoinSumInteger As Integer = CoinSums(1)(ColumnIndex)
                     If CoinSumInteger < 10 Then
                         CoinSumString = "0" & CoinSumInteger.ToString
@@ -299,7 +299,7 @@ Namespace VoltorbFlip
             'Voltorbs
             For ColumnIndex = 0 To GridSize - 1
                 Dim VoltorbSumString As String = "0"
-                If GameState = States.Game Or GameState = States.Memo Then
+                If GameState = States.Game Or GameState = States.Memo Or GameState = States.QuitQuestion Then
                     VoltorbSumString = VoltorbSums(1)(ColumnIndex).ToString
                 End If
                 SpriteBatch.DrawString(FontManager.VoltorbFlipFont, VoltorbSumString, New Vector2(CInt(BoardOrigin.X + TileSize.Width * ColumnIndex + TileSize.Width - 8 - FontManager.VoltorbFlipFont.MeasureString(VoltorbSumString).X), BoardOrigin.Y + TileSize.Height * GridSize + 34), mainBackgroundColor)
@@ -756,8 +756,10 @@ TryAgain:
                     If KeyBoardHandler.KeyPressed(KeyBindings.RunKey) Or ControllerHandler.ButtonPressed(Buttons.X) Then
                         If GameState = States.Game Then
                             GameState = States.Memo
+                            SoundManager.PlaySound("select")
                         ElseIf GameState = States.Memo Then
                             GameState = States.Game
+                            SoundManager.PlaySound("select")
                         End If
                     End If
 
@@ -766,8 +768,10 @@ TryAgain:
                     If Controls.Accept(True, False, False) = True AndAlso MouseHandler.IsInRectangle(ButtonRectangle) AndAlso Delay = 0 Then
                         If GameState = States.Game Then
                             GameState = States.Memo
+                            SoundManager.PlaySound("select")
                         ElseIf GameState = States.Memo Then
                             GameState = States.Game
+                            SoundManager.PlaySound("select")
                         End If
                     End If
 
@@ -786,12 +790,14 @@ TryAgain:
                             If MemoIndex < 0 Then
                                 MemoIndex = 3
                             End If
+                            SoundManager.PlaySound("select")
                         End If
                         If Controls.Right(True, False, True, False, False, False) = True OrElse ControllerHandler.ButtonPressed(Buttons.RightShoulder) Then
                             MemoIndex += 1
                             If MemoIndex > 3 Then
                                 MemoIndex = 0
                             End If
+                            SoundManager.PlaySound("select")
                         End If
 
                         'Set the Memo type to the one under the mouse
@@ -800,18 +806,22 @@ TryAgain:
                             If MouseHandler.IsInRectangle(New Rectangle(MemoMenuRectangle.X, MemoMenuRectangle.Y, CInt(MemoMenuRectangle.Width / 2), CInt(MemoMenuRectangle.Height / 2))) = True Then
                                 'Voltorb
                                 MemoIndex = 0
+                                SoundManager.PlaySound("select")
                             End If
                             If MouseHandler.IsInRectangle(New Rectangle(MemoMenuRectangle.X + CInt(MemoMenuRectangle.Width / 2), MemoMenuRectangle.Y, CInt(MemoMenuRectangle.Width / 2), CInt(MemoMenuRectangle.Height / 2))) = True Then
                                 'One
                                 MemoIndex = 1
+                                SoundManager.PlaySound("select")
                             End If
                             If MouseHandler.IsInRectangle(New Rectangle(MemoMenuRectangle.X, MemoMenuRectangle.Y + CInt(MemoMenuRectangle.Height / 2), CInt(MemoMenuRectangle.Width / 2), CInt(MemoMenuRectangle.Height / 2))) = True Then
                                 'Two
                                 MemoIndex = 2
+                                SoundManager.PlaySound("select")
                             End If
                             If MouseHandler.IsInRectangle(New Rectangle(MemoMenuRectangle.X + CInt(MemoMenuRectangle.Width / 2), MemoMenuRectangle.Y + CInt(MemoMenuRectangle.Height / 2), CInt(MemoMenuRectangle.Width / 2), CInt(MemoMenuRectangle.Height / 2))) = True Then
                                 'Three
                                 MemoIndex = 3
+                                SoundManager.PlaySound("select")
                             End If
                         End If
                     Else
@@ -829,6 +839,7 @@ TryAgain:
                     'Quiting Voltorb Flip
                     If Controls.Dismiss(False, True, True) AndAlso GameState = States.Game AndAlso Delay = 0 Then
                         TextBox.Show(QuitQuestionText)
+                        SoundManager.PlaySound("select")
                         GameState = States.QuitQuestion
                     End If
 
@@ -836,6 +847,7 @@ TryAgain:
                     Dim QuitButtonRectangle As New Rectangle(CInt(GameOrigin.X + 424), CInt(GameOrigin.Y + 448), 128, 56)
                     If Controls.Accept(True, False, False) AndAlso MouseHandler.IsInRectangle(QuitButtonRectangle) AndAlso GameState = States.Game AndAlso Delay = 0 Then
                         TextBox.Show(QuitQuestionText)
+                        SoundManager.PlaySound("select")
                         GameState = States.QuitQuestion
                     End If
 
@@ -854,6 +866,9 @@ TryAgain:
                     'Flip currently selected Tile
                     If Controls.Accept(False, True, True) AndAlso GameState = States.Game AndAlso Delay = 0 Then
                         Dim CurrentTile As Vector2 = GetCurrentTile()
+                        If Board(CInt(CurrentTile.Y))(CInt(CurrentTile.X)).Flipped = False Then
+                            SoundManager.PlaySound("select")
+                        End If
                         Board(CInt(CurrentTile.Y))(CInt(CurrentTile.X)).Flip()
                     End If
 
@@ -861,11 +876,18 @@ TryAgain:
                     If Controls.Accept(True, False, False) AndAlso GameState = States.Game AndAlso MouseHandler.IsInRectangle(New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height)) AndAlso Delay = 0 Then
                         Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
                         BoardCursorDestination = GetCursorOffset(CInt(TileUnderMouse.X), CInt(TileUnderMouse.Y))
+                        If Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).Flipped = False Then
+                            SoundManager.PlaySound("select")
+                        End If
                         Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).Flip()
+
                     End If
 
                     'Adding currently selected Memo to currently selected Tile
                     If Controls.Accept(False, True, True) AndAlso GameState = States.Memo AndAlso Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).Flipped = False AndAlso Delay = 0 Then
+                        If Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).GetMemo(MemoIndex) = False Then
+                            SoundManager.PlaySound("select")
+                        End If
                         Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).SetMemo(MemoIndex, True)
                     End If
 
@@ -873,13 +895,19 @@ TryAgain:
                     If Controls.Accept(True, False, False) AndAlso GameState = States.Memo AndAlso MouseHandler.IsInRectangle(New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height)) AndAlso Delay = 0 Then
                         Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
                         BoardCursorDestination = GetCursorOffset(CInt(TileUnderMouse.X), CInt(TileUnderMouse.Y))
-                        If Board(CInt(GetTileUnderMouse.Y))(CInt(GetTileUnderMouse.X)).Flipped = False Then
+                        If Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).Flipped = False Then
+                            If Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).GetMemo(MemoIndex) = False Then
+                                SoundManager.PlaySound("select")
+                            End If
                             Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, True)
                         End If
                     End If
 
                     'Removing currently selected Memo from currently selected Tile
                     If Controls.Dismiss(False, True, True) AndAlso GameState = States.Memo AndAlso Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).Flipped = False AndAlso Delay = 0 Then
+                        If Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).GetMemo(MemoIndex) = True Then
+                            SoundManager.PlaySound("select")
+                        End If
                         Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).SetMemo(MemoIndex, False)
                     End If
 
@@ -887,7 +915,10 @@ TryAgain:
                     If Controls.Dismiss(True, False, False) AndAlso GameState = States.Memo AndAlso MouseHandler.IsInRectangle(New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height)) AndAlso Delay = 0 Then
                         Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
                         BoardCursorDestination = GetCursorOffset(CInt(TileUnderMouse.X), CInt(TileUnderMouse.Y))
-                        If Board(CInt(GetTileUnderMouse.Y))(CInt(GetTileUnderMouse.X)).Flipped = False Then
+                        If Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).Flipped = False Then
+                            If Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).GetMemo(MemoIndex) = True Then
+                                SoundManager.PlaySound("select")
+                            End If
                             Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, False)
                         End If
                     End If
@@ -897,6 +928,7 @@ TryAgain:
             'Level complete!
             If CurrentCoins >= MaxCoins AndAlso GameState = States.Game Then
                 Dim GameClearText = "Game clear! You received~" & CurrentCoins.ToString & " " & "Coins!"
+                SoundManager.PlaySound("VoltorbFlip\WinGame")
                 TextBox.Show(GameClearText)
                 If Delay = 0 Then
                     PreviousLevel = CurrentLevel
@@ -947,6 +979,7 @@ TryAgain:
 
                 If Controls.Accept = True AndAlso TextBox.Showing = False Then
                     If ReadyAmount = CInt(GridSize * GridSize) Then
+                        SoundManager.PlaySound("select")
                         GameState = States.FlipWon
                     End If
                 End If
@@ -976,9 +1009,10 @@ TryAgain:
                         Else
                             CurrentLevel = 1
                         End If
+                        SoundManager.PlaySound("select")
                         GameState = States.FlipLost
-                        End If
                     End If
+                End If
             End If
 
             'Increase Level, reset Tiles
@@ -1020,6 +1054,7 @@ TryAgain:
             'Prepare new Level
             If GameState = States.NewLevel Then
                 If TextBox.Showing = False Then
+                    SoundManager.PlaySound("VoltorbFlip\StartGame")
                     Board = CreateBoard(CurrentLevel)
                     If CurrentLevel < PreviousLevel Then
                         TextBox.Show("Dropped to Game Lv." & " " & CurrentLevel & "!")
@@ -1098,6 +1133,7 @@ TryAgain:
             End If
             PreviousLevel = CurrentLevel
 
+            SoundManager.PlaySound("VoltorbFlip\QuitGame", True)
             TextBox.Show("Game Over!~Dropped to Game Lv." & " " & CurrentLevel & "!")
 
             CurrentFlips = 0
@@ -1213,6 +1249,9 @@ TryAgain:
                 If Flipped = True Then
                     If Activated = False Then
                         If Me.Value = Values.Voltorb Then
+                            If VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.Game Then
+                                SoundManager.PlaySound("VoltorbFlip\LoseGame", True)
+                            End If
                             Screen.TextBox.Show("Oh no! You get 0 coins!")
                             VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.GameLost
                         Else
