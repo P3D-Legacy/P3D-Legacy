@@ -295,6 +295,10 @@
 #End Region
 
     Private Sub QuitGame()
+        'Reset VoltorbFlipScreen's Levels
+        VoltorbFlip.VoltorbFlipScreen.CurrentLevel = 1
+        VoltorbFlip.VoltorbFlipScreen.PreviousLevel = 1
+
         If JoinServerScreen.Online = True Then
             Core.ServersManager.ServerConnection.Disconnect()
         End If

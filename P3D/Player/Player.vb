@@ -2108,10 +2108,6 @@
     Public Sub Unload()
         'This function clears all data from the loaded player and restores the default values.
 
-        'Reset VoltorbFlipScreen's Levels
-        VoltorbFlip.VoltorbFlipScreen.CurrentLevel = 1
-        VoltorbFlip.VoltorbFlipScreen.PreviousLevel = 1
-
         'Clearning lists:
         Pokemons.Clear()
         Pokedexes.Clear()
