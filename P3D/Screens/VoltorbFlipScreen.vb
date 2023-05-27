@@ -39,7 +39,7 @@ Namespace VoltorbFlip
 
         Public Shared Property CurrentCoins As Integer = 0
         Public Shared Property TotalCoins As Integer = -1
-        Public Shared Property ConsequentWins As Integer = 0
+        Public Shared Property ConsecutiveWins As Integer = 0
         Public Shared MaxCoins As Integer = 1
 
         Public Board As List(Of List(Of Tile))
@@ -934,9 +934,9 @@ TryAgain:
 
                     TotalFlips += CurrentFlips
                     CurrentFlips = 0
-                    ConsequentWins += 1
+                    ConsecutiveWins += 1
 
-                    If ConsequentWins = 5 AndAlso TotalFlips >= 8 Then
+                    If ConsecutiveWins = 5 AndAlso TotalFlips >= 8 Then
                         CurrentLevel = MaxLevel + 1
                     Else
                         If CurrentLevel < MaxLevel + 1 Then
@@ -1211,8 +1211,8 @@ TryAgain:
                         Flipped = False
                     End If
                     FlipProgress += 1
-                    End If
                 End If
+            End If
             If FlipProgress = 2 OrElse FlipProgress = 4 Then
                 If FlipWidth < 1.0F Then
                     FlipWidth += 0.1F
@@ -1252,6 +1252,7 @@ TryAgain:
                                 SoundManager.PlaySound("VoltorbFlip\LoseGame", True)
                             End If
                             Screen.TextBox.Show("Oh no! You get 0 coins!")
+                            VoltorbFlipScreen.ConsecutiveWins = 0
                             VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.GameLost
                         Else
                             If VoltorbFlipScreen.CurrentCoins = 0 Then
