@@ -870,10 +870,12 @@ TryAgain:
                     End If
 
                     'Adding currently selected Memo to Tile that the mouse is on
-                    If Controls.Accept(True, False, False) AndAlso GameState = States.Memo AndAlso MouseHandler.IsInRectangle(New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height)) AndAlso Board(CInt(GetTileUnderMouse.Y))(CInt(GetTileUnderMouse.X)).Flipped = False AndAlso Delay = 0 Then
+                    If Controls.Accept(True, False, False) AndAlso GameState = States.Memo AndAlso MouseHandler.IsInRectangle(New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height)) AndAlso Delay = 0 Then
                         Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
                         BoardCursorDestination = GetCursorOffset(CInt(TileUnderMouse.X), CInt(TileUnderMouse.Y))
-                        Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, True)
+                        If Board(CInt(GetTileUnderMouse.Y))(CInt(GetTileUnderMouse.X)).Flipped = False Then
+                            Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, True)
+                        End If
                     End If
 
                     'Removing currently selected Memo from currently selected Tile
@@ -882,10 +884,12 @@ TryAgain:
                     End If
 
                     'Removing currently selected Memo from Tile that the mouse is on
-                    If Controls.Dismiss(True, False, False) AndAlso GameState = States.Memo AndAlso Board(CInt(GetCurrentTile.Y))(CInt(GetCurrentTile.X)).Flipped = False AndAlso MouseHandler.IsInRectangle(New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height)) AndAlso Board(CInt(GetTileUnderMouse.Y))(CInt(GetTileUnderMouse.X)).Flipped = False AndAlso Delay = 0 Then
+                    If Controls.Dismiss(True, False, False) AndAlso GameState = States.Memo AndAlso MouseHandler.IsInRectangle(New Rectangle(CInt(BoardOrigin.X), CInt(BoardOrigin.Y), BoardSize.Width, BoardSize.Height)) AndAlso Delay = 0 Then
                         Dim TileUnderMouse As Vector2 = GetTileUnderMouse()
                         BoardCursorDestination = GetCursorOffset(CInt(TileUnderMouse.X), CInt(TileUnderMouse.Y))
-                        Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, False)
+                        If Board(CInt(GetTileUnderMouse.Y))(CInt(GetTileUnderMouse.X)).Flipped = False Then
+                            Board(CInt(TileUnderMouse.Y))(CInt(TileUnderMouse.X)).SetMemo(MemoIndex, False)
+                        End If
                     End If
                 End If
             End If
