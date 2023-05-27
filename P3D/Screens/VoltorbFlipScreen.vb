@@ -170,15 +170,15 @@ Namespace VoltorbFlip
             End If
 
             'Level
-            Dim LevelText As String = "LV." & CurrentLevel.ToString
+            Dim LevelText As String = Localization.GetString("VoltorbFlip_LV.", "LV.") & CurrentLevel.ToString
             Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\HUD"), 2, New Rectangle(CInt(GameOrigin.X + 32), CInt(GameOrigin.Y + 32), 96, 96), mainBackgroundColor, False)
             SpriteBatch.DrawString(FontManager.MainFont, LevelText, New Vector2(CInt(GameOrigin.X + 80 + 4 - FontManager.MainFont.MeasureString(LevelText).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(LevelText).Y / 2)), Fontcolor)
 
             'Current Coins
             Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\HUD"), 2, New Rectangle(CInt(GameOrigin.X + 128 + 24), CInt(GameOrigin.Y + 32), 192, 96), mainBackgroundColor, False)
 
-            Dim CurrentCoinsText1 As String = "Coins found"
-            Dim CurrentCoinsText2 As String = "in this LV."
+            Dim CurrentCoinsText1 As String = Localization.GetString("VoltorbFlip_CurrentCoins_Line1", "Coins found")
+            Dim CurrentCoinsText2 As String = Localization.GetString("VoltorbFlip_CurrentCoins_Line2", "in this LV.")
             Dim CurrentCoinsText3 As String = ""
 
             CurrentCoinsText3 &= "["
@@ -203,8 +203,8 @@ Namespace VoltorbFlip
             'Total Coins
             Canvas.DrawImageBorder(TextureManager.GetTexture("Textures\VoltorbFlip\HUD"), 2, New Rectangle(CInt(GameOrigin.X + 336 + 32), CInt(GameOrigin.Y + 32), 192, 96), mainBackgroundColor, False)
 
-            Dim TotalCoinsText1 As String = "Total Coins"
-            Dim TotalCoinsText2 As String = "earned"
+            Dim TotalCoinsText1 As String = Localization.GetString("VoltorbFlip_TotalCoins_Line1", "Total Coins")
+            Dim TotalCoinsText2 As String = Localization.GetString("VoltorbFlip_TotalCoins_Line2", "earned")
             Dim TotalCoinsText3 As String = ""
 
             TotalCoinsText3 &= "["
@@ -319,11 +319,12 @@ Namespace VoltorbFlip
             Dim ButtonOriginX As Integer = CInt(BoardOrigin.X + BoardSize.Width + TileSize.Width / 4)
             SpriteBatch.Draw(TextureManager.GetTexture("VoltorbFlip\Memo_Button", New Rectangle(0, 0, 56, 56)), New Rectangle(ButtonOriginX, CInt(BoardOrigin.Y), MemoMenuSize.Width, MemoMenuSize.Height), mainBackgroundColor)
 
-            Dim ButtonTextTop As String = "Open"
-            Dim ButtonTextBottom As String = "Memos"
+            Dim ButtonTextTop As String = Localization.GetString("VoltorbFlip_MemoButton_Open_Line1", "Open")
+            Dim ButtonTextBottom As String = Localization.GetString("VoltorbFlip_MemoButton_Open_Line2", "Memos")
 
             If GameState = States.Memo Then
-                ButtonTextTop = "Close"
+                ButtonTextTop = Localization.GetString("VoltorbFlip_MemoButton_Close_Line1", "Close")
+                ButtonTextBottom = Localization.GetString("VoltorbFlip_MemoButton_Close_Line2", "Memos")
             End If
 
             SpriteBatch.DrawString(FontManager.MainFont, ButtonTextTop, New Vector2(CInt(ButtonOriginX + MemoMenuSize.Width / 2 - FontManager.MainFont.MeasureString(ButtonTextTop).X / 2), CInt(BoardOrigin.Y + 40)), Fontcolor)
@@ -833,7 +834,7 @@ TryAgain:
                         End If
                     End If
 
-                    Dim QuitQuestionText As String = "Do you want to stop~playing Voltorb Flip?%Yes|No%"
+                    Dim QuitQuestionText As String = Localization.GetString("VoltorbFlip_QuitQuestion_Question", "Do you want to stop~playing Voltorb Flip?") & "%" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerYes", "Yes") & "|" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerNo", "No") & "%"
 
                     'Quiting Voltorb Flip
                     If Controls.Dismiss(False, True, True) AndAlso GameState = States.Game AndAlso Delay = 0 Then
@@ -926,7 +927,7 @@ TryAgain:
 
             'Level complete!
             If CurrentCoins >= MaxCoins AndAlso GameState = States.Game Then
-                Dim GameClearText = "Game clear! You received~" & CurrentCoins.ToString & " " & "Coins!"
+                Dim GameClearText = Localization.GetString("VoltorbFlip_GameWon_1", "Game clear! You received~") & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_GameWon_2", "Coins!")
                 SoundManager.PlaySound("VoltorbFlip\WinGame")
                 TextBox.Show(GameClearText)
                 If Delay = 0 Then
@@ -959,7 +960,7 @@ TryAgain:
                 If Core.Player.Coins + TotalCoins > 50000 Then
                     TotalCoins = 50000 - Core.Player.Coins
                     CurrentCoins = 0
-                    TextBox.Show("Your Coin Case can't fit~any more Coins!*You received~" & TotalCoins.ToString & " " & "Coins instead!")
+                    TextBox.Show(Localization.GetString("VoltorbFlip_MaxCoins1", "Your Coin Case can't fit~any more Coins!*You received~") & TotalCoins.ToString & " " & Localization.GetString("VoltorbFlip_MaxCoins2", "Coins instead!"))
                     Quit()
                 Else
                     TotalCoins += CurrentCoins
@@ -1061,15 +1062,15 @@ TryAgain:
                         ConsecutiveWins = 0
                     End If
                     If CurrentLevel < PreviousLevel Then
-                        TextBox.Show("Dropped to Game Lv." & " " & CurrentLevel & "!")
+                        TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Lower1", "Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Lower2", "!"))
                     End If
 
                     If CurrentLevel = PreviousLevel Then
-                        TextBox.Show("Ready to play Game Lv." & " " & CurrentLevel & "!")
+                        TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Same1", "Ready to play Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Same2", "!"))
                     End If
 
                     If CurrentLevel > PreviousLevel Then
-                        TextBox.Show("Advanced to Game Lv." & " " & CurrentLevel & "!")
+                        TextBox.Show(Localization.GetString("VoltorbFlip_NewLevel_Higher1", "Advanced to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_NewLevel_Higher2", "!"))
                     End If
                 Else
                     Delay = 15
@@ -1138,7 +1139,7 @@ TryAgain:
             PreviousLevel = CurrentLevel
 
             SoundManager.PlaySound("VoltorbFlip\QuitGame", True)
-            TextBox.Show("Game Over!~Dropped to Game Lv." & " " & CurrentLevel & "!")
+            TextBox.Show(Localization.GetString("VoltorbFlip_GameOver1", "Game Over!~Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_GameOver2", "!"))
 
             CurrentFlips = 0
             TotalFlips = 0
@@ -1256,7 +1257,7 @@ TryAgain:
                             If VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.Game Then
                                 SoundManager.PlaySound("VoltorbFlip\LoseGame", True)
                             End If
-                            Screen.TextBox.Show("Oh no! You get 0 coins!")
+                            Screen.TextBox.Show(Localization.GetString("VoltorbFlip_GameLost", "Oh no! You get 0 coins!"))
                             VoltorbFlipScreen.ConsecutiveWins = 0
                             VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.GameLost
                         Else

@@ -284,23 +284,23 @@
                             End If
                             If CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                                 If VoltorbFlip.VoltorbFlipScreen.TotalCoins > 0 Then
-                                    Screen.TextBox.Show("You've won" & " " & VoltorbFlip.VoltorbFlipScreen.TotalCoins & " " & "Coins!")
+                                    Screen.TextBox.Show(Localization.GetString("VoltorbFlip_AfterGame_Won1", "You've won") & " " & VoltorbFlip.VoltorbFlipScreen.TotalCoins & " " & Localization.GetString("VoltorbFlip_AfterGame_Won2", "Coins!"))
                                     Core.Player.Coins += VoltorbFlip.VoltorbFlipScreen.TotalCoins
                                     VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1
                                     IsReady = True
                                 Else
-                                    Screen.TextBox.Show("Too bad, you didn't win~any Coins!*Better luck next time!")
+                                    Screen.TextBox.Show(Localization.GetString("VoltorbFlip_AfterGame_Lost", "Too bad, you didn't win~any Coins!*Better luck next time!"))
                                     VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1
                                     IsReady = True
                                 End If
                             End If
 
                         Else
-                            Screen.TextBox.Show("Your Coin Case is already full!")
+                            Screen.TextBox.Show(Localization.GetString("VoltorbFlip_BeforeGame_FullCoinCase", "Your Coin Case is already full!"))
                             IsReady = True
                         End If
                     Else
-                        Screen.TextBox.Show("You don't have a Coin Case!~Come back when you have one!")
+                        Screen.TextBox.Show(Localization.GetString("VoltorbFlip_BeforeGame_NoCoinCase", "You don't have a Coin Case!~Come back when you have one!"))
                         IsReady = True
                     End If
                     CanContinue = False

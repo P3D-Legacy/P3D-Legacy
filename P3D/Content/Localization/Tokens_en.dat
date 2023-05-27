@@ -401,6 +401,40 @@ black_out_screen_line3,to the nearest PokéCenter
 black_out_screen_line4,to prevent further injury
 black_out_screen_line5,to your Pokémon.
 ---
+Voltorb Flip:
+VoltorbFlip_LV.,LV.
+VoltorbFlip_CurrentCoins_Line1,Coins found
+VoltorbFlip_CurrentCoins_Line2,in this LV.
+VoltorbFlip_TotalCoins_Line1,Total Coins
+VoltorbFlip_TotalCoins_Line2,earned
+
+VoltorbFlip_MemoButton_Open_Line1,Open
+VoltorbFlip_MemoButton_Open_Line2,Memos
+VoltorbFlip_MemoButton_Close_Line1,Close
+VoltorbFlip_MemoButton_Close_Line2,Memos
+
+VoltorbFlip_QuitQuestion_Question,Do you want to stop~playing Voltorb Flip?
+VoltorbFlip_QuitQuestion_AnswerYes,Yes
+VoltorbFlip_QuitQuestion_AnswerNo,No
+
+VoltorbFlip_GameWon_1,Game clear! You received~
+VoltorbFlip_GameWon_2,Coins!
+
+VoltorbFlip_GameLost,Oh no! You get 0 coins!
+
+VoltorbFlip_MaxCoins1,Your Coin Case can't fit~any more Coins!*You received~
+VoltorbFlip_MaxCoins2,Coins instead!
+
+VoltorbFlip_NewLevel_Lower1,Dropped to Game Lv.
+VoltorbFlip_NewLevel_Lower2,!
+VoltorbFlip_NewLevel_Same1,Ready to play Game Lv.
+VoltorbFlip_NewLevel_Same2,!
+VoltorbFlip_NewLevel_Higher1,Advanced to Game Lv.
+VoltorbFlip_NewLevel_Higher2,!
+
+VoltorbFlip_GameOver1,Game Over!~Dropped to Game Lv.
+VoltorbFlip_GameOver2,!
+---
 Battle:
 ---
 main:
