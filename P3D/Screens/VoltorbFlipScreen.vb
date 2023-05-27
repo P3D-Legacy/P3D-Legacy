@@ -19,7 +19,7 @@ Namespace VoltorbFlip
         Public Shared ReadOnly TileSize As New Size(64, 64)
         Private Shared ReadOnly GridSize As Integer = 5
 
-        Public Shared GameOrigin As New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2), CInt(windowSize.Height / 2 - GameSize.Height / 2))
+        Public Shared GameOrigin As New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2 - 32), CInt(windowSize.Height / 2 - GameSize.Height / 2))
         Public Shared BoardOrigin As New Vector2(GameOrigin.X + 32, GameOrigin.Y + 160)
 
         Private BoardCursorPosition As New Vector2(0, 0)
@@ -74,7 +74,7 @@ Namespace VoltorbFlip
 
         Public Sub New(ByVal currentScreen As Screen)
             GameState = States.Opening
-            GameOrigin = New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2), CInt(windowSize.Height / 2 - _screenTransitionY))
+            GameOrigin = New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2 - 32), CInt(windowSize.Height / 2 - _screenTransitionY))
             BoardOrigin = New Vector2(GameOrigin.X + 32, GameOrigin.Y + 160)
             BoardCursorDestination = GetCursorOffset(0, 0)
             BoardCursorPosition = GetCursorOffset(0, 0)
@@ -106,9 +106,6 @@ Namespace VoltorbFlip
 
             DrawGradients(CInt(255 * _interfaceFade))
 
-            ChooseBox.Draw()
-            TextBox.Draw()
-
             DrawBackground()
 
             DrawMemoMenuAndButton()
@@ -121,6 +118,8 @@ Namespace VoltorbFlip
             DrawQuitButton()
 
 
+            ChooseBox.Draw()
+            TextBox.Draw()
         End Sub
 
         Private Sub DrawPrescreen()
@@ -673,7 +672,7 @@ TryAgain:
         End Function
 
         Public Overrides Sub SizeChanged()
-            GameOrigin = New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2), CInt(windowSize.Height / 2 - _screenTransitionY))
+            GameOrigin = New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2 - 32), CInt(windowSize.Height / 2 - _screenTransitionY))
             BoardOrigin = New Vector2(GameOrigin.X + 32, GameOrigin.Y + 160)
             BoardCursorDestination = GetCursorOffset(0, 0)
             BoardCursorPosition = GetCursorOffset(0, 0)
