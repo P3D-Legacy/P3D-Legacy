@@ -413,17 +413,19 @@ VoltorbFlip_MemoButton_Open_Line2,Memos
 VoltorbFlip_MemoButton_Close_Line1,Close
 VoltorbFlip_MemoButton_Close_Line2,Memos
 
-VoltorbFlip_QuitQuestion_Question,Do you want to stop~playing Voltorb Flip?
+VoltorbFlip_QuitButton,Quit
+
+VoltorbFlip_QuitQuestion_Question_1,If you quit now, you will~receive
+VoltorbFlip_QuitQuestion_Question_2,Coin(s).*Will you quit?
 VoltorbFlip_QuitQuestion_AnswerYes,Yes
 VoltorbFlip_QuitQuestion_AnswerNo,No
 
-VoltorbFlip_GameWon_1,Game clear! You received~
-VoltorbFlip_GameWon_2,Coins!
+VoltorbFlip_GameWon_1,Game clear!*<player.name> received~
+VoltorbFlip_GameWon_2,Coin(s)!
 
-VoltorbFlip_GameLost,Oh no! You get 0 coins!
+VoltorbFlip_GameLost,Oh no! You get 0 Coins!
 
-VoltorbFlip_MaxCoins1,Your Coin Case can't fit~any more Coins!*You received~
-VoltorbFlip_MaxCoins2,Coins instead!
+VoltorbFlip_MaxCoins,Your Coin Case can't fit~any more Coin(s)!
 
 VoltorbFlip_NewLevel_Lower1,Dropped to Game Lv.
 VoltorbFlip_NewLevel_Lower2,!
@@ -432,12 +434,12 @@ VoltorbFlip_NewLevel_Same2,!
 VoltorbFlip_NewLevel_Higher1,Advanced to Game Lv.
 VoltorbFlip_NewLevel_Higher2,!
 
-VoltorbFlip_GameOver1,Game Over!~Dropped to Game Lv.
-VoltorbFlip_GameOver2,!
+VoltorbFlip_QuitGame_1,<player.name> received~
+VoltorbFlip_QuitGame_2,Coin(s)!
 
 VoltorbFlip_AfterGame_Won1,You've won
-VoltorbFlip_AfterGame_Won2,Coins!
-VoltorbFlip_AfterGame_Lost,Too bad, you didn't win~any Coins!*Better luck next time!
+VoltorbFlip_AfterGame_Won2,Coin(s)!
+VoltorbFlip_AfterGame_Lost,Too bad, you didn't win~any Coin(s)!*Better luck next time!
 
 VoltorbFlip_BeforeGame_FullCoinCase,Your Coin Case is already full!
 VoltorbFlip_BeforeGame_NoCoinCase,You don't have a Coin Case!~Come back when you have one!

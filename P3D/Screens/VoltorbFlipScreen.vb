@@ -375,12 +375,23 @@ Namespace VoltorbFlip
             End If
         End Sub
         Private Sub DrawQuitButton()
-            Dim mainBackgroundColor As Color = New Color(255, 255, 255)
+            Dim mainColor As Color = New Color(255, 255, 255)
             If GameState = States.Closing Or GameState = States.Opening Then
-                mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
+                mainColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
             End If
+
+            Dim ShadowColor As Color = New Color(0, 0, 0)
+            If GameState = States.Closing Or GameState = States.Opening Then
+                ShadowColor = New Color(0, 0, 0, CInt(255 * _interfaceFade))
+            End If
+
             Dim QuitButtonRectangle As New Rectangle(CInt(GameOrigin.X + 424), CInt(GameOrigin.Y + 448), 128, 56)
-            SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Quit_Button"), QuitButtonRectangle, mainBackgroundColor)
+            SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Quit_Button"), QuitButtonRectangle, mainColor)
+
+            Dim QuitButtonText As String = Localization.GetString("VoltorbFlip_QuitButton", "Quit")
+            SpriteBatch.DrawString(FontManager.MainFont, QuitButtonText, New Vector2(CInt(QuitButtonRectangle.X + QuitButtonRectangle.Width / 2 - FontManager.MainFont.MeasureString(QuitButtonText).X / 2 - 2), CInt(QuitButtonRectangle.Y + QuitButtonRectangle.Height / 2 - FontManager.MainFont.MeasureString(QuitButtonText).Y / 2 - 2)), mainColor)
+            SpriteBatch.DrawString(FontManager.MainFont, QuitButtonText, New Vector2(CInt(QuitButtonRectangle.X + QuitButtonRectangle.Width / 2 - FontManager.MainFont.MeasureString(QuitButtonText).X / 2), CInt(QuitButtonRectangle.Y + QuitButtonRectangle.Height / 2 - FontManager.MainFont.MeasureString(QuitButtonText).Y / 2)), ShadowColor)
+
         End Sub
 
         Private Function CreateBoard(ByVal Level As Integer) As List(Of List(Of Tile))
@@ -834,7 +845,7 @@ TryAgain:
                         End If
                     End If
 
-                    Dim QuitQuestionText As String = Localization.GetString("VoltorbFlip_QuitQuestion_Question", "Do you want to stop~playing Voltorb Flip?") & "%" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerYes", "Yes") & "|" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerNo", "No") & "%"
+                    Dim QuitQuestionText As String = Localization.GetString("VoltorbFlip_QuitQuestion_Question_1", "If you quit now, you will~receive") & " " & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_QuitQuestion_Question_2", "Coin(s).*Will you quit?") & "%" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerYes", "Yes") & "|" & Localization.GetString("VoltorbFlip_QuitQuestion_AnswerNo", "No") & "%"
 
                     'Quiting Voltorb Flip
                     If Controls.Dismiss(False, True, True) AndAlso GameState = States.Game AndAlso Delay = 0 Then
@@ -927,7 +938,7 @@ TryAgain:
 
             'Level complete!
             If CurrentCoins >= MaxCoins AndAlso GameState = States.Game Then
-                Dim GameClearText = Localization.GetString("VoltorbFlip_GameWon_1", "Game clear! You received~") & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_GameWon_2", "Coins!")
+                Dim GameClearText = Localization.GetString("VoltorbFlip_GameWon_1", "Game clear!*<player.name> received~") & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_GameWon_2", "Coin(s)!")
                 SoundManager.PlaySound("VoltorbFlip\WinGame")
                 TextBox.Show(GameClearText)
                 If Delay = 0 Then
@@ -960,7 +971,7 @@ TryAgain:
                 If Core.Player.Coins + TotalCoins > 50000 Then
                     TotalCoins = 50000 - Core.Player.Coins
                     CurrentCoins = 0
-                    TextBox.Show(Localization.GetString("VoltorbFlip_MaxCoins1", "Your Coin Case can't fit~any more Coins!*You received~") & TotalCoins.ToString & " " & Localization.GetString("VoltorbFlip_MaxCoins2", "Coins instead!"))
+                    TextBox.Show(Localization.GetString("VoltorbFlip_MaxCoins", "Your Coin Case can't fit~any more Coin(s)!"))
                     Quit()
                 Else
                     TotalCoins += CurrentCoins
@@ -1080,13 +1091,7 @@ TryAgain:
 
             'Animation of opening/closing the window
             If GameState = States.Closing Then
-                Dim ResultCoins As Integer = 0
-                Dim AnimationCurrentCoins As Single = CurrentCoins
-
-                If CurrentCoins > ResultCoins Then
-
-                    CurrentCoins = 0
-                End If
+                CurrentCoins = 0
 
                 If _interfaceFade > 0F Then
                     _interfaceFade = MathHelper.Lerp(0, _interfaceFade, 0.8F)
@@ -1131,21 +1136,15 @@ TryAgain:
         End Sub
 
         Public Sub Quit()
-            If CurrentFlips < CurrentLevel Then
-                CurrentLevel = Math.Max(1, CurrentFlips)
-            Else
-                CurrentLevel = 1
-            End If
-            PreviousLevel = CurrentLevel
-
             SoundManager.PlaySound("VoltorbFlip\QuitGame", True)
-            TextBox.Show(Localization.GetString("VoltorbFlip_GameOver1", "Game Over!~Dropped to Game Lv.") & " " & CurrentLevel & Localization.GetString("VoltorbFlip_GameOver2", "!"))
+            TextBox.Show(Localization.GetString("VoltorbFlip_QuitGame_1", "<player.name> received~") & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_QuitGame_2", "Coin(s)!"))
 
-            CurrentFlips = 0
-            TotalFlips = 0
+            If GameState = States.QuitQuestion Then
+                TotalCoins += CurrentCoins
+                CurrentFlips = 0
 
-            CurrentCoins = 0
-
+                CurrentCoins = 0
+            End If
             GameState = States.Closing
         End Sub
     End Class
@@ -1257,7 +1256,7 @@ TryAgain:
                             If VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.Game Then
                                 SoundManager.PlaySound("VoltorbFlip\LoseGame", True)
                             End If
-                            Screen.TextBox.Show(Localization.GetString("VoltorbFlip_GameLost", "Oh no! You get 0 coins!"))
+                            Screen.TextBox.Show(Localization.GetString("VoltorbFlip_GameLost", "Oh no! You get 0 Coins!"))
                             VoltorbFlipScreen.ConsecutiveWins = 0
                             VoltorbFlipScreen.GameState = VoltorbFlipScreen.States.GameLost
                         Else
