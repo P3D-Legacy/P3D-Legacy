@@ -389,8 +389,8 @@ Namespace VoltorbFlip
             SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Quit_Button"), QuitButtonRectangle, mainColor)
 
             Dim QuitButtonText As String = Localization.GetString("VoltorbFlip_QuitButton", "Quit")
-            SpriteBatch.DrawString(FontManager.MainFont, QuitButtonText, New Vector2(CInt(QuitButtonRectangle.X + QuitButtonRectangle.Width / 2 - FontManager.MainFont.MeasureString(QuitButtonText).X / 2 - 2), CInt(QuitButtonRectangle.Y + QuitButtonRectangle.Height / 2 - FontManager.MainFont.MeasureString(QuitButtonText).Y / 2 - 2)), mainColor)
             SpriteBatch.DrawString(FontManager.MainFont, QuitButtonText, New Vector2(CInt(QuitButtonRectangle.X + QuitButtonRectangle.Width / 2 - FontManager.MainFont.MeasureString(QuitButtonText).X / 2), CInt(QuitButtonRectangle.Y + QuitButtonRectangle.Height / 2 - FontManager.MainFont.MeasureString(QuitButtonText).Y / 2)), ShadowColor)
+            SpriteBatch.DrawString(FontManager.MainFont, QuitButtonText, New Vector2(CInt(QuitButtonRectangle.X + QuitButtonRectangle.Width / 2 - FontManager.MainFont.MeasureString(QuitButtonText).X / 2 - 2), CInt(QuitButtonRectangle.Y + QuitButtonRectangle.Height / 2 - FontManager.MainFont.MeasureString(QuitButtonText).Y / 2 - 2)), mainColor)
 
         End Sub
 

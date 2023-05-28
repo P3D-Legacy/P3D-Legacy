@@ -439,7 +439,7 @@ VoltorbFlip_QuitGame_2,Coin(s)!
 
 VoltorbFlip_AfterGame_Won1,You've won
 VoltorbFlip_AfterGame_Won2,Coin(s)!
-VoltorbFlip_AfterGame_Lost,Too bad, you didn't win~any Coin(s)!*Better luck next time!
+VoltorbFlip_AfterGame_Lost,Too bad, you didn't win~any Coins!*Better luck next time!
 
 VoltorbFlip_BeforeGame_FullCoinCase,Your Coin Case is already full!
 VoltorbFlip_BeforeGame_NoCoinCase,You don't have a Coin Case!~Come back when you have one!
