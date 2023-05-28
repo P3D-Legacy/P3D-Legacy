@@ -871,9 +871,11 @@ TryAgain:
                         If ChooseBox.readyForResult = True Then
                             If ChooseBox.result = 0 Then
                                 Quit()
+                                ChooseBox.readyForResult = False
                             Else
                                 Delay = 15
                                 GameState = States.Game
+                                ChooseBox.readyForResult = False
                             End If
                         End If
                     End If
