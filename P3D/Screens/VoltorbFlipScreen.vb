@@ -25,6 +25,8 @@ Namespace VoltorbFlip
         Private BoardCursorPosition As New Vector2(0, 0)
         Private BoardCursorDestination As New Vector2(0, 0)
 
+        Private NewLevelMenuIndex As Integer = 0
+
         Private MemoIndex As Integer = 0
 
         Public Shared GameState As States = States.Opening
@@ -57,6 +59,7 @@ Namespace VoltorbFlip
             GameLost
             FlipWon
             FlipLost
+            NewLevelQuestion
             NewLevel
         End Enum
 
@@ -114,6 +117,7 @@ Namespace VoltorbFlip
                 DrawBoard()
                 DrawCursor()
             End If
+
             DrawHUD()
             DrawQuitButton()
 
@@ -1063,6 +1067,59 @@ TryAgain:
                 End If
             End If
 
+            'The menu that appears before starting a new level
+            If GameState = States.NewLevelQuestion Then
+                Select Case NewLevelMenuIndex
+                    Case 0 'Main Menu
+                        If Delay = 0 AndAlso TextBox.Showing = False Then
+                            TextBox.Show("Play Voltorb Flip Lv." & " " & CurrentLevel.ToString & "?" & "%" & "Play" & "|" & "Game Info" & "|" & "Quit" & "%")
+                            Delay = 5
+                        End If
+                        If ChooseBox.readyForResult = True Then
+                            Select Case ChooseBox.result
+                                Case 0
+                                    GameState = States.NewLevel
+                                Case 1
+                                    NewLevelMenuIndex = 1
+                                Case 2
+                                    GameState = States.Closing
+                            End Select
+                        End If
+                    Case 1 'Info Menu
+                        If Delay = 0 AndAlso TextBox.Showing = False Then
+                            TextBox.Show("Which set of info?" & "%" & "How to Play" & "|" & "Hint!" & "|" & "About Memos" & "%")
+                            Delay = 5
+                        End If
+                        If ChooseBox.readyForResult = True Then
+                            Select Case ChooseBox.result
+                                Case 0
+                                    NewLevelMenuIndex = 2
+                                Case 1
+                                    NewLevelMenuIndex = 3
+                                Case 2
+                                    NewLevelMenuIndex = 4
+                            End Select
+                        End If
+                    Case 2 'How to Play
+                        If Delay = 0 Then
+                            TextBox.Show(Localization.GetString("VoltorbFlip_Tutorial_HowToPlay", "Voltorb Flip is a game in which~you flip over cards to find~numbers hidden beneath them.*The cards are hiding the~numbers 1 through 3...~and Voltorb as well.*The first number you flip over~will give you that many Coins.*From then on, the next number~you find will multiply the~total amount of Coins you've~collected by that number.*If it's a 2, your total will~be multiplied by ""x2"".*If it's a 3, your total will~be multiplied by ""x3"".*But if you flip over a~Voltorb, it's game over.*When that happens, you'll lose~all the Coins you've collected~in the current level.*If you select ""Quit"", you'll~withdraw from the level.*If you get to a difficult~spot, you might want to end~the game early.*Once you've found all the~hidden 2 and 3 cards,~you've cleared the game.*Once you've flipped over~all these cards, then you'll~advance to the next level.*As you move up in levels,~you will be able to receive~more Coins. Do your best!"))
+                            NewLevelMenuIndex = 1
+                            Delay = 5
+                        End If
+                    Case 3 'Hint!
+                        If Delay = 0 Then
+                            TextBox.Show(Localization.GetString("VoltorbFlip_Tutorial_Hint", "The numbers at the side~of the board give you a clue~about the numbers hidden on~the backs of the cards.*The larger the number, the~more likely it is that there~are many large numbers hidden~in that row or column.*In the same way, you can tell~how many Voltorb are hidden~in the row or column.*Consider the hidden number~totals and the Voltorb~totals carefully as you~flip over cards."))
+                            NewLevelMenuIndex = 1
+                            Delay = 5
+                        End If
+                    Case 4 'About Memos
+                        If Delay = 0 Then
+                            TextBox.Show(Localization.GetString("VoltorbFlip_Tutorial_AboutMemos", "Select ""Open Memo"" or~press [<system.button(run)>] to open~the Memo Window.*You can mark the cards with~the numbers 1 through 3,~but also with a Voltorb mark.*When you have an idea of the~numbers hidden on the back~of the cards, open the Memo~Window, choose the type of~mark you want to use with~the Mouse Wheel or the~Gamepad's Shoulder Buttons~and then press [<system.button(enter1)>]~while highlighting the card~you want to mark.*If you want to remove a mark,~choose the type of mark you~want to remove with the~Mouse Wheel or the Gamepad's~Shoulder Buttons and then~press [<system.button(back1)>] while~highlighting the card you~want to remove the mark from.*You can also use the~mouse to select a~mark type or a card."))
+                            NewLevelMenuIndex = 1
+                            Delay = 5
+                        End If
+                End Select
+            End If
             'Prepare new Level
             If GameState = States.NewLevel Then
                 If TextBox.Showing = False Then
