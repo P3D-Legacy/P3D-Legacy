@@ -21,6 +21,7 @@ Namespace VoltorbFlip
 
         Public Shared GameOrigin As New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2 - 32), CInt(windowSize.Height / 2 - GameSize.Height / 2))
         Public Shared BoardOrigin As New Vector2(GameOrigin.X + 32, GameOrigin.Y + 160)
+        Public Shared TutorialRectangle As New Rectangle(CInt(windowSize.Width / 2 - 512 / 2), CInt(windowSize.Height / 2 - 384 / 2), 512, 384)
 
         Private BoardCursorPosition As New Vector2(0, 0)
         Private BoardCursorDestination As New Vector2(0, 0)
@@ -79,6 +80,8 @@ Namespace VoltorbFlip
             GameState = States.Opening
             GameOrigin = New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2 - 32), CInt(windowSize.Height / 2 - _screenTransitionY))
             BoardOrigin = New Vector2(GameOrigin.X + 32, GameOrigin.Y + 160)
+            TutorialRectangle = New Rectangle(CInt(windowSize.Width / 2 - 512 / 2), CInt(windowSize.Height / 2 - 384 / 2), 512, 384)
+
             BoardCursorDestination = GetCursorOffset(0, 0)
             BoardCursorPosition = GetCursorOffset(0, 0)
 
@@ -121,6 +124,7 @@ Namespace VoltorbFlip
             DrawHUD()
             DrawQuitButton()
 
+            DrawTutorial()
 
             ChooseBox.Draw()
             TextBox.Draw()
@@ -230,6 +234,54 @@ Namespace VoltorbFlip
             SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText2, New Vector2(CInt(GameOrigin.X + 440 + 28 - FontManager.MainFont.MeasureString(TotalCoinsText2).X / 2), CInt(GameOrigin.Y + 80 + 4 - FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2)), Fontcolor)
             SpriteBatch.DrawString(FontManager.MainFont, TotalCoinsText3, New Vector2(CInt(GameOrigin.X + 440 + 28 - FontManager.MainFont.MeasureString(TotalCoinsText3).X / 2), CInt(GameOrigin.Y + 80 + 4 + FontManager.MainFont.MeasureString(TotalCoinsText2).Y / 2)), Fontcolor)
 
+
+        End Sub
+
+        Private Sub DrawTutorial()
+            Dim mainBackgroundColor As Color = New Color(255, 255, 255)
+            If GameState = States.Closing Or GameState = States.Opening Then
+                mainBackgroundColor = New Color(255, 255, 255, CInt(255 * _interfaceFade))
+            End If
+
+            Dim FontColor As Color = New Color(0, 0, 0)
+            If GameState = States.Closing Or GameState = States.Opening Then
+                FontColor = New Color(0, 0, 0, CInt(255 * _interfaceFade))
+            End If
+
+            If GameState = States.NewLevelQuestion AndAlso NewLevelMenuIndex > 1 Then
+                Select Case NewLevelMenuIndex
+                    Case 2 'How to Play
+                        Dim TutorialString1 As String = Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Image1", "If you flip the cards in this order, you'll collect: 3 x 1 x 2 x 1 x 3... A total of 18 Coins! And then...")
+                        Dim TutorialString2 As String = Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Image2", "If you select ""Quit"", you'll keep those 18 Coins.")
+                        Dim TutorialString3 As String = Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Image3", "But if you find Voltorb, you'll lose all your Coins!")
+
+                        SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Tutorial_HowToPlay"), New Rectangle(CInt(TutorialRectangle.X), CInt(TutorialRectangle.Y), TutorialRectangle.Width, TutorialRectangle.Height), mainBackgroundColor)
+
+                        SpriteBatch.DrawString(FontManager.MainFont, TutorialString1.CropStringToWidth(FontManager.MainFont, 1, 448), New Vector2(CInt(TutorialRectangle.X + 256 - FontManager.MainFont.MeasureString(TutorialString1.CropStringToWidth(FontManager.MainFont, 1, 448)).X / 2), CInt(TutorialRectangle.Y + 128 - FontManager.MainFont.MeasureString(TutorialString1.CropStringToWidth(FontManager.MainFont, 1, 448)).Y / 2)), FontColor)
+                        SpriteBatch.DrawString(FontManager.MainFont, TutorialString2.CropStringToWidth(FontManager.MainFont, 1, 304), New Vector2(CInt(TutorialRectangle.X + 336 - FontManager.MainFont.MeasureString(TutorialString2.CropStringToWidth(FontManager.MainFont, 1, 304)).X / 2), CInt(TutorialRectangle.Y + 256 - FontManager.MainFont.MeasureString(TutorialString2.CropStringToWidth(FontManager.MainFont, 1, 304)).Y / 2)), FontColor)
+                        SpriteBatch.DrawString(FontManager.MainFont, TutorialString3.CropStringToWidth(FontManager.MainFont, 1, 304), New Vector2(CInt(TutorialRectangle.X + 336 - FontManager.MainFont.MeasureString(TutorialString2.CropStringToWidth(FontManager.MainFont, 1, 304)).X / 2), CInt(TutorialRectangle.Y + 336 - FontManager.MainFont.MeasureString(TutorialString3.CropStringToWidth(FontManager.MainFont, 1, 304)).Y / 2)), FontColor)
+
+                    Case 3 'Hint
+                        Dim TutorialString As String = Localization.GetString("VoltorbFlip_Tutorial_Hint_Image", "By looking at the numbers on the sides of the cards, you can see the hidden number and Voltorb totals.")
+                        SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Tutorial_Hints"), New Rectangle(CInt(TutorialRectangle.X), CInt(TutorialRectangle.Y), TutorialRectangle.Width, TutorialRectangle.Height), mainBackgroundColor)
+
+                        SpriteBatch.DrawString(FontManager.MainFont, TutorialString.CropStringToWidth(FontManager.MainFont, 1, 448), New Vector2(CInt(TutorialRectangle.X + 256 - FontManager.MainFont.MeasureString(TutorialString.CropStringToWidth(FontManager.MainFont, 1, 448)).X / 2), CInt(TutorialRectangle.Y + 320 - FontManager.MainFont.MeasureString(TutorialString.CropStringToWidth(FontManager.MainFont, 1, 448)).Y / 2)), FontColor)
+
+                    Case 4 'About Memos
+                        Dim TutorialString As String = Localization.GetString("VoltorbFlip_Tutorial_AboutMemos_Image", "Select ""Open Memo"" to open the Memo Window. Select the cards and press [<system.button(enter1)>] to add and [<system.button(back1)>] to remove marks.")
+                        Dim ButtonTextTop As String = Localization.GetString("VoltorbFlip_MemoButton_Open_Line1", "Open")
+                        Dim ButtonTextBottom As String = Localization.GetString("VoltorbFlip_MemoButton_Open_Line2", "Memos")
+
+                        SpriteBatch.Draw(TextureManager.GetTexture("Textures\VoltorbFlip\Tutorial_AboutMemos"), New Rectangle(CInt(TutorialRectangle.X), CInt(TutorialRectangle.Y), TutorialRectangle.Width, TutorialRectangle.Height), mainBackgroundColor)
+
+                        SpriteBatch.DrawString(FontManager.MainFont, TutorialString.CropStringToWidth(FontManager.MainFont, 1, 448), New Vector2(CInt(TutorialRectangle.X + 256 - FontManager.MainFont.MeasureString(TutorialString.CropStringToWidth(FontManager.MainFont, 1, 448)).X / 2), CInt(TutorialRectangle.Y + 304 - FontManager.MainFont.MeasureString(TutorialString.CropStringToWidth(FontManager.MainFont, 1, 448)).Y / 2)), FontColor)
+
+                        SpriteBatch.DrawString(FontManager.MainFont, ButtonTextTop, New Vector2(CInt(TutorialRectangle.X + 64 + MemoMenuSize.Width / 2 - FontManager.MainFont.MeasureString(ButtonTextTop).X / 2), CInt(TutorialRectangle.Y + 104)), FontColor)
+                        SpriteBatch.DrawString(FontManager.MainFont, ButtonTextBottom, New Vector2(CInt(TutorialRectangle.X + 64 + MemoMenuSize.Width / 2 - FontManager.MainFont.MeasureString(ButtonTextBottom).X / 2), CInt(TutorialRectangle.Y + 104 + FontManager.MainFont.MeasureString(ButtonTextTop).Y)), FontColor)
+
+                End Select
+
+            End If
 
         End Sub
 
@@ -690,6 +742,7 @@ TryAgain:
         Public Overrides Sub SizeChanged()
             GameOrigin = New Vector2(CInt(windowSize.Width / 2 - GameSize.Width / 2 - 32), CInt(windowSize.Height / 2 - _screenTransitionY))
             BoardOrigin = New Vector2(GameOrigin.X + 32, GameOrigin.Y + 160)
+            TutorialRectangle = New Rectangle(CInt(windowSize.Width / 2 - 512 / 2), CInt(windowSize.Height / 2 - 384 / 2), 512, 384)
             BoardCursorDestination = GetCursorOffset(0, 0)
             BoardCursorPosition = GetCursorOffset(0, 0)
         End Sub
@@ -1073,8 +1126,9 @@ TryAgain:
             If GameState = States.NewLevelQuestion Then
                 Select Case NewLevelMenuIndex
                     Case 0 'Main Menu
-                        If Delay = 0 AndAlso TextBox.Showing = False Then
-                            TextBox.Show("Play Voltorb Flip Lv." & " " & CurrentLevel.ToString & "?" & "%" & "Play" & "|" & "Game Info" & "|" & "Quit" & "%")
+                        If Delay = 0 AndAlso TextBox.Showing = False AndAlso ChooseBox.Showing = False Then
+                            ChooseBox.readyForResult = False
+                            TextBox.Show(Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Question_1", "Play Voltorb Flip Lv.") & " " & CurrentLevel.ToString & Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Question_2", "?") & "%" & Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Answer_Play", "Play") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Answer_GameInfo", "Game Info") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_Main_Answer_Quit", "Quit") & "%")
                             Delay = 5
                         End If
                         If ChooseBox.readyForResult = True Then
@@ -1088,8 +1142,9 @@ TryAgain:
                             End Select
                         End If
                     Case 1 'Info Menu
-                        If Delay = 0 AndAlso TextBox.Showing = False Then
-                            TextBox.Show("Which set of info?" & "%" & "How to Play" & "|" & "Hint!" & "|" & "About Memos" & "%")
+                        If Delay = 0 AndAlso TextBox.Showing = False AndAlso ChooseBox.Showing = False Then
+                            ChooseBox.readyForResult = False
+                            TextBox.Show(Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Question", "Which set of info?") & "%" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_HowToPlay", "How to Play") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint", "Hint!") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos", "About Memos") & "%")
                             Delay = 5
                         End If
                         If ChooseBox.readyForResult = True Then
@@ -1104,19 +1159,19 @@ TryAgain:
                         End If
                     Case 2 'How to Play
                         If Delay = 0 Then
-                            TextBox.Show(Localization.GetString("VoltorbFlip_Tutorial_HowToPlay", "Voltorb Flip is a game in which~you flip over cards to find~numbers hidden beneath them.*The cards are hiding the~numbers 1 through 3...~and Voltorb as well.*The first number you flip over~will give you that many Coins.*From then on, the next number~you find will multiply the~total amount of Coins you've~collected by that number.*If it's a 2, your total will~be multiplied by ""x2"".*If it's a 3, your total will~be multiplied by ""x3"".*But if you flip over a~Voltorb, it's game over.*When that happens, you'll lose~all the Coins you've collected~in the current level.*If you select ""Quit"", you'll~withdraw from the level.*If you get to a difficult~spot, you might want to end~the game early.*Once you've found all the~hidden 2 and 3 cards,~you've cleared the game.*Once you've flipped over~all these cards, then you'll~advance to the next level.*As you move up in levels,~you will be able to receive~more Coins. Do your best!"))
+                            TextBox.Show(Localization.GetString("VoltorbFlip_Tutorial_HowToPlay_Message", "Voltorb Flip is a game in which~you flip over cards to find~numbers hidden beneath them.*The cards are hiding the~numbers 1 through 3...~and Voltorb as well.*The first number you flip over~will give you that many Coins.*From then on, the next number~you find will multiply the~total amount of Coins you've~collected by that number.*If it's a 2, your total will~be multiplied by ""x2"".*If it's a 3, your total will~be multiplied by ""x3"".*But if you flip over a~Voltorb, it's game over.*When that happens, you'll lose~all the Coins you've collected~in the current level.*If you select ""Quit"", you'll~withdraw from the level.*If you get to a difficult~spot, you might want to end~the game early.*Once you've found all the~hidden 2 and 3 cards,~you've cleared the game.*Once you've flipped over~all these cards, then you'll~advance to the next level.*As you move up in levels,~you will be able to receive~more Coins. Do your best!"))
                             NewLevelMenuIndex = 1
                             Delay = 5
                         End If
                     Case 3 'Hint!
                         If Delay = 0 Then
-                            TextBox.Show(Localization.GetString("VoltorbFlip_Tutorial_Hint", "The numbers at the side~of the board give you a clue~about the numbers hidden on~the backs of the cards.*The larger the number, the~more likely it is that there~are many large numbers hidden~in that row or column.*In the same way, you can tell~how many Voltorb are hidden~in the row or column.*Consider the hidden number~totals and the Voltorb~totals carefully as you~flip over cards."))
+                            TextBox.Show(Localization.GetString("VoltorbFlip_Tutorial_Hint_Message", "The numbers at the side~of the board give you a clue~about the numbers hidden on~the backs of the cards.*The larger the number, the~more likely it is that there~are many large numbers hidden~in that row or column.*In the same way, you can tell~how many Voltorb are hidden~in the row or column.*Consider the hidden number~totals and the Voltorb~totals carefully as you~flip over cards."))
                             NewLevelMenuIndex = 1
                             Delay = 5
                         End If
                     Case 4 'About Memos
                         If Delay = 0 Then
-                            TextBox.Show(Localization.GetString("VoltorbFlip_Tutorial_AboutMemos", "Select ""Open Memo"" or~press [<system.button(run)>] to open~the Memo Window.*You can mark the cards with~the numbers 1 through 3,~but also with a Voltorb mark.*When you have an idea of the~numbers hidden on the back~of the cards, open the Memo~Window, choose the type of~mark you want to use with~the Mouse Wheel or the~Gamepad's Shoulder Buttons~and then press [<system.button(enter1)>]~while highlighting the card~you want to mark.*If you want to remove a mark,~choose the type of mark you~want to remove with the~Mouse Wheel or the Gamepad's~Shoulder Buttons and then~press [<system.button(back1)>] while~highlighting the card you~want to remove the mark from.*You can also use the~mouse to select a~mark type or a card."))
+                            TextBox.Show(Localization.GetString("VoltorbFlip_Tutorial_AboutMemos_Message", "Select ""Open Memo"" or~press [<system.button(run)>] to open~the Memo Window.*You can mark the cards with~the numbers 1 through 3,~but also with a Voltorb mark.*When you have an idea of the~numbers hidden on the back~of the cards, open the Memo~Window, choose the type of~mark you want to use with~the Mouse Wheel or the~Gamepad's Shoulder Buttons~and then press [<system.button(enter1)>]~while highlighting the card~you want to mark.*If you want to remove a mark,~choose the type of mark you~want to remove with the~Mouse Wheel or the Gamepad's~Shoulder Buttons and then~press [<system.button(back1)>] while~highlighting the card you~want to remove the mark from.*You can also use the~mouse to select a~mark type or a card."))
                             NewLevelMenuIndex = 1
                             Delay = 5
                         End If
@@ -1204,7 +1259,7 @@ TryAgain:
 
                 CurrentCoins = 0
             End If
-            GameState = States.Closing
+            GameState = States.NewLevelQuestion
         End Sub
     End Class
 
