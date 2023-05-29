@@ -9,6 +9,18 @@ Public MustInherit Class Item
     Protected _textureRectangle As Rectangle
     Private _texture As Texture2D
 
+    'GameMode Items
+    Public gmID As String = ""
+    Public gmName As String = ""
+    Public gmDescription As String = ""
+    Public gmTextureRectangle As Rectangle
+    Public gmIsBerry As Boolean = False
+    Public gmIsMail As Boolean = False
+    Public gmIsMegaStone As Boolean = False
+    Public gmIsPlate As Boolean = False
+
+    Public Property IsGameModeItem As Boolean = False
+
     Public ReadOnly Property TextureSource As String
         Get
             Return _textureSource & "," & _textureRectangle.X & "," & _textureRectangle.Y & "," & _textureRectangle.Width & "," & _textureRectangle.Height
@@ -16,10 +28,18 @@ Public MustInherit Class Item
     End Property
 
     Public Function GetDescription() As String
-        If Localization.TokenExists("item_desc_" & GetAttribute().Id) = True Then
-            Return Localization.GetString("item_desc_" & GetAttribute().Id)
+        If IsGameModeItem = True Then
+            If Localization.TokenExists("item_desc_" & gmID) = True Then
+                Return Localization.GetString("item_desc_" & gmID)
+            Else
+                Return Me.gmDescription
+            End If
         Else
-            Return Me.Description
+            If Localization.TokenExists("item_desc_" & GetAttribute().Id) = True Then
+                Return Localization.GetString("item_desc_" & GetAttribute().Id)
+            Else
+                Return Me.Description
+            End If
         End If
     End Function
 
@@ -34,7 +54,11 @@ Public MustInherit Class Item
     End Function
 
     Public Function OriginalName() As String
-        Return GetAttribute().Name
+        If IsGameModeItem = True Then
+            Return gmName
+        Else
+            Return GetAttribute().Name
+        End If
     End Function
 
     ''' <summary>
@@ -42,10 +66,18 @@ Public MustInherit Class Item
     ''' </summary>
     Public Overridable ReadOnly Property Name As String
         Get
-            If Localization.TokenExists("item_name_" & GetAttribute().Id) = True Then
-                Return Localization.GetString("item_name_" & GetAttribute().Id)
+            If IsGameModeItem = True Then
+                If Localization.TokenExists("item_name_" & gmID) = True Then
+                    Return Localization.GetString("item_name_" & gmID)
+                Else
+                    Return gmName
+                End If
             Else
-                Return GetAttribute().Name
+                If Localization.TokenExists("item_name_" & GetAttribute().Id) = True Then
+                    Return Localization.GetString("item_name_" & GetAttribute().Id)
+                Else
+                    Return GetAttribute().Name
+                End If
             End If
         End Get
     End Property
@@ -103,8 +135,14 @@ Public MustInherit Class Item
     ''' </summary>
     Public ReadOnly Property Texture As Texture2D
         Get
-            If _texture Is Nothing Then
-                _texture = TextureManager.GetTexture(_textureSource, _textureRectangle, "")
+            If IsGameModeItem = True Then
+                If _texture Is Nothing Then
+                    _texture = TextureManager.GetTexture(_textureSource, gmTextureRectangle, "")
+                End If
+            Else
+                If _texture Is Nothing Then
+                    _texture = TextureManager.GetTexture(_textureSource, _textureRectangle, "")
+                End If
             End If
 
             Return _texture
@@ -120,6 +158,7 @@ Public MustInherit Class Item
     ''' The additional data that is stored with this item.
     ''' </summary>
     Public Property AdditionalData As String = ""
+    
 
     ''' <summary>
     ''' The damage the Fling move does when this item is attached to a Pokémon.
@@ -134,7 +173,7 @@ Public MustInherit Class Item
     ''' <summary>
     ''' If this item can be given to a Pokémon.
     ''' </summary>
-    Public Overridable ReadOnly Property CanBeHold As Boolean = True
+    Public Overridable ReadOnly Property CanBeHeld As Boolean = True
 
     ''' <summary>
     ''' If this item can be used from the bag.
@@ -166,7 +205,11 @@ Public MustInherit Class Item
     ''' </summary>
     Public Overridable ReadOnly Property IsBall As Boolean
         Get
-            Return [GetType]().IsSubclassOf(GetType(Items.Balls.BallItem))
+            If IsGameModeItem = True Then
+                Return Me.ItemType = ItemTypes.Pokéballs
+            Else
+                Return [GetType]().IsSubclassOf(GetType(Items.Balls.BallItem))
+            End If
         End Get
     End Property
 
@@ -175,7 +218,11 @@ Public MustInherit Class Item
     ''' </summary>
     Public ReadOnly Property IsBerry As Boolean
         Get
-            Return [GetType]().IsSubclassOf(GetType(Berry))
+            If IsGameModeItem = True Then
+                Return gmIsBerry
+            Else
+                Return [GetType]().IsSubclassOf(GetType(Berry))
+            End If
         End Get
     End Property
 
@@ -184,7 +231,11 @@ Public MustInherit Class Item
     ''' </summary>
     Public ReadOnly Property IsMail As Boolean
         Get
-            Return [GetType]().IsSubclassOf(GetType(MailItem))
+            If IsGameModeItem = True Then
+                Return gmIsMail
+            Else
+                Return [GetType]().IsSubclassOf(GetType(MailItem))
+            End If
         End Get
     End Property
 
@@ -193,7 +244,11 @@ Public MustInherit Class Item
     ''' </summary>
     Public ReadOnly Property IsMegaStone As Boolean
         Get
-            Return [GetType]().IsSubclassOf(GetType(MegaStone))
+            If IsGameModeItem = True Then
+                Return gmIsMegaStone
+            Else
+                Return [GetType]().IsSubclassOf(GetType(MegaStone))
+            End If
         End Get
     End Property
 
@@ -202,7 +257,11 @@ Public MustInherit Class Item
     ''' </summary>
     Public ReadOnly Property IsPlate As Boolean
         Get
-            Return [GetType]().IsSubclassOf(GetType(PlateItem))
+            If IsGameModeItem = True Then
+                Return gmIsPlate
+            Else
+                Return [GetType]().IsSubclassOf(GetType(PlateItem))
+            End If
         End Get
     End Property
 
@@ -252,7 +311,13 @@ Public MustInherit Class Item
     ''' Tries to remove a single item of this item type from the player's bag and returns a message which changes depending on if the item that got removed was the last one of its kind.
     ''' </summary>
     Public Function RemoveItem() As String
-        Core.Player.Inventory.RemoveItem(Me.ID, 1)
+        Dim ItemID As String
+        If IsGameModeItem = True Then
+            ItemID = Me.gmID
+        Else
+            ItemID = Me.ID.ToString
+        End If
+        Core.Player.Inventory.RemoveItem(ItemID, 1)
         Dim s As Screen = Core.CurrentScreen
         While Not s.PreScreen Is Nothing And s.Identification <> Screen.Identifications.InventoryScreen
             s = s.PreScreen
@@ -261,9 +326,11 @@ Public MustInherit Class Item
         If s.Identification = Screen.Identifications.InventoryScreen Then
             CType(s, NewInventoryScreen).LoadItems()
         End If
-        If Core.Player.Inventory.GetItemAmount(Me.ID) <= 0 Then
+
+        If Core.Player.Inventory.GetItemAmount(ItemID) <= 0 Then
             Return "*There are no~" & Me.PluralName & " left."
         End If
+
         Return ""
     End Function
 
@@ -289,18 +356,25 @@ Public MustInherit Class Item
     ''' Returns an item instance based on the passed in ID.
     ''' </summary>
     ''' <param name="ID">The desired item's ID.</param>
-    Public Shared Function GetItemByID(ByVal ID As Integer) As Item
-        If _itemBuffer Is Nothing Then
-            LoadItemBuffer()
-        End If
+    Public Shared Function GetItemByID(ByVal ID As String) As Item
+        If ID.Contains("gm") Then
+            Dim gmItem As GameModeItem = GameModeItemLoader.GetItemByID(ID)
+            If gmItem IsNot Nothing Then
+                Return gmItem
+            End If
+        Else
+            If _itemBuffer Is Nothing Then
+                LoadItemBuffer()
+            End If
 
-        Dim type = _itemBuffer.FirstOrDefault(Function(itemTypePair)
-                                                  Return itemTypePair.Key.Id = ID
-                                              End Function).Value
-        If type IsNot Nothing Then
-            Return CType(Activator.CreateInstance(type), Item)
-        End If
+            Dim type = _itemBuffer.FirstOrDefault(Function(itemTypePair)
+                                                      Return itemTypePair.Key.Id = CInt(ID)
+                                                  End Function).Value
+            If type IsNot Nothing Then
+                Return CType(Activator.CreateInstance(type), Item)
+            End If
 
+        End If
         Return Nothing
     End Function
 

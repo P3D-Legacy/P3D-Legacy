@@ -66,7 +66,7 @@
             Canvas.DrawImageBorder(TextureManager.GetTexture("GUI\Menus\Menu", New Rectangle(x, y, 48, 48), ""), 1, New Rectangle(CInt(P.X), CInt(P.Y), 288, 32))
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Write new mail.", New Vector2(CInt(P.X) + 13, CInt(P.Y) + 14), Color.Black)
         Else
-            Dim item As Item = Item.GetItemByID(mail.MailID)
+            Dim item As Item = Item.GetItemByID(mail.MailID.ToString)
 
             Dim x As Integer = 0
             Dim y As Integer = 0
@@ -101,7 +101,7 @@
     Private Sub DrawCurrentMail()
         If index = 0 Then
             Dim mail As Items.MailItem.MailData = TempNewMail
-            Dim item As Item = Item.GetItemByID(mail.MailID)
+            Dim item As Item = Item.GetItemByID(mail.MailID.ToString)
 
             Core.SpriteBatch.Draw(item.Texture, New Rectangle(420, 84, 48, 48), Color.White)
 
@@ -154,7 +154,7 @@
             Core.SpriteBatch.DrawString(FontManager.MiniFont, "Cancel", New Vector2(696, yPlus + 334), Color.Black)
         Else
             Dim mail As Items.MailItem.MailData = Core.Player.Mails(index - 1)
-            Dim item As Item = Item.GetItemByID(mail.MailID)
+            Dim item As Item = Item.GetItemByID(mail.MailID.ToString)
 
             Core.SpriteBatch.Draw(item.Texture, New Rectangle(420, 84, 48, 48), Color.White)
 
@@ -281,7 +281,7 @@
                         If TempNewMail.MailHeader = "" Or TempNewMail.MailText = "" Or TempNewMail.MailSignature = "" Then
                             message = "Please fill in the Header, the Message and the Signature."
                         Else
-                            Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                            Dim selScreen = New PartyScreen(Me, Item.GetItemByID(TempNewMail.MailID.ToString), AddressOf Me.ChosenPokemon, "Give mail to:", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                             AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
 
                             Core.SetScreen(selScreen)
@@ -322,13 +322,18 @@
 
     Private Sub ChosenPokemon(ByVal PokeIndex As Integer)
         If Not Core.Player.Pokemons(PokeIndex).Item Is Nothing Then
-            Core.Player.Inventory.AddItem(Core.Player.Pokemons(PokeIndex).Item.ID, 1)
+            If Core.Player.Pokemons(PokeIndex).Item.IsGameModeItem Then
+                Core.Player.Inventory.AddItem(Core.Player.Pokemons(PokeIndex).Item.gmID, 1)
+            Else
+                Core.Player.Inventory.AddItem(Core.Player.Pokemons(PokeIndex).Item.ID.ToString, 1)
+            End If
+
         End If
 
-        Core.Player.Pokemons(PokeIndex).Item = Item.GetItemByID(TempNewMail.MailID)
+        Core.Player.Pokemons(PokeIndex).Item = Item.GetItemByID(TempNewMail.MailID.ToString)
         Core.Player.Pokemons(PokeIndex).Item.AdditionalData = Items.MailItem.GetStringFromMail(TempNewMail)
 
-        Core.Player.Inventory.RemoveItem(TempNewMail.MailID, 1)
+        Core.Player.Inventory.RemoveItem(TempNewMail.MailID.ToString, 1)
         Me.index = -1
 
         Me.message = "Attached the Mail to " & Core.Player.Pokemons(PokeIndex).GetDisplayName() & "."

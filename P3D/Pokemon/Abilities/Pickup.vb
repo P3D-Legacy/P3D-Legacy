@@ -24,7 +24,7 @@ Namespace Abilities
                             itemList = Get1(p)
                         End If
                         If itemList.Count > 0 Then
-                            p.Item = Item.GetItemByID(itemList(Core.Random.Next(0, itemList.Count)))
+                            p.Item = Item.GetItemByID(itemList(Core.Random.Next(0, itemList.Count)).ToString)
                         End If
                     End If
                 End If

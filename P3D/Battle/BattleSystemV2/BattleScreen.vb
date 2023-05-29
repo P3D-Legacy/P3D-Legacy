@@ -1250,7 +1250,7 @@ nextIndex:
                     End If
                     If IsRemoteBattle = True Then
                         If p.OriginalItem IsNot Nothing Then
-                            p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                            p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
                             Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName)
                             p.OriginalItem = Nothing
@@ -1258,12 +1258,12 @@ nextIndex:
                     Else
                         If Not p.OriginalItem Is Nothing Then
                             If p.Item Is Nothing Then
-                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
                                 p.OriginalItem = Nothing
                             Else
-                                Core.Player.Inventory.AddItem(p.OriginalItem.ID, 1)
+                                Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
                                 SoundManager.PlaySound("item_found", True)
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
                                 p.OriginalItem = Nothing
@@ -1303,7 +1303,7 @@ nextIndex:
                         If Not p.Item Is Nothing Then
                             If p.Item.IsBerry = True Then
                                 If Core.Random.Next(0, 3) = 0 Then
-                                    p.Item = Item.GetItemByID(139)
+                                    p.Item = Item.GetItemByID(139.ToString)
                                 End If
                             End If
                         End If
@@ -1313,19 +1313,19 @@ nextIndex:
                 For Each p As Pokemon In Core.Player.Pokemons
                     If IsRemoteBattle = True Then
                         If p.OriginalItem IsNot Nothing Then
-                            p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                            p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
                             p.Item.AdditionalData = p.OriginalItem.AdditionalData
                             Screen.TextBox.Show(Core.Player.Name & " received~" & p.OriginalItem.Name & "and gave it back to~" & p.GetDisplayName)
                         End If
                     Else
                         If Not p.OriginalItem Is Nothing Then
                             If p.Item IsNot Nothing Then
-                                Core.Player.Inventory.AddItem(p.OriginalItem.ID, 1)
+                                Core.Player.Inventory.AddItem(p.OriginalItem.ID.ToString, 1)
                                 SoundManager.PlaySound("item_found", True)
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "!*" & Core.Player.Inventory.GetMessageReceive(p.OriginalItem, 1))
                                 p.OriginalItem = Nothing
                             Else
-                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID)
+                                p.Item = P3D.Item.GetItemByID(p.OriginalItem.ID.ToString)
                                 p.Item.AdditionalData = p.OriginalItem.AdditionalData
                                 Screen.TextBox.Show(Core.Player.Name & " found~" & p.OriginalItem.Name & "*and gave it back to~" & p.GetDisplayName)
                                 p.OriginalItem = Nothing

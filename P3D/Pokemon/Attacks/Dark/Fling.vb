@@ -141,7 +141,11 @@
                         End If
                 End Select
 
-                p.OriginalItem = Item.GetItemByID(p.Item.ID)
+                Dim ItemID As String = p.Item.ID.ToString
+                If p.Item.IsGameModeItem = True Then
+                    ItemID = p.Item.gmID
+                End If
+                p.OriginalItem = Item.GetItemByID(ItemID)
                 p.Item = Nothing
             End If
         End Sub

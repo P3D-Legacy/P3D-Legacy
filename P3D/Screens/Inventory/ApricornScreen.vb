@@ -62,13 +62,13 @@
                     Dim T As Texture2D = TextureManager.GetTexture("Items\ItemSheet")
 
                     Me.Labels.Add(New Label(Localization.GetString("apricorn_screen_choose_apricorns"), New Vector2(100, 200), FontManager.MainFont))
-                    Dim RedApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(85), FontManager.MainFont, T, New Rectangle(240, 72, 24, 24), New Vector2(98, 240), New Size(48, 48), "85")
-                    Dim BlueApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(89), FontManager.MainFont, T, New Rectangle(336, 72, 24, 24), New Vector2(98, 304), New Size(48, 48), "89")
-                    Dim YellowApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(92), FontManager.MainFont, T, New Rectangle(384, 72, 24, 24), New Vector2(98, 368), New Size(48, 48), "92")
-                    Dim GreenApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(93), FontManager.MainFont, T, New Rectangle(408, 72, 24, 24), New Vector2(98, 432), New Size(48, 48), "93")
-                    Dim WhiteApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(97), FontManager.MainFont, T, New Rectangle(0, 96, 24, 24), New Vector2(98, 496), New Size(48, 48), "97")
-                    Dim BlackApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(99), FontManager.MainFont, T, New Rectangle(48, 96, 24, 24), New Vector2(162, 240), New Size(48, 48), "99")
-                    Dim PinkApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(101), FontManager.MainFont, T, New Rectangle(72, 96, 24, 24), New Vector2(162, 304), New Size(48, 48), "101")
+                    Dim RedApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(85.ToString), FontManager.MainFont, T, New Rectangle(240, 72, 24, 24), New Vector2(98, 240), New Size(48, 48), "85")
+                    Dim BlueApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(89.ToString), FontManager.MainFont, T, New Rectangle(336, 72, 24, 24), New Vector2(98, 304), New Size(48, 48), "89")
+                    Dim YellowApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(92.ToString), FontManager.MainFont, T, New Rectangle(384, 72, 24, 24), New Vector2(98, 368), New Size(48, 48), "92")
+                    Dim GreenApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(93.ToString), FontManager.MainFont, T, New Rectangle(408, 72, 24, 24), New Vector2(98, 432), New Size(48, 48), "93")
+                    Dim WhiteApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(97.ToString), FontManager.MainFont, T, New Rectangle(0, 96, 24, 24), New Vector2(98, 496), New Size(48, 48), "97")
+                    Dim BlackApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(99.ToString), FontManager.MainFont, T, New Rectangle(48, 96, 24, 24), New Vector2(162, 240), New Size(48, 48), "99")
+                    Dim PinkApricorn As ButtonIcon = New ButtonIcon(AddressOf Me.GiveApricorn, "0 / " & Core.Player.Inventory.GetItemAmount(101.ToString), FontManager.MainFont, T, New Rectangle(72, 96, 24, 24), New Vector2(162, 304), New Size(48, 48), "101")
 
                     Dim GiveButton As ButtonIcon = New ButtonIcon(AddressOf Me.Give, Localization.GetString("apricorn_screen_ok"), FontManager.MainFont, mainTexture, New Rectangle(48, 128, 16, 16), New Vector2(162, 496), New Size(48, 48), "OK")
                     GiveButton.Enabled = False
@@ -206,7 +206,7 @@
                     ItemID = 166
             End Select
 
-            Dim Item As Item = Item.GetItemByID(ItemID)
+            Dim Item As Item = Item.GetItemByID(ItemID.ToString)
             Core.SpriteBatch.Draw(Item.Texture, New Rectangle(100 + x * 64, 260 + y * 96, 48, 48), Color.White)
             Core.SpriteBatch.DrawString(FontManager.MainFont, "x" & Apricorns(i), New Vector2(110 + x * 64, 300 + y * 96), Color.Black)
         Next
@@ -236,7 +236,7 @@
                 apricornID = 6
         End Select
 
-        If Core.Player.Inventory.GetItemAmount(CInt(b.AdditionalValue)) > CInt(Me.Apricorns(apricornID)) Then
+        If Core.Player.Inventory.GetItemAmount(b.AdditionalValue) > CInt(Me.Apricorns(apricornID)) Then
             Me.Apricorns(apricornID) = CStr(CInt(Me.Apricorns(apricornID)) + 1)
 
             If HasApricorns() = True Then
@@ -273,7 +273,7 @@
                         apricornID = 6
                 End Select
 
-                b.Text = Me.Apricorns(apricornID) & " / " & Core.Player.Inventory.GetItemAmount(CInt(b.AdditionalValue))
+                b.Text = Me.Apricorns(apricornID) & " / " & Core.Player.Inventory.GetItemAmount(b.AdditionalValue)
             End If
         Next
     End Sub
@@ -287,13 +287,13 @@
     Private Sub Give()
         Me.State = States.Wait
 
-        Core.Player.Inventory.RemoveItem(85, CInt(Me.Apricorns(0)))
-        Core.Player.Inventory.RemoveItem(89, CInt(Me.Apricorns(1)))
-        Core.Player.Inventory.RemoveItem(92, CInt(Me.Apricorns(2)))
-        Core.Player.Inventory.RemoveItem(93, CInt(Me.Apricorns(3)))
-        Core.Player.Inventory.RemoveItem(97, CInt(Me.Apricorns(4)))
-        Core.Player.Inventory.RemoveItem(99, CInt(Me.Apricorns(5)))
-        Core.Player.Inventory.RemoveItem(101, CInt(Me.Apricorns(6)))
+        Core.Player.Inventory.RemoveItem(85.ToString, CInt(Me.Apricorns(0)))
+        Core.Player.Inventory.RemoveItem(89.ToString, CInt(Me.Apricorns(1)))
+        Core.Player.Inventory.RemoveItem(92.ToString, CInt(Me.Apricorns(2)))
+        Core.Player.Inventory.RemoveItem(93.ToString, CInt(Me.Apricorns(3)))
+        Core.Player.Inventory.RemoveItem(97.ToString, CInt(Me.Apricorns(4)))
+        Core.Player.Inventory.RemoveItem(99.ToString, CInt(Me.Apricorns(5)))
+        Core.Player.Inventory.RemoveItem(101.ToString, CInt(Me.Apricorns(6)))
 
         Dim d As Date = Date.Now
 
@@ -320,32 +320,32 @@
         Dim text As String = Core.Player.Name & Localization.GetString("apricorn_screen_obtain")
 
         If CInt(Apricorns(0)) > 0 Then
-            Core.Player.Inventory.AddItem(159, CInt(Apricorns(0)))
-            text &= "~" & Apricorns(0) & "  " & Item.GetItemByID(159).Name
+            Core.Player.Inventory.AddItem(159.ToString, CInt(Apricorns(0)))
+            text &= "~" & Apricorns(0) & "  " & Item.GetItemByID(159.ToString).Name
         End If
         If CInt(Apricorns(1)) > 0 Then
-            Core.Player.Inventory.AddItem(160, CInt(Apricorns(1)))
-            text &= ",~" & Apricorns(1) & "  " & Item.GetItemByID(160).Name
+            Core.Player.Inventory.AddItem(160.ToString, CInt(Apricorns(1)))
+            text &= ",~" & Apricorns(1) & "  " & Item.GetItemByID(160.ToString).Name
         End If
         If CInt(Apricorns(2)) > 0 Then
-            Core.Player.Inventory.AddItem(165, CInt(Apricorns(2)))
-            text &= ",~" & Apricorns(2) & "  " & Item.GetItemByID(165).Name
+            Core.Player.Inventory.AddItem(165.ToString, CInt(Apricorns(2)))
+            text &= ",~" & Apricorns(2) & "  " & Item.GetItemByID(165.ToString).Name
         End If
         If CInt(Apricorns(3)) > 0 Then
-            Core.Player.Inventory.AddItem(164, CInt(Apricorns(3)))
-            text &= ",~" & Apricorns(3) & "  " & Item.GetItemByID(164).Name
+            Core.Player.Inventory.AddItem(164.ToString, CInt(Apricorns(3)))
+            text &= ",~" & Apricorns(3) & "  " & Item.GetItemByID(164.ToString).Name
         End If
         If CInt(Apricorns(4)) > 0 Then
-            Core.Player.Inventory.AddItem(161, CInt(Apricorns(4)))
-            text &= ",~" & Apricorns(4) & "  " & Item.GetItemByID(161).Name
+            Core.Player.Inventory.AddItem(161.ToString, CInt(Apricorns(4)))
+            text &= ",~" & Apricorns(4) & "  " & Item.GetItemByID(161.ToString).Name
         End If
         If CInt(Apricorns(5)) > 0 Then
-            Core.Player.Inventory.AddItem(157, CInt(Apricorns(5)))
-            text &= ",~" & Apricorns(5) & "  " & Item.GetItemByID(157).Name
+            Core.Player.Inventory.AddItem(157.ToString, CInt(Apricorns(5)))
+            text &= ",~" & Apricorns(5) & "  " & Item.GetItemByID(157.ToString).Name
         End If
         If CInt(Apricorns(6)) > 0 Then
-            Core.Player.Inventory.AddItem(166, CInt(Apricorns(6)))
-            text &= ",~" & Apricorns(6) & "  " & Item.GetItemByID(166).Name
+            Core.Player.Inventory.AddItem(166.ToString, CInt(Apricorns(6)))
+            text &= ",~" & Apricorns(6) & "  " & Item.GetItemByID(166.ToString).Name
         End If
 
         text &= "."

@@ -22,6 +22,7 @@
             Next
 
             BattleSystem.GameModeAttackLoader.Load()
+            GameModeItemLoader.Load()
 
             SmashRock.Load()
             Badge.Load()

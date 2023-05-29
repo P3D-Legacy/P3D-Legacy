@@ -20,7 +20,7 @@ Public Class Pokemon
                 Next
 
                 'ShinyCharm
-                If Core.Player.Inventory.GetItemAmount(242) > 0 Then
+                If Core.Player.Inventory.GetItemAmount(242.ToString) > 0 Then
                     shinyRate = CInt(shinyRate * 0.25F)
                 End If
             End If
@@ -568,7 +568,7 @@ Public Class Pokemon
     Public Machines As New List(Of Integer)
     Public PokedexEntry As PokedexEntry
     Public Cry As SoundEffect
-    Public WildItems As New Dictionary(Of Integer, Integer)
+    Public WildItems As New Dictionary(Of Integer, String)
     Public RegionalForms As String = ""
 
     Private _name As String
@@ -896,7 +896,7 @@ Public Class Pokemon
 
     Public Attacks As New List(Of BattleSystem.Attack)
     Public Ability As Ability
-    Public CatchBall As Item = Item.GetItemByID(5)
+    Public CatchBall As Item = Item.GetItemByID(5.ToString)
 
     Private _experience As Integer
     Private _gender As Genders
@@ -1504,7 +1504,7 @@ Public Class Pokemon
                     End If
                 Case "item"
                     Dim chance As Integer = CInt(Value.GetSplit(0))
-                    Dim itemID As Integer = CInt(Value.GetSplit(1))
+                    Dim itemID As String = Value.GetSplit(1)
 
                     If Not WildItems.ContainsKey(chance) Then
                         WildItems.Add(chance, itemID)
@@ -1585,7 +1585,7 @@ Public Class Pokemon
 
         Me.CatchTrainerName = Core.Player.Name
         Me.OT = Core.Player.OT
-        Me.CatchBall = Item.GetItemByID(5)
+        Me.CatchBall = Item.GetItemByID(5.ToString)
 
         For i = 0 To Tags.Count - 1
             Dim tagName As String = Tags.Keys(i)
@@ -1611,7 +1611,7 @@ Public Class Pokemon
                     Me.EggSteps = CInt(tagValue)
                 Case "item"
                     If StringHelper.IsNumeric(tagValue) Then
-                        Me.Item = Item.GetItemByID(CInt(tagValue))
+                        Me.Item = Item.GetItemByID(tagValue)
                     End If
                 Case "itemdata"
                     If Not Me.Item Is Nothing Then
@@ -1656,7 +1656,7 @@ Public Class Pokemon
                 Case "catchtrainer"
                     Me.CatchTrainerName = tagValue
                 Case "catchball"
-                    Me.CatchBall = Item.GetItemByID(CInt(tagValue))
+                    Me.CatchBall = Item.GetItemByID(tagValue)
                 Case "catchmethod"
                     Me.CatchMethod = tagValue
                 Case "friendship"
@@ -1998,18 +1998,18 @@ Public Class Pokemon
 
             If WildItems.Count > 0 Then
                 Dim has100 As Boolean = False
-                Dim ChosenItemID As Integer = 0
+                Dim ChosenItemID As String = 0.ToString
                 For i = 0 To WildItems.Count - 1
                     If WildItems.Keys(i) = 100 Then
                         has100 = True
-                        ChosenItemID = WildItems.Values(i)
+                        ChosenItemID = WildItems.Values(cint(i))
                         Exit For
                     End If
                 Next
                 If has100 = True Then
                     Me.Item = Item.GetItemByID(ChosenItemID)
                 Else
-                    Dim usedWildItems As Dictionary(Of Integer, Integer) = Me.WildItems
+                    Dim usedWildItems As Dictionary(Of Integer, String) = Me.WildItems
 
                     'Compound eyes ability:
                     If Core.Player.Pokemons.Count > 0 Then

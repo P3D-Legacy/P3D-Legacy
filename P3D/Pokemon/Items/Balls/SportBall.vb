@@ -5,7 +5,7 @@ Namespace Items.Balls
 
         Inherits BallItem
 
-        Public Overrides ReadOnly Property CanBeHold As Boolean = False
+        Public Overrides ReadOnly Property CanBeHeld As Boolean = False
         Public Overrides ReadOnly Property Description As String = "A special Pokéball for the Bug-Catching Contest."
         Public Overrides ReadOnly Property PokeDollarPrice As Integer = 200
         Public Overrides ReadOnly Property CatchMultiplier As Single = 1.5F

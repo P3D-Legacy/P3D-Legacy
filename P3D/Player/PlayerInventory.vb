@@ -10,14 +10,14 @@ Public Class PlayerInventory
     ''' </summary>
     Class ItemContainer
 
-        Private _itemID As Integer
+        Private _itemID As String
         Private _amount As Integer
 
-        Public Property ItemID() As Integer
+        Public Property ItemID() As String
             Get
                 Return Me._itemID
             End Get
-            Set(value As Integer)
+            Set(value As String)
                 Me._itemID = value
             End Set
         End Property
@@ -31,7 +31,7 @@ Public Class PlayerInventory
             End Set
         End Property
 
-        Public Sub New(ByVal ItemID As Integer, ByVal Amount As Integer)
+        Public Sub New(ByVal ItemID As String, ByVal Amount As Integer)
             Me.ItemID = ItemID
             Me.Amount = Amount
         End Sub
@@ -69,9 +69,7 @@ Public Class PlayerInventory
     ''' </summary>
     ''' <param name="ID">The ID of the item.</param>
     ''' <param name="Amount">Amount of items to add.</param>
-    Public Sub AddItem(ByVal ID As Integer, ByVal Amount As Integer)
-        Dim newItem As Item = P3D.Item.GetItemByID(ID)
-
+    Public Sub AddItem(ByVal ID As String, ByVal Amount As Integer)
         For Each c As ItemContainer In Me
             If c.ItemID = ID Then
                 c.Amount += Amount
@@ -87,7 +85,7 @@ Public Class PlayerInventory
     ''' </summary>
     ''' <param name="ID">The ID of the item to remove.</param>
     ''' <param name="Amount">The amount of items to remove.</param>
-    Public Sub RemoveItem(ByVal ID As Integer, ByVal Amount As Integer)
+    Public Sub RemoveItem(ByVal ID As String, ByVal Amount As Integer)
         If Amount > 0 Then
             For Each c As ItemContainer In Me
                 If c.ItemID = ID Then
@@ -113,7 +111,7 @@ Public Class PlayerInventory
     ''' Removes all items of an ID from the inventory.
     ''' </summary>
     ''' <param name="ID">The ID of the item.</param>
-    Public Sub RemoveItem(ByVal ID As Integer)
+    Public Sub RemoveItem(ByVal ID As String)
         Dim Amount As Integer = Me.GetItemAmount(ID)
         If Amount > 0 Then
             Me.RemoveItem(ID, Amount)
@@ -124,7 +122,7 @@ Public Class PlayerInventory
     ''' Returns the count of the item in the inventory.
     ''' </summary>
     ''' <param name="ID">The ID of the item to be counted.</param>
-    Public Function GetItemAmount(ByVal ID As Integer) As Integer
+    Public Function GetItemAmount(ByVal ID As String) As Integer
         For Each c As ItemContainer In Me
             If c.ItemID = ID Then
                 Return c.Amount
@@ -142,7 +140,7 @@ Public Class PlayerInventory
             If Core.Player.SandBoxMode = True Or GameController.IS_DEBUG_ACTIVE = True Then
                 Return True
             Else
-                If Me.GetItemAmount(78) > 0 Then
+                If Me.GetItemAmount(78.ToString) > 0 Then
                     Return True
                 End If
             End If
@@ -156,7 +154,7 @@ Public Class PlayerInventory
     ''' </summary>
     Public ReadOnly Property HasMegaBracelet() As Boolean
         Get
-            If Me.GetItemAmount(576) > 0 Then
+            If Me.GetItemAmount(576.ToString) > 0 Then
                 Return True
             End If
 
@@ -170,7 +168,7 @@ Public Class PlayerInventory
     ''' <param name="Item">The Item to store in the inventory.</param>
     ''' <param name="Amount">The amount.</param>
     Public Function GetMessageReceive(ByVal Item As Item, ByVal Amount As Integer) As String
-        Dim Message As String = ""
+        Dim Message As String
         If Amount = 1 Then
             Message = Core.Player.Name & " stored it in the~" & Core.Player.Inventory.GetItemPocketChar(Item) & Item.ItemType.ToString() & " pocket."
         Else

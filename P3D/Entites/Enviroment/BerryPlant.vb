@@ -16,7 +16,7 @@
     Dim LastUpdateDate As Date
 
     Public Overloads Sub Initialize(ByVal BerryIndex As Integer, ByVal BerriesYield As Integer, ByVal Watered As String, ByVal Time As String, ByVal FullGrown As Boolean)
-        Me.Berry = CType(Item.GetItemByID(BerryIndex + 2000), Items.Berry)
+        Me.Berry = CType(Item.GetItemByID(CStr(BerryIndex + 2000)), Items.Berry)
         Me.Berries = BerriesYield
         Me.PlantDate = Time
         Me.BerryIndex = BerryIndex
@@ -130,7 +130,7 @@
         Dim text As String = ""
 
         Dim hasBottle As Boolean = False
-        If Core.Player.Inventory.GetItemAmount(175) > 0 Then
+        If Core.Player.Inventory.GetItemAmount(175.ToString) > 0 Then
             hasBottle = True
         End If
 
@@ -180,7 +180,7 @@
         If Result = 0 Then
             Select Case Me.ResultIndex
                 Case 0
-                    Core.Player.Inventory.AddItem(Me.Berry.ID, Me.Berries)
+                    Core.Player.Inventory.AddItem(Me.Berry.ID.ToString, Me.Berries)
                     Dim Text As String = ""
                     If Me.Berries = 1 Then
                         Text = Core.Player.Name & " picked the~" & Berry.Name & " Berry.*" & Core.Player.Inventory.GetMessageReceive(Berry, Me.Berries)
@@ -235,7 +235,7 @@
         Dim cD As Date = Date.Now
         Dim DateData As String = cD.Year & "," & cD.Month & "," & cD.Day & "," & cD.TimeOfDay.Hours & "," & cD.TimeOfDay.Minutes & "," & cD.TimeOfDay.Seconds
 
-        Dim Berry As Items.Berry = CType(Item.GetItemByID(BerryIndex + 2000), Items.Berry)
+        Dim Berry As Items.Berry = CType(Item.GetItemByID(CStr(BerryIndex + 2000)), Items.Berry)
 
         Dim BerryAmount As Integer = GetBerryAmount(Berry, 0)
 
@@ -257,7 +257,7 @@
         CType(newEnt, BerryPlant).Initialize(BerryIndex, 0, "", DateData, False)
         Screen.Level.Entities.Add(newEnt)
 
-        Core.Player.Inventory.RemoveItem(BerryIndex + 2000, 1)
+        Core.Player.Inventory.RemoveItem(CStr(BerryIndex + 2000), 1)
     End Sub
 
     Private Shared Function GetBerryAmount(ByVal Berry As Items.Berry, ByVal Watered As Integer) As Integer
@@ -312,7 +312,7 @@
 
             Dim DateData As String = PlantDate
 
-            Dim Berry As Items.Berry = CType(Item.GetItemByID(BerryIndex + 2000), Items.Berry)
+            Dim Berry As Items.Berry = CType(Item.GetItemByID(CStr(BerryIndex + 2000)), Items.Berry)
 
             Dim WateredData As String = ""
             Dim wateredCount As Integer = 0

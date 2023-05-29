@@ -53,12 +53,12 @@
                 SetStats(p, Stats(0), Stats(1), pokemon_class)
 
                 If ItemID <> "" Then
-                    p.Item = Item.GetItemByID(CInt(ItemID))
+                    p.Item = Item.GetItemByID(ItemID)
                 End If
                 If p.Item Is Nothing Then
                     Dim items() As Integer = {146, 2009, 119, 140, 73, 74}
 
-                    p.Item = Item.GetItemByID(items(Core.Random.Next(0, items.Length)))
+                    p.Item = Item.GetItemByID(items(Core.Random.Next(0, items.Length)).ToString)
                 End If
 
                 p.FullRestore()
@@ -74,7 +74,7 @@
             If Not p.Item Is Nothing Then
                 Dim items() As Integer = {146, 2009, 119, 140, 73, 74}
 
-                p.Item = Item.GetItemByID(items(Core.Random.Next(0, items.Length)))
+                p.Item = Item.GetItemByID(items(Core.Random.Next(0, items.Length)).ToString)
             End If
         End If
     End Sub

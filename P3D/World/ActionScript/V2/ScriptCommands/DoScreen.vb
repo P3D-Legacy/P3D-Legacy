@@ -277,7 +277,7 @@
 
                     CanContinue = False
                 Case "voltorbflip"
-                    If Core.Player.Inventory.GetItemAmount(54) > 0 Then
+                    If Core.Player.Inventory.GetItemAmount(54.ToString) > 0 Then
                         If Core.Player.Coins < 50000 Then
                             If VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1 Then
                                 Core.SetScreen(New VoltorbFlip.VoltorbFlipScreen(CurrentScreen))

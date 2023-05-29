@@ -631,7 +631,7 @@
                     TempBattleScreen = BattleScreen
 
                     Player.Temp.PokemonScreenIndex = BattleScreen.OwnPokemonIndex
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ShowPokemonMenu, "Choose Pokémon", False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ShowPokemonMenu, "Choose Pokémon", False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = False}
                     AddHandler selScreen.SelectedObject, AddressOf ShowPokemonMenuHandler
 
                     Core.SetScreen(selScreen)
@@ -651,8 +651,8 @@
             _mainMenuItemList.Clear()
             Select Case BattleScreen.BattleMode
                 Case BattleSystem.BattleScreen.BattleModes.Safari
-                    Dim safariBallText As String = "Safari Ball x" & Core.Player.Inventory.GetItemAmount(181).ToString()
-                    If Core.Player.Inventory.GetItemAmount(181) = 0 Then
+                    Dim safariBallText As String = "Safari Ball x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
+                    If Core.Player.Inventory.GetItemAmount(181.ToString) = 0 Then
                         safariBallText = "No Safari Balls."
                     End If
                     _mainMenuItemList.Add(New MainMenuItem(4, safariBallText, 0, AddressOf MainMenuUseSafariBall))
@@ -664,8 +664,8 @@
                 Case BattleSystem.BattleScreen.BattleModes.BugContest
                     _mainMenuItemList.Add(New MainMenuItem(0, "Battle", 0, AddressOf MainMenuOpenBattleMenu))
 
-                    Dim sportBallText As String = "Sport Ball x" & Core.Player.Inventory.GetItemAmount(177).ToString()
-                    If Core.Player.Inventory.GetItemAmount(177) = 0 Then
+                    Dim sportBallText As String = "Sport Ball x" & Core.Player.Inventory.GetItemAmount(177.ToString).ToString()
+                    If Core.Player.Inventory.GetItemAmount(177.ToString) = 0 Then
                         sportBallText = "No Sport Balls."
                     End If
                     _mainMenuItemList.Add(New MainMenuItem(4, sportBallText, 1, AddressOf MainMenuUseSportBall))
@@ -715,7 +715,7 @@
         Private Sub MainMenuAddMegaEvolution(ByVal BattleScreen As BattleScreen, ByVal Index As Integer)
 
             'Checks if the player has the Mega Bracelet.
-            If Not (Core.Player.Inventory.GetItemAmount(576) > 0) Then
+            If Not (Core.Player.Inventory.GetItemAmount(576.ToString) > 0) Then
                 Exit Sub
             End If
 
@@ -738,12 +738,19 @@
             'Next
             Dim PokeIndex As Integer = BattleScreen.OwnPokemonIndex
             If BattleScreen.FieldEffects.OwnMegaEvolved = False Then
-                If Not Core.Player.Pokemons(PokeIndex).Item Is Nothing Then
-                    If Core.Player.Pokemons(PokeIndex).Item.IsMegaStone = True Then
-                        Dim megaStone = CType(Core.Player.Pokemons(PokeIndex).Item, Items.MegaStone)
-
-                        If megaStone.MegaPokemonNumber = Core.Player.Pokemons(PokeIndex).Number Then
-                            _mainMenuItemList.Add(New MainMenuItem(5, "Mega Evolve!", Index, AddressOf MainMenuMegaEvolve))
+                If Core.Player.Pokemons(PokeIndex).Item IsNot Nothing Then
+                    If Core.Player.Pokemons(PokeIndex).Item.IsGameModeItem = True Then
+                        If Core.Player.Pokemons(PokeIndex).Item.gmIsMegaStone = True Then
+                            If Core.Player.Pokemons(PokeIndex).Number = CType(Core.Player.Pokemons(PokeIndex).Item, GameModeItem).gmMegaPokemonNumber Then
+                                _mainMenuItemList.Add(New MainMenuItem(5, "Mega Evolve!", Index, AddressOf MainMenuMegaEvolve))
+                            End If
+                        End If
+                    Else
+                        If Core.Player.Pokemons(PokeIndex).Item.IsMegaStone = True Then
+                            Dim megaStone = CType(Core.Player.Pokemons(PokeIndex).Item, Items.MegaStone)
+                            If megaStone.MegaPokemonNumber = Core.Player.Pokemons(PokeIndex).Number Then
+                                _mainMenuItemList.Add(New MainMenuItem(5, "Mega Evolve!", Index, AddressOf MainMenuMegaEvolve))
+                            End If
                         End If
                     End If
                 End If
@@ -767,7 +774,7 @@
             TempBattleScreen = BattleScreen
 
             Player.Temp.PokemonScreenIndex = BattleScreen.OwnPokemonIndex
-            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ShowPokemonMenu, "Choose Pokémon", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+            Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ShowPokemonMenu, "Choose Pokémon", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
             AddHandler selScreen.SelectedObject, AddressOf ShowPokemonMenuHandler
 
             Core.SetScreen(selScreen)
@@ -805,15 +812,15 @@
         End Sub
 
         Private Sub MainMenuUseSafariBall(ByVal BattleScreen As BattleScreen)
-            If Core.Player.Inventory.GetItemAmount(181) > 0 Then
-                Core.Player.Inventory.RemoveItem(181, 1)
+            If Core.Player.Inventory.GetItemAmount(181.ToString) > 0 Then
+                Core.Player.Inventory.RemoveItem(181.ToString, 1)
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                Core.SetScreen(New BattleCatchScreen(BattleScreen, Item.GetItemByID(181)))
+                Core.SetScreen(New BattleCatchScreen(BattleScreen, Item.GetItemByID(181.ToString)))
 
-                Dim safariBallText As String = "Safari Ball x" & Core.Player.Inventory.GetItemAmount(181).ToString()
-                If Core.Player.Inventory.GetItemAmount(181) = 0 Then
+                Dim safariBallText As String = "Safari Ball x" & Core.Player.Inventory.GetItemAmount(181.ToString).ToString()
+                If Core.Player.Inventory.GetItemAmount(181.ToString) = 0 Then
                     safariBallText = "No Safari Balls."
                 End If
                 _mainMenuItemList(0).Text = safariBallText
@@ -821,15 +828,15 @@
         End Sub
 
         Private Sub MainMenuUseSportBall(ByVal BattleScreen As BattleScreen)
-            If Core.Player.Inventory.GetItemAmount(177) > 0 Then
-                Core.Player.Inventory.RemoveItem(177, 1)
+            If Core.Player.Inventory.GetItemAmount(177.ToString) > 0 Then
+                Core.Player.Inventory.RemoveItem(177.ToString, 1)
                 BattleScreen.BattleQuery.Clear()
                 BattleScreen.BattleQuery.Add(BattleScreen.FocusBattle())
                 BattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                Core.SetScreen(New BattleCatchScreen(BattleScreen, Item.GetItemByID(177)))
+                Core.SetScreen(New BattleCatchScreen(BattleScreen, Item.GetItemByID(177.ToString)))
 
-                Dim sportBallText As String = "Sport Ball x" & Core.Player.Inventory.GetItemAmount(177).ToString()
-                If Core.Player.Inventory.GetItemAmount(177) = 0 Then
+                Dim sportBallText As String = "Sport Ball x" & Core.Player.Inventory.GetItemAmount(177.ToString).ToString()
+                If Core.Player.Inventory.GetItemAmount(177.ToString) = 0 Then
                     sportBallText = "No Sport Balls."
                 End If
                 _mainMenuItemList(0).Text = sportBallText
@@ -1056,17 +1063,17 @@
         End Sub
 
         Private Shared Sub SelectedItem(ByVal itemID As Integer)
-            Dim Item As Item = Item.GetItemByID(itemID)
+            Dim Item As Item = Item.GetItemByID(itemID.ToString)
 
             If Item.CanBeUsedInBattle = True Then
                 If Item.IsBall = True Then
-                    Core.Player.Inventory.RemoveItem(itemID, 1)
+                    Core.Player.Inventory.RemoveItem(itemID.ToString, 1)
                     If TempBattleScreen.IsTrainerBattle = False Then
                         If BattleScreen.CanCatch = True Or CBool(GameModeManager.GetGameRuleValue("OnlyCaptureFirst", "0")) = True And Core.Player.PokeFiles.Contains(BattleScreen.TempPokeFile) = True Then
                             TempBattleScreen.BattleQuery.Clear()
                             TempBattleScreen.BattleQuery.Add(TempBattleScreen.FocusBattle())
                             TempBattleScreen.BattleQuery.Insert(0, New ToggleMenuQueryObject(True))
-                            Core.SetScreen(New BattleCatchScreen(TempBattleScreen, Item.GetItemByID(itemID)))
+                            Core.SetScreen(New BattleCatchScreen(TempBattleScreen, Item.GetItemByID(itemID.ToString)))
                             PlayerStatistics.Track("[4]Poké Balls used", 1)
                         Else
                             TempBattleScreen.BattleQuery.Clear()
@@ -1105,7 +1112,7 @@
         Private Shared Sub UseItem(ByVal PokeIndex As Integer)
             Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
-            Dim Item As Item = Item.GetItemByID(TempItemID)
+            Dim Item As Item = Item.GetItemByID(TempItemID.ToString)
 
             If Item.UseOnPokemon(PokeIndex) = True Then
                 TempBattleScreen.BattleQuery.Clear()

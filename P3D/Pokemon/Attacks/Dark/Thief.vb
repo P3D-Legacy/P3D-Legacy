@@ -84,9 +84,12 @@
             End If
 
             If p.Item Is Nothing Then
-                Dim ItemID As Integer = op.Item.ID
+                Dim ItemID As String = op.Item.ID.ToString
+                If op.Item.IsGameModeItem = True Then
+                    ItemID = op.Item.gmID
+                End If
 
-                op.OriginalItem = Item.GetItemByID(op.Item.ID)
+                op.OriginalItem = Item.GetItemByID(ItemID)
                 op.OriginalItem.AdditionalData = op.Item.AdditionalData
 
                 If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, "Thief stole the item " & op.Item.Name & " from " & op.GetDisplayName() & "!", "move:thief") Then

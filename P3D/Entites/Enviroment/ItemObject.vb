@@ -17,7 +17,7 @@
     Public Overloads Sub Initialize(Optional ByVal AnimationData As List(Of List(Of Integer)) = Nothing)
         MyBase.Initialize()
 
-        Me.Item = Item.GetItemByID(CInt(Me.AdditionalValue.GetSplit(1)))
+        Me.Item = Item.GetItemByID(Me.AdditionalValue.GetSplit(1))
         Me.ItemID = CInt(Me.AdditionalValue.GetSplit(0))
 
         Me.Textures(0) = Me.Item.Texture
@@ -147,7 +147,13 @@
             End If
             Screen.TextBox.TextColor = TextBox.PlayerColor
             Screen.TextBox.Show(Core.Player.Name & " found~" & Me.Item.Name & "!*" & Core.Player.Inventory.GetMessageReceive(Item, 1), {Me})
-            Core.Player.Inventory.AddItem(Me.Item.ID, 1)
+            Dim ItemID As String
+            If Me.Item.IsGameModeItem Then
+                ItemID = Me.Item.gmID
+            Else
+                ItemID = Me.Item.ID.ToString
+            End If
+            Core.Player.Inventory.AddItem(ItemID, 1)
             PlayerStatistics.Track("Items found", 1)
 
             Core.Player.AddPoints(1, "Found an item.")

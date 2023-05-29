@@ -536,7 +536,13 @@ Public Class NewInventoryScreen
             Dim CanvasTexture As Texture2D
             CanvasTexture = TextureManager.GetTexture(TextureManager.GetTexture("GUI\Menus\Menu"), New Rectangle(0, 0, 48, 48))
 
-            Dim trashText As String = _tossValue & "/" & Core.Player.Inventory.GetItemAmount(cItem.ID)
+            Dim ItemID As String
+            If cItem.IsGameModeItem = True Then
+                ItemID = cItem.gmID
+            Else
+                ItemID = cItem.ID.ToString
+            End If
+            Dim trashText As String = _tossValue & "/" & Core.Player.Inventory.GetItemAmount(ItemID)
             Dim offsetX As Integer = 100
             Dim offsetY As Integer = Core.windowSize.Height - 390
 
@@ -694,12 +700,18 @@ Public Class NewInventoryScreen
                 _tossValue -= 1
             End If
 
-            _tossValue = CInt(MathHelper.Clamp(_tossValue, 1, Core.Player.Inventory.GetItemAmount(cItem.ID)))
+            Dim ItemID As String
+            If cItem.IsGameModeItem = True Then
+                ItemID = cItem.gmID
+            Else
+                ItemID = cItem.ID.ToString
+            End If
+            _tossValue = CInt(MathHelper.Clamp(_tossValue, 1, Core.Player.Inventory.GetItemAmount(ItemID)))
 
             If Not TextBox.Showing Then
                 If Controls.Accept Then
                     SoundManager.PlaySound("select")
-                    Core.Player.Inventory.RemoveItem(cItem.ID, _tossValue)
+                    Core.Player.Inventory.RemoveItem(ItemID, _tossValue)
                     LoadItems()
                     _tossingItems = False
                 ElseIf Controls.Dismiss Then
@@ -949,15 +961,28 @@ Public Class NewInventoryScreen
         Dim Pokemon As Pokemon = Core.Player.Pokemons(PokeIndex)
 
         If Pokemon.IsEgg() = False Then
-            Core.Player.Inventory.RemoveItem(cItem.ID, 1)
+            Dim ItemID As String
+            If cItem.IsGameModeItem = True Then
+                ItemID = cItem.gmID
+            Else
+                ItemID = cItem.ID.ToString
+            End If
+
+            Core.Player.Inventory.RemoveItem(ItemID, 1)
 
             Dim reItem As Item = Nothing
             If Not Pokemon.Item Is Nothing Then
+                Dim ReItemID As String
+                If cItem.IsGameModeItem = True Then
+                    ReItemID = cItem.gmID
+                Else
+                    ReItemID = cItem.ID.ToString
+                End If
                 reItem = Pokemon.Item
-                Core.Player.Inventory.AddItem(reItem.ID, 1)
+                Core.Player.Inventory.AddItem(ReItemID, 1)
             End If
 
-            Pokemon.Item = Item.GetItemByID(cItem.ID)
+            Pokemon.Item = Item.GetItemByID(ItemID)
 
             If reItem Is Nothing Then
                 'JSON Stuff
@@ -1101,7 +1126,7 @@ Public Class NewInventoryScreen
                 _infoItemOptions.Add("Use")
                 _infoItemOptionsNormal.Add(INFO_ITEM_OPTION_USE)
             End If
-            If cItem.CanBeHold Then
+            If cItem.CanBeHeld Then
                 'JSON Stuff
                 ' _infoItemOptions.Add(_translation.INFO_ITEM_OPTION_GIVE)
                 _infoItemOptions.Add("Give")

@@ -186,7 +186,7 @@ Namespace Items
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Freeze Then
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
-                Core.Player.Inventory.RemoveItem(Me.ID, 1)
+                Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
 
                 Screen.TextBox.reDelay = 0.0F
 
@@ -225,7 +225,7 @@ Namespace Items
             ElseIf Pokemon.Status = P3D.Pokemon.StatusProblems.Paralyzed Then
                 Pokemon.Status = P3D.Pokemon.StatusProblems.None
 
-                Core.Player.Inventory.RemoveItem(Me.ID, 1)
+                Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
 
                 Screen.TextBox.reDelay = 0.0F
 

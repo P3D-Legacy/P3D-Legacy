@@ -763,9 +763,14 @@ Public Class PartyScreen
 
                     p.Item = Nothing
                 Else
-                    ShowMessage("Taken " & p.Item.Name & "  from " & p.GetDisplayName() & ".")
-
-                    Core.Player.Inventory.AddItem(p.Item.ID, 1)
+                    ShowMessage("Taken " & p.Item.Name & " from " & p.GetDisplayName() & ".")
+                    Dim ItemID As String
+                    If p.Item.IsGameModeItem Then
+                        ItemID = p.Item.gmID
+                    Else
+                        ItemID = p.Item.ID.ToString
+                    End If
+                    Core.Player.Inventory.AddItem(ItemID, 1)
                     p.Item = Nothing
                 End If
             Case "Back"
@@ -777,13 +782,13 @@ Public Class PartyScreen
     ''' A handler method to convert the incoming object array.
     ''' </summary>
     Private Sub GiveItemHandler(ByVal params As Object())
-        GiveItem(CInt(params(0)))
+        GiveItem(params(0).ToString)
     End Sub
 
-    Private Sub GiveItem(ByVal itemID As Integer)
+    Private Sub GiveItem(ByVal itemID As String)
         Dim i As Item = Item.GetItemByID(itemID)
 
-        If i.CanBeHold Then
+        If i.CanBeHeld Then
             Dim p As Pokemon = PokemonList(_index)
 
             Core.Player.Inventory.RemoveItem(itemID, 1)
@@ -797,7 +802,13 @@ Public Class PartyScreen
 
                     message = "Gave " & i.Name & " to " & p.GetDisplayName() & " and took the Mail to the PC."
                 Else
-                    Core.Player.Inventory.AddItem(reItem.ID, 1)
+                    Dim ReItemID As String
+                    If reItem.IsGameModeItem Then
+                        ReItemID = reItem.gmID
+                    Else
+                        ReItemID = reItem.ID.ToString
+                    End If
+                    Core.Player.Inventory.AddItem(ReItemID, 1)
 
                     message = "Switched " & p.GetDisplayName() & "'s " & i.Name & " with a " & reItem.Name & "."
                 End If

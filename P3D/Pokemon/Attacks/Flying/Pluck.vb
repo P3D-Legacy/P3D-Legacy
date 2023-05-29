@@ -64,8 +64,15 @@ Namespace BattleSystem.Moves.Flying
             End If
 
             If Not op.Item Is Nothing Then
-                If op.Item.isBerry = True Then
-                    BattleScreen.Battle.UseBerry(own, own, Item.GetItemByID(op.Item.ID), BattleScreen, "", "move:pluck")
+                If op.Item.IsBerry = True Then
+                    Dim ItemID As String
+                    If op.Item.IsGameModeItem Then
+                        ItemID = op.Item.gmID
+                    Else
+                        ItemID = op.Item.ID.ToString
+                    End If
+
+                    BattleScreen.Battle.UseBerry(own, own, Item.GetItemByID(ItemID), BattleScreen, "", "move:pluck")
                 End If
             End If
         End Sub

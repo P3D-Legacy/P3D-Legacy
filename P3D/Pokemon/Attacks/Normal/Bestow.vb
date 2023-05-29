@@ -95,9 +95,12 @@
             End If
 
             If op.Item Is Nothing And a = True And b = False Then
-                Dim ItemID As Integer = p.Item.ID
+                Dim ItemID As String = p.Item.ID.ToString
+                If p.Item.IsGameModeItem = True Then
+                    ItemID = p.Item.gmID
+                End If
 
-                p.OriginalItem = Item.GetItemByID(p.Item.ID)
+                p.OriginalItem = Item.GetItemByID(ItemID)
                 p.OriginalItem.AdditionalData = p.Item.AdditionalData
 
                 If BattleScreen.Battle.RemoveHeldItem(own, own, BattleScreen, op.GetDisplayName() & " received the item " & p.Item.Name & " from " & p.GetDisplayName() & "!", "move:bestow") Then

@@ -569,7 +569,7 @@
                     T = False
                 End If
             Case "hasitem"
-                If Core.Player.Inventory.GetItemAmount(CInt(condition)) > 0 Then
+                If Core.Player.Inventory.GetItemAmount(condition) > 0 Then
                     T = True
                 Else
                     T = False
@@ -644,9 +644,9 @@
                     catchMethod = Me.Value.GetSplit(2)
                 End If
 
-                Dim catchBall As Item = Item.GetItemByID(1)
+                Dim catchBall As Item = Item.GetItemByID(1.ToString)
                 If commas > 2 Then
-                    catchBall = Item.GetItemByID(CInt(Me.Value.GetSplit(3)))
+                    catchBall = Item.GetItemByID(Me.Value.GetSplit(3))
                 End If
 
                 Dim catchLocation As String = Screen.Level.MapName
@@ -676,7 +676,7 @@
 
                 If isEgg = True Then
                     Pokemon.EggSteps = 1
-                    Pokemon.SetCatchInfos(Item.GetItemByID(5), "obtained at")
+                    Pokemon.SetCatchInfos(Item.GetItemByID(5.ToString), "obtained at")
                 Else
                     Pokemon.EggSteps = 0
                 End If
@@ -1083,9 +1083,9 @@
                     catchMethod = argument.GetSplit(2)
                 End If
 
-                Dim catchBall As Item = Item.GetItemByID(1)
+                Dim catchBall As Item = Item.GetItemByID(1.ToString)
                 If commas > 2 Then
-                    catchBall = Item.GetItemByID(CInt(argument.GetSplit(3)))
+                    catchBall = Item.GetItemByID(argument.GetSplit(3))
                 End If
 
                 Dim catchLocation As String = Screen.Level.MapName
@@ -1115,7 +1115,7 @@
 
                 If isEgg = True Then
                     Pokemon.EggSteps = 1
-                    Pokemon.SetCatchInfos(Item.GetItemByID(5), "obtained at")
+                    Pokemon.SetCatchInfos(Item.GetItemByID(5.ToString), "obtained at")
                 Else
                     Pokemon.EggSteps = 0
                 End If
@@ -1241,7 +1241,7 @@
                 Dim splits() As String = argument.Split(CChar("|"))
                 Script.SaveNPCTrade = splits
 
-                Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Script.DoNPCTrade, "Choose trade Pokémon", True))
+                Core.SetScreen(New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf Script.DoNPCTrade, "Choose trade Pokémon", True))
                 CType(Core.CurrentScreen, PartyScreen).ExitedSub = AddressOf Script.ExitedNPCTrade
             Case "hide"
                 Screen.Level.OverworldPokemon.Visible = False
@@ -1649,7 +1649,7 @@
     End Sub
 
     Private Sub GiveItem()
-        Dim ItemID As Integer = CInt(Me.Value.GetSplit(0))
+        Dim ItemID As String = Me.Value.GetSplit(0)
         Dim Item As Item = Item.GetItemByID(ItemID)
 
         Dim Amount As Integer = CInt(Me.Value.GetSplit(1))
@@ -1671,7 +1671,7 @@
     End Sub
 
     Private Sub RemoveItem()
-        Dim ItemID As Integer = CInt(Me.Value.GetSplit(0))
+        Dim ItemID As String = Me.Value.GetSplit(0)
         Dim Item As Item = Item.GetItemByID(ItemID)
 
         Dim Amount As Integer = CInt(Me.Value.GetSplit(1))

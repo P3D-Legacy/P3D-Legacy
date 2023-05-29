@@ -65,7 +65,7 @@
                     Dim ItemID As Integer = op.Item.ID
 
                     BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " ate the " & op.Item.Name & " berry!", "move:bugbite")
-                    BattleScreen.Battle.UseBerry(own, own, Item.GetItemByID(ItemID), BattleScreen, "", "move:bugbite")
+                    BattleScreen.Battle.UseBerry(own, own, Item.GetItemByID(ItemID.ToString), BattleScreen, "", "move:bugbite")
                 End If
             End If
         End Sub

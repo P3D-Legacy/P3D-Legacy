@@ -49,7 +49,7 @@
             End If
 
             If Screen.Level.IsBugCatchingContest = True Then
-                _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177),
+                _menuOptions.AddRange({Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177.ToString),
                                         "Bag",
                                         "|||" & Core.Player.Name, 'Trainer card
                                         "End Contest"})
@@ -307,7 +307,7 @@
                 Core.SetScreen(New NewOptionScreen(Me))
             Case "Exit"
                 Core.SetScreen(PreScreen)
-            Case Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177)
+            Case Screen.Level.BugCatchingContestData.GetSplit(2) & " x" & Core.Player.Inventory.GetItemAmount(177.ToString)
                 Me.ShowBalls()
             Case "End Contest"
                 Me.EndContest()

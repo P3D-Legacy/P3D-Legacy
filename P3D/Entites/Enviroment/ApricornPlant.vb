@@ -145,8 +145,13 @@
     Public Overrides Sub ResultFunction(Result As Integer)
         If Result = 0 Then
             Dim Item As Item = GetItem()
-
-            Core.Player.Inventory.AddItem(Item.ID, 1)
+            Dim ItemID As String
+            If Item.IsGameModeItem Then
+                ItemID = Item.gmID
+            Else
+                ItemID = Item.ID.ToString
+            End If
+            Core.Player.Inventory.AddItem(ItemID, 1)
             PlayerStatistics.Track("[85]Apricorns picked", 1)
             SoundManager.PlaySound("Receive_Item", True)
             Screen.TextBox.TextColor = TextBox.PlayerColor
@@ -193,7 +198,7 @@
                 ItemID = 101
         End Select
 
-        Return Item.GetItemByID(ItemID)
+        Return Item.GetItemByID(ItemID.ToString)
     End Function
 
 End Class

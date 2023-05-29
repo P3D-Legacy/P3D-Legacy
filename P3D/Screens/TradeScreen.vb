@@ -88,7 +88,7 @@ Public Class TradeScreen
         ''' <param name="ItemID">The ID of the Item.</param>
         ''' <param name="Price">The Price of the Item. Leave -1 for automatic Price.</param>
         ''' <param name="Amount">The Amount of the Item available in the store. Leave -1 for infinite.</param>
-        Public Sub New(ByVal ItemID As Integer, ByVal Amount As Integer, ByVal Price As Integer, ByVal Currency As Currencies)
+        Public Sub New(ByVal ItemID As String, ByVal Amount As Integer, ByVal Price As Integer, ByVal Currency As Currencies)
             Me.ItemID = ItemID
             Me.Amount = Amount
 
@@ -105,7 +105,7 @@ Public Class TradeScreen
             End If
         End Sub
 
-        Public ItemID As Integer
+        Public ItemID As String
         Public Price As Integer
         Public Amount As Integer
 
@@ -148,7 +148,7 @@ Public Class TradeScreen
 
             Dim itemData = lItem.Split(CChar("|"))
 
-            Me.TradeItems.Add(New TradeItem(ScriptConversion.ToInteger(itemData(0)), ScriptConversion.ToInteger(itemData(1)), ScriptConversion.ToInteger(itemData(2)), Me.Currency))
+            Me.TradeItems.Add(New TradeItem(itemData(0), ScriptConversion.ToInteger(itemData(1)), ScriptConversion.ToInteger(itemData(2)), Me.Currency))
         Next
 
         Me.texture = TextureManager.GetTexture("GUI\Menus\General")
@@ -637,8 +637,8 @@ Public Class TradeScreen
             Core.Player.Inventory.AddItem(tradeItem.ItemID, Me.BuyItemsAmount)
 
             ' Add a Premier Ball (ID=3) if the player bought 10 or more Poké Balls (ID=5):
-            If tradeItem.ItemID = 5 And Me.BuyItemsAmount >= 10 Then
-                Core.Player.Inventory.AddItem(3, 1)
+            If tradeItem.ItemID = 5.ToString And Me.BuyItemsAmount >= 10 Then
+                Core.Player.Inventory.AddItem(3.ToString, 1)
             End If
 
             ' Remove trade item from seller's side if the rest amount is smaller than 0:
@@ -671,7 +671,13 @@ Public Class TradeScreen
 
     Private Function GetMaxBuyItemAmount(ByVal tradeItem As TradeItem) As Integer
         Dim item As Item = tradeItem.GetItem()
-        Dim maxAmount As Integer = item.MaxStack - Core.Player.Inventory.GetItemAmount(item.ID)
+        Dim ItemID As String
+        If item.IsGameModeItem Then
+            ItemID = item.gmID
+        Else
+            ItemID = item.ID.ToString
+        End If
+        Dim maxAmount As Integer = item.MaxStack - Core.Player.Inventory.GetItemAmount(ItemID)
 
         If maxAmount > tradeItem.Amount And tradeItem.Amount > -1 Then
             maxAmount = tradeItem.Amount
@@ -886,9 +892,15 @@ Public Class TradeScreen
         Me.SellItemsList.Clear()
         For Each c In Core.Player.Inventory
             Dim i = Item.GetItemByID(c.ItemID)
+            Dim ItemID As String
+            If i.IsGameModeItem Then
+                ItemID = i.gmID
+            Else
+                ItemID = i.ID.ToString
+            End If
             If i.CanBeTraded = True Then
                 If i.ItemType = Me.CurrentCategory Then
-                    SellItemsList.Add(New TradeItem(i.ID, c.Amount, -1, Me.Currency))
+                    SellItemsList.Add(New TradeItem(ItemID, c.Amount, -1, Me.Currency))
                 End If
             End If
         Next

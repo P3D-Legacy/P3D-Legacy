@@ -61,9 +61,9 @@
                             catchMethod = argument.GetSplit(2)
                         End If
 
-                        Dim catchBall As Item = Item.GetItemByID(1)
+                        Dim catchBall As Item = Item.GetItemByID(1.ToString)
                         If commas > 2 Then
-                            catchBall = Item.GetItemByID(int(argument.GetSplit(3)))
+                            catchBall = Item.GetItemByID(argument.GetSplit(3))
                         End If
 
                         Dim catchLocation As String = Screen.Level.MapName
@@ -81,9 +81,9 @@
                             catchTrainer = argument.GetSplit(6)
                         End If
 
-                        Dim heldItem As Integer = 0
+                        Dim heldItem As String = 0.ToString
                         If commas > 6 Then
-                            heldItem = CInt(argument.GetSplit(7))
+                            heldItem = argument.GetSplit(7)
                         End If
 
                         Dim isShiny As Boolean = False
@@ -106,12 +106,12 @@
 
                         If isEgg = True Then
                             Pokemon.EggSteps = 1
-                            Pokemon.SetCatchInfos(Item.GetItemByID(5), "obtained at")
+                            Pokemon.SetCatchInfos(Item.GetItemByID(5.ToString), "obtained at")
                         Else
                             Pokemon.EggSteps = 0
                         End If
 
-                        If heldItem <> 0 Then
+                        If heldItem <> 0.ToString Then
                             Pokemon.Item = Item.GetItemByID(heldItem)
                         End If
 
@@ -249,7 +249,7 @@
                     Dim splits() As String = argument.Split(CChar("|"))
                     Script.SaveNPCTrade = splits
 
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf Script.DoNPCTrade, "Choose Pokémon for trade", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf Script.DoNPCTrade, "Choose Pokémon for trade", True) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                     AddHandler selScreen.SelectedObject, AddressOf Script.DoNPCTradeHandler
 
                     Core.SetScreen(selScreen)
@@ -372,7 +372,7 @@
                         End If
                     End If
 
-                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = canExit}
+                    Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), Nothing, "Choose Pokémon", canExit, canChooseFainted, canChooseEgg) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = canExit}
                     AddHandler selScreen.SelectedObject, Nothing
 
                     Core.SetScreen(selScreen)
@@ -550,7 +550,7 @@
                     End If
                 Case "setitem"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
-                    Dim newItem As Item = Item.GetItemByID(int(argument.GetSplit(1, ",")))
+                    Dim newItem As Item = Item.GetItemByID(argument.GetSplit(1, ","))
 
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         Core.Player.Pokemons(Index).Item = newItem
@@ -577,7 +577,7 @@
                     End If
                 Case "setcatchball"
                     Dim Index As Integer = int(argument.GetSplit(0, ","))
-                    Dim catchBall As Integer = int(argument.GetSplit(1, ","))
+                    Dim catchBall As String = argument.GetSplit(1, ",")
 
                     If Core.Player.Pokemons.Count - 1 >= Index Then
                         Core.Player.Pokemons(Index).CatchBall = Item.GetItemByID(catchBall)
@@ -764,9 +764,9 @@
                             catchMethod = argument.GetSplit(2)
                         End If
 
-                        Dim catchBall As Item = Item.GetItemByID(1)
+                        Dim catchBall As Item = Item.GetItemByID(1.ToString)
                         If commas > 2 Then
-                            catchBall = Item.GetItemByID(int(argument.GetSplit(3)))
+                            catchBall = Item.GetItemByID(argument.GetSplit(3))
                         End If
 
                         Dim catchLocation As String = Screen.Level.MapName
@@ -784,9 +784,9 @@
                             catchTrainer = argument.GetSplit(6)
                         End If
 
-                        Dim heldItem As Integer = 0
+                        Dim heldItem As String = 0.ToString
                         If commas > 6 Then
-                            heldItem = CInt(argument.GetSplit(7))
+                            heldItem = argument.GetSplit(7)
                         End If
 
                         Dim isShiny As Boolean = False
@@ -809,12 +809,12 @@
 
                         If isEgg = True Then
                             Pokemon.EggSteps = 1
-                            Pokemon.SetCatchInfos(Item.GetItemByID(5), "obtained at")
+                            Pokemon.SetCatchInfos(Item.GetItemByID(5.ToString), "obtained at")
                         Else
                             Pokemon.EggSteps = 0
                         End If
 
-                        If heldItem <> 0 Then
+                        If heldItem <> 0.ToString Then
                             Pokemon.Item = Item.GetItemByID(heldItem)
                         End If
 

@@ -18036,7 +18036,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Textures\battlepike.png">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sounds\VoltorbFlip\LoseGame.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -28460,6 +28460,7 @@
     <Compile Include="Pokemon\Items\Fossils\RootFossil.vb" />
     <Compile Include="Pokemon\Items\Fossils\OldAmber.vb" />
     <Compile Include="Pokemon\Items\Fossils\DomeFossil.vb" />
+    <Compile Include="Pokemon\Items\GameModeItemLoader.vb" />
     <Compile Include="Pokemon\Items\Gems\BugGem.vb" />
     <Compile Include="Pokemon\Items\Gems\DarkGem.vb" />
     <Compile Include="Pokemon\Items\Gems\DragonGem.vb" />
@@ -28478,6 +28479,7 @@
     <Compile Include="Pokemon\Items\Gems\RockGem.vb" />
     <Compile Include="Pokemon\Items\Gems\SteelGem.vb" />
     <Compile Include="Pokemon\Items\Gems\WaterGem.vb" />
+    <Compile Include="Pokemon\Items\GameModeItem.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LightStone.vb" />
     <Compile Include="Pokemon\Items\KeyItems\DarkStone.vb" />
     <Compile Include="Pokemon\Items\KeyItems\LibertySeaMap.vb" />

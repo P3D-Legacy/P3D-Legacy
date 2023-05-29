@@ -42,9 +42,9 @@
     End Sub
 
     Public Sub PlantBerry(ByVal ChosenBerry As Integer)
-        Dim testItem As Item = Item.GetItemByID(ChosenBerry)
+        Dim testItem As Item = Item.GetItemByID(ChosenBerry.ToString)
         If testItem.isBerry = True Then
-            Dim Berry As Items.Berry = CType(Item.GetItemByID(ChosenBerry), Items.Berry)
+            Dim Berry As Items.Berry = CType(Item.GetItemByID(ChosenBerry.ToString), Items.Berry)
 
             BerryPlant.AddBerryPlant(Screen.Level.LevelFile, Me.Position, Berry.BerryIndex)
             Screen.TextBox.reDelay = 0.0F

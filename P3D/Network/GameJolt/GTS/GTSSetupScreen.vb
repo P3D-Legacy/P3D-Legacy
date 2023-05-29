@@ -722,7 +722,7 @@
                             Core.SetScreen(New SelectFriendScreen(Me))
                         End If
                         If New Rectangle(100, 300, 32 * 5 + 64, 32).Contains(MouseHandler.MousePosition) = True Then
-                            Dim selScreen = New PartyScreen(Me, Item.GetItemByID(5), AddressOf ChosenPokemon, "Choose Pokémon for Trade", True, True, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                            Dim selScreen = New PartyScreen(Me, Item.GetItemByID(5.ToString), AddressOf ChosenPokemon, "Choose Pokémon for Trade", True, True, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                             AddHandler selScreen.SelectedObject, AddressOf ChosenPokemonHandler
 
                             Core.SetScreen(selScreen)

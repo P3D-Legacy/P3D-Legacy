@@ -304,7 +304,7 @@
             ' Nincada's evolution to Shedinja if a Poké Ball is in the player's Bag and free space is available in the player's party:
             If Shedinja.CanEvolveInto(Me.evolvedPokemon, Me.EvolutionTrigger) = True Then
                 Core.Player.Pokemons.Add(Shedinja.GenerateNew(evolvedPokemon))
-                Core.Player.Inventory.RemoveItem(5, 1)
+                Core.Player.Inventory.RemoveItem(5.ToString, 1)
             End If
 
             Core.Player.Pokemons(PokeList(0)) = evolvedPokemon

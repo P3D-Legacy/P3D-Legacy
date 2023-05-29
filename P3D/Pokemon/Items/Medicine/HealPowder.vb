@@ -32,7 +32,7 @@ Namespace Items.Medicine
                     Pokemon.Status = P3D.Pokemon.StatusProblems.None
                     Pokemon.ChangeFriendShip(Pokemon.FriendShipCauses.HealPowder)
 
-                    Core.Player.Inventory.RemoveItem(Me.ID, 1)
+                    Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
 
                     Screen.TextBox.reDelay = 0.0F
 

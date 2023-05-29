@@ -314,7 +314,7 @@
             Case 0
                 Me.StartTrade()
             Case 1
-                Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf SelectPokemonForTrade, "Choose Pokémon for Trade", True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf SelectPokemonForTrade, "Choose Pokémon for Trade", True, False, False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                 AddHandler selScreen.SelectedObject, AddressOf SelectPokemonForTradeHandler
 
                 Core.SetScreen(selScreen)

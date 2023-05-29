@@ -35,7 +35,7 @@ Namespace Items.Medicine
                         Pokemon.RemoveVolatileStatus(Pokemon.VolatileStatus.Confusion)
                     End If
 
-                    Core.Player.Inventory.RemoveItem(Me.ID, 1)
+                    Core.Player.Inventory.RemoveItem(Me.ID.ToString, 1)
 
                     Screen.TextBox.reDelay = 0.0F
 

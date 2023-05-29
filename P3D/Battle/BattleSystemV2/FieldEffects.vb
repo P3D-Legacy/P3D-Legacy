@@ -281,7 +281,7 @@
         'Special stuff
         Public RunTries As Integer = 0
         Public UsedPokemon As New List(Of Integer)
-        Public StolenItemIDs As New List(Of Integer)
+        Public StolenItemIDs As New List(Of String)
         Public DefeatedTrainerPokemon As Boolean = False
         Public RoamingFled As Boolean = False
 

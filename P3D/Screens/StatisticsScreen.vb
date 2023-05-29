@@ -70,7 +70,7 @@
             Dim value As Integer = Me.Statistics.Values(i)
 
             If ItemID <> "" Then
-                Dim Item As Item = Item.GetItemByID(CInt(ItemID))
+                Dim Item As Item = Item.GetItemByID(ItemID)
                 Core.SpriteBatch.Draw(Item.Texture, New Rectangle(CInt(140), CInt(152 + i * 50 + Scroll), 48, 48), Color.White)
             End If
 

@@ -12,7 +12,7 @@
 
             Select Case command.ToLower()
                 Case "countitem"
-                    Dim ItemID As Integer = int(argument.GetSplit(0))
+                    Dim ItemID As String = argument.GetSplit(0)
 
                     Return Core.Player.Inventory.GetItemAmount(ItemID)
                 Case "countitems"
@@ -27,13 +27,13 @@
                     If argument.Contains(",") Then
                         Select Case argument.GetSplit(1).ToLower()
                             Case "p", "plural"
-                                Return Item.GetItemByID(int(ItemID)).PluralName
+                                Return Item.GetItemByID(ItemID).PluralName
                             Case "s", "singular"
-                                Return Item.GetItemByID(int(ItemID)).Name
+                                Return Item.GetItemByID(ItemID).Name
                         End Select
                     End If
 
-                    Return Item.GetItemByID(int(ItemID)).Name
+                    Return Item.GetItemByID(ItemID).Name
                 Case "id"
                     Dim item As Item = Item.GetItemByName(argument)
                     If Not item Is Nothing Then

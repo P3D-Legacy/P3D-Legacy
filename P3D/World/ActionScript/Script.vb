@@ -266,11 +266,11 @@
 
         oppPokemon.OT = Script.SaveNPCTrade(6)
         oppPokemon.CatchTrainerName = Script.SaveNPCTrade(7)
-        oppPokemon.CatchBall = Item.GetItemByID(ScriptConversion.ToInteger(Script.SaveNPCTrade(8)))
+        oppPokemon.CatchBall = Item.GetItemByID(Script.SaveNPCTrade(8))
 
         Dim itemID As String = Script.SaveNPCTrade(9)
         If StringHelper.IsNumeric(itemID) Then
-            oppPokemon.Item = Item.GetItemByID(ScriptConversion.ToInteger(itemID))
+            oppPokemon.Item = Item.GetItemByID(itemID)
         End If
 
         oppPokemon.CatchLocation = Script.SaveNPCTrade(10)

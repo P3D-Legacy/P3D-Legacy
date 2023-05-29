@@ -15,7 +15,7 @@
         Public CanTeachWhenGender As Boolean = False
 
         Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = False
-        Public Overrides ReadOnly Property CanBeHold As Boolean = False
+        Public Overrides ReadOnly Property CanBeHeld As Boolean = False
         Public Overrides ReadOnly Property CanBeTraded As Boolean = True
         Public Overrides ReadOnly Property CanBeTossed As Boolean = True
         Public Overrides ReadOnly Property SortValue As Integer
@@ -106,12 +106,12 @@
 
             If t = "" Then
                 If p.Attacks.Count = 4 Then
-                    SetScreen(New LearnAttackScreen(CurrentScreen, p, a, ID))
+                    SetScreen(New LearnAttackScreen(CurrentScreen, p, a, ID.ToString))
 
                     Return True
                 Else
                     If IsTM = True AndAlso CBool(GameModeManager.GetGameRuleValue("SingleUseTM", "0")) = True Then
-                        Core.Player.Inventory.RemoveItem(ID, 1)
+                        Core.Player.Inventory.RemoveItem(ID.ToString, 1)
                     End If
                     p.Attacks.Add(BattleSystem.Attack.GetAttackByID(a.ID))
 

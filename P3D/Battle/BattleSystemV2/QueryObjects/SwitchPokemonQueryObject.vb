@@ -89,7 +89,7 @@
             If rec.Contains(MouseHandler.MousePosition) = False Then
                 If Controls.Accept(True, True, True) = True Then
                     If _chooseIndex = 0 Then
-                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                         AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
                         SoundManager.PlaySound("select")
                         Core.SetScreen(selScreen)
@@ -109,7 +109,7 @@
             Else
                 If Controls.Accept(False, True, True) = True Then
                     If _chooseIndex = 0 Then
-                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                         AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
                         SoundManager.PlaySound("select")
                         Core.SetScreen(selScreen)
@@ -129,7 +129,7 @@
                 If Controls.Accept(True, False, False) Then
                     If New Rectangle(Core.windowSize.Width - 213, Core.windowSize.Height - 438, 80, 50).Contains(MouseHandler.MousePosition) Then
                         _chooseIndex = 0
-                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
+                        Dim selScreen = New PartyScreen(Core.CurrentScreen, Item.GetItemByID(5.ToString), AddressOf ChoosePokemon, Localization.GetString("battle_main_choose_pokemon"), False) With {.Mode = Screens.UI.ISelectionScreen.ScreenMode.Selection, .CanExit = True}
                         AddHandler selScreen.SelectedObject, AddressOf ChoosePokemonHandler
                         SoundManager.PlaySound("select")
                         Core.SetScreen(selScreen)

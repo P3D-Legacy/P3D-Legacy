@@ -14,7 +14,7 @@ Namespace Abilities
                     If p.Item Is Nothing Then
                         Dim chance As Integer = CInt(Math.Ceiling(p.Level / 10) * 5)
                         If Core.Random.Next(0, 100) < chance Then
-                            p.Item = Item.GetItemByID(253)
+                            p.Item = Item.GetItemByID(253.ToString)
                         End If
                     End If
                 End If

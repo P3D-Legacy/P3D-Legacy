@@ -534,6 +534,7 @@
         GameModeManager.SetGameModePointer(GameMode)
 
         BattleSystem.GameModeAttackLoader.Load()
+        GameModeItemLoader.Load()
 
         If IsGameJoltSave = True Then
             SandBoxMode = False
@@ -592,9 +593,9 @@
         ''' 2. Shiny Candy [ID: 501]
         If Not ActionScript.IsRegistered("PokemonIndev054Update") Then
             ' Check Inventory.
-            Inventory.RemoveItem(501)
+            Inventory.RemoveItem(501.ToString)
             For i As Integer = 507 To 553 Step +1
-                Inventory.RemoveItem(i)
+                Inventory.RemoveItem(i.ToString)
             Next
 
             ' Check Party Pokemon.
@@ -958,7 +959,7 @@
                     Dim amount As Integer = CInt(ItemID.Remove(0, ItemID.IndexOf("|") + 1))
                     ItemID = ItemID.Remove(ItemID.IndexOf("|"))
 
-                    Inventory.AddItem(CInt(ItemID), amount)
+                    Inventory.AddItem(ItemID, amount)
                 Else
                     If ItemDat <> "" And ItemDat.StartsWith("Mail|") = True Then
                         Dim mailData As String = ItemDat.Remove(0, 5)
@@ -1498,7 +1499,7 @@
     End Sub
 
     Private Sub SaveItems()
-        Inventory.RemoveItem(177) 'Removing Sport Balls if player has those.
+        Inventory.RemoveItem(177.ToString) 'Removing Sport Balls if player has those.
 
         Dim Data As String = GetItemsData()
 
@@ -1840,7 +1841,7 @@
                                         ":end"
 
                         If Temp.LastUsedRepel > -1 Then
-                            Dim haveItemLeft As Boolean = Inventory.GetItemAmount(Temp.LastUsedRepel) > 0
+                            Dim haveItemLeft As Boolean = Inventory.GetItemAmount(Temp.LastUsedRepel.ToString) > 0
 
                             If haveItemLeft = True Then
                                 s = "version=2" & Environment.NewLine &

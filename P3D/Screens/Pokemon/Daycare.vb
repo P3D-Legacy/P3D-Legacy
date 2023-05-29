@@ -74,7 +74,7 @@
 
             p.Generate(1, True, OptionalAdditionalData)
             p.EggSteps = 1
-            p.SetCatchInfos(Item.GetItemByID(5), "obtained at")
+            p.SetCatchInfos(Item.GetItemByID(5.ToString), "obtained at")
             p.CatchBall = Item.GetItemByID(GetEggPokeballID({parent1, parent2}.ToList()))
 
             p.ReloadDefinitions()
@@ -473,7 +473,7 @@
         End If
 
         If chance > 0 And multiplier = True Then
-            If Core.Player.Inventory.GetItemAmount(241) > 0 Then
+            If Core.Player.Inventory.GetItemAmount(241.ToString) > 0 Then
                 chance = CInt(chance * 1.3F)
             End If
         End If
@@ -526,42 +526,56 @@
         Return 0
     End Function
 
-    Private Shared Function GetEggPokeballID(ByVal Pokemon As List(Of Pokemon)) As Integer
-        Dim ballID As Integer = 5
+    Private Shared Function GetEggPokeballID(ByVal Pokemon As List(Of Pokemon)) As String
+        Dim ballID As String = 5.ToString
 
         If Pokemon.Count = 2 Then
+
             Dim p1 As Pokemon = Pokemon(0)
             Dim p2 As Pokemon = Pokemon(1)
+
+            Dim CatchBallID1 As String
+            Dim CatchBallID2 As String
+            If p1.CatchBall.IsGameModeItem Then
+                CatchBallID1 = p1.CatchBall.gmID
+            Else
+                CatchBallID1 = p1.CatchBall.ID.ToString
+            End If
+            If p2.CatchBall.IsGameModeItem Then
+                CatchBallID2 = p2.CatchBall.gmID
+            Else
+                CatchBallID2 = p2.CatchBall.ID.ToString
+            End If
 
             ' First Pokémon is Ditto:
             If p1.EggGroup1 = P3D.Pokemon.EggGroups.Ditto Or p1.EggGroup2 = P3D.Pokemon.EggGroups.Ditto Then
                 ' If the first Pokémon is Ditto, then the other Pokémon must be female to inherit the Poké Ball.
                 If p2.Gender = P3D.Pokemon.Genders.Female Then
-                    ballID = p2.CatchBall.ID
+                    ballID = CatchBallID2
                 End If
             End If
             'Second Pokémon is Ditto.
             If p2.EggGroup1 = P3D.Pokemon.EggGroups.Ditto Or p2.EggGroup2 = P3D.Pokemon.EggGroups.Ditto Then
                 'If the second Pokémon is Ditto, then the other Pokémon must be female to inherit the Poké Ball.
                 If p1.Gender = P3D.Pokemon.Genders.Female Then
-                    ballID = p1.CatchBall.ID
+                    ballID = CatchBallID1
                 End If
             End If
             ' No Pokémon is Ditto:
             If p1.EggGroup1 <> P3D.Pokemon.EggGroups.Ditto And p1.EggGroup2 <> P3D.Pokemon.EggGroups.Ditto And p2.EggGroup1 <> P3D.Pokemon.EggGroups.Ditto And p2.EggGroup2 <> P3D.Pokemon.EggGroups.Ditto Then
                 ' First Pokémon is female:
                 If p1.Gender = P3D.Pokemon.Genders.Female Then
-                    ballID = p1.CatchBall.ID
+                    ballID = CatchBallID1
                 End If
                 ' Second Pokémon is female:
                 If p2.Gender = P3D.Pokemon.Genders.Female Then
-                    ballID = p2.CatchBall.ID
+                    ballID = CatchBallID2
                 End If
             End If
 
             ' Check for: Master Ball, Cherish Ball: Set to Poké Ball
-            If ballID = 1 Or ballID = 45 Then
-                ballID = 5
+            If ballID = 1.ToString Or ballID = 45.ToString Then
+                ballID = 5.ToString
             End If
         End If
 

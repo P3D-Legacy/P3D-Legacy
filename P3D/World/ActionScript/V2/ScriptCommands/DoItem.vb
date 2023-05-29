@@ -20,17 +20,22 @@
                         ItemID = argument.GetSplit(0)
                     End If
 
-                    If ScriptConversion.IsArithmeticExpression(ItemID) = False Then
+                    If ScriptConversion.IsArithmeticExpression(ItemID) = False AndAlso ItemID.StartsWith("gm") = False Then
                         item = Item.GetItemByName(ItemID)
-
                     Else
-                        item = Item.GetItemByID(int(ItemID))
+                        item = Item.GetItemByID(ItemID)
                     End If
                     If Not item Is Nothing Then
-                        If item.MaxStack < Core.Player.Inventory.GetItemAmount(item.ID) + amount Then
-                            amount = int(item.MaxStack - Core.Player.Inventory.GetItemAmount(item.ID)).Clamp(0, 999)
+                        Dim _itemID As String
+                        If item.IsGameModeItem Then
+                            _itemID = item.gmID
+                        Else
+                            _itemID = item.ID.ToString
                         End If
-                        Core.Player.Inventory.AddItem(item.ID, amount)
+                        If item.MaxStack < Core.Player.Inventory.GetItemAmount(_itemID) + amount Then
+                            amount = int(item.MaxStack - Core.Player.Inventory.GetItemAmount(_itemID)).Clamp(0, 999)
+                        End If
+                        Core.Player.Inventory.AddItem(_itemID, amount)
                     End If
                 Case "remove"
                     Dim amount As Integer = 1
@@ -45,9 +50,16 @@
                         End If
                     End If
 
-                    Dim Item As Item = Item.GetItemByID(int(ItemID))
+                    Dim Item As Item = Item.GetItemByID(ItemID)
 
-                    Core.Player.Inventory.RemoveItem(Item.ID, amount)
+                    Dim _itemID As String
+                    If Item.IsGameModeItem Then
+                        _itemID = Item.gmID
+                    Else
+                        _itemID = Item.ID.ToString
+                    End If
+
+                    Core.Player.Inventory.RemoveItem(_itemID, amount)
 
                     If showMessage = True Then
                         Dim Message As String = ""
@@ -65,7 +77,7 @@
                     End If
                 Case "clearitem"
                     If argument <> "" Then
-                        Dim ItemID As Integer = int(argument)
+                        Dim ItemID As String = argument
                         Dim amount As Integer = Core.Player.Inventory.GetItemAmount(ItemID)
 
                         If amount > 0 Then
@@ -77,10 +89,10 @@
                 Case "messagegive"
                     Dim ItemID As String = argument.GetSplit(0)
                     Dim item As Item
-                    If ScriptConversion.IsArithmeticExpression(ItemID) = False Then
+                    If ScriptConversion.IsArithmeticExpression(ItemID) = False AndAlso ItemID.StartsWith("gm") = False Then
                         item = Item.GetItemByName(ItemID)
                     Else
-                        item = Item.GetItemByID(int(ItemID))
+                        item = Item.GetItemByID(ItemID)
                     End If
 
                     Dim Amount As Integer = int(argument.GetSplit(1))

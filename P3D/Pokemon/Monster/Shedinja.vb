@@ -45,7 +45,7 @@ Public Class Shedinja
     Public Shared Function CanEvolveInto(ByVal EvolvedPokemon As Pokemon, ByVal Trigger As EvolutionCondition.EvolutionTrigger) As Boolean
         If EvolvedPokemon.Number = 291 And Trigger = EvolutionCondition.EvolutionTrigger.LevelUp Then
             If Core.Player.Pokemons.Count < 6 Then
-                If Core.Player.Inventory.GetItemAmount(5) > 0 Then
+                If Core.Player.Inventory.GetItemAmount(5.ToString) > 0 Then
                     Return True
                 End If
             End If

@@ -496,10 +496,20 @@
                 End Select
             Next
             Dim p As Pokemon = BattleScreen.OppPokemon
-            If p.Item IsNot Nothing AndAlso p.Item.IsMegaStone = True Then
-                Dim megaStone = CType(p.Item, Items.MegaStone)
-                If p.Number = megaStone.MegaPokemonNumber Then
-                    BattleScreen.IsMegaEvolvingOpp = True
+            If p.Item IsNot Nothing Then
+                If p.Item.IsGameModeItem = True Then
+                    If p.Item.gmIsMegaStone = True Then
+                        If p.Number = CType(p.Item, GameModeItem).gmMegaPokemonNumber Then
+                            BattleScreen.IsMegaEvolvingOpp = True
+                        End If
+                    End If
+                Else
+                    If p.Item.IsMegaStone = True Then
+                        Dim megaStone = CType(p.Item, Items.MegaStone)
+                        If p.Number = megaStone.MegaPokemonNumber Then
+                            BattleScreen.IsMegaEvolvingOpp = True
+                        End If
+                    End If
                 End If
             End If
         End Sub
@@ -2474,9 +2484,11 @@
                                                     canSteal = False
                                                 End If
                                                 If canSteal Then
-                                                    Dim ItemID As Integer = p.Item.ID
-
-                                                    p.OriginalItem = Item.GetItemByID(p.Item.ID)
+                                                    Dim ItemID As String = p.Item.ID.ToString
+                                                    If p.Item.IsGameModeItem = True Then
+                                                        ItemID = p.Item.gmID
+                                                    End If
+                                                    p.OriginalItem = Item.GetItemByID(ItemID)
                                                     p.OriginalItem.AdditionalData = p.Item.AdditionalData
 
                                                     If BattleScreen.Battle.RemoveHeldItem(own, Not own, BattleScreen, op.GetDisplayName() & " stole an item from " & p.GetDisplayName() & " due to " & op.Ability.Name & "!", op.Ability.Name.ToLower()) Then
@@ -2520,9 +2532,14 @@
                                                 canSteal = False
                                             End If
                                             If canSteal Then
-                                                Dim ItemID As Integer = op.Item.ID
+                                                Dim ItemID As String
+                                                If op.Item.IsGameModeItem = True Then
+                                                    ItemID = op.Item.gmID
+                                                Else
+                                                    ItemID = op.Item.ID.ToString
+                                                End If
 
-                                                op.OriginalItem = Item.GetItemByID(op.Item.ID)
+                                                op.OriginalItem = Item.GetItemByID(ItemID)
                                                 op.OriginalItem.AdditionalData = op.Item.AdditionalData
 
                                                 If BattleScreen.Battle.RemoveHeldItem(Not own, own, BattleScreen, p.GetDisplayName() & " stole an item from " & op.GetDisplayName() & " due to " & p.Ability.Name & "!", p.Ability.Name.ToLower()) Then
@@ -2651,7 +2668,7 @@
                                 If Core.Random.Next(0, 2) = 0 AndAlso moveUsed.MakesContact = True AndAlso op.Item Is Nothing AndAlso op.HP > 0 Then
                                     ChangeCameraAngle(2, own, BattleScreen)
                                     BattleScreen.BattleQuery.Add(New TextQueryObject(p.GetDisplayName() & "'s Sticky Barb was passed over to " & op.GetDisplayName() & "."))
-                                    op.Item = Item.GetItemByID(p.Item.ID)
+                                    op.Item = Item.GetItemByID(p.Item.ID.ToString)
                                     p.Item = Nothing
                                 End If 'CODELINE OF EVIL
                             End If
@@ -4485,7 +4502,7 @@
                         If Not p.Item Is Nothing Then
                             If p.Item.OriginalName.ToLower() = "enigma" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                                 If RemoveHeldItem(own, own, BattleScreen, "", "berry:enigma") = True Then
-                                    UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                    UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                 End If
                             End If
                         End If
@@ -4496,7 +4513,7 @@
                     If Not p.Item Is Nothing Then
                         If p.Item.OriginalName.ToLower() = "oran" And BattleScreen.FieldEffects.CanUseItem(own) = True And BattleScreen.FieldEffects.CanUseOwnItem(own, BattleScreen) = True Then
                             If RemoveHeldItem(own, own, BattleScreen, "", "berry:oran") = True Then
-                                UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                             End If
                         End If
                     End If
@@ -4507,7 +4524,7 @@
                             Select Case p.Item.OriginalName.ToLower()
                                 Case "sitrus"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:sitrus") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                             End Select
                         End If
@@ -4519,59 +4536,59 @@
                             Select Case p.Item.OriginalName.ToLower()
                                 Case "figy"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:figy") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "wiki"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:wiki") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "mago"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:mago") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "aguav"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:aguav") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "iapapa"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:iapapa") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "liechi"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:liechi") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "ganlon"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:ganlon") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "salac"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:salac") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "petaya"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:petaya") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "apicot"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:apicot") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "lansat"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:lansat") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "starf"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:starf") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "micle"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:micle") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                                 Case "custap"
                                     If RemoveHeldItem(own, own, BattleScreen, "", "berry:custap") = True Then
-                                        UseBerry(own, from, Item.GetItemByID(ItemID), BattleScreen, message, cause)
+                                        UseBerry(own, from, Item.GetItemByID(ItemID.ToString), BattleScreen, message, cause)
                                     End If
                             End Select
                         End If
@@ -4710,7 +4727,7 @@
 
             If TestFor = False Then
                 Dim ItemID As Integer = p.Item.ID
-                Dim lostItem As Item = Item.GetItemByID(ItemID)
+                Dim lostItem As Item = Item.GetItemByID(ItemID.ToString)
 
                 If from = own Then
                     If own = True Then
