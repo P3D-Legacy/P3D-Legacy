@@ -769,7 +769,7 @@ Public Class NewInventoryScreen
     End Sub
 
     Private Sub UpdateItems()
-        If Controls.Left(True, True, True, True, True, True) Then
+        If Controls.Left(True, True, False, True, True, True) Then
             ItemIndex -= 2
             If ItemIndex < 0 And PageIndex > 0 Then
                 ItemIndex += 10
@@ -784,7 +784,7 @@ Public Class NewInventoryScreen
                 End If
             End If
         End If
-        If Controls.Right(True, True, True, True, True, True) Then
+        If Controls.Right(True, True, False, True, True, True) Then
             If ItemIndex + 2 + (PageIndex * 10) < _items.Length Then
                 ItemIndex += 2
                 If ItemIndex > 9 Then
@@ -795,7 +795,7 @@ Public Class NewInventoryScreen
                 End If
             End If
         End If
-        If Controls.Up(True, True, False, True, True, True) Then
+        If Controls.Up(True, True, True, True, True, True) Then
             ItemIndex -= 1
             If ItemIndex < 0 And PageIndex > 0 Then
                 ItemIndex += 10
@@ -806,7 +806,7 @@ Public Class NewInventoryScreen
                 ItemIndex = 0
             End If
         End If
-        If Controls.Down(True, True, False, True, True, True) Then
+        If Controls.Down(True, True, True, True, True, True) Then
             If ItemIndex + 1 + (PageIndex * 10) < _items.Length Then
                 ItemIndex += 1
                 If ItemIndex > 9 Then
