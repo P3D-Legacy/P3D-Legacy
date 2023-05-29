@@ -86,6 +86,8 @@
     <Content Include="Content\Fonts\BMP\TextFont.png" />
     <Content Include="Content\Fonts\BMP\TextFont.txt" />
     <Content Include="Content\Fonts\BMP\Unown.png" />
+    <Content Include="Content\Fonts\BMP\VoltorbFlipFont.png" />
+    <Content Include="Content\Fonts\BMP\VoltorbFlipFont.txt" />
     <Content Include="Content\Models\BattlePike\BattlePike.png" />
     <Content Include="Content\Models\boat2\Boat.png" />
     <Content Include="Content\Models\boat\SSAqua.png" />

@@ -116,6 +116,12 @@ Public Class FontManager
         End Get
     End Property
 
+    Public Shared ReadOnly Property VoltorbFlipFont() As SpriteFont
+        Get
+            Return GetFont("voltorbflipfont")
+        End Get
+    End Property
+
     Private Shared loadedGameJoltFont As SpriteFont = Nothing
     Private Shared hasLoadedGameJoltFont As Boolean = False
 

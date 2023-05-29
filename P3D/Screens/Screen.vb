@@ -91,6 +91,7 @@ Public MustInherit Class Screen
         PressStartScreen
         CharacterSelectionScreen
         GameModeSelectionScreen
+        VoltorbFlipScreen
 
         'TEMPORARY, OLD
         PokemonScreen

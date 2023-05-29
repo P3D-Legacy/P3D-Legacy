@@ -13,7 +13,7 @@ Namespace Items.KeyItems
         End Sub
 
         Public Overrides Sub Use()
-            Screen.TextBox.Show("Your coins:~" & Core.Player.Coins, {}, True, True)
+            Screen.TextBox.Show(Localization.GetString("item_use_54", "Your coins:~") & Core.Player.Coins, {}, True, True)
         End Sub
 
     End Class
