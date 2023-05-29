@@ -1491,12 +1491,12 @@ Signs:
 Seaplane
 Seaplane:
 Plane:
-{"Entity"{ENT[{"ID"{int[14]}}{"Scale"{sngArr[2,2,2]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[40,-1,74.625]}}{"TexturePath"{str[BarkTown]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"ModelPath"{str[Models\SeaPlane\SeaPlane]}}{"Rotation"{int[3]}}]}}
+{"Entity"{ENT[{"ID"{int[1]}}{"Scale"{sngArr[2,2,2]}}{"EntityID"{str[WallBlock]}}{"Position"{sngArr[40,-1,74.625]}}{"TexturePath"{str[BarkTown]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[0]}}{"AdditionalValue"{str[]}}{"ModelPath"{str[Models\SeaPlane\SeaPlane]}}{"Rotation"{int[3]}}]}}
 Propeller:
-{"Entity"{ENT[{"ID"{int[15]}}{"Scale"{sngArr[2,2,2]}}{"EntityID"{str[TurningSign]}}{"Position"{sngArr[40,0.2,74.625]}}{"TexturePath"{str[BarkTown]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[2]}}{"AdditionalValue"{str[3]}}{"ModelPath"{str[Models\SeaPlane\SeaPlane_Propeller]}}{"Rotation"{int[3]}}]}}
+{"Entity"{ENT[{"ID"{int[2]}}{"Scale"{sngArr[2,2,2]}}{"EntityID"{str[TurningSign]}}{"Position"{sngArr[40,0.2,74.625]}}{"TexturePath"{str[BarkTown]}}{"Textures"{recArr[[64,0,16,16]]}}{"TextureIndex"{intArr[0,0]}}{"Collision"{bool[0]}}{"ModelID"{int[1]}}{"Action"{int[2]}}{"AdditionalValue"{str[3]}}{"ModelPath"{str[Models\SeaPlane\SeaPlane_Propeller]}}{"Rotation"{int[3]}}]}}
 
 NPCs:
-{"NPC"{NPC[{"Position"{sngArr[36,0,71]}}{"TextureID"{str[32]}}{"ID"{int[0]}}{"Name"{str[sailor]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\depart]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
+{"NPC"{NPC[{"Position"{sngArr[36,0,71]}}{"TextureID"{str[32]}}{"ID"{int[0]}}{"Name"{str[sailor]}}{"Action"{int[1]}}{"AdditionalValue"{str[frontier\fromfrontier]}}{"Rotation"{int[1]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[61,3,32]}}{"TextureID"{str[darkfire]}}{"ID"{int[99]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Soon...]}}{"Rotation"{int[3]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[61,3,31]}}{"TextureID"{str[[POKEMON|S]6]}}{"ID"{int[98]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[Char!]}}{"Rotation"{int[2]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
 {"NPC"{NPC[{"Position"{sngArr[62,3,33]}}{"TextureID"{str[84]}}{"ID"{int[97]}}{"Name"{str[GymGuy]}}{"Action"{int[0]}}{"AdditionalValue"{str[The Battle Dome building~is still being designed,~the designer here has run~into some issues with making~it happen because...~well...*my colleague here~describes it best...]}}{"Rotation"{int[0]}}{"Movement"{str[Still]}}{"MoveRectangles"{recArr[]}}]}}
