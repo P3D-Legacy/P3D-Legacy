@@ -174,11 +174,20 @@ Public Class EvolutionCondition
                                         'REMOVE HELD ITEM CHECK
                                     End If
                                 Else
-                                    If p.Item.ID <> CInt(c.Argument) Then
-                                        canEvolve = False
-                                        'ElseIf c.Trigger = EvolutionTrigger.Trading Then
-                                        'REMOVE HELD ITEM CHECK
+                                    If Item.GetItemByID(c.Argument).IsGameModeItem Then
+                                        If p.Item.ID.ToString <> c.Argument Then
+                                            canEvolve = False
+                                            'ElseIf c.Trigger = EvolutionTrigger.Trading Then
+                                            'REMOVE HELD ITEM CHECK
+                                        End If
+                                    Else
+                                        If p.Item.ID <> CInt(c.Argument) Then
+                                            canEvolve = False
+                                            'ElseIf c.Trigger = EvolutionTrigger.Trading Then
+                                            'REMOVE HELD ITEM CHECK
+                                        End If
                                     End If
+
                                 End If
                             End If
                         Case ConditionTypes.InParty
@@ -204,13 +213,19 @@ Public Class EvolutionCondition
                                 canEvolve = False
                             End If
                         Case ConditionTypes.Item
-                            If p.Item.IsGameModeItem = True Then
+                            If Item.GetItemByID(arg).IsGameModeItem = True Then
                                 If arg <> c.Argument Then
                                     canEvolve = False
                                 End If
                             Else
-                                If CInt(arg) <> CInt(c.Argument) Then
-                                    canEvolve = False
+                                If Item.GetItemByID(c.Argument).IsGameModeItem = True Then
+                                    If arg <> c.Argument Then
+                                        canEvolve = False
+                                    End If
+                                Else
+                                    If CInt(arg) <> CInt(c.Argument) Then
+                                        canEvolve = False
+                                    End If
                                 End If
                             End If
                         Case ConditionTypes.Level
