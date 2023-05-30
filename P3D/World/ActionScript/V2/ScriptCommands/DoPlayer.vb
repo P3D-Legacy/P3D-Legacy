@@ -300,6 +300,16 @@
                     End If
 
                     IsReady = True
+                Case "addcoins"
+                    Dim coins As Integer = int(argument)
+
+                    Core.Player.Coins += coins
+
+                    If coins > 0 Then
+                        PlayerStatistics.Track("Obtained Coins", coins)
+                    End If
+
+                    IsReady = True
                 Case "showrod"
                     If Core.CurrentScreen.Identification = Screen.Identifications.OverworldScreen Then
                         OverworldScreen.DrawRodID = int(argument)

@@ -75,6 +75,8 @@
                     Return Core.Player.Gender
                 Case "bp"
                     Return Core.Player.BP.ToString()
+                Case "coins"
+                    Return Core.Player.Coins.ToString()
                 Case "badges"
                     Return Core.Player.Badges.Count
                 Case "thirdperson"
