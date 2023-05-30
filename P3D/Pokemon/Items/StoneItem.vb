@@ -27,10 +27,11 @@ Namespace Items
             Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
 
             If p.IsEgg() = False And p.CanEvolve(EvolutionCondition.EvolutionTrigger.ItemUse, Me.ID.ToString()) = True Then
+                RemoveItem()
+
                 Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New EvolutionScreen(Core.CurrentScreen, {PokeIndex}.ToList(), Me.ID.ToString(), EvolutionCondition.EvolutionTrigger.ItemUse), Color.Black, False))
 
                 PlayerStatistics.Track("[22]Evolution stones used", 1)
-                RemoveItem()
 
                 Return True
             Else

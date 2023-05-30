@@ -421,12 +421,11 @@ Public Class GameModeItem
         End If
 
         Dim p As Pokemon = Core.Player.Pokemons(PokeIndex)
-
         If p.IsEgg() = False And p.CanEvolve(EvolutionCondition.EvolutionTrigger.ItemUse, Me.gmID) = True Then
-            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New EvolutionScreen(Core.CurrentScreen, {PokeIndex}.ToList(), Me.gmID, EvolutionCondition.EvolutionTrigger.ItemUse), Color.Black, False))
 
             RemoveItem()
 
+            Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New EvolutionScreen(Core.CurrentScreen, {PokeIndex}.ToList(), Me.gmID, EvolutionCondition.EvolutionTrigger.ItemUse), Color.Black, False))
             Return True
         Else
             Screen.TextBox.Show("Cannot use on~" & p.GetDisplayName(), {}, False, False)
