@@ -399,7 +399,7 @@ Public Class NewInventoryScreen
                         Dim fontWidth As Integer = CInt(FontManager.MiniFont.MeasureString(cItem.Name).X)
                         itemBatch.DrawString(FontManager.MiniFont, cItem.Name, itemLoc + New Vector2(48 - fontWidth / 2.0F, 51), New Color(255, 255, 255, itemPanelAlpha))
                         If _tabIndex <> 7 Then
-                            itemBatch.DrawString(FontManager.MiniFont, "x" & _items(i + (PageIndex * 10)).Amount.ToString(), itemLoc + New Vector2(84, 26), New Color(40, 40, 40, itemPanelAlpha))
+                            itemBatch.DrawString(FontManager.MainFont, "x" & _items(i + (PageIndex * 10)).Amount.ToString(), itemLoc + New Vector2(84, 26), New Color(40, 40, 40, itemPanelAlpha))
                         End If
 
                         If _tabIndex = 4 Then
@@ -510,7 +510,7 @@ Public Class NewInventoryScreen
         End Select
 
         infoBatch.DrawString(FontManager.TextFont, itemTitle, New Vector2(80, 20), Color.White, 0F, Vector2.Zero, 2.0F, SpriteEffects.None, 0F)
-        infoBatch.DrawString(FontManager.TextFont, itemSubTitle, New Vector2(80, 46), Color.LightGray, 0F, Vector2.Zero, 1.5F, SpriteEffects.None, 0F)
+        infoBatch.DrawString(FontManager.TextFont, itemSubTitle, New Vector2(80, 46), Color.LightGray, 0F, Vector2.Zero, 2.0f, SpriteEffects.None, 0F)
         infoBatch.DrawString(FontManager.TextFont, itemDescription.CropStringToWidth(FontManager.TextFont, 1.0F, 430), New Vector2(28, 84), Color.LightGray, 0F, Vector2.Zero, 1.0F, SpriteEffects.None, 0F)
 
         For i = 0 To _infoItemOptions.Count - 1
