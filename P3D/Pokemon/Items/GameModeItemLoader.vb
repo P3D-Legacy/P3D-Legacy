@@ -74,14 +74,14 @@ Public Class GameModeItemLoader
                         Case "description"
                             item.gmDescription = value
                         Case "type"
-                            Select Case value
+                            Select Case value.ToLower()
                                 Case "standard", "0"
                                     item.gmItemType = ItemTypes.Standard
                                 Case "medicine", "1"
                                     item.gmItemType = ItemTypes.Medicine
                                 Case "plants", "2"
                                     item.gmItemType = ItemTypes.Plants
-                                Case "balls", "pokeballs", "pokéballs", "3"
+                                Case "balls", "pokeballs", "3"
                                     item.gmItemType = ItemTypes.Pokéballs
                                 Case "machines", "4"
                                     item.gmItemType = ItemTypes.Machines
@@ -109,7 +109,7 @@ Public Class GameModeItemLoader
                         Case "battlepointsprice"
                             item.gmBattlePointsPrice = CInt(value)
                         Case "catchmultiplier"
-                            item.gmCatchMultiplier = CSng(value)
+                            item.gmCatchMultiplier = CSng(value.ReplaceDecSeparator)
                         Case "maxstack"
                             item.gmMaxStack = CInt(value)
                         Case "flingdamage"
@@ -123,7 +123,7 @@ Public Class GameModeItemLoader
                             Dim valueSplit As String() = value.Split(",")
                             For i = 0 To valueSplit.Count - 1
                                 Select Case valueSplit(i).ToLower
-                                    Case "brn", "frz", "prz", "psn", "bpsn", "slp", "fnt", "cfs", "allwithoutfnt", "all"
+                                    Case "brn", "frz", "prz", "psn", "bpsn", "slp", "fnt", "confusion", "allwithoutfnt", "all"
                                         StatusEffectList.Add(valueSplit(i))
                                 End Select
                             Next
