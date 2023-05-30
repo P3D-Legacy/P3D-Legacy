@@ -430,7 +430,7 @@ VoltorbFlip_BeforeNewLevel_GameInfo_Answer_HowToPlay,How to Play
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint,Hint!
 VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos,About Memos
 
-VoltorbFlip_GameWon_1,Game clear!~You've found all of the hidden x2 and x3 cards.*<player.name> received~
+VoltorbFlip_GameWon_1,Game clear!~You've found all of the~hidden x2 and x3 cards.*<player.name> received~
 VoltorbFlip_GameWon_2,Coin(s)!
 
 VoltorbFlip_GameLost,Oh no! You get 0 Coins!

@@ -1004,7 +1004,7 @@ TryAgain:
 
             'Level complete!
             If CurrentCoins >= MaxCoins AndAlso GameState = States.Game Then
-                Dim GameClearText = Localization.GetString("VoltorbFlip_GameWon_1", "Game clear!~You've found all of the hidden x2 and x3 cards.*<player.name> received~") & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_GameWon_2", "Coin(s)!")
+                Dim GameClearText = Localization.GetString("VoltorbFlip_GameWon_1", "Game clear!~You've found all of the~hidden x2 and x3 cards.*<player.name> received~") & CurrentCoins.ToString & " " & Localization.GetString("VoltorbFlip_GameWon_2", "Coin(s)!")
                 SoundManager.PlaySound("VoltorbFlip\WinGame")
                 TextBox.Show(GameClearText)
                 If Delay = 0 Then
@@ -1152,7 +1152,7 @@ TryAgain:
                         End If
                     Case 1 'Info Menu
                         If Delay = 0 AndAlso TextBox.Showing = False AndAlso ChooseBox.Showing = False Then
-                            TextBox.Show(Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Question", "Which set of info?") & "%" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_HowToPlay", "How to Play") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint", "Hint!") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos", "About Memos") & "%")
+                            TextBox.Show(Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Question", "Which set of info?") & "%" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_HowToPlay", "How to Play") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_Hint", "Hint!") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Answer_AboutMemos", "About Memos") & "|" & Localization.GetString("VoltorbFlip_BeforeNewLevel_GameInfo_Back", "Back") & "%")
                             Delay = 5
                         End If
                         If ChooseBox.readyForResult = True Then
@@ -1163,6 +1163,8 @@ TryAgain:
                                     NewLevelMenuIndex = 3
                                 Case 2
                                     NewLevelMenuIndex = 4
+                                Case 3
+                                    NewLevelMenuIndex = 0
                             End Select
                         End If
                     Case 2 'How to Play
