@@ -882,6 +882,8 @@
                         startSurfing = CBool(Value)
                     Case "bp"
                         BP = CInt(Value)
+                    Case "coins"
+                        Coins = CInt(Value)
                     Case "gtsstars"
                         GTSStars = CInt(Value)
                     Case "showmodels"
@@ -1356,6 +1358,7 @@
             "TempSurfSkin|" & TempSurfSkin & Environment.NewLine &
             "Surfing|" & Screen.Level.Surfing.ToNumberString() & Environment.NewLine &
             "BP|" & BP & Environment.NewLine &
+            "Coins|" & Coins & Environment.NewLine &
             "ShowModels|" & ShowModelsInBattle.ToNumberString() & Environment.NewLine &
             "GTSStars|" & GTSStars & Environment.NewLine &
             "SandBoxMode|" & SandBoxMode.ToNumberString() & Environment.NewLine &
