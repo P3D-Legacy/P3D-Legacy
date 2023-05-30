@@ -7,7 +7,6 @@ Public Class GameModeItem
 
     Inherits Item
 
-    Public gmTextureSource As String = "Items\GameModeItems"
     Public gmPluralName As String = gmName
     Public gmPrice As Integer = 0
     Public gmBattlePointsPrice As Integer = 1
@@ -49,27 +48,46 @@ Public Class GameModeItem
     ''' <summary>
     ''' The price of this item if the player purchases it in exchange for PokéDollars. This halves when selling an item to the store.
     ''' </summary>
-    Public Overrides ReadOnly Property PokeDollarPrice As Integer = gmPrice
+    Public Overrides ReadOnly Property PokeDollarPrice As Integer
+        Get
+            Return gmPrice
+        End Get
+    End Property
 
     ''' <summary>
     ''' The price of this item if the player purchases it exchange for BattlePoints.
     ''' </summary>
-    Public Overrides ReadOnly Property BattlePointsPrice As Integer = gmBattlePointsPrice
+    Public Overrides ReadOnly Property BattlePointsPrice As Integer
+        Get
+            Return gmBattlePointsPrice
+        End Get
+    End Property
 
     ''' <summary>
     ''' The type of this item. This also controls in which bag this item gets sorted.
     ''' </summary>
-    Public Overrides ReadOnly Property ItemType As ItemTypes = gmItemType
-
+    Public Overrides ReadOnly Property ItemType As ItemTypes
+        Get
+            Return gmItemType
+        End Get
+    End Property
     ''' <summary>
     ''' The default catch multiplier if the item gets used as a Pokéball.
     ''' </summary>
-    Public Overrides ReadOnly Property CatchMultiplier As Single = gmCatchMultiplier
+    Public Overrides ReadOnly Property CatchMultiplier As Single
+        Get
+            Return gmCatchMultiplier
+        End Get
+    End Property
 
     ''' <summary>
     ''' The maximum amount of this item type (per ID) that can be stored in the bag.
     ''' </summary>
-    Public Overrides ReadOnly Property MaxStack As Integer = gmMaxStack
+    Public Overrides ReadOnly Property MaxStack As Integer
+        Get
+            Return gmMaxStack
+        End Get
+    End Property
 
     ''' <summary>
     ''' A value that can be used to sort items in the bag after. Lower values make items appear closer to the top.
@@ -80,48 +98,84 @@ Public Class GameModeItem
     ''' <summary>
     ''' The bag description of this item.
     ''' </summary>
-    Public Overrides ReadOnly Property Description As String = gmDescription
+    Public Overrides ReadOnly Property Description As String
+        Get
+            Return gmDescription
+        End Get
+    End Property
 
 
     ''' <summary>
     ''' The damage the Fling move does when this item is attached to a Pokémon.
     ''' </summary>
-    Public Overrides ReadOnly Property FlingDamage As Integer = gmFlingDamage
+    Public Overrides ReadOnly Property FlingDamage As Integer
+        Get
+            Return gmFlingDamage
+        End Get
+    End Property
 
     ''' <summary>
     ''' If this item can be traded in for money.
     ''' </summary>
-    Public Overrides ReadOnly Property CanBeTraded As Boolean = gmCanBeTraded
+    Public Overrides ReadOnly Property CanBeTraded As Boolean
+        Get
+            Return gmCanBeTraded
+        End Get
+    End Property
 
     ''' <summary>
     ''' If this item can be given to a Pokémon.
     ''' </summary>
-    Public Overrides ReadOnly Property CanBeHeld As Boolean = gmCanBeHeld
+    Public Overrides ReadOnly Property CanBeHeld As Boolean
+        Get
+            Return gmCanBeHeld
+        End Get
+    End Property
 
     ''' <summary>
     ''' If this item can be used from the bag.
     ''' </summary>
-    Public Overrides ReadOnly Property CanBeUsed As Boolean = gmCanBeUsed
+    Public Overrides ReadOnly Property CanBeUsed As Boolean
+        Get
+            Return gmCanBeUsed
+        End Get
+    End Property
 
     ''' <summary>
     ''' If this item can be used in battle.
     ''' </summary>
-    Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean = gmCanBeUsedInBattle
+    Public Overrides ReadOnly Property CanBeUsedInBattle As Boolean
+        Get
+            Return gmCanBeUsedInBattle
+        End Get
+    End Property
 
     ''' <summary>
     ''' If this item can be tossed in the bag.
     ''' </summary>
-    Public Overrides ReadOnly Property CanBeTossed As Boolean = gmCanBeTossed
+    Public Overrides ReadOnly Property CanBeTossed As Boolean
+        Get
+            Return gmCanBeTossed
+        End Get
+    End Property
 
     ''' <summary>
     ''' If this item requires the player to select a Pokémon to use the item on in battle.
     ''' </summary>
-    Public Overrides ReadOnly Property BattleSelectPokemon As Boolean = gmBattleSelectPokemon
+    Public Overrides ReadOnly Property BattleSelectPokemon As Boolean
+        Get
+            Return gmBattleSelectPokemon
+        End Get
+    End Property
 
     ''' <summary>
     ''' If this item is a Healing item.
     ''' </summary>
-    Public Overrides ReadOnly Property IsHealingItem As Boolean = gmIsHealingItem
+    Public Overrides ReadOnly Property IsHealingItem As Boolean
+        Get
+            Return gmIsHealingItem
+        End Get
+    End Property
 
 
     ''' <summary>

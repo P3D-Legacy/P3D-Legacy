@@ -13,6 +13,7 @@ Public MustInherit Class Item
     Public gmID As String = ""
     Public gmName As String = ""
     Public gmDescription As String = ""
+    Public gmTextureSource As String = "Items\GameModeItems"
     Public gmTextureRectangle As Rectangle
     Public gmIsBerry As Boolean = False
     Public gmIsMail As Boolean = False
@@ -137,7 +138,7 @@ Public MustInherit Class Item
         Get
             If IsGameModeItem = True Then
                 If _texture Is Nothing Then
-                    _texture = TextureManager.GetTexture(_textureSource, gmTextureRectangle, "")
+                    _texture = TextureManager.GetTexture(gmTextureSource, gmTextureRectangle, "")
                 End If
             Else
                 If _texture Is Nothing Then
