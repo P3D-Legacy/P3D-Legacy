@@ -75,6 +75,7 @@ Public Class TradeScreen
     Public Enum Currencies
         Pokédollar
         BattlePoints
+        Coins
     End Enum
 
     ''' <summary>
@@ -187,6 +188,8 @@ Public Class TradeScreen
                 Me.Currency = Currencies.Pokédollar
             Case "bp", "battlepoints", "battle points"
                 Me.Currency = Currencies.BattlePoints
+            Case "c", "coins"
+                Me.Currency = Currencies.Coins
         End Select
     End Sub
 
@@ -1279,6 +1282,8 @@ Public Class TradeScreen
         Select Case Me.Currency
             Case Currencies.BattlePoints
                 Return Core.Player.BP
+            Case Currencies.Coins
+                Return Core.Player.Coins
             Case Currencies.Pokédollar
                 Return Core.Player.Money
         End Select
@@ -1289,6 +1294,8 @@ Public Class TradeScreen
         Select Case Me.Currency
             Case Currencies.BattlePoints
                 Return GetCurrencyAmount().ToString() & " Battle Points"
+            Case Currencies.Coins
+                Return GetCurrencyAmount().ToString() & " Coins"
             Case Currencies.Pokédollar
                 Return GetCurrencyAmount().ToString() & " Pokémon Dollars"
         End Select
@@ -1299,6 +1306,8 @@ Public Class TradeScreen
         Select Case Me.Currency
             Case Currencies.BattlePoints
                 Return "BP"
+            Case Currencies.Coins
+                Return "C"
             Case Currencies.Pokédollar
                 Return "$"
         End Select
@@ -1309,6 +1318,8 @@ Public Class TradeScreen
         Select Case Me.Currency
             Case Currencies.BattlePoints
                 Core.Player.BP = (Core.Player.BP + change).Clamp(0, Integer.MaxValue)
+            Case Currencies.Coins
+                Core.Player.Coins = (Core.Player.Coins + change).Clamp(0, Integer.MaxValue)
             Case Currencies.Pokédollar
                 Core.Player.Money = (Core.Player.Money + change).Clamp(0, Integer.MaxValue)
         End Select

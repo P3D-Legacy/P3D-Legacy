@@ -47,7 +47,7 @@
                     Dim currencyIndicator As String = "P"
 
                     If argument.CountSplits() > 3 Then
-                        currencyIndicator = argument.GetSplit(3)            ' p for PokéDollars, bp for Battle Points.
+                        currencyIndicator = argument.GetSplit(3)            ' p for PokéDollars, bp for Battle Points, c for coins.
                     End If
 
                     Core.SetScreen(New TransitionScreen(Core.CurrentScreen, New TradeScreen(Core.CurrentScreen, storeData, canBuy, canSell, currencyIndicator), Color.Black, False))
@@ -286,6 +286,7 @@
                                 If VoltorbFlip.VoltorbFlipScreen.TotalCoins > 0 Then
                                     Screen.TextBox.Show(Localization.GetString("VoltorbFlip_AfterGame_Won1", "You've won") & " " & VoltorbFlip.VoltorbFlipScreen.TotalCoins & " " & Localization.GetString("VoltorbFlip_AfterGame_Won2", "Coins!"))
                                     Core.Player.Coins += VoltorbFlip.VoltorbFlipScreen.TotalCoins
+                                    PlayerStatistics.Track("Obtained Coins", VoltorbFlip.VoltorbFlipScreen.TotalCoins)
                                     VoltorbFlip.VoltorbFlipScreen.TotalCoins = -1
                                     IsReady = True
                                 Else
